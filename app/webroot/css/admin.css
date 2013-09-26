@@ -1,0 +1,130 @@
+table{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    background: #fff;
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+table th{
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 8px;
+    border-bottom: 2px solid #cccccc;
+}
+table td{
+    border-bottom: 1px solid #ccc;
+    padding: 6px 8px;
+}
+table tbody tr:hover td{
+    color: #000;
+}
+fieldset { border: 1px dashed #000000; }
+fieldset legend {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Conv_Novecento-Book',Sans-Serif;
+    font-size: 18px;
+    padding: 5px 7px;
+}
+fieldset input, fieldset textarea {width: 97% !important;}
+fieldset input[type="checkbox"], fieldset input[type="radio"] {
+    float: left;
+    margin: 5px 5px 5px 0;
+    width: auto !important;
+}
+.ajax {
+    padding: 0 10px;
+}
+#properties { display: none; }
+#upload { display: none; }
+#block-size {display : none;}
+.btn {
+    margin:10px 0;
+}
+.btn {
+    background-color:#333;
+    border:medium none;
+    color:#FFFFFF !important;
+    display:inline-block;
+    font-size:14px;
+    margin:5px 5px 5px 0;
+    padding:5px 8px;
+    text-decoration:none;
+    text-transform:uppercase;
+    width: auto;
+}
+.prev, .next {
+    padding: 5px;
+}
+.checkbox {
+    display: inline-block;
+    float: left;
+    width: 215px;
+}
+.actions {
+    width: 80px;
+}
+.attachments {
+    float: left;
+    width: 100%;
+}
+.attachments .attachment {
+    float: left;
+    margin: 3px;
+}
+.attachments .attachment img {
+    width: 100%;
+}
+.attachments .attachment .color-name {
+    background-color: #F1F1F1;
+    padding: 5px;
+}
+.product-image{
+    border: 1px solid #ccc;
+    max-width: 160px;
+    max-height: 160px;
+    margin-top: 10px;
+}
+.image-caption{
+    margin-bottom: 2px;
+    font-size: 12px;
+}
+.product-variant{
+    text-decoration: none;
+    background-color: #ddd;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    margin-right: 7px;
+    display:inline-block;
+}
+.product-variant:hover{
+    background-color: #999;
+}
+.properties {}
+.properties .property {
+    background-color: #F1F1F1;
+    margin: 5px 5px 5px 0;
+    padding: 5px;
+}
+.product-size{
+    margin-top: 8px;
+    padding: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background: #f0f0f0;
+    
+}
+#DetailAdminEntitiesForm .checkbox{
+    width: 100%;
+}
+#DetailShow{
+    float:none;
+}
+.paging {}
+.paging span {
+    padding: 5px;
+}
