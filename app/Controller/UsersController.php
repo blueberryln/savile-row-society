@@ -29,26 +29,26 @@ class UsersController extends AppController {
             }
             
             
-            $login_allowed_list = array(
-                'admin@savilerowsociety.com',
-                'ds3167@columbia.edu',
-                'lisa@savilerowsociety.com',
-                'andrea@savilerowsociety.com',
-                'deborah@savilerowsociety.com',
-                'vincent@savilerowsociety.com',
-                'saurabh@mobikasa.com',
-                'prateek@mobikasa.com',
-                'ankit@mobikasa.com',
-                'vaibhav@mobikasa.com',
-                'rajeev@mobikasa.com',
-                'GOLDEN@CRACKERJACKANDHOUSE.COM'
-            );
-            if(!in_array($this->request->data['User']['email'], $login_allowed_list)){
-                $this->request->data = null;
-                $this->Session->setFlash(__('Thank you for visiting Savile Row Society. User login has been disabled as we are hard at work getting ready for our October launch.'), 'flash');
-                $this->redirect('/');
-                exit();
-            }
+            //$login_allowed_list = array(
+//                'admin@savilerowsociety.com',
+//                'ds3167@columbia.edu',
+//                'lisa@savilerowsociety.com',
+//                'andrea@savilerowsociety.com',
+//                'deborah@savilerowsociety.com',
+//                'vincent@savilerowsociety.com',
+//                'saurabh@mobikasa.com',
+//                'prateek@mobikasa.com',
+//                'ankit@mobikasa.com',
+//                'vaibhav@mobikasa.com',
+//                'rajeev@mobikasa.com',
+//                'GOLDEN@CRACKERJACKANDHOUSE.COM'
+//            );
+//            if(!in_array($this->request->data['User']['email'], $login_allowed_list)){
+//                $this->request->data = null;
+//                $this->Session->setFlash(__('Thank you for visiting Savile Row Society. User login has been disabled as we are hard at work getting ready for our October launch.'), 'flash');
+//                $this->redirect('/');
+//                exit();
+//            }
             
             
             // Remove 'required' rule from password

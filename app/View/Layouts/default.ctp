@@ -111,8 +111,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-        <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>-->
-        <script src="<?php echo $this->request->webroot; ?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.flexslider-min.js" type="text/javascript"></script>        
@@ -269,7 +268,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
             }
             /* call function to show registration popup with facebook and linked in registration options*/
             function signUp(e) {
-                $.blockUI({message: $('#presignup-box'), css: {top: '15%', 'width' : popupWidth + 'px', 'left' : $(window).width() / 2 - popupWidth/2}});
+                $.blockUI({message: $('#signup-box'), css: {top: '15%', 'width' : popupWidth + 'px', 'left' : $(window).width() / 2 - popupWidth/2}});
                 $('.blockOverlay').click($.unblockUI);
                 clearInterval(popUpInterval);
             }
