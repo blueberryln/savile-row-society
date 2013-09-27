@@ -6,10 +6,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
     <div class="sixteen columns flexslider loader">
         <ul class="slides">
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-1.jpg"></li>
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"></li>
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-3.jpg"></li>
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"></li>
+            <li><img src="<?php echo $this->request->webroot; ?>img/home-1.jpg"/></li>
+            <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>
+            <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/home-3.jpg"/></a></li>
+            <li><a href="<?php echo $this->request->webroot; ?>stylist"><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"/></a></li>
         </ul>
     </div>
 
