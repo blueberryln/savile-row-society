@@ -13,7 +13,7 @@
             <br />
             <strong>Name :</strong> <?php echo $shipped_order['User']['full_name']; ?>
             <br />
-            <strong>Date of order :</strong> <?php echo $this->time->format($shipped_order['Order']['created'], '%d-%m-%Y'); ?>
+            <strong>Date of order :</strong> <?php echo date('d-M-Y' , strtotime($shipped_order['Order']['created'])); ?>
             <br />
             <strong>Shipping Address :</strong> <?php echo $shipped_order['ShippingAddress']['address'] . ', ' . $shipped_order['ShippingAddress']['city'] . ', ' . $shipped_order['ShippingAddress']['state'] . ', ' . $shipped_order['ShippingAddress']['country'] . ' - ' . $shipped_order['ShippingAddress']['zip']; ?>
             <br /><br />
