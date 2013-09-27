@@ -33,8 +33,8 @@ class OrdersController extends AppController {
             throw new NotFoundException(__('Invalid order'));
         }    
         
-        $this->Order->id = $id;
-        $order = $this->Order->find('first');
+        $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+        $order = $this->Order->find('first', $options);
         
         if($order['Order']['shipped'] == 1){
             $this->Session->setFlash(__('The order is already marked shipped.'), 'flash');    
