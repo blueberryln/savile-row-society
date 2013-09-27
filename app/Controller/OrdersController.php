@@ -67,6 +67,8 @@ class OrdersController extends AppController {
                 $this->Session->setFlash(__('The order could not be marked shipped. Please try again later'), 'flash');    
             }
         }
+        $this->redirect('index');
+        exit;
     }
 
 }
