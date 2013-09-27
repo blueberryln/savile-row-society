@@ -28,8 +28,8 @@
                		<tr>
                			<td style="border-bottom: 1px solid #444; border-right: 1px solid #444;"><img src="http://localhost/srs_server/files/products/152_8_R4100004.jpg" style="max-width:110px;"></td>
                			<td style="border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $item['Entity']['name']; ?></td>
-               			<td style="text-align: center; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $item['OrderItem']['quantity']; ?></td>
-               			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;">$ <?php echo $item['OrderItem']['quantity'] * $item['OrderItem']['price']; ?></td>	
+               			<td style="text-align: center; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $item['quantity']; ?></td>
+               			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;">$ <?php echo $item['quantity'] * $item['price']; ?></td>	
                		</tr>
                 <?php endforeach; ?>
                 
