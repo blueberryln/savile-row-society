@@ -320,7 +320,7 @@ body{
 }
 .card-menu  li a{
     text-decoration: none;
-    color:#8f7948;
+    color:#AF9A59;
 }
 .submenu-container
 {
@@ -1331,7 +1331,8 @@ body{
 .timeline #sendMessages{
     width: 150px;
     float: right;
-    margin-right: 50px;
+    margin-right: 46px;
+    text-align: center;
 }
 .timeline .img-holder{
     float: left;
@@ -2778,7 +2779,7 @@ li.last
 {
     color: #B3B3B3;
     font-size: 14px;
-    text-align: center;
+    text-align: left;
     margin-left: 5px;
     border:1px solid #e5e5e5;
     border-radius:2px;
@@ -3514,4 +3515,16 @@ h4.hi-message
     margin-bottom: 10px;
     margin-top: 40px;
     font-size:21px !important;
+}
+
+.err-message
+{
+    color:#ff0000;
+    font-size: 12px;
+    display:none;
+}
+
+.stylist-talk
+{
+    padding-top:30px;
 }

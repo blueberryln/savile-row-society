@@ -71,7 +71,24 @@ $(document).ready(function(){
     });
     $(".add-to-cart").click(function(e) {
         e.preventDefault();
-
+        if($("select#product-quantity").val()== "")
+        {
+            $("span.err-message").fadeIn(300);
+            return false;
+        } 
+        else
+        {
+            $("span.err-message").fadeOut(300);
+        }
+        if($("select#product-size").val()== "")
+        {
+            $("span.err-message").fadeIn(300);
+            return false;
+        } 
+        else
+        {
+            $("span.err-message").fadeOut(300);
+        }
         var id = $(this).data("product_id");
         var quantity = $("#product-quantity").val();
         var size = $("#product-size").val();
@@ -90,6 +107,16 @@ $(document).ready(function(){
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
     });
+    
+    $("select#product-quantity").change(function(){
+        $("span.err-message").fadeOut(300);    
+    });
+    
+    $("select#product-size").change(function(){
+        $("span.err-message").fadeOut(300);    
+    });
+   
+    
     
 });
 ';
@@ -206,7 +233,7 @@ $columns = 'eleven';
             <?php endif; ?>
             <label>Quantity
                 <select id="product-quantity">
-                  <option value="">Select Quantity</option>
+                  <option value="">Select Quantity &nbsp;</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -217,8 +244,9 @@ $columns = 'eleven';
                   <option value="8">8</option>
                   <option value="9">9</option>
                   <option value="10">10</option>
-                </select>
-            </label>                         
+                </select><br />
+                <span class="err-message">Please select quantity.</span>
+            </label>                                           
             <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>                
         </div>
         <div class="clear"></div> <br /><br /><br /><br /><br />

@@ -13,12 +13,14 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="sixteen columns">
         <div class=" five columns stylist-img">
             <img src="<?php echo $this->webroot; ?>img/messages-casey.png" alt="Casey Golden" />
-            <input type='button' value='MY PROFLE' class='my-profile'/>
+            <input type='button' value='MY PROFILE' class='my-profile'/>
+            <br /><br /><br />
         </div>
-        <div class="nine columns aplha ">
+        <div class="nine columns aplha stylist-talk">
             <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
             <textarea class="eight columns alpha omega chat-msg-txtbox" id='messageToSend'></textarea>
-            <input type="button" value="Send messages" id="sendMessages" >
+            <!--<input type="button" value="Send messages" id="sendMessages" />-->
+            <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
             <div class="chat-container">
                 
             </div>
@@ -134,6 +136,10 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             }).done(function(res){
             });
         })
+        
+        $(".my-profile").click(function(){
+           window.location.href = '<?php echo $this->webroot; ?>profile/about'; 
+        });
     }
 
 </script>
