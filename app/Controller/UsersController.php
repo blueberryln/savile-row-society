@@ -117,7 +117,8 @@ class UsersController extends AppController {
         $preferences["UserPreference"]["wear_suit"] = $wear_suit;
         $serialized_preferences = serialize($preferences);
         $user['User']['preferences'] = $serialized_preferences;
-        if ($this->User->save($user)) {
+        if ($results = $this->User->save($user)) {
+            $this->Session->write('user', $results);
             $this->redirect('register/size/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
@@ -138,12 +139,16 @@ class UsersController extends AppController {
         }
         // get data from request
         $data = $this->request->data;
+//        print_r($data);
+//        exit;
+        
         // get actual array or string from request
         $data_arr = $data['UserPreference']['Size'];
         $preferences["UserPreference"]["Size"] = $data_arr;
         $serialized_preferences = serialize($preferences);
         $user['User']['preferences'] = $serialized_preferences;
-        if ($this->User->save($user)) {
+        if ($results = $this->User->save($user)) {
+            $this->Session->write('user', $results);
             $this->redirect('register/brands/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
@@ -169,7 +174,8 @@ class UsersController extends AppController {
         $preferences["UserPreference"]["Brands"] = $data_arr;
         $serialized_preferences = serialize($preferences);
         $user['User']['preferences'] = $serialized_preferences;
-        if ($this->User->save($user)) {
+        if ($results = $this->User->save($user)) {
+            $this->Session->write('user', $results);
             $this->redirect('register/last-step/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
@@ -217,10 +223,15 @@ class UsersController extends AppController {
             $preferences["UserPreference"]["Contact"] = $data_arr;
             $serialized_preferences = serialize($preferences);
             $user['User']['preferences'] = $serialized_preferences;
-            // save image
-            $user['User']['profile_photo_url'] = $this->saveImage();
 
-            if ($this->User->save($user)) {
+            // save image
+            if($image = $this->saveImage()){
+                $user['User']['profile_photo_url'] = $image;
+            }
+
+            if ($results = $this->User->save($user)) {
+                //Write back updated results to user session
+                $this->Session->write('user', $results);
                 $this->redirect('register/finish/' . $user['User']['id']);
             } else {
                 // TODO: implement error handling

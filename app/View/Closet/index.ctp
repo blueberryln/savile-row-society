@@ -229,7 +229,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>    
+                <?php endforeach; ?>
+            <?php else : ?>
+                <h5 class="text-center">Sorry! No products are available for this category.</h5>
             <?php endif; ?>
             <div class="clear"></div>
             <div class="pagination">

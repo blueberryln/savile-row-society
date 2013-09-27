@@ -33,7 +33,6 @@
                             <?php endif; ?>
                             <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu"><?php echo $cart_items; ?></span>) </a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>closet/liked" class="headerMenu">My Closet</a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>myprofile" class="headerMenu">Settings</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu">Profile</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
                         </ul>

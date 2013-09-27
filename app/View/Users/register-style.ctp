@@ -82,12 +82,18 @@ window.registerProcess = true;
 
 </script>
 <div class="container content inner preferences register-style">	
+    <div class="sixteen columns text-center">
+        <h1>PROFILE</h1>
+    </div>	
+    <div class="fifteen columns offset-by-half register-steps">
+        <div class="profile-tabs text-center">
+                    <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                    <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+        </div>
+    </div>
     <div class="sixteen columns alpha omega text-center  offset-by-three">
         <div class="reg-step2"></div>
     </div>
-    
-    
-    
     <div class="sixteen columns ">
         <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size')); ?>
         <div class="hi-message fourteen columns offset-by-two alpha omega">
@@ -137,7 +143,7 @@ window.registerProcess = true;
         <div class="text-center">
             <br/>
             <?php echo $this->Form->end(__('Continue')); ?>
-            <br/>
+            <br/><br/><br/><br/><br/>
         </div>
     </div>
 </div>

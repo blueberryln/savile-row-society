@@ -5,11 +5,18 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
 <div class="container content inner ">	
 
-    <div class="sixteen columns alpha omega text-center  offset-by-three">
-        <div class="reg-step5"></div>
+    <div class="sixteen columns text-center">
+        <h1>PROFILE</h1>
+    </div>	
+    <div class="fifteen columns offset-by-half register-steps">
+        <div class="profile-tabs text-center">
+                    <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                    <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+        </div>
     </div>
-
-
+    <div class="sixteen columns alpha omega text-center  offset-by-three">
+        <div class="reg-step6"></div>
+    </div>
     <div class="sixteen columns">
 
         <div class="hi-message fourteen columns text-center offset-by-one alpha omega">

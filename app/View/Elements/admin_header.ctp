@@ -44,6 +44,9 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="<?php echo $this->request->webroot; ?>admin/orders">Orders</a>
+                </li>
+                <li>
                     <a href="#" title="Account"><img src="<?php echo $this->request->webroot; ?>img/profile-icon.png" alt="Account" /></a>
                     <ul class="submenu">
                         <li><a href="<?php echo $this->request->webroot; ?>">View website</a></li>

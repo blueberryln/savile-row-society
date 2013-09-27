@@ -82,7 +82,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
             </div>
             <div class="text-center">
                 <br />
-                <a href="<?php echo $this->webroot . 'closet'; ?>" class="link-btn gold-btn continue-shopping">CONTINUE SHOPPING</a>
+                <a href="<?php echo $this->webroot . 'closet'; ?>" class="link-btn gold-btn continue-shopping">CONTINUE BROWSING</a>
             </div>
         </div>
         <div class="clear"></div>

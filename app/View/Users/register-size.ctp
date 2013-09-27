@@ -32,6 +32,7 @@ $script = ' var size = ' . json_encode($size) . '; ' .
        });
        
        $( "#height-result-display" ).val( toFeet($( "#height-slider" ).slider( "value" )) );
+       $( "#height-result" ).val( toInches($( "#height-slider" ).slider( "value" )) );
        $( "#weight-result" ).val( $( "#weight-slider" ).slider( "value" ) + " lbs");
 
        $( "#denim-kind #selectable" ).bind("mousedown", function (e) {
@@ -45,41 +46,49 @@ $script = ' var size = ' . json_encode($size) . '; ' .
                });
            }
        });
-	   
-       $( "#wear-suite #selectable" ).bind("mousedown", function (e) {
-           e.metaKey = false;
-           }).selectable({
-           stop: function() {
-               $("#wear-suit input:checkbox").prop("checked", false);
-               $( ".ui-selected", this ).each(function() {
-                   var selected_id = $(this).data("id");
-                   $("#wear-suite input:checkbox#" + selected_id).prop("checked", true);
-               });
-           }
-       });
        
        if(size){
-           $("#shirt-size").val(size.shirt_size);
-           $("#us-suit-sizing").val(size.us_suit_sizing);
-           $("#denim-size").val(size.denim_size);
-           $("#denim-type").val(size.denim_type);
-           // $("#wear-suit")
+           $("#shirtSize").val(size.shirt_size);
+           $("#suit_sizing").val(size.us_suit_sizing);
+           $("#pantSize").val(size.pant_size);
+           $("#jeans").val(size.denim_kind);
 
-           var denimTypeSelector = "li:contains(\"" + size.denim_kind + "\")";
-           $(denimTypeSelector).attr("class", "ui-state-default ui-selectee ui-selected");
-           var denimTypeId = $(denimTypeSelector).data("id");
-           $("#denim-kind input:checkbox#" + denimTypeId).prop("checked", true);
-
-           var wearSuiteSelector = "li:contains(\"" + size.wear_suit + "\")";
-           $(wearSuiteSelector).attr("class", "ui-state-default ui-selectee ui-selected");
-           var wearSuiteId = $(wearSuiteSelector).data("id");
-           $("#wear-suite input:checkbox#" + wearSuiteId).prop("checked", true);
+           //var denimTypeSelector = "li:contains(\"" + size.denim_kind + "\")";
+//           $(denimTypeSelector).attr("class", "ui-state-default ui-selectee ui-selected");
+//           var denimTypeId = $(denimTypeSelector).data("id");
+//           $("#denim-kind input:checkbox#" + denimTypeId).prop("checked", true);
+//
+//           var wearSuiteSelector = "li:contains(\"" + size.wear_suit + "\")";
+//           $(wearSuiteSelector).attr("class", "ui-state-default ui-selectee ui-selected");
+//           var wearSuiteId = $(wearSuiteSelector).data("id");
+//           $("#wear-suite input:checkbox#" + wearSuiteId).prop("checked", true);
             
-           $("#happy-with-wardrobe").val(size.HappyWithWardrobe);           
-           $("#spend-more-then-200-on-jeans").val(size.SpendMoreThen200OnJeans);
+           $("#wardrobe").val(size.HappyWithWardrobe);           
+           $("#jeansSpend").val(size.SpendMoreThen200OnJeans);
 
             //debugger;
        }
+
+        function getIdFromString(s){
+            switch(s){
+                case "BIG OR LARGE": return 1;
+                case "LEAN/THIN": return 2;
+                case "AVERAGE": return 3;
+                case "ATHLETIC": return 4;
+                default: return 0;
+            }
+        }
+
+        var selectedId = getIdFromString(size.body_shape);
+        if(selectedId != 0){
+            var liCondition = \'li[data-id = "\' + selectedId + \'"]\';
+            var inputCondition = "#" + selectedId;
+
+            $(liCondition).addClass("selected");
+            $(inputCondition).prop("checked", true);
+        }
+
+
          $("span.size-chart").click(function(){
             $("div#size-chart-box").slideDown(300);           
          });
@@ -95,6 +104,10 @@ $script = ' var size = ' . json_encode($size) . '; ' .
          $("#selectable-shape li").click(function(){
             $("#selectable-shape li").removeClass("selected");
             $(this).addClass("selected");
+
+            $("#body-shape input:checkbox").prop("checked", false);
+            var selected_id = $(this).data("id");
+            $("#body-shape input:checkbox#" + selected_id).prop("checked", true);
          });
 });
 $(document).mouseup(function(e) {
@@ -128,7 +141,16 @@ window.registerProcess = true;
 
 <div class="container content inner preferences register-size">	
 
-     <div class="sixteen columns alpha omega text-center  offset-by-three">
+    <div class="sixteen columns text-center">
+        <h1>PROFILE</h1>
+    </div>	
+    <div class="fifteen columns offset-by-half register-steps">
+        <div class="profile-tabs text-center">
+                    <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                    <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+        </div>
+    </div>
+    <div class="sixteen columns alpha omega text-center  offset-by-three">
         <div class="reg-step3"></div>
     </div>
     <div class="sixteen columns about">
@@ -157,11 +179,15 @@ window.registerProcess = true;
             <div class="clear"></div>
             <div id="body-shape" class="twelve columns alpha omega text-center">
                 <h4>WHAT SHAPE IS YOUR BODY?</h4>
+                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="BIG OR LARGE" id="1" />
+                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="LEAN/THIN" id="2" />
+                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="AVERAGE" id="3" />
+                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="ATHLETIC" id="4" />
                 <ul id="selectable-shape">
-                    <li><img src="<?php echo $this->webroot; ?>img/body-shape-1.png" /> BIG OR LARGE</li>
-                    <li><img src="<?php echo $this->webroot; ?>img/body-shape-2.png" /> LEAN/THIN</li>
-                    <li><img src="<?php echo $this->webroot; ?>img/body-shape-3.png" /> AVERAGE</li>
-                    <li><img src="<?php echo $this->webroot; ?>img/body-shape-4.png" /> ATHLETIC</li>
+                    <li data-id="1"><img src="<?php echo $this->webroot; ?>img/body-shape-1.png" />BIG OR LARGE</li>
+                    <li data-id="2"><img src="<?php echo $this->webroot; ?>img/body-shape-2.png" />LEAN/THIN</li>
+                    <li data-id="3"><img src="<?php echo $this->webroot; ?>img/body-shape-3.png" />AVERAGE</li>
+                    <li data-id="4"><img src="<?php echo $this->webroot; ?>img/body-shape-4.png" />ATHLETIC</li>
                 </ul> 
             </div>  
         </div>
@@ -182,18 +208,18 @@ window.registerProcess = true;
                         <div class="input text required">
                             <label for="jeans">WHAT KIND OF JEANS DO YOU WEAR?</label>                            
                             <select name="data[UserPreference][Size][denim_kind]" tabindex="" id="jeans" >
-                                <option value="">RELAXED FIT</option>
-                                <option value="">BOOT CUT</option>
-                                <option value="">STRAIGHT LEG</option>
-                                <option value="">SLIM</option>
-                                <option value="">EXTRA SLIM</option>
-                                <option value="">DON'T KNOW</option>
+                                <option value="DON'T KNOW">DON'T KNOW</option>
+                                <option value="RELAXED FIT">RELAXED FIT</option>
+                                <option value="BOOT CUT">BOOT CUT</option>
+                                <option value="STRAIGHT LEG">STRAIGHT LEG</option>
+                                <option value="SLIM">SLIM</option>
+                                <option value="EXTRA SLIM">EXTRA SLIM</option>
                             </select>
                         </div>
         
                         <div class="input text required">
                             <label for="jeans">Tell us a little about your suit size you wear(sizes 36-48)</label>                            
-                            <select name="data[UserPreference][Size][us_suit_sizing]" tabindex="" id="jeans" >
+                            <select name="data[UserPreference][Size][us_suit_sizing]" tabindex="" id="suit_sizing" >
                                 <option value="">Size</option>
                                 <option value="36">36</option>
                                 <option value="38">38</option>
@@ -246,7 +272,7 @@ window.registerProcess = true;
         
                         <div class="input text required pant-size">
                             <label for="pantSize">pant size: <span class="size-chart">SIZE CHART</span></label>
-                            <input id="pantSize" type="text" required="required" maxlength="45" readonly />                      
+                            <input id="pantSize" type="text" name="data[UserPreference][Size][pant_size]" required="required" maxlength="45" readonly />                      
                             <div id="size-chart-box">
                                 <ul>
                                     <li>s</li>
@@ -268,8 +294,8 @@ window.registerProcess = true;
                         <div class="input text required">
                             <label for="jeansSpend">Have you ever spend $200 on a pair of jeans</label>                            
                             <select name="data[UserPreference][Size][SpendMoreThen200OnJeans]" tabindex="" id="jeansSpend" >
-                                <option value="">YES</option>
-                                <option value="">NO</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
                             </select>
                         </div>
                              

@@ -1,5 +1,7 @@
 <?php
 $script = '
+    var country = "' . $this->request->data['billing']['billcountry'] . '";
+    $("#billCountry").val(country);
     function isNumber(evt) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -279,7 +281,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                     ?>
                     <label for="billCountry">Country</label>
                     <select required="required" id="billCountry" tabindex="13" name="data[billing][billcountry]">
-                        <option value="">SELECT A COUNTRY</option>
+                        <option value="">SELECT COUNTRY</option>
                         <option value="USA">USA</option>
                         <option value="CAN">CANADA</option>
                     </select>
@@ -332,9 +334,10 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
     <div class="sixteen columns text-center">
         <h1 class="sub">SHIPPING INFORMATION</h1>
         
-        <h6 class="eight columns offset-by-two alpha omega text-left"><?php echo $this->Form->checkbox('copybilling', array('label' => false, 'type' => 'checkbox','tabindex'=>'16', 'class' => 'copy-billing-info', 'style' => 'width: auto;' )); ?> Copy Billing Information to Shipping Information</h6>
+        <h6 class="eight columns offset-by-two alpha omega text-left"><?php echo $this->Form->checkbox('copybilling', array('label' => false, 'type' => 'checkbox','tabindex'=>'16', 'class' => 'copy-billing-info', 'style' => 'width: auto;' )); ?> Use as Shipping Information</h6>
     </div>
-
+    <div class="clear"></div>
+    <br>
     <div class="contact-container billing-shipping shipping-data" id="shipping-data">
         <div class="srs-form columns five offset-by-two omega">
             <div class="form">
@@ -386,7 +389,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                 <div class="input text required">
                     <label for="billCountry">Country</label>
                     <select required="required" tabindex="24" id="shipCountry" name="data[billing][shipcountry]">
-                        <option value="">SELECT A COUNTRY</option>
+                        <option value="">SELECT COUNTRY</option>
                         <option value="USA">USA</option>
                         <option value="CAN">CANADA</option>
                     </select>

@@ -30,7 +30,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
 ?>
 <div class="container content inner">	
     <div class="sixteen columns text-center">
-        <h1>Your Cart</h1>
+        <h1>My Cart</h1>
     </div>
     <div class="fourteen offset-by-one columns">
         <?php if ($cart_list) : ?>

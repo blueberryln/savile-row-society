@@ -8,8 +8,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </div>
     <div class="fifteen columns offset-by-half">
         <div class="profile-tabs text-center">
-                    <a class="link-btn gray-btn" href="">My Style</a>
-                    <a class="link-btn gold-btn" href="">My Profile</a>
+                    <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                    <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
         </div>
     </div>
     <?php echo $this->Form->create('User'); ?>        

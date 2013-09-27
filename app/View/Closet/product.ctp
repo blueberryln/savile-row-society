@@ -153,13 +153,26 @@ $columns = 'eleven';
         <div class="six offset-by-one columns product-description alpha">
             <div>
                 <h2 class="product-name"><?php echo $entity['Entity']['name']; ?></h2>
-                <h5 class="price">$<?php echo $entity['Entity']['price']; ?></h5>
+                <h5 class="price">Price: $<?php echo $entity['Entity']['price']; ?></h5>
                 <h5>Product Details</h5>
                 <p class="description"><?php echo $entity['Entity']['description']; ?></p>
             </div>
             <?php if($similar) : ?>
                 <label class="product-color-label">Color</label>
                 <div class="product-swatches">
+                <?php if($entity['Color'] && count($entity['Color']) > 1) :?>
+                    <div class="color-thumbnails color-selected">
+                        <a href="<?php echo $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="color-one" style="background-color: <?php echo $entity['Color'][0]['code']; ?>;"></a>
+
+                        <a href="<?php echo $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="color-two" style="background-color: <?php echo $entity['Color'][1]['code']; ?>;"></a>
+                    </div>
+                <?php elseif($entity['Color'] && count($entity['Color']) == 1) : ?>
+                    <div class="color-thumbnails color-selected">
+                        <a href="<?php echo $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="color-single" style="background-color: <?php echo $entity['Color'][0]['code']; ?>;"></a>
+                    </div>
+                <?php endif; ?>
+
+
                 <?php foreach($similar as $product) : ?>
                     <?php if($product['Color'] && count($product['Color']) > 1) : ?>
                         <div class="color-thumbnails">
@@ -178,16 +191,22 @@ $columns = 'eleven';
             <div class="clear"></div>
             
             <?php if($sizes) : ?>
-                <label>Size
+                <?php if(count($sizes) == 1 && $sizes[0]['Size']['name'] == 'N/A') : ?>
+
+                <?php else : ?>
+                    <label>Size
                     <select id="product-size">
+                        <option value="">Select Size</option>
                         <?php foreach($sizes as $size) : ?>
                             <option value="<?php echo $size['Detail']['size_id']; ?>"><?php echo $size['Size']['name']; ?></option>
                         <?php endforeach; ?>
                     </select>
-                </label>
+                    </label>
+                <?php endif; ?>
             <?php endif; ?>
             <label>Quantity
                 <select id="product-quantity">
+                  <option value="">Select Quantity</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>

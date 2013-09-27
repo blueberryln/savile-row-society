@@ -417,31 +417,35 @@ body{
     background-image: url("../img/reg-step1.png");
     background-repeat: no-repeat;
     height: 55px;
-    margin-top: 20px;
+    margin-bottom: 8px;
 }
 .reg-step2{
     background-image: url("../img/reg-step2.png");
     background-repeat: no-repeat;
     height: 55px;
-    margin-top: 20px;
+    margin-bottom: 8px;
 }  
 .reg-step3{
     background-image: url("../img/reg-step3.png");
     background-repeat: no-repeat;
     height: 55px;
-    margin-top: 20px;
+    margin-bottom: 8px;
 }  
 .reg-step4{
     background-image: url("../img/reg-step4.png");
     background-repeat: no-repeat;
     height: 55px;
-    margin-top: 20px;
+    margin-bottom: 8px;
 }  
 .reg-step5{
     background-image: url("../img/reg-step5.png");
     background-repeat: no-repeat;
-    height: 55px;
-    margin-top: 20px;
+    height: 55px;                                                                                                                                                                                                                     
+}    
+.reg-step6{
+    background-image: url("../img/reg-step5.png");
+    background-repeat: no-repeat;
+    height: 55px;                                                                                                                                                                                                                     
 }  
 #height-result-display{
     background-color: white;
@@ -2932,8 +2936,12 @@ a.btn-buy:hover{
 }
 .color-thumbnails.color-selected
 {
-    border-color:#b29957;
+    border: 1px solid #b29957;
+    -moz-box-shadow: rgba(40,40,40,0.5) 0px 0px 5px 0px;
+    -webkit-box-shadow: rgba(40,40,40,0.5) 0px 0px 5px 0px;
+    box-shadow: rgba(40,40,40,0.5) 0px 0px 5px 0px;
 }
+
 
 .color-thumbnails a{
     display: block;
@@ -3028,6 +3036,11 @@ select#quantity
     margin-right:10px;
     width:150px;
 }
+
+.register-steps .profile-tabs{
+    margin-bottom: 30px;    
+}
+
 div.finalizing
 {
     font-family: Conv_Novecento-Book,sans-serif ;
@@ -3134,7 +3147,7 @@ div.card-number div.input
 
 .pagination span.prev.disabled, .pagination span.next.disabled
 {    
-    opacity:0.4;
+    display: none;
 }
 
 div.pagination span.next a, .pagination span.prev a
@@ -3422,6 +3435,7 @@ ul.product-type li a{
 ul.product-type li.selected a
 {
     color:#AF9A59;
+    font-weight: bold;
 }
 
 
@@ -3442,14 +3456,21 @@ div#brands ol.brands-logo li
     background: #fff;
     border:1px solid #CCCCCC;
     vertical-align: middle;
-    line-height: 60px;
+    line-height: 57px;
     text-align: center;
-    margin:50px 45px 0 0;
+    margin:50px 39px 0 0;
     cursor: pointer;
-    padding:0;
+    padding:0 3px;
     height:60px;
     width:140px;
     font-size: 14px;
+}
+
+div#brands ol.brands-logo li img
+{
+    max-height:58px;
+    max-width:138px;
+    vertical-align:middle;
 }
 
 div#brands ol.brands-logo li:hover

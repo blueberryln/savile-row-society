@@ -66,73 +66,73 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
        if(brands){
             if(brands.polos_tees){
                 for(var i = 0; i<brands.polos_tees.length; i++){
-                    //$("#polos_tees-brands > ol > li").each(function(){
-//                        if($(this).find("img").attr("alt") == brands.polos_tees[i]){
-//                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
-//                            var id = $(this).data("id");
-//                            $("#polos_tees-brands input:checkbox#" +  id).prop("checked", true);   
-//                        }
-//                    });
-                    $("#polos_tees-brands > ol > li:contains(\"" + brands.polos_tees[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-                    var id = $("#polos_tees-brands > ol > li:contains(\"" + brands.polos_tees[i]  + "\")").data("id");
-                    $("#polos_tees-brands input:checkbox#" +  id).prop("checked", true);
+                    $("#polos_tees-brands > ol > li").each(function(){
+                        if($(this).find("img").attr("alt") == brands.polos_tees[i]){
+                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
+                            var id = $(this).data("id");
+                            $("#polos_tees-brands input:checkbox#" +  id).prop("checked", true);   
+                        }
+                    });
+                    //$("#polos_tees-brands > ol > li:contains(\"" + brands.polos_tees[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
+//                    var id = $("#polos_tees-brands > ol > li:contains(\"" + brands.polos_tees[i]  + "\")").data("id");
+//                    $("#polos_tees-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
             if(brands.shirts){
                 for(var i = 0; i<brands.shirts.length; i++){
-                    //$("#shirt-brands > ol > li").each(function(){
-//                        if($(this).find("img").attr("alt") == brands.shirts[i]){
-//                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
-//                            var id = $(this).data("id");
-//                            $("#shirt-brands input:checkbox#" +  id).prop("checked", true);   
-//                        }
-//                    });
-                    $("#shirt-brands > ol > li:contains(\"" + brands.shirts[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-                    var id = $("#shirt-brands > ol > li:contains(\"" + brands.shirts[i]  + "\")").data("id");
-                    $("#shirt-brands input:checkbox#" +  id).prop("checked", true);
+                    $("#shirt-brands > ol > li").each(function(){
+                        if($(this).find("img").attr("alt") == brands.shirts[i]){
+                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
+                            var id = $(this).data("id");
+                            $("#shirt-brands input:checkbox#" +  id).prop("checked", true);   
+                        }
+                    });
+                    //$("#shirt-brands > ol > li:contains(\"" + brands.shirts[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
+//                    var id = $("#shirt-brands > ol > li:contains(\"" + brands.shirts[i]  + "\")").data("id");
+//                    $("#shirt-brands input:checkbox#" +  id).prop("checked", true);
 
                 }
             }
             if(brands.pants){
                 for(var i = 0; i<brands.pants.length; i++){
-                    //$("#pants-brands > ol > li").each(function(){
-//                        if($(this).find("img").attr("alt") == brands.pants[i]){
-//                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
-//                            var id = $(this).data("id");
-//                            $("#pants-brands input:checkbox#" +  id).prop("checked", true);   
-//                        }
-//                    });
-                    $("#pants-brands > ol > li:contains(\"" + brands.pants[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-                    var id = $("#pants-brands > ol > li:contains(\"" + brands.pants[i]  + "\")").data("id");
-                    $("#pants-brands input:checkbox#" +  id).prop("checked", true);
+                    $("#pants-brands > ol > li").each(function(){
+                        if($(this).find("img").attr("alt") == brands.pants[i]){
+                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
+                            var id = $(this).data("id");
+                            $("#pants-brands input:checkbox#" +  id).prop("checked", true);   
+                        }
+                    });
+                    //$("#pants-brands > ol > li:contains(\"" + brands.pants[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
+//                    var id = $("#pants-brands > ol > li:contains(\"" + brands.pants[i]  + "\")").data("id");
+//                    $("#pants-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
             if(brands.jeans){
                 for(var i = 0; i<brands.jeans.length; i++){
-                   // $("#jeans-brands > ol > li").each(function(){
-//                        if($(this).find("img").attr("alt") == brands.jeans[i]){
-//                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
-//                            var id = $(this).data("id");
-//                            $("#jeans-brands input:checkbox#" +  id).prop("checked", true);   
-//                        }
-//                    });
-                    $("#jeans-brands > ol > li:contains(\"" + brands.jeans[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-                    var id = $("#jeans-brands > ol > li:contains(\"" + brands.jeans[i]  + "\")").data("id");
-                    $("#jeans-brands input:checkbox#" +  id).prop("checked", true);
+                    $("#jeans-brands > ol > li").each(function(){
+                        if($(this).find("img").attr("alt") == brands.jeans[i]){
+                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
+                            var id = $(this).data("id");
+                            $("#jeans-brands input:checkbox#" +  id).prop("checked", true);   
+                        }
+                    });
+                    //$("#jeans-brands > ol > li:contains(\"" + brands.jeans[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
+//                    var id = $("#jeans-brands > ol > li:contains(\"" + brands.jeans[i]  + "\")").data("id");
+//                    $("#jeans-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
             if(brands.suits){
                 for(var i = 0; i<brands.suits.length; i++){
-                    //$("#suits-brands > ol > li").each(function(){
-//                        if($(this).find("img").attr("alt") == brands.suits[i]){
-//                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
-//                            var id = $(this).data("id");
-//                            $("#suits-brands input:checkbox#" +  id).prop("checked", true);   
-//                        }
-//                    });
-                    $("#suits-brands > ol > li:contains(\"" + brands.suits[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-                    var id = $("#suits-brands > ol > li:contains(\"" + brands.suits[i]  + "\")").data("id");
-                    $("#suits-brands input:checkbox#" +  id).prop("checked", true);
+                    $("#suits-brands > ol > li").each(function(){
+                        if($(this).find("img").attr("alt") == brands.suits[i]){
+                            $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
+                            var id = $(this).data("id");
+                            $("#suits-brands input:checkbox#" +  id).prop("checked", true);   
+                        }
+                    });
+                    //$("#suits-brands > ol > li:contains(\"" + brands.suits[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
+//                    var id = $("#suits-brands > ol > li:contains(\"" + brands.suits[i]  + "\")").data("id");
+//                    $("#suits-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
        }
@@ -164,7 +164,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 window.registerProcess = true;
 </script>
 <div class="container content inner preferences register-brands">	
-     <div class="sixteen columns alpha omega text-center  offset-by-three">
+    <div class="sixteen columns text-center">
+        <h1>PROFILE</h1>
+    </div>	
+    <div class="fifteen columns offset-by-half register-steps">
+        <div class="profile-tabs text-center">
+                    <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                    <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+        </div>
+    </div>
+    <div class="sixteen columns alpha omega text-center  offset-by-three">
         <div class="reg-step4"></div>
     </div>
 
@@ -177,9 +186,9 @@ window.registerProcess = true;
         </div>        
         <div class="fourteen columns offset-by-one alpha omega">
             <ul class="product-type">
-                <li>
+                <li class="selected">
                     <a data-tab="polos_tees-brands" class="brand-link" data-origin-css='brands-pools'>
-                        <span>Polos & tees</span>
+                        <span>Polos &amp; tees</span>
                     </a>
                 </li>
                  <li>
@@ -219,16 +228,16 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Polo Ralph Lauren" id="9" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Vineyard Vines" id="10" />
                     <ol id="selectable" class="brands-logo">
-                        <li class="ui-state-default" data-id="1">Hugo Boss</li>
-                        <li class="ui-state-default" data-id="2">Banana Republic</li>
-                        <li class="ui-state-default" data-id="3">Calvin Klein</li>
-                        <li class="ui-state-default" data-id="4">J. Crew</li>
-                        <li class="ui-state-default" data-id="5">Lacoste</li>
-                        <li class="ui-state-default" data-id="6">Nike</li>
-                        <li class="ui-state-default" data-id="7">Peter Miller</li>
-                        <li class="ui-state-default" data-id="8">John Varvatos</li>
-                        <li class="ui-state-default" data-id="9">Polo Ralph Lauren</li>
-                        <li class="ui-state-default" data-id="10">Vineyard Vines</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/tees/hugo-boss.jpg" alt="Hugo Boss" /></li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/tees/banana-replublic.jpg" alt="Banana Republic" /></li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/tees/calvin-klein.jpg" alt="Calvin Klein" /></li>
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/tees/jcrew.jpg" alt="J. Crew" /></li>
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/tees/lacoste.jpg" alt="Lacoste" /></li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/tees/nike.jpg" alt="Nike" /></li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/tees/peter-millar.jpg" alt="Peter Miller" /></li>
+                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/tees/john-varvatos.jpg" alt="John Varvatos" /></li>
+                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/tees/ralph-lauren.jpg" alt="Polo Ralph Lauren" /></li>
+                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/tees/vineyard-vines.jpg" alt="Vineyard Vines" /></li>
                     </ol>
                 </div>
                 <div class="clear"></div>
@@ -250,19 +259,19 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Tom Ford" id="12" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Zara" id="13" />
                     <ol id="selectable" class="brands-logo">
-                        <li class="ui-state-default" data-id="1">Etro</li>
-                        <li class="ui-state-default" data-id="2">Ascot Chang</li>
-                        <li class="ui-state-default" data-id="3">Brooks Brothers</li>
-                        <li class="ui-state-default" data-id="4">Robert Graham</li>
-                        <li class="ui-state-default" data-id="5">Burberry</li>
-                        <li class="ui-state-default" data-id="6">J. Crew</li>
-                        <li class="ui-state-default" data-id="7">Prada</li>
-                        <li class="ui-state-default" data-id="8">Eton</li>
-                        <li class="ui-state-default" data-id="9">Ralph Lauren</li>
-                        <li class="ui-state-default" data-id="10">Hugo Boss</li>
-                        <li class="ui-state-default" data-id="11">John Varvatos</li>
-                        <li class="ui-state-default" data-id="12">Tom Ford</li>
-                        <li class="ui-state-default" data-id="13">Zara</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/shirts/etro.jpg" alt="Etro" /></li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/shirts/ascoi-chang.jpg" alt="Ascot Chang" /></li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/shirts/brooks-brothers.jpg" alt="Brooks Brothers" /></li>
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/shirts/robert-graham.jpg" alt="Robert Graham" /></li>
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/shirts/burberry.jpg" alt="Burberry" /></li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/shirts/jcrew.jpg" alt="J. Crew" /></li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/shirts/prada.jpg" alt="Prada" /></li>
+                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/shirts/eton.jpg" alt="Eton" /></li>
+                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/shirts/ralph-lauren.jpg" alt="Ralph Lauren" /></li>
+                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/shirts/hugo-boss.jpg" alt="Hugo Boss" /></li>
+                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/shirts/john-varvatos.jpg" alt="John Varvatos" /></li>
+                        <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/shirts/tom-ford.jpg" alt="Tom Ford" /></li>
+                        <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/shirts/zara.jpg" alt="Zara" /></li>
                     </ol>
                 </div>
                 <div class="clear"></div>
@@ -283,18 +292,18 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Michael Bastian" id="11" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Armani" id="12" />
                     <ol id="selectable" class="brands-logo">
-                        <li class="ui-state-default" data-id="1">Brioni</li>
-                        <li class="ui-state-default" data-id="2">Incotex</li>
-                        <li class="ui-state-default" data-id="3">Hugo Boss</li>
-                        <li class="ui-state-default" data-id="4">Dolce & Gabbana</li>
-                        <li class="ui-state-default" data-id="5">Banana Republic</li>
-                        <li class="ui-state-default" data-id="6">Hiltl</li>
-                        <li class="ui-state-default" data-id="7">Gucci</li>
-                        <li class="ui-state-default" data-id="8">Jil Sander</li>
-                        <li class="ui-state-default" data-id="9">Zegna</li>
-                        <li class="ui-state-default" data-id="10">MCQ Alexander Mcqueen</li>
-                        <li class="ui-state-default" data-id="11">Michael Bastian</li>
-                        <li class="ui-state-default" data-id="12">Armani</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/pants/brioni.jpg" alt="Brioni" /></li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/pants/incotex.jpg" alt="Incotex" /></li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/pants/hugo-boss.jpg" alt="Hugo Boss" /></li>
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/pants/dolce-gabana.jpg" alt="Dolce & Gabbana" /></li>
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/pants/banana-replublic.jpg" alt="Banana Republic" /></li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/pants/hilti.jpg" alt="Hiltl" /></li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/pants/gucci.jpg" alt="Gucci" /></li>
+                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/pants/jil-sander.jpg" alt="Jil Sander" /></li>
+                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/pants/ermenegildo-zegna.jpg" alt="Zegna" /></li>
+                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/pants/mcqueen.jpg" alt="MCQ Alexander Mcqueen" /></li>
+                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/pants/michael-bastian.jpg" alt="Michael Bastian" /></li>
+                        <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/pants/emporio-armani.jpg" alt="Armani" /></li>
                     </ol>
                 </div>
                 <div class="clear"></div>
@@ -314,17 +323,17 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="True Religion" id="10" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Big Star" id="11" />
                     <ol id="selectable" class="brands-logo">
-                        <li class="ui-state-default" data-id="1">Acne</li>
-                        <li class="ui-state-default" data-id="2">Adriano Goldschmied</li>
-                        <li class="ui-state-default" data-id="3">Diesel</li>
-                        <li class="ui-state-default" data-id="4">Levis</li>
-                        <li class="ui-state-default" data-id="5">Burberry</li>
-                        <li class="ui-state-default" data-id="6">J brand Denim</li>
-                        <li class="ui-state-default" data-id="7">Lucky Brand</li>
-                        <li class="ui-state-default" data-id="8">Rag & Bone</li>
-                        <li class="ui-state-default" data-id="9">7 for all Mankind Jeans</li>
-                        <li class="ui-state-default" data-id="10">True Religion</li>
-                        <li class="ui-state-default" data-id="11">Big Star</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/jeans/acne.jpg" alt="Acne" /></li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/jeans/adriano.jpg" alt="Adriano Goldschmied" /></li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/jeans/diesel.jpg" alt="Diesel" /></li>
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/jeans/levis.jpg" alt="Levis" /></li>
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/jeans/burberry.jpg" alt="Burberry" /></li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/jeans/jbrand.jpg" alt="J brand Denim" /></li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/jeans/lucky-brand.jpg" alt="Lucky Brand" /></li>
+                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/jeans/rag-bone.jpg" alt="Rag & Bone" /></li>
+                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/jeans/for-all-mankind.jpg" alt="7 for all Mankind Jeans" /></li>
+                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/jeans/true-religion.jpg" alt="True Religion" /></li>
+                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/jeans/big-star.jpg" alt="Big Star" /></li>
                     </ol>
                 </div>
                 <div class="clear"></div>
@@ -336,7 +345,6 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Etro" id="3" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Prada" id="4" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Burberry" id="5" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Dolce & Gabbana" id="6" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Gucci" id="7" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Brioni" id="8" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Canalli" id="9" />
@@ -344,18 +352,17 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Paul Smith" id="11" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Thom Browne" id="12" />
                     <ol id="selectable" class="brands-logo">
-                        <li class="ui-state-default" data-id="1">Armani</li>
-                        <li class="ui-state-default" data-id="2">Brooks Brothers</li>
-                        <li class="ui-state-default" data-id="3">Etro</li>
-                        <li class="ui-state-default" data-id="4">Prada</li>
-                        <li class="ui-state-default" data-id="5">Burberry</li>
-                        <li class="ui-state-default" data-id="6">Dolce & Gabbana</li>
-                        <li class="ui-state-default" data-id="7">Gucci</li>
-                        <li class="ui-state-default" data-id="8">Brioni</li>
-                        <li class="ui-state-default" data-id="9">Canalli</li>
-                        <li class="ui-state-default" data-id="10">Hugo Boss</li>
-                        <li class="ui-state-default" data-id="11">Paul Smith</li>
-                        <li class="ui-state-default" data-id="12">Thom Browne</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/suits/enporio-armani.jpg" alt="Armani" /></li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/suits/brooks-brothers.jpg" alt="Brooks Brothers" /></li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/suits/etro.jpg" alt="Etro" /></li>
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/suits/prada.jpg" alt="Prada" /></li>
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/suits/burberry.jpg" alt="Burberry" /></li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/suits/gucci.jpg" alt="Gucci" /></li>
+                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/suits/brioni.jpg" alt="Brioni" /></li>
+                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/suits/canali.jpg" alt="Canalli" /></li>
+                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/suits/hugo-boss.jpg" alt="Hugo Boss" /></li>
+                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/suits/paul-smith.jpg" alt="Paul Smith" /></li>
+                        <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/suits/thombrowne.jpg" alt="Thom Browne" /></li>
                     </ol>
                 </div>
             </div>
@@ -365,7 +372,8 @@ window.registerProcess = true;
             <br/>
             <?php echo $this->Form->end(__('Continue')); ?>
             <br/>
-            <br />
+            <br /><br /><br />
+            <br /><br />
         </div>
     </div>
 </div>

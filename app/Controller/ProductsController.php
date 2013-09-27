@@ -109,7 +109,7 @@ class ProductsController extends AppController {
                     $data['Entity']['name'] = $this->request->data['Entity']['name'];
                     $data['Entity']['description'] = $this->request->data['Entity']['description'];
                     $data['Entity']['sku'] = $this->request->data['Entity']['sku'];
-                    $data['Entity']['slug'] = $this->request->data['Entity']['slug'];
+                    $data['Entity']['slug'] = Inflector::slug($this->request->data['Entity']['slug'], '-');
                     $data['Entity']['price'] = $this->request->data['Entity']['price'];
                     //$data['Entity']['stock'] = $this->request->data['Entity']['stock'];
                     $data['Entity']['show'] = $this->request->data['Entity']['show'];
@@ -145,6 +145,7 @@ class ProductsController extends AppController {
             $colors = $Entity->Color->find('list');
             
             if($this->request->is('post') || $this->request->is('put')){
+                $this->request->data['Entity']['slug'] = Inflector::slug($this->request->data['Entity']['slug'], '-');
                 if ($this->request->data['Entity']) {
                     if ($Entity->save($this->request->data)) {
                         $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));

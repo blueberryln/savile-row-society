@@ -50,7 +50,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
         echo $this->Html->css('temp');
         echo $this->fetch('css');
         ?>
-        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+        <!--<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>-->
         <!-- Favicons
         ================================================== -->
         <link rel="shortcut icon" href="<?php echo $this->request->webroot; ?>img/favicon.ico">
@@ -75,7 +75,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
 
                 <div class=" menu">
                     <ul>
-                        <li style='border-left: none'><a href="<?php echo $this->request->webroot; ?>company">About us</a></li>                    
+                        <li><a href="<?php echo $this->request->webroot; ?>company">About us</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>

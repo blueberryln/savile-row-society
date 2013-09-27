@@ -11,8 +11,16 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 
 <div class="container content inner ">	
-
-     <div class="sixteen columns alpha omega text-center  offset-by-three">
+    <div class="sixteen columns text-center">
+        <h1>PROFILE</h1>
+    </div>	
+    <div class="fifteen columns offset-by-half register-steps">
+        <div class="profile-tabs text-center">
+                    <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                    <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+        </div>
+    </div>
+    <div class="sixteen columns alpha omega text-center  offset-by-three">
         <div class="reg-step5"></div>
     </div>
     <?php echo $this->Form->create('ProfileImage', array('url' => '/register/saveContact','type' => 'file')); ?>
@@ -94,7 +102,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         </select>          
         
          <?php echo $this->Form->end(__('Upload')); ?>      
-             
+         
+         <br /><br /><br /><br /><br />    
          </div>
     </div>    
     <br/> 
