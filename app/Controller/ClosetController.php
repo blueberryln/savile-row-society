@@ -539,6 +539,9 @@ class ClosetController extends AppController {
             if($transaction_result['status']){
                 $Order = ClassRegistry::init('Order');
                 $ret = $Order->markPaid($order_id);
+                
+                $this->sendConfirmationEmail($order_id);
+                
                 $this->reduceStock($cart_list);
                 $Cart->remove($cart_id);
                 $this->removeLikes($entity_list, $user_id);
@@ -551,6 +554,38 @@ class ClosetController extends AppController {
             $this->redirect('/confirmation');
             exit;            
         }
+    }
+    
+    public function sendConfirmationEmail($id = null){
+        $Order = ClassRegistry::init('Order');
+        if (!$Order->exists($id)) {
+            throw new NotFoundException(__('Invalid order'));
+        }    
+        
+        $options = array('conditions' => array('Order.' . $Order->primaryKey => $id));
+        $order = $Order->find('first', $options);
+        $order['Order']['confirmed'] = 1;
+        if($Order->save($order)){
+            
+            //Send confirmation email to the customer.
+            $Order->recursive = 3;
+            $Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
+            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
+            $Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+            $options = array('conditions' => array('Order.' . $Order->primaryKey => $id));
+            $shipped_order = $Order->find('first', $options);
+            
+            if($shipped_order['User']['email']){
+                $email = new CakeEmail('default');
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->to($shipped_order['User']['email']);
+                $email->subject('Your order has been shipped.');
+                $email->template('order_shipped');
+                $email->emailFormat('html');
+                $email->viewVars(compact('order_confirmation'));
+                $email->send();
+            };
+        } 
     }
 
     public function confirmation(){
