@@ -28,10 +28,10 @@
                     <?php
                         if($item['Entity']['Image']){
                             //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
-                            $img_src = $this->request->webroot . 'products/resize/' . $item['Entity']['Image'][0]['name'] . '/110/110'; 
+                            $img_src = Router::url('/', true) . 'products/resize/' . $item['Entity']['Image'][0]['name'] . '/110/110'; 
                         }
                         else{
-                            $img_src = $this->request->webroot . "img/image_not_available-small.png";
+                            $img_src = Router::url('/', true) . "img/image_not_available-small.png";
                         } 
                     ?>
                		<tr>
