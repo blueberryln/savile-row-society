@@ -1,4 +1,4 @@
-<table cellpadding="0" cellspacing="0" border="0" style="max-width:550">
+<table cellpadding="0" cellspacing="0" border="0" style="max-width:550; margin:0 auto;">
     <tr>
         <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
     </tr>
@@ -25,6 +25,15 @@
            			<th width="20%">Price</th>
            		</tr>
                 <?php foreach($shipped_order['OrderItem'] as $item) : ?>
+                    <?php
+                        if($item['Entity']['Image']){
+                            //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
+                            $img_src = $this->request->webroot . 'products/resize/' . $item['Entity']['Image'][0]['name'] . '/110/110'; 
+                        }
+                        else{
+                            $img_src = $this->request->webroot . "img/image_not_available-small.png";
+                        } 
+                    ?>
                		<tr>
                			<td style="border-bottom: 1px solid #444; border-right: 1px solid #444;"><img src="http://localhost/srs_server/files/products/152_8_R4100004.jpg" style="max-width:110px;"></td>
                			<td style="border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $item['Entity']['name']; ?></td>
@@ -35,7 +44,7 @@
                 
            		<tr>
            			<td style="text-align: left; font-weight: bold; background-color: #000; color: #eee; border-bottom: 1px solid #444; border-right: 1px solid #444;">Total</td>
-           			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;">$ <?php $shipped_order['Order']['total_price']; ?></td>	
+           			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;" colspan="2">$ <?php echo $shipped_order['Order']['total_price']; ?></td>	
            		</tr>
            	</table>
             
@@ -45,7 +54,7 @@
             Thanks,
             <br/>
             <a href="http://www.savilerowsociety.com">Savile Row Society</a>
-            
+            <br /><br /><br />
         </td>
     </tr>
 </table>

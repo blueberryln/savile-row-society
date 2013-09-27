@@ -40,7 +40,7 @@ class OrdersController extends AppController {
             $this->Session->setFlash(__('The order is already marked shipped.'), 'flash');    
         }
         else{
-            $order['Order']['paid'] = 1;
+            $order['Order']['shipped'] = 1;
             if($this->Order->save($order)){
                 
                 //Send confirmation email to the customer.
