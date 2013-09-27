@@ -36,7 +36,7 @@ class OrdersController extends AppController {
         $this->Order->id = $id;
         $order = $this->Order->find('first');
         
-        if($order['Order']['paid']){
+        if($order['Order']['paid'] == 1){
             $this->Session->setFlash(__('The order is already marked shipped.'), 'flash');    
         }
         else{
