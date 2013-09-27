@@ -27,7 +27,7 @@
                         <?php if($order['Order']['shipped'] == 1) : ?>
                             Shipped.
                         <?php else : ?>
-                            <?php echo $this->Html->link(__('Mark Shipped'), array()); ?>
+                            <?php echo $this->Html->link(__('Mark Shipped'), array('action' => 'shipped', $order['Order']['id'])); ?>
                         <?php endif; ?>
                     </td>
                 </tr>
