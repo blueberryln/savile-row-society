@@ -24,7 +24,11 @@
                     <td><?php echo h($order['Order']['total_price']); ?>&nbsp;</td>
                     <td><?php echo $this->Time->format($order['Order']['created'], '%d-%m-%Y'); ?>&nbsp;</td>
                     <td class="actions">
-                        <?php echo $this->Html->link(__('Mark Shipped'), array()); ?>
+                        <?php if($order['Order']['shipped'] == 1) : ?>
+                            Shipped.
+                        <?php else : ?>
+                            <?php echo $this->Html->link(__('Mark Shipped'), array()); ?>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
