@@ -140,7 +140,7 @@ window.registerProcess = true;
             </div>
         </div>
         <div class="clearfix"></div>
-        <div class="text-center">
+        <div class="text-center about-submit">
             <br/>
             <?php echo $this->Form->end(__('Continue')); ?>
             <br/><br/><br/><br/><br/>

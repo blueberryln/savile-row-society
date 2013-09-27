@@ -82,12 +82,12 @@ $(document).ready(function(){
         }
         if($("select#product-size").val()== "")
         {
-            $("span.err-message").fadeIn(300);
+            $("span.err-size-message").fadeIn(300);
             return false;
         } 
         else
         {
-            $("span.err-message").fadeOut(300);
+            $("span.err-size-message").fadeOut(300);
         }
         var id = $(this).data("product_id");
         var quantity = $("#product-quantity").val();
@@ -113,7 +113,7 @@ $(document).ready(function(){
     });
     
     $("select#product-size").change(function(){
-        $("span.err-message").fadeOut(300);    
+        $("span.err-size-message").fadeOut(300);    
     });
    
     
@@ -223,11 +223,12 @@ $columns = 'eleven';
                 <?php else : ?>
                     <label>Size
                     <select id="product-size">
-                        <option value="">Select Size</option>
+                        <option value="">Select Size &nbsp;</option>
                         <?php foreach($sizes as $size) : ?>
                             <option value="<?php echo $size['Detail']['size_id']; ?>"><?php echo $size['Size']['name']; ?></option>
                         <?php endforeach; ?>
-                    </select>
+                    </select><br/>
+                    <span class="err-size-message">Please select size.</span>
                     </label>
                 <?php endif; ?>
             <?php endif; ?>

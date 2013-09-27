@@ -411,7 +411,7 @@ body{
 }
 .hi-message > p{
     color:#333333;
-    font-size:13px;
+    font-size:16px;
 }
 .reg-step1{
     background-image: url("../img/reg-step1.png");
@@ -3263,17 +3263,19 @@ div#body-shape #selectable-shape li img
     box-shadow: 0 2px 3px 1px rgba(30, 30, 30, 0.3);
     width:217px;
     display: none;
+    z-index: 9999;
 }
 #size-chart-box ul
 {
     padding: 0 8px;    
     margin-top:10px;
+    margin-bottom: 5px;
 }
 #size-chart-box ul li
 {
     display: inline-block;
     width:45px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-align: center;
     border:1px solid rgba(30, 30, 30, 0.2);   
     text-transform: uppercase;
@@ -3343,8 +3345,9 @@ div.signup-content img,div.signin-content img
 
 .signup-btn, .signin-btn
 {
-    width:277px;
+    width:301px;
     margin-top:30px;
+    padding:11px 0;
 }
 
 h5.sign
@@ -3517,7 +3520,7 @@ h4.hi-message
     font-size:21px !important;
 }
 
-.err-message
+.err-message, .err-size-message
 {
     color:#ff0000;
     font-size: 12px;

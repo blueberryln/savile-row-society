@@ -90,7 +90,8 @@ $script = ' var size = ' . json_encode($size) . '; ' .
 
 
          $("span.size-chart").click(function(){
-            $("div#size-chart-box").slideDown(300);           
+            $("div#size-chart-box").slideToggle(300);
+                       
          });
          
     
@@ -98,7 +99,8 @@ $script = ' var size = ' . json_encode($size) . '; ' .
             $("#size-chart-box li").removeClass("selected");
             $(this).addClass("selected");
             var selectedSize = $(this).text();
-            $("input#pantSize").val(selectedSize);        
+            $("input#pantSize").val(selectedSize);
+            $("#size-chart-box").slideUp(500);        
          }); 
          
          $("#selectable-shape li").click(function(){
@@ -283,10 +285,52 @@ window.registerProcess = true;
                                     <li>28</li>
                                     <li>29</li>
                                     <li>30</li>                                    
-                                    <li>xxl</li>
+                                    <li>31</li>
+                                    <li>32</li>
                                     <li>32l</li>
-                                    <li>42x32</li>
+                                    <li>33</li>
+                                    <li>34</li>
+                                    <li>34l</li>
+                                    <li>35</li>
+                                    <li>36</li>
+                                    <li>36l</li>
+                                    <li>38</li>
+                                    <li>40</li>
+                                    <li>28x30</li>
+                                    <li>28x32</li>
+                                    <li>28x34</li>
                                     <li>29x30</li>
+                                    <li>29x32</li>                                    
+                                    <li>29x34</li>
+                                    <li>30x30</li>
+                                    <li>30x32</li>
+                                    <li>30x34</li>
+                                    <li>31x30</li>
+                                    <li>31x32</li>
+                                    <li>31x34</li>
+                                    <li>32x30</li>
+                                    <li>32x32</li>
+                                    <li>32x34</li>
+                                    <li>33x30</li>
+                                    <li>33x32</li>
+                                    <li>33x34</li>
+                                    <li>34x30</li>
+                                    <li>34x32</li>                                    
+                                    <li>34x34</li>
+                                    <li>35x30</li>
+                                    <li>35x32</li>
+                                    <li>36x30</li>
+                                    <li>36x32</li>
+                                    <li>36x34</li>
+                                    <li>38x32</li>
+                                    <li>35x34</li>
+                                    <li>40x30</li>
+                                    <li>40x32</li>
+                                    <li>40x34</li>
+                                    <li>42x30</li>
+                                    <li>42x32</li>
+                                    <li>42x34</li>
+                                    <li>34/34</li>
                                 </ul>
                             </div>
                         </div>
