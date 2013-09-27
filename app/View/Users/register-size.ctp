@@ -90,9 +90,13 @@ $script = ' var size = ' . json_encode($size) . '; ' .
 
 
          $("span.size-chart").click(function(){
-            $("div#size-chart-box").slideToggle(300);
-                       
-         });
+            if($("div#size-chart-box").is(":visible")) {
+                $("div#size-chart-box").slideUp(300); 
+            }
+            else {
+                $("div#size-chart-box").slideDown(300);
+            }
+         });  
          
     
          $("#size-chart-box li").click(function(){
@@ -115,7 +119,7 @@ $script = ' var size = ' . json_encode($size) . '; ' .
 $(document).mouseup(function(e) {
     var sizeBox = $("#size-chart-box");
     if(sizeBox.is(":visible") && sizeBox.has(e.target).length == 0) {
-        sizeBox.slideUp(300);    
+        sizeBox.slideUp(300); 
     }
 });
 ';
@@ -220,7 +224,7 @@ window.registerProcess = true;
                         </div>
         
                         <div class="input text required">
-                            <label for="jeans">Tell us a little about your suit size you wear(sizes 36-48)</label>                            
+                            <label for="jeans">Tell us a little about your suit size you wear (sizes 36-48)</label>                            
                             <select name="data[UserPreference][Size][us_suit_sizing]" tabindex="" id="suit_sizing" >
                                 <option value="">Size</option>
                                 <option value="36">36</option>
