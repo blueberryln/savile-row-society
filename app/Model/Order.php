@@ -72,6 +72,20 @@ class Order extends AppModel {
         ),
     );
 
+    /**
+     * hasOne associations
+     *
+     * @var array
+     */
+    public $hasOne = array(
+        'ShippingAddress' => array(
+            'className' => 'ShippingAddress',
+            'foreignKey' => 'order_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+        ),
+    );
 
     public $hasMany = array(
         'OrderItem' => array(
