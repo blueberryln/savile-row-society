@@ -35,16 +35,13 @@ class OrdersController extends AppController {
         
         $this->Order->id = $id;
         $order = $this->Order->find('first');
-        print_r($order);
-        exit;
         
-        if($order['Order']['paid'] == 1){
+        if($order['Order']['shipped'] == 1){
             $this->Session->setFlash(__('The order is already marked shipped.'), 'flash');    
         }
         else{
-            //$order['Order']['paid'] = 1;
+            $order['Order']['paid'] = 1;
             if($this->Order->save($order)){
-                $this->Session->setFlash(__('The customer has been notified by email and the order has been maked shipped.'), 'flash');
                 
                 //Send confirmation email to the customer.
                 $this->Order->recursive = 3;
@@ -64,7 +61,11 @@ class OrdersController extends AppController {
                     $email->viewVars(compact('shipped_order'));
                     $email->send();
                 }
+                $this->Session->setFlash(__('The customer has been notified by email and the order has been maked shipped.'), 'flash');
             }     
+            else{
+                $this->Session->setFlash(__('The order could not be marked shipped. Please try again later'), 'flash');    
+            }
         }
     }
 
