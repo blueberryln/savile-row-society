@@ -31,6 +31,14 @@ class MessagesController extends AppController {
 
         //chose witch view to render
         if ($is_stylist) {
+            $Category = ClassRegistry::init('Category');
+            $Brand = ClassRegistry::init('Brand');
+            $Color = ClassRegistry::init('Color');
+
+            // get data
+            $categories = $Category->getAll();
+            $brands = $Brand->find('all');
+            $colors = $Color->find('all');
             // if stylist load user that write to logged in user.
             $clients = array();
                 
@@ -40,7 +48,7 @@ class MessagesController extends AppController {
                 $clients[$client['User']['id']] = $client[0]['full_name'];
             }
 
-            $this->set(compact('clients'));
+            $this->set(compact('clients', 'brands', 'colors', 'categories'));
             $this->render("stylist");
         } else {
             $this->render("user");

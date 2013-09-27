@@ -7,7 +7,7 @@
         	<br />
             Hi <?php echo $shipped_order['User']['full_name']; ?>,
             <br /><br />
-            Thank you for shopping with Savile Row Society!<br />
+            Thank you for shopping with Savile Row Society!<br /><br />
 			Your order has been received and we are working towards fulfilling it. You'll receive <br />
 			an email when your shipment is under way.
             <br /><br />

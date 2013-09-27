@@ -242,6 +242,57 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         <div class="sixteen columns text-center">
             <h1>SRS Closet</h1>
         </div>
+        
+        <div class="fifteen offset-by-half columns omega">
+            <div class="three columns alpha">
+                <div class="product-filter-menu">
+                    <ul class="text-left">
+                        <li class="toggle-tab selected open-filter"><span>Categories</span>
+                            <ul class="toggle-body product-categories">
+                            <?php foreach ($categories as $category): ?>
+                                <li>
+                                <a href=""><?php echo $category['Category']['name']; ?></a>
+                                    <ul class="product-subcategories">
+                                        <?php foreach ($category['children'] as $subcategory): ?>
+                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>"><?php echo $subcategory['Category']['name']; ?></a></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </li>
+                            <?php endforeach; ?>
+                            </ul>
+                        </li>
+                        <li class="toggle-tab"><span>Brand</span>
+                            <ul class="toggle-body brand-filter">
+                            <?php if($brands) : ?>
+                                <?php foreach($brands as $brand) : ?>
+                                    <li data-brand_id="<?php echo $brand['Brand']['id']; ?>"><?php echo $brand['Brand']['name']; ?></li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            </ul>
+                        </li>
+                        <li class="toggle-tab"><span>Color</span>
+                            <ul class="toggle-body color-filter">
+                            <?php if($colors) : ?>
+                                <?php foreach($colors as $color) : ?>
+                                        <li data-color_id="<?php echo $color['Color']['id']; ?>"><?php echo $color['Color']['name']; ?></li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="twelve columns omega product-listing">
+                <div class="product-top-offset"></div>
+                    
+            </div>
+            
+        </div>
+        
+        
+        
+        
+    </div>
     </div>
 </div>
 

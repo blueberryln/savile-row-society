@@ -319,6 +319,11 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     $.unblockUI();
                 });
                 
+                $('#signin-popup').on('click', '.signin-btn', function(e){
+                   e.preventDefault();
+                   $("#register-form").submit();
+                });
+                
                 /* if (!jQuery.browser.mobile) {
                  var height = $(document).height();
                  $('.header').scrollspy({

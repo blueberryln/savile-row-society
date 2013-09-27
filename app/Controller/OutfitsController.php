@@ -103,5 +103,13 @@ class OutfitsController extends AppController {
         echo json_encode($ret);
         exit;    
     }
+    
+    public function getCategories(){
+        $Category = ClassRegistry::init('Category');
+        $categories = $Category->getAll();
+        
+        echo json_encode($ret);
+        exit;
+    }
 }
 

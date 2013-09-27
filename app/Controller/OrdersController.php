@@ -9,6 +9,9 @@ App::uses('CakeEmail', 'Network/Email');
  * @property Category $Category
  */
 class OrdersController extends AppController {
+    public $components = array('Paginator');
+    public $helpers = array('Paginator');
+    
     public function beforeRender() {
         parent::beforeRender();
         $this->layout = 'admin';
@@ -69,6 +72,56 @@ class OrdersController extends AppController {
         }
         $this->redirect('index');
         exit;
+    }
+    
+    
+    public function admin_items(){
+        $options = array(
+            'conditions' => array('Order.paid' => true, 'Order.shipped' => false),
+            'joins' => array(
+                array('table' => 'products_entities',
+                    'alias' => 'Entity',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Entity.id = OrderItem.product_entity_id',
+                    )
+                ),
+                array('table' => 'orders',
+                    'alias' => 'Order',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Order.id = OrderItem.order_id',
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Entity.product_id = Product.id',
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ),  
+
+            ),
+            'fields' => array('OrderItem.*', 'Entity.*', 'Product.*', 'Brand.*', 'Order.*'),
+        );
+        
+        $this->Paginator->settings = $options;
+        $items = $this->Paginator->paginate('OrderItem');
+        
+        $Color = ClassRegistry::init('Color');
+        $colors = $Color->find('list');
+        
+        $Size = ClassRegistry::init('Size');
+        $sizes = $Size->find('list');
+        
+        $this->set(compact('items', 'colors', 'sizes'));    
     }
 
 }

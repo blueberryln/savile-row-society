@@ -6,7 +6,35 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->layout = 'ajax'
 ?>
 
-
+<!--<div id="signin-box" class="box-modal notification-box">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="signin-content">
+            <h5 class="sign">SIGN IN</h5>            
+            <img src="app/webroot/img/facebook.png" />
+            <img src="app/webroot/img/linkedin.png" /> 
+            <h6 class="sign-or">OR</h6>   
+            <form id="register-form" method="" action="">
+            <?php echo $this->Form->create('User', array('id' => 'register-form')); ?> 
+                <?php
+                    echo $this->Form->input('email', array('id' => 'register-email', 'label' => false, 'placeholder' => 'EMAIL'));
+                    echo $this->Form->input('password', array('id' => 'register-password', 'label' => false, 'placeholder' => 'PASSWORD'));
+                    echo $this->Form->input('refer_url', array('type' => 'hidden', 'id' => 'referUrlLogIn'));
+                ?>  
+                <input type="text" id="register-email" placeholder="EMAIL" />
+                <input type="password" id="register-password" placeholder="PASSWORD" />
+                
+                <div class="text-left signin-options">
+                    <input id="remember-me" type="checkbox" />  
+                    <label for="remember-me">Remember me</label>                    
+                    <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
+                </div>
+                 
+                <input type="submit" class="link-btn black-btn signin-btn" value="SIGN IN" /> 
+            </form> 
+        </div> 
+    </div>
+</div>-->
 
 <div class="container content inner" style="width:430px;">	
     <div class="seven columns text-center " style="width:430px;">
