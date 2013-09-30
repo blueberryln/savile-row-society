@@ -131,7 +131,7 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.created ASC",
                     'fields' => array('Message.id', 
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
         ));
     }
@@ -142,7 +142,7 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.created ASC",
                     'fields' => array('Message.id', 
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
         ));
     }
@@ -153,7 +153,7 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.created DESC",
                     'fields' => array(
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.is_outfit', 'Message.outfit_id', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
         ));
     }

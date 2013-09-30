@@ -16,7 +16,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <input type='button' value='MY PROFILE' class='my-profile'/>
             <br /><br /><br />
         </div>
-        <div class="nine columns aplha stylist-talk">
+        <div class="ten columns aplha stylist-talk">
             <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
             <textarea class="eight columns alpha omega chat-msg-txtbox" id='messageToSend'></textarea>
             <!--<input type="button" value="Send messages" id="sendMessages" />-->
@@ -79,27 +79,33 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         }
         function showChatMsg(chatMsg) {
             var html = '';           
-            if(chatMsg['UserFrom']['id'] == uid){
-                html = '' + 
-                    '<div class="eight columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                        '<div class="message-caption">You Said:</div>' + 
-                        '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
-                        '<div class="message-date">' +
-                            '<small>' + chatMsg['Message']['created'] + '</small>' +
-                        '</div>' + 
-                    '</div>';
+            if(chatMsg['OutfitItem']['is_outfit'] == 1){
+                
             }
             else{
-                html = '' + 
-                    '<div class="eight columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                        '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
-                        '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
-                        '<div class="message-date">' +
-                            '<small>' + chatMsg['Message']['created'] + '</small>' +
-                        '</div>' + 
-                    '</div>';
+                if(chatMsg['UserFrom']['id'] == uid){
+                    html = '' + 
+                        '<div class="eight columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="message-caption">You Said:</div>' + 
+                            '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
+                            '<div class="message-date">' +
+                                '<small>' + chatMsg['Message']['created'] + '</small>' +
+                            '</div>' + 
+                        '</div>';
+                }
+                else{
+                    html = '' + 
+                        '<div class="eight columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
+                            '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
+                            '<div class="message-date">' +
+                                '<small>' + chatMsg['Message']['created'] + '</small>' +
+                            '</div>' + 
+                        '</div>';
+                }
+                return html;    
             }
-            return html;
+            
         }
 
         loadMessages();

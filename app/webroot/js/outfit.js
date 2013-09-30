@@ -334,6 +334,14 @@ $(document).ready(function(){
     $("#outfit-box").on('mouseleave', '.product-block', function(){
         $(this).find(".mosaic-overlay").animate({"opacity":"0"},300);
     });
+    
+    $(".chat-container").on('mouseenter', '.product-block', function(){
+        $(this).find(".mosaic-overlay").animate({"opacity":"1"},300);
+    });
+
+    $(".chat-container").on('mouseleave', '.product-block', function(){
+        $(this).find(".mosaic-overlay").animate({"opacity":"0"},300);
+    });
 
     $(".srs-closet-items, .purchased-list-cont, .liked-list-cont").on("click", ".mosaic-overlay", function(e){
         var productBox = $(this).closest(".alpha");

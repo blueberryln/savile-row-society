@@ -23,8 +23,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <div class="profile-img">
                 <?php
                     $img = "";
-                    if(isset($client_data) && $client['User']['profile_photo_url'] && $client['User']['profile_photo_url'] != ""){
-                        $img = $client['User']['profile_photo_url'];
+                    if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
+                        $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
                     }
                     else{
                         $img = $this->webroot . "img/dummy_image.jpg";    
@@ -40,7 +40,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         </div>
         <div class="ten columns aplha stylist-talk">
             <ul id="stylist-options">
-                <li><a href="">user profile</a></li>
+                <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>">user profile</a></li>
                 <li><a href="">user closet</a></li>
                 <li><a href="">conversation</a></li>                
             </ul>
@@ -341,27 +341,66 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         }
         
         function showChatMsg(chatMsg) {
-            var html = '';           
-            if(chatMsg['UserFrom']['id'] == uid){
-                html = '' + 
-                    '<div class="nine columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                        '<div class="message-caption">You Said:</div>' + 
-                        '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
-                        '<div class="message-date">' +
-                            '<small>' + chatMsg['Message']['created'] + '</small>' +
+            var html = ''; 
+            if(chatMsg['Message']['is_outfit'] == 1){
+                html = html + '<div class="nine columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
+                html = html + '<div class="message-caption">You suggested new items to complete a style:</div><br>'; 
+                html = html + '<div class="chat-outfit-box">';
+                for(var i=0; i<chatMsg['Outfit'].length; i++){
+                    var imgSrc = webroot + "img/image_not_available-small.png";
+                    if(typeof(chatMsg['Outfit'][i]["Image"]) != "undefined" && chatMsg['Outfit'][i]["Image"].length > 0){
+                        imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
+                    }
+                    html = html + 
+                    '<div class="two columns alpha row">' +
+                        '<div class="product-block">' + 
+                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
+                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
+                            '<div class="product-list-image mosaic-block fade">' + 
+                                '<div class="mosaic-overlay" style="display: block;">' + 
+                    				'<div class="mini-product-details">' + 
+                					   '<span>$' + chatMsg['Outfit'][i]['Entity']['price'] + '</span>' + 
+                					   '<span>' + chatMsg['Outfit'][i]['Entity']['name'] + '</span>' + 
+                    				'</div>' + 
+                    			'</div>' + 
+                            '<div class="mosaic-backdrop" style="display: block;">' + 
+                                    '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" class="product-image fadein-image" style="opacity: 1;">' + 
+                                '</div>' + 
+                            '</div>' + 
+                            '<div class="product-list-links">' + 
+                                '<a href="" class="btn-buy" target="_blank">Buy</a>' + 
+                            '</div>' + 
                         '</div>' + 
+                    '</div>';        
+                } 
+                html = html + '</div>' + 
+                    '<div class="message-date">' +
+                        '<small>' + chatMsg['Message']['created'] + '</small>' +
+                    '</div>' + 
                     '</div>';
             }
             else{
-                html = '' + 
-                    '<div class="nine columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                        '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
-                        '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
-                        '<div class="message-date">' +
-                            '<small>' + chatMsg['Message']['created'] + '</small>' +
-                        '</div>' + 
-                    '</div>';
-            }
+                if(chatMsg['UserFrom']['id'] == uid){
+                    html = '' + 
+                        '<div class="nine columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="message-caption">You Said:</div>' + 
+                            '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
+                            '<div class="message-date">' +
+                                '<small>' + chatMsg['Message']['created'] + '</small>' +
+                            '</div>' + 
+                        '</div>';
+                }
+                else{
+                    html = '' + 
+                        '<div class="nine columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
+                            '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
+                            '<div class="message-date">' +
+                                '<small>' + chatMsg['Message']['created'] + '</small>' +
+                            '</div>' + 
+                        '</div>';
+                }
+            }       
             return html;
         }
         

@@ -86,3 +86,29 @@ span.select-item{
 .filter-selected{
     color: #8E7846 !important;
 }
+.chat-msg-box .product-list-image{
+    height: 137px;
+    border: 1px solid #797979;
+    background-color: #FFFFFF;
+    line-height: 135px;
+    text-align: center;
+}
+.chat-msg-box .product-list-image img{
+    max-height: 135px;
+    max-width: 98px;
+    vertical-align: middle;
+}
+.chat-msg-box .mini-product-details{
+    width: 98px;
+    font-size: 12px;
+}
+.chat-msg-box .btn-buy{
+    font-size: 12px;
+    padding: 1px 8px;
+}
+.chat-msg-box .mosaic-overlay{
+    opacity: 0;
+}
+.chat-outfit-box{
+    margin-left: 10px;
+}
