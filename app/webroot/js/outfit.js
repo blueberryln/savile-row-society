@@ -190,8 +190,8 @@ function getClosetProducts(){
 
 function displayOutfitItem(outfitEntity){
     var productBlock = createOutfitItem.closest(".product-block");
-    productBlock.find("product-id").val(outfitEntity["id"]);
-    productBlock.find("product-slug").val(outfitEntity["slug"]);
+    productBlock.find(".product-id").val(outfitEntity["id"]);
+    productBlock.find(".product-slug").val(outfitEntity["slug"]);
 
     var html = "<div class='mosaic-overlay' style='display: block; opacity: 0;'>" +
             "<a href='' class='remove-product'></a>" +
@@ -210,9 +210,11 @@ $(document).ready(function(){
     $(".fade").mosaic();
     $("#createOutfit").on("click", function(e){
         e.preventDefault(); 
-        $.blockUI({message: $("#outfit-box"), css: {top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
-        getPurchasedItems(lastPurchasedItem);
-        getLikedItems(lastLikedItem);
+        if(client_id != 0){
+            $.blockUI({message: $("#outfit-box"), css: {top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
+            getPurchasedItems(lastPurchasedItem);
+            getLikedItems(lastLikedItem);
+        }
     });
     //$.blockUI({message: $("#outfit-box"), css: {top: "0", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
 
@@ -362,6 +364,72 @@ $(document).ready(function(){
             $(".srs-closet-close").click();
             $(".srs-closet-items").html("");
             $(".product-filter-menu .toggle-tab li").removeClass("filter-selected");
+        }
+    });
+    
+    $("#outfit-box").on('click', ".add-purchased-outfit", function(e){
+        e.preventDefault();
+        if($(".purchased-list-cont .selected-outfit-item").length == 0){
+            alert("Please select an item first.");
+        }
+        else{
+            var entityBlock = $(".purchased-list-cont .selected-outfit-item");
+            var outfitEntity = {
+                'id' : entityBlock.find(".product-id").val(),
+                'slug' : entityBlock.find(".product-slug").val(),
+                'price' : entityBlock.find(".entity-price").text(),
+                'name' : entityBlock.find(".entity-name").text(),
+                'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
+            }
+            displayOutfitItem(outfitEntity);
+            $(".user-closet-close").click();
+            $(".purchased-list-cont .selected-outfit-item").removeClass("selected-outfit-item");
+        }
+    });
+    
+    $("#outfit-box").on('click', ".add-liked-outfit", function(e){
+        e.preventDefault();
+        if($(".liked-list-cont .selected-outfit-item").length == 0){
+            alert("Please select an item first.");
+        }
+        else{
+            var entityBlock = $(".liked-list-cont .selected-outfit-item");
+            var outfitEntity = {
+                'id' : entityBlock.find(".product-id").val(),
+                'slug' : entityBlock.find(".product-slug").val(),
+                'price' : entityBlock.find(".entity-price").text(),
+                'name' : entityBlock.find(".entity-name").text(),
+                'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
+            }
+            displayOutfitItem(outfitEntity);
+            $(".user-closet-close").click();
+            $(".liked-list-cont .selected-outfit-item").removeClass("selected-outfit-item");
+        }
+    });
+    
+    $("#add-outfit").on('click', function(e){
+        e.preventDefault();
+        var outfitId1 = $("#outfit1 .product-id").val();
+        var outfitId2 = $("#outfit2 .product-id").val();
+        var outfitId3 = $("#outfit3 .product-id").val();
+        var outfitId4 = $("#outfit4 .product-id").val();
+        var outfitId5 = $("#outfit5 .product-id").val();
+        
+        if(outfitId1 == "" || outfitId2 == "" || outfitId3 == "" || outfitId4 == "" || outfitId5 == ""){
+            alert("Please select all 5 items for the outfit.");
+        }
+        else{
+            var outfitLocation = $("#outfit-location").val();
+            var outfitStyle = $("#outfit-style").val();
+            
+            $.post(webroot + "outfits/postOutfit/",{outfit1 : outfitId1, outfit2 : outfitId2, outfit3 : outfitId3, outfit4 : outfitId4, outfit5 : outfitId5, outfit_location: outfitLocation, outfit_style: outfitStyle, user_id: client_id}, function(data){
+                var ret = $.parseJSON(data);
+                if(ret['status'] == "ok"){
+                    $(".user-closet-close").click();
+                    window.location = webroot + 'messages/index/' + client_id;    
+                }
+        
+            });
         }
     });
 });

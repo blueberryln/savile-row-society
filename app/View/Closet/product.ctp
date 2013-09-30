@@ -184,7 +184,7 @@ $columns = 'eleven';
                 <h5>Product Details</h5>
                 <p class="description"><?php echo $entity['Entity']['description']; ?></p>
             </div>
-            <?php if($similar) : ?>
+            <?php if($similar || ($entity['Color'] && count($entity['Color']) > 1)) : ?>
                 <label class="product-color-label">Color</label>
                 <div class="product-swatches">
                 <?php if($entity['Color'] && count($entity['Color']) > 1) :?>

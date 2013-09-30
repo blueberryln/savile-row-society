@@ -92,9 +92,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="form">
             <?php if ($user && $booking_types) : ?>
                 <?php echo $this->Form->create('Booking', array('url' => array('controller' => 'booking', 'action' => 'index'))); ?>
-                <h4 class="hi-message">Hi, <?php echo $user['User']['first_name']; ?></h4>
-                <p>when would you like to come?</p>                
-                <br/>
+                <h4 class="hi-message">Hi, <?php echo $user['User']['first_name'] . " " . $user['User']['last_name']; ?></h4>
+                <p>When would you like to come?</p> 
                 <div>
                     <label>Please select a date</label>
                     <input class="datepicker" name="data[Booking][date]" id="BookingDate" value="" type="text" placeholder="Please select a date" />
@@ -115,7 +114,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <textarea name="data[Booking][comment]" id="BookingComment"></textarea>
                 </div>
                 <div class="book-it-btn">
-                    <?php echo $this->Form->end('Book It!'); ?>
+                    <?php echo $this->Form->end('Book Now'); ?>
                 </div>
                 
             <?php endif; ?>

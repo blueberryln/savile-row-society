@@ -1408,6 +1408,7 @@ body{
 .timeline .chat-msg-box{
     border-top: 1px solid #D2D2D2;
     padding: 10px;
+    width: 562px !important;
 }
 .timeline .message-body{
     padding-top: 10px;
@@ -3612,7 +3613,7 @@ div.stylist-talk #sendMessages
 
 div.stylist-talk .chat-msg-txtbox
 {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 10px !important;
+    width: 558px !important;
 }
 

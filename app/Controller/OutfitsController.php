@@ -217,5 +217,73 @@ class OutfitsController extends AppController {
         echo json_encode($ret);
         exit;
     }
+    
+    function postOutfit(){
+        $ret = array();
+        $user_id = $this->getLoggedUserID();
+        if($user_id){
+            $client_id = $this->request->data['user_id'];
+            $outfit_id1 = $this->request->data['outfit1'];    
+            $outfit_id2 = $this->request->data['outfit2'];  
+            $outfit_id3 = $this->request->data['outfit3'];  
+            $outfit_id4 = $this->request->data['outfit4'];  
+            $outfit_id5 = $this->request->data['outfit5'];
+            $data['Outfit']['user_id'] = $client_id;
+            $data['Outfit']['stylist_id'] = $user_id;
+            
+            $Outfit = ClassRegistry::init('Outfit');
+            $OutfitItem = ClassRegistry::init('OutfitItem');
+            $Outfit->create();
+            if($result = $Outfit->save($data)){
+                $outfit_id = $result['Outfit']['id'];
+                $data1['OutfitItem']['outfit_id'] = $outfit_id;
+                $data1['OutfitItem']['product_entity_id'] = $outfit_id1;
+                $OutfitItem->create();
+                $OutfitItem->save($data1);
+                
+                $data2['OutfitItem']['outfit_id'] = $outfit_id;
+                $data2['OutfitItem']['product_entity_id'] = $outfit_id2;
+                $OutfitItem->create();
+                $OutfitItem->save($data2);
+                
+                
+                $data3['OutfitItem']['outfit_id'] = $outfit_id;
+                $data3['OutfitItem']['product_entity_id'] = $outfit_id3;
+                $OutfitItem->create();
+                $OutfitItem->save($data3);
+                
+                
+                $data4['OutfitItem']['outfit_id'] = $outfit_id;
+                $data4['OutfitItem']['product_entity_id'] = $outfit_id4;
+                $OutfitItem->create();
+                $OutfitItem->save($data4);
+                
+                
+                $data5['OutfitItem']['outfit_id'] = $outfit_id;
+                $data5['OutfitItem']['product_entity_id'] = $outfit_id5;
+                $OutfitItem->create();
+                $OutfitItem->save($data5);
+                
+                $Message = ClassRegistry::init('Message');
+                $data['Message']['user_to_id'] = $client_id;
+                $data['Message']['user_from_id'] = $user_id;
+                $data['Message']['body'] = 'outfit';
+                $data['Message']['is_outfit'] = 1;
+                $data['Message']['outfit_id'] = $outfit_id;
+                $Message->create();
+                if ($Message->validates()) {
+                    $Message->save($data);
+                }
+                
+                $ret['status'] = "ok";
+            }  
+        }
+        else{
+            $ret['status'] = "error";
+        }
+
+        echo json_encode($ret);
+        exit;    
+    }
 }
 

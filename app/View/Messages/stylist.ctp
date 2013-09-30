@@ -61,6 +61,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <div class="chat-container">
                 
             </div>
+            <div class="clear"></div>
+            <br /><br /><br />
         </div>
     </div>
 
@@ -342,7 +344,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             var html = '';           
             if(chatMsg['UserFrom']['id'] == uid){
                 html = '' + 
-                    '<div class="eight columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                    '<div class="nine columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                         '<div class="message-caption">You Said:</div>' + 
                         '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
                         '<div class="message-date">' +
@@ -352,7 +354,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             }
             else{
                 html = '' + 
-                    '<div class="eight columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                    '<div class="nine columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                         '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
                         '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
                         '<div class="message-date">' +
