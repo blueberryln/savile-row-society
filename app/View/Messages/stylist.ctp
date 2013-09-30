@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 $script = ' 
-var uid = ' . $user_id . '
-var webroot = ' . $this->webroot . '
+var uid = ' . $user_id . ';
+var client_id = ' . $client_id . ';
+var webroot = ' . $this->webroot . ';
 ';
 $this->Html->script('http://knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
@@ -17,31 +18,41 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 <div class="container content inner timeline">	
 
     <div class="sixteen columns">
-        <div class=" five columns user-container">
+        <div class="five columns user-container">
             <div class="img-container">
-                <div class="profile-img"><img src="#" id="user_image" /></div>
+                <div class="profile-img">
+                <?php
+                    $img = "";
+                    if(isset($client_data) && $client['User']['profile_photo_url'] && $client['User']['profile_photo_url'] != ""){
+                        $img = $client['User']['profile_photo_url'];
+                    }
+                    else{
+                        $img = $this->webroot . "img/dummy_image.jpg";    
+                    }
+                ?>
+                    <img src="<?php echo $img; ?>" id="user_image" />
+                </div>
             </div>
             <div class="info-container">
                 <div id="user-name"></div>
             </div>
         
         </div>
-        <div class="nine columns aplha ">
-            <h4 class='eight columns talk-to'>TALK WITH YOUR CLIENT 
+        <div class="nine columns aplha stylist-talk">
+            <h4 class='eight columns talk-to'>TALK WITH YOUR CLIENT</h4>
                 <?php
 //echo $this->Form->input('', array('options'=>$clients, 'displayField' => 'full_name', '   default'=>'m'));
-                echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]'));
+                echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client"));
                 /* , 'name' => 'data[Message][user_to_id]' */
                 ?>
-                <input type="button" value="Load user conversation" id="loadMessages" />
-
-            </h4>
+                <!--<input type="button" value="Load user conversation" id="loadMessages" />-->
+                <a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>
+                <!--<input type="button" value="Create Outfit" id="createOutfit"/>-->
+                <a class="link-btn gold-btn"  id="createOutfit"  href="">Create Outfit</a>
 
             <textarea class="eight columns alpha omega chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
-            <input type="submit" value="Send Message" id="sendMessages"/>
-            <input type="button" value="Create Outfit" id="createOutfit"/>
+            <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
             
-
             <div class="chat-container">
                 
             </div>
@@ -62,7 +73,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         </div>
         <div class="fifteen columns offset-by-half product-listing">
             <br />
-            <div class="three columns alpha row">
+            <div class="three columns alpha row" id="outfit1">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -77,7 +88,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             
-            <div class="three columns alpha row">
+            <div class="three columns alpha row" id="outfit2">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -92,7 +103,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             
-            <div class="three columns alpha row">
+            <div class="three columns alpha row" id="outfit3">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -107,7 +118,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             
-            <div class="three columns alpha row">
+            <div class="three columns alpha row" id="outfit4">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -122,7 +133,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             
-            <div class="three columns alpha row">
+            <div class="three columns alpha row" id="outfit5">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -135,6 +146,31 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <div class="clear"></div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="clear"></div>
+            <br />
+            <div class="six columns text-center offset-by-one">
+                <label>Location (East Coast or West Coast)</label>
+                <select name="outfit-location" id="outfit-location">
+                    <option value="East Cost">East Cost</option>
+                    <option value="West Cost">West Cost</option>
+                    <option value="North Cost">North Cost</option>
+                    <option value="South Cost">South Cost</option>
+                </select>
+            </div>
+            <div class="six columns text-center">
+                <label>Type of the outfit</label>
+                <select name="outfit-location" id="outfit-style">
+                    <option>Casual</option>
+                    <option>Formal</option>
+                    <option>PartyWear</option>
+                </select>
+            </div>
+            <div class="clear"></div>
+            <div class="text-center">
+                <br /><br /><br />
+                <a href="" id="add-outfit" class="link-btn black-btn">Suggest the Outfit</a>
             </div>
         </div>
     </div>
@@ -157,7 +193,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <div class="clear"></div>
                     <div class="btn-outfit-cont text-right">
                         <a href="" class="link-btn black-btn load-more-purchased">Load More</a>
-                        <a href="" class="link-btn black-btn">Add to outfit</a>
+                        <a href="" class="link-btn black-btn add-purchased-outfit">Add to outfit</a>
                     </div>
                 </div>
                 
@@ -169,7 +205,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <div class="clear"></div>
                     <div class="btn-outfit-cont text-right">
                         <a href="" class="link-btn black-btn load-more-liked">Load More</a>
-                        <a href="" class="link-btn black-btn">Add to outfit</a>
+                        <a href="" class="link-btn black-btn add-liked-outfit">Add to outfit</a>
                     </div>
                 </div>
             </div>
@@ -322,14 +358,16 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             return html;
         }
         
-        $("#loadMessages").click(function() {
-            var userId =  $("#UserUserToId").val();
-            loadMessages(userId);
+        $("#loadMessages").click(function(e) {
+            e.preventDefault();
+            userId =  $("#UserUserToId").val();
+            window.location = webroot + "messages/index/" + userId;
         })
         
         var userId = null;
         
-         <?php if ($messages_for_user_id){
+         <?php 
+            if ($messages_for_user_id){
                 echo 'userId = ' . $messages_for_user_id . ';';
             }
         ?>
@@ -339,16 +377,20 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         }else{
             $("#UserUserToId").val(userId);
         }
-        //loadMessages(userId);
         
-        //setInterval(
-//            function(){
-//                if(!callInAction){
-//                    loadNewMessages();
-//                }
-//            },
-//            reqNewMsgDelay
-//        );
+        
+        
+        if(client_id > 0){
+            loadMessages(userId);
+            setInterval(
+                function(){
+                    if(!callInAction){
+                        loadNewMessages();
+                    }
+                },
+                reqNewMsgDelay
+            );
+        }
         
         $("#sendMessages").click(function(e) {
             e.preventDefault();
