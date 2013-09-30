@@ -1,5 +1,5 @@
 .outfit-modal{
-    height: 700px;
+    height: 630px;
 }
 .outfit-modal-inside{  
 }
@@ -42,10 +42,37 @@
     background-color: #fff;
     z-index: 10;
 }
+.srs-closet-cont .product-top-offset{
+    padding: 5px 0 10px;
+}
+.selected-outfit-item .select-item{
+    display: block !important;
+}
+.selected-outfit-item .mosaic-overlay{
+    opacity: 1 !important;
+}
+span.select-item{
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 250;
+    height: 20px;
+    width: 20px;
+    text-decoration: none;
+    background: url('../img/checkmark-small.png') no-repeat center center;
+}
 
 .liked-list-cont .product-listing-box, .purchased-list-cont .product-listing-box{
     overflow-y: scroll;
-    height: 460px;
+    height: 395px;
+}
+.srs-closet-items{
+    overflow-y: scroll;
+    height: 444px;
+}
+.product-categories li{
+    cursor: pointer;
 }
 
 .btn-outfit-cont{
@@ -55,4 +82,7 @@
 
 .user-closet-list-cont .row{
     margin-bottom: 10px;
+}
+.filter-selected{
+    color: #8E7846 !important;
 }

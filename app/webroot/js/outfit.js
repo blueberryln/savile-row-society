@@ -1,5 +1,8 @@
 var lastLikedItem = 0;
 var lastPurchasedItem = 0;
+var lastClosetItem = 0;
+var inAjaxTransaction = false;
+var createOutfitItem;
 
 // Function to add purchased items to purchased container
 function addPurchasedItems(items){
@@ -18,14 +21,14 @@ function addPurchasedItems(items){
                         "<input type='hidden' value='" + data['Entity']['id'] + "' class='product-id'>" + 
                         "<div class='product-list-image mosaic-block fade'>" + 
                             "<div class='mosaic-overlay' style='display: block;'>" + 
-                                "<a href='' class='remove-product'></a>" + 
+                                "<span class='select-item'></span>" +
                 				"<div class='mini-product-details'>" + 
-            					   "<span>" + data['Entity']['price'] + "</span>" + 
-            					   "<span>" + data['Entity']['name'] + "</span>" + 
+            					   "<span class='entity-price'>" + data['Entity']['price'] + "</span>" +
+            					   "<span class='entity-name'>" + data['Entity']['name'] + "</span>" +
                 				"</div>" + 
                 			"</div>" + 
                             "<div class='mosaic-backdrop' style='display: block;'>" + 
-                                "<img src='" + img_src + "' alt='" + data['Entity']['name'] + "'>" + 
+                                "<img src='" + img_src + "' alt='" + data['Entity']['name'] + "' data-src='" + img_src + "'>" +
                             "</div>" + 
                         "</div>" + 
                     "</div>" + 
@@ -52,20 +55,53 @@ function addLikedItems(items){
                         "<input type='hidden' value='" + data['Entity']['id'] + "' class='product-id'>" + 
                         "<div class='product-list-image mosaic-block fade'>" + 
                             "<div class='mosaic-overlay' style='display: block;'>" + 
-                                "<a href='' class='remove-product'></a>" + 
+                                "<span class='select-item'></span>" +
                 				"<div class='mini-product-details'>" + 
-            					   "<span>" + data['Entity']['price'] + "</span>" + 
-            					   "<span>" + data['Entity']['name'] + "</span>" + 
+            					   "<span class='entity-price'>" + data['Entity']['price'] + "</span>" +
+            					   "<span class='entity-name'>" + data['Entity']['name'] + "</span>" +
                 				"</div>" + 
                 			"</div>" + 
                             "<div class='mosaic-backdrop' style='display: block;'>" + 
-                                "<img src='" + img_src + "' alt='" + data['Entity']['name'] + "'>" + 
+                                "<img src='" + img_src + "' alt='" + data['Entity']['name'] + "' data-src='" + img_src + "'>" +
                             "</div>" + 
                         "</div>" + 
                     "</div>" + 
                 "</div>";
                 
         likedCont.append(html);
+    }
+}
+
+function addClosetItems(items){
+    var data;
+    var closet = $(".srs-closet-items");
+    for(var i=0; i<items.length; i++){
+        data = items[i];
+        var img_src = webroot + "img/image_not_available-small.png";
+        if(data['Image'].length > 0){
+            img_src = webroot + "products/resize/" + data['Image'][0]['name'] + '/158/216';
+        }
+        var html = "";
+        html =  "<div class='three columns alpha omega row'>" +
+            "<div class='product-block'>" +
+            "<input type='hidden' value='" + data['Entity']['slug'] + "' class='product-slug'>" +
+            "<input type='hidden' value='" + data['Entity']['id'] + "' class='product-id'>" +
+            "<div class='product-list-image mosaic-block fade'>" +
+            "<div class='mosaic-overlay' style='display: block;'>" +
+            "<span class='select-item'></span>" +
+            "<div class='mini-product-details'>" +
+            "<span class='entity-price'>" + data['Entity']['price'] + "</span>" +
+            "<span class='entity-name'>" + data['Entity']['name'] + "</span>" +
+            "</div>" +
+            "</div>" +
+            "<div class='mosaic-backdrop' style='display: block;'>" +
+            "<img src='" + img_src + "' alt='" + data['Entity']['name'] + "' data-src='" + img_src + "'>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
+
+        closet.append(html);
     }
 }
 
@@ -104,7 +140,7 @@ function getLikedItems(lastPurchasedItem){
             var ret = $.parseJSON(data);
             if(ret["status"] == "ok"){
                 if(ret["total"] == 0){
-                    $(".liked-list-cont .product-listing-box").html("<p>User has not purchased any item yet.");         
+                    $(".liked-list-cont .product-listing-box").html("<p>User has not purchased any item yet.</p>");
                 }
                 else{
                     if(lastPurchasedItem == 0){
@@ -121,6 +157,55 @@ function getLikedItems(lastPurchasedItem){
     });
 }
 
+function getClosetProducts(){
+    var categoryId = $(".product-categories li.filter-selected").data("category_id");
+    var arrBrand = new Array();
+    var arrColor = new Array();
+    $(".brand-filter .filter-selected").each(function(){
+        arrBrand.push($(this).data("brand_id"));
+    });
+    $(".color-filter .filter-selected").each(function(){
+        arrColor.push($(this).data("color_id"));
+    });
+
+    var strBrand = arrBrand.join("-");
+    var strColor = arrColor.join("-");
+    inAjaxTransaction = true;
+    $.post(webroot + "outfits/getClosetItems/",{category_slug : categoryId,str_brand : strBrand, str_color : strColor, last_closet_item : lastClosetItem}, function(data){
+        var ret = $.parseJSON(data);
+        inAjaxTransaction = false;
+        if(ret['status'] == "ok"){
+            if(ret['data'].length == 0){
+                $(".srs-closet-items").html("<p>No products available.</p>");
+            }
+            else{
+                addClosetItems(ret['data']);
+                lastClosetItem = ret['last_closet_item'];
+            }
+        }
+
+    });
+
+}
+
+function displayOutfitItem(outfitEntity){
+    var productBlock = createOutfitItem.closest(".product-block");
+    productBlock.find("product-id").val(outfitEntity["id"]);
+    productBlock.find("product-slug").val(outfitEntity["slug"]);
+
+    var html = "<div class='mosaic-overlay' style='display: block; opacity: 0;'>" +
+            "<a href='' class='remove-product'></a>" +
+            "<div class='mini-product-details'>" +
+                "<span class='outfit-detail-size'>$" + outfitEntity['price'] + "</span>" +
+                "<span class='outfit-detail-name'>" + outfitEntity['name'] + "</span>" +
+            "</div>" +
+        "</div>" +
+        "<div class='mosaic-backdrop' style='display: block;'>" +
+            "<img src='" + outfitEntity['img'] + "' alt='" + outfitEntity['name'] + "'>" +
+        "</div>";
+    productBlock.find(".product-list-image").html(html);
+}
+
 $(document).ready(function(){
     $(".fade").mosaic();
     $("#createOutfit").on("click", function(e){
@@ -130,7 +215,7 @@ $(document).ready(function(){
         getLikedItems(lastLikedItem);
     });
     //$.blockUI({message: $("#outfit-box"), css: {top: "0", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
-    
+
     $(".outfit-close").on("click", function(e){
        e.preventDefault();
        $.unblockUI(); 
@@ -138,10 +223,12 @@ $(document).ready(function(){
     
     $(".btn-user-closet").on("click", function(e){
         e.preventDefault();
+        createOutfitItem = $(this);
         $(".user-closet-cont").fadeIn(300);        
     });
     $(".btn-srs-closet").on("click", function(e){
         e.preventDefault();
+        createOutfitItem = $(this);
         $(".srs-closet-cont").fadeIn(300);        
     });
     
@@ -156,11 +243,13 @@ $(document).ready(function(){
     });
     
     // Remove a product from selected list of outfit items
-    $(".remove-product").click(function(e) {
+    $("#outfit-box").on('click', '.remove-product', function(e) {
         e.preventDefault();
         e.stopPropagation();
         var object = $(this).closest(".product-block");
-        var id = object.find(".product-id").val();
+        object.find(".product-id").val("");
+        object.find(".product-slug").val("");
+        object.find(".product-list-image").html("");
     });
     
     $(".like-cont-link").on("click", function(e){
@@ -194,6 +283,85 @@ $(document).ready(function(){
         e.preventDefault();
         getLikedItems();
             
-    }); 
-    
+    });
+
+    $(".load-more-closet").on('click', function(e){
+        e.preventDefault();
+        getClosetProducts();
+    });
+
+    $(".product-filter-menu .toggle-tab .product-categories li").on('click', function(e){
+        if(!inAjaxTransaction){
+            $this = $(this);
+
+            if($this.hasClass("filter-selected")){
+                $this.removeClass("filter-selected");
+                $this.closest(".product-filter-menu").find(".toggle-tab li").removeClass("filter-selected");
+            }
+            else{
+                $this.addClass("filter-selected");
+                lastClosetItem = 0;
+                $(".srs-closet-items").html("");
+                getClosetProducts();
+            }
+        }
+    });
+    $(".product-filter-menu .toggle-tab .brand-filter li, .product-filter-menu .toggle-tab .color-filter li").on('click', function(e){
+        if(!inAjaxTransaction){
+            if($(".product-filter-menu .toggle-tab .product-categories li.filter-selected").length == 0){
+                alert("Please select a category first.");
+            }
+            else{
+                if($(this).hasClass("filter-selected")){
+                    $(this).removeClass("filter-selected");
+                }
+                else{
+                    $(this).addClass("filter-selected");
+                }
+                lastClosetItem = 0;
+                $(".srs-closet-items").html("");
+                getClosetProducts();
+            }
+        }
+    });
+
+    $("#outfit-box").on('mouseenter', '.product-block', function(){
+        $(this).find(".mosaic-overlay").animate({"opacity":"1"},300);
+    });
+
+    $("#outfit-box").on('mouseleave', '.product-block', function(){
+        $(this).find(".mosaic-overlay").animate({"opacity":"0"},300);
+    });
+
+    $(".srs-closet-items, .purchased-list-cont, .liked-list-cont").on("click", ".mosaic-overlay", function(e){
+        var productBox = $(this).closest(".alpha");
+        if(productBox.hasClass("selected-outfit-item")){
+            productBox.removeClass("selected-outfit-item");
+        }
+        else{
+            $(this).closest(".product-listing").find(".alpha").removeClass("selected-outfit-item");
+            productBox.addClass("selected-outfit-item");
+        }
+    });
+
+    $("#outfit-box").on('click', ".add-closet-outfit", function(e){
+        e.preventDefault();
+        if($(".srs-closet-items .selected-outfit-item").length == 0){
+            alert("Please select an item first.");
+        }
+        else{
+            var entityBlock = $(".srs-closet-items .selected-outfit-item");
+            var outfitEntity = {
+                'id' : entityBlock.find(".product-id").val(),
+                'slug' : entityBlock.find(".product-slug").val(),
+                'price' : entityBlock.find(".entity-price").text(),
+                'name' : entityBlock.find(".entity-name").text(),
+                'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
+            }
+            displayOutfitItem(outfitEntity);
+            $(".srs-closet-close").click();
+            $(".srs-closet-items").html("");
+            $(".product-filter-menu .toggle-tab li").removeClass("filter-selected");
+        }
+    });
 });

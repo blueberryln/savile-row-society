@@ -104,10 +104,116 @@ class OutfitsController extends AppController {
         exit;    
     }
     
-    public function getCategories(){
-        $Category = ClassRegistry::init('Category');
-        $categories = $Category->getAll();
-        
+    public function getClosetItems(){
+        $ret = array();
+        $user_id = $this->getLoggedUserID();
+        if($user_id){
+            $filter_brand = $this->request->data['str_brand'];
+            $filter_color = $this->request->data['str_color'];
+            $last_closet_item = $this->request->data['last_closet_item'];
+            $category_slug = $this->request->data['category_slug'];
+
+            $Category = ClassRegistry::init('Category');
+            $category_id = $Category->getAllBySlug($category_slug);
+
+            $brand_list = array();
+            if($filter_brand && $filter_brand != "none"){
+                $brand_list = explode('-', $filter_brand);
+                $brand_list = array_values(array_unique($brand_list));
+            }
+
+            // Prepare the color filter data
+            $color_list = array();
+            if($filter_color){
+                $color_list = explode('-', $filter_color);
+                $color_list = array_values(array_unique($color_list));
+            }
+
+            // Find array for products of a category excluding the filter and brand sub categories
+            $find_array = array(
+                'limit' => 10,
+                'contain' => array('Image', 'Color'),
+                'conditions' => array(
+                    'Entity.show' => true, 'Entity.id >' => $last_closet_item,
+                ),
+                'group' => array('Entity.id'),
+                'joins' => array(
+                    array('table' => 'products_categories',
+                        'alias' => 'Category',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Category.category_id' => $category_id,
+                            'Category.product_id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'products_details',
+                        'alias' => 'Detail',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Detail.product_entity_id = Entity.id',
+                            'Detail.show' => true,
+                            'Detail.stock >' => 0,
+                        )
+                    ),
+                ),
+                'fields' => array(
+                    'Entity.*'
+                ),
+                'Order' => array('Entity.id ASC'),
+                'Group' => array('Entity.id'),
+            );
+
+            // Color filter
+            if($color_list && count($color_list) > 0){
+                $color_join = array('table' => 'colors_entities',
+                    'alias' => 'Color1',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Color1.color_id' => $color_list,
+                        'Color1.product_entity_id = Entity.id'
+                    )
+                );
+                $find_array['joins'][] = $color_join;
+            }
+
+            // Brand Filter
+            if($brand_list && count($brand_list) > 0){
+                $brand_join = array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id' => $brand_list,
+                        'Product.id = Entity.product_id'
+                    )
+                );
+                $find_array['joins'][] = $brand_join;
+            }
+
+            // Sub query to check stock using the products_details table and the items already added to valid carts
+            $sub_query = new stdClass();
+            $sub_query->type = "expression";
+            $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
+            $find_array['conditions'][] = $sub_query;
+
+            $Entity = ClassRegistry::init('Entity');
+            $data = $Entity->find('all', $find_array);
+
+            if($data){
+                foreach($data as $row){
+                    $last_closet_item = $row['Entity']['id'];
+                }
+                $ret['last_closet_item'] = $last_closet_item;
+                $ret['status'] = "ok";
+                $ret['data'] = $data;
+            }
+            else{
+                $ret['status'] = "end";
+            }
+        }
+        else{
+            $ret['status'] = "error";
+        }
+
         echo json_encode($ret);
         exit;
     }

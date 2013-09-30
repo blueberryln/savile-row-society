@@ -2592,7 +2592,7 @@ body{
 }
 .filter-selected{
     padding-right: 10px; 
-    background: url('../img/cross_menue.png') no-repeat 99% center;
+    background: url('../img/cross_menue.png') no-repeat 99% 5px;
 }
 p.product-breadcrumb
 {

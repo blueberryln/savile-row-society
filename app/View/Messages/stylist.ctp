@@ -67,16 +67,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
                     <div class="product-list-image mosaic-block fade">
-                        <div class="mosaic-overlay" style="display: block; opacity: 0;">
-                            <a href="" class="remove-product"></a>
-            				<div class="mini-product-details">
-        					   <span class="outfit-detail-size">$94.00</span>
-        					   <span class="outfit-detail-name">SAVILE ROW SOCIETY POCKET SQUARE</span>
-            				</div>
-            			</div>
-                                                        <div class="mosaic-backdrop" style="display: block;">
-                            <img src="/srs_server/files/products/2_7955863_b.jpg" alt="SAVILE ROW SOCIETY POCKET SQUARE">
-                        </div>
+
                     </div>
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
@@ -91,16 +82,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
                     <div class="product-list-image mosaic-block fade">
-                        <div class="mosaic-overlay" style="display: block; opacity: 0;">
-                            <a href="" class="remove-product"></a>
-            				<div class="mini-product-details">
-        					   <span class="outfit-detail-size">$94.00</span>
-        					   <span class="outfit-detail-name">SAVILE ROW SOCIETY POCKET SQUARE</span>
-            				</div>
-            			</div>
-                                                        <div class="mosaic-backdrop" style="display: block;">
-                            <img src="/srs_server/files/products/2_7955863_b.jpg" alt="SAVILE ROW SOCIETY POCKET SQUARE">
-                        </div>
+
                     </div>
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
@@ -115,16 +97,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
                     <div class="product-list-image mosaic-block fade">
-                        <div class="mosaic-overlay" style="display: block; opacity: 0;">
-                            <a href="" class="remove-product"></a>
-            				<div class="mini-product-details">
-        					   <span class="outfit-detail-size">$94.00</span>
-        					   <span class="outfit-detail-name">SAVILE ROW SOCIETY POCKET SQUARE</span>
-            				</div>
-            			</div>
-                                                        <div class="mosaic-backdrop" style="display: block;">
-                            <img src="/srs_server/files/products/2_7955863_b.jpg" alt="SAVILE ROW SOCIETY POCKET SQUARE">
-                        </div>
+
                     </div>
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
@@ -139,16 +112,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
                     <div class="product-list-image mosaic-block fade">
-                        <div class="mosaic-overlay" style="display: block; opacity: 0;">
-                            <a href="" class="remove-product"></a>
-            				<div class="mini-product-details">
-        					   <span class="outfit-detail-size">$94.00</span>
-        					   <span class="outfit-detail-name">SAVILE ROW SOCIETY POCKET SQUARE</span>
-            				</div>
-            			</div>
-                                                        <div class="mosaic-backdrop" style="display: block;">
-                            <img src="/srs_server/files/products/2_7955863_b.jpg" alt="SAVILE ROW SOCIETY POCKET SQUARE">
-                        </div>
+
                     </div>
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
@@ -163,16 +127,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
                     <div class="product-list-image mosaic-block">
-                        <div class="mosaic-overlay" style="display: block; opacity: 0;">
-                            <a href="" class="remove-product"></a>
-            				<div class="mini-product-details">
-        					   <span class="outfit-detail-size"></span>
-        					   <span class="outfit-detail-name"></span>
-            				</div>
-            			</div>
-                                                        <div class="mosaic-backdrop" style="display: block;">
-                            <img src="" alt="">
-                        </div>
+
                     </div>
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
@@ -196,7 +151,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <div class="user-closet-list-cont">
                 <div class="purchased-list-cont hide">
                     <div class="product-listing-box">
-                        <div class="product-listing-box"><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div><div class="three columns alpha row"><div class="product-block"><input type="hidden" class="product-slug" value="blue-pocket-square"><input type="hidden" class="product-id" value="2"><div class="product-list-image mosaic-block fade"><div style="display: block;" class="mosaic-overlay"><a class="remove-product" href=""></a><div class="mini-product-details"><span>$94.00</span><span>SAVILE ROW SOCIETY POCKET SQUARE</span></div></div><div style="display: block;" class="mosaic-backdrop"><img alt="SAVILE ROW SOCIETY POCKET SQUARE" src="/srs_server/files/products/2_7955863_b.jpg"></div></div></div></div></div>
+
                     </div>
                     
                     <div class="clear"></div>
@@ -208,24 +163,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 
                 <div class="liked-list-cont">
                     <div class="product-listing-box">
-                        <div class="three columns alpha row">
-                            <div class="product-block">
-                                <input type="hidden" value="blue-pocket-square" class="product-slug">
-                                <input type="hidden" value="2" class="product-id">
-                                <div class="product-list-image mosaic-block fade">
-                                    <div class="mosaic-overlay" style="display: block;">
-                                        <a href="" class="remove-product"></a>
-                        				<div class="mini-product-details">
-                    					   <span>$94.00</span>
-                    					   <span>SAVILE ROW SOCIETY POCKET SQUARE</span>
-                        				</div>
-                        			</div>
-                                                                    <div class="mosaic-backdrop" style="display: block;">
-                                        <img src="/srs_server/files/products/2_7955863_b.jpg" alt="SAVILE ROW SOCIETY POCKET SQUARE">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     
                     <div class="clear"></div>
@@ -247,21 +185,20 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <div class="three columns alpha">
                 <div class="product-filter-menu">
                     <ul class="text-left">
-                        <li class="toggle-tab selected open-filter"><span>Categories</span>
+                        <li class="toggle-tab selected open-filter" style="height: 140px;overflow-y: auto;"><span>Categories</span>
                             <ul class="toggle-body product-categories">
                             <?php foreach ($categories as $category): ?>
-                                <li>
-                                <a href=""><?php echo $category['Category']['name']; ?></a>
+                                <li data-category_id="<?php echo $category['Category']['slug']; ?>"><?php echo $category['Category']['name']; ?>
                                     <ul class="product-subcategories">
                                         <?php foreach ($category['children'] as $subcategory): ?>
-                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>"><?php echo $subcategory['Category']['name']; ?></a></li>
+                                            <li data-category_id="<?php echo $subcategory['Category']['slug']; ?>"><?php echo $subcategory['Category']['name']; ?></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </li>
                             <?php endforeach; ?>
                             </ul>
                         </li>
-                        <li class="toggle-tab"><span>Brand</span>
+                        <li class="toggle-tab" style="height: 140px;overflow-y: auto;"><span>Brand</span>
                             <ul class="toggle-body brand-filter">
                             <?php if($brands) : ?>
                                 <?php foreach($brands as $brand) : ?>
@@ -270,7 +207,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <?php endif; ?>
                             </ul>
                         </li>
-                        <li class="toggle-tab"><span>Color</span>
+                        <li class="toggle-tab" style="height: 140px;overflow-y: auto;"><span>Color</span>
                             <ul class="toggle-body color-filter">
                             <?php if($colors) : ?>
                                 <?php foreach($colors as $color) : ?>
@@ -283,7 +220,16 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             <div class="twelve columns omega product-listing">
-                <div class="product-top-offset"></div>
+                <div class="product-top-offset">
+                    <span class="text-center">Click on a product to select it.</span>
+                </div>
+
+                <div class="srs-closet-items"></div>
+                <div class="clear"></div>
+                <div class="btn-outfit-cont text-right">
+                    <a href="" class="link-btn black-btn load-more-closet">Load More</a>
+                    <a href="" class="link-btn black-btn add-closet-outfit">Add to outfit</a>
+                </div>
                     
             </div>
             
