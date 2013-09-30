@@ -241,7 +241,23 @@ class MessagesController extends AppController {
             }
             else{
                 // load data for user
-                $result['Messages'] = $this->Message->getMyConversation($user_id);
+                $my_conversation = $this->Message->getMyConversation($user_id);
+                foreach($my_conversation as &$row){
+                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                        $outfit_id = $row['Message']['outfit_id'];
+                        
+                        $OutfitItem = ClassRegistry::init('OutfitItem');
+                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                        $entities = array();
+                        foreach($outfit as $value){
+                            $entities[] = $value['OutfitItem']['product_entity_id'];
+                        }
+                        $Entity = ClassRegistry::init('Entity');
+                        $entity_list = $Entity->getProductDetails($entities);
+                        $row['Outfit'] = $entity_list;
+                    }
+                }
+                $result['Messages'] = $my_conversation;
             }
             
             //Get a list of message ids and mark them read if not already read
@@ -279,11 +295,42 @@ class MessagesController extends AppController {
                 $user = $User->getById($with_user_id);
                 $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
                 $my_conversation = $this->Message->getUnreadMessagesWith($user_id,$with_user_id);
+                foreach($my_conversation as &$row){
+                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                        $outfit_id = $row['Message']['outfit_id'];
+                        
+                        $OutfitItem = ClassRegistry::init('OutfitItem');
+                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                        $entities = array();
+                        foreach($outfit as $value){
+                            $entities[] = $value['OutfitItem']['product_entity_id'];
+                        }
+                        $Entity = ClassRegistry::init('Entity');
+                        $entity_list = $Entity->getProductDetails($entities);
+                        $row['Outfit'] = $entity_list;
+                    }
+                }
                 $result['Messages'] = $my_conversation;
             }
             else{
                 // load data for user
-                $result['Messages'] = $this->Message->getUnreadMessages($user_id);
+                $my_conversation = $this->Message->getUnreadMessages($user_id);
+                foreach($my_conversation as &$row){
+                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                        $outfit_id = $row['Message']['outfit_id'];
+                        
+                        $OutfitItem = ClassRegistry::init('OutfitItem');
+                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                        $entities = array();
+                        foreach($outfit as $value){
+                            $entities[] = $value['OutfitItem']['product_entity_id'];
+                        }
+                        $Entity = ClassRegistry::init('Entity');
+                        $entity_list = $Entity->getProductDetails($entities);
+                        $row['Outfit'] = $entity_list;
+                    }
+                }
+                $result['Messages'] = $my_conversation;
             }
             
             //Get a list of message ids and mark them read if not already read

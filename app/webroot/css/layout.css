@@ -269,7 +269,9 @@ body{
     margin: 0px 0;
     padding: 5px 13px;
     text-transform: uppercase;
-
+}
+.footer .menu li:first-child{
+    border-left: none;
 }
 .footer .menu li a{
     text-decoration: none;

@@ -3,10 +3,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-$script = ' var uid = ' . $user_id . '; ';
+$script = ' 
+var uid = ' . $user_id . ';
+var webroot = ' . $this->webroot . ';
+';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+$this->Html->script('outfit.js', array('inline' => false));
 //$this->Html->script('http://knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
 //$this->Html->script('http://stevenlevithan.com/assets/misc/date.format.js', array('inline' => false));
+$this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
+$this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <div class="container content inner timeline">	
 
@@ -24,6 +30,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <div class="chat-container">
                 
             </div>
+            <div class="clear"></div>
+            <br /><br /><br />
         </div>
     </div>
 
@@ -79,8 +87,42 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         }
         function showChatMsg(chatMsg) {
             var html = '';           
-            if(chatMsg['OutfitItem']['is_outfit'] == 1){
-                
+            if(chatMsg['Message']['is_outfit'] == 1){
+                html = html + '<div class="nine columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
+                html = html + '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' suggested new items to complete a style:</div><br>'; 
+                html = html + '<div class="chat-outfit-box">';
+                for(var i=0; i<chatMsg['Outfit'].length; i++){
+                    var imgSrc = webroot + "img/image_not_available-small.png";
+                    if(typeof(chatMsg['Outfit'][i]["Image"]) != "undefined" && chatMsg['Outfit'][i]["Image"].length > 0){
+                        imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
+                    }
+                    html = html + 
+                    '<div class="two columns alpha row">' +
+                        '<div class="product-block">' + 
+                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
+                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
+                            '<div class="product-list-image mosaic-block fade">' + 
+                                '<div class="mosaic-overlay" style="display: block;">' + 
+                    				'<div class="mini-product-details">' + 
+                					   '<span>$' + chatMsg['Outfit'][i]['Entity']['price'] + '</span>' + 
+                					   '<span>' + chatMsg['Outfit'][i]['Entity']['name'] + '</span>' + 
+                    				'</div>' + 
+                    			'</div>' + 
+                            '<div class="mosaic-backdrop" style="display: block;">' + 
+                                    '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" class="product-image fadein-image" style="opacity: 1;">' + 
+                                '</div>' + 
+                            '</div>' + 
+                            '<div class="product-list-links">' + 
+                                '<a href="" class="btn-buy" target="_blank">Buy</a>' + 
+                            '</div>' + 
+                        '</div>' + 
+                    '</div>';        
+                } 
+                html = html + '</div>' + 
+                    '<div class="message-date">' +
+                        '<small>' + chatMsg['Message']['created'] + '</small>' +
+                    '</div>' + 
+                    '</div>';
             }
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
@@ -102,9 +144,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                 '<small>' + chatMsg['Message']['created'] + '</small>' +
                             '</div>' + 
                         '</div>';
-                }
-                return html;    
+                }    
             }
+            return html;
             
         }
 

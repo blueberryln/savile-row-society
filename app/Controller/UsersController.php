@@ -386,7 +386,6 @@ class UsersController extends AppController {
      */
 
     function shortRegistration() {
-
         $user = $this->request->data;
         $this->Session->write('completeProfile', true);
         $refer_url = $user['User']['refer_url'];
