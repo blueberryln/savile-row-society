@@ -268,8 +268,17 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
             }
             /* call function to show registration popup with facebook and linked in registration options*/
             function signUp(e) {
-                $.blockUI({message: $('#signup-box'), css: {top: '15%', 'width' : popupWidth + 'px', 'left' : $(window).width() / 2 - popupWidth/2}});
+                //$.blockUI({message: $('#signup-box'), css: {top: '15%', 'width' : popupWidth + 'px', 'left' : $(window).width() / 2 - popupWidth/2}});
+//                $('.blockOverlay').click($.unblockUI);$.blockUI({message: $('#signup-popup'), css: {top: '8%'}});
+                $.blockUI({message: $('#signup-popup'), css: {top: '8%'}});
                 $('.blockOverlay').click($.unblockUI);
+                $.ajax({
+                    url: "<?php echo $this->request->webroot; ?>register"
+                }).done(function(res) {
+                    $("#signup-popup").html(res);
+                    overrideEmail();
+                    addReferrerToSignUp();
+                });
                 clearInterval(popUpInterval);
             }
 
@@ -319,10 +328,89 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     $.unblockUI();
                 });
                 
-                $('#signin-popup').on('click', '.signin-btn', function(e){
-                   e.preventDefault();
-                   $("#register-form").submit();
-                });
+                //$('#signin-popup').on('click', '.signin-btn', function(e){
+//                   e.preventDefault();
+//                   $("#register-form").submit();
+//                });
+                
+                $('#signin-popup').on('click', '.signin-btn', function(e){ 
+                    e.preventDefault();
+        var error = false;
+        if($("#signin-email").val() == "")
+        {              
+            $("#signin-email").addClass("err-msg");
+            error = true;                   
+        }
+        else{
+            $("#signin-email").removeClass("err-msg");
+        }
+        if($("#signin-password").val() == "")
+        {              
+            $("#signin-password").addClass("err-msg"); 
+            error = true;                 
+        }
+        else{
+            $("#signin-password").removeClass("err-msg");
+        }
+        
+        if(error){
+            var authElement = $(".err-msg");
+            if(authElement.length){
+                authElement.first().focus(); 
+            }     
+            return false;    
+        }   else{            
+            $("#signin-form").submit();
+        }   
+    });
+    
+    $('#signup-popup').on('click', '.signup-btn', function(e){
+        e.preventDefault();
+        var error = false;
+        if($("#first-name").val() == "")
+        {
+            $("#first-name").addClass("err-msg");
+            error = true;
+        }
+        else{
+            $("#first-name").removeClass("err-msg");
+        }
+        if($("#last-name").val() == "")
+        {
+            $("#last-name").addClass("err-msg");
+            error = true;
+        }
+        else{
+            $("#last-name").removeClass("err-msg");   
+        }
+        if($("#register-email").val() == "")
+        {              
+            $("#register-email").addClass("err-msg");
+            error = true;                   
+        }
+        else{
+            $("#register-email").removeClass("err-msg");
+        }
+        if($("#register-password").val() == "")
+        {              
+            $("#register-password").addClass("err-msg"); 
+            error = true;                 
+        }
+        else{
+            $("#register-password").removeClass("err-msg");
+        }
+        
+        if(error){
+            var authElement = $(".err-msg");
+            if(authElement.length){
+                authElement.first().focus(); 
+            }     
+            return false;    
+        }   else{            
+            $("#register-form").submit();
+        } 
+           
+    });
                 
                 /* if (!jQuery.browser.mobile) {
                  var height = $(document).height();

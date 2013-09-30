@@ -38,19 +38,24 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             </div>
         
         </div>
-        <div class="nine columns aplha stylist-talk">
-            <h4 class='eight columns talk-to'>TALK WITH YOUR CLIENT</h4>
+        <div class="ten columns aplha stylist-talk">
+            <ul id="stylist-options">
+                <li><a href="">user profile</a></li>
+                <li><a href="">user closet</a></li>
+                <li><a href="">conversation</a></li>                
+            </ul>
+            <h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>
                 <?php
 //echo $this->Form->input('', array('options'=>$clients, 'displayField' => 'full_name', '   default'=>'m'));
-                echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client"));
+                echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client'));
                 /* , 'name' => 'data[Message][user_to_id]' */
-                ?>
+                ?>                
+                <!--<input type="button" value="Create Outfit" id="createOutfit"/>-->
+                <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
                 <!--<input type="button" value="Load user conversation" id="loadMessages" />-->
                 <a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>
-                <!--<input type="button" value="Create Outfit" id="createOutfit"/>-->
-                <a class="link-btn gold-btn"  id="createOutfit"  href="">Create Outfit</a>
 
-            <textarea class="eight columns alpha omega chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
+            <textarea class="ten columns alpha omega chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
             <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
             
             <div class="chat-container">

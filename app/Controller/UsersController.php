@@ -20,7 +20,7 @@ class UsersController extends AppController {
         $title_for_layout = 'Sign in';
 
         if ($this->request->is('post')) {
-
+            
             $this->User->set($this->request->data);
             
             $refer_url = $this->request->data['User']['refer_url'];
@@ -54,7 +54,7 @@ class UsersController extends AppController {
             // Remove 'required' rule from password
             $this->User->validator()->remove('email', 'unique');
             if ($this->User->validates(array('fieldList' => array('email', 'password')))) {
-
+                
                 // check submitted email and password 
                 $results = $this->User->checkCredentials($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
                 if ($results) {
@@ -82,6 +82,12 @@ class UsersController extends AppController {
                     $this->redirect('/home');
                     exit();
                 }
+            }
+            else{
+                $this->request->data = null;
+                $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'flash');
+                $this->redirect('/');
+                exit;
             }
         }
         else if ($this->request->is('ajax')){

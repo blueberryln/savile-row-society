@@ -90,8 +90,85 @@ $script = ' var size = ' . json_encode($size) . '; ' .
         $("input#pantSize").val(selectedSize);        
     });    
     
-    //$.blockUI({message: $("#signin-box")});
-    $.blockUI({message: $("#register-box")});
+    $.blockUI({message: $("#signin-box")});
+    //$.blockUI({message: $("#register-box")});
+    
+    
+    
+    $(".signin-btn").click(function(){ 
+        var error = false;
+        if($("#signin-email").val() == "")
+        {              
+            $("#signin-email").addClass("err-msg");
+            error = true;                   
+        }
+        else{
+            $("#signin-email").removeClass("err-msg");
+        }
+        if($("#signin-password").val() == "")
+        {              
+            $("#signin-password").addClass("err-msg"); 
+            error = true;                 
+        }
+        else{
+            $("#signin-password").removeClass("err-msg");
+        }
+        
+        if(error){
+            var authElement = $(".err-msg");
+            if(authElement.length){
+                authElement.first().focus(); 
+            }     
+            return false;    
+        }      
+    });
+    
+    $(".signup-btn").click(function(){ 
+        var error = false;
+        if($("#first-name").val() == "")
+        {
+            $("#first-name").addClass("err-msg");
+            error = true;
+        }
+        else{
+            $("#first-name").removeClass("err-msg");
+        }
+        if($("#last-name").val() == "")
+        {
+            $("#last-name").addClass("err-msg");
+            error = true;
+        }
+        else{
+            $("#last-name").removeClass("err-msg");   
+        }
+        if($("#register-email").val() == "")
+        {              
+            $("#register-email").addClass("err-msg");
+            error = true;                   
+        }
+        else{
+            $("#register-email").removeClass("err-msg");
+        }
+        if($("#register-password").val() == "")
+        {              
+            $("#register-password").addClass("err-msg"); 
+            error = true;                 
+        }
+        else{
+            $("#register-password").removeClass("err-msg");
+        }
+        
+        if(error){
+            var authElement = $(".err-msg");
+            if(authElement.length){
+                authElement.first().focus(); 
+            }     
+            return false;    
+        }
+           
+    });
+    
+    
 });
 ';
 
@@ -290,8 +367,8 @@ window.registerProcess = true;
             <img src="app/webroot/img/linkedin.png" /> 
             <h6 class="sign-or">OR</h6>   
             <form id="register-form" method="" action="">
-                <input type="text" id="register-email" placeholder="EMAIL" />
-                <input type="password" id="register-password" placeholder="PASSWORD" />
+                <input type="text" id="signin-email" placeholder="EMAIL" />
+                <input type="password" id="signin-password" placeholder="PASSWORD" />
                 
                 <div class="text-left signin-options">
                     <input id="remember-me" type="checkbox" />  
@@ -315,7 +392,7 @@ window.registerProcess = true;
             <h6 class="sign-or">OR</h6>   
             <form id="register-form" method="" action="">
                 <input type="text" id="first-name" placeholder="FIRST NAME" />
-                <input type="TEXT" id="last-name" placeholder="LAST NAME" />
+                <input type="text" id="last-name" placeholder="LAST NAME" />
                 <input type="text" id="register-email" placeholder="EMAIL" />
                 <input type="password" id="register-password" placeholder="PASSWORD" />
                 

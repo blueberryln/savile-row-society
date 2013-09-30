@@ -3530,4 +3530,89 @@ h4.hi-message
 .stylist-talk
 {
     padding-top:30px;
+    margin-left:20px !important;
 }
+
+.err-msg
+{
+    border-color:#ff0000 !important;
+}
+
+/**********stylist page********/
+ul#stylist-options
+{
+    border-top: 1px solid #c5c5c5;
+    border-bottom: 1px solid #c5c5c5;
+    padding:7px 0;
+}
+ul#stylist-options li
+{
+    display: inline;
+    text-transform: uppercase;
+    border-right: 1px solid #000;
+    padding-right:15px;   
+    margin-left:15px;
+}
+ul#stylist-options li a
+{
+    text-decoration: none;
+}
+
+ul#stylist-options li:first-of-type
+{
+    margin-left:0;
+}
+ul#stylist-options li:last-of-type
+{
+    border-right:none;
+}
+
+h4.talk-to
+{
+    margin:15px 0 5px 0 !important;
+}
+
+#messageToSend
+{
+    float: right;
+}
+
+div.stylist-talk #createOutfit
+{
+    float:right;
+    margin-right:0;
+    padding-top:1px;
+    padding-bottom:1px; 
+    width:150px;
+}
+select.select_client{
+    border: 1px solid #D9D9D9;    
+    color: #444444;  
+    text-transform: capitalize;
+    padding:2px;  
+}
+select.select_client option
+{
+    padding:0 5px;
+}
+div.stylist-talk #loadMessages
+{
+    padding-top:1px;
+    padding-bottom:1px;
+    font-size: 14px; 
+    text-align: center;
+    width:82px;
+}
+div.stylist-talk #sendMessages
+{
+    margin-right:0;
+    padding-top:1px;
+    padding-bottom:1px; 
+}
+
+div.stylist-talk .chat-msg-txtbox
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
