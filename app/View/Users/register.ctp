@@ -25,10 +25,12 @@ $this->layout = 'ajax'
                 ?>                  
                 
                 <div class="text-left signup-options">                                       
-                    <span class="already-member">Already a Member? <a href="">SIGN IN</a></span> 
+                    <span class="already-member">Already a Member? <a href="" id="show-signin-popup">SIGN IN</a></span> 
                 </div>
                  
-                <a class="link-btn black-btn signup-btn" href="">SIGN UP</a>
+                <!--<a class="link-btn black-btn signup-btn" href="">SIGN UP</a>-->
+                <input type="submit" class="link-btn black-btn signup-btn" value="SIGN UP" /> 
+                
             </form> 
         </div> 
     </div>

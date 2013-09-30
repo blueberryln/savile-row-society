@@ -440,7 +440,8 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                 /* attach to sign in event on signup popup form.
                  * on click opent sign-in popup form
                  * */
-                $("#show-signin-popup").click(function() {
+                $('#signup-popup').on('click', '#show-signin-popup', function(e){
+                    e.preventDefault();
                     signIn();
                 });
                 /*

@@ -28,7 +28,8 @@ $this->layout = 'ajax'
                     <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
                 </div>
                  
-                <a class="link-btn black-btn signin-btn" href="">SIGN IN</a> 
+                <!--<a class="link-btn black-btn signin-btn" href="">SIGN IN</a>-->
+                <input type="submit" class="link-btn black-btn signin-btn" value="SIGN IN" /> 
             </form> 
         </div> 
     </div>
