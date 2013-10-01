@@ -39,14 +39,29 @@ $this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('
     <div class="sixteen columns text-center">
         <h1><?php echo __('Ordered Items'); ?></h1>
     </div>
-    <div clas="sixteen columns text-center order-filter">
-        <label for="startDate">Start Date:</label>
+    <div class="sixteen columns text-center order-filter">
+        <ul class="ordered-items">
+            <li>
+                <label for="startDate">Start Date:</label>
+                <input name="start-date" id="startDate" type="text" style="width: 150px;">
+            </li>
+            <li>
+                <label for="startDate">Start Date:</label>
+                <input name="start-date" id="endDate" type="text" style="width: 150px;">
+            </li>
+            <li>
+                <?php echo $this->Form->input('brand_id', array('empty'=>"Select Brand", 'div'=>false, 'label' => 'Brand:')); ?>
+            </li>        
+        </ul>
+        <a href="" class="btn-order-filter link-btn black-btn">Filter Data</a>
+        <a href="" class="btn-order-export link-btn black-btn">Export Data</a><br />        
+        <!--<label for="startDate">Start Date:</label>
         <input name="start-date" id="startDate" type="text" style="width: 150px;">
         <label for="startDate">Start Date:</label>
         <input name="start-date" id="endDate" type="text" style="width: 150px;">
-        <?php echo $this->Form->input('brand_id', array('empty'=>"Select Brand", 'div'=>false)); ?>
+        <?php echo $this->Form->input('brand_id', array('empty'=>"Select Brand", 'div'=>false)); ?><br />
         <a href="" class="btn-order-filter link-btn black-btn">Filter Data</a>
-        <a href="" class="btn-order-export link-btn black-btn">Export Data</a>
+        <a href="" class="btn-order-export link-btn black-btn">Export Data</a>-->
         <br><br>
     </div>
     <div class="sixteen columns">
