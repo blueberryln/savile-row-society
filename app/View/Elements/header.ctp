@@ -54,7 +54,7 @@
         <div class="sixteen columns alpha omega menu">
             <ul>
                 
-                <li><a href="<?php echo $this->request->webroot; ?>closet" class="headerMenu" data-ref="closet">The Closet</a></li> 
+                <li><a href="<?php echo $this->request->webroot; ?>closet" data-ref="closet">The Closet</a></li> 
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist">My Stylist</a>
                 </li>
