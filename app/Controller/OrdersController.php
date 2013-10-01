@@ -75,9 +75,22 @@ class OrdersController extends AppController {
     }
     
     
-    public function admin_items(){
+    public function admin_items($brand_id = 0, $start_date = null, $end_date = null){
+        if($start_date && $start_date != "none"){
+            $start_date = date('Y-m-d H:i:s', strtotime($start_date));
+        }
+        else{
+            $start_date = "0000-00-00 00:00:00";
+        }
+        if($end_date && $end_date != "none"){
+            $end_date = date('Y-m-d H:i:s', strtotime($end_date));
+        }
+        else{
+            $end_date = date("Y-m-d H:i:s");
+        }
+
         $options = array(
-            'conditions' => array('Order.paid' => true, 'Order.shipped' => false),
+            'conditions' => array('Order.paid' => true, 'Order.shipped' => false, 'OrderItem.created >=' => $start_date, 'OrderItem.created <=' => $end_date),
             'joins' => array(
                 array('table' => 'products_entities',
                     'alias' => 'Entity',
@@ -111,6 +124,11 @@ class OrdersController extends AppController {
             ),
             'fields' => array('OrderItem.*', 'Entity.*', 'Product.*', 'Brand.*', 'Order.*'),
         );
+
+        if($brand_id > 0){
+            $options['conditions'][] = "Product.brand_id = " . $brand_id;
+        }
+
         
         $this->Paginator->settings = $options;
         $items = $this->Paginator->paginate('OrderItem');
@@ -120,8 +138,89 @@ class OrdersController extends AppController {
         
         $Size = ClassRegistry::init('Size');
         $sizes = $Size->find('list');
+
+        $Brand = ClassRegistry::init('Brand');
+        $brands = $Brand->find('list');
         
-        $this->set(compact('items', 'colors', 'sizes'));    
+        $this->set(compact('items', 'colors', 'sizes', 'brands'));
+    }
+    /**
+     * Export to Excel
+     */
+    function admin_export($brand_id = 0, $start_date = null, $end_date = null) {
+        
+        if($start_date && $start_date != "none"){
+            $start_date = date('Y-m-d H:i:s', strtotime($start_date));
+        }
+        else{
+            $start_date = "0000-00-00 00:00:00";
+        }
+        if($end_date && $end_date != "none"){
+            $end_date = date('Y-m-d H:i:s', strtotime($end_date));
+        }
+        else{
+            $end_date = date("Y-m-d H:i:s");
+        }
+
+        $options = array(
+            'conditions' => array('Order.paid' => true, 'Order.shipped' => false, 'OrderItem.created >=' => $start_date, 'OrderItem.created <=' => $end_date),
+            'joins' => array(
+                array('table' => 'products_entities',
+                    'alias' => 'Entity',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Entity.id = OrderItem.product_entity_id',
+                    )
+                ),
+                array('table' => 'orders',
+                    'alias' => 'Order',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Order.id = OrderItem.order_id',
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Entity.product_id = Product.id',
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ),  
+
+            ),
+            'fields' => array('OrderItem.*', 'Entity.*', 'Product.*', 'Brand.*', 'Order.*'),
+        );
+
+        if($brand_id > 0){
+            $options['conditions'][] = "Product.brand_id = " . $brand_id;
+        }
+
+        
+        $items = $this->Order->OrderItem->find('all', $options);
+        
+        $this->autoRender = false;
+        $this->autoLayout = 'xls';
+        $this->isAdmin();
+        
+        $Color = ClassRegistry::init('Color');
+        $colors = $Color->find('list');
+        
+        $Size = ClassRegistry::init('Size');
+        $sizes = $Size->find('list');
+
+        $Brand = ClassRegistry::init('Brand');
+        $brands = $Brand->find('list');
+        
+        $this->set(compact('items', 'colors', 'sizes', 'brands'));
+        $this->set('filename', 'SRS_orders' . date('m.d.Y-H.i'));
+        $this->render('admin_export', 'xls');
     }
 
 }
