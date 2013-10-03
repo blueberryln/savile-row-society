@@ -157,22 +157,22 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             
             <div class="clear"></div>
             <br />
-            <div class="six columns text-center offset-by-one">
-                <label>Location (East Coast or West Coast)</label>
-                <select name="outfit-location" id="outfit-location">
-                    <option value="East Cost">East Cost</option>
-                    <option value="West Cost">West Cost</option>
-                    <option value="North Cost">North Cost</option>
-                    <option value="South Cost">South Cost</option>
-                </select>
-            </div>
-            <div class="six columns text-center">
-                <label>Type of the outfit</label>
-                <select name="outfit-location" id="outfit-style">
-                    <option>Casual</option>
-                    <option>Formal</option>
-                    <option>PartyWear</option>
-                </select>
+            <div class="form">
+                <div class="six columns text-center offset-by-one">
+                    <label>Location (East Coast or West Coast)</label>
+                    <select name="outfit-location" id="outfit-location">
+                        <option value="East Cost">East Cost</option>
+                        <option value="West Cost">West Cost</option>
+                    </select>
+                </div>
+                <div class="six columns text-center">
+                    <label>Type of the outfit</label>
+                    <select name="outfit-location" id="outfit-style">
+                        <option>Casual</option>
+                        <option>Formal</option>
+                        <option>PartyWear</option>
+                    </select>
+                </div>
             </div>
             <div class="clear"></div>
             <div class="text-center">
