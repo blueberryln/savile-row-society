@@ -51,6 +51,16 @@ class BookingController extends AppController {
                     $email->emailFormat('html');
                     $email->viewVars(compact('user', 'data'));
                     $email->send();
+                    
+                    //Send a confirmation
+                    $user_email = new CakeEmail('default');
+                    $user_email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $user_email->to($user['User']['email']);
+                    $user_email->subject('Tailor Booking Confirmation');
+                    $user_email->template('confirmation_tailor');
+                    $user_email->emailFormat('html');
+                    $user_email->viewVars(compact('user', 'data'));
+                    $user_email->send();
 
                     $this->Session->setFlash(__('You will get an confirmation e-mail.'), 'flash');
                 } else {
