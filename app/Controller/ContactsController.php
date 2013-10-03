@@ -30,6 +30,16 @@ class ContactsController extends AppController {
                     $email->emailFormat('html');
                     $email->viewVars(array('contact' => $this->request->data['Contact']));
                     $email->send();
+                    
+                    //Send user a confirmation email
+                    $user_email = new CakeEmail('default');
+                    $user_email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $user_email->to($this->request->data['Contact']['email']);
+                    $user_email->subject('Savile Row Society: Contact Request Confirmation');
+                    $user_email->template('contact_confirmation');
+                    $user_email->emailFormat('html');
+                    $user_email->viewVars(array('contact' => $this->request->data['Contact']));
+                    $user_email->send();
 
                     $this->Session->setFlash(__('Your message is sent!'), 'flash', array('title' => 'Great!'));
                     $this->redirect('/contact');

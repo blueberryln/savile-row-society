@@ -62,7 +62,7 @@ class BookingController extends AppController {
                     $user_email->viewVars(compact('user', 'data'));
                     $user_email->send();
 
-                    $this->Session->setFlash(__('You will get an confirmation e-mail.'), 'flash');
+                    $this->Session->setFlash(__('You will get a confirmation e-mail.'), 'flash');
                 } else {
                     $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
                 }
