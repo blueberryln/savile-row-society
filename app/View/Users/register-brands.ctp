@@ -173,7 +173,7 @@ window.registerProcess = true;
                     <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
         </div>
     </div>
-    <div class="sixteen columns alpha omega text-center  offset-by-three">
+    <div class="thirteen columns alpha omega text-center offset-by-three">
         <div class="reg-step4"></div>
     </div>
 

@@ -19,7 +19,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             movement and their lives and Savile Row Society (SRS) is here to sharpen your game.
         </p>
         <div class="text-center">
-            <img alt="" src="<?php echo $this->request->webroot; ?>img/home-blok.png" class="fadein-image">
+            <img alt="" src="<?php echo $this->request->webroot; ?>img/home-blok.png" class="fadein-image max-width-adj">
         </div>
 
         <p>
@@ -53,7 +53,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <br/>
 
         <div class="text-center">
-            <iframe width="560" height="315" src="http://www.youtube.com/embed/h6MnC98hd_c" frameborder="0" allowfullscreen></iframe>
+            <iframe class="max-width-adj" width="560" height="315" src="http://www.youtube.com/embed/h6MnC98hd_c" frameborder="0" allowfullscreen></iframe>
         </div>
 
     </div>

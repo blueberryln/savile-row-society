@@ -92,7 +92,7 @@ body{
     font-size: 14px;
     line-height: 21px;
     text-wrap: normal;
-    padding-top: 145px;
+    /*padding-top: 145px;*/
     -webkit-font-smoothing:subpixel-antialiased;
 }
 .header {
@@ -249,7 +249,7 @@ body{
 .footer .menu {
     background-color: #FFF;
     border-bottom: solid 1px #CCCCCC;
-    width: 100% !important;
+    /*width: 100% !important;*/
     padding: 0 !important;
 }
 .footer .menu ul {
@@ -260,15 +260,20 @@ body{
     width: -webkit-fit-content;
     width: fit-content;
     margin: auto;
+    text-align:center;
+    
+    width:100%;
 }
 .footer .menu li {
     border-left: 1px solid #CCCCCC;
-    cursor: pointer;
-    float: left;
+    cursor: pointer;    
     font-size: 12px;
     margin: 0px 0;
     padding: 5px 13px;
     text-transform: uppercase;
+    display:inline-block;
+    *display:inline; /*IE7*/
+    *zoom:1; /*IE7*/
 }
 .footer .menu li:first-child{
     border-left: none;
@@ -293,8 +298,6 @@ body{
     width: 100% !important;
     padding: 0 !important;
     margin:0px !important;
-
-
 }
 .card-menu  ul {
     padding: 0;
@@ -447,7 +450,7 @@ body{
     height: 55px;                                                                                                                                                                                                                     
 }    
 .reg-step6{
-    background-image: url("../img/reg-step5.png");
+    background-image: url("../img/reg-step6.png");
     background-repeat: no-repeat;
     height: 55px;                                                                                                                                                                                                                     
 }  
@@ -742,6 +745,7 @@ body{
 ================================================== */
 .content {
     background-color: #FFFFFF;
+    margin-top:145px;
 }
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
     font-weight: 700;
@@ -899,7 +903,7 @@ body{
 .membership-flow{
     width: 90%;
     text-align: center;
-    margin: 20px 0 25px 50px;
+    margin: 20px 0 30px 50px;
 }
 
 /* Booking */
@@ -963,6 +967,7 @@ body{
     color: #999999 !important;
     font-family: 'Droid Serif',serif !important;
     margin: 15px 10px;
+    margin-right:0;
     text-transform: capitalize !important;
     padding-bottom:4px;
 }
@@ -1005,7 +1010,7 @@ body{
 }
 .content.inner.booking .book-appointment .datepicker {
     /*background: url("../img/btn-book.png") no-repeat scroll 10px center #F4E8B8;*/
-    background: url("../img/btn-book.png") no-repeat scroll 261px center;
+    background: url("../img/btn-book.png") no-repeat scroll 308px center;
     /*border: medium none;*/
     cursor: pointer;
     font-size: 14px;
@@ -1016,6 +1021,10 @@ body{
     border: 1px solid #D9D9D9;
     color: #444444;
     padding: 8px 5px;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; 
 }
 
 /* Contact */
@@ -1534,7 +1543,7 @@ body{
 
 .footer {
     font-size: 12px;
-    margin: 20px 0;
+    margin: 40px 0 20px;
     text-align: center;
 }
 
@@ -2488,7 +2497,7 @@ body{
     position: absolute;
     right: -11px;
     top: 30px;
-    z-index: 250;
+    z-index: 10;
     height: 26px;
     width: 26px;
     text-decoration: none;
@@ -3193,22 +3202,19 @@ div.pagination span.next a, .pagination span.prev a
     font-weight: normal;
 }
 
-div#body-shape #selectable-shape
-{
-    margin-left:50px;    
-}
+
 
 div#body-shape #selectable-shape li
 {
-    cursor: pointer;
-    float: left;
+    display:inline-block;
+    cursor: pointer;    
     font-size: 13px;
     line-height: 30px;
     margin-right: 40px;
     margin-bottom: 20px;
     padding: 15px 10px;
     text-align: center;
-    width: 100px;
+    width: 108px;
 }
 div#body-shape ul#selectable-shape li.selected, div#body-shape #selectable-shape li:hover
 {
@@ -3223,8 +3229,8 @@ div#body-shape #selectable-shape li:last-of-type
 
 div#body-shape #selectable-shape li img
 {
-    width:92px;
-    height:112px;
+    width:100px;
+    height:134px;
     border: 4px solid #fff;
     box-shadow: 0 2px 3px 1px rgba(30, 30, 30, 0.3);
 }
@@ -3253,10 +3259,13 @@ div#body-shape #selectable-shape li img
     position:relative;
 }
 .pant-size input[type="text"]
-{
-    width:268px;
+{    
     margin-top:0;
     text-transform: uppercase;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 #size-chart-box
@@ -3508,12 +3517,18 @@ div#brands ol.brands-logo li img
 
 select#BookingType
 {
-    width:292px;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;   
 }
 
 div.book-it-btn .submit input[type="submit"]
 {
-    width:292px;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; 
 }
 
 h4.hi-message
@@ -3621,3 +3636,35 @@ div.stylist-talk .chat-msg-txtbox
     width: 558px !important;
 }
 
+div.contact-map-info div.contact-map iframe
+{
+    width:100%;   
+}
+
+.booking-joey
+{
+    width:100%;
+}
+
+#BookingComment
+{
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; 
+}
+
+.header-logo
+{
+    padding:0 !important;
+}
+
+.max-width-adj
+{
+    max-width:100%;    
+}    
+
+.chest-size
+{
+    display:none;
+}

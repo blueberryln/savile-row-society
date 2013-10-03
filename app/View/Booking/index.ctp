@@ -60,7 +60,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </div>
 
     <div class="seven columns text-center">
-        <img src="<?php echo $this->request->webroot; ?>img/custom-tailor-joe.jpg" class="fadein-image" />
+        <img src="<?php echo $this->request->webroot; ?>img/custom-tailor-joe.jpg" class="fadein-image booking-joey" />
         
         
     </div>
@@ -88,7 +88,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     
     <div class="seven columns book-appointment offset-by-one">
         <h2>Book an appointment</h2>
-        <div class="srs-form five columns">
+        <div class="srs-form six columns">
             <div class="form">
             <?php if ($user && $booking_types) : ?>
                 <?php echo $this->Form->create('Booking', array('url' => array('controller' => 'booking', 'action' => 'index'))); ?>

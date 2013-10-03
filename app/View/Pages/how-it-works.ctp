@@ -4,7 +4,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="container content inner">		
     <br />
-    <img class="membership-flow fadein-image" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
+    <img class="membership-flow fadein-image fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
     <div class="fourteen offset-by-one columns">
         <p>
             As a Savile Row Society member you will receive exclusive Personal Lifestyle Services and access to our Deluxe Perks. We have 3 levels of membership to suit your needs and allow you to grow with us.

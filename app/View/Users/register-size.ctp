@@ -71,10 +71,9 @@ $script = ' var size = ' . json_encode($size) . '; ' .
 
         function getIdFromString(s){
             switch(s){
-                case "BIG OR LARGE": return 1;
-                case "LEAN/THIN": return 2;
-                case "AVERAGE": return 3;
-                case "ATHLETIC": return 4;
+                case "BIG OR LARGE": return 1;                
+                case "AVERAGE": return 2;
+                case "ATHLETIC": return 3;
                 default: return 0;
             }
         }
@@ -121,7 +120,20 @@ $(document).mouseup(function(e) {
     if(sizeBox.is(":visible") && sizeBox.has(e.target).length == 0) {
         sizeBox.slideUp(300); 
     }
-});
+});   
+    if($("#shirtType option:selected").val() == "dress")
+        {
+        $(".chest-size").fadeIn(300);
+        }
+    $("#shirtType").change(function(){
+        if($("#shirtType option:selected").val() == "dress")
+        {
+        $(".chest-size").fadeIn(300);
+        }else
+        {
+        $(".chest-size").fadeOut(300);
+        }
+    });
 ';
 
 $this->Html->css('ui/jquery-ui', null, array('inline' => false));
@@ -156,7 +168,7 @@ window.registerProcess = true;
                     <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
         </div>
     </div>
-    <div class="sixteen columns alpha omega text-center  offset-by-three">
+    <div class="thirteen columns alpha omega text-center offset-by-three">
         <div class="reg-step3"></div>
     </div>
     <div class="sixteen columns about">
@@ -186,14 +198,12 @@ window.registerProcess = true;
             <div id="body-shape" class="twelve columns alpha omega text-center">
                 <h4>WHAT SHAPE IS YOUR BODY?</h4>
                 <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="BIG OR LARGE" id="1" />
-                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="LEAN/THIN" id="2" />
-                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="AVERAGE" id="3" />
-                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="ATHLETIC" id="4" />
+                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="AVERAGE" id="2" />
+                <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="ATHLETIC" id="3" />
                 <ul id="selectable-shape">
-                    <li data-id="1"><img src="<?php echo $this->webroot; ?>img/body-shape-1.png" />BIG OR LARGE</li>
-                    <li data-id="2"><img src="<?php echo $this->webroot; ?>img/body-shape-2.png" />LEAN/THIN</li>
-                    <li data-id="3"><img src="<?php echo $this->webroot; ?>img/body-shape-3.png" />AVERAGE</li>
-                    <li data-id="4"><img src="<?php echo $this->webroot; ?>img/body-shape-4.png" />ATHLETIC</li>
+                    <li data-id="1"><img src="<?php echo $this->webroot; ?>img/body-shape-1.jpg" />BIG OR LARGE</li>                    
+                    <li data-id="2"><img src="<?php echo $this->webroot; ?>img/body-shape-2.jpg" />AVERAGE</li>
+                    <li data-id="3"><img src="<?php echo $this->webroot; ?>img/body-shape-3.jpg" />ATHLETIC</li>
                 </ul> 
             </div>  
         </div>
@@ -204,10 +214,8 @@ window.registerProcess = true;
                         <div class="input text required">
                             <label for="shirtType">SHIRT TYPE</label>                            
                             <select name="data[UserPreference][Size][shirt_type]" tabindex="" id="shirtType" >
-                                <option value="">SPORT SHIRT</option>
-                                <option value="">SPORT SHIRT</option>
-                                <option value="">SPORT SHIRT</option>
-                                <option value="">SPORT SHIRT</option>
+                                <option value="sport">SPORT SHIRT</option>
+                                <option value="dress">DRESS SHIRT</option>
                             </select>
                         </div>
         
@@ -271,6 +279,22 @@ window.registerProcess = true;
                                 <option value="16.5">16.5</option>
                                 <option value="17">17</option>
                                 <option value="17.5">17.5</option>
+                                <option value="Other">Other</option>
+                                <option value="Don't know">Don't know</option>
+                            </select>
+                        </div>
+                        <div class="input text required chest-size">
+                            <label for="chestSize">Chest size:</label>                            
+                            <select name="data[UserPreference][Size][chest_size]" tabindex="" id="chestSize" >
+                                <option value="">Size</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
                                 <option value="Other">Other</option>
                                 <option value="Don't know">Don't know</option>
                             </select>
