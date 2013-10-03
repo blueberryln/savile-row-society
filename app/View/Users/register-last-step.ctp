@@ -99,7 +99,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <option value="Phone">Phone</option>
             <option value="Email">Email</option>
             <option value="Skype">Skype</option>
-        </select>          
+        </select>      
+        
+        <input type="hidden" value="completed" name="data[UserPreference][is_complete]" />    
         
         <div class="text-center about-submit">
              <br/>

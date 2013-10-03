@@ -127,7 +127,8 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     <div class="notification-msg">
                         
                     </div>
-                    <div class="notification-buttons hide">
+                    <div class="notification-buttons">
+                    
                     </div>
                 </div>
             </div>
@@ -330,8 +331,13 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
             function showNotification(notificationDetails, isFade){
                 if(isFade === undefined)
                     isFade = false;
+                $(".notification-buttons").addClass('hide');
+                $(".notification-msg").html(notificationDetails['msg']);
                 
-                $(".notification-msg").text(notificationDetails['msg']);
+                if(notificationDetails['button']){
+                    $(".notification-buttons").removeClass('hide');
+                    $(".notification-buttons").html(notificationDetails['button']);
+                }
                 if(isFade){
                     $.blockUI({message: $('#notification-box'), timeout: 3000});
                 }

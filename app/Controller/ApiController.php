@@ -60,6 +60,19 @@ class ApiController extends AppController {
                             $Like->save($like); 
                         }
                         
+                        $user = $this->getLoggedUser();
+                        if ($user && $user['User']['preferences']) {
+                            $preferences = unserialize($user['User']['preferences']);
+                        }
+                        
+                        if(isset($preferences) && isset($preferences['UserPreference']['is_complete']) && $preferences['UserPreference']['is_complete'] == "completed"){
+                            $ret['profile_status'] = "complete";
+                        }
+                        else{
+                            $ret['profile_status'] = "incomplete";
+                            $ret['profile_msg'] = "Dear " . ucfirst($user['User']['first_name']) . ", <br>You have liked an item in The Closet, so let one of our style experts use this information to provide you with more item recommendations. Fill out our quick style profile form and get assigned a personal stylist.";
+                        }
+                        
                         $ret['status'] = "ok";
                         $ret['msg'] = 'Item added to liked items.';
                     } else {

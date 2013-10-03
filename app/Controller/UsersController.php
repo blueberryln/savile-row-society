@@ -227,6 +227,7 @@ class UsersController extends AppController {
             // get actual array or string from request
             $data_arr = $data['UserPreference']['Contact'];
             $preferences["UserPreference"]["Contact"] = $data_arr;
+            $preferences['UserPreference']['is_complete'] = $data['UserPreference']['is_complete'];
             $serialized_preferences = serialize($preferences);
             $user['User']['preferences'] = $serialized_preferences;
 

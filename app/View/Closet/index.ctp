@@ -14,6 +14,13 @@ if($user_id){
                         if(ret["status"] == "ok"){
                             $this.addClass("liked");
                         }
+                        
+                        if(ret["profile_status"] == "incomplete"){
+                            var notificationDetails = new Array();
+                            notificationDetails["msg"] = ret["profile_msg"];
+                            notificationDetails["button"] = "<a href=\"' . $this->webroot . 'profile/about\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
+                            showNotification(notificationDetails);
+                        }
                         //var notificationDetails = new Array();
                         //notificationDetails["msg"] = ret["msg"];
                         //showNotification(notificationDetails, true);

@@ -15,9 +15,12 @@ if($user_id){
                             $this.addClass("liked");
                         }
                         
-                        //var notificationDetails = new Array();
-                        //notificationDetails["msg"] = ret["msg"];
-                        //showNotification(notificationDetails, true);
+                        if(ret["profile_status"] == "incomplete"){
+                            var notificationDetails = new Array();
+                            notificationDetails["msg"] = ret["profile_msg"];
+                            notificationDetails["button"] = "<a href=\"' . $this->webroot . 'profile/about\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
+                            showNotification(notificationDetails);
+                        }
                     }
                 );
             }
