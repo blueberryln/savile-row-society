@@ -109,7 +109,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>
 
                 
-                <div style="margin-top:5px;">
+                <div style="margin-top:5px; margin-bottom:30px;">
                 <label>ADD A COMMENT</label>
                 <textarea name="data[Booking][comment]" id="BookingComment"></textarea>
                 </div>

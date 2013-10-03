@@ -101,7 +101,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <option value="Skype">Skype</option>
         </select>          
         
-         <?php echo $this->Form->end(__('Upload')); ?>      
+        <div class="text-center about-submit">
+             <br/>
+                <?php echo $this->Form->end(__('Upload')); ?>
+             <br/>
+        </div>
+         <!--<?php echo $this->Form->end(__('Upload')); ?> -->     
          
          <br /><br /><br /><br /><br />    
          </div>

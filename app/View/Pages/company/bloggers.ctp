@@ -65,7 +65,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <p>It wasn&rsquo;t until he left for college in Missouri that he discovered his passion for personal training. His career started with building a solid background in bodybuilding and strength training. When he returned to New York City in 2006, he fell in love with triathlons. He is triathlon coach for Full Throttle Endurance, and is still a competitive athlete. </p>
                     <p>Andrew&rsquo;s strong athletic background made a career in health and fitness a natural choice. Empowering and enabling others to reach their fitness goals motivates him and inspires him to take his skills to the next level. </p>
                     <div>
-                        <iframe width="460" height="315" src="http://www.youtube.com/embed/dWqcWgGitKQ?rel=0" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="max-width-adj" width="460" height="315" src="http://www.youtube.com/embed/dWqcWgGitKQ?rel=0" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
                     </div>
                 </div>
@@ -103,7 +103,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div>FAVORITE CITY: Paris</div>
                     </div>
                     <div>
-                        <iframe width="460" height="315" src="http://www.youtube.com/embed/VlLYFFr7dU8?rel=0" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="max-width-adj" width="460" height="315" src="http://www.youtube.com/embed/VlLYFFr7dU8?rel=0" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
                     </div>
                 </div>

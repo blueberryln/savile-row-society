@@ -38,7 +38,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <strong>Casey says</strong>: My surfboard, a pen, and paper.</p>
                     <br />
                     <div>
-                        <iframe width="460" height="315"  src="http://www.youtube.com/embed/VlLYFFr7dU8" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="max-width-adj" width="460" height="315"  src="http://www.youtube.com/embed/VlLYFFr7dU8" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
                     </div>
                 </div>
@@ -53,7 +53,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <h2>Contact us</h2>
     </div>
     <div class="contact-container">
-        <div class="contact-form columns eight">
+        <div class="contact-form columns six offset-by-one">
             <div class="form">
                 <?php echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'index'))); ?>
                 <?php
@@ -71,11 +71,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     echo $this->Form->input('phone');
                 }
                 echo $this->Form->input('message');
-                ?>
-                <?php echo $this->Form->end(__('SUBMIT')); ?>
+                ?>                
+                <?php echo $this->Form->end(array('class' => 'full-width', 'value' => 'SUBMIT')); ?>
             </div>  
         </div>
-        <div class="contact-map-info columns eight">
+        <div class="contact-map-info columns seven offset-by-one">
             <div class="contact-map">
                 <iframe width="370" height="200" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0"></iframe>
             </div>
