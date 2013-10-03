@@ -115,6 +115,10 @@ $(document).ready(function(){
     });
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
+        window.open(
+          "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href), 
+          "facebook-share-dialog", 
+          "width=626,height=436"); 
     });
     
     $("select#product-quantity").change(function(){
@@ -129,12 +133,27 @@ $(document).ready(function(){
 ';
 $this->Html->script("lightbox-2.6.min.js", array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
-
 $meta_description = $entity['Entity']['name'];
 if ($entity) {
     $meta_description = Sanitize::html($entity['Entity']['description'], array('remove' => true));
 }
 $this->Html->meta('description', $meta_description, array('inline' => false));
+
+// Progduct information for facebook open graph tags
+$page_url = $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug'];
+if(count($entity['Image']) > 0){
+    $img_src = $this->webroot . 'files/products/' . $entity['Image'][0]['name']; 
+}
+else{
+    $img_src = $this->webroot . 'img/image_not_available.png';                    
+}
+
+$this->Html->meta(array('property'=> 'og:title', 'content' => $entity['Entity']['name'] . ' - Savile Row Society', ),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:description', 'content' => $entity['Entity']['description']),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:url', 'content' => $page_url),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:type', 'content' => 'website'),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
+
 
 // columns size
 $columns = 'eleven';

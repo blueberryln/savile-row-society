@@ -155,10 +155,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="three columns alpha">
             <div class="product-filter-menu">
                 <ul class="accordian-menu">
-                    <li class="toggle-tab selected open-filter"><span>Categories</span>
+                    <li class="toggle-tab selected open-filter"><span><a href="<?php echo $this->webroot; ?>closet">Categories</a></span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
-                            <li <?php echo ($parent_id && $parent_id == $category['Category']['id']) ? 'class="filter-selected"' : ''; ?>>
+                            <li>
                             <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $category['Category']['name']; ?></a>
                             <?php if ($category['children'] && $parent_id && $parent_id == $category['Category']['id']) : ?>
                                     <ul class="product-subcategories">

@@ -33,7 +33,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
         <meta name="description" content="Savile Row Society">
         <meta name="author" content="30 Hills">
         <meta name="google-site-verification" content="Mexh7IdYEzy4A8dWzHtFHjmhf0UMxyWez8SJn1HU6T0" />
-
+        <?php echo $this->fetch('meta'); ?>
         <!-- Mobile Specific Metas
   ================================================== -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -59,6 +59,35 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
         <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-114x114.png">
     </head>
     <body>
+    
+    <!-- Facebook javascript API
+    ================================ -->
+        <script>
+    	  window.fbAsyncInit = function() {
+    	    // init the FB JS SDK
+    	    FB.init({
+    	      appId      : '507420839292016', // App ID from the App Dashboard
+    	      frictionlessRequests : true,
+    	      status     : true, // check the login status upon init?
+    	      cookie     : true, // set sessions cookies to allow your server to access the session?
+    	      xfbml      : true,  // parse XFBML tags on this page?
+    	      oauth		 : true
+    	    });
+    	  };
+    
+    	  // Load the SDK's source Asynchronously
+    	  (function(d, s, id, debug){
+    	     var js, fjs = d.getElementsByTagName(s)[0];
+    	     if (d.getElementById(id)) {return;}
+    	     js = d.createElement(s); js.id = id;
+    	     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+    	     fjs.parentNode.insertBefore(js, fjs);
+    	    }(document, 'script', 'facebook-jssdk', false));
+    	</script>
+    <!-- Facebook javascript API ends
+    ================================ -->
+    
+    
         <!-- Header
         ================================================== -->
 
