@@ -7,7 +7,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <h1>Contact Us</h1>
     </div>
     <div class="contact-container">
-        <div class="contact-form columns eight">
+        <div class="contact-form columns six offset-by-one">
             <div class="form">
                 <?php echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'index'))); ?>
                 <?php
@@ -26,14 +26,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 }
                 echo $this->Form->input('message');
                 ?>
-                <?php echo $this->Form->end(__('SUBMIT')); ?>
+                <?php echo $this->Form->end(array('class' => 'full-width', 'value' => 'SUBMIT')); ?>
             </div>  
         </div>
-        <div class="contact-map-info columns eight">
-            <div class="contact-map">
+        <div class="contact-map-info columns seven offset-by-one">
+            <div class="contact-map no-margin">
                 <iframe width="370" height="200" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0"></iframe>
             </div>
-            <div class="contact-info">
+            <div class="contact-info no-margin">
                 <h4>Showroom:</h4>
                 <p>902 Broadway, 6th Floor, <br />New York, NY 10010</p>
                 <p class="phone">+1 347 878 7280</p>

@@ -30,7 +30,7 @@
     text-decoration: line-through;
 }
 .full-width {
-    width: 100%;
+    width: 100% !important;
 }
 .empty {
     color: #CCCCCC;
@@ -80,6 +80,11 @@
 }
 .input-error{
     border-color: #FF5656 !important;
+}
+
+.no-margin
+{
+    margin: 0 !important;
 }
 /* #Site Styles
 ================================================== */
@@ -805,7 +810,7 @@ body{
     display:inline-block;
     font-size:14px;
     margin:5px 5px 5px 0;
-    padding:5px 8px;
+    padding:10px 8px;
     text-decoration:none;
     text-transform:uppercase;
     width: auto;
@@ -1543,7 +1548,7 @@ body{
 
 .footer {
     font-size: 12px;
-    margin: 40px 0 20px;
+    margin: 60px 0 20px;
     text-align: center;
 }
 
@@ -2431,13 +2436,13 @@ body{
     padding-bottom: 20px;
 }
 .content .contact-form .form{
-    margin: 0 0 0 74px;
+    /*margin: 0 0 0 74px;*/
 }
 .content .contact-form input, .content .contact-form textarea{
-    width: 330px !important; 
+    /*width: 330px !important; */
 }
 .content .contact-form .submit input{
-    width: 342px !important;
+    /*width: 342px !important;*/
     padding: 10px 0;
 }
 .content .form input[type="text"], .content .form input[type="email"], .content .form input[type="tel"], .content .form textarea{
@@ -3014,6 +3019,10 @@ a.color-single
     border-color: #D9D9D9;
     color: #444444;
     padding: 8px 5px;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; 
 }
 .content .form select, select#quantity
 {
@@ -3037,7 +3046,9 @@ select#quantity
 .profile .link-btn {
     margin-top:30px;
     text-align: center;
-    width: 22%;
+    padding-left: 40px;
+    padding-right: 40px;
+
 }
 
 .profile-tabs
@@ -3074,13 +3085,13 @@ div.finalizing select
     margin-bottom:20px;
     border: 1px solid #D9D9D9;
     color: #444444;
-    width:340px;
+    width:100%;
     padding: 8px 5px;
 }
 
 div.finalizing .submit input
 {
-    width:340px;
+    width:100%;
     text-align:center;
 }
 
@@ -3202,15 +3213,14 @@ div.pagination span.next a, .pagination span.prev a
     font-weight: normal;
 }
 
-
-
 div#body-shape #selectable-shape li
 {
     display:inline-block;
     cursor: pointer;    
     font-size: 13px;
     line-height: 30px;
-    margin-right: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 20px;
     padding: 15px 10px;
     text-align: center;
@@ -3220,10 +3230,6 @@ div#body-shape ul#selectable-shape li.selected, div#body-shape #selectable-shape
 {
     background: none repeat scroll 0 0 #917A49;
     color:#FFFFFF;
-}
-div#body-shape #selectable-shape li:last-of-type
-{
-    margin-right:0;
 }
 
 
@@ -3423,8 +3429,7 @@ h5.sign
 
 div.about-submit .submit input[type="submit"]
 {
-    width:24%;
-    padding:6px 12px;
+    padding:6px 50px;
     font-size: 14px;
 }
 
@@ -3464,8 +3469,7 @@ div.brands-cont .submit
 }
 div.brands-cont input[type="submit"] {
     font-size: 14px;
-    padding: 6px 12px;
-    width: 24%;
+    padding: 6px 50px;
 }
 
 div#brands ol.brands-logo li
