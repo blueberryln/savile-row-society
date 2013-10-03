@@ -15,36 +15,30 @@ class ClosetController extends AppController {
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null) {
 
-        $this->isLogged();
         $user_id = $this->getLoggedUserID();
-        if($user_id){
-            // init
-            $Category = ClassRegistry::init('Category');
-            $Brand = ClassRegistry::init('Brand');
-            $Color = ClassRegistry::init('Color');
+        // init
+        $Category = ClassRegistry::init('Category');
+        $Brand = ClassRegistry::init('Brand');
+        $Color = ClassRegistry::init('Color');
 
-            // get data
-            $categories = $Category->getAll();
-            $brands = $Brand->find('all');
-            $colors = $Color->find('all');
+        // get data
+        $categories = $Category->getAll();
+        $brands = $Brand->find('all');
+        $colors = $Color->find('all');
 
-            $entities = array();
+        $entities = array();
 
-            if ($category_slug) {
-                $entities = $this->categoryProducts($user_id, $categories, $category_slug, $filter_brand, $filter_color);
-            } else {
-                $entities = $this->closetProducts($user_id);
-            }
-
-            // send data to view
-            $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors'));
-
-            if(!$category_slug){
-                $this->render('closet_landing');
-            }
+        if ($category_slug) {
+            $entities = $this->categoryProducts($user_id, $categories, $category_slug, $filter_brand, $filter_color);
+        } else {
+            $entities = $this->closetProducts($user_id);
         }
-        else{
-            $this->redirect($this->webroot);
+        
+        // send data to view
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id'));
+
+        if(!$category_slug){
+            $this->render('closet_landing');
         }
     }
 
@@ -104,11 +98,13 @@ class ClosetController extends AppController {
         }
 
         // Find array for products of a category exluding the filter and brand sub categories
+        // and for a unsigned user
         $find_array = array(
             'limit' => 12,
             'contain' => array('Image', 'Color'),
             'conditions' => array(
-                'Entity.show' => true,
+                'Entity.show' => true, 'Category.category_id' => $category_ids, 
+                'Detail.show' => true, 'Detail.stock >' => 0,
             ),
             'group' => array('Entity.id'),
             'joins' => array(
@@ -116,43 +112,51 @@ class ClosetController extends AppController {
                     'alias' => 'Category',
                     'type' => 'INNER',
                     'conditions' => array(
-                        'Category.category_id' => $category_ids,
                         'Category.product_id = Entity.product_id'
                     )
                 ),
-                array('table' => 'wishlists',
-                    'alias' => 'Wishlist',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Wishlist.user_id' => $user_id,
-                        'Wishlist.product_entity_id = Entity.id'
-                    )
-                ),
-                array('table' => 'dislikes',
-                    'alias' => 'Dislike',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Dislike.user_id' => $user_id,
-                        'Dislike.product_entity_id = Entity.id',
-                        'Dislike.show' => true
-                    )
-                ),
+                
                 array('table' => 'products_details',
                     'alias' => 'Detail',
                     'type' => 'INNER',
                     'conditions' => array(
                         'Detail.product_entity_id = Entity.id',
-                        'Detail.show' => true,
-                        'Detail.stock >' => 0,
                     )
                 ),
             ),
             'fields' => array(
-                'Entity.*', 'Wishlist.*', 'Dislike.*'
+                'Entity.*'
             ),
             'Group' => array('Entity.id'),
         );
-
+        
+        
+        //Query additions for a logged in user
+        if($user_id){
+            //Join Like and Dislike tables
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.product_entity_id = Entity.id',
+                                            'Wishlist.user_id' => $user_id
+                                        )
+                                    );
+            $find_array['joins'][] = array('table' => 'dislikes',
+                                        'alias' => 'Dislike',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Dislike.product_entity_id = Entity.id',
+                                            'Dislike.user_id' => $user_id,
+                                            'Dislike.show' => true
+                                        )
+                                    );   
+                     
+            //Fields for likes and dislikes               
+            $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Dislike.*';
+        }
+        
         // Color filter
         if($color_list && count($color_list) > 0){
             $color_join = array('table' => 'colors_entities',
@@ -178,13 +182,13 @@ class ClosetController extends AppController {
             );
             $find_array['joins'][] = $brand_join;
         }
+        
 
         // Sub query to check stock using the products_details table and the items already added to valid carts
         $sub_query = new stdClass();
         $sub_query->type = "expression";
         $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
         $find_array['conditions'][] = $sub_query;
-
 
         $this->Paginator->settings = $find_array;
         $data = $this->Paginator->paginate($Entity);
@@ -199,8 +203,6 @@ class ClosetController extends AppController {
      * Product details
      */
     public function product($id = null, $slug = null) {
-
-        $this->isLogged();
         $user_id = $this->getLoggedUserID();
         App::uses('Sanitize', 'Utility');
 
@@ -230,9 +232,9 @@ class ClosetController extends AppController {
             if($category['Category']['parent_id']){
                 $parent_category = $Category->findById($category['Category']['parent_id']);
             }
-
+            
             // send data to view
-            $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar'));
+            $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id'));
         }
     }
 

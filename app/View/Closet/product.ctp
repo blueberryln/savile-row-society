@@ -1,74 +1,80 @@
 <?php
+$logged_script = '';
+if($user_id){    
+    $logged_script = '
+        $(".thumbs-up").click(function(e) {
+            e.preventDefault();
+            $this = $(this);
+            var productBlock = $this.closest(".product-detail-cont");
+            var productId = productBlock.find(".product-id").val();
+            if(!$this.hasClass("liked")){
+                $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
+                    function(data) {
+                        var ret = $.parseJSON(data);
+                        if(ret["status"] == "ok"){
+                            $this.addClass("liked");
+                        }
+                        
+                        //var notificationDetails = new Array();
+                        //notificationDetails["msg"] = ret["msg"];
+                        //showNotification(notificationDetails, true);
+                    }
+                );
+            }
+            else{
+                $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
+                    function(data) {
+                        var ret = $.parseJSON(data);
+                        if(ret["status"] == "ok"){
+                            $this.removeClass("liked");
+                        }
+                        
+                        //var notificationDetails = new Array();
+                        //notificationDetails["msg"] = ret["msg"];
+                        //showNotification(notificationDetails, true);
+                    }
+                );
+            }
+        });
+        $(".thumbs-down").click(function(e) {
+            e.preventDefault();
+            $this = $(this);
+            var productBlock = $this.closest(".product-detail-cont");
+            var productId = productBlock.find(".product-id").val();
+            if(!$this.hasClass("disliked")){
+                $.post("' . $this->request->webroot . 'api/dislike/save", { product_id: productId},
+                    function(data) {
+                        var ret = $.parseJSON(data);
+                        if(ret["status"] == "ok"){
+                            $this.addClass("disliked");
+                        }
+                        
+                        //var notificationDetails = new Array();
+                        //notificationDetails["msg"] = ret["msg"];
+                        //showNotification(notificationDetails, true);
+                    }
+                );
+            }
+            else{
+                $.post("' . $this->request->webroot . 'api/dislike/remove", { product_id: productId},
+                    function(data) {
+                        var ret = $.parseJSON(data);
+                        if(ret["status"] == "ok"){
+                            $this.removeClass("disliked");
+                        }
+                        
+                        //var notificationDetails = new Array();
+                        //notificationDetails["msg"] = ret["msg"];
+                        //showNotification(notificationDetails, true);
+                    }
+                );
+            }
+        });
+    ';
+}
+
 $script = '
 $(document).ready(function(){    
-    $(".thumbs-up").click(function(e) {
-        e.preventDefault();
-        $this = $(this);
-        var productBlock = $this.closest(".product-detail-cont");
-        var productId = productBlock.find(".product-id").val();
-        if(!$this.hasClass("liked")){
-            $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
-                function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.addClass("liked");
-                    }
-                    
-                    //var notificationDetails = new Array();
-                    //notificationDetails["msg"] = ret["msg"];
-                    //showNotification(notificationDetails, true);
-                }
-            );
-        }
-        else{
-            $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
-                function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.removeClass("liked");
-                    }
-                    
-                    //var notificationDetails = new Array();
-                    //notificationDetails["msg"] = ret["msg"];
-                    //showNotification(notificationDetails, true);
-                }
-            );
-        }
-    });
-    $(".thumbs-down").click(function(e) {
-        e.preventDefault();
-        $this = $(this);
-        var productBlock = $this.closest(".product-detail-cont");
-        var productId = productBlock.find(".product-id").val();
-        if(!$this.hasClass("disliked")){
-            $.post("' . $this->request->webroot . 'api/dislike/save", { product_id: productId},
-                function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.addClass("disliked");
-                    }
-                    
-                    //var notificationDetails = new Array();
-                    //notificationDetails["msg"] = ret["msg"];
-                    //showNotification(notificationDetails, true);
-                }
-            );
-        }
-        else{
-            $.post("' . $this->request->webroot . 'api/dislike/remove", { product_id: productId},
-                function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.removeClass("disliked");
-                    }
-                    
-                    //var notificationDetails = new Array();
-                    //notificationDetails["msg"] = ret["msg"];
-                    //showNotification(notificationDetails, true);
-                }
-            );
-        }
-    });
     $(".add-to-cart").click(function(e) {
         e.preventDefault();
         if($("select#product-quantity").val()== "")
@@ -101,6 +107,9 @@ $(document).ready(function(){
                     notificationDetails["msg"] = "Item has been added to the cart.";
                     showNotification(notificationDetails, true);
                 }
+                else if(ret["status"] == "login"){
+                    signUp();       
+                }
             }
         );
     });
@@ -114,10 +123,8 @@ $(document).ready(function(){
     
     $("select#product-size").change(function(){
         $("span.err-size-message").fadeOut(300);    
-    });
-   
-    
-    
+    });    
+    ' . $logged_script . '
 });
 ';
 $this->Html->script("lightbox-2.6.min.js", array('inline' => false));
@@ -170,9 +177,12 @@ $columns = 'eleven';
             <div class="clear"></div>
             <div class="product-actions">
                 <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:contactus@savilerowsociety.com" id="lnk-email"></a></div>
+                <?php if(isset($entity['Wishlist'])) : ?>
                 <div class="product-thumbs">
                     <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
-                    <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a></div>
+                    <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
+                </div>
+                <?php endif; ?>
             </div>
             <div class="clear"></div>
         </div>

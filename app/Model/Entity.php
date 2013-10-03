@@ -174,10 +174,16 @@ class Entity extends AppModel {
      * @return type
      */
     function getById($id, $user_id=null) {
-        return $this->find('first', array(
+        $find_array = array(
             'contain' => array('Product', 'Image', 'Color', 'Detail'),
-            'conditions' => array('Entity.id' => $id),
-            'joins' => array(
+            'conditions' => array('Entity.id' => $id), 
+            'fields' => array(
+                'Entity.*'
+            )
+        );
+        
+        if($user_id){
+            $find_array['joins'] = array(
                 array('table' => 'wishlists',
                     'alias' => 'Wishlist',
                     'type' => 'LEFT',
@@ -195,11 +201,13 @@ class Entity extends AppModel {
                         'Dislike.show' => true
                     )
                 )
-            ),
-            'fields' => array(
-                'Entity.*', 'Wishlist.*', 'Dislike.*'
-            )
-        ));
+            );
+            
+            $find_array['fields'][] = 'Dislike.*';
+            $find_array['fields'][] = 'Wishlist.*'; 
+        }
+        
+        return $this->find('first', $find_array);
     }
 
     function getCategory($id){
@@ -338,8 +346,7 @@ class Entity extends AppModel {
      * @return type
      */
     function getEntitiesById($entity_list, $user_id = null) {
-
-        $entity = $this->find('all', array(
+        $find_array = array(
             'contain' => array('Image', 'Color'),
             'conditions' => array(
                 'Entity.show' => true,
@@ -352,30 +359,39 @@ class Entity extends AppModel {
                     'conditions' => array(
                         'Category.product_id = Entity.product_id'
                     )
-                ),
-                array('table' => 'wishlists',
-                    'alias' => 'Wishlist',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Wishlist.user_id' => $user_id,
-                        'Wishlist.product_entity_id = Entity.id'
-                    )
-                ),
-                array('table' => 'dislikes',
-                    'alias' => 'Dislike',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Dislike.user_id' => $user_id,
-                        'Dislike.product_entity_id = Entity.id',
-                        'Dislike.show' => true
-                    )
                 )
             ),
             'fields' => array(
-                'Entity.*', 'Wishlist.*', 'Dislike.*', 'Category.category_id'
+                'Entity.*', 'Category.category_id'
             ),
             'order' => 'Category.category_id ASC'
-        ));
+        );
+        
+        
+        if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.user_id' => $user_id,
+                                            'Wishlist.product_entity_id = Entity.id'
+                                        )
+                                    );
+            $find_array['joins'][] = array('table' => 'dislikes',
+                                        'alias' => 'Dislike',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Dislike.user_id' => $user_id,
+                                            'Dislike.product_entity_id = Entity.id',
+                                            'Dislike.show' => true
+                                        )
+                                    );   
+            
+            $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Dislike.*'; 
+        }
+        
+        $entity = $this->find('all', $find_array);
 
         return $entity;
     }

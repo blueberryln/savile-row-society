@@ -12,8 +12,8 @@ $this->layout = 'ajax'
         <a class="notification-close" href=""></a>
         <div class="signup-content">
             <h5 class="sign">SIGN UP</h5>            
-            <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="app/webroot/img/facebook.png" /></a>
-            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="app/webroot/img/linkedin.png" /></a> 
+            <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
+            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo $this->webroot; ?>img/linkedin.png" /></a> 
             <h6 class="sign-or">OR</h6>               
             <?php echo $this->Form->create('User', array('url' => '/register/basic', 'id' => 'register-form', 'novalidate')); ?> 
                 <?php
