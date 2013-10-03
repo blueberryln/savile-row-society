@@ -52,6 +52,11 @@ $script = ' var size = ' . json_encode($size) . '; ' .
            $("#suit_sizing").val(size.us_suit_sizing);
            $("#pantSize").val(size.pant_size);
            $("#jeans").val(size.denim_kind);
+           $("#shirtType").val(size.shirt_type);
+           if(size.shirt_type == "dress"){
+                $(".chest-size").css({"display" : "block"});
+                $("#chestSize").val(size.chest_size); 
+           }
 
            //var denimTypeSelector = "li:contains(\"" + size.denim_kind + "\")";
 //           $(denimTypeSelector).attr("class", "ui-state-default ui-selectee ui-selected");
@@ -114,6 +119,16 @@ $script = ' var size = ' . json_encode($size) . '; ' .
             var selected_id = $(this).data("id");
             $("#body-shape input:checkbox#" + selected_id).prop("checked", true);
          });
+         
+         $("#shirtType").change(function(){
+            if($("#shirtType option:selected").val() == "dress")
+            {
+            $(".chest-size").slideDown(300);
+            }else
+            {
+            $(".chest-size").slideUp(300);
+            }
+        });
 });
 $(document).mouseup(function(e) {
     var sizeBox = $("#size-chart-box");
@@ -121,19 +136,6 @@ $(document).mouseup(function(e) {
         sizeBox.slideUp(300); 
     }
 });   
-    if($("#shirtType option:selected").val() == "dress")
-        {
-        $(".chest-size").fadeIn(300);
-        }
-    $("#shirtType").change(function(){
-        if($("#shirtType option:selected").val() == "dress")
-        {
-        $(".chest-size").fadeIn(300);
-        }else
-        {
-        $(".chest-size").fadeOut(300);
-        }
-    });
 ';
 
 $this->Html->css('ui/jquery-ui', null, array('inline' => false));
@@ -214,6 +216,7 @@ window.registerProcess = true;
                         <div class="input text required">
                             <label for="shirtType">SHIRT TYPE</label>                            
                             <select name="data[UserPreference][Size][shirt_type]" tabindex="" id="shirtType" >
+                                <option value="">SELECT SHIRT TYPE</option>
                                 <option value="sport">SPORT SHIRT</option>
                                 <option value="dress">DRESS SHIRT</option>
                             </select>
