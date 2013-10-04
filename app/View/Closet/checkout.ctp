@@ -110,7 +110,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
     <div class="sixteen columns text-center">
         <h1 class="sub">ORDER INFORMATION</h1>
     </div> 
-    <div class="fourteen offset-by-one columns">
+    <div class="fourteen offset-by-one columns my-cart">
         <?php if ($cart_list) : ?>
             <?php
                 $total_price = 0.00;
@@ -334,7 +334,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
     <div class="sixteen columns text-center">
         <h1 class="sub">SHIPPING INFORMATION</h1>
         
-        <h6 class="eight columns offset-by-two alpha omega text-left"><?php echo $this->Form->checkbox('copybilling', array('label' => false, 'type' => 'checkbox','tabindex'=>'16', 'class' => 'copy-billing-info', 'style' => 'width: auto;' )); ?> Use as Shipping Information</h6>
+        <h6 class="ten columns offset-by-two alpha omega text-left"><?php echo $this->Form->checkbox('copybilling', array('label' => false, 'type' => 'checkbox','tabindex'=>'16', 'class' => 'copy-billing-info', 'style' => 'width: auto;' )); ?> Use as Shipping Information</h6>
     </div>
     <div class="clear"></div>
     <br>

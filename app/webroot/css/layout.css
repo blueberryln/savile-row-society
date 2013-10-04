@@ -2667,8 +2667,12 @@ p.product-breadcrumb a
     line-height: 20px;
 }
 .product-description .add-to-cart{
-    width: 300px;
+    width: 100%;
     text-align: center;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; 
 }
 .product-size .headings
 {   
@@ -3133,7 +3137,11 @@ div.finalizing .submit input
 }
 
 .payment .billing-shipping select{
-    width:292px; 
+     width:100% !important;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; 
 }
 .payment input:required {
     -moz-box-shadow:none !important;
@@ -3694,11 +3702,29 @@ img
     max-width:100% !important;
 }
 
+
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     
     #membership-table {
         padding:0 !important;
         margin-bottom: 20px;
+    }
+    
+    .my-cart
+    {
+        padding: 0 !important;
+         font-size:12px;
+    }
+    
+    
+    .cart-checkout th:first-of-type{
+        padding-left:15px;
+    }
+    
+    .divider
+    {
+        margin-left:0 !important;
     }
 }
 

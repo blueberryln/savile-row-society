@@ -32,7 +32,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
     <div class="sixteen columns text-center">
         <h1>My Cart</h1>
     </div>
-    <div class="fourteen offset-by-one columns">
+    <div class="fourteen offset-by-one columns my-cart">
         <?php if ($cart_list) : ?>
             <?php
                 $total_price = 0.00;
