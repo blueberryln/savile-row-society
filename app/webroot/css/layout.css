@@ -2533,11 +2533,13 @@ body{
     background-color: #FFFFFF;
     line-height: 215px;
     text-align: center;
+    background: url('../img/loading.gif') no-repeat center center;
 }
 .product-listing .product-list-image img{
     vertical-align: middle;
     max-width: 158px;
     max-height: 216px;
+    background-color: white;
 }
 .fadein-image{
     /*display:none;*/
