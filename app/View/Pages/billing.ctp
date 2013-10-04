@@ -90,8 +90,9 @@ $script = ' var size = ' . json_encode($size) . '; ' .
         $("input#pantSize").val(selectedSize);        
     });    
     
-    $.blockUI({message: $("#signin-box")});
+    //$.blockUI({message: $("#signin-box")});
     //$.blockUI({message: $("#register-box")});
+    $.blockUI({message: $("#style-form")});
     
     
     
@@ -405,5 +406,17 @@ window.registerProcess = true;
         </div>
             
         
+    </div>
+</div>
+
+<div id="style-form" class="hide box-modal notification-box">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="style-srs">
+            <h5 class="welcome-srs">Welcome to savile row society!</h5> 
+            <p class="notification-msg">To be able to match you with one of our premier personal stylists, please complete this quick style profile.</p>                   <a class="link-btn black-btn complete-style-btn" href="<?php echo $this->request->webroot; ?>profile/about">COMPLETE MY STYLE PROFILE</a>
+            <h6 class="popup-or">OR</h6>
+            <p>You can book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">Tailor</a>, or check out our highlighted products in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a></p> 
+        </div>  
     </div>
 </div>

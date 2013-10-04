@@ -483,6 +483,11 @@ body{
 .brand-block{
     padding-top: 10px;
 }
+
+.brand-block img 
+{
+    opacity:0;
+}
 .brands-jeans{
     background-image: url("../img/brands-menu.png");
     background-repeat: no-repeat;
@@ -3373,7 +3378,7 @@ div#body-shape #selectable-shape li img
 }
 
 /**********Register Popup**********/
-div.signup-content, div.signin-content
+div.signup-content, div.signin-content, div.style-srs
 {
     padding:0 40px;
     width:301px;
@@ -3385,7 +3390,7 @@ div.signup-content img,div.signin-content img
     height: 41px;
 }
 
-.signup-btn, .signin-btn
+.signup-btn, .signin-btn, .complete-style-btn
 {
     width:301px;
     margin-top:30px;
@@ -3401,7 +3406,7 @@ h5.sign
     background-position: bottom;
 }
 
-.sign-or
+.sign-or, .popup-or
 {
     color:#AF9A59;
 }
@@ -3704,7 +3709,28 @@ img
     max-width:100% !important;
 }
 
+.welcome-srs
+{
+    color: #AF9A59;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    background:url('../img/divider.png') no-repeat;
+    background-position: bottom;
+    text-transform: uppercase;    
+}
 
+div.style-srs .notification-msg
+{
+    padding-left:0;
+    padding-right:0;
+}
+
+.complete-style-btn
+{
+    width:301px;
+    margin-top:0;
+    padding:11px 0;
+}
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     
