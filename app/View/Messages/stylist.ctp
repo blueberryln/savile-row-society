@@ -343,7 +343,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showChatMsg(chatMsg) {
             var html = ''; 
             if(chatMsg['Message']['is_outfit'] == 1){
-                html = html + '<div class="nine columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
+                html = html + '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
                 html = html + '<div class="message-caption">You suggested new items to complete a style:</div><br>'; 
                 html = html + '<div class="chat-outfit-box">';
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
@@ -382,7 +382,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
                     html = '' + 
-                        '<div class="nine columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                        '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-caption">You Said:</div>' + 
                             '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
                             '<div class="message-date">' +
@@ -392,7 +392,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
                 else{
                     html = '' + 
-                        '<div class="nine columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                        '<div class="ten columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
                             '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
                             '<div class="message-date">' +

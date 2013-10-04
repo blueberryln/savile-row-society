@@ -3,7 +3,7 @@ $meta_description = 'As a member, you will be up to date on styles, always look 
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="container content inner">		
-    <br />
+    <br /><br />
     <img class="membership-flow fadein-image fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
     <div class="fourteen offset-by-one columns">
         <p>
@@ -13,12 +13,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             All Members receive an exclusive SRS Membership Card that provides Deluxe Perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
         </p>
     </div>
-    <table id="membership-table" class="membership-table-home" >
+    <table id="membership-table" class="membership-table-home fifteen columns offset-by-one" >
         <thead>
         <th class="mem-top-left" style="background-color: #E6E6E6; width: 40%;">Features</th>
         <th style="background-color: #80A2A1;">Day pass</th>
-        <th style="background-color: #E6E6E6;">Squire circle $20/month</th>
-        <th class="mem-top-right" style="background-color: #D2C9B6;">Knight Circle $50/month</th>
+        <th style="background-color: #E6E6E6;">Squire circle $20/ month</th>
+        <th class="mem-top-right" style="background-color: #D2C9B6;">Knight Circle $50/ month</th>
         </thead>
         <tbody>
             <tr>

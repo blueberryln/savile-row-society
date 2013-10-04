@@ -86,6 +86,10 @@
 {
     margin: 0 !important;
 }
+.no-padding
+{
+    padding:0 !important;
+}
 /* #Site Styles
 ================================================== */
 html {
@@ -1426,7 +1430,11 @@ body{
 .timeline .chat-msg-box{
     border-top: 1px solid #D2D2D2;
     padding: 10px;
-    width: 562px !important;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; 
+    
 }
 .timeline .message-body{
     padding-top: 10px;
@@ -1587,9 +1595,9 @@ body{
     margin-bottom: 20px;    
 }
 #membership-table{
-    float: left;
+    /*float: left;
     margin-left: 55px;
-    margin-right: 55px;
+    margin-right: 55px;*/
     border-collapse: separate;
     border-right: 1px solid #DFDFDF !important;
     -moz-border-radius: 0 5px 5px 0;
@@ -2570,6 +2578,10 @@ body{
     cursor:  pointer;
     background: url('../img/bg_product_filter.png') no-repeat 97% center;
 }
+.product-filter-menu .toggle-tab span a{
+    color: #8E7846;
+    text-decoration: none;
+}
 .product-filter-menu .active-link{
     color: #8E7846 !important;
 }
@@ -2672,7 +2684,7 @@ p.product-breadcrumb a
     border: 1px solid #ccc;
     background-color: #FFFFFF;
     height: 506px;
-    width: 374px;
+    /*width: 374px;*/
     text-align: center;
     line-height: 506px;
     margin-bottom: 10px;
@@ -3637,7 +3649,11 @@ div.stylist-talk #sendMessages
 div.stylist-talk .chat-msg-txtbox
 {
     padding: 10px !important;
-    width: 558px !important;
+    width: 100% !important;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;    
 }
 
 div.contact-map-info div.contact-map iframe
@@ -3672,3 +3688,24 @@ div.contact-map-info div.contact-map iframe
 {
     display:none;
 }
+
+img
+{
+    max-width:100% !important;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px){
+    
+    #membership-table {
+        padding:0 !important;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    
+    #membership-table {
+        padding-left:25px !important;
+    }
+}
+

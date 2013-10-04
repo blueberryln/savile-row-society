@@ -51,7 +51,7 @@
             <!--            <div class="banner"></div> -->
             <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
         </div>
-        <div class="sixteen columns alpha omega menu" style="margin-top: 10px; margin-bottom:20px;">
+        <div class="sixteen columns alpha omega menu" style="margin-top: 10px;">
             <ul>
                 
                 <li><a href="<?php echo $this->request->webroot; ?>closet" data-ref="closet">The Closet</a></li> 

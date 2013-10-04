@@ -39,7 +39,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
             ?>
             <table class="cart-checkout" cellpadding="0" cellspacing="1">
                 <thead>
-                    <th></th>
+                    <th width="13px"></th>
                     <th></th>
                     <th class="text-left" width="457">Products</th>
                     <th width="90px">Quantity</th>

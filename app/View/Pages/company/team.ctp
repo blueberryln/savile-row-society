@@ -13,7 +13,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </p>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/team-member-01.jpg" alt="Lisa Dolan" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/team-member-01.jpg" alt="Lisa Dolan" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Lisa Dolan</div>
@@ -35,7 +35,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/team-member-07.1.jpg" alt="Joey Glazer" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/team-member-07.1.jpg" alt="Joey Glazer" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Joey Glazer</div>
@@ -74,7 +74,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/blogger-02.jpg" alt="Katherine McCormick" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/blogger-02.jpg" alt="Katherine McCormick" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Katherine McCormick</div>
@@ -89,7 +89,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/blogger-05.1.jpg" alt="Casey Golden" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/blogger-05.1.jpg" alt="Casey Golden" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Casey Golden</div>
@@ -128,7 +128,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/team-member-03.jpg" alt="Chris Bergstresser" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/team-member-03.jpg" alt="Chris Bergstresser" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Chris Bergstresser</div>
@@ -143,7 +143,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/team-member-04.jpg" alt="John Lawrence" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/team-member-04.jpg" alt="John Lawrence" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">John Lawrence</div>
@@ -155,7 +155,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/team-member-06.jpg" alt="Lizzy Zawy" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/team-member-06.jpg" alt="Lizzy Zawy" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Lizzy Zawy</div>
@@ -174,7 +174,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/Deborah_Sequeira.jpg" alt="Deborah Sequeira" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/Deborah_Sequeira.jpg" alt="Deborah Sequeira" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Deborah Sequeira</div>
@@ -194,7 +194,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/AndreaLuongo.jpg" alt="Andrea Luongo" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/AndreaLuongo.jpg" alt="Andrea Luongo" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Andrea Luongo</div>
@@ -212,7 +212,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
          <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/VincentBourzeix.jpg" alt="Vincent Bourzeix" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/VincentBourzeix.jpg" alt="Vincent Bourzeix" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
                 <div class="name">Vincent Bourzeix</div>

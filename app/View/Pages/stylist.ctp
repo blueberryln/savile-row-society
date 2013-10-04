@@ -76,10 +76,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>  
         </div>
         <div class="contact-map-info columns seven offset-by-one">
-            <div class="contact-map">
+            <div class="contact-map no-margin">
                 <iframe width="370" height="200" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0"></iframe>
             </div>
-            <div class="contact-info">
+            <div class="contact-info no-margin">
                 <h4>Showroom:</h4>
                 <p>902 Broadway, 6th Floor, <br />New York, NY 10010</p>
                 <p class="phone">+1 347 878 7280</p>
