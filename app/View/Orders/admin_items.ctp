@@ -46,7 +46,7 @@ $this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('
                 <input name="start-date" id="startDate" type="text" style="width: 150px;">
             </li>
             <li>
-                <label for="startDate">Start Date:</label>
+                <label for="startDate">End Date:</label>
                 <input name="start-date" id="endDate" type="text" style="width: 150px;">
             </li>
             <li>
