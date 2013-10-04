@@ -173,6 +173,23 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     }
                 })
             });
+            fadeInImages();
+            
+            function fadeInImages(){
+                $(".fadein-image").each(function() {
+                    if (this.complete) {
+                        //$(this).animate({opacity : 1}, 300);
+                        $(this).fadeTo(300, 1);
+                    } else {
+                        $(this).load(function() {
+                            //$(this).animate({opacity : 1}, 300);
+                            $(this).fadeTo(300,1);
+                        });
+                    }
+                });
+                
+                
+            }
             /*
              * show basket on basket icon mouse hover
              */
@@ -188,19 +205,8 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                 $("#basket").mouseout(function() {
                     $("#basket").fadeOut(250);
                 });
-            });
-            $(window).load(function(){
-                $(".fadein-image").each(function() {
-                    if (this.complete) {
-                        //$(this).animate({opacity : 1}, 300);
-                        $(this).fadeTo(300, 1);
-                    } else {
-                        $(this).load(function() {
-                            //$(this).animate({opacity : 1}, 300);
-                            $(this).fadeTo(300,1);
-                        });
-                    }
-                }); 
+                
+                
             });
         </script>
 

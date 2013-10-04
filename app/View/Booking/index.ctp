@@ -10,20 +10,35 @@ if ($booked) {
 
 $script = '
 $(document).ready(function(){    
-    if ($(".datepicker").length > 0) {
-        $(".datepicker").pickadate({
-            today: "",
-            clear: "",
-            min: new Date(' . date('Y') . ', ' . (date('m') - 1) . ', ' . date('d') . ')
-                ' . $script_booked . '
-        });
-    }
+    $("#BookingDate").datepicker({ dateFormat: "d MM, yy" });
+    $("#book-button").on("click", function(e){
+        e.preventDefault();
+        var error = false;
+        if($("#BookingDate").val() == ""){
+            error = true;    
+        }
+        if($("#BookingType").val() == ""){
+            error = true;    
+        }
+        if($("#BookingComment").val() == ""){
+            error = true;    
+        }
+        
+        if(error){
+            $(".book-it-btn .err-message").show();
+        }
+        else{
+            $(".book-it-btn .err-message").hide();
+            $("#BookingIndexForm").submit();
+        }
+    });
 });
 ';
 
-$this->Html->script('pickadate.min', array('inline' => false));
+//$this->Html->script('pickadate.min', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
-
+$this->Html->css('ui/jquery-ui', null, array('inline' => false));
+$this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $meta_description = 'As a member, you will be up to date on styles, always look put together, and develop a wardrobe that captures the look you desire.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
@@ -101,7 +116,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 
                 <div class="input text required">
                             <label for="BookingType">Appointment type</label>                            
-                            <select name="data[BookingType][id]" tabindex="" id="BookingType" >                                
+                            <select name="data[BookingType][id]" tabindex="" id="BookingType">  
+                                <option value="">Select Appointment Type</option>                              
                                 <?php foreach($booking_types as $booking_type): ?>
                                 <option value="<?php echo $booking_type['BookingType']['id']; ?>"><?php echo $booking_type['BookingType']['name']; ?></option>
                                 <?php endforeach; ?>
@@ -114,7 +130,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <textarea name="data[Booking][comment]" id="BookingComment"></textarea>
                 </div>
                 <div class="book-it-btn">
-                    <?php echo $this->Form->end('Book Now'); ?>
+                    <?php echo $this->Form->end(array('value'=>'BOOK NOW', 'id' => 'book-button')); ?>
+                    <span class="err-message">Please complete all the fields first.</span>
                 </div>
                 
             <?php endif; ?>
