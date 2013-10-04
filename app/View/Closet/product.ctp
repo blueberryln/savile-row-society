@@ -143,7 +143,7 @@ if ($entity) {
 $this->Html->meta('description', $meta_description, array('inline' => false));
 
 // Progduct information for facebook open graph tags
-$page_url = $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug'];
+$page_url = "http://www.savilerowsociety.com" . $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug'];
 if(count($entity['Image']) > 0){
     $img_src = $this->webroot . 'files/products/' . $entity['Image'][0]['name']; 
 }
