@@ -225,8 +225,13 @@ class ClosetController extends AppController {
                 throw new NotFoundException;
             }
             $product_id = $entity['Entity']['product_id'];
-            $similar = $Entity->getSimilarProducts($id, $product_id);
-
+            $similar_results = $Entity->getSimilarProducts($id, $product_id);
+            $similar = array();
+            foreach($similar_results as $row){
+                if($row['Color'] && count($row['Color']) > 1){
+                    $similar[] = $row;
+                }
+            }
 
             $category = $Entity->getCategory($id);
             if($category['Category']['parent_id']){
