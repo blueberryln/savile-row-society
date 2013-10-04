@@ -18,7 +18,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
     <div class="sixteen columns">
         <div class=" five columns stylist-img">
-            <img src="<?php echo $this->webroot; ?>img/messages-casey.png" alt="Casey Golden" />
+            <img src="<?php echo $this->webroot; ?>img/messages-casey.png" class="fadein-image" alt="Casey Golden" />
             <input type='button' value='MY PROFILE' class='my-profile'/>
             <br /><br /><br />
         </div>
