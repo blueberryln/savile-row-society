@@ -148,7 +148,7 @@ if(count($entity['Image']) > 0){
     $img_src = $this->webroot . 'files/products/' . $entity['Image'][0]['name']; 
 }
 else{
-    $img_src = $this->webroot . 'img/image_not_available.png';                    
+    $img_src = "http://www.savilerowsociety.com" . $this->webroot . 'img/image_not_available.png';                    
 }
 
 $this->Html->meta(array('property'=> 'og:title', 'content' => $entity['Entity']['name'] . ' - Savile Row Society', ),'',array('inline'=>false));
