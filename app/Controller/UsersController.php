@@ -58,6 +58,16 @@ class UsersController extends AppController {
                 // check submitted email and password 
                 $results = $this->User->checkCredentials($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
                 if ($results) {
+                    
+                    //TODO: Assign stylist id as of Casey Golden. Later on to be changed in POST MVP.
+                    if($results['User']['stylist_id']){
+                        
+                    }
+                    else{
+                        $results['User']['stylist_id'] = 41;
+                        $results = $this->User->save($results);
+                    }
+                    
                     // set "user" session
                     $this->Session->write('user', $results);
 
@@ -428,6 +438,15 @@ class UsersController extends AppController {
                 $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
 
                 if ($results) {
+                    //TODO: Assign stylist id as of Casey Golden. Later on to be changed in POST MVP.
+                    if($results['User']['stylist_id']){
+                        
+                    }
+                    else{
+                        $results['User']['stylist_id'] = 41;
+                        $results = $this->User->save($results);
+                    }
+                    
                     // set "user" session
                     $this->Session->write('user', $results);
 
