@@ -170,8 +170,8 @@ window.registerProcess = true;
                     <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
         </div>
     </div>
-    <div class="thirteen columns alpha omega text-center offset-by-three">
-        <div class="reg-step3"></div>
+    <div class="sixteen columns text-center">
+        <div class="reg-step3"><img src="<?php echo $this->webroot; ?>img/reg-step3.png"/></div>
     </div>
     <div class="sixteen columns about">
         <?php echo $this->Form->create('User', array('url' => '/register/saveSize')); ?>

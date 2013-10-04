@@ -19,9 +19,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
                     <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
         </div>
-    </div>
-    <div class="thirteen columns alpha omega text-center offset-by-three">
-        <div class="reg-step5"></div>
+    </div>    
+    <div class="sixteen columns text-center">
+        <div class="reg-step5"><img src="<?php echo $this->webroot; ?>img/reg-step5.png"/></div>
     </div>
     <?php echo $this->Form->create('ProfileImage', array('url' => '/register/saveContact','type' => 'file')); ?>
     <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
