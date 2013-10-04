@@ -62,6 +62,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
     
     <!-- Facebook javascript API
     ================================ -->
+        <div id="fb-root"></div>
         <script>
     	  window.fbAsyncInit = function() {
     	    // init the FB JS SDK
