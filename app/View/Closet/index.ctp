@@ -77,9 +77,18 @@ if($user_id){
 }
 
 $script = '
+var filter = "' . $filter_used . '" 
 $(document).ready(function(){
     $(".fade").mosaic();
     $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
+    
+    if(filter == "color"){
+        $(".color-filter").removeClass("hide").addClass("selected");    
+    }
+    else if(filter == "brand"){
+        $(".brand-filter").removeClass("hide").addClass("selected");    
+    }
+    
     $(".toggle-tab").on("click", function(e){
         if(!$(this).find(".toggle-body").is(":visible")){
             $(this)
@@ -119,6 +128,11 @@ $(document).ready(function(){
             $this.addClass("filter-selected");    
         }
         
+        var filterUsed = "brand";
+        if($this.closest(".toggle-body").hasClass("color-filter")){
+            filterUsed = "color";    
+        }
+        
         var arrBrand = new Array();
         var arrColor = new Array();
         $(".brand-filter .filter-selected").each(function(){
@@ -132,16 +146,16 @@ $(document).ready(function(){
         var strColor = arrColor.join("-");
         
         if(strBrand == "" && strColor == ""){
-            window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '";    
+            window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/none/none/" + filterUsed;    
         }
         else if(strColor == ""){
-            window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/" + strBrand;
+            window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/" + strBrand + "/none/" + filterUsed;  
         }
         else if(strBrand == ""){
-            window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/none/" + strColor;
+            window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/none/" + strColor + "/" + filterUsed;
         }
         else{
-            window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/" + strBrand + "/" + strColor;
+            window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/" + strBrand + "/" + strColor + "/" + filterUsed;
         }
         
     });

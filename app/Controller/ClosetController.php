@@ -13,7 +13,7 @@ class ClosetController extends AppController {
      * Index
      */
     
-    public function index($category_slug = null, $filter_brand=null, $filter_color=null) {
+    public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
 
         $user_id = $this->getLoggedUserID();
         // init
@@ -29,7 +29,7 @@ class ClosetController extends AppController {
         $entities = array();
 
         if ($category_slug) {
-            $entities = $this->categoryProducts($user_id, $categories, $category_slug, $filter_brand, $filter_color);
+            $entities = $this->categoryProducts($user_id, $categories, $category_slug, $filter_brand, $filter_color, $filter_used);
         } else {
             $entities = $this->closetProducts($user_id);
         }
@@ -59,10 +59,13 @@ class ClosetController extends AppController {
     }
 
 
-    public function categoryProducts($user_id, $categories, $category_slug = null, $filter_brand=null, $filter_color=null){
+    public function categoryProducts($user_id, $categories, $category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null){
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
-
+            
+        if($filter_used != "color" && $filter_used != "brand"){
+            $filter_used = "error";
+        }
         // Get the parent id
         $parent_id = false;
         foreach($categories as $category){
@@ -92,7 +95,7 @@ class ClosetController extends AppController {
 
         // Prepare the color filter data
         $color_list = array();
-        if($filter_color){
+        if($filter_color && $filter_color != "none"){
             $color_list = explode('-', $filter_color);
             $color_list = array_values(array_unique($color_list));
         }
@@ -193,7 +196,7 @@ class ClosetController extends AppController {
         $this->Paginator->settings = $find_array;
         $data = $this->Paginator->paginate($Entity);
 
-        $this->set(compact('parent_id', 'brand_list', 'color_list'));
+        $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used'));
 
         return $data;
 
