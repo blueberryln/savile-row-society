@@ -131,17 +131,19 @@
         <div id="signup-popup" style="display: none">
 
         </div>
-        
-        <div id="profile-popup" style="display: none;">
-            <div style="width:430px;" class="container content">	
-                <div class="text-center">
-                    <h1>Welcome to Savile Row Society!</h1>
-                    <p>To be able to match you with one of our premier personal stylists, please complete this quick style profile.</p>
-                    <p><a href="<?php echo $this->request->webroot; ?>profile/about" class="text-center complete-profile">Complete my style profile</a></p>
-                    <br />
-                    <p>Or you can book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">tailor</a>, or check out our highlighted products in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a></p>
-                </div>
+
+        <div id="profile-popup" class="hide box-modal notification-box">
+            <div class="box-modal-inside">
+                <a class="notification-close" href=""></a>
+                    <h5 class="welcome-srs">Welcome to savile row society!</h5> 
+                    <div class="notification-msg">To be able to match you with one of our premier personal stylists, please complete this quick style profile.</div>                   
+                    <div class="notification-buttons">
+                        <a class="link-btn black-btn complete-style-btn" href="<?php echo $this->request->webroot; ?>profile/about">COMPLETE MY STYLE PROFILE</a>
+                    </div>
+                    <h6 class="popup-or">OR</h6>
+                    <p>You can book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">Tailor</a>, or check out our highlighted products in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a></p>   
             </div>
         </div>
+        
     </div>
 </div>
