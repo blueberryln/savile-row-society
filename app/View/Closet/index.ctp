@@ -159,6 +159,12 @@ $(document).ready(function(){
         }
         
     });
+    
+    $(".filter-cross").on("click", function(e){
+        e.preventDefault();
+        window.location = "' . $this->webroot . 'closet";    
+    });
+    
     ' . $logged_script . '
 });'; 
 
@@ -176,10 +182,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="three columns alpha">
             <div class="product-filter-menu">
                 <ul class="accordian-menu">
-                    <li class="toggle-tab selected open-filter"><span><a href="<?php echo $this->webroot; ?>closet">Categories</a></span>
+                    <li class="toggle-tab selected open-filter"><span class="filter-block"><a href="<?php echo $this->webroot; ?>closet">Categories</a></span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
-                            <li <?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "class='filter-selected'" : ""; ?>>
+                            <li <?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "class='cat-filter-selected'" : ""; ?>>
                             <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $category['Category']['name']; ?></a>
                             <?php if ($category['children'] && $parent_id && $parent_id == $category['Category']['id']) : ?>
                                     <ul class="product-subcategories">
@@ -188,11 +194,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php endif; ?>
+                            <span class="filter-cross"></span>
                             </li>
                             <?php endforeach; ?>
                         </ul>
                     </li>
-                    <li class="toggle-tab"><span>Brand</span>
+                    <li class="toggle-tab"><span class="filter-block">Brand</span>
                         <ul class="toggle-body brand-filter">
                         <?php if($brands) : ?>
                             <?php foreach($brands as $brand) : ?>
@@ -205,7 +212,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <?php endif; ?>
                         </ul>
                     </li>
-                    <li class="toggle-tab"><span>Color</span>
+                    <li class="toggle-tab"><span class="filter-block">Color</span>
                         <ul class="toggle-body color-filter">
                         <?php if($colors) : ?>
                             <?php foreach($colors as $color) : ?>

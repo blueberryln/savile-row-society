@@ -149,7 +149,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="three columns alpha">
             <div class="product-filter-menu">
                 <ul class="accordian-menu">
-                    <li class="toggle-tab selected"><span>Categories</span>
+                    <li class="toggle-tab selected"><span class="filter-block">Categories</span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
                             <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $category['Category']['name']; ?></a>

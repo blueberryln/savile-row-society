@@ -2574,7 +2574,7 @@ body{
     border-bottom: 1px solid #D9D9D9;
     color: #9A9A9A;
 }
-.product-filter-menu .toggle-tab span{
+.product-filter-menu .toggle-tab span.filter-block{
     display: block;
     padding: 5px 0 5px 4px;
     cursor:  pointer;
@@ -2608,6 +2608,18 @@ body{
     text-decoration: none;
     color: #9A9A9A;
     font-size: 13px;
+    position: relative;
+}
+.toggle-body .cat-filter-selected .filter-cross{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 0px;
+    top: 4px;
+    background: url('../img/cross_menue.png') no-repeat center;
+    z-index: 10;
+    cursor: pointer;
+    border: none;  
 }
 .product-categories .product-subcategories{
     margin-top: 5px;
