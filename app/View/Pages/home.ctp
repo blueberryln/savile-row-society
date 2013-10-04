@@ -4,7 +4,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="container content inner home">	
 
-    <div class="sixteen columns flexslider loader">
+    <div class="sixteen columns flexslider loader" style="height: 438px;">
         <ul class="slides">
             <li><img src="<?php echo $this->request->webroot; ?>img/home-1.jpg"/></li>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>

@@ -483,11 +483,6 @@ body{
 .brand-block{
     padding-top: 10px;
 }
-
-.brand-block img 
-{
-    opacity:0;
-}
 .brands-jeans{
     background-image: url("../img/brands-menu.png");
     background-repeat: no-repeat;
@@ -3743,8 +3738,7 @@ div.style-srs .notification-msg
     {
         padding: 0 !important;
          font-size:12px;
-    }
-    
+    }    
     
     .cart-checkout th:first-of-type{
         padding-left:15px;
@@ -3754,12 +3748,20 @@ div.style-srs .notification-msg
     {
         margin-left:0 !important;
     }
+    .flexslider
+    {
+        height:auto !important;
+    }
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     
     #membership-table {
         padding-left:25px !important;
+    }
+    .flexslider
+    {
+        height:auto !important;
     }
 }
 

@@ -62,7 +62,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
     </div>
     -->
-    <div class="sixteen columns flexslider loader">
+    <div class="sixteen columns flexslider loader" style="height: 438px;">
         <ul class="slides">
             <li><a href="mailto:&#070;&#105;&#116;&#116;&#105;&#110;&#103;&#064;&#083;&#097;&#118;&#105;&#108;&#101;&#082;&#111;&#119;&#083;&#111;&#099;&#105;&#101;&#116;&#121;&#046;&#099;&#111;&#109;"><img src="<?php echo $this->request->webroot; ?>img/booking-1.jpg"></a></li>
             <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/booking-2.jpg"></a></li>
