@@ -112,9 +112,9 @@ window.registerProcess = true;
                 <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Lifestyle" id="2" />
                 <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Complete Overhaul" id="3" />
                 <ol id="selectable">
-                    <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" /><br/>Business</li>
-                    <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" /><br/>Lifestyle</li>
-                    <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" /><br/>Complete Overhaul</li>
+                    <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" class="fadein-image" /><br/>Business</li>
+                    <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" class="fadein-image" /><br/>Lifestyle</li>
+                    <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" class="fadein-image" /><br/>Complete Overhaul</li>
                 </ol>
             </div>
         </div>
@@ -133,9 +133,9 @@ window.registerProcess = true;
                 <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Couple Times a Week" id="5" />
                 <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Never" id="6" />
                 <ol id="selectable">
-                    <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-1.png" /><br/>Every Day</li>
-                    <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-2.png" /><br/>Couple Times a Week</li>
-                    <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-3.png" /><br/>Never</li>
+                    <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-1.png" class="fadein-image" /><br/>Every Day</li>
+                    <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-2.png" class="fadein-image" /><br/>Couple Times a Week</li>
+                    <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-3.png" class="fadein-image" /><br/>Never</li>
                 </ol>
             </div>
         </div>

@@ -203,9 +203,9 @@ window.registerProcess = true;
                 <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="AVERAGE" id="2" />
                 <input class="hide" type="checkbox" name="data[UserPreference][Size][body_shape]" value="ATHLETIC" id="3" />
                 <ul id="selectable-shape">
-                    <li data-id="1"><img src="<?php echo $this->webroot; ?>img/body-shape-1.jpg" />BIG OR LARGE</li>                    
-                    <li data-id="2"><img src="<?php echo $this->webroot; ?>img/body-shape-2.jpg" />AVERAGE</li>
-                    <li data-id="3"><img src="<?php echo $this->webroot; ?>img/body-shape-3.jpg" />ATHLETIC</li>
+                    <li data-id="1"><img src="<?php echo $this->webroot; ?>img/body-shape-1.jpg" class="fadein-image" />BIG OR LARGE</li>                    
+                    <li data-id="2"><img src="<?php echo $this->webroot; ?>img/body-shape-2.jpg" class="fadein-image" />AVERAGE</li>
+                    <li data-id="3"><img src="<?php echo $this->webroot; ?>img/body-shape-3.jpg" class="fadein-image" />ATHLETIC</li>
                 </ul> 
             </div>  
         </div>
