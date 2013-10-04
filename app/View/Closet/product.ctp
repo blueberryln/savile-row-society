@@ -154,7 +154,6 @@ else{
 $this->Html->meta(array('property'=> 'og:title', 'content' => $entity['Entity']['name'] . ' - Savile Row Society', ),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:description', 'content' => $entity['Entity']['description']),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:url', 'content' => $page_url),'',array('inline'=>false));
-$this->Html->meta(array('property'=> 'og:type', 'content' => 'website'),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 
 
