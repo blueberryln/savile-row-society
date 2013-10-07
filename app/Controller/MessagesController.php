@@ -284,9 +284,8 @@ class MessagesController extends AppController {
             $result['status'] = 'error';
         }
         
-        echo json_encode($result);
-        //$this->set('data', $result);
-       // $this->render('/Elements/SerializeJson/');
+        $this->set('data', $result);
+        $this->render('/Elements/SerializeJson/');
     }
     
     /*
