@@ -9,16 +9,28 @@ $(document).ready(function(){
         $.post("' . $this->request->webroot . 'api/cart/remove", { cart_item_id: cartItemId },
             function(data) {
                 var ret = $.parseJSON(data);
-                console.log(ret);
                 if(ret["status"] == "ok"){
-                    var cartTotal = $(".cart-total").text().substr(1);
-                    var itemPrice = (parentRow.find(".item-price").text()).substr(1);
-                    var newTotal = cartTotal - itemPrice;
-                    newTotal = parseFloat(newTotal).toFixed(2);
-                    $(".cart-total").text("$" + newTotal);
-                    $("#cart-items-count").html(ret["count"]);
-                    parentRow.remove();
-                    alert("Item removed from the cart.");
+                    if(ret["count"] > 0){
+                        var cartTotal = $(".cart-total").text().substr(1);
+                        var itemPrice = (parentRow.find(".item-price").text()).substr(1);
+                        var newTotal = cartTotal - itemPrice;
+                        newTotal = parseFloat(newTotal).toFixed(2);
+                        $(".cart-total").text("$" + newTotal);
+                        $("#cart-items-count").html(ret["count"]);
+                        parentRow.remove();
+                        var notificationDetails = new Array();
+                        notificationDetails["msg"] = "Item removed from the cart.";
+                        showNotification(notificationDetails, true);
+                    }
+                    else{
+                        var notificationDetails = new Array();
+                        notificationDetails["msg"] = "Item removed from the cart.";
+                        showNotification(notificationDetails, true);
+                        $(".cart-checkout").remove();
+                        $(".my-cart").prepend("<h2 class=\"subhead text-center\">There are no items in the cart.</h2>");
+                        $(".my-cart .checkout").remove();  
+                        $(".my-cart .update-quantity").remove();  
+                    }
                 }
             }
         );
@@ -112,9 +124,13 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
             <h2 class="subhead text-center">There are no items in the cart.</h2>
         <?php endif; ?>
         <div class="mycart text-center">
-            <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn continue-shopping">CONTINUE SHOPPING</a>
-            <!--a href="" class="link-btn green-btn update-quantity">UPDATE QUANTITY</a-->
-            <a href="<?php echo $this->webroot; ?>checkout" class="link-btn black-btn checkout">CHECKOUT</a>
+            <?php if ($cart_list) : ?>
+                <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn continue-shopping">CONTINUE SHOPPING</a>
+                <a href="" class="link-btn green-btn update-quantity">UPDATE QUANTITY</a>
+                <a href="<?php echo $this->webroot; ?>checkout" class="link-btn black-btn checkout">CHECKOUT</a>
+            <?php else : ?>
+                <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn continue-shopping">CONTINUE SHOPPING</a>
+            <?php endif; ?>
         </div>
         <div class="clear"></div> <br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>

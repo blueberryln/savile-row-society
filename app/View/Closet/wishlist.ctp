@@ -70,7 +70,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>    
+                <?php endforeach; ?>  
+            <?php else: ?>
+                <h2 class="subhead text-center">There are no liked items.</h2>  
             <?php endif; ?>
             <div class="clear"></div>
             <div class="pagination">

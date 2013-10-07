@@ -270,9 +270,10 @@ class ApiController extends AppController {
                         $result = $Cart->save($data);
                         
                         $data['CartItem']['cart_id'] = $result['Cart']['id'];
+                        $cart_id = $result['Cart']['id'];
                         $CartItem->create();
                         if($result = $CartItem->save($data)){
-                            $ret['status'] = 'ok';    
+                            $ret['status'] = 'ok';   
                         }
                         else{
                             $ret['status'] = 'error';  
@@ -284,6 +285,7 @@ class ApiController extends AppController {
                         $result = $Cart->save($data);
                         
                         $data['CartItem']['cart_id'] = $result['Cart']['id'];
+                        $cart_id = $result['Cart']['id'];
                         $CartItem->create();
                         if($result = $CartItem->save($data)){
                             $ret['status'] = 'ok';    
@@ -292,8 +294,7 @@ class ApiController extends AppController {
                             $ret['status'] = 'error';   
                         }
                     }
-                    $this->getCartCount();
-                    $ret['count'] = $this->Session->read('cart_items');
+                    $ret['count'] = $this->cartCount($cart_id);
                     
                     echo json_encode($ret);
                     exit;
@@ -375,6 +376,20 @@ class ApiController extends AppController {
         }
         echo json_encode($ret);
         exit;
+    }
+    
+    
+    /**
+     * Get cart count
+     */
+    public function cartCount($cart_id){
+        $cart_item_count = 0;
+        if($cart_id){
+            $CartItem = ClassRegistry::init('CartItem');
+            $cart_item_count = $CartItem->getCartItems($cart_id);
+        }
+        
+        return $cart_item_count;    
     }
 }
 
