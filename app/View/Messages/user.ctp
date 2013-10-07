@@ -5,7 +5,7 @@
  */
 $script = ' 
 var uid = ' . $user_id . ';
-var webroot = ' . $this->webroot . ';
+var webroot = "' . $this->webroot . '";
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));

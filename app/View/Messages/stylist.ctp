@@ -6,7 +6,7 @@
 $script = ' 
 var uid = ' . $user_id . ';
 var client_id = ' . $client_id . ';
-var webroot = ' . $this->webroot . ';
+var webroot = "' . $this->webroot . '";
 ';
 $this->Html->script('http://knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
