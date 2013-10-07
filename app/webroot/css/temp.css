@@ -4,6 +4,9 @@
 }
 .outfit-modal-inside{  
 }
+.create-outfit-cont .product-listing .product-list-image{
+    background: none;
+}
 .btn-outfit{
     background-color: #AF9A59;
     color: #fff !important;

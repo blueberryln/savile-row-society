@@ -49,11 +49,11 @@ class MessagesController extends AppController {
                 $client_user = $User->getByID($messages_for_user_id);
                 $client_id = $messages_for_user_id;
                 
-                $Order = ClassRegistry::init('Order');
-                $last_purchase = $Order->find('first', array(
-                                    'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true),
-                                    'order' => 'Order.id DESC'
-                                ));
+                //$Order = ClassRegistry::init('Order');
+//                $last_purchase = $Order->find('first', array(
+//                                    'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true),
+//                                    'order' => 'Order.id DESC'
+//                                ));
             }
             
             foreach ($clients_data as $client) {
@@ -284,8 +284,9 @@ class MessagesController extends AppController {
             $result['status'] = 'error';
         }
         
-        $this->set('data', $result);
-        $this->render('/Elements/SerializeJson/');
+        echo json_encode($result);
+        //$this->set('data', $result);
+       // $this->render('/Elements/SerializeJson/');
     }
     
     /*

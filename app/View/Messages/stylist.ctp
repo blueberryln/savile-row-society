@@ -144,7 +144,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block">
+                    <div class="product-list-image mosaic-block fade">
 
                     </div>
                     <div class="product-list-links">
