@@ -3384,6 +3384,9 @@ div#body-shape #selectable-shape li img
     margin-top: 30px;
 }
 
+.notification-buttons .link-btn{
+    min-width: 230px;
+}
 /**********Register Popup**********/
 div.signup-content, div.signin-content, div.style-srs
 {
@@ -3738,6 +3741,23 @@ div.style-srs .notification-msg
     margin-top:0;
     padding:11px 0;
 }
+
+/******ERROR PAGES*********/
+
+div.error-msg{
+    background-color: #F2F2F2;
+}
+
+.error-msg h1 strong
+{
+    color:#917746;
+    font-size:24px;
+}
+
+.error-msg h1 span{
+    color: #666666;
+}
+
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     
