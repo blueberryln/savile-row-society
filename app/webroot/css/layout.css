@@ -3873,12 +3873,17 @@ div.error{
         margin-top: 5px;
     }
     ul.product-type
-    {
+    {        
+        margin-left: 35px;
         text-align: left;
     }
     ul.product-type li:last-of-type
     {
         margin-right:60px;
+    }
+    div#brands
+    {
+        margin-left:35px;
     }
 }
 

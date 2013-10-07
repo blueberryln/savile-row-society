@@ -23,10 +23,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>
             <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/home-3.jpg"/></a></li>
             <li><a href="<?php echo $this->request->webroot; ?>stylist"><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"/></a></li>     
-            <li><iframe class="max-width-adj" width="940" height="438" src="http://www.youtube.com/embed/VlLYFFr7dU8" frameborder="0" allowfullscreen></iframe>
-            </li> 
-            
-            <!--http://www.youtube.com/embed/VlLYFFr7dU8-->            
+            <li><iframe class="max-width-adj" width="940" height="438" src="http://www.youtube.com/embed/VlLYFFr7dU8?wmode=transparent" frameborder="0" allowfullscreen></iframe>
+            </li>          
             
         </ul>
     </div>
