@@ -1,9 +1,9 @@
 <div class="container content inner">	
     <div class="sixteen columns text-center">
         <!--<h1><?php echo $name; ?></h1>-->
-        <div class="error">
-            <div class="error-msg six columns">
-            <h1><strong>404 <span>Error</span></strong></h1>
+        <div class="error-msg eight columns offset-by-four">
+            <div class="error">
+            <h1>404 <span>Error</span></h1>
             <span>Oops!The page you're looking for cannot be found.</span>
             </div>       
         </div>

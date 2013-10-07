@@ -3744,14 +3744,22 @@ div.style-srs .notification-msg
 
 /******ERROR PAGES*********/
 
-div.error-msg{
+div.error-msg{    
+    margin-top:65px;
+    margin-bottom:150px;
+}
+
+div.error{
+    padding:30px;
     background-color: #F2F2F2;
 }
 
-.error-msg h1 strong
+.error-msg h1
 {
     color:#917746;
-    font-size:24px;
+    font-size:34px;
+    font-weight:bold;
+    margin:25px 0;
 }
 
 .error-msg h1 span{
