@@ -296,6 +296,29 @@ class ApiController extends AppController {
                     }
                     $ret['count'] = $this->cartCount($cart_id);
                     
+                    if($ret['count'] == 3){
+                        $user = $this->getLoggedUser();
+                        $cart_list = $CartItem->getByCartId($cart_id);
+    
+                        $entity_list = array();
+                        foreach($cart_list as $item){
+                            $entity_list[] = $item['CartItem']['product_entity_id'];
+                        }
+                        $entities = $Entity->getEntitiesById($entity_list, $user_id);
+            
+                        $cart_total = 0;
+                        foreach($cart_list as &$item){
+                            foreach($entities as $entity){
+                                if($entity['Entity']['id'] == $item['CartItem']['product_entity_id']){
+                                    $cart_total += $item['CartItem']['quantity'] * $entity['Entity']['price'];
+                                }
+                            }
+                        }
+                        
+                        $ret['cart_total'] = $cart_total;
+                        $ret['cart_message'] = "Dear " . ucwords($user['User']['full_name']) . ",<br>We would like to remind you that you currently have three items in your cart, totaling $" . number_format($cart_total, 2) . ".";
+                    }
+                    
                     echo json_encode($ret);
                     exit;
                 }
