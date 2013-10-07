@@ -23,9 +23,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>
             <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/home-3.jpg"/></a></li>
             <li><a href="<?php echo $this->request->webroot; ?>stylist"><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"/></a></li>     
-            <li><iframe class="max-width-adj" width="940" height="438" src="http://www.youtube.com/embed/VlLYFFr7dU8?wmode=transparent" frameborder="0" allowfullscreen></iframe>
+            <li><iframe class="max-width-adj" width="940" height="438" src="http://www.youtube.com/v/BygtFwK_Dpw&#038?wmode=transparent&rel=0" frameborder="0" allowfullscreen></iframe>
             </li>          
-            
+            http://www.youtube.com/watch?feature=player_embedded&v=BygtFwK_Dpw
         </ul>
     </div>
 
@@ -33,7 +33,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
         <div class="eigth columns home-side"><b>Let us </b> define your style & refine your image</div>
 
-        <!--        <a class="fb" href="https://www.facebook.com/SavileRowSociety">Facebook</a>
+        <!--    <a class="fb" href="https://www.facebook.com/SavileRowSociety">Facebook</a>
                 <a class="tw" href="https://twitter.com/srsocietydotcom">Twitter</a>
                 <a class="pi" href="http://pinterest.com/srsociety/">Pinterest</a>
                 <a class="ln" href="https://www.linkedin.com/company/savile-row-society">LinkedIn</a>-->

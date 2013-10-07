@@ -3795,8 +3795,7 @@ div.error{
     .flexslider iframe
     {
         height:125px !important;
-        margin-bottom:20px;
-        
+        margin-bottom:10px;        
     }
     
     .box-modal
@@ -3885,6 +3884,9 @@ div.error{
     {
         margin-left:35px;
     }
+    .content.inner.booking .book-appointment .datepicker {    
+    background: url("../img/btn-book.png") no-repeat scroll 190px center;
+    }
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -3896,5 +3898,5 @@ div.error{
     {
         height:auto !important;
     }
+    
 }
-
