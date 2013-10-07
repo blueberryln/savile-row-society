@@ -48,6 +48,12 @@ class MessagesController extends AppController {
             if($messages_for_user_id){
                 $client_user = $User->getByID($messages_for_user_id);
                 $client_id = $messages_for_user_id;
+                
+                $Order = ClassRegistry::init('Order');
+                $last_purchase = $Order->find('first', array(
+                                    'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true),
+                                    'order' => 'Order.id DESC'
+                                ));
             }
             
             foreach ($clients_data as $client) {

@@ -34,7 +34,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             <div class="info-container">
-                <div id="user-name"></div>
+                <div id="user-name"><?php echo $client_user['User']['full_name']; ?></div>
             </div>
         
         </div>
