@@ -3764,6 +3764,94 @@ div.style-srs .notification-msg
     {
         height:auto !important;
     }
+    .flexslider iframe
+    {
+        height:125px !important;
+        margin-bottom:20px;
+        
+    }
+    
+    .box-modal
+    {
+        max-width:350px !important;
+    }
+    
+    .signin-content, .signup-content
+    {
+        padding:0 0 !important;
+        margin-left:auto !important;
+        margin-right: auto !important;
+    }
+    .notification-close
+    {
+        right:30px !important;
+        height: 20px;
+        width:20px;
+    }
+    
+    .blockMsg
+    {
+        top:0 !important;
+    }
+    
+    ul.product-type
+    {
+        text-align: left;
+    }
+    ul.product-type li:last-of-type
+    {
+        margin-right:60px;
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+     
+    .box-modal
+    {
+        max-width:320px !important;
+    }
+    
+    .box-modal-inside
+    {       
+        padding-left: 0;
+        padding-right: 0;        
+    } 
+    div#signup-popup .box-modal-inside
+    {
+        padding-top:10px !important;
+    }
+    
+    .signin-content, .signup-content
+    {
+        padding:0 0 !important;
+        margin-left:auto !important;
+        margin-right: auto !important;
+    }
+    .notification-close
+    {
+        top:10px;
+        right:30px !important;
+        height: 20px;
+        width:20px;
+    }
+    
+    .blockMsg
+    {
+        top:0 !important;
+        left:0 !important;
+    }
+    .signup-btn, .signin-btn, .complete-style-btn
+    {
+        margin-top: 5px;
+    }
+    ul.product-type
+    {
+        text-align: left;
+    }
+    ul.product-type li:last-of-type
+    {
+        margin-right:60px;
+    }
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {

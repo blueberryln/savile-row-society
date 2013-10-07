@@ -1,4 +1,17 @@
 <?php
+
+$script ='
+    
+   $(".flexslider").flexslider({
+	            animation: "slide",
+	            slideshow: false,
+                video: false,
+                useCSS: false,
+                controlNav: false	            
+	        });
+
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. <br/> We\'ll perfect your image from head to toe.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
@@ -9,7 +22,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <li><img src="<?php echo $this->request->webroot; ?>img/home-1.jpg"/></li>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>
             <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/home-3.jpg"/></a></li>
-            <li><a href="<?php echo $this->request->webroot; ?>stylist"><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"/></a></li>
+            <li><a href="<?php echo $this->request->webroot; ?>stylist"><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"/></a></li>     
+            <li><iframe class="max-width-adj" width="940" height="438" src="http://www.youtube.com/embed/VlLYFFr7dU8" frameborder="0" allowfullscreen></iframe>
+            </li> 
+            
+            <!--http://www.youtube.com/embed/VlLYFFr7dU8-->            
+            
         </ul>
     </div>
 
