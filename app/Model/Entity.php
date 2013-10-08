@@ -558,4 +558,10 @@ class Entity extends AppModel {
             ),
         ));
     }
+    
+    function getEntityStockAvailable($entity_id){
+        $find_array = array(
+            
+        );
+    }
 }

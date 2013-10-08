@@ -49,11 +49,29 @@ class MessagesController extends AppController {
                 $client_user = $User->getByID($messages_for_user_id);
                 $client_id = $messages_for_user_id;
                 
-                //$Order = ClassRegistry::init('Order');
-//                $last_purchase = $Order->find('first', array(
-//                                    'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true),
-//                                    'order' => 'Order.id DESC'
-//                                ));
+                $Order = ClassRegistry::init('Order');
+                
+                //Get last purchase
+                $last_purchase = $Order->find('first', array(
+                                    'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true),
+                                    'order' => 'Order.id DESC'
+                                ));
+                //print_r($last_purchase);
+//                exit;
+                
+                //Get number of messages in last 30 days
+                $recent_messages = $this->Message->find('count', array(
+                                        'conditions' => array('Message.created >= now() - INTERVAL 30 DAY', 'Message.user_from_id' => $client_id) 
+                                    ));
+                
+                //Get total puchase of last 30 days
+                $recent_purchase = $Order->find('first', array(
+                                    'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true, 'Order.created >= now() - INTERVAL 30 DAY'),
+                                    'fields' => array('COALESCE(sum(Order.total_price),0) as recent_purchase'),
+                                ));
+                $recent_purchase = $recent_purchase[0]['recent_purchase'];
+                                    
+                $this->set(compact('last_purchase', 'recent_messages', 'recent_purchase'));
             }
             
             foreach ($clients_data as $client) {

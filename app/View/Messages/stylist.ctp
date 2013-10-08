@@ -34,7 +34,20 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             <div class="info-container">
-                <div id="user-name"><?php echo $client_user['User']['full_name']; ?></div>
+                <?php if($client_id) : ?>
+                    <div id="user-name"><?php echo $client_user['User']['full_name']; ?></div>
+                    <?php if(isset($last_purchase)) : ?>
+                        <div class="last-user-purchase">
+                            Last Purchase: <?php echo $last_purchase['Order']['total_price']; ?> <br />
+                            on <?php echo date('l:jS F Y, h:ia'); ?>
+                        </div>
+                        <div class="recent-activity">
+                            Recent Activity (30 Days): <br />
+                            -Amount Spent: <?php echo $recent_purchase; ?><br />
+                            -Messages Sent: <?php echo $recent_messages; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         
         </div>
@@ -85,7 +98,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
                     <div class="product-list-image mosaic-block fade">
-
+                    
                     </div>
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
