@@ -108,8 +108,19 @@ class ProductsController extends AppController {
                     $data['Entity']['product_id'] = $id;
                     $data['Entity']['name'] = $this->request->data['Entity']['name'];
                     $data['Entity']['description'] = $this->request->data['Entity']['description'];
-                    $data['Entity']['sku'] = $this->request->data['Entity']['sku'];
-                    $data['Entity']['slug'] = strtolower(Inflector::slug($this->request->data['Entity']['slug'], '-'));
+                    if($this->request->data['Entity']['sku'] == ""){
+                        $data['Entity']['sku'] = uniqid();    
+                    }
+                    else{
+                        $data['Entity']['sku'] = $this->request->data['Entity']['sku'];
+                    }
+                    
+                    if($this->request->data['Entity']['slug'] == ""){
+                        $data['Entity']['slug'] = strtolower(Inflector::slug($data['Entity']['name'], '-'));
+                    }
+                    else{
+                        $data['Entity']['slug'] = strtolower(Inflector::slug($this->request->data['Entity']['slug'], '-'));
+                    }
                     $data['Entity']['price'] = $this->request->data['Entity']['price'];
                     //$data['Entity']['stock'] = $this->request->data['Entity']['stock'];
                     $data['Entity']['show'] = $this->request->data['Entity']['show'];
@@ -145,7 +156,19 @@ class ProductsController extends AppController {
             $colors = $Entity->Color->find('list');
             
             if($this->request->is('post') || $this->request->is('put')){
-                $this->request->data['Entity']['slug'] = strtolower(Inflector::slug($this->request->data['Entity']['slug'], '-'));
+                if($this->request->data['Entity']['sku'] == ""){
+                    $this->request->data['Entity']['sku'] = uniqid();    
+                }
+                else{
+                    $this->request->data['Entity']['sku'] = $this->request->data['Entity']['sku'];
+                }
+                
+                if($this->request->data['Entity']['slug'] == ""){
+                    $this->request->data['Entity']['slug'] = strtolower(Inflector::slug($this->request->data['Entity']['name'], '-'));
+                }
+                else{
+                    $this->request->data['Entity']['slug'] = strtolower(Inflector::slug($this->request->data['Entity']['slug'], '-'));
+                }
                 if ($this->request->data['Entity']) {
                     if ($Entity->save($this->request->data)) {
                         $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));

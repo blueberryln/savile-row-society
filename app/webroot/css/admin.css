@@ -1,3 +1,9 @@
+.header{
+    position: relative !important;    
+}
+.content{
+    margin-top: 0 !important;
+}
 table{
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 12px;

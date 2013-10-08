@@ -109,7 +109,10 @@ function addClosetItems(items){
 function getPurchasedItems(){
     $.ajax({
         url: webroot + "outfits/getPurchasedItems/" + lastPurchasedItem,
-        data: {},
+        type: 'POST',
+        data: {
+            'client_id': client_id
+        },
         success: function(data){
             var ret = $.parseJSON(data);
             if(ret["status"] == "ok"){
@@ -135,7 +138,10 @@ function getPurchasedItems(){
 function getLikedItems(lastPurchasedItem){
     $.ajax({
         url: webroot + "outfits/getLikedItems/" + lastLikedItem,
-        data: {},
+        type: 'POST',
+        data: {
+            'client_id': client_id
+        },
         success: function(data){
             var ret = $.parseJSON(data);
             if(ret["status"] == "ok"){

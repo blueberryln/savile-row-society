@@ -15,12 +15,13 @@ class OutfitsController extends AppController {
     }
     
     public function getPurchasedItems($last_purchased_id = null){
-        $user_id = $this->getLoggedUserID();
+        $logged_user_id = $this->getLoggedUserID();
+        $user_id = $this->request->data['client_id'];
         $ret = array();
         if(is_null($last_purchased_id)){
             $ret['status'] = "error";    
         }    
-        else if($user_id && $last_purchased_id >= 0){
+        else if($logged_user_id && $last_purchased_id >= 0 && $user_id){
             $OrderItem = ClassRegistry::init('OrderItem');
             $Entity = ClassRegistry::init('Entity'); 
             $total_purchases = $OrderItem->getTotalUserPurchaseCount($user_id);
@@ -60,12 +61,13 @@ class OutfitsController extends AppController {
     }
     
     public function getLikedItems($last_liked_id = null){
-        $user_id = $this->getLoggedUserID();
+        $logged_user_id = $this->getLoggedUserID();
+        $user_id = $this->request->data['client_id'];
         $ret = array();
         if(is_null($last_liked_id)){
             $ret['status'] = "error";    
         }    
-        else if($user_id && $last_liked_id >= 0){
+        else if($logged_user_id && $last_liked_id >= 0 && $user_id){
             $Wishlist = ClassRegistry::init('Wishlist');
             $Entity = ClassRegistry::init('Entity'); 
             $total_likes = $Wishlist->find('count', array('conditions' => array('Wishlist.user_id'=>$user_id)));

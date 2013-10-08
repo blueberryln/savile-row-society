@@ -15,11 +15,11 @@
                 <fieldset class="fifteen columns">
                     <legend><?php echo __('Product Details'); ?></legend>
                     <?php
-                    echo $this->Form->input('name');
-                    echo $this->Form->input('description', array('rows'=> '5'));
-                    echo $this->Form->input('sku');
-                    echo $this->Form->input('slug');
-                    echo $this->Form->input('price');
+                    echo $this->Form->input('name', array('required'));
+                    echo $this->Form->input('description', array('rows'=> '5', 'required'));
+                    echo $this->Form->input('sku', array('required' => false));
+                    echo $this->Form->input('slug', array('required' => false));
+                    echo $this->Form->input('price', array('required'));
                     echo $this->Form->input('show', array('type' => 'checkbox', 'checked' => 'checked'));
                     ?>
                 </fieldset>
