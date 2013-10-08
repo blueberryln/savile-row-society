@@ -14,8 +14,8 @@
                 <tr>
                		<?php foreach($entities as $item) : ?>
                         <?php
-                            if($item['Entity']['Image']){
-                                $img_src = Router::url('/', true) . 'products/resize/' . $item['Entity']['Image'][0]['name'] . '/110/149'; 
+                            if($item['Image']){
+                                $img_src = Router::url('/', true) . 'products/resize/' . $item['Image'][0]['name'] . '/95/128'; 
                             }
                             else{
                                 $img_src = Router::url('/', true) . "img/image_not_available-small.png";
