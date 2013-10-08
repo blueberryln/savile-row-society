@@ -236,7 +236,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/logo_160px.jpg" alt="Lisa Dolan" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/brands-member-lisa_dolan.jpg" alt="Lisa Dolan" class="fadein-image" />
             </div>
             <div class="ten columns">
                 <div class="name">Lisa Dolan</div>

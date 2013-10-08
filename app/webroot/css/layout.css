@@ -3788,6 +3788,11 @@ div.error{
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     
+    .header .menu li
+     {
+        border-left: none;
+     }
+    
     #membership-table {
         padding:0 !important;
         margin-bottom: 20px;
@@ -3848,9 +3853,18 @@ div.error{
     {
         margin-right:60px;
     }
+    .product-listing .alpha
+    {
+        margin-left: 0;
+    }
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+     
+     .header .menu li
+     {
+        border-left: none;
+     }
      
     .box-modal
     {
@@ -3905,6 +3919,16 @@ div.error{
     }
     .content.inner.booking .book-appointment .datepicker {    
     background: url("../img/btn-book.png") no-repeat scroll 190px center;
+    }
+    
+    .product-listing .alpha
+    {
+        margin-left: 0;
+    }
+    
+    .mycart .link-btn
+    {
+        width: 60%;
     }
 }
 
