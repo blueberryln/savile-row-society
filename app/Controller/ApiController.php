@@ -322,7 +322,20 @@ class ApiController extends AppController {
                     echo json_encode($ret);
                     exit;
                 }
-            } elseif ($user_id && $param && $param == 'remove') {
+            } 
+            else if($user_id && $param && $param == 'update') {
+                $Cart = ClassRegistry::init('Cart');
+                $CartItem = ClassRegistry::init('CartItem');
+                $item_list = $this->request->data['items'];
+                foreach($item_list as $item){
+                    $cur_item = $CartItem->findById($item["item-id"]);
+                    if($cur_item){
+                        $cur_item['CartItem']['quantity'] = $item["quantity"];
+                        $CartItem->save($cur_item);   
+                    }
+                }         
+            }
+            elseif ($user_id && $param && $param == 'remove') {
     
                 if ($this->request->is('ajax')) {
                     // get posted product id

@@ -99,7 +99,7 @@ $(document).ready(function(){
             $("span.err-size-message").fadeOut(300);
         }
         var id = $(this).data("product_id");
-        var quantity = $("#product-quantity").val();
+        var quantity = parseInt($("#product-quantity").val()) + 1;
         var size = $("#product-size").val();
         $.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: quantity, product_size: size },
             function(data) {
@@ -272,19 +272,8 @@ $columns = 'eleven';
                 <?php endif; ?>
             <?php endif; ?>
             <label>Quantity
-                <select id="product-quantity">
-                  <option value="">Select Quantity &nbsp;</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select><br />
+                <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10), 'empty' => "Select Quantity ", 'label' => false, 'div' => false)); ?>
+                <br />
                 <span class="err-message">Please select quantity.</span>
             </label>                                           
             <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>                

@@ -3,8 +3,8 @@
         <!--<h1><?php echo $name; ?></h1>-->
         <div class="error-msg eight columns offset-by-four">
             <div class="error">
-            <h1>404 <span>Error</span></h1>
-            <span>Oops!The page you're looking for cannot be found.</span>
+            <h1>We're Sorry</h1>
+            <span>The page you have requested cannot be found.</span>
             </div>       
         </div>
     </div>

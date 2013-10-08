@@ -35,6 +35,26 @@ $(document).ready(function(){
             }
         );
     });
+    
+    $(".update-quantity").on("click", function(e){
+        e.preventDefault();
+        var cartItems = new Array();
+        $(".cart-row").each(function(){
+            cartItemId = $(this).find(".cart-item-id").val();
+            cartItemQuantity = parseInt($(this).find(".product-quantity").val()) + 1;
+            cartItems.push({"item-id" : cartItemId, "quantity" : cartItemQuantity});    
+        });
+        console.log(cartItems);
+        if(cartItems.length > 0){
+            $.post("' . $this->request->webroot . 'api/cart/update", { items: cartItems },
+                function(data) {
+                    console.log(data);
+                    window.location.reload();
+                }
+            );    
+        }
+        console.log(cartItems);
+    });
 });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -63,7 +83,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                         <?php
                             $total_price = $total_price + $item['Entity']['price'] * $item['CartItem']['quantity'];
                         ?>
-                        <tr>
+                        <tr class="cart-row">
                             <td class="v-top">
                                 <input type="hidden" class="cart-item-id" value="<?php echo $item['CartItem']['id']; ?>">
                                 <a href="" class="remove-cart-item"><img src="app/webroot/img/cross_menue.png" width="10" height="10" /></a>
@@ -99,13 +119,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                     </small>
                                 <?php endif; ?>
                             </td>
-                            <td class="text-center"><?php echo $item['CartItem']['quantity']; ?>
-                                <!--<select id="quantity">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>-->
-                            
+                            <td class="text-center"><?php //echo $item['CartItem']['quantity']; ?>
+                                <?php echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range(1,10), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1)); ?>    
                             </td>
                             <td class="text-center"><?php echo $this->Number->currency($item['Entity']['price']); ?></td>
                             <td class="text-center item-price"><?php echo $this->Number->currency($item['Entity']['price'] * $item['CartItem']['quantity']); ?></td>
