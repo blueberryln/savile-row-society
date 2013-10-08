@@ -10,7 +10,7 @@
             Your personal stylist just designed a new outfit for you. Click the picture to view details.
             <br /><br />
             
-           	<table cellspacing="0" cellpadding="5" border="0" width="100%" style="border: 1px solid #444; border-bottom: none; border-right: none;">
+           	<table cellspacing="0" cellpadding="5" border="1" width="100%">
                 <tr>
                		<?php foreach($entities as $item) : ?>
                         <?php
