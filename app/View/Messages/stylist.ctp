@@ -20,7 +20,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
     <div class="sixteen columns">
         <div class="five columns user-container">
             <div class="img-container">
-                <div class="profile-img">
+                <div class="profile-img text-center">
                 <?php
                     $img = "";
                     if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
@@ -64,11 +64,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 //echo $this->Form->input('', array('options'=>$clients, 'displayField' => 'full_name', '   default'=>'m'));
                 echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client'));
                 /* , 'name' => 'data[Message][user_to_id]' */
-                ?>                
+                ?>          
+                <!--<input type="button" value="Load user conversation" id="loadMessages" />-->
+                <a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>      
                 <!--<input type="button" value="Create Outfit" id="createOutfit"/>-->
                 <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
-                <!--<input type="button" value="Load user conversation" id="loadMessages" />-->
-                <a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>
+                
 
             <textarea class="ten columns alpha omega chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
             <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>

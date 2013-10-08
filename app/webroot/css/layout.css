@@ -1431,7 +1431,6 @@ body{
     -moz-border-radius: 50% 50% 50% 50%;
     -webkit-border-radius: 50% 50% 50% 50%;
     width: 100px;
-    margin-left: 90px;
     margin-top:55px;
     border: solid 2px #E0E0E0;
 }
@@ -3857,6 +3856,10 @@ div.error{
     {
         margin-left: 0;
     }
+    #outfit-box
+    {
+        overflow-y: scroll;
+    }
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
@@ -3930,6 +3933,35 @@ div.error{
     {
         width: 60%;
     }
+    
+    .product-thumbs .thumbs-down
+    {
+        margin-right: 0;
+    }
+    .stylist-talk
+    {
+        margin-left: 0 !important;
+    }
+    .timeline #UserUserToId
+    {
+        float:left;
+        margin-right:0;
+    }
+    div.stylist-talk #loadMessages
+    {
+        float: left;
+        width:150px;
+        margin-right:0;
+    }
+    div.stylist-talk #createOutfit,.timeline #sendMessages
+    {
+        float: left;
+    }
+    
+    #outfit-box
+    {
+        overflow-y: scroll;
+    }
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -3942,4 +3974,16 @@ div.error{
         height:auto !important;
     }
     
+    .flexslider iframe
+    {
+        height:350px;
+    }    
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    
+    .flexslider iframe
+    {
+        height:438px;
+    }      
 }
