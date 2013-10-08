@@ -1328,12 +1328,31 @@ body{
 
 /* Chat / Messages */
 .timeline #user-name{
-    padding-top: 30px;
+    padding-top: 50px;
     text-align: center;
     font-family: Conv_Novecento-Book, sans-serif;
     font-size: 19px;
     text-transform: uppercase;
     color: #AE9B34;
+    border-bottom: 1px solid #DEDEDE;
+    padding-bottom: 20px;
+}
+.timeline .last-user-purchase
+{
+    color: #B5B5B5;
+    text-align: center;
+    border-bottom: 1px solid #DEDEDE;
+    padding:15px 0;
+}
+.timeline .recent-activity
+{
+    color: #B3B3B3;
+    text-align: center;
+    padding:15px 0;
+}
+.timeline .last-user-purchase span, .timeline .recent-activity span
+{
+    color: #444444;
 }
 .timeline .message-images > img{
     max-height: 500px;
