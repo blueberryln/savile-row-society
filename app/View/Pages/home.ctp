@@ -60,7 +60,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             All Members receive an exclusive SRS Membership Card that provides Deluxe Perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
         </p>
     </div>
-    <table id="membership-table" class="membership-table-home fifteen offset-by-one columns" >
+    <table id="membership-table" class="membership-table-home " >
         <thead>
         <th class="mem-top-left" style="background-color: #E6E6E6; width: 40%;">Features</th>
         <th style="background-color: #80A2A1;">Day pass</th>

@@ -1613,9 +1613,9 @@ body{
     margin-bottom: 20px;    
 }
 #membership-table{
-    /*float: left;
+    float: left;
     margin-left: 55px;
-    margin-right: 55px;*/
+    margin-right: 55px;
     border-collapse: separate;
     border-right: 1px solid #DFDFDF !important;
     -moz-border-radius: 0 5px 5px 0;
@@ -2572,7 +2572,11 @@ body{
     font-weight: bold;
     text-transform: uppercase;
     padding: 0 3px;
-    width: 154px;
+    width: 100%;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
 }
 .mini-product-details span{
     display: block;
@@ -3548,24 +3552,28 @@ div#brands ol.brands-logo li
     height:60px;
     width:140px;
     font-size: 14px;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box; 
+    -o-box-sizing:border-box; 
+    box-sizing:border-box;   
 }
 
 div#brands ol.brands-logo li img
 {
-    max-height:58px;
+    max-height:52px;
     max-width:138px;
     vertical-align:middle;
 }
 
 div#brands ol.brands-logo li:hover
 {
-    border:1px solid #AF9A59 !important;
+    border:2px solid #AF9A59 !important;
     background: transparent;
     color: #555555;
 }
 div#brands ol.brands-logo li.ui-selected
 {
-    border:1px solid #AF9A59 !important;
+    border:2px solid #AF9A59 !important;
     background: transparent;
     color: #555555;
 }
@@ -3803,6 +3811,7 @@ div.error{
     #membership-table {
         padding:0 !important;
         margin-bottom: 20px;
+        margin-left:13px;
     }
     
     .my-cart
@@ -3975,7 +3984,7 @@ div.error{
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     
     #membership-table {
-        padding-left:25px !important;
+        padding-left:0px !important;
     }
     .flexslider
     {
@@ -3989,6 +3998,16 @@ div.error{
     .content.inner.booking .book-appointment .datepicker {    
     background: url("../img/btn-book.png") no-repeat scroll 235px center;
     }
+    
+    .preferences #selectable li
+    {
+        width:157px;
+    }
+    
+    .brands-logo
+    {
+        margin-left:30px !important;
+    }
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
@@ -3996,8 +4015,17 @@ div.error{
     .flexslider iframe
     {
         height:438px;
-    }     
+    }   
+      
     .content.inner.booking .book-appointment .datepicker {    
     background: url("../img/btn-book.png") no-repeat scroll 308px center;
     } 
+    .preferences #selectable li
+    {
+        width:205px;
+    }
+    .brands-logo
+    {
+        margin-left:15px !important;
+    }
 }
