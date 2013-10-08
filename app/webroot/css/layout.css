@@ -2861,6 +2861,13 @@ table.cart-checkout
 {
     width:100%;
 }
+table.cart-checkout select
+{
+    border: 1px solid #D9D9D9;
+    color: #444444;
+    padding: 8px 5px;
+    width:100%;
+}
 .cart-checkout tbody td.product-thumb
 {
     vertical-align: top;
@@ -3785,6 +3792,7 @@ div.error{
 }
 
 
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     
     .header .menu li
@@ -3978,6 +3986,9 @@ div.error{
     {
         height:350px;
     }    
+    .content.inner.booking .book-appointment .datepicker {    
+    background: url("../img/btn-book.png") no-repeat scroll 235px center;
+    }
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
@@ -3985,5 +3996,8 @@ div.error{
     .flexslider iframe
     {
         height:438px;
-    }      
+    }     
+    .content.inner.booking .book-appointment .datepicker {    
+    background: url("../img/btn-book.png") no-repeat scroll 308px center;
+    } 
 }
