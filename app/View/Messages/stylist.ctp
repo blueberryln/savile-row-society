@@ -36,17 +36,19 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <div class="info-container">
                 <?php if($client_id) : ?>
                     <div id="user-name"><?php echo $client_user['User']['full_name']; ?></div>
-                    <?php if(isset($last_purchase)) : ?>
                         <div class="last-user-purchase">
-                            Last Purchase: <span>$<?php echo $last_purchase['Order']['total_price']; ?></span> <br />
-                            on <?php echo date('l:jS F Y, h:ia'); ?>
+                            <?php if(isset($last_purchase['Order'])) : ?>
+                                Last Purchase: <span>$<?php echo $last_purchase['Order']['total_price']; ?></span> <br />
+                                on <?php echo date('l:jS F Y, h:ia'); ?>
+                            <?php else : ?>
+                                Last Purchase: <span>No purchases yet.</span>
+                            <?php endif; ?>
                         </div>
                         <div class="recent-activity">
                             Recent Activity (30 Days): <br />
                             -Amount Spent: <span>$<?php echo $recent_purchase; ?></span><br />
                             -Messages Sent: <span><?php echo $recent_messages; ?></span>
                         </div><br />
-                    <?php endif; ?>
                 <?php endif; ?>
             </div>
         
