@@ -273,6 +273,8 @@ class OutfitsController extends AppController {
                 $Message->create();
                 if ($Message->validates()) {
                     $Message->save($data);
+                    $entity_list = array($outfit_id1, $outfit_id2, $outfit_id3, $outfit_id4, $outfit_id5);
+                    $this->sendOutfitNotification($entity_list, $client_id);
                 }
                 
                 $ret['status'] = "ok";
@@ -284,6 +286,25 @@ class OutfitsController extends AppController {
 
         echo json_encode($ret);
         exit;    
+    }
+    
+    public function sendOutfitNotification($entity_list, $client_id){
+        
+        $User = ClassRegistry::init('User');
+        $Entity = ClassRegistry::init('Entity');
+        $entities = $Entity->getProductDetails($entity_list);
+        $client = $User->getByID($client_id);
+        
+        if($entities && $client){
+            $email = new CakeEmail('default');
+            $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+            $email->to($client['User']['email']);
+            $email->subject('Savile Row Society: New Outfit');
+            $email->template('new_outfit');
+            $email->emailFormat('html');
+            $email->viewVars(compact('entities', 'client'));
+            $email->send();
+        }
     }
 }
 

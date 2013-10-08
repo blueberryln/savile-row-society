@@ -20,7 +20,7 @@
             <strong>Shipping Address :</strong> <?php echo $shipped_order['ShippingAddress']['address'] . ', ' . $shipped_order['ShippingAddress']['city'] . ', ' . $shipped_order['ShippingAddress']['state'] . ', ' . $shipped_order['ShippingAddress']['country'] . ' - ' . $shipped_order['ShippingAddress']['zip']; ?>
             <br /><br />
            	<table cellspacing="0" cellpadding="5" border="0" width="100%" style="border: 1px solid #444; border-bottom: none; border-right: none;">
-           		<tr style="background-color:#000; color: #eee; font-weight:normal; font-size: 14px; text-align:center;">
+ 		          <tr style="background-color:#000; color: #eee; font-weight:normal; font-size: 14px; text-align:center;">
            			<th width="20%">&nbsp;</th>
            			<th width="40%">Item Description</th>
            			<th width="20%">Quantity</th>
@@ -43,7 +43,7 @@
                			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $this->Number->format($item['quantity'] * $item['price'], array('places' => 2, 'before' => '$')); ?></td>	
                		</tr>
                 <?php endforeach; ?>
-           		<tr>
+ 		          <tr>
            			<td colspan="3" style="text-align: left; font-weight: bold; background-color: #000; color: #eee; border-bottom: 1px solid #444; border-right: 1px solid #444;">Total</td>
            			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $this->Number->format($shipped_order['Order']['total_price'], array('places' => 2, 'before' => '$')); ?></td>	
            		</tr>
