@@ -9,11 +9,23 @@ $script ='
                 useCSS: false,
                 controlNav: false	            
 	        });
+            $("#lnk-fb-share").on("click", function(e){
+        e.preventDefault(); 
+        window.open(
+          "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href), 
+          "facebook-share-dialog", 
+          "width=626,height=436"); 
+    });
 
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
-$meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. <br/> We\'ll perfect your image from head to toe.';
+$meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. We\'ll perfect your image from head to toe.';
+$img_src = "http://www.savilerowsociety.com/img/logo_220px.jpg";
 $this->Html->meta('description', $meta_description, array('inline' => false));
+$this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Society', ),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:url', 'content' => "http://www.savilerowsociety.com"),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 ?>
 <div class="container content inner home">	
 

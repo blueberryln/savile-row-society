@@ -192,12 +192,23 @@ body{
     border-bottom:1px solid #fff;
 }
 .header .menu li#show-signup a {
-    background: url("../img/fb-in-small.png") no-repeat scroll right center #000000;
+    background: url("../img/facebook-small.jpg") no-repeat scroll right center #000000;
     color: #FFFFFF;
-    padding: 5px 70px 5px 10px;
+    padding: 5px 50px 5px 10px;
+    font-size: 13px;
+}
+.header .menu li a#lnk-fb-share {
+    background: url("../img/facebook-small.jpg") no-repeat scroll right center #000000;
+    color: #FFFFFF;
+    padding: 5px 50px 5px 10px;
+    font-size: 13px;
+}
+.header .menu li a#lnk-fb-share
+{
+    border-bottom:none;
 }
 .header .menu li#show-signup a:hover {
-    background-color: #917A49;
+    border-bottom: none;
 }
 .header .menu .linkedin-signup a:hover{
     border-bottom: none;
@@ -4007,6 +4018,24 @@ div.error{
     .brands-logo
     {
         margin-left:30px !important;
+    }
+    
+    .btn-user-closet, .btn-srs-closet
+    {
+        float:none !important;
+        width:100%;
+         -moz-box-sizing:border-box; 
+        -webkit-box-sizing:border-box;
+        -o-box-sizing:border-box;
+        box-sizing:border-box;
+    }
+    .btn-user-closet
+    {
+        margin-bottom:5px;
+    }
+    .chat-msg-box .mini-product-details
+    {
+        width:100% !important;
     }
 }
 

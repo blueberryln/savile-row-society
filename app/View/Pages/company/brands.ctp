@@ -290,7 +290,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </p>
                     <p>Not only has Donny been on the front line building fashion functional closets but he has also been driving retail business’s to live up to his expectations of excellence. </p>
                     <p>Owner of The Independent, a men’s specialty store with three locations in Arkansas; he is defying the old retail structures to refine tradition to work in today’s world and fit into our lifestyles.   </p>
-                    <a href="#idependent">Read more...</a>
+                    <!--<a href="#idependent">Read more...</a>-->
                     
                     <div class="ten columns alpha omega">
                         <h3>Fast facts</h3>
@@ -372,7 +372,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <strong>What three items could you not live without? </strong>
                         <em>A grill, my iPOD and red wine</em>
                     </p>
-                    <a href="#idependent">Read more...</a>
+                    <!--<a href="#idependent">Read more...</a>-->
                     <div class="ten columns alpha omega">
                         <h3>Fast facts</h3>
                         <p>

@@ -1,4 +1,3 @@
-
 <div class="header">
 
     <div class="container">
@@ -66,18 +65,19 @@
                     <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Chat</a></li>
                 <?php endif; ?>
                 
+                <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
+                <li>
+                    <a id="lnk-fb-share" href=""  data-ref="closet" >Share</a>
+                </li> 
+                <?php endif; ?>
 
             </ul>
         </div>
         <div id="signup-box-wrapper">
             <div id="signup-box" >
                 <div>
-
                     <div style=" height: 60px;"><a href="#" id="closeSignUp"><i class="cancel" style="float:right;"></i></a></div>
                 </div>
-
-
-
                 <a class="signin-social" href="<?php echo $this->request->webroot; ?>connect/linkedin">Try us on with LinkedIn <img src="<?php echo $this->request->webroot; ?>img/linkedin-small-logo.png" /></a>
                 <a class="signin-social" href="<?php echo $this->request->webroot; ?>connect/facebook">Try us on with Facebook <img src="<?php echo $this->request->webroot; ?>img/facebook-small-logo.png" /></a>
 
