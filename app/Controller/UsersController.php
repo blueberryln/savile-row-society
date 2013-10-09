@@ -728,7 +728,7 @@ class UsersController extends AppController {
         $this->layout = 'admin';
         $this->isAdmin();
 
-        $this->User->recursive = 0;
+        //$this->User->recursive = 0;
         $find_array = array(
             'limit' => 20,
             'joins' => array(
@@ -739,19 +739,26 @@ class UsersController extends AppController {
                         'User.id = Message.user_from_id'
                     )
                 ),
+            ),
+            'group' => array('User.id'),
+            'fields' => array('User.*', 'MAX(`Message`.created) AS message_date', 'SUM(IF(`Message`.is_read = 0, 1, 0)) AS unread'),
+            'order' => array('unread' => 'desc', 'message_date' => 'desc'),
+        );
+        $this->Paginator->settings = array(
+            'fields' => array('User.*', 'MAX(`Message`.created) AS message_date', 'SUM(IF(`Message`.is_read = 0, 1, 0)) AS unread', 'IFNULL(Message.is_read, 0)'),
+            'joins' => array(
                 array('table' => 'messages',
-                    'alias' => 'Messagemax',
+                    'alias' => 'Message',
                     'type' => 'LEFT',
                     'conditions' => array(
-                        'Message.id = Messagemax.id',
-                        'Message.created = MAX(Messagemax.created)'
-                    ),
-                    'group' => array('Messagemax.id')
+                        'User.id = Message.user_from_id'
+                    )
                 ),
             ),
-        );
-        
-        $this->Paginator->settings = $find_array;
+            'limit' => 20,
+            'group' => array('User.id'),
+            'order' => array('Message.is_read' => 'DESC'),
+        );;
         //$data = $this->Paginator->paginate($this->User);
         
         $this->set('users', $this->Paginator->paginate($this->User));

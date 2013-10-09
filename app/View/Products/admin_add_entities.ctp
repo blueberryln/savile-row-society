@@ -1,3 +1,15 @@
+<?php
+$script = '
+$(document).ready(function(){
+    $("#add-more-image").click(function(e) {
+        e.preventDefault();
+        $(this).before("<input type=\"file\" name=\"data[Image][name][]\"><br><br>");
+    });
+});
+';
+
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+?>
 <div class="container content inner">
     <div class="sixteen columns text-center">
         <h1><?php echo __('New Product Variant'); ?></h1>
@@ -29,7 +41,9 @@
                 </fieldset>
                 <fieldset class="fifteen columns">
                     <legend><?php echo __('Images'); ?></legend>
-                    Save the product variant first, to add images.
+                    <?php echo $this->Form->input('image', array('type' => 'file', 'label' => 'Attach image', 'name' => 'data[Image][name][]', 'id' => false, 'div' => false)); ?>
+                    <br /><br />
+                    <a href="#" id="add-more-image" class="btn">Add More Image</a>
                 </fieldset>
                 <div class="clearfix"></div>
                 <div class="text-center">

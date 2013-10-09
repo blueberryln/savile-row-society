@@ -130,6 +130,13 @@ class ProductsController extends AppController {
                     if($result = $Entity->save($data)){
                         $product_entity_id = $result['Entity']['id'];
                         $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
+                        
+                        //Add each image
+                        foreach($this->request->data['Image']['name'] as $request_image){
+                            if ($request_image && $request_image['size'] > 0) {  
+                                $this->add_image($request_image, $product_entity_id);    
+                            }
+                        }
                         $this->redirect('entities/edit/' . $product_entity_id);
                     }
                     else{
@@ -365,7 +372,7 @@ class ProductsController extends AppController {
             $this->render('admin_entity_image');
         }
         else if($action == 'remove'){
-
+            
             $this->autolayout = false;
             $this->autoRender = false;
             $image_id = $id;
@@ -427,6 +434,46 @@ class ProductsController extends AppController {
 
         $this->set(compact('userTypes', 'categories', 'brands', 'attached', 'properties', 'images_list', 'id'));
     }*/
+    
+    public function add_image($request_image, $entity_id){
+        $Image = ClassRegistry::init('Image');
+                
+        $img = null;
+        $img_type = '';
+        $img_size = '';
+        
+        $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+                    
+        if (!in_array($request_image['type'], $allowed)) {
+            
+        } else if ($request_image['size'] > 3145728) {
+            
+        } else {
+            $rand = substr(uniqid ('', true), -7);
+            $img = $entity_id . '_' . $rand . '_' . $request_image['name'];
+            $img_type = $request_image['type'];
+            $img_size = $request_image['size'];
+            move_uploaded_file($request_image['tmp_name'], APP . DS . 'webroot' . DS . 'files' . DS . 'products' . DS . $img);
+        }
+        
+        // save image
+        if ($img) {
+            // init
+            $file = array();
+            $file['Image']['product_entity_id'] = $entity_id;
+            $file['Image']['name'] = $img;
+            $file['Image']['type'] = $img_type;
+            $file['Image']['size'] = $img_size;
+            
+            
+
+            $Image->create();
+            if ($Image->save($file)) {
+                    
+            }
+        }    
+        
+    }
 
     /**
      * admin_delete method
