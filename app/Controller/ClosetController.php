@@ -199,7 +199,6 @@ class ClosetController extends AppController {
         $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used'));
 
         return $data;
-
     }
 
     /**

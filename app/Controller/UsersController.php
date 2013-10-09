@@ -10,6 +10,8 @@ App::uses('CakeEmail', 'Network/Email');
  * @property User $User
  */
 class UsersController extends AppController {
+    public $components = array('Paginator');
+    public $helpers = array('Paginator');
 
     /**
      * Sign in
@@ -727,7 +729,32 @@ class UsersController extends AppController {
         $this->isAdmin();
 
         $this->User->recursive = 0;
-        $this->set('users', $this->paginate());
+        $find_array = array(
+            'limit' => 20,
+            'joins' => array(
+                array('table' => 'messages',
+                    'alias' => 'Message',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'User.id = Message.user_from_id'
+                    )
+                ),
+                array('table' => 'messages',
+                    'alias' => 'Messagemax',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Message.id = Messagemax.id',
+                        'Message.created = MAX(Messagemax.created)'
+                    ),
+                    'group' => array('Messagemax.id')
+                ),
+            ),
+        );
+        
+        $this->Paginator->settings = $find_array;
+        //$data = $this->Paginator->paginate($this->User);
+        
+        $this->set('users', $this->Paginator->paginate($this->User));
     }
 
     /**
