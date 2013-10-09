@@ -127,20 +127,27 @@ class UsersController extends AppController {
         }
         // get data from request
         $data = $this->request->data;
-        
-        // get actual array or string from request
-        $data_arr = $data['UserPreference']['Style'];
-        $wear_suit = $data['UserPreference']['wear_suit'];
-        $preferences["UserPreference"]["Style"] = $data_arr;
-        $preferences["UserPreference"]["wear_suit"] = $wear_suit;
-        $serialized_preferences = serialize($preferences);
-        $user['User']['preferences'] = $serialized_preferences;
-        if ($results = $this->User->save($user)) {
-            $this->Session->write('user', $results);
-            $this->redirect('register/size/' . $user['User']['id']);
-        } else {
-            // TODO: implement error handling
+        if(isset($data['UserPreference']['Style']) || isset($data['UserPreference']['wear_suit'])){
+            if(isset($data['UserPreference']['Style'])){
+                $data_arr = $data['UserPreference']['Style'];  
+                $preferences["UserPreference"]["Style"] = $data_arr;  
+            }
+            if(isset($data['UserPreference']['wear_suit'])){
+                $wear_suit = $data['UserPreference']['wear_suit'];
+                $preferences["UserPreference"]["wear_suit"] = $wear_suit;        
+            }
+            
+            $serialized_preferences = serialize($preferences);
+            $user['User']['preferences'] = $serialized_preferences;
+            if ($results = $this->User->save($user)) {
+                $this->Session->write('user', $results);
+                
+            } else {
+                // TODO: implement error handling
+            }
+            
         }
+        $this->redirect('register/size/' . $user['User']['id']);
     }
 
     /*
@@ -745,7 +752,7 @@ class UsersController extends AppController {
             'order' => array('unread' => 'desc', 'message_date' => 'desc'),
         );
         $this->Paginator->settings = array(
-            'fields' => array('User.*', 'MAX(`Message`.created) AS message_date', 'SUM(IF(`Message`.is_read = 0, 1, 0)) AS unread'),
+            'fields' => array('User.*'),
             'joins' => array(
                 array('table' => 'messages',
                     'alias' => 'Message',
@@ -757,8 +764,8 @@ class UsersController extends AppController {
             ),
             'limit' => 20,
             'group' => array('User.id'),
-            'order' => array('CASE WHEN Message.is_read IS NULL THEN 2 END', 'Message.is_read' => 'ASC', 'Message.created' => 'DESC'),
-        );;
+            'order' => array('ISNULL(Message.is_read)' => 'asc','Message.is_read' => 'asc', 'Message.created' => 'asc'),
+        );
         //$data = $this->Paginator->paginate($this->User);
         
         $this->set('users', $this->Paginator->paginate($this->User));
