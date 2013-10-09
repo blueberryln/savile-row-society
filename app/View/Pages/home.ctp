@@ -20,7 +20,7 @@ $script ='
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. We\'ll perfect your image from head to toe.';
-$img_src = "http://www.savilerowsociety.com/img/logo_220px.jpg";
+$img_src = "http://www.savilerowsociety.com/img/SRS_600.png";
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Society', ),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));

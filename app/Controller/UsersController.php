@@ -745,7 +745,7 @@ class UsersController extends AppController {
             'order' => array('unread' => 'desc', 'message_date' => 'desc'),
         );
         $this->Paginator->settings = array(
-            'fields' => array('User.*', 'MAX(`Message`.created) AS message_date', 'SUM(IF(`Message`.is_read = 0, 1, 0)) AS unread', 'IFNULL(Message.is_read, 0)'),
+            'fields' => array('User.*', 'MAX(`Message`.created) AS message_date', 'SUM(IF(`Message`.is_read = 0, 1, 0)) AS unread'),
             'joins' => array(
                 array('table' => 'messages',
                     'alias' => 'Message',
@@ -757,7 +757,7 @@ class UsersController extends AppController {
             ),
             'limit' => 20,
             'group' => array('User.id'),
-            'order' => array('Message.is_read' => 'DESC'),
+            'order' => array('CASE WHEN Message.is_read IS NULL THEN 2 END', 'Message.is_read' => 'ASC', 'Message.created' => 'DESC'),
         );;
         //$data = $this->Paginator->paginate($this->User);
         
