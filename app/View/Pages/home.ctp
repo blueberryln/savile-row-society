@@ -24,7 +24,7 @@ $img_src = "http://www.savilerowsociety.com/img/SRS_600.png";
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Society', ),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
-$this->Html->meta(array('property'=> 'og:url', 'content' => "http://www.savilerowsociety.com"),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:url', 'content' => "http://www.savilerowsociety.com/development"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 ?>
 <div class="container content inner home">	
