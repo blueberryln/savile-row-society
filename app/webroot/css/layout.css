@@ -884,10 +884,15 @@ body{
 }
 .content.home h2 {
     color: #8D8D8D;
-    font-family: 'Conv_Novecento-Book',Sans-Serif;
-    font-size: 17px;
+    font-family: 'Droid Serif',serif;
+    font-size: 18px;
     line-height: 26px;
-    text-transform: uppercase;
+    text-align: justify;
+    font-weight: normal;
+    margin-top:24px;
+}
+.content.home h2 p {
+    line-height: 20px;
 }
 .content.home .social-bar {
     background-color: #D8D8D8;
@@ -923,7 +928,7 @@ body{
 .membership-flow{
     width: 90%;
     text-align: center;
-    margin: 20px 0 30px 50px;
+    margin:30px 0 30px 50px;
 }
 
 /* Booking */
@@ -3814,6 +3819,10 @@ div.error{
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     
+     .membership-flow
+     {
+        margin-bottom:10px !important;
+     }
     .header .menu li
      {
         border-left: none;
@@ -3892,6 +3901,11 @@ div.error{
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
      
+     .membership-flow
+     {
+        margin-bottom:10px !important;
+     }
+    
      .header .menu li
      {
         border-left: none;

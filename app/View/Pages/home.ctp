@@ -70,7 +70,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         </p>
         <p>
             All Members receive an exclusive SRS Membership Card that provides Deluxe Perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
-        </p>
+        </p><br />
     </div>
     <table id="membership-table" class="membership-table-home " >
         <thead>

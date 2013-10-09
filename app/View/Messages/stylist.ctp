@@ -196,6 +196,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <a href="" id="add-outfit" class="link-btn black-btn">Suggest the Outfit</a>
             </div>
         </div>
+            <div class="clear"></div>
     </div>
     <div class="user-closet-cont hide">
         <a class="user-closet-close" href=""></a>
