@@ -57,6 +57,17 @@ $script = ' var size = ' . json_encode($size) . '; ' .
                 $(".chest-size").css({"display" : "block"});
                 $("#chestSize").val(size.chest_size); 
            }
+           
+           if(size.body_shape){
+                var selectedId = getIdFromString(size.body_shape);
+                if(selectedId != 0){
+                    var liCondition = \'li[data-id = "\' + selectedId + \'"]\';
+                    var inputCondition = "#" + selectedId;
+                
+                    $(liCondition).addClass("selected");
+                    $(inputCondition).prop("checked", true);
+                }
+            }
 
            //var denimTypeSelector = "li:contains(\"" + size.denim_kind + "\")";
 //           $(denimTypeSelector).attr("class", "ui-state-default ui-selectee ui-selected");
@@ -82,16 +93,6 @@ $script = ' var size = ' . json_encode($size) . '; ' .
                 default: return 0;
             }
         }
-
-        var selectedId = getIdFromString(size.body_shape);
-        if(selectedId != 0){
-            var liCondition = \'li[data-id = "\' + selectedId + \'"]\';
-            var inputCondition = "#" + selectedId;
-
-            $(liCondition).addClass("selected");
-            $(inputCondition).prop("checked", true);
-        }
-
 
          $("span.size-chart").click(function(){
             if($("div#size-chart-box").is(":visible")) {
