@@ -389,27 +389,22 @@ class ApiController extends AppController {
         $this->autolayout = false;
         $this->autoRender = false;
         
-        $this->isLogged();
         $user_id = $this->getLoggedUserID();
         $Entity = ClassRegistry::init('Entity');
         $ret = array();
-        if ($user_id){
             
-            $category_id = $this->request->data['categoryId'];
-            $product_id = $this->request->data['productId'];
-            
-            $entity = $Entity->getSimilarProduct($category_id, $product_id, $user_id);
-            if($entity){
-                $ret['status'] = 'ok';
-                $ret['product'] = $entity;   
-            }
-            else{
-                $ret['status'] = 'no-rows';
-            }
+        $category_id = $this->request->data['categoryId'];
+        $product_id = $this->request->data['productId'];
+        
+        $entity = $Entity->getSimilarProduct($category_id, $product_id, $user_id);
+        if($entity){
+            $ret['status'] = 'ok';
+            $ret['product'] = $entity;   
         }
         else{
-            $ret['status'] = 'error';
+            $ret['status'] = 'no-rows';
         }
+            
         echo json_encode($ret);
         exit;
     }

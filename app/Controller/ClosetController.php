@@ -107,7 +107,7 @@ class ClosetController extends AppController {
             'contain' => array('Image', 'Color'),
             'conditions' => array(
                 'Entity.show' => true, 'Category.category_id' => $category_ids, 
-                'Detail.show' => true, 'Detail.stock >' => 0,
+                //'Detail.show' => true, 'Detail.stock >' => 0,
             ),
             'group' => array('Entity.id'),
             'joins' => array(
@@ -119,13 +119,13 @@ class ClosetController extends AppController {
                     )
                 ),
                 
-                array('table' => 'products_details',
-                    'alias' => 'Detail',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Detail.product_entity_id = Entity.id',
-                    )
-                ),
+                //array('table' => 'products_details',
+//                    'alias' => 'Detail',
+//                    'type' => 'INNER',
+//                    'conditions' => array(
+//                        'Detail.product_entity_id = Entity.id',
+//                    )
+//                ),
             ),
             'fields' => array(
                 'Entity.*'
@@ -188,10 +188,10 @@ class ClosetController extends AppController {
         
 
         // Sub query to check stock using the products_details table and the items already added to valid carts
-        $sub_query = new stdClass();
-        $sub_query->type = "expression";
-        $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
-        $find_array['conditions'][] = $sub_query;
+        //$sub_query = new stdClass();
+//        $sub_query->type = "expression";
+//        $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
+//        $find_array['conditions'][] = $sub_query;
 
         $this->Paginator->settings = $find_array;
         $data = $this->Paginator->paginate($Entity);
@@ -552,7 +552,9 @@ class ClosetController extends AppController {
                 
                 $this->sendConfirmationEmail($order_id);
                 
-                $this->reduceStock($cart_list);
+                //Reduce the item stock
+                //$this->reduceStock($cart_list);
+                
                 $Cart->remove($cart_id);
                 $this->removeLikes($entity_list, $user_id);
 
@@ -586,14 +588,19 @@ class ClosetController extends AppController {
             $shipped_order = $Order->find('first', $options);
             
             if($shipped_order['User']['email']){
-                $email = new CakeEmail('default');
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                $email->to($shipped_order['User']['email']);
-                $email->subject('Your order transaction is complete.');
-                $email->template('order_confirmation');
-                $email->emailFormat('html');
-                $email->viewVars(compact('shipped_order'));
-                $email->send();
+                try{
+                    $email = new CakeEmail('default');
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->to($shipped_order['User']['email']);
+                    $email->subject('Your order transaction is complete.');
+                    $email->template('order_confirmation');
+                    $email->emailFormat('html');
+                    $email->viewVars(compact('shipped_order'));
+                    $email->send();
+                }
+                catch(Exception $e){
+                    
+                }
             };
         } 
     }
@@ -769,6 +776,34 @@ class ClosetController extends AppController {
     function removeLikes($entity_list, $user_id){
         $Wishlist = ClassRegistry::init('Wishlist');
         $Wishlist->remove($user_id, $entity_list);
+    }
+    
+    public function validatecard(){
+        $this->autoLayout = false;
+        $user_id = $this->getLoggedUserID();
+        $ret = array();
+        if($user_id && ($this->request->is('ajax') || $this->request->is('post'))){
+            // Arrange transaction data
+            $user_transaction_detail = array();
+            $user_transaction_detail['CreditCard']['cardnumber'] = $this->request->data['cardNumber'];
+            $user_transaction_detail['CreditCard']['cardcode'] = $this->request->data['cardCode'];
+            
+            // Validate Credit Card Info
+            $CreditCard = ClassRegistry::init('CreditCard');
+            $CreditCard->set($user_transaction_detail);
+            if($CreditCard->validates()){
+                $ret['status'] = "ok";
+            }
+            else{
+                $ret['status'] = "error";
+                $ret['errors'] = $CreditCard->validationErrors;
+            }
+        }
+        else{
+            $ret['status'] = "error";
+        }
+        echo json_encode($ret);
+        exit;
     }
     
     

@@ -312,12 +312,14 @@ class UsersController extends AppController {
 
         $this->set(compact('heard_from_options', 'user_id'));
         $user = null;
-        
-        if($user_id){
-            $user = $this->getEditingUser($user_id);
-        }
-        else{
-            $user = $this->getEditingUser();
+        $register_cases = array('saveStyle', 'saveContact', 'saveSize', 'saveBrands', 'saveAbout', 'style', 'size', 'brands', 'about', 'last-step');
+        if(in_array($step, $register_cases)){
+            if($user_id){
+                $user = $this->getEditingUser($user_id);
+            }
+            else{
+                $user = $this->getEditingUser();
+            }
         }
         
         // extract preferences
@@ -418,7 +420,17 @@ class UsersController extends AppController {
         unset($user['User']['refer_url']);
         
         if ($this->User->validates()) {
-
+            $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
+            if($registered){
+                if($this->Session->check('completeProfile')){
+                    $this->Session->delete('completeProfile');    
+                }
+                
+                $this->Session->setFlash(__('You are already regietered. Please sign in.'), 'flash');
+                $this->redirect('/');
+                exit;    
+            }
+            
             $this->User->create();
             // hash password
             if (!empty($user['User']['password'])) {

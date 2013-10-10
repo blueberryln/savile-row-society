@@ -38,7 +38,7 @@ $script = '
     $("#confirm-payment").on("click", function(e){
         e.preventDefault();
         var isError = false;
-
+        $this = $(this);
         //Validate all required fields for empty values
         $(":input[required=\"\"], :input[required]").each(function(){
             if($(this).val() == ""){
@@ -62,43 +62,65 @@ $script = '
             isError = true;
         }
         
-        var d = new Date();
-        var curMonth = d.getMonth();
-        var curYear = d.getFullYear();
-        curMonth = curMonth +1;
+        $.ajax({
+            url: "' . $this->webroot . 'closet/validatecard",
+            type: "POST",
+            data: {
+                cardNumber: $("#billCardNumber").val(),
+                cardCode: $("#billCardCode").val(),    
+            },
+            success: function(data){
+                var ret = $.parseJSON(data);
+                if(ret["status"] == "error"){
+                    if(ret["errors"]["cardnumber"]){
+                        $("#billCardNumber").addClass("input-error");
+                        isError = true;        
+                    }
+                    if(ret["errors"]["cardcode"]){
+                        $("#billCardCode").addClass("input-error");
+                        isError = true;        
+                    }
+                }
+                var d = new Date();
+                var curMonth = d.getMonth();
+                var curYear = d.getFullYear();
+                curMonth = curMonth +1;
+                
+                //Validate card expiry date
+                if($("#billingExpYear").val() == curYear && $("#billingExpMonth").val() < curMonth){
+                    $("#billingExpMonth").addClass("input-error");
+                    isError = true;    
+                }
+                
+                //Scroll to section where there is error.
+                if(!isError){
+                    $this.closest("form").submit();   
+                }
+                else{
+                    var cardErrorElement = $("#card-data").find(".input-error");
+                    if(cardErrorElement.length){
+                        cardErrorElement.first().focus();
+                        goToByScroll("card-data");
+                        return false;
+                    }
         
-        //Validate card expiry date
-        if($("#billingExpYear").val() == curYear && $("#billingExpMonth").val() < curMonth){
-            $("#billingExpMonth").addClass("input-error");
-            isError = true;    
-        }
+                    var billingErrorElement = $("#billing-data").find(".input-error");
+                    if(billingErrorElement.length){
+                        billingErrorElement.first().focus();
+                        goToByScroll("billing-data");
+                        return false;
+                    }
         
-        //Scroll to section where there is error.
-        if(!isError){
-            $(this).closest("form").submit();   
-        }
-        else{
-            var cardErrorElement = $("#card-data").find(".input-error");
-            if(cardErrorElement.length){
-                cardErrorElement.first().focus();
-                goToByScroll("card-data");
-                return false;
+                    var shippingErrorElement = $("#shipping-data").find(".input-error");
+                    if(shippingErrorElement.length){
+                        shippingErrorElement.first().focus();
+                        goToByScroll("shipping-data");
+                        return false;
+                    }
+                }
+                
             }
-
-            var billingErrorElement = $("#billing-data").find(".input-error");
-            if(billingErrorElement.length){
-                billingErrorElement.first().focus();
-                goToByScroll("billing-data");
-                return false;
-            }
-
-            var shippingErrorElement = $("#shipping-data").find(".input-error");
-            if(shippingErrorElement.length){
-                shippingErrorElement.first().focus();
-                goToByScroll("shipping-data");
-                return false;
-            }
-        }
+        });
     });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));

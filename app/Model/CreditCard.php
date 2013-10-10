@@ -16,7 +16,7 @@ class CreditCard extends AppModel {
      */
     public $validate = array(
         'cardnumber' => array(
-            'rule'    => array('cc', 'fast', false, null),
+            'rule'    => array('cc', array('visa', 'maestro'), false, null),
         ),
         'cardcode' => array(
             'length' => array(

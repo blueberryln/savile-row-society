@@ -369,6 +369,10 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     e.preventDefault();
                     $.unblockUI();
                 });
+                $('#signup-popup, #signin-popup').on('click', '.notification-close', function(e){
+                    e.preventDefault();
+                    $.unblockUI();
+                });
                 
                 //$('#signin-popup').on('click', '.signin-btn', function(e){
 //                   e.preventDefault();

@@ -97,18 +97,22 @@ $(document).ready(function(){
                     productBlock.find(".product-name").text(entity["Entity"]["name"]);  
                     productBlock.find(".product-price").text(entity["Entity"]["price"]);
                     productBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'product/" + entity["Entity"]["id"] + "/" + entity["Entity"]["slug"]});
-                    if(entity["Wishlist"]["id"]){
-                        productBlock.find(".thumbs-up").addClass("liked");
+                    
+                    if(entity["Wishlist"]){
+                        if(entity["Wishlist"]["id"]){
+                            productBlock.find(".thumbs-up").addClass("liked");
+                        }
+                        else{
+                            productBlock.find(".thumbs-up").removeClass("liked");
+                        }
+                        if(entity["Dislike"]["id"]){
+                            productBlock.find(".thumbs-down").addClass("disliked");
+                        }
+                        else{
+                            productBlock.find(".thumbs-down").removeClass("disliked");
+                        }
                     }
-                    else{
-                        productBlock.find(".thumbs-up").removeClass("liked");
-                    }
-                    if(entity["Dislike"]["id"]){
-                        productBlock.find(".thumbs-down").addClass("disliked");
-                    }
-                    else{
-                        productBlock.find(".thumbs-down").removeClass("disliked");
-                    }
+                    
                     var productImage = productBlock.find(".product-image");
                     productImage.slideUp(300, function(){  
                         if(typeof(entity["Image"]) != "undefined" && entity["Image"].length > 0){
