@@ -38,6 +38,7 @@
     height: 100%;
     background-color: #fff;
     z-index: 10;
+    top: 0;
 }
 .srs-closet-cont{
     position: absolute;
@@ -45,6 +46,7 @@
     height: 100%;
     background-color: #fff;
     z-index: 10;
+    top: 0;
 }
 .srs-closet-cont .product-top-offset{
     padding: 5px 0 10px;

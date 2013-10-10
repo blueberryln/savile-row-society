@@ -312,12 +312,14 @@ class UsersController extends AppController {
 
         $this->set(compact('heard_from_options', 'user_id'));
         $user = null;
+        
         if($user_id){
-            $user = $this->User->getByID($user_id);
+            $user = $this->getEditingUser($user_id);
         }
         else{
             $user = $this->getEditingUser();
         }
+        
         // extract preferences
         $preferences = NULL;
         if ($user && $user['User']['preferences']) {
@@ -827,13 +829,31 @@ class UsersController extends AppController {
      * Return logged in user or..
      * if come to reg pages from user administration then return user that was choosen
      */
-    function getEditingUser(){
-        if(isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id']){
+    function getEditingUser($user_id = null){
+        $this->isLogged();
+        $logged_user = $this->getLoggedUser();
+        if($user_id || (isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id'])){
+            if(isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id']){
+                $user_id =  $this->request->data['User']['id'];    
+            }    
+            
+            $editing_user = $this->User->getByID($user_id);
+            
+            //Check if the logged user is admin or the stylist for the editing user; otherwise redirect to home
+            if($logged_user['User']['is_admin'] == 1 || ($logged_user['User']['is_stylist'] == 1 && $logged_user['User']['id'] == $editing_user['User']['stylist_id'])){
+                return $editing_user;
+            }
+            else{
+                $this->redirect('/');
+                exit();
+            }
+        }
+        else if(isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id']){
             $user_id =  $this->request->data['User']['id'];
             return $this->User->getByID($user_id);
         }
         else{
-            return $this->getLoggedUser();
+            return $logged_user;
         }
     }
 
