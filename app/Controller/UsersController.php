@@ -731,44 +731,26 @@ class UsersController extends AppController {
      * @return void
      */
     public function admin_index() {
-
+        // Default order: Users to be listed ranked by uresers with uread messages first and date of last message sent.
         $this->layout = 'admin';
         $this->isAdmin();
-
-        //$this->User->recursive = 0;
-        $find_array = array(
-            'limit' => 20,
-            'joins' => array(
-                array('table' => 'messages',
-                    'alias' => 'Message',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'User.id = Message.user_from_id'
-                    )
-                ),
-            ),
-            'group' => array('User.id'),
-            'fields' => array('User.*', 'MAX(`Message`.created) AS message_date', 'SUM(IF(`Message`.is_read = 0, 1, 0)) AS unread'),
-            'order' => array('unread' => 'desc', 'message_date' => 'desc'),
-        );
         $this->Paginator->settings = array(
-            'fields' => array('User.*'),
-            'joins' => array(
-                array('table' => 'messages',
-                    'alias' => 'Message',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'User.id = Message.user_from_id'
-                    )
+                'fields' => array('User.*'),
+                'joins' => array(
+                    array('table' => 'messages',
+                        'alias' => 'Message',
+                        'type' => 'LEFT',
+                        'conditions' => array(
+                            'User.id = Message.user_from_id'
+                        )
+                    ),
                 ),
-            ),
-            'limit' => 20,
-            'group' => array('User.id'),
-            'order' => array('ISNULL(Message.is_read)' => 'asc','Message.is_read' => 'asc', 'Message.created' => 'asc'),
+                'limit' => 20,
+                'group' => array('User.id'),
+                'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
         );
-        //$data = $this->Paginator->paginate($this->User);
         
-        $this->set('users', $this->Paginator->paginate($this->User));
+        $this->set('users', $this->Paginator->paginate());
     }
 
     /**

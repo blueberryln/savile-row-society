@@ -15,7 +15,10 @@ class Message extends AppModel {
  */
 	public $displayField = 'body';
         
-        
+    public $virtualFields = array(
+        'unread' => "SUM(IF(`Message`.is_read = 0, 1, 0))",
+        'message_date' => "MAX(`Message`.created)",
+    );
 
 /**
  * Validation rules
