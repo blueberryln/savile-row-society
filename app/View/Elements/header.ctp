@@ -67,7 +67,7 @@
                 
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
                 <li class="last">
-                    <span>Share:</span><a id="lnk-fb-share" href=""  data-ref="closet"></a>
+                    <span>Share:</span><a id="lnk-fb-share" href=""  data-ref="closet">share</a>
                 </li> 
                 <?php endif; ?>
 

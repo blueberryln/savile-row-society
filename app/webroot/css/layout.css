@@ -198,10 +198,10 @@ body{
     font-size: 13px;
 }
 .header .menu li a#lnk-fb-share {
-    background: url("../img/fb-share.png") no-repeat scroll right center;
-    color: #FFFFFF;
-    margin-left: 5px;
-    padding: 5px 30px 5px 0;
+    background: url("../img/fb-share.png") no-repeat scroll center;
+    color: transparent;
+    margin-left: 0;
+    padding: 5px 0 5px 0;
     font-size: 13px;
 }
 .header .menu li span
