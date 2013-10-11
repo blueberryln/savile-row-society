@@ -112,6 +112,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <div class="clearfix"></div>
             <div class="text-center">
                 <?php echo $this->Form->end(__('Update')); ?>
+                <form method="post" action="<?php echo $this->webroot; ?>admin/products/entities/add/<?php echo $product_id; ?>/<?php echo $this->request->data['Entity']['id']; ?>">
+                    <div class="submit"><input type="submit" value="Copy This Product" /></div>
+                </form>
                 <a href="<?php echo $this->webroot; ?>admin/products/entities/add/<?php echo $product_id; ?>" id="upload-image" class="btn">Add Product Variant</a> 
                 <a href="<?php echo $this->webroot; ?>admin/products/edit/<?php echo $product_id; ?>" id="upload-image" class="btn">Back to parent type page</a> 
             </div>

@@ -91,7 +91,7 @@ class ProductsController extends AppController {
      * 
      * @param type $id
      */
-    public function admin_entities($action = null, $id = null) {
+    public function admin_entities($action = null, $id = null, $copy_id = null) {
         if($action == "add"){
             // init
             $Entity = ClassRegistry::init('Entity');
@@ -145,6 +145,13 @@ class ProductsController extends AppController {
                 }
             }
             
+            if($copy_id && $Entity->exists($copy_id)){
+                $Entity->recursive = 1;
+                $options = array('conditions' => array('Entity.' . $Entity->primaryKey => $copy_id));
+                $this->request->data = $Entity->find('first', $options); 
+                unset($this->request->data['Entity']['sku']);    
+                unset($this->request->data['Entity']['slug']);
+            }
             // set to view
             $this->set(compact('colors', 'id'));
             $this->render('admin_add_entities');
