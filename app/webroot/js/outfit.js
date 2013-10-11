@@ -217,7 +217,7 @@ $(document).ready(function(){
     $("#createOutfit").on("click", function(e){
         e.preventDefault(); 
         if(client_id != 0){
-            $.blockUI({message: $("#outfit-box"), css: {top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
+            $.blockUI({message: $("#outfit-box"), css: {position :"absolute",top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
             getPurchasedItems(lastPurchasedItem);
             getLikedItems(lastLikedItem);
         }
