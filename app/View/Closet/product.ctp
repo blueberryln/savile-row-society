@@ -223,7 +223,7 @@ $columns = 'eleven';
                 <h5>Product Details</h5>
                 <p class="description"><?php echo $entity['Entity']['description']; ?></p>
             </div>
-            <?php if($similar || ($entity['Color'] && count($entity['Color']) > 1)) : ?>
+            <?php if($similar || ($entity['Color'] && count($entity['Color']) > 0)) : ?>
                 <label class="product-color-label">Color</label>
                 <div class="product-swatches">
                 <?php if($entity['Color'] && count($entity['Color']) > 1) :?>
@@ -237,7 +237,6 @@ $columns = 'eleven';
                         <a href="<?php echo $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="color-single" style="background-color: <?php echo $entity['Color'][0]['code']; ?>;"></a>
                     </div>
                 <?php endif; ?>
-
 
                 <?php foreach($similar as $product) : ?>
                     <?php if($product['Color'] && count($product['Color']) > 1) : ?>

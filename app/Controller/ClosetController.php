@@ -230,7 +230,7 @@ class ClosetController extends AppController {
             $similar_results = $Entity->getSimilarProducts($id, $product_id);
             $similar = array();
             foreach($similar_results as $row){
-                if($row['Color'] && count($row['Color']) > 1){
+                if($row['Color'] && count($row['Color']) > 0){
                     $similar[] = $row;
                 }
             }
