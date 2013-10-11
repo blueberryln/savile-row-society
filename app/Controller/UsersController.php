@@ -852,17 +852,13 @@ class UsersController extends AppController {
             $editing_user = $this->User->getByID($user_id);
             
             //Check if the logged user is admin or the stylist for the editing user; otherwise redirect to home
-            if($logged_user['User']['is_admin'] == 1 || ($logged_user['User']['is_stylist'] == 1 && $logged_user['User']['id'] == $editing_user['User']['stylist_id'])){
+            if($logged_user['User']['id'] == $user_id || $logged_user['User']['is_admin'] == 1 || ($logged_user['User']['is_stylist'] == 1 && $logged_user['User']['id'] == $editing_user['User']['stylist_id'])){
                 return $editing_user;
             }
             else{
                 $this->redirect('/');
                 exit();
             }
-        }
-        else if(isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id']){
-            $user_id =  $this->request->data['User']['id'];
-            return $this->User->getByID($user_id);
         }
         else{
             return $logged_user;
