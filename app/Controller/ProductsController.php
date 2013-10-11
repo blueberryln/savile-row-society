@@ -150,7 +150,8 @@ class ProductsController extends AppController {
                 $options = array('conditions' => array('Entity.' . $Entity->primaryKey => $copy_id));
                 $this->request->data = $Entity->find('first', $options); 
                 unset($this->request->data['Entity']['sku']);    
-                unset($this->request->data['Entity']['slug']);
+                unset($this->request->data['Entity']['slug']);   
+                unset($this->request->data['Color']);
             }
             // set to view
             $this->set(compact('colors', 'id'));
