@@ -444,7 +444,7 @@ class UsersController extends AppController {
 
                 // send welcome mail
                 /* uncoment this to deploy code */
-                /* $email = new CakeEmail('default');
+                  $email = new CakeEmail('default');
 
 
                   $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -454,7 +454,7 @@ class UsersController extends AppController {
                   $email->emailFormat('html');
                   $email->viewVars(array('name' => $user['User']['first_name']));
                   $email->send();
-                 */
+                  
                 $this->Session->setFlash(__('Your account is created.'), 'flash', array('title' => 'Hooray!'));
                 // signin newly registered user
                 // check submitted email and password 
