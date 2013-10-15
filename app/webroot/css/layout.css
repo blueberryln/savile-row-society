@@ -3867,6 +3867,18 @@ p.error-msg{
     font-size: 12px;
 }
 
+/********About Page DOB ******/
+
+div.dob select{
+    width:30% !important;
+    display: inline-block;
+    float: left !important;
+    margin-right: 5%;
+}
+
+div.dob select.last{
+    margin-right: 0;    
+}
 
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
