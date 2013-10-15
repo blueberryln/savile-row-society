@@ -14,7 +14,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </p>
         </div>
 
-        <iframe class="six columns" height="200" src="http://www.youtube.com/embed/dWqcWgGitKQ" frameborder="0" allowfullscreen></iframe>
+        <iframe class="six columns" height="200" src="//www.youtube.com/embed/dWqcWgGitKQ" frameborder="0" allowfullscreen></iframe>
 
     </div>
     <div class="sixteen columns book-appointment">

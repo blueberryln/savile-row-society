@@ -151,12 +151,12 @@ if ($entity) {
 $this->Html->meta('description', $meta_description, array('inline' => false));
 
 // Progduct information for facebook open graph tags
-$page_url = "http://www.savilerowsociety.com" . $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug'];
+$page_url = "//www.savilerowsociety.com" . $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug'];
 if(count($entity['Image']) > 0){
-    $img_src = "http://www.savilerowsociety.com" . $this->webroot . 'files/products/' . $entity['Image'][0]['name']; 
+    $img_src = "//www.savilerowsociety.com" . $this->webroot . 'files/products/' . $entity['Image'][0]['name']; 
 }
 else{
-    $img_src = "http://www.savilerowsociety.com" . $this->webroot . 'img/image_not_available.png';                    
+    $img_src = "//www.savilerowsociety.com" . $this->webroot . 'img/image_not_available.png';                    
 }
 
 $this->Html->meta(array('property'=> 'og:title', 'content' => $entity['Entity']['name'] . ' - Savile Row Society', ),'',array('inline'=>false));

@@ -53,7 +53,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <br/>
 
         <div class="text-center">
-            <iframe class="max-width-adj" width="560" height="315" src="http://www.youtube.com/embed/h6MnC98hd_c" frameborder="0" allowfullscreen></iframe>
+            <iframe class="max-width-adj" width="560" height="315" src="//www.youtube.com/embed/h6MnC98hd_c" frameborder="0" allowfullscreen></iframe>
         </div>
 
     </div>

@@ -38,7 +38,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <strong>Casey says</strong>: My surfboard, a pen, and paper.</p>
                     <br />
                     <div>
-                        <iframe class="max-width-adj" width="460" height="315"  src="http://www.youtube.com/embed/VlLYFFr7dU8" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="max-width-adj" width="460" height="315"  src="//www.youtube.com/embed/VlLYFFr7dU8" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
                     </div>
                 </div>

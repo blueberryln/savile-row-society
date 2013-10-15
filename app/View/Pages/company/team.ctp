@@ -63,7 +63,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div>FAVORITE CITY: Venice</div>
                     </div>
                     <div>
-                        <iframe class="max-width-adj" width="460" height="315" src="http://www.youtube.com/embed/ZIeZdN1rYAQ?rel=0" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="max-width-adj" width="460" height="315" src="//www.youtube.com/embed/ZIeZdN1rYAQ?rel=0" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
                     </div>
                 </div>
@@ -116,7 +116,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div>FAVORITE CITY: Paris</div>
                     </div>
                     <div>
-                        <iframe class="max-width-adj" width="460" height="315" src="http://www.youtube.com/embed/VlLYFFr7dU8?rel=0" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="max-width-adj" width="460" height="315" src="//www.youtube.com/embed/VlLYFFr7dU8?rel=0" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
                     </div>
                 </div>
