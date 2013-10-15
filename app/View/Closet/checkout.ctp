@@ -356,7 +356,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
     <div class="sixteen columns text-center">
         <h1 class="sub">SHIPPING INFORMATION</h1>
         
-        <h6 class="ten columns offset-by-two alpha omega text-left"><?php echo $this->Form->checkbox('copybilling', array('label' => false, 'type' => 'checkbox','tabindex'=>'16', 'class' => 'copy-billing-info', 'style' => 'width: auto;' )); ?> Use as Shipping Information</h6>
+        <h6 class="ten columns offset-by-two alpha omega text-left"><?php echo $this->Form->checkbox('copybilling', array('label' => false, 'type' => 'checkbox','tabindex'=>'16', 'class' => 'copy-billing-info', 'style' => 'width: auto;' )); ?> Same as Billing Information</h6>
     </div>
     <div class="clear"></div>
     <br>

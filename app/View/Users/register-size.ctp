@@ -94,14 +94,14 @@ $script = ' var size = ' . json_encode($size) . '; ' .
             }
         }
 
-         $("span.size-chart").click(function(){
+         $("span.size-chart,#pantSize").click(function(){
             if($("div#size-chart-box").is(":visible")) {
                 $("div#size-chart-box").slideUp(300); 
             }
             else {
                 $("div#size-chart-box").slideDown(300);
             }
-         });  
+         });    
          
     
          $("#size-chart-box li").click(function(){
@@ -141,7 +141,7 @@ $(document).mouseup(function(e) {
 
 $this->Html->css('ui/jquery-ui', null, array('inline' => false));
 $this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
-$this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
+$this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
 $meta_description = 'Sign up for Savile Row Society, a groundbreaking online, personalized fashion service.';
@@ -382,8 +382,13 @@ window.registerProcess = true;
                 <div class="clear"></div>
                 <div class="text-center about-submit">
                      <br/>
-                        <?php echo $this->Form->end(__('Continue')); ?>
+                        <!--<?php echo $this->Form->end(__('Continue')); ?>-->
+                        <div class="submit">                            
+                            <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/style/<?php echo $user_id; ?>">Back</a> 
+                            <input type="submit" value="Continue" />                                                       
+                        </div>                        
                      <br/>
+                     </form>
                 </div>
             </div>
         

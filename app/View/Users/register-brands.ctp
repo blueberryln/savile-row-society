@@ -150,7 +150,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
 ';
 $this->Html->css('ui/jquery-ui', null, array('inline' => false));
 $this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
-$this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
+$this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script('brands.js', array('inline' => false));
 
@@ -370,11 +370,15 @@ window.registerProcess = true;
         <div class="clearfix"></div>
         <div class="text-center brands-cont">
             <br/>
-            <?php echo $this->Form->end(__('Continue')); ?>
-            <br/>
-            <br /><br /><br />
-            <br /><br />
+                        <!--<?php echo $this->Form->end(__('Continue')); ?>-->
+                        <div class="submit">                            
+                            <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/size/<?php echo $user_id; ?>">Back</a> 
+                            <input type="submit" value="Continue" />                                                       
+                        </div>                        
+                     <br/>
+                     </form>
         </div>
+        
     </div>
 </div>
 

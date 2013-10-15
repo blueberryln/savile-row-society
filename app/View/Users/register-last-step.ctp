@@ -99,16 +99,23 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <option value="Phone">Phone</option>
             <option value="Email">Email</option>
             <option value="Skype">Skype</option>
-        </select>      
+        </select>  
+        
+        <h5>who did you hear about SRS from question ?</h5>         
+        <input id="hear-from" type="text" name="" required="required" maxlength="45" />    
         
         <input type="hidden" value="completed" name="data[UserPreference][is_complete]" />    
         
-        <div class="text-center about-submit">
-             <br/>
-                <?php echo $this->Form->end(__('Upload')); ?>
-             <br/>
-        </div>
-         <!--<?php echo $this->Form->end(__('Upload')); ?> -->     
+        
+        <div class="text-center about-submit">            
+            <!--<?php echo $this->Form->end(__('Upload')); ?>-->          
+            <div class="submit">
+                <input type="submit" value="Upload" /> 
+                <a class="link-btn black-btn back-btn1" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a>  
+            </div>                        
+            <br/>
+            </form>
+        </div>        
          
          <br /><br /><br /><br /><br />    
          </div>

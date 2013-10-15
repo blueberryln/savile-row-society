@@ -200,8 +200,8 @@ body{
 .header .menu li a#lnk-fb-share {
     background: url("../img/fb-share.png") no-repeat scroll center;
     color: transparent;
-    margin-left: 0;
-    padding: 5px 0 5px 0;
+    margin-left: 5px;
+    padding: 5px 5px 5px 0;
     font-size: 13px;
 }
 .header .menu li span
@@ -3165,15 +3165,20 @@ div.finalizing h5
 {
     color:#AF9A59;
     margin-bottom:10px;
+    font-size:16px;
 }
 
-div.finalizing select
+div.finalizing select, div.finalizing input[type="text"]
 {
     margin-bottom:20px;
     border: 1px solid #D9D9D9;
     color: #444444;
     width:100%;
     padding: 8px 5px;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 div.finalizing .submit input
@@ -3525,6 +3530,8 @@ div.about-submit .submit input[type="submit"]
 {
     padding:6px 50px;
     font-size: 14px;
+    line-height:21px;
+    height: 33px;
 }
 
 .thank-margin
@@ -3562,9 +3569,12 @@ div.brands-cont .submit
     margin-top:70px;
 }
 div.brands-cont input[type="submit"] {
-    font-size: 14px;
     padding: 6px 50px;
+    font-size: 14px;
+    line-height: 21px;
+    height: 33px;
 }
+    
 
 div#brands ol.brands-logo li
 {
@@ -3827,6 +3837,22 @@ div.error{
     color: #666666;
 }
 
+/*******Back Button******/
+.back-btn{
+    font-size: 14px;
+    padding: 6px 50px;
+    vertical-align: top;
+    margin: 5px 5px 5px 0;
+    line-height: 21px !important;
+}
+.back-btn1{
+    font-size: 14px;
+    padding: 6px 0;
+    width:100%;
+    vertical-align: top;
+    margin: 5px 5px 5px 0;
+    line-height: 21px !important;
+}
 
 
 

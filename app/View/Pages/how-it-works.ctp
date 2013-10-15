@@ -126,7 +126,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <div class="sixteen columns text-center">
         <h1>Your StyleScan</h1>
         <h4>Coming soon...</h4>
-        <br/></br/>
+        <br/>
     </div>
     <div class="fourteen offset-by-one columns">
         <p>We do this through the StyleScan&trade;, a complex algorithm that blends the results of your 'dual-perspective' style profile with your social media presence, as well as any other details we've compiled through our clever technology. Now, you may ask, how does it work?</p>
