@@ -33,7 +33,8 @@
             <div class="form">
             <?php
             echo $this->Form->input('User.phone', array( "label"=>"", "placeholder" => "Phone number"));
-            echo $this->Form->input('User.industry', array("id"=>"industry", "label" => "", "placeholder" => "Occupational Industry"));
+            //echo $this->Form->input('User.industry', array("id"=>"industry", "label" => "", "placeholder" => "Occupational Industry"));
+            echo $this->Form->input('User.industry', array('label' => '', 'type' => 'select', 'required' => 'required', 'options' => $industry, 'empty' => 'Select Industry'));
             ?>
             </div>
         </div>
