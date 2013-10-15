@@ -20,11 +20,11 @@ $script ='
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. We\'ll perfect your image from head to toe.';
-$img_src = "http://www.savilerowsociety.com/img/SRS_600.png";
+$img_src = "//www.savilerowsociety.com/img/SRS_600.png";
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Society', ),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
-$this->Html->meta(array('property'=> 'og:url', 'content' => "http://www.savilerowsociety.com/"),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 ?>
 <div class="container content inner home">	
@@ -35,7 +35,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>
             <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/home-3.jpg"/></a></li>
             <li><a href="<?php echo $this->request->webroot; ?>stylist"><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"/></a></li>     
-            <li><iframe class="max-width-adj" width="940" height="438" src="http://www.youtube.com/embed/BygtFwK_Dpw?wmode=transparent&rel=0" frameborder="0" allowfullscreen></iframe>
+            <li><iframe class="max-width-adj" width="940" height="438" src="//www.youtube.com/embed/BygtFwK_Dpw?wmode=transparent&rel=0" frameborder="0" allowfullscreen></iframe>
             </li> 
         </ul>
     </div>
@@ -43,11 +43,6 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     <div class="sixteen columns social-bar">
 
         <div class="eigth columns home-side"><b>Let us </b> define your style & refine your image</div>
-
-        <!--    <a class="fb" href="https://www.facebook.com/SavileRowSociety">Facebook</a>
-                <a class="tw" href="https://twitter.com/srsocietydotcom">Twitter</a>
-                <a class="pi" href="http://pinterest.com/srsociety/">Pinterest</a>
-                <a class="ln" href="https://www.linkedin.com/company/savile-row-society">LinkedIn</a>-->
         <span class="launch-info">Launching Fall 2013</span>
     </div>
     
