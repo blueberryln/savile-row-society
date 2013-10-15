@@ -4,7 +4,8 @@ $script = ' var contact = ' . json_encode($contact) . '; ' .
 ' $(document).ready(function(){ 
     if(contact){
         $("#contact-time").val(contact.time);
-        $("#contact-type").val(contact.type);        
+        $("#contact-type").val(contact.type);
+        $("#hear-from").val(contact.refer);         
     }
 });';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -102,7 +103,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         </select>  
         
         <h5>who did you hear about SRS from question ?</h5>         
-        <input id="hear-from" type="text" name="" required="required" maxlength="45" />    
+        <input id="hear-from" type="text" name="data[UserPreference][Contact][refer]" maxlength="45" />    
         
         <input type="hidden" value="completed" name="data[UserPreference][is_complete]" />    
         
