@@ -403,6 +403,7 @@ class ClosetController extends AppController {
             $error_shipping = false;
             $error_transaction = false;
             $error_cart = false;
+            $error = false;
             
             $request_data = $this->request->data['billing'];
             
@@ -508,19 +509,15 @@ class ClosetController extends AppController {
 
             
             if($error_billing || $error_cart || $error_shipping || $error_transaction){
-                $this->Session->setFlash(__('There was a problem in processing the request presently. Please try again.'), 'flash');
-                $this->redirect('/cart');
-                exit;
+                $error = true;
+                $this->Session->write('transaction_complete', "fail");
             }
             
             //Add or update billing address
             if(!$this->updateBillingAddress($data, $user_id)){
                 // TODO: if billing address could not be saved.
-                $this->Session->setFlash(__('There seems to be problem in updaing your billing details. Please try again later.'), 'flash');
-                $this->redirect('/cart');
-                exit;
-                //echo "Billing address could not be saved.";
-                //exit;    
+                $error = true;
+                $this->Session->write('transaction_complete', "fail");
             }
             
             //Add order
@@ -532,8 +529,8 @@ class ClosetController extends AppController {
             $ShippingAddress->create();
             if(!$ShippingAddress->save($data)){
                 // TODO: if shipping address could not be saved.
-                echo "Shippping address could not be saved.";
-                exit;
+                $error = true;
+                $this->Session->write('transaction_complete', "fail");
             }
             
             //If all order data has been added. Continue transaction.
@@ -544,24 +541,27 @@ class ClosetController extends AppController {
             $transaction_data['order_id'] = $order_id;
             $transaction_data['user_id'] = $user_id;
             
-            
-            $transaction_result = $this->makePayment($transaction_data);
-            if($transaction_result['status']){
-                $Order = ClassRegistry::init('Order');
-                $ret = $Order->markPaid($order_id);
-                
-                $this->sendConfirmationEmail($order_id);
-                
-                //Reduce the item stock
-                //$this->reduceStock($cart_list);
-                
-                $Cart->remove($cart_id);
-                $this->removeLikes($entity_list, $user_id);
-
-                $this->Session->write('transaction_complete', "success");
-            }
-            else{
-                $this->Session->write('transaction_complete', "fail");
+            if(!$error){
+                $transaction_result = $this->makePayment($transaction_data);
+                if($transaction_result['status']){
+                    $Order = ClassRegistry::init('Order');
+                    $ret = $Order->markPaid($order_id);
+                    
+                    $this->sendConfirmationEmail($order_id);
+                    
+                    //Reduce the item stock
+                    $this->reduceStock($cart_list);
+                    
+                    $Cart->remove($cart_id);
+                    $this->removeLikes($entity_list, $user_id);
+    
+                    $this->Session->write('transaction_complete', "success");
+                    $this->Session->write('transaction_data', $transaction_result);
+                }
+                else{
+                    $this->Session->write('transaction_complete', "fail");
+                    $this->Session->write('transaction_data', $transaction_result);
+                }
             }
             $this->redirect('/confirmation');
             exit;            
@@ -607,16 +607,21 @@ class ClosetController extends AppController {
 
     public function confirmation(){
         $this->response->disableCache();
+        $transaction_data = false;
         if($this->Session->check('transaction_complete')){
             $transaction_complete = $this->Session->read('transaction_complete');
-            $this->Session->delete('transaction_complete');
+            //$this->Session->delete('transaction_complete');
+            
+            if($transaction_complete == "success"){
+                $transaction_data = $this->Session->read('transaction_data');
+            }
         }
         else{
             $this->redirect('/closet');
             exit;
         }
 
-        $this->set(compact('transaction_complete'));
+        $this->set(compact('transaction_complete', 'transaction_data'));
     }
     
     public function updateBillingAddress($data, $user_id){

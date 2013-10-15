@@ -122,6 +122,6 @@ class Detail extends AppModel {
      }
 
     function removeFromStock($entity_id, $size_id, $quantity) {
-        return $this->updateAll(array('Detail.stock' => 'Detail.stock-' . $quantity), array('Detail.product_entity_id' => $entity_id, 'Detail.size_id' => $size_id));
+        return $this->updateAll(array('Detail.stock' => 'Detail.stock - LEAST(Detail.stock,' . $quantity . ')'), array('Detail.product_entity_id' => $entity_id, 'Detail.size_id' => $size_id));
     }
 }

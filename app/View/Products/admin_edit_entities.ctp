@@ -79,6 +79,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <fieldset class="fifteen columns">
                 <legend><?php echo __('Size & Stock Details'); ?></legend>
                 <?php
+                    $backorderflag = false;
                     if($sizes){
                         foreach($sizes as $size){
                         ?>
