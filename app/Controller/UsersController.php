@@ -13,6 +13,111 @@ class UsersController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
 
+
+    //Industry options
+    public $industry_options = array(
+        'Account Executive'=>'Account Executive',
+        'Account Manager'=>'Account Manager',
+        'Accountant'=>'Accountant',
+        'Accounts Assistant'=>'Accounts Assistant',
+        'Administrator'=>'Administrator',
+        'Analyst'=>'Analyst',
+        'Architect'=>'Architect',
+        'Area Manager'=>'Area Manager',
+        'Assistant'=>'Assistant',
+        'Assistant Accountant'=>'Assistant Accountant',
+        'Assistant Manager'=>'Assistant Manager',
+        'Associate'=>'Associate',
+        'Auditor'=>'Auditor',
+        'Barrister'=>'Barrister',
+        'Branch Manager'=>'Branch Manager',
+        'Business Analyst'=>'Business Analyst',
+        'Business Development Manager'=>'Business Development Manager',
+        'Buyer'=>'Buyer',
+        'CEO'=>'CEO',
+        'Commercial Manager'=>'Commercial Manager',
+        'Consultant'=>'Consultant',
+        'Credit Controller'=>'Credit Controller',
+        'Dentist'=>'Dentist',
+        'Design Engineer'=>'Design Engineer',
+        'Designer'=>'Designer',
+        'Developer'=>'Developer',
+        'Director'=>'Director',
+        'Doctor'=>'Doctor',
+        'Driver'=>'Driver',
+        'Editor'=>'Editor',
+        'Electrician'=>'Electrician',
+        'Engineer'=>'Engineer',
+        'Estimator'=>'Estimator',
+        'Executive Assistant'=>'Executive Assistant',
+        'Finance Director'=>'Finance Director',
+        'Finance Manager'=>'Finance Manager',
+        'Financial Analyst'=>'Financial Analyst',
+        'Financial Controller'=>'Financial Controller',
+        'General Manager'=>'General Manager',
+        'GP'=>'GP',
+        'Graduate'=>'Graduate',
+        'Graphic Designer'=>'Graphic Designer',
+        'Hr Administrator'=>'Hr Administrator',
+        'Hr Advisor'=>'Hr Advisor',
+        'HR Manager'=>'HR Manager',
+        'IT Manager'=>'IT Manager',
+        'Lawyer'=>'Lawyer',
+        'Lecturer'=>'Lecturer',
+        'Management Accountant'=>'Management Accountant',
+        'Manager'=>'Manager',
+        'Managing Director'=>'Managing Director',
+        'Marketing Assistant'=>'Marketing Assistant',
+        'Marketing Director'=>'Marketing Director',
+        'Marketing Executive'=>'Marketing Executive',
+        'Marketing Manager'=>'Marketing Manager',
+        'Mechanical Engineer'=>'Mechanical Engineer',
+        'Nurse'=>'Nurse',
+        'Office Manager'=>'Office Manager',
+        'Operations Director'=>'Operations Director',
+        'Operations Manager'=>'Operations Manager',
+        'PA'=>'PA',
+        'Personal Assistant'=>'Personal Assistant',
+        'Pharmacist'=>'Pharmacist',
+        'Pilot'=>'Pilot',
+        'Plumber'=>'Plumber',
+        'Product Manager'=>'Product Manager',
+        'Production Manager'=>'Production Manager',
+        'Programme Manager'=>'Programme Manager',
+        'Programmer'=>'Programmer',
+        'Project Engineer'=>'Project Engineer',
+        'Project Manager'=>'Project Manager',
+        'Quantity Surveyor'=>'Quantity Surveyor',
+        'Receptionist'=>'Receptionist',
+        'Recruitment Consultant'=>'Recruitment Consultant',
+        'Researcher'=>'Researcher',
+        'Sales'=>'Sales',
+        'Sales Assistant'=>'Sales Assistant',
+        'Sales Director'=>'Sales Director',
+        'Sales Executive'=>'Sales Executive',
+        'Sales Manager'=>'Sales Manager',
+        'Scientist'=>'Scientist',
+        'Secretary'=>'Secretary',
+        'Senior Consultant'=>'Senior Consultant',
+        'Senior Engineer'=>'Senior Engineer',
+        'Senior Manager'=>'Senior Manager',
+        'Social Worker'=>'Social Worker',
+        'Software Developer'=>'Software Developer',
+        'Software Engineer'=>'Software Engineer',
+        'Solicitor'=>'Solicitor',
+        'Store Manager'=>'Store Manager',
+        'Supervisor'=>'Supervisor',
+        'Teacher'=>'Teacher',
+        'Team Leader'=>'Team Leader',
+        'Technical Manager'=>'Technical Manager',
+        'Technician'=>'Technician',
+        'Trader'=>'Trader',
+        'Trainer'=>'Trainer',
+        'Vice President'=>'Vice President',
+        'Web Designer'=>'Web Designer',
+        'Web Developer'=>'Web Developer',
+    );
+
     /**
      * Sign in
      */
@@ -375,7 +480,8 @@ class UsersController extends AppController {
             case 'about':
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
                 $this->data = $user;
-                $this->set(compact('full_name'));
+                $industry = $this->industry_options;
+                $this->set(compact('full_name','industry'));
                 $this->render('register-about');
                 // debug($user);
                 break;
@@ -555,7 +661,9 @@ class UsersController extends AppController {
             'Other' => 'Other'
         );
         
-        $this->set(compact('title_for_layout', 'heard_from_options'));
+        $industry = $this->industry_options;
+        
+        $this->set(compact('title_for_layout', 'heard_from_options','industry'));
         
         if($action == "edit"){
             $this->render('edit');    
