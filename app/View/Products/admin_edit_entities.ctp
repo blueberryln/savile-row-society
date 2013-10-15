@@ -79,7 +79,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <fieldset class="fifteen columns">
                 <legend><?php echo __('Size & Stock Details'); ?></legend>
                 <?php
-                    $backorderflag = false;
+                    $backorderflag = false; 
                     if($sizes){
                         foreach($sizes as $size){
                         ?>
@@ -89,13 +89,20 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                 <br /><br />
                                 <a href="#" class="edit-detail" data-detail_id="<?php echo $size['Detail']['id']; ?>">Edit</a>
                             </div>   
+                            <?php 
+                            if($size['Detail']['stock'] == 0){
+                                $backorderflag = true;        
+                            }
+                            ?>
                         <?php
                         }    
                     }
                 ?>
                 <div class="clear"></div>
                 <br />
-                <a href="#" id="add-size" class="btn">Add New Size</a> 
+                <a href="#" id="add-size" class="btn">Add New Size</a>
+                <br /><br />
+                <b>Note</b>: Backorder Product 
             </fieldset>
             <fieldset class="fifteen columns">
                 <legend><?php echo __('Images'); ?></legend>
