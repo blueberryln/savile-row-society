@@ -50,7 +50,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
         echo $this->Html->css('temp');
         echo $this->fetch('css');
         ?>
-        <!--<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>-->
+        <link href='//fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
         <!-- Favicons
         ================================================== -->
         <link rel="shortcut icon" href="<?php echo $this->request->webroot; ?>img/favicon.ico">
@@ -139,7 +139,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
         ================================================== -->
 
         <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
