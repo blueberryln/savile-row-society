@@ -450,7 +450,7 @@ body{
 }
 .hi-message > p{
     color:#333333;
-    font-size:16px;
+    font-size:14px;
 }
 .reg-step1{
     /*background-image: url("../img/reg-step1.png");*/
@@ -3567,6 +3567,7 @@ ul.product-type li.selected a
 div.brands-cont .submit
 {
     margin-top:70px;
+    height: 100px;
 }
 div.brands-cont input[type="submit"] {
     padding: 6px 50px;
@@ -3774,6 +3775,10 @@ div.contact-map-info div.contact-map iframe
 {
     padding:0 !important;
 }
+.header-logo a
+{
+    color:transparent;
+}
 
 .max-width-adj
 {
@@ -3854,6 +3859,13 @@ div.error{
     line-height: 21px !important;
 }
 
+/********Common Error Message Style******/
+
+p.error-msg{
+    display:none;
+    color:#FF0000;
+    font-size: 12px;
+}
 
 
 

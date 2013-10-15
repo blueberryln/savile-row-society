@@ -55,7 +55,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php
                 echo $this->Form->input('phone');
                 //echo $this->Form->input('title');
-                echo $this->Form->input('industry');
+                //echo $this->Form->input('industry');
+                echo $this->Form->input('industry', array('label' => 'Industry', 'type' => 'select', 'required' => 'required', 'options' => $industry, 'empty' => 'Select Industry'));
                 echo $this->Form->input('location');
                 echo $this->Form->input('heard_from', array('label' => 'How did you hear about us', 'type' => 'select', 'required' => 'required', 'options' => $heard_from_options));
                 echo $this->Form->input('friend_email');

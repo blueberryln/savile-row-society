@@ -45,7 +45,7 @@
 
         </div>
 
-        <div class="sixteen columns text-center header-logo" style="/*height: 75px;*/">
+        <div class="sixteen columns text-center header-logo" style="height: 65px;">
 
             <!--            <div class="banner"></div> -->
             <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
@@ -62,7 +62,7 @@
                 </li>                
                 <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com">The Blog</a></li>
                 <?php if($is_logged) : ?>
-                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Chat</a></li>
+                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
                 <?php endif; ?>
                 
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>

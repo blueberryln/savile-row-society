@@ -8,7 +8,8 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
        }).selectable({
            stop: function() {
                $("#polos_tees-brands input:checkbox").prop("checked", false);
-               $( ".ui-selected", this ).each(function() {
+               $( ".ui-selected", this ).each(function() {  
+                   $("p.error-msg").slideUp(300);
                    var selected_id = $(this).data("id");
                    $("#polos_tees-brands input:checkbox#" + selected_id).prop("checked", true);
                });
@@ -21,6 +22,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
            stop: function() {
                $("#shirt-brands input:checkbox").prop("checked", false);
                $( ".ui-selected", this ).each(function() {
+                   $("p.error-msg").slideUp(300);
                    var selected_id = $(this).data("id");
                    $("#shirt-brands input:checkbox#" + selected_id).prop("checked", true);
                });
@@ -33,6 +35,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
            stop: function() {
                $("#pants-brands input:checkbox").prop("checked", false);
                $( ".ui-selected", this ).each(function() {
+                   $("p.error-msg").slideUp(300);
                    var selected_id = $(this).data("id");
                    $("#pants-brands input:checkbox#" + selected_id).prop("checked", true);
                });
@@ -45,6 +48,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
            stop: function() {
                $("#jeans-brands input:checkbox").prop("checked", false);
                $( ".ui-selected", this ).each(function() {
+                   $("p.error-msg").slideUp(300);
                    var selected_id = $(this).data("id");
                    $("#jeans-brands input:checkbox#" + selected_id).prop("checked", true);
                });
@@ -57,6 +61,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
            stop: function() {
                $("#suits-brands input:checkbox").prop("checked", false);
                $( ".ui-selected", this ).each(function() {
+                   $("p.error-msg").slideUp(300);
                    var selected_id = $(this).data("id");
                    $("#suits-brands input:checkbox#" + selected_id).prop("checked", true);
                });
@@ -139,13 +144,22 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
        
        $("ul.product-type li").click(function(){
             $("ul.product-type li").removeClass("selected");
-            $(this).addClass("selected");            
+            $(this).addClass("selected");           
        });
-      
-      $("ul.brands-logo li").click(function(){
-            $("ul.brands-logo li").removeClass("selected");
-            $(this).addClass("selected");
+
+        
+       $("#brands-continue").click(function(event){                
+        if($("#polos_tees-brands li.ui-selected").length > 0 && $("#shirt-brands li.ui-selected").length > 0 && $("#pants-brands li.ui-selected").length > 0 && $("#jeans-brands li.ui-selected").length > 0 && $("#suits-brands li.ui-selected").length > 0)
+        {
+              $("p.error-msg").slideUp(300);        
+        }else
+        {
+            $("p.error-msg").slideDown(300);
+            event.preventDefault(); 
+        }
        });
+       
+       
 });
 ';
 $this->Html->css('ui/jquery-ui', null, array('inline' => false));
@@ -373,9 +387,10 @@ window.registerProcess = true;
                         <!--<?php echo $this->Form->end(__('Continue')); ?>-->
                         <div class="submit">                            
                             <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/size/<?php echo $user_id; ?>">Back</a> 
-                            <input type="submit" value="Continue" />                                                       
+                            <input id="brands-continue" type="submit" value="Continue" />
+                            <p class="error-msg">Please select atleast one brand from each category.</p> 
                         </div>                        
-                     <br/>
+                    
                      </form>
         </div>
         
