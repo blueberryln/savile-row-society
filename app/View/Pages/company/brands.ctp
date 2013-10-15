@@ -118,7 +118,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         </p>
                     </div>
                     <div>
-                        <iframe class="max-width-adj" width="460" height="315" src="http://www.youtube.com/embed/ls69QL8bKNo" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="max-width-adj" width="460" height="315" src="//www.youtube.com/embed/ls69QL8bKNo" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
                     </div>
                 </div>
