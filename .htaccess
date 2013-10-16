@@ -1,6 +1,5 @@
 <IfModule mod_rewrite.c>
    RewriteEngine on
-   RewriteBase /
    
    RewriteCond %{HTTP_HOST} ^savilerowsociety.com$
    RewriteRule (.*) http://www.savilerowsociety.com/$1 [R=301,L] 
