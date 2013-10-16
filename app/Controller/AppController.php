@@ -4,16 +4,7 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
 
-    var $components = array('Session', 'Security');
-    function beforeFilter() {
-        if(!in_array($this->action, $this->Security->requireSecure) and env('HTTPS')){
-            $this->_unforceSSL();
-        }
-    }
-    
-    function _unforceSSL() {
-        $this->redirect('http://' . env('SERVER_NAME') . $this->here);
-    }
+    var $components = array('Session');
     
     public function beforeRender() {
         parent::beforeRender();

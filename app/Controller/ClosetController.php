@@ -13,14 +13,14 @@ class ClosetController extends AppController {
      * Index
      */
      
-    function beforeFilter() {
-        $this->Security->blackHoleCallback = 'forceSSL';
-        $this->Security->requireSecure('cart', 'payment');
-    }
-
-    function forceSSL() {
-        $this->redirect('https://' . env('SERVER_NAME') . $this->here);
-    }
+    //function beforeFilter() {
+//        $this->Security->blackHoleCallback = 'forceSSL';
+//        $this->Security->requireSecure('cart', 'payment');
+//    }
+//
+//    function forceSSL() {
+//        $this->redirect('https://' . env('SERVER_NAME') . $this->here);
+//    }
 
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
@@ -39,6 +39,7 @@ class ClosetController extends AppController {
         $entities = array();
 
         if ($category_slug) {
+            $category_slug = trim($category_slug);
             $entities = $this->categoryProducts($user_id, $categories, $category_slug, $filter_brand, $filter_color, $filter_used);
         } else {
             $entities = $this->closetProducts($user_id);

@@ -9,7 +9,7 @@
                 <legend><?php echo __('Basic Info'); ?></legend>
                 <?php
                 echo $this->Form->input('brand_id');
-                echo $this->Form->input('name');
+                echo $this->Form->input('name', array('label' => 'Parent Product Name'));
                 ?>
             </fieldset>
             <fieldset class="fifteen columns">

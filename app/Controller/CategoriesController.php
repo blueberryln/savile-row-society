@@ -35,6 +35,8 @@ class CategoriesController extends AppController {
             if ($this->request->data['Category']['parent_id'] == 0 || $this->request->data['Category']['parent_id'] == '') {
                 unset($this->request->data['Category']['parent_id']);
             }
+            $this->request->data['Category']['slug'] = Inflector::slug(trim($this->request->data['Category']['slug']), '-');
+            
             if ($result = $this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('The category has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'index'));
@@ -42,7 +44,7 @@ class CategoriesController extends AppController {
                 $this->Session->setFlash(__('The category could not be saved. Please, try again'), 'flash');
             }
         }
-        $parents = $this->Category->find('list');
+        $parents = $this->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
         $this->set(compact('parents'));
     }
 
@@ -61,6 +63,8 @@ class CategoriesController extends AppController {
             if ($this->request->data['Category']['parent_id'] == 0 || $this->request->data['Category']['parent_id'] == '') {
                 unset($this->request->data['Category']['parent_id']);
             }
+            $this->request->data['Category']['slug'] = Inflector::slug(trim($this->request->data['Category']['slug']), '-');
+            
             if ($this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('The category has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'index'));
@@ -74,7 +78,7 @@ class CategoriesController extends AppController {
                 unset($this->request->data['Category']['parent_id']);
             }
         }
-        $parents = $this->Category->find('list');
+        $parents = $this->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
         $this->set(compact('parents'));
     }
 
