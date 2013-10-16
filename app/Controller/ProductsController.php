@@ -38,7 +38,9 @@ class ProductsController extends AppController {
             if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
                 unset($this->request->data['Product']['season_id']);
             }
-            
+            if($this->request->data['Category']['SubCategory'] != ""){
+                $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
+            }
             if ($result = $this->Product->save($this->request->data)) {
                 $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'admin_edit', $result['Product']['id']));
@@ -49,11 +51,17 @@ class ProductsController extends AppController {
         }
         
         //$userTypes = $this->Product->UserType->find('list');
+        $category_list = array();
+        $category_thread = $this->Product->Category->find('threaded');
+        foreach($category_thread as $row){
+            $category_list[$row['Category']['id']] = $row;
+        }
+        
         $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
         $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         
-        $this->set(compact('userTypes', 'categories', 'brands', 'seasons'));
+        $this->set(compact('userTypes', 'categories', 'brands', 'seasons', 'category_list'));
     }
 
     /**
@@ -73,6 +81,9 @@ class ProductsController extends AppController {
             if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
                 unset($this->request->data['Product']['season_id']);
             }
+            if($this->request->data['Category']['SubCategory'] != ""){
+                $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
+            }
             
             if ($this->Product->save($this->request->data)) {
                 $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
@@ -87,13 +98,32 @@ class ProductsController extends AppController {
             $this->request->data = $this->Product->find('first', $options);
         }   
         // get data
-        $categories = $this->Product->Category->find('list');
+        $category_list = array();
+        $category_thread = $this->Product->Category->find('threaded');
+        foreach($category_thread as $row){
+            $category_list[$row['Category']['id']] = $row;
+        }
+        
+        $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
+        
+        $selected_category = $this->request->data['Category'][0]['name'];
+        $selected_category_id = $this->request->data['Category'][0]['id'];
+        $is_subcategory = 0;
+        $parent_category = "";
+        if(!in_array($selected_category, $categories)){
+            $is_subcategory = 1;
+            $parent_category =  $this->Product->Category->find('first', array('conditions' => array('Category.id' => $selected_category_id)));
+        }
+        else{
+            
+        }
+        
         $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         $entities = $this->request->data['Entity'];
         
 
-        $this->set(compact('categories', 'brands', 'entities', 'id','seasons'));
+        $this->set(compact('categories', 'brands', 'entities', 'id','seasons', 'category_list', 'is_subcategory', 'parent_category', 'selected_category_id'));
     }
     
     /**

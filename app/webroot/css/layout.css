@@ -2651,7 +2651,7 @@ body{
 }
 .product-filter-menu .toggle-body a{
     text-decoration: none;
-    color: #9A9A9A;
+    color: #888;
     font-size: 13px;
 }
 .product-filter-menu .toggle-body li{
@@ -3793,6 +3793,9 @@ div.contact-map-info div.contact-map iframe
 img
 {
     max-width:100% !important;
+}
+.lightbox .lb-image{
+    max-width:none !important;    
 }
 
 .welcome-srs

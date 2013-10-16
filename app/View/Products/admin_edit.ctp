@@ -1,44 +1,48 @@
 <?php
 $script = '
+var categoryList = ' . json_encode($category_list) . ';
+var isSubcategory = ' . $is_subcategory . ';
+var parentCategory = ' . json_encode($parent_category) . ';
+var selectedCategory = "' . $selected_category_id . '";
+function addSubcategoryList(subCategories){
+    $("#sub-category").html("");
+    if(subCategories.length > 0){
+        $("#sub-category").append("<option value>None</option>");
+        for(i=0; i<subCategories.length; i++){
+            $("#sub-category").append("<option value=\"" + subCategories[i]["Category"]["id"] + "\">" + subCategories[i]["Category"]["name"] + "</option>");        
+        }
+        $("#sub-category").closest("div").removeClass("hide");
+    }
+    else{
+        $("#sub-category").closest("div").addClass("hide");    
+    }
+}
 $(document).ready(function(){
-    $("#upload-image").click(function(e) {
-        e.preventDefault();
-        $.blockUI({ message: $("#upload") });
-        $(".blockOverlay").click($.unblockUI);
-        $.ajax({
-           url: "' . $this->request->webroot . 'admin/products/upload/' . $id . '" 
-        }).done(function(res){
-            $("#upload").html(res);
-        });
-    });
-    $("#add-property").click(function(e) {
-        e.preventDefault();
-        $.blockUI({ message: $("#properties") });
-        $(".blockOverlay").click($.unblockUI);
-        $.ajax({
-           url: "' . $this->request->webroot . 'admin/products/properties/' . $id . '" 
-        }).done(function(res){
-            $("#properties").html(res);
-        });
-    });
-    $(".remove-property").click(function(e) {
-        e.preventDefault();
-        var property_id = $(this).data("property_id");
-        $.ajax({
-           url: "' . $this->request->webroot . 'admin/products/properties_remove/" + property_id 
-        }).done(function(res){
-            location.reload();
-        });
-    });
-    $(".remove-attachment").click(function(e) {
-        e.preventDefault();
-        var attachment_id = $(this).data("attachment_id");
-        $.ajax({
-           url: "' . $this->request->webroot . 'admin/products/upload_remove/" + attachment_id 
-        }).done(function(res){
-            location.reload();
-        });
-    });
+    if(isSubcategory){
+        var parentCat = parentCategory["Category"]["parent_id"];
+        $("#CategoryCategory").val(parentCat); 
+        if(categoryList[parentCat]["children"].length > 0){
+            addSubcategoryList(categoryList[parentCat]["children"]);
+            $("#sub-category").val(selectedCategory);
+        }             
+    }
+    else{
+        $("#CategoryCategory").val(selectedCategory);   
+        if(categoryList[selectedCategory]["children"].length > 0){
+            addSubcategoryList(categoryList[selectedCategory]["children"]);
+        } 
+    }
+    
+    $("#CategoryCategory").on("change", function(e){
+        var catSelected = $(this).val();
+        if(categoryList[catSelected]["children"].length > 0){
+            addSubcategoryList(categoryList[catSelected]["children"]);
+        }   
+        else{
+            $("#sub-category").closest("div").addClass("hide"); 
+            $("#sub-category").html("");   
+        }
+    }); 
 });
 ';
 
@@ -70,8 +74,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <fieldset class="fifteen columns">
                 <legend><?php echo __('Categories'); ?></legend>
                 <?php
-                echo $this->Form->input('Category', array('label' => '', 'type' => 'select'));
+                echo $this->Form->input('Category', array('label' => 'Category', 'type' => 'select'));
                 ?>
+                <div class="input select hide">
+                    <label for="sub-category">Sub Category</label>
+                    <select name="data[Category][SubCategory]" id="sub-category"></select>
+                </div>
             </fieldset>
             <fieldset class="fifteen columns">
                 <legend><?php echo __('Seasons'); ?></legend>
