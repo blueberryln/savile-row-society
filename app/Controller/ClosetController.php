@@ -7,11 +7,21 @@ App::uses('CakeEmail', 'Network/Email');
  * Closet Controller
  */
 class ClosetController extends AppController {
-    public $components = array('Paginator');
+    public $components = array('Paginator','Security');
     public $helpers = array('Paginator');
     /**
      * Index
      */
+     
+    function beforeFilter() {
+        $this->Security->blackHoleCallback = 'forceSSL';
+        $this->Security->requireSecure('cart', 'payment');
+    }
+
+    function forceSSL() {
+        $this->redirect('https://' . env('SERVER_NAME') . $this->here);
+    }
+
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
 
