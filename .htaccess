@@ -6,7 +6,7 @@
    
    #force https for certain pages    
    RewriteCond %{HTTPS} !=on
-   RewriteRule (.*) (cart|payment|confirmation)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R]
+   RewriteRule ^ *(cart|payment|confirmation)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R]
     
    RewriteRule   ^(development).* - [NC,L]
    RewriteRule    ^$ app/webroot/    [L]
