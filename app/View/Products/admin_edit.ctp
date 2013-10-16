@@ -74,6 +74,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 ?>
             </fieldset>
             <fieldset class="fifteen columns">
+                <legend><?php echo __('Seasons'); ?></legend>
+                <?php
+                echo $this->Form->input('season_id', array('label' => '', 'type' => 'select', 'empty' => 'None'));
+                ?>
+            </fieldset>
+            <fieldset class="fifteen columns">
                 <legend><?php echo __('Product Variants'); ?></legend>
                 <?php if($entities) : ?>
                     <div class="products index">

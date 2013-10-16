@@ -19,6 +19,12 @@
                 ?>
             </fieldset>
             <fieldset class="fifteen columns">
+                <legend><?php echo __('Seasons'); ?></legend>
+                <?php
+                echo $this->Form->input('season_id', array('label' => '', 'type' => 'select', 'empty' => 'None'));
+                ?>
+            </fieldset>
+            <fieldset class="fifteen columns">
                 <legend><?php echo __('Product Variants'); ?></legend>
                 Save the product type first, to add product type variants.
                 <?php

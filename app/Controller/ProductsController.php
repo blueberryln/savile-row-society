@@ -35,6 +35,10 @@ class ProductsController extends AppController {
             $this->Product->create();
             $user_id = $this->getLoggedUserID();
             $this->request->data['Product']['user_id'] = $user_id;
+            if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
+                unset($this->request->data['Product']['season_id']);
+            }
+            
             if ($result = $this->Product->save($this->request->data)) {
                 $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'admin_edit', $result['Product']['id']));
@@ -45,10 +49,11 @@ class ProductsController extends AppController {
         }
         
         //$userTypes = $this->Product->UserType->find('list');
-        $categories = $this->Product->Category->find('list');
+        $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
+        $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         
-        $this->set(compact('userTypes', 'categories', 'brands'));
+        $this->set(compact('userTypes', 'categories', 'brands', 'seasons'));
     }
 
     /**
@@ -65,6 +70,10 @@ class ProductsController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             $user_id = $this->getLoggedUserID();
             $this->request->data['Product']['user_id'] = $user_id;
+            if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
+                unset($this->request->data['Product']['season_id']);
+            }
+            
             if ($this->Product->save($this->request->data)) {
                 $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'admin_edit', $id));
@@ -79,11 +88,12 @@ class ProductsController extends AppController {
         }   
         // get data
         $categories = $this->Product->Category->find('list');
+        $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         $entities = $this->request->data['Entity'];
         
 
-        $this->set(compact('categories', 'brands', 'entities', 'id'));
+        $this->set(compact('categories', 'brands', 'entities', 'id','seasons'));
     }
     
     /**
@@ -108,6 +118,8 @@ class ProductsController extends AppController {
                     $data['Entity']['product_id'] = $id;
                     $data['Entity']['name'] = $this->request->data['Entity']['name'];
                     $data['Entity']['description'] = $this->request->data['Entity']['description'];
+                    $data['Entity']['product_code'] = trim($this->request->data['Entity']['product_code']);
+                    
                     if($this->request->data['Entity']['sku'] == ""){
                         $data['Entity']['sku'] = uniqid();    
                     }
@@ -191,6 +203,8 @@ class ProductsController extends AppController {
                         $this->Session->setFlash(__('The product could not be saved. Please, try again'), 'flash');
                     }
                 }
+                
+                $this->request->data['Entity']['product_code'] = trim($this->request->data['Entity']['product_code']);
             }
             else{
                 

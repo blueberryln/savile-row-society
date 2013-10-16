@@ -46,6 +46,12 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="<?php echo $this->request->webroot; ?>admin/seasons">Seasons</a>
+                    <ul class="submenu">
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/seasons/add">Add New Seasons</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="<?php echo $this->request->webroot; ?>admin/orders">Orders</a>
                     <ul class="submenu">
                         <li><a href="<?php echo $this->request->webroot; ?>admin/orders/items">Ordered Items</a></li>
