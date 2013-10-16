@@ -54,13 +54,13 @@ class Product extends AppModel {
             'fields' => '',
             'order' => ''
         ),
-        'Season' => array(
-            'className' => 'Season',
-            'foreignKey' => 'season_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        ),
+        //'Season' => array(
+//            'className' => 'Season',
+//            'foreignKey' => 'season_id',
+//            'conditions' => '',
+//            'fields' => '',
+//            'order' => ''
+//        ),
         /*'User' => array(
             'className' => 'User',
             'foreignKey' => 'user_id',

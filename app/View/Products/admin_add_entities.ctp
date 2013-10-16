@@ -29,7 +29,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <?php
                     echo $this->Form->input('name', array('required'));
                     echo $this->Form->input('description', array('rows'=> '5', 'required'));
-                    echo $this->Form->input('product_code', array('required' => false, 'label' => 'Product Id', 'maxlength' => 50));
+                    echo $this->Form->input('productcode', array('required' => false, 'label' => 'Product Id', 'maxlength' => 50));
                     echo $this->Form->input('sku', array('required' => false));
                     echo $this->Form->input('slug', array('required' => false));
                     echo $this->Form->input('price', array('required'));
