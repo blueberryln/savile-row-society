@@ -59,12 +59,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <select name="data[Category][SubCategory]" id="sub-category"></select>
                 </div>
             </fieldset>
-            <!--<fieldset class="fifteen columns">
+            <fieldset class="fifteen columns">
                 <legend><?php echo __('Seasons'); ?></legend>
                 <?php
-                //echo $this->Form->input('season_id', array('label' => '', 'type' => 'select', 'empty' => 'None'));
+                echo $this->Form->input('season_id', array('label' => '', 'type' => 'select', 'empty' => 'None'));
                 ?>
-            </fieldset>-->
+            </fieldset>
             <fieldset class="fifteen columns">
                 <legend><?php echo __('Product Variants'); ?></legend>
                 Save the product type first, to add product type variants.

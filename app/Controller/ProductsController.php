@@ -36,9 +36,9 @@ class ProductsController extends AppController {
             $this->Product->create();
             $user_id = $this->getLoggedUserID();
             $this->request->data['Product']['user_id'] = $user_id;
-            //if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
-//                unset($this->request->data['Product']['season_id']);
-//            }
+            if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
+                unset($this->request->data['Product']['season_id']);
+            }
             if($this->request->data['Category']['SubCategory'] != ""){
                 $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
             }
@@ -59,10 +59,10 @@ class ProductsController extends AppController {
         }
         
         $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
-        //$seasons = $this->Product->Season->find('list');
+        $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         
-        $this->set(compact('userTypes', 'categories', 'brands', 'category_list'));
+        $this->set(compact('userTypes', 'categories', 'brands', 'seasons', 'category_list'));
     }
 
     /**
@@ -79,9 +79,9 @@ class ProductsController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             $user_id = $this->getLoggedUserID();
             $this->request->data['Product']['user_id'] = $user_id;
-            //if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
-//                unset($this->request->data['Product']['season_id']);
-//            }
+            if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
+                unset($this->request->data['Product']['season_id']);
+            }
             if($this->request->data['Category']['SubCategory'] != ""){
                 $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
             }
@@ -119,12 +119,12 @@ class ProductsController extends AppController {
             
         }
         
-        //$seasons = $this->Product->Season->find('list');
+        $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         $entities = $this->request->data['Entity'];
         
 
-        $this->set(compact('categories', 'brands', 'entities', 'id', 'category_list', 'is_subcategory', 'parent_category', 'selected_category_id'));
+        $this->set(compact('categories', 'brands', 'seasons', 'entities', 'id', 'category_list', 'is_subcategory', 'parent_category', 'selected_category_id'));
     }
     
     /**
