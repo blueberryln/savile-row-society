@@ -148,15 +148,6 @@ class OutfitsController extends AppController {
                             'Category.product_id = Entity.product_id'
                         )
                     ),
-                    array('table' => 'products_details',
-                        'alias' => 'Detail',
-                        'type' => 'INNER',
-                        'conditions' => array(
-                            'Detail.product_entity_id = Entity.id',
-                            'Detail.show' => true,
-                            'Detail.stock >' => 0,
-                        )
-                    ),
                 ),
                 'fields' => array(
                     'Entity.*'
@@ -192,10 +183,10 @@ class OutfitsController extends AppController {
             }
 
             // Sub query to check stock using the products_details table and the items already added to valid carts
-            $sub_query = new stdClass();
-            $sub_query->type = "expression";
-            $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
-            $find_array['conditions'][] = $sub_query;
+            //$sub_query = new stdClass();
+//            $sub_query->type = "expression";
+//            $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
+//            $find_array['conditions'][] = $sub_query;
 
             $Entity = ClassRegistry::init('Entity');
             $data = $Entity->find('all', $find_array);
@@ -233,57 +224,66 @@ class OutfitsController extends AppController {
             $data['Outfit']['user_id'] = $client_id;
             $data['Outfit']['stylist_id'] = $user_id;
             
-            $Outfit = ClassRegistry::init('Outfit');
-            $OutfitItem = ClassRegistry::init('OutfitItem');
-            $Outfit->create();
-            if($result = $Outfit->save($data)){
-                $outfit_id = $result['Outfit']['id'];
-                $data1['OutfitItem']['outfit_id'] = $outfit_id;
-                $data1['OutfitItem']['product_entity_id'] = $outfit_id1;
-                $OutfitItem->create();
-                $OutfitItem->save($data1);
-                
-                $data2['OutfitItem']['outfit_id'] = $outfit_id;
-                $data2['OutfitItem']['product_entity_id'] = $outfit_id2;
-                $OutfitItem->create();
-                $OutfitItem->save($data2);
-                
-                
-                $data3['OutfitItem']['outfit_id'] = $outfit_id;
-                $data3['OutfitItem']['product_entity_id'] = $outfit_id3;
-                $OutfitItem->create();
-                $OutfitItem->save($data3);
-                
-                
-                $data4['OutfitItem']['outfit_id'] = $outfit_id;
-                $data4['OutfitItem']['product_entity_id'] = $outfit_id4;
-                $OutfitItem->create();
-                $OutfitItem->save($data4);
-                
-                
-                $data5['OutfitItem']['outfit_id'] = $outfit_id;
-                $data5['OutfitItem']['product_entity_id'] = $outfit_id5;
-                $OutfitItem->create();
-                $OutfitItem->save($data5);
-                
-                $Message = ClassRegistry::init('Message');
-                $data['Message']['user_to_id'] = $client_id;
-                $data['Message']['user_from_id'] = $user_id;
-                $data['Message']['body'] = 'outfit';
-                $data['Message']['is_outfit'] = 1;
-                $data['Message']['outfit_id'] = $outfit_id;
-                $Message->create();
-                if ($Message->validates()) {
-                    $Message->save($data);
-                    $entity_list = array($outfit_id1, $outfit_id2, $outfit_id3, $outfit_id4, $outfit_id5);
-                    $this->sendOutfitNotification($entity_list, $client_id);
-                }
-                
-                $ret['status'] = "ok";
-            }  
+            $outfit_array = array($outfit_id1, $outfit_id2, $outfit_id3, $outfit_id4, $outfit_id5);
+            $outfit_array = array_unique($outfit_array);
+            
+            if(count($outfit_array) == 5){
+                $Outfit = ClassRegistry::init('Outfit');
+                $OutfitItem = ClassRegistry::init('OutfitItem');
+                $Outfit->create();
+                if($result = $Outfit->save($data)){
+                    $outfit_id = $result['Outfit']['id'];
+                    $data1['OutfitItem']['outfit_id'] = $outfit_id;
+                    $data1['OutfitItem']['product_entity_id'] = $outfit_id1;
+                    $OutfitItem->create();
+                    $OutfitItem->save($data1);
+                    
+                    $data2['OutfitItem']['outfit_id'] = $outfit_id;
+                    $data2['OutfitItem']['product_entity_id'] = $outfit_id2;
+                    $OutfitItem->create();
+                    $OutfitItem->save($data2);
+                    
+                    
+                    $data3['OutfitItem']['outfit_id'] = $outfit_id;
+                    $data3['OutfitItem']['product_entity_id'] = $outfit_id3;
+                    $OutfitItem->create();
+                    $OutfitItem->save($data3);
+                    
+                    
+                    $data4['OutfitItem']['outfit_id'] = $outfit_id;
+                    $data4['OutfitItem']['product_entity_id'] = $outfit_id4;
+                    $OutfitItem->create();
+                    $OutfitItem->save($data4);
+                    
+                    
+                    $data5['OutfitItem']['outfit_id'] = $outfit_id;
+                    $data5['OutfitItem']['product_entity_id'] = $outfit_id5;
+                    $OutfitItem->create();
+                    $OutfitItem->save($data5);
+                    
+                    $Message = ClassRegistry::init('Message');
+                    $data['Message']['user_to_id'] = $client_id;
+                    $data['Message']['user_from_id'] = $user_id;
+                    $data['Message']['body'] = 'outfit';
+                    $data['Message']['is_outfit'] = 1;
+                    $data['Message']['outfit_id'] = $outfit_id;
+                    $Message->create();
+                    if ($Message->validates()) {
+                        $Message->save($data);
+                        $entity_list = array($outfit_id1, $outfit_id2, $outfit_id3, $outfit_id4, $outfit_id5);
+                        $this->sendOutfitNotification($entity_list, $client_id);
+                    }
+                    
+                    $ret['status'] = "ok";
+                }  
+            }
+            else{
+                $ret['status'] = "error";
+                $ret['msg'] = "Select 5 distinct items to create an outfit.";    
+            }
         }
         else{
-            $ret['status'] = "error";
+            $ret['status'] = "redirect";
         }
 
         echo json_encode($ret);
@@ -298,14 +298,19 @@ class OutfitsController extends AppController {
         $client = $User->getByID($client_id);
         
         if($entities && $client){
-            $email = new CakeEmail('default');
-            $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-            $email->to($client['User']['email']);
-            $email->subject('Savile Row Society: New Outfit');
-            $email->template('new_outfit');
-            $email->emailFormat('html');
-            $email->viewVars(compact('entities', 'client'));
-            $email->send();
+            try{
+                $email = new CakeEmail('default');
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->to($client['User']['email']);
+                $email->subject('Savile Row Society: New Outfit');
+                $email->template('new_outfit');
+                $email->emailFormat('html');
+                $email->viewVars(compact('entities', 'client'));
+                $email->send();
+            }
+            catch(Exception $e){
+                
+            }
         }
     }
 }

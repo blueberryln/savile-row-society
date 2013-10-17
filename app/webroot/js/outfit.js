@@ -374,10 +374,22 @@ $(document).ready(function(){
                 'name' : entityBlock.find(".entity-name").text(),
                 'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
             }
-            displayOutfitItem(outfitEntity);
-            $(".srs-closet-close").click();
-            $(".srs-closet-items").html("");
-            $(".product-filter-menu .toggle-tab li").removeClass("filter-selected");
+            var duplicateFlag = false;
+            $('.create-outfit-cont .product-block').each(function(){
+                if($(this)[0] != createOutfitItem.closest(".product-block")[0] && $(this).find(".product-id").val() == outfitEntity['id']){
+                    duplicateFlag = true;      
+                }    
+            });
+            if(duplicateFlag){
+                alert("You have already added this item");    
+            }
+            else{
+                displayOutfitItem(outfitEntity);
+                $(".srs-closet-close").click();
+                $(".srs-closet-items").html("");
+                $(".product-filter-menu .toggle-tab li").removeClass("filter-selected");    
+            }
+            
         }
     });
     
@@ -395,9 +407,20 @@ $(document).ready(function(){
                 'name' : entityBlock.find(".entity-name").text(),
                 'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
             }
-            displayOutfitItem(outfitEntity);
-            $(".user-closet-close").click();
-            $(".purchased-list-cont .selected-outfit-item").removeClass("selected-outfit-item");
+            var duplicateFlag = false;
+            $('.create-outfit-cont .product-block').each(function(){
+                if($(this)[0] != createOutfitItem.closest(".product-block")[0] && $(this).find(".product-id").val() == outfitEntity['id']){
+                    duplicateFlag = true;      
+                }    
+            });
+            if(duplicateFlag){
+                alert("You have already added this item");    
+            }
+            else{
+                displayOutfitItem(outfitEntity);
+                $(".user-closet-close").click();
+                $(".purchased-list-cont .selected-outfit-item").removeClass("selected-outfit-item");    
+            }
         }
     });
     
@@ -415,9 +438,21 @@ $(document).ready(function(){
                 'name' : entityBlock.find(".entity-name").text(),
                 'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
             }
-            displayOutfitItem(outfitEntity);
-            $(".user-closet-close").click();
-            $(".liked-list-cont .selected-outfit-item").removeClass("selected-outfit-item");
+            var duplicateFlag = false;
+            $('.create-outfit-cont .product-block').each(function(){
+                if($(this)[0] != createOutfitItem.closest(".product-block")[0] && $(this).find(".product-id").val() == outfitEntity['id']){
+                    duplicateFlag = true;      
+                }    
+            });
+            if(duplicateFlag){
+                alert("You have already added this item");    
+            }
+            else{
+                displayOutfitItem(outfitEntity);
+                $(".user-closet-close").click();
+                $(".liked-list-cont .selected-outfit-item").removeClass("selected-outfit-item");    
+            }
+            
         }
     });
     
@@ -441,6 +476,9 @@ $(document).ready(function(){
                 if(ret['status'] == "ok"){
                     $(".user-closet-close").click();
                     window.location = webroot + 'messages/index/' + client_id;    
+                }
+                else if(ret['status'] == "error" && ret['msg']){
+                    alert(ret['msg']);    
                 }
         
             });
