@@ -1367,16 +1367,28 @@ body{
 }
 .timeline .last-user-purchase
 {
-    color: #B5B5B5;
+    color: #A7A7A7;
     text-align: center;
     border-bottom: 1px solid #DEDEDE;
-    padding:15px 0;
+    padding:15px 10px;
+    font-size:12px;
 }
 .timeline .recent-activity
 {
-    color: #B3B3B3;
+    color: #A7A7A7;
     text-align: center;
-    padding:15px 0;
+    padding:15px 10px;
+    font-size:12px;
+}
+.timeline .stylist-info
+{
+    color: #A7A7A7;
+    padding:15px 10px 15px 40px;
+    font-size: 12px;
+    word-wrap:break-word;
+}
+.timeline .stylist-info span img{
+    margin-right:8px;
 }
 .timeline .last-user-purchase span, .timeline .recent-activity span
 {
@@ -1458,7 +1470,8 @@ body{
     border-radius: 50%;
     -moz-border-radius: 50% 50% 50% 50%;
     -webkit-border-radius: 50% 50% 50% 50%;
-    width: 100px;
+    max-height: 120px;
+    max-width: 100px !important;
     margin-top:55px;
     border: solid 2px #E0E0E0;
 }
@@ -3881,6 +3894,15 @@ div.dob select{
 
 div.dob select.last{
     margin-right: 0;    
+}
+
+/*********Stylist chat page new addition******/
+span.stylist-name
+{
+    color: #87878F;
+    font-family: 'Droid Serif',serif !important;
+    font-size: 12px;
+    text-transform: capitalize;
 }
 
 

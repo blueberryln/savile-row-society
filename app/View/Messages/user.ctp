@@ -17,10 +17,38 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 <div class="container content inner timeline">	
 
     <div class="sixteen columns">
-        <div class=" five columns stylist-img">
+        <!--<div class=" five columns stylist-img">
             <img src="<?php echo $this->webroot; ?>img/messages-casey.png" class="fadein-image" alt="Casey Golden" />
             <input type='button' value='MY PROFILE' class='my-profile'/>
             <br /><br /><br />
+        </div>-->
+        <div class="five columns user-container">
+            <div class="img-container">
+                <div class="profile-img text-center">
+                <?php
+                    $img = "";
+                    if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
+                        $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
+                    }
+                    else{
+                        $img = $this->webroot . "img/dummy_image.jpg";    
+                    }
+                ?>
+                    <img src="<?php echo $img; ?>" id="user_image" />
+                </div>
+            </div>
+            <div class="info-container">
+                
+                    <div id="user-name">Casey Golden<br />
+                        <span class="stylist-name">Your Personal Stylist</span>
+                    </div>                        
+                        <div class="stylist-info">
+                            <span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /></span>casey@savilerowsociety.com <br />
+                            <span><img src="<?php echo $this->webroot; ?>img/phone.png" class="fadein-image" /></span>123-456-789<br />
+                            <span><img src="<?php echo $this->webroot; ?>img/skype.png" class="fadein-image" /></span>SRS_Casey</span>
+                        </div><br />                
+            </div><br />
+            <input type='button' value='MY PROFILE' class='my-profile'/>        
         </div>
         <div class="ten columns aplha stylist-talk">
             <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
