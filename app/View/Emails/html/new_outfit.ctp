@@ -20,7 +20,7 @@
                             else{
                                 $img_src = Router::url('/', true) . "img/image_not_available-small.png";
                             } 
-                            $url = Router::url('/', true) . $item['Entity']['id'];
+                            $url = Router::url('/', true) . 'product/' . $item['Entity']['id'] . '/' . $item['Entity']['slug'];
                         ?>
                         <td><a href="<?php echo $url; ?>"><img src="<?php echo $img_src; ?>" /></a></td>
                     <?php endforeach; ?>
