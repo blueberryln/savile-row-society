@@ -80,7 +80,7 @@ class ProductsController extends AppController {
             $user_id = $this->getLoggedUserID();
             $this->request->data['Product']['user_id'] = $user_id;
             if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
-                unset($this->request->data['Product']['season_id']);
+                $this->request->data['Product']['season_id'] = null;
             }
             if($this->request->data['Category']['SubCategory'] != ""){
                 $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
