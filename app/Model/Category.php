@@ -102,7 +102,10 @@ class Category extends AppModel {
      * @return type
      */
     function getAll() {
-        return $this->find('threaded');
+        return $this->find('threaded', array(
+                'order' => array('Category.order' => 'ASC'),
+            )
+        );
     }
 
     /**

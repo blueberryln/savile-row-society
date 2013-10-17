@@ -10,6 +10,7 @@
                 <?php
                 echo $this->Form->input('name');
                 echo $this->Form->input('slug');
+                echo $this->Form->input('order', array('value' => 0));
                 echo $this->Form->input('parent_id', array('empty'=>'None'));
 //                echo $this->Form->input('lft', array('label' => 'Is after...', 'type' => 'select', 'options' => $lft));
 //                echo $this->Form->input('rght', array('label' => 'and before...', 'type' => 'select', 'options' => $rght));
