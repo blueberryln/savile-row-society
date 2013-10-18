@@ -908,18 +908,18 @@ class UsersController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
+                $this->Session->setFlash(__('The user has been saved'), 'flash');
                 $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'flash');
             }
         } else {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
-        //$stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
+        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
         
-        $this->set(compact('id'));
+        $this->set(compact('id', 'stylists'));
     }
 
     /**

@@ -433,7 +433,7 @@ class Entity extends AppModel {
                 FROM products_entities pe
                 INNER JOIN products_categories pc ON pe.product_id = pc.product_id
                 INNER JOIN categories cat ON pc.category_id = cat.id 
-                WHERE pe.show = 1 AND cat.parent_id IS NULL  
+                WHERE pe.show = 1   
                 GROUP BY pc.category_id";
                 
         $result = $this->query($sql);

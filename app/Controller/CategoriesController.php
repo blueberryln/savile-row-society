@@ -44,8 +44,14 @@ class CategoriesController extends AppController {
                 $this->Session->setFlash(__('The category could not be saved. Please, try again'), 'flash');
             }
         }
+        
+        $category_list = array();
+        $category_thread = $this->Category->find('threaded');
+        foreach($category_thread as $row){
+            $category_list[$row['Category']['id']] = $row;
+        }
         $parents = $this->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
-        $this->set(compact('parents'));
+        $this->set(compact('parents', 'category_list'));
     }
 
     /**

@@ -106,17 +106,21 @@ class ProductsController extends AppController {
         }
         
         $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
-        
-        $selected_category = $this->request->data['Category'][0]['name'];
-        $selected_category_id = $this->request->data['Category'][0]['id'];
-        $is_subcategory = 0;
-        $parent_category = "";
-        if(!in_array($selected_category, $categories)){
-            $is_subcategory = 1;
-            $parent_category =  $this->Product->Category->find('first', array('conditions' => array('Category.id' => $selected_category_id)));
-        }
-        else{
-            
+        $is_subcategory = false;
+        $parent_category = false;
+        $selected_category_id = false; 
+        if(count($this->request->data['Category']) > 0){
+            $selected_category = $this->request->data['Category'][0]['name'];
+            $selected_category_id = $this->request->data['Category'][0]['id'];
+            $is_subcategory = 0;
+            $parent_category = "";
+            if(!in_array($selected_category, $categories)){
+                $is_subcategory = 1;
+                $parent_category =  $this->Product->Category->find('first', array('conditions' => array('Category.id' => $selected_category_id)));
+            }
+            else{
+                
+            }
         }
         
         $seasons = $this->Product->Season->find('list');
