@@ -33,16 +33,15 @@
             <div class="form">
             <?php
             echo $this->Form->input('User.phone', array( "label"=>"", "placeholder" => "Phone number"));
-            //echo $this->Form->input('User.industry', array("id"=>"industry", "label" => "", "placeholder" => "Occupational Industry"));
             echo $this->Form->input('User.industry', array('label' => '', 'type' => 'select', 'required' => 'required', 'options' => $industry, 'empty' => 'Select Industry'));
             ?>
-            <!--<div class="input select dob">
+            <div class="input select dob">
             <?php 
-                //echo $this->Form->input('user.month', array('label' => '','div' => false, 'type' => 'select', 'required' => 'required', 'options' => '', 'empty' => 'Month'));   
-                //echo $this->Form->input('user.day', array('label' => '','div' => false, 'type' => 'select', 'required' => 'required', 'options' => '', 'empty' => 'Day'));
-                //echo $this->Form->input('user.year', array('label' => '','div' => false,'class' => 'last', 'type' => 'select', 'required' => 'required', 'options' => '', 'empty' => 'Year'));         
-                ?>          
-            </div>  -->          
+                echo $this->Form->day('day', array('div' => false, 'empty' => 'Day', 'label' => false, 'required', 'name' => 'data[User][day]'));
+                echo $this->Form->month('month', array('monthNames' => false, 'div' => false, 'empty' => 'Month', 'label' => false, 'required', 'name' => 'data[User][month]'));
+                echo $this->Form->year('year', 1900, date('Y'), array('div' => false, 'empty' => 'Year', 'label' => false, 'class' => 'last', 'required', 'name' => 'data[User][year]'));         
+            ?>          
+            </div>         
             <div class="clear"></div>
             </div>
         </div>
@@ -53,7 +52,7 @@
             <?php
             echo $this->Form->input('User.location', array("id"=>"location", "label"=>"", "placeholder" => "City, State"));
             echo $this->Form->input('User.skype', array("id"=>"skype", "label"=>"", "placeholder" => "Skype ID"));
-            //echo $this->Form->input('User.zipcode', array("id"=>"zipcode", "label"=>"", "placeholder" => "Zipcode"));
+            echo $this->Form->input('zip', array("label"=>"", "placeholder" => "Zipcode"));
             ?>
             </div>
         </div>

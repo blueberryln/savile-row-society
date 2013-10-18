@@ -19,11 +19,11 @@ class MessagesController extends AppController {
         $user = $this->getLoggedUser();
         $is_stylist = $user["User"]["is_stylist"];
         //... but if $user_id is not null then always show stylist preview
-        if($messages_for_user_id){
-            // if $messages_for_user_id is not null, then admin come to this page from users administration.
-            // and page should act as stylist is logged in. 
-            $is_stylist = true;
-        }
+        //if($messages_for_user_id){
+//            // if $messages_for_user_id is not null, then admin come to this page from users administration.
+//            // and page should act as stylist is logged in. 
+//            $is_stylist = true;
+//        }
         
          // make user_id, user
         $user_id = $this->getLoggedUserID();

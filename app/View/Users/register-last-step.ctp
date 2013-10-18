@@ -4,8 +4,7 @@ $script = ' var contact = ' . json_encode($contact) . '; ' .
 ' $(document).ready(function(){ 
     if(contact){
         $("#contact-time").val(contact.time);
-        $("#contact-type").val(contact.type);
-        $("#hear-from").val(contact.refer);         
+        $("#contact-type").val(contact.type);         
     }
 });';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -102,14 +101,15 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <option value="Skype">Skype</option>
         </select>  
         
-        <h5>who did you hear about SRS from question ?</h5>         
-        <input id="hear-from" type="text" name="data[UserPreference][Contact][refer]" maxlength="45" />    
+        <h5>who did you hear about SRS from?</h5>         
+        <?php
+            echo $this->Form->input('personal_shopper', array('label' => false, 'name' => 'data[User][personal_shopper]', 'maxlength' => 50, 'value' => $personal_shopper));
+        ?>   
         
         <input type="hidden" value="completed" name="data[UserPreference][is_complete]" />    
         
         
-        <div class="text-center about-submit">            
-            <!--<?php echo $this->Form->end(__('Upload')); ?>-->          
+        <div class="text-center about-submit">                   
             <div class="submit">
                 <input type="submit" value="Upload" /> 
                 <a class="link-btn black-btn back-btn1" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a>  

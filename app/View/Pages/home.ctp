@@ -51,17 +51,16 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     </div>
 
     <div class="nine columns">
-        <br />
-        <h2>
-            <p>Savile Row Society is a Men's Personal Shopping Platform. Our mission is to achieve an efficient, interactive, educational online shopping experience.</p> 
-            <p>Savile Row Society has created an exclusive men's lifestyle shopping destination on a virtual platform. SRS developed an innovative client profile merchandise matching technology while recruiting reputable industry fit &amp; styling experts. Our virtual platform is the most efficient and convenient way to shop.</p> 
+        <h2 style="margin-top: 35px;">
+            <p>SAVILE ROW SOCIETY is a Men's Personal Shopping Platform. Our mission is to achieve an efficient, interactive, educational online shopping experience.</p> 
+            <p>SAVILE ROW SOCIETY has created an exclusive men's lifestyle shopping destination on a virtual platform. SRS developed an innovative client profile merchandise matching technology while recruiting reputable industry fit &amp; styling experts. Our virtual platform is the most efficient and convenient way to shop.</p> 
         </h2>
     </div>
     
     <img class="membership-flow fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
     <div class="fourteen offset-by-one columns">
         <p>
-            As a Savile Row Society member you will receive exclusive Personal Lifestyle Services and access to our Deluxe Perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
+            As a SAVILE ROW SOCIETY member you will receive exclusive Personal Lifestyle Services and access to our Deluxe Perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
         </p>
         <p>
             All Members receive an exclusive SRS Membership Card that provides Deluxe Perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 

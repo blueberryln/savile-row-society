@@ -27,7 +27,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <fieldset class="fifteen columns">
                     <legend><?php echo __('Product Details'); ?></legend>
                     <?php
-                    echo $this->Form->input('name', array('required'));
+                    echo $this->Form->input('name', array('required', 'label' => 'Product Name'));
                     echo $this->Form->input('description', array('rows'=> '5', 'required'));
                     echo $this->Form->input('productcode', array('required' => false, 'label' => 'Product Id', 'maxlength' => 50));
                     echo $this->Form->input('sku', array('required' => false));

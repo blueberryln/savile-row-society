@@ -56,15 +56,17 @@
                 <li><a href="<?php echo $this->request->webroot; ?>closet" data-ref="closet">The Closet</a></li> 
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist">My Stylist</a>
+                     <?php if($is_logged) : ?>
+                        <ul class="submenu">
+                            <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
+                        </ul>
+                    <?php endif; ?>
                 </li>
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking">My Tailor</a>
                 </li>                
                 <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com">The Blog</a></li>
-                <?php if($is_logged) : ?>
-                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
-                <?php endif; ?>
-                
+                  
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
                 <li class="last">
                     <span>Share:</span><a id="lnk-fb-share" href=""  data-ref="closet">share</a>

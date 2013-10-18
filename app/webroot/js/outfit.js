@@ -146,7 +146,7 @@ function getLikedItems(lastPurchasedItem){
             var ret = $.parseJSON(data);
             if(ret["status"] == "ok"){
                 if(ret["total"] == 0){
-                    $(".liked-list-cont .product-listing-box").html("<p>User has not purchased any item yet.</p>");
+                    $(".liked-list-cont .product-listing-box").html("<p>User has not liked any item yet.</p>");
                 }
                 else{
                     if(lastPurchasedItem == 0){

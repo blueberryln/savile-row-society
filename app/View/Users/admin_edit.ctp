@@ -33,8 +33,12 @@
             </fieldset>
             <div class="clearfix"></div>
             <div class="text-center">
-                <?php echo $this->Form->end(__('Update')); ?>
+                <div class="submit">
+                    <input type="submit" value="Update">
+                </div>
             </div>
+            <?php echo $this->Form->end(); ?>
+            
         </div>
     </div>
 </div>
