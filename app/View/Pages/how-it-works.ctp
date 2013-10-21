@@ -124,12 +124,15 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </table>
     
     <div class="sixteen columns text-center">
-        <h1>Your StyleScan</h1>
+        <h1>Clothes-to-Customer Algorithm</h1>
         <h4>Coming soon...</h4>
         <br/>
     </div>
     <div class="fourteen offset-by-one columns">
-        <p>We do this through the StyleScan&trade;, a complex algorithm that blends the results of your 'dual-perspective' style profile with your social media presence, as well as any other details we've compiled through our clever technology. Now, you may ask, how does it work?</p>
+        <p>
+            Our Clothes-to-Customer algorithm (designed by a machine learner and a stylist) displays personalized product suggestions to each customer based on their style profile and their interactions with The Closet. Liking a product on The Closet helps the algorithm get to know you better and make better product suggestions to you.
+        </p>
+        <!--<p>We do this through the StyleScan&trade;, a complex algorithm that blends the results of your 'dual-perspective' style profile with your social media presence, as well as any other details we've compiled through our clever technology. Now, you may ask, how does it work?</p>
         <p>Our experts will provide you with recommendations for your needs – based on their years of experience and assistance from our StyleScan&trade;, your measurements, a few pictures of yourself, including information about upcoming professional or social responsibilities. </p>
         <div class="long-desc hide">
             <p>When it comes to style, perception is everything. That's why we recommend that you complete not only one, but two style profiles: one by you and the other by someone close to you. This way, we get to know not only how you see yourself, but also how someone else sees you. Then, we combine this feedback with activity on your customized online SRS blog (e.g. items you've &quot;liked&quot; or added to your &quot;wishlist&quot;), - Then we present you with bite-sized recommendations that will resonate with you. As the months go by, we will continue to develop and refine our vision, presenting you with more recommendations. <br>
@@ -139,6 +142,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="text-center">
             <a class="show-more-text" href="#" title="Show more">Show more</a>
-        </div>
+        </div>-->
     </div>
 </div>

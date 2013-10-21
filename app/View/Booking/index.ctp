@@ -74,33 +74,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <div class="sixteen columns">
         <br/><br/>
     </div>
-
-    <div class="seven columns text-center">
-        <img src="<?php echo $this->request->webroot; ?>img/custom-tailor-joe.jpg" class="fadein-image booking-joey" />
-        
-        
-    </div>
-    <div class="nine columns">
-            <div class="eight columns text-justify">
-                <h3>Meet Joey Glazer</h3>
-                <h4>MADE TO MEASURE DIRECTOR</h4>
-                <p>With 20 years in the industry, Joey Glazer has built a reputation in menswear from brand building and textile development in luxury clothing to dressing top executives. Joey is  drawn to the details of well-made clothing; his  passion is easily recognized.</p>
-                <p>Through this work, Joey discovered the true need for customized service in the men's fashion industry. Joining the Savile Row Society team is just one more way that is contributing to the style and wardrobes of men who demand perfection.</p>
-                <div class="long-desc hide">
-                    <p>When you schedule your first fitting with SRS, you will meet Joey for a one-on-one consultation and he will walk you through the our Made to Measure process, capture your measurements and get to know your garment preferences and lifestyle needs of your clothing.</p> 
-                    <p>Made to Measure has never been this simple.</p>
-                </div>
-                <div class="text-center">
-                    <a class="show-more-text" href="#" title="Show more">Show more</a>
-                </div>
-            </div>
-    </div>
-    
-
-
-    
-    <div class="clearfix"></div>
-    
     
     <div class="seven columns book-appointment offset-by-one">
         <h2>Book an appointment</h2>
@@ -152,4 +125,28 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>
         </div>
     </div>
+    
+    <div class="clearfix"></div><br />
+    <br /><br />
+
+    <div class="seven columns text-center offset-by-one">
+        <img src="<?php echo $this->request->webroot; ?>img/custom-tailor-joe.jpg" class="fadein-image booking-joey" />
+        
+        
+    </div>
+    <div class="seven columns">
+            <div class="seven columns text-justify">
+                <h3>Meet Joey Glazer</h3>
+                <h4>MADE TO MEASURE DIRECTOR</h4>
+                <p>With 20 years in the industry, Joey Glazer has built a reputation in menswear from brand building and textile development in luxury clothing to dressing top executives. Joey is  drawn to the details of well-made clothing; his  passion is easily recognized.</p>
+                <p>Through this work, Joey discovered the true need for customized service in the men's fashion industry. Joining the Savile Row Society team is just one more way that is contributing to the style and wardrobes of men who demand perfection.</p>
+                <div class="long-desc hide">
+                    <p>When you schedule your first fitting with SRS, you will meet Joey for a one-on-one consultation and he will walk you through the our Made to Measure process, capture your measurements and get to know your garment preferences and lifestyle needs of your clothing.</p> 
+                    <p>Made to Measure has never been this simple.</p>
+                </div>
+                <div class="text-center">
+                    <a class="show-more-text" href="#" title="Show more">Show more</a>
+                </div>
+            </div>
+    </div>    
 </div>

@@ -154,3 +154,10 @@ ul.ordered-items select
 {
     padding:3px 6px;
 }
+
+/****Product Color****/
+.product-color .input
+{
+    max-height: 140px !important;
+    overflow-y:scroll !important;
+}

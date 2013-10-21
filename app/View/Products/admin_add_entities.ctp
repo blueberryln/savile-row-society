@@ -18,7 +18,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         <div class="products form">
             <?php if(count($colors) > 0) : ?>
                 <?php echo $this->Form->create('Entity', array('type' => 'file')); ?>
-                <fieldset class="fifteen columns" style="max-height: 140px; overflow-y: auto;">
+                <fieldset class="fifteen columns product-color">
                     <legend><?php echo __('Product Color'); ?></legend>
                     <?php
                     echo $this->Form->input('Color', array('label' => '', 'multiple' => 'checkbox'));

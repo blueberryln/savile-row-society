@@ -50,7 +50,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     </div>
 
     <div class="nine columns">
-        <h2 style="margin-top: 35px;">
+        <h2 style="margin-top: 55px;">
             <p>SAVILE ROW SOCIETY is a Men's Personal Shopping Platform. Our mission is to achieve an efficient, interactive, educational online shopping experience.</p> 
             <p>SAVILE ROW SOCIETY has created an exclusive men's lifestyle shopping destination on a virtual platform. SRS developed an innovative client profile merchandise matching technology while recruiting reputable industry fit &amp; styling experts. Our virtual platform is the most efficient and convenient way to shop.</p> 
         </h2>

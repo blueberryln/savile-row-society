@@ -899,7 +899,7 @@ body{
 .content.home h2 {
     color: #8D8D8D;
     font-family: 'Droid Serif',serif;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 26px;
     text-align: justify;
     font-weight: normal;
@@ -1729,7 +1729,7 @@ body{
 }
 .membership-service-option > .description{
     font-size: 11px;
-    color: #B3B3B3;
+    color: #9B9B9B /*#B3B3B3*/;
     padding-bottom: 4px;
 }
 #membership-table td.included{
@@ -2740,7 +2740,7 @@ p.product-breadcrumb a
 }
 .product-description p.description
 {
-    color: #B3B3B3;
+    color: #9B9B9B;
     font-size: 14px;
     padding-bottom: 4px;
     line-height: 20px;
