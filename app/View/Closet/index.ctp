@@ -187,10 +187,18 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <?php foreach ($categories as $category): ?>
                             <li <?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "class='cat-filter-selected'" : ""; ?>>
                             <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $category['Category']['name']; ?></a>
-                            <?php if ($category['children'] && $parent_id && $parent_id == $category['Category']['id']) : ?>
+                                <?php if ($category['children'] && $parent_id && $parent_id == $category['Category']['id']) : ?>
                                     <ul class="product-subcategories">
                                         <?php foreach ($category['children'] as $subcategory): ?>
-                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $subcategory['Category']['name']; ?></a></li>
+                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $subcategory['Category']['name']; ?></a>
+                                                <?php if ($subcategory['children']) : ?>
+                                                    <ul class="product-subcategories">
+                                                        <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
+                                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subsubcategory['Category']['slug']; ?>" <?php echo $category_slug == $subsubcategory['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $subsubcategory['Category']['name']; ?></a></li>    
+                                                        <?php endforeach; ?>
+                                                    </ul>       
+                                                <?php endif; ?>
+                                            </li>
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php endif; ?>

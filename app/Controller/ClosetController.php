@@ -115,6 +115,14 @@ class ClosetController extends AppController {
                         $parent_id = $category['Category']['id'];
                         break;
                     }
+                    else if($child['children']){
+                        foreach($child['children'] as $subchild){
+                            if($category_slug == $subchild['Category']['slug']){
+                                $parent_id = $category['Category']['id'];
+                                break;
+                            }    
+                        }
+                    }
                 }
             }
         }

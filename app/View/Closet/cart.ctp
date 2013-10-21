@@ -16,7 +16,7 @@ $(document).ready(function(){
                         var newTotal = cartTotal - itemPrice;
                         newTotal = parseFloat(newTotal).toFixed(2);
                         $(".cart-total").text("$" + newTotal);
-                        $("#cart-items-count").html(ret["count"]);
+                        $(".cart-items-count").html(ret["count"]);
                         parentRow.remove();
                         var notificationDetails = new Array();
                         notificationDetails["msg"] = "Item removed from the cart.";
@@ -26,6 +26,7 @@ $(document).ready(function(){
                         var notificationDetails = new Array();
                         notificationDetails["msg"] = "Item removed from the cart.";
                         showNotification(notificationDetails, true);
+                        $(".cart-items-count").html(ret["count"]);
                         $(".cart-checkout").remove();
                         $(".my-cart").prepend("<h2 class=\"subhead text-center\">There are no items in the cart.</h2>");
                         $(".my-cart .checkout").remove();  
