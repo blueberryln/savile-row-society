@@ -39,8 +39,11 @@ class ProductsController extends AppController {
             if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
                 unset($this->request->data['Product']['season_id']);
             }
-            if($this->request->data['Category']['SubCategory'] != ""){
+            if(isset($this->request->data['Category']['SubCategory']) && $this->request->data['Category']['SubCategory'] != ""){
                 $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
+            }
+            if(isset($this->request->data['Category']['SubSubCategory']) && $this->request->data['Category']['SubSubCategory'] != ""){
+                $this->request->data['Category']['Category'] = $this->request->data['Category']['SubSubCategory'];
             }
             if ($result = $this->Product->save($this->request->data)) {
                 $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
@@ -82,8 +85,11 @@ class ProductsController extends AppController {
             if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
                 $this->request->data['Product']['season_id'] = null;
             }
-            if($this->request->data['Category']['SubCategory'] != ""){
+            if(isset($this->request->data['Category']['SubCategory']) && $this->request->data['Category']['SubCategory'] != ""){
                 $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
+            }
+            if(isset($this->request->data['Category']['SubSubCategory']) && $this->request->data['Category']['SubSubCategory'] != ""){
+                $this->request->data['Category']['Category'] = $this->request->data['Category']['SubSubCategory'];
             }
             
             if ($this->Product->save($this->request->data)) {
@@ -105,30 +111,26 @@ class ProductsController extends AppController {
             $category_list[$row['Category']['id']] = $row;
         }
         
-        $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
-        $is_subcategory = false;
-        $parent_category = false;
-        $selected_category_id = false; 
-        if(count($this->request->data['Category']) > 0){
-            $selected_category = $this->request->data['Category'][0]['name'];
-            $selected_category_id = $this->request->data['Category'][0]['id'];
-            $is_subcategory = 0;
-            $parent_category = "";
-            if(!in_array($selected_category, $categories)){
-                $is_subcategory = 1;
-                $parent_category =  $this->Product->Category->find('first', array('conditions' => array('Category.id' => $selected_category_id)));
-            }
-            else{
-                
+        $parent_id = 0;
+        $super_parent_id = 0;
+        $selected_category_id = $this->request->data['Category'][0]['id'];
+        $selected_data = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $selected_category_id)));
+        if($selected_data['Category']['parent_id']){
+            $parent_id = $selected_data['Category']['parent_id'];
+            $parent_data = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $parent_id)));
+            if($parent_data['Category']['parent_id']){
+                $super_parent_id = $parent_data['Category']['parent_id'];
             }
         }
+        
+        $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
         
         $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         $entities = $this->request->data['Entity'];
         
 
-        $this->set(compact('categories', 'brands', 'seasons', 'entities', 'id', 'category_list', 'is_subcategory', 'parent_category', 'selected_category_id'));
+        $this->set(compact('categories', 'brands', 'seasons', 'entities', 'id', 'category_list', 'parent_id', 'super_parent_id', 'selected_category_id'));
     }
     
     /**

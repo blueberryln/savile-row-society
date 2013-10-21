@@ -22,7 +22,11 @@ $(document).ready(function(){
     
     $("#CategoryParentId").on("change", function(e){
         var catSelected = $(this).val();
-        if(categoryList[catSelected]["children"].length > 0){
+        if(catSelected == ""){
+            $("#sub-category").closest("div").addClass("hide");   
+            $("#sub-category").html("");    
+        }
+        else if(categoryList[catSelected]["children"].length > 0){
             addSubcategoryList(categoryList[catSelected]["children"]);
         }   
         else{

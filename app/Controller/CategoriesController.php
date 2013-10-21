@@ -71,7 +71,7 @@ class CategoriesController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->request->data['Category']['parent_id'] == 0 || $this->request->data['Category']['parent_id'] == '') {
-                unset($this->request->data['Category']['parent_id']);
+                $this->request->data['Category']['parent_id'] = null;
             }
             if($this->request->data['Category']['SubCategory'] != ""){
                 $this->request->data['Category']['parent_id'] = $this->request->data['Category']['SubCategory'];       
