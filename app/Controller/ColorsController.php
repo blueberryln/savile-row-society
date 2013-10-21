@@ -79,7 +79,7 @@ class ColorsController extends AppController {
             throw new NotFoundException(__('Invalid color'));
         }
         $this->request->onlyAllow('post', 'delete');
-        if ($this->Color->delete()) {
+        if ($this->Color->remove($id)) {
             $this->Session->setFlash(__('Color deleted'), 'flash', array('title' => 'Success!'));
             $this->redirect(array('action' => 'index'));
         }
