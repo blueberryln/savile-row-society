@@ -171,7 +171,7 @@ class UsersController extends AppController {
                         
                     }
                     else{
-                        $results['User']['stylist_id'] = 41;
+                        $results['User']['stylist_id'] = 279;
                         $results = $this->User->save($results);
                     }
                     
@@ -323,6 +323,12 @@ class UsersController extends AppController {
         $user["User"]["industry"] = $this->request->data["User"]["industry"];
         $user["User"]["location"] = $this->request->data["User"]["location"];
         $user["User"]["skype"] = $this->request->data["User"]["skype"];
+        $user["User"]["zip"] = $this->request->data["User"]["zip"];
+        if(checkdate($this->request->data["User"]["month"],$this->request->data["User"]["day"], $this->request->data["User"]["year"])){
+            $user["User"]["birthdate"] = date('Y-m-d', strtotime($this->request->data["User"]["year"] . "-" . $this->request->data["User"]["month"] . "-" . $this->request->data["User"]["day"]));
+        }
+        
+        
 
         if ($results = $this->User->save($user)) {
             //Write back updated results to user session            
@@ -354,6 +360,7 @@ class UsersController extends AppController {
             $preferences['UserPreference']['is_complete'] = $data['UserPreference']['is_complete'];
             $serialized_preferences = serialize($preferences);
             $user['User']['preferences'] = $serialized_preferences;
+            $user['User']['personal_shopper'] = $data['User']['personal_shopper'];
 
             // save image
             if($image = $this->saveImage()){
@@ -479,6 +486,11 @@ class UsersController extends AppController {
                 break;
             case 'about':
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
+                if($user['User']['birthdate']){
+                    $user['User']['day'] = date('d', strtotime($user['User']['birthdate']));
+                    $user['User']['month'] = date('m', strtotime($user['User']['birthdate']));
+                    $user['User']['year'] = date('Y', strtotime($user['User']['birthdate']));
+                }
                 $this->data = $user;
                 $industry = $this->industry_options;
                 $this->set(compact('full_name','industry'));
@@ -486,12 +498,16 @@ class UsersController extends AppController {
                 // debug($user);
                 break;
             case 'last-step': // not in use
-
                 $title_for_layout = 'Sign up';
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
                 $this->set(compact('full_name'));
                 $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : "#";
                 $contact = ($preferences['UserPreference']) ? $preferences['UserPreference']['Contact'] : null;
+                $personal_shopper = "";
+                if($user['User']['personal_shopper']){
+                    $personal_shopper = $user['User']['personal_shopper'];
+                }
+                $this->set(compact('personal_shopper'));
                 $this->set(compact('contact'));
                 $this->set(compact('image_url'));
                 $this->render('register-last-step');
@@ -572,7 +588,7 @@ class UsersController extends AppController {
                         
                     }
                     else{
-                        $results['User']['stylist_id'] = 41;
+                        $results['User']['stylist_id'] = 279;
                         $results = $this->User->save($results);
                     }
                     
@@ -892,16 +908,18 @@ class UsersController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
+                $this->Session->setFlash(__('The user has been saved'), 'flash');
                 $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'flash');
             }
         } else {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
-        $this->set(compact('id'));
+        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
+        
+        $this->set(compact('id', 'stylists'));
     }
 
     /**

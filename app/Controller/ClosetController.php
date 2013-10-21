@@ -61,10 +61,35 @@ class ClosetController extends AppController {
         //$random_list = $Entity->getCloset($parent_categories);
         $random_list = $Entity->getClosestItems();
         $entity_list = array();
-        foreach($random_list as $item){
-            $entity_list[] = $item['pe']['id'];
+        
+        $category_list = $Category->find('threaded', array('order' => array('Category.order' => 'ASC')));
+        foreach($category_list as $cat){
+            $cur_list = array();
+            $cur_list[] = $cat['Category']['id'];
+            if(count($cat['children'])>0){
+                foreach($cat['children'] as $sub){
+                    $cur_list[] = $sub['Category']['id'];
+                }    
+            }
+            
+            foreach($random_list as $item){
+                if(in_array($item['pc']['category_id'], $cur_list)){
+                    $entity_list[] = $item['pe']['id'];
+                    break;    
+                }    
+            }
         }
-        $entities = $Entity->getEntitiesById($entity_list, $user_id);
+        
+        $unordered_entities = $Entity->getEntitiesById($entity_list, $user_id);
+        $entities = array();
+        
+        foreach($entity_list as $id){
+            foreach($unordered_entities as $entity){
+                if($id == $entity['Entity']['id']){
+                    $entities[] = $entity;
+                }
+            }    
+        }
 
         return $entities;
     }

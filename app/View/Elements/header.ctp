@@ -19,10 +19,14 @@
                 
                  <?php
                 if (!$is_logged) {
+                ?>
+                <li><a href="#" onclick="window.ref_url=''; signUp();"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                <?php
                     echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();">Join</a></li> ';
                     echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();">Sign In</a> </li> ';
                 } else {
                 ?>
+                <li><a href="<?php echo $this->request->webroot; ?>cart"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <li>
                     <a title="Account">My Account</a>
                     <div class="submenu-container">
@@ -30,7 +34,7 @@
                             <?php if ($is_admin) : ?>
                                 <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                             <?php endif; ?>
-                            <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu"><?php echo $cart_items; ?></span>) </a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>closet/liked" class="headerMenu">My Closet</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu">Profile</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
@@ -56,15 +60,17 @@
                 <li><a href="<?php echo $this->request->webroot; ?>closet" data-ref="closet">The Closet</a></li> 
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist">My Stylist</a>
+                     <?php if($is_logged) : ?>
+                        <ul class="submenu">
+                            <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
+                        </ul>
+                    <?php endif; ?>
                 </li>
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking">My Tailor</a>
                 </li>                
                 <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com">The Blog</a></li>
-                <?php if($is_logged) : ?>
-                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
-                <?php endif; ?>
-                
+                  
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
                 <li class="last">
                     <span>Share:</span><a id="lnk-fb-share" href=""  data-ref="closet">share</a>

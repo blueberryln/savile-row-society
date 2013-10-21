@@ -39,7 +39,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <div class="last-user-purchase">
                             <?php if(isset($last_purchase['Order'])) : ?>
                                 Last Purchase: <span>$<?php echo $last_purchase['Order']['total_price']; ?></span> <br />
-                                on <?php echo date('l:jS F Y, h:ia'); ?>
+                                on <?php echo date('l:jS F Y, h:ia', strtotime($last_purchase['Order']['created'])); ?>
                             <?php else : ?>
                                 Last Purchase: <span>No purchases yet.</span>
                             <?php endif; ?>

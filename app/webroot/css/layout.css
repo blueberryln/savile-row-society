@@ -153,7 +153,7 @@ body{
 }
 .header .menu .submenu {
     background-color: #ffffff;
-    border-left: 1px solid #CCCCCC;
+    border: 1px solid #CCCCCC;
     cursor: auto;
     display: none;
     margin: 5px 0 0 -14px;
@@ -172,12 +172,14 @@ body{
     color:#b4b4b4;
 }
 .header .menu .submenu li:last-child{
-    padding-bottom: 12px;
 }
-.header .menu li:hover > .submenu,
-.header .menu .submenu li a {
+.header .menu li:hover > .submenu{
     display:block;
 }
+/*.header .menu li:hover > .submenu,
+.header .menu .submenu li a {
+    display:block;
+}*/
 .header .menu li.last:hover > .submenu{
     margin: 5px 24px 0 0;
     right: 0;

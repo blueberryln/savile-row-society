@@ -105,7 +105,7 @@ $(document).ready(function(){
             function(data) {
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
-                    $("#cart-items-count").html(ret["count"]);
+                    $(".cart-items-count").html(ret["count"]);
                     if(ret["count"] == 3){
                         var notificationDetails = new Array();
                         notificationDetails["msg"] = ret["cart_message"];
