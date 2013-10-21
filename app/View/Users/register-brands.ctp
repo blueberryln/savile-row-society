@@ -227,7 +227,7 @@ window.registerProcess = true;
                 </li>
             </ul>
         </div>
-        <div class="fourteen columns  alpha omega text-center offset-by-two">
+        <div class="fourteen columns alpha omega text-center offset-by-two">
             <div id="brands" >
                 <div id="polos_tees-brands" class="brand-block">
                    

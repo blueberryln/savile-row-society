@@ -3590,7 +3590,7 @@ div.brands-cont input[type="submit"] {
 }
     
 
-div#brands ol.brands-logo li
+div#brands ol.brands-logo li, ul#branding-partners li
 {
     display:inline-block;    
     background: #fff;
@@ -3610,7 +3610,7 @@ div#brands ol.brands-logo li
     box-sizing:border-box;   
 }
 
-div#brands ol.brands-logo li img
+div#brands ol.brands-logo li img,ul#branding-partners li img
 {
     max-height:52px;
     max-width:138px;
@@ -3904,6 +3904,8 @@ span.stylist-name
     font-size: 12px;
     text-transform: capitalize;
 }
+
+/******Branding Partners********/
 
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
