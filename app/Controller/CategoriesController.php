@@ -73,6 +73,9 @@ class CategoriesController extends AppController {
             if ($this->request->data['Category']['parent_id'] == 0 || $this->request->data['Category']['parent_id'] == '') {
                 unset($this->request->data['Category']['parent_id']);
             }
+            if($this->request->data['Category']['SubCategory'] != ""){
+                $this->request->data['Category']['parent_id'] = $this->request->data['Category']['SubCategory'];       
+            }
             $this->request->data['Category']['slug'] = Inflector::slug(trim($this->request->data['Category']['slug']), '-');
             
             if ($this->Category->save($this->request->data)) {
@@ -87,27 +90,24 @@ class CategoriesController extends AppController {
         }
         
         $category_list = array();
-        $category_all = $this->Category->find('all');
         $category_thread = $this->Category->find('threaded');
         foreach($category_thread as $row){
-            if(count($row['children'])>0){
-                $child_list = array();
-                foreach($row['children'] as $child){
-                    $child_list[$child['Category']['id']] = $child;
-                }
-                $row['children'] = $child_list;
-            }
             $category_list[$row['Category']['id']] = $row;
-            
         }
+        
+        $parent_id = 0;
+        $parent_parent_id = 0;
+        if($this->request->data['Category']['parent_id']){
+            $parent_id = $this->request->data['Category']['parent_id'];
+            $parent_data = $this->Category->find('first', array('conditions' => array('Category.id' => $parent_id)));
+            if($parent_data && $parent_data['Category']['parent_id']){
+                $parent_parent_id = $parent_data['Category']['parent_id'];    
+            }
+        }  
         
         $parents = $this->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
         
-        if($this->request->data['Category']['parent_id']){
-            
-        }
-        
-        $this->set(compact('parents', 'category_list'));
+        $this->set(compact('parents', 'category_list', 'parent_id', 'parent_parent_id'));
     }
 
     /**

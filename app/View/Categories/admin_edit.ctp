@@ -1,6 +1,9 @@
 <?php
 $script = '
 var categoryList = ' . json_encode($category_list) . ';
+var parentId = ' . $parent_id . ';
+var parentParentId = ' . $parent_parent_id . ';
+
 function addSubcategoryList(subCategories){
     $("#sub-category").html("");
     if(subCategories.length > 0){
@@ -18,6 +21,12 @@ $(document).ready(function(){
     var catSelected = $("#CategoryParentId").val();
     if(catSelected != "" && categoryList[catSelected]["children"].length > 0){
         addSubcategoryList(categoryList[catSelected]["children"]);
+    }
+    
+    if(parentId && parentParentId){
+        $("#CategoryParentId").val(parentParentId); 
+        addSubcategoryList(categoryList[parentParentId]["children"]); 
+        $("#sub-category").val(parentId);           
     }
     
     $("#CategoryParentId").on("change", function(e){
