@@ -33,7 +33,6 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <ul class="slides">
             <li><img src="<?php echo $this->request->webroot; ?>img/home-1.jpg"/></li>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>
-            <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/home-3.jpg"/></a></li>
             <li><a href="<?php echo $this->request->webroot; ?>stylist"><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"/></a></li>     
             <li><iframe class="max-width-adj" width="940" height="325" src="//www.youtube.com/embed/BygtFwK_Dpw?wmode=transparent&rel=0" frameborder="0" allowfullscreen></iframe>
             </li> 

@@ -35,6 +35,10 @@ class CategoriesController extends AppController {
             if ($this->request->data['Category']['parent_id'] == 0 || $this->request->data['Category']['parent_id'] == '') {
                 unset($this->request->data['Category']['parent_id']);
             }
+            if($this->request->data['Category']['SubCategory'] != ""){
+                $this->request->data['Category']['parent_id'] = $this->request->data['Category']['SubCategory'];       
+            }
+            
             $this->request->data['Category']['slug'] = Inflector::slug(trim($this->request->data['Category']['slug']), '-');
             
             if ($result = $this->Category->save($this->request->data)) {
@@ -80,12 +84,30 @@ class CategoriesController extends AppController {
         } else {
             $options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
             $this->request->data = $this->Category->find('first', $options);
-            if ($this->request->data['Category']['parent_id'] == 0) {
-                unset($this->request->data['Category']['parent_id']);
-            }
         }
+        
+        $category_list = array();
+        $category_all = $this->Category->find('all');
+        $category_thread = $this->Category->find('threaded');
+        foreach($category_thread as $row){
+            if(count($row['children'])>0){
+                $child_list = array();
+                foreach($row['children'] as $child){
+                    $child_list[$child['Category']['id']] = $child;
+                }
+                $row['children'] = $child_list;
+            }
+            $category_list[$row['Category']['id']] = $row;
+            
+        }
+        
         $parents = $this->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
-        $this->set(compact('parents'));
+        
+        if($this->request->data['Category']['parent_id']){
+            
+        }
+        
+        $this->set(compact('parents', 'category_list'));
     }
 
     /**

@@ -19,10 +19,14 @@
                 
                  <?php
                 if (!$is_logged) {
+                ?>
+                <li><a href="#" onclick="window.ref_url=''; signUp();"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                <?php
                     echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();">Join</a></li> ';
                     echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();">Sign In</a> </li> ';
                 } else {
                 ?>
+                <li><a href="<?php echo $this->request->webroot; ?>cart"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <li>
                     <a title="Account">My Account</a>
                     <div class="submenu-container">
@@ -30,7 +34,7 @@
                             <?php if ($is_admin) : ?>
                                 <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                             <?php endif; ?>
-                            <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu"><?php echo $cart_items; ?></span>) </a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>closet/liked" class="headerMenu">My Closet</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu">Profile</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>

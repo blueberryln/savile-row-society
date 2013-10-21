@@ -171,7 +171,7 @@ class UsersController extends AppController {
                         
                     }
                     else{
-                        $results['User']['stylist_id'] = 41;
+                        $results['User']['stylist_id'] = 279;
                         $results = $this->User->save($results);
                     }
                     
@@ -588,7 +588,7 @@ class UsersController extends AppController {
                         
                     }
                     else{
-                        $results['User']['stylist_id'] = 41;
+                        $results['User']['stylist_id'] = 279;
                         $results = $this->User->save($results);
                     }
                     
