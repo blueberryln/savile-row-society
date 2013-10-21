@@ -4106,12 +4106,17 @@ span.stylist-name
     }
     .flexslider
     {
-        height:auto !important;
+        height:259px !important;
+    }
+    
+    .booking .flexslider 
+    {
+        height: 325px !important;
     }
     
     .flexslider iframe
     {
-        height:350px;
+        height:259px;
     }    
     .content.inner.booking .book-appointment .datepicker {    
     background: url("../img/btn-book.png") no-repeat scroll 235px center;
@@ -4144,13 +4149,28 @@ span.stylist-name
     {
         width:100% !important;
     }
+    
+    input[type="submit"]
+    {
+        border-radius:0px;
+    }
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
     
+    .flexslider
+    {
+        height:325px !important;
+    }
+    
+    .booking .flexslider 
+    {
+        height: 438px !important;
+    }
+     
     .flexslider iframe
     {
-        height:438px;
+        height:325px;
     }   
       
     .content.inner.booking .book-appointment .datepicker {    

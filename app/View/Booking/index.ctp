@@ -70,7 +70,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/booking-3.jpg"></a></li>
         </ul>
     </div>
-
+    <div class="clearfix"></div>
     <div class="sixteen columns">
         <br/><br/>
     </div>

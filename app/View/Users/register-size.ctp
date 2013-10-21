@@ -94,7 +94,16 @@ $script = ' var size = ' . json_encode($size) . '; ' .
             }
         }
 
-         $("span.size-chart,#pantSize").click(function(){
+         $("span.size-chart").click(function(){
+            if($("div#size-chart-box").is(":visible")) {
+                $("div#size-chart-box").slideUp(300); 
+            }
+            else {
+                $("div#size-chart-box").slideDown(300);
+            }
+         }); 
+         
+         $("#pantSize").click(function(){
             if($("div#size-chart-box").is(":visible")) {
                 $("div#size-chart-box").slideUp(300); 
             }
@@ -299,7 +308,7 @@ window.registerProcess = true;
                         </div>
         
                         <div class="input text required pant-size">
-                            <label for="pantSize">pant size: <span class="size-chart">SIZE CHART</span></label>
+                            <label for="">pant size: <span class="size-chart">SIZE CHART</span></label>
                             <input id="pantSize" type="text" name="data[UserPreference][Size][pant_size]" required="required" maxlength="45" readonly />                      
                             <div id="size-chart-box">
                                 <ul>
