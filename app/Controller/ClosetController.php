@@ -900,10 +900,31 @@ class ClosetController extends AppController {
     /**
      * Liked Items
      */
-    public function liked() {
+    public function liked($id = null) {
 
         $this->isLogged();
-        $user_id = $this->getLoggedUserID();
+        if($id){
+            $user_id = $id;
+            $User = ClassRegistry::init('User');
+            $user_data = $User->find('first', array('conditions'=>array('User.id' => $user_id)));
+            $logged_user_id = $this->getLoggedUserID();
+            $logged_user = $this->getLoggedUser();
+            if($user_data){
+                
+            }
+            else{
+                $this->redirect('liked');
+                exit;
+            }
+            if($user_data['User']['stylist_id'] != $logged_user_id && $user_id != $logged_user_id &&  !$logged_user['User']['is_admin']){
+                $this->redirect('liked');
+                exit;
+            }
+        }
+        else{
+            $user_id = $this->getLoggedUserID();
+        }
+        
         // init
         $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity');
@@ -936,7 +957,7 @@ class ClosetController extends AppController {
         $this->Paginator->settings = $find_array;
         $wishlists = $this->Paginator->paginate($Entity);
         // send data to view
-        $this->set(compact('wishlists'));
+        $this->set(compact('wishlists', 'user_id'));
         
         $this->render('wishlist');
     }
@@ -944,10 +965,30 @@ class ClosetController extends AppController {
     /**
      * Purchased Items
      */
-    public function purchased() {
+    public function purchased($id = null) {
         $this->isLogged();
-        $this->isLogged();
-        $user_id = $this->getLoggedUserID();
+        
+        if($id){
+            $user_id = $id;
+            $User = ClassRegistry::init('User');
+            $user_data = $User->find('first', array('conditions'=>array('User.id' => $user_id)));
+            $logged_user_id = $this->getLoggedUserID();
+            $logged_user = $this->getLoggedUser();
+            if($user_data){
+            }
+            else{
+                $this->redirect('purchased');
+                exit;
+            }
+            
+            if($user_data['User']['stylist_id'] != $logged_user_id && $user_id != $logged_user_id &&  !$logged_user['User']['is_admin']){
+                $this->redirect('purchased');
+                exit;
+            }
+        }
+        else{
+            $user_id = $this->getLoggedUserID();
+        }
         // init
         $OrderItem = ClassRegistry::init('OrderItem');
         $Entity = ClassRegistry::init('Entity');
@@ -963,6 +1004,20 @@ class ClosetController extends AppController {
                     'type' => 'INNER',
                     'conditions' => array(
                         'Order.id = OrderItem.order_id'
+                    )
+                ),
+                array('table' => 'products_entities',
+                    'alias' => 'Entity',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Entity.id = OrderItem.product_entity_id'
+                    )
+                ),
+                array('table' => 'products_categories',
+                    'alias' => 'PCategory',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Entity.product_id = PCategory.product_id'
                     )
                 )
             ),
@@ -987,11 +1042,12 @@ class ClosetController extends AppController {
                     $row['Entity'] = $entities[$i]['Entity'];
                     $row['Image'] = $entities[$i]['Image'];
                     $row['Color'] = $entities[$i]['Color'];
-                }        
+                }     
             }            
         }
         
-        $this->set(compact('purchased_list', 'sizes'));
+        
+        $this->set(compact('purchased_list', 'sizes', 'user_id'));
         
     }
 }
