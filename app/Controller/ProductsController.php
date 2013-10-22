@@ -113,15 +113,19 @@ class ProductsController extends AppController {
         
         $parent_id = 0;
         $super_parent_id = 0;
-        $selected_category_id = $this->request->data['Category'][0]['id'];
-        $selected_data = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $selected_category_id)));
-        if($selected_data['Category']['parent_id']){
-            $parent_id = $selected_data['Category']['parent_id'];
-            $parent_data = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $parent_id)));
-            if($parent_data['Category']['parent_id']){
-                $super_parent_id = $parent_data['Category']['parent_id'];
-            }
+        $selected_category_id = 0;
+        if($this->request->data['Category']){
+            $selected_category_id = $this->request->data['Category'][0]['id'];
+            $selected_data = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $selected_category_id)));
+            if($selected_data['Category']['parent_id']){
+                $parent_id = $selected_data['Category']['parent_id'];
+                $parent_data = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $parent_id)));
+                if($parent_data['Category']['parent_id']){
+                    $super_parent_id = $parent_data['Category']['parent_id'];
+                }
+            }    
         }
+        
         
         $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
         

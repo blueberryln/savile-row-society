@@ -190,20 +190,20 @@ class UsersController extends AppController {
                         $this->redirect($retrun_url);
                         exit();
                     }
-                    $this->redirect('/');
+                    $this->redirect($this->referer());
                     exit();
                 } else {
                     // login data is wrong, redirect to login page
                     $this->request->data = null;
                     $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'flash');
-                    $this->redirect('/home');
+                    $this->redirect($this->referer());
                     exit();
                 }
             }
             else{
                 $this->request->data = null;
                 $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'flash');
-                $this->redirect('/');
+                $this->redirect($this->referer());
                 exit;
             }
         }
@@ -549,7 +549,7 @@ class UsersController extends AppController {
                 }
                 
                 $this->Session->setFlash(__('You are already regietered. Please sign in.'), 'flash');
-                $this->redirect('/');
+                $this->redirect($this->referer());
                 exit;    
             }
             
@@ -601,20 +601,20 @@ class UsersController extends AppController {
                         $this->redirect($refer_url);
                         exit;
                     }
-                    $this->redirect('/home');
+                    $this->redirect($this->referer());
                     exit();
                 } else {
                     // redirect to home
-                    $this->redirect('/home');
+                    $this->redirect($this->referer());
                     exit();
                 }
             } else {
                 $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
-                $this->redirect('/home');
+                $this->redirect($this->referer());
             }
         } else {
             $this->Session->setFlash(__('Please, sign in.'), 'flash', array('title' => 'You are already registered!'));
-            $this->redirect('/home');
+            $this->redirect($this->referer());
         }
     }
 
@@ -630,7 +630,7 @@ class UsersController extends AppController {
         $this->Session->destroy();
 
         //$this->Session->setFlash(__('We hope that you\'ll come back'), 'modal', array('class' => 'info', 'title' => 'Good bye :('));
-        $this->redirect('/');
+        $this->redirect($this->referer());
         exit();
     }
 
