@@ -3924,7 +3924,7 @@ span.stylist-name
     #membership-table {
         padding:0 !important;
         margin-bottom: 20px;
-        margin-left:13px;
+        margin-left:4px;
     }
     
     .my-cart
@@ -3943,7 +3943,7 @@ span.stylist-name
     }
     .flexslider
     {
-        height:auto !important;
+        height:188px !important;
     }
     .flexslider iframe
     {
@@ -3989,6 +3989,42 @@ span.stylist-name
     #outfit-box
     {
         overflow-y: scroll;
+    }
+    
+    ul#branding-partners
+    {
+        margin:0 0 50px 65px !important;        
+    }
+    .header .menu .submenu
+    {
+        position: static !important;
+        margin: 25px 0 -15px !important;
+        display: block ;
+        background: none;
+        border: none;
+    }
+    .header .menu .submenu li a
+    {
+        color: #ffffff;
+    }
+    .blockMsg
+    {
+        position: fixed !important;       
+    }
+    .outfit-modal
+    {
+        height: 385px !important;        
+    }
+    div.dob select{
+        margin-bottom:18px !important;
+    }
+    input[type="submit"]
+    {
+        border-radius:0px;
+    }
+    .size-info h5,.register-size div.hi-message
+    {
+        text-align: center !important;
     }
 }
 
@@ -4097,6 +4133,17 @@ span.stylist-name
     {
         overflow-y: scroll;
     }
+    
+    .flexslider 
+    {
+        height:110px !important;
+    }
+    
+    .flexslider iframe
+    {
+        height: 92px !important;
+    }
+    
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -4104,7 +4151,7 @@ span.stylist-name
     #membership-table {
         padding-left:0px !important;
     }
-    .flexslider
+    .flexslider, .flexslider iframe
     {
         height:259px !important;
     }
@@ -4113,11 +4160,7 @@ span.stylist-name
     {
         height: 325px !important;
     }
-    
-    .flexslider iframe
-    {
-        height:259px;
-    }    
+       
     .content.inner.booking .book-appointment .datepicker {    
     background: url("../img/btn-book.png") no-repeat scroll 235px center;
     }
@@ -4158,7 +4201,7 @@ span.stylist-name
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
     
-    .flexslider
+    .flexslider, .flexslider iframe
     {
         height:325px !important;
     }
@@ -4167,12 +4210,7 @@ span.stylist-name
     {
         height: 438px !important;
     }
-     
-    .flexslider iframe
-    {
-        height:325px;
-    }   
-      
+   
     .content.inner.booking .book-appointment .datepicker {    
     background: url("../img/btn-book.png") no-repeat scroll 308px center;
     } 
