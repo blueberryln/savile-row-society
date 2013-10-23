@@ -3916,8 +3916,36 @@ span.stylist-name
 }
 
 /******Branding Partners********/
+.brand-info p{
+    text-align: justify;
+}
 
+.brand-logo img
+{
+    max-width:150px !important;
+    max-height: 50px;
+    margin-bottom: 10px;    
+}
 
+.brand-btn{
+    margin-top: 10px;
+    width:140px;
+}
+p.brand-desc{
+    margin:0;
+}
+p.brand-title
+{
+    font-weight:bold;
+    margin-bottom: 8px;
+}
+.brand-info .notification-msg
+{
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+/*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     
      .membership-flow
