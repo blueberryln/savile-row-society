@@ -245,7 +245,7 @@ window.registerProcess = true;
                         </div>
         
                         <div class="input text required">
-                            <label for="jeans">Tell us a little about your suit size you wear (sizes 36-48)</label>                            
+                            <label for="jeans">Tell us a little about suit size you wear (sizes 36-48)</label>                            
                             <select name="data[UserPreference][Size][us_suit_sizing]" tabindex="" id="suit_sizing" >
                                 <option value="">Size</option>
                                 <option value="36">36</option>
@@ -371,7 +371,7 @@ window.registerProcess = true;
                         </div>
         
                         <div class="input text required">
-                            <label for="jeansSpend">Have you ever spend $200 on a pair of jeans</label>                            
+                            <label for="jeansSpend">Have you ever spent $200 on a pair of jeans</label>                            
                             <select name="data[UserPreference][Size][SpendMoreThen200OnJeans]" tabindex="" id="jeansSpend" >
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>

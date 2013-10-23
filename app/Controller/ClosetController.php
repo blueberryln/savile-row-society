@@ -104,31 +104,34 @@ class ClosetController extends AppController {
         }
         // Get the parent id
         $parent_id = false;
-        foreach($categories as $category){
-            if($category_slug == $category['Category']['slug']){
-                $parent_id = $category['Category']['id'];
-                break;
-            }
-            elseif($category['children']){
-                foreach($category['children'] as $child){
-                    if($category_slug == $child['Category']['slug']){
-                        $parent_id = $category['Category']['id'];
-                        break;
-                    }
-                    else if($child['children']){
-                        foreach($child['children'] as $subchild){
-                            if($category_slug == $subchild['Category']['slug']){
-                                $parent_id = $category['Category']['id'];
-                                break;
-                            }    
+        if($category_slug != "all"){
+            foreach($categories as $category){
+                if($category_slug == $category['Category']['slug']){
+                    $parent_id = $category['Category']['id'];
+                    break;
+                }
+                elseif($category['children']){
+                    foreach($category['children'] as $child){
+                        if($category_slug == $child['Category']['slug']){
+                            $parent_id = $category['Category']['id'];
+                            break;
+                        }
+                        else if($child['children']){
+                            foreach($child['children'] as $subchild){
+                                if($category_slug == $subchild['Category']['slug']){
+                                    $parent_id = $category['Category']['id'];
+                                    break;
+                                }    
+                            }
                         }
                     }
                 }
             }
+            
+            // Ger the category & sub category using the category slug
+            $category_ids = $Category->getAllBySlug($category_slug);
         }
-
-        // Ger the category & sub category using the category slug
-        $category_ids = $Category->getAllBySlug($category_slug);
+        
 
         // Prepare the brand filter data
         $brand_list = array();
@@ -150,7 +153,7 @@ class ClosetController extends AppController {
             'limit' => 12,
             'contain' => array('Image', 'Color'),
             'conditions' => array(
-                'Entity.show' => true, 'Category.category_id' => $category_ids, 
+                'Entity.show' => true 
                 //'Detail.show' => true, 'Detail.stock >' => 0,
             ),
             'group' => array('Entity.id'),
@@ -177,6 +180,9 @@ class ClosetController extends AppController {
             'Group' => array('Entity.id'),
         );
         
+        if($category_slug != 'all'){
+            $find_array['conditions']['Category.category_id'] = $category_ids;
+        }
         
         //Query additions for a logged in user
         if($user_id){

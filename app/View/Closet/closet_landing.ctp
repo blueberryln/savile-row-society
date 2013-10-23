@@ -74,12 +74,65 @@ if($user_id){
 $script = '
 $(document).ready(function(){   
     $(".fade").mosaic();
+    $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
     $(".mosaic-overlay").on("click", function(e){
         e.preventDefault();
         var productBlock = $(this).closest(".product-block");
         var productSlug = productBlock.find(".product-slug").val();
         var productId = productBlock.find(".product-id").val();
         window.location = "' . $this->request->webroot . 'product/" + productId + "/" + productSlug;
+    });
+    
+    $(".toggle-tab").on("click", function(e){
+        if(!$(this).find(".toggle-body").is(":visible")){
+            $(this)
+                .addClass("selected")
+                .find(".toggle-body")
+                    .slideDown(300)
+                    .end()
+                .siblings(".toggle-tab")
+                    .not(".open-filter")
+                    .removeClass("selected")
+                    .find(".toggle-body")
+                    .slideUp(300);
+        }
+        else{
+            $(this)
+                .not(".open-filter")
+                .removeClass("selected")
+                .find(".toggle-body")
+                .slideUp(300);
+        }
+    });
+    
+    $(".brand-filter li, .color-filter li").on("click", function(e){
+        e.preventDefault();
+        $this = $(this);
+        $this.addClass("filter-selected");    
+        
+        var arrBrand = new Array();
+        var arrColor = new Array();
+        $(".brand-filter .filter-selected").each(function(){
+            arrBrand.push($(this).data("brand_id")); 
+        });
+        $(".color-filter .filter-selected").each(function(){
+            arrColor.push($(this).data("color_id")); 
+        });
+        
+        var strBrand = arrBrand.join("-");
+        var strColor = arrColor.join("-");
+        
+        var filterUsed = "brand";
+        if($this.closest(".toggle-body").hasClass("color-filter")){
+            filterUsed = "color";    
+        }
+        
+        if(strColor != ""){  
+            window.location = "' . $this->request->webroot . 'closet/all/none/" + strColor + "/" + filterUsed;
+        }
+        else if(strBrand != ""){
+            window.location = "' . $this->request->webroot . 'closet/all/" + strBrand + "/none/" + filterUsed;
+        }
     });
     
     $(".get-related-products").on("click", function(e){
@@ -153,11 +206,29 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="three columns alpha">
             <div class="product-filter-menu">
                 <ul class="accordian-menu">
-                    <li class="toggle-tab selected"><span class="filter-block">Categories</span>
+                    <li class="toggle-tab selected open-filter"><span class="filter-block">Categories</span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
                             <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $category['Category']['name']; ?></a>
                         <?php endforeach; ?>
+                        </ul>
+                    </li>
+                    <li class="toggle-tab"><span class="filter-block">Brand</span>
+                        <ul class="toggle-body brand-filter">
+                        <?php if($brands) : ?>
+                            <?php foreach($brands as $brand) : ?>
+                                <li data-brand_id="<?php echo $brand['Brand']['id']; ?>"><?php echo $brand['Brand']['name']; ?></li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        </ul>
+                    </li>
+                    <li class="toggle-tab"><span class="filter-block">Color</span>
+                        <ul class="toggle-body color-filter">
+                        <?php if($colors) : ?>
+                            <?php foreach($colors as $color) : ?>
+                                <li data-color_id="<?php echo $color['Color']['id']; ?>"><?php echo $color['Color']['name']; ?></li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                         </ul>
                     </li>
                 </ul>

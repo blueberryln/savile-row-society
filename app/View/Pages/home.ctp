@@ -32,8 +32,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     <div class="sixteen columns flexslider loader" style="height: 325px;">
         <ul class="slides">
             <li><img src="<?php echo $this->request->webroot; ?>img/home-1.jpg"/></li>
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>
-            <li><a href="<?php echo $this->request->webroot; ?>stylist"><img src="<?php echo $this->request->webroot; ?>img/home-4.jpg"/></a></li>     
+            <li><img src="<?php echo $this->request->webroot; ?>img/home-2.jpg"/></li>     
             <li><iframe class="max-width-adj" width="940" height="325" src="//www.youtube.com/embed/BygtFwK_Dpw?wmode=transparent&rel=0" frameborder="0" allowfullscreen></iframe>
             </li> 
         </ul>
@@ -94,7 +93,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <tr>
                 <td class="membership-service-option">
                     <div class="title">Custom Suiting Appointments </div>
-                    <div class="description">Get professionaly fitted for a custom SRS suit</div>
+                    <div class="description">Get professionally fitted for a custom SRS suit</div>
                 </td>
                 <td class="included"></td>
                 <td class="included"></td>

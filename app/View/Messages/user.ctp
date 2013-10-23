@@ -15,13 +15,14 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <div class="container content inner timeline">	
-
     <div class="sixteen columns">
-        <!--<div class=" five columns stylist-img">
-            <img src="<?php echo $this->webroot; ?>img/messages-casey.png" class="fadein-image" alt="Casey Golden" />
-            <input type='button' value='MY PROFILE' class='my-profile'/>
-            <br /><br /><br />
-        </div>-->
+        <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
+            <img src="<?php echo $this->webroot; ?>img/home-4.jpg" style="margin-top: 10px;" />
+        <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?> 
+            <img src="<?php echo $this->webroot; ?>img/home-3.jpg" style="margin-top: 10px;" />
+        <?php endif; ?> 
+    </div>
+    <div class="sixteen columns">
         <div class="five columns user-container">
             <div class="img-container">
                 <div class="profile-img text-center">
@@ -39,13 +40,11 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             </div>
             <div class="info-container">
                 
-                    <div id="user-name">Casey Golden<br />
+                    <div id="user-name"><?php echo $client_user['User']['full_name']; ?><br />
                         <span class="stylist-name">Your Personal Stylist</span>
                     </div>                        
                         <div class="stylist-info">
-                            <span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /></span>casey@savilerowsociety.com <br />
-                            <span><img src="<?php echo $this->webroot; ?>img/phone.png" class="fadein-image" /></span>123-456-789<br />
-                            <span><img src="<?php echo $this->webroot; ?>img/skype.png" class="fadein-image" /></span>SRS_Casey</span>
+                            <span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span><br />
                         </div><br />                
             </div><br />
             <input type='button' value='MY PROFILE' class='my-profile'/>        

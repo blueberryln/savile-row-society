@@ -17,7 +17,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     
        <div class="team-member" id="idependent">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/brands-idependent.jpg" alt="Idependent" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/brands-idependent.jpg" alt="Independent" class="fadein-image" />
             </div>
             <div class="ten columns">
                 <div class="name">Independent</div>
@@ -36,7 +36,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
          <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/brands-denim-ess.jpg" alt="Idependent" class="fadein-image" />
+                <img src="<?php echo $this->request->webroot; ?>img/brands-denim-ess.jpg" alt="Independent" class="fadein-image" />
             </div>
             <div class="ten columns">
                 <div class="name">Denim & Essentials </div>

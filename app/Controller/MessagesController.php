@@ -81,6 +81,9 @@ class MessagesController extends AppController {
             $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id'));
             $this->render("stylist");
         } else {
+            $stylist_id = $user['User']['stylist_id'];
+            $client_user = $User->getByID($stylist_id);
+            $this->set(compact('client_user'));
             $this->render("user");
         }
     }

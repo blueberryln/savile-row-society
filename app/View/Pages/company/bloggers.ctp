@@ -32,7 +32,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="ten columns">
                 <div class="name">Carl Rutberg</div>
                 <div class="title">Stylist</div>
-                <p>As a teenager growing up in Sweden, Carl Rutberg didn’t like what the stores had to offer. Instead of reluctantly shopping at these local stores, he began to design and create his own clothes – effectively learning by doing. Though style remains important to him, Carl has since gone on to study Industrial Design at the Pratt Institute, focusing on creating and building exhibitions.  </p>
+                <p>As a teenager growing up in Sweden, Carl Rutberg didn't like what the stores had to offer. Instead of reluctantly shopping at these local stores, he began to design and create his own clothes – effectively learning by doing. Though style remains important to him, Carl has since gone on to study Industrial Design at the Pratt Institute, focusing on creating and building exhibitions.  </p>
                 <p class="long-desc hide">After a career working within museums and earning a Ph.D. in American Culture from NYU, Carl has returned to his passion for clothes. He is particularly interested in quality and style, seeking clothes that both last and are expressive. These are the subjects he covers for Savile Row Society. </p>
                 <div class="text-center">
                     <a class="show-more-text" href="#" title="Show more">Show more</a>
@@ -47,7 +47,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class="name">Matthew James</div>
                 <div class="title">Blogger</div>
                 <p>Matthew James is a graduate in Production Design from Savannah College of Art and Design. A self-proclaimed &quot;Regular Joe,&quot; his interest in fashion sprung up from the realization that no matter how talented, how friendly, and how capable a man may be, people (unfortunately) might not be interested in those gifts unless they’re presented in the right package. </p>
-                <p class="long-desc hide">He is embarking on this journey of self-improvement not only to be the best man he can be, but to de-mystify fashion and share what’s he’s learned along the way.   His goals are to find success as an artist, a writer, and a designer in the related worlds of costume and fashion. His noir novel &quot;The Luck of the Devil&quot; will be available for publication in 2013. He has just started P90x, and is very sore. </p>
+                <p class="long-desc hide">He is embarking on this journey of self-improvement not only to be the best man he can be, but to de-mystify fashion and share what’s he’s learned along the way.   His goals are to find success as an artist, a writer, and a designer in the related worlds of costume and fashion. His new novel &quot;The Luck of the Devil&quot; will be available for publication in 2013. He has just started P90x, and is very sore. </p>
                 <div class="text-center">
                     <a class="show-more-text" href="#" title="Show more">Show more</a>
                 </div>

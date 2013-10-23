@@ -42,7 +42,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <tr>
                 <td class="membership-service-option">
                     <div class="title">Custom Suiting Appointments </div>
-                    <div class="description">Get professionaly fitted for a custom SRS suit</div>
+                    <div class="description">Get professionally fitted for a custom SRS suit</div>
                 </td>
                 <td class="included"></td>
                 <td class="included"></td>

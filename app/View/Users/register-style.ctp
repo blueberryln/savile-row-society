@@ -120,9 +120,9 @@ window.registerProcess = true;
         </div>
         <div class="hi-message fourteen columns offset-by-two alpha omega">
             
-            <h4>Your suite wearing frequency</h4>
+            <h4>Your suit wearing frequency</h4>
             <p>
-                To better understand your needs we'd like to know your suite wearing frequency 
+                To better understand your needs we'd like to know your suit wearing frequency 
             </p>
             <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
         </div>

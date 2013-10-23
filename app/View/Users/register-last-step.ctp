@@ -29,7 +29,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         <div class="hi-message fourteen columns offset-by-one alpha omega">
             <h4 class="hi-message">Hi <?php echo $full_name; ?></h4>
             <p>
-                Don't be shy, you'd be surprised what we can do with photo.
+                Don't be shy, you'd be surprised what we can do with a photo.
             </p>
             <div class='empty-img' id='photo-holder'>
             <img src='<?php echo $image_url ?>' id='user-photo'/>

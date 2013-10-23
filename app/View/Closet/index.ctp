@@ -145,8 +145,11 @@ $(document).ready(function(){
         var strBrand = arrBrand.join("-");
         var strColor = arrColor.join("-");
         
-        if(strBrand == "" && strColor == ""){
+        if(strBrand == "" && strColor == "" && "' . $category_slug . '" != "all"){
             window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/none/none/" + filterUsed;    
+        }
+        else if(strBrand == "" && strColor == "" && "' . $category_slug . '" == "all"){
+            window.location = "' . $this->request->webroot . 'closet";    
         }
         else if(strColor == ""){
             window.location = "' . $this->request->webroot . 'closet/' . $category_slug . '/" + strBrand + "/none/" + filterUsed;  
