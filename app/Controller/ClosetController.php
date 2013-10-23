@@ -261,8 +261,6 @@ class ClosetController extends AppController {
 
             // get data
             $entity = $Entity->getById($id, $user_id);
-            //print_r($entity);
-            //exit;
             $sizes = $Entity->Detail->getAvailableSize($id);
 
             // TODO: Check for size stock using cart items.

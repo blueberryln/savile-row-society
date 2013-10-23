@@ -2738,6 +2738,14 @@ p.product-breadcrumb a
 {
     margin-bottom:30px;
 }
+.product-description h5.brand a{
+    color: #ad9c56;
+    text-decoration: none;
+}
+.product-description h5.brand a:hover{
+    text-decoration: underline;
+    color: #b29957;    
+}
 .product-description p.description
 {
     color: #9B9B9B;

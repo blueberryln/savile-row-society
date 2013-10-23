@@ -175,24 +175,39 @@ class Entity extends AppModel {
      */
     function getById($id, $user_id=null) {
         $find_array = array(
-            'contain' => array('Product', 'Image', 'Color', 'Detail'),
-            'conditions' => array('Entity.id' => $id), 
+            'contain' => array('Image', 'Color', 'Detail'),
+            'conditions' => array('Entity.id' => $id),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ),        
+            ), 
             'fields' => array(
-                'Entity.*'
-            )
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
         );
         
         if($user_id){
-            $find_array['joins'] = array(
-                array('table' => 'wishlists',
+            $find_array['joins'][] = array('table' => 'wishlists',
                     'alias' => 'Wishlist',
                     'type' => 'LEFT',
                     'conditions' => array(
                         'Wishlist.user_id' => $user_id,
                         'Wishlist.product_entity_id = Entity.id'
                     )
-                ),
-                array('table' => 'dislikes',
+                );
+            $find_array['joins'][] = array('table' => 'dislikes',
                     'alias' => 'Dislike',
                     'type' => 'LEFT',
                     'conditions' => array(
@@ -200,8 +215,7 @@ class Entity extends AppModel {
                         'Dislike.product_entity_id = Entity.id',
                         'Dislike.show' => true
                     )
-                )
-            );
+                );
             
             $find_array['fields'][] = 'Dislike.*';
             $find_array['fields'][] = 'Wishlist.*'; 

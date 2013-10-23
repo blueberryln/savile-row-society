@@ -219,6 +219,7 @@ $columns = 'eleven';
         <div class="six offset-by-one columns product-description alpha">
             <div>
                 <h2 class="product-name"><?php echo $entity['Entity']['name']; ?></h2>
+                <h5 class="brand">Brand: <a href="<?php echo $this->request->webroot; ?>company/brands"><?php echo $entity['Brand']['name']; ?></a></h5>
                 <h5 class="price">Price: $<?php echo $entity['Entity']['price']; ?></h5>
                 <h5>Product Details</h5>
                 <p class="description"><?php echo $entity['Entity']['description']; ?></p>
