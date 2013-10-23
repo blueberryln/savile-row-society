@@ -30,7 +30,6 @@ $(document).ready(function(){
     $("ul#branding-partners li").click(function(){
         var brandImage = $(this).find("img");
         var brandName = brandImage.data("name");
-        console.log(brandName);
         var brandDesc = brandsInfo[brandName]["desc"];
         var brandTitle = brandsInfo[brandName]["title"];
         var brandID = brandsInfo[brandName]["id"];
@@ -39,7 +38,7 @@ $(document).ready(function(){
         $("p.brand-title").html(brandTitle);
         $("p.brand-desc").html(brandDesc);  
         if(brandID != ""){
-            $(".brand-info .link-btn").attr({href:"' .$this->webroot . 'closet/all/" + 6 + "/none/brand"});
+            $(".brand-info .link-btn").attr({href:"' .$this->webroot . 'closet/all/" + brandID + "/none/brand"});
             $(".brand-info .link-btn").show();
         }
         else{

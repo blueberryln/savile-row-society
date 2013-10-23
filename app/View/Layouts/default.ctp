@@ -43,7 +43,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
         <?php
         echo $this->Html->css('base');
         echo $this->Html->css('skeleton');
-        echo $this->Html->css('layout');
+        echo $this->Html->css('layout.css?v=1');
         echo $this->Html->css('flexslider');
         echo $this->Html->css('lightbox');
         echo $this->Html->css('mosaic');
