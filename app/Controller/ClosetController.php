@@ -14,13 +14,19 @@ class ClosetController extends AppController {
      */
      
     function beforeFilter() {
-        $this->Security->blackHoleCallback = 'forceSSL';
-        $this->Security->requireSecure('cart', 'payment');
+        if(!$this->request->is('ssl')){ 
+            if($this->request->params['controller'] == "closet" && $this->request->params['action'] == "checkout"){
+                $this->redirect('https://' . env('SERVER_NAME') . $this->here);    
+            }
+        } 
+        //$this->Security->blackHoleCallback = 'forceSSL';
+//        $this->Security->requireSecure('cart', 'payment');
     }
-
-    function forceSSL() {
-        $this->redirect('https:' . env('SERVER_NAME') . $this->here);
-    }
+//
+//    function forceSSL() {
+//        $this->redirect('https:' . env('SERVER_NAME') . $this->here);
+//        exit();
+//    }
 
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
