@@ -7,10 +7,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <img class="membership-flow fadein-image fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
     <div class="fourteen offset-by-one columns">
         <p>
-            As a Savile Row Society member you will receive exclusive Personal Lifestyle Services and access to our Deluxe Perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
+            As a Savile Row Society member you will receive exclusive personal lifestyle services and access to our deluxe perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
         </p>
         <p>
-            All Members receive an exclusive SRS Membership Card that provides Deluxe Perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
+            All Members receive an exclusive SRS membership card that provides deluxe perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
         </p>
     </div>
     <table id="membership-table" class="membership-table-homes" >
@@ -105,7 +105,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <tr>
                 <td class="membership-service-option">
                     <div class="title">Exclusive Events Invitation </div>
-                    <div class="description">Get invited to our exclusive partners events</div>
+                    <div class="description">Get invited to our exclusive partners' events</div>
                 </td>
                 <td ></td>
                 <td ></td>
@@ -114,7 +114,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <tr>
                 <td class="membership-service-option mem-bottom-left">
                     <div class="title">Fitness Coach Access (coming soon) </div>
-                    <div class="description">Ask him any fitness question!</div>
+                    <div class="description">Ask our professional fitness coach any question!</div>
                 </td>
                 <td ></td>
                 <td ></td>

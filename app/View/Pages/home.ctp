@@ -50,18 +50,18 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
     <div class="nine columns">
         <h2 style="margin-top: 55px;">
-            <p>SAVILE ROW SOCIETY is a Men's Personal Shopping Platform. Our mission is to achieve an efficient, interactive, educational online shopping experience.</p> 
-            <p>SAVILE ROW SOCIETY has created an exclusive men's lifestyle shopping destination on a virtual platform. SRS developed an innovative client profile merchandise matching technology while recruiting reputable industry fit &amp; styling experts. Our virtual platform is the most efficient and convenient way to shop.</p> 
+            <p>Savile Row Society is a men's personal shopping platform. Our mission is to achieve an efficient, interactive, educational online shopping experience.</p> 
+            <p>Savile Row Society has created an exclusive men's lifestyle shopping destination on a virtual platform. SRS developed an innovative client profile merchandise matching technology while recruiting reputable industry fit &amp; styling experts. Our virtual platform is the most efficient and convenient way to shop.</p> 
         </h2>
     </div>
     
     <img class="membership-flow fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
     <div class="fourteen offset-by-one columns">
         <p>
-            As a SAVILE ROW SOCIETY member you will receive exclusive Personal Lifestyle Services and access to our Deluxe Perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
+            As a Savile Row Society member you will receive exclusive personal lifestyle services and access to our deluxe perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
         </p>
         <p>
-            All Members receive an exclusive SRS Membership Card that provides Deluxe Perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
+            All Members receive an exclusive SRS membership card that provides deluxe perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
         </p><br />
     </div>
     <table id="membership-table" class="membership-table-home " >
@@ -156,7 +156,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <tr>
                 <td class="membership-service-option">
                     <div class="title">Exclusive Events Invitation </div>
-                    <div class="description">Get invited to our exclusive partners events</div>
+                    <div class="description">Get invited to our exclusive partners' events</div>
                 </td>
                 <td ></td>
                 <td ></td>
@@ -165,7 +165,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <tr>
                 <td class="membership-service-option mem-bottom-left">
                     <div class="title">Fitness Coach Access (coming soon) </div>
-                    <div class="description">Ask him any fitness question!</div>
+                    <div class="description">Ask our professional fitness coach any question!</div>
                 </td>
                 <td ></td>
                 <td ></td>
