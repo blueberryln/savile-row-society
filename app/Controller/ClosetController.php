@@ -13,14 +13,14 @@ class ClosetController extends AppController {
      * Index
      */
      
-    //function beforeFilter() {
-//        $this->Security->blackHoleCallback = 'forceSSL';
-//        $this->Security->requireSecure('cart', 'payment');
-//    }
-//
-//    function forceSSL() {
-//        $this->redirect('https://' . env('SERVER_NAME') . $this->here);
-//    }
+    function beforeFilter() {
+        $this->Security->blackHoleCallback = 'forceSSL';
+        $this->Security->requireSecure('cart', 'payment');
+    }
+
+    function forceSSL() {
+        $this->redirect('https:' . env('SERVER_NAME') . $this->here);
+    }
 
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
