@@ -18,11 +18,12 @@ class ClosetController extends AppController {
             if($this->request->params['action'] == "checkout"){
                 $this->redirect('https://' . env('SERVER_NAME') . $this->here);    
             }
-            else{
+        } 
+        else{
+            if($this->request->params['action'] != "checkout"){
                 $this->redirect('http://' . env('SERVER_NAME') . $this->here);     
             }
-            
-        } 
+        }
         //$this->Security->blackHoleCallback = 'forceSSL';
 //        $this->Security->requireSecure('cart', 'payment');
     }
