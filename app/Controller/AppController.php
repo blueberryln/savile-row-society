@@ -37,7 +37,7 @@ class AppController extends Controller {
     function beforeFilter() {
         //Redirect all pages to http except checkout page 
         if($this->request->is('ssl')){ 
-            if($this->request->params['controller'] != "closet" || ($this->request->params['controller'] == "closet" && $this->request->params['action'] != "checkout")){
+            if($this->request->params['controller'] != "closet"){
                 $this->redirect('http://' . env('SERVER_NAME') . $this->here);
             }
         } 
