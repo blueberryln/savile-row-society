@@ -197,6 +197,57 @@ class MessagesController extends AppController {
 
         $this->render('/Elements/SerializeJson/');
     }
+    
+    public function sendPhoto(){
+        $this->autoLayout = false;
+            
+        if($this->request->is('post') || $this->request->is('put')){
+            $Image = ClassRegistry::init('Image');
+            
+            $img = null;
+            $img_type = '';
+            $img_size = '';
+            // file upload
+            if ($this->request->data['Message']['Image']['name'] && $this->request->data['Message']['Image']['size'] > 0) {
+                $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+                $data_image = $this->request->data['Message']['Image'];
+                
+                if (!in_array($data_image['type'], $allowed)) {
+                    $this->Session->setFlash(__('You have to upload an image.'), 'flash');
+                } else if ($data_image['size'] > 3145728) {
+                    $this->Session->setFlash(__('Attached image must be up to 3 MB in size.'), 'flash');
+                } else {
+                    $rand = substr(uniqid ('', true), -7);
+                    $img = $rand . '_' . $data_image['name'];
+                    $img_type = $data_image['type'];
+                    $img_size = $data_image['size'];
+                    move_uploaded_file($data_image['tmp_name'], APP . DS . 'webroot' . DS . 'files' . DS . 'chat' . DS . $img);
+                }
+                
+                // save image
+                if ($img) {
+                    
+                    $User = ClassRegistry::init('User');
+            
+                    // get stylist ID
+                    $user = $User->getByID($this->getLoggedUserID());
+                    $s_id = $user["User"]["stylist_id"];
+                    
+                    $data = array();
+                    $data['Message']['user_to_id'] = $s_id;
+                    $data['Message']['user_from_id'] = $user['User']['id'];
+                    $data['Message']['body'] = "user image";
+                    $data['Message']['image'] = $img;
+
+                    $this->Message->create();
+                    if ($this->Message->validates($data)) {
+                        $res = $this->Message->save($data);
+                    }
+                }
+            }
+        }
+        $this->redirect('index');    
+    }
 
     /**
      * Send message from stylist to user

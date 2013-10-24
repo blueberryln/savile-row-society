@@ -1500,6 +1500,9 @@ body{
 .timeline .message-body{
     padding-top: 10px;
 }
+.timeline .message-image{
+    padding-top: 10px;
+}
 .timeline .message-date{
     text-align: right;
 }
@@ -3506,7 +3509,7 @@ h5.sign
     color:#AF9A59;
 }
 
-.signup-content input[type="text"],.signup-content input[type="email"],.signup-content input[type="password"],.signin-content input[type="text"],.signin-content input[type="email"],.signin-content input[type="password"]
+.style-photo, .signup-content input[type="text"],.signup-content input[type="email"],.signup-content input[type="password"],.signin-content input[type="text"],.signin-content input[type="email"],.signin-content input[type="password"]
 {
     border:1px solid #D9D9D9;
     color: #444444;

@@ -54,6 +54,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <textarea class="eight columns alpha omega chat-msg-txtbox" id='messageToSend'></textarea>
             <!--<input type="button" value="Send messages" id="sendMessages" />-->
             <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
+            <div class="clear"></div>
+            <p style="text-align: right;">Send a picture to stylist: <a class="link-btn black-btn" style="padding-top: 1px; padding-bottom: 1px; margin-right: 0;" href="" id="sendphoto">Send Photo</a></p>
+            
             <div class="chat-container">
                 
             </div>
@@ -61,7 +64,22 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <br /><br /><br />
         </div>
     </div>
-
+</div>
+<div id="chatimage-box" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="signin-content">
+            <h5 class="sign">Send Photo</h5>  
+            
+            <?php echo $this->Form->create('Message', array('type' => 'file', 'url' => '/messages/sendPhoto')); ?> 
+                <?php
+                    echo $this->Form->input('Image', array('type' => 'file', 'label' => false, 'class' => 'style-photo'));
+                ?>
+                <input type="submit" class="link-btn black-btn signin-btn" value="Upload Photo" /> 
+                <br /><br />
+            </form> 
+        </div> 
+    </div>
 </div>
 
 <script>
@@ -151,6 +169,16 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     '</div>' + 
                     '</div>';
             }
+            else if(chatMsg['Message']['image']){
+                html = '' + 
+                        '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="message-caption">You sent an image:</div>' + 
+                            '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                            '<div class="message-date">' +
+                                '<small>' + chatMsg['Message']['created'] + '</small>' +
+                            '</div>' + 
+                        '</div>';
+            }
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
                     html = '' + 
@@ -215,6 +243,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         $(".my-profile").click(function(){
            window.location.href = '<?php echo $this->webroot; ?>profile/about'; 
         });
+        
+        $("#sendphoto").on('click', function(e){
+            e.preventDefault();
+            $.blockUI({message: $("#chatimage-box")});   
+        });
+        
     }
 
 </script>
