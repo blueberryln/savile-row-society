@@ -29,13 +29,14 @@
             </p>
         </div>
         
-        <div class="srs-form five columns alpha omega text-center offset-by-two">
+        <div class="srs-form five columns alpha omega offset-by-two">
             <div class="form">
             <?php
-            echo $this->Form->input('User.phone', array( "label"=>"", "placeholder" => "Phone number"));
-            echo $this->Form->input('User.industry', array('label' => '', 'type' => 'select', 'required' => 'required', 'options' => $industry, 'empty' => 'Select Industry'));
+            echo $this->Form->input('User.phone', array( "label"=>"Phone Number", "placeholder" => "Phone number"));
+            echo $this->Form->input('User.industry', array('label' => 'Industry', 'type' => 'select', 'required' => 'required', 'options' => $industry, 'empty' => 'Select Industry'));
             ?>
             <div class="input select dob">
+            <label for="UserDayDay">Date of birth</label>
             <?php 
                 echo $this->Form->day('day', array('div' => false, 'empty' => 'Day', 'label' => false, 'required', 'name' => 'data[User][day]'));
                 echo $this->Form->month('month', array('monthNames' => false, 'div' => false, 'empty' => 'Month', 'label' => false, 'required', 'name' => 'data[User][month]'));
@@ -47,12 +48,12 @@
         </div>
         
         
-        <div class="srs-form five columns alpha omega text-center offset-by-two">
+        <div class="srs-form five columns alpha omega offset-by-two">
             <div class="form">
             <?php
-            echo $this->Form->input('User.location', array("id"=>"location", "label"=>"", "placeholder" => "City, State"));
-            echo $this->Form->input('User.skype', array("id"=>"skype", "label"=>"", "placeholder" => "Skype ID"));
-            echo $this->Form->input('zip', array("label"=>"", "placeholder" => "Zipcode"));
+            echo $this->Form->input('User.location', array("id"=>"location", "label"=>"City/State", "placeholder" => "City, State"));
+            echo $this->Form->input('User.skype', array("id"=>"skype", "label"=>"Skype ID", "placeholder" => "Skype ID"));
+            echo $this->Form->input('zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
             ?>
             </div>
         </div>
