@@ -1,4 +1,4 @@
-<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="max-width:550">
     <tr>
         <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
     </tr>
@@ -9,7 +9,7 @@
             Thank you for registering with Savile Row Society. We're excited to start developing your personal style .  
             Check out our products on <a href="http://www.savilerowsociety.com/closet">The Closet</a> or fill out a quick <a href="http://www.savilerowsociety.com/profile/about">style profile</a> to get assigned your very own personal stylist.
             <p style="text-align: center;">
-                <img src="http://www.savilerowsociety.com/img/register-email-graphic.jpg" />
+                <img src="http://www.savilerowsociety.com/img/register-email-graphic.jpg" style="max-width: 530px;" />
                 <br />
             <span style="font-size: 16px; font-style: italic;">Savile Row Society- Live a Tailored Life</span>
             </p>
