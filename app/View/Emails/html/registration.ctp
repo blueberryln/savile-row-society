@@ -6,9 +6,9 @@
         <td valign="top"> 
             <br />
             Hi <?php echo ucfirst($name); ?>,
-            <br/><br/>
-            Thank you for registering with Savile Row Society. We're excited to start developing your personal style .  
-            Check out our products on <a href="http://www.savilerowsociety.com/closet">The Closet</a> or fill out a quick <a href="http://www.savilerowsociety.com/profile/about">style profile</a> to get assigned your very own personal stylist.
+            <br/>
+            <p style="text-align: justify;">Thank you for registering with Savile Row Society. We're excited to start developing your personal style .  
+            Check out our products on <a href="http://www.savilerowsociety.com/closet">The Closet</a> or fill out a quick <a href="http://www.savilerowsociety.com/profile/about">style profile</a> to get assigned your very own personal stylist.</p>
             <p style="text-align: center;">
                 <img src="http://www.savilerowsociety.com/img/register-email-graphic.jpg" style="max-width: 530px;" />
                 <br />
@@ -26,4 +26,3 @@
         <br /><br /><br />
     </tr>
 </table>
-
