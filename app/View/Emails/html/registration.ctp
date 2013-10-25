@@ -4,6 +4,7 @@
     </tr>
     <tr>
         <td valign="top"> 
+            <br />
             Hi <?php echo ucfirst($name); ?>,
             <br/><br/>
             Thank you for registering with Savile Row Society. We're excited to start developing your personal style .  
