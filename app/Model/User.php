@@ -307,16 +307,10 @@ class User extends AppModel {
      * Return list of user that write to stylist
      */
     public function getUserWriteToMe($stylist_Id) {
-        return $this->query("SELECT DISTINCT User.id,
-                                CONCAT(
-                                        User.first_name,
-                                        ' ',
-                                        User.last_name
-                                ) AS full_name
-                            FROM users as User
-                            INNER JOIN messages m ON m.user_from_id = User.id
-                            WHERE m.user_to_id = $stylist_Id
-                ");
+        return $this->find('all', array(
+            'conditions' => array('User.stylist_id' => $stylist_Id),
+            'fields' => array('User.id', 'User.full_name'),
+        ));
     }
 
 }

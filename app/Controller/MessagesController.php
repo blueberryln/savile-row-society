@@ -75,7 +75,7 @@ class MessagesController extends AppController {
             }
             
             foreach ($clients_data as $client) {
-                $clients[$client['User']['id']] = $client[0]['full_name'];
+                $clients[$client['User']['id']] = $client['User']['full_name'];
             }
 
             $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id'));
