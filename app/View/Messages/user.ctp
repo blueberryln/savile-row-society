@@ -61,6 +61,10 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 
             </div>
             <div class="clear"></div>
+            <p id="loadOldMsgs" class="hide">
+                <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                <a href="">Load Old Messages</a>
+            </p>
             <br /><br /><br />
         </div>
     </div>
@@ -89,7 +93,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         var isFirstLoad = true,
             chatContainer = $('.chat-container'),
             callInAction = false,
-            reqNewMsgDelay=6000;
+            reqNewMsgDelay=6000,
+            firstMsgId = 0;
             
         function loadMessages() {
             $.ajax({
@@ -99,10 +104,18 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     if (isFirstLoad && res['status'] == 'ok') {
                         isFirstLoad = false;
                         var arrMsg = res['Messages'];
-                        for(var i=0; i < arrMsg.length; i++){
-                            var html = showChatMsg(arrMsg[i]);
-                            chatContainer.append(html);
+                        if(arrMsg.length){
+                            for(var i=0; i < arrMsg.length; i++){
+                                var html = showChatMsg(arrMsg[i]);
+                                chatContainer.append(html);
+                                firstMsgId = arrMsg[i]['Message']['id'];
+                            }
                         }
+                        else{  
+                            
+                        }
+                        $("#loadOldMsgs").fadeIn(300); 
+                        
                     }
                 },
                 error: function(res) {
@@ -133,7 +146,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showChatMsg(chatMsg) {
             var html = '';           
             if(chatMsg['Message']['is_outfit'] == 1){
-                html = html + '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
+                html = html + '<div class="ten columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
                 html = html + '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' suggested new items to complete a style:</div><br>'; 
                 html = html + '<div class="chat-outfit-box">';
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
@@ -247,6 +260,37 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         $("#sendphoto").on('click', function(e){
             e.preventDefault();
             $.blockUI({message: $("#chatimage-box")});   
+        });
+        
+        $("#loadOldMsgs a").on('click', function(e){
+            e.preventDefault();
+            $this = $(this);
+            $this.siblings('span').show();
+            $.ajax({
+                url: '<?php echo $this->webroot; ?>messages/getOldMessages',
+                type: 'POST',
+                data : {
+                    'last_msg_id': firstMsgId,        
+                },
+                success: function(data){
+                    $this.siblings('span').hide();
+                    res = jQuery.parseJSON(data);
+                    if (res['status']=='ok') {
+                        if(res['msg_count'] > 0){
+                            var arrMsg = res['Messages'];
+                            for(var i=0; i < arrMsg.length; i++){
+                                var html = showChatMsg(arrMsg[i]);
+                                chatContainer.append(html);
+                                
+                                firstMsgId = arrMsg[i]['Message']['id'];
+                            }
+                        }
+                        else{
+                            $("#loadOldMsgs").fadeOut(300);    
+                        }
+                    }   
+                }    
+            });
         });
         
     }

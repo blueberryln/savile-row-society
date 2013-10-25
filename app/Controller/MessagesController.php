@@ -373,22 +373,24 @@ class MessagesController extends AppController {
                 $user = $User->getById($with_user_id);
                 $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
                 $my_conversation = $this->Message->getUnreadMessagesWith($user_id,$with_user_id);
-                foreach($my_conversation as &$row){
-                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                        $outfit_id = $row['Message']['outfit_id'];
-                        
-                        $OutfitItem = ClassRegistry::init('OutfitItem');
-                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                        $entities = array();
-                        foreach($outfit as $value){
-                            $entities[] = $value['OutfitItem']['product_entity_id'];
+                if($msg_count > 0){
+                    foreach($my_conversation as &$row){
+                        if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                            $outfit_id = $row['Message']['outfit_id'];
+                            
+                            $OutfitItem = ClassRegistry::init('OutfitItem');
+                            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                            $entities = array();
+                            foreach($outfit as $value){
+                                $entities[] = $value['OutfitItem']['product_entity_id'];
+                            }
+                            $Entity = ClassRegistry::init('Entity');
+                            $entity_list = $Entity->getProductDetails($entities);
+                            $row['Outfit'] = $entity_list;
                         }
-                        $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getProductDetails($entities);
-                        $row['Outfit'] = $entity_list;
                     }
+                    $result['Messages'] = $my_conversation;
                 }
-                $result['Messages'] = $my_conversation;
             }
             else{
                 // load data for user
@@ -420,6 +422,87 @@ class MessagesController extends AppController {
             }
             if(count($mark_read_list) > 0){
                 $this->Message->saveAll($mark_read_list);
+            }
+            
+            $result['status'] = 'ok';
+        }
+        else{
+            $result = array();
+            $result['status'] = 'error';
+        }
+        $this->set('data', $result);
+        $this->render('/Elements/SerializeJson/');    
+    }
+    
+    /*
+     * Get new messages
+     */
+    public function getOldMessages($with_user_id = null){
+        
+        $result = array();
+        $last_msg_id = $this->request->data['last_msg_id'];
+        if ($last_msg_id >= 0 && $this->getLoggedUser()){
+            $user_id = $this->getLoggedUserID();
+   
+            if($with_user_id){
+                if($last_msg_id == 0){
+                    $last_msg_data = $this->Message->getLastUserMessage($with_user_id);
+                    $last_msg_id = $last_msg_data['Message']['id'] + 1;
+                }
+                // if with user id is not null load data for stylist
+                $User = ClassRegistry::init('User');
+                $user = $User->getById($with_user_id);
+                $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
+                $my_conversation = $this->Message->getOldMessagesWith($last_msg_id, $user_id, $with_user_id);
+                $msg_count = count($my_conversation);
+                $result['msg_count'] = $msg_count;
+                foreach($my_conversation as &$row){
+                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                        $outfit_id = $row['Message']['outfit_id'];
+                        
+                        $OutfitItem = ClassRegistry::init('OutfitItem');
+                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                        $entities = array();
+                        foreach($outfit as $value){
+                            $entities[] = $value['OutfitItem']['product_entity_id'];
+                        }
+                        $Entity = ClassRegistry::init('Entity');
+                        $entity_list = $Entity->getProductDetails($entities);
+                        $row['Outfit'] = $entity_list;
+                    }
+                }
+                $result['Messages'] = $my_conversation;
+            }
+            else{
+                if($last_msg_id == 0){
+                    $last_msg_data = $this->Message->getLastUserMessage($user_id);
+                    $last_msg_id = $last_msg_data['Message']['id'] + 1;
+                }
+                
+                $result['last_msg'] = $last_msg_id;
+                
+                // load data for user
+                $my_conversation = $this->Message->getOldMessages($last_msg_id, $user_id);
+                $msg_count = count($my_conversation);
+                $result['msg_count'] = $msg_count;
+                if($msg_count > 0){
+                    foreach($my_conversation as &$row){
+                        if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                            $outfit_id = $row['Message']['outfit_id'];
+                            
+                            $OutfitItem = ClassRegistry::init('OutfitItem');
+                            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                            $entities = array();
+                            foreach($outfit as $value){
+                                $entities[] = $value['OutfitItem']['product_entity_id'];
+                            }
+                            $Entity = ClassRegistry::init('Entity');
+                            $entity_list = $Entity->getProductDetails($entities);
+                            $row['Outfit'] = $entity_list;
+                        }
+                    }
+                    $result['Messages'] = $my_conversation;
+                }
             }
             
             $result['status'] = 'ok';

@@ -128,6 +128,39 @@ class Message extends AppModel {
     }
     
     
+    public function getOldMessagesWith($last_msg_id, $user_id, $user_id_with){
+        return $this->find('all', array(
+                    'conditions' => array( 
+                                    'OR' => array(
+                                        array('Message.user_to_id' => $user_id_with, 'Message.user_from_id' => $user_id),
+                                        array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id_with),
+                                    ), 'Message.id <' => $last_msg_id),
+                    'contain' => array('UserFrom'),
+                    'order' => "Message.id DESC",
+                    'fields' => array('Message.id', 
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                    ),
+                    'limit' => "20",
+        ));
+    }
+    
+    
+    public function getOldMessages($last_msg_id, $user_id){
+        return $this->find('all', array(
+                    'conditions' => array(
+                                array(
+                                    'OR' => array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id),
+                                ), 'Message.id <' => $last_msg_id),
+                    'contain' => array('UserFrom'),
+                    'order' => "Message.id DESC",
+                    'fields' => array('Message.id', 
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                    ),
+                    'limit' => "20",
+        ));
+    }
+    
+    
     public function getUnreadMessages($user_id){
         return $this->find('all', array(
                     'conditions' => array('Message.user_to_id' => $user_id, 'Message.is_read' => false),
@@ -224,6 +257,18 @@ class Message extends AppModel {
                     'conditions' => array(
                         'Message.id' => $id
                     )
+        ));
+    }
+    
+    function getLastUserMessage($user_id){
+        return $this->find('first', array(
+            'conditions' => array(
+                        array(
+                            'OR' => array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id),
+                        ),
+            ),
+            'fields' => array('Message.id'),
+            'order' => "Message.created DESC",
         ));
     }
 }

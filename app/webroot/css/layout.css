@@ -1617,6 +1617,36 @@ body{
     padding-bottom: 10px;        
     padding-top: 5px;
 }
+#loadOldMsgs{
+    text-align: center;
+    border: 1px solid #D2D2D2;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin-top: 19px; 
+    padding: 10px;     
+}
+#loadOldMsgs:hover{
+    background-color: #EDEDED;
+}
+#loadOldMsgs span{
+    margin-top: 10px;
+}
+#loadOldMsgs a{
+    font-weight: bold;
+    text-decoration: none;
+    color: #AE9B34;
+    display: block;   
+    outline: none;   
+}
+#loadOldMsgs a:active, #loadOldMsgs a:visited{
+    outline:0 none !important;
+    border: none !important;    
+}
+#loadOldMsgs a:hover{
+    color: #444;
+}
+
 
 .footer {
     font-size: 12px;
