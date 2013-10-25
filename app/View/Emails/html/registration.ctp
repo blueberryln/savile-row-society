@@ -1,4 +1,4 @@
-<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="max-width:550">
+<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="max-width:550px">
     <tr>
         <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
     </tr>
@@ -11,7 +11,7 @@
             <p style="text-align: center;">
                 <img src="http://www.savilerowsociety.com/img/register-email-graphic.jpg" style="max-width: 530px;" />
                 <br />
-            <span style="font-size: 16px; font-style: italic;">Savile Row Society- Live a Tailored Life</span>
+            <span style="font-size: 20px;>Savile Row Society- <em>Live a Tailored Life</em></span>
             </p>
         </td>
     </tr>
