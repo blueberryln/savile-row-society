@@ -12,8 +12,7 @@ App::uses('CakeEmail', 'Network/Email');
 class UsersController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
-
-
+    
     //Industry options
     public $industry_options = array(
         'Account Executive'=>'Account Executive',
@@ -566,6 +565,7 @@ class UsersController extends AppController {
 
                 // send welcome mail
                 /* uncoment this to deploy code */
+                try{
                   $email = new CakeEmail('default');
 
 
@@ -576,7 +576,11 @@ class UsersController extends AppController {
                   $email->emailFormat('html');
                   $email->viewVars(array('name' => $user['User']['first_name']));
                   $email->send();
-                  
+                }
+                catch(Exception $e){
+                        
+                }
+                
                 $this->Session->setFlash(__('Your account is created.'), 'flash', array('title' => 'Hooray!'));
                 // signin newly registered user
                 // check submitted email and password 

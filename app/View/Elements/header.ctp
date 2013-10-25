@@ -26,6 +26,25 @@
                     echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();">Sign In</a> </li> ';
                 } else {
                 ?>
+                <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
+                    <div class="submenu-container msg-notify-box">
+                        <div class="submenu">
+                            <div class="submenu-inner">
+                                <a href="<?php echo $this->webroot; ?>messages/index/">
+                                <div class="msg-count">
+                                    <span><?php echo $message_notification['message']; ?></span><br />
+                                    Messages
+                                </div>
+                                <div class="outfit-count">
+                                    <span><?php echo $message_notification['outfit']; ?></span><br />
+                                    Outfits
+                                </div>
+                                </a>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="<?php echo $this->request->webroot; ?>cart"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <li>
                     <a title="Account">My Account</a>

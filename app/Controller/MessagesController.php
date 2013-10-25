@@ -74,11 +74,13 @@ class MessagesController extends AppController {
                 $this->set(compact('last_purchase', 'recent_messages', 'recent_purchase'));
             }
             
+            $last_client_id = 0;
             foreach ($clients_data as $client) {
+                $last_client_id = $client['User']['id'];
                 $clients[$client['User']['id']] = $client['User']['full_name'];
             }
 
-            $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id'));
+            $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'last_client_id'));
             $this->render("stylist");
         } else {
             $stylist_id = $user['User']['stylist_id'];
@@ -373,7 +375,7 @@ class MessagesController extends AppController {
                 $user = $User->getById($with_user_id);
                 $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
                 $my_conversation = $this->Message->getUnreadMessagesWith($user_id,$with_user_id);
-                if($msg_count > 0){
+                if($my_conversation){
                     foreach($my_conversation as &$row){
                         if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                             $outfit_id = $row['Message']['outfit_id'];
@@ -415,16 +417,21 @@ class MessagesController extends AppController {
             
             //Get a list of message ids and mark them read if not already read
             $mark_read_list = array();
-            foreach($result['Messages'] as $msg){
-                if($msg['Message']['user_to_id'] == $user_id){
-                    $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
+            if($my_conversation){
+                foreach($result['Messages'] as $msg){
+                    if($msg['Message']['user_to_id'] == $user_id){
+                        $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
+                    }
                 }
+                if(count($mark_read_list) > 0){
+                    $this->Message->saveAll($mark_read_list);
+                }
+                
+                $result['status'] = 'ok';
             }
-            if(count($mark_read_list) > 0){
-                $this->Message->saveAll($mark_read_list);
+            else{
+                $result['status'] = 'error';    
             }
-            
-            $result['status'] = 'ok';
         }
         else{
             $result = array();
@@ -447,7 +454,14 @@ class MessagesController extends AppController {
             if($with_user_id){
                 if($last_msg_id == 0){
                     $last_msg_data = $this->Message->getLastUserMessage($with_user_id);
-                    $last_msg_id = $last_msg_data['Message']['id'] + 1;
+                    if($last_msg_data){
+                        $last_msg_id = $last_msg_data['Message']['id'] + 1;
+                    }
+                    else{
+                        $result['status'] = 'error';  
+                        $this->set('data', $result);
+                        $this->render('/Elements/SerializeJson/');
+                    }
                 }
                 // if with user id is not null load data for stylist
                 $User = ClassRegistry::init('User');

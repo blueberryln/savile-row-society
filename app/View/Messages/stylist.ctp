@@ -7,6 +7,7 @@ $script = '
 var uid = ' . $user_id . ';
 var client_id = ' . $client_id . ';
 var webroot = "' . $this->webroot . '";
+var lastClientId = ' . $last_client_id . ';
 ';
 $this->Html->script('//knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
@@ -51,13 +52,16 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         </div><br />
                 <?php endif; ?>
             </div>
-        
+            <br />
+            <h5 class="new-clients-head">New Clients</h5>
+            <div class="new-clients">
+            </div>
         </div>
         <div class="ten columns aplha stylist-talk">
             <ul id="stylist-options">
-                <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>">user profile</a></li>
-                <li><a href="<?php echo $this->webroot; ?>closet/liked/<?php echo $client_id; ?>">user closet</a></li>
-                <li><a href="">conversation</a></li>                
+                <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
+                <li><a href="<?php echo $this->webroot; ?>closet/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
+                <!--<li><a href="">conversation</a></li>-->                
             </ul>
             <h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>
                 <?php
@@ -534,6 +538,37 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }    
             });
         });
+        
+        function loadNewClients(){
+            var clientBox = $(".new-clients");
+            $.ajax({
+               url: '<?php echo $this->webroot; ?>api/getNewClients',
+               type: 'POST',
+               data: {
+                'last_client_id': lastClientId, 
+               },
+               success: function(data){
+                    var ret = $.parseJSON(data);
+                    if(ret['status'] == 'ok'){
+                        for(i=0; i<ret['clients'].length; i++){
+                            html =  '<div class="client-row">' + 
+                                        '<a href="<?php echo $this->webroot; ?>messages/index/' + ret['clients'][i]['User']['id'] + '">' + ret['clients'][i]['User']['full_name'] + '</a> has joined SRS.' + 
+                                    '</div>';   
+                                    
+                            clientBox.prepend(html); 
+                            lastClientId = ret['clients'][i]['User']['id'];
+                        }    
+                    }
+               } 
+            });
+        }
+        
+        setInterval(
+            function(){
+                    loadNewClients();
+            },
+            15000
+        );
     }
     
 

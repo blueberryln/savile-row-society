@@ -312,5 +312,11 @@ class User extends AppModel {
             'fields' => array('User.id', 'User.full_name'),
         ));
     }
+    
+    public function getNewClients($last_client_id, $stylist_id){
+        return $this->find('all', array(
+            'conditions' => array('User.id >' => $last_client_id, 'User.stylist_id' => $stylist_id), 
+        ));
+    }
 
 }

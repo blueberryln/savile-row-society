@@ -411,6 +411,51 @@ class ApiController extends AppController {
     
     
     /**
+     * Message Notification
+     */
+    public function messageNotification() {
+        $this->autolayout = false;
+        $this->autoRender = false;
+        
+        $user_id = $this->getLoggedUserID();
+        $message_notification = $this->getMessageNotification();
+            
+        echo json_encode($message_notification);
+        exit;
+    }
+    
+    /**
+     * Message Notification
+     */
+    public function getNewClients() {
+        $this->autolayout = false;
+        $this->autoRender = false;
+        $ret = array();
+        
+        $user = $this->getLoggedUser();
+        $user_id = $user['User']['id'];
+        $last_client_id = $this->request->data['last_client_id'];
+        if($user_id && $user['User']['is_stylist'] == '1' && $last_client_id){
+            $User = ClassRegistry::init('User');
+            $new_clients = $User->getNewClients($last_client_id, $user_id);
+            if($new_clients){
+                $ret['status'] = 'ok';
+                $ret['clients'] = $new_clients;        
+            }
+            else{
+                $ret['status'] = 'error';    
+            }
+        }
+        else{
+            $ret['status'] = 'error1';
+        }
+            
+        echo json_encode($ret);
+        exit;
+    }
+    
+    
+    /**
      * Get cart count
      */
     public function cartCount($cart_id){

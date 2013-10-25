@@ -31,6 +31,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
     <div class="sixteen columns flexslider loader" style="height: 438px;">
         <ul class="slides">
+            <li><img src="<?php echo $this->request->webroot; ?>img/home-6-big.jpg"/></li>
+            <li><img src="<?php echo $this->request->webroot; ?>img/home-5-big.jpg"/></li>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-1-big.jpg"/></li>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2-big.jpg"/></li>     
             <li><iframe class="max-width-adj" width="940" height="438" src="//www.youtube.com/embed/BygtFwK_Dpw?wmode=transparent&rel=0" frameborder="0" allowfullscreen></iframe>

@@ -16,7 +16,10 @@ class AppController extends Controller {
 
         $this->getCartCount();
         $this->checkAdminRights();
-
+        $message_notification = $this->getMessageNotification();
+        if($message_notification){
+            $this->set(compact('message_notification'));
+        }
         $this->set(compact('is_logged'));
         
         /**
@@ -141,4 +144,20 @@ class AppController extends Controller {
         $this->Session->write('cart_items', $cart_items_count);
         $this->set('cart_items', $cart_items_count);
     }
+    
+    /**
+     * Get notification count: total, new messages, new outfits
+     */
+    function getMessageNotification(){
+        $user_id = $this->getLoggedUserID();
+        $Message = ClassRegistry::init('Message');
+        $message_notification = array();
+        if($user_id){
+            $message_notification['total'] = $Message->getTotalNotificationCount($user_id);
+            $message_notification['message'] = $Message->getNewMessageCount($user_id);
+            $message_notification['outfit'] = $Message->getNewOutfitCount($user_id);
+            return $message_notification;
+        }    
+        return false;
+    } 
 }

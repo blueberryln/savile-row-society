@@ -43,7 +43,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
         <?php
         echo $this->Html->css('base');
         echo $this->Html->css('skeleton');
-        echo $this->Html->css('layout.css?v=1');
+        echo $this->Html->css('layout.css?v=2');
         echo $this->Html->css('flexslider');
         echo $this->Html->css('lightbox');
         echo $this->Html->css('mosaic');
@@ -361,7 +361,41 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     signUp();
                 }, 30000);
             }
-            $(document).ready(function() {
+            
+            /**
+             * Set and control message notifier
+             */
+            var messageInterval = null;
+            function startMessageNotifier(){
+                if(isLoggedIn()){
+                    messageInterval = setInterval(function(){updateNotifications()}, 10000);
+                }
+            }
+            
+            function updateNotifications(){
+                $.ajax({
+                    url: '<?php echo $this->webroot; ?>api/messageNotification',
+                    type: 'POST',
+                    data: {},
+                    success: function(data){
+                        var ret = $.parseJSON(data);
+                        if(ret){
+                            $("#total-notifications").html(ret['total']); 
+                            $(".msg-count span").text(ret['message']);   
+                            $(".outfit-count span").text(ret['outfit']);
+                        }
+                    }    
+                });    
+            }
+            
+            $(document).ready(function() { 
+                startMessageNotifier();
+                
+                $("#msg-notifications").on('click', function(e){
+                    e.preventDefault(e);
+                        
+                });
+                
                 if($('#flash-box').length){
                     $.blockUI({message: $('#flash-box'), timeout: 5000});
                 }
@@ -374,107 +408,85 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     $.unblockUI();
                 });
                 
-                //$('#signin-popup').on('click', '.signin-btn', function(e){
-//                   e.preventDefault();
-//                   $("#register-form").submit();
-//                });
-                
                 $('#signin-popup').on('click', '.signin-btn', function(e){ 
                     e.preventDefault();
-        var error = false;
-        if($("#signin-email").val() == "")
-        {              
-            $("#signin-email").addClass("err-msg");
-            error = true;                   
-        }
-        else{
-            $("#signin-email").removeClass("err-msg");
-        }
-        if($("#signin-password").val() == "")
-        {              
-            $("#signin-password").addClass("err-msg"); 
-            error = true;                 
-        }
-        else{
-            $("#signin-password").removeClass("err-msg");
-        }
-        
-        if(error){
-            var authElement = $(".err-msg");
-            if(authElement.length){
-                authElement.first().focus(); 
-            }     
-            return false;    
-        }   else{            
-            $("#signin-form").submit();
-        }   
-    });
+                    var error = false;
+                    if($("#signin-email").val() == "")
+                    {              
+                        $("#signin-email").addClass("err-msg");
+                        error = true;                   
+                    }
+                    else{
+                        $("#signin-email").removeClass("err-msg");
+                    }
+                    if($("#signin-password").val() == "")
+                    {              
+                        $("#signin-password").addClass("err-msg"); 
+                        error = true;                 
+                    }
+                    else{
+                        $("#signin-password").removeClass("err-msg");
+                    }
+                    
+                    if(error){
+                        var authElement = $(".err-msg");
+                        if(authElement.length){
+                            authElement.first().focus(); 
+                        }     
+                        return false;    
+                    }   else{            
+                        $("#signin-form").submit();
+                    }   
+                });
     
-    $('#signup-popup').on('click', '.signup-btn', function(e){
-        e.preventDefault();
-        var error = false;
-        if($("#first-name").val() == "")
-        {
-            $("#first-name").addClass("err-msg");
-            error = true;
-        }
-        else{
-            $("#first-name").removeClass("err-msg");
-        }
-        if($("#last-name").val() == "")
-        {
-            $("#last-name").addClass("err-msg");
-            error = true;
-        }
-        else{
-            $("#last-name").removeClass("err-msg");   
-        }
-        if($("#register-email").val() == "")
-        {              
-            $("#register-email").addClass("err-msg");
-            error = true;                   
-        }
-        else{
-            $("#register-email").removeClass("err-msg");
-        }
-        if($("#register-password").val() == "")
-        {              
-            $("#register-password").addClass("err-msg"); 
-            error = true;                 
-        }
-        else{
-            $("#register-password").removeClass("err-msg");
-        }
-        
-        if(error){
-            var authElement = $(".err-msg");
-            if(authElement.length){
-                authElement.first().focus(); 
-            }     
-            return false;    
-        }   else{            
-            $("#register-form").submit();
-        } 
-           
-    });
+                $('#signup-popup').on('click', '.signup-btn', function(e){
+                    e.preventDefault();
+                    var error = false;
+                    if($("#first-name").val() == "")
+                    {
+                        $("#first-name").addClass("err-msg");
+                        error = true;
+                    }
+                    else{
+                        $("#first-name").removeClass("err-msg");
+                    }
+                    if($("#last-name").val() == "")
+                    {
+                        $("#last-name").addClass("err-msg");
+                        error = true;
+                    }
+                    else{
+                        $("#last-name").removeClass("err-msg");   
+                    }
+                    if($("#register-email").val() == "")
+                    {              
+                        $("#register-email").addClass("err-msg");
+                        error = true;                   
+                    }
+                    else{
+                        $("#register-email").removeClass("err-msg");
+                    }
+                    if($("#register-password").val() == "")
+                    {              
+                        $("#register-password").addClass("err-msg"); 
+                        error = true;                 
+                    }
+                    else{
+                        $("#register-password").removeClass("err-msg");
+                    }
+                    
+                    if(error){
+                        var authElement = $(".err-msg");
+                        if(authElement.length){
+                            authElement.first().focus(); 
+                        }     
+                        return false;    
+                    }   else{            
+                        $("#register-form").submit();
+                    } 
+                       
+                });
                 
-                /* if (!jQuery.browser.mobile) {
-                 var height = $(document).height();
-                 $('.header').scrollspy({
-                 min: $('.header').offset().top + 99,
-                 max: height,
-                 onEnter: function(element, position) {
-                 $(".header").addClass('small');
-                 $(".content.inner").css('margin-top', 249);
-                 $("#signup-box").addClass('small');
-                 },
-                 onLeave: function(element, position) {
-                 $(".header").removeClass('small');
-                 $(".content.inner").css('margin-top', 0);
-                 $("#signup-box").removeClass('small');
-                 }
-                 });
-                 } */
                 
                 $(window).resize(function(){
                    $(".blockMsg").css({'left' : $(window).width() / 2 - popupWidth/2});

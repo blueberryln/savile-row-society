@@ -271,4 +271,22 @@ class Message extends AppModel {
             'order' => "Message.created DESC",
         ));
     }
+    
+    function getTotalNotificationCount($user_id){
+        return $this->find('count', array(
+            'conditions' => array('Message.user_to_id' => $user_id, 'Message.is_read' => false), 
+        ));
+    }
+    
+    function getNewMessageCount($user_id){
+        return $this->find('count', array(
+            'conditions' => array('Message.user_to_id' => $user_id, 'Message.is_read' => false, 'Message.is_outfit' => false), 
+        ));
+    }
+    
+    function getNewOutfitCount($user_id){
+        return $this->find('count', array(
+            'conditions' => array('Message.user_to_id' => $user_id, 'Message.is_read' => false, 'Message.is_outfit' => true), 
+        ));
+    }
 }

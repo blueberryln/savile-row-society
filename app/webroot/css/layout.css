@@ -377,6 +377,40 @@ body{
     background: url('../img/bg-top-menu.png') no-repeat 88% 0;
     filter:progid:DXImageTransform.Microsoft.Shadow(color='#333333',direction='120',strength='4');
 }
+.msg-notify-box{
+    right: -64px;
+    background-position: center 0;   
+    width: 190px; 
+}
+.msg-notify-box .submenu{
+    overflow: hidden;
+    color: #000;
+}
+.msg-notify-box .submenu-inner{
+}
+.msg-count{
+    width: 80px;
+    box-sizing: border-box;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 0;
+    float: left;
+    border:1px solid #E6E6E6;
+    background-color: #F2F2F2;
+}
+.outfit-count{
+    width: 80px;
+    box-sizing: border-box;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 0;
+    float: right;
+    border:1px solid #E6E6E6;
+    background-color: #F2F2F2;
+}
+.msg-count:hover, .outfit-count:hover{
+    background-color: #E6E6E6;   
+}
 .card-menu .submenu {
     background-color: #ffffff;
     border-left: 1px solid #CCCCCC;
@@ -3947,6 +3981,47 @@ span.stylist-name
     font-size: 12px;
     text-transform: capitalize;
 }
+.new-clients-head{
+    font-family: Conv_Novecento-Book, sans-serif;
+    font-size: 16px;
+    font-weight: normal !important;
+    padding-left: 8px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    display: inline-block;
+    color: #AE9B34;
+}
+.new-clients{
+    border: 1px solid #D2D2D2;
+    padding: 5px;
+    height: 266px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+.client-row {
+    border: 1px solid #D2D2D2;
+    padding: 5px;
+    border-radius: 2px;
+    margin-bottom: 4px;
+    background-color: #EDEDED;
+    color: #555;
+}
+.client-row a{
+    font-weight: bold;
+    color: #222;
+    text-decoration: underline;
+}
+.client-row a:hover{
+    text-decoration: none;
+}
+
 
 /******Branding Partners********/
 .brand-info p{
