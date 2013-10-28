@@ -373,10 +373,24 @@ class Entity extends AppModel {
                     'conditions' => array(
                         'Category.product_id = Entity.product_id'
                     )
-                )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
             ),
             'fields' => array(
-                'Entity.*', 'Category.category_id'
+                'Entity.*', 'Category.category_id', 'Product.*', 'Brand.*',
             ),
             'order' => 'Category.category_id ASC'
         );
@@ -469,9 +483,23 @@ class Entity extends AppModel {
                         'Category.product_id = Entity.product_id'
                     )
                 ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
             ),
             'fields' => array(
-                'Entity.*',
+                'Entity.*', 'Product.*', 'Brand.*',
             ),
             'order' => 'rand()'
         );

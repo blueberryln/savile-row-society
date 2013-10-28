@@ -252,6 +252,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     				<div class="mini-product-details">
                 					   <span>$<?php echo $entity['Entity']['price']; ?></span>
                 					   <span><?php echo $entity['Entity']['name']; ?></span>
+                					   <span><?php echo $entity['Brand']['name']; ?></span>
                     				</div>
                     			</div>
                                 <?php 

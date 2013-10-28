@@ -68,7 +68,7 @@ Router::connect('/company/team', array('controller' => 'pages', 'action' => 'dis
 Router::connect('/company/bloggers', array('controller' => 'pages', 'action' => 'display', 'company/bloggers'));
 
 Router::connect('/company/brands', array('controller' => 'pages', 'action' => 'display', 'company/brands'));
-Router::connect('/company/retails', array('controller' => 'pages', 'action' => 'display', 'company/retails'));
+Router::connect('/company/retailers', array('controller' => 'pages', 'action' => 'display', 'company/retailers'));
 Router::connect('/membership', array('controller' => 'pages', 'action' => 'display', 'membership'));
 Router::connect('/contact', array('controller' => 'pages', 'action' => 'display', 'contact'));
 Router::connect('/how-it-works', array('controller' => 'pages', 'action' => 'display', 'how-it-works'));

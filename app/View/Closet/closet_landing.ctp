@@ -147,8 +147,9 @@ $(document).ready(function(){
                     var entity = ret["product"];
                     productBlock.find(".product-id").val(entity["Entity"]["id"]);
                     productBlock.find(".product-slug").val(entity["Entity"]["slug"]);   
-                    productBlock.find(".product-name").text(entity["Entity"]["name"]);  
-                    productBlock.find(".product-price").text(entity["Entity"]["price"]);
+                    productBlock.find(".product-name").text(entity["Entity"]["name"]);   
+                    productBlock.find(".product-brand").text(entity["Brand"]["name"]); 
+                    productBlock.find(".product-price").text("$" + entity["Entity"]["price"]);
                     productBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'product/" + entity["Entity"]["id"] + "/" + entity["Entity"]["slug"]});
                     
                     if(entity["Wishlist"]){
@@ -249,6 +250,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     				<div class="mini-product-details">
                 					   <span class="product-price">$<?php echo $entity['Entity']['price']; ?></span>
                 					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
+                					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
                     				</div>
                     			</div>
                                 <?php 

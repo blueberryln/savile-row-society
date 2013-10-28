@@ -94,7 +94,6 @@ class ClosetController extends AppController {
                 }
             }    
         }
-
         return $entities;
     }
 
@@ -169,6 +168,20 @@ class ClosetController extends AppController {
                         'Category.product_id = Entity.product_id'
                     )
                 ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
                 
                 //array('table' => 'products_details',
 //                    'alias' => 'Detail',
@@ -179,7 +192,7 @@ class ClosetController extends AppController {
 //                ),
             ),
             'fields' => array(
-                'Entity.*'
+                'Entity.*', 'Product.*', 'Brand.*',
             ),
             'Group' => array('Entity.id'),
         );

@@ -110,7 +110,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                         <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>company/retails">Our retailers</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>contact">Contact us</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
                     </ul>
