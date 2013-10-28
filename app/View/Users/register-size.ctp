@@ -384,8 +384,7 @@ window.registerProcess = true;
                     
                 <div class="clear"></div>
                 <div class="text-center about-submit">
-                     <br/>
-                        <!--<?php echo $this->Form->end(__('Continue')); ?>-->
+                     <br/>                       
                         <div class="submit">                            
                             <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/style/<?php echo $user_id; ?>">Back</a> 
                             <input type="submit" value="Continue" />                                                       

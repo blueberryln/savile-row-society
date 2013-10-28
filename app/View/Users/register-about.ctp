@@ -32,8 +32,8 @@
         <div class="srs-form five columns alpha omega offset-by-two">
             <div class="form">
             <?php
-            echo $this->Form->input('User.phone', array( "label"=>"Phone Number", "placeholder" => "Phone number"));
-            echo $this->Form->input('User.industry', array('label' => 'Industry', 'type' => 'select', 'required' => 'required', 'options' => $industry, 'empty' => 'Select Industry'));
+            echo $this->Form->input('User.phone', array( "label"=>"Phone Number",'required', "placeholder" => "Phone number"));
+            echo $this->Form->input('User.industry', array('label' => 'Industry', 'type' => 'select', 'required' , 'options' => $industry, 'empty' => 'Select Industry'));
             ?>
             <div class="input select dob">
             <label for="UserDayDay">Date of birth</label>
@@ -51,9 +51,9 @@
         <div class="srs-form five columns alpha omega offset-by-two">
             <div class="form">
             <?php
-            echo $this->Form->input('User.location', array("id"=>"location", "label"=>"City/State", "placeholder" => "City, State"));
-            echo $this->Form->input('User.skype', array("id"=>"skype", "label"=>"Skype ID", "placeholder" => "Skype ID"));
-            echo $this->Form->input('zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
+            echo $this->Form->input('User.location', array("id"=>"location", "label"=>"City/State",'required', "placeholder" => "City, State"));
+            echo $this->Form->input('User.skype', array("id"=>"skype", "label"=>"Skype ID",'required', "placeholder" => "Skype ID"));
+            echo $this->Form->input('zip', array("label"=>"Zipcode",'required', "placeholder" => "Zipcode"));
             ?>
             </div>
         </div>

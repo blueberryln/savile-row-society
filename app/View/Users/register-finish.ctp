@@ -22,11 +22,20 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="hi-message fourteen columns text-center offset-by-one alpha omega">
             <h4 class="hi-message">COMPLETED</h4>
             <p>
-                After registration we recommend completing your style profile. This is to ensure your stylist is aligned with your preferences. They will get to know you just like you’ve walked into a store. We look forward to many successful years.  Thank you for choosing Savile Row Society for your personal shopping services.
+                Thank you for completing our quick style profile. We are matching your responses with a stylist who suits you. In the meantime, you can browse The Closet or book an appointment with our tailor. We look forward to many successful years of helping you build your wardrobe. Thank you for choosing Savile Row Society for your personal shopping services. Tailor your life. 
             </p>
             <h5 class="thank-margin">Thank you</h5>
-            <h5>Your SRS Team</h5>
+            <h5>The SRS Team</h5>
             <br />
+            <textarea style="width: 500px;" placeholder="Have any immediate requests? We'll assign your comments to your stylist."></textarea>
+            <div class="text-center about-submit">
+                     <br/>                       
+                        <div class="submit">                            
+                            <a class="link-btn black-btn back-btn" href="">Submit</a> <br />
+                            <input style="background-color: #AF9A59;" type="submit" value="Continue Shopping" />                                                       
+                        </div>                        
+                     <br/>                    
+                </div>            
             <br />
             <br />
             <br />

@@ -44,56 +44,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         
         
         <div class="finalizing six columns offset-by-five text-left" >
-        <h5>What is the best time for your stylist to contact you?</h5>
-        <select name="data[UserPreference][Contact][time]" id="contact-time" required=required >
-            <option value="">Time</option>
-            <option value="9:00 AM">9:00 AM</option>
-            <option value="9:15 AM">9:15 AM</option>
-            <option value="9:30 AM">9:30 AM</option>
-            <option value="9:45 AM">9:45 AM</option>
-
-            <option value="10:00 AM">10:00 AM</option>
-            <option value="10:15 AM">10:15 AM</option>
-            <option value="10:30 AM">10:30 AM</option>
-            <option value="10:45 AM">10:45 AM</option>
-
-            <option value="11:00 AM">11:00 AM</option>
-            <option value="11:15 AM">11:15 AM</option>
-            <option value="11:30 AM">11:30 AM</option>
-            <option value="11:45 AM">11:45 AM</option>
-
-            <option value="12:00 PM">12:00 PM</option>
-            <option value="12:15 PM">12:15 PM</option>
-            <option value="12:30 PM">12:30 PM</option>
-            <option value="12:45 PM">12:45 PM</option>
-
-            <option value="1:00 PM">1:00 PM</option>
-            <option value="1:15 PM">1:15 PM</option>
-            <option value="1:30 PM">1:30 PM</option>
-            <option value="1:45 PM">1:45 PM</option>
-
-            <option value="2:00 PM">2:00 PM</option>
-            <option value="2:15 PM">2:15 PM</option>
-            <option value="2:30 PM">2:30 PM</option>
-            <option value="2:45 PM">2:45 PM</option>
-
-            <option value="3:00 PM">3:00 PM</option>
-            <option value="3:15 PM">3:15 PM</option>
-            <option value="3:30 PM">3:30 PM</option>
-            <option value="3:45 PM">3:45 PM</option>
-
-            <option value="4:00 PM">4:00 PM</option>
-            <option value="4:15 PM">4:15 PM</option>
-            <option value="4:30 PM">4:30 PM</option>
-            <option value="4:45 PM">4:45 PM</option>
-
-            <option value="5:00 PM">5:00 PM</option>
-            <option value="5:15 PM">5:15 PM</option>
-            <option value="5:30 PM">5:30 PM</option>
-            <option value="5:45 PM">5:45 PM</option>
-        </select>
+        <h5>Is there a specific time or day when you prefer to be reached?</h5>        
+        <?php
+            echo $this->Form->input('time', array('label' => false, 'name' => 'data[UserPreference][Contact][time]', 'id'=>'contact-time', 'maxlength' => 50, 'required', 'value' => ''));
+        ?>  
         
-        <h5>How would you like us to reach out ?</h5>
+        <h5>How would you like to be reached?</h5>
         <select name="data[UserPreference][Contact][type]" id="contact-type" required=required >
             <option value="">Contact type</option>
             <option value="Phone">Phone</option>
@@ -101,10 +57,19 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <option value="Skype">Skype</option>
         </select>  
         
-        <h5>who did you hear about SRS from?</h5>         
+        <h5>Who referred you to SRS?</h5>         
         <?php
-            echo $this->Form->input('personal_shopper', array('label' => false, 'name' => 'data[User][personal_shopper]', 'maxlength' => 50, 'value' => $personal_shopper));
-        ?>   
+            echo $this->Form->input('personal_shopper', array('label' => false, 'name' => 'data[User][personal_shopper]','placeholder'=>'Name','class'=>'no-margin', 'maxlength' => 50, 'value' => $personal_shopper));
+        ?> 
+        <?php
+            echo $this->Form->input('email_address', array('label' => false, 'name' => '', 'placeholder'=> 'Email Address','class'=>'no-margin', 'maxlength' => 50, 'value' => ''));
+        ?>
+        <select name="" id="" required=required >
+            <option value="">Select Medium</option>            
+            <option value="Social Media">Social Media</option>
+            <option value="Event">Event</option>
+            <option value="Other">Other</option>
+        </select>   
         
         <input type="hidden" value="completed" name="data[UserPreference][is_complete]" />    
         

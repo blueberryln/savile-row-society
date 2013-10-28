@@ -88,7 +88,7 @@
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking">My Tailor</a>
                 </li>                
-                <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com">The Blog</a></li>
+                <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank">The Blog</a></li>
                   
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
                 <li class="last">
