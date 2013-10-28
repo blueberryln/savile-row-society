@@ -318,5 +318,11 @@ class User extends AppModel {
             'conditions' => array('User.id >' => $last_client_id, 'User.stylist_id' => $stylist_id), 
         ));
     }
+    
+    public function getAdminUser(){
+        return $this->find('first', array(
+            'conditions' => array('User.is_admin' => true) 
+        ));
+    }
 
 }

@@ -337,6 +337,29 @@ class UsersController extends AppController {
             // TODO: implement error handling
         }
     }
+    
+    
+    
+    /*
+     * Save and send immidiate user request to SRS admin
+     * */
+    public function saveFinish() {
+        // get edditing in user
+        $user = $this->getEditingUser();
+        $msg = $this->request->data;
+        if($msg['Message']['body'] != ""){
+            $msg['Message']['user_from_id'] = $user['User']['id'];
+            $admin_user = $this->User->getAdminUser();
+            $msg['Message']['user_to_id'] = $admin_user['User']['id'];
+            
+            $Message = ClassRegistry::init('Message');
+            $Message->create();
+            $Message->save($msg);
+        }
+        $this->redirect('/closet');
+    }
+
+
 
     /*
      * save 
@@ -360,6 +383,8 @@ class UsersController extends AppController {
             $serialized_preferences = serialize($preferences);
             $user['User']['preferences'] = $serialized_preferences;
             $user['User']['personal_shopper'] = $data['User']['personal_shopper'];
+            $user['User']['shopper_email'] = $data['User']['shopper_email'];
+            $user['User']['refer_medium'] = $data['User']['refer_medium'];
 
             // save image
             if($image = $this->saveImage()){
@@ -458,6 +483,9 @@ class UsersController extends AppController {
             case 'saveAbout':
                 $this->saveAbout();
                 break;
+            case 'saveFinish':
+                $this->saveFinish();
+                break;
             case 'style':
                 $style = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Style'])) ? $preferences['UserPreference']['Style'] : "";
                 $wear_suit = ($preferences['UserPreference'] && isset($preferences['UserPreference']['wear_suit'])) ? $preferences['UserPreference']['wear_suit'] : "";                                
@@ -505,8 +533,10 @@ class UsersController extends AppController {
                 $personal_shopper = "";
                 if($user['User']['personal_shopper']){
                     $personal_shopper = $user['User']['personal_shopper'];
+                    $shopper_email = $user['User']['shopper_email'];
+                    $refer_medium = $user['User']['refer_medium'];
                 }
-                $this->set(compact('personal_shopper'));
+                $this->set(compact('personal_shopper','refer_medium', 'shopper_email'));
                 $this->set(compact('contact'));
                 $this->set(compact('image_url'));
                 $this->render('register-last-step');

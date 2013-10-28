@@ -166,7 +166,7 @@
                         <a class="link-btn black-btn complete-style-btn" href="<?php echo $this->request->webroot; ?>profile/about">COMPLETE MY STYLE PROFILE</a>
                     </div>
                     <h6 class="popup-or">OR</h6>
-                    <p>You can book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">Tailor</a>, or check out our highlighted products in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a></p>   
+                    <p>Check out our curated collection in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a> or book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">tailor</a>.</p>   
             </div>
         </div>
         

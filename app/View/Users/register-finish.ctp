@@ -27,15 +27,17 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <h5 class="thank-margin">Thank you</h5>
             <h5>The SRS Team</h5>
             <br />
-            <textarea style="width: 500px;" placeholder="Have any immediate requests? We'll assign your comments to your stylist."></textarea>
+            <?php echo $this->Form->create('FinishStep', array('url' => '/register/saveFinish')); ?>
+            <textarea name="data[Message][body]" style="width: 500px;" placeholder="Have any immediate requests? We'll assign your comments to your stylist."></textarea>
             <div class="text-center about-submit">
-                     <br/>                       
-                        <div class="submit">                            
-                            <a class="link-btn black-btn back-btn" href="">Submit</a> <br />
-                            <input style="background-color: #AF9A59;" type="submit" value="Continue Shopping" />                                                       
-                        </div>                        
-                     <br/>                    
-                </div>            
+                <br/>                       
+                <div class="submit">                
+                    <input type="submit" class="submit" value="Submit" /><br />
+                    <a class="link-btn gold-btn back-btn" href="<?php echo $this->webroot; ?>closet">Continue Shopping</a>                                                       
+                </div>                        
+                <br/>                    
+            </div>
+            </form>            
             <br />
             <br />
             <br />

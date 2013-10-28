@@ -4,7 +4,8 @@ $script = ' var contact = ' . json_encode($contact) . '; ' .
 ' $(document).ready(function(){ 
     if(contact){
         $("#contact-time").val(contact.time);
-        $("#contact-type").val(contact.type);         
+        $("#contact-type").val(contact.type);   
+        $("#refer_medium").val("' . $refer_medium . '");      
     }
 });';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -16,8 +17,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>	
     <div class="fifteen columns offset-by-half register-steps">
         <div class="profile-tabs text-center">
-                    <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
-                    <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+            <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+            <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
         </div>
     </div>    
     <div class="sixteen columns text-center">
@@ -62,9 +63,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             echo $this->Form->input('personal_shopper', array('label' => false, 'name' => 'data[User][personal_shopper]','placeholder'=>'Name','class'=>'no-margin', 'maxlength' => 50, 'value' => $personal_shopper));
         ?> 
         <?php
-            echo $this->Form->input('email_address', array('label' => false, 'name' => '', 'placeholder'=> 'Email Address','class'=>'no-margin', 'maxlength' => 50, 'value' => ''));
+            echo $this->Form->input('email_address', array('label' => false, 'name' => 'data[User][shopper_email]', 'placeholder'=> 'Email Address','class'=>'no-margin', 'maxlength' => 50, 'value' => $shopper_email));
         ?>
-        <select name="" id="" required=required >
+        <select name="data[User][refer_medium]" id="refer_medium">
             <option value="">Select Medium</option>            
             <option value="Social Media">Social Media</option>
             <option value="Event">Event</option>
