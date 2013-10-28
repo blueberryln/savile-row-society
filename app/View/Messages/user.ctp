@@ -16,13 +16,6 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <div class="container content inner timeline">	
     <div class="sixteen columns">
-        <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
-            <img src="<?php echo $this->webroot; ?>img/home-4.jpg" style="margin-top: 10px;" />
-        <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?> 
-            <img src="<?php echo $this->webroot; ?>img/home-3.jpg" style="margin-top: 10px;" />
-        <?php endif; ?> 
-    </div>
-    <div class="sixteen columns">
         <div class="five columns user-container">
             <div class="img-container">
                 <div class="profile-img text-center">
@@ -39,15 +32,30 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             <div class="info-container">
-                
-                    <div id="user-name"><?php echo $client_user['User']['full_name']; ?><br />
-                        <span class="stylist-name">Your Personal Stylist</span>
-                    </div>                        
+                    <?php //if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
+                    <?php if($client_user['User']['email'] == "saurabh1327@gmail.com") : ?>
+                        <div id="user-name"><a href="<?php echo $this->webroot; ?>stylist"><?php echo $client_user['User']['full_name']; ?></a><br />
+                            <span class="stylist-name">Your Personal Stylist</span>
+                        </div> 
+                    <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?> 
+                        <div id="user-name"><a href="<?php echo $this->webroot; ?>booking"><?php echo $client_user['User']['full_name']; ?></a><br />
+                            <span class="stylist-name">Your Personal Stylist</span>
+                        </div> 
+                    <?php else : ?>
+                        <div id="user-name"><?php echo $client_user['User']['full_name']; ?><br />
+                            <span class="stylist-name">Your Personal Stylist</span>
+                        </div> 
+                    <?php endif; ?>                      
                         <div class="stylist-info">
-                            <span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span><br />
+                            <a href="mailto:<?php echo $client_user['User']['email']; ?>"><span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span></a><br />
                         </div><br />                
             </div><br />
-            <input type='button' value='MY PROFILE' class='my-profile'/>        
+            <?php //if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
+            <?php if($client_user['User']['email'] == "saurabh1327@gmail.com") : ?>
+                <input type='button' value="CASEY'S PROFILE" class='my-profile' data-redirect="stylist" />   
+            <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?>
+                <input type='button' value="JOEY'S PROFILE" class='my-profile' data-redirect="booking" /> 
+            <?php endif; ?>     
         </div>
         <div class="ten columns aplha stylist-talk">
             <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
@@ -254,7 +262,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         })
         
         $(".my-profile").click(function(){
-           window.location.href = '<?php echo $this->webroot; ?>profile/about'; 
+            var redirectURL = $(this).data('redirect');
+           window.location.href = '<?php echo $this->webroot; ?>' + redirectURL; 
         });
         
         $("#sendphoto").on('click', function(e){

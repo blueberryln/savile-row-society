@@ -3,6 +3,9 @@ $meta_description = 'As a member, you will be up to date on styles, always look 
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="container content inner booking">
+    <div class="sixteen columns text-center ">
+        <img src="<?php echo $this->webroot; ?>img/home-4.jpg" style="margin-top: 10px;">
+    </div>
     <div class="sixteen columns hero">
         <div class="sixteen columns text-center">
             <h1>Welcome to Savile Row Society!</h1>
