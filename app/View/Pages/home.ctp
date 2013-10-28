@@ -31,8 +31,16 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
     <div class="sixteen columns flexslider loader" style="height: 438px;">
         <ul class="slides">
+            
             <li><a href="<?php echo $this->request->webroot; ?>closet"><img src="<?php echo $this->request->webroot; ?>img/home-6-big.jpg"/></a></li>
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-5-big.jpg"/></li>
+            <!--<li><img src="<?php echo $this->request->webroot; ?>img/home-5-big.jpg"/></li>-->
+            <?php
+                if (!$is_logged) {
+                    echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-5-big.jpg"/></a></li> ';                   
+                } else {
+                    echo ' <li><img src="' . $this->webroot . 'img/home-5-big.jpg"/></li>';
+                }
+                ?> 
             <li><img src="<?php echo $this->request->webroot; ?>img/home-1-big.jpg"/></li>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2-big.jpg"/></li>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled"/></li> 
