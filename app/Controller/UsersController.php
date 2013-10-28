@@ -224,6 +224,7 @@ class UsersController extends AppController {
     public function saveStyle() {
         // get edditing in user
         $user = $this->getEditingUser();
+        $id = $this->getLoggedUserID();
         // extract preferences
         $preferences = NULL;
         if ($user && $user['User']['preferences']) {
@@ -243,9 +244,9 @@ class UsersController extends AppController {
             
             $serialized_preferences = serialize($preferences);
             $user['User']['preferences'] = $serialized_preferences;
-            if ($results = $this->User->save($user)) {
-                $this->Session->write('user', $results);
-                
+            if ($this->User->save($user)) {
+                $result = $this->User->getByID($id);
+                $this->Session->write('user', $result); 
             } else {
                 // TODO: implement error handling
             }
@@ -261,6 +262,7 @@ class UsersController extends AppController {
     public function saveSize() {
         // get edditing in user
         $user = $this->getEditingUser();
+        $id = $this->getLoggedUserID();
         // extract preferences
         $preferences = NULL;
         if ($user && $user['User']['preferences']) {
@@ -276,8 +278,9 @@ class UsersController extends AppController {
         $preferences["UserPreference"]["Size"] = $data_arr;
         $serialized_preferences = serialize($preferences);
         $user['User']['preferences'] = $serialized_preferences;
-        if ($results = $this->User->save($user)) {
-            $this->Session->write('user', $results);
+        if ($this->User->save($user)) {
+            $result = $this->User->getByID($id);
+            $this->Session->write('user', $result); 
             $this->redirect('register/brands/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
@@ -291,6 +294,7 @@ class UsersController extends AppController {
     public function saveBrands() {
         // get edditing in user
         $user = $this->getEditingUser();
+        $id = $this->getLoggedUserID();
         // extract preferences
         $preferences = NULL;
         if ($user && $user['User']['preferences']) {
@@ -303,8 +307,9 @@ class UsersController extends AppController {
         $preferences["UserPreference"]["Brands"] = $data_arr;
         $serialized_preferences = serialize($preferences);
         $user['User']['preferences'] = $serialized_preferences;
-        if ($results = $this->User->save($user)) {
-            $this->Session->write('user', $results);
+        if ($this->User->save($user)) {
+            $result = $this->User->getByID($id);
+            $this->Session->write('user', $result); 
             $this->redirect('register/last-step/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
@@ -318,6 +323,7 @@ class UsersController extends AppController {
     public function saveAbout() {
         // get edditing in user
         $user = $this->getEditingUser();
+        $id = $this->getLoggedUserID();
         $user["User"]["phone"] = $this->request->data["User"]["phone"];
         $user["User"]["industry"] = $this->request->data["User"]["industry"];
         $user["User"]["location"] = $this->request->data["User"]["location"];
@@ -329,9 +335,9 @@ class UsersController extends AppController {
         
         
 
-        if ($results = $this->User->save($user)) {
-            //Write back updated results to user session            
-            $this->Session->write('user', $results);
+        if ($this->User->save($user)) {
+            $result = $this->User->getByID($id);
+            $this->Session->write('user', $result); 
             $this->redirect('register/style/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
@@ -370,6 +376,7 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             // get edditing in user
             $user = $this->getEditingUser();
+            $id = $this->getLoggedUserID();
             // extract preferences
             $preferences = NULL;
             if ($user && $user['User']['preferences']) {
@@ -392,9 +399,9 @@ class UsersController extends AppController {
                 $user['User']['profile_photo_url'] = $image;
             }
 
-            if ($results = $this->User->save($user)) {
-                //Write back updated results to user session
-                $this->Session->write('user', $results);
+            if ($this->User->save($user)) {
+                $result = $this->User->getByID($id);
+                $this->Session->write('user', $result); 
                 $this->redirect('register/finish/' . $user['User']['id']);
             } else {
                 // TODO: implement error handling
@@ -408,6 +415,7 @@ class UsersController extends AppController {
         $image_size = '';
         // get edditing in user
         $user = $this->getEditingUser();
+        $id = $this->getLoggedUserID();
 
         // file upload
         if ($this->request->data['ProfileImage'] && $this->request->data['ProfileImage']['size'] > 0) {
@@ -532,9 +540,15 @@ class UsersController extends AppController {
                 $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : "#";
                 $contact = ($preferences['UserPreference']) ? $preferences['UserPreference']['Contact'] : null;
                 $personal_shopper = "";
+                $shopper_email = "";
+                $refer_medium = "";
                 if($user['User']['personal_shopper']){
                     $personal_shopper = $user['User']['personal_shopper'];
+                }
+                if($user['User']['shopper_email']){
                     $shopper_email = $user['User']['shopper_email'];
+                }
+                if($user['User']['refer_medium']){
                     $refer_medium = $user['User']['refer_medium'];
                 }
                 $this->set(compact('personal_shopper','refer_medium', 'shopper_email'));
@@ -692,6 +706,8 @@ class UsersController extends AppController {
             unset($this->request->data['User']['email']);
 
             if ($this->User->save($this->request->data)) {
+                $result = $this->User->getByID($id);
+                $this->Session->write('user', $result);
                 $this->Session->setFlash(__('Settings are saved!'), 'flash', array('title' => 'Hey!'));
                 $this->redirect('/myprofile');
             } else {
