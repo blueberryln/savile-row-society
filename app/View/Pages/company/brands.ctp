@@ -20,6 +20,8 @@ What do your shoes say about you?
     "smathers" => array("title" => "For The Man Who Can Be Found At The Derby", "desc" => "In 2004, while roommates at Bowdoin College, we decided to start a company that offered needlepoint belts. We set out to make the belts more available, attractive and affordable. We began testing the market in the spring of 2005, and quickly, the once treasured gift became the epicenter of a thriving business. Smathers amp; Branson defines their mission: &apos;to offer the finest products with customer service to match.&apos;", "id" => "9"),
     "nagrani" => array("title" => "For The Man Who Takes Risks", "desc" => "Great clothing should be made to get better with age and be designed to offer a timeless aesthetic. In addition, it must function to enhance your way of life. It is this philosophy that I bring forth each time I create a new garment. Reserved for men of discerning taste, I continuously work to find ways to make something better. I never set out to be something for everyone; instead, I want to be everything to someone.", "id" => "16"),
     "A&F" => array("title" => "", "desc" => "", "id" => ""),
+    "srs" => array("title" => "", "desc" => "", "id" => ""),
+    "lacoste" => array("title" => "For The Man Who Can Be Found At The Country Club", "desc" => "Founded in 1933 by tennis player and inventor Rene Lacoste, Olympic medalist in 1924, the Crocodile brand has always accompanied teams and athletes all around the world. When he revolutionized sports, Rene Lacoste also revolutionized fashion; his quest for comfort and freedom of movement made him more competitive without losing an ounce of elegance.", "id" => "12"),
 );
 
 $script = '
@@ -77,6 +79,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/smathersAndBransonLogo.png" class="fadein-image" alt="Smathers And Branson" data-name="smathers"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/vknagrani.png" class="fadein-image" alt="VK Nagrani" data-name="nagrani"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Abercrombie-&-Fitch.jpg" class="fadein-image" alt="Abercrombie-&-Fitch" data-name="A&F"  /></li>
+                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/srs_logo_black.jpg" class="fadein-image" alt="Savile Row Society" data-name="srs"  /></li>
+                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" data-name="lacoste"  /></li>
                   
             </ul>
     </div>

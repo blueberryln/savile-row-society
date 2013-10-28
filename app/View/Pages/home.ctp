@@ -41,9 +41,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     echo ' <li><img src="' . $this->webroot . 'img/home-5-big.jpg"/></li>';
                 }
                 ?> 
+            <li><img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled"/></li> 
             <li><img src="<?php echo $this->request->webroot; ?>img/home-1-big.jpg"/></li>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-2-big.jpg"/></li>
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled"/></li> 
+            
         </ul>
     </div>
     <map name="getstyled">

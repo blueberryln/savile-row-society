@@ -1401,6 +1401,11 @@ body{
     border-bottom: 1px solid #DEDEDE;
     padding-bottom: 20px;
 }
+.timeline #user-name a, .timeline .stylist-info a
+{
+    color: #AE9B34;
+    text-decoration: none;
+}
 .timeline .last-user-purchase
 {
     color: #A7A7A7;
@@ -2691,6 +2696,7 @@ body{
 .mini-product-details span{
     display: block;
     margin-top: 4px;
+    font-size:12px;
 }
 .product-filter-menu{
     border-top: 1px solid #D9D9D9;
