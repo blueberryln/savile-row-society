@@ -3,7 +3,8 @@
             <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
     </tr>
     <tr>
-        <td valign="top"> 
+        <td valign="top">
+
             <p>You have requested for a tailor appointment. Following are the details you have provided.</p>
             Name: <?php echo $user['User']['first_name']; ?> <?php echo $user['User']['last_name']; ?><br/>
             E-mail: <?php echo $user['User']['email']; ?><br/>

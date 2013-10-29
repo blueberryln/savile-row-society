@@ -1,9 +1,10 @@
 <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" width="600">
-    <tr>
-        <td class="logo" background="#000000"><img align="center" src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
-    </tr>
+     <tr>
+            <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
+        </tr>
     <tr>
         <td valign="top">
+              <br />
             Hi <?php echo $user['User']['first_name']; ?>,
             <br/><br/>
             Your new password is <strong><?php echo $new_password; ?></strong>

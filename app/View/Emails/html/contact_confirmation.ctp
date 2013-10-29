@@ -3,7 +3,8 @@
             <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
     </tr>
     <tr>
-        <td valign="top"> 
+        <td valign="top">
+              <br />
             Hi <?php echo $contact['first_name']; ?>,
             <br /><br />
             This is a confirmation email for the contact request you have submitted on our website. <br />We will contact you shortly.
