@@ -18,7 +18,7 @@
     </tr>
     <tr>
         <br /><br />
-        For any queries please contact us at, <a href="mailto:admin@savilerowsociety.com">admin@savilerowsociety.com</a>
+        For any queries please contact us at, <a href="mailto:contact@savilerowsociety.com">contact@savilerowsociety.com</a>
         <br /><br />
         Thanks,
         <br/>
