@@ -4059,6 +4059,28 @@ p.brand-title
     padding-top: 20px;
 }
 
+
+/********STYLE other*********/
+.faq-title
+{
+    font-family: 'Conv_Novecento',Sans-Serif;
+    font-size: 22px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color:#444444;
+    text-decoration: underline;
+    margin-bottom: 15px;
+}
+
+ul.price-pts
+{
+    margin-top: 10px;
+}
+
+ul.price-pts span
+{
+    font-weight: bold;
+}
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     

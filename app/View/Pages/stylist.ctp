@@ -24,7 +24,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="ten columns text-justify" >
 
                 <div class="name">Casey Golden</div>
-                <div class="title">Lead Stylist</div>
+                <div class="title">Stylist</div>
                 <p>Casey's seen more men in their boxers than she should ever admit.  She has been a personal shopper and stylist for nearly a decade. Her specialty is immediately identifying your unique style and creating a lifestyle functional wardrobe around it. Casey accomplishes these tasks in a truly effortless way, leaving you with a style that looks polished, yet natural. In her own words, Casey reassures you that  "You can take all the credit--I was never here."</p>
                 <div class="long-desc hide">
                     <p>She truly believes that getting dressed in the morning should be easier than brewing a pot of coffee and that NO "style" or "matching" decisions should occur that early in the morning. Casey creates an effortless wardrobe based on function, and then finds the best pieces in key elements that will allow you to perfectly coordinate outfits without having to think it-because she already did. Her experience in the best (and some of the worst) closets allows SRS to develop our member's wardrobes at any pace by using her unique lifestyle mapping guide to evolve your style naturally.</p>
