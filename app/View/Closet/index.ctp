@@ -239,6 +239,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </ul>
             </div>
         </div>
+        <div class="sort-block">
+            Sort By Price: <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> 
+        </div>
         <div class="twelve columns omega product-listing">
             <div class="product-top-offset"></div>
             <?php if($entities) : ?>
