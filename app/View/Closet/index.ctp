@@ -240,7 +240,17 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>
         </div>
         <div class="sort-block">
-            Sort By Price: <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> 
+            <?php
+                $sortKey = $this->Paginator->sortKey();
+                $sortDir = $this->Paginator->sortDir();
+            ?>
+            <?php if( $sortKey == 'price' && $sortDir == 'asc') : ?>
+                Sort By Price: <span class="sort-selected">Low to High</span> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
+            <?php elseif ($sortKey == 'price' && $sortDir = 'desc') : ?>
+                Sort By Price: <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <span class="sort-selected">High to Low</span>
+            <?php else : ?>
+                Sort By Price: <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
+            <?php endif; ?> 
         </div>
         <div class="twelve columns omega product-listing">
             <div class="product-top-offset"></div>
