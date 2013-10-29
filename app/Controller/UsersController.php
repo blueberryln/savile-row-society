@@ -316,7 +316,7 @@ class UsersController extends AppController {
             $Message->create();
             $Message->save($msg);
         }
-        $this->Session->setFlash(__('Your request has been send to our team.'), 'flash');
+        $this->Session->setFlash(__('Your request has been sent to our team.'), 'flash');
         $this->redirect('/closet');
     }
 
