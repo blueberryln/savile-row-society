@@ -245,11 +245,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 $sortDir = $this->Paginator->sortDir();
             ?>
             <?php if( $sortKey == 'price' && $sortDir == 'asc') : ?>
-                Sort By Price: <span class="sort-selected">Low to High</span> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
+                <strong>Sort By Price:</strong> <span class="sort-selected">Low to High</span> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
             <?php elseif ($sortKey == 'price' && $sortDir = 'desc') : ?>
-                Sort By Price: <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <span class="sort-selected">High to Low</span>
+                <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <span class="sort-selected">High to Low</span>
             <?php else : ?>
-                Sort By Price: <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
+                <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
             <?php endif; ?> 
         </div>
         <div class="twelve columns omega product-listing">

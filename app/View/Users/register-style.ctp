@@ -135,7 +135,7 @@ window.registerProcess = true;
                 <ol id="selectable">
                     <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-1.png" class="fadein-image" /><br/>Every Day</li>
                     <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-2.png" class="fadein-image" /><br/>Couple Times a Week</li>
-                    <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-3.png" class="fadein-image" /><br/>Never</li>
+                    <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-3.jpg" class="fadein-image" /><br/>Never</li>
                 </ol>
             </div>
         </div>

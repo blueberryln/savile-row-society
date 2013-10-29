@@ -2697,6 +2697,8 @@ body{
     display: block;
     margin-top: 4px;
     font-size:12px;
+    color:#BFBFBF;
+    text-transform: capitalize;
 }
 .product-filter-menu{
     border-top: 1px solid #D9D9D9;
@@ -4080,6 +4082,18 @@ ul.price-pts
 ul.price-pts span
 {
     font-weight: bold;
+}
+
+.sort-block{   
+    text-align: right;
+    margin:4px 10px 4px 0;
+    font-size: 12px;
+}
+
+span.sort-selected{
+    background-color: #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    padding: 4px;
 }
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
