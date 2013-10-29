@@ -10,8 +10,9 @@ App::uses('CakeEmail', 'Network/Email');
  */
 class ContactsController extends AppController {
     public function index() {
-        if($this->isLogged()){
-            $user = $this->getLoggedUser();
+        $user_id = $this->getLoggedUserID();
+        $user = $this->getLoggedUser();
+        if($user_id){
             $this->set(compact('user'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
