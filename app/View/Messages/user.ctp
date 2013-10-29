@@ -32,8 +32,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             <div class="info-container">
-                    <?php //if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
-                    <?php if($client_user['User']['email'] == "saurabh1327@gmail.com") : ?>
+                    <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
                         <div id="user-name"><a href="<?php echo $this->webroot; ?>stylist"><?php echo $client_user['User']['full_name']; ?></a><br />
                             <span class="stylist-name">Your Personal Stylist</span>
                         </div> 
@@ -50,8 +49,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <a href="mailto:<?php echo $client_user['User']['email']; ?>"><span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span></a><br />
                         </div><br />                
             </div><br />
-            <?php //if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
-            <?php if($client_user['User']['email'] == "saurabh1327@gmail.com") : ?>
+            <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
                 <input type='button' value="CASEY'S PROFILE" class='my-profile' data-redirect="stylist" />   
             <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?>
                 <input type='button' value="JOEY'S PROFILE" class='my-profile' data-redirect="booking" /> 
