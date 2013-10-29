@@ -24,6 +24,7 @@
         </td>
     </tr>
     <tr>
+         <td>
             <br /><br />
             For any queries please contact us at, <a href="mailto:contact@savilerowsociety.com">contact@savilerowsociety.com</a>
             <br /><br />
@@ -31,5 +32,6 @@
             <br/>
             <a href="http://www.savilerowsociety.com">Savile Row Society</a>
             <br /><br /><br />
+         </td>
     </tr>
 </table>
