@@ -242,15 +242,7 @@ class ClosetController extends AppController {
 
         // Brand Filter
         if($brand_list && count($brand_list) > 0){
-            $brand_join = array('table' => 'products',
-                'alias' => 'Product',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'Product.brand_id' => $brand_list,
-                    'Product.id = Entity.product_id'
-                )
-            );
-            $find_array['joins'][] = $brand_join;
+            $find_array['conditions']['Product.brand_id'] = $brand_list;
         }
         
 
