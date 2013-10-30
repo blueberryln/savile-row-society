@@ -89,6 +89,22 @@ $(document).ready(function(){
         $(".brand-filter").removeClass("hide").addClass("selected");    
     }
     
+    $("div.product-block").mouseover(function(){
+        var prod_id = $(this).find("input.category-id").val();        
+        $("ul.product-categories li a").each(function(){
+            if($(this).data("category_id")==prod_id)
+            {
+                $(this).addClass("hover-link");
+                             
+            }else{
+                $(this).removeClass("hover-link");
+            }
+        });
+    });
+    $("div.product-block").mouseout(function(){
+        $("ul.product-categories li a").removeClass("hover-link");
+    });
+    
     $(".toggle-tab").on("click", function(e){
         if(!$(this).find(".toggle-body").is(":visible")){
             $(this)
@@ -193,11 +209,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <?php if ($category['children'] && $parent_id && $parent_id == $category['Category']['id']) : ?>
                                     <ul class="product-subcategories">
                                         <?php foreach ($category['children'] as $subcategory): ?>
-                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $subcategory['Category']['name']; ?></a>
+                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subcategory['Category']['id']; ?> ><?php echo $subcategory['Category']['name']; ?></a>
                                                 <?php if ($subcategory['children']) : ?>
                                                     <ul class="product-subcategories">
                                                         <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
-                                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subsubcategory['Category']['slug']; ?>" <?php echo $category_slug == $subsubcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $subsubcategory['Category']['name']; ?></a></li>    
+                                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subsubcategory['Category']['slug']; ?>" <?php echo $category_slug == $subsubcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subsubcategory['Category']['id']; ?> ><?php echo $subsubcategory['Category']['name']; ?></a></li>    
                                                         <?php endforeach; ?>
                                                     </ul>       
                                                 <?php endif; ?>
