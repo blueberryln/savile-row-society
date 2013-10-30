@@ -938,7 +938,7 @@ class UsersController extends AppController {
                         $email->subject('Savile Row Stylist: Your stylist!');
                         $email->template('user_stylist');
                         $email->emailFormat('html');
-                        $email->set(compact('name', 'stylist_name'));
+                        $email->viewVars(compact('name', 'stylist_name'));
                         $email->send();    
                     }
                     catch(Exception $e){
