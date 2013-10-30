@@ -8,6 +8,7 @@ var uid = ' . $user_id . ';
 var client_id = ' . $client_id . ';
 var webroot = "' . $this->webroot . '";
 var clientArray = ' . json_encode($client_array) . ';
+var isAdmin = ' . $is_admin . ';
 ';
 $this->Html->script('//knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
@@ -52,10 +53,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         </div><br />
                 <?php endif; ?>
             </div>
-            <br />
-            <h5 class="new-clients-head">New Clients</h5>
-            <div class="new-clients">
-            </div>
+            <?php if(!$is_admin) : ?>
+                <br />
+                <h5 class="new-clients-head">New Clients</h5>
+                <div class="new-clients">
+                </div>
+            <?php endif; ?>
         </div>
         <div class="ten columns aplha stylist-talk">
             <ul id="stylist-options">
@@ -64,14 +67,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <!--<li><a href="">conversation</a></li>-->                
             </ul>
             <h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>
+                <?php if(!$is_admin) : ?>
                 <?php
-//echo $this->Form->input('', array('options'=>$clients, 'displayField' => 'full_name', '   default'=>'m'));
                 echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client'));
-                /* , 'name' => 'data[Message][user_to_id]' */
                 ?>          
-                <!--<input type="button" value="Load user conversation" id="loadMessages" />-->
-                <a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>      
-                <!--<input type="button" value="Create Outfit" id="createOutfit"/>-->
+                <a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>
+                <?php endif; ?>      
+                
                 <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
                 
 
@@ -564,12 +566,14 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             });
         }
         
-        setInterval(
-            function(){
-                    loadNewClients();
-            },
-            15000
-        );
+        if(!isAdmin){
+            setInterval(
+                function(){
+                        loadNewClients();
+                },
+                15000
+            );
+        }
     }
     
 

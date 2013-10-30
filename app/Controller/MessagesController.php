@@ -14,23 +14,26 @@ class MessagesController extends AppController {
         $this->isLogged();
         // init
         $User = ClassRegistry::init('User');
-    
+        
         // get user from session to derterminate if user is stylist
         $user = $this->getLoggedUser();
         $is_stylist = $user["User"]["is_stylist"];
-        //... but if $user_id is not null then always show stylist preview
-        //if($messages_for_user_id){
-//            // if $messages_for_user_id is not null, then admin come to this page from users administration.
-//            // and page should act as stylist is logged in. 
-//            $is_stylist = true;
-//        }
+        $is_admin = $user["User"]["is_admin"];
+        
+        /**
+         * Check if user should be shown the screen
+         */
+        if(!$is_admin && !$is_stylist && (is_null($user['User']['stylist_id']) || $user['User']['stylist_id'] == "" || !($user['User']['stylist_id'] > 0) )){
+            $this->redirect('/');
+        }        
+        
         
          // make user_id, user
         $user_id = $this->getLoggedUserID();
         $this->set(compact('user_id', 'user', 'messages_for_user_id'));
 
         //chose witch view to render
-        if ($is_stylist) {
+        if ($is_stylist || $is_admin) {
             $Category = ClassRegistry::init('Category');
             $Brand = ClassRegistry::init('Brand');
             $Color = ClassRegistry::init('Color');
@@ -73,6 +76,9 @@ class MessagesController extends AppController {
                                     
                 $this->set(compact('last_purchase', 'recent_messages', 'recent_purchase'));
             }
+            else if($is_admin && is_null($messages_for_user_id)){
+                $this->redirect('/admin/users');
+            }
             
             $client_array = array();
             foreach ($clients_data as $client) {
@@ -80,7 +86,7 @@ class MessagesController extends AppController {
                 $clients[$client['User']['id']] = $client['User']['full_name'];
             }
 
-            $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'client_array'));
+            $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'client_array', 'is_admin'));
             $this->render("stylist");
         } else {
             $stylist_id = $user['User']['stylist_id'];
@@ -301,7 +307,7 @@ class MessagesController extends AppController {
                 $User = ClassRegistry::init('User');
                 $user = $User->getById($with_user_id);
                 $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
-                $my_conversation = $this->Message->getMyConversationWith($user_id,$with_user_id);
+                $my_conversation = $this->Message->getMyConversationWith($with_user_id);
                 foreach($my_conversation as &$row){
                     if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                         $outfit_id = $row['Message']['outfit_id'];
@@ -343,7 +349,7 @@ class MessagesController extends AppController {
             //Get a list of message ids and mark them read if not already read
             $mark_read_list = array();
             foreach($result['Messages'] as $msg){
-                if($msg['Message']['user_to_id'] == $user_id){
+                if($msg['Message']['is_read'] == 0){
                     $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                 }
             }
@@ -374,7 +380,7 @@ class MessagesController extends AppController {
                 $User = ClassRegistry::init('User');
                 $user = $User->getById($with_user_id);
                 $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
-                $my_conversation = $this->Message->getUnreadMessagesWith($user_id,$with_user_id);
+                $my_conversation = $this->Message->getUnreadMessagesWith($with_user_id);
                 if($my_conversation){
                     foreach($my_conversation as &$row){
                         if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
@@ -419,7 +425,7 @@ class MessagesController extends AppController {
             $mark_read_list = array();
             if($my_conversation){
                 foreach($result['Messages'] as $msg){
-                    if($msg['Message']['user_to_id'] == $user_id){
+                    if($msg['Message']['is_read'] == 0){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
                 }
@@ -467,7 +473,7 @@ class MessagesController extends AppController {
                 $User = ClassRegistry::init('User');
                 $user = $User->getById($with_user_id);
                 $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
-                $my_conversation = $this->Message->getOldMessagesWith($last_msg_id, $user_id, $with_user_id);
+                $my_conversation = $this->Message->getOldMessagesWith($last_msg_id, $with_user_id);
                 $msg_count = count($my_conversation);
                 $result['msg_count'] = $msg_count;
                 foreach($my_conversation as &$row){
@@ -519,7 +525,22 @@ class MessagesController extends AppController {
                 }
             }
             
-            $result['status'] = 'ok';
+            $mark_read_list = array();
+            if($my_conversation){
+                foreach($result['Messages'] as $msg){
+                    if($msg['Message']['is_read'] == 0){
+                        $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
+                    }
+                }
+                if(count($mark_read_list) > 0){
+                    $this->Message->saveAll($mark_read_list);
+                }
+                
+                $result['status'] = 'ok';
+            }
+            else{
+                $result['status'] = 'error';    
+            }
         }
         else{
             $result = array();

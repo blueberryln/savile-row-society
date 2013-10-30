@@ -27,7 +27,7 @@
                         <td><?php echo $this->Time->timeAgoInWords($user['User']['created'], array('F jS, Y H:i')); ?>&nbsp;</td>
                         <td><?php echo $this->Time->timeAgoInWords($user['User']['updated'], array('F jS, Y H:i')); ?>&nbsp;</td>
                         <td class="actions">
-                            <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $user['User']['id']; ?>">Chat</a>
+                            <a target="_blank" href="<?php echo $this->webroot; ?>messages/index/<?php echo $user['User']['id']; ?>">Chat</a>
                             <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
                         </td>
                     </tr>

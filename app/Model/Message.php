@@ -128,12 +128,10 @@ class Message extends AppModel {
     }
     
     
-    public function getOldMessagesWith($last_msg_id, $user_id, $user_id_with){
+    public function getOldMessagesWith($last_msg_id, $user_id_with){
         return $this->find('all', array(
                     'conditions' => array( 
-                                    'OR' => array(
-                                        array('Message.user_to_id' => $user_id_with, 'Message.user_from_id' => $user_id),
-                                        array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id_with),
+                                    'OR' => array('Message.user_to_id' => $user_id_with, 'Message.user_from_id' => $user_id_with
                                     ), 'Message.id <' => $last_msg_id),
                     'contain' => array('UserFrom'),
                     'order' => "Message.id DESC",
@@ -172,9 +170,9 @@ class Message extends AppModel {
         ));
     }
     
-    public function getUnreadMessagesWith($user_id, $user_id_with){
+    public function getUnreadMessagesWith($user_id_with){
         return $this->find('all', array(
-                    'conditions' => array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id_with, 'Message.is_read' => false),
+                    'conditions' => array('Message.user_from_id' => $user_id_with, 'Message.is_read' => false),
                     'contain' => array('UserFrom'),
                     'order' => "Message.created ASC",
                     'fields' => array('Message.id', 
@@ -194,11 +192,10 @@ class Message extends AppModel {
         ));
     }
     
-    public function getMyConversationWith($user_id, $user_id_with){
+    public function getMyConversationWith($user_id_with){
         return $this->find('all', array(
                     'conditions' => array('AND' =>
                         array(
-                            'OR' => array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id),
                             'OR' => array('Message.user_to_id' => $user_id_with, 'Message.user_from_id' => $user_id_with),
                             'Message.created >= ' => date('Y-m-d') . ' 00:00:00'
                         )

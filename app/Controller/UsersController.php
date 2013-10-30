@@ -920,10 +920,35 @@ class UsersController extends AppController {
                 unset($this->request->data['User']['stylist_id']);
             }
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'), 'flash');
+                $this->Session->setFlash(__('Stylist assigned successfully.'), 'flash');
                 $this->redirect(array('action' => 'newusers'));
+                if(isset($this->request->data['User']['stylist_id']) && $this->request->data['User']['stylist_id'] > 0){
+                    //Get stylist data
+                    $options = array('conditions' => array('User.' . $this->User->primaryKey => $this->request->data['User']['stylist_id']));
+                    $stylist_data = $this->User->find('first', $options);
+                    $stylist_name = $stylist_data['User']['full_name'];
+                    
+                    //Get user data
+                    $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+                    $user_data = $this->User->find('first', $options);  
+                    $name = $user_data['User']['full_name'];
+                    
+                    try{
+                        $email = new CakeEmail('default');
+                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        $email->to($user_data['User']['email']);
+                        $email->subject('Savile Row Stylist: Your stylist!');
+                        $email->template('user_stylist');
+                        $email->emailFormat('html');
+                        $email->viewVars(compact('name','stylist_name'));
+                        $email->send();    
+                    }
+                    catch(Exception $e){
+                        
+                    }
+                }
             } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'flash');
+                $this->Session->setFlash(__('Stylist could not be assigned. Please, try again.'), 'flash');
             }
         } else {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
