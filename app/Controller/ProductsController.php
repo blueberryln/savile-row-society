@@ -146,13 +146,14 @@ class ProductsController extends AppController {
         if($action == "add"){
             // init
             $Entity = ClassRegistry::init('Entity');
-            
+
             //$Color = ClassRegistry::init('Color');
             $colors = $Entity->Color->find('list');
             
             if ($this->request->is('post') || $this->request->is('put')) {
                 // add properties
-                if ($this->request->data['Entity']) {
+                
+                if (isset($this->request->data['Entity'])) {
                     $data = array();
                     $Entity->create();
                     $data['Color'] = $this->request->data['Color'];
@@ -197,7 +198,7 @@ class ProductsController extends AppController {
                     }
                 }
             }
-            
+
             if($copy_id && $Entity->exists($copy_id)){
                 $Entity->recursive = 1;
                 $options = array('conditions' => array('Entity.' . $Entity->primaryKey => $copy_id));
