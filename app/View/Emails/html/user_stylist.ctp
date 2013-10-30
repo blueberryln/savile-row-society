@@ -7,8 +7,8 @@
             <br />
             Hi <?php echo ucfirst($name); ?>,
             <br/>
-            <p style="text-align: justify;">We have matched you with <?php echo ucfirst($stylist_name); ?>, our premier Stylist.
-                <br />You can make any request to him/her or Book an Appointment with our tailor.<br>
+            <p style="text-align: justify;">We have matched you with <?php echo ucfirst($stylist_name); ?>, our premier stylist.
+                <br />You can make any request to him/her or book an appointment with our tailor.<br />
                 Before we get to know you, Check out our highlighted products available in the <a href="http://www.savilerowsociety.com/closet">Closet</a>.</p>
 
         </td>
