@@ -1,4 +1,4 @@
-<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" width="600">
+<table  cellpadding="0" cellspacing="0" border="0" width="600">
     <tr>
             <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
     </tr>
@@ -24,6 +24,7 @@
         </td>
     </tr>
     <tr>
+         <td>
             <br /><br />
             For any queries please contact us at, <a href="mailto:contact@savilerowsociety.com">contact@savilerowsociety.com</a>
             <br /><br />
@@ -31,5 +32,6 @@
             <br/>
             <a href="http://www.savilerowsociety.com">Savile Row Society</a>
             <br /><br /><br />
+         </td>
     </tr>
 </table>
