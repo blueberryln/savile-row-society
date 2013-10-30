@@ -119,15 +119,6 @@ class UsersController extends AppController {
                 $results = $this->User->checkCredentials($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
                 if ($results) {
                     
-                    //TODO: Assign stylist id as of Casey Golden. Later on to be changed in POST MVP.
-                    if($results['User']['stylist_id']){
-                        
-                    }
-                    else{
-                        $results['User']['stylist_id'] = 279;
-                        $results = $this->User->save($results);
-                    }
-                    
                     // set "user" session
                     $this->Session->write('user', $results);
 
@@ -512,6 +503,7 @@ class UsersController extends AppController {
                 break;
 
             case 'finish':
+                $this->isLogged();
                 $this->render('register-finish');
                 break;
             default:
@@ -586,14 +578,6 @@ class UsersController extends AppController {
                 $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
 
                 if ($results) {
-                    //TODO: Assign stylist id as of Casey Golden. Later on to be changed in POST MVP.
-                    if($results['User']['stylist_id']){
-                        
-                    }
-                    else{
-                        $results['User']['stylist_id'] = 279;
-                        $results = $this->User->save($results);
-                    }
                     
                     // set "user" session
                     $this->Session->write('user', $results);
@@ -895,6 +879,61 @@ class UsersController extends AppController {
         
         $this->set('users', $this->Paginator->paginate());
     }
+    
+    /**
+     * admin_newusers method
+     *
+     * @return void
+     */
+    public function admin_newusers() {
+        // Default order: Users to be listed ranked by uresers with uread messages first and date of last message sent.
+        $this->layout = 'admin';
+        $this->isAdmin();
+        $this->Paginator->settings = array(
+                'fields' => array('User.*'),
+                'limit' => 20,
+                'conditions' => array(
+                    'OR' => array('User.stylist_id IS NULL', 'User.stylist_id' => '')
+                ),
+                'order' => array('User.created' => 'desc'),
+        );
+        
+        $this->set('users', $this->Paginator->paginate());
+    }
+    
+     /**
+     * admin_assignstylist method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function admin_assign_stylist($id = null) {
+        $this->layout = 'admin';
+        $this->isAdmin();
+
+        if (!$this->User->exists($id)) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if($this->request->data['User']['stylist_id'] == ""){
+                unset($this->request->data['User']['stylist_id']);
+            }
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The user has been saved'), 'flash');
+                $this->redirect(array('action' => 'newusers'));
+            } else {
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+            $this->request->data = $this->User->find('first', $options);
+        }
+        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
+        
+        $this->set(compact('id', 'stylists'));
+    }
+    
 
     /**
      * admin_edit method
@@ -912,6 +951,9 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
+            if($this->request->data['User']['stylist_id'] == ""){
+                $this->request->data['User']['stylist_id'] = null;
+            }
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'), 'flash');
                 $this->redirect(array('action' => 'index'));

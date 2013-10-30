@@ -74,13 +74,13 @@ class MessagesController extends AppController {
                 $this->set(compact('last_purchase', 'recent_messages', 'recent_purchase'));
             }
             
-            $last_client_id = 0;
+            $client_array = array();
             foreach ($clients_data as $client) {
-                $last_client_id = $client['User']['id'];
+                $client_array[] = $client['User']['id'];
                 $clients[$client['User']['id']] = $client['User']['full_name'];
             }
 
-            $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'last_client_id'));
+            $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'client_array'));
             $this->render("stylist");
         } else {
             $stylist_id = $user['User']['stylist_id'];

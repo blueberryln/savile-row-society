@@ -21,7 +21,7 @@
                 echo $this->Form->input('location');
                 echo $this->Form->input('skype');
                 echo $this->Form->input('heard_from');
-                echo $this->Form->input('stylist_id');
+                echo $this->Form->input('stylist_id', array('empty' => 'Select Stylist'));
                 echo $this->Form->input('is_editor');
                 echo $this->Form->input('is_stylist');
                 echo $this->Form->input('is_admin');

@@ -79,7 +79,7 @@
                 <li><a href="<?php echo $this->request->webroot; ?>closet" data-ref="closet">The Closet</a></li> 
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist">My Stylist</a>
-                     <?php if($is_logged) : ?>
+                     <?php if($is_logged && $has_stylist) : ?>
                         <ul class="submenu">
                             <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
                         </ul>

@@ -434,10 +434,11 @@ class ApiController extends AppController {
         
         $user = $this->getLoggedUser();
         $user_id = $user['User']['id'];
-        $last_client_id = $this->request->data['last_client_id'];
-        if($user_id && $user['User']['is_stylist'] == '1' && $last_client_id){
+        $client_string = $this->request->data['clientString'];
+        $client_array = explode(',', $client_string);
+        if($user_id && $user['User']['is_stylist'] == '1' && $client_array && $client_array != "" && count($client_array) > 0){
             $User = ClassRegistry::init('User');
-            $new_clients = $User->getNewClients($last_client_id, $user_id);
+            $new_clients = $User->getNewClients($client_array, $user_id);
             if($new_clients){
                 $ret['status'] = 'ok';
                 $ret['clients'] = $new_clients;        

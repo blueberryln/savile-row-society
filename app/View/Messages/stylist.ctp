@@ -7,7 +7,7 @@ $script = '
 var uid = ' . $user_id . ';
 var client_id = ' . $client_id . ';
 var webroot = "' . $this->webroot . '";
-var lastClientId = ' . $last_client_id . ';
+var clientArray = ' . json_encode($client_array) . ';
 ';
 $this->Html->script('//knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
@@ -541,22 +541,23 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         
         function loadNewClients(){
             var clientBox = $(".new-clients");
+            var clientString = clientArray.join(',');
             $.ajax({
                url: '<?php echo $this->webroot; ?>api/getNewClients',
                type: 'POST',
                data: {
-                'last_client_id': lastClientId, 
+                'clientString': clientString, 
                },
                success: function(data){
                     var ret = $.parseJSON(data);
                     if(ret['status'] == 'ok'){
                         for(i=0; i<ret['clients'].length; i++){
                             html =  '<div class="client-row">' + 
-                                        '<a href="<?php echo $this->webroot; ?>messages/index/' + ret['clients'][i]['User']['id'] + '">' + ret['clients'][i]['User']['full_name'] + '</a> has joined SRS.' + 
+                                        '<a href="<?php echo $this->webroot; ?>messages/index/' + ret['clients'][i]['User']['id'] + '">' + ret['clients'][i]['User']['first_name'] + '</a> has been assigned to you.' + 
                                     '</div>';   
                                     
                             clientBox.prepend(html); 
-                            lastClientId = ret['clients'][i]['User']['id'];
+                            clientArray.push(ret['clients'][i]['User']['id']);
                         }    
                     }
                } 

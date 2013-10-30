@@ -313,9 +313,9 @@ class User extends AppModel {
         ));
     }
     
-    public function getNewClients($last_client_id, $stylist_id){
+    public function getNewClients($client_array, $stylist_id){
         return $this->find('all', array(
-            'conditions' => array('User.id >' => $last_client_id, 'User.stylist_id' => $stylist_id), 
+            'conditions' => array('User.id NOT IN' => $client_array, 'User.stylist_id' => $stylist_id), 
         ));
     }
     

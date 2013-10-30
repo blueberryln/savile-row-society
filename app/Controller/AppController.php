@@ -10,8 +10,12 @@ class AppController extends Controller {
         parent::beforeRender();
 
         $is_logged = false;
-        if ($this->getLoggedUser()) {
+        $has_stylist = false;
+        if ($user = $this->getLoggedUser()) {
             $is_logged = true;
+            if($user['User']['stylist_id'] && $user['User']['stylist_id'] != ""){
+                $has_stylist = true;
+            }
         }
 
         $this->getCartCount();
@@ -20,7 +24,7 @@ class AppController extends Controller {
         if($message_notification){
             $this->set(compact('message_notification'));
         }
-        $this->set(compact('is_logged'));
+        $this->set(compact('is_logged','has_stylist'));
         
         /**
          * Set values for profile completion popup
