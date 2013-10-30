@@ -920,18 +920,16 @@ class UsersController extends AppController {
                 unset($this->request->data['User']['stylist_id']);
             }
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('Stylist assigned successfully.'), 'flash');
-                $this->redirect(array('action' => 'newusers'));
                 if(isset($this->request->data['User']['stylist_id']) && $this->request->data['User']['stylist_id'] > 0){
                     //Get stylist data
                     $options = array('conditions' => array('User.' . $this->User->primaryKey => $this->request->data['User']['stylist_id']));
                     $stylist_data = $this->User->find('first', $options);
-                    $stylist_name = $stylist_data['User']['full_name'];
+                    $stylist_name = $stylist_data['User']['first_name'];
                     
                     //Get user data
                     $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
                     $user_data = $this->User->find('first', $options);  
-                    $name = $user_data['User']['full_name'];
+                    $name = $user_data['User']['first_name'];
                     
                     try{
                         $email = new CakeEmail('default');
@@ -947,6 +945,9 @@ class UsersController extends AppController {
                         
                     }
                 }
+                $this->Session->setFlash(__('Stylist assigned successfully.'), 'flash');
+                $this->redirect(array('action' => 'newusers'));
+                
             } else {
                 $this->Session->setFlash(__('Stylist could not be assigned. Please, try again.'), 'flash');
             }
