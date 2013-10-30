@@ -8,7 +8,7 @@ var uid = ' . $user_id . ';
 var client_id = ' . $client_id . ';
 var webroot = "' . $this->webroot . '";
 var clientArray = ' . json_encode($client_array) . ';
-var isAdmin = ' . $is_admin . ';
+var isAdmin = "' . $is_admin . '";
 ';
 $this->Html->script('//knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
