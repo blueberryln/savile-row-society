@@ -210,7 +210,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <li class="toggle-tab selected open-filter"><span class="filter-block">Categories</span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
-                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $category['Category']['name']; ?></a>
+                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                         <?php endforeach; ?>
                         </ul>
                     </li>
@@ -244,7 +244,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <a href="" class="get-related-products"></a>
                             <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
                             <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
-                            <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="product-category-id">
+                            <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="product-category-id category-id">
                             <div class="product-list-image mosaic-block fade">
                                 <div class="mosaic-overlay">
                     				<div class="mini-product-details">

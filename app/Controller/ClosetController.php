@@ -94,6 +94,7 @@ class ClosetController extends AppController {
                 }
             }    
         }
+        
         return $entities;
     }
 
@@ -192,7 +193,7 @@ class ClosetController extends AppController {
 //                ),
             ),
             'fields' => array(
-                'Entity.*', 'Product.*', 'Brand.*',
+                'Entity.*', 'Product.*', 'Brand.*', 'Category.category_id'
             ),
             'Group' => array('Entity.id'),
         );
@@ -256,7 +257,6 @@ class ClosetController extends AppController {
         $data = $this->Paginator->paginate($Entity);
 
         $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used'));
-
         return $data;
     }
 
