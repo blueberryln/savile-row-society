@@ -152,7 +152,7 @@ class ProductsController extends AppController {
             
             if ($this->request->is('post') || $this->request->is('put')) {
                 // add properties
-                
+
                 if (isset($this->request->data['Entity'])) {
                     $data = array();
                     $Entity->create();

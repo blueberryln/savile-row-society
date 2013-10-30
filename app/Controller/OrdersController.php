@@ -223,4 +223,12 @@ class OrdersController extends AppController {
         $this->render('admin_export', 'xls');
     }
 
+    /* Export order pdf     */
+
+    function admin_download($id = null)
+    {
+
+
+    }
+
 }

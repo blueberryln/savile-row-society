@@ -29,6 +29,7 @@
                         <?php else : ?>
                             <?php echo $this->Html->link(__('Mark Shipped'), array('action' => 'shipped', $order['Order']['id']), null, __('Are you sure you want to mark the order shipped?')); ?>
                         <?php endif; ?>
+                        <?php echo $this->Html->link(__('Order Pdf'), array('action' => 'download', $order['Order']['id']), null); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
