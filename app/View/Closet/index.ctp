@@ -189,15 +189,15 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
                             <li <?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "class='cat-filter-selected'" : ""; ?>>
-                            <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $category['Category']['name']; ?></a>
+                            <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                                 <?php if ($category['children'] && $parent_id && $parent_id == $category['Category']['id']) : ?>
                                     <ul class="product-subcategories">
                                         <?php foreach ($category['children'] as $subcategory): ?>
-                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $subcategory['Category']['name']; ?></a>
+                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $subcategory['Category']['name']; ?></a>
                                                 <?php if ($subcategory['children']) : ?>
                                                     <ul class="product-subcategories">
                                                         <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
-                                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subsubcategory['Category']['slug']; ?>" <?php echo $category_slug == $subsubcategory['Category']['slug'] ? "class='active-link'" : ""; ?> ><?php echo $subsubcategory['Category']['name']; ?></a></li>    
+                                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subsubcategory['Category']['slug']; ?>" <?php echo $category_slug == $subsubcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $subsubcategory['Category']['name']; ?></a></li>    
                                                         <?php endforeach; ?>
                                                     </ul>       
                                                 <?php endif; ?>
@@ -260,6 +260,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div class="product-block">
                             <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
                             <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
+                            <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="category-id">
                             <div class="product-list-image mosaic-block fade">
                                 <div class="mosaic-overlay">
                     				<div class="mini-product-details">
