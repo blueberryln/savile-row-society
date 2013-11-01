@@ -53,7 +53,7 @@ class ClosetController extends AppController {
         $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id'));
 
         if(!$category_slug){
-            $this->render('closet_landing');
+            $this->render('closet_landing');     
         }
     }
 

@@ -21,6 +21,9 @@ $script = ' var size = ' . json_encode($size) . '; ' .
                $( "#height-result").val( toInches(ui.value) );
            }
        });
+       
+       $("#height-slider").draggable();
+       
        $( "#weight-slider" ).slider({
 			min: 100,
 			max: 350,
@@ -30,6 +33,8 @@ $script = ' var size = ' . json_encode($size) . '; ' .
                $( "#weight-result" ).val( ui.value + " lbs" );
            }
        });
+       
+       $("#weight-slider").draggable();
        
        $( "#height-result-display" ).val( toFeet($( "#height-slider" ).slider( "value" )) );
        $( "#height-result" ).val( toInches($( "#height-slider" ).slider( "value" )) );
@@ -152,6 +157,7 @@ $this->Html->css('ui/jquery-ui', null, array('inline' => false));
 $this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
 $this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+$this->Html->script("jquery.ui.touch-punch.min.js", array('inline' => false));
 
 $meta_description = 'Sign up for Savile Row Society, a groundbreaking online, personalized fashion service.';
 $this->Html->meta('description', $meta_description, array('inline' => false));

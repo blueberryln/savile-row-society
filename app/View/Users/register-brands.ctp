@@ -140,25 +140,33 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
 //                    $("#suits-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
-       }
+       }       
        
        $("ul.product-type li").click(function(){
             $("ul.product-type li").removeClass("selected");
             $(this).addClass("selected");           
        });
-
-        
+       
        $("#brands-continue").click(function(event){                
         if($("#polos_tees-brands li.ui-selected").length > 0 && $("#shirt-brands li.ui-selected").length > 0 && $("#pants-brands li.ui-selected").length > 0 && $("#jeans-brands li.ui-selected").length > 0 && $("#suits-brands li.ui-selected").length > 0)
         {
-              $("p.error-msg").slideUp(300);        
-        }else
-        {
-            $("p.error-msg").slideDown(300);
-            event.preventDefault(); 
+              $("p.error-msg").slideUp(300);                    
+        }else{
+            $("p.error-msg").slideDown(300);   
+            $("div#brands>div.brand-block").each(function(){
+                if($(this).find("li.ui-selected").length == 0)
+                {
+                    $("div#brands>div.brand-block").hide();
+                    $(this).show();
+                    $("ul.product-type li").removeClass("selected");
+                    $("ul.product-type li").has("a[data-tab=\'" + $(this).attr("id") + "\']").addClass("selected");                                         
+                    return false;
+                }
+            });
+            
+            event.preventDefault();     
         }
-       });
-       
+       });       
        
 });
 ';
@@ -257,6 +265,69 @@ window.registerProcess = true;
                     </ol>
                 </div>
                 <div class="clear"></div>
+                
+                 <div id="jeans-brands" class="brand-block">
+                   
+
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Acne" id="1" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Adriano Goldschmied" id="2" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Diesel" id="3" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Levis" id="4" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Burberry" id="5" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="J brand Denim" id="6" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Lucky Brand" id="7" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Rag & Bone" id="8" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="7 for all Mankind Jeans" id="9" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="True Religion" id="10" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Big Star" id="11" />
+                    <ol id="selectable" class="brands-logo">
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/jeans/acne.jpg" class="fadein-image" alt="Acne" /></li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/jeans/adriano.jpg" class="fadein-image" alt="Adriano Goldschmied" /></li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/jeans/diesel.jpg" class="fadein-image" alt="Diesel" /></li>
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/jeans/levis.jpg" class="fadein-image" alt="Levis" /></li>
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/jeans/burberry.jpg" class="fadein-image" alt="Burberry" /></li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/jeans/jbrand.jpg" class="fadein-image" alt="J brand Denim" /></li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/jeans/lucky-brand.jpg" class="fadein-image" alt="Lucky Brand" /></li>
+                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/jeans/rag-bone.jpg" class="fadein-image" alt="Rag & Bone" /></li>
+                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/jeans/for-all-mankind.jpg" class="fadein-image" alt="7 for all Mankind Jeans" /></li>
+                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/jeans/true-religion.jpg" class="fadein-image" alt="True Religion" /></li>
+                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/jeans/big-star.jpg" class="fadein-image" alt="Big Star" /></li>
+                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/jeans/agave.jpg" class="fadein-image" alt="Agave" /></li>
+                    </ol>
+                </div>
+                 <div class="clear"></div>
+                
+                 <div id="pants-brands" class="brand-block">
+                    
+
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Brioni" id="1" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Incotex" id="2" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Hugo Boss" id="3" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Dolce & Gabbana" id="4" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Banana Republic" id="5" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Hiltl" id="6" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Gucci" id="7" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Jil Sander" id="8" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Zegna" id="9" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="MCQ Alexander Mcqueen" id="10" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Michael Bastian" id="11" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Armani" id="12" />
+                    <ol id="selectable" class="brands-logo">
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/pants/brioni.jpg" class="fadein-image" alt="Brioni" /></li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/pants/incotex.jpg" class="fadein-image" alt="Incotex" /></li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/pants/hugo-boss.jpg" class="fadein-image" alt="Hugo Boss" /></li>
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/pants/dolce-gabana.jpg" class="fadein-image" alt="Dolce & Gabbana" /></li>
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/pants/banana-replublic.jpg" class="fadein-image" alt="Banana Republic" /></li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/pants/hilti.jpg" class="fadein-image" alt="Hiltl" /></li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/pants/gucci.jpg" class="fadein-image" alt="Gucci" /></li>
+                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/pants/jil-sander.jpg" class="fadein-image" alt="Jil Sander" /></li>
+                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/pants/ermenegildo-zegna.jpg" class="fadein-image" alt="Zegna" /></li>
+                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/pants/mcqueen.jpg" class="fadein-image" alt="MCQ Alexander Mcqueen" /></li>
+                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/pants/michael-bastian.jpg" class="fadein-image" alt="Michael Bastian" /></li>
+                        <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/pants/emporio-armani.jpg" class="fadein-image" alt="Armani" /></li>
+                    </ol>
+                </div>
+                 <div class="clear"></div>
 
                 <div id="shirt-brands" class="brand-block">
                     
@@ -289,70 +360,7 @@ window.registerProcess = true;
                         <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/shirts/zara.jpg" class="fadein-image" alt="Zara" /></li>
                     </ol>
                 </div>
-                <div class="clear"></div>
-
-                <div id="pants-brands" class="brand-block">
-                    
-
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Brioni" id="1" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Incotex" id="2" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Hugo Boss" id="3" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Dolce & Gabbana" id="4" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Banana Republic" id="5" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Hiltl" id="6" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Gucci" id="7" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Jil Sander" id="8" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Zegna" id="9" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="MCQ Alexander Mcqueen" id="10" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Michael Bastian" id="11" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Armani" id="12" />
-                    <ol id="selectable" class="brands-logo">
-                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/pants/brioni.jpg" class="fadein-image" alt="Brioni" /></li>
-                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/pants/incotex.jpg" class="fadein-image" alt="Incotex" /></li>
-                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/pants/hugo-boss.jpg" class="fadein-image" alt="Hugo Boss" /></li>
-                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/pants/dolce-gabana.jpg" class="fadein-image" alt="Dolce & Gabbana" /></li>
-                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/pants/banana-replublic.jpg" class="fadein-image" alt="Banana Republic" /></li>
-                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/pants/hilti.jpg" class="fadein-image" alt="Hiltl" /></li>
-                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/pants/gucci.jpg" class="fadein-image" alt="Gucci" /></li>
-                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/pants/jil-sander.jpg" class="fadein-image" alt="Jil Sander" /></li>
-                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/pants/ermenegildo-zegna.jpg" class="fadein-image" alt="Zegna" /></li>
-                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/pants/mcqueen.jpg" class="fadein-image" alt="MCQ Alexander Mcqueen" /></li>
-                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/pants/michael-bastian.jpg" class="fadein-image" alt="Michael Bastian" /></li>
-                        <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/pants/emporio-armani.jpg" class="fadein-image" alt="Armani" /></li>
-                    </ol>
-                </div>
-                <div class="clear"></div>
-
-                <div id="jeans-brands" class="brand-block">
-                   
-
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Acne" id="1" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Adriano Goldschmied" id="2" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Diesel" id="3" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Levis" id="4" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Burberry" id="5" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="J brand Denim" id="6" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Lucky Brand" id="7" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Rag & Bone" id="8" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="7 for all Mankind Jeans" id="9" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="True Religion" id="10" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Big Star" id="11" />
-                    <ol id="selectable" class="brands-logo">
-                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/jeans/acne.jpg" class="fadein-image" alt="Acne" /></li>
-                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/jeans/adriano.jpg" class="fadein-image" alt="Adriano Goldschmied" /></li>
-                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/jeans/diesel.jpg" class="fadein-image" alt="Diesel" /></li>
-                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/jeans/levis.jpg" class="fadein-image" alt="Levis" /></li>
-                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/jeans/burberry.jpg" class="fadein-image" alt="Burberry" /></li>
-                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/jeans/jbrand.jpg" class="fadein-image" alt="J brand Denim" /></li>
-                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/jeans/lucky-brand.jpg" class="fadein-image" alt="Lucky Brand" /></li>
-                        <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/jeans/rag-bone.jpg" class="fadein-image" alt="Rag & Bone" /></li>
-                        <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/jeans/for-all-mankind.jpg" class="fadein-image" alt="7 for all Mankind Jeans" /></li>
-                        <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/jeans/true-religion.jpg" class="fadein-image" alt="True Religion" /></li>
-                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/jeans/big-star.jpg" class="fadein-image" alt="Big Star" /></li>
-                        <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/jeans/agave.jpg" class="fadein-image" alt="Agave" /></li>
-                    </ol>
-                </div>
-                <div class="clear"></div>
+                <div class="clear"></div>               
 
                 <div id="suits-brands" class="brand-block">                     
 

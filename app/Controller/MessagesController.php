@@ -20,7 +20,7 @@ class MessagesController extends AppController {
         $is_stylist = $user["User"]["is_stylist"];
         if($user["User"]["is_admin"]){
             $is_admin = 1;    
-         
+        
         else{
             $is_admin = 0;
          }                    
