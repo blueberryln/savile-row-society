@@ -1,3 +1,11 @@
+<?php
+$script = '
+$(document).ready(function(){ 
+       
+});
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+?>
 <div class="container content inner">		
     <div class="sixteen columns text-center">
         <h1><?php echo __('Users'); ?></h1>
