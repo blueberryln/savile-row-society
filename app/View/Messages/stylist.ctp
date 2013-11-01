@@ -72,7 +72,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <?php
                 echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client'));
                 ?>          
-                <a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>
+                <!--<a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>-->
                 <?php endif; ?>      
                 
                 <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
@@ -450,7 +450,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             return html;
         }
         
-        $("#loadMessages").click(function(e) {
+        $("#UserUserToId").change(function(e) {
             e.preventDefault();
             userId =  $("#UserUserToId").val();
             window.location = webroot + "messages/index/" + userId;
