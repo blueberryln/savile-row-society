@@ -65,6 +65,7 @@ class ClosetController extends AppController {
         //$random_list = $Entity->getCloset($parent_categories);
         $random_list = $Entity->getClosestItems();
         $entity_list = array();
+        $entity_list_cat = array();
         
         $category_list = $Category->find('threaded', array('order' => array('Category.order' => 'ASC')));
         foreach($category_list as $cat){
@@ -73,12 +74,18 @@ class ClosetController extends AppController {
             if(count($cat['children'])>0){
                 foreach($cat['children'] as $sub){
                     $cur_list[] = $sub['Category']['id'];
+                    if(count($sub['children'] > 0)){
+                        foreach($sub['children'] as $subsub){
+                            $cur_list[] = $subsub['Category']['id'];
+                        }
+                    }
                 }    
             }
             
             foreach($random_list as $item){
                 if(in_array($item['pc']['category_id'], $cur_list)){
                     $entity_list[] = $item['pe']['id'];
+                    $entity_list_cat[$item['pe']['id']] = array('id' => $item['pe']['id'], 'parent_cat' => $cur_list[0]);
                     break;    
                 }    
             }
@@ -90,6 +97,7 @@ class ClosetController extends AppController {
         foreach($entity_list as $id){
             foreach($unordered_entities as $entity){
                 if($id == $entity['Entity']['id']){
+                    $entity['Category']['parent_cat'] = $entity_list_cat[$entity['Entity']['id']]['parent_cat'];
                     $entities[] = $entity;
                 }
             }    
@@ -255,6 +263,23 @@ class ClosetController extends AppController {
 
         $this->Paginator->settings = $find_array;
         $data = $this->Paginator->paginate($Entity);
+        foreach($data as &$entity){
+            if($entity['Category']['category_id']){
+                $parent = $Category->getParentNode($entity['Category']['category_id']);
+                if($parent){
+                    $root_parent = $Category->getParentNode($parent['Category']['id']);
+                    if($root_parent){
+                        $entity['Category']['parent_cat'] = $root_parent['Category']['id'];    
+                    }
+                    else{
+                        $entity['Category']['parent_cat'] = $parent['Category']['id'];
+                    }
+                }
+                else{
+                    $entity['Category']['parent_cat'] = $entity['Category']['category_id'];
+                }
+            }
+        }
 
         $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used'));
         return $data;

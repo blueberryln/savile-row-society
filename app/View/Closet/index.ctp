@@ -21,9 +21,6 @@ if($user_id){
                             notificationDetails["button"] = "<a href=\"' . $this->webroot . 'profile/about\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
                             showNotification(notificationDetails);
                         }
-                        //var notificationDetails = new Array();
-                        //notificationDetails["msg"] = ret["msg"];
-                        //showNotification(notificationDetails, true);
                     }
                 );
             }
@@ -34,9 +31,6 @@ if($user_id){
                         if(ret["status"] == "ok"){
                             $this.removeClass("liked");
                         }
-                        //var notificationDetails = new Array();
-                        //notificationDetails["msg"] = ret["msg"];
-                        //showNotification(notificationDetails, true);
                     }
                 );
             }
@@ -90,16 +84,26 @@ $(document).ready(function(){
     }
     
     $("div.product-block").mouseover(function(){
-        var prod_id = $(this).find("input.category-id").val();        
+        var prod_id = $(this).find("input.category-id").val();
+        var parent_prod_id = $(this).find("input.parent-category-id").val();
+        var flag = false;        
         $("ul.product-categories li a").each(function(){
             if($(this).data("category_id")==prod_id)
             {
                 $(this).addClass("hover-link");
-                             
-            }else{
-                $(this).removeClass("hover-link");
+                flag = true;          
             }
         });
+        
+        if(!flag && prod_id != parent_prod_id){
+            $("ul.product-categories li a").each(function(){
+                if($(this).data("category_id")==parent_prod_id)
+                {
+                    $(this).addClass("hover-link");
+                    flag = true;          
+                }
+            });    
+        }
     });
     $("div.product-block").mouseout(function(){
         $("ul.product-categories li a").removeClass("hover-link");
@@ -277,6 +281,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
                             <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
                             <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="category-id">
+                            <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="parent-category-id">
                             <div class="product-list-image mosaic-block fade">
                                 <div class="mosaic-overlay">
                     				<div class="mini-product-details">

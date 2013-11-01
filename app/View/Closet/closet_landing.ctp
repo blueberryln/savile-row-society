@@ -261,7 +261,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <a href="" class="get-related-products"></a>
                             <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
                             <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
-                            <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="product-category-id category-id">
+                            <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="product-category-id category-id">
                             <div class="product-list-image mosaic-block fade">
                                 <div class="mosaic-overlay">
                     				<div class="mini-product-details">
