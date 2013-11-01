@@ -193,22 +193,12 @@ class Category extends AppModel {
 
         // get all by parent category
         if ($category) {
-
             $category_ids = array();
-            $conditions = array();
-            $conditions[] = array("Category.id = " . $category['Category']['id']);
-            $conditions[] = array("Category.parent_id = " . $category['Category']['id']);
-
-            $resluts = $this->find('all', array(
-                'conditions' => array(
-                    'OR' => $conditions,
-                )
-            ));
-
-            foreach ($resluts as $cat) {
-                array_push($category_ids, $cat['Category']['id']);
+            $cat_children = $this->children($category['Category']['id']);
+            array_push($category_ids, $category['Category']['id']);
+            foreach($cat_children as $child){
+                array_push($category_ids, $child['Category']['id']);    
             }
-
             return $category_ids;
         } else {
             return 0;
