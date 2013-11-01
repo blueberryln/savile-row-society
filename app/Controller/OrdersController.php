@@ -2,6 +2,7 @@
 
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
+App::uses('Component', 'MpdfComponent');
 
 /**
  * Categories Controller
@@ -11,6 +12,7 @@ App::uses('CakeEmail', 'Network/Email');
 class OrdersController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
+
     
     public function beforeRender() {
         parent::beforeRender();
@@ -227,8 +229,29 @@ class OrdersController extends AppController {
 
     function admin_download($id = null)
     {
+        $value = $id;
+        $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+        $order = $this->Order->find('first', $options);
+        if($this->Order->save($order)){
+
+            //Send confirmation email to the customer.
+            $this->Order->recursive = 3;
+            $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
+            $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
+            $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+            $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+            $shipped_order = $this->Order->find('first', $options);
+        }
+
+
+        $this->set(compact('value','shipped_order'));
 
 
     }
+
+
+
+
+
 
 }

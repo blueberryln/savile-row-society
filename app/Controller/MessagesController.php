@@ -19,13 +19,11 @@ class MessagesController extends AppController {
         $user = $this->getLoggedUser();
         $is_stylist = $user["User"]["is_stylist"];
         if($user["User"]["is_admin"]){
-            $is_admin = 1;    
-        
+            $is_admin = 1;
+        }
         else{
             $is_admin = 0;
-         }                    
-        
-        $is_admin = ;
+        }
         
         /**
          * Check if user should be shown the screen

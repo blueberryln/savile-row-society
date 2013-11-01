@@ -29,7 +29,7 @@
                         <?php else : ?>
                             <?php echo $this->Html->link(__('Mark Shipped'), array('action' => 'shipped', $order['Order']['id']), null, __('Are you sure you want to mark the order shipped?')); ?>
                         <?php endif; ?>
-                        <?php echo $this->Html->link(__('Order Pdf'), array('action' => 'download', $order['Order']['id']), null); ?>
+                        <a href="<?php echo $this->webroot;?>admin/orders/download/<?php echo $order['Order']['id'];?>" target="_blank">Order Pdf </a> <?php echo isset($this->value); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
