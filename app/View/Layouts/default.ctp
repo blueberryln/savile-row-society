@@ -128,6 +128,9 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     <div class="notification-msg">
                         
                     </div>
+                    <div class="notification-check">
+                    
+                    </div>
                     <div class="notification-buttons">
                     
                     </div>
@@ -338,9 +341,14 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
             function showNotification(notificationDetails, isFade){
                 if(isFade === undefined)
                     isFade = false;
+                $(".notification-check").addClass('hide');
                 $(".notification-buttons").addClass('hide');
                 $(".notification-msg").html(notificationDetails['msg']);
                 
+                if(notificationDetails['check']){
+                    $(".notification-check").removeClass('hide');
+                    $(".notification-check").html(notificationDetails['check']);
+                }
                 if(notificationDetails['button']){
                     $(".notification-buttons").removeClass('hide');
                     $(".notification-buttons").html(notificationDetails['button']);

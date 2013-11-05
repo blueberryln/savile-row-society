@@ -270,9 +270,9 @@ class Entity extends AppModel {
             'contain' => array('Color'),
             'conditions' => array(
                 'Entity.show' => true,
-                'Entity.product_id' => $product_id,
-                'Entity.id !=' => $id
-            )
+                'Entity.product_id' => $product_id
+            ),
+            'order' => "Entity.id ASC",
         ));
 
         return $entity;

@@ -37,8 +37,8 @@ class ClosetController extends AppController {
 
         // get data
         $categories = $Category->getAll();
-        $brands = $Brand->find('all');
-        $colors = $Color->find('all');
+        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+        $colors = $Color->find('all', array('order' => "Color.name ASC"));
 
         $entities = array();
 
@@ -48,9 +48,14 @@ class ClosetController extends AppController {
         } else {
             $entities = $this->closetProducts($user_id);
         }
+
+        $show_closet_popup = 1;
+        if($this->Session->read('hide-closet-popup')){
+            $show_closet_popup = 0;
+        }
         
         // send data to view
-        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id'));
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup'));
 
         if(!$category_slug){
             $this->render('closet_landing');     
