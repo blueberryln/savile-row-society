@@ -879,7 +879,7 @@ class ClosetController extends AppController {
     }
     
     public function validatecard(){
-        Configure::write('debug', 2);
+        //Configure::write('debug', 2);
         
         $ret = array();
         $this->autolayout = false;

@@ -62,7 +62,45 @@ $script = '
             isError = true;
         }
         
-        $.ajax({
+        var d = new Date();
+        var curMonth = d.getMonth();
+        var curYear = d.getFullYear();
+        curMonth = curMonth +1;
+        
+        //Validate card expiry date
+        if($("#billingExpYear").val() == curYear && $("#billingExpMonth").val() < curMonth){
+            $("#billingExpMonth").addClass("input-error");
+            isError = true;    
+        }
+        
+        //Scroll to section where there is error.
+        if(!isError){
+            $this.closest("form").submit();   
+        }
+        else{
+            var cardErrorElement = $("#card-data").find(".input-error");
+            if(cardErrorElement.length){
+                cardErrorElement.first().focus();
+                goToByScroll("card-data");
+                return false;
+            }
+
+            var billingErrorElement = $("#billing-data").find(".input-error");
+            if(billingErrorElement.length){
+                billingErrorElement.first().focus();
+                goToByScroll("billing-data");
+                return false;
+            }
+
+            var shippingErrorElement = $("#shipping-data").find(".input-error");
+            if(shippingErrorElement.length){
+                shippingErrorElement.first().focus();
+                goToByScroll("shipping-data");
+                return false;
+            }
+        }
+        
+        /*$.ajax({
             url: "' . Router::url('/', true) . 'closet/validatecard",
             type: "POST",
             data: {
@@ -120,7 +158,7 @@ $script = '
                 }
                 
             }
-        });
+        });*/
     });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
