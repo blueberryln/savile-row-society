@@ -732,8 +732,6 @@ class ClosetController extends AppController {
             $BillingAddress->create();
             $result = $BillingAddress->save($data);
         } 
-            print_r($result);
-            exit;
         
         if($result){
             return true;
