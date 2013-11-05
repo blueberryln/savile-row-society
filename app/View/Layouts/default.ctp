@@ -382,7 +382,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
             
             function updateNotifications(){
                 $.ajax({
-                    url: '<?php echo $this->webroot; ?>api/messageNotification',
+                    url: '<?php echo $this->Html->url('/', true); ?>api/messageNotification',
                     type: 'POST',
                     data: {},
                     success: function(data){
