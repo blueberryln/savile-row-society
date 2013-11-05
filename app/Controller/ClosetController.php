@@ -22,18 +22,18 @@ class ClosetController extends AppController {
         $secureActions = array('checkout', 'validatecard');
         
         if (in_array($this->params['action'], $secureActions) && !$this->request->is('ssl')) {
-                $this->forceSSL();
+            $this->forceSSL();
         }  
-
-        if($this->request->is('ssl')){
-            if($this->request->params['action'] != "checkout" && $this->request->params['action'] != "validatecard"){
-                $this->redirect('http:' . env('SERVER_NAME') . $this->here);
-            }
+        else if($this->request->is('ssl') && !in_array($this->params['action'], $secureActions)){
+            $this->unForceSSL();  
         }
     }
 
     public function forceSSL() {
         $this->redirect('https://' . $_SERVER['SERVER_NAME'] . $this->here);
+    }
+    public function unForceSSL() {
+        $this->redirect('http://' . $_SERVER['SERVER_NAME'] . $this->here);
     }
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
