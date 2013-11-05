@@ -598,7 +598,7 @@ class ClosetController extends AppController {
             if($error_billing || $error_cart || $error_shipping || $error_transaction){
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
-                $this->Session->flash("Invalid input",'flash');
+                $this->Session->setflash("Invalid input",'flash');
             }
             
             //Add or update billing address
@@ -606,7 +606,7 @@ class ClosetController extends AppController {
                 // TODO: if billing address could not be saved.
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
-                $this->Session->flash("Billing address",'flash');
+                $this->Session->setflash("Billing address",'flash');
             }
             
             //Add order
@@ -620,7 +620,7 @@ class ClosetController extends AppController {
                 // TODO: if shipping address could not be saved.
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
-                $this->Session->flash("Shipping address",'flash');
+                $this->Session->setflash("Shipping address",'flash');
             }
             
             //If all order data has been added. Continue transaction.
@@ -651,7 +651,7 @@ class ClosetController extends AppController {
                 else{
                     $this->Session->write('transaction_complete', "fail");
                     $this->Session->write('transaction_data', $transaction_result);
-                $this->Session->flash("Transaction failed",'flash');
+                $this->Session->setflash("Transaction failed",'flash');
                 }
             }
             $this->redirect('/confirmation');
