@@ -879,6 +879,11 @@ class ClosetController extends AppController {
     }
     
     public function validatecard(){
+        Configure::write('debug', 2);
+        
+        $ret = array();
+        $this->autolayout = false;
+        $this->autoRender = false;
         $user_id = $this->getLoggedUserID();
         $ret = array();
         if($user_id && ($this->request->is('ajax') || $this->request->is('post'))){
