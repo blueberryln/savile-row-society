@@ -7,7 +7,7 @@ App::uses('CakeEmail', 'Network/Email');
  * Closet Controller
  */
 class ClosetController extends AppController {
-    public $components = array('Paginator','Security');
+    public $components = array('Paginator');
     public $helpers = array('Paginator');
     /**
      * Index
