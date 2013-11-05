@@ -7,19 +7,22 @@ App::uses('CakeEmail', 'Network/Email');
  * Closet Controller
  */
 class ClosetController extends AppController {
-    public $components = array('Paginator');
+    public $components = array('Paginator','Security');
     public $helpers = array('Paginator');
     /**
      * Index
      */
      
     function beforeFilter() {
-        if(!$this->request->is('ssl')){ 
-            if($this->request->params['action'] == "checkout" || $this->request->params['action'] == "validatecard"){
-                $this->redirect('https:' . env('SERVER_NAME') . $this->here);
-            }
-        } 
-        else{
+        //if(!$this->request->is('ssl')){ 
+//            if($this->request->params['action'] == "checkout" || $this->request->params['action'] == "validatecard"){
+//                $this->redirect('https:' . env('SERVER_NAME') . $this->here);
+//            }
+//        } 
+        $this->Security->blackHoleCallback = 'forceSSL';
+        $this->Security->requireSecure('validatecard', 'checkout');
+
+        if($this->request->is('ssl')){
             if($this->request->params['action'] != "checkout" && $this->request->params['action'] != "validatecard"){
                 $this->redirect('http:' . env('SERVER_NAME') . $this->here);
             }
