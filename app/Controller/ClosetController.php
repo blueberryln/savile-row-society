@@ -16,14 +16,12 @@ class ClosetController extends AppController {
     function beforeFilter() {
         if(!$this->request->is('ssl')){ 
             if($this->request->params['action'] == "checkout" || $this->request->params['action'] == "validatecard"){
-                $this->redirect('https:' . env('SERVER_NAME') . $this->here, null, false);
-                exit;    
+                $this->redirect('https:' . env('SERVER_NAME') . $this->here, null, true);
             }
         } 
         else{
             if($this->request->params['action'] != "checkout" && $this->request->params['action'] != "validatecard"){
-                $this->redirect('http:' . env('SERVER_NAME') . $this->here, null, false);
-                exit;     
+                $this->redirect('http:' . env('SERVER_NAME') . $this->here, null, true);
             }
         }
     }
