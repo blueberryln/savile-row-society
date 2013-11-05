@@ -496,9 +496,6 @@ class ClosetController extends AppController {
             $error_cart = false;
             $error = false;
             
-            print_r($this->request->data);
-            exit;
-            
             $request_data = $this->request->data['billing'];
             
             //Arrange Billing data
