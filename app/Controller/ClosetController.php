@@ -14,7 +14,7 @@ class ClosetController extends AppController {
      */
      
     function beforeFilter() {
-        $secureActions = array('checkout', 'validatecard');
+        $secureActions = array('checkout', 'validatecard', 'payment');
         
         if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
             $this->forceSSL();
