@@ -19,8 +19,11 @@ class ClosetController extends AppController {
 //                $this->redirect('https:' . env('SERVER_NAME') . $this->here);
 //            }
 //        } 
-        $this->Security->blackHoleCallback = 'forceSSL';
-        $this->Security->requireSecure('validatecard', 'checkout');
+        $secureActions = array('checkout', 'validatecard');
+        
+        if (in_array($this->params['action'], $secureActions) && !$this->request->is('ssl')) {
+                $this->forceSSL();
+        }  
 
         if($this->request->is('ssl')){
             if($this->request->params['action'] != "checkout" && $this->request->params['action'] != "validatecard"){
@@ -29,6 +32,9 @@ class ClosetController extends AppController {
         }
     }
 
+    public function forceSSL() {
+        $this->redirect('https://' . $_SERVER['SERVER_NAME'] . $this->here);
+    }
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
 
