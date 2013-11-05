@@ -352,7 +352,7 @@ body{
     font-family: 'Droid Serif', serif;
     text-decoration: none;
     text-transform: uppercase;
-    border-left: solid 1px white;
+    border-left: solid 1px #AF9A59;
     padding-left:5px;
     padding-right: 5px;
 }

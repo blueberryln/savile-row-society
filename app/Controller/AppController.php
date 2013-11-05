@@ -12,6 +12,7 @@ class AppController extends Controller {
         $is_logged = false;
         $has_stylist = false;
         if ($user = $this->getLoggedUser()) {
+            
             $is_logged = true;
             if($user['User']['stylist_id'] && $user['User']['stylist_id'] != ""){
                 $has_stylist = true;
@@ -24,7 +25,7 @@ class AppController extends Controller {
         if($message_notification){
             $this->set(compact('message_notification'));
         }
-        $this->set(compact('is_logged','has_stylist'));
+        $this->set(compact('is_logged','has_stylist','user'));
         
         /**
          * Set values for profile completion popup

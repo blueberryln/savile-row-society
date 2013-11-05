@@ -6,6 +6,73 @@
 $script = ' 
 var uid = ' . $user_id . ';
 var webroot = "' . $this->webroot . '";
+$(document).ready(function(){
+    $(".chat-container").on("click", ".thumbs-up", function(e) {
+        e.preventDefault();
+        $this = $(this);
+        var productBlock = $this.closest(".product-block");
+        var productId = productBlock.find(".product-id").val();
+        if(!$this.hasClass("liked")){
+            $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
+                function(data) {
+                    var ret = $.parseJSON(data);
+                    if(ret["status"] == "ok"){
+                        $this.addClass("liked");
+                    }
+                    
+                    if(ret["profile_status"] == "incomplete"){
+                        var notificationDetails = new Array();
+                        notificationDetails["msg"] = ret["profile_msg"];
+                        notificationDetails["button"] = "<a href=\"' . $this->webroot . 'profile/about\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
+                        showNotification(notificationDetails);
+                    }
+                }
+            );
+        }
+        else{
+            $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
+                function(data) {
+                    var ret = $.parseJSON(data);
+                    if(ret["status"] == "ok"){
+                        $this.removeClass("liked");
+                    }
+                }
+            );
+        }
+    });
+    $(".chat-container").on("click", ".thumbs-down", function(e) {
+        e.preventDefault();
+        $this = $(this);
+        var productBlock = $this.closest(".product-block");
+        var productId = productBlock.find(".product-id").val();
+        if(!$this.hasClass("disliked")){
+            $.post("' . $this->request->webroot . 'api/dislike/save", { product_id: productId},
+                function(data) {
+                    var ret = $.parseJSON(data);
+                    if(ret["status"] == "ok"){
+                        $this.addClass("disliked");
+                    }
+                    //var notificationDetails = new Array();
+                    //notificationDetails["msg"] = ret["msg"];
+                    //showNotification(notificationDetails, true);
+                }
+            );
+        }
+        else{
+            $.post("' . $this->request->webroot . 'api/dislike/remove", { product_id: productId},
+                function(data) {
+                    var ret = $.parseJSON(data);
+                    if(ret["status"] == "ok"){
+                        $this.removeClass("disliked");
+                    }
+                    //var notificationDetails = new Array();
+                    //notificationDetails["msg"] = ret["msg"];
+                    //showNotification(notificationDetails, true);
+                }
+            );
+        }
+    });   
+});
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
@@ -160,7 +227,18 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     if(typeof(chatMsg['Outfit'][i]["Image"]) != "undefined" && chatMsg['Outfit'][i]["Image"].length > 0){
                         imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
                     }
-
+                    
+                    var likedClass = "";
+                    var dislikedClass = "";
+                    if(chatMsg['Outfit'][i]['Wishlist'] && chatMsg['Outfit'][i]['Wishlist']['id'] && chatMsg['Outfit'][i]['Wishlist']['id'] > 0){
+                        likedClass = "liked"    
+                    }
+                    
+                    if(chatMsg['Outfit'][i]['Dislike'] && chatMsg['Outfit'][i]['Dislike']['id'] && chatMsg['Outfit'][i]['Dislike']['id'] > 0){
+                        dislikedClass = "disliked"    
+                    }
+                    
+                    
                     html = html + 
                     '<div class="two columns alpha row">' +
                         '<div class="product-block">' + 
@@ -178,9 +256,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 '</div>' + 
                             '</div>' + 
                             '<div class="product-list-links">' + 
-                            '<a href="" class="thumbs-up"></a>' +
+                            '<a href="" class="thumbs-up ' + likedClass + '"></a>' +
                                 '<a href="' + webroot + 'product/' + chatMsg['Outfit'][i]['Entity']['id'] + '/' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="btn-buy" target="_blank">Buy</a>' + 
-                                '<a href="" class="thumbs-down"></a>' +
+                                '<a href="" class="thumbs-down ' + dislikedClass + '"></a>' +
                             '</div>' + 
                         '</div>' + 
                     '</div>';        
