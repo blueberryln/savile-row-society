@@ -720,6 +720,9 @@ class ClosetController extends AppController {
     }
     
     public function updateBillingAddress($data, $user_id){
+        print_r($data);
+        exit;
+        
         $BillingAddress = ClassRegistry::init('BillingAddress');
         $address = $BillingAddress->getByUserID($user_id);
         $data['BillingAddress']['user_id'] = $user_id;
