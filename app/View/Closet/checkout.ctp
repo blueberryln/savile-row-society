@@ -166,7 +166,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
 ?>
 <div class="container content inner payment">	
     
-    <?php echo $this->Form->create("billing", array('url' => '/payment')); ?>
+    <?php echo $this->Form->create("billing", array('url' => Router::url('/', true) . '/payment')); ?>
     <div class="sixteen columns text-center">
         <h1 class="sub">ORDER INFORMATION</h1>
     </div> 
