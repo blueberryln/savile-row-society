@@ -344,7 +344,7 @@ class MessagesController extends AppController {
                             $entities[] = $value['OutfitItem']['product_entity_id'];
                         }
                         $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getProductDetails($entities);
+                        $entity_list = $Entity->getEntitiesById($entities, $user_id);
                         $row['Outfit'] = $entity_list;
                     }
                 }
@@ -419,7 +419,7 @@ class MessagesController extends AppController {
                             $entities[] = $value['OutfitItem']['product_entity_id'];
                         }
                         $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getProductDetails($entities);
+                        $entity_list = $Entity->getEntitiesById($entities, $user_id);
                         $row['Outfit'] = $entity_list;
                     }
                 }
@@ -522,7 +522,7 @@ class MessagesController extends AppController {
                                 $entities[] = $value['OutfitItem']['product_entity_id'];
                             }
                             $Entity = ClassRegistry::init('Entity');
-                            $entity_list = $Entity->getProductDetails($entities);
+                            $entity_list = $Entity->getEntitiesById($entities, $user_id);
                             $row['Outfit'] = $entity_list;
                         }
                     }

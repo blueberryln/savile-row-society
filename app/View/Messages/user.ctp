@@ -160,6 +160,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     if(typeof(chatMsg['Outfit'][i]["Image"]) != "undefined" && chatMsg['Outfit'][i]["Image"].length > 0){
                         imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
                     }
+
                     html = html + 
                     '<div class="two columns alpha row">' +
                         '<div class="product-block">' + 
