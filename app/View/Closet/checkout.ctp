@@ -62,7 +62,7 @@ $script = '
             isError = true;
         }
         
-        var d = new Date();
+        /*var d = new Date();
         var curMonth = d.getMonth();
         var curYear = d.getFullYear();
         curMonth = curMonth +1;
@@ -98,9 +98,9 @@ $script = '
                 goToByScroll("shipping-data");
                 return false;
             }
-        }
+        }*/
         
-        /*$.ajax({
+        $.ajax({
             url: "' . Router::url('/', true) . 'closet/validatecard",
             type: "POST",
             data: {
@@ -158,7 +158,7 @@ $script = '
                 }
                 
             }
-        });*/
+        });
     });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
