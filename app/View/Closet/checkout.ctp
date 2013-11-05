@@ -63,7 +63,7 @@ $script = '
         }
         
         $.ajax({
-            url: "' . $this->webroot . 'closet/validatecard",
+            url: "' . Router::url('/', true) . 'closet/validatecard",
             type: "POST",
             data: {
                 cardNumber: $("#billCardNumber").val(),

@@ -468,5 +468,24 @@ class ApiController extends AppController {
         
         return $cart_item_count;    
     }
+    
+    /**
+     * Show/Hide Popup
+     */
+    public function toggleClosetPopup($action = null){
+        if($action != null && ($action == "hide" || $action == "show")){
+            if($action == "show"){
+                if($this->Session->read('hide-closet-popup')){
+                    $this->Session->delete('hide-closet-popup');
+                    echo "show";    
+                }
+            }
+            else{
+                $this->Session->write('hide-closet-popup','hide');
+                echo "hide";
+            }
+        }
+        exit;
+    }
 }
 

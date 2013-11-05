@@ -15,13 +15,13 @@ class ClosetController extends AppController {
      
     function beforeFilter() {
         if(!$this->request->is('ssl')){ 
-            if($this->request->params['action'] == "checkout"){
-                $this->redirect('https://' . env('SERVER_NAME') . $this->here);    
+            if($this->request->params['action'] == "checkout" || $this->request->params['action'] == "validatecard"){
+                $this->redirect('https:' . env('SERVER_NAME') . $this->here);
             }
         } 
         else{
-            if($this->request->params['action'] != "checkout"){
-                $this->redirect('http://' . env('SERVER_NAME') . $this->here);     
+            if($this->request->params['action'] != "checkout" && $this->request->params['action'] != "validatecard"){
+                $this->redirect('http:' . env('SERVER_NAME') . $this->here);
             }
         }
     }
@@ -37,8 +37,8 @@ class ClosetController extends AppController {
 
         // get data
         $categories = $Category->getAll();
-        $brands = $Brand->find('all');
-        $colors = $Color->find('all');
+        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+        $colors = $Color->find('all', array('order' => "Color.name ASC"));
 
         $entities = array();
 
@@ -48,9 +48,14 @@ class ClosetController extends AppController {
         } else {
             $entities = $this->closetProducts($user_id);
         }
+
+        $show_closet_popup = 1;
+        if($this->Session->read('hide-closet-popup')){
+            $show_closet_popup = 0;
+        }
         
         // send data to view
-        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id'));
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup'));
 
         if(!$category_slug){
             $this->render('closet_landing');     
@@ -593,6 +598,7 @@ class ClosetController extends AppController {
             if($error_billing || $error_cart || $error_shipping || $error_transaction){
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
+                $this->Session->setflash("Invalid input",'flash');
             }
             
             //Add or update billing address
@@ -600,6 +606,7 @@ class ClosetController extends AppController {
                 // TODO: if billing address could not be saved.
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
+                $this->Session->setflash("Billing address",'flash');
             }
             
             //Add order
@@ -613,6 +620,7 @@ class ClosetController extends AppController {
                 // TODO: if shipping address could not be saved.
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
+                $this->Session->setflash("Shipping address",'flash');
             }
             
             //If all order data has been added. Continue transaction.
@@ -643,6 +651,7 @@ class ClosetController extends AppController {
                 else{
                     $this->Session->write('transaction_complete', "fail");
                     $this->Session->write('transaction_data', $transaction_result);
+                $this->Session->setflash("Transaction failed",'flash');
                 }
             }
             $this->redirect('/confirmation');

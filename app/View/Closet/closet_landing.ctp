@@ -72,6 +72,7 @@ if($user_id){
 }
 
 $script = '
+var showClosetPopUp = ' . $show_closet_popup . ';
 $(document).ready(function(){   
     $(".fade").mosaic();
     $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
@@ -83,9 +84,12 @@ $(document).ready(function(){
         window.location = "' . $this->request->webroot . 'product/" + productId + "/" + productSlug;
     });
     
-    var notificationDetails = new Array();
-    notificationDetails["msg"] = "Welcome to the Closet! Like and Dislike items to help our stylists get to know you better. Use the arrow on the side of each picture to see a new product in that category. Happy Browsing!";    
-    showNotification(notificationDetails);
+    if(isLoggedIn() && showClosetPopUp == 1){
+        var notificationDetails = new Array();
+        notificationDetails["msg"] = "Welcome to the Closet! Like and Dislike items to help our stylists get to know you better. Use the arrow on the side of each picture to see a new product in that category. Happy Browsing!";    
+        notificationDetails["check"] = "<input type=checkbox id=hideClosetPopUp> Don\'t show me this message again"; 
+        showNotification(notificationDetails);
+    }
     
     $("div.product-block").mouseover(function(){
         var prod_id = $(this).find("input.category-id").val();        
@@ -208,6 +212,19 @@ $(document).ready(function(){
            }
         );
          
+    });
+    
+    $("#notification-box").on("change", "#hideClosetPopUp", function(e){
+        var hidePopUp = $(this).is(":checked") ? "hide" : "show";
+        
+        $.ajax({
+            url: "' . $this->webroot . 'api/toggleClosetPopup/" + hidePopUp,
+            type: "POST",
+            data: {},
+            success: function(data){
+                
+            }
+        });
     });
     
     ' . $logged_script . '

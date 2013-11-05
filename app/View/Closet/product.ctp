@@ -224,30 +224,18 @@ $columns = 'eleven';
                 <h5>Product Details</h5>
                 <p class="description"><?php echo $entity['Entity']['description']; ?></p>
             </div>
-            <?php if($similar || ($entity['Color'] && count($entity['Color']) > 0)) : ?>
+            <?php if($similar) : ?>
                 <label class="product-color-label">Color</label>
                 <div class="product-swatches">
-                <?php if($entity['Color'] && count($entity['Color']) > 1) :?>
-                    <div class="color-thumbnails color-selected">
-                        <a href="<?php echo $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="color-one" style="background-color: <?php echo $entity['Color'][0]['code']; ?>;"></a>
-
-                        <a href="<?php echo $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="color-two" style="background-color: <?php echo $entity['Color'][1]['code']; ?>;"></a>
-                    </div>
-                <?php elseif($entity['Color'] && count($entity['Color']) == 1) : ?>
-                    <div class="color-thumbnails color-selected">
-                        <a href="<?php echo $this->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="color-single" style="background-color: <?php echo $entity['Color'][0]['code']; ?>;"></a>
-                    </div>
-                <?php endif; ?>
-
                 <?php foreach($similar as $product) : ?>
                     <?php if($product['Color'] && count($product['Color']) > 1) : ?>
-                        <div class="color-thumbnails">
+                        <div class="color-thumbnails <?php echo ($product['Entity']['id'] == $entity['Entity']['id']) ? "color-selected" : "";?>">
                             <a href="<?php echo $this->webroot . 'product/' . $product['Entity']['id'] . '/' . $product['Entity']['slug']; ?>" class="color-one" style="background-color: <?php echo $product['Color'][0]['code']; ?>;"></a>
 
                             <a href="<?php echo $this->webroot . 'product/' . $product['Entity']['id'] . '/' . $product['Entity']['slug']; ?>" class="color-two" style="background-color: <?php echo $product['Color'][1]['code']; ?>;"></a>
                         </div>
                     <?php elseif($product['Color'] && count($product['Color']) == 1) : ?>
-                        <div class="color-thumbnails">
+                        <div class="color-thumbnails <?php echo ($product['Entity']['id'] == $entity['Entity']['id']) ? "color-selected" : "";?>">
                             <a href="<?php echo $this->webroot . 'product/' . $product['Entity']['id'] . '/' . $product['Entity']['slug']; ?>" class="color-single" style="background-color: <?php echo $product['Color'][0]['code']; ?>;"></a>
                         </div>
                     <?php endif; ?>
