@@ -20,7 +20,7 @@ class ClosetController extends AppController {
             }
         } 
         else{
-            if($this->request->params['action'] != "checkout" && $this->request->params['action'] == "validatecard"){
+            if($this->request->params['action'] != "checkout" && $this->request->params['action'] != "validatecard"){
                 $this->redirect('http://' . env('SERVER_NAME') . $this->here);     
             }
         }
