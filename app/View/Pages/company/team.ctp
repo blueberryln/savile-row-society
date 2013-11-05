@@ -16,8 +16,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <img src="<?php echo $this->request->webroot; ?>img/team-member-01.jpg" alt="Lisa Dolan" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
-                <div class="name">Lisa Dolan</div>
-                <div class="title">Founder</div>
+                <div class="name">Lisa Dolan<span class="tm-email">&nbsp;(lisa@savilerowsociety.com)</span></div>
+                <span class="title">Chief Executive Officer</span>
+                <div class="sub-title">(Former Investment banker at JP Morgan and Amex, MBA at Columbia Business School.)</div>
                 <p>Lisa Dolan was born and raised a New Yorker, coming of age during the Great Recession. She graduated from Johns Hopkins in 2008, gaining a B.A. with a major in International Studies and minors in Entrepreneurship and French.</p>
                 <div class="long-desc hide">
                     <p>During her five-year career in finance, the last 18 months were spent in the investment banking division of a well-known institution, where she toiled on the 43rd floor of a midtown Manhattan office building. It was there that she was exposed to the professional lives of incredibly skilled, hard-working, unassuming investment bankers. Her prior work experiences were with a premier credit card provider with a great membership rewards program, as well as a boutique investment management firm.</p>
@@ -33,13 +34,46 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>
             
         </div>
+        
+        <div class="team-member">
+            <div class="three columns">
+                <img src="<?php echo $this->request->webroot; ?>img/team-member-11.jpg" alt="Pallavi Singhal" class="fadein-image max-width-adj" />
+            </div>
+            <div class="ten columns">
+                <div class="name">Pallavi Singhal<span class="tm-email">&nbsp;(pallavi@savilerowsociety.com)</span></div>
+                <span class="title">Co-Chief Technology Officer</span> 
+                <div class="sub-title">(Founder of Mobikasa,  MBA at IE Business School.)</div>
+                <p></p>  
+                <!--<div class="text-center">
+                    <a class="show-more-text" href="#" title="Show more">Show more</a>
+                </div>-->
+            </div>
+        </div>
+        <div class="clear"></div><br /><br />
+        
+        <div class="team-member">
+            <div class="three columns">
+                <img src="<?php echo $this->request->webroot; ?>img/team-member-10.jpg" alt="Prateek Sachdev" class="fadein-image max-width-adj" />
+            </div>
+            <div class="ten columns">
+                <div class="name">Prateek Sachdev<span class="tm-email">&nbsp;(prateek@savilerowsociety.com)</span></div>
+                <span class="title">Co-Chief Technology Officer</span> 
+                <div class="sub-title">(Managing Direction at Mobikasa,  BBA at Parsons School of Design.)</div>
+                <p>Prateek Sachdev (CTO) heads our development team and India office. He previously worked for various luxury brands in NYC including four years at Versace. Prateek graduated from Parsons School of Design majoring in Design & Management and has in-depth knowledge of various technology platforms including iOS, Android, .net, PHP, Magento, Wordpress, HTML5, and SEO.</p>  
+                <!--<div class="text-center">
+                    <a class="show-more-text" href="#" title="Show more">Show more</a>
+                </div>-->
+            </div>
+        </div>
+        
         <div class="team-member">
             <div class="three columns">
                 <img src="<?php echo $this->request->webroot; ?>img/team-member-07.1.jpg" alt="Joey Glazer" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
-                <div class="name">Joey Glazer</div>
-                <div class="title">President, Made to Measure</div>
+                <div class="name">Joey Glazer<span class="tm-email">&nbsp;(joey@savilerowsociety.com)</span></div>
+                <span class="title">President, Custom Clothing</span>
+                <div class="sub-title">(President of JG Sartorial, former director of Sartorial classifications at Ermenegildo Zegna)</div>
                 <p>Since childhood, Joey has been drawn to the intricate designs and details of well-made clothing and the lifestyle behind it. It has never been about selling a garment but building a lifetime relationship with his clients that transcends generations. </p>
                 <p>There is something to be said for family referrals and the sense of tradition that has remained in menswear. He truly enjoys the art behind a creating a well dressed man and fortunate that his point of view has become widely respected and appreciated not only by his clients but by their peers.  </p>
                 <div class="long-desc hide">
@@ -74,26 +108,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
         <div class="team-member">
             <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/blogger-02.jpg" alt="Katherine McCormick" class="fadein-image max-width-adj" />
-            </div>
-            <div class="ten columns">
-                <div class="name">Katherine McCormick</div>
-                <div class="title">Head of Social Media</div>
-                <p>A recent graduate from the Fashion Institute of Technology, Katherine now works in television syndication and production. Through this job, she is continuously immersed in corporate fashion throughout the world, traveling everywhere from France to India, experiencing many different cultures. </p>
-                <p class="long-desc hide">As an additional outlet for her interest in fashion, Katherine continues her involvement in the industry through high fashion modeling and freelance marketing/graphic design projects that she takes on.   In Katherine's spare time, she enjoys teaching yoga, dining around the city, and attending up-and-coming fashion shows for inspiration. </p>
-                
-                <div class="text-center">
-                    <a class="show-more-text" href="#" title="Show more">Show more</a>
-                </div>
-            </div>
-        </div>
-        <div class="team-member">
-            <div class="three columns">
                 <img src="<?php echo $this->request->webroot; ?>img/blogger-05.1.jpg" alt="Casey Golden" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
-                <div class="name">Casey Golden</div>
-                <div class="title">Fashion Director</div>
+                <div class="name">Casey Golden<span class="tm-email">&nbsp;(casey@savilerowsociety.com)</span></div>
+                <span class="title">Fashion Director</span>
+                <div class="sub-title">(US Specialty store account executive at Ralph Lauren,  Fashion blogger.)</div>
                 <p>Casey studied international Business in Paris, France at The American University of Paris and came back to the states to spend 2 years in Apparel Design. After learning that she would never love sewing, she sold her books and started working at a luxury specialty retailer known for their menswear edit.</p>                 
                 <div class="long-desc hide">
                     <p>From West Coast to East Coast, Casey has dressed some of the most amazing people and worked with some of the best personal shopper’s in the industry. Since, she has been the catalyst behind the brand creation of both Apparel Manufacturers and Specialty Retailers introducing new creative strategies or building them from the ground up. </p>
@@ -126,59 +146,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>
             </div>
         </div>
-        <div class="team-member">
-            <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/team-member-03.jpg" alt="Chris Bergstresser" class="fadein-image max-width-adj" />
-            </div>
-            <div class="ten columns">
-                <div class="name">Chris Bergstresser</div>
-                <div class="title">Tech consultant</div>
-                <p>Chris Bergstresser has seventeen years of industry experience designing, building, and deploying web-enabled systems. His broad experience includes leading disparate groups of developers in environments ranging from small start-ups to multinational corporations. He is well versed in a spectrum of technologies, with experience deploying solutions for Windows, Mac OS, Android, and iOS, and a particular emphasis on Internet technologies.  </p>
-                <p class="long-desc hide">Previously, he worked at S7 Labs. It was there that he developed Songza, a music streaming service capable of supporting hundreds of thousands of simultaneous users by incorporating a distributed non relational database to support traffic. Before that, he worked at FreshDirect, overseeing a team of developers in integrating an HTML front-end with back-end systems, and Plural, where he served as a Production Team Lead, leading the technical implementations of a variety of agency-directed projects. </p>
-                
-                <div class="text-center">
-                    <a class="show-more-text" href="#" title="Show more">Show more</a>
-                </div>
-            </div>
-        </div>
-        <div class="team-member">
-            <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/team-member-04.jpg" alt="John Lawrence" class="fadein-image max-width-adj" />
-            </div>
-            <div class="ten columns">
-                <div class="name">John Lawrence</div>
-                <div class="title">Tech consultant</div>
-                <p>
-                    John Lawrence has over eight years of experience as a software engineer. During the last six years, he has focused primarily on web and mobile software development, working at three startups in various capacities including systems administrator, chief architect, lead developer, and CTO. These roles have equipped him with a keen understanding of the technical and market forces currently affecting cloud-based software-as-a-service businesses. 
-                </p>
-            </div>
-        </div>
-        <div class="team-member">
-            <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/team-member-06.jpg" alt="Lizzy Zawy" class="fadein-image max-width-adj" />
-            </div>
-            <div class="ten columns">
-                <div class="name">Lizzy Zawy</div>
-                <div class="title">Social Media Strategist</div>
-                <p>While studying Fashion Merchandising Management and International Trade &amp; Marketing at FIT, Lizzy has had the opportunity to work in finance and investment management, publishing, as well as the fashion industry. She has even worked multiple fashion shows backstage, assisting on a Vogue China project. 
-                </p>
-                <div class="long-desc hide">
-                    <p>She loves the creative side of fashion just as much as the business side. Lizzy recognizes the intersection between fashion and the digital world and is inspired by the growth of menswear through men's Bloggers and street style.</p>
-                    <p>For Lizzy, there is nothing more conducive to trendsetting than owning your fashion. To her, there's nothing better than a well-dressed man. When she's not solving wardrobe dilemmas, she tries to attend every sporting event she can, collects delicious recipes, and is on the search for the world's perfect cup of coffee. </p>
-                </div>
-                
-                <div class="text-center">
-                    <a class="show-more-text" href="#" title="Show more">Show more</a>
-                </div>
-            </div>
-        </div>
+        
+        
         <div class="team-member">
             <div class="three columns">
                 <img src="<?php echo $this->request->webroot; ?>img/Deborah_Sequeira.jpg" alt="Deborah Sequeira" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
-                <div class="name">Deborah Sequeira</div>
-                <div class="title">Lead of Logistics</div>
+                <div class="name">Deborah Sequeira<span class="tm-email">&nbsp;(deborah@savilerowsociety.com)</span></div>
+                <span class="title">Logistics Lead</span>
+                <div class="sub-title">(MSc in Operation Research at Columbia University.)</div>
                 <p>Deborah serves as Lead of Logistics for Savile Row Society. She graduated as an Industrial Engineer in 2011 and is currently pursuing a Master’s degree in Operations Research at Columbia University.  </p>
                 <div class="long-desc hide">
                     <p>Deborah connected with Lisa, CEO of SRS, at Columbia and after hearing Lisa’s vision for the company, was excited to bring her expertise to the table and help develop SRS’s Logistics and Operations.</p>
@@ -192,31 +169,15 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>
             </div>
         </div>
+        
         <div class="team-member">
-            <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/AndreaLuongo.jpg" alt="Andrea Luongo" class="fadein-image max-width-adj" />
-            </div>
-            <div class="ten columns">
-                <div class="name">Andrea Luongo</div>
-                <div class="title">Associate, Business Operations and Strategy </div>
-                <p>Andrea Luongo, born and raised in Philadelphia, knew from an early age that she would one day move to New York City and pursue a career in the fashion industry.  Andrea graduated from Rollins College in 2013, earning a B.A. in Critical Media and Critical Cultural Studies with a minor in English.</p>  
-                <div class="long-desc hide">
-                    <p>Andrea was initiated into the National Honor Society Phi Eta Sigma and served as Panhellenic Delegate for her sorority Alpha Omicron Pi. Throughout the last four years, Andrea has gained experience in the corporate retail world, working as a sales associate in the men’s department of American Eagle Outfitters and as a personal stylist for the family-owned-and-run designer swimwear and resortwear company, Shirley and Co.</p>  
-                    <p>It was at Shirley and Co. that Andrea realized her passion for personal shopping and styling.</p>  
-                    <p>Andrea’s other fashion experience includes an internship during the spring semester of her junior year at the London showroom Dekeyser Fashion R Ltd, owned and run by fashion legend Robert Dekeyser.</p>
-                </div>
-                <div class="text-center">
-                    <a class="show-more-text" href="#" title="Show more">Show more</a>
-                </div>
-            </div>
-        </div>
-         <div class="team-member">
             <div class="three columns">
                 <img src="<?php echo $this->request->webroot; ?>img/VincentBourzeix.jpg" alt="Vincent Bourzeix" class="fadein-image max-width-adj" />
             </div>
             <div class="ten columns">
-                <div class="name">Vincent Bourzeix</div>
-                <div class="title">Business Development</div>
+                <div class="name">Vincent Bourzeix<span class="tm-email">&nbsp;(vincent@savilerowsociety.com)</span></div>
+                <span class="title">Business Development</span>
+                <div class="sub-title">(MSc in Management Science and Engineering at Columbia University.)</div>
                                 
                 <p>Vincent is responsible for business development at Savile Row Society. He graduated as an Engineer in 2011 in France and is currently pursuing a Master’s degree in Management Science & Engineering at Columbia University.</p>
                 <div class="long-desc hide">
@@ -228,5 +189,26 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>
             </div>
         </div>
+        
+        <div class="team-member">
+            <div class="three columns">
+                <img src="<?php echo $this->request->webroot; ?>img/AndreaLuongo.jpg" alt="Andrea Luongo" class="fadein-image max-width-adj" />
+            </div>
+            <div class="ten columns">
+                <div class="name">Andrea Luongo<span class="tm-email">&nbsp;(andrea@savilerowsociety.com)</span></div>
+                <span class="title">Business Operations</span>
+                <div class="sub-title">(BA in Critical media and Critical Cultural Studies at Rollins College.)</div>
+                <p>Andrea Luongo, born and raised in Philadelphia, knew from an early age that she would one day move to New York City and pursue a career in the fashion industry.  Andrea graduated from Rollins College in 2013, earning a B.A. in Critical Media and Critical Cultural Studies with a minor in English.</p>  
+                <div class="long-desc hide">
+                    <p>Andrea was initiated into the National Honor Society Phi Eta Sigma and served as Panhellenic Delegate for her sorority Alpha Omicron Pi. Throughout the last four years, Andrea has gained experience in the corporate retail world, working as a sales associate in the men’s department of American Eagle Outfitters and as a personal stylist for the family-owned-and-run designer swimwear and resortwear company, Shirley and Co.</p>  
+                    <p>It was at Shirley and Co. that Andrea realized her passion for personal shopping and styling.</p>  
+                    <p>Andrea’s other fashion experience includes an internship during the spring semester of her junior year at the London showroom Dekeyser Fashion R Ltd, owned and run by fashion legend Robert Dekeyser.</p>
+                </div>
+                <div class="text-center">
+                    <a class="show-more-text" href="#" title="Show more">Show more</a>
+                </div>
+            </div>
+        </div>
+         
     </div>
 </div>

@@ -1152,12 +1152,27 @@ body{
     font-size: 22px;
     margin-bottom: 5px;
     text-transform: uppercase;
+    text-align: none;
+}
+.content .crew .team-member .name .tm-email
+{
+     font-family:none;
+     text-transform: lowercase !important;
+     font-size: 14px;
+     vertical-align:middle;     
 }
 .content .crew .team-member .title {
     font-family:'Conv_Novecento-Book',Sans-Serif;
-    font-size: 16px;
-    margin-bottom: 15px;
+    font-size: 14px;
     text-transform: uppercase;
+    vertical-align: middle;
+}
+.content .crew .team-member .sub-title
+{
+    font-family:none !important;
+    font-size: 14px;
+    margin-bottom: 15px;    
+    vertical-align: middle;
 }
 .content .reveal {
     height: 186px;
