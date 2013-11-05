@@ -83,6 +83,10 @@ $(document).ready(function(){
         window.location = "' . $this->request->webroot . 'product/" + productId + "/" + productSlug;
     });
     
+    var notificationDetails = new Array();
+    notificationDetails["msg"] = "Welcome to the Closet! Like and Dislike items to help our stylists get to know you better. Use the arrow on the side of each picture to see a new product in that category. Happy Browsing!";    
+    showNotification(notificationDetails);
+    
     $("div.product-block").mouseover(function(){
         var prod_id = $(this).find("input.category-id").val();        
         $("ul.product-categories li a").each(function(){

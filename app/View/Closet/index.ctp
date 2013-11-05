@@ -83,6 +83,8 @@ $(document).ready(function(){
         $(".brand-filter").removeClass("hide").addClass("selected");    
     }
     
+    
+    
     $("div.product-block").mouseover(function(){
         var prod_id = $(this).find("input.category-id").val();
         var parent_prod_id = $(this).find("input.parent-category-id").val();
