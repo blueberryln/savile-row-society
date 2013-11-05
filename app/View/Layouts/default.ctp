@@ -375,9 +375,11 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
              */
             var messageInterval = null;
             function startMessageNotifier(){
+                <?php if($this->request->params['action'] != "checkout") : ?>
                 if(isLoggedIn()){
                     messageInterval = setInterval(function(){updateNotifications()}, 10000);
                 }
+                <?php endif; ?>
             }
             
             function updateNotifications(){
