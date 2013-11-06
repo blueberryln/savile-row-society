@@ -264,7 +264,8 @@ $columns = 'eleven';
                 <br />
                 <span class="err-message">Please select quantity.</span>
             </label>                                           
-            <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>                
+            <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
+            <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue" >Continue Shopping</a>                 
         </div>
         <div class="clear"></div> <br /><br /><br />
     </div>

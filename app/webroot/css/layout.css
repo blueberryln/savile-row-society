@@ -2850,7 +2850,7 @@ p.product-breadcrumb a
     padding-bottom: 4px;
     line-height: 20px;
 }
-.product-description .add-to-cart{
+.product-description .add-to-cart, .product-description .prd-continue{
     width: 100%;
     text-align: center;
     -moz-box-sizing:border-box; 
@@ -2867,6 +2867,7 @@ p.product-breadcrumb a
 .details-margin
 {
     margin-top:40px;
+    margin-bottom:10px !important;
 }
 .product-default-image{
     border: 1px solid #ccc;
@@ -4133,7 +4134,7 @@ span.sort-selected{
 
 .flexslider .flex-direction-nav a
 {
-    display:none;    
+    top:46% !important;    
 }
 
 .welcome-name,.welcome-name a{
@@ -4224,6 +4225,10 @@ span.sort-selected{
     ul#branding-partners
     {
         margin:0 0 50px 65px !important;        
+    }
+    .header .menu
+    {
+        margin-top: 85px;
     }
     .header .menu .submenu
     {
