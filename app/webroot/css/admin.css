@@ -161,3 +161,8 @@ ul.ordered-items select
     max-height: 140px !important;
     overflow-y:scroll !important;
 }
+
+/**** admin user list **/
+.hide td {
+    border: medium none;
+}

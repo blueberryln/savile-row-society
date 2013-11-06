@@ -59,113 +59,141 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <tr class="user-data-row">
                         <td colspan="9" style="border: none;">
                             <div class="hide">
-                                <table  style="float:left; width: 462px; border-bottom: 1px solid #cccccc">
+                                <table  style="float:left; width: 462px; border-bottom: 1px solid #cccccc;background-color: #E0E0E0;">
                                     <tr>
-                                        <td style="border: none;">Phone:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['phone']))
-                                                echo h($user['User']['phone']);
-                                            else
-                                                echo 'N/A'; ?>
+                                        <td>Phone:</td>
+                                        <td>
+                                            <?php
+                                                if(!isset($user['User']['phone'])|| $user['User']['phone']==""){
+                                                    echo 'N/A';
+                                                }
+                                                else{
+                                                    echo h($user['User']['phone']);
+                                                }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: none;">Social Network:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['social_network']))
-                                                echo h($user['User']['social_network']);
-                                            else
-                                                echo 'N/A'; ?>
+                                        <td>Is Stylist:</td>
+                                        <td>
+                                            <?php
+                                                if(!isset($user['User']['is_stylist'])|| $user['User']['is_stylist']==""){
+                                                    echo 'N/A';
+                                                }
+                                                else{
+                                                    echo h($user['User']['is_stylist']);
+                                                }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: none;">Social Network Id:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['social_network_id']))
-                                                echo h($user['User']['social_network_id']);
-                                            else
-                                                echo 'N/A'; ?>
+                                        <td>Social Network Id:</td>
+                                        <td>
+                                            <?php
+                                                if(!isset($user['User']['social_network_id'])|| $user['User']['social_network_id']==""){
+                                                    echo 'N/A';
+                                                }
+                                                else{
+                                                    echo h($user['User']['social_network_id']);
+                                                }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: none;">Title:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['title']))
-                                                echo h($user['User']['title']);
-                                            else
-                                                echo 'N/A'; ?>
+                                        <td>Title:</td>
+                                        <td>
+                                            <?php
+                                                    if(!isset($user['User']['title'])|| $user['User']['title']==""){
+                                                        echo 'N/A';
+                                                    }
+                                                    else{
+                                                        echo h($user['User']['title']);
+                                                    }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: none;">Friend Email:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['friend_email']))
-                                                echo h($user['User']['friend_email']);
-                                            else
-                                                echo 'N/A'; ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="border: none;">Updated:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['updated']))
+                                        <td>Updated:</td>
+                                        <td>
+                                            <?php
+                                            if(!isset($user['User']['updated'])|| $user['User']['updated']==""){
+                                                echo 'N/A';
+                                            }
+                                            else{
                                                 echo $this->Time->timeAgoInWords($user['User']['updated'], array('F jS, Y H:i'));
-                                            else
-                                                echo 'N/A'; ?>
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
 
                                 </table>
-                                <table  style="float:right; width: 462px;border-bottom: 1px solid #cccccc;border-left: 1px solid #cccccc">
+                                <table  style="float:right; width: 462px;border-bottom: 1px solid #cccccc;border-left: 1px solid #cccccc;background-color: #E0E0E0;">
                                     <tr>
-                                        <td style="border: none;">Birth Date:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['birthdate']))
+                                        <td>Birth Date:</td>
+                                        <td style="border: none;">
+                                            <?php
+                                            if(!isset($user['User']['birthdate'])|| $user['User']['birthdate']==""){
+                                                echo 'N/A';
+                                            }
+                                            else{
                                                 echo $this->Time->timeAgoInWords($user['User']['birthdate'], array('F jS, Y H:i'));
-                                            else
-                                                echo 'N/A'; ?>
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="border: none;">Industry:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['industry']))
+                                        <td style="border: none;">
+                                            <?php
+                                            if(!isset($user['User']['industry'])|| $user['User']['industry']==""){
+                                                echo 'N/A';
+                                            }
+                                            else{
                                                 echo h($user['User']['industry']);
-                                            else
-                                                echo 'N/A'; ?>
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="border: none;">Refer Medium:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['refer_medium']))
+                                        <td style="border: none;">
+                                            <?php
+                                            if(!isset($user['User']['refer_medium'])|| $user['User']['refer_medium']==""){
+                                                echo 'N/A';
+                                            }
+                                            else{
                                                 echo h($user['User']['refer_medium']);
-                                            else
-                                                echo 'N/A'; ?>
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="border: none;">Heard From:</td>
-                                        <td style="border: none;"><?php 
-                                            if(isset($user['User']['heard_from']))
+                                        <td style="border: none;">
+                                            <?php
+                                            if(!isset($user['User']['heard_from'])|| $user['User']['heard_from']==""){
+                                                echo 'N/A';
+                                            }
+                                            else{
                                                 echo h($user['User']['heard_from']);
-                                            else
-                                                echo 'N/A'; ?>
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="border: none;">Active:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['active']))
+                                        <td style="border: none;">
+                                            <?php
+                                            if(!isset($user['User']['active'])|| $user['User']['active']==""){
+                                                echo 'N/A';
+                                            }
+                                            else{
                                                 echo h($user['User']['active']);
-                                            else
-                                                echo 'N/A'; ?>
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td style="border: none;">&nbsp;</td>
-                                        <td style="border: none;"><?php echo ' ';?></td>
-                                    </tr>
+
 
                                 </table>
 
