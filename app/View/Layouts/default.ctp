@@ -401,9 +401,11 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
             $(document).ready(function() { 
                 startMessageNotifier();
                 
-                if($(".flexslider").length){
-                    $(".flexslider .flex-direction-nav a").css({top: ($(".flexslider").height()/2 - $(".flexslider .flex-direction-nav a").height()/2) + "px"}).show();
-                }
+                //if($(".flexslider").length){
+//                    var txt = $(".flex-prev").text();
+//                    alert(txt);
+//                    $(".flexslider .flex-direction-nav a").css({top: ($(".flexslider").height()/2 - $(".flexslider .flex-direction-nav a").height()/2) + "px"}).show();
+//                }
                 
                 $("#msg-notifications").on('click', function(e){
                     e.preventDefault(e);
