@@ -298,7 +298,23 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                             <small>*(yyyy)</small>
                    </div>                    
             </div>
-        </div>    
+        </div>
+        
+        <!-- Enable only when total is equal or more than $120 -->
+        <?php if($total_price >= 120) : ?> 
+        <div class="srs-form columns five offset-by-one omega">
+            <div class="form">
+                   <div class="input text required card-number">
+                            <?php
+                                echo $this->Form->input('promocode', array('label'=>'Promo Code', 'id'=>'promocode', 'tabindex'=>'4', 'onkeypress' => 'return isNumber(event)', 'style' => 'letter-spacing:1px;', 'autocomplete' => 'off'));
+                            ?>
+                            <small>*(enter number without spaces or dashes)</small> 
+                   </div>                    
+            </div>
+        </div>
+        <?php endif; ?>
+        
+        
     </div>
     <div class="fourteen columns divider"></div>
 

@@ -57,16 +57,20 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
                     </tr>
                     <tr class="user-data-row">
-                        <td colspan="9" style="border: none;">
+                        <td colspan="9" style="border: none; padding: 0px;">
                             <div class="hide">
                                 <table  style="float:left; width: 462px; border-bottom: 1px solid #cccccc">
                                     <tr>
                                         <td style="border: none;">Phone:</td>
-                                        <td style="border: none;"><?php
-                                            if(isset($user['User']['phone']))
+                                        <td style="border: none;">
+                                        <?php
+                                            if(!isset($user['User']['phone']) || $user['User']['phone'] == ""){
+                                                echo 'N/A';
+                                            }
+                                            else{
                                                 echo h($user['User']['phone']);
-                                            else
-                                                echo 'N/A'; ?>
+                                            }
+                                        ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -106,7 +110,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: none;">Updated:</td>
+                                        <td style="border: none;">Last Updated:</td>
                                         <td style="border: none;"><?php
                                             if(isset($user['User']['updated']))
                                                 echo $this->Time->timeAgoInWords($user['User']['updated'], array('F jS, Y H:i'));
@@ -121,7 +125,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         <td style="border: none;">Birth Date:</td>
                                         <td style="border: none;"><?php
                                             if(isset($user['User']['birthdate']))
-                                                echo $this->Time->timeAgoInWords($user['User']['birthdate'], array('F jS, Y H:i'));
+                                                echo date('d-M-Y', strtotime($user['User']['birthdate']));
                                             else
                                                 echo 'N/A'; ?>
                                         </td>
@@ -163,8 +167,16 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="border: none;">&nbsp;</td>
-                                        <td style="border: none;"><?php echo ' ';?></td>
+                                        <td style="border: none;">Stylist:</td>
+                                        <td style="border: none;"><?php 
+                                        if(isset($user['User']['stylist_id'])){
+                                            echo $stylists[$user['User']['stylist_id']];
+                                        }
+                                        else{
+                                            echo "Not assigned";
+                                        }
+                                        ?>
+                                        </td>
                                     </tr>
 
                                 </table>
