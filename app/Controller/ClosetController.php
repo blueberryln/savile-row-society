@@ -445,6 +445,16 @@ class ClosetController extends AppController {
             $data['billing']['billlast_name'] = $user['User']['last_name'];
             $data['billing']['billemail'] = $user['User']['email'];
             $data['billing']['billphone'] = $user['User']['phone'];
+            
+            //Blank values
+            $data['billing']['billstate'] = "";
+            $data['billing']['billcity'] = "";
+            $data['billing']['billfax'] = "";
+            $data['billing']['billcompany'] = "";
+            $data['billing']['billaddress'] = "";
+            $data['billing']['billzip'] = "";
+            $data['billing']['billcountry'] = "";
+            
             if($address){
                 $data['billing']['billstate'] = $address['BillingAddress']['state'];
                 $data['billing']['billcity'] = $address['BillingAddress']['city'];

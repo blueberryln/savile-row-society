@@ -57,7 +57,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
                     </tr>
                     <tr class="user-data-row">
-                        <td colspan="9" style="border: none;">
+                        <td colspan="9" style="border: none; padding: 0px;">
                             <div class="hide">
                                 <table  style="float:left; width: 462px; border-bottom: 1px solid #cccccc;background-color: #E0E0E0;">
                                     <tr>
@@ -82,19 +82,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                                 }
                                                 else{
                                                     echo h($user['User']['is_stylist']);
-                                                }
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Social Network Id:</td>
-                                        <td>
-                                            <?php
-                                                if(!isset($user['User']['social_network_id'])|| $user['User']['social_network_id']==""){
-                                                    echo 'N/A';
-                                                }
-                                                else{
-                                                    echo h($user['User']['social_network_id']);
                                                 }
                                             ?>
                                         </td>
@@ -136,7 +123,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                                 echo 'N/A';
                                             }
                                             else{
-                                                echo $this->Time->timeAgoInWords($user['User']['birthdate'], array('F jS, Y H:i'));
+                                                echo date('d-M-Y', strtotime($user['User']['birthdate']));
                                             }
                                             ?>
                                         </td>
@@ -193,8 +180,18 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             ?>
                                         </td>
                                     </tr>
-
-
+                                    <tr>
+                                        <td style="border: none;">Stylist:</td>
+                                        <td style="border: none;"><?php 
+                                        if(isset($user['User']['stylist_id'])){
+                                            echo $stylists[$user['User']['stylist_id']];
+                                        }
+                                        else{
+                                            echo "Not assigned";
+                                        }
+                                        ?>
+                                        </td>
+                                    </tr>
                                 </table>
 
 
