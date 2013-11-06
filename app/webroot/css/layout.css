@@ -110,13 +110,13 @@ body{
     position: fixed;
     top: 0px;
     z-index: 11;
-    height: 145px;
+    height: 124px;
 }
 .header .menu {
     background-color: #8f7948;
-    border-bottom: solid 1px #CCCCCC;
     width: 100% !important;
     padding: 0 !important;
+    margin-top: 13px;
 }
 .header .menu ul {
     margin: 0 auto;
@@ -133,7 +133,7 @@ body{
     float: left;
     font-size: 12px;
     margin: 10px 0;
-    padding: 5px 13px;
+    padding: 0 13px;
     text-transform: uppercase;
 }
 .header .menu li:first-child{
@@ -328,6 +328,7 @@ body{
     display:inline-block;
 }*/
 .card-menu {
+    display: none !important;
     color:white;
     width: 100% !important;
     padding: 0 !important;
@@ -813,7 +814,7 @@ body{
 ================================================== */
 .content {
     background-color: #FFFFFF;
-    margin-top:145px;
+    margin-top:124px;
 }
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
     font-weight: 700;
@@ -3899,6 +3900,7 @@ div.contact-map-info div.contact-map iframe
 .header-logo
 {
     padding:0 !important;
+    margin-top: 7px;
 }
 .header-logo a
 {
