@@ -9,11 +9,9 @@
                     <tr>
                         <td valign="top">
                             <br />
-                            Hi <?php echo ucfirst($name); ?>,
+                            Hi <?php echo ucfirst($stylist_name); ?>,
                             <br/>
-                            <p style="text-align: justify;">We have matched you with <?php echo ucfirst($stylist_name); ?>, our premier stylist.
-                                <br />You can make any request to him/her or book an appointment with our tailor.<br />
-                                Before we get to know you, Check out our highlighted products available in the <a href="http://www.savilerowsociety.com/closet">Closet</a>.</p>
+                            <p style="text-align: justify;">We have assigned you as the stylist to <?php echo ucfirst($name); ?>. You can start chatting with the user from the style suggestion section.</p>
 
                         </td>
                     </tr>
