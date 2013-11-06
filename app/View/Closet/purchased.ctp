@@ -92,5 +92,5 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                 echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
                 ?>
             </div>
-        <br /><br /><br />
+        
 </div>

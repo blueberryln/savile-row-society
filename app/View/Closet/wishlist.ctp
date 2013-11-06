@@ -90,5 +90,5 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
             </div>
         </div>
         <div class="clear"></div>
-        <br /><br /><br />
+        
 </div>

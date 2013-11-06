@@ -46,6 +46,6 @@
                 <button class="primary">ADD TO WISHLIST</button><br />
                 <button class="secondary">ADD TO CART</button>                
              </div> 
-             <div class="clear"></div> <br /><br /><br /><br /><br /><br /><br /><br /><br />
+             <div class="clear"></div> 
          </div>          
 </div>

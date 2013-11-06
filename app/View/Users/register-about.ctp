@@ -52,7 +52,7 @@
             <div class="form">
             <?php
             echo $this->Form->input('User.location', array("id"=>"location", "label"=>"City/State",'required', "placeholder" => "City, State"));
-            echo $this->Form->input('User.skype', array("id"=>"skype", "label"=>"Skype ID",'required', "placeholder" => "Skype ID"));
+            echo $this->Form->input('User.skype', array("id"=>"skype", "label"=>"Skype ID", "placeholder" => "Skype ID"));
             echo $this->Form->input('zip', array("label"=>"Zipcode",'required', "placeholder" => "Zipcode"));
             ?>
             </div>
@@ -61,8 +61,7 @@
 
         <div class="text-center about-submit">
             <br/>
-            <?php echo $this->Form->end(__('Continue')); ?>
-            <br/><br/><br /><br />
+            <?php echo $this->Form->end(__('Continue')); ?>            
         </div>
         
     </div>

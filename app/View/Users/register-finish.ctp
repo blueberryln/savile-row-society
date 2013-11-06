@@ -37,12 +37,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>                        
                 <br/>                    
             </div>
-            </form>            
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            </form>
         </div>
         
     </div>

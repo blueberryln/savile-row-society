@@ -126,7 +126,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
     </div>
     
-    <div class="clearfix"></div><br />
+    <div class="clearfix"></div>
     <br /><br />
 
     <div class="seven columns text-center offset-by-one">

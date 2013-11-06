@@ -266,6 +266,6 @@ $columns = 'eleven';
             </label>                                           
             <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>                
         </div>
-        <div class="clear"></div> <br /><br /><br /><br /><br />
+        <div class="clear"></div> <br /><br /><br />
     </div>
 </div>
