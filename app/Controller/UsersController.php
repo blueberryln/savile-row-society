@@ -923,8 +923,9 @@ class UsersController extends AppController {
             if ($this->User->save($this->request->data)) {
                 if(isset($this->request->data['User']['stylist_id']) && $this->request->data['User']['stylist_id'] > 0){
                     //Get stylist data
-                    $options = array('conditions' => array('User.' . $this->User->primaryKey => $this->request->data['User']['stylist_id']));
+                    $options = array('conditions' => array('User.' . $this->User->primaryKey =>$this->request->data['User']['stylist_id']));
                     $stylist_data = $this->User->find('first', $options);
+                    $stylist_email = $stylist_data['User']['email'];
                     $stylist_name = $stylist_data['User']['first_name'];
                     
                     //Get user data
@@ -940,7 +941,16 @@ class UsersController extends AppController {
                         $email->template('user_stylist');
                         $email->emailFormat('html');
                         $email->viewVars(compact('name', 'stylist_name'));
-                        $email->send();    
+                        $email->send();
+
+                        $email = new CakeEmail('default');
+                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        $email->to($stylist_email);
+                        $email->subject('Savile Row Stylist: Your stylist!');
+                        $email->template('stylist_notification');
+                        $email->emailFormat('html');
+                        $email->viewVars(compact('name', 'stylist_name'));
+                        $email->send();
                     }
                     catch(Exception $e){
                         

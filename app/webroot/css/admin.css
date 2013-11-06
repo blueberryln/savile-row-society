@@ -162,7 +162,3 @@ ul.ordered-items select
     overflow-y:scroll !important;
 }
 
-/**** admin user list **/
-.hide td {
-    border: medium none;
-}
