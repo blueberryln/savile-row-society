@@ -822,7 +822,7 @@ body{
     color: #999;
     font-size: 30px;
     line-height: 36px;
-    margin: 30px 0;
+    margin: 20px 0;
     text-transform: uppercase;
 }
 .content h2.subhead {
@@ -4114,7 +4114,7 @@ ul.price-pts span
 .sort-block{   
     text-align: right;
     margin:4px 10px 4px 0;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 span.sort-selected{
