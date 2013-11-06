@@ -2841,7 +2841,7 @@ p.product-breadcrumb a
 }
 .product-description p.description
 {
-    color: #9B9B9B;
+    color: #666;
     font-size: 14px;
     padding-bottom: 4px;
     line-height: 20px;
@@ -2992,11 +2992,11 @@ li.last
 
 .product-description label select
 {
-    color: #B3B3B3;
+    color: #777;
     font-size: 14px;
     text-align: left;
     margin-left: 5px;
-    border:1px solid #e5e5e5;
+    border:1px solid #d0d0d0;
     border-radius:2px;
     background-color: #ffffff;
     padding: 5px;
@@ -3155,7 +3155,7 @@ a.btn-buy:hover{
     margin-right: 12px;
     margin-bottom: 10px;
     float: left;
-    border: 1px solid #E5E5E5;
+    border: 1px solid #d0d0d0;
 }
 .color-thumbnails.color-selected
 {
