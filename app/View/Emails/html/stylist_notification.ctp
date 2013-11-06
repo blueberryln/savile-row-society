@@ -2,26 +2,19 @@
     <tr>
         <td>
             <center>
-                <table cellpadding="0" cellspacing="0" border="0" width="600" style="margin:0 auto;">
+                <table cellpadding="0" cellspacing="0" border="0" width="600">
                     <tr>
                         <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
                     </tr>
                     <tr>
                         <td valign="top">
                             <br />
-                            Hi <?php echo $user['User']['first_name']; ?>,
-                            <br/><br/>
-                            There was recently a request to change the password on your account.
-                            <br/><br/>
-                            If you requested this password change, please reset your current password by following the link below:
+                            Hi <?php echo ucfirst($name); ?>,
                             <br/>
-                            <a href="<?php echo Configure::read('Social.callback_url'); ?>reset/<?php echo $user['User']['id']; ?>/<?php echo $user['User']['password']; ?>"><?php echo Configure::read('Social.callback_url'); ?>reset/<?php echo $user['User']['id']; ?>/<?php echo $user['User']['password']; ?></a>
-                            <br/><br/>
-                            If you don't want to change your password, just ignore this message.
-                            <br/><br/>
-                            Thanks,
-                            <br/>
-                            <a href="http://www.savilerowsociety.com">Savile Row Society</a>
+                            <p style="text-align: justify;">We have matched you with <?php echo ucfirst($stylist_name); ?>, our premier stylist.
+                                <br />You can make any request to him/her or book an appointment with our tailor.<br />
+                                Before we get to know you, Check out our highlighted products available in the <a href="http://www.savilerowsociety.com/closet">Closet</a>.</p>
+
                         </td>
                     </tr>
                     <tr>
