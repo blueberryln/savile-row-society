@@ -204,21 +204,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <h1>The Closet</h1>
     </div>
     <div class="fifteen offset-by-half columns omega">
-       <div class="sort-block">
-            <?php
-                $sortKey = $this->Paginator->sortKey();
-                $sortDir = $this->Paginator->sortDir();
-            ?>
-            <?php if( $sortKey == 'price' && $sortDir == 'asc') : ?>
-                <strong>Sort By Price:</strong> <span class="sort-selected">Low to High</span> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
-            <?php elseif ($sortKey == 'price' && $sortDir = 'desc') : ?>
-                <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <span class="sort-selected">High to Low</span>
-            <?php else : ?>
-                <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
-            <?php endif; ?> 
-        </div> 
-    </div>
-    <div class="fifteen offset-by-half columns omega">
         <div class="three columns alpha">
             <div class="product-filter-menu">
                 <ul class="accordian-menu">
@@ -276,7 +261,19 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </ul>
             </div>
         </div>
-        
+        <div class="sort-block">
+            <?php
+                $sortKey = $this->Paginator->sortKey();
+                $sortDir = $this->Paginator->sortDir();
+            ?>
+            <?php if( $sortKey == 'price' && $sortDir == 'asc') : ?>
+                <strong>Sort By Price:</strong> <span class="sort-selected">Low to High</span> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
+            <?php elseif ($sortKey == 'price' && $sortDir = 'desc') : ?>
+                <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <span class="sort-selected">High to Low</span>
+            <?php else : ?>
+                <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
+            <?php endif; ?> 
+        </div>
         <div class="twelve columns omega product-listing">
             <div class="product-top-offset"></div>
             <?php if($entities) : ?>

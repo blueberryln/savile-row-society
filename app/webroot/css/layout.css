@@ -328,7 +328,8 @@ body{
     display:inline-block;
 }*/
 .card-menu {
-    display: none !important;
+    position: absolute;
+    right:0;
     color:white;
     width: 100% !important;
     padding: 0 !important;
@@ -345,7 +346,7 @@ body{
 }
 .card-menu  li {
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     margin: 0px 0px;
     padding: 0px 0px;
     display:inline-block;
@@ -820,11 +821,12 @@ body{
     font-weight: 700;
 }
 .content h1 {
-    color: #999;
+    color: #888;
     font-size: 30px;
     line-height: 36px;
     margin: 20px 0;
     text-transform: uppercase;
+    font-weight: normal;
 }
 .content h2.subhead {
     font-family:'Conv_Novecento-Book',Sans-Serif;
@@ -4114,6 +4116,9 @@ ul.price-pts span
 }
 
 .sort-block{   
+    position: absolute;
+    right:40px;
+    top:47px;
     text-align: right;
     margin:4px 10px 4px 0;
     font-size: 11px;
@@ -4123,6 +4128,11 @@ span.sort-selected{
     background-color: #DDDDDD;
     border-radius: 4px 4px 4px 4px;
     padding: 4px;
+}
+
+.flexslider .flex-direction-nav a
+{
+    display:none;    
 }
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){

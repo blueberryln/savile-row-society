@@ -402,7 +402,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                 startMessageNotifier();
                 
                 if($(".flexslider").length){
-                    $(".flexslider .flex-direction-nav a").css({display:'none', top: ($(".flexslider").height()/2 - $(".flexslider .flex-direction-nav a").height()/2) + "px"}).show();
+                    $(".flexslider .flex-direction-nav a").css({top: ($(".flexslider").height()/2 - $(".flexslider .flex-direction-nav a").height()/2) + "px"}).show();
                 }
                 
                 $("#msg-notifications").on('click', function(e){
