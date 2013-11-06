@@ -333,6 +333,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </div>
     <div class="clearfix"></div>
     <div class="sixteen columns">
-        <br /><br /><br />
+        
     </div>
 </div>

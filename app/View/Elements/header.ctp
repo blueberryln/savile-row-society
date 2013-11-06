@@ -27,7 +27,7 @@
                 } else {
                 ?>
                     <?php if($user) : ?>
-                        <li><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
+                        <li class="welcome-name"><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
                     <?php endif; ?>
                 <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
                     <div class="submenu-container msg-notify-box">
