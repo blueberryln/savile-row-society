@@ -118,3 +118,20 @@ span.select-item{
 .chat-outfit-box{
     margin-left: 10px;
 }
+
+/*  changes on 07-11-2013 ----   */
+.register-steps .profile-tabs{
+    margin-top: 0px;
+}
+div#brands ol.brands-logo li, ul#branding-partners li{
+    margin-top:30px !important;
+}
+#brands{
+    height:300px;
+}
+div.brands-cont .submit{
+    margin-top: 0px!important;
+}
+.preferences #selectable li{
+    height: 280px;
+}

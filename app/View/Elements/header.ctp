@@ -1,3 +1,19 @@
+<script>
+
+
+    if(url=="closet"){
+        $("").css("border-bottom","1px solid #ffffff");
+    }
+    $(document).ready(function(){
+        $("span").click(function(e){alert(url);});
+    }
+
+
+
+
+
+</script>
+
 <div class="header">
 
     <div class="container">
