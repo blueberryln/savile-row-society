@@ -75,19 +75,17 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         <input type="hidden" value="completed" name="data[UserPreference][is_complete]" />    
         
         
-        <div class="text-center about-submit">                   
-            <div class="submit">
-                <input type="submit" value="Upload" /> 
-                <a class="link-btn black-btn back-btn1" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a>  
-            </div>                        
-            <br/>
-            </form>
-        </div>        
-         
-         <br /><br /><br /><br /><br />    
-         </div>
+            <div class="text-center about-submit">                   
+                <div class="submit">
+                    <input type="submit" value="Upload" /> 
+                    <a class="link-btn black-btn back-btn1" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a>  
+                </div>                        
+                <br/>
+                </form>
+            </div>  
+        </div>
     </div>    
-    <br/> 
+    
 </div>
 
 <style>

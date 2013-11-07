@@ -1161,6 +1161,10 @@ body{
     float: left;
     margin-bottom: 40px;
 }
+
+.content .crew .team-member:last-child{
+    margin-bottom: 0;
+}
 .content .crew .team-member .name {
     font-family:'Conv_Novecento-Bold',Sans-Serif;
     font-size: 22px;
@@ -3569,7 +3573,7 @@ div#body-shape #selectable-shape li img
     height: 10px;
     position: absolute;
     top: 16px;
-    right: 11px;
+    right: 16px;
     display: block;
     background: url('../img/close-popup.png') no-repeat center center;
 }
@@ -3684,6 +3688,7 @@ ul.product-type li
 {
     display: inline-block;
     margin-right: 60px;
+    margin-bottom:0;
     font-family: Conv_Novecento-Book,sans-serif;
     cursor: pointer;
 }
@@ -3707,7 +3712,7 @@ ul.product-type li.selected a
 div.brands-cont .submit
 {
     margin-top:70px;
-    height: 100px;
+    height: 60px;
 }
 div.brands-cont input[type="submit"] {
     padding: 6px 50px;
@@ -3736,6 +3741,10 @@ div#brands ol.brands-logo li, ul#branding-partners li
     -o-box-sizing:border-box; 
     box-sizing:border-box;   
 }
+ ul#branding-partners li
+ {
+    margin: 8px 39px 20px 0 !important;
+ }
 
 div#brands ol.brands-logo li img,ul#branding-partners li img
 {
