@@ -1,11 +1,9 @@
 <script>
-
-
+    var url = window.location.href;
+    url = url.substr(url.lastIndexOf('/') + 1);
     if(url=="closet"){
-        $("").css("border-bottom","1px solid #ffffff");
-    }
-    $(document).ready(function(){
-        $("span").click(function(e){alert(url);});
+
+
     }
 
 
@@ -95,7 +93,7 @@
         <div class="sixteen columns alpha omega menu">
             <ul>
                 
-                <li><a href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span>The Closet</span></a></li> 
+                <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline">The Closet</span></a></li>
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist"><span>My Stylist</span></a>
                      <?php if($is_logged && $has_stylist) : ?>

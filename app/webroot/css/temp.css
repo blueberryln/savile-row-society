@@ -123,7 +123,7 @@ span.select-item{
 .register-steps .profile-tabs{
     margin-top: 0px;
 }
-div#brands ol.brands-logo li, ul#branding-partners li{
+div#brands ol.brands-logo li{
     margin-top:30px !important;
 }
 #brands{
@@ -135,3 +135,5 @@ div.brands-cont .submit{
 .preferences #selectable li{
     height: 280px;
 }
+#underline1{}
+.underline{}
