@@ -3,9 +3,7 @@ $meta_description = 'As a member, you will be up to date on styles, always look 
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="container content inner">		
-    <div class="sixteen columns text-center">
-        <h1>How It Works</h1>
-    </div>
+    <br /><br />
     
     <img class="membership-flow fadein-image fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
     <div class="fourteen offset-by-one columns">

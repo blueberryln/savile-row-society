@@ -146,9 +146,15 @@ body{
     color: #ffffff;
     font-size: 14px;
     text-decoration: none;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
 }
-.header .menu li a:hover
+.header .menu li span
+{
+    color: #ffffff;
+    font-size: 14px;
+    text-decoration: none;
+}
+.header .menu li span:hover
 {
     border-bottom:1px solid #fff;
 }
@@ -157,7 +163,7 @@ body{
     border: 1px solid #CCCCCC;
     cursor: auto;
     display: none;
-    margin: 5px 0 0 -14px;
+    margin: 2px 0 0 -14px;
     padding: 0;
     position: absolute;
     z-index: 100;
@@ -207,7 +213,7 @@ body{
     padding: 5px 5px 5px 0;
     font-size: 13px;
 }
-.header .menu li span
+.header .menu li li span
 {
     color: #fff;
     font-size: 15px;
@@ -217,6 +223,10 @@ body{
 .header .menu li.last:hover
 {
     cursor: default;
+}
+.header .menu li.last:hover span
+{
+    border-bottom: none;
 }
 .header .menu li a#lnk-fb-share
 {

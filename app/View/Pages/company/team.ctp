@@ -58,7 +58,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="ten columns">
                 <div class="name">Prateek Sachdev<span class="tm-email">&nbsp;(prateek@savilerowsociety.com)</span></div>
                 <span class="title">Co-Chief Technology Officer</span> 
-                <div class="sub-title">(Managing Direction at Mobikasa,  BBA at Parsons School of Design.)</div>
+                <div class="sub-title">(Managing Director at Mobikasa,  BBA at Parsons School of Design.)</div>
                 <p>Prateek Sachdev (CTO) heads our development team and India office. He previously worked for various luxury brands in NYC including four years at Versace. Prateek graduated from Parsons School of Design majoring in Design & Management and has in-depth knowledge of various technology platforms including iOS, Android, .net, PHP, Magento, Wordpress, HTML5, and SEO.</p>  
                 <!--<div class="text-center">
                     <a class="show-more-text" href="#" title="Show more">Show more</a>

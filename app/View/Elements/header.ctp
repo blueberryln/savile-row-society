@@ -79,9 +79,9 @@
         <div class="sixteen columns alpha omega menu">
             <ul>
                 
-                <li><a href="<?php echo $this->request->webroot; ?>closet" data-ref="closet">The Closet</a></li> 
+                <li><a href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span>The Closet</span></a></li> 
                 <li>
-                    <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist">My Stylist</a>
+                    <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist"><span>My Stylist</span></a>
                      <?php if($is_logged && $has_stylist) : ?>
                         <ul class="submenu">
                             <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
@@ -89,9 +89,9 @@
                     <?php endif; ?>
                 </li>
                 <li>
-                    <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking">My Tailor</a>
+                    <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking"><span>My Tailor</span></a>
                 </li>                
-                <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank">The Blog</a></li>
+                <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li>
                   
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
                 <li class="last">
