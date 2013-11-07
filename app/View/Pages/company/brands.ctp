@@ -83,7 +83,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" data-name="dw"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" data-name="lacoste"  /></li>
                   
-            </ul><br />
+            </ul>
     </div>
 </div>
 <div id="brandinfo-box" class="box-modal notification-box hide">

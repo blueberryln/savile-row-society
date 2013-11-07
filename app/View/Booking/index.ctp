@@ -71,17 +71,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </ul>
     </div>
     <div class="clearfix"></div>
-    <div class="sixteen columns">
-        <br/><br/>
-    </div>
     
     <div class="seven columns book-appointment offset-by-one">
         <h2>Book an appointment</h2>
         <div class="srs-form six columns">
             <div class="form">
             <?php if ($user && $booking_types) : ?>
-                <?php echo $this->Form->create('Booking', array('url' => array('controller' => 'booking', 'action' => 'index'))); ?>
-                <h4 class="hi-message">Hi, <?php echo $user['User']['first_name'] . " " . $user['User']['last_name']; ?></h4>
+                <?php echo $this->Form->create('Booking', array('url' => array('controller' => 'booking', 'action' => 'index'))); ?>                
                 <p>When would you like to come?</p> 
                 <div>
                     <label>Please select a date</label>
@@ -116,7 +112,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <h2>Contact us</h2>
         <div class="contact-map-info">
             <div class="contact-map">
-                <iframe width="370" height="200" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0"></iframe>
+                <iframe width="370" height="220" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0"></iframe>
             </div>
             <div class="contact-info">
                 <h4>Showroom:</h4>
@@ -136,17 +132,17 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </div>
     <div class="seven columns">
             <div class="seven columns text-justify">
-                <h3>Meet Joey Glazer</h3>
-                <h4>MADE TO MEASURE DIRECTOR</h4>
-                <p>With 20 years in the industry, Joey Glazer has built a reputation in menswear from brand building and textile development in luxury clothing to dressing top executives. Joey is  drawn to the details of well-made clothing; his  passion is easily recognized.</p>
-                <p>Through this work, Joey discovered the true need for customized service in the men's fashion industry. Joining the Savile Row Society team is just one more way that is contributing to the style and wardrobes of men who demand perfection.</p>
+                <h3><a>Meet Joey Glazer</a></h3>
+                <h4><em>MADE TO MEASURE DIRECTOR</em></h4>
+                <p>With 20 years in the industry, Joey Glazer has built a reputation in menswear from brand building and textile development in luxury clothing to dressing top executives. Joey is  drawn to the details of well-made clothing; his  passion is easily recognized.</p>                
                 <div class="long-desc hide">
+                    <p>Through this work, Joey discovered the true need for customized service in the men's fashion industry. Joining the Savile Row Society team is just one more way that is contributing to the style and wardrobes of men who demand perfection.</p>
                     <p>When you schedule your first fitting with SRS, you will meet Joey for a one-on-one consultation and he will walk you through the our Made to Measure process, capture your measurements and get to know your garment preferences and lifestyle needs of your clothing.</p> 
                     <p>Made to Measure has never been this simple.</p>
-                </div>
+                </div><br />
                 <div class="text-center">
                     <a class="show-more-text" href="#" title="Show more">Show more</a>
-                </div>
+                </div><br />
             </div>
     </div>    
 </div>

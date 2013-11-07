@@ -1004,20 +1004,22 @@ body{
     text-transform: uppercase;
     font-weight: normal;
 }
-.content.booking h3 {
+.content.booking h3,.content.booking h3 a {
     color: #8D8D8D;
     font-family: 'Conv_Novecento-Book',Sans-Serif;
     font-size: 18px;
     line-height: 26px;
     margin: 0 0 10px;
     text-transform: uppercase;
+    text-decoration: none;
 }
 .content.booking h4 {
     font-family: 'Conv_Novecento-Book',Sans-Serif;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 26px;
     margin: 0 0 10px;
     text-transform: uppercase;
+    color: #666;
 }
 .content.booking h5 {
     color: #a4923e;
@@ -1051,12 +1053,15 @@ body{
 }
 .content.inner.booking h2 {
     border-bottom: 1px solid /*#999999*/#D9D9D9;
-    color: #999999 !important;
+    color: #9E9248 !important;
     font-family: 'Droid Serif',serif !important;
     margin: 15px 10px;
     margin-right:0;
     text-transform: capitalize !important;
     padding-bottom:4px;
+}
+.content.inner.booking h3,.content.inner.booking h3 a{
+    color:#9E9248;
 }
 .content.inner.booking .hero {
     background-color: #F1F1F1;
@@ -1722,8 +1727,13 @@ body{
 
 .footer {
     font-size: 12px;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
     text-align: center;
+}
+
+.copyright
+{
+    margin: 10px auto;
 }
 
 /* user preferences */
@@ -3787,6 +3797,7 @@ select#BookingType
 
 div.book-it-btn .submit input[type="submit"]
 {
+    margin: 0 0 5px 0;
     -moz-box-sizing:border-box; 
     -webkit-box-sizing:border-box;
     -o-box-sizing:border-box;
@@ -4159,6 +4170,15 @@ span.sort-selected{
 .welcome-name,.welcome-name a{
     cursor: default !important;
 }
+#BookingIndexForm p
+{
+    margin-bottom: 5px;
+}
+
+
+
+
+
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     

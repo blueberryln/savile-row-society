@@ -115,7 +115,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                         <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
                     </ul>
                 </div>
-                <div class="sixteen columns ">
+                <div class="sixteen columns copyright">
                     &copy <?php echo date('Y'); ?> Savile Row Society, inc. All Rights reserved.
                 </div>
             </div><!-- container -->
