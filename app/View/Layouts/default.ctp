@@ -354,7 +354,8 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     $(".notification-buttons").html(notificationDetails['button']);
                 }
                 if(isFade){
-                    $.blockUI({message: $('#notification-box'), timeout: 3000});
+                    //$.blockUI({message: $('#notification-box'), timeout: 3000});
+                    $.blockUI({message: $('#notification-box')});
                 }
                 else{
                     $.blockUI({message: $('#notification-box')});
@@ -599,7 +600,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                 
                 var notificationBox = $("#notification-box");
                 if(notificationBox.is(":visible") && notificationBox.has(e.target).length == 0) {
-                    $.unblockUI();    
+                    //$.unblockUI();    
                 }
             });
             $(window).load(function() {

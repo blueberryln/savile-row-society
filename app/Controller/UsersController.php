@@ -269,6 +269,7 @@ class UsersController extends AppController {
         // get edditing in user
         $user = $this->getEditingUser();
         $id = $this->getLoggedUserID();
+        
         $user["User"]["phone"] = $this->request->data["User"]["phone"];
         $user["User"]["industry"] = $this->request->data["User"]["industry"];
         $user["User"]["location"] = $this->request->data["User"]["location"];
@@ -343,8 +344,8 @@ class UsersController extends AppController {
             if($image = $this->saveImage()){
                 $user['User']['profile_photo_url'] = $image;
             }
-
-            if ($this->User->save($user)) {
+            
+            if ($res = $this->User->save($user)) {
                 $result = $this->User->getByID($id);
                 $this->Session->write('user', $result); 
                 $this->redirect('register/finish/' . $user['User']['id']);
@@ -369,8 +370,8 @@ class UsersController extends AppController {
 
             if (!in_array($this->request->data['ProfileImage']['type'], $allowed)) {
                 $this->Session->setFlash(__('You have to upload an image.'), 'flash');
-            } else if ($this->request->data['ProfileImage']['size'] > 2500000) {
-                $this->Session->setFlash(__('Attached image must be up to 500 kb in size.'), 'flash');
+            } else if ($this->request->data['ProfileImage']['size'] > 3145728) {
+                $this->Session->setFlash(__('Attached image must be up to 3 MB in size.'), 'flash');
             } else {
                 $image = $user['User']['email'] . '_' . $this->request->data['ProfileImage']['name'];
                 $image_type = $this->request->data['ProfileImage']['type'];
@@ -496,6 +497,7 @@ class UsersController extends AppController {
                 if($user['User']['refer_medium']){
                     $refer_medium = $user['User']['refer_medium'];
                 }
+
                 $this->set(compact('personal_shopper','refer_medium', 'shopper_email'));
                 $this->set(compact('contact'));
                 $this->set(compact('image_url'));
@@ -1071,7 +1073,9 @@ class UsersController extends AppController {
             }
         }
         else{
-            return $logged_user;
+            $user_id = $logged_user['User']['id'];
+            $editing_user = $this->User->getByID($user_id);
+            return $editing_user;
         }
     }
 

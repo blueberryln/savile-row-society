@@ -1,24 +1,17 @@
-
-
 <?php
 $script = '
 $(document).ready(function(){
 
     var url = window.location.href;
-    url = url.substr(url.lastIndexOf("/") + 1);
-    if(url=="closet"){
+    if(url.indexOf("closet") != -1){
         $(".underline1").css("border-bottom","1px solid #ffffff");
     }
-    if(url=="stylist"){
+    else if(url.indexOf("stylist") != -1){
         $(".underline2").css("border-bottom","1px solid #ffffff");
     }
-    if(url=="booking"){
+    else if(url.indexOf("booking") != -1){
         $(".underline3").css("border-bottom","1px solid #ffffff");
     }
-
-
-
-
 });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -55,6 +48,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <?php if($user) : ?>
                         <li class="welcome-name"><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
                     <?php endif; ?>
+                <?php if($has_stylist) : ?>
                 <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
                     <div class="submenu-container msg-notify-box">
                         <div class="submenu">
@@ -74,6 +68,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         </div>
                     </div>
                 </li>
+                <?php endif; ?>
                 <li><a href="<?php echo $this->request->webroot; ?>cart"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <li>
                     <a title="Account">My Account</a>
