@@ -9,12 +9,14 @@ App::uses('CakeEmail', 'Network/Email');
 class ClosetController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
+    
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20');
     /**
      * Index
      */
      
     function beforeFilter() {
-        $secureActions = array('checkout', 'validatecard', 'payment');
+        $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
         
         if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
             $this->forceSSL();
@@ -508,6 +510,7 @@ class ClosetController extends AppController {
             
             $request_data = $this->request->data['billing'];
             
+            $promo_code = $request_data['promocode'];
             //Arrange Billing data
             $data['User']['first_name'] = $request_data['billfirst_name'];
             $data['User']['last_name'] = $request_data['billlast_name'];
@@ -603,9 +606,27 @@ class ClosetController extends AppController {
             if($request_cart_id != $cart_id){
                 $error_cart = true;
             }
-            //Check if cart id is same
-            if($request_total_price != $total_price){
-                $error_cart = true;
+            
+            //Check if promocode is valid
+            $promo_result = false;
+            if($promo_code != ""){
+                $promo_result = $this->validate_promo_code($promo_code, true);    
+            }
+            
+            if($promo_result){
+                if($promo_result['status']=="ok"){
+                    $discount = $promo_result['amount'];  
+                         
+                }   
+                else{
+                    $this->Session->setFlash(__('The promo code used is not valid.'), 'flash');
+                    $this->redirect('/checkout');
+                } 
+            }
+            else{
+                if($request_total_price != $total_price){
+                    $error_cart = true;
+                }    
             }
 
             
@@ -916,47 +937,62 @@ class ClosetController extends AppController {
         exit;
     }
     
-    
-    
-//    public function cart() {
-//
-//        $this->isLogged();
-//
-//        App::import('Vendor', 'AuthorizeNet/AuthorizeNet');
-//
-//        $api_login_id = Configure::read('AuthorizeNet.api_login_id');
-//        $transaction_key = Configure::read('AuthorizeNet.transaction_key');
-//
-//        $data = array();
-//        $products = array();
-//        $cart_storage = $this->Session->read('cart_storage');
-//        if ($cart_storage && is_array($cart_storage)) {
-//
-//            $products = $cart_storage;
-//
-//            // payment form style
-//            $payment_form_css = "";
-//
-//            if ($this->getLoggedUser()) {
-//                $logged_user = $this->getLoggedUser();
-//                $data['x_cust_id'] = $logged_user['User']['id'];
-//                $data['x_first_name'] = $logged_user['User']['first_name'];
-//                $data['x_last_name'] = $logged_user['User']['last_name'];
-//                $data['x_email'] = $logged_user['User']['email'];
-//                $data['x_phone'] = $logged_user['User']['phone'];
-//            } else {
-//                $data['x_cust_id'] = '';
-//                $data['x_first_name'] = '';
-//                $data['x_last_name'] = '';
-//                $data['x_email'] = '';
-//                $data['x_phone'] = '';
-//            }
-//
-//            $data['x_logo_url'] = Configure::read('AuthorizeNet.x_logo_url');
-//        }
-//
-//        $this->set(compact('products', 'api_login_id', 'transaction_key', 'data'));
-//    }
+    /**
+     * Function to validate the use of a promo code
+     */ 
+    public function validate_promo_code($code = null, $inline = false){
+        if(!$inline){
+            $this->autoLayout = false;
+            $this->autoRender = false;
+        }
+        
+        $user_id = $this->getLoggedUserID();
+        $code = strtoupper($code);
+        $ret = array();
+        if($user_id && $code != null){
+            if(in_array($code, $this->promoCodes)){
+                $Order = ClassRegistry::init('Order');
+                $used_promo = $Order->usedUserPromo($user_id);
+                $is_used = false;
+                if($used_promo){
+                    foreach($used_promo as $promo){
+                        if(strtoupper($promo) == $code){
+                            $is_used = true;
+                            break;
+                        }    
+                    }
+                }
+                
+                if($is_used){
+                    $ret['status'] = "error";
+                    $ret['info'] = "used";    
+                }
+                else{
+                    $ret['status'] = "ok";
+                    $ret['info'] = "valid"; 
+                    $ret['amount'] = 20;   
+                }
+            }
+            else{
+                $ret['status'] = "error";
+                $ret['info'] = "invalid";    
+            }    
+        }
+        else if($code != null){
+            $ret['status'] = "error";
+            $ret['info'] = "login";    
+        }
+        else{
+            $ret['status'] = "error";
+            $ret['info'] = "null";
+        }
+        
+        if(!$inline){
+            echo json_encode($ret);
+            exit;
+        }
+        return $ret;
+    }
 
     /**
      * Liked Items

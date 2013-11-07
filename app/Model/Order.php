@@ -115,4 +115,11 @@ class Order extends AppModel {
     function markShipped($order_id){
         return $this->updateAll(array('Order.shipped' => true), array('Order.id' => $order_id));
     }
+    
+    function usedUserPromo($user_id){
+        return $this->find('list', array(
+            'conditions' => array('Order.user_id' => $user_id, 'Order.promo_code IS NOT NULL', 'Order.paid' => true),
+            'fields' => array('id','promo_code'),
+        ));
+    }
 }

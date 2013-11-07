@@ -160,6 +160,28 @@ $script = '
             }
         });
     });
+    $("#apply-promo").on("click", function(e){
+        e.preventDefault();  
+        var promoCode = $("#promocode").val();  
+        $.ajax({
+            url: "' . Router::url('/', true) . 'closet/validate_promo_code/" + promoCode,
+            type: "POST",
+            data: {},
+            success: function(data){
+                var ret = $.parseJSON(data);
+                if(ret["status"] == "ok"){
+                    var discount = parseFloat(ret["amount"]).toFixed(2);
+                    var total = parseFloat($(".cart-total").text().substr(1));
+                    total = parseFloat(total-discount).toFixed(2);
+                    $(".cart-discount").text("$" + discount);     
+                    $(".cart-total").text("$" + total);        
+                }
+                else if(ret["status"] == "error"){
+                    $("#promocode").val("");    
+                }
+            }
+        });
+    });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->meta('description', 'First mover', array('inline' => false));
@@ -182,7 +204,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                     <th class="text-left" width="457">Products</th>
                     <th width="90px">Quantity</th>
                     <th width="90px">Unit Price</th>
-                    <th width="90px">Price</th>
+                    <th width="90px" class="text-right">Price</th>
                 </thead>
                 <tbody>
                     <?php foreach ($cart_list as $item) : ?>
@@ -233,15 +255,37 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                             
                             </td>
                             <td class="text-center"><?php echo $this->Number->currency($item['Entity']['price']); ?></td>
-                            <td class="text-center item-price"><?php echo $this->Number->currency($item['Entity']['price'] * $item['CartItem']['quantity']); ?></td>
+                            <td class="text-right item-price"><?php echo $this->Number->currency($item['Entity']['price'] * $item['CartItem']['quantity']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                     <tr class="last">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td colspan="2" class="text-center bold">Total Amount:</td>
-                        <td class="text-center cart-total"><?php echo $this->Number->currency($total_price); ?></td>
+                        <td colspan="3" rowspan="2">
+                            <!-- Enable only when total is equal or more than $120 -->
+                            <?php if($total_price >= 120) : ?> 
+                                <div class="srs-form columns three omega">
+                                    <div class="form">
+                                       <div class="input text" style="margin-bottom: 0;">
+                                            <?php
+                                                echo $this->Form->input('promocode', array('div'=> false, 'label'=> false, 'id'=>'promocode', 'style' => 'letter-spacing:1px;', 'autocomplete' => 'off', 'placeholder' => 'Promo Code'));
+                                            ?>
+                                       </div>                    
+                                    </div>
+                                </div>
+                                <div class="srs-form columns three omega">
+                                    <div class="form">
+                                        <div class="input text" style="margin-bottom: 0;">
+                                            <a href="#" id="apply-promo" class="link-btn black-btn" style="padding: inherit 15px; margin: 0; width: auto; ">Apply</a>
+                                        </div>                   
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </td>
+                        <td colspan="2" class="text-right bold">(-) Discount:</td>
+                        <td class="text-right cart-discount"><?php echo $this->Number->currency(0); ?></td>
+                    </tr>
+                    <tr class="last">
+                        <td colspan="2" class="text-right bold">Total Amount:</td>
+                        <td class="text-right cart-total"><?php echo $this->Number->currency($total_price); ?></td>
                     </tr>
                 </tbody>
             </table>
@@ -250,6 +294,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
         <?php endif; ?>
         <div class="clear"></div>
     </div>
+    
 
     <div class="sixteen columns text-center">
         <h1 class="sub">PAYMENT INFORMATION</h1>
@@ -299,22 +344,6 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                    </div>                    
             </div>
         </div>
-        
-        <!-- Enable only when total is equal or more than $120 -->
-        <?php if($total_price >= 120) : ?> 
-        <div class="srs-form columns five offset-by-one omega">
-            <div class="form">
-                   <div class="input text required card-number">
-                            <?php
-                                echo $this->Form->input('promocode', array('label'=>'Promo Code', 'id'=>'promocode', 'tabindex'=>'4', 'onkeypress' => 'return isNumber(event)', 'style' => 'letter-spacing:1px;', 'autocomplete' => 'off'));
-                            ?>
-                            <small>*(enter number without spaces or dashes)</small> 
-                   </div>                    
-            </div>
-        </div>
-        <?php endif; ?>
-        
-        
     </div>
     <div class="fourteen columns divider"></div>
 
