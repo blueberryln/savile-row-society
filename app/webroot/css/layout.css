@@ -2730,7 +2730,7 @@ body{
     display: block;
     margin-top: 4px;
     font-size:12px;
-    color:#BFBFBF;
+    color:#EEE;
     text-transform: capitalize;
 }
 .product-filter-menu{
@@ -2745,7 +2745,7 @@ body{
 .product-filter-menu .toggle-tab{
     margin-bottom: 0;
     border-bottom: 1px solid #D9D9D9;
-    color: #777;
+    color: #8E7846;
 }
 .product-filter-menu .toggle-tab span.filter-block{
     display: block;
@@ -2757,10 +2757,10 @@ body{
     color: #8E7846;
     text-decoration: none;
 }
-.product-filter-menu .active-link{
+.product-filter-menu .hover-link{
     color: #8E7846 !important;
 }
-.product-filter-menu .hover-link{
+.product-filter-menu .active-link{
     font-weight: bold; color: #8E7846 !important; text-decoration: underline !important;
 }
 .product-filter-menu .active-link li a{
@@ -2777,12 +2777,12 @@ body{
 }
 .product-filter-menu .toggle-body a{
     text-decoration: none;
-    color: #777;
+    color: #666;
     font-size: 13px;
 }
 .product-filter-menu .toggle-body li{
     text-decoration: none;
-    color: #777;
+    color: #666;
     font-size: 13px;
     position: relative;
 }
@@ -2817,7 +2817,7 @@ body{
 }
 p.product-breadcrumb
 {
-    color: #C9C9C9;
+    color: #666;
     margin-left:10px;
     margin-bottom: 5px !important;
     text-transform: uppercase;
@@ -2825,7 +2825,7 @@ p.product-breadcrumb
 p.product-breadcrumb a
 {
     text-decoration: none;
-    color: #999999;
+    color: #666;
 }
 .product-description .product-name
 {
@@ -2859,7 +2859,7 @@ p.product-breadcrumb a
 }
 .product-description p.description
 {
-    color: #666;
+    color: #555;
     font-size: 14px;
     padding-bottom: 4px;
     line-height: 20px;
@@ -3011,7 +3011,7 @@ li.last
 
 .product-description label select
 {
-    color: #777;
+    color: #555;
     font-size: 14px;
     text-align: left;
     margin-left: 5px;

@@ -114,7 +114,7 @@ $(document).ready(function(){
                     }
                     else{
                         var notificationDetails = new Array(); 
-                        notificationDetails["msg"] = "Item has been added to the cart.";
+                        notificationDetails["msg"] = "Item has been added to the cart.";                        
                         showNotification(notificationDetails, true);
                     }
                 }
