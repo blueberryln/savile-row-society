@@ -1,16 +1,28 @@
-<script>
+
+
+<?php
+$script = '
+$(document).ready(function(){
+
     var url = window.location.href;
-    url = url.substr(url.lastIndexOf('/') + 1);
+    url = url.substr(url.lastIndexOf("/") + 1);
     if(url=="closet"){
-
-
+        $(".underline1").css("border-bottom","1px solid #ffffff");
+    }
+    if(url=="stylist"){
+        $(".underline2").css("border-bottom","1px solid #ffffff");
+    }
+    if(url=="booking"){
+        $(".underline3").css("border-bottom","1px solid #ffffff");
     }
 
 
 
 
-
-</script>
+});
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+?>
 
 <div class="header">
 
@@ -30,7 +42,7 @@
                                 </li> ';
                 }
                 ?> -->
-                
+
                  <?php
                 if (!$is_logged) {
                 ?>
@@ -93,9 +105,9 @@
         <div class="sixteen columns alpha omega menu">
             <ul>
                 
-                <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline">The Closet</span></a></li>
+                <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
                 <li>
-                    <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist"><span>My Stylist</span></a>
+                    <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist"><span class="underline2">My Stylist</span></a>
                      <?php if($is_logged && $has_stylist) : ?>
                         <ul class="submenu">
                             <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
@@ -103,7 +115,7 @@
                     <?php endif; ?>
                 </li>
                 <li>
-                    <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking"><span>My Tailor</span></a>
+                    <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking"><span class="underline3">My Tailor</span></a>
                 </li>                
                 <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li>
                   
