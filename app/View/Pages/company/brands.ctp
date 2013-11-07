@@ -49,7 +49,7 @@ $(document).ready(function(){
             $(".brand-info .link-btn").hide();
         }
         $.blockUI({message: $("#brandinfo-box"),css:{top:"50px"}});
-        
+        $(".blockOverlay").click($.unblockUI);        
     });
 });
 ';
@@ -83,7 +83,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" data-name="dw"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" data-name="lacoste"  /></li>
                   
-            </ul>
+            </ul><br />
     </div>
 </div>
 <div id="brandinfo-box" class="box-modal notification-box hide">
