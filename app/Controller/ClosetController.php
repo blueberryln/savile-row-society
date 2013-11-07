@@ -11,6 +11,7 @@ class ClosetController extends AppController {
     public $helpers = array('Paginator');
     
     public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20);
     /**
      * Index
      */
@@ -18,12 +19,12 @@ class ClosetController extends AppController {
     function beforeFilter() {
         $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
         
-        if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
-            $this->forceSSL();
-        }  
-        else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
-            $this->unForceSSL();  
-        }
+        //if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
+//            $this->forceSSL();
+//        }  
+//        else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
+//            $this->unForceSSL();  
+//        }
     }
 
     public function forceSSL() {
@@ -510,7 +511,7 @@ class ClosetController extends AppController {
             
             $request_data = $this->request->data['billing'];
             
-            $promo_code = $request_data['promocode'];
+            $promo_code = strtoupper($request_data['promocode']);
             //Arrange Billing data
             $data['User']['first_name'] = $request_data['billfirst_name'];
             $data['User']['last_name'] = $request_data['billlast_name'];
@@ -520,7 +521,6 @@ class ClosetController extends AppController {
             $data['BillingAddress']['state'] = $request_data['billstate'];
             $data['BillingAddress']['country'] = $request_data['billcountry'];
             $data['BillingAddress']['zip'] = $request_data['billzip'];
-            $data['BillingAddress']['fax'] = $request_data['billfax'];
             
             
             // Arrange shipping data
@@ -609,6 +609,9 @@ class ClosetController extends AppController {
             
             //Check if promocode is valid
             $promo_result = false;
+            $discount = false;
+            $discounted_price = 0;
+            $final_price = 0;
             if($promo_code != ""){
                 $promo_result = $this->validate_promo_code($promo_code, true);    
             }
@@ -616,7 +619,11 @@ class ClosetController extends AppController {
             if($promo_result){
                 if($promo_result['status']=="ok"){
                     $discount = $promo_result['amount'];  
-                         
+                    $discounted_price = $total_price - $discount;
+                    if($request_total_price != $discounted_price){
+                        $error_cart = true;
+                    }    
+                    $final_price = $discounted_price;
                 }   
                 else{
                     $this->Session->setFlash(__('The promo code used is not valid.'), 'flash');
@@ -627,6 +634,7 @@ class ClosetController extends AppController {
                 if($request_total_price != $total_price){
                     $error_cart = true;
                 }    
+                $final_price = $total_price;
             }
 
             
@@ -643,7 +651,12 @@ class ClosetController extends AppController {
             }
             
             //Add order
-            $order_id = $this->addOrder($cart_list, $total_price);
+            if($discount){
+                $order_id = $this->addOrder($cart_list, $total_price, $promo_code, $discount, $discounted_price);
+            }
+            else{
+                $order_id = $this->addOrder($cart_list, $total_price);
+            }
             
             //Add shipping address
             $data['ShippingAddress']['order_id'] = $order_id;
@@ -659,7 +672,7 @@ class ClosetController extends AppController {
             $transaction_data['card_num'] = $user_transaction_detail['CreditCard']['cardnumber'];
             $transaction_data['card_code'] = $user_transaction_detail['CreditCard']['cardcode'];
             $transaction_data['card_expiry'] = $user_transaction_detail['CreditCard']['expiry_month'] . $user_transaction_detail['CreditCard']['expiry_year'];
-            $transaction_data['total'] = $total_price;
+            $transaction_data['total'] = $final_price;
             $transaction_data['order_id'] = $order_id;
             $transaction_data['user_id'] = $user_id;
             
@@ -732,7 +745,7 @@ class ClosetController extends AppController {
         $transaction_data = false;
         if($this->Session->check('transaction_complete')){
             $transaction_complete = $this->Session->read('transaction_complete');
-            //$this->Session->delete('transaction_complete');
+            $this->Session->delete('transaction_complete');
             
             if($transaction_complete == "success"){
                 $transaction_data = $this->Session->read('transaction_data');
@@ -769,17 +782,24 @@ class ClosetController extends AppController {
         
     }
     
-    public function addOrder($cart_items, $total_price){
+    public function addOrder($cart_items, $total_price, $promo_code = false, $discount = false, $discounted_price = false){
         $user_id = $this->getLoggedUserID();
         $data = array();
         if($user_id){
             $transaction_error = false;
             $data['Order']['orderid'] = uniqid();
             $data['Order']['user_id'] = $user_id;  
-            $data['Order']['total_price'] = $total_price; 
+            $data['Order']['total_price'] = $total_price;
+            $data['Order']['final_price'] = $total_price; 
             $data['Order']['paid'] = 0;    
             $data['Order']['confirmed'] = 0;
             $data['Order']['shipped'] = 0;  
+            
+            if($promo_code != false){
+                $data['Order']['final_price'] = $discounted_price; 
+                $data['Order']['promo_discount'] = $discount;
+                $data['Order']['promo_code'] = $promo_code;   
+            }
            
             $Order = ClassRegistry::init('Order');
             $Order->create();
@@ -970,7 +990,7 @@ class ClosetController extends AppController {
                 else{
                     $ret['status'] = "ok";
                     $ret['info'] = "valid"; 
-                    $ret['amount'] = 20;   
+                    $ret['amount'] = $this->promoCodesAmount[$code];   
                 }
             }
             else{

@@ -163,24 +163,45 @@ $script = '
     $("#apply-promo").on("click", function(e){
         e.preventDefault();  
         var promoCode = $("#promocode").val();  
-        $.ajax({
-            url: "' . Router::url('/', true) . 'closet/validate_promo_code/" + promoCode,
-            type: "POST",
-            data: {},
-            success: function(data){
-                var ret = $.parseJSON(data);
-                if(ret["status"] == "ok"){
-                    var discount = parseFloat(ret["amount"]).toFixed(2);
-                    var total = parseFloat($(".cart-total").text().substr(1));
-                    total = parseFloat(total-discount).toFixed(2);
-                    $(".cart-discount").text("$" + discount);     
-                    $(".cart-total").text("$" + total);        
+        if(promoCode != ""){
+            $.ajax({
+                url: "' . Router::url('/', true) . 'closet/validate_promo_code/" + promoCode,
+                type: "POST",
+                data: {},
+                success: function(data){
+                    var ret = $.parseJSON(data);
+                    if(ret["status"] == "ok"){
+                        var discount = parseFloat(ret["amount"]).toFixed(2);
+                        var total = parseFloat($(".cart-total").text().substr(1));
+                        total = parseFloat(total-discount).toFixed(2);
+                        $(".cart-discount").text("$" + discount);     
+                        $(".cart-total").text("$" + total);  
+                        $("#checkout-total-price").val(total);      
+                    }
+                    else if(ret["status"] == "error"){ 
+                        if(ret["info"] == "login"){
+                            location = "' . $this->webroot . '";
+                        }
+                        else if(ret["info"] == "used"){
+                            var notificationDetails = new Array();
+                            notificationDetails["msg"] = "You have already used this promo code.";
+                            showNotification(notificationDetails, true);
+                        }
+                        else if(ret["info"] == "invalid"){
+                            var notificationDetails = new Array();
+                            notificationDetails["msg"] = "Sorry! Invalid Promo Code.";
+                            showNotification(notificationDetails, true);
+                        }
+                        else if(ret["info"] == "null"){
+                            var notificationDetails = new Array();
+                            notificationDetails["msg"] = "Sorry! Invalid Promo Code.";
+                            showNotification(notificationDetails, true);
+                        }
+                        $("#promocode").val(""); 
+                    }
                 }
-                else if(ret["status"] == "error"){
-                    $("#promocode").val("");    
-                }
-            }
-        });
+            });
+        }
     });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -290,7 +311,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                 </tbody>
             </table>
             <input type="hidden" name="checkout-cart-id" value="<?php echo $cart_id; ?>" />
-            <input type="hidden" name="checkout-total-price" value="<?php echo $total_price; ?>" />
+            <input type="hidden" name="checkout-total-price" id="checkout-total-price"  value="<?php echo $total_price; ?>" />
         <?php endif; ?>
         <div class="clear"></div>
     </div>
@@ -349,8 +370,6 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
 
     <div class="sixteen columns text-center">
         <h1 class="sub">BILLING INFORMATION</h1>
-        
-        <h6 class="three columns offset-by-two alpha omega text-left">Customer ID: 159</h6>
     </div> 
             
     <div class="contact-container billing-shipping" id="billing-data">
@@ -390,12 +409,6 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                         <option value="USA">USA</option>
                         <option value="CAN">CANADA</option>
                     </select>
-                </div>
-
-                <div class="input text required">
-                    <?php
-                        echo $this->Form->input('billfax', array('label'=>'FAX', 'id'=>'billFax', 'tabindex'=>'15', 'maxlength'=>'45'));
-                    ?>
                 </div>
             </div>
     	</div>
