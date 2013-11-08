@@ -470,7 +470,6 @@ class ClosetController extends AppController {
             //Blank values
             $data['billing']['billstate'] = "";
             $data['billing']['billcity'] = "";
-            $data['billing']['billfax'] = "";
             $data['billing']['billcompany'] = "";
             $data['billing']['billaddress'] = "";
             $data['billing']['billzip'] = "";
@@ -479,7 +478,6 @@ class ClosetController extends AppController {
             if($address){
                 $data['billing']['billstate'] = $address['BillingAddress']['state'];
                 $data['billing']['billcity'] = $address['BillingAddress']['city'];
-                $data['billing']['billfax'] = $address['BillingAddress']['fax'];
                 $data['billing']['billcompany'] = $address['BillingAddress']['company'];
                 $data['billing']['billaddress'] = $address['BillingAddress']['address'];
                 $data['billing']['billzip'] = $address['BillingAddress']['zip'];

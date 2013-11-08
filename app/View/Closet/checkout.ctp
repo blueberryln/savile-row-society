@@ -160,11 +160,26 @@ $script = '
             }
         });
     });
+    
+    //Action event on click on the remove promo code link
+    $(".remove-pc").on("click", function(e){
+        e.preventDefault();
+        
+        $("#promocode").val("");
+        $(this).fadeOut();    
+        $("#promocode").removeAttr("readonly");              
+        $(".cart-discount").text("$0.00");  
+        var total = $("#checkout-initial-price").val();
+        total = parseFloat(total).toFixed(2);
+        $(".cart-total").text("$" + total);
+        $("#checkout-total-price").val(total); 
+    });
+    
     $("#apply-promo").on("click", function(e){
         e.preventDefault();  
         var promoCode = $("#promocode").val(); 
         var is_editable = true;
-        if($("#promocode").attr("readonly") == "readonly" && $("#promocode").attr("disabled") == "disabled"){
+        if($("#promocode").attr("readonly") == "readonly"){
             is_editable = false;   
         }
         
@@ -182,10 +197,11 @@ $script = '
                         $(".cart-discount").text("$" + discount);     
                         $(".cart-total").text("$" + total);  
                         $("#checkout-total-price").val(total);
-                        $("#promocode").attr({"readonly":"readonly", "disabled":"disabled"});     
+                        $("#promocode").attr({"readonly":"readonly"});     
                         var notificationDetails = new Array();
                         notificationDetails["msg"] = "Promo Code has been applied successfully.";
                         showNotification(notificationDetails, true); 
+                        $(".remove-pc").fadeIn().removeClass("hide");
                     }
                     else if(ret["status"] == "error"){ 
                         $(".cart-discount").text("$0.00");  
@@ -305,14 +321,13 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                 echo $this->Form->input('promocode', array('div'=> false, 'label'=> false, 'id'=>'promocode', 'style' => 'letter-spacing:1px;', 'autocomplete' => 'off', 'placeholder' => 'Promo Code'));
                                             ?>
                                        </div>
-                                       <a href="" class="remove-pc">Remove Promo Code</a>                    
+                                       <a href="" class="remove-pc hide">Remove Promo Code</a>                    
                                     </div>
                                 </div>
-                                <div class="srs-form columns four omega">
+                                <div class="srs-form columns two omega">
                                     <div class="form">
                                         <div class="input text" style="margin-bottom: 0;">
-                                            <a href="#" id="apply-promo" class="link-btn black-btn" style="padding: 7px 15px; margin: 0; width: auto; ">Apply</a>
-                                            <!--a href="" class="remove-pc">Remove Promo Code</a-->
+                                            <a href="#" id="apply-promo" class="link-btn black-btn " style="padding: 7px 15px; margin: 0; width: auto; ">Apply</a>
                                         </div>                   
                                     </div>
                                 </div>
