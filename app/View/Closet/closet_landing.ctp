@@ -267,7 +267,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         </ul>
                     </li>
                 </ul>
-            </div>
+            </div><br />
         </div>
         <div class="twelve columns omega product-listing">
             <div class="product-top-offset"></div>

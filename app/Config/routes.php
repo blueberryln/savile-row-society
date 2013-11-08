@@ -33,8 +33,8 @@ Router::connect('/signout', array('controller' => 'users', 'action' => 'signout'
 Router::connect('/forgot', array('controller' => 'users', 'action' => 'forgot'));
 Router::connect('/reset/*', array('controller' => 'users', 'action' => 'reset'));
 Router::connect('/myprofile/*', array('controller' => 'users', 'action' => 'edit'));
-Router::connect('/closet/liked/*', array('controller' => 'closet', 'action' => 'liked'));
-Router::connect('/closet/purchased/*', array('controller' => 'closet', 'action' => 'purchased'));
+Router::connect('/mycloset/liked/*', array('controller' => 'closet', 'action' => 'liked'));
+Router::connect('/mycloset/purchased/*', array('controller' => 'closet', 'action' => 'purchased'));
 Router::connect('/closet/validatecard/*', array('controller' => 'closet', 'action' => 'validatecard'));
 Router::connect('/closet/validate_promo_code/*', array('controller' => 'closet', 'action' => 'validate_promo_code'));
 Router::connect('/closet/*', array('controller' => 'closet', 'action' => 'index'));
@@ -83,11 +83,7 @@ Router::connect('/faq', array('controller' => 'pages', 'action' => 'display', 'f
 /**
  * New pages for closet
  */
-Router::connect('/detail', array('controller' => 'pages', 'action' => 'display', 'detail'));
-Router::connect('/mycart', array('controller' => 'pages', 'action' => 'display', 'mycart'));
-Router::connect('/finalizing', array('controller' => 'pages', 'action' => 'display', 'finalizing'));
-Router::connect('/style', array('controller' => 'pages', 'action' => 'display', 'style'));
-Router::connect('/billing', array('controller' => 'pages', 'action' => 'display', 'billing'));
+Router::connect('/temp', array('controller' => 'pages', 'action' => 'display', 'temp'));
 
 /**
  * Load all plugin routes.  See the CakePlugin documentation on

@@ -34,8 +34,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
     </div>
         <div class="fifteen columns offset-by-half product-listing">
             <div class="mycloset-tabs text-center">
-                <a href="<?php echo $this->webroot . 'closet/liked/' . $user_id; ?>" class="link-btn gray-btn">Liked Items</a>
-                <a href="<?php echo $this->webroot . 'closet/purchased/' . $user_id; ?>" class="link-btn gold-btn">Purchased Items</a>
+                <a href="<?php echo $this->webroot . 'mycloset/liked/' . $user_id; ?>" class="link-btn gray-btn">Liked Items</a>
+                <a href="<?php echo $this->webroot . 'mycloset/purchased/' . $user_id; ?>" class="link-btn gold-btn">Purchased Items</a>
             </div>
             <?php if ($purchased_list) : ?>
                 <?php foreach ($purchased_list as $item) : ?>
@@ -91,6 +91,6 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                 echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
                 echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
                 ?>
-            </div>
+            </div><br />
         
 </div>

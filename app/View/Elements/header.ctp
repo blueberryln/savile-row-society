@@ -3,13 +3,13 @@ $script = '
 $(document).ready(function(){
 
     var url = window.location.href;
-    if(url.indexOf("closet") != -1){
+    if(url.indexOf("/closet") != -1){
         $(".underline1").css("border-bottom","1px solid #ffffff");
     }
-    else if(url.indexOf("stylist") != -1){
+    else if(url.indexOf("/stylist") != -1){
         $(".underline2").css("border-bottom","1px solid #ffffff");
     }
-    else if(url.indexOf("booking") != -1){
+    else if(url.indexOf("/booking") != -1){
         $(".underline3").css("border-bottom","1px solid #ffffff");
     }
 });
@@ -78,7 +78,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                 <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                             <?php endif; ?>
                             <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>closet/liked" class="headerMenu">My Closet</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>mycloset/liked" class="headerMenu">My Closet</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu">Profile</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
                         </ul>

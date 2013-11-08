@@ -64,10 +64,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             </div>  
         </div>
         <div class="clear"></div>
-        <div class="profile text-center" >
-            <br />
-            <a class="link-btn black-btn submit-profile" href="">SUBMIT</a>
-            <br /><br /><br /><br />
+        <div class="profile text-center" >            
+            <a class="link-btn black-btn submit-profile" href="">SUBMIT</a>            
         </div>
     </div>
     <?php echo $this->Form->end(); ?>

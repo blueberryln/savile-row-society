@@ -3276,6 +3276,7 @@ select#quantity
 }
 
 .profile .link-btn {
+    margin-bottom: 16px;
     margin-top:30px;
     text-align: center;
     padding-left: 40px;
@@ -3285,7 +3286,7 @@ select#quantity
 
 .profile-tabs
 {
-    margin: 20px 0 40px 0;
+    margin: 0 0 40px 0;
 }
 
 .profile-tabs a
@@ -4187,7 +4188,16 @@ div.payment .profile-tabs
     text-transform: capitalize;
 }
 
-
+.submit-profile{
+    margin-bottom: 20px;
+}
+.closet-sorry{
+    margin-top: 50px;
+}
+.closet-sorry h5,.closet-sorry h4{
+    color:#9C9C9C !important;
+    text-align: center;
+}
 
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
@@ -4196,8 +4206,7 @@ div.payment .profile-tabs
      {
         margin-bottom:10px !important;
      }
-    .header .menu li
-     {
+    .header .menu li{
         border-left: none;
      }
     

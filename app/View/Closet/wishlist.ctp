@@ -36,8 +36,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
     </div>
         <div class="fifteen columns offset-by-half product-listing">
             <div class="mycloset-tabs text-center">
-                <a href="<?php echo $this->webroot . 'closet/liked/' . $user_id; ?>" class="link-btn gold-btn">Liked Items</a>
-                <a href="<?php echo $this->webroot . 'closet/purchased/' . $user_id; ?>" class="link-btn gray-btn">Purchased Items</a>
+                <a href="<?php echo $this->webroot . 'mycloset/liked/' . $user_id; ?>" class="link-btn gold-btn">Liked Items</a>
+                <a href="<?php echo $this->webroot . 'mycloset/purchased/' . $user_id; ?>" class="link-btn gray-btn">Purchased Items</a>
             </div>
             <?php if ($wishlists) : ?>
                 <?php foreach ($wishlists as $item) : ?>
@@ -86,8 +86,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
             </div>
             <div class="text-center">
                 <br />
-                <a href="<?php echo $this->webroot . 'closet'; ?>" class="link-btn gold-btn continue-shopping">CONTINUE BROWSING</a>
-            </div>
+                <a href="<?php echo $this->webroot . 'closet'; ?>" class="link-btn gold-btn continue-shopping">CONTINUE BROWSING</a>                
+            </div><br />
         </div>
         <div class="clear"></div>
         

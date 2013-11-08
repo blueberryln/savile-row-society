@@ -37,10 +37,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>  
         </div>
         <div class="clear"></div>
-        <div class="profile text-center" >
-            <br />
+        <div class="profile text-center" >            
             <a class="link-btn black-btn" href="<?php echo $this->webroot . 'myprofile/edit'?>">EDIT PROFILE</a>
-            <br /><br /><br /><br />
+            <br />
         </div>
     </div>
     <?php echo $this->Form->end(); ?>

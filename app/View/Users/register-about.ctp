@@ -61,7 +61,8 @@
 
         <div class="text-center about-submit">
             <br/>
-            <?php echo $this->Form->end(__('Continue')); ?>            
+            <?php echo $this->Form->end(__('Continue')); ?>     
+            <br />       
         </div>
         
     </div>

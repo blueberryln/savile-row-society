@@ -314,7 +314,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
-                <h5 class="text-center">Sorry! No products are available for this category.</h5>
+            <div class="closet-sorry">
+                <h4 class="text-center">SORRY!</h4> 
+                <h5>There are no products available for this category.</h5>            
+            </div>                
             <?php endif; ?>
             <div class="clear"></div>
             <div class="pagination">
