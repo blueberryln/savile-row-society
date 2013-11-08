@@ -59,7 +59,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
                     </tr>
                     <tr class="user-data-row">
-                        <td colspan="9" style="border: none; padding: 0px;">
+                        <td colspan="10" style="border: none; padding: 0px;">
                             <div class="hide">
                                 <table  style="float:left; width: 470px; border-bottom: 1px solid #cccccc;background-color: #E0E0E0;">
 
