@@ -35,7 +35,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <th><?php echo $this->Paginator->sort('location');?></th>
                     <th><?php echo $this->Paginator->sort('zip');?></th>
                     <th><?php echo $this->Paginator->sort('personal shopper'); ?></th>
-                    <th><?php echo $this->Paginator->sort('$ spent'); ?></th>
                     <th><?php echo $this->Paginator->sort('created'); ?></th>
                     <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
@@ -49,7 +48,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         <td><?php echo h($user['User']['location']); ?>&nbsp;</td>
                         <td><?php echo h($user['User']['zip']); ?>&nbsp;</td>
                         <td><?php echo h($user['User']['personal_shopper']); ?>&nbsp;</td>
-                        <td><?php echo h($user['0']['spent']);?></td>
                         <td><?php echo $this->Time->timeAgoInWords($user['User']['created'], array('F jS, Y H:i')); ?>&nbsp;</td>
                         <td class="actions">
                             <a target="_blank" href="<?php echo $this->webroot; ?>messages/index/<?php echo $user['User']['id']; ?>">Chat</a>
@@ -59,7 +57,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
                     </tr>
                     <tr class="user-data-row">
-                        <td colspan="10" style="border: none; padding: 0px;">
+                        <td colspan="9" style="border: none; padding: 0px;">
                             <div class="hide">
                                 <table  style="float:left; width: 470px; border-bottom: 1px solid #cccccc;background-color: #E0E0E0;">
 
@@ -151,6 +149,21 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                                 echo h($user['User']['industry']);
                                             }
                                             ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Is Completed:</td>
+                                        <td>
+                                            <?php
+                                            $preference = unserialize($user['User']['preferences']);
+                                            if(!isset($preference['UserPreference']['is_complete'])|| $user['User']['industry']==""){
+                                                echo 'N/A';
+                                            }
+                                            else{
+                                                echo h($preference['UserPreference']['is_complete']);
+                                            }
+                                            ?>
+
                                         </td>
                                     </tr>
 
@@ -245,6 +258,10 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             }
                                             ?>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
                                     </tr>
 
 

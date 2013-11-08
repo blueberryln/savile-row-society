@@ -4126,6 +4126,35 @@ p.brand-title
 }
 
 
+/********Lookbook*******/
+ul.ls-img-list li
+{
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 0;
+    margin:12px 20px 12px 0;
+}
+ul.ls-img-list li.last
+{
+    display: inline-block;
+    margin-right: 20px;
+}
+#lifestyle.box-modal
+{
+    width:1030px;
+}
+#lifestyle .box-modal-inside{
+    padding:35px 25px;
+}
+#lifestyle .notification-close{
+    width: 23px;
+    height: 26px;
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    display: block;
+    background: url('../img/close-popup-big.jpg') no-repeat center center;
+}
 /********STYLE other*********/
 .faq-title
 {
@@ -4198,7 +4227,6 @@ div.payment .profile-tabs
     color:#9C9C9C !important;
     text-align: center;
 }
-
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     

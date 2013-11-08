@@ -1,4 +1,11 @@
 <?php
+
+$script =' 
+$(document).ready(function(){
+    $.blockUI({message: $("#lifestyle"),css:{top:"140px", left:"12%"}});
+});
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $meta_description = 'As finance, technology, and marketing professionals, we know that it’s possible for men to raise their standing—due in part to the way in which they style themselves.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
@@ -97,7 +104,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div>FAVORITE CITY: Venice</div>
                     </div>
                     <div>
-                        <iframe class="max-width-adj" width="460" height="315" src="//www.youtube.com/embed/ZIeZdN1rYAQ?rel=0" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
                     </div>
                 </div>
@@ -135,8 +141,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div>BAG: Givenchy</div>
                         <div>FAVORITE CITY: Paris</div>
                     </div>
-                    <div>
-                        <iframe class="max-width-adj" width="460" height="315" src="//www.youtube.com/embed/VlLYFFr7dU8?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <div>                        
                         <br /><br />
                     </div>
                 </div>
@@ -210,5 +215,19 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>
         </div>
          
+    </div>
+</div>
+
+
+<div id="lifestyle" class="box-modal notification-box">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="life-style">
+            <ul class="ls-img-list">
+                <li><img src="<?php echo $this->request->webroot; ?>img/1.jpg" class="fadein-image max-width-adj" /></li>
+                <li><img src="<?php echo $this->request->webroot; ?>img/2.jpg" class="fadein-image max-width-adj" /></li>
+                <li class="last"><img src="<?php echo $this->request->webroot; ?>img/3.jpg" class="fadein-image max-width-adj" /></li>
+            </ul>            
+        </div> 
     </div>
 </div>

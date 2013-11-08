@@ -212,19 +212,3 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
          
     </div>
 </div>
-
-<div id="brandinfo-box" class="box-modal notification-box hide">
-    <div class="box-modal-inside">
-        <a class="notification-close" href=""></a>
-        <div class="brand-info">
-            <div class="brand-logo"><img src="" class="fadein-image" alt="Bernard Zins" /></div>  
-            <div class="notification-msg">
-                <p class="brand-title"></p>
-                <p class="brand-desc">
-                </p>  
-            </div>
-            <a href="" class="link-btn black-btn brand-btn">see products</a> 
-             
-        </div> 
-    </div>
-</div>

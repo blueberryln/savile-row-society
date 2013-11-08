@@ -90,7 +90,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <div class="box-modal-inside">
         <a class="notification-close" href=""></a>
         <div class="brand-info">
-            <div class="brand-logo"><img src="" class="fadein-image" alt="Bernard Zins" /></div>  
+            <div class="brand-logo"><img src="" class="fadein-image" alt="" /></div>  
             <div class="notification-msg">
                 <p class="brand-title"></p>
                 <p class="brand-desc">
