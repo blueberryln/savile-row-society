@@ -38,7 +38,16 @@ class CartItem extends AppModel {
         )
     );
     
-
+    
+    /**
+     * Get a single cart item id based on cart id and the product_entity_id
+     */
+    function getCartItemByCart($cart_id, $entity_id){
+        return $this->find('first', array(
+            'conditions' => array('CartItem.cart_id' => $cart_id, 'CartItem.product_entity_id' => $entity_id), 
+        ));
+    }
+    
     function getCartItems($cart_id){
         return $this->find('count', array(
             'conditions' => array('CartItem.cart_id' => $cart_id)

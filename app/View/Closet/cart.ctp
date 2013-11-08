@@ -121,7 +121,14 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 <?php endif; ?>
                             </td>
                             <td class="text-center"><?php //echo $item['CartItem']['quantity']; ?>
-                                <?php echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range(1,10), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1)); ?>    
+                                <?php
+                                    $min_quantity = 1;
+                                    $max_quantity = 10;
+                                    if($item['CartItem']['quantity'] >= 10){
+                                        $max_quantity = $item['CartItem']['quantity'];   
+                                    } 
+                                    echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range($min_quantity,$max_quantity), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1)); 
+                                ?>    
                             </td>
                             <td class="text-center"><?php echo $this->Number->currency($item['Entity']['price']); ?></td>
                             <td class="text-center item-price"><?php echo $this->Number->currency($item['Entity']['price'] * $item['CartItem']['quantity']); ?></td>
