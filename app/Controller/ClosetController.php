@@ -743,6 +743,16 @@ class ClosetController extends AppController {
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($shipped_order['User']['email']);
+                    $email->subject('Purchase Complete.');
+                    $email->template('purchased');
+                    $email->emailFormat('html');
+                    $email->viewVars(compact('shipped_order'));
+                    $email->send();
+                    
+                    
+                    $email = new CakeEmail('default');
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->to($shipped_order['User']['email']);
                     $email->subject('Your order transaction is complete.');
                     $email->template('order_confirmation');
                     $email->emailFormat('html');

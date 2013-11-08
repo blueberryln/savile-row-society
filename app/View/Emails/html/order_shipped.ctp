@@ -45,10 +45,13 @@
                                			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $this->Number->format($item['quantity'] * $item['price'], array('places' => 2, 'before' => '$')); ?></td>	
                                		</tr>
                                 <?php endforeach; ?>
-                                
+                                <tr>
+                           			<td colspan="3" style="text-align: left; font-weight: bold; background-color: #000; color: #eee; border-bottom: 1px solid #444; border-right: 1px solid #444;">(-)Discount</td>
+                           			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $this->Number->format($shipped_order['Order']['discount'], array('places' => 2, 'before' => '$')); ?></td>	
+                           		</tr>
                            		<tr>
                            			<td colspan="3" style="text-align: left; font-weight: bold; background-color: #000; color: #eee; border-bottom: 1px solid #444; border-right: 1px solid #444;">Total</td>
-                           			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $this->Number->format($shipped_order['Order']['total_price'], array('places' => 2, 'before' => '$')); ?></td>	
+                           			<td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $this->Number->format($shipped_order['Order']['final_price'], array('places' => 2, 'before' => '$')); ?></td>	
                            		</tr>
                            	</table>
                             
