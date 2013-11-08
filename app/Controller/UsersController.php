@@ -881,8 +881,7 @@ class UsersController extends AppController {
         );
         $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
         $users = $this->Paginator->paginate();
-        $this->set('users');
-        $this->set(compact('stylists'));
+        $this->set(compact('stylists','users'));
     }
     
     /**
