@@ -18,6 +18,7 @@ $(document).ready(function(){
                     var ret = $.parseJSON(data);
                     if(ret["status"] == "ok"){
                         $this.addClass("liked");
+                        $this.closest(".chat-container").find(".thumbs-down").removeClass("disliked");
                     }
                     
                     if(ret["profile_status"] == "incomplete"){
@@ -51,6 +52,7 @@ $(document).ready(function(){
                     var ret = $.parseJSON(data);
                     if(ret["status"] == "ok"){
                         $this.addClass("disliked");
+                        $this.closest(".chat-container").find(".thumbs-up").removeClass("liked");
                     }
                     //var notificationDetails = new Array();
                     //notificationDetails["msg"] = ret["msg"];

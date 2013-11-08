@@ -13,6 +13,7 @@ if($user_id){
                         var ret = $.parseJSON(data);
                         if(ret["status"] == "ok"){
                             $this.addClass("liked");
+                            $this.closest(".product-list-links").find(".thumbs-down").removeClass("disliked");
                         }
                         
                         if(ret["profile_status"] == "incomplete"){
@@ -47,10 +48,8 @@ if($user_id){
                         var ret = $.parseJSON(data);
                         if(ret["status"] == "ok"){
                             $this.addClass("disliked");
+                            $this.closest(".product-list-links").find(".thumbs-up").removeClass("liked");
                         }
-                        //var notificationDetails = new Array();
-                        //notificationDetails["msg"] = ret["msg"];
-                        //showNotification(notificationDetails, true);
                     }
                 );
             }
@@ -61,9 +60,6 @@ if($user_id){
                         if(ret["status"] == "ok"){
                             $this.removeClass("disliked");
                         }
-                        //var notificationDetails = new Array();
-                        //notificationDetails["msg"] = ret["msg"];
-                        //showNotification(notificationDetails, true);
                     }
                 );
             }

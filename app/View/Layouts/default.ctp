@@ -1,5 +1,5 @@
 <?php
-if(isset($profilePopup) && $profilePopup['completeProfile']){
+if(isset($profilePopup) && $profilePopup['completeProfile'] && ($this->params['controller'] != 'closet' || ($this->params['controller'] == 'closet' && $this->params['action'] != 'index'))){
     $profileLinkScript = '';
     if(isset($profilePopup['isProfile']) && $profilePopup['isProfile']){
         $profileLinkScript = '
@@ -354,8 +354,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile']){
                     $(".notification-buttons").html(notificationDetails['button']);
                 }
                 if(isFade){
-                    //$.blockUI({message: $('#notification-box'), timeout: 3000});
-                    $.blockUI({message: $('#notification-box')});
+                    $.blockUI({message: $('#notification-box'), timeout: 3000});
                 }
                 else{
                     $.blockUI({message: $('#notification-box')});

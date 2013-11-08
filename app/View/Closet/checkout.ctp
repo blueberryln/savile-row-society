@@ -162,8 +162,13 @@ $script = '
     });
     $("#apply-promo").on("click", function(e){
         e.preventDefault();  
-        var promoCode = $("#promocode").val();  
-        if(promoCode != ""){
+        var promoCode = $("#promocode").val(); 
+        var is_editable = true;
+        if($("#promocode").attr("readonly") == "readonly" && $("#promocode").attr("disabled") == "disabled"){
+            is_editable = false;   
+        }
+        
+        if(promoCode != "" && is_editable){
             $.ajax({
                 url: "' . Router::url('/', true) . 'closet/validate_promo_code/" + promoCode,
                 type: "POST",
@@ -172,13 +177,23 @@ $script = '
                     var ret = $.parseJSON(data);
                     if(ret["status"] == "ok"){
                         var discount = parseFloat(ret["amount"]).toFixed(2);
-                        var total = parseFloat($(".cart-total").text().substr(1));
+                        var total = $("#checkout-initial-price").val();
                         total = parseFloat(total-discount).toFixed(2);
                         $(".cart-discount").text("$" + discount);     
                         $(".cart-total").text("$" + total);  
-                        $("#checkout-total-price").val(total);      
+                        $("#checkout-total-price").val(total);
+                        $("#promocode").attr({"readonly":"readonly", "disabled":"disabled"});     
+                        var notificationDetails = new Array();
+                        notificationDetails["msg"] = "Promo Code has been applied successfully.";
+                        showNotification(notificationDetails, true); 
                     }
                     else if(ret["status"] == "error"){ 
+                        $(".cart-discount").text("$0.00");  
+                        var total = $("#checkout-initial-price").val();
+                        total = parseFloat(total).toFixed(2);
+                        $(".cart-total").text("$" + total);
+                        $("#checkout-total-price").val(total);
+                        
                         if(ret["info"] == "login"){
                             location = "' . $this->webroot . '";
                         }
@@ -296,6 +311,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                     <div class="form">
                                         <div class="input text" style="margin-bottom: 0;">
                                             <a href="#" id="apply-promo" class="link-btn black-btn" style="padding: inherit 15px; margin: 0; width: auto; ">Apply</a>
+                                            <a href="">Remove Promo Code</a>
                                         </div>                   
                                     </div>
                                 </div>
@@ -311,6 +327,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                 </tbody>
             </table>
             <input type="hidden" name="checkout-cart-id" value="<?php echo $cart_id; ?>" />
+            <input type="hidden" name="checkout-initial-price" id="checkout-initial-price"  value="<?php echo $total_price; ?>" />
             <input type="hidden" name="checkout-total-price" id="checkout-total-price"  value="<?php echo $total_price; ?>" />
         <?php endif; ?>
         <div class="clear"></div>

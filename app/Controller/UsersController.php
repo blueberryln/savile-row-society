@@ -345,9 +345,9 @@ class UsersController extends AppController {
                 $user['User']['profile_photo_url'] = $image;
             }
             
-            if ($res = $this->User->save($user)) {
+            if ($this->User->save($user)) {
                 $result = $this->User->getByID($id);
-                $this->Session->write('user', $result); 
+                $this->Session->write('user', $result);
                 $this->redirect('register/finish/' . $user['User']['id']);
             } else {
                 // TODO: implement error handling
@@ -484,7 +484,7 @@ class UsersController extends AppController {
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
                 $this->set(compact('full_name'));
                 $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : "#";
-                $contact = ($preferences['UserPreference']) ? $preferences['UserPreference']['Contact'] : null;
+                $contact = (isset($preferences['UserPreference']) && isset($preferences['UserPreference']['Contact'])) ? $preferences['UserPreference']['Contact'] : null;
                 $personal_shopper = "";
                 $shopper_email = "";
                 $refer_medium = "";
@@ -506,6 +506,9 @@ class UsersController extends AppController {
 
             case 'finish':
                 $this->isLogged();
+                $user_id = $this->getLoggedUserID();
+                $user = $this->User->getByID($user_id);
+                $this->Session->write('user', $user);
                 $this->render('register-finish');
                 break;
             default:
@@ -573,8 +576,6 @@ class UsersController extends AppController {
                 catch(Exception $e){
                         
                 }
-                
-                $this->Session->setFlash(__('Your account is created.'), 'flash', array('title' => 'Hooray!'));
                 // signin newly registered user
                 // check submitted email and password 
                 $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);

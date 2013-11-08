@@ -33,14 +33,23 @@ class ApiController extends AppController {
         if ($user_id && $param && $param == 'save') {
             $product_id = $this->request->data['product_id'];
 
+            $error = false;
             $Dislike = ClassRegistry::init('Dislike');
             $Like = ClassRegistry::init('Like');
             $dislike = $Dislike->get($user_id, $product_id);
             if($dislike && $dislike['Dislike']['show']){
-                $ret['status'] = "error";
-                $ret['msg'] = 'Item already been disliked.';
+                $dislike['Dislike']['show'] = 0;
+                if($Dislike->save($dislike)){
+                    $error = false;           
+                }
+                else{
+                    $ret['status'] = "error";
+                    $ret['msg'] = 'Item could not be liked.';
+                    $error = true;
+                }    
             }
-            else if($this->request->is('ajax')) {
+            
+            if($this->request->is('ajax') && !$error) {
                 // get posted product id
 
                 $wishlist = $Wishlist->get($user_id, $product_id);
@@ -124,13 +133,21 @@ class ApiController extends AppController {
         if ($user_id && $param && $param == 'save') {
             $product_id = $this->request->data['product_id'];
 
+            $error = false;
             $Wishlist = ClassRegistry::init('Wishlist');
             $wishlist = $Wishlist->get($user_id, $product_id);
             if($wishlist){
-                $ret['status'] = "error";
-                $ret['msg'] = 'Item already been liked.';
+                if($result = $Wishlist->remove($user_id, $product_id)){
+                    $error = false;    
+                }
+                else{
+                    $ret['status'] = "error";
+                    $ret['msg'] = 'Item could not be diliked.';
+                    $error = true;    
+                }
             }
-            elseif ($this->request->is('ajax')) {
+            
+            if ($this->request->is('ajax') && !$error) {
                 // get posted product id
 
                 $dislike = $Dislike->get($user_id, $product_id);

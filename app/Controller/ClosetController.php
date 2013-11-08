@@ -35,7 +35,6 @@ class ClosetController extends AppController {
     }
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
-
         $user_id = $this->getLoggedUserID();
         // init
         $Category = ClassRegistry::init('Category');
