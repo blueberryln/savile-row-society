@@ -865,7 +865,7 @@ class UsersController extends AppController {
         $this->layout = 'admin';
         $this->isAdmin();
         $this->Paginator->settings = array(
-                'fields' => array('User.*','sum(Orders.final_price) spent'),
+                'fields' => array('User.*'),
                 'joins' => array(
                     array('table' => 'messages',
                         'alias' => 'Message',
@@ -874,13 +874,7 @@ class UsersController extends AppController {
                             'User.id = Message.user_from_id'
                         )
                     ),
-                    array('table' => 'orders',
-                        'alias' => 'Orders',
-                        'type' => 'LEFT',
-                        'conditions' => array(
-                            'User.id = Orders.user_id','Orders.paid = 1'
-                        )
-                    ),
+
                 ),
                 'limit' => 20,
                 'group' => array('User.id'),
