@@ -771,7 +771,7 @@ class ClosetController extends AppController {
         $transaction_data = false;
         if($this->Session->check('transaction_complete')){
             $transaction_complete = $this->Session->read('transaction_complete');
-            //$this->Session->delete('transaction_complete');
+            $this->Session->delete('transaction_complete');
             
             if($transaction_complete == "success"){
                 $transaction_data = $this->Session->read('transaction_data');

@@ -33,10 +33,10 @@
                         <td style="border-left: 1px solid #aaa; padding: 3px 8px;"><?php echo $transaction_data['Transaction']['card_type']; ?></td>
                     </tr>
                 </table>
-                <br />  
+                <br />  <br />
+                <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>closet">Go To Closet</a>
         </div>
         <div class="fourteen columns offset-by-one text-justify omega alpha">
-            <br />
             <br />
             <small>If not completely satisfied with your purchase, please email <a href="mailto:returns@Savilerowsociety.com">returns@Savilerowsociety.com</a></small>
         </div>
