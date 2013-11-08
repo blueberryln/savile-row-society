@@ -132,7 +132,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </div>
     <div class="seven columns">
             <div class="seven columns text-justify">
-                <h3><a>Meet Joey Glazer</a></h3>
+                <h3><a id="profile">Meet Joey Glazer</a></h3>
                 <h4><em>MADE TO MEASURE DIRECTOR</em></h4>
                 <p>With 20 years in the industry, Joey Glazer has built a reputation in menswear from brand building and textile development in luxury clothing to dressing top executives. Joey is  drawn to the details of well-made clothing; his  passion is easily recognized.</p>                
                 <div class="long-desc hide">

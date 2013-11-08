@@ -106,7 +106,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <span class="stylist-name">Your Personal Stylist</span>
                         </div> 
                     <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?> 
-                        <div id="user-name"><a href="<?php echo $this->webroot; ?>booking"><?php echo $client_user['User']['full_name']; ?></a><br />
+                        <div id="user-name"><a href="<?php echo $this->webroot; ?>booking#profile"><?php echo $client_user['User']['full_name']; ?></a><br />
                             <span class="stylist-name">Your Personal Stylist</span>
                         </div> 
                     <?php else : ?>
@@ -121,7 +121,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
                 <input type='button' value="CASEY'S PROFILE" class='my-profile' data-redirect="stylist" />   
             <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?>
-                <input type='button' value="JOEY'S PROFILE" class='my-profile' data-redirect="booking" /> 
+                <input type='button' value="JOEY'S PROFILE" class='my-profile' data-redirect="booking#profile" /> 
             <?php endif; ?>     
         </div>
         <div class="ten columns aplha stylist-talk">
