@@ -71,6 +71,7 @@ if($user_id){
 }
 
 $script = '
+var showGuestLoginPopup= ' . $showGuestLoginPopup . ';
 $(document).ready(function(){    
     $(".add-to-cart").click(function(e) {
         e.preventDefault();
