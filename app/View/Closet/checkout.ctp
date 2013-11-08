@@ -304,14 +304,15 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                             <?php
                                                 echo $this->Form->input('promocode', array('div'=> false, 'label'=> false, 'id'=>'promocode', 'style' => 'letter-spacing:1px;', 'autocomplete' => 'off', 'placeholder' => 'Promo Code'));
                                             ?>
-                                       </div>                    
+                                       </div>
+                                       <a href="" class="remove-pc">Remove Promo Code</a>                    
                                     </div>
                                 </div>
-                                <div class="srs-form columns three omega">
+                                <div class="srs-form columns four omega">
                                     <div class="form">
                                         <div class="input text" style="margin-bottom: 0;">
-                                            <a href="#" id="apply-promo" class="link-btn black-btn" style="padding: inherit 15px; margin: 0; width: auto; ">Apply</a>
-                                            <a href="">Remove Promo Code</a>
+                                            <a href="#" id="apply-promo" class="link-btn black-btn" style="padding: 7px 15px; margin: 0; width: auto; ">Apply</a>
+                                            <!--a href="" class="remove-pc">Remove Promo Code</a-->
                                         </div>                   
                                     </div>
                                 </div>
@@ -472,7 +473,6 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
         <h6 class="ten columns offset-by-two alpha omega text-left"><?php echo $this->Form->checkbox('copybilling', array('label' => false, 'type' => 'checkbox','tabindex'=>'16', 'class' => 'copy-billing-info', 'style' => 'width: auto;' )); ?> Same as Billing Information</h6>
     </div>
     <div class="clear"></div>
-    <br>
     <div class="contact-container billing-shipping shipping-data" id="shipping-data">
         <div class="srs-form columns five offset-by-two omega">
             <div class="form">
@@ -539,5 +539,5 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
     </div>
     <?php echo $this->Form->end(); ?>
     
-    <br /><br /><br />
+    
 </div>

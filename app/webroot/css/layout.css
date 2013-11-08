@@ -3376,7 +3376,7 @@ a.remove-cart-item img
 .divider
 {
     border-top:1px solid #DEDEDE;
-    margin: 20px 0 30px 70px !important;
+    margin: 0 0 0 70px !important;
 }
 
 div.card-number div.input
@@ -4175,7 +4175,17 @@ span.sort-selected{
     margin-bottom: 5px;
 }
 
+div.payment .profile-tabs
+{
+    margin-top: 0;
+    margin-bottom: 15px;
+}
 
+.remove-pc{
+    color: #FF0000 !important;
+    font-size: 12px;   
+    text-transform: capitalize;
+}
 
 
 
