@@ -15,7 +15,7 @@ class ClosetController extends AppController {
     /**
      * Index
      */
-     
+
     function beforeFilter() {
         $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
         
@@ -332,9 +332,24 @@ class ClosetController extends AppController {
             if($category['Category']['parent_id']){
                 $parent_category = $Category->findById($category['Category']['parent_id']);
             }
+            //check for 3 times product page open before login
+            static $loggedCount=-1;
+            $loggedUser1 = $this->getLoggedUserID();
+            if($loggedUser1==''){
+                if($loggedCount<3){
+                    $loggedCount++;
+                    $this->Session->write('loggedCount',$loggedCount);
+                    echo $this->Session->read('loggedCount');die;
+                }
+            }
+            else{
+
+            }
+            //print_r($this->Session);die;
+            //echo $this->Session->read('loggedCount');die;
             
             // send data to view
-            $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id'));
+            $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id', 'loggedCount'));
         }
     }
 
