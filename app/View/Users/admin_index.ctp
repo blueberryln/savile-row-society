@@ -35,6 +35,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <th><?php echo $this->Paginator->sort('location');?></th>
                     <th><?php echo $this->Paginator->sort('zip');?></th>
                     <th><?php echo $this->Paginator->sort('personal shopper'); ?></th>
+                    <th><?php echo $this->Paginator->sort('$ spent'); ?></th>
                     <th><?php echo $this->Paginator->sort('created'); ?></th>
                     <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
@@ -48,6 +49,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         <td><?php echo h($user['User']['location']); ?>&nbsp;</td>
                         <td><?php echo h($user['User']['zip']); ?>&nbsp;</td>
                         <td><?php echo h($user['User']['personal_shopper']); ?>&nbsp;</td>
+                        <td><?php echo h($user['0']['spent']);?></td>
                         <td><?php echo $this->Time->timeAgoInWords($user['User']['created'], array('F jS, Y H:i')); ?>&nbsp;</td>
                         <td class="actions">
                             <a target="_blank" href="<?php echo $this->webroot; ?>messages/index/<?php echo $user['User']['id']; ?>">Chat</a>
