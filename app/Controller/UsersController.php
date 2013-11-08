@@ -865,7 +865,7 @@ class UsersController extends AppController {
         $this->layout = 'admin';
         $this->isAdmin();
         $this->Paginator->settings = array(
-                'fields' => array('User.*'),
+                'fields' => array('User.*','sum(Orders.final_price) spent'),
                 'joins' => array(
                     array('table' => 'messages',
                         'alias' => 'Message',
@@ -874,13 +874,20 @@ class UsersController extends AppController {
                             'User.id = Message.user_from_id'
                         )
                     ),
+                    array('table' => 'orders',
+                        'alias' => 'Orders',
+                        'type' => 'LEFT',
+                        'conditions' => array(
+                            'User.id = Orders.user_id','Orders.paid = 1'
+                        )
+                    ),
                 ),
                 'limit' => 20,
                 'group' => array('User.id'),
                 'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
         );
         $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
-        $users = $this->Paginator->paginate();
+        $users = $this->Paginator->paginate();echo '<pre>';print_r($users);die;
         $this->set(compact('stylists','users'));
     }
     
