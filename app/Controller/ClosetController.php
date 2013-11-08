@@ -19,12 +19,12 @@ class ClosetController extends AppController {
     function beforeFilter() {
         $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
         
-        if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
-            $this->forceSSL();
-        }  
-        else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
-            $this->unForceSSL();  
-        }
+        //if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
+//            $this->forceSSL();
+//        }  
+//        else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
+//            $this->unForceSSL();  
+//        }
     }
 
     public function forceSSL() {
@@ -771,7 +771,7 @@ class ClosetController extends AppController {
         $transaction_data = false;
         if($this->Session->check('transaction_complete')){
             $transaction_complete = $this->Session->read('transaction_complete');
-            $this->Session->delete('transaction_complete');
+            //$this->Session->delete('transaction_complete');
             
             if($transaction_complete == "success"){
                 $transaction_data = $this->Session->read('transaction_data');

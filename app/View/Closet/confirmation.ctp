@@ -1,9 +1,14 @@
 <div class="container content inner">	
     <div class="sixteen columns text-center">
         <!--<h1><?php echo $name; ?></h1>-->
-        <div class="error-msg eight columns offset-by-four">
-            <div class="error">
-                <h1>Transaction Summary</h1>
+        <div class="eight columns offset-by-four">
+            <h1>Transaction Summary</h1>
+        </div>
+        <div class="fourteen columns offset-by-one text-justify omega alpha">
+                <p>Thank you for shopping with Savile Row Society and supporting our partnering brands. We are committed to bringing you only the best product made by the most passionate people in the industry. Never hesitate to reach out to your personal stylist, where we make our virtual <a href="<?php echo $this->webroot; ?>closet">CLOSET</a> your reality. We appreciate your patronage and continued support. Thank You.</p>
+                <br />
+        </div>
+        <div class="eight columns offset-by-four">
                 <table border="1" width="100%" style="text-align: left; border: 1px solid #aaa;">
                     <tr>
                         <th style="padding: 3px 8px;">Transaction Status</th>
@@ -28,8 +33,12 @@
                         <td style="border-left: 1px solid #aaa; padding: 3px 8px;"><?php echo $transaction_data['Transaction']['card_type']; ?></td>
                     </tr>
                 </table>
-                <br />
-            </div>       
+                <br />  
+        </div>
+        <div class="fourteen columns offset-by-one text-justify omega alpha">
+            <br />
+            <br />
+            <small>If not completely satisfied with your purchase, please email <a href="mailto:returns@Savilerowsociety.com">returns@Savilerowsociety.com</a></small>
         </div>
     </div>
     
