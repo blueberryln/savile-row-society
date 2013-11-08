@@ -285,15 +285,33 @@ class ApiController extends AppController {
                         unset($data['Cart']['created']);
                         unset($data['Cart']['updated']);
                         $result = $Cart->save($data);
-                        
-                        $data['CartItem']['cart_id'] = $result['Cart']['id'];
                         $cart_id = $result['Cart']['id'];
-                        $CartItem->create();
-                        if($result = $CartItem->save($data)){
-                            $ret['status'] = 'ok';   
+                        
+                        $existing_item = $CartItem->getCartItemByCart($cart_id, $entity_id);
+                        
+                        if($existing_item){
+                            $data['CartItem']['cart_id'] = $cart_id;
+                            
+                            $new_quantity = $data['CartItem']['quantity'];
+                            $existing_item['CartItem']['quantity'] = intval($existing_item['CartItem']['quantity']) + $new_quantity;
+                            
+                            if($result = $CartItem->save($existing_item)){
+                                $ret['status'] = 'ok';    
+                            }
+                            else{
+                                $ret['status'] = 'error';   
+                            }
                         }
                         else{
-                            $ret['status'] = 'error';  
+                            $data['CartItem']['cart_id'] = $result['Cart']['id'];
+                            $cart_id = $result['Cart']['id'];
+                            $CartItem->create();
+                            if($result = $CartItem->save($data)){
+                                $ret['status'] = 'ok';    
+                            }
+                            else{
+                                $ret['status'] = 'error';   
+                            }    
                         }
                     }
                     else{
