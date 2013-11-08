@@ -6,7 +6,6 @@
 
 
 $(document).ready(function(){
-    $(".brand-block").css("display","none");
     $(".brand-link").click(function(){
        // hide all
         $(".brand-block").css("display","none");

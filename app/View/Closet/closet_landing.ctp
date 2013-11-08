@@ -249,7 +249,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         </ul>
                     </li>
                     <li class="toggle-tab"><span class="filter-block">Brand</span>
-                        <ul class="toggle-body brand-filter">
+                        <ul class="toggle-body brand-filter hide">
                         <?php if($brands) : ?>
                             <?php foreach($brands as $brand) : ?>
                                 <li data-brand_id="<?php echo $brand['Brand']['id']; ?>"><?php echo $brand['Brand']['name']; ?></li>
@@ -258,7 +258,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         </ul>
                     </li>
                     <li class="toggle-tab"><span class="filter-block">Color</span>
-                        <ul class="toggle-body color-filter">
+                        <ul class="toggle-body color-filter hide">
                         <?php if($colors) : ?>
                             <?php foreach($colors as $color) : ?>
                                 <li data-color_id="<?php echo $color['Color']['id']; ?>"><?php echo $color['Color']['name']; ?></li>

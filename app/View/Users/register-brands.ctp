@@ -78,9 +78,6 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
                             $("#polos_tees-brands input:checkbox#" +  id).prop("checked", true);   
                         }
                     });
-                    //$("#polos_tees-brands > ol > li:contains(\"" + brands.polos_tees[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-//                    var id = $("#polos_tees-brands > ol > li:contains(\"" + brands.polos_tees[i]  + "\")").data("id");
-//                    $("#polos_tees-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
             if(brands.shirts){
@@ -92,10 +89,6 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
                             $("#shirt-brands input:checkbox#" +  id).prop("checked", true);   
                         }
                     });
-                    //$("#shirt-brands > ol > li:contains(\"" + brands.shirts[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-//                    var id = $("#shirt-brands > ol > li:contains(\"" + brands.shirts[i]  + "\")").data("id");
-//                    $("#shirt-brands input:checkbox#" +  id).prop("checked", true);
-
                 }
             }
             if(brands.pants){
@@ -107,9 +100,6 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
                             $("#pants-brands input:checkbox#" +  id).prop("checked", true);   
                         }
                     });
-                    //$("#pants-brands > ol > li:contains(\"" + brands.pants[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-//                    var id = $("#pants-brands > ol > li:contains(\"" + brands.pants[i]  + "\")").data("id");
-//                    $("#pants-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
             if(brands.jeans){
@@ -121,9 +111,6 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
                             $("#jeans-brands input:checkbox#" +  id).prop("checked", true);   
                         }
                     });
-                    //$("#jeans-brands > ol > li:contains(\"" + brands.jeans[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-//                    var id = $("#jeans-brands > ol > li:contains(\"" + brands.jeans[i]  + "\")").data("id");
-//                    $("#jeans-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
             if(brands.suits){
@@ -135,9 +122,6 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
                             $("#suits-brands input:checkbox#" +  id).prop("checked", true);   
                         }
                     });
-                    //$("#suits-brands > ol > li:contains(\"" + brands.suits[i]  + "\")").attr("class", "ui-state-default ui-selectee ui-selected");
-//                    var id = $("#suits-brands > ol > li:contains(\"" + brands.suits[i]  + "\")").data("id");
-//                    $("#suits-brands input:checkbox#" +  id).prop("checked", true);
                 }
             }
        }       
@@ -266,7 +250,7 @@ window.registerProcess = true;
                 </div>
                 <div class="clear"></div>
                 
-                 <div id="jeans-brands" class="brand-block">
+                 <div id="jeans-brands" class="brand-block hide">
                    
 
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Acne" id="1" />
@@ -297,7 +281,7 @@ window.registerProcess = true;
                 </div>
                  <div class="clear"></div>
                 
-                 <div id="pants-brands" class="brand-block">
+                 <div id="pants-brands" class="brand-block hide">
                     
 
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Brioni" id="1" />
@@ -329,7 +313,7 @@ window.registerProcess = true;
                 </div>
                  <div class="clear"></div>
 
-                <div id="shirt-brands" class="brand-block">
+                <div id="shirt-brands" class="brand-block hide">
                     
                     
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Etro" id="1" />
@@ -362,7 +346,7 @@ window.registerProcess = true;
                 </div>
                 <div class="clear"></div>               
 
-                <div id="suits-brands" class="brand-block">                     
+                <div id="suits-brands" class="brand-block hide">                     
 
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Armani" id="1" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Brooks Brothers" id="2" />
@@ -407,11 +391,3 @@ window.registerProcess = true;
         
     </div>
 </div>
-
-<script>
-    
-    window.onload= function(){
-        $("#polos_tees-brands").css("display","block");
-    }
-
-</script>
