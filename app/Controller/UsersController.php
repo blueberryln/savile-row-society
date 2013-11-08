@@ -887,7 +887,7 @@ class UsersController extends AppController {
                 'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
         );
         $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
-        $users = $this->Paginator->paginate();echo '<pre>';print_r($users);die;
+        $users = $this->Paginator->paginate();
         $this->set(compact('stylists','users'));
     }
     
