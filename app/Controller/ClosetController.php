@@ -40,6 +40,7 @@ class ClosetController extends AppController {
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
+        $User = ClassRegistry::init('User');
 
         // get data
         $categories = $Category->getAll();
@@ -55,9 +56,12 @@ class ClosetController extends AppController {
             $entities = $this->closetProducts($user_id);
         }
 
-        $show_closet_popup = 1;
-        if($this->Session->read('hide-closet-popup')){
-            $show_closet_popup = 0;
+        $show_closet_popup = 0;
+        if($user_id){
+            $user = $User->getById($user_id); 
+            if($user && $user['User']['show_closet_popup'] == 1){
+                $show_closet_popup = 1;
+            }
         }
         
         // send data to view

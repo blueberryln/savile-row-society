@@ -324,5 +324,4 @@ class User extends AppModel {
             'conditions' => array('User.is_admin' => true) 
         ));
     }
-
 }

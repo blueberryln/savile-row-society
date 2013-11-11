@@ -524,16 +524,19 @@ class ApiController extends AppController {
      * Show/Hide Popup
      */
     public function toggleClosetPopup($action = null){
-        if($action != null && ($action == "hide" || $action == "show")){
-            if($action == "show"){
-                if($this->Session->read('hide-closet-popup')){
-                    $this->Session->delete('hide-closet-popup');
-                    echo "show";    
+        $user_id = $this->getLoggedUserID();
+        if($user_id){
+            if($action != null && ($action == "hide" || $action == "show")){
+                $User = ClassRegistry::init('User');
+                $user = $User->getById($user_id); 
+                if($action == "show"){
+                    $user['User']['show_closet_popup'] = 1;
                 }
-            }
-            else{
-                $this->Session->write('hide-closet-popup','hide');
-                echo "hide";
+                else{
+                    $user['User']['show_closet_popup'] = 0;
+                }
+                $User->save($user);
+                echo $action;
             }
         }
         exit;
