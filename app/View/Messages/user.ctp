@@ -140,7 +140,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
                 <a href="">Load Old Messages</a>
             </p>
-            <br /><br /><br />
+            <br />
         </div>
     </div>
 </div>
