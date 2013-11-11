@@ -12,6 +12,9 @@ $(document).ready(function(){
     else if(url.indexOf("/booking") != -1){
         $(".underline3").css("border-bottom","1px solid #ffffff");
     }
+    else if(url.indexOf("/messages") != -1){
+        $(".underline4").css("border-bottom","1px solid #ffffff");
+    }
 });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -115,7 +118,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li>
                 
                 <?php if($is_logged && $has_stylist) : ?>
-                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
+                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">Style Suggestion</span></a></li>
                 <?php endif; ?>  
                 
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
