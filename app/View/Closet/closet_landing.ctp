@@ -68,6 +68,7 @@ if($user_id){
 }
 
 $script = '
+var threeItemPopup = ' . $show_three_item_popup. ';
 var showClosetPopUp = ' . $show_closet_popup . ';
 $(document).ready(function(){   
     $(".fade").mosaic();
@@ -80,7 +81,13 @@ $(document).ready(function(){
         window.location = "' . $this->request->webroot . 'product/" + productId + "/" + productSlug;
     });
     
-    if(isLoggedIn() && showClosetPopUp == 1){
+    if(isLoggedIn() && threeItemPopup == 1){
+        var notificationDetails = new Array();
+        notificationDetails["msg"] = "' . $popUpMsg . '";
+        notificationDetails["button"] = "<a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
+        showNotification(notificationDetails);  
+    }    
+    else if(isLoggedIn() && showClosetPopUp == 1){
         var notificationDetails = new Array();
         notificationDetails["msg"] = "Welcome to the Closet! Like and Dislike items to help our stylists get to know you better. Use the arrow on the side of each picture to see a new product in that category. Happy Browsing!";    
         notificationDetails["check"] = "<input type=checkbox id=hideClosetPopUp> Don\'t show me this message again"; 

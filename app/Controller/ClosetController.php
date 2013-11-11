@@ -55,9 +55,18 @@ class ClosetController extends AppController {
         } else {
             $entities = $this->closetProducts($user_id);
         }
-
+        
+        $show_three_item_popup = 0;
+        if($this->Session->read('cart-three-items')){
+            $show_three_item_popup = 1;
+            $popUpMsg = $this->Session->read('cart-three-items-msg');
+            $this->Session->delete('cart-three-items');
+            $this->Session->delete('cart-three-items-msg');
+            $this->set(compact('popUpMsg'));
+        }
+        
         $show_closet_popup = 0;
-        if($user_id){
+        if($user_id && !$this->Session->check('Message.flash')){
             $user = $User->getById($user_id); 
             if($user && $user['User']['show_closet_popup'] == 1){
                 $show_closet_popup = 1;
@@ -65,7 +74,7 @@ class ClosetController extends AppController {
         }
         
         // send data to view
-        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup'));
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup'));
 
         if(!$category_slug){
             $this->render('closet_landing');     

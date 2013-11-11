@@ -1,19 +1,21 @@
-
 <?php
 $script = '
 $(document).ready(function(){
 
     $("#ColorCode").ColorPicker({
 	onSubmit: function(hsb, hex, rgb, el) {
-    $(el).val("#"+hex);
-    $(el).ColorPickerHide();
-},
+        $(el).val("#"+hex);
+        $(el).ColorPickerHide();
+    },
+    onChange: function(hsb, hex, rgb) {
+        $("#ColorCode").val("#"+hex);
+    },
 	onBeforeShow: function () {
-    $("#ColorCode").ColorPickerSetColor("#"+this.value);
+    $("#ColorCode").ColorPickerSetColor(this.value);
 }
 })
 .bind("keyup", function(){
-    $("#ColorCode").ColorPickerSetColor("#"+this.value);
+    $("#ColorCode").ColorPickerSetColor(this.value);
 });
 
 

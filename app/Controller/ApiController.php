@@ -354,6 +354,14 @@ class ApiController extends AppController {
                         $ret['cart_message'] = "Dear " . ucwords($user['User']['full_name']) . ",<br>We would like to remind you that you currently have three items in your cart, totaling $" . number_format($cart_total, 2) . ".";
                     }
                     
+                    if($ret['status'] == "ok" && $ret['count'] != 3){
+                        $this->Session->setFlash("Item has been added to the cart.", 'flash');    
+                    }
+                    else if($ret['status'] == "ok" && $ret['count'] == 3){
+                        $this->Session->write('cart-three-items', 1);    
+                        $this->Session->write('cart-three-items-msg', $ret['cart_message']);
+                    }
+                    
                     echo json_encode($ret);
                     exit;
                 }

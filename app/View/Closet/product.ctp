@@ -104,17 +104,18 @@ $(document).ready(function(){
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
                     $(".cart-items-count").html(ret["count"]);
-                    if(ret["count"] == 3){
-                        var notificationDetails = new Array();
-                        notificationDetails["msg"] = ret["cart_message"];
-                        notificationDetails["button"] = "<a href=\"' . $this->webroot . 'closet\" class=\"link-btn black-btn\">Continue Shopping</a><br><a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
-                        showNotification(notificationDetails);        
-                    }
-                    else{
-                        var notificationDetails = new Array(); 
-                        notificationDetails["msg"] = "Item has been added to the cart.";                        
-                        showNotification(notificationDetails, true);
-                    }
+                    location = "' . $this->webroot . 'closet";
+                    //if(ret["count"] == 3){
+//                        var notificationDetails = new Array();
+//                        notificationDetails["msg"] = ret["cart_message"];
+//                        notificationDetails["button"] = "<a href=\"' . $this->webroot . 'closet\" class=\"link-btn black-btn\">Continue Shopping</a><br><a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
+//                        showNotification(notificationDetails);        
+//                    }
+//                    else{
+//                        var notificationDetails = new Array(); 
+//                        notificationDetails["msg"] = "Item has been added to the cart.";                        
+//                        showNotification(notificationDetails, true);
+//                    } 
                 }
                 else if(ret["status"] == "login"){
                     signUp();       
