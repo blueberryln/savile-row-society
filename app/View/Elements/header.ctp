@@ -104,16 +104,20 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist"><span class="underline2">My Stylist</span></a>
                      <?php if($is_logged && $has_stylist) : ?>
-                        <ul class="submenu">
+                        <!--ul class="submenu">
                             <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
-                        </ul>
+                        </ul-->
                     <?php endif; ?>
                 </li>
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking"><span class="underline3">My Tailor</span></a>
                 </li>                
                 <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li>
-                  
+                
+                <?php if($is_logged && $has_stylist) : ?>
+                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
+                <?php endif; ?>  
+                
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
                 <li class="last">
                     <span>Share:</span><a id="lnk-fb-share" href=""  data-ref="closet">share</a>

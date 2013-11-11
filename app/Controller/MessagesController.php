@@ -353,13 +353,26 @@ class MessagesController extends AppController {
             
             //Get a list of message ids and mark them read if not already read
             $mark_read_list = array();
-            foreach($result['Messages'] as $msg){
-                if($msg['Message']['is_read'] == 0){
-                    $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
+            $last_conv_id = 0;
+            if($my_conversation){
+                $mark_read_list = array();
+                foreach($result['Messages'] as $msg){
+                    if($msg['Message']['is_read'] == 0){
+                        $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
+                    }
+                    $last_conv_id = $msg['Message']['id'];
                 }
+                if(count($mark_read_list) > 0){
+                    $this->Message->saveAll($mark_read_list);
+                }
+            
+                $msgs_remaining = $this->Message->getMessageCount($last_conv_id);
+                
+                $result['msg_remaining'] = $msgs_remaining;
+                $result['status'] = 'ok';
             }
-            if(count($mark_read_list) > 0){
-                $this->Message->saveAll($mark_read_list);
+            else{
+                
             }
             
             $result['status'] = 'ok';
@@ -531,16 +544,21 @@ class MessagesController extends AppController {
             }
             
             $mark_read_list = array();
+            $last_conv_id = 0;
             if($my_conversation){
                 foreach($result['Messages'] as $msg){
                     if($msg['Message']['is_read'] == 0){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
+                    $last_conv_id = $msg['Message']['id'];
                 }
                 if(count($mark_read_list) > 0){
                     $this->Message->saveAll($mark_read_list);
                 }
                 
+                $msgs_remaining = $this->Message->getMessageCount($last_conv_id);
+                
+                $result['msg_remaining'] = $msgs_remaining;
                 $result['status'] = 'ok';
             }
             else{

@@ -341,11 +341,14 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 chatContainer.append(html);
                                 firstMsgId = arrMsg[i]['Message']['id'];
                             }
+                            if(res['msg_remaining'] > 0){
+                                $("#loadOldMsgs").fadeIn(300);    
+                            }
+                            
                         }
                         else{  
                             
-                        }
-                        $("#loadOldMsgs").fadeIn(300); 
+                        } 
                     }
                 },
                 error: function(res) {
@@ -533,11 +536,17 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 
                                 firstMsgId = arrMsg[i]['Message']['id'];
                             }
+                            if(res['msg_remaining'] == 0){
+                                $("#loadOldMsgs").fadeOut(300);    
+                            }
                         }
                         else{
                             $("#loadOldMsgs").fadeOut(300);    
                         }
-                    }   
+                    }  
+                    else{
+                        $("#loadOldMsgs").fadeOut(300);     
+                    } 
                 }    
             });
         });

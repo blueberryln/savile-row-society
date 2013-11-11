@@ -183,12 +183,13 @@ class Message extends AppModel {
     
     public function getMyConversation($user_id){
         return $this->find('all', array(
-                    'conditions' => array('OR' => array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id), 'Message.created >= ' => date('Y-m-d') . ' 00:00:00'),
+                    'conditions' => array('OR' => array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id)),
                     'contain' => array('UserFrom'),
                     'order' => "Message.created DESC",
                     'fields' => array(
                         'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
+                    'limit' => 20
         ));
     }
     
@@ -196,8 +197,7 @@ class Message extends AppModel {
         return $this->find('all', array(
                     'conditions' => array('AND' =>
                         array(
-                            'OR' => array('Message.user_to_id' => $user_id_with, 'Message.user_from_id' => $user_id_with),
-                            'Message.created >= ' => date('Y-m-d') . ' 00:00:00'
+                            'OR' => array('Message.user_to_id' => $user_id_with, 'Message.user_from_id' => $user_id_with)
                         )
                     ),
             
@@ -206,6 +206,7 @@ class Message extends AppModel {
                     'fields' => array(
                         'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
+                    'limit' => 20
         ));
     }
     
@@ -285,5 +286,19 @@ class Message extends AppModel {
         return $this->find('count', array(
             'conditions' => array('Message.user_to_id' => $user_id, 'Message.is_read' => false, 'Message.is_outfit' => true), 
         ));
+    }
+    
+    function getMessageCount($last_msg_id = null){
+        $find_array = array(
+            'conditions' => array(
+                'OR' => array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id)
+            ), 
+        );
+         
+        if($last_msg_id){
+            $find_array['conditions']['Message.id <'] = $last_msg_id;    
+        } 
+        
+        return $this->find('count', $find_array);  
     }
 }

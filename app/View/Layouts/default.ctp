@@ -323,13 +323,13 @@ if(isset($profilePopup) && $profilePopup['completeProfile'] && ($this->params['c
             }
 
             function addReferrerToSignUp(){
-                if(ref_url != 'undefined'){
+                if(ref_url != undefined){
                     $('#referUrl').val(ref_url);
                 }
             }
             
             function addReferrerToLogIn(){
-                if(ref_url != 'undefined'){
+                if(ref_url != undefined){
                     $('#referUrlLogIn').val(ref_url);
                 }
             }

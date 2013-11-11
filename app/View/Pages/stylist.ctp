@@ -6,6 +6,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <div class="sixteen columns text-center ">
         <img src="<?php echo $this->webroot; ?>img/home-4.jpg" style="margin-top: 10px;">
     </div>
+    <div class="sixteen columns text-center ">
+        <a class="link-btn black-btn" href="<?php echo $this->webroot; ?>messages">Get Style Suggesstion</a>
+    </div>
     <div class="sixteen columns hero">
         <div class="sixteen columns text-center">
             <h1>Welcome to Savile Row Society!</h1>

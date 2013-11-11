@@ -72,7 +72,10 @@ if($user_id){
 
 $script = '
 var showGuestLoginPopup= ' . $showGuestLoginPopup . ';
-$(document).ready(function(){    
+$(document).ready(function(){  
+    if(showGuestLoginPopup == 1){
+        signUp();    
+    }
     $(".add-to-cart").click(function(e) {
         e.preventDefault();
         if($("select#product-quantity").val()== "")
