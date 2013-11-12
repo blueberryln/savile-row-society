@@ -20,16 +20,19 @@ $script ='
 ';
 $script1 ='
     $(window).load(function() {
-    setTimeout(function (){
-            //$("#sign-up-drop-down").slideDown(500, function(){
-//                $(".content.home").css("margin-top","0px");    
-//            });
-//            $("#sign-up-drop-down").css("display","block");
-//            $("#sign-up-drop-down").animate({height: 220}, 600, function(){
-//          
-//            }); 
-        $("#sign-up-drop-down").slideDown(1000, "easeOutBack");
+
+           setTimeout(function (){
+            $("#sign-up-drop-down").slideDown(1000, "easeOutBack");
     }, 500);
+        
+           $(".close").click(function(e){
+            e.preventDefault();
+            setTimeout(function (){
+                $(".close").css("display","none");
+            }, 500);
+            $("#sign-up-drop-down").slideUp(800);
+
+        });
 
 
     });
@@ -47,7 +50,16 @@ $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.e
 ?>
 <div style="width: 100%; margin-top: 124px;">
 <div id="sign-up-drop-down">
-    <p>This is test message for sign up drop down.</p>
+    <div class="close"><a href="#"> &#215;</a></div>
+    <p>Get early access to our next collection.</p>
+    <div class="initial-module">
+        <?php if (!$is_logged) {
+            echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
+            echo '<a class="show-login-form" href="#" onclick="window.ref_url=\'\'; signIn();">Already a Member?</a>';
+         }
+        ?>
+    </div>
+
 </div>
 <div class="container content inner home" style="margin-top: 0px;">	
 

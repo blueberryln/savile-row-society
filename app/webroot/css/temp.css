@@ -152,7 +152,42 @@ div.brands-cont .submit{
 }
 #sign-up-drop-down p{
     color:#fff;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 24px;
+    font-family: 'Droid Serif',serif;
 }
+#sign-up-drop-down .initial-module{
+    text-align: center;
+}
+.initial-module .join_button{
+    font-size: 15px;
+    padding: 15px 25px;
+    background-color: #8F7948/*#D26D51*/;
+    border-bottom-color: #BF5031;
+    border-radius:2px;
+    color:#FFFFFF;
+
+}
+.initial-module .show-login-form{
+    color: #ffffff;
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: underline;
+    width: auto;
+}
+#sign-up-drop-down .close{
+    float: right;
+    font-size: 22px;
+    position: absolute;
+    right: 4px;
+}
+#sign-up-drop-down .close a{
+    color: #F1F1F1;
+    text-decoration: none;
+}
+
 .content.home {
 
 }
