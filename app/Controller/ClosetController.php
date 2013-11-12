@@ -19,12 +19,12 @@ class ClosetController extends AppController {
     function beforeFilter() {
         $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
         
-        //if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
-//            $this->forceSSL();
-//        }  
-//        else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
-//            $this->unForceSSL();  
-//        }
+        if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
+            $this->forceSSL();
+        }  
+        else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
+            $this->unForceSSL();  
+        }
     }
 
     public function forceSSL() {
