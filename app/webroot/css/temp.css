@@ -140,3 +140,19 @@ div.brands-cont .submit{
 .underline2{}
 .underline3{}
 .underline4{}
+
+/*---- sign-up-drop-down ---*/
+#sign-up-drop-down{
+    width: 100%;
+    background-color: #333333;
+    height: 250px;
+    margin:124px 0 0 0;
+    padding: 0px;
+    display:none;
+}
+#sign-up-drop-down p{
+    color:#fff;
+}
+.content.home {
+
+}
