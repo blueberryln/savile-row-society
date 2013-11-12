@@ -24,7 +24,7 @@ $script1 ='
            setTimeout(function (){
             $("#sign-up-drop-down").slideDown(1000, "easeOutBack");
     }, 500);
-        
+
            $(".close").click(function(e){
             e.preventDefault();
             setTimeout(function (){
