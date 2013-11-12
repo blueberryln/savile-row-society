@@ -1206,4 +1206,19 @@ class ClosetController extends AppController {
         $this->set(compact('purchased_list', 'sizes', 'user_id'));
         
     }
+    public function temp2(){
+        
+        $user_id = $this->getLoggedUserID();
+        // init
+        $Category = ClassRegistry::init('Category');
+        $Brand = ClassRegistry::init('Brand');
+        $Color = ClassRegistry::init('Color');
+        $User = ClassRegistry::init('User');
+
+        // get data
+        $categories = $Category->getAll();
+        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+        $colors = $Color->find('all', array('order' => "Color.name ASC"));
+        $this->set(compact('categories', 'brands', 'colors'));
+    }
 }
