@@ -187,7 +187,10 @@ div.brands-cont .submit{
     color: #F1F1F1;
     text-decoration: none;
 }
-
+.initial-module a, .initial-module a:visited, .initial-module a:active{
+    outline: 0;
+    border: 0;
+}
 .content.home {
 
 }

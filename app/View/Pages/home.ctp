@@ -27,10 +27,8 @@ $script1 ='
 
            $(".close").click(function(e){
             e.preventDefault();
-            setTimeout(function (){
-                $(".close").css("display","none");
-            }, 500);
-            $("#sign-up-drop-down").slideUp(800);
+
+            $("#sign-up-drop-down").slideUp(600, "easeInBack");
 
         });
 
