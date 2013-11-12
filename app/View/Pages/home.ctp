@@ -20,16 +20,21 @@ $script ='
 ';
 $script1 ='
     $(window).load(function() {
-    setTimeout(function (){
-            //$("#sign-up-drop-down").slideDown(500, function(){
-//                $(".content.home").css("margin-top","0px");    
-//            });
-//            $("#sign-up-drop-down").css("display","block");
-//            $("#sign-up-drop-down").animate({height: 220}, 600, function(){
-//          
-//            }); 
-        $("#sign-up-drop-down").slideDown(1000, "easeOutBack");
+            var dropdown=getCookie("dropdown");
+  if (dropdown==null || dropdown=="")
+  {
+  setTimeout(function (){
+            $("#sign-up-drop-down").slideDown(1000, "easeOutBack");
     }, 500);
+  }
+
+
+           $(".close").click(function(e){
+            e.preventDefault();
+            setCookie("dropdown",1,1);
+            $("#sign-up-drop-down").slideUp(600, "easeInBack");
+
+        });
 
 
     });
@@ -43,12 +48,25 @@ $this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Societ
 $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
-$this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false))
+$this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
+$this->Html->script('cookie.js', array('inline' => false));
 ?>
+
 <div style="width: 100%; margin-top: 124px;">
+<?php if (!$is_logged) { ?>
 <div id="sign-up-drop-down">
-    <p>This is test message for sign up drop down.</p>
+    <div class="close"><a href="#"> &#215;</a></div>
+    <p>Get early access to our next collection.</p>
+    <div class="initial-module">
+        <?php
+            echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
+            echo '<a class="show-login-form" href="#" onclick="window.ref_url=\'\'; signIn();">Already a Member?</a>';
+
+        ?>
+    </div>
+
 </div>
+<?php } ?>
 <div class="container content inner home" style="margin-top: 0px;">	
 
     <div class="sixteen columns flexslider loader" style="height: 438px;">
