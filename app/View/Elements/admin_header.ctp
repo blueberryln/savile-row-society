@@ -1,8 +1,8 @@
 <div class="header">
     <div class="container">
-        <div style="padding-top: 16px;">
+        <div style="padding-top: 3px;">
         </div>
-        <div class="sixteen columns text-center" style="height: 75px;">
+        <div class="sixteen columns text-center">
 
             <!--            <div class="banner"></div> -->
             <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
@@ -20,6 +20,7 @@
                     <a href="<?php echo $this->request->webroot; ?>admin/products">Products</a>
                     <ul class="submenu">
                         <li><a href="<?php echo $this->request->webroot; ?>admin/products/add">Add New Product</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/lifestyles">LifeStyles</a></li>
                     </ul>
                 </li>
                 <li>
