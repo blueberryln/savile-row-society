@@ -18,6 +18,23 @@ $script ='
     });
 
 ';
+$script1 ='
+    $(window).load(function() {
+    setTimeout(function (){
+            //$("#sign-up-drop-down").slideDown(500, function(){
+//                $(".content.home").css("margin-top","0px");    
+//            });
+//            $("#sign-up-drop-down").css("display","block");
+//            $("#sign-up-drop-down").animate({height: 220}, 600, function(){
+//          
+//            }); 
+        $("#sign-up-drop-down").slideDown(1000, "easeOutBack");
+    }, 500);
+
+
+    });
+';
+$this->Html->scriptBlock($script1, array('safe' => true, 'inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. We\'ll perfect your image from head to toe.';
 $img_src = "//www.savilerowsociety.com/img/SRS_600.png";
@@ -26,8 +43,13 @@ $this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Societ
 $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
+$this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false))
 ?>
-<div class="container content inner home">	
+<div style="width: 100%; margin-top: 124px;">
+<div id="sign-up-drop-down">
+    <p>This is test message for sign up drop down.</p>
+</div>
+<div class="container content inner home" style="margin-top: 0px;">	
 
     <div class="sixteen columns flexslider loader" style="height: 438px;">
         <ul class="slides">
@@ -204,4 +226,5 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         </tbody>
     </table>
     <div class="clear"></div>
+</div>
 </div>

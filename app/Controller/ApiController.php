@@ -289,7 +289,7 @@ class ApiController extends AppController {
                         
                         $existing_item = $CartItem->getCartItemByCart($cart_id, $entity_id);
                         
-                        if($existing_item){
+                        if($existing_item && $data['CartItem']['size_id'] && $existing_item['CartItem']['size_id'] == $data['CartItem']['size_id']){
                             $data['CartItem']['cart_id'] = $cart_id;
                             
                             $new_quantity = $data['CartItem']['quantity'];
