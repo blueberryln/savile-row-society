@@ -171,7 +171,7 @@ $columns = 'eleven';
     <div class="one columns alpha omega">&nbsp;</div>
     <div class="fourteen columns details-margin row">
         <p class="product-breadcrumb" >
-            <a href="<?php echo $this->webroot . "closet" ; ?>">CATEGORIES</a>
+            <a href="<?php echo $this->webroot . "closet" ; ?>">Categories</a>
             <?php if(isset($parent_category)) : ?>
                 &gt; <a href="<?php echo $this->webroot . "closet/" . $parent_category['Category']['slug'] ; ?>"><?php echo $parent_category['Category']['name']; ?></a>
             <?php endif; ?>
@@ -220,7 +220,7 @@ $columns = 'eleven';
                 <h2 class="product-name"><?php echo $entity['Entity']['name']; ?></h2>
                 <h5 class="brand">Brand: <a href="<?php echo $this->request->webroot; ?>company/brands"><?php echo $entity['Brand']['name']; ?></a></h5>
                 <h5 class="price">Price: $<?php echo $entity['Entity']['price']; ?></h5>
-                <h5>Product Details</h5>
+                <h5 class="product-details">Product Details :</h5>
                 <p class="description"><?php echo $entity['Entity']['description']; ?></p>
             </div>
             <?php if($similar) : ?>

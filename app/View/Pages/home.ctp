@@ -4,7 +4,7 @@ $script ='
     
    $(".flexslider").flexslider({
 	            animation: "slide",
-	            slideshow: false,
+	            slideshow: true,
                 video: false,
                 useCSS: false,
                 controlNav: false	            
@@ -55,6 +55,14 @@ $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.e
         <ul class="slides">
             
             <li><a href="<?php echo $this->request->webroot; ?>closet"><img src="<?php echo $this->request->webroot; ?>img/home-6-big.jpg"/></a></li>
+             <?php
+                if (!$is_logged) {
+                    echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-1-big.jpg"/></a></li> ';                   
+                } else {
+                    echo ' <li><img src="' . $this->webroot . 'img/home-1-big.jpg"/></li>';
+                }
+                ?>
+            <li><img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled"/></li>
             <!--<li><img src="<?php echo $this->request->webroot; ?>img/home-5-big.jpg"/></li>-->
             <?php
                 if (!$is_logged) {
@@ -63,14 +71,8 @@ $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.e
                     echo ' <li><img src="' . $this->webroot . 'img/home-5-big.jpg"/></li>';
                 }
                 ?> 
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled"/></li>
-            <?php
-                if (!$is_logged) {
-                    echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-1-big.jpg"/></a></li> ';                   
-                } else {
-                    echo ' <li><img src="' . $this->webroot . 'img/home-1-big.jpg"/></li>';
-                }
-                ?>  
+            
+             
             
             <?php
                 if (!$is_logged) {
@@ -78,8 +80,7 @@ $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.e
                 } else {
                     echo ' <li><img src="' . $this->webroot . 'img/home-2-big.jpg"/></li>';
                 }
-                ?>
-            
+                ?>         
             
         </ul>
     </div>

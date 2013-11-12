@@ -2676,7 +2676,7 @@ body{
 }
 .product-listing .product-block{
     position: relative;
-    margin-bottom: 8px;
+    /*margin-bottom: 8px;*/
 }
 .brand-filter li, .color-filter li{
     cursor: pointer;
@@ -2830,7 +2830,8 @@ p.product-breadcrumb
     color: #666;
     margin-left:10px;
     margin-bottom: 5px !important;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    font-size: 12px;
 }
 p.product-breadcrumb a
 {
@@ -2840,25 +2841,25 @@ p.product-breadcrumb a
 .product-description .product-name
 {
     margin-top:0;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #b29957;
-    font-size:26px;
+    font-size:22px;
     line-height: 28px;
 } 
 
 .product-description h5
 {
     margin-top: 0;
-    margin-bottom:10px;    
+    margin-bottom:0;    
     color: #ad9c56;
-    font-size:22px;
+    font-size:18px;
     font-weight: normal;
     font-family: 'Droid Serif',serif;
 }
-.product-description h5.price
+/*.product-description h5.price
 {
-    margin-bottom:30px;
-}
+    margin-bottom:0;
+}*/
 .product-description h5.brand a{
     color: #ad9c56;
     text-decoration: none;
@@ -2867,12 +2868,16 @@ p.product-breadcrumb a
     text-decoration: underline;
     color: #b29957;    
 }
+.product-description h5.product-details{
+    margin-top: 10px;
+}
 .product-description p.description
 {
     color: #555;
     font-size: 14px;
-    padding-bottom: 4px;
+    padding-bottom: 0;
     line-height: 20px;
+    margin-bottom: 10px;
 }
 .product-description .add-to-cart, .product-description .prd-continue{
     width: 100%;
@@ -2890,8 +2895,8 @@ p.product-breadcrumb a
 
 .details-margin
 {
-    margin-top:40px;
-    margin-bottom:10px !important;
+    margin-top:25px;
+    margin-bottom:0 !important;
 }
 .product-default-image{
     border: 1px solid #ccc;
@@ -3016,7 +3021,7 @@ li.last
 {
     color: #AD9C56;
     font-family: 'Droid Serif',serif;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .product-description label select
@@ -3139,7 +3144,7 @@ table.cart-checkout tbody tr td:last-of-type
 }
 .product-list-links, .like-dislike-links{
     text-align: center;
-    padding-top: 8px;
+    padding-top: 4px;
 }
 .product-list-links a, .like-dislike-links a{
     display: inline-block;
@@ -3178,7 +3183,7 @@ a.btn-buy:hover{
     margin-bottom: 5px !important;
 }
 .product-swatches{
-    margin-bottom: 22px;
+    margin-bottom:10px;
     overflow: hidden;
 }
 .color-thumbnails
@@ -3394,7 +3399,7 @@ div.card-number div.input
 .pagination
 {
     text-align: center;
-    margin-top: 20px; 
+    margin-top: 10px; 
 }
 .pagination span
 {
@@ -3419,7 +3424,7 @@ div.card-number div.input
 
 .pagination span.prev.disabled, .pagination span.next.disabled
 {    
-    display: none;
+    opacity: 0;
 }
 
 div.pagination span.next a, .pagination span.prev a
@@ -4260,6 +4265,11 @@ div.payment .profile-tabs
 .closet-sorry h5,.closet-sorry h4{
     color:#9C9C9C !important;
     text-align: center;
+}
+
+.get-style-btn{
+    padding:10px 20px;
+    margin-top: 10px;
 }
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
