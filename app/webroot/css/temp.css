@@ -151,7 +151,7 @@ div.brands-cont .submit{
     display:none;
 }
 #sign-up-drop-down p{
-    color:#fff;
+    color:#DDDDDD;
     text-align: center;
     padding-top: 40px;
     font-size: 24px;
@@ -167,12 +167,13 @@ div.brands-cont .submit{
     border-bottom-color: #BF5031;
     border-radius:2px;
     color:#FFFFFF;
+    margin-top: 10px;
 
 }
 .initial-module .show-login-form{
     color: #ffffff;
     display: block;
-    margin-top: 15px;
+    margin-top: 25px;
     text-align: center;
     text-decoration: underline;
     width: auto;
@@ -180,8 +181,9 @@ div.brands-cont .submit{
 #sign-up-drop-down .close{
     float: right;
     font-size: 22px;
+    padding-top: 10px;
     position: absolute;
-    right: 4px;
+    right: 15px;
 }
 #sign-up-drop-down .close a{
     color: #F1F1F1;
