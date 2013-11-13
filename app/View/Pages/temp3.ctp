@@ -3,16 +3,7 @@ $script = '
 $(document).ready(function(){ 
     
      
-    $(".fancybox").fancybox({
-                    afterShow: function() {
-                    $(".fancybox-title").wrapInner("<div />").show();
-                    
-                    $(".fancybox-wrap").hover(function() {
-                        $(".fancybox-title").show();
-                    }, function() {
-                        $(".fancybox-title").hide();
-                    });
-                },
+    $(".fancybox").fancybox({                    
 				helpers: {
 					title : {
 						type : "over"
@@ -22,12 +13,12 @@ $(document).ready(function(){
 					}
 				}
 			}); 
-    
+    $(".fancybox").eq(0).trigger("click");
     ' . $logged_script . '
 });
 ';
 $this->Html->script("jquery.fancybox.js", array('inline' => false));
-$this->Html->script("jquery.fancybox.pack.js", array('inline' => false));
+//$this->Html->script("jquery.fancybox.pack.js", array('inline' => false));
 $this->Html->script("lightbox-2.6.min.js", array('inline' => false));
 echo $this->Html->css("jquery.fancybox.css");
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -63,8 +54,8 @@ $columns = 'eleven';
     </div>
     <div class="fourteen columns details-margin row">
         <div class="lifestyle-images">            
-            <a id="first" class="fancybox" data-fancybox-group="lifestyle" title="title one" href="<?php echo $this->request->webroot; ?>/img/1.jpg"><img src="<?php echo $this->request->webroot; ?>/img/1.jpg"/></a>
-            <a class="fancybox second" data-fancybox-group="lifestyle" title="title two" href="<?php echo $this->request->webroot; ?>/img/2.jpg"><img src="<?php echo $this->request->webroot; ?>/img/2.jpg" /></a> 
+            <a id="first" class="fancybox" data-fancybox-group="lifestyle" rel="gallery" title="title one" href="<?php echo $this->request->webroot; ?>/img/1.jpg"></a>
+            <a class="fancybox second" data-fancybox-group="lifestyle" rel="gallery" title="title two" href="<?php echo $this->request->webroot; ?>/img/2.jpg"></a> 
             
         </div>
     </div>
