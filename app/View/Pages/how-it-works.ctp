@@ -2,8 +2,14 @@
 $meta_description = 'As a member, you will be up to date on styles, always look put together, and develop a wardrobe that captures the look you desire.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-<div class="container content inner">		
-    <br /><br />
+<div class="container content inner">    
+    <div class="sixteen columns text-center">
+        <h1>How it works</h1>
+    </div>
+    <div class="fourteen offset-by-one columns text-center">        
+        <em>"Like and Dislike items to help our stylists get to know you better. Use the arrow on the side of each picture in the closet to see a new product in that category. Happy Browsing!"</em>
+    </div>
+    
     
     <img class="membership-flow fadein-image fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
     <div class="fourteen offset-by-one columns">

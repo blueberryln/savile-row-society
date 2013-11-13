@@ -7,7 +7,8 @@ $script ='
 	            slideshow: true,
                 video: false,
                 useCSS: false,
-                controlNav: false	            
+                controlNav: false,
+                directionNav: false	            
 	        });
             $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 

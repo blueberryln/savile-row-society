@@ -6,6 +6,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <div class="sixteen columns text-center">
         <h1>Blog</h1>
     </div>
+    
     <div class="fourteen offset-by-one columns">
         <p>
             <strong>The SRS blog serves as a guidebook (e.g. to grooming), an observation sheet 
