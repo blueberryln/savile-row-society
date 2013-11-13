@@ -21,6 +21,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 
 <div class="header">
+    <a href=""><img class="p_code" src="<?php echo $this->webroot; ?>img/SRS_20.png" /></a>
+    
 
     <div class="container">
 

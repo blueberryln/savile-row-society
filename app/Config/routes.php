@@ -85,6 +85,7 @@ Router::connect('/faq', array('controller' => 'pages', 'action' => 'display', 'f
  * New pages for closet
  */
 Router::connect('/temp', array('controller' => 'pages', 'action' => 'display', 'temp'));
+Router::connect('/temp3', array('controller' => 'pages', 'action' => 'display', 'temp3'));
 
 /**
  * Load all plugin routes.  See the CakePlugin documentation on

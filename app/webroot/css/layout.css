@@ -4271,6 +4271,16 @@ div.payment .profile-tabs
     padding:10px 20px;
     margin-top: 10px;
 }
+
+.lifestyle-images a{
+    /*display: none;*/
+}
+.p_code{
+    position: absolute;
+    top:0;
+    left:0;
+}
+
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     
