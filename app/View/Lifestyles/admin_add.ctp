@@ -18,6 +18,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <legend><?php echo __('Basic Info'); ?></legend>
                 <?php
                 echo $this->Form->input('name', array('label' => 'Lifestyle Name'));
+                echo $this->Form->input('caption', array('label' => 'Lifestyle Caption'));
                 echo $this->Form->input('image', array('type' => 'file', 'label' => 'Lifestyle Image'));
                 ?>
             </fieldset>
