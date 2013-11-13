@@ -126,7 +126,8 @@ class ClosetController extends AppController {
                 }
             }    
         }
-        
+
+
         return $entities;
     }
 
@@ -305,7 +306,29 @@ class ClosetController extends AppController {
             }
         }
 
-        $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used'));
+        // check for login popup
+        if(!$user_id && count($brand_list)>0 ||count($category_ids)>0)
+        {
+
+            $count = $this->Session->read("count-click");
+
+            if($count){
+
+                $count=1;
+                if($count==3)
+                {
+                    $check_count=1;
+                }
+                $this->Session->write("count-click", $count);
+            }
+            else{
+                $this->Session->write("count-click", 1);
+            }
+
+
+        }
+
+        $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used','check_count'));
         return $data;
     }
 

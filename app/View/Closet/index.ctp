@@ -2,6 +2,11 @@
 $logged_script = '';
 if($user_id){    
     $logged_script = '
+        var checkCount = '.$check_count.'
+         if(checkCount == 1){
+            signUp();
+         }
+
         $(".thumbs-up").click(function(e) {
             e.preventDefault();
             $this = $(this);
