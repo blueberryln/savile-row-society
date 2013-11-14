@@ -74,9 +74,9 @@ $(document).ready(function(){
     if(showGuestLoginPopup == 1){
         signUp();    
     }
-    if(checkCount == 1){
-        signUp();
-    }
+    //if(checkCount == 1){
+        //signUp();
+    //}
     $(".add-to-cart").click(function(e) {
         e.preventDefault();
         if($("select#product-quantity").val()== "")
