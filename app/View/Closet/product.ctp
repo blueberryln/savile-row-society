@@ -125,10 +125,7 @@ $(document).ready(function(){
             console.log(response);
           }
         ); 
-        //window.open(
-          "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href), 
-          "facebook-share-dialog", 
-          "width=626,height=436"); 
+        
     });
     
     $("select#product-quantity").change(function(){
