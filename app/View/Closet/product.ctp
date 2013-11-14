@@ -115,16 +115,19 @@ $(document).ready(function(){
     });
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault();
-        FB.api(
-          "me/og.likes",
-          "post",
-          {
-            object: "http://samples.ogp.me/226075010839791"
-          },
-          function(response) {
-            console.log(response);
-          }
-        ); 
+        FB.login(function(response) {
+            FB.api(
+              "me/og.likes",
+              "post",
+              {
+                object: "http://samples.ogp.me/226075010839791"
+              },
+              function(response) {
+                console.log(response);
+              }
+            );   
+        }, {scope: "email,publish_actions"});
+         
         
     });
     
