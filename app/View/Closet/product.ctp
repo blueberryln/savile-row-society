@@ -59,10 +59,6 @@ if($user_id){
                         if(ret["status"] == "ok"){
                             $this.removeClass("disliked");
                         }
-                        
-                        //var notificationDetails = new Array();
-                        //notificationDetails["msg"] = ret["msg"];
-                        //showNotification(notificationDetails, true);
                     }
                 );
             }
@@ -72,7 +68,7 @@ if($user_id){
 
 $script = '
 var showGuestLoginPopup= ' . $showGuestLoginPopup . ';
-var checkCount = '.$check_count.'
+var checkCount = '.$check_count.';
 
 $(document).ready(function(){  
     if(showGuestLoginPopup == 1){
@@ -110,17 +106,6 @@ $(document).ready(function(){
                 if(ret["status"] == "ok"){
                     $(".cart-items-count").html(ret["count"]);
                     location = "' . $this->webroot . 'closet";
-                    //if(ret["count"] == 3){
-//                        var notificationDetails = new Array();
-//                        notificationDetails["msg"] = ret["cart_message"];
-//                        notificationDetails["button"] = "<a href=\"' . $this->webroot . 'closet\" class=\"link-btn black-btn\">Continue Shopping</a><br><a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
-//                        showNotification(notificationDetails);        
-//                    }
-//                    else{
-//                        var notificationDetails = new Array(); 
-//                        notificationDetails["msg"] = "Item has been added to the cart.";                        
-//                        showNotification(notificationDetails, true);
-//                    } 
                 }
                 else if(ret["status"] == "login"){
                     signUp();       
@@ -129,8 +114,18 @@ $(document).ready(function(){
         );
     });
     $("#lnk-fb-share").on("click", function(e){
-        e.preventDefault(); 
-        window.open(
+        e.preventDefault();
+        FB.api(
+          "me/og.likes",
+          "post",
+          {
+            object: "http://samples.ogp.me/226075010839791"
+          },
+          function(response) {
+            console.log(response);
+          }
+        ); 
+        //window.open(
           "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href), 
           "facebook-share-dialog", 
           "width=626,height=436"); 
