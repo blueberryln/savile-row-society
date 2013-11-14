@@ -71,11 +71,11 @@
 			autoResize  : true,
 			autoCenter  : !isTouch,
 			fitToView   : true,
-			aspectRatio : false,
+			aspectRatio : true,
 			topRatio    : 0.5,
 			leftRatio   : 0.5,
 
-			scrolling : 'auto', // 'auto', 'yes' or 'no'
+			scrolling : 'no', // 'auto', 'yes' or 'no'
 			wrapCSS   : '',
 
 			arrows     : true,
@@ -163,12 +163,12 @@
 
 			// Changing next gallery item
 			nextEffect : 'elastic', // 'elastic', 'fade' or 'none'
-			nextSpeed  : 250,
-			nextEasing : 'swing',
+			nextSpeed  : 500,
+			nextEasing : 'easeOutQuad',
 			nextMethod : 'changeIn',
 
 			// Changing previous gallery item
-			prevEffect : 'elastic', // 'elastic', 'fade' or 'none'
+			prevEffect : 'fade', // 'elastic', 'fade' or 'none'
 			prevSpeed  : 250,
 			prevEasing : 'swing',
 			prevMethod : 'changeOut',
@@ -2015,7 +2015,7 @@
 
 		H.removeClass('fancybox-lock-test');
 
-		$("<style type='text/css'>.fancybox-margin{margin-right:" + (w2 - w1) + "px;}</style>").appendTo("head");
+		//$("<style type='text/css'>.fancybox-margin{margin-right:" + (w2 - w1) + "px;}</style>").appendTo("head");
 	});
 
 }(window, document, jQuery));

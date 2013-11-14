@@ -9,14 +9,21 @@ App::uses('AppController', 'Controller');
 class LifestylesController extends AppController{
     public function beforeRender() {
         parent::beforeRender();
-        $this->layout = 'admin';
-        $this->isAdmin();
     }
     
-    public function index($slug = null){
-        if(!$slug){
-            
+    public function index($id = null, $slug = null){
+        if($id == null || $slug == null){
+            throw new NotFoundException;    
         }
+        
+        $user_id = $this->getLoggedUserID();
+        $lifestyle = $this->Lifestyle->getByIdSlug($id, $slug);
+        
+        if(!$lifestyle){
+            throw new NotFoundException;     
+        }
+        
+        
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
@@ -27,21 +34,37 @@ class LifestylesController extends AppController{
         $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
         $colors = $Color->find('all', array('order' => "Color.name ASC"));
         
-        $this->set(compact('categories', 'brands', 'colors'));
+        $entity_list = $this->Lifestyle->LifestyleItem->getLifestyleProducts($id);
+        
+        $Entity = ClassRegistry::init('Entity');
+        if($user_id){
+            $entities = $Entity->getEntitiesById($entity_list, $user_id);    
+        }
+        else{
+            $entities = $Entity->getEntitiesById($entity_list);    
+        }
+        
+        $this->set(compact('categories', 'brands', 'colors', 'lifestyle', 'entities'));
     }
     
     public function admin_index(){
+        $this->layout = 'admin';
+        $this->isAdmin();
         $this->Lifestyle->recursive = 0;
         $this->set('lifestyles', $this->paginate());
     }
     
     public function admin_add(){
+        $this->layout = 'admin';
+        $this->isAdmin();
         $user_id = $this->getLoggedUserID();
         if ($user_id && $this->request->is('post') || $this->request->is('put')) {
             $data = $this->request->data;
             if($data['Lifestyle']['name'] != "" && $data['Lifestyle']['image'] && $data['Lifestyle']['image']['size'] > 0) {
                 $lifestyle['Lifestyle']['user_id'] = $user_id;
                 $lifestyle['Lifestyle']['name'] = $data['Lifestyle']['name'];
+                $lifestyle['Lifestyle']['slug'] = strtolower(Inflector::slug($data['Lifestyle']['name'], '-'));
+                
                 if($data['Lifestyle']['caption']){
                     $lifestyle['Lifestyle']['caption'] = $data['Lifestyle']['caption'];
                 }
@@ -75,6 +98,8 @@ class LifestylesController extends AppController{
     }
     
     public function admin_edit($id = null){
+        $this->layout = 'admin';
+        $this->isAdmin();
         if(!$this->Lifestyle->exists($id)){
             throw new NotFoundException(__('Invalid Lifestyle'));
         }
@@ -85,7 +110,32 @@ class LifestylesController extends AppController{
                 $options = array('conditions' => array('Lifestyle.' . $this->Lifestyle->primaryKey => $id));
                 $lifestyle = $this->Lifestyle->find('first', $options);
                 $lifestyle['Lifestyle']['name'] = $data['Lifestyle']['name'];
+                $lifestyle['Lifestyle']['slug'] = strtolower(Inflector::slug($data['Lifestyle']['name'], '-'));
                 $lifestyle['Lifestyle']['caption'] = $data['Lifestyle']['caption'];
+                
+                if($data['Lifestyle']['image'] && $data['Lifestyle']['image']['size'] > 0){
+                    $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+                    
+                    if (!in_array($data['Lifestyle']['image']['type'], $allowed)) {
+                        $this->Session->setFlash(__('You have to upload an image.'), 'flash');
+                    } else if ($data['Lifestyle']['image']['size'] > 3145728) {
+                        $this->Session->setFlash(__('Attached image must be up to 3 MB in size.'), 'flash');
+                    } else {
+                        $rand = substr(uniqid ('', true), -7);
+                        $img = $data['Lifestyle']['name'] . '_' . $rand . '_' . $data['Lifestyle']['image']['name'];
+                        $img_type = $data['Lifestyle']['image']['type'];
+                        $img_size = $data['Lifestyle']['image']['size'];
+                        move_uploaded_file($data['Lifestyle']['image']['tmp_name'], APP . DS . 'webroot' . DS . 'files' . DS . 'lifestyles' . DS . $img);
+                    }   
+                    
+                    $file = new File('files/lifestyles/' . $lifestyle['Lifestyle']['image'], true, 0777);
+                    if ($file->exists()) {
+                        $file->delete();
+                    } 
+                    if ($img) {
+                        $lifestyle['Lifestyle']['image'] =$img;
+                    }
+                }
                 
                 if($this->Lifestyle->save($lifestyle)){
                     $this->Session->setFlash(__('Lifestyle has been updated successfully.'), 'flash');
@@ -104,13 +154,20 @@ class LifestylesController extends AppController{
     }
     
     public function admin_delete($id = null){
+        $this->layout = 'admin';
+        $this->isAdmin();
         $this->Lifestyle->id = $id;
         if(!$this->Lifestyle->exists()){
             throw new NotFoundException(__('Invalid Lifestyle'));
         }
         $this->request->onlyAllow('post', 'delete');
-        
+        $lifestyle = $this->Lifestyle->find('first');
         if($this->Lifestyle->delete()){
+            $file = new File('files/lifestyles/' . $lifestyle['Lifestyle']['image'], true, 0777);
+            if ($file->exists()) {
+                $file->delete();
+            } 
+            
             $this->Session->setFlash(__('Lifestyle deleted'), 'flash', array('title' => 'Success!'));
             $this->redirect(array('action' => 'index'));    
         }
@@ -119,6 +176,8 @@ class LifestylesController extends AppController{
     }
     
     public function admin_add_items($id = null){
+        $this->layout = 'admin';
+        $this->isAdmin();
         if(!$this->Lifestyle->exists($id)){
             throw new NotFoundException(__('Invalid Lifestyle'));
         }
@@ -156,6 +215,8 @@ class LifestylesController extends AppController{
     }
     
     public function admin_delete_item($id = null){
+        $this->layout = 'admin';
+        $this->isAdmin();
         $this->Lifestyle->LifestyleItem->id = $id;
         if(!$this->Lifestyle->LifestyleItem->exists()){
             throw new NotFoundException(__('Invalid Lifestyle Product'));

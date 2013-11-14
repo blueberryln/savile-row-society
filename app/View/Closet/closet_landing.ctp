@@ -71,14 +71,39 @@ $script = '
 var threeItemPopup = ' . $show_three_item_popup. ';
 var showClosetPopUp = ' . $show_closet_popup . ';
 $(document).ready(function(){   
+    
+    $(".fancybox").fancybox({ 
+        afterClose : function() {
+	       setCookie("showLifeStyle",1,60);   
+        },  
+		helpers: {
+			title : {
+				type : "over"
+			},
+			overlay : {
+				speedOut : 1000
+			},
+		},
+	}); 
+    var showLifeStyle=getCookie("showLifeStyle");
+    if (showLifeStyle == null || showLifeStyle == ""){
+        $(".fancybox").eq(0).trigger("click");
+    }
+    
+    
     $(".fade").mosaic();
     $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
     $(".mosaic-overlay").on("click", function(e){
         e.preventDefault();
-        var productBlock = $(this).closest(".product-block");
-        var productSlug = productBlock.find(".product-slug").val();
-        var productId = productBlock.find(".product-id").val();
-        window.location = "' . $this->request->webroot . 'product/" + productId + "/" + productSlug;
+        if($(this).hasClass("lifestyle-overlay")){
+            $(".fancybox").eq(0).trigger("click");        
+        }
+        else{
+            var productBlock = $(this).closest(".product-block");
+            var productSlug = productBlock.find(".product-slug").val();
+            var productId = productBlock.find(".product-id").val();
+            window.location = "' . $this->request->webroot . 'product/" + productId + "/" + productSlug;
+        }
     });
     
     if(isLoggedIn() && threeItemPopup == 1){
@@ -233,7 +258,10 @@ $(document).ready(function(){
     ' . $logged_script . '
 });
 ';
-
+$this->Html->script("jquery.fancybox.js", array('inline' => false));
+$this->Html->script('cookie.js', array('inline' => false));
+$this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
+echo $this->Html->css("jquery.fancybox.css");
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 
@@ -280,50 +308,80 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <!--<div class="product-top-offset"></div>-->
             <?php if($entities) : ?>
                 <?php foreach($entities as $entity) : ?>
+                    <?php if($entity['Category']['parent_cat'] != $lookbook_id) : ?>
+                        <div class="three columns alpha row">
+                            <div class="product-block"> 
+                                <a href="" class="get-related-products"></a>
+                                <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
+                                <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
+                                <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="product-category-id category-id">
+                                <div class="product-list-image mosaic-block fade">
+                                    <div class="mosaic-overlay">
+                        				<div class="mini-product-details">
+                    					   <span class="product-price">$<?php echo $entity['Entity']['price']; ?></span>
+                    					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
+                    					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
+                        				</div>
+                        			</div>
+                                    <?php 
+                                    if($entity['Image']){
+                                        //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
+                                        $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/158/216'; 
+                                    }
+                                    else{
+                                        $img_src = $this->request->webroot . "img/image_not_available-small.png";
+                                    } 
+                                    ?>
+                                    <div class="mosaic-backdrop">
+                                        <img src="<?php echo $img_src; ?>" alt="<?php echo $entity['Entity']['name']; ?>" class="product-image fadein-image" />
+                                    </div>
+                                </div>
+                                <div class="product-list-links">
+                                    <?php if(isset($entity['Wishlist'])) : ?>
+                                        <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
+                                        <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
+                                        <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
+                                    <?php else : ?>
+                                        <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                    
+                <?php if($random_lifestyle) : ?>
                     <div class="three columns alpha row">
                         <div class="product-block"> 
-                            <a href="" class="get-related-products"></a>
-                            <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
-                            <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
-                            <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="product-category-id category-id">
                             <div class="product-list-image mosaic-block fade">
-                                <div class="mosaic-overlay">
+                                <div class="mosaic-overlay lifestyle-overlay">
                     				<div class="mini-product-details">
-                					   <span class="product-price">$<?php echo $entity['Entity']['price']; ?></span>
-                					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
-                					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
+                					   <span class="product-name">Lifestyle</span>
                     				</div>
                     			</div>
-                                <?php 
-                                if($entity['Image']){
-                                    //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
-                                    $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/158/216'; 
-                                }
-                                else{
-                                    $img_src = $this->request->webroot . "img/image_not_available-small.png";
-                                } 
-                                ?>
                                 <div class="mosaic-backdrop">
-                                    <img src="<?php echo $img_src; ?>" alt="<?php echo $entity['Entity']['name']; ?>" class="product-image fadein-image" />
+                                    <img src="<?php echo $this->webroot. "files/lifestyles/" . $random_lifestyle['Lifestyle']['image']; ?>" alt="Lifestyle" class="product-image fadein-image" />
                                 </div>
                             </div>
                             <div class="product-list-links">
-                                <?php if(isset($entity['Wishlist'])) : ?>
-                                    <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
-                                    <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
-                                    <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
-                                <?php else : ?>
-                                    <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
-                                <?php endif; ?>
+                                    <a href="<?php echo $this->request->webroot . 'lifestyles/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>    
+                    </div>    
+                <?php endif; ?>    
             <?php endif; ?>
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="sixteen columns">
-        
+    <div class="fourteen columns details-margin row">
+        <div class="lifestyle-images">
+            <?php if($lifestyles && count($lifestyles) > 0) : ?>
+                <?php foreach($lifestyles as $style) : ?>
+                    <a class="fancybox" data-fancybox-group="lifestyles" title="<?php echo $style['Lifestyle']['caption']; ?>" href="#lifestyle<?php echo $style['Lifestyle']['id']; ?>"></a>
+                    <div class="hide"><div id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a></div></div>
+                <?php endforeach; ?>
+            <?php endif; ?> 
+            
+        </div>
     </div>
 </div>

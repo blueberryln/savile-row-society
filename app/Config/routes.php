@@ -39,6 +39,7 @@ Router::connect('/closet/validatecard/*', array('controller' => 'closet', 'actio
 Router::connect('/closet/validate_promo_code/*', array('controller' => 'closet', 'action' => 'validate_promo_code'));
 Router::connect('/temp2', array('controller' => 'closet', 'action' => 'temp2'));
 Router::connect('/closet/*', array('controller' => 'closet', 'action' => 'index'));
+Router::connect('/lifestyles/*', array('controller' => 'lifestyles', 'action' => 'index'));
 Router::connect('/cart', array('controller' => 'closet', 'action' => 'cart'));
 Router::connect('/checkout', array('controller' => 'closet', 'action' => 'checkout'));
 Router::connect('/payment', array('controller' => 'closet', 'action' => 'payment'));

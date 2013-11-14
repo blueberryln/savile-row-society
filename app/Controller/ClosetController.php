@@ -126,7 +126,19 @@ class ClosetController extends AppController {
                 }
             }    
         }
-
+        
+        $lookbooks = $Category->getOneBySlug("lookbooks", "Product");
+        $lookbook_id = 0;
+        if($lookbooks){
+            $lookbook_id = $lookbooks['Category']['id'];
+        }
+        
+        $Lifestyle = ClassRegistry::init('Lifestyle');
+        $lifestyles = $Lifestyle->find('all');
+        
+        $random_lifestyle = $Lifestyle->getByRand();
+        
+        $this->set(compact('lifestyles', 'random_lifestyle', 'lookbook_id'));
 
         return $entities;
     }
@@ -305,16 +317,15 @@ class ClosetController extends AppController {
                 }
             }
         }
-
+        
         // check for login popup
-        if(!$user_id && count($brand_list)>0 ||count($category_ids)>0)
-        {
+        $check_count = 0;
+        if(!$user_id && (count($brand_list) > 0 || count($category_ids)>0)){
 
             $count = $this->Session->read("count-click");
 
             if($count){
-
-                $count=1;
+                $count++;
                 if($count==3)
                 {
                     $check_count=1;
@@ -369,27 +380,28 @@ class ClosetController extends AppController {
                 $parent_category = $Category->findById($category['Category']['parent_id']);
             }
 
-            //Use session guest-product-list
-            $showGuestLoginPopup = 0;
+            $check_count = 0;
             if(!$user_id){
-                $list = array();
-                if($list = $this->Session->read("guest-product-list")){
-                    if(!in_array($id, $list) && count($list) <= 3){
-                        $list[] = $id;
-                        if(count($list) == 3){
-                            $showGuestLoginPopup = 1;
-                        }
-                        $this->Session->write("guest-product-list", $list);
-                    } 
+    
+                $count = $this->Session->read("count-click");
+    
+                if($count){
+                    $count++;
+                    if($count==3)
+                    {
+                        $check_count=1;
+                    }
+                    $this->Session->write("count-click", $count);
                 }
                 else{
-                    $list[] = $id;
-                    $this->Session->write("guest-product-list", $list);
+                    $this->Session->write("count-click", 1);
                 }
+    
+    
             }
             
             // send data to view
-            $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id', 'showGuestLoginPopup'));
+            $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id', 'check_count'));
         }
     }
 

@@ -2,11 +2,6 @@
 $logged_script = '';
 if($user_id){    
     $logged_script = '
-        var checkCount = '.$check_count.'
-         if(checkCount == 1){
-            signUp();
-         }
-
         $(".thumbs-up").click(function(e) {
             e.preventDefault();
             $this = $(this);
@@ -72,8 +67,13 @@ if($user_id){
 }
 
 $script = '
-var filter = "' . $filter_used . '" 
+var filter = "' . $filter_used . '";
+var checkCount = '.$check_count.'; 
 $(document).ready(function(){
+    if(checkCount == 1){
+        signUp();
+    }
+    
     $(".fade").mosaic();
     $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
     
@@ -262,22 +262,24 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </ul>
             </div>
         </div>
-        <div class="sort-block">
-            <?php
-                $sortKey = $this->Paginator->sortKey();
-                $sortDir = $this->Paginator->sortDir();
-            ?>
-            <?php if( $sortKey == 'price' && $sortDir == 'asc') : ?>
-                <strong>Sort By Price:</strong> <span class="sort-selected">Low to High</span> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
-            <?php elseif ($sortKey == 'price' && $sortDir = 'desc') : ?>
-                <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <span class="sort-selected">High to Low</span>
-            <?php else : ?>
-                <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
-            <?php endif; ?> 
-        </div>
+        <?php if($entities && strtolower($category_slug) != "lookbooks") : ?>
+            <div class="sort-block">
+                <?php
+                    $sortKey = $this->Paginator->sortKey();
+                    $sortDir = $this->Paginator->sortDir();
+                ?>
+                <?php if( $sortKey == 'price' && $sortDir == 'asc') : ?>
+                    <strong>Sort By Price:</strong> <span class="sort-selected">Low to High</span> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
+                <?php elseif ($sortKey == 'price' && $sortDir = 'desc') : ?>
+                    <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <span class="sort-selected">High to Low</span>
+                <?php else : ?>
+                    <strong>Sort By Price:</strong> <?php echo $this->Paginator->sort('price','Low to High',array('direction' => 'asc')); ?> | <?php echo $this->Paginator->sort('price','High to Low',array('direction' => 'desc')); ?>
+                <?php endif; ?> 
+            </div>
+        <?php endif; ?>
         <div class="twelve columns omega product-listing">
             <!--<div class="product-top-offset"></div>-->
-            <?php if($entities) : ?>
+            <?php if($entities && strtolower($category_slug) != "lookbooks") : ?>
                 <?php foreach($entities as $entity) : ?>
                     <div class="three columns alpha row">
                         <div class="product-block">
@@ -318,7 +320,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         </div>
                     </div>
                 <?php endforeach; ?>
+            <?php elseif(strtolower($category_slug) == "lookbooks") : ?>
+                <div class="closet-sorry" style="margin-top: 0px;">
+                    <img src="<?php echo $this->webroot;?>img/lookbooks.jpg" alt="Lookbooks coming soon" />
+                    <h4 class="text-center" style="margin-top: 10px;">COMING SOON!</h4>            
+                </div>
             <?php else : ?>
+            <div class="product-top-offset"></div>
             <div class="closet-sorry">
                 <h4 class="text-center">SORRY!</h4> 
                 <h5>There are no products available for this category.</h5>            

@@ -27,4 +27,17 @@ class Lifestyle extends AppModel {
             'dependent' => true         
         ),
     );
+    
+    
+    public function getByIdSlug($id, $slug){
+        return $this->find('first', array(
+            'conditions' => array('Lifestyle.id' => $id, 'Lifestyle.slug' => $slug) 
+        ));
+    }
+    
+    public function getByRand(){
+        return $this->find('first', array(
+            'order' => "rand()", 
+        ));    
+    }
 }

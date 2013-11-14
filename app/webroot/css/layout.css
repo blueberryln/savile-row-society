@@ -2668,8 +2668,8 @@ body{
 .product-top-offset{
     border-top: 1px solid #D9D9D9;
     padding-top: 29px;
-    margin-left: 5px;
-    margin-right: 10px;
+    /*margin-left: 5px;
+    margin-right: 10px;*/
 }
 .product-listing .alpha{
     margin-left: 5px;
@@ -4171,7 +4171,7 @@ table.lb-products{
      margin-bottom:40px ;
 }
 
-.lb-products tbody tr.first td{
+.lb-products tbody tr:first-child{
     border-top: 1px solid #dedede;  
 }
 .lb-products tbody td
@@ -4192,6 +4192,18 @@ table.lb-products{
 .lb-products .product-thumb{
     padding-right: 20px;
     padding-left: 20px;
+}
+.lb-products .product-thumb-cont{
+    width: 65px;
+    height: 87px;
+    line-height: 87px;
+    vertical-align: middle;
+    border: 1px solid #D7CDC1;
+}
+.lb-products .product-thumb-cont img{
+    max-width: 65px;
+    max-height: 87px;  
+    vertical-align: middle;  
 }
 
 /********STYLE other*********/

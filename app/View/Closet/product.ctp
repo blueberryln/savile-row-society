@@ -68,15 +68,15 @@ if($user_id){
 
 $script = '
 var showGuestLoginPopup= ' . $showGuestLoginPopup . ';
-//var checkCount = '.$check_count.';
+var checkCount = '.$check_count.';
 
 $(document).ready(function(){  
     if(showGuestLoginPopup == 1){
         signUp();    
     }
-    //if(checkCount == 1){
-        //signUp();
-    //}
+    if(checkCount == 1){
+        signUp();
+    }
     $(".add-to-cart").click(function(e) {
         e.preventDefault();
         if($("select#product-quantity").val()== "")
@@ -114,21 +114,11 @@ $(document).ready(function(){
         );
     });
     $("#lnk-fb-share").on("click", function(e){
-        e.preventDefault();
-        FB.login(function(response) {
-            FB.api(
-              "me/og.likes",
-              "post",
-              {
-                object: "http://samples.ogp.me/226075010839791"
-              },
-              function(response) {
-                console.log(response);
-              }
-            );   
-        }, {scope: "email,publish_actions"});
-         
-        
+        e.preventDefault(); 
+        window.open(
+          "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href), 
+          "facebook-share-dialog", 
+          "width=626,height=436"); 
     });
     
     $("select#product-quantity").change(function(){
