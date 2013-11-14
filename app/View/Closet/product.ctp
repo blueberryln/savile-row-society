@@ -68,7 +68,7 @@ if($user_id){
 
 $script = '
 var showGuestLoginPopup= ' . $showGuestLoginPopup . ';
-var checkCount = '.$check_count.';
+//var checkCount = '.$check_count.';
 
 $(document).ready(function(){  
     if(showGuestLoginPopup == 1){
