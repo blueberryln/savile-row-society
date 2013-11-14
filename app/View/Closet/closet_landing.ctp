@@ -112,7 +112,7 @@ $(document).ready(function(){
         notificationDetails["button"] = "<a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
         showNotification(notificationDetails);  
     }    
-    else if(isLoggedIn() && showClosetPopUp == 1){
+    else if(isLoggedIn() && showClosetPopUp == 1 && (showLifeStyle == null || showLifeStyle == "")){
         var notificationDetails = new Array();
         notificationDetails["msg"] = "Welcome to the Closet! Like and Dislike items to help our stylists get to know you better. Use the arrow on the side of each picture to see a new product in that category. Happy Browsing!";    
         notificationDetails["check"] = "<input type=checkbox id=hideClosetPopUp> Don\'t show me this message again"; 
