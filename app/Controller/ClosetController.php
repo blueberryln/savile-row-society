@@ -10,8 +10,8 @@ class ClosetController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
     
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20);
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'Perkla20');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'Perkla20' => 20);
     /**
      * Index
      */
@@ -40,12 +40,13 @@ class ClosetController extends AppController {
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
+        $Colorgroup = ClassRegistry::init('Colorgroup');
         $User = ClassRegistry::init('User');
 
         // get data
         $categories = $Category->getAll();
         $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
-        $colors = $Color->find('all', array('order' => "Color.name ASC"));
+        $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
 
         $entities = array();
 
@@ -56,13 +57,13 @@ class ClosetController extends AppController {
             $entities = $this->closetProducts($user_id);
         }
         
+        $popUpMsg = '';
         $show_three_item_popup = 0;
         if($this->Session->read('cart-three-items')){
             $show_three_item_popup = 1;
             $popUpMsg = $this->Session->read('cart-three-items-msg');
             $this->Session->delete('cart-three-items');
             $this->Session->delete('cart-three-items-msg');
-            $this->set(compact('popUpMsg'));
         }
         
         $show_closet_popup = 0;
@@ -74,7 +75,7 @@ class ClosetController extends AppController {
         }
         
         // send data to view
-        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup'));
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg'));
 
         if(!$category_slug){
             $this->render('closet_landing');     
@@ -191,6 +192,7 @@ class ClosetController extends AppController {
 
         // Prepare the color filter data
         $color_list = array();
+        $color_ids  = array();
         if($filter_color && $filter_color != "none"){
             $color_list = explode('-', $filter_color);
             $color_list = array_values(array_unique($color_list));
@@ -275,15 +277,27 @@ class ClosetController extends AppController {
         
         // Color filter
         if($color_list && count($color_list) > 0){
-            $color_join = array('table' => 'colors_entities',
-                'alias' => 'Color1',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'Color1.color_id' => $color_list,
-                    'Color1.product_entity_id = Entity.id'
-                )
-            );
-            $find_array['joins'][] = $color_join;
+            
+            //Get product color ids based on colour group ids
+            $Colorgroup = ClassRegistry::init('Colorgroup');
+            $color_data = $Colorgroup->getColors($color_list);
+            if($color_data){
+                foreach($color_data as $color_item){
+                    $color_ids[] = $color_item['ColorItems']['color_id'];
+                }
+            }
+            
+            if($color_ids && count($color_ids) > 0){
+                $color_join = array('table' => 'colors_entities',
+                    'alias' => 'Color1',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Color1.color_id' => $color_ids,
+                        'Color1.product_entity_id = Entity.id'
+                    )
+                );
+                $find_array['joins'][] = $color_join;
+            }
         }
 
         // Brand Filter
@@ -297,25 +311,29 @@ class ClosetController extends AppController {
 //        $sub_query->type = "expression";
 //        $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
 //        $find_array['conditions'][] = $sub_query;
-
-        $this->Paginator->settings = $find_array;
-        $data = $this->Paginator->paginate($Entity);
-        foreach($data as &$entity){
-            if($entity['Category']['category_id']){
-                $parent = $Category->getParentNode($entity['Category']['category_id']);
-                if($parent){
-                    $root_parent = $Category->getParentNode($parent['Category']['id']);
-                    if($root_parent){
-                        $entity['Category']['parent_cat'] = $root_parent['Category']['id'];    
+        if(count($color_ids) == 0 && ($category_slug == null || $category_slug ==  "all") && count($brand_list) == 0 ){
+            $data = array();
+        }
+        else{
+            $this->Paginator->settings = $find_array;
+            $data = $this->Paginator->paginate($Entity);
+            foreach($data as &$entity){
+                if($entity['Category']['category_id']){
+                    $parent = $Category->getParentNode($entity['Category']['category_id']);
+                    if($parent){
+                        $root_parent = $Category->getParentNode($parent['Category']['id']);
+                        if($root_parent){
+                            $entity['Category']['parent_cat'] = $root_parent['Category']['id'];    
+                        }
+                        else{
+                            $entity['Category']['parent_cat'] = $parent['Category']['id'];
+                        }
                     }
                     else{
-                        $entity['Category']['parent_cat'] = $parent['Category']['id'];
+                        $entity['Category']['parent_cat'] = $entity['Category']['category_id'];
                     }
                 }
-                else{
-                    $entity['Category']['parent_cat'] = $entity['Category']['category_id'];
-                }
-            }
+            }    
         }
         
         // check for login popup
@@ -338,7 +356,9 @@ class ClosetController extends AppController {
 
 
         }
-
+        
+        
+        
         $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used','check_count'));
         return $data;
     }

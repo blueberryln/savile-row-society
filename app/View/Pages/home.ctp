@@ -5,7 +5,7 @@ $script ='
    $(".flexslider").flexslider({
 	            animation: "slide",
 	            slideshow: true,
-                video: false,
+                video: true,
                 useCSS: false,
                 controlNav: false,
                 directionNav: false	            
@@ -84,7 +84,9 @@ $this->Html->script('cookie.js', array('inline' => false));
                 }
                 ?>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled"/></li>
-            <!--<li><img src="<?php echo $this->request->webroot; ?>img/home-5-big.jpg"/></li>-->
+            <li>
+                <iframe width="100%" height="438" src="//www.youtube.com/embed/kZaUfXZ60po?list=UUzDQeTLe_SDibWk4ebgAR3w" frameborder="0" allowfullscreen></iframe>
+            </li>
             <?php
                 if (!$is_logged) {
                     echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-5-big.jpg"/></a></li> ';                   
@@ -92,9 +94,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                     echo ' <li><img src="' . $this->webroot . 'img/home-5-big.jpg"/></li>';
                 }
                 ?> 
-            
-             
-            
+            <li style="text-align: center; background-color: #fff;"><img src="<?php echo $this->request->webroot; ?>img/lifestyle_image.jpg" style="max-height: 438px; width: auto !important; display: inline;" /></li>
             <?php
                 if (!$is_logged) {
                     echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-2-big.jpg"/></a></li> ';                   
@@ -184,7 +184,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             </tr>
             <tr>
                 <td class="membership-service-option">
-                    <div class="title">Free Shipping/Returns </div>
+                    <div class="title">Free Shipping</div>
                     <div class="description">Shipping is always on us!</div>
                 </td>
                 <td ></td>

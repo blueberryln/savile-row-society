@@ -296,7 +296,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <ul class="toggle-body color-filter hide">
                         <?php if($colors) : ?>
                             <?php foreach($colors as $color) : ?>
-                                <li data-color_id="<?php echo $color['Color']['id']; ?>"><?php echo $color['Color']['name']; ?></li>
+                                <li data-color_id="<?php echo $color['Colorgroup']['id']; ?>"><?php echo $color['Colorgroup']['name']; ?></li>
                             <?php endforeach; ?>
                         <?php endif; ?>
                         </ul>

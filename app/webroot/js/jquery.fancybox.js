@@ -163,13 +163,13 @@
 
 			// Changing next gallery item
 			nextEffect : 'elastic', // 'elastic', 'fade' or 'none'
-			nextSpeed  : 500,
-			nextEasing : 'easeOutQuad',
+			nextSpeed  : 300,
+			nextEasing : 'swing',
 			nextMethod : 'changeIn',
 
 			// Changing previous gallery item
 			prevEffect : 'fade', // 'elastic', 'fade' or 'none'
-			prevSpeed  : 250,
+			prevSpeed  : 100,
 			prevEasing : 'swing',
 			prevMethod : 'changeOut',
 

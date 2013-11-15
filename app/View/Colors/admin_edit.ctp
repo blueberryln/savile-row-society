@@ -18,6 +18,10 @@ $(document).ready(function(){
     $("#ColorCode").ColorPickerSetColor(this.value);
 });
 
+$("#ColorCode").on("focus", function(e){
+    $("#ColorCode").click();        
+});
+
 
 
 });
@@ -34,6 +38,12 @@ echo $this->Html->css('/css/color/colorpicker',null,array('inline' => false));
     <div class="sixteen columns">
         <div class="colors form">
             <?php echo $this->Form->create('Color'); ?>
+            <fieldset class="fifteen columns product-color">
+                <legend><?php echo __('Color Groups'); ?></legend>
+                <?php
+                echo $this->Form->input('Colorgroup', array('label' => '', 'multiple' => 'checkbox'));
+                ?>
+            </fieldset>
             <fieldset>
                 <legend><?php echo __('Basic Info'); ?></legend>
                 <?php

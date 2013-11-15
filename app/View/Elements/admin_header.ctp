@@ -32,7 +32,10 @@
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>admin/colors">Colors</a>
                     <ul class="submenu">
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/colors">Colors</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>admin/colors/add">Add New Color</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/colorgroups">Color Groups</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/colorgroups/add">Add New Color Group</a></li>
                     </ul>
                 </li>
                 <li>

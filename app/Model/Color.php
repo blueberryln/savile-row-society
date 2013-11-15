@@ -43,21 +43,21 @@ class Color extends AppModel {
             'deleteQuery' => '',
             'insertQuery' => ''
         ),
-        //'Entity' => array(
-//            'className' => 'Entity',
-//            'joinTable' => 'product_entity_id',
-//            'foreignKey' => 'colors_entities',
-//            'associationForeignKey' => 'color_id',
-//            'unique' => 'keepExisting',
-//            'conditions' => '',
-//            'fields' => '',
-//            'order' => '',
-//            'limit' => '',
-//            'offset' => '',
-//            'finderQuery' => '',
-//            'deleteQuery' => '',
-//            'insertQuery' => ''
-//        ),
+        'Colorgroup' => array(
+            'className' => 'Colorgroup',
+            'joinTable' => 'colorgroups_items',
+            'foreignKey' => 'color_id',
+            'associationForeignKey' => 'colorgroup_id',
+            'unique' => 'keepExisting',
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'finderQuery' => '',
+            'deleteQuery' => '',
+            'insertQuery' => ''
+        ),
     );
     
     function remove($color_id){

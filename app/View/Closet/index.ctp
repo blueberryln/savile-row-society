@@ -250,10 +250,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <ul class="toggle-body color-filter hide">
                         <?php if($colors) : ?>
                             <?php foreach($colors as $color) : ?>
-                                <?php if(in_array($color['Color']['id'], $color_list)) : ?>
-                                    <li class="filter-selected" data-color_id="<?php echo $color['Color']['id']; ?>"><?php echo $color['Color']['name']; ?></li>
+                                <?php if(in_array($color['Colorgroup']['id'], $color_list)) : ?>
+                                    <li class="filter-selected" data-color_id="<?php echo $color['Colorgroup']['id']; ?>"><?php echo $color['Colorgroup']['name']; ?></li>
                                 <?php else : ?>
-                                    <li data-color_id="<?php echo $color['Color']['id']; ?>"><?php echo $color['Color']['name']; ?></li>
+                                    <li data-color_id="<?php echo $color['Colorgroup']['id']; ?>"><?php echo $color['Colorgroup']['name']; ?></li>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -332,14 +332,17 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <h5>There are no products available for this category.</h5>            
             </div>                
             <?php endif; ?>
-            <div class="clear"></div>
-            <div class="pagination">
-                <?php
-                echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
-                ?>
-            </div>
+            
+            <?php if($entities) : ?>
+                <div class="clear"></div>
+                <div class="pagination">
+                    <?php
+                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                    ?>
+                </div>
+            <?php endif; ?>
         </div>
         
     </div>

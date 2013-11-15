@@ -66,7 +66,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </tr>
             <tr>
                 <td class="membership-service-option">
-                    <div class="title">Free Shipping/Returns </div>
+                    <div class="title">Free Shipping</div>
                     <div class="description">Shipping is always on us!</div>
                 </td>
                 <td ></td>
