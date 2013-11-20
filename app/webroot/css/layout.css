@@ -4340,10 +4340,11 @@ div.payment .profile-tabs
     color: #666;
     /*border-top: 6px solid transparent;*/
     box-sizing: border-box;
+    font-style: italic; 
 }
 .flex-control-nav li.flex-active a{
     /*border-top: 6px solid #00a4e4;*/
-    color: #00a4e4;    
+    color: #00a4e4;   
 }
 
 

@@ -26,6 +26,12 @@ $script ='
                          }
                      });      
                 },
+                before: function(slider){
+                    var slideTo = slider.animatingTo;
+                    var nextSlide = $(".flex-control-nav li").eq(slideTo);
+                    var position = nextSlide.position();
+                    $(".flex-active-bar").animate({left: position.left + "px"}, 300, "swing");
+                },
 	        });
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
