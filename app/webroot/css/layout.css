@@ -4311,6 +4311,7 @@ div.payment .profile-tabs
 }
 .custom-flex-cont{
    position: relative; 
+   margin-bottom: 5px;
 }
 .flex-active-bar{
     height: 6px;

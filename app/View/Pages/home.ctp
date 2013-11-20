@@ -8,6 +8,7 @@ $script ='
 	            slideshow: true,
                 video: true,
                 useCSS: false,
+                pauseOnAction: false,
                 manualControls: ".flex-control-nav li",
                 controlsContainer: ".flexslider",
                 controlNav: true,
@@ -22,7 +23,7 @@ $script ='
                          if (activeSlide == "false"){
                             var position = $(this).position();
                             jQuery(this).trigger("click"); 
-                            $(".flex-active-bar").animate({left: position.left + "px"}, 300, "swing");
+                            $(".flex-active-bar").stop(false, false).animate({left: position.left + "px"}, 500, "swing");
                          }
                      });      
                 },
@@ -30,7 +31,7 @@ $script ='
                     var slideTo = slider.animatingTo;
                     var nextSlide = $(".flex-control-nav li").eq(slideTo);
                     var position = nextSlide.position();
-                    $(".flex-active-bar").animate({left: position.left + "px"}, 300, "swing");
+                    $(".flex-active-bar").stop(false, false).animate({left: position.left + "px"}, 500, "swing");
                 },
 	        });
     $("#lnk-fb-share").on("click", function(e){
@@ -150,7 +151,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         </ul>
     </div>
     <div class="clear"></div>    
-    <div class="custom-flex-cont sixteen columns row">
+    <div class="custom-flex-cont sixteen columns">
         <div class="flex-active-bar"></div>
         <ul class="flex-control-nav">
             <li><a href="">1</a></li>
