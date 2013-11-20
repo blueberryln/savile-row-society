@@ -1,22 +1,46 @@
 <?php
 
 $script ='
-    
+   var player; 
    $(".flexslider").flexslider({
 	            animation: "slide",
 	            slideshow: true,
                 video: true,
                 useCSS: false,
-                controlNav: false,
-                directionNav: false	            
+                manualControls: ".flex-control-nav li",
+                controlsContainer: ".flexslider",
+                controlNav: true,
+                directionNav: false,
+                keyboard: false,
 	        });
-            $("#lnk-fb-share").on("click", function(e){
+    $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
         window.open(
           "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href), 
           "facebook-share-dialog", 
           "width=626,height=436"); 
     });
+    
+    //Load you tube api
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player("homeVideoHowItWorks", {
+          events: {
+            "onStateChange": function(event) {
+                if (event.data == 1 || event.data == 3) {
+                    $(".flexslider").flexslider("pause");
+                }
+                else if (event.data == 0 || event.data == 2 || event.data == 5) {
+                    $(".flexslider").flexslider("play");
+                }
+            }
+          }
+        });
+    }
 
 ';
 $script1 ='
@@ -59,11 +83,11 @@ $this->Html->script('cookie.js', array('inline' => false));
 <?php if (!$is_logged) { ?>
 <div id="sign-up-drop-down">
     <div class="close"><a href="#"> &#215;</a></div>
-    <p>Get early access to our next collection.</p>
+    <p>Tailor Your Life</p>
     <div class="initial-module">
         <?php
             echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-            echo '<a class="show-login-form" href="#" onclick="window.ref_url=\'\'; signIn();">Already a Member?</a>';
+            echo '<p class="show-login-form">You`ve been hooked up for the holidays! Use Promo Code "SRS20"</p>';
 
         ?>
     </div>
@@ -85,7 +109,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 ?>
             <li><img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled"/></li>
             <li>
-                <iframe width="100%" height="438" src="//www.youtube.com/embed/kZaUfXZ60po?list=UUzDQeTLe_SDibWk4ebgAR3w" frameborder="0" allowfullscreen></iframe>
+                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/kZaUfXZ60po?enablejsapi=1&rel=0" frameborder="0" allowfullscreen></iframe>
             </li>
             <?php
                 if (!$is_logged) {
@@ -105,6 +129,15 @@ $this->Html->script('cookie.js', array('inline' => false));
             
         </ul>
     </div>
+        <ul class="flex-control-nav">
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href="">5</a></li>
+            <li><a href="">6</a></li>
+            <li><a href="">7</a></li>
+        </ul>
     <map name="getstyled">
         <area shape="rect" coords="0,0,328,214" alt="">
         <area shape="rect" coords="660,0,328,214" href="<?php echo $this->request->webroot; ?>closet" title="closet">
@@ -130,14 +163,23 @@ $this->Html->script('cookie.js', array('inline' => false));
     </div>
     
     <img class="membership-flow fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
-    <div class="fourteen offset-by-one columns">
+    <div class="clear"></div>
+        
+    <div class="four columns text-center">
+        <img src="<?php echo $this->request->webroot; ?>img/free_beta.png" style="margin-top: 30px;" />
+    </div>
+
+    <div class="eleven columns">
         <p>
             As a Savile Row Society member you will receive exclusive personal lifestyle services and access to our deluxe perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
         </p>
         <p>
             All Members receive an exclusive SRS membership card that provides deluxe perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
-        </p><br />
+        </p>
     </div>
+    <div class="clear"></div>
+    <br />
+    
     <table id="membership-table" class="membership-table-home " >
         <thead>
         <th class="mem-top-left" style="background-color: #E6E6E6; width: 40%;">Features</th>

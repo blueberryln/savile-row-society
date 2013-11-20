@@ -3186,21 +3186,30 @@ a.btn-buy:hover{
     margin-bottom:10px;
     overflow: hidden;
 }
+.thumb-cont{
+    padding-bottom: 3px;
+    border-bottom: 3px solid #fff;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    float: left;
+    width:26px;
+    height:26px;
+}
+.thumb-cont.color-selected{
+    border-bottom: 3px solid #b29957;
+}
 .color-thumbnails
 {
     width:24px;
     height:24px;
-    margin-right: 12px;
-    margin-bottom: 10px;
-    float: left;
     border: 1px solid #d0d0d0;
 }
-.color-thumbnails.color-selected
+.color-selected .color-thumbnails
 {
     border: 1px solid #b29957;
-    -moz-box-shadow: rgba(40,40,40,0.5) 0px 0px 5px 0px;
+    /*-moz-box-shadow: rgba(40,40,40,0.5) 0px 0px 5px 0px;
     -webkit-box-shadow: rgba(40,40,40,0.5) 0px 0px 5px 0px;
-    box-shadow: rgba(40,40,40,0.5) 0px 0px 5px 0px;
+    box-shadow: rgba(40,40,40,0.5) 0px 0px 5px 0px;*/
 }
 
 
@@ -4287,11 +4296,20 @@ div.payment .profile-tabs
 .lifestyle-images a{
     /*display: none;*/
 }
-.p_code{
-    position: absolute;
-    top:0;
-    left:0;
+
+/*Custom fancybopx styles*/
+.fancybox-inner a, .fancybox-inner .fancybox-data-box{
+    font-size: 0px;
+    line-height: 0;
 }
+.fancybox-inner .btn-buy-look{
+    font-size: 14px;
+    line-height: 20px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
 
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){

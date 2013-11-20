@@ -157,7 +157,7 @@ $columns = 'eleven';
     <div class="one columns alpha omega">&nbsp;</div>
     <div class="fourteen columns details-margin row">
         <p class="product-breadcrumb" >
-            <a href="<?php echo $this->webroot . "closet" ; ?>">Categories</a>
+            <a href="<?php echo $this->webroot . "closet" ; ?>">Closet</a>
             <?php if(isset($parent_category)) : ?>
                 &gt; <a href="<?php echo $this->webroot . "closet/" . $parent_category['Category']['slug'] ; ?>"><?php echo $parent_category['Category']['name']; ?></a>
             <?php endif; ?>
@@ -205,7 +205,7 @@ $columns = 'eleven';
             <div>
                 <h2 class="product-name"><?php echo $entity['Entity']['name']; ?></h2>
                 <h5 class="brand">Brand: <a href="<?php echo $this->request->webroot; ?>company/brands"><?php echo $entity['Brand']['name']; ?></a></h5>
-                <h5 class="price">Price: $<?php echo $entity['Entity']['price']; ?></h5>
+                <h5 class="price">Price: <?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></h5>
                 <h5 class="product-details">Product Details :</h5>
                 <p class="description"><?php echo $entity['Entity']['description']; ?></p>
             </div>
@@ -213,17 +213,19 @@ $columns = 'eleven';
                 <label class="product-color-label">Color</label>
                 <div class="product-swatches">
                 <?php foreach($similar as $product) : ?>
+                    <div class="thumb-cont <?php echo ($product['Entity']['id'] == $entity['Entity']['id']) ? "color-selected" : "";?>">
                     <?php if($product['Color'] && count($product['Color']) > 1) : ?>
-                        <div class="color-thumbnails <?php echo ($product['Entity']['id'] == $entity['Entity']['id']) ? "color-selected" : "";?>">
+                        <div class="color-thumbnails">
                             <a href="<?php echo $this->webroot . 'product/' . $product['Entity']['id'] . '/' . $product['Entity']['slug']; ?>" class="color-one" style="background-color: <?php echo $product['Color'][0]['code']; ?>;"></a>
 
                             <a href="<?php echo $this->webroot . 'product/' . $product['Entity']['id'] . '/' . $product['Entity']['slug']; ?>" class="color-two" style="background-color: <?php echo $product['Color'][1]['code']; ?>;"></a>
                         </div>
                     <?php elseif($product['Color'] && count($product['Color']) == 1) : ?>
-                        <div class="color-thumbnails <?php echo ($product['Entity']['id'] == $entity['Entity']['id']) ? "color-selected" : "";?>">
+                        <div class="color-thumbnails">
                             <a href="<?php echo $this->webroot . 'product/' . $product['Entity']['id'] . '/' . $product['Entity']['slug']; ?>" class="color-single" style="background-color: <?php echo $product['Color'][0]['code']; ?>;"></a>
                         </div>
                     <?php endif; ?>
+                    </div>
                 <?php endforeach; ?>
                 </div>
             <?php endif; ?>
@@ -244,12 +246,15 @@ $columns = 'eleven';
                     </label>
                 <?php endif; ?>
             <?php endif; ?>
-            <label>Quantity
-                <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10), 'empty' => "Select Quantity ", 'label' => false, 'div' => false)); ?>
-                <br />
-                <span class="err-message">Please select quantity.</span>
-            </label>                                           
-            <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
+            
+            <?php if($entity['Entity']['price'] > 0) : ?>
+                <label>Quantity
+                    <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10), 'empty' => "Select Quantity ", 'label' => false, 'div' => false)); ?>
+                    <br />
+                    <span class="err-message">Please select quantity.</span>
+                </label>                                           
+                <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
+            <?php endif; ?>
             <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue" >Continue Shopping</a>                 
         </div>
         <div class="clear"></div> <br /><br /><br />

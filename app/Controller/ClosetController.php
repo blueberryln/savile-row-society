@@ -10,8 +10,8 @@ class ClosetController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
     
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'Perkla20');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'Perkla20' => 20);
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20);
     /**
      * Index
      */
@@ -564,6 +564,7 @@ class ClosetController extends AppController {
     }
     
     public function payment() {
+
         $this->response->disableCache();
         //TODO: beforerender for not displaying page again.
         $this->isLogged();
@@ -605,6 +606,7 @@ class ClosetController extends AppController {
             $data['BillingAddress']['state'] = $request_data['billstate'];
             $data['BillingAddress']['country'] = $request_data['billcountry'];
             $data['BillingAddress']['zip'] = $request_data['billzip'];
+            $data['BillingAddress']['phone'] = $request_data['billphone'];
             
             
             // Arrange shipping data
@@ -725,6 +727,7 @@ class ClosetController extends AppController {
             if($error_billing || $error_cart || $error_shipping || $error_transaction){
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
+                // $this->Session->setFlash(__('Input'), 'flash');
             }
             
             //Add or update billing address
@@ -732,6 +735,7 @@ class ClosetController extends AppController {
                 // TODO: if billing address could not be saved.
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
+                // $this->Session->setFlash(__('Billing'), 'flash');
             }
             
             //Add order
@@ -750,15 +754,31 @@ class ClosetController extends AppController {
                 // TODO: if shipping address could not be saved.
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
+                // $this->Session->setFlash(__('Shipping'), 'flash');
             }
             
             //If all order data has been added. Continue transaction.
             $transaction_data['card_num'] = $user_transaction_detail['CreditCard']['cardnumber'];
             $transaction_data['card_code'] = $user_transaction_detail['CreditCard']['cardcode'];
             $transaction_data['card_expiry'] = $user_transaction_detail['CreditCard']['expiry_month'] . $user_transaction_detail['CreditCard']['expiry_year'];
-            $transaction_data['total'] = $final_price;
+            $transaction_data['total'] = $total_price;
             $transaction_data['order_id'] = $order_id;
             $transaction_data['user_id'] = $user_id;
+            $transaction_data['card_num'] = $user_transaction_detail['CreditCard']['cardnumber'];
+            $transaction_data['card_code'] = $user_transaction_detail['CreditCard']['cardcode'];
+            $transaction_data['card_expiry'] = $user_transaction_detail['CreditCard']['expiry_month'] . $user_transaction_detail['CreditCard']['expiry_year'];
+            $transaction_data['total'] = $total_price;
+            $transaction_data['order_id'] = $order_id;
+            $transaction_data['user_id'] = $user_id;
+            $transaction_data['address'] = $data['BillingAddress']['address'];
+            $transaction_data['city'] = $data['BillingAddress']['city'];
+            $transaction_data['state'] = $data['BillingAddress']['state'];
+            $transaction_data['country'] = $data['BillingAddress']['country'];
+            $transaction_data['zip'] = $data['BillingAddress']['zip'];
+            $transaction_data['phone'] = $data['BillingAddress']['phone'];
+            $transaction_data['first_name'] = $data['User']['first_name'];
+            $transaction_data['last_name'] = $data['User']['last_name'];
+            $transaction_data['email'] = $user['User']['email'];
             
             if(!$error){
                 $transaction_result = $this->makePayment($transaction_data);
@@ -776,10 +796,12 @@ class ClosetController extends AppController {
     
                     $this->Session->write('transaction_complete', "success");
                     $this->Session->write('transaction_data', $transaction_result);
+                    // $this->Session->setFlash(__('Success'), 'flash');
                 }
                 else{
                     $this->Session->write('transaction_complete', "fail");
                     $this->Session->write('transaction_data', $transaction_result);
+                    // $this->Session->setFlash(__('Fail'), 'flash');
                 }
             }
             $this->redirect('/confirmation');
@@ -811,6 +833,7 @@ class ClosetController extends AppController {
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($shipped_order['User']['email']);
+                    $email->bcc('admin@savilerowsociety.com');
                     $email->subject('Purchase Complete.');
                     $email->template('purchased');
                     $email->emailFormat('html');
@@ -967,6 +990,20 @@ class ClosetController extends AppController {
                     'invoice_num' => $transaction_data['order_id'],
                 )
             );
+            $customer = (object)array();
+            $customer->first_name = $transaction_data['first_name'];
+            $customer->last_name = $transaction_data['last_name'];
+            $customer->address = $transaction_data['address'];
+            $customer->city = $transaction_data['city'];
+            $customer->state = $transaction_data['state'];
+            $customer->zip = $transaction_data['zip'];
+            $customer->country = $transaction_data['country'];
+            $customer->phone = $transaction_data['phone'];
+            $customer->email = $transaction_data['email'];
+            $customer->cust_id = $transaction_data['user_id'];
+            $sale->setFields($customer);
+
+
             $response = $sale->authorizeAndCapture();
             $ret['Transaction']['user_id'] = $transaction_data['user_id'];
             $ret['Transaction']['order_id'] = $transaction_data['order_id'];

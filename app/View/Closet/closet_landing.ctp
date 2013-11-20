@@ -202,7 +202,9 @@ $(document).ready(function(){
                     productBlock.find(".product-slug").val(entity["Entity"]["slug"]);   
                     productBlock.find(".product-name").text(entity["Entity"]["name"]);   
                     productBlock.find(".product-brand").text(entity["Brand"]["name"]); 
-                    productBlock.find(".product-price").text("$" + entity["Entity"]["price"]);
+                    
+                    var productPrice = (entity["Entity"]["price"]> 0) ? "$" + entity["Entity"]["price"] : "Price on request";
+                    productBlock.find(".product-price").text(productPrice);
                     productBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'product/" + entity["Entity"]["id"] + "/" + entity["Entity"]["slug"]});
                     
                     if(entity["Wishlist"]){
@@ -318,7 +320,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <div class="product-list-image mosaic-block fade">
                                     <div class="mosaic-overlay">
                         				<div class="mini-product-details">
-                    					   <span class="product-price">$<?php echo $entity['Entity']['price']; ?></span>
+                    					   <span class="product-price"><?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></span>
                     					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
                     					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
                         				</div>
@@ -378,7 +380,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <?php if($lifestyles && count($lifestyles) > 0) : ?>
                 <?php foreach($lifestyles as $style) : ?>
                     <a class="fancybox" data-fancybox-group="lifestyles" title="<?php echo $style['Lifestyle']['caption']; ?>" href="#lifestyle<?php echo $style['Lifestyle']['id']; ?>"></a>
-                    <div class="hide"><div id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a></div></div>
+                    <div class="hide"><div class="fancybox-data-box" id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>" class="btn-buy-look link-btn gold-btn">Get The Look</a></div></div>
                 <?php endforeach; ?>
             <?php endif; ?> 
             

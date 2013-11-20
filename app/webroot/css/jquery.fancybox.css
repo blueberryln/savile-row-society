@@ -280,6 +280,10 @@
 	padding: 10px;
 	background: #fff;
 	background: rgba(255, 255, 255, 0.7);
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 /*Retina graphics!*/

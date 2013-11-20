@@ -129,7 +129,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="container content inner">	
     <div class="sixteen columns text-center">
-        <h1>Lifestyles</h1>
+        <h1>Lookbooks</h1>
     </div>
     <div class="fifteen offset-by-half columns omega">
         <div class="three columns alpha">
