@@ -3,7 +3,8 @@
 $script ='
    var player; 
    $(".flexslider").flexslider({
-	            animation: "slide",
+	            animation: "fade",
+                animationSpeed: 500,
 	            slideshow: true,
                 video: true,
                 useCSS: false,
@@ -12,6 +13,19 @@ $script ='
                 controlNav: true,
                 directionNav: false,
                 keyboard: false,
+                start: function(slider){
+                    jQuery(".flex-control-nav li a").mouseover(function(){
+                         var activeSlide = "false";
+                         if (jQuery(this).hasClass("flex-active")){  
+                            activeSlide = "true";                       
+                         }
+                         if (activeSlide == "false"){
+                            var position = $(this).position();
+                            jQuery(this).trigger("click"); 
+                            $(".flex-active-bar").animate({left: position.left + "px"}, 300, "swing");
+                         }
+                     });      
+                },
 	        });
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
@@ -129,6 +143,9 @@ $this->Html->script('cookie.js', array('inline' => false));
             
         </ul>
     </div>
+    <div class="clear"></div>    
+    <div class="custom-flex-cont sixteen columns row">
+        <div class="flex-active-bar"></div>
         <ul class="flex-control-nav">
             <li><a href="">1</a></li>
             <li><a href="">2</a></li>
@@ -138,6 +155,9 @@ $this->Html->script('cookie.js', array('inline' => false));
             <li><a href="">6</a></li>
             <li><a href="">7</a></li>
         </ul>
+    </div>
+    
+    <div class="clear"></div>
     <map name="getstyled">
         <area shape="rect" coords="0,0,328,214" alt="">
         <area shape="rect" coords="660,0,328,214" href="<?php echo $this->request->webroot; ?>closet" title="closet">

@@ -543,7 +543,7 @@ class UsersController extends AppController {
                     $this->Session->delete('completeProfile');    
                 }
                 
-                $this->Session->setFlash(__('You are already regietered. Please sign in.'), 'flash');
+                $this->Session->setFlash(__('You are already registered. Please sign in.'), 'flash');
                 $this->redirect($this->referer());
                 exit;    
             }
