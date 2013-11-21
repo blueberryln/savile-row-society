@@ -2911,13 +2911,17 @@ p.product-breadcrumb a
     line-height: 20px;
     margin-bottom: 10px;
 }
-.product-description .add-to-cart, .product-description .prd-continue{
+.product-description .add-to-cart, .product-description .prd-continue, .product-description .btn-request-price{
     width: 100%;
     text-align: center;
     -moz-box-sizing:border-box; 
     -webkit-box-sizing:border-box;
     -o-box-sizing:border-box;
     box-sizing:border-box; 
+}
+.txt-price-request{
+    margin-top: 5px;
+    box-sizing: border-box;
 }
 .product-size .headings
 {   

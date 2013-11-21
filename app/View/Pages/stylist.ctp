@@ -5,7 +5,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 <div class="container content inner booking">
     <div class="sixteen columns hero">
         <div class="sixteen columns text-center">
-            <a class="link-btn black-btn get-style-btn" href="<?php echo $this->webroot; ?>messages">Get Style Suggesstion</a>
+            <?php if($has_stylist) : ?>
+                <a class="link-btn black-btn get-style-btn" href="<?php echo $this->webroot; ?>messages">Get Style Suggesstion</a>
+            <?php endif; ?>
             <h1>Welcome to Savile Row Society!</h1>
             <h6>
                 We've matched you with Casey, our premier personal stylist. <br/>

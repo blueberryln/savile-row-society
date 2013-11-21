@@ -21,6 +21,7 @@ class AppController extends Controller {
 
         $this->getCartCount();
         $this->checkAdminRights();
+        $this->checkStylistRights();
         $message_notification = $this->getMessageNotification();
         if($message_notification){
             $this->set(compact('message_notification'));
@@ -111,6 +112,25 @@ class AppController extends Controller {
         }
 
         $this->set('is_admin', $is_admin);
+    }
+    
+    /**
+     * Check current logged User's
+     * Admin premissions
+     */
+    function checkStylistRights() {
+
+        // fill $user with session data
+        $user = $this->getLoggedUser();
+        $is_stylist = false;
+
+        if ($user['User']['is_stylist'] == 1) {
+            $is_stylist = true;
+        } else {
+            $is_stylist = false;
+        }
+
+        $this->set('is_stylist', $is_stylist);
     }
 
     /**

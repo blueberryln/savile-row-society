@@ -158,6 +158,10 @@ class ProductsController extends AppController {
                     $Entity->create();
                     $data['Color'] = $this->request->data['Color'];
                     $data['Entity']['product_id'] = $id;
+                    if($this->request->data['Entity']['order'] >= 0){
+                        $data['Entity']['order'] = $this->request->data['Entity']['order'];    
+                    }
+                    
                     $data['Entity']['name'] = $this->request->data['Entity']['name'];
                     $data['Entity']['description'] = $this->request->data['Entity']['description'];
                     $data['Entity']['productcode'] = trim($this->request->data['Entity']['productcode']);
@@ -226,6 +230,12 @@ class ProductsController extends AppController {
             
             if($this->request->is('post') || $this->request->is('put')){
                 $this->request->data['Entity']['productcode'] = trim($this->request->data['Entity']['productcode']);
+                
+                //Set order to zero (0) if order is not greater than equal to zero (0) 
+                if($this->request->data['Entity']['order'] >= 0){
+                    $data['Entity']['order'] = 0;    
+                }
+                
                 if($this->request->data['Entity']['sku'] == ""){
                     $this->request->data['Entity']['sku'] = uniqid();    
                 }

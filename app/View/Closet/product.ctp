@@ -109,6 +109,49 @@ $(document).ready(function(){
             }
         );
     });
+    
+    $(".btn-request-price").click(function(e) {
+        e.preventDefault();
+        if($("select#product-quantity").val()== "")
+        {
+            $("span.err-message").fadeIn(300);
+            return false;
+        } 
+        else
+        {
+            $("span.err-message").fadeOut(300);
+        }
+        if($("select#product-size").val()== "")
+        {
+            $("span.err-size-message").fadeIn(300);
+            return false;
+        } 
+        else
+        {
+            $("span.err-size-message").fadeOut(300);
+        }
+        var id = $(this).data("product_id");
+        var quantity = parseInt($("#product-quantity").val()) + 1;
+        var size = $("#product-size").val();
+        var comment = $(".txt-price-request").val();
+        $.post("' . $this->request->webroot . 'api/requestprice", { product_id: id, product_quantity: quantity, product_size: size, request_comment: comment },
+            function(data) {
+                var ret = $.parseJSON(data);
+                if(ret["status"] == "ok"){
+                    var notificationDetails = new Array();
+                    notificationDetails["msg"] = "Your price request for the product has been submitted successfully.";
+                    showNotification(notificationDetails, true);
+                    $("#product-quantity").val("");
+                    $(".txt-price-request").val("");
+                    $("#product-size").val("");
+                }
+                else if(ret["status"] == "login"){
+                    location = ' . $this->webroot . ';       
+                }
+            }
+        );
+    });
+    
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
         window.open(
@@ -205,7 +248,9 @@ $columns = 'eleven';
             <div>
                 <h2 class="product-name"><?php echo $entity['Entity']['name']; ?></h2>
                 <h5 class="brand">Brand: <a href="<?php echo $this->request->webroot; ?>company/brands"><?php echo $entity['Brand']['name']; ?></a></h5>
-                <h5 class="price">Price: <?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></h5>
+                <?php if($entity['Entity']['price'] > 0) : ?>
+                <h5 class="price">Price: $ <?php echo $entity['Entity']['price']; ?></h5>
+                <?php endif; ?>
                 <h5 class="product-details">Product Details :</h5>
                 <p class="description"><?php echo $entity['Entity']['description']; ?></p>
             </div>
@@ -247,13 +292,18 @@ $columns = 'eleven';
                 <?php endif; ?>
             <?php endif; ?>
             
-            <?php if($entity['Entity']['price'] > 0) : ?>
-                <label>Quantity
-                    <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10), 'empty' => "Select Quantity ", 'label' => false, 'div' => false)); ?>
-                    <br />
-                    <span class="err-message">Please select quantity.</span>
-                </label>                                           
+            <label>Quantity
+                <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10), 'empty' => "Select Quantity ", 'label' => false, 'div' => false)); ?>
+                <br />
+                <span class="err-message">Please select quantity.</span>
+            </label>   
+            
+            
+            <?php if($entity['Entity']['price'] > 0) : ?>                                        
                 <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
+            <?php elseif($user_id) : ?>
+                <textarea class="txt-price-request" placeholder="Comments"></textarea>
+                <a href="" class="link-btn black-btn btn-request-price" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
             <?php endif; ?>
             <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue" >Continue Shopping</a>                 
         </div>

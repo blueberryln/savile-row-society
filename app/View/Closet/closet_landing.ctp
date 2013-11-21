@@ -358,7 +358,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <div class="product-list-image mosaic-block fade">
                                 <div class="mosaic-overlay lifestyle-overlay">
                     				<div class="mini-product-details">
-                					   <span class="product-name">Lifestyle</span>
+                					   <span class="product-name">Lookbooks</span>
                     				</div>
                     			</div>
                                 <div class="mosaic-backdrop">

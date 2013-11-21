@@ -104,14 +104,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <ul>
                 
                 <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
-                <li>
-                    <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist"><span class="underline2">My Stylist</span></a>
-                     <?php if($is_logged && $has_stylist) : ?>
-                        <!--ul class="submenu">
-                            <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Style Suggestion</a></li>
-                        </ul-->
-                    <?php endif; ?>
-                </li>
+                <?php if(!$is_stylist) : ?>
+                    <li>
+                        <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist"><span class="underline2">My Stylist</span></a>
+                    </li>
+                <?php endif; ?>
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking"><span class="underline3">My Tailor</span></a>
                 </li>                

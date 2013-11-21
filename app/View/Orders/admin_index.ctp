@@ -1,3 +1,19 @@
+<?php
+$script = '
+    $(document).ready(function(){
+        $(".print-order").on("click", function(e){
+            e.preventDefault();
+            var href = $(this).attr("href");
+            
+            window.open(
+              href, 
+              "facebook-share-dialog", 
+              "width=" + $(window).width() + ",height=" + $(window).height()); 
+        });
+    });
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+?>
 <div class="container content inner">
     <div class="sixteen columns text-center">
         <h1><?php echo __('Orders'); ?></h1>
@@ -29,7 +45,7 @@
                         <?php else : ?>
                             <?php echo $this->Html->link(__('Mark Shipped'), array('action' => 'shipped', $order['Order']['id']), null, __('Are you sure you want to mark the order shipped?')); ?>
                         <?php endif; ?>
-                        <a href="<?php echo $this->webroot;?>admin/orders/download/<?php echo $order['Order']['id'];?>" target="_blank">Order Pdf </a> <?php echo isset($this->value); ?>
+                        <a href="<?php echo $this->webroot;?>admin/orders/download/<?php echo $order['Order']['id'];?>" class="print-order">Print Order Pdf </a> <?php echo isset($this->value); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

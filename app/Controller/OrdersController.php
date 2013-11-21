@@ -229,6 +229,8 @@ class OrdersController extends AppController {
 
     function admin_download($id = null)
     {
+        $this->autoLayout = false;
+        $this->isAdmin();
         $value = $id;
         $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
         $order = $this->Order->find('first', $options);
@@ -245,8 +247,6 @@ class OrdersController extends AppController {
 
 
         $this->set(compact('value','shipped_order'));
-
-
     }
 
 

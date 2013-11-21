@@ -239,6 +239,7 @@ class ClosetController extends AppController {
 //                    )
 //                ),
             ),
+            'order' => array('Entity.order' => 'ASC'),
             'fields' => array(
                 'Entity.*', 'Product.*', 'Brand.*', 'Category.category_id'
             ),

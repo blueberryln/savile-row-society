@@ -23,7 +23,7 @@
                     <tr>
                         <td>
                             <br /><br />
-                            For any queries please contact us at, <a href="mailto:contact@savilerowsociety.com">contact@savilerowsociety.com</a>
+                            For any queries please contact us at, <a href="mailto:contactus@savilerowsociety.com">contactus@savilerowsociety.com</a>
                             <br /><br />
                             Thanks,
                             <br/>

@@ -6,7 +6,7 @@ $script ='
 	            animation: "fade",
                 animationSpeed: 300,
                 animationLoop: false,
-	            slideshow: false,
+	            slideshow: true,
                 video: true,
                 useCSS: false,
                 pauseOnAction: false,
@@ -16,17 +16,17 @@ $script ='
                 directionNav: false,
                 keyboard: false,
                 start: function(slider){
-                    //jQuery(".flex-control-nav li a").mouseover(function(){
-//                         var activeSlide = "false";
-//                         if (jQuery(this).hasClass("flex-active")){  
-//                            activeSlide = "true";                       
-//                         }
-//                         if (activeSlide == "false"){
-//                            var position = $(this).position();
-//                            jQuery(this).trigger("click"); 
-//                            $(".flex-active-bar").stop(false, false).animate({left: position.left + "px"}, 500, "swing");
-//                         }
-//                     });      
+                    jQuery(".flex-control-nav li a").mouseover(function(){
+                         var activeSlide = "false";
+                         if (jQuery(this).hasClass("flex-active")){  
+                            activeSlide = "true";                       
+                         }
+                         if (activeSlide == "false"){
+                            var position = $(this).position();
+                            jQuery(this).trigger("click"); 
+                            $(".flex-active-bar").stop(false, false).animate({left: position.left + "px"}, 500, "swing");
+                         }
+                     });      
                 },
                 before: function(slider){
                     var slideTo = slider.animatingTo;
@@ -139,7 +139,7 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="initial-module">
         <?php
             echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-            echo '<p class="show-login-form">You`ve been hooked up for the holidays! Use Promo Code "SRS20"</p>';
+            echo '<p class="show-login-form">You\'ve been hooked up for the holidays! Use Promo Code "SRS20"</p>';
 
         ?>
     </div>

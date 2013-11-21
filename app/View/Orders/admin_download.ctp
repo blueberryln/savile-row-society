@@ -1,19 +1,13 @@
-<div class="container content inner"> <br><br>
-    <?php //echo $value;
-            //echo '<pre>'; print_r($shipped_order);
-
-
-
-
-    ?>
-    <table cellpadding="0" cellspacing="0" border="0"  width="600">
+<div class="container content inner">
+    <br />
+    <table cellpadding="0" cellspacing="0" border="0"  width="600" style="margin: 0 auto;">
         <tr>
             <td style="background-color: #000; text-align:center; padding: 8px 0;"><img src="http://www.savilerowsociety.com/img/logo.png" alt="Savile Row Society" /></td>
         </tr>
         <tr>
             <td valign="top">
                 <br />
-                Hi <?php echo $shipped_order['User']['full_name']; ?>,
+                Hi <?php echo $shipped_order['User']['first_name']; ?>,
                 <br /><br />
                 Thank you for shopping with Savile Row Society!<br /><br />
                 Your order has been received and we are working towards fulfilling it. You'll receive <br />
@@ -58,7 +52,7 @@
                 </table>
 
                 <br /><br />
-                For any queries please contact us at, <a href="mailto:contact@savilerowsociety.com">contact@savilerowsociety.com</a>
+                For any queries please contact us at, <a href="mailto:contactus@savilerowsociety.com">contactus@savilerowsociety.com</a>
                 <br /><br />
                 Thanks,
                 <br/>
@@ -67,4 +61,13 @@
             </td>
         </tr>
     </table>
+    
+    <div class="thank-you-note" style="page-break-before: always;">
+        <center>
+            <img src="<?php echo $this->webroot; ?>img/thank_you-note.jpg" style="max-width: 100%;" />
+        </center>
+    </div>
 </div>
+<script>
+    window.onload = function() { window.print(); }
+</script>

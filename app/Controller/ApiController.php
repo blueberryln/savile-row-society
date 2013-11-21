@@ -424,6 +424,82 @@ class ApiController extends AppController {
         }
     }
     
+    /**
+     * Cart
+     */
+    public function requestprice($param = null) {
+
+        //Configure::write('debug', 0);
+        $this->autolayout = false;
+        $this->autoRender = false;
+        
+        $ret = array();
+        
+        // init
+        $Entity = ClassRegistry::init('Entity');
+        $user_id = $this->getLoggedUserID();
+
+        
+        if($user_id){
+            if ($this->request->is('ajax')) {
+                $PriceRequest = ClassRegistry::init('PriceRequest');
+                $User = ClassRegistry::init('User');
+                $Size = ClassRegistry::init('Size');
+                
+                $sizes = $Size->find('list');
+                
+                // Get product Entity ID and Get the information for the entity
+                $entity_id = $this->request->data['product_id'];
+                $entity = $Entity->getById($entity_id, $user_id);
+                $user = $User->getByID($user_id);
+                
+                //Prepare data array for adding cart information
+                $data['PriceRequest']['product_entity_id'] = $entity['Entity']['id'];
+                $data['PriceRequest']['quantity'] = $this->request->data['product_quantity'];
+                
+                if(isset($this->request->data['request_comment']) && $this->request->data['request_comment'] != ""){
+                    $data['PriceRequest']['comment'] = $this->request->data['request_comment'];
+                }
+                
+                if(isset($this->request->data['product_size'])){
+                    $data['PriceRequest']['size_id'] = $this->request->data['product_size'];
+                }
+                else{
+                    $data['PriceRequest']['size_id'] = 1;
+                }
+                $data['PriceRequest']['size'] = $sizes[$data['PriceRequest']['size_id']];
+                
+                $PriceRequest->create();
+                if($PriceRequest->save($data)){
+                    try{
+                        $user_email = new CakeEmail('default');
+                        $user_email->from(array($user['User']['email'] => $user['User']['full_name']));
+                        $user_email->to('admin@savilerowsociety.com');
+                        $user_email->subject('Savile Row Society: Product Price Request');
+                        $user_email->template('price_request');
+                        $user_email->emailFormat('html');
+                        $user_email->viewVars(array('entity' => $entity, 'data' => $data, 'user' => $user));
+                        $user_email->send();
+                    }
+                    catch(Exception $e){
+                        
+                    }
+                    
+                    $ret['status'] = 'ok';    
+                }
+                else{
+                    $ret['status'] = 'error';
+                }
+            }
+        }
+        else{
+            $ret['status'] = 'login';
+        }
+                
+        echo json_encode($ret);
+        exit;
+    }
+    
     
     /**
      * Similar Products

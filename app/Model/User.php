@@ -310,6 +310,7 @@ class User extends AppModel {
         return $this->find('all', array(
             'conditions' => array('User.stylist_id' => $stylist_Id),
             'fields' => array('User.id', 'User.full_name'),
+            'order' => array('User.first_name' => 'ASC'),
         ));
     }
     
