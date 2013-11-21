@@ -992,6 +992,34 @@ body{
     text-align: center;
     margin:30px 0 30px 50px;
 }
+.slides-cont{
+    position: relative;
+}
+#closet-slide-banner{
+    position: absolute;
+    width: auto !important;
+    height: auto !important;
+    display: none;
+    top: 38%;
+    left: 44.4%;
+}
+#tailor-slide-banner{
+    position: absolute;
+    width: auto !important;
+    height: auto !important;
+    display: none;
+    top: 89%;
+    left: 7.7%;
+}
+#stylist-slide-banner{
+    position: absolute;
+    width: auto !important;
+    height: auto !important;
+    display: none;
+    top: 92.5%;
+    left: 55.4%;
+}
+
 
 /* Booking */
 .content.booking {}
@@ -2532,7 +2560,11 @@ body{
 ================================================== */
 
 /* Smaller than standard 960 (devices and browsers) */
-@media only screen and (max-width: 959px) {}
+@media only screen and (max-width: 959px) {
+    #getstyledMap{
+        display: none;
+    }
+}
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
 @media only screen and (min-width: 768px) and (max-width: 959px) {}

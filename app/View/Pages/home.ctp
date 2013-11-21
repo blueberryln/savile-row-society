@@ -4,8 +4,9 @@ $script ='
    var player; 
    $(".flexslider").flexslider({
 	            animation: "fade",
-                animationSpeed: 500,
-	            slideshow: true,
+                animationSpeed: 300,
+                animationLoop: false,
+	            slideshow: false,
                 video: true,
                 useCSS: false,
                 pauseOnAction: false,
@@ -15,17 +16,17 @@ $script ='
                 directionNav: false,
                 keyboard: false,
                 start: function(slider){
-                    jQuery(".flex-control-nav li a").mouseover(function(){
-                         var activeSlide = "false";
-                         if (jQuery(this).hasClass("flex-active")){  
-                            activeSlide = "true";                       
-                         }
-                         if (activeSlide == "false"){
-                            var position = $(this).position();
-                            jQuery(this).trigger("click"); 
-                            $(".flex-active-bar").stop(false, false).animate({left: position.left + "px"}, 500, "swing");
-                         }
-                     });      
+                    //jQuery(".flex-control-nav li a").mouseover(function(){
+//                         var activeSlide = "false";
+//                         if (jQuery(this).hasClass("flex-active")){  
+//                            activeSlide = "true";                       
+//                         }
+//                         if (activeSlide == "false"){
+//                            var position = $(this).position();
+//                            jQuery(this).trigger("click"); 
+//                            $(".flex-active-bar").stop(false, false).animate({left: position.left + "px"}, 500, "swing");
+//                         }
+//                     });      
                 },
                 before: function(slider){
                     var slideTo = slider.animatingTo;
@@ -62,6 +63,35 @@ $script ='
           }
         });
     }
+    
+    $(document).ready(function(){
+        //$("img[usemap]").rwdImageMaps();
+        
+        $("#closetCuffLink").hover(
+            function(){
+                $("#closet-slide-banner").fadeIn(300);      
+            },
+            function(){
+                $("#closet-slide-banner").delay(200).fadeOut(300);      
+            }
+        );
+        $("#tailorCuffLink").hover(
+            function(){
+                $("#tailor-slide-banner").fadeIn(300);      
+            },
+            function(){
+                $("#tailor-slide-banner").delay(200).fadeOut(300);      
+            }
+        );
+        $("#stylistCuffLink").hover(
+            function(){
+                $("#stylist-slide-banner").fadeIn(300);      
+            },
+            function(){
+                $("#stylist-slide-banner").delay(200).fadeOut(300);      
+            }
+        );
+    });
 
 ';
 $script1 ='
@@ -98,6 +128,7 @@ $this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsoci
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
 $this->Html->script('cookie.js', array('inline' => false));
+//$this->Html->script('jquery.rwdImageMaps.min.js', array('inline' => false));
 ?>
 
 <div style="width: 100%; margin-top: 124px;">
@@ -119,6 +150,14 @@ $this->Html->script('cookie.js', array('inline' => false));
 
     <div class="sixteen columns flexslider loader" style="height: 438px;">
         <ul class="slides">
+            <li>
+                <div class="slides-cont">
+                    <img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled" id="getStyledImage" />
+                    <img src="<?php echo $this->request->webroot; ?>img/1.png" id="closet-slide-banner" />
+                    <img src="<?php echo $this->request->webroot; ?>img/2.png" id="tailor-slide-banner" />
+                    <img src="<?php echo $this->request->webroot; ?>img/3.png" id="stylist-slide-banner" />
+                </div>
+            </li>
             
             <li><a href="<?php echo $this->request->webroot; ?>closet"><img src="<?php echo $this->request->webroot; ?>img/home-6-big.jpg"/></a></li>
              <?php
@@ -128,10 +167,6 @@ $this->Html->script('cookie.js', array('inline' => false));
                     echo ' <li><img src="' . $this->webroot . 'img/home-1-big.jpg"/></li>';
                 }
                 ?>
-            <li><img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled"/></li>
-            <li>
-                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/kZaUfXZ60po?enablejsapi=1&rel=0" frameborder="0" allowfullscreen></iframe>
-            </li>
             <?php
                 if (!$is_logged) {
                     echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-5-big.jpg"/></a></li> ';                   
@@ -146,7 +181,10 @@ $this->Html->script('cookie.js', array('inline' => false));
                 } else {
                     echo ' <li><img src="' . $this->webroot . 'img/home-2-big.jpg"/></li>';
                 }
-                ?>         
+                ?>     
+            <li>
+                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/kZaUfXZ60po?enablejsapi=1&rel=0" frameborder="0" allowfullscreen></iframe>
+            </li>    
             
         </ul>
     </div>
@@ -165,11 +203,10 @@ $this->Html->script('cookie.js', array('inline' => false));
     </div>
     
     <div class="clear"></div>
-    <map name="getstyled">
-        <area shape="rect" coords="0,0,328,214" alt="">
-        <area shape="rect" coords="660,0,328,214" href="<?php echo $this->request->webroot; ?>closet" title="closet">
-        <area shape="rect" coords="0,438,328,214" href="<?php echo $this->request->webroot; ?>booking" title="tailor">
-        <area shape="rect" coords="660,438,328,214" href="<?php echo $this->request->webroot; ?>stylist" title="stylist">        
+    <map id="getstyledMap" name="getstyled">
+        <area shape="rect" alt="" title="" coords="433,52,564,150" href="<?php echo $this->request->webroot; ?>closet" id="closetCuffLink" />
+        <area shape="rect" alt="" title="" coords="100,291,215,376" href="<?php echo $this->request->webroot; ?>booking" id="tailorCuffLink" />
+        <area shape="poly" alt="" title="" coords="528,315,531,396,645,393,642,308" href="<?php echo $this->request->webroot; ?>stylist" id="stylistCuffLink" />
     </map>
 
     <div class="sixteen columns social-bar">
