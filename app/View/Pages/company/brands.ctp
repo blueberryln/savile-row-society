@@ -23,6 +23,11 @@ What do your shoes say about you?
     "dw" => array("title" => "", "desc" => "The &quot;preppy&quot; trend is bigger than ever before. And while there are many big players in the fashion industry that caters to preppy needs, such as Ralph Lauren, Gant and Brooks Brothers, we felt that there was an empty space in the watch market. There was something missing.<br><br>
 We believe that Daniel Wellington fills that gap. Our vision is that when someone thinks of a preppy dressed person, he or she is wearing a Daniel Wellington watch.", "id" => "22"),
     "lacoste" => array("title" => "For The Man Who Can Be Found At The Country Club", "desc" => "Founded in 1933 by tennis player and inventor Rene Lacoste, Olympic medalist in 1924, the Crocodile brand has always accompanied teams and athletes all around the world. When he revolutionized sports, Rene Lacoste also revolutionized fashion; his quest for comfort and freedom of movement made him more competitive without losing an ounce of elegance.", "id" => "12"),
+    "austen-heller" => array("title" => "", "desc" => "At Austen Heller, we believe that looking good starts and ends with putting on a pair of well-made, high quality shoes.  In order to meet our demanding standards for quality, Austen Heller shoes are made in family-run factories by European shoemakers that have been making the world's best footwear for generations.", "id" => "27"),
+    "louis-walton" => array("title" => "", "desc" => "Louis Walton is a small men's accessory maker in San Francisco. Each piece is made by hand at the time of order. Attention to fit and detail is what separates us from the mass-produced options you see in many stores. Quality and longevity are keys to our design and fabric choices. While it is easy to follow trends, it is our goal to help you build a lasting personal style that fits your current life and future aspirations", "id" => "29"),
+    "clay-tompkins" => array("title" => "", "desc" => "All of our products are made with the highest quality of materials. Trousers are cut and stitched at the Hertling factory in Brooklyn and the shirts are cut and stitched at the Gambert factory in Newark, NJ. The features that make my trousers stand apart are the \"English\" waist with adjustable side tabs. I also add open lapped side seams which gives the leg a longer profile as it intimates the side stripe on military uniforms. All mens clothing derives from military dress in sone fashion.", "id" => "30"),
+    "soxfords" => array("title" => "Socks for who you are, not what you do.", "desc" => "As weekdays blend together, it's all too easy to lose your identity in the daily grind. breathe some life into boring \"business casual\" with soxfords!  our designs are quirky, yet classy, allowing you to feel a bit more human while dressed to impress.", "id" => "28"),
+
 );
 
 $script = '
@@ -82,6 +87,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Abercrombie-&-Fitch.jpg" class="fadein-image" alt="Abercrombie-&-Fitch" data-name="A&F"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" data-name="dw"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" data-name="lacoste"  /></li>
+                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/austen-heller.png" class="fadein-image" alt="Austen Heller" data-name="austen-heller"  /></li>
+                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/louis-walton.png" class="fadein-image" alt="Louis Walton" data-name="louis-walton"  /></li>
+                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/tompkins.png" class="fadein-image" alt="Clay Tompkins" data-name="clay-tompkins"  /></li>
+                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/soxfords.png" class="fadein-image" alt="Soxfords" data-name="soxfords"  /></li>
                   
             </ul>
     </div>

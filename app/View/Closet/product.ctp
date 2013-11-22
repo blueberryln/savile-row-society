@@ -162,9 +162,6 @@ $(document).ready(function(){
                     $("#product-size").val("");
                     $("#request-email").val("");
                 }
-                else if(ret["status"] == "login"){
-                    location = ' . $this->webroot . ';       
-                }
             }
         );
     });
