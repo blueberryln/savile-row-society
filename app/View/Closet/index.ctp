@@ -190,6 +190,51 @@ $(document).ready(function(){
         e.preventDefault();
         window.location = "' . $this->webroot . 'closet";    
     });
+
+    $(".pagination .prev.disabled").on("click", function(){
+        var activeCat = $(".active-link").closest("li");
+        if(activeCat.parent().hasClass("product-subcategories")){
+            if(activeCat.prev("li").length){
+                location = activeCat.prev("li").find("a").attr("href");    
+            }
+            else{
+                if(activeCat.closest(".cat-filter-selected").prev("li").length){
+                    location = activeCat.closest(".cat-filter-selected").prev("li").find("a").attr("href");
+                }
+            }
+        }
+        else if(activeCat.parent().hasClass("product-categories")){
+            if(activeCat.prev("li").length){
+                location = activeCat.prev("li").find("a").attr("href");    
+            }
+            else{
+                location = $(".product-categories li").last().find("a").attr("href");    
+            }
+        }
+    });
+    
+    $(".pagination .next.disabled").on("click", function(){
+        var activeCat = $(".active-link").closest("li");
+        if(activeCat.parent().hasClass("product-subcategories")){
+            if(activeCat.next("li").length){
+                location = activeCat.next("li").find("a").attr("href");    
+            }
+            else{
+                if(activeCat.closest(".cat-filter-selected").next("li").length){
+                    location = activeCat.closest(".cat-filter-selected").next("li").find("a").attr("href");
+                }
+            }
+        }
+        else if(activeCat.parent().hasClass("product-categories")){
+            if(activeCat.next("li").length){
+                location = activeCat.next("li").find("a").attr("href");    
+            }
+            else{
+                location = $(".product-categories li").first().find("a").attr("href");    
+            }
+        }    
+    });
+
     
     ' . $logged_script . '
 });'; 

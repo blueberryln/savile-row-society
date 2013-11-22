@@ -6,7 +6,7 @@ $script ='
 	            animation: "fade",
                 animationSpeed: 300,
                 animationLoop: false,
-	            slideshow: true,
+	            slideshow: false,
                 video: true,
                 useCSS: false,
                 pauseOnAction: false,
@@ -91,6 +91,25 @@ $script ='
                 $("#stylist-slide-banner").delay(200).fadeOut(300);      
             }
         );
+        
+        $(".highlight-slide").hover(
+            function(){
+                var $this = $(this);
+                var hoverText = $this.find(".home-slider-overlay span");
+                hoverText.css({top: $this.height()/2 - hoverText.height()/2});
+                $(this).find(".home-slider-overlay").fadeOut(300);
+                $(this).find(".home-slider-overlay").fadeIn(300);
+            },
+            function(){
+                var $this = $(this);
+                var hoverText = $this.find(".home-slider-overlay span");
+                $(this).find(".home-slider-overlay").fadeOut(300);
+            }
+        );
+
+        $(".danielle").on("click", function(e){  
+            location = "http://www.savilerowsociety.com/closet/all/22/none/brand";
+        });
     });
 
 ';
@@ -150,14 +169,6 @@ $this->Html->script('cookie.js', array('inline' => false));
 
     <div class="sixteen columns flexslider loader" style="height: 438px;">
         <ul class="slides">
-            <li>
-                <div class="slides-cont">
-                    <img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled" id="getStyledImage" />
-                    <img src="<?php echo $this->request->webroot; ?>img/1.png" id="closet-slide-banner" />
-                    <img src="<?php echo $this->request->webroot; ?>img/2.png" id="tailor-slide-banner" />
-                    <img src="<?php echo $this->request->webroot; ?>img/3.png" id="stylist-slide-banner" />
-                </div>
-            </li>
             
             <li><a href="<?php echo $this->request->webroot; ?>closet"><img src="<?php echo $this->request->webroot; ?>img/home-6-big.jpg"/></a></li>
              <?php
@@ -167,6 +178,15 @@ $this->Html->script('cookie.js', array('inline' => false));
                     echo ' <li><img src="' . $this->webroot . 'img/home-1-big.jpg"/></li>';
                 }
                 ?>
+            <li>
+                <div class="slides-cont">
+                    <img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled" id="getStyledImage" />
+                    <img src="<?php echo $this->request->webroot; ?>img/1.png" id="closet-slide-banner" />
+                    <img src="<?php echo $this->request->webroot; ?>img/2.png" id="tailor-slide-banner" />
+                    <img src="<?php echo $this->request->webroot; ?>img/3.png" id="stylist-slide-banner" />
+                </div>
+            </li>
+
             <?php
                 if (!$is_logged) {
                     echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-5-big.jpg"/></a></li> ';                   
@@ -174,7 +194,13 @@ $this->Html->script('cookie.js', array('inline' => false));
                     echo ' <li><img src="' . $this->webroot . 'img/home-5-big.jpg"/></li>';
                 }
                 ?> 
-            <li style="text-align: center; background-color: #fff;"><img src="<?php echo $this->request->webroot; ?>img/lifestyle_image.jpg" style="max-height: 438px; width: auto !important; display: inline;" /></li>
+
+            <li class="highlight-slide danielle">
+                <img src="<?php echo $this->request->webroot; ?>img/home-7-big.jpg" style="max-height: 438px; width: auto !important; display: inline;" />
+                <div class="home-slider-overlay hide"><span>Check Out Danielle Wellington</span></div>
+            </li>
+
+            <li><img src="<?php echo $this->request->webroot; ?>img/home-8-big.jpg" style="max-height: 438px; width: auto !important; display: inline;" /></li>
             <?php
                 if (!$is_logged) {
                     echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-2-big.jpg"/></a></li> ';                   
@@ -183,7 +209,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 }
                 ?>     
             <li>
-                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/kZaUfXZ60po?enablejsapi=1&rel=0" frameborder="0" allowfullscreen></iframe>
+                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="///www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0" frameborder="0" allowfullscreen></iframe>
             </li>    
             
         </ul>
@@ -199,6 +225,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <li><a href="">5</a></li>
             <li><a href="">6</a></li>
             <li><a href="">7</a></li>
+            <li><a href="">8</a></li>
         </ul>
     </div>
     
