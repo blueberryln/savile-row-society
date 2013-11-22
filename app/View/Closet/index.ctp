@@ -73,10 +73,26 @@ $(document).ready(function(){
     if(checkCount == 1){
         signUp();
     }
+
+    $(".fancybox").fancybox({ 
+        helpers: {
+            title : {
+                type : "over"
+            },
+            overlay : {
+                speedOut : 1000
+            },
+        },
+    }); 
     
     $(".fade").mosaic();
     $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
     
+    $(".lookbook-cat").on("click", function(e){
+        e.preventDefault();
+        $(".fancybox").eq(0).trigger("click");
+    });
+
     if(filter == "color"){
         $(".color-filter").removeClass("hide").addClass("selected");    
     }
@@ -241,6 +257,9 @@ $(document).ready(function(){
 
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
+$this->Html->script("jquery.fancybox.js", array('inline' => false));
+$this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
+echo $this->Html->css("jquery.fancybox.css");
 
 $meta_description = 'Show your support and desire to be an SRS member by sporting one of our iPhones/iPad cases!';
 $this->Html->meta('description', $meta_description, array('inline' => false));
@@ -257,7 +276,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
                             <li <?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "class='cat-filter-selected'" : ""; ?>>
-                            <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
+
+                                <?php if($category['Category']['slug'] == "lookbooks") : ?>
+                                    <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>" data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
+                                <?php else : ?>
+                                    <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
+                                <?php endif; ?>
+
+
                                 <?php if ($category['children'] && $parent_id && $parent_id == $category['Category']['id']) : ?>
                                     <ul class="product-subcategories">
                                         <?php foreach ($category['children'] as $subcategory): ?>
@@ -392,7 +418,15 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         
     </div>
     <div class="clearfix"></div>
-    <div class="sixteen columns">
-        
+    <div class="fourteen columns details-margin row">
+        <div class="lifestyle-images">
+            <?php if($lifestyles && count($lifestyles) > 0) : ?>
+                <?php foreach($lifestyles as $style) : ?>
+                    <a class="fancybox" data-fancybox-group="lifestyles" title="<?php echo $style['Lifestyle']['caption']; ?>" href="#lifestyle<?php echo $style['Lifestyle']['id']; ?>"></a>
+                    <div class="hide"><div class="fancybox-data-box" id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>" class="btn-buy-look link-btn gold-btn">Get The Look</a></div></div>
+                <?php endforeach; ?>
+            <?php endif; ?> 
+            
+        </div>
     </div>
 </div>
