@@ -484,7 +484,7 @@ class ApiController extends AppController {
             if($PriceRequest->save($data)){
                 try{
                     $user_email = new CakeEmail('default');
-                    $user_email->from(array($user['User']['email'] => $request_name));
+                    $user_email->from(array($data['PriceRequest']['request_email'] => $request_name));
                     $user_email->to('admin@savilerowsociety.com');
                     $user_email->subject('Savile Row Society: Product Price Request');
                     $user_email->template('price_request');
