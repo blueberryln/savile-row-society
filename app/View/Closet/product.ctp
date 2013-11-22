@@ -130,21 +130,26 @@ $(document).ready(function(){
         {
             $("span.err-size-message").fadeOut(300);
         }
-        if(!is_logged() && $("request-email").val()== ""){
-            $("span.err-email-message").fadeIn(300);
-            return false;
+
+
+        var requestEmail = "";
+        if(!isLoggedIn()){
+            if($("#request-email").val()== ""){
+                $("span.err-email-message").fadeIn(300);
+                return false;
+            } 
+            else
+            {
+                $("span.err-email-message").fadeOut(300);
+            }
+            requestEmail = $("#request-email").val();
         } 
-        else
-        {
-            $("span.err-email-message").fadeOut(300);
-        }
 
 
         var id = $(this).data("product_id");
         var quantity = parseInt($("#product-quantity").val()) + 1;
         var size = $("#product-size").val();
         var comment = $(".txt-price-request").val();
-        var requestEmail = $("#request-email").val();
         $.post("' . $this->request->webroot . 'api/requestprice", { product_id: id, product_quantity: quantity, product_size: size, request_comment: comment, request_email: requestEmail },
             function(data) {
                 var ret = $.parseJSON(data);
@@ -324,7 +329,7 @@ $columns = 'eleven';
             <?php else : ?>
                 <br>
                 <input type="text" placeholder="Email" id="request-email">
-                <span class="err-email-message">Please select size.</span>
+                <span class="err-email-message">Please enter an email.</span>
                 <textarea class="txt-price-request" placeholder="Comments"></textarea>
                 <a href="" class="link-btn black-btn btn-request-price" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
             <?php endif; ?>
