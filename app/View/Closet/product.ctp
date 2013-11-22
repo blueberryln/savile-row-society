@@ -130,6 +130,16 @@ $(document).ready(function(){
         {
             $("span.err-size-message").fadeOut(300);
         }
+        if(!is_logged() && $("request-email").val()== ""){
+            $("span.err-email-message").fadeIn(300);
+            return false;
+        } 
+        else
+        {
+            $("span.err-email-message").fadeOut(300);
+        }
+
+
         var id = $(this).data("product_id");
         var quantity = parseInt($("#product-quantity").val()) + 1;
         var size = $("#product-size").val();
@@ -162,6 +172,10 @@ $(document).ready(function(){
           "width=626,height=436"); 
     });
     
+    $("#request-email").change(function(){
+        $("span.err-email-message").fadeOut(300);    
+    });
+
     $("select#product-quantity").change(function(){
         $("span.err-message").fadeOut(300);    
     });
@@ -304,9 +318,17 @@ $columns = 'eleven';
             <?php if($entity['Entity']['price'] > 0) : ?>                                        
                 <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
             <?php elseif($user_id) : ?>
+                <br>
+                <textarea class="txt-price-request" placeholder="Comments"></textarea>
+                <a href="" class="link-btn black-btn btn-request-price" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
+            <?php else : ?>
+                <br>
+                <input type="text" placeholder="Email" id="request-email">
+                <span class="err-email-message">Please select size.</span>
                 <textarea class="txt-price-request" placeholder="Comments"></textarea>
                 <a href="" class="link-btn black-btn btn-request-price" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
             <?php endif; ?>
+            
             <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue" >Continue Shopping</a>                 
         </div>
         <div class="clear"></div> <br /><br /><br />

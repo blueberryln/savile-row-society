@@ -2919,9 +2919,12 @@ p.product-breadcrumb a
     -o-box-sizing:border-box;
     box-sizing:border-box; 
 }
-.txt-price-request{
+.txt-price-request, #request-email{
     margin-top: 5px;
-    box-sizing: border-box;
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; 
 }
 .product-size .headings
 {   
@@ -3868,7 +3871,7 @@ h4.hi-message
     font-size:21px !important;
 }
 
-.err-message, .err-size-message
+.err-message, .err-size-message, .err-email-message
 {
     color:#ff0000;
     font-size: 12px;
