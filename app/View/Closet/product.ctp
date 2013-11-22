@@ -134,7 +134,8 @@ $(document).ready(function(){
         var quantity = parseInt($("#product-quantity").val()) + 1;
         var size = $("#product-size").val();
         var comment = $(".txt-price-request").val();
-        $.post("' . $this->request->webroot . 'api/requestprice", { product_id: id, product_quantity: quantity, product_size: size, request_comment: comment },
+        var requestEmail = $("#request-email").val();
+        $.post("' . $this->request->webroot . 'api/requestprice", { product_id: id, product_quantity: quantity, product_size: size, request_comment: comment, request_email: requestEmail },
             function(data) {
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
@@ -144,6 +145,7 @@ $(document).ready(function(){
                     $("#product-quantity").val("");
                     $(".txt-price-request").val("");
                     $("#product-size").val("");
+                    $("#request-email").val("");
                 }
                 else if(ret["status"] == "login"){
                     location = ' . $this->webroot . ';       
