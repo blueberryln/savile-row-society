@@ -93,8 +93,7 @@ $(document).ready(function(){
                         .closest("ul").closest("li").addClass("active-link-parent");
         ;    
     }
-
-
+    
     $(".lookbook-cat").on("click", function(e){
         e.preventDefault();
         $(".fancybox").eq(0).trigger("click");
