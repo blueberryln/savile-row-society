@@ -473,16 +473,18 @@ class ApiController extends AppController {
             
             if($user_id){
                 $data['PriceRequest']['request_email'] = $user['User']['email'];
+                $request_name = $user['User']['first_name'];
             }
             else{
-                $data['PriceRequest']['request_email'] = $this->request->data['request_email'];    
+                $data['PriceRequest']['request_email'] = $this->request->data['request_email']; 
+                $request_name = "Guest";   
             }
             
             $PriceRequest->create();
             if($PriceRequest->save($data)){
                 try{
                     $user_email = new CakeEmail('default');
-                    $user_email->from(array($user['User']['email'] => $user['User']['full_name']));
+                    $user_email->from(array($data['PriceRequest']['request_email'] => $request_name));
                     $user_email->to('admin@savilerowsociety.com');
                     $user_email->subject('Savile Row Society: Product Price Request');
                     $user_email->template('price_request');

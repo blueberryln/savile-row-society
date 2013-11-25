@@ -93,6 +93,10 @@ $(document).ready(function(){
     
     $(".fade").mosaic();
     $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
+    $(".lookbook-cat").on("click", function(e){
+        e.preventDefault();
+        $(".fancybox").eq(0).trigger("click");
+    });
     $(".mosaic-overlay").on("click", function(e){
         e.preventDefault();
         if($(this).hasClass("lifestyle-overlay")){
@@ -281,7 +285,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <li class="toggle-tab selected open-filter"><span class="filter-block">Categories</span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
-                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
+                            <?php if($category['Category']['slug'] == "lookbooks") : ?>
+                                <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a></li>
+                            <?php else : ?>
+                                <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a></li>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                         </ul>
                     </li>

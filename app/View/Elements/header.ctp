@@ -104,19 +104,18 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <ul>
                 
                 <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
-                <?php if(!$is_stylist) : ?>
-                    <li>
-                        <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist"><span class="underline2">My Stylist</span></a>
-                    </li>
+
+                <?php if($is_logged && $has_stylist && !$is_stylist) : ?>
+                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Stylist</span></a></li>
+                <?php elseif($is_stylist) : ?>
+                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Clients</span></a></li>
                 <?php endif; ?>
+
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking"><span class="underline3">My Tailor</span></a>
                 </li>                
                 <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li>
                 
-                <?php if($is_logged && $has_stylist) : ?>
-                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">Style Suggestion</span></a></li>
-                <?php endif; ?>  
                 
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
                 <li class="last">

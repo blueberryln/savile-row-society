@@ -13,7 +13,9 @@
                             <br/>
                             <p style="text-align: justify;">We have matched you with <?php echo ucfirst($stylist_name); ?>, our premier stylist.
                                 <br />You can make any request to him/her or book an appointment with our tailor.<br />
-                                Before we get to know you, Check out our highlighted products available in the <a href="http://www.savilerowsociety.com/closet">Closet</a>.</p>
+                                <br><?php echo ucfirst($stylist_name); ?> has sent you a <a href="http://www.savilerowsociety.com/messages/index/">message</a>. Check it now.<br>
+
+                                You can also check out our highlighted products available in the <a href="http://www.savilerowsociety.com/closet">Closet</a>.</p>
                 
                         </td>
                     </tr>

@@ -200,6 +200,8 @@ class MessagesController extends AppController {
             $res = $this->Message->save($this->Message->data);
             $msg['status'] = 'ok';            
             $msg['Message'] = $res['Message'];
+            $timestamp = strtotime($msg['Message']['created']);
+            $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
             $msg['UserFrom'] = array(
                                     'id' => $user['User']['id'],
                                     'first_name' => $user['User']['first_name'],
@@ -286,6 +288,8 @@ class MessagesController extends AppController {
             $res = $this->Message->save($this->Message->data);
             $msg['status'] = 'ok';            
             $msg['Message'] = $res['Message'];
+            $timestamp = strtotime($msg['Message']['created']);
+            $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
             $msg['UserFrom'] = array(
                                     'id' => $user['User']['id'],
                                     'first_name' => $user['User']['first_name'],
@@ -356,7 +360,9 @@ class MessagesController extends AppController {
             $last_conv_id = 0;
             if($my_conversation){
                 $mark_read_list = array();
-                foreach($result['Messages'] as $msg){
+                foreach($result['Messages'] as &$msg){
+                    $timestamp = strtotime($msg['Message']['created']);
+                    $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
                     if($msg['Message']['is_read'] == 0){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
@@ -442,7 +448,9 @@ class MessagesController extends AppController {
             //Get a list of message ids and mark them read if not already read
             $mark_read_list = array();
             if($my_conversation){
-                foreach($result['Messages'] as $msg){
+                foreach($result['Messages'] as &$msg){
+                    $timestamp = strtotime($msg['Message']['created']);
+                    $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
                     if($msg['Message']['is_read'] == 0){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
@@ -546,7 +554,9 @@ class MessagesController extends AppController {
             $mark_read_list = array();
             $last_conv_id = 0;
             if($my_conversation){
-                foreach($result['Messages'] as $msg){
+                foreach($result['Messages'] as &$msg){
+                    $timestamp = strtotime($msg['Message']['created']);
+                    $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
                     if($msg['Message']['is_read'] == 0){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }

@@ -9,6 +9,7 @@
                     <th><?php echo $this->Paginator->sort('id'); ?></th>
                     <th><?php echo $this->Paginator->sort('email'); ?></th>
                     <th><?php echo $this->Paginator->sort('full_name'); ?></th>
+                    <th>Style Profile</th>
                     <th><?php echo $this->Paginator->sort('personal_shopper'); ?></th>
                     <th><?php echo $this->Paginator->sort('zip'); ?></th>
                     <th><?php echo $this->Paginator->sort('created'); ?></th>
@@ -19,6 +20,17 @@
                         <td><?php echo h($user['User']['id']); ?>&nbsp;</td>
                         <td><?php echo h($user['User']['email']); ?>&nbsp;</td>
                         <td><?php echo h($user['User']['full_name']); ?>&nbsp;</td>
+                        <td>
+                            <?php
+                                $preference = unserialize($user['User']['preferences']);
+                                if(!isset($preference['UserPreference']['is_complete'])|| $user['User']['industry']==""){
+                                    echo 'Incomplete';
+                                }
+                                else{
+                                    echo 'Complete';
+                                }
+                            ?>
+                        </td>
                         <?php if($user['User']['personal_shopper']) : ?>
                             <td><?php echo h($user['User']['personal_shopper']); ?>&nbsp;</td>
                         <?php else : ?>

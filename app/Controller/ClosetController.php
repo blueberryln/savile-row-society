@@ -51,6 +51,10 @@ class ClosetController extends AppController {
         $entities = array();
 
         if ($category_slug) {
+            if($category_slug == "lookbooks"){
+                $this->redirect('/closet');
+                exit;
+            }
             $category_slug = trim($category_slug);
             $entities = $this->categoryProducts($user_id, $categories, $category_slug, $filter_brand, $filter_color, $filter_used);
         } else {
@@ -358,9 +362,11 @@ class ClosetController extends AppController {
 
         }
         
+        $Lifestyle = ClassRegistry::init('Lifestyle');
+        $lifestyles = $Lifestyle->find('all');
         
         
-        $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used','check_count'));
+        $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used','check_count', 'lifestyles'));
         return $data;
     }
 
