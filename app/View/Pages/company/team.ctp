@@ -18,7 +18,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="ten columns">
                 <div class="name">Lisa Dolan<span class="tm-email">&nbsp;(lisa@savilerowsociety.com)</span></div>
                 <span class="title">Chief Executive Officer</span>
-                <div class="sub-title">(Former Investment banker at JP Morgan and Amex, MBA at Columbia Business School.)</div>
+                <div class="sub-title">(Formerly worked in corporate finance, MBA at Columbia Business School)</div>
                 <p>Lisa Dolan was born and raised a New Yorker, coming of age during the Great Recession. She graduated from Johns Hopkins in 2008, gaining a B.A. with a major in International Studies and minors in Entrepreneurship and French.</p>
                 <div class="long-desc hide">
                     <p>During her five-year career in finance, the last 18 months were spent in the investment banking division of a well-known institution, where she toiled on the 43rd floor of a midtown Manhattan office building. It was there that she was exposed to the professional lives of incredibly skilled, hard-working, unassuming investment bankers. Her prior work experiences were with a premier credit card provider with a great membership rewards program, as well as a boutique investment management firm.</p>
@@ -33,6 +33,26 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>
             </div>
             
+        </div>
+        
+        <div class="team-member">
+            <div class="three columns">
+                <img src="<?php echo $this->request->webroot; ?>img/VincentBourzeix.jpg" alt="Vincent Bourzeix" class="fadein-image max-width-adj" />
+            </div>
+            <div class="ten columns">
+                <div class="name">Vincent Bourzeix<span class="tm-email">&nbsp;(vincent@savilerowsociety.com)</span></div>
+                <span class="title">Business Development</span>
+                <div class="sub-title">(MSc in Management Science and Engineering at Columbia University.)</div>
+                                
+                <p>Vincent is responsible for business development at Savile Row Society. He graduated as an Engineer in 2011 in France and is currently pursuing a Master’s degree in Management Science & Engineering at Columbia University.</p>
+                <div class="long-desc hide">
+                    <p>After experiencing the New York start-up environment through projects at Columbia, he decided to join SRS for its revolutionary approach to dealing with male consumers, and its amazing team.</p>
+                    <p>His diverse experience in various industries in Paris and in consulting in New York gives him a global outlook that he can apply to explore the strategic opportunities of Savile Row Society.</p>
+                </div>
+                <div class="text-center">
+                    <a class="show-more-text" href="#" title="Show more">Show more</a>
+                </div>
+            </div>
         </div>
         
         <div class="team-member">
@@ -73,7 +93,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="ten columns">
                 <div class="name">Joey Glazer<span class="tm-email">&nbsp;(joey@savilerowsociety.com)</span></div>
                 <span class="title">President, Custom Clothing</span>
-                <div class="sub-title">(President of JG Sartorial, former director of Sartorial classifications at Ermenegildo Zegna)</div>
+                <div class="sub-title">(Former Director of Sartorial classifications at Ermenegildo Zegna and President of JG Sartorial)</div>
                 <p>Since childhood, Joey has been drawn to the intricate designs and details of well-made clothing and the lifestyle behind it. It has never been about selling a garment but building a lifetime relationship with his clients that transcends generations. </p>
                 <p>There is something to be said for family referrals and the sense of tradition that has remained in menswear. He truly enjoys the art behind a creating a well dressed man and fortunate that his point of view has become widely respected and appreciated not only by his clients but by their peers.  </p>
                 <div class="long-desc hide">
@@ -164,26 +184,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>
                 
                 
-                <div class="text-center">
-                    <a class="show-more-text" href="#" title="Show more">Show more</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="team-member">
-            <div class="three columns">
-                <img src="<?php echo $this->request->webroot; ?>img/VincentBourzeix.jpg" alt="Vincent Bourzeix" class="fadein-image max-width-adj" />
-            </div>
-            <div class="ten columns">
-                <div class="name">Vincent Bourzeix<span class="tm-email">&nbsp;(vincent@savilerowsociety.com)</span></div>
-                <span class="title">Business Development</span>
-                <div class="sub-title">(MSc in Management Science and Engineering at Columbia University.)</div>
-                                
-                <p>Vincent is responsible for business development at Savile Row Society. He graduated as an Engineer in 2011 in France and is currently pursuing a Master’s degree in Management Science & Engineering at Columbia University.</p>
-                <div class="long-desc hide">
-                    <p>After experiencing the New York start-up environment through projects at Columbia, he decided to join SRS for its revolutionary approach to dealing with male consumers, and its amazing team.</p>
-                    <p>His diverse experience in various industries in Paris and in consulting in New York gives him a global outlook that he can apply to explore the strategic opportunities of Savile Row Society.</p>
-                </div>
                 <div class="text-center">
                     <a class="show-more-text" href="#" title="Show more">Show more</a>
                 </div>

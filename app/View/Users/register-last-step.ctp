@@ -67,7 +67,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         ?>
         <select name="data[User][refer_medium]" id="refer_medium">
             <option value="">Select Medium</option>            
-            <option value="Social Media">Social Media</option>
             <option value="Event">Event</option>
             <option value="Other">Other</option>
         </select>   

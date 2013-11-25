@@ -11,8 +11,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </div>
     
     
-    <img class="membership-flow fadein-image fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
-    <div class="fourteen offset-by-one columns">
+    <img class="membership-flow fifteen columns offset-by-half" src="<?php echo $this->request->webroot; ?>img/membership1.png" />
+    <div class="clear"></div>
+        
+    <div class="four columns text-center">
+        <img src="<?php echo $this->request->webroot; ?>img/free_beta.png" style="margin-top: 30px;" />
+    </div>
+
+    <div class="eleven columns">
         <p>
             As a Savile Row Society member you will receive exclusive personal lifestyle services and access to our deluxe perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
         </p>
@@ -20,6 +26,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             All Members receive an exclusive SRS membership card that provides deluxe perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
         </p>
     </div>
+    <div class="clear"></div>
+    <br />
+    
     <table id="membership-table" class="membership-table-homes" >
         <thead>
         <th class="mem-top-left" style="background-color: #E6E6E6; width: 40%;">Features</th>

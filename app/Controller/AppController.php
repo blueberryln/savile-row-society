@@ -8,14 +8,20 @@ class AppController extends Controller {
     
     public function beforeRender() {
         parent::beforeRender();
-
-        $is_logged = false;
+        
         $has_stylist = false;
+        $is_logged = false;
         if ($user = $this->getLoggedUser()) {
             
             $is_logged = true;
-            if($user['User']['stylist_id'] && $user['User']['stylist_id'] != ""){
+            $User = ClassRegistry::init('User');
+            $stylist_id = $User->hasStylist($user['User']['id']);
+            if($stylist_id['User']['stylist_id']){
                 $has_stylist = true;
+                
+                //Update Session if stylist has been assigned lately
+                $user = $User->getById($user['User']['id']);
+                $this->Session->write('user', $user);
             }
         }
 

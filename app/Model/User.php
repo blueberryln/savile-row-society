@@ -208,6 +208,13 @@ class User extends AppModel {
         ),
     );
 
+    function hasStylist($user_id){
+        return $this->find('first', array(
+            'conditions' => array('User.id' => $user_id),
+            'fields' => array('User.stylist_id'),
+        ));
+    }
+
     /**
      * Check User credentials on Login
      * @param type $email

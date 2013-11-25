@@ -24,6 +24,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <th><?php echo $this->Paginator->sort('id'); ?></th>
                 <th>User</th>
                 <th>Products</th>
+                <th>Size</th>
                 <th><?php echo $this->Paginator->sort('total_price'); ?></th>
                 <th><?php echo $this->Paginator->sort('created'); ?></th>
                 <th class="actions"><?php echo __('Actions'); ?></th>
@@ -35,6 +36,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <td>
                         <?php foreach($order['OrderItem'] as $item) : ?>
                              - <?php echo $item['Entity']['name']; ?><br>
+                        <?php endforeach; ?>
+                    </td>
+                    <td>
+                        <?php foreach($order['OrderItem'] as $item) : ?>
+                             <?php echo $sizes[$item['size_id']]; ?><br>
                         <?php endforeach; ?>
                     </td>
                     <td><?php echo h($order['Order']['total_price']); ?>&nbsp;</td>

@@ -29,7 +29,9 @@ class OrdersController extends AppController {
         $this->Order->recursive = 2;
         $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
         $orders = $this->paginate('Order', array('Order.paid = 1'));
-        $this->set(compact('orders'));
+        $Size = ClassRegistry::init('Size');
+        $sizes = $Size->find('list');
+        $this->set(compact('orders', 'sizes'));
 
     }
     

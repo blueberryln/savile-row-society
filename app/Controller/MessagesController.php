@@ -28,6 +28,7 @@ class MessagesController extends AppController {
         /**
          * Check if user should be shown the screen
          */
+        
         if(!$is_admin && !$is_stylist && (is_null($user['User']['stylist_id']) || $user['User']['stylist_id'] == "" || !($user['User']['stylist_id'] > 0) )){
             $this->redirect('/');
         }        
@@ -101,80 +102,6 @@ class MessagesController extends AppController {
         }
     }
 
-    /*
-     * Reply to message. NOT WORKING!!!!!! 
-     */
-
-    public function reply() {
-
-        // init
-        $User = ClassRegistry::init('User');
-
-        $this->Message->create();
-        // set attribures from gui: body, user_from_id, user_to_id, reply_to_id
-        // TODO: think about format from client to enable something like this: $this->Message->set($this->data);
-        // $this->Message->data['Message']['body'] = $this->request->data('body');
-        $this->Message->data['Message']['user_to_id'] = $this->request->data('user_to_id');
-        $this->Message->data['Message']['user_from_id'] = $this->request->data('user_from_id');
-        $this->Message->data['Message']['reply_to_id'] = $this->request->data('reply_to_id');
-        // set date
-        $this->Message->data['Message']['date'] = date('Y-m-d H:i:s');
-
-        // format message -> add previous message text
-        // first load from db
-        $readed_message = $this->Message->getById($this->request->data('reply_to_id'));
-        $sender = $User->getById($this->request->data($this->getLoggedUserID()));
-        if (count($readed_message) > 0) {
-            $this->Message->data['Message']['body'] = $readed_message["Message"]["body"] . "<br/> <b>" . $sender["User"]["first_name"] . " " . $sender["User"]["last_name"] . "</b>: " . $this->request->data('body');
-        } else {
-            $this->Message->data['Message']['body'] = $sender["User"]["first_name"] . " " . $sender["User"]["last_name"] . "</b>: " . $this->request->data('body');
-        }
-        if ($this->Message->validates()) {
-            // store in db
-            $this->Message->save($this->Message->data);
-        }
-        if (count($readed_message) > 0) {
-            // now update readed message
-            // set is_read t- true. it's acctualy is answered in this case. consider adding or renaming columns in db
-            $readed_message["Message"]["is_read"] = 1;
-            // update...
-            $this->Message->save($readed_message);
-        }
-        $this->set('data', $readed_message["Message"]["id"]);
-
-        // set json layout
-        $this->render('/Elements/SerializeJson/');
-    }
-
-    public function loadClientConversation($id) {
-
-        // init
-        $User = ClassRegistry::init('User');
-        $user = $User->getByID($id);
-    }
-
-    /**
-     * Send message to user or to stylist
-     */
-    public function send_message() {
-
-        $this->Message->create();
-
-        $this->Message->data['Message']['user_to_id'] = $this->request->data('user_to_id');
-        $this->Message->data['Message']['user_from_id'] = $this->getLoggedUserID();
-        $this->Message->data['Message']['body'] = $this->request->data('body');
-        // set date to today
-        $this->Message->data['Message']['date'] = date('Y-m-d H:i:s');
-
-        // validate message
-        if ($this->Message->validates()) {
-            // store in db
-            $this->Message->save($this->Message->data);
-            $this->set('data', "ok");
-        }
-
-        $this->render('/Elements/SerializeJson/');
-    }
 
     /**
      * Only available when logged user is not stylist
@@ -209,6 +136,20 @@ class MessagesController extends AppController {
                                 );
             $this->set('data', $msg);
         }
+        
+        // Prepare data for email notification
+        $to_user = $User->getById($msg['Message']['user_to_id']);
+        $from_user = $User->getById($msg['Message']['user_from_id']);
+        
+        $notification['is_photo'] = false;
+        $notification['to_stylist'] = true;
+        $notification['message'] = $res['Message']['body'];
+        $notification['to_name'] = $to_user['User']['first_name'];
+        $notification['from_name'] = $from_user['User']['first_name'];
+        $notification['to_email'] = $to_user['User']['email'];
+        $notification['from_email'] = $from_user['User']['email']; 
+        
+        $this->sendEmailNotification($notification);
 
         $this->render('/Elements/SerializeJson/');
     }
@@ -257,6 +198,20 @@ class MessagesController extends AppController {
                     $this->Message->create();
                     if ($this->Message->validates($data)) {
                         $res = $this->Message->save($data);
+                        
+                        // Prepare data for email notification
+                        $to_user = $User->getById($res['Message']['user_to_id']);
+                        $from_user = $User->getById($res['Message']['user_from_id']);
+                        
+                        $notification['is_photo'] = true;
+                        $notification['to_stylist'] = true;
+                        $notification['photo_url'] = $res['Message']['image'];
+                        $notification['to_name'] = $to_user['User']['first_name'];
+                        $notification['from_name'] = $from_user['User']['first_name']; 
+                        $notification['to_email'] = $to_user['User']['email'];
+                        $notification['from_email'] = $from_user['User']['email'];
+                        
+                        $this->sendEmailNotification($notification);
                     }
                 }
             }
@@ -298,6 +253,20 @@ class MessagesController extends AppController {
             $this->set('data', $msg);
             
         }
+        
+        // Prepare data for email notification
+        $to_user = $User->getById($msg['Message']['user_to_id']);
+        $from_user = $User->getById($msg['Message']['user_from_id']);
+        
+        $notification['is_photo'] = false;
+        $notification['to_stylist'] = false;
+        $notification['message'] = $res['Message']['body'];
+        $notification['to_name'] = $to_user['User']['first_name'];
+        $notification['from_name'] = $from_user['User']['first_name']; 
+        $notification['to_email'] = $to_user['User']['email'];
+        $notification['from_email'] = $from_user['User']['email']; 
+        
+        $this->sendEmailNotification($notification);
         
         $this->render('/Elements/SerializeJson/');
     }
@@ -581,5 +550,37 @@ class MessagesController extends AppController {
         }
         $this->set('data', $result);
         $this->render('/Elements/SerializeJson/');    
+    }
+    
+    function sendEmailNotification($notification){
+        extract($notification);
+        try{
+            
+            $user = $this->getLoggedUser();
+            $email = new CakeEmail('default');
+            $email->from(array($from_email => $from_name));
+            $email->to($to_email);
+            $email->bcc('admin@savilerowsociety.com');
+            $email->subject('New Message: ' . $from_name);
+            $email->template('message_notification');
+            $email->emailFormat('html');
+            
+            if($to_stylist){
+                if($is_photo){
+                    $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo'));
+                }
+                else{
+                    $email->viewVars(compact('to_name','from_name','to_stylist','is_photo','photo_url'));    
+                } 
+            }  
+            else{
+                $email->viewVars(compact('to_name','from_name','message','to_stylist','is_photo'));
+            }
+            
+            $email->send();
+        }
+        catch(Exception $e){
+            
+        } 
     }
 }
