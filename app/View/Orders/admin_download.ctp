@@ -40,7 +40,11 @@
                         ?>
                         <tr>
                             <td style="border-bottom: 1px solid #444; border-right: 1px solid #444;"><img src="<?php echo $img_src; ?>" style="max-width:110px;"></td>
-                            <td style="border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $item['Entity']['name']; ?></td>
+                            <td style="border-bottom: 1px solid #444; border-right: 1px solid #444;">
+                                <?php echo $item['Entity']['name']; ?>
+                                <br />
+                                <b>Size: </b><?php echo $sizes[$item['size_id']]; ?>
+                            </td>
                             <td style="text-align: center; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $item['quantity']; ?></td>
                             <td style="text-align: right; border-bottom: 1px solid #444; border-right: 1px solid #444;"><?php echo $this->Number->format($item['quantity'] * $item['price'], array('places' => 2, 'before' => '$')); ?></td>
                         </tr>

@@ -33,7 +33,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <br/>                       
                 <div class="submit">                
                     <input type="submit" class="submit" value="Submit" /><br />
-                    <a class="link-btn gold-btn back-btn" href="<?php echo $this->webroot; ?>closet">Have a look at The Closet</a>                                                       
+                    <a class="link-btn gold-btn back-btn" href="<?php echo $this->webroot; ?>closet">Have a look in The Closet</a>                                                       
                 </div>                        
                 <br/>                    
             </div>

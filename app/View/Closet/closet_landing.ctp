@@ -357,28 +357,30 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </div>
                             </div>
                         </div>
+                    <?php else : ?>
+                        <?php if($random_lifestyle) : ?>
+                            <div class="three columns alpha row">
+                                <div class="product-block"> 
+                                    <div class="product-list-image mosaic-block fade">
+                                        <div class="mosaic-overlay lifestyle-overlay">
+                            				<div class="mini-product-details">
+                        					   <span class="product-name">Lookbooks</span>
+                            				</div>
+                            			</div>
+                                        <div class="mosaic-backdrop">
+                                            <img src="<?php echo $this->webroot. "files/lifestyles/" . $random_lifestyle['Lifestyle']['image']; ?>" alt="Lifestyle" class="product-image fadein-image" />
+                                        </div>
+                                    </div>
+                                    <div class="product-list-links">
+                                            <a href="<?php echo $this->request->webroot . 'lifestyles/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
+                                    </div>
+                                </div>
+                            </div>    
+                        <?php endif; ?> 
                     <?php endif; ?>
                 <?php endforeach; ?>
                     
-                <?php if($random_lifestyle) : ?>
-                    <div class="three columns alpha row">
-                        <div class="product-block"> 
-                            <div class="product-list-image mosaic-block fade">
-                                <div class="mosaic-overlay lifestyle-overlay">
-                    				<div class="mini-product-details">
-                					   <span class="product-name">Lookbooks</span>
-                    				</div>
-                    			</div>
-                                <div class="mosaic-backdrop">
-                                    <img src="<?php echo $this->webroot. "files/lifestyles/" . $random_lifestyle['Lifestyle']['image']; ?>" alt="Lifestyle" class="product-image fadein-image" />
-                                </div>
-                            </div>
-                            <div class="product-list-links">
-                                    <a href="<?php echo $this->request->webroot . 'lifestyles/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
-                            </div>
-                        </div>
-                    </div>    
-                <?php endif; ?>    
+                   
             <?php endif; ?>
         </div>
     </div>

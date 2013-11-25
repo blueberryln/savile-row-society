@@ -299,6 +299,7 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="MCQ Alexander Mcqueen" id="10" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Michael Bastian" id="11" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Armani" id="12" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Abercrombie" id="13" />
                     <ol id="selectable" class="brands-logo">
                         <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/pants/brioni.jpg" class="fadein-image" alt="Brioni" /></li>
                         <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/pants/incotex.jpg" class="fadein-image" alt="Incotex" /></li>
@@ -312,6 +313,7 @@ window.registerProcess = true;
                         <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/pants/mcqueen.jpg" class="fadein-image" alt="MCQ Alexander Mcqueen" /></li>
                         <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/pants/michael-bastian.jpg" class="fadein-image" alt="Michael Bastian" /></li>
                         <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/pants/emporio-armani.jpg" class="fadein-image" alt="Armani" /></li>
+                        <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/pants/Abercrombie-n-Fitch.jpg" class="fadein-image" alt="Abercrombie" /></li>
                     </ol>
                 </div>
                  <div class="clear"></div>
@@ -331,6 +333,7 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="John Varvatos" id="10" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Tom Ford" id="11" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Zara" id="12" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Abercrombie" id="13" />
                     <ol id="selectable" class="brands-logo">
                         <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/shirts/etro.jpg" class="fadein-image" alt="Etro" /></li>
                         <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/shirts/ascoi-chang.jpg" class="fadein-image" alt="Ascot Chang" /></li>
@@ -344,6 +347,7 @@ window.registerProcess = true;
                         <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/shirts/john-varvatos.jpg" class="fadein-image" alt="John Varvatos" /></li>
                         <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/shirts/tom-ford.jpg" class="fadein-image" alt="Tom Ford" /></li>
                         <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/shirts/zara.jpg" class="fadein-image" alt="Zara" /></li>
+                        <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/shirts/Abercrombie-n-Fitch.jpg" class="fadein-image" alt="Abercrombie" /></li>
                     </ol>
                 </div>
                 <div class="clear"></div>               

@@ -2815,8 +2815,10 @@ body{
     color: #8E7846;
     text-decoration: none;
 }
-.product-filter-menu .hover-link{
-    color: #8E7846 !important;
+.product-filter-menu .active-link.hover-link{
+    /*color: #8E7846 !important;*/
+    background-color: #8f7948;
+    color: #fff !important;
 }
 .product-filter-menu .active-link-parent > a, .cat-filter-selected > a{
     font-weight: bold; color: #8E7846 !important; text-decoration: underline !important;
@@ -2840,6 +2842,7 @@ body{
     text-decoration: none;
     color: #666;
     font-size: 13px;
+    padding: 0 1px;
 }
 .product-filter-menu .toggle-body li{
     text-decoration: none;

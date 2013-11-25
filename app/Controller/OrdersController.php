@@ -246,9 +246,11 @@ class OrdersController extends AppController {
             $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
             $shipped_order = $this->Order->find('first', $options);
         }
+        $Size = ClassRegistry::init('Size');
+        $sizes = $Size->find('list');
 
 
-        $this->set(compact('value','shipped_order'));
+        $this->set(compact('value','shipped_order', 'sizes'));
     }
 
 
