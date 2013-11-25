@@ -109,6 +109,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Stylist</span></a></li>
                 <?php elseif($is_stylist) : ?>
                     <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Clients</span></a></li>
+                <?php else : ?>
+                    <li class="headerMenuDisabled">My Stylist
+                        <ul class="submenu">
+                            <li class="hoverText">Stylist Pending</li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
 
                 <li>

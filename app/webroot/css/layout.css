@@ -239,6 +239,22 @@ body{
     border-bottom: none;
     background-color: #000 !important;
 }
+.headerMenuDisabled ul{
+    margin-top: 5px !important;
+}
+.headerMenuDisabled, .headerMenuDisabled:hover{
+    color: #ffffff !important;
+    cursor: default !important;
+}
+.headerMenuDisabled .submenu li{
+    color: #AF9A59 !important;
+}
+.headerMenuDisabled .hoverText{
+    margin-top: 15px !important;
+    padding: 0 26px !important;
+    cursor: progress !important;
+}
+
 #signup-popup h1{
     margin-bottom: 10px;
 }

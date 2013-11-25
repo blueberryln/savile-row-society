@@ -7,6 +7,15 @@ $script = ' var contact = ' . json_encode($contact) . '; ' .
         $("#contact-type").val(contact.type);   
         $("#refer_medium").val("' . $refer_medium . '");      
     }
+    $("#contact-info-submit").click(function(event){ 
+        if($("#ProfileImagePersonalShopper").val() != "" || $("#ProfileImageEmailAddress").val() != ""){
+            $("p.error-msg").slideUp(300);
+        }
+        else{
+            $("p.error-msg").slideDown(300);
+            event.preventDefault();    
+        }
+    });
 });';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
@@ -76,8 +85,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         
             <div class="text-center about-submit">                   
                 <div class="submit">
-                    <input type="submit" value="Upload" /> 
-                    <a class="link-btn black-btn back-btn1" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a>  
+                    <input type="submit" value="Upload" id="contact-info-submit" /> 
+                    <a class="link-btn black-btn back-btn1" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a>
+                    <p class="error-msg">Please provide either referrer name or email.</p>  
                 </div>                        
                 <br/>
                 </form>
