@@ -573,7 +573,7 @@ class MessagesController extends AppController {
                     $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo', 'client_id'));
                 }
                 else{
-                    $email->viewVars(compact('to_name','from_name', 'message', 'to_stylist','is_photo','photo_url'));    
+                    $email->viewVars(compact('to_name','from_name', 'message', 'to_stylist','is_photo','photo_url', 'client_id'));    
                 } 
             }  
             else{
