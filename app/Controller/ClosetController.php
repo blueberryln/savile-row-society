@@ -834,6 +834,8 @@ class ClosetController extends AppController {
             $Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $Order->primaryKey => $id));
             $shipped_order = $Order->find('first', $options);
+            $Size = ClassRegistry::init('Size');
+            $sizes = $Size->find('list');
             
             if($shipped_order['User']['email']){
                 try{
@@ -844,7 +846,7 @@ class ClosetController extends AppController {
                     $email->subject('Purchase Complete.');
                     $email->template('purchased');
                     $email->emailFormat('html');
-                    $email->viewVars(compact('shipped_order'));
+                    $email->viewVars(compact('shipped_order','sizes'));
                     $email->send();
                     
                     
@@ -854,7 +856,7 @@ class ClosetController extends AppController {
                     $email->subject('Your order transaction is complete.');
                     $email->template('order_confirmation');
                     $email->emailFormat('html');
-                    $email->viewVars(compact('shipped_order'));
+                    $email->viewVars(compact('shipped_order','sizes'));
                     $email->send();
                 }
                 catch(Exception $e){

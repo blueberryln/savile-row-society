@@ -57,7 +57,6 @@ class OrdersController extends AppController {
                 $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
                 $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
                 $shipped_order = $this->Order->find('first', $options);
-                
                 if($shipped_order['User']['email']){
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -65,7 +64,7 @@ class OrdersController extends AppController {
                     $email->subject('Your order has been shipped.');
                     $email->template('order_shipped');
                     $email->emailFormat('html');
-                    $email->viewVars(compact('shipped_order'));
+                    $email->viewVars(compact('shipped_order','sizes'));
                     $email->send();
                 }
                 $this->Session->setFlash(__('The customer has been notified by email and the order has been maked shipped.'), 'flash');
