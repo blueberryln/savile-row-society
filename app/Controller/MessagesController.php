@@ -144,6 +144,7 @@ class MessagesController extends AppController {
         
         $notification['is_photo'] = false;
         $notification['to_stylist'] = true;
+        $notification['client_id'] = $msg['Message']['user_to_id'];
         $notification['message'] = $res['Message']['body'];
         $notification['to_name'] = $to_user['User']['first_name'];
         $notification['from_name'] = $from_user['User']['first_name'];
@@ -206,6 +207,7 @@ class MessagesController extends AppController {
                         
                         $notification['is_photo'] = true;
                         $notification['to_stylist'] = true;
+                        $notification['client_id'] = $msg['Message']['user_to_id'];
                         $notification['photo_url'] = $res['Message']['image'];
                         $notification['to_name'] = $to_user['User']['first_name'];
                         $notification['from_name'] = $from_user['User']['first_name']; 
@@ -568,7 +570,7 @@ class MessagesController extends AppController {
             
             if($to_stylist){
                 if($is_photo){
-                    $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo'));
+                    $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo', 'client_id'));
                 }
                 else{
                     $email->viewVars(compact('to_name','from_name', 'message', 'to_stylist','is_photo','photo_url'));    

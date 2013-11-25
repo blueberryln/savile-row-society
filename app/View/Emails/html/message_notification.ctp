@@ -22,12 +22,16 @@
                                     <b>Message:</b><br />
                                     <?php echo $message; ?> 
                                 <?php endif; ?>
-                                
+                                <br /><br />
+                                Click <a href="<?php echo Configure::read('Social.callback_url'); ?>messages/index/<?php echo $client_id; ?>">here</a> to read the full conversation.
                             <?php else : ?>
                                 Your personal stylist - <?php echo ucfirst($from_name); ?>, has sent a new message:
                                 <br /><br />
                                 <b>Message:</b><br />
                                 <?php echo $message; ?> 
+                            
+                                <br /><br />
+                                Click <a href="<?php echo Configure::read('Social.callback_url'); ?>messages/index">here</a> to read the full conversation.
                             <?php endif; ?>
                         </td>
                     </tr>
