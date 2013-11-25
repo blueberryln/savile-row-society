@@ -144,7 +144,7 @@ class MessagesController extends AppController {
         
         $notification['is_photo'] = false;
         $notification['to_stylist'] = true;
-        $notification['client_id'] = $msg['Message']['user_to_id'];
+        $notification['client_id'] = $msg['Message']['user_from_id'];
         $notification['message'] = $res['Message']['body'];
         $notification['to_name'] = $to_user['User']['first_name'];
         $notification['from_name'] = $from_user['User']['first_name'];
@@ -207,7 +207,7 @@ class MessagesController extends AppController {
                         
                         $notification['is_photo'] = true;
                         $notification['to_stylist'] = true;
-                        $notification['client_id'] = $msg['Message']['user_to_id'];
+                        $notification['client_id'] = $msg['Message']['user_from_id'];
                         $notification['photo_url'] = $res['Message']['image'];
                         $notification['to_name'] = $to_user['User']['first_name'];
                         $notification['from_name'] = $from_user['User']['first_name']; 
