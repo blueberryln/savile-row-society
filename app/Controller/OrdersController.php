@@ -57,6 +57,9 @@ class OrdersController extends AppController {
                 $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
                 $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
                 $shipped_order = $this->Order->find('first', $options);
+                $Size = ClassRegistry::init('Size');
+                $sizes = $Size->find('list');
+                
                 if($shipped_order['User']['email']){
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
