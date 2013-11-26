@@ -1,4 +1,16 @@
 <?php
+$script = '
+$(document).ready(function(){
+    $("#lnk-fb-share").on("click", function(e){
+        e.preventDefault(); 
+        window.open(
+          "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent("http://www.savilerowsociety.com/"), 
+          "facebook-share-dialog", 
+          "width=626,height=436"); 
+    });    
+});
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $meta_description = 'Sign up for Savile Row Society, a groundbreaking online, personalized fashion service.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
@@ -33,7 +45,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <br/>                       
                 <div class="submit">                
                     <input type="submit" class="submit" value="Submit" /><br />
-                    <a class="link-btn gold-btn back-btn" href="<?php echo $this->webroot; ?>closet">Have a look in The Closet</a>                                                       
+                    <a class="link-btn gold-btn back-btn" href="<?php echo $this->webroot; ?>closet">Have a look in The Closet</a>
+                    
+                    <div class="product-share" style="float: none;">
+                        <span>Share:</span> <br />
+                        <a href="" id="lnk-fb-share"></a>
+                        <a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI would like to recommend this exclusive online menswear club, Savile Row Society. Check out http://www.savilerowsociety.com/." id="lnk-email"></a>
+                    </div>                                                       
                 </div>                        
                 <br/>                    
             </div>
