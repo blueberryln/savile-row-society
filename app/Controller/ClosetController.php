@@ -839,6 +839,7 @@ class ClosetController extends AppController {
             
             if($shipped_order['User']['email']){
                 try{
+                    /*
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($shipped_order['User']['email']);
@@ -848,7 +849,7 @@ class ClosetController extends AppController {
                     $email->emailFormat('html');
                     $email->viewVars(compact('shipped_order','sizes'));
                     $email->send();
-                    
+                    */
                     
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));

@@ -2815,10 +2815,10 @@ body{
     color: #8E7846;
     text-decoration: none;
 }
-.product-filter-menu .active-link.hover-link{
-    /*color: #8E7846 !important;*/
-    background-color: #8f7948;
-    color: #fff !important;
+.product-filter-menu .hover-link{
+    color: #8E7846 !important;
+    /*background-color: #8f7948;
+    color: #fff !important;*/
 }
 .product-filter-menu .active-link-parent > a, .cat-filter-selected > a{
     font-weight: bold; color: #8E7846 !important; text-decoration: underline !important;
@@ -3767,6 +3767,15 @@ div.about-submit .submit input[type="submit"]
     font-size: 14px;
     line-height:21px;
     height: 33px;
+}
+
+div.about-submit .product-share{
+    width: 100%;
+    float: none;
+}
+div.about-submit .product-share a{
+    position: relative; 
+    margin-left: 0px !important;   
 }
 
 .thank-margin
