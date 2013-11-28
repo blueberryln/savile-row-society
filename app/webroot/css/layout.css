@@ -2816,9 +2816,9 @@ body{
     text-decoration: none;
 }
 .product-filter-menu .hover-link{
-    color: #8E7846 !important;
-    /*background-color: #8f7948;
-    color: #fff !important;*/
+    /*color: #8E7846 !important;*/
+    background-color: #8f7948;
+    color: #fff !important;
 }
 .product-filter-menu .active-link-parent > a, .cat-filter-selected > a{
     font-weight: bold; color: #8E7846 !important; text-decoration: underline !important;
@@ -3769,11 +3769,11 @@ div.about-submit .submit input[type="submit"]
     height: 33px;
 }
 
-div.about-submit .product-share{
+div.about-submit .product-share, .transact-confirmation .product-share{
     width: 100%;
     float: none;
 }
-div.about-submit .product-share a{
+div.about-submit .product-share a, .transact-confirmation .product-share a{
     position: relative; 
     margin-left: 0px !important;   
 }
@@ -4436,6 +4436,52 @@ div.payment .profile-tabs
     font-family: 'Droid Serif',serif;
     font-size: 25px;
     color: #ddd;
+}
+
+/*********Website Info Popups*****************/
+.info-popup-close{
+    background: url('../img/info_popup_close.png') no-repeat center center;
+    width: 20px !important;
+    height: 21px !important;
+}
+#closetinfo-box{
+    width: 470px;
+    height: 353px;
+    font-size: 16px;
+    background:  transparent url('../img/popup_bg_2.png') no-repeat center;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 37px 10px 0;
+}
+#websiteinfo-box{
+    width: 470px;
+    height: 588px;
+    background:  transparent url('../img/popup_bg_1.png') no-repeat center;
+    text-align: left;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 25px 10px 0;
+}
+.popup-info-text{
+    color: #AF9A59;
+}
+.popup-info-text strong{
+    color: #AF9A59;
+}
+.popup-info-text a{
+    color: #fff;
+    text-decoration: none;
+}
+.popup-info-text a:hover{
+    text-decoration: underline;
+}
+.popup-info-sign{
+    margin-top: 40px;
 }
 
 

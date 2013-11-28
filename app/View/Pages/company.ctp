@@ -30,7 +30,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             dress casually and find your own personal style. 
         </p>
         <p>
-            No need to try on clothes picked by salespeople who know little to nothing about the clothing their 
+            No need to try on clothes picked by salespeople who know little to nothing about the clothing they're 
             selling and will never take the time to get to know you or attempt to develop your style. This is 
             for your own good, we have professionals for this! SRS will hone in on your current wardrobe, tastes, 
             passions, career expectations, and lifestyle to present you with wardrobe options that are uniquely 

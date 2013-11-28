@@ -1,3 +1,17 @@
+<?php
+$script = '
+$(document).ready(function(){
+    $("#lnk-fb-share").on("click", function(e){
+        e.preventDefault(); 
+        window.open(
+          "https://www.facebook.com/sharer/sharer.php?s=100&p[title]=" + encodeURIComponent("Savile Row Society") + "&p[summary]=" + encodeURIComponent("I just added a new item to my Closet from www.SavileRowSociety.com! Check out their website, register to chat with one of their premier personal stylists, and make their virtual Closet, your reality.") + "&p[url]=" + encodeURIComponent("http://www.savilerowsociety.com") + "&p[images][0]=" + encodeURIComponent("http://www.savilerowsociety.com/img/SRS_600.png"), 
+          "facebook-share-dialog", 
+          "width=626,height=436"); 
+    });    
+});
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+?>
 <div class="container content inner">	
     <div class="sixteen columns text-center">
         <!--<h1><?php echo $name; ?></h1>-->
@@ -8,7 +22,7 @@
                 <p>Thank you for shopping with Savile Row Society and supporting our partnering brands. We are committed to bringing you only the best product made by the most passionate people in the industry. Never hesitate to reach out to your personal stylist, where we make our virtual <a href="<?php echo $this->webroot; ?>closet">CLOSET</a> your reality. We appreciate your patronage and continued support. Thank You.</p>
                 <br />
         </div>
-        <div class="eight columns offset-by-four">
+        <div class="eight columns offset-by-four transact-confirmation">
                 <table border="1" width="100%" style="text-align: left; border: 1px solid #aaa;">
                     <tr>
                         <th style="padding: 3px 8px;">Transaction Status</th>
@@ -35,6 +49,13 @@
                 </table>
                 <br />  <br />
                 <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>closet">Go To Closet</a>
+                <?php //if($transaction_complete == "success") : ?>
+                    <div class="product-share" style="float: none;">
+                        <span>Share:</span> <br />
+                        <a href="" id="lnk-fb-share"></a>
+                        <a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI just added a new item to my Closet from www.SavileRowSociety.com! Check out their website, register to chat with one of their premier personal stylists, and make their virtual Closet, your reality." id="lnk-email"></a>
+                    </div>    
+                <?php //endif; ?>
         </div>
         <div class="fourteen columns offset-by-one text-justify omega alpha">
             <br />
@@ -71,3 +92,42 @@
         ?>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    //function post_on_wall()
+//    {
+//        FB.login(function(response)
+//        {
+//            if (response.authResponse)
+//            {
+//                // Post message to your wall
+//     
+//                var opts = {
+//                    message : document.getElementById('fb_message').value,
+//                    name : 'Post Title',
+//                    link : 'www.postlink.com',
+//                    description : 'post description',
+//                    picture : 'http://2.gravatar.com/avatar/8a13ef9d2ad87de23c6962b216f8e9f4?s=128&amp;d=mm&amp;r=G'
+//                };
+//     
+//                FB.api('/me/feed', 'post', opts, function(response)
+//                {
+//                    if (!response || response.error)
+//                    {
+//                        alert('Posting error occured');
+//                    }
+//                    else
+//                    {
+//                        alert('Success - Post ID: ' + response.id);
+//                    }
+//                });
+//            }
+//            else
+//            {
+//                alert('Not logged in');
+//            }
+//        }, { scope : 'publish_stream' });
+//    }
+</script>
+

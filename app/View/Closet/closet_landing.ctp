@@ -116,28 +116,77 @@ $(document).ready(function(){
         notificationDetails["button"] = "<a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
         showNotification(notificationDetails);  
     }    
-    else if(isLoggedIn() && showClosetPopUp == 1 && (showLifeStyle != null && showLifeStyle != "")){
-        var notificationDetails = new Array();
-        notificationDetails["msg"] = "Welcome to the Closet! Like and Dislike items to help our stylists get to know you better. Use the arrow on the side of each picture to see a new product in that category. Happy Browsing!";    
-        notificationDetails["check"] = "<input type=checkbox id=hideClosetPopUp> Don\'t show me this message again"; 
-        showNotification(notificationDetails);
+    else if(showLifeStyle != null && showLifeStyle != ""){
+        $.blockUI({message: $("#closetinfo-box"),css:{top: $(window).height()/2 - $("#closetinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+        $(".blockOverlay").click($.unblockUI);
     }
     
-    $("div.product-block").mouseover(function(){
-        var prod_id = $(this).find("input.category-id").val();        
-        $("ul.product-categories li a").each(function(){
-            if($(this).data("category_id")==prod_id)
-            {
-                $(this).addClass("hover-link");
-                 
-            }else{
-                $(this).removeClass("hover-link");
+    $("div.product-block").hover(
+        function(){
+            var prod_id = $(this).find("input.category-id").val();
+            var parent_id = $(this).find("input.parent-category-id").val();
+            if(prod_id == parent_id){
+                $("ul.product-categories li a").each(function(){
+                    if($(this).data("category_id")==prod_id)
+                    {
+                        $(this).addClass("hover-link");
+                         
+                    }else{
+                        $(this).removeClass("hover-link");
+                    }
+                });
             }
-        });
-    });
-    $("div.product-block").mouseout(function(){
-        $("ul.product-categories li a").removeClass("hover-link");
-    });
+            else{
+                $("ul.product-categories li a").each(function(){
+                    if($(this).data("category_id")== parent_id)
+                    {
+                        $(this).closest("li").find(".product-subcategories").eq(0).stop(false, false).slideDown(300);
+                         
+                    }
+                    if($(this).data("category_id")==prod_id)
+                    {
+                        $(this).addClass("hover-link");
+                         
+                    }else{
+                        $(this).removeClass("hover-link");
+                    }
+                });        
+            }    
+        },
+        function(){
+            $("ul.product-categories li a").removeClass("hover-link");
+            $(".product-subcategories").not(".product-subsubcategories").stop(false, false).slideUp(300);    
+        }
+    );
+    
+    //$("div.product-block").mouseover(function(){
+//        var prod_id = $(this).find("input.category-id").val();
+//        var parent_id = $(this).find("input.parent-category-id").val();
+//        if(prod_id == parent_id){
+//            $("ul.product-categories li a").each(function(){
+//                if($(this).data("category_id")==prod_id)
+//                {
+//                    $(this).addClass("hover-link");
+//                     
+//                }else{
+//                    $(this).removeClass("hover-link");
+//                }
+//            });
+//        }
+//        else{
+//            $("ul.product-categories li a").each(function(){
+//                if($(this).data("category_id")== parent_id)
+//                {
+//                    $(this).closest("li").find(".product-subcategories").eq(0).stop(false, false).slideDown(300);
+//                     
+//                }
+//            });        
+//        }
+//    });
+//    $("div.product-block").mouseout(function(){
+//        $("ul.product-categories li a").removeClass("hover-link");
+//        $(".product-subcategories").not(".product-subsubcategories").stop(false, false).slideUp(300);
+//    });
     
     $(".toggle-tab").on("click", function(e){
         if(!$(this).find(".toggle-body").is(":visible")){
@@ -196,7 +245,7 @@ $(document).ready(function(){
         e.preventDefault();
         var productBlock = $(this).closest(".product-block");
         var productId = productBlock.find(".product-id").val(); 
-        var categoryId = productBlock.find(".product-category-id").val();
+        var categoryId = productBlock.find(".parent-category-id").val();
         $.post("' . $this->request->webroot . 'api/similar", { productId: productId, categoryId: categoryId },
            function(data) {
                 var ret = $.parseJSON(data);
@@ -285,11 +334,30 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <li class="toggle-tab selected open-filter"><span class="filter-block">Categories</span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
+                            <li>
                             <?php if($category['Category']['slug'] == "lookbooks") : ?>
-                                <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a></li>
+                                <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                             <?php else : ?>
-                                <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a></li>
+                                <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                             <?php endif; ?>
+                            
+                            <?php if ($category['children']) : ?>
+                                <ul class="product-subcategories hide">
+                                    <?php foreach ($category['children'] as $subcategory): ?>
+                                        <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subcategory['Category']['id']; ?> ><?php echo $subcategory['Category']['name']; ?></a>
+                                            <?php if ($subcategory['children']) : ?>
+                                                <ul class="product-subcategories product-subsubcategories">
+                                                    <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
+                                                        <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subsubcategory['Category']['slug']; ?>" <?php echo $category_slug == $subsubcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subsubcategory['Category']['id']; ?> ><?php echo $subsubcategory['Category']['name']; ?></a></li>    
+                                                    <?php endforeach; ?>
+                                                </ul>       
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                            
+                            </li>
                         <?php endforeach; ?>
                         </ul>
                     </li>
@@ -324,7 +392,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <a href="" class="get-related-products"></a>
                                 <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
                                 <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
-                                <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="product-category-id category-id">
+                                <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="category-id">
+                                <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="parent-category-id">
                                 <div class="product-list-image mosaic-block fade">
                                     <div class="mosaic-overlay">
                         				<div class="mini-product-details">
@@ -395,5 +464,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <?php endif; ?> 
             
         </div>
+    </div>
+</div>
+<div id="closetinfo-box" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close info-popup-close" href=""></a>
+        <div class="popup-info-text">
+            <p><strong>The Closet</strong>: Browse our curated collection of products, purchase or like and dislike items to help our stylists get to know you better. We've organized your closet. Each box represents an essential piece of your wardrobe. To learn more about the brands and to appreciate them as we do, check out <a href="<?php echo $this->webroot; ?>company/brands">Our Brands</a> page and what the <a href="http://blog.savilerowsociety.com/testimonials-of-our-favorite-brands/">Press</a> is saying.</p>
+        </div>  
+        <div class="popup-info-sign text-center">
+            <img src="<?php echo $this->webroot; ?>img/lisa_signature.png" />
+        </div>   
     </div>
 </div>

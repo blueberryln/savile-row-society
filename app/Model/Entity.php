@@ -461,8 +461,16 @@ class Entity extends AppModel {
                 FROM products_entities pe
                 INNER JOIN products_categories pc ON pe.product_id = pc.product_id
                 INNER JOIN categories cat ON pc.category_id = cat.id 
-                WHERE pe.show = 1   
+                WHERE pe.show = 1     
                 GROUP BY pc.category_id";
+        
+        
+        //$sql = "SELECT pe.id, pc.category_id 
+//                FROM products_entities pe
+//                INNER JOIN products_categories pc ON pe.product_id = pc.product_id
+//                INNER JOIN categories cat ON pc.category_id = cat.id 
+//                WHERE pe.show = 1 AND pe.is_featured = 1    
+//                GROUP BY pc.category_id";
                 
         $result = $this->query($sql);
         return $result;
@@ -472,7 +480,9 @@ class Entity extends AppModel {
         $find_array = array(
             'contain' => array('Image', 'Color'),
             'conditions' => array(
-                'Entity.show' => true, 'Entity.id !=' => $product_id
+                'Entity.show' => true, 
+                'Entity.id !=' => $product_id, 
+                //'Entity.is_featured' => true,
             ),
             'joins' => array(
                 array('table' => 'products_categories',

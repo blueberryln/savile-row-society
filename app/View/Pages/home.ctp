@@ -65,7 +65,8 @@ $script ='
     }
     
     $(document).ready(function(){
-        //$("img[usemap]").rwdImageMaps();
+        $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+        $(".blockOverlay").click($.unblockUI);
         
         $("#closetCuffLink").hover(
             function(){
@@ -382,4 +383,19 @@ $this->Html->script('cookie.js', array('inline' => false));
     </table>
     <div class="clear"></div>
 </div>
+</div>
+
+<div id="websiteinfo-box" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close info-popup-close" href=""></a>
+        <div class="popup-info-text">
+            <p><strong>The Closet</strong>: Browse our curated collection of products, purchase or like and dislike items to help our stylists get to know you better. We've organized your closet. Each box represents an essential piece of your wardrobe. To learn more about the brands and to appreciate them as we do, check out <a href="<?php echo $this->webroot; ?>company/brands">Our Brands</a> page and what the <a href="http://blog.savilerowsociety.com/testimonials-of-our-favorite-brands/">Press</a> is saying.</p>
+            <p><strong>SRS Lookbooks</strong> are a product of the creativity of our favorite photographer, Greg Buyalos and of our premier stylists. Our winter photo shoots were styled by Joey Glazer. Like what you see? Built in convenience allows you to click and buy straight from the image!</p>
+            <p><strong>My Tailor</strong>: Your access to SRS Custom Wear. Make an appointment to get measured for a suit, jacket or shirt. SRS Custom Wear</p>
+            <p><strong>My Stylist</strong>: Fill out a style profile and get assigned your very own personal stylist. Chat with your stylist via text or image and get personalized style suggestions.</p>
+        </div>  
+        <div class="popup-info-sign text-center">
+            <img src="<?php echo $this->webroot; ?>img/lisa_signature.png" />
+        </div>   
+    </div>
 </div>

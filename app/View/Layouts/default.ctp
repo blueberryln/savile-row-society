@@ -597,7 +597,7 @@ if(isset($profilePopup) && $profilePopup['completeProfile'] && ($this->params['c
                     $("#overlay").fadeOut();
                 }
                 
-                var notificationBox = $("#notification-box");
+                var notificationBox = $(".notification-box");
                 if(notificationBox.is(":visible") && notificationBox.has(e.target).length == 0) {
                     //$.unblockUI();    
                 }

@@ -4,7 +4,7 @@ $(document).ready(function(){
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
         window.open(
-          "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent("http://www.savilerowsociety.com/"), 
+          "https://www.facebook.com/sharer/sharer.php?s=100&p[title]=" + encodeURIComponent("Savile Row Society") + "&p[summary]=" + encodeURIComponent("I just completed my Style Profile on www.SavileRowSociety.com! Check out their website, fill our your Style Profile to chat with one of their premier personal stylists, and make their virtual Closet, your reality.") + "&p[url]=" + encodeURIComponent("http://www.savilerowsociety.com") + "&p[images][0]=" + encodeURIComponent("http://www.savilerowsociety.com/img/SRS_600.png"), 
           "facebook-share-dialog", 
           "width=626,height=436"); 
     });    
@@ -50,7 +50,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <div class="product-share" style="float: none;">
                         <span>Share:</span> <br />
                         <a href="" id="lnk-fb-share"></a>
-                        <a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI would like to recommend this exclusive online menswear club, Savile Row Society. Check out http://www.savilerowsociety.com/." id="lnk-email"></a>
+                        <a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI just completed my Style Profile on http://www.SavileRowSociety.com! Check out their website, fill out your Style Profile to chat with one of their premier personal stylists, and make their virtual Closet, your reality." id="lnk-email"></a>
                     </div>                                                       
                 </div>                        
                 <br/>                    

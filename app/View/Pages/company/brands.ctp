@@ -73,7 +73,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Bernard_zins.jpg" class="fadein-image" alt="Bernard Zins" data-name="bernard" /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/7diamonds.png" class="fadein-image" alt="7 Diamonds" data-name="7diamonds"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/agave.jpg" class="fadein-image" alt="AGAVE" data-name="agave"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/CafeBleu.jpg" class="fadein-image" alt="CafeBleu" data-name="cafebleu"  /></li>
+                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/CafeBleu.png" class="fadein-image" alt="CafeBleu" data-name="cafebleu"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/castaway.jpg" class="fadein-image" alt="Castaway" data-name="castaway"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/edward.png" class="fadein-image" alt="Edward Amrah" data-name="edwardamrah"  /></li>
                 <li><img src="<?php echo $this->webroot; ?>img/branding-partners/mclip.gif" class="fadein-image" alt="M-Clip" data-name="mclip"  /></li>
