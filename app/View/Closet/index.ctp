@@ -69,6 +69,36 @@ if($user_id){
 $script = '
 var filter = "' . $filter_used . '";
 var checkCount = '.$check_count.'; 
+
+function highLightCategory(prod_id, parent_id){
+    if(prod_id == parent_id){
+        $("ul.product-categories li a").each(function(){
+            if($(this).data("category_id")==prod_id) {
+                $(this).addClass("hover-link");
+            }
+            else {
+                $(this).removeClass("hover-link");
+            }
+        });
+    }
+    else{
+        $("ul.product-categories li a").each(function(){
+            if($(this).data("category_id")== parent_id)
+            {
+                $(this).closest("li").find(".product-subcategories").eq(0).stop(false, true).slideDown(300);
+                 
+            }
+            if($(this).data("category_id")==prod_id)
+            {
+                $(this).addClass("hover-link");
+                 
+            }else{
+                $(this).removeClass("hover-link");
+            }
+        });        
+    }     
+}
+
 $(document).ready(function(){
     if(checkCount == 1){
         signUp();
@@ -106,33 +136,49 @@ $(document).ready(function(){
         $(".brand-filter").removeClass("hide").addClass("selected");    
     }
     
-    
-    
-    $("div.product-block").mouseover(function(){
-        var prod_id = $(this).find("input.category-id").val();
-        var parent_prod_id = $(this).find("input.parent-category-id").val();
-        var flag = false;        
-        $("ul.product-categories li a").each(function(){
-            if($(this).data("category_id")==prod_id)
-            {
-                $(this).addClass("hover-link");
-                flag = true;          
-            }
-        });
-        
-        if(!flag && prod_id != parent_prod_id){
-            $("ul.product-categories li a").each(function(){
-                if($(this).data("category_id")==parent_prod_id)
-                {
-                    $(this).addClass("hover-link");
-                    flag = true;          
-                }
+    $("div.product-block").hover(
+        function(){
+            var prod_id = $(this).find("input.category-id").val();
+            var parent_id = $(this).find("input.parent-category-id").val();
+            console.log(prod_id);
+            console.log(parent_id);
+            highLightCategory(prod_id, parent_id);    
+        },
+        function(){
+            $("ul.product-categories li a").removeClass("hover-link");
+            $(".product-subcategories").not(".product-subsubcategories").each(function(){
+                if($(this).closest(".cat-filter-selected").length == 0){
+                    $(this).stop(false, false).slideUp(300);
+                }    
             });    
         }
-    });
-    $("div.product-block").mouseout(function(){
-        $("ul.product-categories li a").removeClass("hover-link");
-    });
+    );
+    
+    //$("div.product-block").mouseover(function(){
+//        var prod_id = $(this).find("input.category-id").val();
+//        var parent_prod_id = $(this).find("input.parent-category-id").val();
+//        var flag = false;        
+//        $("ul.product-categories li a").each(function(){
+//            if($(this).data("category_id")==prod_id)
+//            {
+//                $(this).addClass("hover-link");
+//                flag = true;          
+//            }
+//        });
+//        
+//        if(!flag && prod_id != parent_prod_id){
+//            $("ul.product-categories li a").each(function(){
+//                if($(this).data("category_id")==parent_prod_id)
+//                {
+//                    $(this).addClass("hover-link");
+//                    flag = true;          
+//                }
+//            });    
+//        }
+//    });
+//    $("div.product-block").mouseout(function(){
+//        $("ul.product-categories li a").removeClass("hover-link");
+//    });
     
     $(".toggle-tab").on("click", function(e){
         if(!$(this).find(".toggle-body").is(":visible")){
@@ -293,8 +339,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <?php endif; ?>
 
 
-                                <?php if ($category['children'] && $parent_id && $parent_id == $category['Category']['id']) : ?>
-                                    <ul class="product-subcategories">
+                                <?php if ($category['children']) : ?>
+                                    <ul class="product-subcategories <?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "" : "hide"; ?>">
                                         <?php foreach ($category['children'] as $subcategory): ?>
                                             <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subcategory['Category']['id']; ?> ><?php echo $subcategory['Category']['name']; ?></a>
                                                 <?php if ($subcategory['children']) : ?>

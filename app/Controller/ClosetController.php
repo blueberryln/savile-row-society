@@ -10,8 +10,8 @@ class ClosetController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
     
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20', 'HOLIDAY20');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20, 'HOLIDAY20' => 20);
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20', 'HOLIDAY20', 'SRSBRANDS20');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20, 'HOLIDAY20' => 20, 'SRSBRANDS20' => 20);
     /**
      * Index
      */

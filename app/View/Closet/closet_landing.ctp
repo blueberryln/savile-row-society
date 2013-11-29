@@ -70,6 +70,37 @@ if($user_id){
 $script = '
 var threeItemPopup = ' . $show_three_item_popup. ';
 var showClosetPopUp = ' . $show_closet_popup . ';
+
+function highLightCategory(prod_id, parent_id){
+    if(prod_id == parent_id){
+        $("ul.product-categories li a").each(function(){
+            if($(this).data("category_id")==prod_id)
+            {
+                $(this).addClass("hover-link");
+                 
+            }else{
+                $(this).removeClass("hover-link");
+            }
+        });
+    }
+    else{
+        $("ul.product-categories li a").each(function(){
+            if($(this).data("category_id")== parent_id)
+            {
+                $(this).closest("li").find(".product-subcategories").eq(0).stop(false, false).slideDown(300);
+                 
+            }
+            if($(this).data("category_id")==prod_id)
+            {
+                $(this).addClass("hover-link");
+                 
+            }else{
+                $(this).removeClass("hover-link");
+            }
+        });        
+    }     
+}
+
 $(document).ready(function(){   
     
     $(".fancybox").fancybox({ 
@@ -134,33 +165,7 @@ $(document).ready(function(){
         function(){
             var prod_id = $(this).find("input.category-id").val();
             var parent_id = $(this).find("input.parent-category-id").val();
-            if(prod_id == parent_id){
-                $("ul.product-categories li a").each(function(){
-                    if($(this).data("category_id")==prod_id)
-                    {
-                        $(this).addClass("hover-link");
-                         
-                    }else{
-                        $(this).removeClass("hover-link");
-                    }
-                });
-            }
-            else{
-                $("ul.product-categories li a").each(function(){
-                    if($(this).data("category_id")== parent_id)
-                    {
-                        $(this).closest("li").find(".product-subcategories").eq(0).stop(false, false).slideDown(300);
-                         
-                    }
-                    if($(this).data("category_id")==prod_id)
-                    {
-                        $(this).addClass("hover-link");
-                         
-                    }else{
-                        $(this).removeClass("hover-link");
-                    }
-                });        
-            }    
+            highLightCategory(prod_id, parent_id);    
         },
         function(){
             $("ul.product-categories li a").removeClass("hover-link");
@@ -237,33 +242,7 @@ $(document).ready(function(){
                     productBlock.find(".product-brand").text(entity["Brand"]["name"]); 
                     productBlock.find(".category-id").val(entity["Category"]["category_id"]);
                     var prod_id = productBlock.find(".category-id").val();
-                    if(prod_id == categoryId){
-                        $("ul.product-categories li a").each(function(){
-                            if($(this).data("category_id")==prod_id)
-                            {
-                                $(this).addClass("hover-link");
-                                 
-                            }else{
-                                $(this).removeClass("hover-link");
-                            }
-                        });
-                    }
-                    else{
-                        $("ul.product-categories li a").each(function(){
-                            if($(this).data("category_id")== categoryId)
-                            {
-                                $(this).closest("li").find(".product-subcategories").eq(0).stop(false, false).slideDown(300);
-                                 
-                            }
-                            if($(this).data("category_id")==prod_id)
-                            {
-                                $(this).addClass("hover-link");
-                                 
-                            }else{
-                                $(this).removeClass("hover-link");
-                            }
-                        });        
-                    }
+                    highLightCategory(prod_id, categoryId);
                     
                     var productPrice = (entity["Entity"]["price"]> 0) ? "$" + entity["Entity"]["price"] : "Price on request";
                     productBlock.find(".product-price").text(productPrice);
