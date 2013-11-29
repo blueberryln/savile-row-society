@@ -1,4 +1,23 @@
 <?php
+$homePopUp = '';
+if($itsHoliday){
+    $homePopUp = 'if(!isLoggedIn()){
+        $.blockUI({message: $("#holiday-box-login"),css:{top: $(window).height()/2 - $("#holiday-box-login").height()/2, backgroundColor: "transparent"}});
+        $(".blockOverlay").click($.unblockUI);
+    }
+    else{
+        if (websiteInfo==null || websiteInfo==""){
+            $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+            $(".blockOverlay").click($.unblockUI);
+        }
+    }';
+}
+else{
+    $homePopUp = 'if (websiteInfo==null || websiteInfo==""){
+        $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+        $(".blockOverlay").click($.unblockUI);
+    }';
+}
 
 $script ='
    var player; 
@@ -66,16 +85,8 @@ $script ='
     
     $(document).ready(function(){
         var websiteInfo=getCookie("websiteInfo");
-        if(!isLoggedIn()){
-            $.blockUI({message: $("#holiday-box-login"),css:{top: $(window).height()/2 - $("#holiday-box-login").height()/2, backgroundColor: "transparent"}});
-            $(".blockOverlay").click($.unblockUI);
-        }
-        else{
-            if (websiteInfo==null || websiteInfo==""){
-                $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
-                $(".blockOverlay").click($.unblockUI);
-            }
-        }
+        
+        ' . $homePopUp . '
         
         $(".info-popup-close").on("click", function(e){
             e.preventDefault();
@@ -431,7 +442,7 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="box-modal-inside">
         <a class="notification-close big-popup-close" href=""></a>
         <p><img src="<?php echo $this->webroot; ?>img/inverted Logo.png"></p>
-        <p class="popup-info-text">"Your holiday shopping is on us. Login or Register to get Hooked Up and you will receive $20 off of your holiday purchase."</p>
+        <p class="popup-info-text">"Your holiday shopping is on us. Use promo code below and you will receive $20 off of your holiday purchase."</p>
         <div class="promo-code-block popup-info-text">
             <span>Use Promo Code</span>
             <span class="promo-text">Holiday20</span>

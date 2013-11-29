@@ -19,10 +19,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <h1>Transaction Summary</h1>
         </div>
         <div class="fourteen columns offset-by-one text-justify omega alpha">
-                <p>Thank you for shopping with Savile Row Society and supporting our partnering brands. We are committed to bringing you only the best product made by the most passionate people in the industry. Never hesitate to reach out to your personal stylist, where we make our virtual <a href="<?php echo $this->webroot; ?>closet">CLOSET</a> your reality. We appreciate your patronage and continued support. Thank You.</p>
-                <br />
+                
         </div>
-        <div class="eight columns offset-by-four transact-confirmation">
+        <div class="eight columns offset-by-four">
                 <table border="1" width="100%" style="text-align: left; border: 1px solid #aaa;">
                     <tr>
                         <th style="padding: 3px 8px;">Transaction Status</th>
@@ -47,15 +46,27 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         <td style="border-left: 1px solid #aaa; padding: 3px 8px;"><?php echo $transaction_data['Transaction']['card_type']; ?></td>
                     </tr>
                 </table>
+        </div>
+        <div class="clear"></div>
+        <br />  <br />
+        <div class="fourteen columns offset-by-one text-center omega alpha transact-confirmation">
+            <?php if($transaction_complete == "success") : ?>
+                <p class="text-justify">Thank you for shopping with Savile Row Society and supporting our partnering brands. We are committed to bringing you only the best product made by the most passionate people in the industry. Never hesitate to reach out to your personal stylist, where we make our virtual <a href="<?php echo $this->webroot; ?>closet">CLOSET</a> your reality. We appreciate your patronage and continued support. Thank You.</p>
+                <br />
+                <div class="thank-you-note" style="page-break-before: always;">
+                    <img src="<?php echo $this->webroot; ?>img/thank_you-note.jpg" style="max-width: 100%;" />
+                </div>
+                
                 <br />  <br />
-                <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>closet">Go To Closet</a>
-                <?php if($transaction_complete == "success") : ?>
-                    <div class="product-share" style="float: none;">
-                        <span>Share:</span> <br />
-                        <a href="" id="lnk-fb-share"></a>
-                        <a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI just added a new item to my Closet from www.SavileRowSociety.com! Check out their website, register to chat with one of their premier personal stylists, and make their virtual Closet, your reality." id="lnk-email"></a>
-                    </div>    
-                <?php endif; ?>
+            <?php endif; ?>
+            <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>closet">Go To Closet</a>
+            <?php if($transaction_complete == "success") : ?>
+                <div class="product-share" style="float: none;">
+                    <span>Share:</span> <br />
+                    <a href="" id="lnk-fb-share"></a>
+                    <a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI just added a new item to my Closet from www.SavileRowSociety.com! Check out their website, register to chat with one of their premier personal stylists, and make their virtual Closet, your reality." id="lnk-email"></a>
+                </div>    
+            <?php endif; ?>
         </div>
         <div class="fourteen columns offset-by-one text-justify omega alpha">
             <br />

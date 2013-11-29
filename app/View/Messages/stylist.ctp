@@ -64,7 +64,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         <div class="ten columns aplha stylist-talk">
             <ul id="stylist-options">
                 <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
-                <li><a href="<?php echo $this->webroot; ?>closet/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
+                <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
                 <!--<li><a href="">conversation</a></li>-->                
             </ul>
             <h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>
