@@ -2818,7 +2818,7 @@ body{
     color: #8E7846;
     text-decoration: none;
 }
-.product-filter-menu .hover-link{
+.product-filter-menu .product-categories .hover-link{
     /*color: #8E7846 !important;*/
     background-color: #8f7948;
     color: #fff !important;
