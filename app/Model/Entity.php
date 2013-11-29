@@ -457,20 +457,20 @@ class Entity extends AppModel {
 //                WHERE pe.show = 1 AND cat.parent_id IS NULL AND pd.show = 1 AND pd.stock > (SELECT COALESCE(SUM(Item.quantity),0) AS usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (NOW() - INTERVAL 1 DAY) AND Item.product_entity_id = pe.id AND pd.size_id = Item.size_id) 
 //                GROUP BY pc.category_id";
                 
-        $sql = "SELECT pe.id, pc.category_id 
-                FROM products_entities pe
-                INNER JOIN products_categories pc ON pe.product_id = pc.product_id
-                INNER JOIN categories cat ON pc.category_id = cat.id 
-                WHERE pe.show = 1     
-                GROUP BY pc.category_id";
-        
-        
         //$sql = "SELECT pe.id, pc.category_id 
 //                FROM products_entities pe
 //                INNER JOIN products_categories pc ON pe.product_id = pc.product_id
 //                INNER JOIN categories cat ON pc.category_id = cat.id 
-//                WHERE pe.show = 1 AND pe.is_featured = 1    
+//                WHERE pe.show = 1     
 //                GROUP BY pc.category_id";
+        
+        
+        $sql = "SELECT pe.id, pc.category_id 
+                FROM products_entities pe
+                INNER JOIN products_categories pc ON pe.product_id = pc.product_id
+                INNER JOIN categories cat ON pc.category_id = cat.id 
+                WHERE pe.show = 1 AND pe.is_featured = 1    
+                GROUP BY pc.category_id";
                 
         $result = $this->query($sql);
         return $result;
@@ -482,7 +482,7 @@ class Entity extends AppModel {
             'conditions' => array(
                 'Entity.show' => true, 
                 'Entity.id !=' => $product_id, 
-                //'Entity.is_featured' => true,
+                'Entity.is_featured' => true,
             ),
             'joins' => array(
                 array('table' => 'products_categories',
@@ -509,7 +509,7 @@ class Entity extends AppModel {
                 ),
             ),
             'fields' => array(
-                'Entity.*', 'Product.*', 'Brand.*',
+                'Entity.*', 'Product.*', 'Brand.*', 'Category.*',
             ),
             'order' => 'rand()'
         );

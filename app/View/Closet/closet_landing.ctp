@@ -117,9 +117,18 @@ $(document).ready(function(){
         showNotification(notificationDetails);  
     }    
     else if(showLifeStyle != null && showLifeStyle != ""){
-        $.blockUI({message: $("#closetinfo-box"),css:{top: $(window).height()/2 - $("#closetinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
-        $(".blockOverlay").click($.unblockUI);
+        var closetInfo=getCookie("closetInfo");
+        if (closetInfo==null || closetInfo==""){
+            $.blockUI({message: $("#closetinfo-box"),css:{top: $(window).height()/2 - $("#closetinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+            $(".blockOverlay").click($.unblockUI);
+        }
     }
+    
+    $(".info-popup-close").on("click", function(e){
+        e.preventDefault();
+        setCookie("closetInfo",1,60);
+        $.unblockUI;   
+    });
     
     $("div.product-block").hover(
         function(){
@@ -255,6 +264,35 @@ $(document).ready(function(){
                     productBlock.find(".product-slug").val(entity["Entity"]["slug"]);   
                     productBlock.find(".product-name").text(entity["Entity"]["name"]);   
                     productBlock.find(".product-brand").text(entity["Brand"]["name"]); 
+                    productBlock.find(".category-id").val(entity["Category"]["category_id"]);
+                    var prod_id = productBlock.find(".category-id").val();
+                    if(prod_id == categoryId){
+                        $("ul.product-categories li a").each(function(){
+                            if($(this).data("category_id")==prod_id)
+                            {
+                                $(this).addClass("hover-link");
+                                 
+                            }else{
+                                $(this).removeClass("hover-link");
+                            }
+                        });
+                    }
+                    else{
+                        $("ul.product-categories li a").each(function(){
+                            if($(this).data("category_id")== categoryId)
+                            {
+                                $(this).closest("li").find(".product-subcategories").eq(0).stop(false, false).slideDown(300);
+                                 
+                            }
+                            if($(this).data("category_id")==prod_id)
+                            {
+                                $(this).addClass("hover-link");
+                                 
+                            }else{
+                                $(this).removeClass("hover-link");
+                            }
+                        });        
+                    }
                     
                     var productPrice = (entity["Entity"]["price"]> 0) ? "$" + entity["Entity"]["price"] : "Price on request";
                     productBlock.find(".product-price").text(productPrice);
@@ -334,7 +372,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <li class="toggle-tab selected open-filter"><span class="filter-block">Categories</span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
-                            <li>
+                            <li <?php echo ($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') ? 'class="highlighted-cat"' : '';?>>
+                            <?php if($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') : ?>
+                                <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
+                                <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
+                            <?php endif; ?>
+                            
                             <?php if($category['Category']['slug'] == "lookbooks") : ?>
                                 <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                             <?php else : ?>

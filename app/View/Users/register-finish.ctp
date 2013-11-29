@@ -4,9 +4,10 @@ $(document).ready(function(){
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
         window.open(
-          "https://www.facebook.com/sharer/sharer.php?s=100&p[title]=" + encodeURIComponent("Savile Row Society") + "&p[summary]=" + encodeURIComponent("I just completed my Style Profile on www.SavileRowSociety.com! Check out their website, fill our your Style Profile to chat with one of their premier personal stylists, and make their virtual Closet, your reality.") + "&p[url]=" + encodeURIComponent("http://www.savilerowsociety.com") + "&p[images][0]=" + encodeURIComponent("http://www.savilerowsociety.com/img/SRS_600.png"), 
+          "https:www.facebook.com/sharer/sharer.php?s=100&p[title]=" + encodeURIComponent("Savile Row Society") + "&p[summary]=" + encodeURIComponent("I just completed my Style Profile on www.SavileRowSociety.com! Check out their website, fill our your Style Profile to chat with one of their premier personal stylists, and make their virtual Closet, your reality.") + "&p[url]=" + encodeURIComponent("http:www.savilerowsociety.com") + "&p[images][0]=" + encodeURIComponent("http:www.savilerowsociety.com/img/SRS_600.png"), 
           "facebook-share-dialog", 
           "width=626,height=436"); 
+      
     });    
 });
 ';

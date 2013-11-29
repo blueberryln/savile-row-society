@@ -49,13 +49,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 </table>
                 <br />  <br />
                 <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>closet">Go To Closet</a>
-                <?php //if($transaction_complete == "success") : ?>
+                <?php if($transaction_complete == "success") : ?>
                     <div class="product-share" style="float: none;">
                         <span>Share:</span> <br />
                         <a href="" id="lnk-fb-share"></a>
                         <a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI just added a new item to my Closet from www.SavileRowSociety.com! Check out their website, register to chat with one of their premier personal stylists, and make their virtual Closet, your reality." id="lnk-email"></a>
                     </div>    
-                <?php //endif; ?>
+                <?php endif; ?>
         </div>
         <div class="fourteen columns offset-by-one text-justify omega alpha">
             <br />

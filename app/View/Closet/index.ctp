@@ -281,8 +281,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <li class="toggle-tab selected open-filter"><span class="filter-block"><a href="<?php echo $this->webroot; ?>closet">Categories</a></span>
                         <ul class="toggle-body product-categories">
                         <?php foreach ($categories as $category): ?>
-                            <li <?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "class='cat-filter-selected'" : ""; ?>>
-
+                            <li class="<?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "cat-filter-selected" : ""; ?> <?php echo ($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') ? 'highlighted-cat' : '';?>">
+                            <?php if($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') : ?>
+                                <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
+                                <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
+                            <?php endif; ?>
                                 <?php if($category['Category']['slug'] == "lookbooks") : ?>
                                     <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>" data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                                 <?php else : ?>
@@ -305,7 +308,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php endif; ?>
-                            <span class="filter-cross"></span>
+                            <?php if($category['Category']['slug'] != 'seasonal' && $category['Category']['slug'] != 'lookbooks') : ?>
+                                <span class="filter-cross"></span>
+                            <?php endif; ?>
                             </li>
                             <?php endforeach; ?>
                         </ul>

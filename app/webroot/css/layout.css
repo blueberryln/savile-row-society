@@ -4485,6 +4485,29 @@ div.payment .profile-tabs
 }
 
 
+.product-categories li a{
+    z-index: 2;
+    position: relative;
+}
+.cuff-left{
+    position: absolute;
+    left: -23px;
+    z-index: 1;  
+    border-bottom: none !important;  
+    width: 14px;
+}
+.cuff-right{
+    position: absolute;
+    right: -11px;
+    z-index: 1;
+    border-bottom: none !important; 
+    width: 14px;
+}
+.product-categories .highlighted-cat > a{
+    font-weight: bold;
+}
+
+
 /*********CSS FOR MOBILE AND TABLETS********/
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
     

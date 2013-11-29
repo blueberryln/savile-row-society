@@ -65,8 +65,17 @@ $script ='
     }
     
     $(document).ready(function(){
-        $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
-        $(".blockOverlay").click($.unblockUI);
+        var websiteInfo=getCookie("websiteInfo");
+        if (websiteInfo==null || websiteInfo==""){
+            $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+            $(".blockOverlay").click($.unblockUI);
+        }
+        
+        $(".info-popup-close").on("click", function(e){
+            e.preventDefault();
+            setCookie("websiteInfo",1,60);
+            $.unblockUI;   
+        });
         
         $("#closetCuffLink").hover(
             function(){
