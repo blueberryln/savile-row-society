@@ -335,7 +335,7 @@ class MessagesController extends AppController {
                 foreach($result['Messages'] as &$msg){
                     $timestamp = strtotime($msg['Message']['created']);
                     $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
-                    if($msg['Message']['is_read'] == 0){
+                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id || $with_user_id)){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
                     $last_conv_id = $msg['Message']['id'];
@@ -423,7 +423,7 @@ class MessagesController extends AppController {
                 foreach($result['Messages'] as &$msg){
                     $timestamp = strtotime($msg['Message']['created']);
                     $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
-                    if($msg['Message']['is_read'] == 0){
+                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id || $with_user_id)){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
                 }
@@ -529,7 +529,7 @@ class MessagesController extends AppController {
                 foreach($result['Messages'] as &$msg){
                     $timestamp = strtotime($msg['Message']['created']);
                     $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
-                    if($msg['Message']['is_read'] == 0){
+                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id || $with_user_id)){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
                     $last_conv_id = $msg['Message']['id'];

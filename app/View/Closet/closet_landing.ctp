@@ -168,35 +168,6 @@ $(document).ready(function(){
         }
     );
     
-    //$("div.product-block").mouseover(function(){
-//        var prod_id = $(this).find("input.category-id").val();
-//        var parent_id = $(this).find("input.parent-category-id").val();
-//        if(prod_id == parent_id){
-//            $("ul.product-categories li a").each(function(){
-//                if($(this).data("category_id")==prod_id)
-//                {
-//                    $(this).addClass("hover-link");
-//                     
-//                }else{
-//                    $(this).removeClass("hover-link");
-//                }
-//            });
-//        }
-//        else{
-//            $("ul.product-categories li a").each(function(){
-//                if($(this).data("category_id")== parent_id)
-//                {
-//                    $(this).closest("li").find(".product-subcategories").eq(0).stop(false, false).slideDown(300);
-//                     
-//                }
-//            });        
-//        }
-//    });
-//    $("div.product-block").mouseout(function(){
-//        $("ul.product-categories li a").removeClass("hover-link");
-//        $(".product-subcategories").not(".product-subsubcategories").stop(false, false).slideUp(300);
-//    });
-    
     $(".toggle-tab").on("click", function(e){
         if(!$(this).find(".toggle-body").is(":visible")){
             $(this)

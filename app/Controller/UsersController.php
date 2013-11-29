@@ -119,6 +119,9 @@ class UsersController extends AppController {
                 $results = $this->User->checkCredentials($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
                 if ($results) {
                     
+                    //Show holiday popup
+                    $this->Session->write('holidayCode', true);
+                    
                     // set "user" session
                     $this->Session->write('user', $results);
 
@@ -581,6 +584,8 @@ class UsersController extends AppController {
                 $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
 
                 if ($results) {
+                    //Show holiday popup
+                    $this->Session->write('holidayCode', true);
                     
                     // set "user" session
                     $this->Session->write('user', $results);

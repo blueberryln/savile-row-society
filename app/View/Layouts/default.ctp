@@ -1,6 +1,18 @@
 <?php
-if(isset($profilePopup) && $profilePopup['completeProfile'] && ($this->params['controller'] != 'closet' || ($this->params['controller'] == 'closet' && $this->params['action'] != 'index'))){
-    $profileLinkScript = '';
+$profileLinkScript = '';
+$scriptProfile = '';
+if(isset($showHolidayPopup)){
+    $profileLinkScript = '$.blockUI({message: $("#holiday-box-logged"),css:{top: $(window).height()/2 - $("#holiday-box-logged").height()/2, backgroundColor: "transparent"}});
+    $(".blockOverlay").click($.unblockUI);'; 
+    
+    $scriptProfile = '
+        $(document).ready(function(){
+        ' . $profileLinkScript . '   
+        });
+    ';   
+}
+else if(isset($profilePopup) && $profilePopup['completeProfile'] && ($this->params['controller'] != 'closet' || ($this->params['controller'] == 'closet' && $this->params['action'] != 'index'))){
+    
     if(isset($profilePopup['isProfile']) && $profilePopup['isProfile']){
         $profileLinkScript = '
             $(".complete-profile").click(function(e){
@@ -16,8 +28,8 @@ if(isset($profilePopup) && $profilePopup['completeProfile'] && ($this->params['c
         ' . $profileLinkScript . '   
         });
     ';   
-    $this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false));
 }
+$this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false));
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->

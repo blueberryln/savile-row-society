@@ -66,9 +66,15 @@ $script ='
     
     $(document).ready(function(){
         var websiteInfo=getCookie("websiteInfo");
-        if (websiteInfo==null || websiteInfo==""){
-            $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+        if(!isLoggedIn()){
+            $.blockUI({message: $("#holiday-box-login"),css:{top: $(window).height()/2 - $("#holiday-box-login").height()/2, backgroundColor: "transparent"}});
             $(".blockOverlay").click($.unblockUI);
+        }
+        else{
+            if (websiteInfo==null || websiteInfo==""){
+                $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+                $(".blockOverlay").click($.unblockUI);
+            }
         }
         
         $(".info-popup-close").on("click", function(e){
@@ -219,7 +225,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 }
                 ?>     
             <li>
-                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="///www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0" frameborder="0" allowfullscreen></iframe>
+                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0?version=3" frameborder="0" allowfullscreen></iframe>
             </li>    
             
         </ul>
@@ -406,5 +412,30 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="popup-info-sign text-center">
             <img src="<?php echo $this->webroot; ?>img/lisa_signature.png" />
         </div>   
+    </div>
+</div>
+
+<div id="holiday-box-login" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close big-popup-close" href=""></a>
+        <p><img src="<?php echo $this->webroot; ?>img/inverted Logo.png"></p>
+        <p class="popup-info-text">"Your holiday shopping is on us. Login or Register to get Hooked Up and you will receive $20 off of your holiday purchase."</p>
+        
+        <div><a href="#" onclick="window.ref_url=''; signUp();" class="link-btn light-gold-btn signin-btn">Resgiter</a></div>
+        <div><a href="#" onclick="window.ref_url=''; signIn();" class="link-btn gold-btn signin-btn">Log in</a></div>
+        <div class="holiday-cuff"><img src="<?php echo $this->webroot; ?>img/Holiday20_cuflink.png"></div>
+    </div>
+</div>
+
+<div id="holiday-box-logged" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close big-popup-close" href=""></a>
+        <p><img src="<?php echo $this->webroot; ?>img/inverted Logo.png"></p>
+        <p class="popup-info-text">"Your holiday shopping is on us. Login or Register to get Hooked Up and you will receive $20 off of your holiday purchase."</p>
+        <div class="promo-code-block popup-info-text">
+            <span>Use Promo Code</span>
+            <span class="promo-text">Holiday20</span>
+        </div>
+        <div class="holiday-cuff"><img src="<?php echo $this->webroot; ?>img/Holiday20_cuflink.png"></div>
     </div>
 </div>

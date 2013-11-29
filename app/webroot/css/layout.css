@@ -63,6 +63,9 @@
 .gold-btn{
     background-color: #af9a59; 
 }
+.light-gold-btn{
+    background-color: #CCCCCC;
+}
 .green-btn{
     background-color: #497775; 
 }
@@ -4444,6 +4447,11 @@ div.payment .profile-tabs
     width: 20px !important;
     height: 21px !important;
 }
+.big-popup-close{
+    background: url('../img/info_popup_close.png') no-repeat center center;
+    width: 20px !important;
+    height: 21px !important;    
+}
 #closetinfo-box{
     width: 470px;
     height: 353px;
@@ -4482,6 +4490,40 @@ div.payment .profile-tabs
 }
 .popup-info-sign{
     margin-top: 40px;
+}
+
+#holiday-box-login, #holiday-box-logged{
+    background: rgba(0,0,0,0.8);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box; 
+    padding: 10px 0 0;
+}
+#holiday-box-login .popup-info-text, #holiday-box-logged .popup-info-text{
+    font-size: 17px;
+}
+#holiday-box-logged .promo-code-block{
+    margin-bottom: 15px;
+}
+#holiday-box-logged .promo-code-block span{
+    font-size: 22px;
+    display: block;
+} 
+#holiday-box-logged .promo-code-block span.promo-text{
+    text-transform: uppercase;
+    font-size: 27px !important;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#holiday-box-login .signin-btn{
+    margin-top: 10px;
+    color: #000 !important;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.holiday-cuff{
+    margin-top: 5px;
 }
 
 
