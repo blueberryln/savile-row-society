@@ -77,7 +77,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                 <h2 class="subhead text-center">There are no liked items.</h2>  
             <?php endif; ?>
             <div class="clear"></div>
-            <div class="pagination">
+            <div class="pagination my-closet">
                 <?php
                 echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
                 echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));

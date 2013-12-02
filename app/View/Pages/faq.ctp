@@ -30,6 +30,10 @@ We guide them step-by-step on how to build a better wardrobe and refine their im
             <div>&quot;The Closet&quot; is our curated collection of products from brands that we believe meet our standards; you get only the best at SRS! Our curated products are best in class, and illustrate our the mission to select the best of the best that may not have the shelf space at a big name retailer where men shop going store to store or searching products online.</div>
          </p>
          <p>
+             <strong>How does The Closet work?</strong>
+            <div>You can purchase items on The Closet or like and dislike items to help our stylists get to know you better. The front page of The Closet is divided into 12 essential menswear categories. Use the arrow on the side of each picture to see a new product in that category.</div>
+         </p>
+         <p>
              <strong>How does Savile Row Society&apos;s service work?</strong>
             <div>-If you like what you see in The Closet and want the SRS personal styling service, you are required to register and fill out a style profile.</div>
             <div>-After this quick style quiz to understand taste, needs, and body type, the site matches you with a personal shopper,</div>

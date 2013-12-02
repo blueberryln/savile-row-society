@@ -2965,7 +2965,7 @@ p.product-breadcrumb a
 .product-default-image{
     border: 1px solid #ccc;
     background-color: #FFFFFF;
-    height: 506px;
+    height: 507px;
     /*width: 374px;*/
     text-align: center;
     line-height: 506px;
@@ -3499,6 +3499,9 @@ div.card-number div.input
 {    
     /*opacity: 0;*/
     cursor: pointer;
+}
+.pagination.my-closet span.prev.disabled, .pagination.my-closet span.next.disabled{
+    opacity: 0;
 }
 
 div.pagination span.next a, .pagination span.prev a

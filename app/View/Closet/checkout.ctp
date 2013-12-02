@@ -191,12 +191,26 @@ $script = '
                 success: function(data){
                     var ret = $.parseJSON(data);
                     if(ret["status"] == "ok"){
-                        var discount = parseFloat(ret["amount"]).toFixed(2);
-                        var total = $("#checkout-initial-price").val();
-                        total = parseFloat(total-discount).toFixed(2);
-                        $(".cart-discount").text("$" + discount);     
-                        $(".cart-total").text("$" + total);  
-                        $("#checkout-total-price").val(total);
+                        if(ret["percent"]){
+                            var discount = parseFloat(ret["amount"]).toFixed(2);
+                            var total = $("#checkout-initial-price").val();
+                            
+                            discount = Math.floor(discount * total / 100);
+                            
+                            total = parseFloat(total-discount).toFixed(2);
+                            $(".cart-discount").text("$" + discount);     
+                            $(".cart-total").text("$" + total);  
+                            $("#checkout-total-price").val(total);
+                        }
+                        else{
+                            var discount = parseFloat(ret["amount"]).toFixed(2);
+                            var total = $("#checkout-initial-price").val();
+                            total = parseFloat(total-discount).toFixed(2);
+                            $(".cart-discount").text("$" + discount);     
+                            $(".cart-total").text("$" + total);  
+                            $("#checkout-total-price").val(total);
+                        }
+                        
                         $("#promocode").attr({"readonly":"readonly"});     
                         var notificationDetails = new Array();
                         notificationDetails["msg"] = "Promo Code has been applied successfully.";

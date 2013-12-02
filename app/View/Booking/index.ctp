@@ -66,8 +66,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <ul class="slides">
             <li><img src="<?php echo $this->request->webroot; ?>img/tailor-1.jpg"></li>
             <li><a href="mailto:&#070;&#105;&#116;&#116;&#105;&#110;&#103;&#064;&#083;&#097;&#118;&#105;&#108;&#101;&#082;&#111;&#119;&#083;&#111;&#099;&#105;&#101;&#116;&#121;&#046;&#099;&#111;&#109;"><img src="<?php echo $this->request->webroot; ?>img/booking-1.jpg"></a></li>
-            <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/booking-2.jpg"></a></li>
-            <li><a href="<?php echo $this->request->webroot; ?>booking"><img src="<?php echo $this->request->webroot; ?>img/booking-3.jpg"></a></li>
+            <li><img src="<?php echo $this->request->webroot; ?>img/booking-2.jpg"></li>
+            <li><img src="<?php echo $this->request->webroot; ?>img/booking-3.jpg"></li>
         </ul>
     </div>
     <div class="clearfix"></div>

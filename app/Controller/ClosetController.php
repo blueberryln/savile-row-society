@@ -10,8 +10,9 @@ class ClosetController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
     
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20', 'HOLIDAY20', 'SRSBRANDS20', 'CYBER30');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20, 'HOLIDAY20' => 20, 'SRSBRANDS20' => 20, 'CYBER30' => 30);
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20', 'HOLIDAY20', 'SRSBRANDS20', 'CYBER30', 'JOEYG35');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20, 'HOLIDAY20' => 20, 'SRSBRANDS20' => 20, 'CYBER30' => 30, 'JOEYG35' => 35);
+    public $percentCodes = array('CYBER30', 'JOEYG35');
     /**
      * Index
      */
@@ -711,12 +712,23 @@ class ClosetController extends AppController {
             
             if($promo_result){
                 if($promo_result['status']=="ok"){
-                    $discount = $promo_result['amount'];  
-                    $discounted_price = $total_price - $discount;
-                    if($request_total_price != $discounted_price){
-                        $error_cart = true;
-                    }    
-                    $final_price = $discounted_price;
+                    if(isset($promo_result['percent'])){
+                        
+                        $discount = floor($promo_result['amount'] * $total_price / 100);  
+                        $discounted_price = $total_price - $discount;
+                        if($request_total_price != $discounted_price){
+                            $error_cart = true;
+                        }    
+                        $final_price = $discounted_price;    
+                    }
+                    else{
+                        $discount = $promo_result['amount'];  
+                        $discounted_price = $total_price - $discount;
+                        if($request_total_price != $discounted_price){
+                            $error_cart = true;
+                        }    
+                        $final_price = $discounted_price;    
+                    }
                 }   
                 else{
                     $this->Session->setFlash(__('The promo code used is not valid.'), 'flash');
@@ -768,13 +780,12 @@ class ClosetController extends AppController {
             $transaction_data['card_num'] = $user_transaction_detail['CreditCard']['cardnumber'];
             $transaction_data['card_code'] = $user_transaction_detail['CreditCard']['cardcode'];
             $transaction_data['card_expiry'] = $user_transaction_detail['CreditCard']['expiry_month'] . $user_transaction_detail['CreditCard']['expiry_year'];
-            $transaction_data['total'] = $total_price;
+            $transaction_data['total'] = $final_price;
             $transaction_data['order_id'] = $order_id;
             $transaction_data['user_id'] = $user_id;
             $transaction_data['card_num'] = $user_transaction_detail['CreditCard']['cardnumber'];
             $transaction_data['card_code'] = $user_transaction_detail['CreditCard']['cardcode'];
             $transaction_data['card_expiry'] = $user_transaction_detail['CreditCard']['expiry_month'] . $user_transaction_detail['CreditCard']['expiry_year'];
-            $transaction_data['total'] = $total_price;
             $transaction_data['order_id'] = $order_id;
             $transaction_data['user_id'] = $user_id;
             $transaction_data['address'] = $data['BillingAddress']['address'];
@@ -1113,8 +1124,8 @@ class ClosetController extends AppController {
         if($user_id && $code != null){
             if(in_array($code, $this->promoCodes)){
                 $Order = ClassRegistry::init('Order');
-                $used_promo = $Order->usedUserPromo($user_id);
                 $is_used = false;
+                $used_promo = $Order->usedUserPromo($user_id);
                 if($used_promo){
                     foreach($used_promo as $promo){
                         if(strtoupper($promo) == $code){
@@ -1157,6 +1168,9 @@ class ClosetController extends AppController {
                     $cur_est_timestamp = strtotime($cur_date);
                     
                     if($cur_est_timestamp >= $start_date && $cur_est_timestamp <= $end_date){
+                        if(in_array($code, $this->percentCodes)){
+                            $ret['percent'] = "percent";
+                        }
                         $ret['status'] = "ok";
                         $ret['info'] = "valid"; 
                         $ret['amount'] = $this->promoCodesAmount[$code];    
@@ -1167,6 +1181,9 @@ class ClosetController extends AppController {
                     }    
                 }
                 else{
+                    if(in_array($code, $this->percentCodes)){
+                        $ret['percent'] = "percent";
+                    }
                     $ret['status'] = "ok";
                     $ret['info'] = "valid"; 
                     $ret['amount'] = $this->promoCodesAmount[$code];   

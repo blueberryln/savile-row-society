@@ -432,7 +432,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         <p><img src="<?php echo $this->webroot; ?>img/inverted Logo.png"></p>
         <p class="popup-info-text">"Your holiday shopping is on us. Login or Register to get Hooked Up and you will receive $20 off of your holiday purchase."</p>
         
-        <div><a href="#" onclick="window.ref_url=''; signUp();" class="link-btn light-gold-btn signin-btn">Resgiter</a></div>
+        <div><a href="#" onclick="window.ref_url=''; signUp();" class="link-btn light-gold-btn signin-btn">Register</a></div>
         <div><a href="#" onclick="window.ref_url=''; signIn();" class="link-btn gold-btn signin-btn">Log in</a></div>
         <div class="holiday-cuff"><img src="<?php echo $this->webroot; ?>img/Holiday20_cuflink.png"></div>
     </div>

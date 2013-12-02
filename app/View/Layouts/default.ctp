@@ -1,7 +1,7 @@
 <?php
 $profileLinkScript = '';
 $scriptProfile = '';
-if($isHoliday && isset($showHolidayPopup)){
+if(isset($isHoliday) && $isHoliday && isset($showHolidayPopup)){
     $profileLinkScript = '$.blockUI({message: $("#holiday-box-logged"),css:{top: $(window).height()/2 - $("#holiday-box-logged").height()/2, backgroundColor: "transparent"}});
     $(".blockOverlay").click($.unblockUI);'; 
     
