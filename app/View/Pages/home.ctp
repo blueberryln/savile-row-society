@@ -141,25 +141,25 @@ $script ='
 
 ';
 $script1 ='
-    $(window).load(function() {
-            var dropdown=getCookie("dropdown");
-  if (dropdown==null || dropdown=="")
-  {
-  setTimeout(function (){
+$(window).load(function() {
+    //var dropdown=getCookie("dropdown");
+    var dropdown = getCookie("cyberDropdown");
+    if (dropdown==null || dropdown=="")
+    {
+        setTimeout(function (){
             $("#sign-up-drop-down").slideDown(1000, "easeOutBack");
-    }, 500);
-  }
+        }, 500);
+    }
 
 
-           $(".close").click(function(e){
-            e.preventDefault();
-            setCookie("dropdown",1,1);
-            $("#sign-up-drop-down").slideUp(600, "easeInBack");
-
-        });
-
-
+    $(".close").click(function(e){
+        e.preventDefault();
+        //setCookie("dropdown",1,1);
+        setCookie("cyberDropdown",1,1);
+        $("#sign-up-drop-down").slideUp(600, "easeInBack");
     });
+    
+});
 ';
 $this->Html->scriptBlock($script1, array('safe' => true, 'inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -185,7 +185,7 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="initial-module">
         <?php
             echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-            echo '<p class="show-login-form">You\'ve been hooked up for the holidays! Use Promo Code "SRS20"</p>';
+            echo '<p class="show-login-form">You\'ve been hooked up for the holidays! Use Promo Code "CYBER30" - 30% off</p>';
 
         ?>
     </div>
