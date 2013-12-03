@@ -51,21 +51,31 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <?php if($user) : ?>
                         <li class="welcome-name"><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
                     <?php endif; ?>
-                <?php if($has_stylist) : ?>
+                <?php if(($has_stylist && !$is_admin) || $is_stylist) : ?>
                 <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
-                    <div class="submenu-container msg-notify-box">
+                    <div class="submenu-container msg-notify-box <?php echo $is_stylist ? "stylist-notify-box" : ""; ?>">
                         <div class="submenu">
                             <div class="submenu-inner">
-                                <a href="<?php echo $this->webroot; ?>messages/index/">
-                                <div class="msg-count">
-                                    <span><?php echo $message_notification['message']; ?></span><br />
-                                    Messages
-                                </div>
-                                <div class="outfit-count">
-                                    <span><?php echo $message_notification['outfit']; ?></span><br />
-                                    Outfits
-                                </div>
-                                </a>
+                                
+                                <?php if(!$is_stylist) : ?>
+                                    <a href="<?php echo $this->webroot; ?>messages/index/">
+                                        <div class="msg-count">
+                                            <span><?php echo $message_notification['message']; ?></span><br />
+                                            Messages
+                                        </div>
+                                        <div class="outfit-count">
+                                            <span><?php echo $message_notification['outfit']; ?></span><br />
+                                            Outfits
+                                        </div>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?php echo $this->webroot; ?>messages/clients">
+                                        <div class="msg-count">
+                                            <span><?php echo $message_notification['message']; ?></span><br />
+                                            Messages
+                                        </div>
+                                    </a>    
+                                <?php endif; ?>
                                 <div class="clear"></div>
                             </div>
                         </div>

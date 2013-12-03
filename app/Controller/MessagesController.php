@@ -586,4 +586,36 @@ class MessagesController extends AppController {
             
         } 
     }
+    
+    function clients(){
+        $this->isLogged();
+        // init
+        $User = ClassRegistry::init('User');
+        
+        // Get user details
+        $user_id = $this->getLoggedUserID();
+        $user = $User->getById($user_id);
+        $user_admin = 0;
+        if($user["User"]["is_admin"]){
+            $user_admin = 1;
+        }
+        
+        // Check if the logged in user is stylist; if not then redirect to chat page
+        if($user && $user['User']['is_stylist'] == 1){
+            $notification_data = $User->getStylistUserNotification($user_id); 
+            $clients = array();
+            $client_array = array();
+            $clients_data = $User->getUserWriteToMe($this->getLoggedUserID());
+            foreach ($clients_data as $client) {
+                $client_array[] = $client['User']['id'];
+                $clients[$client['User']['id']] = $client['User']['full_name'];
+            }  
+            
+            $this->set(compact('clients','client_array','user_id', 'user_admin', 'notification_data')); 
+        }
+        else{
+            $this->redirect('/messages');
+            exit;
+        }
+    }
 }

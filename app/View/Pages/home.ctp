@@ -185,7 +185,7 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="initial-module">
         <?php
             echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-            echo '<p class="show-login-form">You\'ve been hooked up for the holidays! Use Promo Code "CYBER30" - 30% off</p>';
+            echo '<p class="show-login-form">You\'ve been hooked up for the Cyber Monday! Use Promo Code <strong style="color:#DDDDDD">"CYBER30"</strong> - 30% off</p>';
 
         ?>
     </div>
@@ -292,7 +292,10 @@ $this->Html->script('cookie.js', array('inline' => false));
             As a Savile Row Society member you will receive exclusive personal lifestyle services and access to our deluxe perks. We have 3 levels of membership to suit your needs and allow you to grow with us.
         </p>
         <p>
-            All Members receive an exclusive SRS membership card that provides deluxe perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
+            All Members receive deluxe perks online and in-house with our partnering hotels, restaurants, bars, salons, and clubs. We like making your life a little more enjoyable. 
+        </p>
+        <p style="color: #AF9A59; font-weight: bold;">
+            Sign up now during our free beta period and be grandfathered into a free membership once the beta period ends! Thank you for giving us a shot! We look forward to getting to know you.
         </p>
     </div>
     <div class="clear"></div>
@@ -302,8 +305,8 @@ $this->Html->script('cookie.js', array('inline' => false));
         <thead>
         <th class="mem-top-left" style="background-color: #E6E6E6; width: 40%;">Features</th>
         <th style="background-color: #80A2A1;">Day pass</th>
-        <th style="background-color: #E6E6E6;">Squire circle $20/ month</th>
-        <th class="mem-top-right" style="background-color: #D2C9B6;">Knight Circle $50/ month</th>
+        <th style="background-color: #E6E6E6;">Squire circle $20/month</th>
+        <th class="mem-top-right" style="background-color: #D2C9B6;">Knight Circle $50/month</th>
         </thead>
         <tbody>
             <tr>

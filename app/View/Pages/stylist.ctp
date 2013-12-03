@@ -29,21 +29,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class="long-desc hide">
                     <p>She truly believes that getting dressed in the morning should be easier than brewing a pot of coffee and that NO "style" or "matching" decisions should occur that early in the morning. Casey creates an effortless wardrobe based on function, and then finds the best pieces in key elements that will allow you to perfectly coordinate outfits without having to think it-because she already did. Her experience in the best (and some of the worst) closets allows SRS to develop our member's wardrobes at any pace by using her unique lifestyle mapping guide to evolve your style naturally.</p>
                     <p>Casey studied International Business in France at the American University of Paris before coming back to the States to spend two years in apparel design.  After realizing she knew more about sewing than her classmates, she sold her books and began working at Mario's, a luxury specialty store well-known for its menswear collection.</p>
-                     
-                    <p><strong><em><ins>Ask the Stylist</ins></em></strong></p>
-                    <p><strong>Ask the Stylist</strong>: For the man who is on a budget but willing to spend on a few good pieces, which items should he invest in first?<br />
-                    <strong>Casey says</strong>: Great fitting jeans and a pair of "real" shoes.</p>
-                    
-                    <p><strong>Ask the Stylist</strong>: Who's your personal fashion icon?<br />
-                    <strong>Casey says</strong>: My greatest style inspiration is Brunello Cucinelli because it is the only collection I can look at 60 hours a week season after season and still love every piece. The style speaks to me with the intertwining textures of satin, suede, cashmere, leather, wool, cotton and fur; his line will always evoke a reaction of love and admiration for details. "The King of Cashmere" will always be my #1.</p>
-                    
-                    <p><strong>Ask the Stylist</strong>: What three items could you not live without?<br />
-                    <strong>Casey says</strong>: My surfboard, a pen, and paper.</p>
+                
                     <br />
-                    <div>
+                    <!--<div>
                         <iframe class="max-width-adj" width="460" height="315"  src="//www.youtube.com/embed/VlLYFFr7dU8" frameborder="0" allowfullscreen></iframe>
                         <br /><br />
-                    </div>
+                    </div>-->
                 </div>
                 <div class="text-center">
                     <a class="show-more-text" href="#" title="Show more">Show more</a>
