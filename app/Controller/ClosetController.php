@@ -607,7 +607,12 @@ class ClosetController extends AppController {
             
             $request_data = $this->request->data['billing'];
             
-            $promo_code = strtoupper($request_data['promocode']);
+            if(isset($request_data['promocode'])){
+                $promo_code = strtoupper($request_data['promocode']);
+            }
+            else{
+                $promo_code = "";
+            }
             //Arrange Billing data
             $data['User']['first_name'] = $request_data['billfirst_name'];
             $data['User']['last_name'] = $request_data['billlast_name'];
@@ -1090,7 +1095,7 @@ class ClosetController extends AppController {
         $Wishlist->remove($user_id, $entity_list);
     }
     
-    function checkOrderGiftCard($order_id){
+    public function checkOrderGiftCard($order_id){
         $this->autoLayout = false;
         $this->autoRender = false;
         
@@ -1101,9 +1106,9 @@ class ClosetController extends AppController {
             foreach($order_items as $item){
                 if($item['OrderItem']['gift_card_id']){
                     $Order = ClassRegistry::init('Order');
+                    $Order->recursive = 0;
                     $order = $Order->findById($order_id);
-                    
-                    //Check that order exists
+                    // Check that order exists
                     if($order){
                         $User = ClassRegistry::init('User');
                         $user_id = $order['Order']['user_id'];
