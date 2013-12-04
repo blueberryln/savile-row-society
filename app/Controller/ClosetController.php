@@ -1104,7 +1104,7 @@ class ClosetController extends AppController {
         
         if($order_items){
             foreach($order_items as $item){
-                if($item['OrderItem']['gift_card_id']){
+                if(!is_null($item['OrderItem']['gift_card_id']) && $item['OrderItem']['gift_card_id'] != ""){
                     $Order = ClassRegistry::init('Order');
                     $Order->recursive = 0;
                     $order = $Order->findById($order_id);
