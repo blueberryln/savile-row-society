@@ -15,7 +15,24 @@
                             <br /><br />
                             <b>Name:</b> <?php echo $item['Entity']['name']; ?><br/>
                             <b>Description:</b> <?php echo $item['Entity']['description']; ?><br/><br />
-                            <b>Gift Card Id:</b> <?php echo $item['OrderItem']['gift_card_id']; ?><br/>
+                            <b>Quantity:</b> <?php echo $item['OrderItem']['quantity']; ?><br/>
+                            <b>Gift Card Id:</b> 
+                            <?php 
+                                if($item['OrderItem']['quantity'] == 1){
+                                    echo $item['OrderItem']['gift_card_id'];
+                                }
+                                else if($item['OrderItem']['quantity'] > 1){
+                                    for($i = 1; $i <= $item['OrderItem']['quantity']; $i++){
+                                        if($i != $item['OrderItem']['quantity']){
+                                            echo $item['OrderItem']['gift_card_id'] . "-" . $i . ",";
+                                        }
+                                        else{
+                                            echo $item['OrderItem']['gift_card_id'] . "-" . $i . ",";
+                                        }    
+                                    }
+                                }
+                            ?>
+                            <br/>
                             <b>Price:</b> <?php echo $item['OrderItem']['price']; ?><br/>
                         </td>
                     </tr>

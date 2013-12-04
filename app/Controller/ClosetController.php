@@ -958,6 +958,7 @@ class ClosetController extends AppController {
                 $order_id = $result['Order']['id'];
                 $OrderItem = ClassRegistry::init('OrderItem');
                 foreach($cart_items as $row){
+                    $data['OrderItem'] = array();
                     $data['OrderItem']['order_id'] = $result['Order']['id'];
                     $data['OrderItem']['product_entity_id'] = $row['Entity']['id'];
                     $data['OrderItem']['quantity'] = $row['CartItem']['quantity'];
