@@ -37,7 +37,7 @@
                             <center>
                             <?php 
                                 if($img_src != ""){
-                                    echo "<img src='http://www.savilerowsociety.com/files/products/" . $img_src . "'>"; 
+                                    echo "<img src='http://www.savilerowsociety.com/files/products/" . $img_src . "' height='400'>"; 
                                 }   
                             ?>
                             </center>
