@@ -404,6 +404,9 @@ class ClosetController extends AppController {
             }
 
             $category = $Entity->getCategory($id);
+            //echo $id;
+            //print_r($category);
+            //exit;
             if($category['Category']['parent_id']){
                 $parent_category = $Category->findById($category['Category']['parent_id']);
             }
@@ -806,6 +809,9 @@ class ClosetController extends AppController {
                     
                     $this->sendConfirmationEmail($order_id);
                     
+                    //Check if order had gift card and send gift card email to the user
+                    $this->checkOrderGiftCard($order_id);
+                    
                     //Reduce the item stock
                     $this->reduceStock($cart_list);
                     
@@ -952,6 +958,13 @@ class ClosetController extends AppController {
                     $data['OrderItem']['quantity'] = $row['CartItem']['quantity'];
                     $data['OrderItem']['size_id'] = $row['CartItem']['size_id'];
                     $data['OrderItem']['price'] = $row['Entity']['price'];
+                    
+                    //Check if item is a gift item
+                    if($row['Entity']['is_gift']){
+                        $gift_card_id = "SRSGC" . uniqid();
+                        $data['OrderItem']['gift_card_id'] = $gift_card_id;
+                    }
+                    
                     $OrderItem->create();
                     $item_result = $OrderItem->save($data);
                     if(!$item_result){
@@ -1077,6 +1090,45 @@ class ClosetController extends AppController {
         $Wishlist->remove($user_id, $entity_list);
     }
     
+    function checkOrderGiftCard($order_id){
+        $this->autoLayout = false;
+        $this->autoRender = false;
+        
+        $OrderItem = ClassRegistry::init('OrderItem');
+        $order_items = $OrderItem->getByOrderId($order_id);
+        
+        if($order_items){
+            foreach($order_items as $item){
+                if($item['OrderItem']['gift_card_id']){
+                    $Order = ClassRegistry::init('Order');
+                    $order = $Order->findById($order_id);
+                    
+                    //Check that order exists
+                    if($order){
+                        $User = ClassRegistry::init('User');
+                        $user_id = $order['Order']['user_id'];
+                        $user = $User->getByID($user_id);
+                        
+                        try{
+                            $email = new CakeEmail('default');
+                            $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                            $email->to($user['User']['email']);
+                            $email->subject('New Gift Card.');
+                            $email->template('gift_purchase');
+                            $email->emailFormat('html');
+                            $email->viewVars(compact('user','item'));
+                            $email->send();
+                        }
+                        catch(Exception $e){
+                            
+                        }
+                    }     
+                }
+            }    
+        }
+    }
+    
+    
     public function validatecard(){
         //Configure::write('debug', 2);
         
@@ -1160,8 +1212,8 @@ class ClosetController extends AppController {
                 }
                 else if($code == "CYBER30"){
                     // Only valid for 02nd december 2013 EST
-                    $start_date = strtotime("2013-12-02 00:00:00");
-                    $end_date = strtotime("2013-12-02 23:59:59"); 
+                    $start_date = strtotime("2013-12-03 00:00:00");
+                    $end_date = strtotime("2013-12-03 23:59:59"); 
                     
                     $cur_timestamp = strtotime(gmdate("Y-m-d H:i:s"));
                     $cur_date = date('Y-m-d H:i:s', strtotime('-300 minutes', $cur_timestamp));

@@ -34,6 +34,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     echo $this->Form->input('sku', array('required' => false));
                     echo $this->Form->input('slug', array('required' => false));
                     echo $this->Form->input('price', array('required'));
+                    echo $this->Form->input('is_gift', array('type' => 'checkbox'));
                     echo $this->Form->input('is_featured', array('type' => 'checkbox'));
                     echo $this->Form->input('show', array('type' => 'checkbox', 'checked' => 'checked'));
                     ?>

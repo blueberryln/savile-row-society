@@ -181,6 +181,8 @@ class ProductsController extends AppController {
                     }
                     $data['Entity']['price'] = $this->request->data['Entity']['price'];
                     //$data['Entity']['stock'] = $this->request->data['Entity']['stock'];
+                    $data['Entity']['is_gift'] = $this->request->data['Entity']['is_gift'];
+                    $data['Entity']['is_featured'] = $this->request->data['Entity']['is_featured'];
                     $data['Entity']['show'] = $this->request->data['Entity']['show'];
                     $data['Entity']['user_id'] = $this->getLoggedUserID();
                     

@@ -38,6 +38,13 @@ class OrderItem extends AppModel {
         )
     );
 
+    public function getByOrderId($order_id){
+        return $this->find('all', array(
+            'contain' => array('Entity'),
+            'conditions' => array('OrderItem.order_id' => $order_id), 
+        ));
+    }
+    
     public function getByEntityId($entity_id){
         return $this->find('first', array(
             'conditions' => array('OrderItem.product_entity_id' => $entity_id),
