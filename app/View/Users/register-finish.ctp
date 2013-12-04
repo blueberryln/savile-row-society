@@ -35,7 +35,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="hi-message fourteen columns text-center offset-by-one alpha omega">
             <h4 class="hi-message">COMPLETED</h4>
             <p>
-                Thank you for completing our quick style profile. We are matching your responses with a stylist who suits you. In the meantime, you can browse The Closet or book an appointment with our tailor. We look forward to many successful years of helping you build your wardrobe. Thank you for choosing Savile Row Society for your personal shopping services. Tailor your life. 
+                Thank you for completing our quick style profile. We are matching your responses with a stylist who suits you. In the meantime, you can browse The Closet or book an appointment with our tailor. We look forward to many successful years of helping you build your wardrobe. Thank you for choosing Savile Row Society for your personal shopping services. <br />Tailor your life. 
             </p>
             <h5 class="thank-margin">Thank you</h5>
             <h5>The SRS Team</h5>
