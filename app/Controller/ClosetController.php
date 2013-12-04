@@ -1122,14 +1122,11 @@ class ClosetController extends AppController {
                     $Image = ClassRegistry::init('Image');
                     
                     $item_image = $Image->getByProductID($item['OrderItem']['product_entity_id']);
-                    print_r($item_image);
-                    exit;
                     $img_src = "";
                     if($item_image){
                         $img_src = $item_image[0]['Image']['name'];
                     }
-                    echo $img_src;
-                    echo "<br>";
+                    
                     // Check that order exists
                     if($order){
                         $User = ClassRegistry::init('User');
@@ -1151,8 +1148,7 @@ class ClosetController extends AppController {
                         }
                     }     
                 }
-            } 
-            exit;   
+            }   
         }
     }
     
