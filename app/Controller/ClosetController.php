@@ -965,7 +965,7 @@ class ClosetController extends AppController {
                     $data['OrderItem']['price'] = $row['Entity']['price'];
                     
                     //Check if item is a gift item
-                    if($row['Entity']['is_gift'] == 1){
+                    if($row['Entity']['is_gift'] != "" && $row['Entity']['is_gift'] == 1){
                         $gift_card_id = "SRSGC" . uniqid();
                         $data['OrderItem']['gift_card_id'] = $gift_card_id;
                     }
