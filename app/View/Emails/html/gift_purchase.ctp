@@ -33,7 +33,14 @@
                                 }
                             ?>
                             <br/>
-                            <b>Price:</b> <?php echo $item['OrderItem']['price']; ?><br/>
+                            <b>Price:</b> <?php echo $item['OrderItem']['price']; ?><br/><br />
+                            <center>
+                            <?php 
+                                if($img_src != ""){
+                                    echo "<img src='http://www.savilerowsociety.com/files/products/" . $img_src . "'>"; 
+                                }   
+                            ?>
+                            </center>
                         </td>
                     </tr>
                     <tr>

@@ -187,6 +187,10 @@ class ClosetController extends AppController {
             $category_ids = $Category->getAllBySlug($category_slug);
         }
         
+        if($category_slug != "all" && !$category_ids){
+            $this->redirect('/closet');
+        }
+        
 
         // Prepare the brand filter data
         $brand_list = array();
@@ -387,6 +391,12 @@ class ClosetController extends AppController {
 
             // get data
             $entity = $Entity->getById($id, $user_id);
+            
+            if($slug != $entity['Entity']['slug']){
+                $this->redirect('/product/' . $id . '/' . $entity['Entity']['slug']);
+                exit;    
+            }
+            
             $sizes = $Entity->Detail->getAvailableSize($id);
 
             // TODO: Check for size stock using cart items.
@@ -1109,6 +1119,14 @@ class ClosetController extends AppController {
                     $Order = ClassRegistry::init('Order');
                     $Order->recursive = 0;
                     $order = $Order->findById($order_id);
+                    $Image = ClassRegistry::init('Image');
+                    
+                    $item_image = $Image->getByProductID($item['OrderItem']['product_entity_id']);
+                    
+                    $img_src = "";
+                    if($item_image){
+                        $img_src = $item_image['Image'][0]['name'];
+                    }
                     // Check that order exists
                     if($order){
                         $User = ClassRegistry::init('User');
@@ -1122,7 +1140,7 @@ class ClosetController extends AppController {
                             $email->subject('New Gift Card.');
                             $email->template('gift_purchase');
                             $email->emailFormat('html');
-                            $email->viewVars(compact('user','item'));
+                            $email->viewVars(compact('user','item','img_src'));
                             $email->send();
                         }
                         catch(Exception $e){
