@@ -13,10 +13,10 @@
                             <br/><br/>
                             You have purchased a new gift card. Details for the gift card are as follows:
                             <br /><br />
-                            Name: <?php echo $item['Entity']['name']; ?><br/>
-                            Description: <?php echo $item['Entity']['description']; ?><br/>
-                            Gift Card Id: <?php echo $item['OrderItem']['gift_card_id']; ?><br/>
-                            Price: <?php echo $item['OrderItem']['price']; ?><br/>
+                            <b>Name:</b> <?php echo $item['Entity']['name']; ?><br/>
+                            <b>Description:</b> <?php echo $item['Entity']['description']; ?><br/><br />
+                            <b>Gift Card Id:</b> <?php echo $item['OrderItem']['gift_card_id']; ?><br/>
+                            <b>Price:</b> <?php echo $item['OrderItem']['price']; ?><br/>
                         </td>
                     </tr>
                     <tr>
