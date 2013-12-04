@@ -27,7 +27,7 @@
                                             echo $item['OrderItem']['gift_card_id'] . "-" . $i . ",";
                                         }
                                         else{
-                                            echo $item['OrderItem']['gift_card_id'] . "-" . $i . ",";
+                                            echo $item['OrderItem']['gift_card_id'] . "-" . $i;
                                         }    
                                     }
                                 }
