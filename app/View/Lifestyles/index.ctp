@@ -184,7 +184,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <?php
                             $description = String::truncate($entity['Entity']['description'], 120, array('ellipsis' => '...', 'exact' => true, 'html' => false));
                             if($entity['Image']){
-                                //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
                                 $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/65/87'; 
                             }
                             else{
@@ -194,11 +193,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <tr class="lifestyle-product-block">
                             <td class="v-top product-thumb text-center">
                                 <div class="product-thumb-cont">
-                                    <img src="<?php echo $img_src; ?>" alt="<?php echo $entity['Entity']['name']; ?>" />
+                                    <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>"><img src="<?php echo $img_src; ?>" alt="<?php echo $entity['Entity']['name']; ?>" /></a>
                                 </div>
                             </td>
                             <td class="v-top">
-                                <h6><?php echo $entity['Entity']['name']; ?></h6>
+                                <h6><a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>"><?php echo $entity['Entity']['name']; ?></a></h6>
                                 <small class="description"><?php echo $description; ?></small>
                             </td>
                             <td class="like-dislike-links">

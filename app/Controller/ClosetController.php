@@ -10,8 +10,8 @@ class ClosetController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
     
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20', 'HOLIDAY20', 'SRSBRANDS20', 'CYBER30', 'JOEYG35');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20, 'HOLIDAY20' => 20, 'SRSBRANDS20' => 20, 'CYBER30' => 30, 'JOEYG35' => 35);
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG35');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'CYBER30' => 30, 'JOEYG35' => 35);
     public $percentCodes = array('CYBER30', 'JOEYG35');
     /**
      * Index
@@ -348,7 +348,7 @@ class ClosetController extends AppController {
         
         // check for login popup
         $check_count = 0;
-        if(!$user_id && (count($brand_list) > 0 || count($category_ids)>0)){
+        if(!$user_id && (count($brand_list) > 0 || (isset($category_ids) && count($category_ids)>0))){
 
             $count = $this->Session->read("count-click");
 
@@ -1214,25 +1214,6 @@ class ClosetController extends AppController {
                 if($is_used){
                     $ret['status'] = "error";
                     $ret['info'] = "used";    
-                }
-                else if($code == "HOLIDAY20"){
-                    // Only valid for 30th november 2013 EST
-                    $start_date = strtotime("2013-11-30 00:00:00");
-                    $end_date = strtotime("2013-11-30 23:59:59"); 
-                    
-                    $cur_timestamp = strtotime(gmdate("Y-m-d H:i:s"));
-                    $cur_date = date('Y-m-d H:i:s', strtotime('-300 minutes', $cur_timestamp));
-                    $cur_est_timestamp = strtotime($cur_date);
-                    
-                    if($cur_est_timestamp >= $start_date && $cur_est_timestamp <= $end_date){
-                        $ret['status'] = "ok";
-                        $ret['info'] = "valid"; 
-                        $ret['amount'] = $this->promoCodesAmount[$code];    
-                    }
-                    else{
-                        $ret['status'] = "error";
-                        $ret['info'] = "invalid";        
-                    }
                 }
                 else if($code == "CYBER30"){
                     // Only valid for 02nd december 2013 EST

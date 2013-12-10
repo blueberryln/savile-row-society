@@ -30,7 +30,7 @@
             </fieldset>
             <fieldset>
                 <legend><?php echo __('Actions'); ?></legend>
-                <a href="<?php echo $this->webroot; ?>users/register/style/<?php echo $id; ?>" class="btn">Edit Preferences</a> | <?php echo $this->Html->link(__('Delete user'), array('action' => 'delete', $id), null, __('Are you sure you want to delete this user?')); ?>
+                <a href="<?php echo $this->webroot; ?>users/register/style/<?php echo $id; ?>" class="btn">Edit Preferences</a> <!-- | <?php //echo $this->Html->link(__('Delete user'), array('action' => 'delete', $id), null, __('Are you sure you want to delete this user?')); ?>-->
             </fieldset>
             <div class="clearfix"></div>
             <div class="text-center">

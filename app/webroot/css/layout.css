@@ -1473,7 +1473,7 @@ body{
 }
 .cart-thumbnail{
     width:45px;
-    height: 60px;
+    height: 61px;
     line-height: 60px;
     vertical-align: middle;
     border: 1px solid #D7CDC1;        
@@ -2882,6 +2882,12 @@ body{
     padding: 0;
     margin-right: 5px;
 }
+#outfit-box .product-categories li a{
+    display: block;
+}
+#outfit-box .product-categories{
+    margin-left: 0;
+}
 .filter-selected{
     padding-right: 10px; 
     background: url('../img/cross_menue.png') no-repeat 99% 5px;
@@ -3157,6 +3163,11 @@ table.cart-checkout tbody tr td:last-of-type
     font-weight: bold;
 }
 
+.cart-checkout tbody td h6 a, .cart-checkout tbody td h6 a:visited{
+    color: #B29957;
+    text-decoration: none;
+}   
+
 .cart-checkout tbody tr.last td
 {
     color:#B29957;
@@ -3168,10 +3179,6 @@ table.cart-checkout tbody tr td:last-of-type
     padding-right: 12px;
 }
 
-.cart-checkout .product-thumb img
-{
-    margin-top:4px;
-}
 
 .cart-checkout small
 {
@@ -3700,7 +3707,9 @@ div.signup-content, div.signin-content, div.style-srs
     padding:0 40px;
     width:301px;
 }
-
+div.signin-content label, div.signup-content label{
+    display: none;
+}
 div.signup-content img,div.signin-content img
 {
     width:301px;
@@ -4293,6 +4302,10 @@ table.lb-products{
     margin-bottom: 4px;
     font-weight: bold;
 }
+.lb-products tbody td h6 a, .lb-products tbody td h6 a:visited{   
+    text-decoration: none;
+    color:#B29957;
+}
 
 .lb-products .product-thumb{
     padding-right: 20px;
@@ -4511,10 +4524,10 @@ div.payment .profile-tabs
     text-decoration: underline;
 }
 .popup-info-sign{
-    margin-top: 40px;
+    margin-top: 32px;
 }
 
-#holiday-box-login, #holiday-box-logged{
+#holiday-box-login, #holiday-box-logged, #register-share-box{
     background: rgba(0,0,0,0.8);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -4522,13 +4535,20 @@ div.payment .profile-tabs
     box-sizing: border-box; 
     padding: 10px 0 0;
 }
-#holiday-box-login .popup-info-text, #holiday-box-logged .popup-info-text{
+#holiday-box-login .popup-info-text, #holiday-box-logged .popup-info-text, #register-share-box .popup-info-text{
     font-size: 17px;
 }
 #holiday-box-logged .promo-code-block{
     margin-bottom: 15px;
 }
 #holiday-box-logged .promo-code-block span{
+    font-size: 22px;
+    display: block;
+} 
+#register-share-box .welcome-block{
+    margin-bottom: 15px;
+}
+#register-share-box .welcome-block span{
     font-size: 22px;
     display: block;
 } 
@@ -4593,7 +4613,7 @@ div.payment .profile-tabs
     {
         padding: 0 !important;
          font-size:12px;
-    }    
+    } 
     
     .cart-checkout th:first-of-type{
         padding-left:15px;

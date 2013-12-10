@@ -212,11 +212,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             chatContainer.prepend(html);
                         }
                     }
-                    callInAction = false;
+                    callInAction = false;   
                 },
                 error: function(res) {
-                    callInAction = false;
+                    callInAction = false;    
                 }
+            }).done(function(res){
+                //callInAction = false;
             });    
         }
         function showChatMsg(chatMsg) {

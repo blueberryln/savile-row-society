@@ -1,4 +1,40 @@
 <?php
+$script = '
+function IsEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+$(document).ready(function(){    
+    $("#Contact-Us").on("click", function(e){
+        e.preventDefault();
+        var error = false;
+        var errMsg = "Please complete the required fields.";
+        $("#ContactDisplayForm input[type=text], #ContactDisplayForm textarea").each(function(){
+            if($(this).data("required") && $(this).val() == ""){
+                error = true;    
+            }
+            else if($(this).attr("id") == "ContactEmail"){
+                if(!IsEmail($(this).val())){
+                    error = true;    
+                    errMsg = "Please enter a valid email address."
+                }
+            }
+        });
+        
+        if(error){
+            $(".err-message").text(errMsg);
+            $(".err-message").fadeIn(300);
+        }
+        else{
+            $(".err-message").fadeOut(300);
+            $("#ContactDisplayForm").submit();
+        }
+    });
+});
+';
+
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+
 $meta_description = 'Contact us and we can help with any and all fashion obligations. Have a last minute invite to a gala and the suit you had laid out is not ready from the dry cleaners?';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
@@ -13,20 +49,21 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <?php
                 echo $this->Form->hidden('contact_type_id', array('value' => 1));
                 if(isset($user)){
-                    echo $this->Form->input('first_name', array('value' => $user['User']['first_name']));
-                    echo $this->Form->input('last_name', array('value' => $user['User']['last_name']));
-                    echo $this->Form->input('email', array('value' => $user['User']['email']));
-                    echo $this->Form->input('phone', array('value' => $user['User']['phone']));
+                    echo $this->Form->input('first_name', array('value' => $user['User']['first_name'], 'label' => 'First Name*', 'required' => false, 'data-required' => 'required'));
+                    echo $this->Form->input('last_name', array('value' => $user['User']['last_name'], 'label' => 'Last Name*', 'required' => false, 'data-required' => 'required'));
+                    echo $this->Form->input('email', array('type' => 'text', 'value' => $user['User']['email'], 'label' => 'Email*', 'required' => false, 'data-required' => 'required'));
+                    echo $this->Form->input('phone', array('value' => $user['User']['phone'], 'required' => false));
                 }
                 else{
-                    echo $this->Form->input('first_name');
-                    echo $this->Form->input('last_name');
-                    echo $this->Form->input('email');
+                    echo $this->Form->input('first_name', array('label' => 'First Name*', 'required' => false, 'data-required' => 'required'));
+                    echo $this->Form->input('last_name', array('label' => 'Last Name*', 'required' => false, 'data-required' => 'required'));
+                    echo $this->Form->input('email', array('type' => 'text', 'label' => 'Email*', 'required' => false, 'data-required' => 'required'));
                     echo $this->Form->input('phone');
                 }
-                echo $this->Form->input('message');
+                echo $this->Form->input('message', array('label' => 'Message*', 'required' => false, 'data-required' => 'required'));
                 ?>
-                <?php echo $this->Form->end(array('class' => 'full-width', 'value' => 'SUBMIT')); ?>
+                <?php echo $this->Form->end(array('class' => 'full-width', 'id' => 'Contact-Us', 'value' => 'SUBMIT')); ?>
+                <span class="err-message">Please complete the required fields.</span>
             </div>  
         </div>
         <div class="contact-map-info columns seven offset-by-one">

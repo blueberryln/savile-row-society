@@ -164,7 +164,11 @@ function getLikedItems(lastPurchasedItem){
 }
 
 function getClosetProducts(){
-    var categoryId = $(".product-categories li.filter-selected").data("category_id");
+    var categoryId = $(".product-categories li a.filter-selected").closest("li").data("category_id");
+    console.log(categoryId);
+    if(categoryId == undefined){
+        categoryId = "all";
+    }
     var arrBrand = new Array();
     var arrColor = new Array();
     $(".brand-filter .filter-selected").each(function(){
@@ -176,8 +180,15 @@ function getClosetProducts(){
 
     var strBrand = arrBrand.join("-");
     var strColor = arrColor.join("-");
+    
+    console.log(strBrand);
+    console.log(strColor);
     inAjaxTransaction = true;
+    $(".load-more-closet").hide();
+    $(".closet-load-icon").show();
     $.post(webroot + "outfits/getClosetItems/",{category_slug : categoryId,str_brand : strBrand, str_color : strColor, last_closet_item : lastClosetItem}, function(data){
+        //console.log(data);
+        
         var ret = $.parseJSON(data);
         inAjaxTransaction = false;
         if(ret['status'] == "ok"){
@@ -188,6 +199,11 @@ function getClosetProducts(){
                 addClosetItems(ret['data']);
                 lastClosetItem = ret['last_closet_item'];
             }
+            $(".load-more-closet").show();
+            $(".closet-load-icon").hide();
+        }
+        else if(ret['status'] == "end"){
+            $(".closet-load-icon").hide();    
         }
 
     });
@@ -242,6 +258,8 @@ $(document).ready(function(){
     
     $(".srs-closet-close").on("click", function(e){
         e.preventDefault();
+        $(".srs-closet-items").html("");
+        $(".filter-selected").removeClass("filter-selected");
         $(".srs-closet-cont").fadeOut(300);           
     });
     
@@ -298,16 +316,27 @@ $(document).ready(function(){
         getClosetProducts();
     });
 
-    $(".product-filter-menu .toggle-tab .product-categories li").on('click', function(e){
+    $(".product-filter-menu .toggle-tab .product-categories li a").on('click', function(e){
         if(!inAjaxTransaction){
             $this = $(this);
-
             if($this.hasClass("filter-selected")){
                 $this.removeClass("filter-selected");
-                $this.closest(".product-filter-menu").find(".toggle-tab li").removeClass("filter-selected");
+                
+                //Clear Brand and Color Filter
+                $(".brand-filter li").removeClass("filter-selected");
+                $(".color-filter li").removeClass("filter-selected");
+                
+                lastClosetItem = 0;
+                $(".srs-closet-items").html("");
             }
             else{
+                $(".product-categories li a").removeClass("filter-selected");
                 $this.addClass("filter-selected");
+                
+                //Clear Brand and Color Filter
+                $(".brand-filter li").removeClass("filter-selected");
+                $(".color-filter li").removeClass("filter-selected");   
+                             
                 lastClosetItem = 0;
                 $(".srs-closet-items").html("");
                 getClosetProducts();
@@ -316,29 +345,24 @@ $(document).ready(function(){
     });
     $(".product-filter-menu .toggle-tab .brand-filter li, .product-filter-menu .toggle-tab .color-filter li").on('click', function(e){
         if(!inAjaxTransaction){
-            if($(".product-filter-menu .toggle-tab .product-categories li.filter-selected").length == 0){
-                alert("Please select a category first.");
+            if($(this).hasClass("filter-selected")){
+                $(this).removeClass("filter-selected");
             }
             else{
-                if($(this).hasClass("filter-selected")){
-                    $(this).removeClass("filter-selected");
-                }
-                else{
-                    $(this).addClass("filter-selected");
-                }
-                lastClosetItem = 0;
-                $(".srs-closet-items").html("");
-                getClosetProducts();
+                $(this).addClass("filter-selected");
             }
+            lastClosetItem = 0;
+            $(".srs-closet-items").html("");
+            getClosetProducts();
         }
     });
 
     $("#outfit-box").on('mouseenter', '.product-block', function(){
-        $(this).find(".mosaic-overlay").animate({"opacity":"1"},300);
+        $(this).find(".mosaic-overlay").stop().animate({"opacity":"1"},300);
     });
 
     $("#outfit-box").on('mouseleave', '.product-block', function(){
-        $(this).find(".mosaic-overlay").animate({"opacity":"0"},300);
+        $(this).find(".mosaic-overlay").stop().animate({"opacity":"0"},300);
     });
     
     $(".chat-container").on('mouseenter', '.product-block', function(){
@@ -386,7 +410,6 @@ $(document).ready(function(){
             else{
                 displayOutfitItem(outfitEntity);
                 $(".srs-closet-close").click();
-                $(".srs-closet-items").html("");
                 $(".product-filter-menu .toggle-tab li").removeClass("filter-selected");    
             }
             

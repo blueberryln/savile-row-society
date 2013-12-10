@@ -315,15 +315,27 @@ class User extends AppModel {
      */
     public function getUserWriteToMe($stylist_Id) {
         return $this->find('all', array(
-            'conditions' => array('User.stylist_id' => $stylist_Id),
+            'conditions' => array('User.stylist_id' => $stylist_Id, 'User.is_stylist' => false, 'User.is_admin' => false),
             'fields' => array('User.id', 'User.full_name'),
             'order' => array('User.first_name' => 'ASC'),
         ));
     }
     
-    public function getNewClients($client_array, $stylist_id){
+    public function getNewClients($stylist_id){
         return $this->find('all', array(
-            'conditions' => array('User.id NOT IN' => $client_array, 'User.stylist_id' => $stylist_id, 'User.is_admin' => false, 'User.is_stylist' => false, 'User.is_editor' => false), 
+            'conditions' => array('User.stylist_id' => $stylist_id, 'User.is_admin' => false, 'User.is_stylist' => false, 'User.is_editor' => false),
+            'joins' => array(
+                array(
+                    'table' => 'messages',
+                    'alias' => 'Message',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'User.id = Message.user_to_id'
+                    )
+                ) 
+            ), 
+            'fields' => array('User.first_name', 'User.last_name', 'User.id'),
+            'group' => array('User.id HAVING count(Message.id) = 0'),
         ));
     }
     

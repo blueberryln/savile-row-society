@@ -28,7 +28,8 @@ class OutfitsController extends AppController {
             
             if($total_purchases > 0){
                 $order_item_list = $OrderItem->getUniqueUserItems($user_id, $last_purchased_id);
-                
+                echo json_encode($order_item_list);
+                exit;
                 $last_item_id = $last_purchased_id;
                 $entity_list = array();
                 foreach($order_item_list as $value){
@@ -73,7 +74,7 @@ class OutfitsController extends AppController {
             $total_likes = $Wishlist->find('count', array('conditions' => array('Wishlist.user_id'=>$user_id)));
             
             if($total_likes > 0){
-                $liked_list = $Wishlist->getUserLikedItems($user_id, $last_liked_id);
+                $liked_list = $Wishlist->getUserLikedItems($user_id, $last_liked_id, 10);
                 
                 $last_item_id = $last_liked_id;
                 $entity_list = array();
@@ -116,7 +117,37 @@ class OutfitsController extends AppController {
             $category_slug = $this->request->data['category_slug'];
 
             $Category = ClassRegistry::init('Category');
-            $category_id = $Category->getAllBySlug($category_slug);
+            $categories = $Category->getAll();
+            if($category_slug != "all"){
+                foreach($categories as $category){
+                    if($category_slug == $category['Category']['slug']){
+                        $parent_id = $category['Category']['id'];
+                        break;
+                    }
+                    elseif($category['children']){
+                        foreach($category['children'] as $child){
+                            if($category_slug == $child['Category']['slug']){
+                                $parent_id = $category['Category']['id'];
+                                break;
+                            }
+                            else if($child['children']){
+                                foreach($child['children'] as $subchild){
+                                    if($category_slug == $subchild['Category']['slug']){
+                                        $parent_id = $category['Category']['id'];
+                                        break;
+                                    }    
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // Ger the category & sub category using the category slug
+                $category_ids = $Category->getAllBySlug($category_slug);
+            }
+            
+            
+            
 
             $brand_list = array();
             if($filter_brand && $filter_brand != "none"){
@@ -133,7 +164,7 @@ class OutfitsController extends AppController {
 
             // Find array for products of a category excluding the filter and brand sub categories
             $find_array = array(
-                'limit' => 10,
+                'limit' => 12,
                 'contain' => array('Image', 'Color'),
                 'conditions' => array(
                     'Entity.show' => true, 'Entity.id >' => $last_closet_item,
@@ -144,49 +175,71 @@ class OutfitsController extends AppController {
                         'alias' => 'Category',
                         'type' => 'INNER',
                         'conditions' => array(
-                            'Category.category_id' => $category_id,
                             'Category.product_id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'products',
+                        'alias' => 'Product',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'brands',
+                        'alias' => 'Brand',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.brand_id = Brand.id'
                         )
                     ),
                 ),
                 'fields' => array(
-                    'Entity.*'
+                    'Entity.*','Product.*', 'Brand.*'
                 ),
-                'Order' => array('Entity.id ASC'),
+                'order' => array('Entity.id' => 'ASC'),
                 'Group' => array('Entity.id'),
             );
-
+        
+            if($category_slug != 'all'){
+                $find_array['conditions']['Category.category_id'] = $category_ids;
+            }
+            
             // Color filter
             if($color_list && count($color_list) > 0){
-                $color_join = array('table' => 'colors_entities',
-                    'alias' => 'Color1',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Color1.color_id' => $color_list,
-                        'Color1.product_entity_id = Entity.id'
-                    )
-                );
-                $find_array['joins'][] = $color_join;
+                
+                //Get product color ids based on colour group ids
+                $Colorgroup = ClassRegistry::init('Colorgroup');
+                $color_data = $Colorgroup->getColors($color_list);
+                if($color_data){
+                    foreach($color_data as $color_item){
+                        $color_ids[] = $color_item['ColorItems']['color_id'];
+                    }
+                }
+                
+                if($color_ids && count($color_ids) > 0){
+                    $color_join = array('table' => 'colors_entities',
+                        'alias' => 'Color1',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Color1.color_id' => $color_ids,
+                            'Color1.product_entity_id = Entity.id'
+                        )
+                    );
+                    $find_array['joins'][] = $color_join;
+                }
             }
-
+    
             // Brand Filter
             if($brand_list && count($brand_list) > 0){
-                $brand_join = array('table' => 'products',
-                    'alias' => 'Product',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Product.brand_id' => $brand_list,
-                        'Product.id = Entity.product_id'
-                    )
-                );
-                $find_array['joins'][] = $brand_join;
+                $find_array['conditions']['Product.brand_id'] = $brand_list;
             }
-
+            
+            
             // Sub query to check stock using the products_details table and the items already added to valid carts
-            //$sub_query = new stdClass();
-//            $sub_query->type = "expression";
-//            $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
-//            $find_array['conditions'][] = $sub_query;
+            /*$sub_query = new stdClass();
+            $sub_query->type = "expression";
+            $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
+            $find_array['conditions'][] = $sub_query;*/
 
             $Entity = ClassRegistry::init('Entity');
             $data = $Entity->find('all', $find_array);

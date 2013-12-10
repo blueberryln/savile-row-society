@@ -569,9 +569,11 @@ class ApiController extends AppController {
     /**
      * Message Notification
      */
+    // Commented due to change in logic
+    /*
     public function getNewClients() {
-        $this->autolayout = false;
-        $this->autoRender = false;
+        //$this->autolayout = false;
+        //$this->autoRender = false;
         $ret = array();
         
         $user = $this->getLoggedUser();
@@ -593,9 +595,10 @@ class ApiController extends AppController {
             $ret['status'] = 'error1';
         }
             
-        echo json_encode($ret);
-        exit;
+        //echo json_encode($ret);
+        //exit;
     }
+    */
     
     
     /**

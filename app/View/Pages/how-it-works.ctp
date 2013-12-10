@@ -2,7 +2,15 @@
 $meta_description = 'As a member, you will be up to date on styles, always look put together, and develop a wardrobe that captures the look you desire.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-<div class="container content inner">    
+<div class="container content inner">   
+    <div class="sixteen columns flexslider loader" style="height: 438px;">
+        <ul class="slides">
+            <li>
+                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0?version=3" frameborder="0" allowfullscreen></iframe>
+            </li>    
+            
+        </ul>
+    </div> 
     <div class="sixteen columns text-center">
         <h1>How it works</h1>
     </div>

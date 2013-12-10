@@ -44,16 +44,17 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <div class='empty-img' id='photo-holder'>
             <img src='<?php echo $image_url ?>' id='user-photo'/>
             </div>
-        <input type='button' value='Upload photo' id='upload-img'/>
-<!--        <input type='file' id='uploader-btn'  />-->
-        <?php
-            echo $this->Form->input('', array('type' => 'file', 'id'=>'uploader-btn'));
-        ?>
+            
+            <input type='button' value='Upload photo' id='upload-img'/>
+        
         </div>
         
         
         
         <div class="finalizing six columns offset-by-five text-left" >
+        <?php
+            echo $this->Form->input('', array('type' => 'file', 'id'=>'uploader-btn'));
+        ?>
         <h5>Is there a specific time or day when you prefer to be reached?</h5>        
         <?php
             echo $this->Form->input('time', array('label' => false, 'name' => 'data[UserPreference][Contact][time]', 'id'=>'contact-time', 'maxlength' => 50, 'required', 'value' => ''));
@@ -85,7 +86,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         
             <div class="text-center about-submit">                   
                 <div class="submit">
-                    <input type="submit" value="Upload" id="contact-info-submit" /> 
+                    <input type="submit" value="Upload" id="contact-info-submit" />
                     <a class="link-btn black-btn back-btn1" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a>
                     <p class="error-msg">Please provide either referrer name or email.</p>  
                 </div>                        
@@ -113,7 +114,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 </style>
 <script>
     window.onload=function(){
-        $("#upload-img").click(function(){
+        $("#upload-img").click(function(e){
+            e.preventDefault();
             $("#uploader-btn").click();
         });
         $("#uploader-btn").change(function(){

@@ -103,43 +103,32 @@ function highLightCategory(prod_id, parent_id){
 
 $(document).ready(function(){   
     
-    $(".fancybox").fancybox({ 
-        afterClose : function() {
-	       setCookie("showLifeStyle",1,60);   
-        },  
-		helpers: {
-			title : {
-				type : "over"
-			},
-			overlay : {
-				speedOut : 1000
-			},
-		},
-	}); 
+    /**
+     * Check if Lookbook slider needs to be shown. If yes setup the fancybox and trigger the action 
+     */
     var showLifeStyle=getCookie("showLifeStyle");
     if (showLifeStyle == null || showLifeStyle == ""){
-        $(".fancybox").eq(0).trigger("click");
+        
+        //Setup the Fancybox plugin for the Lifestyle image popup
+        $(".fancybox").fancybox({ 
+            afterClose : function() {
+    	       setCookie("showLifeStyle",1,60);   
+            },  
+    		helpers: {
+    			title : {
+    				type : "over"
+    			},
+    			overlay : {
+    				speedOut : 1000
+    			},
+    		},
+    	}); 
+        
+        // Delay the trigger to open the lookbook slider
+        setTimeout(function(){
+            $(".fancybox").eq(0).trigger("click");    
+        }, 1000);
     }
-    
-    
-    $(".fade").mosaic();
-    $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
-    $(".lookbook-cat").on("click", function(e){
-        e.preventDefault();
-        $(".fancybox").eq(0).trigger("click");
-    });
-    $(".mosaic-overlay").on("click", function(e){
-        e.preventDefault();
-        if($(this).hasClass("lifestyle-overlay")){
-            $(".fancybox").eq(0).trigger("click");        
-        }
-        else{
-            var productBlock = $(this).closest(".product-block");
-            var productSlug = productBlock.find(".product-slug").val();
-            var productId = productBlock.find(".product-id").val();
-            window.location = "' . $this->request->webroot . 'product/" + productId + "/" + productSlug;
-        }
-    });
     
     if(isLoggedIn() && threeItemPopup == 1){
         var notificationDetails = new Array();
@@ -150,28 +139,26 @@ $(document).ready(function(){
     else if(showLifeStyle != null && showLifeStyle != ""){
         var closetInfo=getCookie("closetInfo");
         if (closetInfo==null || closetInfo==""){
-            $.blockUI({message: $("#closetinfo-box"),css:{top: $(window).height()/2 - $("#closetinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+            $.blockUI({message: $("#closetinfo-box"),css:{top: $(window).height()/2 - $("#closetinfo-box").height()/2}});
             $(".blockOverlay").click($.unblockUI);
         }
     }
     
-    $(".info-popup-close").on("click", function(e){
-        e.preventDefault();
-        setCookie("closetInfo",1,60);
-        $.unblockUI;   
-    });
     
-    $("div.product-block").hover(
-        function(){
-            var prod_id = $(this).find("input.category-id").val();
-            var parent_id = $(this).find("input.parent-category-id").val();
-            highLightCategory(prod_id, parent_id);    
-        },
-        function(){
-            $("ul.product-categories li a").removeClass("hover-link");
-            $(".product-subcategories").not(".product-subsubcategories").stop(false, false).slideUp(300);    
+    //Enable the Mosaic plugin for the product blocks 
+    $(".fade").mosaic();
+    
+    //
+    $(".mosaic-overlay").on("click", function(e){
+        e.preventDefault();
+        if($(this).hasClass("lifestyle-overlay")){
+            $(".fancybox").eq(0).trigger("click");        
         }
-    );
+        else{
+            window.location = $(this).closest(".product-block").find(".btn-buy").attr("href");
+            
+        }
+    });
     
     $(".toggle-tab").on("click", function(e){
         if(!$(this).find(".toggle-body").is(":visible")){
@@ -195,6 +182,41 @@ $(document).ready(function(){
         }
     });
     
+    
+    $(".lookbook-cat").on("click", function(e){
+        e.preventDefault();
+        $(".fancybox").eq(0).trigger("click");
+    });
+    
+    /**
+     * Hide Closet Popup when user opts out.
+     */
+    $("#hide-closet-popup").on("change", function(e){
+        e.preventDefault();
+        if($(this).is(":checked")){
+            setCookie("closetInfo",1,60);     
+        }
+        else{
+            deleteCookie("closetInfo");     
+        }  
+    });
+    
+    
+    /**
+     * Add event for product block hover. When a product is hovered highlight its category on the left sidebar.
+     */
+    $("div.product-block").hover(
+        function(){
+            var prod_id = $(this).find("input.category-id").val();
+            var parent_id = $(this).find("input.parent-category-id").val();
+            highLightCategory(prod_id, parent_id);    
+        },
+        function(){
+            $("ul.product-categories li a").removeClass("hover-link");
+            $(".product-subcategories").not(".product-subsubcategories").stop(false, false).slideUp(300);    
+        }
+    );
+
     
     $(".brand-filter li, .color-filter li").on("click", function(e){
         e.preventDefault();
@@ -467,6 +489,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>  
         <div class="popup-info-sign text-center">
             <img src="<?php echo $this->webroot; ?>img/lisa_signature.png" />
-        </div>   
+        </div>  
+        <div class="popup-info-text text-left">
+            <p>
+                <input type="checkbox" id="hide-closet-popup" />&nbsp; Got it! Please don't show me this again
+            </p>
+        </div> 
     </div>
 </div>

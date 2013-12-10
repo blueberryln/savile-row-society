@@ -288,7 +288,7 @@ class Message extends AppModel {
         ));
     }
     
-    function getMessageCount($last_msg_id = null){
+    function getMessageCount($last_msg_id = null, $user_id = null){
         $find_array = array(
             'conditions' => array(
                 'OR' => array('Message.user_to_id' => $user_id, 'Message.user_from_id' => $user_id)

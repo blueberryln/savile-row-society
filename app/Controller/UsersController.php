@@ -585,7 +585,10 @@ class UsersController extends AppController {
 
                 if ($results) {
                     //Show holiday popup
-                    $this->Session->write('holidayCode', true);
+                    //$this->Session->write('holidayCode', true);
+                    
+                    // Show share popup on registration
+                    $this->Session->write('registerSharePopup', true);
                     
                     // set "user" session
                     $this->Session->write('user', $results);

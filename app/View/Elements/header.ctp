@@ -190,28 +190,5 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <!-- <a class="signin" id="show-signin-popup" href="#">Sign in</a> -->
             </div>
         </div>
-        
-        <!-- inside this element open signin view -->
-        <div id="signin-popup" style="display: none">
-
-        </div>
-        <!-- inside this element open signin view (start signup wizard) -->
-        <div id="signup-popup" style="display: none">
-
-        </div>
-
-        <div id="profile-popup" class="hide box-modal notification-box">
-            <div class="box-modal-inside">
-                <a class="notification-close" href=""></a>
-                    <h5 class="welcome-srs">Welcome to savile row society!</h5> 
-                    <div class="notification-msg">To be able to match you with one of our premier personal stylists, please complete this quick style profile.</div>                   
-                    <div class="notification-buttons">
-                        <a class="link-btn black-btn complete-style-btn" href="<?php echo $this->request->webroot; ?>profile/about">COMPLETE MY STYLE PROFILE</a>
-                    </div>
-                    <h6 class="popup-or">OR</h6>
-                    <p>Check out our curated collection in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a> or book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">tailor</a>.</p>   
-            </div>
-        </div>
-        
     </div>
 </div>

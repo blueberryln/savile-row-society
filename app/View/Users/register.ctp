@@ -17,10 +17,10 @@ $this->layout = 'ajax'
             <h6 class="sign-or">OR</h6>               
             <?php echo $this->Form->create('User', array('url' => '/register/basic', 'id' => 'register-form', 'novalidate')); ?> 
                 <?php
-                    echo $this->Form->input('first_name', array('id' => 'first-name', 'label' => false, 'placeholder' => 'FIRST NAME'));
-                    echo $this->Form->input('last_name', array('id' => 'last-name', 'label' => false, 'placeholder' => 'LAST NAME'));
-                    echo $this->Form->input('email', array('id' => 'register-email', 'label' => false, 'placeholder' => 'EMAIL'));
-                    echo $this->Form->input('password', array('id' => 'register-password', 'label' => false, 'placeholder' => 'PASSWORD'));
+                    echo $this->Form->input('first_name', array('id' => 'first-name', 'label' => 'First Name:', 'placeholder' => 'FIRST NAME'));
+                    echo $this->Form->input('last_name', array('id' => 'last-name', 'label' => 'Last Name:', 'placeholder' => 'LAST NAME'));
+                    echo $this->Form->input('email', array('id' => 'register-email', 'label' => 'Email:', 'placeholder' => 'EMAIL'));
+                    echo $this->Form->input('password', array('id' => 'register-password', 'label' => 'Password:', 'placeholder' => 'PASSWORD'));
                     echo $this->Form->input('refer_url', array('type' => 'hidden', 'id' => 'referUrl'));
                 ?>                  
                 

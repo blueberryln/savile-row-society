@@ -1,0 +1,13 @@
+#upload-img{
+    display: none;
+}
+#uploader-btn{
+    display: block !important;
+}
+
+div.signin-content label, div.signup-content label{
+    color: #aaa;
+    display: block;
+    text-align: left;
+    margin-left: 5px;    
+}

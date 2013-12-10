@@ -9,11 +9,13 @@ class AppController extends Controller {
     public function beforeRender() {
         parent::beforeRender();
         
+        /* To show holiday popup
         if($this->Session->read('holidayCode')){
             $this->Session->delete('holidayCode');
             $showHolidayPopup = true;
             $this->set(compact('showHolidayPopup'));
         }
+        */
         
         $has_stylist = false;
         $is_logged = false;

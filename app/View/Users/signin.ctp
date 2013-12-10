@@ -19,8 +19,8 @@ $this->layout = 'ajax'
             
             <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate')); ?> 
                 <?php
-                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => false, 'placeholder' => 'EMAIL'));
-                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => false, 'placeholder' => 'PASSWORD'));
+                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'placeholder' => 'EMAIL'));
+                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => 'Password:', 'placeholder' => 'PASSWORD'));
                     echo $this->Form->input('refer_url', array('type' => 'hidden', 'id' => 'referUrlLogIn'));
                 ?>                  
                 

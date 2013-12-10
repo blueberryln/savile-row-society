@@ -1,36 +1,3 @@
-<?php
-$profileLinkScript = '';
-$scriptProfile = '';
-if(isset($isHoliday) && $isHoliday && isset($showHolidayPopup)){
-    $profileLinkScript = '$.blockUI({message: $("#holiday-box-logged"),css:{top: $(window).height()/2 - $("#holiday-box-logged").height()/2, backgroundColor: "transparent"}});
-    $(".blockOverlay").click($.unblockUI);'; 
-    
-    $scriptProfile = '
-        $(document).ready(function(){
-        ' . $profileLinkScript . '   
-        });
-    ';   
-}
-else if(isset($profilePopup) && $profilePopup['completeProfile'] && ($this->params['controller'] != 'closet' || ($this->params['controller'] == 'closet' && $this->params['action'] != 'index'))){
-    
-    if(isset($profilePopup['isProfile']) && $profilePopup['isProfile']){
-        $profileLinkScript = '
-            $(".complete-profile").click(function(e){
-                e.preventDefault();
-                $("#profile-popup").fadeOut();
-                $(".blockOverlay").fadeOut();
-            });
-        ';
-    }
-    $scriptProfile = '
-        $(document).ready(function(){
-            $.blockUI({message: $("#profile-popup")});
-        ' . $profileLinkScript . '   
-        });
-    ';   
-}
-$this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false));
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -65,6 +32,9 @@ $this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false
         <link href='//fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
         <!-- Favicons
         ================================================== -->
+        <!--[if lte IE 9]>
+        	<link rel="stylesheet" type="text/css" href="<?php echo $this->webroot;?>css/ie.css" />
+        <![endif]-->
         <link rel="shortcut icon" href="<?php echo $this->request->webroot; ?>img/favicon.ico">
         <link rel="apple-touch-icon" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-72x72.png">
@@ -100,7 +70,6 @@ $this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false
     <!-- Facebook javascript API ends
     ================================ -->
     
-    
         <!-- Header
         ================================================== -->
 
@@ -110,6 +79,12 @@ $this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false
         ================================================== -->
         <?php echo $this->Session->flash(); ?>
         <?php echo $this->fetch('content'); ?>
+        
+        
+        
+        <!-- Popup script
+        ================================================== -->
+        <?php echo $this->element('popup', array()); ?>
 
         <div class="container bottom ">
             <div class=" sixteen columns footer">

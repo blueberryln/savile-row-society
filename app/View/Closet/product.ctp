@@ -311,7 +311,7 @@ $columns = 'eleven';
             <?php endif; ?>
             
             <label>Quantity
-                <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10), 'empty' => "Select Quantity ", 'label' => false, 'div' => false)); ?>
+                <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10), 'empty' => "Select Quantity" , 'label' => false, 'div' => false, 'style' => "width: 142px;")); ?>
                 <br />
                 <span class="err-message">Please select quantity.</span>
             </label>   

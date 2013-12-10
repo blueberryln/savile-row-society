@@ -58,28 +58,35 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <br />
                 <h5 class="new-clients-head">New Clients</h5>
                 <div class="new-clients">
+                <?php if(isset($new_clients) && count($new_clients) > 0) {
+                    foreach($new_clients as $new_cl){
+                        echo '<div class="client-row">' . 
+                            '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '">' . $new_cl['User']['first_name'] . '</a> has been assigned to you.' . 
+                        '</div>';    
+                    }    
+                }
+                ?>
                 </div>
             <?php endif; ?>
         </div>
         <div class="ten columns aplha stylist-talk">
-            <ul id="stylist-options">
-                <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
-                <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
-                <!--<li><a href="">conversation</a></li>-->                
-            </ul>
+            <?php if($client_id) : ?>
+                <ul id="stylist-options">
+                    <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
+                    <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
+                    <!--<li><a href="">conversation</a></li>-->                
+                </ul>
+            <?php endif; ?>
             <h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>
                 <?php if(!$is_admin) : ?>
                 <?php
                 echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client'));
-                ?>          
-                <!--<a class="link-btn black-btn"  id="loadMessages"  href="">Load User</a>-->
-                <?php endif; ?>      
+                ?> 
+                <?php endif; ?>  
                 
                 <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
-                
-
-            <textarea class="ten columns alpha omega chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
-            <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
+                <textarea class="ten columns alpha omega chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
+                <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
             
             <div class="chat-container">
                 
@@ -259,10 +266,22 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <li class="toggle-tab selected open-filter" style="height: 140px;overflow-y: auto;"><span>Categories</span>
                             <ul class="toggle-body product-categories">
                             <?php foreach ($categories as $category): ?>
-                                <li data-category_id="<?php echo $category['Category']['slug']; ?>"><?php echo $category['Category']['name']; ?>
+                                <li data-category_id="<?php echo $category['Category']['slug']; ?>">
+                                    <a><?php echo $category['Category']['name']; ?></a>
                                     <ul class="product-subcategories">
                                         <?php foreach ($category['children'] as $subcategory): ?>
-                                            <li data-category_id="<?php echo $subcategory['Category']['slug']; ?>"><?php echo $subcategory['Category']['name']; ?></li>
+                                            <li data-category_id="<?php echo $subcategory['Category']['slug']; ?>">
+                                                <a><?php echo $subcategory['Category']['name']; ?></a>
+                                                <?php if ($subcategory['children']) : ?>
+                                                    <ul class="product-subcategories product-subsubcategories">
+                                                        <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
+                                                            <li data-category_id="<?php echo $subsubcategory['Category']['slug']; ?>">
+                                                                <a><?php echo $subsubcategory['Category']['name']; ?></a>
+                                                            </li>    
+                                                        <?php endforeach; ?>
+                                                    </ul>       
+                                                <?php endif; ?>     
+                                            </li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </li>
@@ -282,7 +301,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <ul class="toggle-body color-filter">
                             <?php if($colors) : ?>
                                 <?php foreach($colors as $color) : ?>
-                                        <li data-color_id="<?php echo $color['Color']['id']; ?>"><?php echo $color['Color']['name']; ?></li>
+                                        <li data-color_id="<?php echo $color['Colorgroup']['id']; ?>"><?php echo $color['Colorgroup']['name']; ?></li>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                             </ul>
@@ -298,6 +317,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <div class="srs-closet-items"></div>
                 <div class="clear"></div>
                 <div class="btn-outfit-cont text-right">
+                    <img src="<?php echo $this->webroot; ?>img/loading.gif" width="28" class="hide closet-load-icon" style="position: relative; top: 8px;" /> &nbsp;
                     <a href="" class="link-btn black-btn load-more-closet">Load More</a>
                     <a href="" class="link-btn black-btn add-closet-outfit">Add to outfit</a>
                 </div>
@@ -490,26 +510,28 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         $("#sendMessages").click(function(e) {
             e.preventDefault();
             var message = $("#messageToSend").val();
-            var _data = {
-                body: message,
-                user_to_id: userId
-            }
-            $.ajax({
-                url: "<?php echo $this->webroot; ?>messages/send_to_user",
-                type: 'POST',
-                data: _data,
-                success: function(res) {
-                    $("#messageToSend").val("");
-                    res = jQuery.parseJSON(res);
-                    if(res['status'] == 'ok'){
-                        var html = showChatMsg(res);
-                        chatContainer.prepend(html);
-                    }
-                },
-                error: function(res) {
-                          
+            if(userId > 0){
+                var _data = {
+                    body: message,
+                    user_to_id: userId
                 }
-            });
+                $.ajax({
+                    url: "<?php echo $this->webroot; ?>messages/send_to_user",
+                    type: 'POST',
+                    data: _data,
+                    success: function(res) {
+                        $("#messageToSend").val("");
+                        res = jQuery.parseJSON(res);
+                        if(res['status'] == 'ok'){
+                            var html = showChatMsg(res);
+                            chatContainer.prepend(html);
+                        }
+                    },
+                    error: function(res) {
+                              
+                    }
+                });
+            }
         });
         
         
@@ -551,7 +573,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             });
         });
         
-        function loadNewClients(){
+        // New clients logic changed
+        /*function loadNewClients(){
             var clientBox = $(".new-clients");
             var clientString = clientArray.join(',');
             $.ajax({
@@ -583,7 +606,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 },
                 15000
             );
-        }
+        }*/
     }
     
 

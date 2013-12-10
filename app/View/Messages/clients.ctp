@@ -15,14 +15,22 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <br />
                 <h5 class="new-clients-head">New Clients</h5>
                 <div class="new-clients">
+                <?php if(isset($new_clients) && count($new_clients) > 0) {
+                    foreach($new_clients as $new_cl){
+                        echo '<div class="client-row">' . 
+                            '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '">' . $new_cl['User']['first_name'] . '</a> has been assigned to you.' . 
+                        '</div>';    
+                    }    
+                }
+                ?>
                 </div>
             <?php endif; ?>
         </div>
         <div class="ten columns aplha stylist-talk">
-            <!--<h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>-->
+            <h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>
             <?php if(!$is_admin) : ?>
                 <?php
-                //echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client'));
+                echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client'));
                 ?>          
             <?php endif; ?>    
             

@@ -44,20 +44,42 @@ class MessagesController extends AppController {
             $Category = ClassRegistry::init('Category');
             $Brand = ClassRegistry::init('Brand');
             $Color = ClassRegistry::init('Color');
+            $Colorgroup = ClassRegistry::init('Colorgroup');
             
             // get data
             $categories = $Category->getAll();
-            $brands = $Brand->find('all');
-            $colors = $Color->find('all');
+            $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+            $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
+            
             // if stylist load user that write to logged in user.
             $clients = array();
                 
             $clients_data = $User->getUserWriteToMe($this->getLoggedUserID());
             
             $client_id = 0;
+            
+            //If stylist get the list of new users
+            if($is_stylist){
+                $new_clients = $User->getNewClients($user_id);
+                $this->set(compact('new_clients'));
+            } 
+            
+            
             if($messages_for_user_id){
                 $client_user = $User->getByID($messages_for_user_id);
                 $client_id = $messages_for_user_id;
+                
+                /**
+                 *  - If client user is admin redirect to message landing
+                 *  - If client user is stylist redirect to message landing
+                 *  - If current user is stylist and client is not user's client, redirect to message landing
+                 */  
+                if($client_user['User']['is_admin'] == 1 || $client_user['User']['is_stylist'] == 1){
+                    $this->redirect('/messages');    
+                }
+                else if ($client_user['User']['stylist_id'] != $user_id && $is_admin == 0){
+                    $this->redirect('/messages');    
+                }
                 
                 $Order = ClassRegistry::init('Order');
                 
@@ -130,6 +152,7 @@ class MessagesController extends AppController {
             $msg['Message'] = $res['Message'];
             $timestamp = strtotime($msg['Message']['created']);
             $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
+            $msg['Message']['body'] = nl2br($msg['Message']['body']);
             $msg['UserFrom'] = array(
                                     'id' => $user['User']['id'],
                                     'first_name' => $user['User']['first_name'],
@@ -207,7 +230,7 @@ class MessagesController extends AppController {
                         
                         $notification['is_photo'] = true;
                         $notification['to_stylist'] = true;
-                        $notification['client_id'] = $msg['Message']['user_from_id'];
+                        $notification['client_id'] = $res['Message']['user_from_id'];
                         $notification['photo_url'] = $res['Message']['image'];
                         $notification['to_name'] = $to_user['User']['first_name'];
                         $notification['from_name'] = $from_user['User']['first_name']; 
@@ -240,38 +263,46 @@ class MessagesController extends AppController {
         $this->Message->data['Message']['user_from_id'] = $this->getLoggedUserID();
         $this->Message->data['Message']['user_to_id'] = $to_id;
         $this->Message->data['Message']['body'] = $body;
-
-        if ($this->Message->validates()) {
-            // store in db
-            $res = $this->Message->save($this->Message->data);
-            $msg['status'] = 'ok';            
-            $msg['Message'] = $res['Message'];
-            $timestamp = strtotime($msg['Message']['created']);
-            $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
-            $msg['UserFrom'] = array(
-                                    'id' => $user['User']['id'],
-                                    'first_name' => $user['User']['first_name'],
-                                    'last_name' => $user['User']['last_name']
-                                );
-            $this->set('data', $msg);
+        
+        if($to_id > 0){
+            if ($this->Message->validates()) {
+                // store in db
+                $res = $this->Message->save($this->Message->data);
+                $msg['status'] = 'ok';            
+                $msg['Message'] = $res['Message'];
+                $timestamp = strtotime($msg['Message']['created']);
+                $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
+                $msg['Message']['body'] = nl2br($msg['Message']['body']);
+                $msg['UserFrom'] = array(
+                                        'id' => $user['User']['id'],
+                                        'first_name' => $user['User']['first_name'],
+                                        'last_name' => $user['User']['last_name']
+                                    );
+                $this->set('data', $msg);
+                
+            }
             
+            // Prepare data for email notification
+            $to_user = $User->getById($msg['Message']['user_to_id']);
+            $from_user = $User->getById($msg['Message']['user_from_id']);
+            
+            $notification['is_photo'] = false;
+            $notification['to_stylist'] = false;
+            $notification['message'] = $res['Message']['body'];
+            $notification['to_name'] = $to_user['User']['first_name'];
+            $notification['from_name'] = $from_user['User']['first_name']; 
+            $notification['to_email'] = $to_user['User']['email'];
+            $notification['from_email'] = $from_user['User']['email']; 
+            
+            $this->sendEmailNotification($notification);
+            
+            $this->render('/Elements/SerializeJson/');
         }
-        
-        // Prepare data for email notification
-        $to_user = $User->getById($msg['Message']['user_to_id']);
-        $from_user = $User->getById($msg['Message']['user_from_id']);
-        
-        $notification['is_photo'] = false;
-        $notification['to_stylist'] = false;
-        $notification['message'] = $res['Message']['body'];
-        $notification['to_name'] = $to_user['User']['first_name'];
-        $notification['from_name'] = $from_user['User']['first_name']; 
-        $notification['to_email'] = $to_user['User']['email'];
-        $notification['from_email'] = $from_user['User']['email']; 
-        
-        $this->sendEmailNotification($notification);
-        
-        $this->render('/Elements/SerializeJson/');
+        else{
+            $msg['status'] = 'error';
+            $this->set('data', $msg);
+            $this->render('/Elements/SerializeJson/');
+        }
     }
 
     /*
@@ -335,7 +366,8 @@ class MessagesController extends AppController {
                 foreach($result['Messages'] as &$msg){
                     $timestamp = strtotime($msg['Message']['created']);
                     $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
-                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id || $with_user_id)){
+                    $msg['Message']['body'] = nl2br($msg['Message']['body']);
+                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id)){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
                     $last_conv_id = $msg['Message']['id'];
@@ -344,7 +376,7 @@ class MessagesController extends AppController {
                     $this->Message->saveAll($mark_read_list);
                 }
             
-                $msgs_remaining = $this->Message->getMessageCount($last_conv_id);
+                $msgs_remaining = $this->Message->getMessageCount($last_conv_id, $user_id);
                 
                 $result['msg_remaining'] = $msgs_remaining;
                 $result['status'] = 'ok';
@@ -423,7 +455,8 @@ class MessagesController extends AppController {
                 foreach($result['Messages'] as &$msg){
                     $timestamp = strtotime($msg['Message']['created']);
                     $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
-                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id || $with_user_id)){
+                    $msg['Message']['body'] = nl2br($msg['Message']['body']);
+                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id)){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
                 }
@@ -529,7 +562,8 @@ class MessagesController extends AppController {
                 foreach($result['Messages'] as &$msg){
                     $timestamp = strtotime($msg['Message']['created']);
                     $msg['Message']['created']  = date('Y-m-d H:i:s', strtotime('-286 minutes', $timestamp));
-                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id || $with_user_id)){
+                    $msg['Message']['body'] = nl2br($msg['Message']['body']);
+                    if($msg['Message']['is_read'] == 0 && ($msg['Message']['user_to_id'] == $user_id)){
                         $mark_read_list[] = array('id' => $msg['Message']['id'], 'is_read' => 1);         
                     }
                     $last_conv_id = $msg['Message']['id'];
@@ -538,7 +572,7 @@ class MessagesController extends AppController {
                     $this->Message->saveAll($mark_read_list);
                 }
                 
-                $msgs_remaining = $this->Message->getMessageCount($last_conv_id);
+                $msgs_remaining = $this->Message->getMessageCount($last_conv_id, $user_id);
                 
                 $result['msg_remaining'] = $msgs_remaining;
                 $result['status'] = 'ok';
@@ -602,6 +636,9 @@ class MessagesController extends AppController {
         
         // Check if the logged in user is stylist; if not then redirect to chat page
         if($user && $user['User']['is_stylist'] == 1){
+            $new_clients = $User->getNewClients($user_id);
+            $this->set(compact('new_clients'));
+            
             $notification_data = $User->getStylistUserNotification($user_id); 
             $clients = array();
             $client_array = array();

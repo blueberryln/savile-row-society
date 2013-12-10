@@ -1,20 +1,16 @@
 <?php
 $homePopUp = '';
-if($itsHoliday){
-    $homePopUp = 'if(!isLoggedIn()){
-        $.blockUI({message: $("#holiday-box-login"),css:{top: $(window).height()/2 - $("#holiday-box-login").height()/2, backgroundColor: "transparent"}});
+if(isset($registerSharePopup)){
+    $homePopUp = '
+        $.blockUI({message: $("#register-share-box"),css:{top: $(window).height()/2 - $("#register-share-box").height()/2, backgroundColor: "transparent"}});
         $(".blockOverlay").click($.unblockUI);
-    }
-    else{
-        if (websiteInfo==null || websiteInfo==""){
-            $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
-            $(".blockOverlay").click($.unblockUI);
-        }
-    }';
+    ';
 }
 else{
-    $homePopUp = 'if (websiteInfo==null || websiteInfo==""){
-        $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2, right: "0px", left: "auto"}, overlayCSS: {opacity: 0}});
+    $homePopUp = '
+    var websiteInfo=getCookie("websiteInfo");
+    if (websiteInfo==null || websiteInfo==""){
+        $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2}});
         $(".blockOverlay").click($.unblockUI);
     }';
 }
@@ -62,6 +58,12 @@ $script ='
           "width=626,height=436"); 
     });
     
+    $(".register-popup-share-link").on("click", function(e){
+        e.preventDefault();
+        $("#lnk-fb-share").click();
+        $.unblockUI();    
+    });
+    
     //Load you tube api
     var tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
@@ -84,8 +86,6 @@ $script ='
     }
     
     $(document).ready(function(){
-        var websiteInfo=getCookie("websiteInfo");
-        
         ' . $homePopUp . '
         
         $(".info-popup-close").on("click", function(e){
@@ -182,12 +182,14 @@ $this->Html->script('cookie.js', array('inline' => false));
 <div id="sign-up-drop-down">
     <div class="close"><a href="#"> &#215;</a></div>
     <p>Tailor Your Life</p>
-    <div class="initial-module">
-        <?php
-            echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-            echo '<p class="show-login-form">You\'ve been hooked up for the Cyber Monday! Use Promo Code <strong style="color:#DDDDDD">"CYBER30"</strong> - 30% off</p>';
-
-        ?>
+    <div class="initial-module container">
+        <div class="fourteen columns offset-by-one">
+            <?php
+                echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
+                echo '<p class="show-login-form">Sometimes our knocks go unheard - Make sure that you\'re up to date on everything Savile Row Society by checking your Promotions tab in Gmail</p>';
+    
+            ?>
+        </div>
     </div>
 
 </div>
@@ -429,27 +431,13 @@ $this->Html->script('cookie.js', array('inline' => false));
     </div>
 </div>
 
-<div id="holiday-box-login" class="box-modal notification-box hide">
+<div id="register-share-box" class="box-modal notification-box hide">
     <div class="box-modal-inside">
         <a class="notification-close big-popup-close" href=""></a>
-        <p><img src="<?php echo $this->webroot; ?>img/inverted Logo.png"></p>
-        <p class="popup-info-text">"Your holiday shopping is on us. Login or Register to get Hooked Up and you will receive $20 off of your holiday purchase."</p>
-        
-        <div><a href="#" onclick="window.ref_url=''; signUp();" class="link-btn light-gold-btn signin-btn">Register</a></div>
-        <div><a href="#" onclick="window.ref_url=''; signIn();" class="link-btn gold-btn signin-btn">Log in</a></div>
-        <div class="holiday-cuff"><img src="<?php echo $this->webroot; ?>img/Holiday20_cuflink.png"></div>
-    </div>
-</div>
-
-<div id="holiday-box-logged" class="box-modal notification-box hide">
-    <div class="box-modal-inside">
-        <a class="notification-close big-popup-close" href=""></a>
-        <p><img src="<?php echo $this->webroot; ?>img/inverted Logo.png"></p>
-        <p class="popup-info-text">"Your holiday shopping is on us. Use promo code below and you will receive $20 off of your holiday purchase."</p>
-        <div class="promo-code-block popup-info-text">
-            <span>Use Promo Code</span>
-            <span class="promo-text">Holiday20</span>
+        <div class="welcome-block popup-info-text">
+            <span>Welcome to Savile Row Society!</span>
         </div>
-        <div class="holiday-cuff"><img src="<?php echo $this->webroot; ?>img/Holiday20_cuflink.png"></div>
+        <p class="popup-info-text">Savile Row Society has created an exclusive men's lifestyle shopping destination on a virtual platform. SRS developed an innovative client profile merchandise matching technology while recruiting reputable industry fit &amp; styling experts. Our virtual platform is the most efficient and convenient way to shop.</p>
+        <p><a href="" class="register-popup-share-link"><img src="<?php echo $this->webroot; ?>img/fb-share-big.png" height="42" /></a></p>
     </div>
 </div>

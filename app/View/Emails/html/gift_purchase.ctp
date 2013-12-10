@@ -11,7 +11,8 @@
                             <br />
                             Hi <?php echo ucwords($user['User']['full_name']); ?>,
                             <br/><br/>
-                            You have purchased a new gift card. Details for the gift card are as follows:
+                            Thank you for purchasing a Savile Row Society gift card. Your gift card is helping to make our virtual closet somebody else's reality. 
+                            Details for the gift card are as follows:
                             <br /><br />
                             <b>Name:</b> <?php echo $item['Entity']['name']; ?><br/>
                             <b>Description:</b> <?php echo $item['Entity']['description']; ?><br/><br />

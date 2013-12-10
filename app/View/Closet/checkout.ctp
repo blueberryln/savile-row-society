@@ -289,9 +289,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                     $img_src = $this->request->webroot . "img/photo_not_available.png";
                                 }
                             ?>
-                            <td class="product-thumb"><div class="cart-thumbnail"><img src="<?php echo $img_src; ?>" /></div></td>
+                            <td class="product-thumb"><div class="cart-thumbnail"><a href="<?php echo $this->webroot; ?>product/<?php echo $item['Entity']['id'] . '/' . $item['Entity']['slug'];?>"><img src="<?php echo $img_src; ?>" /></a></div></td>
                             <td class="v-top">
-                                <h6><?php echo $item['Entity']['name']; ?></h6>
+                                <h6><a href="<?php echo $this->webroot; ?>product/<?php echo $item['Entity']['id'] . '/' . $item['Entity']['slug'];?>"><?php echo $item['Entity']['name']; ?></a></h6>
                                 <?php
                                     $description = String::truncate($item['Entity']['description'], 25, array('ellipsis' => '...', 'exact' => true, 'html' => false));
                                 ?>

@@ -20,27 +20,32 @@ class ContactsController extends AppController {
                 $this->Contact->create();
 
                 if ($this->Contact->save($this->request->data)) {
-                    //send personal stylist mail
-                    $email = new CakeEmail('default');
-                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                    $email->to('casey@savilerowsociety.com');
-                    $email->cc('contactus@savilerowsociety.com');
-                    $email->cc('admin@savilerowsociety.com');
-                    $email->subject('Contact Request: ' . $this->request->data['Contact']['first_name'] . ' ' . $this->request->data['Contact']['last_name']);
-                    $email->template('stylist');
-                    $email->emailFormat('html');
-                    $email->viewVars(array('contact' => $this->request->data['Contact']));
-                    $email->send();
-                    
-                    //Send user a confirmation email
-                    $user_email = new CakeEmail('default');
-                    $user_email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                    $user_email->to($this->request->data['Contact']['email']);
-                    $user_email->subject('Savile Row Society: Contact Request Confirmation');
-                    $user_email->template('contact_confirmation');
-                    $user_email->emailFormat('html');
-                    $user_email->viewVars(array('contact' => $this->request->data['Contact']));
-                    $user_email->send();
+                    try{
+                        //send personal stylist mail
+                        $email = new CakeEmail('default');
+                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        $email->to('casey@savilerowsociety.com');
+                        $email->cc('contactus@savilerowsociety.com');
+                        $email->cc('admin@savilerowsociety.com');
+                        $email->subject('Contact Request: ' . $this->request->data['Contact']['first_name'] . ' ' . $this->request->data['Contact']['last_name']);
+                        $email->template('stylist');
+                        $email->emailFormat('html');
+                        $email->viewVars(array('contact' => $this->request->data['Contact']));
+                        $email->send();
+                        
+                        //Send user a confirmation email
+                        $user_email = new CakeEmail('default');
+                        $user_email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        $user_email->to($this->request->data['Contact']['email']);
+                        $user_email->subject('Savile Row Society: Contact Request Confirmation');
+                        $user_email->template('contact_confirmation');
+                        $user_email->emailFormat('html');
+                        $user_email->viewVars(array('contact' => $this->request->data['Contact']));
+                        $user_email->send();
+                    }
+                    catch(Exception $e){
+                        
+                    }                   
 
                     $this->Session->setFlash(__('Your message is sent!'), 'flash', array('title' => 'Great!'));
                     $this->redirect('/contact');

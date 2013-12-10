@@ -81,6 +81,14 @@ class PagesController extends AppController {
             }
             $this->set(compact('user'));
         }
+        
+        if($page == "home"){
+            //if($registerSharePopup = $this->Session->read('registerSharePopup')){
+//                $this->Session->delete('registerSharePopup');
+//                $this->set(compact('registerSharePopup'));    
+//            } 
+        }
+        /* To show holiday popup
         if($page == "home"){
             $start_date = strtotime("2013-11-30 00:00:00");
             $end_date = strtotime("2013-11-30 23:59:59"); 
@@ -94,7 +102,7 @@ class PagesController extends AppController {
                 $itsHoliday = true;          
             }
             $this->set(compact('itsHoliday'));
-        }
+        }*/
         
         $this->set(compact('page', 'subpage', 'title_for_layout'));
         $this->render(implode('/', $path));
