@@ -124,7 +124,23 @@ class UsersController extends AppController {
                     
                     // set "user" session
                     $this->Session->write('user', $results);
-
+                    
+                    
+                    //Set complete style profile popup if style profile not complete
+                    if (!$results['User']['preferences']) {
+                        $this->Session->write('completeProfile', true);       
+                    }
+                    else {
+                        $preferences = unserialize($results['User']['preferences']);
+                        if(!isset($preferences['UserPreference']['is_complete'])){
+                            $this->Session->write('completeProfile', true);     
+                        }
+                        else if(!$preferences['UserPreference']['is_complete']) {
+                            $this->Session->write('completeProfile', true);     
+                        }
+                    }
+                    
+                    
                     if(!empty($refer_url)){
                         $this->redirect($refer_url);
                         exit;
@@ -584,8 +600,6 @@ class UsersController extends AppController {
                 $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
 
                 if ($results) {
-                    //Show holiday popup
-                    //$this->Session->write('holidayCode', true);
                     
                     // Show share popup on registration
                     $this->Session->write('registerSharePopup', true);
@@ -636,10 +650,10 @@ class UsersController extends AppController {
      * Settings
      */
     public function edit($action = null) {
-
+        $this->isLogged();
         // title
         $title_for_layout = 'Edit your account';
-
+    
         $id = $this->getLoggedUserID();
 
         if (!$this->User->exists($id)) {

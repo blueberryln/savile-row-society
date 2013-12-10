@@ -88,10 +88,17 @@ $script ='
     $(document).ready(function(){
         ' . $homePopUp . '
         
-        $(".info-popup-close").on("click", function(e){
+        /**
+         * Hide Closet Popup when user opts out.
+         */
+        $("#hide-home-popup").on("change", function(e){
             e.preventDefault();
-            setCookie("websiteInfo",1,60);
-            $.unblockUI;   
+            if($(this).is(":checked")){
+                setCookie("websiteInfo",1,60);     
+            }
+            else{
+                deleteCookie("websiteInfo");     
+            }  
         });
         
         $("#closetCuffLink").hover(
@@ -427,7 +434,12 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div>  
         <div class="popup-info-sign text-center">
             <img src="<?php echo $this->webroot; ?>img/lisa_signature.png" />
-        </div>   
+        </div> 
+        <div class="popup-info-text text-left">
+            <p>
+                <input type="checkbox" id="hide-home-popup" />&nbsp; Got it! Please don't show me this again
+            </p>
+        </div>    
     </div>
 </div>
 
