@@ -379,6 +379,7 @@ class ClosetController extends AppController {
      * Product details
      */
     public function product($id = null, $slug = null) {
+        $this->autoRender = false;
         $user_id = $this->getLoggedUserID();
         App::uses('Sanitize', 'Utility');
 
@@ -396,27 +397,14 @@ class ClosetController extends AppController {
                 $this->redirect('/product/' . $id . '/' . $entity['Entity']['slug']);
                 exit;    
             }
-            
-            $sizes = $Entity->Detail->getAvailableSize($id);
-
-            // TODO: Check for size stock using cart items.
 
             if (!$entity) {
                 throw new NotFoundException;
             }
-            $product_id = $entity['Entity']['product_id'];
-            $similar_results = $Entity->getSimilarProducts($id, $product_id);
-            $similar = array();
-            foreach($similar_results as $row){
-                if($row['Color'] && count($row['Color']) > 0){
-                    $similar[] = $row;
-                }
-            }
-
+            
+            
             $category = $Entity->getCategory($id);
-            //echo $id;
-            //print_r($category);
-            //exit;
+                
             if($category['Category']['parent_id']){
                 $parent_category = $Category->findById($category['Category']['parent_id']);
             }
@@ -440,9 +428,34 @@ class ClosetController extends AppController {
     
     
             }
+            //Check if product is a gift card
+            if($entity['Entity']['is_gift'] && $entity['Entity']['price'] > 0){
+                //Get all the gift cards
+                $gift_cards = $Entity->getGiftCards();
+                
+                $this->set(compact('entity', 'category', 'parent_category', 'user_id', 'check_count', 'gift_cards'));
+                $this->render('gift');       
+            }
+            else if($entity['Entity']['is_gift'] && $entity['Entity']['price'] <= 0){
+                $this->redirect('/closet');       
+            }
+            else{
+                $sizes = $Entity->Detail->getAvailableSize($id);
             
-            // send data to view
-            $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id', 'check_count'));
+                $product_id = $entity['Entity']['product_id'];
+                $similar_results = $Entity->getSimilarProducts($id, $product_id);
+                $similar = array();
+                foreach($similar_results as $row){
+                    if($row['Color'] && count($row['Color']) > 0){
+                        $similar[] = $row;
+                    }
+                }
+                
+                // send data to view
+                $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id', 'check_count'));
+                
+                $this->render('product');    
+            }   
         }
     }
 
@@ -1303,7 +1316,7 @@ class ClosetController extends AppController {
         //$wishlists = $Entity->getEntitiesById($wish_list);
 
         $find_array = array(
-            'limit' => 12,
+            'limit' => 15,
             'contain' => array('Image', 'Color'),
             'conditions' => array(
                 'Entity.show' => true,
