@@ -195,8 +195,8 @@ class MessagesController extends AppController {
                 
                 if (!in_array($data_image['type'], $allowed)) {
                     $this->Session->setFlash(__('You have to upload an image.'), 'flash');
-                } else if ($data_image['size'] > 3145728) {
-                    $this->Session->setFlash(__('Attached image must be up to 3 MB in size.'), 'flash');
+                } else if ($data_image['size'] > 5242880) {
+                    $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
                 } else {
                     $rand = substr(uniqid ('', true), -7);
                     $img = $rand . '_' . $data_image['name'];

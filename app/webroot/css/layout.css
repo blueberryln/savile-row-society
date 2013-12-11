@@ -3097,7 +3097,15 @@ li.last
     font-family: 'Droid Serif',serif;
     margin-bottom: 10px;
 }
-
+.product-description .gift-product-form label
+{
+    font-family: 'Conv_Novecento-Book',Sans-Serif;
+    margin-bottom: 0px;
+}
+.product-description .gift-product-form .input
+{
+    margin-bottom: 12px;
+}
 .product-description label select
 {
     color: #555;

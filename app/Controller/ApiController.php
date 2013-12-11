@@ -270,6 +270,215 @@ class ApiController extends AppController {
                     $entity = $Entity->getById($entity_id, $user_id);
                     
                     //Prepare data array for adding cart information
+                    if($entity['Entity']['is_gift']){
+                        $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
+                        $data['CartItem']['quantity'] = 1;
+                        $data['CartItem']['size_id'] = 1; 
+                        $data['CartItem']['is_gift'] = 1;
+                        
+                        
+                        $data['CartGiftItem']['recipient_email'] = $this->request->data['recipientEmail'];
+                        $data['CartGiftItem']['recipient_name'] = $this->request->data['recipientName']; 
+                        $data['CartGiftItem']['message'] = $this->request->data['giftMessages'];     
+                    }
+                    else{
+                        $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
+                        $data['CartItem']['quantity'] = $this->request->data['product_quantity'];
+                        if(isset($this->request->data['product_size'])){
+                            $data['CartItem']['size_id'] = $this->request->data['product_size'];
+                        }
+                        else{
+                            $data['CartItem']['size_id'] = 1;
+                        }    
+                    }
+    
+                    $cart = $Cart->getExistingUserCart($user_id);
+                    if($cart){
+                        $data['Cart'] = $cart['Cart'];
+                        unset($data['Cart']['created']);
+                        unset($data['Cart']['updated']);
+                        $result = $Cart->save($data);
+                        $cart_id = $result['Cart']['id'];
+                        
+                        $existing_item = $CartItem->getCartItemByCart($cart_id, $entity_id);
+                        
+                        if($existing_item && $data['CartItem']['size_id'] && $existing_item['CartItem']['size_id'] == $data['CartItem']['size_id']){
+                            $data['CartItem']['cart_id'] = $cart_id;
+                            
+                            $new_quantity = $data['CartItem']['quantity'];
+                            $existing_item['CartItem']['quantity'] = intval($existing_item['CartItem']['quantity']) + $new_quantity;
+                            
+                            if($result = $CartItem->save($existing_item)){
+                                $ret['status'] = 'ok';    
+                            }
+                            else{
+                                $ret['status'] = 'error';   
+                            }
+                        }
+                        else{
+                            $data['CartItem']['cart_id'] = $result['Cart']['id'];
+                            $cart_id = $result['Cart']['id'];
+                            $CartItem->create();
+                            if($result = $CartItem->save($data)){
+                                $ret['status'] = 'ok';    
+                            }
+                            else{
+                                $ret['status'] = 'error';   
+                            }    
+                        }
+                    }
+                    else{
+                        $data['Cart']['user_id'] = $user_id;
+                        $Cart->create();
+                        $result = $Cart->save($data);
+                        
+                        $data['CartItem']['cart_id'] = $result['Cart']['id'];
+                        $cart_id = $result['Cart']['id'];
+                        $CartItem->create();
+                        if($result = $CartItem->save($data)){
+                            $ret['status'] = 'ok';    
+                        }
+                        else{
+                            $ret['status'] = 'error';   
+                        }
+                    }
+                    
+                    /**
+                     * Check if item is a gift and add gift card details
+                     */
+                    if($ret['status'] == 'ok' && $entity['Entity']['is_gift']){
+                        $data['CartGiftItem']['cart_item_id'] = $result['CartItem']['id'];
+                        $CartGiftItem = ClassRegistry::init('CartGiftItem');
+                        $CartGiftItem->create();
+                        
+                        $result = $CartGiftItem->save($data);     
+                    }
+                    
+                    
+                    
+                    $ret['count'] = $this->cartCount($cart_id);
+                    
+                    if($ret['count'] == 3){
+                        $user = $this->getLoggedUser();
+                        $cart_list = $CartItem->getByCartId($cart_id);
+    
+                        $entity_list = array();
+                        foreach($cart_list as $item){
+                            $entity_list[] = $item['CartItem']['product_entity_id'];
+                        }
+                        $entities = $Entity->getEntitiesById($entity_list, $user_id);
+            
+                        $cart_total = 0;
+                        foreach($cart_list as &$item){
+                            foreach($entities as $entity){
+                                if($entity['Entity']['id'] == $item['CartItem']['product_entity_id']){
+                                    $cart_total += $item['CartItem']['quantity'] * $entity['Entity']['price'];
+                                }
+                            }
+                        }
+                        
+                        $ret['cart_total'] = $cart_total;
+                        $ret['cart_message'] = "Dear " . ucwords($user['User']['full_name']) . ",<br>We would like to remind you that you currently have three items in your cart, totaling $" . number_format($cart_total, 2) . ".";
+                    }
+                    
+                    if($ret['status'] == "ok" && $ret['count'] != 3){
+                        $this->Session->setFlash("Item has been added to the cart.", 'flash');    
+                    }
+                    else if($ret['status'] == "ok" && $ret['count'] == 3){
+                        $this->Session->write('cart-three-items', 1);    
+                        $this->Session->write('cart-three-items-msg', $ret['cart_message']);
+                    }
+                    
+                    echo json_encode($ret);
+                    exit;
+                }
+            } 
+            else if($user_id && $param && $param == 'update') {
+                $Cart = ClassRegistry::init('Cart');
+                $CartItem = ClassRegistry::init('CartItem');
+                $item_list = $this->request->data['items'];
+                foreach($item_list as $item){
+                    $cur_item = $CartItem->findById($item["item-id"]);
+                    if($cur_item){
+                        $cur_item['CartItem']['quantity'] = $item["quantity"];
+                        $CartItem->save($cur_item);   
+                    }
+                }         
+            }
+            elseif ($user_id && $param && $param == 'remove') {
+    
+                if ($this->request->is('ajax')) {
+                    // get posted product id
+                    $item_id = $this->request->data['cart_item_id'];
+                    
+                    
+                    $Cart = ClassRegistry::init('Cart');
+                    $CartItem = ClassRegistry::init('CartItem');
+                    
+                    $item = $CartItem->findById($item_id);
+                    $cart = $Cart->getExistingUserCart($user_id);
+                    
+                    if($item['CartItem']['cart_id'] == $cart['Cart']['id']){
+                        $CartItem->remove($item_id);
+                        $ret['status'] = 'ok';
+                    }
+                    else{
+                        $ret['status'] = 'error';
+                    }
+                    
+                    $this->getCartCount();
+                    $ret['count'] = $this->Session->read('cart_items');
+                    
+                    echo json_encode($ret);
+                    exit;
+                    
+                }
+            } elseif ($user_id && $param && $param == 'count') {
+    
+                if ($this->request->is('ajax')) {
+                    $cart_items_count = 0;
+                    $cart_storage = $this->Session->read('cart_storage');
+                    if ($cart_storage && is_array($cart_storage)) {
+                        $cart_items_count = count($cart_storage);
+                    }
+                    echo json_encode(array('count' => $cart_items_count));
+                }
+            }
+        }
+        else{
+            $ret['status'] = 'login';
+            echo json_encode($ret);
+        }
+    }
+    
+    
+    /**
+     * Add gift
+     */
+    public function addGift($param = null) {
+
+        //Configure::write('debug', 0);
+        $this->autolayout = false;
+        $this->autoRender = false;
+        
+        $ret = array();
+        
+        // init
+        $Entity = ClassRegistry::init('Entity');
+        $user_id = $this->getLoggedUserID();
+        
+        if($user_id){
+            if ($user_id && $param && $param == 'save') {
+    
+                if ($this->request->is('ajax')) {
+                    $Cart = ClassRegistry::init('Cart');
+                    $CartItem = ClassRegistry::init('CartItem');
+                    
+                    // Get product Entity ID and Get the information for the entity
+                    $entity_id = $this->request->data['product_id'];
+                    $entity = $Entity->getById($entity_id, $user_id);
+                    
+                    //Prepare data array for adding cart information
                     $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
                     $data['CartItem']['quantity'] = $this->request->data['product_quantity'];
                     if(isset($this->request->data['product_size'])){
@@ -424,8 +633,9 @@ class ApiController extends AppController {
         }
     }
     
+    
     /**
-     * Cart
+     * Request Price
      */
     public function requestprice($param = null) {
 

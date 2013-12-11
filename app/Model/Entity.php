@@ -554,4 +554,15 @@ class Entity extends AppModel {
             
         );
     }
+    
+    
+    /**
+     * Return all the gift cards
+     */
+    function getGiftCards(){
+        return $this->find('all', array(
+            'conditions' => array('Entity.show' => true, 'Entity.is_gift' => true, 'Entity.price >' => 0),
+             
+        ));
+    }
 }

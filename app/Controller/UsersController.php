@@ -119,9 +119,6 @@ class UsersController extends AppController {
                 $results = $this->User->checkCredentials($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
                 if ($results) {
                     
-                    //Show holiday popup
-                    $this->Session->write('holidayCode', true);
-                    
                     // set "user" session
                     $this->Session->write('user', $results);
                     
@@ -363,6 +360,9 @@ class UsersController extends AppController {
             if($image = $this->saveImage()){
                 $user['User']['profile_photo_url'] = $image;
             }
+            else{
+                $this->redirect('register/last-step/' . $id);        
+            }
             
             if ($this->User->save($user)) {
                 $result = $this->User->getByID($id);
@@ -389,8 +389,8 @@ class UsersController extends AppController {
 
             if (!in_array($this->request->data['ProfileImage']['type'], $allowed)) {
                 $this->Session->setFlash(__('You have to upload an image.'), 'flash');
-            } else if ($this->request->data['ProfileImage']['size'] > 3145728) {
-                $this->Session->setFlash(__('Attached image must be up to 3 MB in size.'), 'flash');
+            } else if ($this->request->data['ProfileImage']['size'] > 5242880) {
+                $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
             } else {
                 $image = $user['User']['email'] . '_' . $this->request->data['ProfileImage']['name'];
                 $image_type = $this->request->data['ProfileImage']['type'];
