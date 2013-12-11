@@ -106,23 +106,23 @@ $(document).ready(function(){
     /**
      * Check if Lookbook slider needs to be shown. If yes setup the fancybox and trigger the action 
      */
+     
+    //Setup the Fancybox plugin for the Lifestyle image popup
+    $(".fancybox").fancybox({ 
+        afterClose : function() {
+	       setCookie("showLifeStyle",1,60);   
+        },  
+		helpers: {
+			title : {
+				type : "over"
+			},
+			overlay : {
+				speedOut : 1000
+			},
+		},
+	}); 
     var showLifeStyle=getCookie("showLifeStyle");
     if (showLifeStyle == null || showLifeStyle == ""){
-        
-        //Setup the Fancybox plugin for the Lifestyle image popup
-        $(".fancybox").fancybox({ 
-            afterClose : function() {
-    	       setCookie("showLifeStyle",1,60);   
-            },  
-    		helpers: {
-    			title : {
-    				type : "over"
-    			},
-    			overlay : {
-    				speedOut : 1000
-    			},
-    		},
-    	}); 
         
         // Delay the trigger to open the lookbook slider
         setTimeout(function(){
