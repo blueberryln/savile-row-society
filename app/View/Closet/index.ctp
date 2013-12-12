@@ -461,7 +461,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>                
             <?php endif; ?>
             
-            <?php if($entities) : ?>
+            <?php if($entities && count($brand_list) == 0 && count($color_list) == 0 && $category_slug != "all") : ?>
                 <div class="clear"></div>
                 <div class="pagination">
                     <?php
