@@ -10,8 +10,8 @@ class ClosetController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
     
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG35');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'CYBER30' => 30, 'JOEYG35' => 35);
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS20', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG35', 'FULLTHROTTLE20', 'BLOGGER20', 'SUITES20');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS20' => 20, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'FULLTHROTTLE20' => 20, 'BLOGGER20' => 20, 'SUITES20' => 20, 'CYBER30' => 30, 'JOEYG35' => 35);
     public $percentCodes = array('CYBER30', 'JOEYG35');
     /**
      * Index
@@ -1314,7 +1314,7 @@ class ClosetController extends AppController {
         // get data
         $wish_list = $Wishlist->getByUserID($user_id);
         //$wishlists = $Entity->getEntitiesById($wish_list);
-
+        
         $find_array = array(
             'limit' => 15,
             'contain' => array('Image', 'Color'),
@@ -1336,9 +1336,16 @@ class ClosetController extends AppController {
             ),
             'order' => 'Wishlist.id DESC'
         );
+        
         $Entity->recursive = 0;
         $this->Paginator->settings = $find_array;
-        $wishlists = $this->Paginator->paginate($Entity);
+        try{
+            $wishlists = $this->Paginator->paginate($Entity);
+        }
+        catch(Exception $e){
+            $this->redirect('/mycloset/liked');    
+        }
+        
         // send data to view
         $this->set(compact('wishlists', 'user_id'));
         

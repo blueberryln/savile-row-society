@@ -45,6 +45,6 @@ $this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false
         <h6 class="popup-or">OR</h6>
         <p>Check out our curated collection in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a> or book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">tailor</a>.</p>   
         
-        <p>Sometimes our knocks go unheard - Make sure that you're up to date on everything Savile Row Society by checking your Promotions tab in Gmail</p>
+        <p>Sometimes our knocks go unheard - Make sure that you're up to date on everything Savile Row Society by checking your Promotions tab in Gmail!</p>
     </div>
 </div>

@@ -193,7 +193,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="fourteen columns offset-by-one">
             <?php
                 echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-                echo '<p class="show-login-form">Sometimes our knocks go unheard - Make sure that you\'re up to date on everything Savile Row Society by checking your Promotions tab in Gmail</p>';
+                echo '<p class="show-login-form">Sometimes our knocks go unheard - Make sure that you\'re up to date on everything Savile Row Society by checking your Promotions tab in Gmail!</p>';
     
             ?>
         </div>
