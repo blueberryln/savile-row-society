@@ -9,30 +9,18 @@
                     <tr>
                         <td valign="top">
                             <br />
-                            Hi <?php echo ucwords($user['User']['full_name']); ?>,
+                            Hi <?php echo ucwords($gift_details['OrderGiftItem']['recipient_name']); ?>,
                             <br/><br/>
-                            Thank you for purchasing a Savile Row Society gift card. Your gift card is helping to make our virtual closet somebody else's reality. 
+                            <?php echo ucwords($user['User']['full_name']); ?> has gifted you a Savile Row Society gift card.<br />
+                            <br />Message:<br /> 
+                            <?php echo $gift_details['OrderGiftItem']['message']; ?><br />
+                            
+                            Visit <a href="http://www.savilerowsociety.com">Savile Row Society</a> to redeem your gift card.<br /><br /> 
                             Details for the gift card are as follows:
                             <br /><br />
                             <b>Name:</b> <?php echo $item['Entity']['name']; ?><br/>
                             <b>Description:</b> <?php echo $item['Entity']['description']; ?><br/><br />
-                            <b>Quantity:</b> <?php echo $item['OrderItem']['quantity']; ?><br/>
-                            <b>Gift Card Id:</b> 
-                            <?php 
-                                if($item['OrderItem']['quantity'] == 1){
-                                    echo $item['OrderItem']['gift_card_id'];
-                                }
-                                else if($item['OrderItem']['quantity'] > 1){
-                                    for($i = 1; $i <= $item['OrderItem']['quantity']; $i++){
-                                        if($i != $item['OrderItem']['quantity']){
-                                            echo $item['OrderItem']['gift_card_id'] . "-" . $i . ",";
-                                        }
-                                        else{
-                                            echo $item['OrderItem']['gift_card_id'] . "-" . $i;
-                                        }    
-                                    }
-                                }
-                            ?>
+                            <b>Gift Card Id:</b> <?php echo $gift_details['OrderGiftItem']['gift_card_uniqid']; ?>
                             <br/>
                             <b>Price:</b> <?php echo $item['OrderItem']['price']; ?><br/><br />
                             <center>

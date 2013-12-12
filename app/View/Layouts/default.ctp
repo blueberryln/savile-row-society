@@ -297,7 +297,7 @@
             function signUp(e) {
                 //$.blockUI({message: $('#signup-box'), css: {top: '15%', 'width' : popupWidth + 'px', 'left' : $(window).width() / 2 - popupWidth/2}});
 //                $('.blockOverlay').click($.unblockUI);$.blockUI({message: $('#signup-popup'), css: {top: '8%'}});
-                $.blockUI({message: $('#signup-popup'), css: {top: '8%'}});
+                $.blockUI({message: $('#signup-popup'), css: {top: $(window).height()/2 - $("#register-box").height()/2}});
                 $('.blockOverlay').click($.unblockUI);
                 $.ajax({
                     url: "<?php echo $this->request->webroot; ?>register"
@@ -505,6 +505,15 @@
                     e.preventDefault();
                     signIn();
                 });
+                
+                /* attach to sign up event on signin popup form.
+                 * on click open sign-up popup form
+                 * */
+                $('#signin-popup').on('click', '#show-signup-popup', function(e){
+                    e.preventDefault();
+                    signUp();
+                });
+                
                 /*
                  * attach event that start registration wizard (from signup popup form)
                  */

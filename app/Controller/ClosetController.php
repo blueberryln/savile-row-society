@@ -28,12 +28,14 @@ class ClosetController extends AppController {
         }
     }
 
+
     public function forceSSL() {
         $this->redirect('https://' . $_SERVER['SERVER_NAME'] . $this->here);
     }
     public function unForceSSL() {
         $this->redirect('http://' . $_SERVER['SERVER_NAME'] . $this->here);
     }
+    
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
         $user_id = $this->getLoggedUserID();
@@ -86,6 +88,8 @@ class ClosetController extends AppController {
             $this->render('closet_landing');     
         }
     }
+
+
 
     public function closetProducts($user_id){
         $Entity = ClassRegistry::init('Entity');
@@ -148,6 +152,7 @@ class ClosetController extends AppController {
 
         return $entities;
     }
+
 
 
     public function categoryProducts($user_id, $categories, $category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null){
@@ -316,11 +321,7 @@ class ClosetController extends AppController {
         }
         
 
-        // Sub query to check stock using the products_details table and the items already added to valid carts
-        //$sub_query = new stdClass();
-//        $sub_query->type = "expression";
-//        $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
-//        $find_array['conditions'][] = $sub_query;
+        
         if(count($color_ids) == 0 && ($category_slug == null || $category_slug ==  "all") && count($brand_list) == 0 ){
             $data = array();
         }
@@ -974,6 +975,8 @@ class ClosetController extends AppController {
             }
            
             $Order = ClassRegistry::init('Order');
+            $CartGiftItem = ClassRegistry::init('CartGiftItem');
+            $OrderGiftItem = ClassRegistry::init('OrderGiftItem');
             $Order->create();
             $result = $Order->save($data);
             $order_id = false;
@@ -990,13 +993,27 @@ class ClosetController extends AppController {
                     
                     //Check if item is a gift item
                     if($row['Entity']['is_gift'] != "" && $row['Entity']['is_gift'] == 1){
-                        $gift_card_id = "SRSGC" . uniqid();
-                        $data['OrderItem']['gift_card_id'] = $gift_card_id;
+                        $data['OrderItem']['is_gift'] = 1;
                     }
                     
                     $OrderItem->create();
                     $item_result = $OrderItem->save($data);
-                    if(!$item_result){
+                    if($item_result){
+                        if($data['OrderItem']['is_gift'] == 1){
+                            $gift_details = $CartGiftItem->getGiftCardDetails($row['CartItem']['id']);
+                            $gift_card_uniqid = 'SRS-Gift-' . uniqid();
+                            
+                            $data['OrderGiftItem']['order_item_id'] = $item_result['OrderItem']['id'];
+                            $data['OrderGiftItem']['recipient_email'] = $gift_details['CartGiftItem']['recipient_email'];
+                            $data['OrderGiftItem']['recipient_name'] = $gift_details['CartGiftItem']['recipient_name'];
+                            $data['OrderGiftItem']['message'] = $gift_details['CartGiftItem']['message'];
+                            $data['OrderGiftItem']['gift_card_uniqid'] = $gift_card_uniqid;
+                            
+                            $OrderGiftItem->create();
+                            $OrderGiftItem->save($data);    
+                        }    
+                    }
+                    else{
                         $transaction_error = true;
                     }
                 }
@@ -1124,11 +1141,12 @@ class ClosetController extends AppController {
         $this->autoRender = false;
         
         $OrderItem = ClassRegistry::init('OrderItem');
+        $OrderGiftItem = ClassRegistry::init('OrderGiftItem');
         $order_items = $OrderItem->getByOrderId($order_id);
         
         if($order_items){
             foreach($order_items as $item){
-                if(!is_null($item['OrderItem']['gift_card_id']) && $item['OrderItem']['gift_card_id'] != ""){
+                if(!is_null($item['OrderItem']['is_gift']) && $item['OrderItem']['is_gift'] == 1){
                     $Order = ClassRegistry::init('Order');
                     $Order->recursive = 0;
                     $order = $Order->findById($order_id);
@@ -1140,6 +1158,8 @@ class ClosetController extends AppController {
                         $img_src = $item_image[0]['Image']['name'];
                     }
                     
+                    $gift_details = $OrderGiftItem->getGiftCardDetails($item['OrderItem']['id']);
+                    
                     // Check that order exists
                     if($order){
                         $User = ClassRegistry::init('User');
@@ -1149,11 +1169,13 @@ class ClosetController extends AppController {
                         try{
                             $email = new CakeEmail('default');
                             $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                            $email->to($user['User']['email']);
-                            $email->subject('New Gift Card.');
+                            $email->to($gift_details['OrderGiftItem']['recipient_email']);
+                            $email->cc($user['User']['email']);
+                            $email->bcc('admin@savilerowsociety.com');
+                            $email->subject('SRS Team: New Gift Card.');
                             $email->template('gift_purchase');
                             $email->emailFormat('html');
-                            $email->viewVars(compact('user','item','img_src'));
+                            $email->viewVars(compact('user','item','img_src','gift_details'));
                             $email->send();
                         }
                         catch(Exception $e){

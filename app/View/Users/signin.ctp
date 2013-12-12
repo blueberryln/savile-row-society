@@ -24,7 +24,8 @@ $this->layout = 'ajax'
                     echo $this->Form->input('refer_url', array('type' => 'hidden', 'id' => 'referUrlLogIn'));
                 ?>                  
                 
-                <div class="text-left signin-options">                                        
+                <div class="text-left signin-options"> 
+                    <span class="already-member">New User? <a href="" id="show-signup-popup">JOIN</a></span>                                       
                     <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
                 </div>
                  
