@@ -41,9 +41,11 @@ $(document).ready(function(){
         e.preventDefault();
         var cartItems = new Array();
         $(".cart-row").each(function(){
-            cartItemId = $(this).find(".cart-item-id").val();
-            cartItemQuantity = parseInt($(this).find(".product-quantity").val()) + 1;
-            cartItems.push({"item-id" : cartItemId, "quantity" : cartItemQuantity});    
+            if($(this).find(".cart-item-gift").val() != "1"){
+                cartItemId = $(this).find(".cart-item-id").val();
+                cartItemQuantity = parseInt($(this).find(".product-quantity").val()) + 1;
+                cartItems.push({"item-id" : cartItemId, "quantity" : cartItemQuantity}); 
+            }   
         });
         console.log(cartItems);
         if(cartItems.length > 0){
@@ -86,6 +88,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                         ?>
                         <tr class="cart-row">
                             <td class="v-top">
+                                <input type="hidden" class="cart-item-gift" value="<?php echo ($item['CartItem']['is_gift']) ? '1' : '0'; ?>">
                                 <input type="hidden" class="cart-item-id" value="<?php echo $item['CartItem']['id']; ?>">
                                 <a href="" class="remove-cart-item"><img src="app/webroot/img/cross_menue.png" width="10" height="10" /></a>
                             </td>
@@ -122,12 +125,17 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                             </td>
                             <td class="text-center"><?php //echo $item['CartItem']['quantity']; ?>
                                 <?php
+                                if($item['CartItem']['is_gift']){
+                                    echo $item['CartItem']['quantity'];    
+                                }
+                                else{
                                     $min_quantity = 1;
                                     $max_quantity = 10;
                                     if($item['CartItem']['quantity'] >= 10){
                                         $max_quantity = $item['CartItem']['quantity'];   
                                     } 
-                                    echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range($min_quantity,$max_quantity), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1)); 
+                                    echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range($min_quantity,$max_quantity), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1));
+                                } 
                                 ?>    
                             </td>
                             <td class="text-center"><?php echo $this->Number->currency($item['Entity']['price']); ?></td>
