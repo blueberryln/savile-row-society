@@ -3116,6 +3116,8 @@ li.last
     border-radius:2px;
     background-color: #ffffff;
     padding: 5px;
+    line-height: 25px;
+    text-indent: 5px;
 }
 .add-to-cart{
     margin-top: 20px;
@@ -3132,6 +3134,8 @@ table.cart-checkout select
     color: #444444;
     padding: 8px 5px;
     width:100%;
+    text-indent: 5px;
+    line-height: 25px;
 }
 .cart-checkout tbody td.product-thumb
 {
@@ -3363,6 +3367,8 @@ a.color-single
     color: #444444;
     padding: 8px 5px;
     width:100%;
+    text-indent: 5px;
+    line-height: 25px; 
 }
 select#quantity
 {
@@ -3414,7 +3420,6 @@ div.finalizing h5
     margin-bottom:10px;
     font-size:16px;
 }
-
 div.finalizing select, div.finalizing input[type="text"]
 {
     margin-bottom:20px;
