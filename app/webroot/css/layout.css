@@ -2982,6 +2982,7 @@ p.product-breadcrumb a
     text-align: center;
     line-height: 506px;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 .product-default-image img{
     max-width: 374px;
