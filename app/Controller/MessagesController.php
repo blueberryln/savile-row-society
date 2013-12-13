@@ -595,13 +595,13 @@ class MessagesController extends AppController {
             
             $user = $this->getLoggedUser();
             $email = new CakeEmail('default');
-            $email->from(array($from_email => $from_name));
             $email->to($to_email);
             $email->bcc('admin@savilerowsociety.com');
             $email->template('message_notification');
             $email->emailFormat('html');
             
             if($to_stylist){
+                $email->from(array($from_email => $from_name));
                 $email->subject('SRS Team: New Message from' . $from_name);
                 if($is_photo){
                     $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo', 'client_id'));
@@ -611,6 +611,7 @@ class MessagesController extends AppController {
                 } 
             }  
             else{
+                $email->from(array($from_email => 'SRS Team'));
                 $email->subject('SRS Team: New Message');
                 $email->viewVars(compact('to_name','from_name','message','to_stylist','is_photo'));
             }
