@@ -37,7 +37,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
     <div class="sixteen columns text-center">        
         <div class="hi-message fourteen columns offset-by-one alpha omega">
-            <h4 class="hi-message">Hi <?php echo $full_name; ?></h4>
+            <h4 class="hi-message">Hi <?php echo ucwords($full_name); ?></h4>
             <p>
                 Don't be shy, you'd be surprised what we can do with a photo.
             </p>

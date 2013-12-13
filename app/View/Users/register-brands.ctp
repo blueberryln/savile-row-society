@@ -191,7 +191,7 @@ window.registerProcess = true;
             <p></p>
         </div>        
         <div class="fourteen columns offset-by-one alpha omega">
-            <ul class="product-type">
+            <ul class="product-type" style="text-transform: uppercase;">
                 <li class="selected">
                     <a data-tab="polos_tees-brands" class="brand-link" data-origin-css='brands-pools'>
                         <span>Polos &amp; tees</span>
@@ -383,18 +383,17 @@ window.registerProcess = true;
                 </div>
             </div>
         </div>
-        <div class="clearfix"></div>
+        <div class="clear"></div>
         <div class="text-center brands-cont">
-            <br/>
-                        <!--<?php echo $this->Form->end(__('Continue')); ?>-->
-                        <div class="submit">                            
-                            <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/size/<?php echo $user_id; ?>">Back</a> 
-                            <input id="brands-continue" type="submit" value="Continue" />
-                            <p class="error-msg">Please select atleast one brand from each category.</p> 
-                        </div>                        
-                    
-                     </form>
-        </div>
+            <br/><br />
+                        
+            <div class="submit">                            
+                <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/size/<?php echo $user_id; ?>">Back</a> 
+                <input id="brands-continue" type="submit" value="Continue" />
+                <p class="error-msg">Please select atleast one brand from each category.</p> 
+            </div>            
+        </div>            
+        </form>
         
     </div>
 </div>

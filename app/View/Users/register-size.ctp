@@ -232,26 +232,26 @@ window.registerProcess = true;
                         <div class="input text required">
                             <label for="shirtType">SHIRT TYPE</label>                            
                             <select name="data[UserPreference][Size][shirt_type]" tabindex="" id="shirtType" >
-                                <option value="">SELECT SHIRT TYPE</option>
-                                <option value="sport">SPORT SHIRT</option>
-                                <option value="dress">DRESS SHIRT</option>
+                                <option value="">Select Shirt Type</option>
+                                <option value="sport">Sport Shirt</option>
+                                <option value="dress">Dress Shirt</option>
                             </select>
                         </div>
         
                         <div class="input text required">
                             <label for="jeans">WHAT KIND OF JEANS DO YOU WEAR?</label>                            
                             <select name="data[UserPreference][Size][denim_kind]" tabindex="" id="jeans" >
-                                <option value="DON'T KNOW">DON'T KNOW</option>
-                                <option value="RELAXED FIT">RELAXED FIT</option>
-                                <option value="BOOT CUT">BOOT CUT</option>
-                                <option value="STRAIGHT LEG">STRAIGHT LEG</option>
-                                <option value="SLIM">SLIM</option>
-                                <option value="EXTRA SLIM">EXTRA SLIM</option>
+                                <option value="DON'T KNOW">Don't Know</option>
+                                <option value="RELAXED FIT">Relaxed Fit</option>
+                                <option value="BOOT CUT">Boot Cut</option>
+                                <option value="STRAIGHT LEG">Straight Leg</option>
+                                <option value="SLIM">Slim</option>
+                                <option value="EXTRA SLIM">Extra Slim</option>
                             </select>
                         </div>
         
                         <div class="input text required">
-                            <label for="jeans">Tell us a little about suit size you wear (sizes 36-48)</label>                            
+                            <label for="jeans">TELL US A LITTLE ABOUT SUIT SIZE YOU WEAR (SIZES 36-48)</label>                            
                             <select name="data[UserPreference][Size][us_suit_sizing]" tabindex="" id="suit_sizing" >
                                 <option value="">Size</option>
                                 <option value="36">36</option>
@@ -268,7 +268,7 @@ window.registerProcess = true;
                         </div>
         
                         <div class="input text required">
-                            <label for="wardrobe">How happy are you with your wardrobe?</label>                            
+                            <label for="wardrobe">HOW HAPPY ARE YOU WITH YOUR WARDROBE?</label>                            
                             <select name="data[UserPreference][Size][HappyWithWardrobe]" tabindex="" id="wardrobe" >
                                 <option value="Very Happy">Very Happy</option>
                                 <option value="Happy">Happy</option>
@@ -281,7 +281,7 @@ window.registerProcess = true;
                 <div class="srs-form columns five offset-by-two alpha">
                     <div class="form form1">
                         <div class="input text required">
-                            <label for="shirtSize">shirt size:</label>                            
+                            <label for="shirtSize">SHIRT SIZE:</label>                            
                             <select name="data[UserPreference][Size][shirt_size]" tabindex="" id="shirtSize" >
                                 <option value="">Size</option>
                                 <option value="14">14</option>
@@ -297,7 +297,7 @@ window.registerProcess = true;
                             </select>
                         </div>
                         <div class="input text required chest-size">
-                            <label for="chestSize">Chest size:</label>                            
+                            <label for="chestSize">CHEST SIZE:</label>                            
                             <select name="data[UserPreference][Size][chest_size]" tabindex="" id="chestSize" >
                                 <option value="">Size</option>
                                 <option value="37">37</option>
@@ -314,7 +314,7 @@ window.registerProcess = true;
                         </div>
         
                         <div class="input text required pant-size">
-                            <label for="">pant size: <span class="size-chart">SIZE CHART</span></label>
+                            <label for="">PANT SIZE: <span class="size-chart">SIZE CHART</span></label>
                             <input id="pantSize" type="text" name="data[UserPreference][Size][pant_size]" required="required" maxlength="45" readonly />                      
                             <div id="size-chart-box">
                                 <ul>
@@ -377,10 +377,10 @@ window.registerProcess = true;
                         </div>
         
                         <div class="input text required">
-                            <label for="jeansSpend">Have you ever spent $200 on a pair of jeans</label>                            
+                            <label for="jeansSpend">HAVE YOU EVER SPENT $200 ON A PAIR OF JEANS?</label>                            
                             <select name="data[UserPreference][Size][SpendMoreThen200OnJeans]" tabindex="" id="jeansSpend" >
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
+                                <option value="YES">Yes</option>
+                                <option value="NO">No</option>
                             </select>
                         </div>
                              

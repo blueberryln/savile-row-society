@@ -360,9 +360,6 @@ class UsersController extends AppController {
             if($image = $this->saveImage()){
                 $user['User']['profile_photo_url'] = $image;
             }
-            else{
-                $this->redirect('register/last-step/' . $id);        
-            }
             
             if ($this->User->save($user)) {
                 $result = $this->User->getByID($id);
@@ -391,6 +388,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('You have to upload an image.'), 'flash');
             } else if ($this->request->data['ProfileImage']['size'] > 5242880) {
                 $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
+                $this->redirect('register/last-step/' . $id);
             } else {
                 $image = $user['User']['email'] . '_' . $this->request->data['ProfileImage']['name'];
                 $image_type = $this->request->data['ProfileImage']['type'];

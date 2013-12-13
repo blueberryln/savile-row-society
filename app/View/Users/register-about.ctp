@@ -23,7 +23,7 @@
         <?php echo $this->Form->create('User', array('url' => '/register/saveAbout')); ?>
         <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
         <div class="hi-message fourteen columns offset-by-two alpha omega">
-            <h4 class="hi-message"><?php echo $full_name; ?></h4>
+            <h4 class="hi-message"><?php echo ucwords($full_name); ?></h4>
             <p>
                 Use this space to introduce yourself, tell us
             </p>
