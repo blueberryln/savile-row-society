@@ -254,10 +254,12 @@
                     $("#signup-popup").html(res);
                 })
             }
-            /* registration wizard
+            
+            
+            /** 
              * go to brands page step #3
              * TODO: delete when finish with registratino provess if it's not in use
-             * */
+             */
             function gotoBrandsPage() {
                 // serialize form data (#step 1)
                 var _data = $("register-step3").serialize();
@@ -269,40 +271,28 @@
                     $("#signup-popup").html(res);
                 })
             }
+            
+            
             /* function to show signin popup*/
             function signIn() {
-                clearInterval(popUpInterval);
-                $.blockUI({message: $('#signin-popup')});
-                $('.blockOverlay').click($.unblockUI);
                 $.ajax({
                     url: "<?php echo $this->request->webroot; ?>signin"
                 }).done(function(res) {
                     $("#signin-popup").html(res);
+                    $('.blockOverlay').click($.unblockUI);$.blockUI({message: $('#signin-popup'), css: {top: $(window).height()/2 - $('#signin-popup').height()/2}});
                     addReferrerToLogIn();
-                });
-            }
-            /* functino to show signup popup (registration wizard)*/
-            function singUpWizard() {
-                $.blockUI({message: $('#signup-popup'), css: {top: '8%'}});
-                $('.blockOverlay').click($.unblockUI);
-                $.ajax({
-                    url: "<?php echo $this->request->webroot; ?>register"
-                }).done(function(res) {
-                    $("#signup-popup").html(res);
-                    overrideEmail();
-                    addReferrerToSignUp();
                 });
             }
             /* call function to show registration popup with facebook and linked in registration options*/
             function signUp(e) {
                 //$.blockUI({message: $('#signup-box'), css: {top: '15%', 'width' : popupWidth + 'px', 'left' : $(window).width() / 2 - popupWidth/2}});
-//                $('.blockOverlay').click($.unblockUI);$.blockUI({message: $('#signup-popup'), css: {top: '8%'}});
-                $.blockUI({message: $('#signup-popup'), css: {top: $(window).height()/2 - $("#register-box").height()/2}});
+                console.log('')
                 $('.blockOverlay').click($.unblockUI);
                 $.ajax({
                     url: "<?php echo $this->request->webroot; ?>register"
                 }).done(function(res) {
                     $("#signup-popup").html(res);
+                    $('.blockOverlay').click($.unblockUI);$.blockUI({message: $('#signup-popup'), css: {top: $(window).height()/2 - $('#signup-popup').height()/2}});
                     overrideEmail();
                     addReferrerToSignUp();
                 });
@@ -341,20 +331,11 @@
                     $(".notification-buttons").html(notificationDetails['button']);
                 }
                 if(isFade){
-                    $.blockUI({message: $('#notification-box'), timeout: 3000});
+                    $.blockUI({message: $('#notification-box'), css: {top: $(window).height()/2 - $('#notification-box').height()/2}, timeout: 3000});
                 }
                 else{
-                    $.blockUI({message: $('#notification-box')});
+                    $.blockUI({message: $('#notification-box'), css: {top: $(window).height()/2 - $('#notification-box').height()/2}});
                 }   
-            }
-            /*
-             * start timer to show registration form
-             */
-            var popUpInterval = null;
-            function startTimerForRegistration() {
-                popUpInterval = setTimeout(function() {
-                    signUp();
-                }, 30000);
             }
             
             /**
@@ -388,19 +369,13 @@
             $(document).ready(function() { 
                 startMessageNotifier();
                 
-                //if($(".flexslider").length){
-//                    var txt = $(".flex-prev").text();
-//                    alert(txt);
-//                    $(".flexslider .flex-direction-nav a").css({top: ($(".flexslider").height()/2 - $(".flexslider .flex-direction-nav a").height()/2) + "px"}).show();
-//                }
-                
                 $("#msg-notifications").on('click', function(e){
                     e.preventDefault(e);
                         
                 });
                 
                 if($('#flash-box').length){
-                    $.blockUI({message: $('#flash-box'), timeout: 5000});
+                    $.blockUI({message: $('#flash-box'), css: {top: $(window).height()/2 - $('#flash-box').height()/2}, timeout: 5000});
                 }
                 $('.blockOverlay, .notification-close').on('click', function(e){
                     e.preventDefault();
@@ -613,22 +588,6 @@
         </script>
 
         <?php echo $this->fetch('script'); ?>
-
-<!--        <script type="text/javascript">-->
-<!--            var vglnk = {api_url: '//api.viglink.com/api',-->
-<!--                key: '7f852b253a258ba36039af3e7455efbc'};-->
-<!---->
-<!--            (function(d, t) {-->
-<!--                var s = d.createElement(t);-->
-<!--                s.type = 'text/javascript';-->
-<!--                s.async = true;-->
-<!--                s.src = ('https:' == document.location.protocol ? vglnk.api_url :-->
-<!--                        '//cdn.viglink.com/api') + '/vglnk.js';-->
-<!--                var r = d.getElementsByTagName(t)[0];-->
-<!--                r.parentNode.insertBefore(s, r);-->
-<!--            }(document, 'script'));-->
-<!--        </script>-->
-<!---->
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-36935088-1']);
@@ -643,26 +602,6 @@
                 s.parentNode.insertBefore(ga, s);
             })();
         </script>
-
-        <!-- Google Code for Remarketing Tag -->
-        <!--------------------------------------------------
-        Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
-        --------------------------------------------------->
-<!--        <script type="text/javascript">-->
-<!--            /* <![CDATA[ */-->
-<!--            var google_conversion_id = 979436043;-->
-<!--            var google_custom_params = window.google_tag_params;-->
-<!--            var google_remarketing_only = true;-->
-<!--            /* ]]> */-->
-<!--        </script>-->
-<!--        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">-->
-<!--        </script>-->
-<!--        <noscript>-->
-<!--        <div style="display:inline;">-->
-<!--            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/979436043/?value=0&amp;guid=ON&amp;script=0"/>-->
-<!--        </div>-->
-<!--        </noscript>-->
-
 
         <?php echo $this->element('sql_dump'); ?>
 

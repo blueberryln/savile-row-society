@@ -28,7 +28,13 @@ class OrdersController extends AppController {
     public function admin_index() {
         $this->Order->recursive = 2;
         $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
-        $orders = $this->paginate('Order', array('Order.paid = 1'));
+        
+        $find_array = array(
+            'conditions' => array('Order.paid = 1'), 
+            'order' => array('Order.created' => 'desc')
+        );
+        $this->Paginator->settings = $find_array;
+        $orders = $this->Paginator->paginate($this->Order);
         $Size = ClassRegistry::init('Size');
         $sizes = $Size->find('list');
         $this->set(compact('orders', 'sizes'));
@@ -128,6 +134,7 @@ class OrdersController extends AppController {
                 ),  
 
             ),
+            'order' => array('Order.created' => 'DESC'),
             'fields' => array('OrderItem.*', 'Entity.*', 'Product.*', 'Brand.*', 'Order.*'),
         );
 

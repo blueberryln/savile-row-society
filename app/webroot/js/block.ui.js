@@ -131,10 +131,8 @@
                 left: $(window).width()/2 - $(".box-modal").width()/2,
 				textAlign:	'center',
 				color:		'#000',
-				//border:		'3px solid #aaa',
-                                border:		'none',
+                border:		'none',
 				backgroundColor:'#fff',
-				//cursor:		'wait'
 			},
 
 			// minimal style set used when themes are used
