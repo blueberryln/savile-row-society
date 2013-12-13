@@ -14,19 +14,19 @@
                             Your personal stylist just designed a new outfit for you. Click the picture to view details.
                             <br /><br />
                             
-                           	<table cellspacing="0" cellpadding="5" border="1" width="100%">
+                           	<table cellspacing="0" cellpadding="0" border="1" width="100%">
                                 <tr>
                                		<?php foreach($entities as $item) : ?>
                                         <?php
                                             if($item['Image']){
-                                                $img_src = Router::url('/', true) . 'products/resize/' . $item['Image'][0]['name'] . '/95/128'; 
+                                                $img_src = Router::url('/', true) . 'products/resize/' . $item['Image'][0]['name'] . '/158/216'; 
                                             }
                                             else{
                                                 $img_src = Router::url('/', true) . "img/image_not_available-small.png";
                                             } 
                                             $url = Router::url('/', true) . 'product/' . $item['Entity']['id'] . '/' . $item['Entity']['slug'];
                                         ?>
-                                        <td><a href="<?php echo $url; ?>"><img src="<?php echo $img_src; ?>" /></a></td>
+                                        <td valign="middle" align="center"><a href="<?php echo $url; ?>"><img src="<?php echo $img_src; ?>" /></a></td>
                                     <?php endforeach; ?>
                                 </tr>
                            	</table>

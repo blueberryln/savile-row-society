@@ -3119,7 +3119,6 @@ li.last
     background-color: #ffffff;
     padding: 5px;
     line-height: 25px;
-    text-indent: 5px;
 }
 .add-to-cart{
     margin-top: 20px;
@@ -3136,7 +3135,6 @@ table.cart-checkout select
     color: #444444;
     padding: 8px 5px;
     width:100%;
-    text-indent: 5px;
     line-height: 25px;
 }
 .cart-checkout tbody td.product-thumb
@@ -3352,6 +3350,7 @@ a.color-single
 {
     color:#AF9A59;
     font-size: 13px;
+    text-transform: uppercase;
 }
 
 .content .form input[type="text"], .content .form input[type="email"], .content .form input[type="password"], .content .form input[type="tel"], .content .form textarea{
@@ -3369,7 +3368,6 @@ a.color-single
     color: #444444;
     padding: 8px 5px;
     width:100%;
-    text-indent: 5px;
     line-height: 25px; 
 }
 select#quantity

@@ -11,7 +11,7 @@
                             <br />
                             Hi <?php echo ucfirst($stylist_name); ?>,
                             <br/>
-                            <p style="text-align: justify;">We have assigned you as the stylist to <?php echo ucfirst($name); ?>. You can start chatting with the user from the style suggestion section.</p>
+                            <p style="text-align: justify;">We have assigned you to be <?php echo ucfirst($name); ?>'s personal stylist! Please send them a message to begin communicating and suggesting items!</p>
 
                         </td>
                     </tr>
