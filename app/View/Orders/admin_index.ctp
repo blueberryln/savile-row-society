@@ -47,7 +47,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     </td>
                     <td><?php echo h($order['Order']['total_price']); ?>&nbsp;</td>
                     <td><?php echo ($order['Order']['promo_code']) ? $order['Order']['promo_code'] : 'N/A';  ?></td>
-                    <td><?php echo ($order['User']['personal_shopper']) ? $order['User']['personal_shopper'] : ($order['User']['shopper_email']) ? $order['User']['personal_shopper'] : 'N/A'; ?>&nbsp;</td>
+                    <td><?php echo ($order['User']['personal_shopper']) ? $order['User']['personal_shopper'] : ($order['User']['shopper_email']) ? $order['User']['shopper_email'] : 'N/A'; ?>&nbsp;</td>
                     <td><?php echo $this->Time->format($order['Order']['created'], '%d-%m-%Y'); ?>&nbsp;</td>
                     <td class="actions">
                         <?php if($order['Order']['shipped'] == 1) : ?>
