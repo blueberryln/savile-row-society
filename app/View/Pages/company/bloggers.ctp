@@ -113,5 +113,15 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>
             </div>
         </div>
+        <div class="team-member">
+            <div class="three columns">
+                <img src="<?php echo $this->request->webroot; ?>img/Sarah-McCann.jpg" alt="Sarah McCann" class="fadein-image" />
+            </div>
+            <div class="ten columns">
+                <div class="name">Sarah McCann</div>
+                <div class="title">Blogger</div>
+                <p>Sarah McCann is a native New Yorker currently pursuing a BA in Fashion Design at the Savannah College of Art and Design. At the adorably awkward age of twelve, she realized that fashion industry was the only place for her. Growing up she was always interested in styling as she sees great importance in fit and style. Her jobs at Bloomingdales and Carolina Herrera led to her firm belief in the theory that when you look good, you feel good. She plans to spend her career spreading this idea as well as it's importance. It was in the fall semester of her junior year that Sarah discovered her love of fashion writing and began writing weekly "what to wear" articles for CollegeFashionista.com. She plans to pursue such writing in the future. Sarah is thrilled to be a part of SRS as it is a great opportunity to combine her loves of styling, writing and menswear as well learn more of the business side to fashion.</p>
+            </div>
+        </div>
     </div>
 </div>
