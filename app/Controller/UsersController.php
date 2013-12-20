@@ -600,9 +600,6 @@ class UsersController extends AppController {
 
                 if ($results) {
                     
-                    // Show share popup on registration
-                    $this->Session->write('registerSharePopup', true);
-                    
                     // set "user" session
                     $this->Session->write('user', $results);
 

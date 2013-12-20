@@ -145,8 +145,9 @@
              */
             $(".headerMenu").each(function(index, el) {
                 var href = $(el).attr("href");
-                $(el).attr("href", "#");
-                $(el).click(function() {
+                //$(el).attr("href", "#");
+                $(el).click(function(e) {
+                    e.preventDefault();
                     var isLogedIn = "<?php echo $is_logged ?>";
                     if (isLogedIn == "") {
                         isLogedIn = false;
@@ -296,7 +297,6 @@
                     overrideEmail();
                     addReferrerToSignUp();
                 });
-                clearInterval(popUpInterval);
             }
 
             function addReferrerToSignUp(){

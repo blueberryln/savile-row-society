@@ -32,8 +32,7 @@ $this->layout = 'ajax'
                 <input type="submit" class="link-btn black-btn signup-btn" value="SIGN UP" /> 
                 
             </form> 
+            <p style="text-align:justify; margin-top: 5px;">Sometimes our knocks go unheard - Make sure that you're up to date on everything Savile Row Society by checking your Promotions tab in Gmail!</p>
         </div> 
     </div>
 </div>
-
-

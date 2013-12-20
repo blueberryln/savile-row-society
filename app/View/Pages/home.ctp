@@ -1,19 +1,4 @@
 <?php
-$homePopUp = '';
-if(isset($registerSharePopup)){
-    $homePopUp = '
-        $.blockUI({message: $("#register-share-box"),css:{top: $(window).height()/2 - $("#register-share-box").height()/2, backgroundColor: "transparent"}});
-        $(".blockOverlay").click($.unblockUI);
-    ';
-}
-else{
-    $homePopUp = '
-    var websiteInfo=getCookie("websiteInfo");
-    if (websiteInfo==null || websiteInfo==""){
-        $.blockUI({message: $("#websiteinfo-box"),css:{top: $(window).height()/2 - $("#websiteinfo-box").height()/2}});
-        $(".blockOverlay").click($.unblockUI);
-    }';
-}
 
 $script ='
    var player; 
@@ -86,20 +71,6 @@ $script ='
     }
     
     $(document).ready(function(){
-        ' . $homePopUp . '
-        
-        /**
-         * Hide Closet Popup when user opts out.
-         */
-        $("#hide-home-popup").on("change", function(e){
-            e.preventDefault();
-            if($(this).is(":checked")){
-                setCookie("websiteInfo",1,60);     
-            }
-            else{
-                deleteCookie("websiteInfo");     
-            }  
-        });
         
         $("#closetCuffLink").hover(
             function(){
@@ -193,7 +164,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="fourteen columns offset-by-one">
             <?php
                 echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-                echo '<p class="show-login-form">Sometimes our knocks go unheard - Make sure that you\'re up to date on everything Savile Row Society by checking your Promotions tab in Gmail!</p>';
+                echo '<p class="show-login-form">Don\'t be shy! Help us, help you by filling our your Style Profile. We want to get to know you so that we can cater to all of your wardrobe needs.</p>';
     
             ?>
         </div>
@@ -245,7 +216,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 }
                 ?>     
             <li>
-                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0?version=3" frameborder="0" allowfullscreen></iframe>
+                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>
             </li>    
             
         </ul>
@@ -421,35 +392,4 @@ $this->Html->script('cookie.js', array('inline' => false));
     </table>
     <div class="clear"></div>
 </div>
-</div>
-
-<div id="websiteinfo-box" class="box-modal notification-box hide">
-    <div class="box-modal-inside">
-        <a class="notification-close info-popup-close" href=""></a>
-        <div class="popup-info-text">
-            <p><strong>The Closet</strong>: Browse our curated collection of products, purchase or like and dislike items to help our stylists get to know you better. We've organized your closet. Each box represents an essential piece of your wardrobe. To learn more about the brands and to appreciate them as we do, check out <a href="<?php echo $this->webroot; ?>company/brands">Our Brands</a> page and what the <a href="http://blog.savilerowsociety.com/testimonials-of-our-favorite-brands/">Press</a> is saying.</p>
-            <p><strong>SRS Lookbooks</strong> are a product of the creativity of our favorite photographer, Greg Buyalos and of our premier stylists. Our winter photo shoots were styled by Joey Glazer. Like what you see? Built in convenience allows you to click and buy straight from the image!</p>
-            <p><strong>My Tailor</strong>: Your access to SRS Custom Wear. Make an appointment to get measured for a suit, jacket or shirt. SRS Custom Wear</p>
-            <p><strong>My Stylist</strong>: Fill out a style profile and get assigned your very own personal stylist. Chat with your stylist via text or image and get personalized style suggestions.</p>
-        </div>  
-        <div class="popup-info-sign text-center">
-            <img src="<?php echo $this->webroot; ?>img/lisa_signature.png" />
-        </div> 
-        <div class="popup-info-text text-left">
-            <p>
-                <input type="checkbox" id="hide-home-popup" />&nbsp; Got it! Please don't show me this again
-            </p>
-        </div>    
-    </div>
-</div>
-
-<div id="register-share-box" class="box-modal notification-box hide">
-    <div class="box-modal-inside">
-        <a class="notification-close big-popup-close" href=""></a>
-        <div class="welcome-block popup-info-text">
-            <span>Welcome to Savile Row Society!</span>
-        </div>
-        <p class="popup-info-text">Savile Row Society has created an exclusive men's lifestyle shopping destination on a virtual platform. SRS developed an innovative client profile merchandise matching technology while recruiting reputable industry fit &amp; styling experts. Our virtual platform is the most efficient and convenient way to shop.</p>
-        <p><a href="" class="register-popup-share-link"><img src="<?php echo $this->webroot; ?>img/fb-share-big.png" height="42" /></a></p>
-    </div>
 </div>

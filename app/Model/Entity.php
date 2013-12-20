@@ -482,7 +482,7 @@ class Entity extends AppModel {
             'conditions' => array(
                 'Entity.show' => true, 
                 'Entity.id !=' => $product_id, 
-                'Entity.is_featured' => true,
+                //'Entity.is_featured' => true,
             ),
             'joins' => array(
                 array('table' => 'products_categories',

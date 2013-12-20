@@ -230,4 +230,62 @@ class LifestylesController extends AppController{
         $this->Session->setFlash(__('Lifestyle product could not be deleted'), 'flash');
         $this->redirect(array('action' => 'index'));   
     }
+    
+    public function resize($file, $w, $h, $crop=FALSE) {
+        $this->autolayout = false;
+        $this->autoRender = false;
+        $file = APP . DS . 'webroot' . DS . 'files' . DS . 'lifestyles' . DS . $file;
+        list($width, $height) = getimagesize($file);
+        $r = $width / $height;
+        if ($crop) {
+            if ($width > $height) {
+                $width = ceil($width-($width*abs($r-$w/$h)));
+            } else {
+                $height = ceil($height-($height*abs($r-$w/$h)));
+            }
+            $newwidth = $w;
+            $newheight = $h;
+        } else {
+            if ($w/$h > $r) {
+                $newwidth = $h*$r;
+                $newheight = $h;
+            } else {
+                $newheight = $w/$r;
+                $newwidth = $w;
+            }
+        }
+        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        if($ext == "gif"){
+            $src = imagecreatefromgif($file);
+        }
+        else if($ext == "png"){
+            $src = imagecreatefrompng($file);
+        }
+        else{
+            $src = imagecreatefromjpeg($file);
+        }
+        $dst = imagecreatetruecolor($newwidth, $newheight);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+        
+        if($ext == "png"){
+            header('Content-Type: image/png');
+            // Output the image
+            
+            imagepng($dst);    
+        }
+        else if($ext == "gif"){
+            header('Content-Type: image/gif');
+            // Output the image
+            
+            imagegif($dst); 
+        }
+        else{
+            header('Content-Type: image/jpeg');
+            // Output the image
+            
+            imagejpeg($dst);    
+        }
+        imagedestroy($dst);
+        exit;
+    }
 }

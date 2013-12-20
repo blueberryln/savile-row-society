@@ -9,7 +9,7 @@
                     <tr>
                         <td valign="top">
                         	<br />
-                            Hi <?php echo ucwords($client['User']['full_name']); ?>,
+                            Hi <?php echo ucfirst($client['User']['first_name']); ?>,
                             <br /><br />
                             Your personal stylist just designed a new outfit for you. Click the picture to view details.
                             <br /><br />

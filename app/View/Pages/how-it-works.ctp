@@ -6,7 +6,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <div class="sixteen columns flexslider loader" style="height: 438px;">
         <ul class="slides">
             <li>
-                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0?version=3" frameborder="0" allowfullscreen></iframe>
+                <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>
             </li>    
             
         </ul>

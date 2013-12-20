@@ -353,9 +353,9 @@ class OutfitsController extends AppController {
         if($entities && $client){
             try{
                 $email = new CakeEmail('default');
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->from(array('admin@savilerowsociety.com' => 'SRS Team'));
                 $email->to($client['User']['email']);
-                $email->subject('Savile Row Society: New Outfit');
+                $email->subject('SRS Team: New Outfit');
                 $email->template('new_outfit');
                 $email->emailFormat('html');
                 $email->viewVars(compact('entities', 'client'));

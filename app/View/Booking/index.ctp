@@ -106,6 +106,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 
             <?php endif; ?>
             </div>
+            <p style="text-transform: uppercase; font-weight: bold; text-align: center;"><a href="http://blog.savilerowsociety.com/frequently-asked-questions-about-savile-row-society-suiting/" target="_blank">Tailor Advice on the blog</a></p>
         </div>
     </div>
     <div class="seven columns contact-subpage omega">
@@ -117,6 +118,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="contact-info">
                 <h4>Showroom:</h4>
                 <p>902 Broadway, 6th Floor, <br />New York, NY 10010</p>
+                <p>Book your appointment today or call us with any made to measure questions you may have - we'd love to help you out.</p>
                 <p class="phone">+1 347 878 7280</p>
             </div>
         </div>
@@ -134,11 +136,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="seven columns text-justify">
                 <h3><a id="profile">Meet Joey Glazer</a></h3>
                 <h4><em>MADE TO MEASURE DIRECTOR</em></h4>
-                <p>With 20 years in the industry, Joey Glazer has built a reputation in menswear from brand building and textile development in luxury clothing to dressing top executives. Joey is  drawn to the details of well-made clothing; his  passion is easily recognized.</p>                
+                <p>With 20 years in the industry, Joey Glazer, a former Vice President at Ermenegildo Zegna, has built a reputation in menswear from brand building and textile development, to dressing top executives. With 20 years in the industry, Joey Glazer, a former Vice President at Ermenegildo Zegna, has built a reputation in menswear from brand building and textile development, to dressing top executives.</p>                
                 <div class="long-desc hide">
-                    <p>Through this work, Joey discovered the true need for customized service in the men's fashion industry. Joining the Savile Row Society team is just one more way that is contributing to the style and wardrobes of men who demand perfection.</p>
-                    <p>When you schedule your first fitting with SRS, you will meet Joey for a one-on-one consultation and he will walk you through the our Made to Measure process, capture your measurements and get to know your garment preferences and lifestyle needs of your clothing.</p> 
-                    <p>Made to Measure has never been this simple.</p>
+                    <p>Through his work, Joey recognized the true need for customized service in the men's fashion industry, thus inspiring him to join the SRS team in order to further his passion for developing the wardrobes of men who demand perfection.</p>
+                    <p>You will experience this passion, first-hand, when you book your first fitting appointment and meet with Joey for a one-on-one consultation. Joey will walk you through the made to measure process, capture your measurement and input them into your Style Profile, bringing you from offline to online, and get to know your garment preferences and lifestyle needs.</p> 
+                    <p>Made to measure has never been this simple.</p>
                 </div><br />
                 <div class="text-center">
                     <a class="show-more-text" href="#" title="Show more">Show more</a>

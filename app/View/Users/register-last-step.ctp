@@ -33,7 +33,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="sixteen columns text-center">
         <div class="reg-step5"><img src="<?php echo $this->webroot; ?>img/reg-step5.png"/></div>
     </div>
-    <?php echo $this->Form->create('ProfileImage', array('url' => '/register/saveContact','type' => 'file')); ?>
+    <?php echo $this->Form->create('ProfileImage', array('url' => '/register/saveContact','type' => 'file', 'class' => 'form')); ?>
     <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
     <div class="sixteen columns text-center">        
         <div class="hi-message fourteen columns offset-by-one alpha omega">
@@ -68,13 +68,16 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <option value="Skype">Skype</option>
         </select>  
         
-        <h5>Who referred you to SRS?</h5>         
+        <h5>Who referred you to SRS?</h5>
+        <label style="display: none;">Name</label>         
         <?php
             echo $this->Form->input('personal_shopper', array('label' => false, 'name' => 'data[User][personal_shopper]','placeholder'=>'Name','class'=>'no-margin', 'maxlength' => 50, 'value' => $personal_shopper));
         ?> 
+        <label style="display: none;">Email Address</label> 
         <?php
             echo $this->Form->input('email_address', array('label' => false, 'name' => 'data[User][shopper_email]', 'placeholder'=> 'Email Address','class'=>'no-margin', 'maxlength' => 50, 'value' => $shopper_email));
         ?>
+        <label style="display: none;">Refer Medium</label> 
         <select name="data[User][refer_medium]" id="refer_medium">
             <option value="">Select Medium</option>            
             <option value="Event">Event</option>

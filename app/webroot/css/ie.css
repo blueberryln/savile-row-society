@@ -11,3 +11,6 @@ div.signin-content label, div.signup-content label{
     text-align: left;
     margin-left: 5px;    
 }
+#ProfileImageRegisterForm label{
+    display: block !important;
+}
