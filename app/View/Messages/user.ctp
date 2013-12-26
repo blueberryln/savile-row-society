@@ -322,27 +322,32 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
         $("#sendMessages").click(function(e) {
             e.preventDefault();
-            var message = $("#messageToSend").val();
-            var _data = {
-                body: message
-            }
-            $.ajax({
-                url: "<?php echo $this->webroot; ?>messages/send_message_to_stylist",
-                type: 'POST',
-                data: _data,
-                success: function(res) {
-                    $("#messageToSend").val("");
-                    res = jQuery.parseJSON(res);
-                    if(res['status'] == 'ok'){
-                        var html = showChatMsg(res);
-                        chatContainer.prepend(html);
-                    }
-                },
-                error: function(res) {
-                    // alert("error");
+            
+            if(!$("#messageToSend").hasClass("sending") && $("#messageToSend").val() != '') {
+                $("#messageToSend").addClass("sending");
+                var message = $("#messageToSend").val();
+                var _data = {
+                    body: message
                 }
-            }).done(function(res){
-            });
+                $.ajax({
+                    url: "<?php echo $this->webroot; ?>messages/send_message_to_stylist",
+                    type: 'POST',
+                    data: _data,
+                    success: function(res) {
+                        $("#messageToSend").val("");
+                        res = jQuery.parseJSON(res);
+                        if(res['status'] == 'ok'){
+                            var html = showChatMsg(res);
+                            chatContainer.prepend(html);
+                        }
+                    },
+                    error: function(res) {
+                        // alert("error");
+                    }
+                }).done(function(res){
+                    $("#messageToSend").removeClass("sending");
+                });
+            }
         })
         
         $(".my-profile").click(function(){

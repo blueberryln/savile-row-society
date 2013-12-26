@@ -546,7 +546,6 @@ class UsersController extends AppController {
 
     function shortRegistration() {
         $user = $this->request->data;
-        $this->Session->write('completeProfile', true);
         $refer_url = $user['User']['refer_url'];
         if($refer_url != 'http://blog.savilerowsociety.com' && $refer_url != ''){
             $refer_url = "/" . $refer_url;   
@@ -557,10 +556,6 @@ class UsersController extends AppController {
         if ($this->User->validates()) {
             $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
             if($registered){
-                if($this->Session->check('completeProfile')){
-                    $this->Session->delete('completeProfile');    
-                }
-                
                 $this->Session->setFlash(__('You are already registered. Please sign in.'), 'flash');
                 $this->redirect($this->referer());
                 exit;    
@@ -576,7 +571,7 @@ class UsersController extends AppController {
             $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
 
             if ($this->User->save($user)) {
-
+                $this->Session->write('completeProfile', true);
                 // send welcome mail
                 /* uncoment this to deploy code */
                 try{

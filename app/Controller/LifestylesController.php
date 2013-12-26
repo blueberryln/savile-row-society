@@ -1,17 +1,40 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Lifestyles Controller
  */
  
 class LifestylesController extends AppController{
+    public $components = array('Paginator');
+    public $helpers = array('Paginator');
+    
     public function beforeRender() {
         parent::beforeRender();
     }
     
-    public function index($id = null, $slug = null){
+    public function index(){
+        $user_id = $this->getLoggedUserID();
+        $Category = ClassRegistry::init('Category');
+        $Brand = ClassRegistry::init('Brand');
+        $Colorgroup = ClassRegistry::init('Colorgroup');
+        
+        // get data
+        $categories = $Category->getAll();
+        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+        $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
+        
+        $this->set(compact('categories', 'brands', 'colors'));
+          
+        $this->Lifestyle->recursive = 0;
+        $this->Paginator->settings = array('limit' => 12);
+        $lifestyles = $this->Paginator->paginate($this->Lifestyle);
+        $this->set(compact('lifestyles'));
+    }
+    
+    public function detail($id = null, $slug = null){
         if($id == null || $slug == null){
             throw new NotFoundException;    
         }
@@ -26,13 +49,13 @@ class LifestylesController extends AppController{
         
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
-        $Color = ClassRegistry::init('Color');
+        $Colorgroup = ClassRegistry::init('Colorgroup');
         $User = ClassRegistry::init('User');
 
         // get data
         $categories = $Category->getAll();
         $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
-        $colors = $Color->find('all', array('order' => "Color.name ASC"));
+        $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
         
         $entity_list = $this->Lifestyle->LifestyleItem->getLifestyleProducts($id);
         
@@ -45,6 +68,7 @@ class LifestylesController extends AppController{
         }
         
         $this->set(compact('categories', 'brands', 'colors', 'lifestyle', 'entities'));
+        $this->render('detail');
     }
     
     public function admin_index(){

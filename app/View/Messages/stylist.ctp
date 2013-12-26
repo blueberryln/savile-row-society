@@ -509,8 +509,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         
         $("#sendMessages").click(function(e) {
             e.preventDefault();
-            var message = $("#messageToSend").val();
-            if(userId > 0){
+            if(!$("#messageToSend").hasClass("sending") && $("#messageToSend").val() != '') {
+                $("#messageToSend").addClass("sending");
+                var message = $("#messageToSend").val();
                 var _data = {
                     body: message,
                     user_to_id: userId
@@ -530,6 +531,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     error: function(res) {
                               
                     }
+                }).done(function(res){
+                    $("#messageToSend").removeClass("sending");
                 });
             }
         });
@@ -572,41 +575,6 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }    
             });
         });
-        
-        // New clients logic changed
-        /*function loadNewClients(){
-            var clientBox = $(".new-clients");
-            var clientString = clientArray.join(',');
-            $.ajax({
-               url: '<?php echo $this->webroot; ?>api/getNewClients',
-               type: 'POST',
-               data: {
-                'clientString': clientString, 
-               },
-               success: function(data){
-                    var ret = $.parseJSON(data);
-                    if(ret['status'] == 'ok'){
-                        for(i=0; i<ret['clients'].length; i++){
-                            html =  '<div class="client-row">' + 
-                                        '<a href="<?php echo $this->webroot; ?>messages/index/' + ret['clients'][i]['User']['id'] + '">' + ret['clients'][i]['User']['first_name'] + '</a> has been assigned to you.' + 
-                                    '</div>';   
-                                    
-                            clientBox.prepend(html); 
-                            clientArray.push(ret['clients'][i]['User']['id']);
-                        }    
-                    }
-               } 
-            });
-        }
-        
-        if(!isAdmin){
-            setInterval(
-                function(){
-                        loadNewClients();
-                },
-                15000
-            );
-        }*/
     }
     
 

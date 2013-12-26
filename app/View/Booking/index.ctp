@@ -136,7 +136,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="seven columns text-justify">
                 <h3><a id="profile">Meet Joey Glazer</a></h3>
                 <h4><em>MADE TO MEASURE DIRECTOR</em></h4>
-                <p>With 20 years in the industry, Joey Glazer, a former Vice President at Ermenegildo Zegna, has built a reputation in menswear from brand building and textile development, to dressing top executives. With 20 years in the industry, Joey Glazer, a former Vice President at Ermenegildo Zegna, has built a reputation in menswear from brand building and textile development, to dressing top executives.</p>                
+                <p>With 20 years in the industry, Joey Glazer, a former Vice President at Ermenegildo Zegna, has built a reputation in menswear from brand building and textile development, to dressing top executives.</p>                
                 <div class="long-desc hide">
                     <p>Through his work, Joey recognized the true need for customized service in the men's fashion industry, thus inspiring him to join the SRS team in order to further his passion for developing the wardrobes of men who demand perfection.</p>
                     <p>You will experience this passion, first-hand, when you book your first fitting appointment and meet with Joey for a one-on-one consultation. Joey will walk you through the made to measure process, capture your measurement and input them into your Style Profile, bringing you from offline to online, and get to know your garment preferences and lifestyle needs.</p> 

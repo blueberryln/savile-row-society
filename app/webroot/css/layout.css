@@ -1629,7 +1629,6 @@ body{
 }
 .timeline .message-body{
     padding-top: 10px;
-    word-break: break-all;
     word-wrap: break-word;
 }
 .timeline .message-image{
@@ -3444,6 +3443,10 @@ div.finalizing .submit input
     text-align:center;
     font-family: 'Droid Serif', serif;
     text-transform: none;
+}
+div.finalizing .submit .link-btn
+{
+    font-family: 'Droid Serif', serif;
 }
 
 .payment .sub

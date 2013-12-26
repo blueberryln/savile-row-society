@@ -182,12 +182,6 @@ $(document).ready(function(){
         }
     });
     
-    
-    $(".lookbook-cat").on("click", function(e){
-        e.preventDefault();
-        $(".fancybox").eq(0).trigger("click");
-    });
-    
     /**
      * Hide Closet Popup when user opts out.
      */
@@ -351,7 +345,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <?php endif; ?>
                             
                             <?php if($category['Category']['slug'] == "lookbooks") : ?>
-                                <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
+                                <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                             <?php else : ?>
                                 <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                             <?php endif; ?>
@@ -452,11 +446,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             				</div>
                             			</div>
                                         <div class="mosaic-backdrop">
-                                            <img src="<?php echo $this->webroot. "lifestyles/resize/" . $random_lifestyle['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
+                                            <img src="<?php echo $this->webroot. "lookbooks/resize/" . $random_lifestyle['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
                                         </div>
                                     </div>
                                     <div class="product-list-links">
-                                            <a href="<?php echo $this->request->webroot . 'lifestyles/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
+                                            <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
                                     </div>
                                 </div>
                             </div>    
@@ -474,7 +468,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <?php if($lifestyles && count($lifestyles) > 0) : ?>
                 <?php foreach($lifestyles as $style) : ?>
                     <a class="fancybox" data-fancybox-group="lifestyles" title="<?php echo $style['Lifestyle']['caption']; ?>" href="#lifestyle<?php echo $style['Lifestyle']['id']; ?>"></a>
-                    <div class="hide"><div class="fancybox-data-box" id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>" class="btn-buy-look link-btn gold-btn">Get The Look</a></div></div>
+                    <div class="hide"><div class="fancybox-data-box" id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lookbooks/detail/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a><a href="<?php echo $this->webroot . 'lookbooks/detail/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>" class="btn-buy-look link-btn gold-btn">Get The Look</a></div></div>
                 <?php endforeach; ?>
             <?php endif; ?> 
             

@@ -102,18 +102,7 @@ function highLightCategory(prod_id, parent_id){
 $(document).ready(function(){
     if(checkCount == 1){
         signUp();
-    }
-
-    $(".fancybox").fancybox({ 
-        helpers: {
-            title : {
-                type : "over"
-            },
-            overlay : {
-                speedOut : 1000
-            },
-        },
-    }); 
+    } 
     
     $(".fade").mosaic();
     $(".accordian-menu").find(".toggle-body").not(":first").addClass("hide");
@@ -123,11 +112,6 @@ $(document).ready(function(){
                         .closest("ul").closest("li").addClass("active-link-parent");
         ;    
     }
-    
-    $(".lookbook-cat").on("click", function(e){
-        e.preventDefault();
-        $(".fancybox").eq(0).trigger("click");
-    });
 
     if(filter == "color"){
         $(".color-filter").removeClass("hide").addClass("selected");    
@@ -153,32 +137,6 @@ $(document).ready(function(){
             });    
         }
     );
-    
-    //$("div.product-block").mouseover(function(){
-//        var prod_id = $(this).find("input.category-id").val();
-//        var parent_prod_id = $(this).find("input.parent-category-id").val();
-//        var flag = false;        
-//        $("ul.product-categories li a").each(function(){
-//            if($(this).data("category_id")==prod_id)
-//            {
-//                $(this).addClass("hover-link");
-//                flag = true;          
-//            }
-//        });
-//        
-//        if(!flag && prod_id != parent_prod_id){
-//            $("ul.product-categories li a").each(function(){
-//                if($(this).data("category_id")==parent_prod_id)
-//                {
-//                    $(this).addClass("hover-link");
-//                    flag = true;          
-//                }
-//            });    
-//        }
-//    });
-//    $("div.product-block").mouseout(function(){
-//        $("ul.product-categories li a").removeClass("hover-link");
-//    });
     
     $(".toggle-tab").on("click", function(e){
         if(!$(this).find(".toggle-body").is(":visible")){
@@ -309,9 +267,7 @@ $(document).ready(function(){
 
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
-$this->Html->script("jquery.fancybox.js", array('inline' => false));
 $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
-echo $this->Html->css("jquery.fancybox.css");
 
 $meta_description = 'Show your support and desire to be an SRS member by sporting one of our iPhones/iPad cases!';
 $this->Html->meta('description', $meta_description, array('inline' => false));
@@ -333,7 +289,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
                             <?php endif; ?>
                                 <?php if($category['Category']['slug'] == "lookbooks") : ?>
-                                    <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>" data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
+                                    <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>" data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                                 <?php else : ?>
                                     <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                                 <?php endif; ?>
@@ -448,11 +404,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php elseif(strtolower($category_slug) == "lookbooks") : ?>
-                <div class="closet-sorry" style="margin-top: 0px;">
-                    <img src="<?php echo $this->webroot;?>img/lookbooks.jpg" alt="Lookbooks coming soon" />
-                    <h4 class="text-center" style="margin-top: 10px;">COMING SOON!</h4>            
-                </div>
             <?php else : ?>
             <div class="product-top-offset"></div>
             <div class="closet-sorry">
@@ -470,20 +421,21 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
                     ?>
                 </div>
+            <?php elseif($entities && ($this->Paginator->hasNext() || $this->Paginator->hasPrev())) : ?>
+                <div class="clear"></div>
+                <div class="pagination">
+                    <?php
+                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                    ?>
+                </div>
             <?php endif; ?>
         </div>
         
     </div>
     <div class="clearfix"></div>
     <div class="fourteen columns details-margin row">
-        <div class="lifestyle-images">
-            <?php if($lifestyles && count($lifestyles) > 0) : ?>
-                <?php foreach($lifestyles as $style) : ?>
-                    <a class="fancybox" data-fancybox-group="lifestyles" title="<?php echo $style['Lifestyle']['caption']; ?>" href="#lifestyle<?php echo $style['Lifestyle']['id']; ?>"></a>
-                    <div class="hide"><div class="fancybox-data-box" id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a><a href="<?php echo $this->webroot . 'lifestyles/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>" class="btn-buy-look link-btn gold-btn">Get The Look</a></div></div>
-                <?php endforeach; ?>
-            <?php endif; ?> 
-            
-        </div>
+        
     </div>
 </div>
