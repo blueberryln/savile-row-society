@@ -125,7 +125,7 @@ class ConnectController extends AppController {
 
                     // redirect to home
                     //$this->Session->setFlash(__('Your account is created with your LinkedIn data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
-                    $this->redirect('/');
+                    $this->redirect('/profile/about');
                     exit();
                 } else {
                     $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
@@ -146,7 +146,22 @@ class ConnectController extends AppController {
                 if ($User->save($account)) {
                     // set "user" session
                     $this->Session->write('user', $account);
-
+                    
+                    //Set complete style profile popup if style profile not complete
+                    if (!$results['User']['preferences']) {
+                        $this->Session->write('completeProfile', true);       
+                    }
+                    else {
+                        $preferences = unserialize($results['User']['preferences']);
+                        if(!isset($preferences['UserPreference']['is_complete'])){
+                            $this->Session->write('completeProfile', true);     
+                        }
+                        else if(!$preferences['UserPreference']['is_complete']) {
+                            $this->Session->write('completeProfile', true);     
+                        }
+                    }
+                    
+                    
                     // redirect to home
                     //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
                     $this->redirect('/');
@@ -243,7 +258,8 @@ class ConnectController extends AppController {
 
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
-                        $this->redirect('/');
+                        //$this->redirect('/');
+                        $this->redirect('/profile/about');
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
@@ -261,10 +277,25 @@ class ConnectController extends AppController {
                     if ($User->save($account)) {
                         // set "user" session
                         $this->Session->write('user', $account);
+                        
+                        //Set complete style profile popup if style profile not complete
+                        if (!$results['User']['preferences']) {
+                            $this->Session->write('completeProfile', true);       
+                        }
+                        else {
+                            $preferences = unserialize($results['User']['preferences']);
+                            if(!isset($preferences['UserPreference']['is_complete'])){
+                                $this->Session->write('completeProfile', true);     
+                            }
+                            else if(!$preferences['UserPreference']['is_complete']) {
+                                $this->Session->write('completeProfile', true);     
+                            }
+                        }
+                        
 
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
-                        $this->redirect('/');
+                        $this->redirect('/profile/about');
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');

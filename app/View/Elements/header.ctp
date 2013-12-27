@@ -126,8 +126,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php else : ?>
                     <li>  <a href="<?php echo $this->request->webroot; ?>profile/about">My Stylist</a>
                         <ul class="submenu">
-                            <li><a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking">My Tailor</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu" data-ref="profile/about">Complete Style Profile</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking">My Tailor</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>

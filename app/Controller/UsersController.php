@@ -571,7 +571,7 @@ class UsersController extends AppController {
             $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
 
             if ($this->User->save($user)) {
-                $this->Session->write('completeProfile', true);
+                //$this->Session->write('completeProfile', true);
                 // send welcome mail
                 /* uncoment this to deploy code */
                 try{
@@ -600,11 +600,13 @@ class UsersController extends AppController {
 
                     // redirect to done
                     //$this->redirect('/register/done');
-                    if($refer_url){
-                        $this->redirect($refer_url);
-                        exit;
-                    }
-                    $this->redirect($this->referer());
+                    //if($refer_url){
+//                        $this->redirect($refer_url);
+//                        exit;
+//                    }
+//                    $this->redirect($this->referer());
+
+                    $this->redirect('/profile/about');
                     exit();
                 } else {
                     // redirect to home

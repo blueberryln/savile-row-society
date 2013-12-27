@@ -10,9 +10,9 @@ class ClosetController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
     
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS25', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG35', 'FULLTHROTTLE20', 'BLOGGER20', 'SUITES20', 'EQUITY20', 'TIDE25', 'BADWIN25', 'BOBBY25', 'NISH25', 'ROGER25', 'STUART25', 'ALBERT20');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS25' => 25, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'FULLTHROTTLE20' => 20, 'BLOGGER20' => 20, 'SUITES20' => 20, 'CYBER30' => 30, 'JOEYG35' => 35, 'EQUITY20' => 20, 'TIDE25' => 25, 'BADWIN25' => 25, 'BOBBY25' => 25, 'NISH25' => 25, 'ROGER25' => 25, 'STUART25' => 25, 'ALBERT20' => 20);
-    public $percentCodes = array('CYBER30', 'JOEYG35');
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS25', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG25', 'FULLTHROTTLE20', 'BLOGGER20', 'SUITES20', 'EQUITY20', 'TIDE25', 'BADWIN25', 'BOBBY25', 'NISH25', 'ROGER25', 'STUART25', 'ALBERT20');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS25' => 25, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'FULLTHROTTLE20' => 20, 'BLOGGER20' => 20, 'SUITES20' => 20, 'CYBER30' => 30, 'JOEYG25' => 25, 'EQUITY20' => 20, 'TIDE25' => 25, 'BADWIN25' => 25, 'BOBBY25' => 25, 'NISH25' => 25, 'ROGER25' => 25, 'STUART25' => 25, 'ALBERT20' => 20);
+    public $percentCodes = array('CYBER30', 'JOEYG25');
     /**
      * Index
      */
@@ -1461,20 +1461,5 @@ class ClosetController extends AppController {
         
         $this->set(compact('purchased_list', 'sizes', 'user_id'));
         
-    }
-    public function temp2(){
-        
-        $user_id = $this->getLoggedUserID();
-        // init
-        $Category = ClassRegistry::init('Category');
-        $Brand = ClassRegistry::init('Brand');
-        $Color = ClassRegistry::init('Color');
-        $User = ClassRegistry::init('User');
-
-        // get data
-        $categories = $Category->getAll();
-        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
-        $colors = $Color->find('all', array('order' => "Color.name ASC"));
-        $this->set(compact('categories', 'brands', 'colors'));
     }
 }

@@ -4,9 +4,10 @@ $script ='
    var player; 
    $(".flexslider").flexslider({
 	            animation: "fade",
-                animationSpeed: 300,
+                animationSpeed: 300,  
                 animationLoop: false,
-	            slideshow: false,
+	            slideshow: true,          
+                slideshowSpeed: 4000, 
                 video: true,
                 useCSS: false,
                 pauseOnAction: false,
@@ -242,12 +243,6 @@ $this->Html->script('cookie.js', array('inline' => false));
         <area shape="rect" alt="" title="" coords="100,291,215,376" href="<?php echo $this->request->webroot; ?>booking" id="tailorCuffLink" />
         <area shape="poly" alt="" title="" coords="528,315,531,396,645,393,642,308" href="<?php echo $this->request->webroot; ?>stylist" id="stylistCuffLink" />
     </map>
-
-    <div class="sixteen columns social-bar">
-
-        <div class="eigth columns home-side"><b>Let us </b> define your style & refine your image</div>
-        <span class="launch-info">Launching Fall 2013</span>
-    </div>
     
     <div class="six columns text-center">
         <img src="<?php echo $this->request->webroot; ?>img/Exclusive1.png" style="height: 200px; margin-top: 35px;" />
