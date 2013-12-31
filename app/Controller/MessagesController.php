@@ -431,8 +431,6 @@ class MessagesController extends AppController {
             else{
                 // load data for user
                 $my_conversation = $this->Message->getUnreadMessages($user_id);
-                echo json_encode($my_conversation);
-                exit;
                 foreach($my_conversation as &$row){
                     if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                         $outfit_id = $row['Message']['outfit_id'];
