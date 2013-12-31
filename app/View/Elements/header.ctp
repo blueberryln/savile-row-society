@@ -105,10 +105,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
         </div>
 
-        <div class="sixteen columns text-center header-logo" style="height: 65px;">
-
-            <!--            <div class="banner"></div> -->
+        <div class="sixteen columns text-center header-logo" style="height: 89px;">
             <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span>
         </div>
         <div class="sixteen columns alpha omega menu">
             <ul>

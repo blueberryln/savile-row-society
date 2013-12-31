@@ -113,13 +113,19 @@ body{
     position: fixed;
     top: 0px;
     z-index: 11;
-    height: 124px;
+    height: 135px;
+}
+.tagline{
+    display: block;
+    font-size: 14px;
+    color: #3D59AB;
+    font-weight: bold;
+    visibility: hidden;
 }
 .header .menu {
     background-color: #8f7948;
     width: 100% !important;
     padding: 0 !important;
-    margin-top: 13px;
 }
 .header .menu ul {
     margin: 0 auto;
@@ -851,7 +857,7 @@ body{
 ================================================== */
 .content {
     background-color: #FFFFFF;
-    margin-top:124px;
+    margin-top:135px;
 }
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
     font-weight: 700;

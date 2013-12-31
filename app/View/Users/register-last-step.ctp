@@ -89,7 +89,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         
             <div class="text-center about-submit">                   
                 <div class="submit">
-                    <input type="submit" value="UPLOAD" id="contact-info-submit" />
+                    <input type="submit" value="SUBMIT" id="contact-info-submit" />
                     <a class="link-btn black-btn back-btn1" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a>
                     <p class="error-msg">Please provide either referrer name or email.</p>  
                 </div>                        

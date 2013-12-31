@@ -1442,7 +1442,7 @@
 			}
 
 			// Create a close button
-			if (current.closeBtn) {
+			if (current.closeBtn && !$(".fancybox-close").length) {
 			    var Foverlay = F.wrap.closest(".fancybox-overlay"); 
 				$(current.tpl.closeBtn).appendTo(Foverlay).bind('click.fb', function(e) {
 					e.preventDefault();
@@ -1450,15 +1450,16 @@
 					F.close();
 				});
 			}
-
+            
 			// Create navigation arrows
-			if (current.arrows && F.group.length > 1) {
+			if (current.arrows && F.group.length > 1 && !$(".fancybox-prev").length && !$(".fancybox-next").length) {
+                var Foverlay = F.wrap.closest(".fancybox-overlay");
 				if (current.loop || current.index > 0) {
-					$(current.tpl.prev).appendTo(F.outer).bind('click.fb', F.prev);
+					$(current.tpl.prev).appendTo(Foverlay).bind('click.fb', F.prev);
 				}
 
 				if (current.loop || current.index < F.group.length - 1) {
-					$(current.tpl.next).appendTo(F.outer).bind('click.fb', F.next);
+					$(current.tpl.next).appendTo(Foverlay).bind('click.fb', F.next);
 				}
 			}
 

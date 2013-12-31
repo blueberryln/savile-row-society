@@ -165,7 +165,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="fourteen columns offset-by-one">
             <?php
                 echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-                echo '<p class="show-login-form">Don\'t be shy! Help us, help you by filling our your Style Profile. We want to get to know you so that we can cater to all of your wardrobe needs.</p>';
+                echo '<p class="show-login-form">Don\'t be shy! Help us, help you by filling out your Style Profile. We want to get to know you so that we can cater to all of your wardrobe needs.</p>';
     
             ?>
         </div>
