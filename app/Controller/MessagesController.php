@@ -473,6 +473,7 @@ class MessagesController extends AppController {
         else{
             $result = array();
             $result['status'] = 'error';
+            $result['status1'] = 'login';
         }
         $this->set('data', $result);
         $this->render('/Elements/SerializeJson/');    
