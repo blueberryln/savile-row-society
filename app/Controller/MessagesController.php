@@ -401,8 +401,8 @@ class MessagesController extends AppController {
      */
     public function getNewMessages($with_user_id = null){
         $result = array();
-        if ($this->getLoggedUser()){
-            $user_id = $this->getLoggedUserID();
+        $user_id = $this->getLoggedUserID();
+        if ($user_id){
             if($with_user_id){
                 // if with user id is not null load data for stylist
                 $User = ClassRegistry::init('User');
@@ -467,7 +467,7 @@ class MessagesController extends AppController {
                 $result['status'] = 'ok';
             }
             else{
-                $result['status'] = 'error111';    
+                $result['status'] = 'error';    
             }
         }
         else{
