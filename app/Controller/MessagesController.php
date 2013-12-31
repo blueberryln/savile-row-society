@@ -400,8 +400,6 @@ class MessagesController extends AppController {
      * Get new messages
      */
     public function getNewMessages($with_user_id = null){
-        echo "test";
-        exit;
         $result = array();
         $user_id = $this->getLoggedUserID();
         if ($user_id){
@@ -475,7 +473,6 @@ class MessagesController extends AppController {
         else{
             $result = array();
             $result['status'] = 'error';
-            $result['status1'] = 'login';
         }
         $this->set('data', $result);
         $this->render('/Elements/SerializeJson/');    
