@@ -467,7 +467,7 @@ class MessagesController extends AppController {
                 $result['status'] = 'ok';
             }
             else{
-                $result['status'] = 'error';    
+                $result['status'] = 'error111';    
             }
         }
         else{
