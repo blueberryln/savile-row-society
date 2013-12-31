@@ -175,6 +175,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             $.ajax({
                 url: "<?php echo $this->webroot; ?>messages/getMyConversation",
                 cache: false,
+                type: 'POST',
                 success: function(res) {
                     res = jQuery.parseJSON(res);
                     if (isFirstLoad && res['status'] == 'ok') {
@@ -205,6 +206,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             $.ajax({
                 url: "<?php echo $this->webroot; ?>messages/getNewMessages",
                 cache: false,
+                type: 'POST',
                 success: function(res) {
                     res = jQuery.parseJSON(res);
                     if (res['status']=='ok') {
