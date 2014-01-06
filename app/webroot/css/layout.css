@@ -2775,6 +2775,22 @@ body{
     text-align: center;
     background: url('../img/loading.gif') no-repeat center center;
 }
+.lookbooks-block{
+    border: 2px solid #B19861 !important;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.highlight-lookbook{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 34px;
+    height: 34px;
+    background: url('../img/culflink_lookbook.png') no-repeat center;
+    z-index: 6;
+}
 .product-listing .product-list-image img{
     vertical-align: middle;
     max-width: 158px;
@@ -3046,17 +3062,17 @@ li.last
     width: 36px;
 }
 .product-thumbs .thumbs-up{
-    background: url('../img/detail_thumbs_up_off.png') no-repeat 0 0;
+    background: url('../img/thumbs_big.png') no-repeat 0 0;
 }
 .product-thumbs .thumbs-up.liked{
-    background: url('../img/detail_thumbs_up_on.png') no-repeat 0 0;
+    background: url('../img/thumbs_big.png') no-repeat 0 100%;
 }
 .product-thumbs .thumbs-down{
     margin-right: 19px;
-    background: url('../img/detail_thumbs_down_off.png') no-repeat 0 0;
+    background: url('../img/thumbs_big.png') no-repeat 100% 0;
 }
 .product-thumbs .thumbs-down.disliked{
-    background: url('../img/detail_thumbs_down_on.png') no-repeat 0 0;
+    background: url('../img/thumbs_big.png') no-repeat 100% 100%;
 }
 .product-share{
     float:left;
@@ -3077,18 +3093,18 @@ li.last
     position: absolute;
     margin-left: 5px;
 }
-#lnk-fb-share{
-    background: url('../img/fb_off.png') no-repeat center;    
+#lnk-fb-share{  
+    background: url('../img/share_icons.png') no-repeat 0 0;   
 }
 #lnk-fb-share:hover{
-    background: url('../img/fb_on.png') no-repeat center;    
+    background: url('../img/share_icons.png') no-repeat 0 100%;    
 }
 #lnk-email{
     margin-left: 45px;
-    background: url('../img/email_off.png') no-repeat center;    
+    background: url('../img/share_icons.png') no-repeat 100% 0;    
 }
 #lnk-email:hover{
-    background: url('../img/email_on.png') no-repeat center;    
+    background: url('../img/share_icons.png') no-repeat 100% 100%;     
 }
 
 .product-description button

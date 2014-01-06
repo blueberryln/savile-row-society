@@ -439,7 +439,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <?php if($random_lifestyle) : ?>
                             <div class="three columns alpha row">
                                 <div class="product-block"> 
-                                    <div class="product-list-image mosaic-block fade">
+                                    <div class="product-list-image lookbooks-block mosaic-block fade">
+                                        <span class="highlight-lookbook"></span>
                                         <div class="mosaic-overlay lifestyle-overlay">
                             				<div class="mini-product-details">
                         					   <span class="product-name">Lookbooks</span>
@@ -450,7 +451,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         </div>
                                     </div>
                                     <div class="product-list-links">
-                                            <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
+                                    <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
                                     </div>
                                 </div>
                             </div>    

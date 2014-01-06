@@ -6,6 +6,7 @@
 
             <!--            <div class="banner"></div> -->
             <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <span class="tagline" style="visibility: visible">Meet Your Personal Stylist Now!</span>
         </div>
         <div class="sixteen columns alpha omega menu">
             <ul>
@@ -21,6 +22,8 @@
                     <ul class="submenu">
                         <li><a href="<?php echo $this->request->webroot; ?>admin/products/add">Add New Product</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>admin/lifestyles">LifeStyles</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/products/export">Export</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/products/googlecsv">Google Shopping Export</a></li>
                     </ul>
                 </li>
                 <li>

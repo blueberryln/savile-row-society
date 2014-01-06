@@ -565,4 +565,45 @@ class Entity extends AppModel {
              
         ));
     }
+    
+    
+    /**
+     * Google product shoping data
+     */
+    function getGoogleProductShopping(){
+        $sql = "
+        SELECT p.id, p.name AS title, p.description, CONCAT('http://www.savilerowsociety.com/product/',p.id,'/',p.slug) AS link, 
+        CONCAT('http://www.savilerowsociety.com/files/products/', pimg.name) AS `image link`,
+        'new' AS `condition`,
+        CASE
+        	WHEN pc.category_id IN (18,19,21,22,24,25,27,39,45,47,48,49,56,57,62,63,75,76,77,78,79,80,82,84,86,89) THEN 'Apparel & Accessories > Clothing'
+        	WHEN pc.category_id IN (23) THEN 'Apparel & Accessories > Shoes'
+        	WHEN pc.category_id IN (85) THEN 'Apparel & Accessories > Clothing Accessories > Socks'
+        	WHEN pc.category_id IN (26,54,58,71,73) THEN 'Apparel & Accessories > Handbags, Wallets & Cases > Handbags'
+        	WHEN pc.category_id IN (83,87,88) THEN 'Apparel & Accessories > Jewelry > Watches'
+        	WHEN pc.category_id IN (90,91,92,93,94) THEN 'Apparel & Accessories > Jewelry > Miscellaneous'
+        END AS category,  
+        'in stock' AS availability, CONCAT(p.price, ' USD') AS `price`, 
+        b.name, 'male' AS gender, 'adult' AS age_group, 
+        GROUP_CONCAT(DISTINCT(c.name) SEPARATOR '/') AS color, GROUP_CONCAT(DISTINCT(s.name) SEPARATOR '-') AS size,
+        pr.id AS item_group_id 
+        FROM products_entities p
+        INNER JOIN products pr ON p.product_id = pr.id
+        INNER JOIN brands b ON b.id = pr.brand_id
+        INNER JOIN products_categories AS pc ON pr.id = pc.product_id
+        LEFT JOIN (
+        	SELECT pim.name, pim.product_entity_id, MIN(pim.id) AS pid
+        	FROM products_images AS pim
+        	GROUP BY pim.product_entity_id
+        ) AS pimg ON pimg.product_entity_id = p.id
+        LEFT JOIN colors_entities AS ce ON ce.product_entity_id = p.id
+        LEFT JOIN colors c ON c.id = ce.color_id
+        LEFT JOIN products_details AS pd ON p.id = pd.product_entity_id
+        LEFT JOIN sizes s ON pd.size_id = s.id
+        WHERE pimg.name IS NOT NULL AND p.price > 0 
+        GROUP BY p.id";
+                
+        $result = $this->query($sql);
+        return $result;    
+    }
 }

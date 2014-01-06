@@ -80,7 +80,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>
                 <?php if(!$is_admin) : ?>
                 <?php
-                echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client'));
+                echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client', 'style' => 'max-width: 68%;'));
                 ?> 
                 <?php endif; ?>  
                 

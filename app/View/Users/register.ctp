@@ -21,7 +21,6 @@ $this->layout = 'ajax'
                     echo $this->Form->input('last_name', array('id' => 'last-name', 'label' => 'Last Name:', 'placeholder' => 'LAST NAME'));
                     echo $this->Form->input('email', array('id' => 'register-email', 'label' => 'Email:', 'placeholder' => 'EMAIL'));
                     echo $this->Form->input('password', array('id' => 'register-password', 'label' => 'Password:', 'placeholder' => 'PASSWORD'));
-                    echo $this->Form->input('refer_url', array('type' => 'hidden', 'id' => 'referUrl'));
                 ?>                  
                 
                 <div class="text-left signup-options">                                       

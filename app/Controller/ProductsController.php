@@ -471,45 +471,6 @@ class ProductsController extends AppController {
             }
         }
     }
-     
-    /*public function admin_edit($id = null) {
-        if (!$this->Product->exists($id)) {
-            throw new NotFoundException(__('Invalid product'));
-        }
-        if ($this->request->is('post') || $this->request->is('put')) {
-            $this->request->data['Product']['slug'] = strtolower(Inflector::slug($this->request->data['Product']['slug'], '-'));
-            if ($this->Product->save($this->request->data)) {
-                $this->Session->setFlash(__('The product has been saved'), 'modal', array('class' => 'success', 'title' => 'Success!'));
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The product could not be saved. Please, try again'), 'modal', array('class' => 'error', 'title' => 'Houston we have a problem!'));
-            }
-        } else {
-            $this->Product->recursive = 1;
-            $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
-            $this->request->data = $this->Product->find('first', $options);
-        }
-
-        // get data
-        $userTypes = $this->Product->UserType->find('list');
-        $categories = $this->Product->Category->find('list');
-        $brands = $this->Product->Brand->find('list');
-        $attached = $this->Product->Attached->getByProductID($id);
-        $properties = $this->Product->Property->getByProductID($id);
-
-        $images_list = array();
-        if ($attached) {
-            foreach ($attached as $file) {
-                if (isset($file['Attachment']) && $file['Color']) {
-                    $images_list = array_merge($images_list, array($file['Attachment']['name'] => $file['Color'][0]['name']));
-                }
-            }
-        } else {
-            $images_list = array('' => 'None');
-        }
-
-        $this->set(compact('userTypes', 'categories', 'brands', 'attached', 'properties', 'images_list', 'id'));
-    }*/
     
     public function add_image($request_image, $entity_id){
         $Image = ClassRegistry::init('Image');
@@ -807,6 +768,71 @@ class ProductsController extends AppController {
         }
         imagedestroy($dst);
         exit;
+    }
+    
+    /**
+     * Export to Excel
+     */
+    function admin_export() {
+
+        $this->autoRender = false;
+        $this->autoLayout = 'xls';
+        $this->isAdmin();
+        
+        $Size = ClassRegistry::init('Size');
+        $Category = ClassRegistry::init('Category');
+        
+        $sizes = $Size->find('list');
+        $categories = $Category->find('list');
+        
+        $find_array = array(
+            'contain' => array('Color', 'Detail'),
+            'conditions' => array( 
+            ),
+            'joins' => array(
+                array('table' => 'products_categories',
+                    'alias' => 'Category',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Category.product_id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+            ),
+            'order' => array('Entity.id' => 'ASC'),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*', 'Category.category_id'
+            ),
+        );
+        $products = $this->Product->Entity->find('all', $find_array);
+        $this->set(compact('products', 'sizes', 'categories'));
+        
+        $this->set('filename', 'SRS_Products_' . date('m.d.Y-H.i'));
+        $this->render('admin_export', 'xls');
+    }
+    
+    function admin_googlecsv(){
+        $products = $this->Product->Entity->getGoogleProductShopping();
+        $this->autoRender = false;
+        $this->autoLayout = 'xls';
+        $this->isAdmin();
+
+        $this->set(compact('products'));
+        $this->set('filename', 'SRS_Google_Products_' . date('m.d.Y-H.i'));
+        $this->render('admin_googlecsv', 'xls');
     }
 
 }

@@ -546,12 +546,6 @@ class UsersController extends AppController {
 
     function shortRegistration() {
         $user = $this->request->data;
-        $refer_url = $user['User']['refer_url'];
-        if($refer_url != 'http://blog.savilerowsociety.com' && $refer_url != ''){
-            $refer_url = "/" . $refer_url;   
-        }
-        
-        unset($user['User']['refer_url']);
         
         if ($this->User->validates()) {
             $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
@@ -1060,8 +1054,8 @@ class UsersController extends AppController {
         $this->isAdmin();
 
         $users = $this->User->getAll();
-
-        $this->set(compact('users'));
+        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
+        $this->set(compact('users', 'stylists'));
         $this->set('filename', 'SRS_Users_' . date('m.d.Y-H.i'));
         $this->render('admin_export', 'xls');
     }
