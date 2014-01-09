@@ -167,7 +167,7 @@ function getLikedItems(lastPurchasedItem){
 
 function getClosetProducts(){
     var categoryId = $(".product-categories li a.filter-selected").closest("li").data("category_id");
-    console.log(categoryId);
+    //console.log(categoryId);
     if(categoryId == undefined){
         categoryId = "all";
     }
@@ -183,8 +183,8 @@ function getClosetProducts(){
     var strBrand = arrBrand.join("-");
     var strColor = arrColor.join("-");
     
-    console.log(strBrand);
-    console.log(strColor);
+    //console.log(strBrand);
+    //console.log(strColor);
     inAjaxTransaction = true;
     $(".load-more-closet").hide();
     $(".closet-load-icon").show();
