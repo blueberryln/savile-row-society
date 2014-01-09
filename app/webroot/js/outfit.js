@@ -109,6 +109,7 @@ function addClosetItems(items){
 function getPurchasedItems(){
     $.ajax({
         url: webroot + "outfits/getPurchasedItems/" + lastPurchasedItem,
+        cache: false,
         type: 'POST',
         data: {
             'client_id': client_id
@@ -138,6 +139,7 @@ function getPurchasedItems(){
 function getLikedItems(lastPurchasedItem){
     $.ajax({
         url: webroot + "outfits/getLikedItems/" + lastLikedItem,
+        cache: false,
         type: 'POST',
         data: {
             'client_id': client_id
