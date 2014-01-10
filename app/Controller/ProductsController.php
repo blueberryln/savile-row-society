@@ -8,6 +8,8 @@ App::uses('AppController', 'Controller');
  * @property Product $Product
  */
 class ProductsController extends AppController {
+    public $components = array('Paginator');
+    public $helpers = array('Paginator');
     
     public function beforeRender() {
         parent::beforeRender();
@@ -136,6 +138,47 @@ class ProductsController extends AppController {
 
         $this->set(compact('categories', 'brands', 'seasons', 'entities', 'id', 'category_list', 'parent_id', 'super_parent_id', 'selected_category_id'));
     }
+    
+    /**
+     * admin_search method: search entities filters(product id, product code, product name)
+     *
+     * @param $product_id ID of the product entity
+     * @param   $product_code internal product code used by SRS team
+     * @param   $product_name product name to match
+     */
+    public function admin_search($product_id = null, $product_code = null, $product_name = null) {
+        //Check if atleast one input has a value
+        if((is_null($product_id) || $product_id == '') && (is_null($product_code) || $product_code == '') && (is_null($product_name) || $product_name == '')) {
+            $products = null;
+        }
+        else {
+            $find_array = array(
+                'limit' => 20,
+                'conditions' => array('OR' => array()),    
+            );
+
+            if((!is_null($product_id) && $product_id != '')){
+                $find_array['conditions']['OR']['id'] = $product_id; 
+            }
+
+            if((!is_null($product_code) && $product_code != '')){
+                $find_array['conditions']['OR']['productcode'] = $product_code; 
+            }
+
+            if((!is_null($product_name) && $product_name != '')){
+                $find_array['conditions']['OR']['LOWER(name) LIKE'] = '%' . strtolower($product_name) . '%'; 
+            }
+
+            $this->Paginator->settings = $find_array;
+            $products = $this->Paginator->paginate($this->Product->Entity);
+
+        }
+        $product_id = is_null($product_id) || $product_id == 'null' ? '' : $product_id;
+        $product_code = is_null($product_code) || $product_code == 'null'  ? '' : $product_code;
+        $product_name = is_null($product_name) || $product_name == 'null'  ? '' : $product_name;
+        $this->set(compact('products', 'product_id', 'product_code', 'product_name'));
+    }
+    
     
     /**
      * admin_properties method
