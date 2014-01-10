@@ -43,7 +43,6 @@ $(document).ready(function(){
         var brandImage = $(this).find("img");
         var brandName = brandImage.data("name");
         var brandDesc = brandsInfo[brandName]["desc"];
-        console.log(brandDesc);
         var brandTitle = brandsInfo[brandName]["title"];
         var brandID = brandsInfo[brandName]["id"];
         imgSrc = brandImage.attr("src");
@@ -67,54 +66,55 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $meta_description = 'Savile Row Society partners with brands that have a strong foundation built with passion and have the integrity to produce quality products that our members can feel good about supporting and sporting.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-
-<div class="container content inner">
-    <div class="sixteen columns text-center">
-        <h1>Branding partners</h1>
+<div class="content-container">
+    <div class="eleven columns container content inner">
+        <div class="ten columns text-center page-heading">
+            <h1>Branding partners</h1>
+        </div>
+        
+        <div class="twelve columns page-content text-center">
+                <ul id="branding-partners">
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Bernard_zins.jpg" class="fadein-image" alt="Bernard Zins" data-name="bernard" /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/7diamonds.png" class="fadein-image" alt="7 Diamonds" data-name="7diamonds"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/agave.jpg" class="fadein-image" alt="AGAVE" data-name="agave"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/CafeBleu.png" class="fadein-image" alt="CafeBleu" data-name="cafebleu"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/castaway.jpg" class="fadein-image" alt="Castaway" data-name="castaway"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/edward.png" class="fadein-image" alt="Edward Amrah" data-name="edwardamrah"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/mclip.gif" class="fadein-image" alt="M-Clip" data-name="mclip"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/MooreandGiles.jpg" class="fadein-image" alt="MooreandGiles" data-name="mooregiles"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/paulevans.png" class="fadein-image" alt="Paul & Evans" data-name="paulevans"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/petiti.png" class="fadein-image" alt="Margo Petite" data-name="margopetite"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/saxx-underwear.png" class="fadein-image" alt="SAXX-Underwear" data-name="saxx"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/smathersAndBransonLogo.png" class="fadein-image" alt="Smathers And Branson" data-name="smathers"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/vknagrani.png" class="fadein-image" alt="VK Nagrani" data-name="nagrani"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" data-name="dw"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" data-name="lacoste"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/austen-heller.png" class="fadein-image" alt="Austen Heller" data-name="austen-heller"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/louis-walton.png" class="fadein-image" alt="Louis Walton" data-name="louis-walton"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/tompkins.png" class="fadein-image" alt="Clay Tompkins" data-name="clay-tompkins"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/soxfords.png" class="fadein-image" alt="Soxfords" data-name="soxfords"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Blue-Claw.png" class="fadein-image" alt="Blue Claw" data-name="blue-claw"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Piacenza.gif" class="fadein-image" alt="Piacenza" data-name="piacenza"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Ermenegildo-Zegna.png" class="fadein-image" alt="Ermenegildo Zegna" data-name="ermenegildo-zegna"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Santa-Maria-Novella.gif" class="fadein-image" alt="Santa Maria Novella" data-name="santa-maria-novella"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Rapp.png" class="fadein-image" alt="RAPP Black" data-name="rapp-black"  /></li>
+                      
+                </ul>
+        </div>
     </div>
-    
-    <div class="fourteen columns alpha omega offset-by-two">
-            <ul id="branding-partners">
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Bernard_zins.jpg" class="fadein-image" alt="Bernard Zins" data-name="bernard" /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/7diamonds.png" class="fadein-image" alt="7 Diamonds" data-name="7diamonds"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/agave.jpg" class="fadein-image" alt="AGAVE" data-name="agave"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/CafeBleu.png" class="fadein-image" alt="CafeBleu" data-name="cafebleu"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/castaway.jpg" class="fadein-image" alt="Castaway" data-name="castaway"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/edward.png" class="fadein-image" alt="Edward Amrah" data-name="edwardamrah"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/mclip.gif" class="fadein-image" alt="M-Clip" data-name="mclip"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/MooreandGiles.jpg" class="fadein-image" alt="MooreandGiles" data-name="mooregiles"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/paulevans.png" class="fadein-image" alt="Paul & Evans" data-name="paulevans"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/petiti.png" class="fadein-image" alt="Margo Petite" data-name="margopetite"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/saxx-underwear.png" class="fadein-image" alt="SAXX-Underwear" data-name="saxx"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/smathersAndBransonLogo.png" class="fadein-image" alt="Smathers And Branson" data-name="smathers"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/vknagrani.png" class="fadein-image" alt="VK Nagrani" data-name="nagrani"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" data-name="dw"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" data-name="lacoste"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/austen-heller.png" class="fadein-image" alt="Austen Heller" data-name="austen-heller"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/louis-walton.png" class="fadein-image" alt="Louis Walton" data-name="louis-walton"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/tompkins.png" class="fadein-image" alt="Clay Tompkins" data-name="clay-tompkins"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/soxfords.png" class="fadein-image" alt="Soxfords" data-name="soxfords"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Blue-Claw.png" class="fadein-image" alt="Blue Claw" data-name="blue-claw"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Piacenza.gif" class="fadein-image" alt="Piacenza" data-name="piacenza"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Ermenegildo-Zegna.png" class="fadein-image" alt="Ermenegildo Zegna" data-name="ermenegildo-zegna"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Santa-Maria-Novella.gif" class="fadein-image" alt="Santa Maria Novella" data-name="santa-maria-novella"  /></li>
-                <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Rapp.png" class="fadein-image" alt="RAPP Black" data-name="rapp-black"  /></li>
-                  
-            </ul>
-    </div>
-</div>
-<div id="brandinfo-box" class="box-modal notification-box hide">
-    <div class="box-modal-inside">
-        <a class="notification-close" href=""></a>
-        <div class="brand-info">
-            <div class="brand-logo"><img src="" class="fadein-image" alt="" /></div>  
-            <div class="notification-msg">
-                <p class="brand-title"></p>
-                <p class="brand-desc">
-                </p>  
-            </div>
-            <a href="" class="link-btn black-btn brand-btn">see products</a> 
-             
-        </div> 
+    <div id="brandinfo-box" class="box-modal notification-box hide">
+        <div class="box-modal-inside">
+            <a class="notification-close" href=""></a>
+            <div class="brand-info">
+                <div class="brand-logo"><img src="" class="fadein-image" alt="" /></div>  
+                <div class="notification-msg">
+                    <p class="brand-title"></p>
+                    <p class="brand-desc">
+                    </p>  
+                </div>
+                <a href="" class="link-btn black-btn brand-btn">see products</a> 
+                 
+            </div> 
+        </div>
     </div>
 </div>

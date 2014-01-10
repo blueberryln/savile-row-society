@@ -2,11 +2,12 @@
 $meta_description = 'As people today are rarely defined by a single company or career track, clothes have become an absolute reflection of one’s values, personality, attitude, and lifestyle.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-<div class="container content inner">	
-    <div class="sixteen columns text-center">
+<div class="content-container">
+    <div class="container content inner">   
+    <div class="ten columns text-center page-heading">
         <h1>About Us</h1>
     </div>
-    <div class="fourteen offset-by-one columns">
+    <div class="eleven columns page-content">
         <p>
             Savile Row Society is an exclusive <strong>Men’s</strong> club, designed to enhance the personal 
             branding of professional men and transform their shopping <strong>experience</strong> through 
@@ -57,4 +58,5 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
 
     </div>
+</div>
 </div>

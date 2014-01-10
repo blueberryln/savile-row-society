@@ -38,44 +38,46 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $meta_description = 'Contact us and we can help with any and all fashion obligations. Have a last minute invite to a gala and the suit you had laid out is not ready from the dry cleaners?';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-<div class="container content inner">	
-    <div class="sixteen columns text-center">
-        <h1>Contact Us</h1>
-    </div>
-    <div class="contact-container">
-        <div class="contact-form columns six offset-by-one">
-            <div class="form">
-                <?php echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'index'))); ?>
-                <?php
-                echo $this->Form->hidden('contact_type_id', array('value' => 1));
-                if(isset($user)){
-                    echo $this->Form->input('first_name', array('value' => $user['User']['first_name'], 'label' => 'First Name*', 'required' => false, 'data-required' => 'required'));
-                    echo $this->Form->input('last_name', array('value' => $user['User']['last_name'], 'label' => 'Last Name*', 'required' => false, 'data-required' => 'required'));
-                    echo $this->Form->input('email', array('type' => 'text', 'value' => $user['User']['email'], 'label' => 'Email*', 'required' => false, 'data-required' => 'required'));
-                    echo $this->Form->input('phone', array('value' => $user['User']['phone'], 'required' => false));
-                }
-                else{
-                    echo $this->Form->input('first_name', array('label' => 'First Name*', 'required' => false, 'data-required' => 'required'));
-                    echo $this->Form->input('last_name', array('label' => 'Last Name*', 'required' => false, 'data-required' => 'required'));
-                    echo $this->Form->input('email', array('type' => 'text', 'label' => 'Email*', 'required' => false, 'data-required' => 'required'));
-                    echo $this->Form->input('phone');
-                }
-                echo $this->Form->input('message', array('label' => 'Message*', 'required' => false, 'data-required' => 'required'));
-                ?>
-                <?php echo $this->Form->end(array('class' => 'full-width', 'id' => 'Contact-Us', 'value' => 'SUBMIT')); ?>
-                <span class="err-message">Please complete the required fields.</span>
-            </div>  
+<div class="content-container">
+    <div class="container content inner">	
+        <div class="ten columns text-center page-heading">
+            <h1>Contact Us</h1>
         </div>
-        <div class="contact-map-info columns seven offset-by-one">
-            <div class="contact-map no-margin">
-                <iframe width="370" height="200" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0"></iframe>
+        <div class="contact-container ten columns page-content">
+            <div class="contact-form five columns page-content left">
+                <div class="form">
+                    <?php echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'index'))); ?>
+                    <?php
+                    echo $this->Form->hidden('contact_type_id', array('value' => 1));
+                    if(isset($user)){
+                        echo $this->Form->input('first_name', array('value' => $user['User']['first_name'], 'label' => 'First Name*', 'required' => false, 'data-required' => 'required'));
+                        echo $this->Form->input('last_name', array('value' => $user['User']['last_name'], 'label' => 'Last Name*', 'required' => false, 'data-required' => 'required'));
+                        echo $this->Form->input('email', array('type' => 'text', 'value' => $user['User']['email'], 'label' => 'Email*', 'required' => false, 'data-required' => 'required'));
+                        echo $this->Form->input('phone', array('value' => $user['User']['phone'], 'required' => false));
+                    }
+                    else{
+                        echo $this->Form->input('first_name', array('label' => 'First Name*', 'required' => false, 'data-required' => 'required'));
+                        echo $this->Form->input('last_name', array('label' => 'Last Name*', 'required' => false, 'data-required' => 'required'));
+                        echo $this->Form->input('email', array('type' => 'text', 'label' => 'Email*', 'required' => false, 'data-required' => 'required'));
+                        echo $this->Form->input('phone');
+                    }
+                    echo $this->Form->input('message', array('label' => 'Message*', 'required' => false, 'data-required' => 'required'));
+                    ?>
+                    <?php echo $this->Form->end(array('class' => 'full-width black-btn', 'id' => 'Contact-Us', 'value' => 'SUBMIT')); ?>
+                    <span class="err-message">Please complete the required fields.</span>
+                </div>  
             </div>
-            <div class="contact-info no-margin">
-                <h4>Showroom:</h4>
-                <p>902 Broadway, 6th Floor, <br />New York, NY 10010</p>
-                <p class="phone">+1 347 878 7280</p>
+            <div class="contact-map-info five columns page-content right">
+                <div class="contact-map no-margin">
+                    <iframe width="370" height="200" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0"></iframe>
+                </div>
+                <div class="contact-info no-margin">
+                    <h4>Showroom:</h4>
+                    <p>902 Broadway, 6th Floor, <br />New York, NY 10010</p>
+                    <p class="phone">+1 347 878 7280</p>
+                </div>
             </div>
+            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
     </div>
 </div>

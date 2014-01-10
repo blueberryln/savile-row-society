@@ -1,30 +1,20 @@
 <?php
-$script = '
-$(document).ready(function(){
-
-    var url = window.location.href;
-    if(url.indexOf("/closet") != -1){
-        $(".underline1").css("border-bottom","1px solid #ffffff");
-    }
-    else if(url.indexOf("/stylist") != -1){
-        $(".underline2").css("border-bottom","1px solid #ffffff");
-    }
-    else if(url.indexOf("/booking") != -1){
-        $(".underline3").css("border-bottom","1px solid #ffffff");
-    }
-    else if(url.indexOf("/messages") != -1){
-        $(".underline4").css("border-bottom","1px solid #ffffff");
-    }
-});
+$script='
+    jQuery(document).ready(function(){
+        jQuery("#menu-switcher").on("click", function(){            
+            var menu = jQuery(".header .menu");
+            jQuery(menu).slideToggle();  
+        });
+    });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 
+
 <div class="header">
-
-    <div class="container">
-
-        <div class="sixteen columns card-menu">
+    <div class="wrapper">
+        <!--Log In Menu-->
+        <div class="twelve columns card-menu">
             <ul>
                <!-- <?php
                 if (!$is_logged) {
@@ -102,16 +92,20 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 ?>
 
             </ul>
-
         </div>
+        <!--Log In Menu Ends-->
 
-        <div class="sixteen columns text-center header-logo" style="height: 89px;">
+        <!--Logo Section-->
+        <div class="twelve columns text-center header-logo">
             <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
-            <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span>
+            <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
         </div>
-        <div class="sixteen columns alpha omega menu">
-            <ul>
-                
+        <!--Logo Section Ends-->
+        
+        <span id="menu-switcher">&#8801;</span>
+        <!--Menu Section-->
+        <div class="twelve columns alpha omega menu text-center">            
+            <ul>                
                 <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
 
                 <?php if($is_logged && $has_stylist && !$is_stylist) : ?>
@@ -142,54 +136,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
             </ul>
         </div>
-        <div id="signup-box-wrapper">
-            <div id="signup-box" >
-                <div>
-                    <div style=" height: 60px;"><a href="#" id="closeSignUp"><i class="cancel" style="float:right;"></i></a></div>
-                </div>
-                <a class="signin-social" href="<?php echo $this->request->webroot; ?>connect/linkedin">Try us on with LinkedIn <img src="<?php echo $this->request->webroot; ?>img/linkedin-small-logo.png" /></a>
-                <a class="signin-social" href="<?php echo $this->request->webroot; ?>connect/facebook">Try us on with Facebook <img src="<?php echo $this->request->webroot; ?>img/facebook-small-logo.png" /></a>
+        <!--Menu Section Ends-->
+        
 
-                <div class="separator" ><span>OR</span></div>
-
-                <input type="text" class="signin-email" placeholder="YOUR EMAIL ADDRESS" id="enter-email"/>
-                <br/>
-                <a class="register" id="show-registration-popup" href="#">Enter</a>
-                <br/>                
-                <br/>
-                Already a Member? 
-
-                <a class="signin" id="show-signin-popup" href="#">Sign in</a>
-
-                <!--<a class="register" href="<?php echo $this->request->webroot; ?>register">Sign up</a> -->
-                <!-- <a class="register" id="show-registration-popup" href="#">Sign up</a> -->
-                <!--<a class="signin" id="signin-box" href="<?php echo $this->request->webroot; ?>signin">Sign in</a>-->
-                <!-- <a class="signin" id="show-signin-popup" href="#">Sign in</a> -->
-            </div>
-            
-            <div id="presignup-box" style="display: none;">
-                <div style="width:90%" class="container content">
-                    <h1>Welcome to Savile Row Society!</h1>
-                    <p class="sign-up-notice text-center">Thank you for visiting Savile Row Society. We are hard at work getting ready for our October launch. In the meantime, sign up now and you will receive a $30 credit toward your first Savile Row Society purchase! <br />
-<strong>"Live a Tailored Life"</strong></p>
-                </div>
-                <br />
-                <form action="<?php echo $this->request->webroot; ?>newusers" method="post" id="presignup-box-form">
-                    <input type="text" class="signin-email" placeholder="YOUR EMAIL ADDRESS" id="enter-email" name="email" style="width: 88%;" />
-                    <br />
-                    <br />
-                    <a class="register" id="btn-presignup" href="#">Submit</a>
-                </form>
-                <br/>                
-                <br/>
-                <br />
-                <br />
-
-                <!--<a class="register" href="<?php echo $this->request->webroot; ?>register">Sign up</a> -->
-                <!-- <a class="register" id="show-registration-popup" href="#">Sign up</a> -->
-                <!--<a class="signin" id="signin-box" href="<?php echo $this->request->webroot; ?>signin">Sign in</a>-->
-                <!-- <a class="signin" id="show-signin-popup" href="#">Sign in</a> -->
-            </div>
-        </div>
-    </div>
+    </div>   
 </div>
+

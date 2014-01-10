@@ -34,6 +34,7 @@ class PagesController extends AppController {
      */
     
     public function display() {
+        $this->layout = 'new';
         $path = func_get_args();
 
         $count = count($path);
@@ -88,9 +89,7 @@ class PagesController extends AppController {
 //                $this->set(compact('registerSharePopup'));    
 //            } 
         }
-        if($page == "new"){
-            $this->layout = 'new';
-        }
+        
         /* To show holiday popup
         if($page == "home"){
             $start_date = strtotime("2013-11-30 00:00:00");
