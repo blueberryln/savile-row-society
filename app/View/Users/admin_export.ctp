@@ -32,7 +32,7 @@ $class = ' style="font-family:Arial;font-size:11px;border:1px solid #CCCCCC;colo
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['industry']) ? h($user['User']['industry']) : 'unavailable'; ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['location']) ? h($user['User']['location']) : 'unavailable'; ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['zip']) ? h($user['User']['zip']) : 'unavailable'; ?></td>
-            <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['zip']) ? h($user['User']['zip']) : 'N/A'; ?></td>
+            <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['zip']) ? 'Complete' : 'N/A'; ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['stylist_id'] && isset($stylists[$user['User']['stylist_id']])) ? h($stylists[$user['User']['stylist_id']]) : 'N/A'; ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['personal_shopper']) ? h($user['User']['personal_shopper']) : 'N/A'; ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['shopper_email']) ? h($user['User']['shopper_email']) : 'N/A'; ?></td>

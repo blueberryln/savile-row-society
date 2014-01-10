@@ -109,6 +109,7 @@ function addClosetItems(items){
 function getPurchasedItems(){
     $.ajax({
         url: webroot + "outfits/getPurchasedItems/" + lastPurchasedItem,
+        cache: false,
         type: 'POST',
         data: {
             'client_id': client_id
@@ -138,6 +139,7 @@ function getPurchasedItems(){
 function getLikedItems(lastPurchasedItem){
     $.ajax({
         url: webroot + "outfits/getLikedItems/" + lastLikedItem,
+        cache: false,
         type: 'POST',
         data: {
             'client_id': client_id
@@ -165,7 +167,7 @@ function getLikedItems(lastPurchasedItem){
 
 function getClosetProducts(){
     var categoryId = $(".product-categories li a.filter-selected").closest("li").data("category_id");
-    console.log(categoryId);
+    //console.log(categoryId);
     if(categoryId == undefined){
         categoryId = "all";
     }
@@ -181,8 +183,8 @@ function getClosetProducts(){
     var strBrand = arrBrand.join("-");
     var strColor = arrColor.join("-");
     
-    console.log(strBrand);
-    console.log(strColor);
+    //console.log(strBrand);
+    //console.log(strColor);
     inAjaxTransaction = true;
     $(".load-more-closet").hide();
     $(".closet-load-icon").show();

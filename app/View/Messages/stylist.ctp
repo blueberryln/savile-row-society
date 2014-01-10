@@ -351,6 +351,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             }
             $.ajax({
                 url: "<?php echo $this->webroot; ?>messages/getMyConversation/" + userId,
+                cache: false,
+                type: 'POST',
                 success: function(res) {
                     res = jQuery.parseJSON(res);
                     if (res['status']=='ok') {
@@ -381,6 +383,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             callInAction = true;
             $.ajax({
                 url: "<?php echo $this->webroot; ?>messages/getNewMessages/" + userId,
+                cache: false,
+                type: 'POST',
                 success: function(res) {
                     res = jQuery.parseJSON(res);
                     if (res['status']=='ok') {
@@ -518,6 +522,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
                 $.ajax({
                     url: "<?php echo $this->webroot; ?>messages/send_to_user",
+                    cache: false,
                     type: 'POST',
                     data: _data,
                     success: function(res) {
@@ -545,6 +550,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             $this.siblings('span').show();
             $.ajax({
                 url: '<?php echo $this->webroot; ?>messages/getOldMessages/' + userId,
+                cache: false,
                 type: 'POST',
                 data : {
                     'last_msg_id': firstMsgId,        
