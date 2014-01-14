@@ -1,4 +1,18 @@
+function fadeInImages(){
+    $(".fadein-image").each(function() {
+        if (this.complete) {
+            //$(this).animate({opacity : 1}, 300);
+            $(this).fadeTo(300, 1);
+        } else {
+            $(this).load(function() {
+                //$(this).animate({opacity : 1}, 300);
+                $(this).fadeTo(300,1);
+            });
+        }
+    }); 
+}
 jQuery(function(){
+    fadeInImages();
     $(".show-more-text").toggle(function() {
         $(this)
             .addClass('up')

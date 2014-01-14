@@ -26,6 +26,8 @@ class ClosetController extends AppController {
         else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
             $this->unForceSSL();  
         }
+
+        $this->layout = 'new';
     }
 
 

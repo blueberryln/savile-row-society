@@ -147,6 +147,22 @@
         <script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.flexslider-min.js" type="text/javascript"></script>        
         <script src="<?php echo $this->request->webroot; ?>js/block.ui.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            /*
+             * check if user is logged in
+             * return bolean
+             */
+            function isLoggedIn() {
+                var _isLoggedIn = "<?php echo $is_logged ?>";
+                if (_isLoggedIn == "") {
+                    _isLoggedIn = false;
+                }
+                else {
+                    _isLoggedIn = true;
+                }
+                return _isLoggedIn;
+            }
+        </script>
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
 
         
