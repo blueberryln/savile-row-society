@@ -84,6 +84,7 @@ class PagesController extends AppController {
         }
         
         if($page == "home"){
+            $this->layout = 'default';
             //if($registerSharePopup = $this->Session->read('registerSharePopup')){
 //                $this->Session->delete('registerSharePopup');
 //                $this->set(compact('registerSharePopup'));    

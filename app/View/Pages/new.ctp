@@ -53,6 +53,8 @@ $script = '
 					mouse_scrub				:	0
 					
 				});
+
+				jQuery("div.footer").addClass("h-f");
 		    });
 ';	    
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));

@@ -81,74 +81,75 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 window.registerProcess = true;
 
 </script>
-<div class="container content inner preferences register-style">	
-    <div class="sixteen columns text-center">
-        <h1>PROFILE</h1>
-    </div>	
-    <div class="fifteen columns offset-by-half register-steps">
-        <div class="profile-tabs text-center">
-                    <a class="link-btn gold-btn" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
-                    <a class="link-btn gray-btn" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
-        </div>
-    </div>
-    <div class="sixteen columns text-center">
-        <div class="reg-step2"><img src="<?php echo $this->webroot; ?>img/reg-step2.png"/></div>
-    </div>
-    <div class="sixteen columns ">
-        <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size')); ?>
-        <div class="hi-message fourteen columns offset-by-two alpha omega">
-            
-            <h4>Your stylist should focus on</h4>
-            <p>
-                To better understand your needs we'd like to know if your focus in 
-            </p>
-            <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
-        </div>
-        
-        <div class="twelve columns offset-by-two alpha omega text-center">
-            <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
-            <div id="your-style">
-                <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Business" id="1" />
-                <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Lifestyle" id="2" />
-                <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Complete Overhaul" id="3" />
-                <ol id="selectable">
-                    <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" class="fadein-image" /><br/>Business</li>
-                    <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" class="fadein-image" /><br/>Lifestyle</li>
-                    <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" class="fadein-image" /><br/>Complete Overhaul</li>
-                </ol>
+<div class="content-container">
+    <div class="container content inner preferences register-style">	
+        <div class="eight columns text-center page-heading">
+            <h1>PROFILE</h1>
+        </div>	
+        <div class="eight columns register-steps center-block">
+            <div class="profile-tabs text-center">
+                        <a class="link-btn gray-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                        <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
         </div>
-        <div class="hi-message fourteen columns offset-by-two alpha omega">
-            
-            <h4>Your suit wearing frequency</h4>
-            <p>
-                To better understand your needs we'd like to know your suit wearing frequency 
-            </p>
-            <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
+        <div class="sixteen columns text-center" id="reg-step">
+            <div class="reg-step2"><img src="<?php echo $this->webroot; ?>img/reg-step2.png"/></div>
         </div>
-        <div class="twelve columns offset-by-two alpha omega text-center">
-            <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
-            <div id="suite-frequency">
-                <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Every Day" id="4" />
-                <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Couple Times a Week" id="5" />
-                <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Never" id="6" />
-                <ol id="selectable">
-                    <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-1.png" class="fadein-image" /><br/>Every Day</li>
-                    <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-2.png" class="fadein-image" /><br/>Couple Times a Week</li>
-                    <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-3.jpg" class="fadein-image" /><br/>Never</li>
-                </ol>
+        <div class="nine columns center-block">
+            <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size')); ?>
+            <div class="hi-message twelve columns">
+                
+                <h4>Your stylist should focus on</h4>
+                <p>
+                    To better understand your needs we'd like to know if your focus in 
+                </p>
+                <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
             </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="text-center about-submit">
-                     <br/>
-                        <!--<?php echo $this->Form->end(__('Continue')); ?>-->
-                        <div class="submit">                            
-                            <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>profile/about">Back</a> 
-                            <input type="submit" value="Continue" />                                                       
-                        </div>                        
-                     <br/>
-                     </form>
+            
+            <div class="twelve columns">
+                <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
+                <div id="your-style">
+                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Business" id="1" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Lifestyle" id="2" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Complete Overhaul" id="3" />
+                    <ol id="selectable">
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" class="fadein-image" /><br/>Business</li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" class="fadein-image" /><br/>Lifestyle</li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" class="fadein-image" /><br/>Complete Overhaul</li>
+                    </ol>
+                </div>
+            </div><br/>
+            <div class="hi-message fourteen columns">
+                
+                <h4>Your suit wearing frequency</h4>
+                <p>
+                    To better understand your needs we'd like to know your suit wearing frequency 
+                </p>
+                <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
+            </div>
+            <div class="twelve columns">
+                <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
+                <div id="suite-frequency">
+                    <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Every Day" id="4" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Couple Times a Week" id="5" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Never" id="6" />
+                    <ol id="selectable">
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-1.png" class="fadein-image" /><br/>Every Day</li>
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-2.png" class="fadein-image" /><br/>Couple Times a Week</li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-3.jpg" class="fadein-image" /><br/>Never</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="text-center about-submit">
+                         <br/>
+                            <!--<?php echo $this->Form->end(__('Continue')); ?>-->
+                            <div class="submit">                            
+                                <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>profile/about">Back</a> 
+                                <input type="submit" value="Continue" />      
+                            </div>                 
+                         </form>
+            </div>
         </div>
     </div>
 </div>
