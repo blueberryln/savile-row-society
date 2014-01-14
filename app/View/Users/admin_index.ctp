@@ -16,6 +16,21 @@ $(document).ready(function(){
         }
     });
 
+    $(".btn-user-search").on("click", function(e){
+        e.preventDefault();
+        var userId = $( "#userId" ).val();
+        var userName = $( "#userName" ).val();
+        var userEmail = $("#userEmail").val();
+        if(userId == "" && userName == "" && userEmail == ""){
+            return false;
+        }
+        userId = (userId=="") ? "null" : userId;
+        userName = (userName=="") ? "null" : userName;
+        userEmail = (userEmail=="") ? "null" : userEmail;
+
+        window.location = "' . $this->webroot . 'admin/users/search/" + userId + "/" + userName + "/" + userEmail;
+    });
+
 });
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -23,6 +38,24 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 <div class="container content inner">		
     <div class="sixteen columns text-center">
         <h1><?php echo __('Users'); ?></h1>
+    </div>
+    <div class="sixteen columns text-center order-filter">
+        <ul class="ordered-items">
+            <li>
+                <label for="startDate">User id:</label>
+                <input name="user-id" id="userId" type="text" style="width: 150px;">
+            </li>
+            <li>
+                <label for="startDate">Name (First/Last name):</label>
+                <input name="user-name" id="userName" type="text" style="width: 150px;">
+            </li>
+            <li>
+                <label for="startDate">Email:</label>
+                <input name="usere-email" id="userEmail" type="text" style="width: 150px;">
+            </li>       
+        </ul>
+        <a href="" class="btn-user-search link-btn black-btn">Search</a>
+        <br><br>
     </div>
     <div class="sixteen columns">
         <div class="users index">

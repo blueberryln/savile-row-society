@@ -756,91 +756,45 @@ class UsersController extends AppController {
         $this->set(compact('title_for_layout'));
     }
 
-    public function bckFinish() {
-        /*
-          $this->Session->delete('user_registration_step5');
-
-          // title
-          $title_for_layout = 'Sign up';
-          $this->render('register-finish');
-          $this->Session->write('user_registration_step5', $this->request->data);
-
-          // get preferences from session
-          $user = $this->Session->read('user_registration_step1');
-          $step2 = $this->Session->read('user_registration_step2');
-          $step3 = $this->Session->read('user_registration_step3');
-          $step4 = $this->Session->read('user_registration_step4');
-          $step5 = $this->Session->read('user_registration_step5');
-
-          // merge all
-          $preferences = Hash::merge($user, $step2, $step3, $step4, $step5);
-          $user['User'] = $preferences['User'];
-          unset($preferences['User']);
-
-          // serialize for db
-          $preferences = serialize($preferences);
-
-          //debug($user);
-          //debug($preferences);
-          //debug(unserialize($preferences));
-          // REGISTER USER HERE!
-
-          $this->User->set($user);
-          if ($this->User->validates()) {
-
-          $this->User->create();
-
-          // hash password
-          if (!empty($user['User']['password'])) {
-          $user['User']['password'] = Security::hash($user['User']['password']);
-          }
-
-          // username (slug)
-          $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
-          $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
-
-          // store preferences
-          $user['User']['preferences'] = $preferences;
-
-          if ($this->User->save($user)) {
-
-          // send welcome mail
-          $email = new CakeEmail('default');
-          $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-          $email->to($user['User']['email']);
-          $email->subject('Welcome to Savile Row Society!');
-          $email->template('registration');
-          $email->emailFormat('html');
-          $email->viewVars(array('name' => $user['User']['first_name']));
-          $email->send();
-
-          //$this->Session->setFlash(__('Your account is created.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
-          // signin newly registered user
-          // check submitted email and password
-          $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
-
-          if ($results) {
-          // set "user" session
-          $this->Session->write('user', $results);
-
-          // redirect to done
-          //$this->redirect('/register/done');
-          $this->redirect('/stylist');
-          exit();
-          } else {
-          // redirect to home
-          $this->redirect('/signin');
-          exit();
-          }
-          } else {
-          $this->Session->setFlash(__('There was a problem. Please, try again.'), 'modal', array('class' => 'error', 'title' => 'Houston we have a problem!'));
-          $this->redirect('/register');
-          }
-          } else {
-          $this->Session->setFlash(__('Please, sign in.'), 'modal', array('class' => 'error', 'title' => 'You are already registered!'));
-          $this->redirect('/signin');
-          } */
+       
+    /**
+     * Return logged in user or..
+     * if come to reg pages from user administration then return user that was choosen
+     */
+    function getEditingUser($user_id = null){
+        $this->isLogged();
+        $logged_user = $this->getLoggedUser();
+        if($user_id || (isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id'])){
+            if(isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id']){
+                $user_id =  $this->request->data['User']['id'];    
+            }    
+            
+            $editing_user = $this->User->getByID($user_id);
+            
+            //Check if the logged user is admin or the stylist for the editing user; otherwise redirect to home
+            if($logged_user['User']['id'] == $user_id || $logged_user['User']['is_admin'] == 1 || ($logged_user['User']['is_stylist'] == 1 && $logged_user['User']['id'] == $editing_user['User']['stylist_id'])){
+                return $editing_user;
+            }
+            else{
+                $this->redirect('/');
+                exit();
+            }
+        }
+        else{
+            $user_id = $logged_user['User']['id'];
+            $editing_user = $this->User->getByID($user_id);
+            return $editing_user;
+        }
     }
+
+
+
+    /**
+     * Actions for the admin below.
+     * All user actions above this.
+     */
+
+
 
     /**
      * admin_index method
@@ -893,6 +847,7 @@ class UsersController extends AppController {
         $this->set('users', $this->Paginator->paginate());
     }
     
+
      /**
      * admin_assignstylist method
      *
@@ -997,6 +952,8 @@ class UsersController extends AppController {
         $this->set(compact('id', 'stylists'));
     }
 
+
+
     /**
      * admin_delete method
      *
@@ -1022,6 +979,8 @@ class UsersController extends AppController {
         $this->redirect(array('action' => 'index'));
     }
 
+
+
     /**
      * Export to Excel
      */
@@ -1037,35 +996,50 @@ class UsersController extends AppController {
         $this->set('filename', 'SRS_Users_' . date('m.d.Y-H.i'));
         $this->render('admin_export', 'xls');
     }
-    
+
+
     /**
-     * Return logged in user or..
-     * if come to reg pages from user administration then return user that was choosen
+     * admin_search method: search user filters(user id, name, email)
+     *
+     * @param $user_id ID of the user
+     * @param   $user_name name of the user; can be either first/ last name.
+     * @param   $email user email
      */
-    function getEditingUser($user_id = null){
-        $this->isLogged();
-        $logged_user = $this->getLoggedUser();
-        if($user_id || (isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id'])){
-            if(isset($this->request->data['User']) && $this->request->data['User'] && $this->request->data['User']['id']){
-                $user_id =  $this->request->data['User']['id'];    
-            }    
-            
-            $editing_user = $this->User->getByID($user_id);
-            
-            //Check if the logged user is admin or the stylist for the editing user; otherwise redirect to home
-            if($logged_user['User']['id'] == $user_id || $logged_user['User']['is_admin'] == 1 || ($logged_user['User']['is_stylist'] == 1 && $logged_user['User']['id'] == $editing_user['User']['stylist_id'])){
-                return $editing_user;
-            }
-            else{
-                $this->redirect('/');
-                exit();
-            }
+    public function admin_search($user_id = null, $user_name = null, $email = null) {
+        $this->layout = 'admin';
+        $this->isAdmin();
+
+        //Check if atleast one input has a value
+        if((is_null($user_id) || $user_id == '') && (is_null($user_name) || $user_name == '') && (is_null($email) || $email == '')) {
+            $products = null;
         }
-        else{
-            $user_id = $logged_user['User']['id'];
-            $editing_user = $this->User->getByID($user_id);
-            return $editing_user;
+        else {
+            $find_array = array(
+                'limit' => 20,
+                'conditions' => array('OR' => array()),    
+            );
+
+            if((!is_null($user_id) && $user_id != '')){
+                $find_array['conditions']['OR']['id'] = $user_id; 
+            }
+
+            if((!is_null($user_name) && $user_name != '')){
+                $find_array['conditions']['OR']['LOWER(first_name) LIKE'] = '%' . strtolower($user_name) . '%'; 
+                $find_array['conditions']['OR']['LOWER(last_name) LIKE'] = '%' . strtolower($user_name) . '%'; 
+            }
+
+            if((!is_null($email) && $email != '')){
+                $find_array['conditions']['OR']['LOWER(email)'] = strtolower($email); 
+            }
+
+            $this->Paginator->settings = $find_array;
+            $users = $this->Paginator->paginate($this->User);
+
         }
+        $user_id = is_null($user_id) || $user_id == 'null' ? '' : $user_id;
+        $user_name = is_null($user_name) || $user_name == 'null'  ? '' : $user_name;
+        $email = is_null($email) || $email == 'null'  ? '' : $email;
+        $this->set(compact('users', 'user_id', 'user_name', 'email'));
     }
 
 }

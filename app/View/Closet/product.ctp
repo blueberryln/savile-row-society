@@ -270,7 +270,7 @@ $columns = 'eleven';
                 <h5 class="price">Price: $ <?php echo $entity['Entity']['price']; ?></h5>
                 <?php endif; ?>
                 <h5 class="product-details">Product Details :</h5>
-                <p class="description"><?php echo $entity['Entity']['description']; ?></p>
+                <p class="description"><?php echo nl2br($entity['Entity']['description']); ?></p>
             </div>
             <?php if($similar) : ?>
                 <label class="product-color-label">Color</label>

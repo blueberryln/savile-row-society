@@ -1,6 +1,46 @@
+<?php
+$script = '
+    $(function() {
+        $(".btn-product-search").on("click", function(e){
+            e.preventDefault();
+            var productId = $( "#productId" ).val();
+            var productCode = $( "#productCode" ).val();
+            var productName = $("#productName").val();
+            if(productId == "" && productCode == "" && productName == ""){
+                return false;
+            }
+            productId = (productId=="") ? "null" : productId;
+            productCode = (productCode=="") ? "null" : productCode;
+            productName = (productName=="") ? "null" : productName;
+
+            window.location = "' . $this->webroot . 'admin/products/search/" + productId + "/" + productCode + "/" + productName;
+        });
+    });
+    ';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+?>
+
 <div class="container content inner">		
     <div class="sixteen columns text-center">
         <h1><?php echo __('Products'); ?></h1>
+    </div>
+    <div class="sixteen columns text-center order-filter">
+        <ul class="ordered-items">
+            <li>
+                <label for="startDate">Product id:</label>
+                <input name="product-id" id="productId" type="text" style="width: 150px;">
+            </li>
+            <li>
+                <label for="startDate">Product code:</label>
+                <input name="product-code" id="productCode" type="text" style="width: 150px;">
+            </li>
+            <li>
+                <label for="startDate">Product name:</label>
+                <input name="product-name" id="productName" type="text" style="width: 150px;">
+            </li>       
+        </ul>
+        <a href="" class="btn-product-search link-btn black-btn">Search</a>
+        <br><br>
     </div>
     <div class="sixteen columns">
         <div class="products index">
