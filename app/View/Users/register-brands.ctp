@@ -184,10 +184,10 @@ window.registerProcess = true;
           <div class="reg-step4"><img src="<?php echo $this->webroot; ?>img/reg-step4.png"/></div>
       </div>
 
-      <div class="twelve columns text-center">
+      <div class="twelve columns">
           <?php echo $this->Form->create('User', array('url' => '/register/saveBrands')); ?>
           <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
-          <div class="hi-message twelve columns">
+          <div class="hi-message twelve columns text-center">
               <h4 class="hi-message">Brands you prefer</h4>
               <p></p>
           </div>        
@@ -220,7 +220,7 @@ window.registerProcess = true;
                   </li>
               </ul>
           </div>
-          <div class="text-center">
+          <div>
               <div id="brands" >
                   <div id="polos_tees-brands" class="brand-block">
                      

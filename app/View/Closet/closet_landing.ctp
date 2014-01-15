@@ -327,155 +327,157 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $meta_description = 'Show your support and desire to be an SRS member by sporting one of our iPhones/iPad cases!';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-<div class="container content inner">	
-    <div class="sixteen columns text-center">
-        <h1>The Closet</h1>
-    </div>
-    <div class="fifteen offset-by-half columns omega">
-        <div class="three columns alpha">
-            <div class="product-filter-menu">
-                <ul class="accordian-menu">
-                    <li class="toggle-tab selected open-filter"><span class="filter-block">Categories</span>
-                        <ul class="toggle-body product-categories">
-                        <?php foreach ($categories as $category): ?>
-                            <li <?php echo ($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') ? 'class="highlighted-cat"' : '';?>>
-                            <?php if($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') : ?>
-                                <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
-                                <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
-                            <?php endif; ?>
-                            
-                            <?php if($category['Category']['slug'] == "lookbooks") : ?>
-                                <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
-                            <?php else : ?>
-                                <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
-                            <?php endif; ?>
-                            
-                            <?php if ($category['children']) : ?>
-                                <ul class="product-subcategories hide">
-                                    <?php foreach ($category['children'] as $subcategory): ?>
-                                        <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subcategory['Category']['id']; ?> ><?php echo $subcategory['Category']['name']; ?></a>
-                                            <?php if ($subcategory['children']) : ?>
-                                                <ul class="product-subcategories product-subsubcategories">
-                                                    <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
-                                                        <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subsubcategory['Category']['slug']; ?>" <?php echo $category_slug == $subsubcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subsubcategory['Category']['id']; ?> ><?php echo $subsubcategory['Category']['name']; ?></a></li>    
-                                                    <?php endforeach; ?>
-                                                </ul>       
-                                            <?php endif; ?>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php endif; ?>
-                            
-                            </li>
-                        <?php endforeach; ?>
-                        </ul>
-                    </li>
-                    <li class="toggle-tab"><span class="filter-block">Brand</span>
-                        <ul class="toggle-body brand-filter hide">
-                        <?php if($brands) : ?>
-                            <?php foreach($brands as $brand) : ?>
-                                <li data-brand_id="<?php echo $brand['Brand']['id']; ?>"><?php echo $brand['Brand']['name']; ?></li>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                        </ul>
-                    </li>
-                    <li class="toggle-tab"><span class="filter-block">Color</span>
-                        <ul class="toggle-body color-filter hide">
-                        <?php if($colors) : ?>
-                            <?php foreach($colors as $color) : ?>
-                                <li data-color_id="<?php echo $color['Colorgroup']['id']; ?>"><?php echo $color['Colorgroup']['name']; ?></li>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                        </ul>
-                    </li>
-                </ul>
-            </div><br />
+<div class="content-container">
+    <div class="eleven columns container content inner">	
+        <div class="twelve columns text-center page-heading">
+            <h1>The Closet</h1>
         </div>
-        <div class="twelve columns omega product-listing">
-            <!--<div class="product-top-offset"></div>-->
-            <?php if($entities) : ?>
-                <?php foreach($entities as $entity) : ?>
-                    <?php if($entity['Category']['parent_cat'] != $lookbook_id) : ?>
-                        <div class="three columns alpha row">
-                            <div class="product-block"> 
-                                <a href="" class="get-related-products"></a>
-                                <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
-                                <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
-                                <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="category-id">
-                                <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="parent-category-id">
-                                <div class="product-list-image mosaic-block fade">
-                                    <div class="mosaic-overlay">
-                        				<div class="mini-product-details">
-                    					   <span class="product-price"><?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></span>
-                    					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
-                    					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
-                        				</div>
-                        			</div>
-                                    <?php 
-                                    if($entity['Image']){
-                                        //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
-                                        $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/158/216'; 
-                                    }
-                                    else{
-                                        $img_src = $this->request->webroot . "img/image_not_available-small.png";
-                                    } 
-                                    ?>
-                                    <div class="mosaic-backdrop">
-                                        <img src="<?php echo $img_src; ?>" alt="<?php echo $entity['Entity']['name']; ?>" class="product-image fadein-image" />
-                                    </div>
-                                </div>
-                                <div class="product-list-links">
-                                    <?php if(isset($entity['Wishlist'])) : ?>
-                                        <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
-                                        <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
-                                        <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
-                                    <?php else : ?>
-                                        <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                    <?php else : ?>
-                        <?php if($random_lifestyle) : ?>
-                            <div class="three columns alpha row">
+        <div class="twelve columns">
+            <div class="two columns alpha side-filter left">
+                <div class="product-filter-menu">
+                    <ul class="accordian-menu">
+                        <li class="toggle-tab selected open-filter"><span class="filter-block">Categories</span>
+                            <ul class="toggle-body product-categories">
+                            <?php foreach ($categories as $category): ?>
+                                <li <?php echo ($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') ? 'class="highlighted-cat"' : '';?>>
+                                <?php if($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') : ?>
+                                    <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
+                                    <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
+                                <?php endif; ?>
+                                
+                                <?php if($category['Category']['slug'] == "lookbooks") : ?>
+                                    <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
+                                <?php else : ?>
+                                    <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
+                                <?php endif; ?>
+                                
+                                <?php if ($category['children']) : ?>
+                                    <ul class="product-subcategories hide">
+                                        <?php foreach ($category['children'] as $subcategory): ?>
+                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subcategory['Category']['slug']; ?>" <?php echo $category_slug == $subcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subcategory['Category']['id']; ?> ><?php echo $subcategory['Category']['name']; ?></a>
+                                                <?php if ($subcategory['children']) : ?>
+                                                    <ul class="product-subcategories product-subsubcategories">
+                                                        <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
+                                                            <li><a href="<?php echo $this->request->webroot; ?>closet/<?php echo $subsubcategory['Category']['slug']; ?>" <?php echo $category_slug == $subsubcategory['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $subsubcategory['Category']['id']; ?> ><?php echo $subsubcategory['Category']['name']; ?></a></li>    
+                                                        <?php endforeach; ?>
+                                                    </ul>       
+                                                <?php endif; ?>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+                                
+                                </li>
+                            <?php endforeach; ?>
+                            </ul>
+                        </li>
+                        <li class="toggle-tab"><span class="filter-block">Brand</span>
+                            <ul class="toggle-body brand-filter hide">
+                            <?php if($brands) : ?>
+                                <?php foreach($brands as $brand) : ?>
+                                    <li data-brand_id="<?php echo $brand['Brand']['id']; ?>"><?php echo $brand['Brand']['name']; ?></li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            </ul>
+                        </li>
+                        <li class="toggle-tab"><span class="filter-block">Color</span>
+                            <ul class="toggle-body color-filter hide">
+                            <?php if($colors) : ?>
+                                <?php foreach($colors as $color) : ?>
+                                    <li data-color_id="<?php echo $color['Colorgroup']['id']; ?>"><?php echo $color['Colorgroup']['name']; ?></li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><br />
+            </div>
+            <div class="ten columns omega product-listing right">
+                <!--<div class="product-top-offset"></div>-->
+                <?php if($entities) : ?>
+                    <?php foreach($entities as $entity) : ?>
+                        <?php if($entity['Category']['parent_cat'] != $lookbook_id) : ?>
+                            <div class="two columns product-box">
                                 <div class="product-block"> 
-                                    <div class="product-list-image lookbooks-block mosaic-block fade">
-                                        <span class="highlight-lookbook"></span>
-                                        <div class="mosaic-overlay lifestyle-overlay">
+                                    <a href="" class="get-related-products"></a>
+                                    <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
+                                    <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
+                                    <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="category-id">
+                                    <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="parent-category-id">
+                                    <div class="product-list-image mosaic-block fade">
+                                        <div class="mosaic-overlay">
                             				<div class="mini-product-details">
-                        					   <span class="product-name">Lookbooks</span>
+                        					   <span class="product-price"><?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></span>
+                        					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
+                        					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
                             				</div>
                             			</div>
+                                        <?php 
+                                        if($entity['Image']){
+                                            //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
+                                            $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/158/216'; 
+                                        }
+                                        else{
+                                            $img_src = $this->request->webroot . "img/image_not_available-small.png";
+                                        } 
+                                        ?>
                                         <div class="mosaic-backdrop">
-                                            <img src="<?php echo $this->webroot. "lookbooks/resize/" . $random_lifestyle['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
+                                            <img src="<?php echo $img_src; ?>" alt="<?php echo $entity['Entity']['name']; ?>" class="product-image fadein-image" />
                                         </div>
                                     </div>
                                     <div class="product-list-links">
-                                    <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
+                                        <?php if(isset($entity['Wishlist'])) : ?>
+                                            <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
+                                            <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
+                                            <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
+                                        <?php else : ?>
+                                            <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                            </div>    
-                        <?php endif; ?> 
-                    <?php endif; ?>
-                <?php endforeach; ?>
-                    
-                   
-            <?php endif; ?>
+                            </div>
+                        <?php else : ?>
+                            <?php if($random_lifestyle) : ?>
+                                <div class="two columns product-box">
+                                    <div class="product-block"> 
+                                        <div class="product-list-image lookbooks-block mosaic-block fade">
+                                            <span class="highlight-lookbook"></span>
+                                            <div class="mosaic-overlay lifestyle-overlay">
+                                				<div class="mini-product-details">
+                            					   <span class="product-name">Lookbooks</span>
+                                				</div>
+                                			</div>
+                                            <div class="mosaic-backdrop">
+                                                <img src="<?php echo $this->webroot. "lookbooks/resize/" . $random_lifestyle['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
+                                            </div>
+                                        </div>
+                                        <div class="product-list-links">
+                                        <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
+                                        </div>
+                                    </div>
+                                </div>    
+                            <?php endif; ?> 
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                        
+                       
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="fourteen columns details-margin row">
+            <div class="lifestyle-images">
+                <?php if($lifestyles && count($lifestyles) > 0) : ?>
+                    <?php foreach($lifestyles as $style) : ?>
+                        <a class="fancybox" data-fancybox-group="lifestyles" title="<?php echo $style['Lifestyle']['caption']; ?>" href="#lifestyle<?php echo $style['Lifestyle']['id']; ?>"></a>
+                        <div class="hide"><div class="fancybox-data-box" id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lookbooks/detail/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a><a href="<?php echo $this->webroot . 'lookbooks/detail/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>" class="btn-buy-look link-btn gold-btn">Get The Look</a></div></div>
+                    <?php endforeach; ?>
+                <?php endif; ?> 
+                
+            </div>
         </div>
     </div>
-    <div class="clearfix"></div>
-    <div class="fourteen columns details-margin row">
-        <div class="lifestyle-images">
-            <?php if($lifestyles && count($lifestyles) > 0) : ?>
-                <?php foreach($lifestyles as $style) : ?>
-                    <a class="fancybox" data-fancybox-group="lifestyles" title="<?php echo $style['Lifestyle']['caption']; ?>" href="#lifestyle<?php echo $style['Lifestyle']['id']; ?>"></a>
-                    <div class="hide"><div class="fancybox-data-box" id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lookbooks/detail/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a><a href="<?php echo $this->webroot . 'lookbooks/detail/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>" class="btn-buy-look link-btn gold-btn">Get The Look</a></div></div>
-                <?php endforeach; ?>
-            <?php endif; ?> 
-            
-        </div>
-    </div>
-</div>
+<div class="content-container">
 <div id="closetinfo-box" class="box-modal notification-box hide">
     <div class="box-modal-inside">
         <a class="notification-close info-popup-close" href=""></a>

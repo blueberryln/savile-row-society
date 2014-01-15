@@ -72,7 +72,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <h1>Branding partners</h1>
         </div>
         
-        <div class="twelve columns page-content text-center">
+        <div class="twelve columns page-content">
                 <ul id="branding-partners">
                     <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Bernard_zins.jpg" class="fadein-image" alt="Bernard Zins" data-name="bernard" /></li>
                     <li><img src="<?php echo $this->webroot; ?>img/branding-partners/7diamonds.png" class="fadein-image" alt="7 Diamonds" data-name="7diamonds"  /></li>
