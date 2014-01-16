@@ -397,7 +397,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <?php if($entities) : ?>
                     <?php foreach($entities as $entity) : ?>
                         <?php if($entity['Category']['parent_cat'] != $lookbook_id) : ?>
-                            <div class="two columns product-box">
+                            <div class="product-box">
                                 <div class="product-block"> 
                                     <a href="" class="get-related-products"></a>
                                     <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
@@ -438,7 +438,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                         <?php else : ?>
                             <?php if($random_lifestyle) : ?>
-                                <div class="two columns product-box">
+                                <div class="product-box">
                                     <div class="product-block"> 
                                         <div class="product-list-image lookbooks-block mosaic-block fade">
                                             <span class="highlight-lookbook"></span>

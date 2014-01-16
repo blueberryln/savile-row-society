@@ -35,7 +35,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
         <div class="twelve columns text-center page-heading">
             <h1>MY CLOSET</h1>
         </div>
-            <div class="ten columns omega product-listing center-block wishlist">
+            <div class="eleven columns omega product-listing center-block wishlist">
                 <div class="mycloset-tabs text-center">
                     <a href="<?php echo $this->webroot . 'mycloset/liked/' . $user_id; ?>" class="link-btn black-btn">Liked Items</a>
                     <a href="<?php echo $this->webroot . 'mycloset/purchased/' . $user_id; ?>" class="link-btn gray-btn">Purchased Items</a>
@@ -43,7 +43,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                 <?php if ($wishlists) : ?>
                     <?php foreach ($wishlists as $item) : ?>
                         <?php if(isset($item['Entity']) && $item['Entity']) : ?>
-                            <div class="two columns product-box">
+                            <div class="product-box">
                                 <div class="product-block">
                                     <input type="hidden" value="<?php echo $item['Entity']['slug']; ?>" class="product-slug">
                                     <input type="hidden" value="<?php echo $item ['Entity']['id']; ?>" class="product-id">

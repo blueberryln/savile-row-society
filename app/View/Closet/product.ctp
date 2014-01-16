@@ -226,8 +226,7 @@ $columns = 'eleven';
                 &gt; <a href="<?php echo $this->webroot . "closet/" . $category['Category']['slug'] ; ?>"><?php echo $category['Category']['name']; ?></a></p>
         </div>
         <div class="ten columns product-detail-cont center-block">
-            <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
-            <div class="one columns alpha omega">&nbsp;</div>
+            <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">            
             <div class="six columns left">
                 <div class="product-default-image">
                     <?php if(count($entity['Image']) > 0) : ?>
@@ -250,7 +249,7 @@ $columns = 'eleven';
                         </ul>
                     </div>
                 <?php endif; ?>
-                <div class="clear"></div>
+                <div class="clear-fix"></div>
                 <div class="product-actions">
                     <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI would like to recommend this product to you. Check out <?php echo Router::url( $this->here, true ); ?>." id="lnk-email"></a></div>
                     <?php if(isset($entity['Wishlist'])) : ?>
@@ -260,7 +259,7 @@ $columns = 'eleven';
                     </div>
                     <?php endif; ?>
                 </div>
-                <div class="clear"></div>
+                <div class="clear-fix"></div>
             </div>
          
             <div class="five columns product-description right">
@@ -293,7 +292,7 @@ $columns = 'eleven';
                     <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
-                <div class="clear"></div>
+                <div class="clear-fix"></div>
                 
                 <?php if($sizes) : ?>
                     <?php if(count($sizes) == 1 && $sizes[0]['Size']['name'] == 'N/A') : ?>
@@ -312,14 +311,14 @@ $columns = 'eleven';
                 <?php endif; ?>
                 
                 <label>Quantity
-                    <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10), 'empty' => "Select Quantity" , 'label' => false, 'div' => false, 'style' => "width: 142px;")); ?>
+                    <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10) , 'label' => false, 'div' => false, 'style' => "width: 70px;")); ?>
                     <br />
                     <span class="err-message">Please select quantity.</span>
                 </label>   
                 
                 
                 <?php if($entity['Entity']['price'] > 0) : ?>                                        
-                    <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
+                    <a href="" class="link-btn black-btn add-to-cart full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
                 <?php elseif($user_id) : ?>
                     <br>
                     <textarea class="txt-price-request" placeholder="Comments"></textarea>
@@ -332,9 +331,9 @@ $columns = 'eleven';
                     <a href="" class="link-btn black-btn btn-request-price" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
                 <?php endif; ?>
                 
-                <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue" >Continue Shopping</a>                 
+                <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue full-width text-center" >Continue Shopping</a>                 
             </div>
-            <div class="clear"></div> <br /><br /><br />
+            <div class="clear-fix"></div>
         </div>
     </div>
 </div>

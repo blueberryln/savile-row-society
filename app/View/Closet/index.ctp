@@ -366,7 +366,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <!--<div class="product-top-offset"></div>-->
                 <?php if($entities && strtolower($category_slug) != "lookbooks") : ?>
                     <?php foreach($entities as $entity) : ?>
-                        <div class="two columns product-box">
+                        <div class="product-box">
                             <div class="product-block">
                                 <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
                                 <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
