@@ -146,7 +146,7 @@ class ClosetController extends AppController {
         }
         
         $Lifestyle = ClassRegistry::init('Lifestyle');
-        $lifestyles = $Lifestyle->find('all');
+        $lifestyles = $Lifestyle->find('all', array('order' => 'rand()'));
         
         $random_lifestyle = $Lifestyle->getByRand();
         

@@ -68,6 +68,7 @@ if($user_id){
 }
 
 $script = '
+var lifestyles = ' . json_encode($lifestyles) . ';
 var threeItemPopup = ' . $show_three_item_popup. ';
 var showClosetPopUp = ' . $show_closet_popup . ';
 
@@ -244,60 +245,81 @@ $(document).ready(function(){
     
     $(".get-related-products").on("click", function(e){
         e.preventDefault();
-        var productBlock = $(this).closest(".product-block");
-        var productId = productBlock.find(".product-id").val(); 
-        var categoryId = productBlock.find(".parent-category-id").val();
-        $.post("' . $this->request->webroot . 'api/similar", { productId: productId, categoryId: categoryId },
-           function(data) {
-                var ret = $.parseJSON(data);
-                if(ret["status"] == "ok"){
-                    var entity = ret["product"];
-                    productBlock.find(".product-id").val(entity["Entity"]["id"]);
-                    productBlock.find(".product-slug").val(entity["Entity"]["slug"]);   
-                    productBlock.find(".product-name").text(entity["Entity"]["name"]);   
-                    productBlock.find(".product-brand").text(entity["Brand"]["name"]); 
-                    productBlock.find(".category-id").val(entity["Category"]["category_id"]);
-                    var prod_id = productBlock.find(".category-id").val();
-                    highLightCategory(prod_id, categoryId);
-                    
-                    var productPrice = (entity["Entity"]["price"]> 0) ? "$" + entity["Entity"]["price"] : "Price on request";
-                    productBlock.find(".product-price").text(productPrice);
-                    productBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'product/" + entity["Entity"]["id"] + "/" + entity["Entity"]["slug"]});
-                    
-                    if(entity["Wishlist"]){
-                        if(entity["Wishlist"]["id"]){
-                            productBlock.find(".thumbs-up").addClass("liked");
-                        }
-                        else{
-                            productBlock.find(".thumbs-up").removeClass("liked");
-                        }
-                        if(entity["Dislike"]["id"]){
-                            productBlock.find(".thumbs-down").addClass("disliked");
-                        }
-                        else{
-                            productBlock.find(".thumbs-down").removeClass("disliked");
-                        }
+
+        if($(this).hasClass("similar-lookbooks")){
+            var currentLifestyle = $(".lifestyle-id").val();
+            if(currentLifestyle == lifestyles[lifestyles.length-1]["Lifestyle"]["id"]){
+                
+            }
+            else{
+                for(var i = 0; i < lifestyles.length; i++){
+                    if(lifestyles[i]["Lifestyle"]["id"] == currentLifestyle){
+                        nextLifestyle = i+1;
+                        $(".lifestyle-id").val(lifestyles[nextLifestyle]["Lifestyle"]["id"]);
+                        var lifestyleBlock = $(this).closest(".product-block");
+                        lifestyleBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'lookbooks/detail/" + lifestyles[nextLifestyle]["Lifestyle"]["id"] + "/" + lifestyles[nextLifestyle]["slug"]});
+                        lifestyleBlock.find(".product-image").slideUp(300).attr({src : "' . $this->request->webroot . "lookbooks/resize/" . '" + lifestyles[nextLifestyle]["Lifestyle"]["image"] + "/158/216", alt: "Lookbooks"}).slideDown(300);
+                        break;
                     }
-                    
-                    var productImage = productBlock.find(".product-image");
-                    productImage.slideUp(300, function(){  
-                        if(typeof(entity["Image"]) != "undefined" && entity["Image"].length > 0){
-                            productImage.attr({src : "' . $this->request->webroot . "products/resize/" . '" + entity["Image"][0]["name"] + "/158/216", alt: entity["Entity"]["name"]});
-                        }
-                        else{
-                            productImage.attr({src : "' . $this->request->webroot . 'img/image_not_available-small.png", alt: entity["Entity"]["name"]});
-                        }
-                        if (productImage.complete) {
-                            $(this).slideDown(400);
-                        } else {
-                            $(this).load(function() {
-                                $(this).slideDown(400);
-                            });
-                        }
-                    });
                 }
-           }
-        );
+            }
+        }
+        else{
+            var productBlock = $(this).closest(".product-block");
+            var productId = productBlock.find(".product-id").val(); 
+            var categoryId = productBlock.find(".parent-category-id").val();
+            $.post("' . $this->request->webroot . 'api/similar", { productId: productId, categoryId: categoryId },
+               function(data) {
+                    var ret = $.parseJSON(data);
+                    if(ret["status"] == "ok"){
+                        var entity = ret["product"];
+                        productBlock.find(".product-id").val(entity["Entity"]["id"]);
+                        productBlock.find(".product-slug").val(entity["Entity"]["slug"]);   
+                        productBlock.find(".product-name").text(entity["Entity"]["name"]);   
+                        productBlock.find(".product-brand").text(entity["Brand"]["name"]); 
+                        productBlock.find(".category-id").val(entity["Category"]["category_id"]);
+                        var prod_id = productBlock.find(".category-id").val();
+                        highLightCategory(prod_id, categoryId);
+                        
+                        var productPrice = (entity["Entity"]["price"]> 0) ? "$" + entity["Entity"]["price"] : "Price on request";
+                        productBlock.find(".product-price").text(productPrice);
+                        productBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'product/" + entity["Entity"]["id"] + "/" + entity["Entity"]["slug"]});
+                        
+                        if(entity["Wishlist"]){
+                            if(entity["Wishlist"]["id"]){
+                                productBlock.find(".thumbs-up").addClass("liked");
+                            }
+                            else{
+                                productBlock.find(".thumbs-up").removeClass("liked");
+                            }
+                            if(entity["Dislike"]["id"]){
+                                productBlock.find(".thumbs-down").addClass("disliked");
+                            }
+                            else{
+                                productBlock.find(".thumbs-down").removeClass("disliked");
+                            }
+                        }
+                        
+                        var productImage = productBlock.find(".product-image");
+                        productImage.slideUp(300, function(){  
+                            if(typeof(entity["Image"]) != "undefined" && entity["Image"].length > 0){
+                                productImage.attr({src : "' . $this->request->webroot . "products/resize/" . '" + entity["Image"][0]["name"] + "/158/216", alt: entity["Entity"]["name"]});
+                            }
+                            else{
+                                productImage.attr({src : "' . $this->request->webroot . 'img/image_not_available-small.png", alt: entity["Entity"]["name"]});
+                            }
+                            if (productImage.complete) {
+                                $(this).slideDown(400);
+                            } else {
+                                $(this).load(function() {
+                                    $(this).slideDown(400);
+                                });
+                            }
+                        });
+                    }
+               }
+            )
+        }
          
     });
     
@@ -437,9 +459,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </div>
                             </div>
                         <?php else : ?>
-                            <?php if($random_lifestyle) : ?>
+                            <?php if($lifestyles) : ?>
                                 <div class="product-box">
                                     <div class="product-block"> 
+                                        <a href="" class="get-related-products similar-lookbooks"></a>
+                                        <input type="hidden" value="<?php echo $lifestyles[0]['Lifestyle']['id']; ?>" class="lifestyle-id">
                                         <div class="product-list-image lookbooks-block mosaic-block fade">
                                             <span class="highlight-lookbook"></span>
                                             <div class="mosaic-overlay lifestyle-overlay">
@@ -448,11 +472,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 				</div>
                                 			</div>
                                             <div class="mosaic-backdrop">
-                                                <img src="<?php echo $this->webroot. "lookbooks/resize/" . $random_lifestyle['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
+                                                <img src="<?php echo $this->webroot. "lookbooks/resize/" . $lifestyles[0]['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
                                             </div>
                                         </div>
                                         <div class="product-list-links">
-                                        <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $random_lifestyle['Lifestyle']['id'] . '/' . $random_lifestyle['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
+                                        <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $lifestyles[0]['Lifestyle']['id'] . '/' . $lifestyles[0]['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
                                         </div>
                                     </div>
                                 </div>    
