@@ -15,7 +15,7 @@ function addPurchasedItems(items){
             img_src = webroot + "products/resize/" + data['Image'][0]['name'] + '/158/216';    
         }
         var html = "";
-        html =  "<div class='three columns alpha row'>" + 
+        html =  "<div class='outfit-item'>" + 
                     "<div class='product-block'>" + 
                         "<input type='hidden' value='" + data['Entity']['slug'] + "' class='product-slug'>" + 
                         "<input type='hidden' value='" + data['Entity']['id'] + "' class='product-id'>" + 
@@ -49,7 +49,7 @@ function addLikedItems(items){
             img_src = webroot + "products/resize/" + data['Image'][0]['name'] + '/158/216';    
         }
         var html = "";
-        html =  "<div class='three columns alpha row'>" + 
+        html =  "<div class='outfit-item'>" + 
                     "<div class='product-block'>" + 
                         "<input type='hidden' value='" + data['Entity']['slug'] + "' class='product-slug'>" + 
                         "<input type='hidden' value='" + data['Entity']['id'] + "' class='product-id'>" + 
@@ -82,7 +82,7 @@ function addClosetItems(items){
             img_src = webroot + "products/resize/" + data['Image'][0]['name'] + '/158/216';
         }
         var html = "";
-        html =  "<div class='three columns alpha omega row'>" +
+        html =  "<div class='outfit-item'>" +
             "<div class='product-block'>" +
             "<input type='hidden' value='" + data['Entity']['slug'] + "' class='product-slug'>" +
             "<input type='hidden' value='" + data['Entity']['id'] + "' class='product-id'>" +
@@ -303,8 +303,8 @@ $(document).ready(function(){
     $(".like-cont-link").on("click", function(e){
         e.preventDefault();
         if(!$(".liked-list-cont").is(":visible")){
-            $(this).removeClass("gray-btn").addClass("gold-btn");
-            $(".purchased-cont-link").removeClass("gold-btn").addClass("gray-btn");
+            $(this).removeClass("gray-btn").addClass("black-btn");
+            $(".purchased-cont-link").removeClass("black-btn").addClass("gray-btn");
             $(".purchased-list-cont").fadeOut(300, function(){
                 $(".liked-list-cont").fadeIn(300);        
             });
@@ -313,8 +313,8 @@ $(document).ready(function(){
     $(".purchased-cont-link").on("click", function(e){
         e.preventDefault();
         if(!$(".purchased-list-cont").is(":visible")){
-            $(this).removeClass("gray-btn").addClass("gold-btn");
-            $(".like-cont-link").removeClass("gold-btn").addClass("gray-btn");
+            $(this).removeClass("gray-btn").addClass("black-btn");
+            $(".like-cont-link").removeClass("black-btn").addClass("gray-btn");
             $(".liked-list-cont").fadeOut(300, function(){
                 $(".purchased-list-cont").fadeIn(300);        
             });
@@ -399,7 +399,7 @@ $(document).ready(function(){
         var selectedCount = getSelectedCount();
         var outfitItemCount = getOutfitItemCount();
 
-        var productBox = $(this).closest(".alpha");
+        var productBox = $(this).closest(".outfit-item");
         if(productBox.hasClass("selected-outfit-item")){
             productBox.removeClass("selected-outfit-item");
         }

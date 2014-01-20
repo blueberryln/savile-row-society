@@ -15,90 +15,92 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <?php echo $this->Form->create('User', array('url' => '/messages/send_to_user', 'type' => 'file')); ?>
-<div class="container content inner timeline">	
-
-    <div class="sixteen columns">
-        <div class="five columns user-container">
-            <div class="img-container">
-                <div class="profile-img text-center">
-                <?php
-                    $img = "";
-                    if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
-                        $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
-                    }
-                    else{
-                        $img = $this->webroot . "img/dummy_image.jpg";    
-                    }
-                ?>
-                    <img src="<?php echo $img; ?>" id="user_image" />
+<div class="content-container">
+    <div class="container content inner timeline">	
+        <div>
+            <div class="user-container">
+                <div class="img-container">
+                    <div class="profile-img text-center">
+                    <?php
+                        $img = "";
+                        if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
+                            $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
+                        }
+                        else{
+                            $img = $this->webroot . "img/dummy_image.jpg";    
+                        }
+                    ?>
+                        <img src="<?php echo $img; ?>" id="user_image" />
+                    </div>
                 </div>
-            </div>
-            <div class="info-container">
-                <?php if($client_id) : ?>
-                    <div id="user-name"><?php echo $client_user['User']['full_name']; ?></div>
-                        <div class="last-user-purchase">
-                            <?php if(isset($last_purchase['Order'])) : ?>
-                                Last Purchase: <span>$<?php echo $last_purchase['Order']['total_price']; ?></span> <br />
-                                on <?php echo date('l:jS F Y, h:ia', strtotime($last_purchase['Order']['created'])); ?>
-                            <?php else : ?>
-                                Last Purchase: <span>No purchases yet.</span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="recent-activity">
-                            Recent Activity (30 Days): <br />
-                            -Amount Spent: <span>$<?php echo $recent_purchase; ?></span><br />
-                            -Messages Sent: <span><?php echo $recent_messages; ?></span>
-                        </div><br />
+                <div class="info-container">
+                    <?php if($client_id) : ?>
+                        <div id="user-name"><?php echo $client_user['User']['full_name']; ?></div>
+                            <div class="last-user-purchase">
+                                <?php if(isset($last_purchase['Order'])) : ?>
+                                    Last Purchase: <span>$<?php echo $last_purchase['Order']['total_price']; ?></span> <br />
+                                    on <?php echo date('l:jS F Y, h:ia', strtotime($last_purchase['Order']['created'])); ?>
+                                <?php else : ?>
+                                    Last Purchase: <span>No purchases yet.</span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="recent-activity">
+                                Recent Activity (30 Days): <br />
+                                -Amount Spent: <span>$<?php echo $recent_purchase; ?></span><br />
+                                -Messages Sent: <span><?php echo $recent_messages; ?></span>
+                            </div><br />
+                    <?php endif; ?>
+                </div>
+                <?php if(!$is_admin) : ?>
+                    <br />
+                    <h5 class="new-clients-head">New Clients</h5>
+                    <div class="new-clients">
+                    <?php if(isset($new_clients) && count($new_clients) > 0) {
+                        foreach($new_clients as $new_cl){
+                            echo '<div class="client-row">' . 
+                                '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '">' . $new_cl['User']['first_name'] . '</a> has been assigned to you.' . 
+                            '</div>';    
+                        }    
+                    }
+                    ?>
+                    </div>
                 <?php endif; ?>
             </div>
-            <?php if(!$is_admin) : ?>
-                <br />
-                <h5 class="new-clients-head">New Clients</h5>
-                <div class="new-clients">
-                <?php if(isset($new_clients) && count($new_clients) > 0) {
-                    foreach($new_clients as $new_cl){
-                        echo '<div class="client-row">' . 
-                            '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '">' . $new_cl['User']['first_name'] . '</a> has been assigned to you.' . 
-                        '</div>';    
-                    }    
-                }
-                ?>
+            <div class="stylist-talk">
+                <?php if($client_id) : ?>
+                    <ul id="stylist-options">
+                        <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
+                        <!--<li><a href="">conversation</a></li>-->                
+                    </ul>
+                <?php endif; ?>
+                <h4 class='talk-to bold'>TALK WITH YOUR CLIENT</h4>
+                    <?php if(!$is_admin) : ?>
+                    <?php
+                    echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client', 'style' => 'max-width: 68%;'));
+                    ?> 
+                    <?php endif; ?>  
+                    
+                    <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
+                    <textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
+                    <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
+                    <div class="clear-fix"></div>
+                
+                <div class="chat-container">
+                    
                 </div>
-            <?php endif; ?>
-        </div>
-        <div class="ten columns aplha stylist-talk">
-            <?php if($client_id) : ?>
-                <ul id="stylist-options">
-                    <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
-                    <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
-                    <!--<li><a href="">conversation</a></li>-->                
-                </ul>
-            <?php endif; ?>
-            <h4 class='nine columns talk-to'>TALK WITH YOUR CLIENT</h4>
-                <?php if(!$is_admin) : ?>
-                <?php
-                echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client', 'style' => 'max-width: 68%;'));
-                ?> 
-                <?php endif; ?>  
                 
-                <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
-                <textarea class="ten columns alpha omega chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
-                <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
-            
-            <div class="chat-container">
-                
-            </div>
-            <div class="clear"></div>
-            <p id="loadOldMsgs" class="hide">
-                <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                <a href="">Load Old Messages</a>
-            </p>
-            <br />
+                <p id="loadOldMsgs" class="hide">
+                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                    <a href="">Load Old Messages</a>
+                </p>
+                <br />
+            </div>   
+            <div class="clear-fix"></div>         
         </div>
+
     </div>
-
 </div>
-
 <?php echo $this->Form->end(); ?>
 
 
@@ -106,12 +108,11 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 <div id="outfit-box" class="hide outfit-modal container content">
     <div class="create-outfit-cont">
         <a class="outfit-close" href=""></a>
-        <div class="sixteen columns text-center">
-            <h1>Create a new outfit</h1>
+        <div class="text-center">
+            <h1 class="pop-heading">Create a new outfit</h1>
         </div>
-        <div class="fifteen columns offset-by-half product-listing">
-            <br />
-            <div class="three columns alpha row outfit-item" id="outfit1">
+        <div class="eleven columns center-block product-listing">            
+            <div class="outfit-item" id="outfit1">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -121,12 +122,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear"></div>
+                        <div class="clear-fix"></div>
                     </div>
                 </div>
             </div>
             
-            <div class="three columns alpha row outfit-item" id="outfit2">
+            <div class="outfit-item" id="outfit2">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -136,12 +137,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear"></div>
+                        <div class="clear-fix"></div>
                     </div>
                 </div>
             </div>
             
-            <div class="three columns alpha row outfit-item" id="outfit3">
+            <div class="outfit-item" id="outfit3">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -151,12 +152,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear"></div>
+                        <div class="clear-fix"></div>
                     </div>
                 </div>
             </div>
             
-            <div class="three columns alpha row outfit-item" id="outfit4">
+            <div class="outfit-item" id="outfit4">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -166,12 +167,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear"></div>
+                        <div class="clear-fix"></div>
                     </div>
                 </div>
             </div>
             
-            <div class="three columns alpha row outfit-item" id="outfit5">
+            <div class="outfit-item" id="outfit5">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -181,22 +182,21 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <div class="product-list-links">
                         <a href="" class="btn-user-closet btn-outfit">User Closet</a>
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear"></div>
+                        <div class="clear-fix"></div>
                     </div>
                 </div>
             </div>
             
-            <div class="clear"></div>
-            <br />
-            <div class="form">
-                <div class="six columns text-center offset-by-one">
+            <div class="clear-fix"></div>            
+            <div class="form outfit-form">
+                <div class="four columns text-center">
                     <label>Location (East Coast or West Coast)</label>
                     <select name="outfit-location" id="outfit-location">
                         <option value="East Coast">East Coast</option>
                         <option value="West Coast">West Coast</option>
                     </select>
                 </div>
-                <div class="six columns text-center">
+                <div class="four columns text-center">
                     <label>Type of the outfit</label>
                     <select name="outfit-location" id="outfit-style">
                         <option>Casual</option>
@@ -205,13 +205,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     </select>
                 </div>
             </div>
-            <div class="clear"></div>
+            <div class="clear-fix"></div>
             <div class="text-center">
                 <br /><br /><br />
                 <a href="" id="add-outfit" class="link-btn black-btn">Suggest the Outfit</a>
             </div>
         </div>
-            <div class="clear"></div>
+            <div class="clear-fix"></div>
     </div>
     <div class="user-closet-cont hide">
         <a class="user-closet-close" href=""></a>
@@ -220,16 +220,16 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         </div>
         <div class="sixteen columns product-listing">
             <div class="mycloset-tabs text-center">
-                <a href="" class="link-btn gold-btn like-cont-link">Liked Items</a>
+                <a href="" class="link-btn black-btn like-cont-link">Liked Items</a>
                 <a href="" class="link-btn gray-btn purchased-cont-link">Purchased Items</a>
             </div>
-            <div class="user-closet-list-cont">
+            <div class="user-closet-list-cont nine-five columns center-block text-left">
                 <div class="purchased-list-cont hide">
                     <div class="product-listing-box">
 
                     </div>
                     
-                    <div class="clear"></div>
+                    <div class="clear-fix"></div>
                     <div class="btn-outfit-cont text-right">
                         <a href="" class="link-btn black-btn load-more-purchased">Load More</a>
                         <a href="" class="link-btn black-btn add-purchased-outfit">Add to outfit</a>
@@ -241,7 +241,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
                     </div>
                     
-                    <div class="clear"></div>
+                    <div class="clear-fix"></div>
                     <div class="btn-outfit-cont text-right">
                         <a href="" class="link-btn black-btn load-more-liked">Load More</a>
                         <a href="" class="link-btn black-btn add-liked-outfit">Add to outfit</a>
@@ -256,8 +256,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <h1>SRS Closet</h1>
         </div>
         
-        <div class="fifteen offset-by-half columns omega">
-            <div class="three columns alpha">
+        <div class="nine-five columns omega center-block">
+            <div class="two columns alpha left">
                 <div class="product-filter-menu">
                     <ul class="text-left">
                         <li class="toggle-tab selected open-filter" style="height: 140px;overflow-y: auto;"><span>Categories</span>
@@ -306,13 +306,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     </ul>
                 </div>
             </div>
-            <div class="twelve columns omega product-listing">
-                <div class="product-top-offset">
+            <div class="nine columns product-listing right text-left">
+                <div class="product-top-offset text-center">
                     <span class="text-center">Click on a product to select it.</span>
                 </div>
 
                 <div class="srs-closet-items"></div>
-                <div class="clear"></div>
+                <div class="clear-fix"></div>
                 <div class="btn-outfit-cont text-right">
                     <img src="<?php echo $this->webroot; ?>img/loading.gif" width="28" class="hide closet-load-icon" style="position: relative; top: 8px;" /> &nbsp;
                     <a href="" class="link-btn black-btn load-more-closet">Load More</a>
@@ -320,6 +320,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
                     
             </div>
+            <div class="clear-fix"></div>
             
         </div>
         
@@ -403,7 +404,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showChatMsg(chatMsg) {
             var html = ''; 
             if(chatMsg['Message']['is_outfit'] == 1){
-                html = html + '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
+                html = html + '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
                 html = html + '<div class="message-caption">You suggested new items to complete a style:</div><br>'; 
                 html = html + '<div class="chat-outfit-box">';
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
@@ -412,7 +413,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
                     }
                     html = html + 
-                    '<div class="two columns alpha row">' +
+                    '<div class="chat-product-box">' +
                         '<div class="product-block">' + 
                             '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
                             '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
@@ -441,7 +442,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             }
             else if(chatMsg['Message']['image']){
                 html = '' + 
-                        '<div class="ten columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
                             '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
                             '<div class="message-date">' +
@@ -452,7 +453,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
                     html = '' + 
-                        '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-caption">You Said:</div>' + 
                             '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
                             '<div class="message-date">' +
@@ -462,7 +463,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
                 else{
                     html = '' + 
-                        '<div class="ten columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
                             '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
                             '<div class="message-date">' +
@@ -532,7 +533,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showSentMessage(message, uid){
             var curDate = new Date().format("yyyy-MM-dd h:mm:ss")
             var html = '' + 
-                        '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
+                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
                             '<div class="message-caption">You Said:</div>' + 
                             '<div class="message-body">' + message + '</div>' + 
                             '<div class="message-date">' +

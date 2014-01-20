@@ -368,7 +368,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showSentMessage(message, uid){
             var curDate = new Date().format("yyyy-MM-dd h:mm:ss")
             var html = '' + 
-                '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
+                '<div class="chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
                     '<div class="message-caption">You Said:</div>' + 
                     '<div class="message-body">' + message + '</div>' + 
                     '<div class="message-date">' +

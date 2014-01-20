@@ -8,15 +8,14 @@
 .text-justify{text-align: justify;}
 .right{float: right !important; }
 .left{float: left !important; }
+.bold{font-weight: 700;}
 .clear-fix{clear: both;}
 a{text-decoration: none;}
 .v-top{vertical-align: top;}
-
-
 .center-block{margin: 0 auto;}
 .hide{display: none;}
 img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
-
+.hero { background-color: #F1F1F1;}
 .err-message, .err-size-message, .err-email-message, .error-msg{color:#ff0000; font-size: 12px; display:none; }
 .err-msg, .input-error{ border-color:#ff0000 !important; }
 
@@ -43,8 +42,8 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
 }
 
 /***Form Fields***/
-label, div.finalizing h5{ display:block; font-family: 'Conv_Novecento-Book',Sans-Serif; margin: 0 0 3px 0; color: #AF9A59; font-size: 13px; text-transform: uppercase;}
-input[type="text"], input[type="email"], input[type="password"], input[type="tel"], textarea, select{ border: 1px solid #D9D9D9; padding: 8px 5px; color: #444444; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box; width: 100%;  resize:none;}
+label, div.finalizing h5,.new-clients-head{ display:block; font-family: 'Conv_Novecento-Book',Sans-Serif; margin: 0 0 3px 0; color: #AF9A59; font-size: 13px; text-transform: uppercase;}
+input[type="text"], input[type="file"], input[type="email"], input[type="password"], input[type="tel"], textarea, select{ border: 1px solid #D9D9D9; padding: 8px 5px; color: #444444; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box; width: 100%;  resize:none;}
 input[type="submit"]{color: #fff;}
 
 /******Skeleton******/
@@ -117,7 +116,7 @@ input[type="submit"]{color: #fff;}
 .content{margin-top: 94px; padding: 10px 0 20px 0; background-color: #FFFFFF;}
 .content p{line-height: 24px; margin-bottom: 20px;}
 .content .page-heading{margin:0 auto; padding: 10px 0; display: block;}
-.content .page-heading h1, .content .block-heading h1{font-family:arial, Helvetica, sans-serif; color:#000; font-size: 30px; text-transform: uppercase; font-weight: normal; margin: 0;}
+.content .page-heading h1, .content .block-heading h1, h1.pop-heading{font-family:arial, Helvetica, sans-serif; color:#000; font-size: 30px; text-transform: uppercase; font-weight: normal; margin: 0;}
 .content .page-content{margin:0 auto; display: block;}
 
 /*******Footer********/
@@ -186,6 +185,7 @@ div.sub-blogger .title{font-family: 'Conv_Novecento-Book',Sans-Serif; font-size:
 .dob select{width: 30%; margin-right: 5%;}
 .dob select:last-child{margin-right: 0;}
 .profile-tabs{margin:20px 0;}
+.profile a{width: 150px; }
 	/*Style Section*/
 	.preferences h5 { margin: 0 0 15px 0; }
 	.preferences #selectable .ui-selecting { background: #917A49; }
@@ -248,7 +248,11 @@ div.tm-pdesc::-webkit-scrollbar{
 div.tm-pdesc::-webkit-scrollbar-thumb{
 	background-color: #000;
 }
-/********Chat-Upload Image******/
+/*Create outfit POP-Up*/
+.outfit-modal { height: 630px; margin-top: 0;  -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+/********Chat-Upload Image POP-up******/
+.signin-content{width: 300px; margin: 0 auto;}
+.signin-btn{width: 100%; padding: 8px; margin: 30px 0 0 0;}
 
 
 
@@ -262,8 +266,12 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
 	.team-member{width: 30%;}
 	.header .logo{width: 220px;}
 	.footer .menu,.footer .copyright{width: 100%; text-align: center;}	
-	.product-box{width:124px !important; margin-left: 30px !important;}
+	.product-box, .outfit-item{width:124px !important;}
 	.wishlist .product-box, .purchased .product-box{width: 140px !important; margin: 0 20px 20px 15px !important;}	
+	.user-container{width: 220px !important;}
+	.stylist-talk{width: 460px !important;}
+	.srs-closet-cont .product-filter-menu{width: 124px !important;}
+	.srs-closet-cont .product-listing{width: 580px !important;}
 }
 
 @media screen and (max-width: 767px) {
@@ -278,7 +286,7 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
     	.nine.columns,
     	.ten.columns,	
         .container { width: 100%; }
-        iframe{width: 100%;}
+        iframe,div.srs-closet-cont .product-filter-menu{width: 100% !important;}
         .container .column, .container .columns{padding: 0 25px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box;}
         .header .logo{width: 200px; padding-top: 30px;}
         .header .menu{margin: 0; display: none; width: 100%;}
@@ -294,9 +302,12 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
         ul.product-type li{margin-right: 20px;}
         .im-request{padding: 8px 5px !important;}
         .side-filter{margin-bottom: 10px;}
-        .product-box{margin: 10px 0 10px 0 !important; width: 100% !important;}
+        .product-box, .outfit-item{margin: 10px 0 10px 0 !important; width: 100% !important;}
         .sort-block{position: relative !important; top:0 !important;}
-        .product-breadcrumb{margin-left: 25px;}        
+        .product-breadcrumb{margin-left: 25px;}   
+        .user-container, .stylist-talk, .chat-outfit-box .chat-product-box, .srs-closet-cont .product-listing{width: 95% !important;margin: 20px auto 0 !important; float: none !important;}
+        .outfit-modal{height: 100%; }     
+
 }
 
 
@@ -323,7 +334,8 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
 	.product-categories .product-subcategories a{ font-size: 11px; }
 	.product-filter-menu input[type=checkbox]{ display: inline; width: auto; border: none; padding: 0; margin-right: 5px; }
 	/*****Products Boxes****/
-	.product-box{display: inline-block; margin:0 0 20px 35px; vertical-align: top; width: 160px;}
+	.product-box,.outfit-item{display: inline-block; margin:0 0 20px 35px; vertical-align: top; width: 160px;}
+	.outfit-item{margin: 25px 5px;}
 	.product-listing .product-block{ position: relative; }
 	.brand-filter li, .color-filter li{ cursor: pointer; }
 	.get-related-products{ display: block; position: absolute; right: -11px; top: 30px; z-index: 10; height: 26px; width: 26px; background: url('../img/arrow.png') no-repeat center center; }
@@ -443,13 +455,32 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	span.stylist-name { color: #87878F; font-family: 'Droid Serif',serif !important; font-size: 12px; text-transform: capitalize; }
 	.timeline .stylist-info { color: #A7A7A7; padding: 15px 10px 15px 40px; font-size: 12px; word-wrap: break-word; }
 	.timeline .stylist-info span img { margin-right: 8px; }
+	.timeline .last-user-purchase, .timeline .recent-activity { color: #A7A7A7; text-align: center; border-bottom: 1px solid #DEDEDE; padding:15px 10px; font-size:12px; }
+	.timeline .recent-activity{border: none;}
+	.timeline .last-user-purchase span, .timeline .recent-activity span { color: #444444; }
 	.timeline input.my-profile { border: none; color: white; width: 150px; background-color: #B09A34; border-radius: 3px; margin-left: 65px; height: 30px; }
 	div.stylist-talk .chat-msg-txtbox {width: 100%; padding: 10px; height: 90px; border: 1px solid #B09A34; border-radius: 5px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
-	div.stylist-talk #sendMessages{float: right; width: 150px; padding: 1px 12px;}
+	div.stylist-talk #sendMessages, #createOutfit{float: right; width: auto; padding: 1px 15px;}
 	p.send-photo{text-align: right;}
 	p.send-photo a#sendphoto {padding: 1px 12px;}
+	.new-clients-head{font-size: 16px;padding-left: 8px; margin-right: 5px;}
+	.new-clients{ border: 1px solid #D2D2D2; padding: 5px; height: 266px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    -o-border-radius: 5px; border-radius: 5px; overflow-y: scroll; }
+    .client-row { border: 1px solid #D2D2D2; padding: 5px; border-radius: 2px; margin-bottom: 4px; background-color: #EDEDED;
+    color: #555; }
+	.client-row a{ font-weight: bold; color: #222; text-decoration: underline; }
+	.client-row a:hover{ text-decoration: none; }
+	.get-style-btn { padding: 10px 20px; margin-top: 10px; }
+	.content.booking h1 { color: #888; font-size: 30px; line-height: 36px; margin: 20px 0; text-transform: uppercase; font-weight: normal; }
+	.content.booking h6 { color: #6C6C6C; font-family: 'Conv_Novecento-Book',Sans-Serif; font-size: 16px; line-height: 26px; margin: 0 0 10px; text-transform: uppercase; }
+	.content.inner.booking h2 { border-bottom: 1px solid #D9D9D9; color: #9E9248; font-family: 'Droid Serif',serif ; margin: 15px 10px;  font-size: 24px; text-transform: capitalize; padding-bottom:4px; }
 	/*****Chat Container****/
 	.chat-container{margin-top: 30px;}
+	ul#stylist-options { border-top: 1px solid #c5c5c5; border-bottom: 1px solid #c5c5c5; padding: 7px 0; margin-bottom: 15px; }
+	ul#stylist-options li { display: inline; text-transform: uppercase; border-right: 1px solid #000; padding-right:15px; margin-left:15px; }
+	ul#stylist-options li a { text-decoration: none; }
+	ul#stylist-options li:first-of-type { margin-left:0; }
+	ul#stylist-options li:last-of-type { border-right:none; }
 	.timeline .chat-msg-box { border-top: 1px solid #D2D2D2; padding: 10px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }
 	.timeline .message-caption { font-family: Conv_Novecento-Book, sans-serif; font-size: 16px; text-transform: uppercase; color: #AE9B34; }
 	.timeline .message-body { padding-top: 10px; word-wrap: break-word; }
@@ -459,3 +490,16 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	.chat-msg-box .product-list-image { height: 137px; border: 1px solid #797979; background-color: #FFFFFF; line-height: 135px; text-align: center; }
 	.chat-outfit-box .chat-product-box{width: 100px; margin-right: 10px; display: inline-block;}
 	#loadOldMsgs { text-align: center; border: 1px solid #D2D2D2; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; margin-top: 19px; padding: 10px; }
+	div.stylist-talk div.select{margin: 0;}
+	div.stylist-talk div.select select{padding: 2px;}
+	div.outfit-form{margin-top: 10px;}
+	div.outfit-form div{display: inline-block; margin: 10px;}
+	div.liked-list-cont .outfit-item, div.purchased-list-cont .outfit-item,div.srs-closet-items .outfit-item{margin: 0 5px 10px;}
+	.selected-outfit-item .mosaic-overlay{opacity: 1 !important;}
+	span.select-item { display: none; position: absolute; right: 5px; top: 5px; z-index: 250; height: 20px; width: 20px; text-decoration: none; background: url('../img/checkmark-small.png') no-repeat center center; }
+	.selected-outfit-item .select-item { display: block !important; }
+
+	div.srs-closet-cont .product-filter-menu{width: 160px;}
+	.srs-closet-cont .product-top-offset{border-top: 1px solid #D9D9D9; padding: 5px 0 10px;}
+	.srs-closet-cont .product-listing{width: 720px;}
+
