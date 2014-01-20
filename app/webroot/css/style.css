@@ -25,6 +25,8 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
 .black-btn,.black-btn:hover, .black-btn:visited { background-color: #000; color: #fff; text-transform: uppercase;}
 .gold-btn, .gold-btn:hover, .gold-btn:visited{ background-color: #af9a59; color: #fff; }
 .back-btn{padding:6px 50px;}
+.fancybox-inner .btn-buy-look { font-size: 14px; line-height: 20px; position: absolute; top: 15px; right: 15px; }
+.fancybox-inner a, .fancybox-inner .fancybox-data-box { font-size: 0px; line-height: 0; }
 /****FONTS***/
 @font-face {
     font-family: 'Conv_Novecento-Bold';
