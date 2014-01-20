@@ -16,7 +16,7 @@ class BookingController extends AppController {
      * @return void
      */
     public function index() {
-
+        $this->layout = 'new';
         $this->isLogged();
 
         // init
