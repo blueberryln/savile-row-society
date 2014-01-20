@@ -1,8 +1,6 @@
 <?php
 $script = ' 
-var isAdmin = ' . $user_admin . ';
 var uid = ' . $user_id . ';
-var clientArray = ' . json_encode($client_array) . ';
 var webroot = "' . $this->webroot . '";
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -93,15 +91,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             userId =  $("#user_to_id").val();
             window.location = webroot + "messages/index/" + userId;
         })
-        
-        if(!isAdmin){
-            setInterval(
-                function(){
-                        loadNewClients();
-                },
-                15000
-            );
-        }
     }
     
 

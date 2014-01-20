@@ -117,6 +117,7 @@ span.select-item{
 }
 .chat-outfit-box{
     margin-left: 10px;
+    overflow: hidden;
 }
 
 /*  changes on 07-11-2013 ----   */

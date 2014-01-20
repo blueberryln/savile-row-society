@@ -10,114 +10,136 @@ App::uses('CakeEmail', 'Network/Email');
  */
 class MessagesController extends AppController {
 
-    public function index($messages_for_user_id = null) {
-        //$this->Message->markMessagesRead();
+    public function beforeFilter(){
         $this->isLogged();
-        // init
+    }
+
+    public function index($messages_for_user_id = null) {
         $User = ClassRegistry::init('User');
         
-        // get user from session to derterminate if user is stylist
+        //Get user from session to derterminate if user is stylist
         $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"];
         $is_stylist = $user["User"]["is_stylist"];
-        if($user["User"]["is_admin"]){
-            $is_admin = 1;
-        }
-        else{
-            $is_admin = 0;
-        }
+        $is_admin = $user["User"]["is_admin"];
         
         /**
-         * Check if user should be shown the screen
+         * Check for different conditions and redirect as required:
+         * 1: Check if the user is neither stylist or admin and has not been assigned a stlist. Redirect to home if all conditons satisfy.
+         * 2: Check if user is admin and no client has been selected to chat. Redirect to admin user listing page.
+         * 3. 
          */
-        
         if(!$is_admin && !$is_stylist && (is_null($user['User']['stylist_id']) || $user['User']['stylist_id'] == "" || !($user['User']['stylist_id'] > 0) )){
             $this->redirect('/');
-        }        
-        
+        }
+        else if($is_admin && is_null($messages_for_user_id)){
+            $this->redirect('/admin/users');
+        }    
         
          // make user_id, user
-        $user_id = $this->getLoggedUserID();
         $this->set(compact('user_id', 'user', 'messages_for_user_id'));
 
-        //chose witch view to render
+        /**
+         * Choose to show user/stylist or admin view
+         */
         if ($is_stylist || $is_admin) {
-            $Category = ClassRegistry::init('Category');
-            $Brand = ClassRegistry::init('Brand');
-            $Color = ClassRegistry::init('Color');
-            $Colorgroup = ClassRegistry::init('Colorgroup');
-            
-            // get data
-            $categories = $Category->getAll();
-            $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
-            $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
-            
-            // if stylist load user that write to logged in user.
-            $clients = array();
+
+            /**
+             * Check if client has been selected to chat with and client user exists.
+             */
+            if($messages_for_user_id && $messages_for_user_id > 0){
+                $client_user = $User->getByID($messages_for_user_id);
+                if($client_user){
+                    $client_id = $messages_for_user_id;
+
+                    /**
+                     *  - If client user is admin redirect to admin user landing
+                     *  - If client user is stylist redirect to message landing
+                     *  - If current user is stylist and client is not user's client, redirect to message landing
+                     */  
+                    if($client_user['User']['is_admin'] == 1){
+                        $this->redirect('/admin/users');   
+                    }
+                    else if($client_user['User']['is_stylist'] == 1){
+                        $this->redirect('/messages');   
+                    }
+                    else if ($is_stylist && $client_user['User']['stylist_id'] != $user_id){
+                        $this->redirect('/messages');    
+                    }  
+
+
+                    /**
+                     * Get data for the outfit
+                     */
+                    $Category = ClassRegistry::init('Category');
+                    $categories = $Category->getAll();
+
+                    $Brand = ClassRegistry::init('Brand');
+                    $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+
+                    $Colorgroup = ClassRegistry::init('Colorgroup');
+                    $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
+
+                    $Order = ClassRegistry::init('Order');
                 
-            $clients_data = $User->getUserWriteToMe($this->getLoggedUserID());
-            
-            $client_id = 0;
-            
-            //If stylist get the list of new users
+
+                    //Get last purchase
+                    $last_purchase = $Order->find('first', array(
+                                        'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true),
+                                        'order' => 'Order.id DESC'
+                                    ));
+                    
+                    //Get number of messages in last 30 days
+                    $recent_messages = $this->Message->find('count', array(
+                                            'conditions' => array('Message.created >= now() - INTERVAL 30 DAY', 'Message.user_from_id' => $client_id) 
+                                        ));
+                    
+                    //Get total puchase of last 30 days
+                    $recent_purchase = $Order->find('first', array(
+                                        'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true, 'Order.created >= now() - INTERVAL 30 DAY'),
+                                        'fields' => array('COALESCE(sum(Order.total_price),0) as recent_purchase'),
+                                    ));
+                    $recent_purchase = $recent_purchase[0]['recent_purchase'];
+                                        
+                    $this->set(compact('last_purchase', 'recent_messages', 'recent_purchase'));
+
+                }
+
+                else if($is_stylist){
+                    $this->redirect('/messages');    
+                }
+
+                else if($is_admin){
+                    $this->redirect('/admin/users');    
+                }
+            }
+
+
+            //If stylist get the list of current and new users
             if($is_stylist){
+                $clients = array();   
+                $clients_data = $User->getUserWriteToMe($this->getLoggedUserID());
+                foreach ($clients_data as $client) {
+                    $clients[$client['User']['id']] = $client['User']['full_name'];
+                }
+
                 $new_clients = $User->getNewClients($user_id);
                 $this->set(compact('new_clients'));
             } 
-            
-            
-            if($messages_for_user_id){
-                $client_user = $User->getByID($messages_for_user_id);
-                $client_id = $messages_for_user_id;
-                
-                /**
-                 *  - If client user is admin redirect to message landing
-                 *  - If client user is stylist redirect to message landing
-                 *  - If current user is stylist and client is not user's client, redirect to message landing
-                 */  
-                if($client_user['User']['is_admin'] == 1 || $client_user['User']['is_stylist'] == 1){
-                    $this->redirect('/messages');    
-                }
-                else if ($client_user['User']['stylist_id'] != $user_id && $is_admin == 0){
-                    $this->redirect('/messages');    
-                }
-                
-                $Order = ClassRegistry::init('Order');
-                
-                //Get last purchase
-                $last_purchase = $Order->find('first', array(
-                                    'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true),
-                                    'order' => 'Order.id DESC'
-                                ));
-                //print_r($last_purchase);
-//                exit;
-                
-                //Get number of messages in last 30 days
-                $recent_messages = $this->Message->find('count', array(
-                                        'conditions' => array('Message.created >= now() - INTERVAL 30 DAY', 'Message.user_from_id' => $client_id) 
-                                    ));
-                
-                //Get total puchase of last 30 days
-                $recent_purchase = $Order->find('first', array(
-                                    'conditions' => array('Order.user_id' => $client_id, 'Order.Paid' => true, 'Order.created >= now() - INTERVAL 30 DAY'),
-                                    'fields' => array('COALESCE(sum(Order.total_price),0) as recent_purchase'),
-                                ));
-                $recent_purchase = $recent_purchase[0]['recent_purchase'];
-                                    
-                $this->set(compact('last_purchase', 'recent_messages', 'recent_purchase'));
-            }
-            else if($is_admin && is_null($messages_for_user_id)){
-                $this->redirect('/admin/users');
-            }
-            
-            $client_array = array();
-            foreach ($clients_data as $client) {
-                $client_array[] = $client['User']['id'];
-                $clients[$client['User']['id']] = $client['User']['full_name'];
-            }
 
-            $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'client_array', 'is_admin'));
-            $this->render("stylist");
-        } else {
+
+            if($messages_for_user_id && $messages_for_user_id > 0){
+                $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'is_admin'));
+                $this->render("stylist");
+            }
+            else if($is_stylist){
+                $notification_data = $User->getStylistUserNotification($user_id);
+                $this->set(compact('clients', 'notification_data', 'is_admin'));
+                $this->render("clients");    
+            }
+        } 
+        //User viewVars
+        else {
             $stylist_id = $user['User']['stylist_id'];
             $client_user = $User->getByID($stylist_id);
             $this->set(compact('client_user'));
@@ -130,8 +152,6 @@ class MessagesController extends AppController {
      * Only available when logged user is not stylist
      */
     public function send_message_to_stylist() {
-
-        // init
         $User = ClassRegistry::init('User');
 
         $this->Message->create();
@@ -179,6 +199,9 @@ class MessagesController extends AppController {
         $this->render('/Elements/SerializeJson/');
     }
     
+    /**
+     * Action to allow user to send photo to the stylist
+     */
     public function sendPhoto(){
         $this->autoLayout = false;
             
@@ -207,7 +230,6 @@ class MessagesController extends AppController {
                 
                 // save image
                 if ($img) {
-                    
                     $User = ClassRegistry::init('User');
             
                     // get stylist ID
@@ -245,14 +267,14 @@ class MessagesController extends AppController {
         $this->redirect('index');    
     }
 
+
     /**
      * Send message from stylist to user
      */
     public function send_to_user() {
 
-        // init
         $User = ClassRegistry::init('User');
-        // create message instance
+
         $this->Message->create();
 
         //debug($this->request->data);
@@ -305,10 +327,10 @@ class MessagesController extends AppController {
         }
     }
 
-    /*
-     * Get my messages
-     */
 
+    /**
+     * Get initial message list
+     */
     public function getMyConversation($with_user_id = null) {
         // get converzation for logged in user.
         $result = array();
@@ -318,24 +340,32 @@ class MessagesController extends AppController {
                 // if with user id is not null load data for stylist
                 $User = ClassRegistry::init('User');
                 $user = $User->getById($with_user_id);
-                $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
-                $my_conversation = $this->Message->getMyConversationWith($with_user_id);
-                foreach($my_conversation as &$row){
-                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                        $outfit_id = $row['Message']['outfit_id'];
-                        
-                        $OutfitItem = ClassRegistry::init('OutfitItem');
-                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                        $entities = array();
-                        foreach($outfit as $value){
-                            $entities[] = $value['OutfitItem']['product_entity_id'];
+
+                if($user){
+                    $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
+                    $my_conversation = $this->Message->getMyConversationWith($with_user_id);
+                    foreach($my_conversation as &$row){
+                        if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                            $outfit_id = $row['Message']['outfit_id'];
+                            
+                            $OutfitItem = ClassRegistry::init('OutfitItem');
+                            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                            $entities = array();
+                            foreach($outfit as $value){
+                                $entities[] = $value['OutfitItem']['product_entity_id'];
+                            }
+                            $Entity = ClassRegistry::init('Entity');
+                            $entity_list = $Entity->getProductDetails($entities);
+                            $row['Outfit'] = $entity_list;
                         }
-                        $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getProductDetails($entities);
-                        $row['Outfit'] = $entity_list;
                     }
+                    $result['Messages'] = $my_conversation;
                 }
-                $result['Messages'] = $my_conversation;
+                else{
+                    $result['status'] = 'error';    
+                    $this->set('data', $result);
+                    $this->render('/Elements/SerializeJson/');
+                }
             }
             else{
                 // load data for user
@@ -396,6 +426,7 @@ class MessagesController extends AppController {
         $this->render('/Elements/SerializeJson/');
     }
     
+
     /*
      * Get new messages
      */
@@ -407,25 +438,33 @@ class MessagesController extends AppController {
                 // if with user id is not null load data for stylist
                 $User = ClassRegistry::init('User');
                 $user = $User->getById($with_user_id);
-                $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
-                $my_conversation = $this->Message->getUnreadMessagesWith($with_user_id);
-                if($my_conversation){
-                    foreach($my_conversation as &$row){
-                        if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                            $outfit_id = $row['Message']['outfit_id'];
-                            
-                            $OutfitItem = ClassRegistry::init('OutfitItem');
-                            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                            $entities = array();
-                            foreach($outfit as $value){
-                                $entities[] = $value['OutfitItem']['product_entity_id'];
+
+                if($user){
+                    $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
+                    $my_conversation = $this->Message->getUnreadMessagesWith($with_user_id);
+                    if($my_conversation){
+                        foreach($my_conversation as &$row){
+                            if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                                $outfit_id = $row['Message']['outfit_id'];
+                                
+                                $OutfitItem = ClassRegistry::init('OutfitItem');
+                                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                                $entities = array();
+                                foreach($outfit as $value){
+                                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                                }
+                                $Entity = ClassRegistry::init('Entity');
+                                $entity_list = $Entity->getProductDetails($entities);
+                                $row['Outfit'] = $entity_list;
                             }
-                            $Entity = ClassRegistry::init('Entity');
-                            $entity_list = $Entity->getProductDetails($entities);
-                            $row['Outfit'] = $entity_list;
                         }
+                        $result['Messages'] = $my_conversation;
                     }
-                    $result['Messages'] = $my_conversation;
+                }
+                else{
+                    $result['status'] = 'error';    
+                    $this->set('data', $result);
+                    $this->render('/Elements/SerializeJson/');
                 }
             }
             else{
@@ -478,8 +517,9 @@ class MessagesController extends AppController {
         $this->render('/Elements/SerializeJson/');    
     }
     
+
     /*
-     * Get new messages
+     * Get old messages
      */
     public function getOldMessages($with_user_id = null){
         
@@ -503,26 +543,34 @@ class MessagesController extends AppController {
                 // if with user id is not null load data for stylist
                 $User = ClassRegistry::init('User');
                 $user = $User->getById($with_user_id);
-                $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
-                $my_conversation = $this->Message->getOldMessagesWith($last_msg_id, $with_user_id);
-                $msg_count = count($my_conversation);
-                $result['msg_count'] = $msg_count;
-                foreach($my_conversation as &$row){
-                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                        $outfit_id = $row['Message']['outfit_id'];
-                        
-                        $OutfitItem = ClassRegistry::init('OutfitItem');
-                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                        $entities = array();
-                        foreach($outfit as $value){
-                            $entities[] = $value['OutfitItem']['product_entity_id'];
+
+                if($user){
+                    $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
+                    $my_conversation = $this->Message->getOldMessagesWith($last_msg_id, $with_user_id);
+                    $msg_count = count($my_conversation);
+                    $result['msg_count'] = $msg_count;
+                    foreach($my_conversation as &$row){
+                        if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                            $outfit_id = $row['Message']['outfit_id'];
+                            
+                            $OutfitItem = ClassRegistry::init('OutfitItem');
+                            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                            $entities = array();
+                            foreach($outfit as $value){
+                                $entities[] = $value['OutfitItem']['product_entity_id'];
+                            }
+                            $Entity = ClassRegistry::init('Entity');
+                            $entity_list = $Entity->getProductDetails($entities);
+                            $row['Outfit'] = $entity_list;
                         }
-                        $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getProductDetails($entities);
-                        $row['Outfit'] = $entity_list;
                     }
+                    $result['Messages'] = $my_conversation;
                 }
-                $result['Messages'] = $my_conversation;
+                else{
+                    $result['status'] = 'error';    
+                    $this->set('data', $result);
+                    $this->render('/Elements/SerializeJson/');
+                }
             }
             else{
                 if($last_msg_id == 0){
@@ -588,6 +636,7 @@ class MessagesController extends AppController {
         $this->set('data', $result);
         $this->render('/Elements/SerializeJson/');    
     }
+
     
     function sendEmailNotification($notification){
         extract($notification);
@@ -621,40 +670,5 @@ class MessagesController extends AppController {
         catch(Exception $e){
             
         } 
-    }
-    
-    function clients(){
-        $this->isLogged();
-        // init
-        $User = ClassRegistry::init('User');
-        
-        // Get user details
-        $user_id = $this->getLoggedUserID();
-        $user = $User->getById($user_id);
-        $user_admin = 0;
-        if($user["User"]["is_admin"]){
-            $user_admin = 1;
-        }
-        
-        // Check if the logged in user is stylist; if not then redirect to chat page
-        if($user && $user['User']['is_stylist'] == 1){
-            $new_clients = $User->getNewClients($user_id);
-            $this->set(compact('new_clients'));
-            
-            $notification_data = $User->getStylistUserNotification($user_id); 
-            $clients = array();
-            $client_array = array();
-            $clients_data = $User->getUserWriteToMe($this->getLoggedUserID());
-            foreach ($clients_data as $client) {
-                $client_array[] = $client['User']['id'];
-                $clients[$client['User']['id']] = $client['User']['full_name'];
-            }  
-            
-            $this->set(compact('clients','client_array','user_id', 'user_admin', 'notification_data')); 
-        }
-        else{
-            $this->redirect('/messages');
-            exit;
-        }
     }
 }

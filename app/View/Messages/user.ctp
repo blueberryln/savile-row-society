@@ -7,6 +7,10 @@ $script = '
 var uid = ' . $user_id . ';
 var webroot = "' . $this->webroot . '";
 $(document).ready(function(){
+
+    /**
+     * Event handler to check for thumbs up click
+     */
     $(".chat-container").on("click", ".thumbs-up", function(e) {
         e.preventDefault();
         $this = $(this);
@@ -41,6 +45,11 @@ $(document).ready(function(){
             );
         }
     });
+
+
+    /**
+     * Event handler to check for thumbs down click
+     */
     $(".chat-container").on("click", ".thumbs-down", function(e) {
         e.preventDefault();
         $this = $(this);
@@ -54,9 +63,6 @@ $(document).ready(function(){
                         $this.addClass("disliked");
                         $this.closest(".chat-container").find(".thumbs-up").removeClass("liked");
                     }
-                    //var notificationDetails = new Array();
-                    //notificationDetails["msg"] = ret["msg"];
-                    //showNotification(notificationDetails, true);
                 }
             );
         }
@@ -67,19 +73,15 @@ $(document).ready(function(){
                     if(ret["status"] == "ok"){
                         $this.removeClass("disliked");
                     }
-                    //var notificationDetails = new Array();
-                    //notificationDetails["msg"] = ret["msg"];
-                    //showNotification(notificationDetails, true);
                 }
             );
         }
     });   
 });
 ';
+
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
-//$this->Html->script('//knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
-//$this->Html->script('//stevenlevithan.com/assets/misc/date.format.js', array('inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
@@ -163,14 +165,15 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
 <script>
     window.onload = function() {
-        // prepare data for ui binding. 
-        // notReadedMessages is object from server serialized into  json format (see ref1)
         var isFirstLoad = true,
             chatContainer = $('.chat-container'),
             callInAction = false,
             reqNewMsgDelay=6000,
             firstMsgId = 0;
-            
+        
+        /**
+         * To load the initial conversation
+         */
         function loadMessages() {
             $.ajax({
                 url: "<?php echo $this->webroot; ?>messages/getMyConversation",
@@ -201,6 +204,11 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
             });
         }
+
+
+        /**
+         * To load new messages
+         */
         function loadNewMessages(){
             callInAction = true;
             $.ajax({
@@ -222,11 +230,17 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     callInAction = false;    
                 }
             }).done(function(res){
-                //callInAction = false;
+
             });    
         }
+
+        /**
+         * Format the message to show the chat block
+         */
         function showChatMsg(chatMsg) {
-            var html = '';           
+            var html = '';   
+
+
             if(chatMsg['Message']['is_outfit'] == 1){
                 html = html + '<div class="ten columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
                 html = html + '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' suggested new items to complete a style:</div><br>'; 
@@ -278,6 +292,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     '</div>' + 
                     '</div>';
             }
+
+
             else if(chatMsg['Message']['image']){
                 html = '' + 
                         '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
@@ -288,6 +304,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             '</div>' + 
                         '</div>';
             }
+
+
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
                     html = '' + 
@@ -324,6 +342,42 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             reqNewMsgDelay
         );
 
+        Date.prototype.format = function(format) //author: meizz
+        {
+          var o = {
+            "M+" : this.getMonth()+1, //month
+            "d+" : this.getDate(),    //day
+            "h+" : this.getHours(),   //hour
+            "m+" : this.getMinutes(), //minute
+            "s+" : this.getSeconds(), //second
+            "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+            "S" : this.getMilliseconds() //millisecond
+          }
+
+          if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+            (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+          for(var k in o)if(new RegExp("("+ k +")").test(format))
+            format = format.replace(RegExp.$1,
+              RegExp.$1.length==1 ? o[k] :
+                ("00"+ o[k]).substr((""+ o[k]).length));
+          return format;
+        }
+
+        function showSentMessage(message, uid){
+            var curDate = new Date().format("yyyy-MM-dd h:mm:ss")
+            var html = '' + 
+                '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
+                    '<div class="message-caption">You Said:</div>' + 
+                    '<div class="message-body">' + message + '</div>' + 
+                    '<div class="message-date">' +
+                        '<small>' + curDate + '</small>' +
+                    '</div>' + 
+                '</div>';  
+            return html;   
+        }
+
+
+
         $("#sendMessages").click(function(e) {
             e.preventDefault();
             
@@ -333,6 +387,10 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 var _data = {
                     body: message
                 }
+
+                var html = showSentMessage(message, uid);
+                chatContainer.prepend(html);
+                $("#messageToSend").removeClass("sending");
                 $.ajax({
                     url: "<?php echo $this->webroot; ?>messages/send_message_to_stylist",
                     cache: false,
@@ -342,15 +400,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         $("#messageToSend").val("");
                         res = jQuery.parseJSON(res);
                         if(res['status'] == 'ok'){
-                            var html = showChatMsg(res);
-                            chatContainer.prepend(html);
+                            // var html = showChatMsg(res);
+                            // chatContainer.prepend(html);
                         }
                     },
                     error: function(res) {
-                        // alert("error");
+                        
                     }
-                }).done(function(res){
-                    $("#messageToSend").removeClass("sending");
                 });
             }
         })

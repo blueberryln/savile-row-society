@@ -230,6 +230,26 @@ function displayOutfitItem(outfitEntity){
     productBlock.find(".product-list-image").html(html);
 }
 
+function getOutfitItemCount(){
+    var outfitItemCount = 0;
+    $(".create-outfit-cont .outfit-item").each(function(){
+        if($(this).find('.product-id').val() != '' && $(this).find('.product-id').val() > 0){
+            outfitItemCount++;        
+        }
+    });
+
+    return outfitItemCount;
+}
+
+function getSelectedCount(){
+    var selectedCount = 0;
+    $(".srs-closet-items .selected-outfit-item, .purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item").each(function(){
+        selectedCount = selectedCount + 1;
+    });
+
+    return selectedCount;
+}
+
 $(document).ready(function(){
     $(".fade").mosaic();
     $("#createOutfit").on("click", function(e){
@@ -376,13 +396,20 @@ $(document).ready(function(){
     });
 
     $(".srs-closet-items, .purchased-list-cont, .liked-list-cont").on("click", ".mosaic-overlay", function(e){
+        var selectedCount = getSelectedCount();
+        var outfitItemCount = getOutfitItemCount();
+
         var productBox = $(this).closest(".alpha");
         if(productBox.hasClass("selected-outfit-item")){
             productBox.removeClass("selected-outfit-item");
         }
         else{
-            $(this).closest(".product-listing").find(".alpha").removeClass("selected-outfit-item");
-            productBox.addClass("selected-outfit-item");
+            if((selectedCount + outfitItemCount) < 5){
+                productBox.addClass("selected-outfit-item");
+            }
+            else{
+                alert("You have already selected max number of items."); 
+            }
         }
     });
 
@@ -489,8 +516,8 @@ $(document).ready(function(){
         var outfitId4 = $("#outfit4 .product-id").val();
         var outfitId5 = $("#outfit5 .product-id").val();
         
-        if(outfitId1 == "" || outfitId2 == "" || outfitId3 == "" || outfitId4 == "" || outfitId5 == ""){
-            alert("Please select all 5 items for the outfit.");
+        if(outfitId1 == "" && outfitId2 == "" && outfitId3 == "" && outfitId4 == ""  && outfitId5 == ""){
+            alert("Please select atleast one product to create an outfit.");
         }
         else{
             var outfitLocation = $("#outfit-location").val();

@@ -7,11 +7,8 @@ $script = '
 var uid = ' . $user_id . ';
 var client_id = ' . $client_id . ';
 var webroot = "' . $this->webroot . '";
-var clientArray = ' . json_encode($client_array) . ';
-var isAdmin = "' . $is_admin . '";
 
 ';
-$this->Html->script('//knockoutjs.com/downloads/knockout-2.3.0.js', array('inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
@@ -114,7 +111,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         </div>
         <div class="fifteen columns offset-by-half product-listing">
             <br />
-            <div class="three columns alpha row" id="outfit1">
+            <div class="three columns alpha row outfit-item" id="outfit1">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -129,7 +126,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             
-            <div class="three columns alpha row" id="outfit2">
+            <div class="three columns alpha row outfit-item" id="outfit2">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -144,7 +141,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             
-            <div class="three columns alpha row" id="outfit3">
+            <div class="three columns alpha row outfit-item" id="outfit3">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -159,7 +156,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             
-            <div class="three columns alpha row" id="outfit4">
+            <div class="three columns alpha row outfit-item" id="outfit4">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -174,7 +171,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
             </div>
             
-            <div class="three columns alpha row" id="outfit5">
+            <div class="three columns alpha row outfit-item" id="outfit5">
                 <div class="product-block">
                     <input type="hidden" value="" class="product-slug">
                     <input type="hidden" value="" class="product-id">
@@ -510,6 +507,40 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 reqNewMsgDelay
             );
         }
+
+         Date.prototype.format = function(format) //author: meizz
+        {
+          var o = {
+            "M+" : this.getMonth()+1, //month
+            "d+" : this.getDate(),    //day
+            "h+" : this.getHours(),   //hour
+            "m+" : this.getMinutes(), //minute
+            "s+" : this.getSeconds(), //second
+            "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+            "S" : this.getMilliseconds() //millisecond
+          }
+
+          if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+            (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+          for(var k in o)if(new RegExp("("+ k +")").test(format))
+            format = format.replace(RegExp.$1,
+              RegExp.$1.length==1 ? o[k] :
+                ("00"+ o[k]).substr((""+ o[k]).length));
+          return format;
+        }
+
+        function showSentMessage(message, uid){
+            var curDate = new Date().format("yyyy-MM-dd h:mm:ss")
+            var html = '' + 
+                        '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
+                            '<div class="message-caption">You Said:</div>' + 
+                            '<div class="message-body">' + message + '</div>' + 
+                            '<div class="message-date">' +
+                                '<small>' + curDate + '</small>' +
+                            '</div>' + 
+                        '</div>'; 
+            return html;   
+        }
         
         $("#sendMessages").click(function(e) {
             e.preventDefault();
@@ -520,6 +551,10 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     body: message,
                     user_to_id: userId
                 }
+
+                var html = showSentMessage(message, uid);
+                chatContainer.prepend(html);
+
                 $.ajax({
                     url: "<?php echo $this->webroot; ?>messages/send_to_user",
                     cache: false,
@@ -529,8 +564,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         $("#messageToSend").val("");
                         res = jQuery.parseJSON(res);
                         if(res['status'] == 'ok'){
-                            var html = showChatMsg(res);
-                            chatContainer.prepend(html);
+                            // var html = showChatMsg(res);
+                            // chatContainer.prepend(html);
                         }
                     },
                     error: function(res) {

@@ -59,7 +59,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         </div>
                                     </a>
                                 <?php else : ?>
-                                    <a href="<?php echo $this->webroot; ?>messages/clients">
+                                    <a href="<?php echo $this->webroot; ?>messages/index/">
                                         <div class="msg-count">
                                             <span><?php echo $message_notification['message']; ?></span><br />
                                             Messages

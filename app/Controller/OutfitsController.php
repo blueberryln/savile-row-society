@@ -25,18 +25,14 @@ class OutfitsController extends AppController {
             $OrderItem = ClassRegistry::init('OrderItem');
             $Entity = ClassRegistry::init('Entity'); 
             $total_purchases = $OrderItem->getTotalUserPurchaseCount($user_id);
-            
             if($total_purchases > 0){
                 $order_item_list = $OrderItem->getUniqueUserItems($user_id, $last_purchased_id);
-                echo json_encode($order_item_list);
-                exit;
                 $last_item_id = $last_purchased_id;
                 $entity_list = array();
                 foreach($order_item_list as $value){
                     $entity_list[] = $value['Orders']['product_entity_id'];
                     $last_item_id = $value['Orders']['order_id'];
                 }
-                
                 $entities = $Entity->getProductDetails($entity_list, $user_id);
                 if($entities){
                     $ret['status'] = "ok";
@@ -233,13 +229,7 @@ class OutfitsController extends AppController {
             if($brand_list && count($brand_list) > 0){
                 $find_array['conditions']['Product.brand_id'] = $brand_list;
             }
-            
-            
-            // Sub query to check stock using the products_details table and the items already added to valid carts
-            /*$sub_query = new stdClass();
-            $sub_query->type = "expression";
-            $sub_query->value = "Detail.show = 1 AND Detail.stock > (SELECT COALESCE(sum(Item.quantity),0) as usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (now() - INTERVAL 1 DAY) AND Item.product_entity_id = Entity.id AND Detail.size_id = Item.size_id) ";
-            $find_array['conditions'][] = $sub_query;*/
+
 
             $Entity = ClassRegistry::init('Entity');
             $data = $Entity->find('all', $find_array);
@@ -268,51 +258,44 @@ class OutfitsController extends AppController {
         $ret = array();
         $user_id = $this->getLoggedUserID();
         if($user_id){
+            $Entity = ClassRegistry::init('Entity');
+            $outfit_array = array();
             $client_id = $this->request->data['user_id'];
-            $outfit_id1 = $this->request->data['outfit1'];    
-            $outfit_id2 = $this->request->data['outfit2'];  
-            $outfit_id3 = $this->request->data['outfit3'];  
-            $outfit_id4 = $this->request->data['outfit4'];  
-            $outfit_id5 = $this->request->data['outfit5'];
+
+            if($this->request->data['outfit1'] != "" && $Entity->exists($this->request->data['outfit1'])) {
+                $outfit_array[] = $this->request->data['outfit1'];    
+            }
+            if($this->request->data['outfit2'] != "" && $Entity->exists($this->request->data['outfit2'])) {
+                $outfit_array[] = $this->request->data['outfit2'];    
+            }
+            if($this->request->data['outfit3'] != "" && $Entity->exists($this->request->data['outfit3'])) {
+                $outfit_array[] = $this->request->data['outfit3'];    
+            }
+            if($this->request->data['outfit4'] != "" && $Entity->exists($this->request->data['outfit4'])) {
+                $outfit_array[] = $this->request->data['outfit4'];    
+            }
+            if($this->request->data['outfit5'] != "" && $Entity->exists($this->request->data['outfit5'])) {
+                $outfit_array[] = $this->request->data['outfit5'];    
+            }
+
             $data['Outfit']['user_id'] = $client_id;
             $data['Outfit']['stylist_id'] = $user_id;
-            
-            $outfit_array = array($outfit_id1, $outfit_id2, $outfit_id3, $outfit_id4, $outfit_id5);
+
             $outfit_array = array_unique($outfit_array);
             
-            if(count($outfit_array) == 5){
+            if(count($outfit_array) >= 1){
                 $Outfit = ClassRegistry::init('Outfit');
                 $OutfitItem = ClassRegistry::init('OutfitItem');
                 $Outfit->create();
                 if($result = $Outfit->save($data)){
                     $outfit_id = $result['Outfit']['id'];
-                    $data1['OutfitItem']['outfit_id'] = $outfit_id;
-                    $data1['OutfitItem']['product_entity_id'] = $outfit_id1;
-                    $OutfitItem->create();
-                    $OutfitItem->save($data1);
-                    
-                    $data2['OutfitItem']['outfit_id'] = $outfit_id;
-                    $data2['OutfitItem']['product_entity_id'] = $outfit_id2;
-                    $OutfitItem->create();
-                    $OutfitItem->save($data2);
-                    
-                    
-                    $data3['OutfitItem']['outfit_id'] = $outfit_id;
-                    $data3['OutfitItem']['product_entity_id'] = $outfit_id3;
-                    $OutfitItem->create();
-                    $OutfitItem->save($data3);
-                    
-                    
-                    $data4['OutfitItem']['outfit_id'] = $outfit_id;
-                    $data4['OutfitItem']['product_entity_id'] = $outfit_id4;
-                    $OutfitItem->create();
-                    $OutfitItem->save($data4);
-                    
-                    
-                    $data5['OutfitItem']['outfit_id'] = $outfit_id;
-                    $data5['OutfitItem']['product_entity_id'] = $outfit_id5;
-                    $OutfitItem->create();
-                    $OutfitItem->save($data5);
+                    $data['OutfitItem']['outfit_id'] = $outfit_id;
+
+                    foreach($outfit_array as $value){
+                        $data['OutfitItem']['product_entity_id'] = $value;
+                        $OutfitItem->create();
+                        $OutfitItem->save($data);    
+                    }
                     
                     $Message = ClassRegistry::init('Message');
                     $data['Message']['user_to_id'] = $client_id;
@@ -323,8 +306,7 @@ class OutfitsController extends AppController {
                     $Message->create();
                     if ($Message->validates()) {
                         $Message->save($data);
-                        $entity_list = array($outfit_id1, $outfit_id2, $outfit_id3, $outfit_id4, $outfit_id5);
-                        $this->sendOutfitNotification($entity_list, $client_id);
+                        $this->sendOutfitNotification($outfit_array, $client_id);
                     }
                     
                     $ret['status'] = "ok";
@@ -332,7 +314,7 @@ class OutfitsController extends AppController {
             }
             else{
                 $ret['status'] = "error";
-                $ret['msg'] = "Select 5 distinct items to create an outfit.";    
+                $ret['msg'] = "Select atleast one product to create an outfit.";    
             }
         }
         else{
