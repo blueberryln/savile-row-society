@@ -83,64 +83,66 @@ $this->Html->script('outfit.js', array('inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
-<div class="container content inner timeline">	
-    <div class="sixteen columns">
-        <div class="five columns user-container">
-            <div class="img-container">
-                <div class="profile-img text-center">
-                <?php
-                    $img = "";
-                    if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
-                        $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
-                    }
-                    else{
-                        $img = $this->webroot . "img/dummy_image.jpg";    
-                    }
-                ?>
-                    <img src="<?php echo $img; ?>" id="user_image" />
+<div class="content-container">
+    <div class="container content inner timeline">	
+        <div class="sixteen columns">
+            <div class="user-container">
+                <div class="img-container">
+                    <div class="profile-img text-center">
+                    <?php
+                        $img = "";
+                        if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
+                            $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
+                        }
+                        else{
+                            $img = $this->webroot . "img/dummy_image.jpg";    
+                        }
+                    ?>
+                        <img src="<?php echo $img; ?>" id="user_image" />
+                    </div>
                 </div>
+                <div class="info-container">
+                        <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
+                            <div id="user-name"><a href="<?php echo $this->webroot; ?>stylist"><?php echo $client_user['User']['full_name']; ?></a><br />
+                                <span class="stylist-name">Your Personal Stylist</span>
+                            </div> 
+                        <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?> 
+                            <div id="user-name"><a href="<?php echo $this->webroot; ?>booking#profile"><?php echo $client_user['User']['full_name']; ?></a><br />
+                                <span class="stylist-name">Your Personal Stylist</span>
+                            </div> 
+                        <?php else : ?>
+                            <div id="user-name"><?php echo $client_user['User']['full_name']; ?><br />
+                                <span class="stylist-name">Your Personal Stylist</span>
+                            </div> 
+                        <?php endif; ?>                      
+                            <div class="stylist-info">
+                                <a href="mailto:<?php echo $client_user['User']['email']; ?>"><span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span></a><br />
+                            </div><br />                
+                </div><br />
+                <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
+                    <input type='button' value="CASEY'S PROFILE" class='my-profile' data-redirect="stylist" />   
+                <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?>
+                    <input type='button' value="JOEY'S PROFILE" class='my-profile' data-redirect="booking#profile" /> 
+                <?php endif; ?>     
             </div>
-            <div class="info-container">
-                    <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
-                        <div id="user-name"><a href="<?php echo $this->webroot; ?>stylist"><?php echo $client_user['User']['full_name']; ?></a><br />
-                            <span class="stylist-name">Your Personal Stylist</span>
-                        </div> 
-                    <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?> 
-                        <div id="user-name"><a href="<?php echo $this->webroot; ?>booking#profile"><?php echo $client_user['User']['full_name']; ?></a><br />
-                            <span class="stylist-name">Your Personal Stylist</span>
-                        </div> 
-                    <?php else : ?>
-                        <div id="user-name"><?php echo $client_user['User']['full_name']; ?><br />
-                            <span class="stylist-name">Your Personal Stylist</span>
-                        </div> 
-                    <?php endif; ?>                      
-                        <div class="stylist-info">
-                            <a href="mailto:<?php echo $client_user['User']['email']; ?>"><span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span></a><br />
-                        </div><br />                
-            </div><br />
-            <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
-                <input type='button' value="CASEY'S PROFILE" class='my-profile' data-redirect="stylist" />   
-            <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?>
-                <input type='button' value="JOEY'S PROFILE" class='my-profile' data-redirect="booking#profile" /> 
-            <?php endif; ?>     
-        </div>
-        <div class="ten columns aplha stylist-talk">
-            <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
-            <textarea class="eight columns alpha omega chat-msg-txtbox" id='messageToSend'></textarea>
-            <!--<input type="button" value="Send messages" id="sendMessages" />-->
-            <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
-            <div class="clear"></div>
-            <p style="text-align: right;">Send a picture to stylist: <a class="link-btn black-btn" style="padding-top: 1px; padding-bottom: 1px; margin-right: 0;" href="" id="sendphoto">Send Photo</a></p>
-            
-            <div class="chat-container">
+            <div class="stylist-talk">
+                <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
+                <textarea class="chat-msg-txtbox" id='messageToSend'></textarea>
+                <!--<input type="button" value="Send messages" id="sendMessages" />-->
+                <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
+                <div class="clear-fix"></div>
+                <p class="send-photo">Send a picture to stylist: <a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a></p>
                 
+                <div class="chat-container">
+                    
+                </div>
+                <div class="clear-fix"></div>
+                <p id="loadOldMsgs" class="hide">
+                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                    <a href="">Load Old Messages</a>
+                </p>
+                <br />
             </div>
-            <div class="clear"></div>
-            <p id="loadOldMsgs" class="hide">
-                <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                <a href="">Load Old Messages</a>
-            </p>
-            <br />
         </div>
     </div>
 </div>
@@ -228,7 +230,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showChatMsg(chatMsg) {
             var html = '';           
             if(chatMsg['Message']['is_outfit'] == 1){
-                html = html + '<div class="ten columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
+                html = html + '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
                 html = html + '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' suggested new items to complete a style:</div><br>'; 
                 html = html + '<div class="chat-outfit-box">';
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
@@ -249,7 +251,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     
                     
                     html = html + 
-                    '<div class="two columns alpha row">' +
+                    '<div class="chat-product-box">' +
                         '<div class="product-block">' + 
                             '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
                             '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
@@ -280,7 +282,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             }
             else if(chatMsg['Message']['image']){
                 html = '' + 
-                        '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-caption">You sent an image:</div>' + 
                             '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
                             '<div class="message-date">' +
@@ -291,7 +293,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
                     html = '' + 
-                        '<div class="ten columns alpha omega chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-caption">You Said:</div>' + 
                             '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
                             '<div class="message-date">' +
@@ -301,7 +303,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
                 else{
                     html = '' + 
-                        '<div class="ten columns alpha omega chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
                             '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
                             '<div class="message-date">' +

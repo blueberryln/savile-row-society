@@ -10,6 +10,10 @@ App::uses('CakeEmail', 'Network/Email');
  */
 class MessagesController extends AppController {
 
+    public function beforeFilter(){
+        $this->layout = 'new';
+    }
+
     public function index($messages_for_user_id = null) {
         //$this->Message->markMessagesRead();
         $this->isLogged();

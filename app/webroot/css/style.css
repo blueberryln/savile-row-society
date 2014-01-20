@@ -226,6 +226,7 @@ div.sub-blogger .title{font-family: 'Conv_Novecento-Book',Sans-Serif; font-size:
 .box-modal-inside{ padding: 25px;}
 .notification-msg{ background-color: #F2F2F2; padding: 30px 12px 33px; text-align: center; color: #000;}
 .notification-close{ width: 10px; height: 10px; position: absolute; top: 16px; right: 16px; display: block; background: url('../img/close-popup.png') no-repeat center center; }
+h5.sign { color: #AF9A59; padding-bottom: 15px; margin-bottom: 10px; background: url('../img/divider.png') no-repeat; background-position: bottom; }
 /********Branding Partners POP-UP******/
 .brand-info p{ text-align: justify; }
 .brand-logo img{ max-width:150px !important; max-height: 50px; margin-bottom: 10px;}
@@ -247,6 +248,8 @@ div.tm-pdesc::-webkit-scrollbar{
 div.tm-pdesc::-webkit-scrollbar-thumb{
 	background-color: #000;
 }
+/********Chat-Upload Image******/
+
 
 
 .h-f{bottom: 0;}
@@ -260,8 +263,7 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
 	.header .logo{width: 220px;}
 	.footer .menu,.footer .copyright{width: 100%; text-align: center;}	
 	.product-box{width:124px !important; margin-left: 30px !important;}
-	.wishlist .product-box, .purchased .product-box{width: 140px !important; margin: 0 20px 20px 15px !important;}
-	.content-container{color: red;}
+	.wishlist .product-box, .purchased .product-box{width: 140px !important; margin: 0 20px 20px 15px !important;}	
 }
 
 @media screen and (max-width: 767px) {
@@ -294,8 +296,7 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
         .side-filter{margin-bottom: 10px;}
         .product-box{margin: 10px 0 10px 0 !important; width: 100% !important;}
         .sort-block{position: relative !important; top:0 !important;}
-        .product-breadcrumb{margin-left: 25px;}
-        .content-container{color: yellow;}
+        .product-breadcrumb{margin-left: 25px;}        
 }
 
 
@@ -428,3 +429,33 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .contact-container{margin-bottom: 8px;}
 #confirm-payment{padding-right: 40px; padding-left: 40px; margin-top: 30px;}
 .payment small { color: #AF9A59; }
+
+
+/*****Stylist and messages page****/
+	/*****Chat page****/
+	.user-container{width: 280px; float: left; margin: 30px 0 0 20px;}
+	.stylist-talk{width: 580px; float: right; margin:30px 20px 0 0;}
+	.timeline .img-container{ background-color: #C5B770; height: 135px; border-top-right-radius: 7px; border-top-left-radius: 7px; -moz-border-top-left-radius: 7px; -webkit-border-top-left-radius: 7px; -moz-border-top-right-radius: 7px; -webkit-border-top-right-radius: 7px; border-left: solid 1px #A59A3E; border-right: solid 1px #A59A3E; border-top: solid 1px #A59A3E; }
+	.timeline .profile-img > img{ border-radius: 50%; -moz-border-radius: 50% 50% 50% 50%; -webkit-border-radius: 50% 50% 50% 50%; max-height: 120px; max-width: 100px !important; margin-top:55px; border: solid 2px #E0E0E0; }
+	.timeline .info-container{ background-color: #EDEDED; min-height: 150px; border:1px solid #E5E5E5; border-bottom-right-radius: 7px; -moz-border-bottom-right-radius: 7px; -webkit-border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; -moz-border-bottom-right-radius: 7px; -webkit-border-bottom-right-radius: 7px; }
+	.timeline #user-name{ padding-top: 50px; text-align: center; font-family: Conv_Novecento-Book, sans-serif; font-size: 19px; text-transform: uppercase; color: #AE9B34; border-bottom: 1px solid  #DEDEDE; padding-bottom: 20px; }
+	.timeline #user-name a, .timeline .stylist-info a { color: #AE9B34; text-decoration: none; }
+	span.stylist-name { color: #87878F; font-family: 'Droid Serif',serif !important; font-size: 12px; text-transform: capitalize; }
+	.timeline .stylist-info { color: #A7A7A7; padding: 15px 10px 15px 40px; font-size: 12px; word-wrap: break-word; }
+	.timeline .stylist-info span img { margin-right: 8px; }
+	.timeline input.my-profile { border: none; color: white; width: 150px; background-color: #B09A34; border-radius: 3px; margin-left: 65px; height: 30px; }
+	div.stylist-talk .chat-msg-txtbox {width: 100%; padding: 10px; height: 90px; border: 1px solid #B09A34; border-radius: 5px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+	div.stylist-talk #sendMessages{float: right; width: 150px; padding: 1px 12px;}
+	p.send-photo{text-align: right;}
+	p.send-photo a#sendphoto {padding: 1px 12px;}
+	/*****Chat Container****/
+	.chat-container{margin-top: 30px;}
+	.timeline .chat-msg-box { border-top: 1px solid #D2D2D2; padding: 10px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }
+	.timeline .message-caption { font-family: Conv_Novecento-Book, sans-serif; font-size: 16px; text-transform: uppercase; color: #AE9B34; }
+	.timeline .message-body { padding-top: 10px; word-wrap: break-word; }
+	.timeline .message-date {text-align: right;}
+	.chat-msg-box.cur-user-msg {  background-color: #EDEDED; }
+	.chat-outfit-box { margin-left: 10px; }
+	.chat-msg-box .product-list-image { height: 137px; border: 1px solid #797979; background-color: #FFFFFF; line-height: 135px; text-align: center; }
+	.chat-outfit-box .chat-product-box{width: 100px; margin-right: 10px; display: inline-block;}
+	#loadOldMsgs { text-align: center; border: 1px solid #D2D2D2; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; margin-top: 19px; padding: 10px; }

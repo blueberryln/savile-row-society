@@ -477,7 +477,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>
         </div>
     </div>
-<div class="content-container">
+</div>
 <div id="closetinfo-box" class="box-modal notification-box hide">
     <div class="box-modal-inside">
         <a class="notification-close info-popup-close" href=""></a>
