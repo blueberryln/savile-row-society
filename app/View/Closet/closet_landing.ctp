@@ -258,7 +258,7 @@ $(document).ready(function(){
                         $(".lifestyle-id").val(lifestyles[nextLifestyle]["Lifestyle"]["id"]);
                         var lifestyleBlock = $(this).closest(".product-block");
                         lifestyleBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'lookbooks/detail/" + lifestyles[nextLifestyle]["Lifestyle"]["id"] + "/" + lifestyles[nextLifestyle]["slug"]});
-                        lifestyleBlock.find(".product-image").slideUp(300).attr({src : "' . $this->request->webroot . "lookbooks/resize/" . '" + lifestyles[nextLifestyle]["Lifestyle"]["image"] + "/158/216", alt: "Lookbooks"}).slideDown(300);
+                        lifestyleBlock.find(".product-image").slideUp(300).attr({src : "' . $this->request->webroot . "lookbooks/resize/" . '" + lifestyles[nextLifestyle]["Lifestyle"]["image"] + "/158/216", alt: "Lookbooks"}).slideDown(400);
                         break;
                     }
                 }
