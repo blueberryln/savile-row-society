@@ -12,7 +12,8 @@ function fadeInImages(){
         }
     }); 
 }
-// To fix footer at bottom
+
+// To fix footer at bottom and margin top of content container
 function footerFix(){
         var winH = $(window).height();
         var headerH = $("div.header").height();

@@ -387,4 +387,4 @@ $this->Html->script('cookie.js', array('inline' => false));
     </table>
     <div class="clear"></div>
 </div>
-</div>
+</div> 

@@ -311,7 +311,7 @@ $columns = 'eleven';
                 <?php endif; ?>
                 
                 <label>Quantity
-                    <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10) , 'label' => false, 'div' => false, 'style' => "width: 70px;")); ?>
+                    <?php echo $this->Form->input('product-quantity', array('id'=>'product-quantity', 'options' => range(1,10) , 'label' => false, 'div' => false, 'style' => "")); ?>
                     <br />
                     <span class="err-message">Please select quantity.</span>
                 </label>   
@@ -322,13 +322,13 @@ $columns = 'eleven';
                 <?php elseif($user_id) : ?>
                     <br>
                     <textarea class="txt-price-request" placeholder="Comments"></textarea>
-                    <a href="" class="link-btn black-btn btn-request-price" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
+                    <a href="" class="link-btn black-btn btn-request-price full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
                 <?php else : ?>
                     <br>
                     <input type="text" placeholder="Email" id="request-email">
                     <span class="err-email-message">Please enter an email.</span>
                     <textarea class="txt-price-request" placeholder="Comments"></textarea>
-                    <a href="" class="link-btn black-btn btn-request-price" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
+                    <a href="" class="link-btn black-btn btn-request-price full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
                 <?php endif; ?>
                 
                 <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue full-width text-center" >Continue Shopping</a>                 
