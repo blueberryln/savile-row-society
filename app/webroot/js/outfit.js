@@ -1,9 +1,11 @@
-var lastLikedItem = 0;
-var lastPurchasedItem = 0;
-var lastClosetItem = 0;
-var inAjaxTransaction = false;
-var createOutfitItem;
+var lastLikedItem = 0,
+    lastPurchasedItem = 0,
+    lastClosetItem = 0,
+    inAjaxTransaction = false;
 
+/**
+ * Purchased items
+ */
 // Function to add purchased items to purchased container
 function addPurchasedItems(items){
     var data = "";
@@ -37,7 +39,40 @@ function addPurchasedItems(items){
         purchasedCont.append(html);
     }
 }
+// Function to get purchased items
+function getPurchasedItems(){
+    $.ajax({
+        url: webroot + "outfits/getPurchasedItems/" + lastPurchasedItem,
+        cache: false,
+        type: 'POST',
+        data: {
+            'client_id': client_id
+        },
+        success: function(data){
+            var ret = $.parseJSON(data);
+            if(ret["status"] == "ok"){
+                if(ret["total"] == 0){
+                    $(".purchased-list-cont .product-listing-box").html("<p>User has not purchased any item yet.");         
+                }
+                else{
+                    if(lastPurchasedItem == 0){
+                        $(".purchased-list-cont .product-listing-box").html("");        
+                    }
+                    lastPurchasedItem = ret['last_purchased_id'];
+                    addPurchasedItems(ret["data"]);
+                }
+            }
+            else if(ret['status'] == "end"){
+                $(".load-more-purchased").fadeOut(300);    
+            }
+        }
+    });
+}
 
+
+/**
+ * Liked items
+ */
 // Function to add liked items to liked container
 function addLikedItems(items){
     var data = "";
@@ -71,7 +106,42 @@ function addLikedItems(items){
         likedCont.append(html);
     }
 }
+// Function to get liked items
+function getLikedItems(lastPurchasedItem){
+    $.ajax({
+        url: webroot + "outfits/getLikedItems/" + lastLikedItem,
+        cache: false,
+        type: 'POST',
+        data: {
+            'client_id': client_id
+        },
+        success: function(data){
+            var ret = $.parseJSON(data);
+            if(ret["status"] == "ok"){
+                if(ret["total"] == 0){
+                    $(".liked-list-cont .product-listing-box").html("<p>User has not liked any item yet.</p>");
+                }
+                else{
+                    if(lastPurchasedItem == 0){
+                        $(".liked-list-cont .product-listing-box").html("");        
+                    }
+                    lastLikedItem = ret['last_liked_id'];
+                    addLikedItems(ret["data"]);
+                }
+            }
+            else if(ret['status'] == "end"){
+                $(".load-more-liked").fadeOut(300);    
+            }   
+        }
+    });
+}
 
+
+
+/**
+ * Closet items
+ */
+// Function to add closet items to srs closet container
 function addClosetItems(items){
     var data;
     var closet = $(".srs-closet-items");
@@ -104,67 +174,7 @@ function addClosetItems(items){
         closet.append(html);
     }
 }
-
-// Function to get purchased items
-function getPurchasedItems(){
-    $.ajax({
-        url: webroot + "outfits/getPurchasedItems/" + lastPurchasedItem,
-        cache: false,
-        type: 'POST',
-        data: {
-            'client_id': client_id
-        },
-        success: function(data){
-            var ret = $.parseJSON(data);
-            if(ret["status"] == "ok"){
-                if(ret["total"] == 0){
-                    $(".purchased-list-cont .product-listing-box").html("<p>User has not purchased any item yet.");         
-                }
-                else{
-                    if(lastPurchasedItem == 0){
-                        $(".purchased-list-cont .product-listing-box").html("");        
-                    }
-                    lastPurchasedItem = ret['last_purchased_id'];
-                    addPurchasedItems(ret["data"]);
-                }
-            }
-            else if(ret['status'] == "end"){
-                $(".load-more-purchased").fadeOut(300);    
-            }
-        }
-    });
-}
-
-// Function to get liked items
-function getLikedItems(lastPurchasedItem){
-    $.ajax({
-        url: webroot + "outfits/getLikedItems/" + lastLikedItem,
-        cache: false,
-        type: 'POST',
-        data: {
-            'client_id': client_id
-        },
-        success: function(data){
-            var ret = $.parseJSON(data);
-            if(ret["status"] == "ok"){
-                if(ret["total"] == 0){
-                    $(".liked-list-cont .product-listing-box").html("<p>User has not liked any item yet.</p>");
-                }
-                else{
-                    if(lastPurchasedItem == 0){
-                        $(".liked-list-cont .product-listing-box").html("");        
-                    }
-                    lastLikedItem = ret['last_liked_id'];
-                    addLikedItems(ret["data"]);
-                }
-            }
-            else if(ret['status'] == "end"){
-                $(".load-more-liked").fadeOut(300);    
-            }   
-        }
-    });
-}
-
+// Function to get closet items
 function getClosetProducts(){
     var categoryId = $(".product-categories li a.filter-selected").closest("li").data("category_id");
     //console.log(categoryId);
@@ -212,22 +222,51 @@ function getClosetProducts(){
 
 }
 
-function displayOutfitItem(outfitEntity){
-    var productBlock = createOutfitItem.closest(".product-block");
-    productBlock.find(".product-id").val(outfitEntity["id"]);
-    productBlock.find(".product-slug").val(outfitEntity["slug"]);
+//Resets the outfit box to initial state.
+function resetOutfitBox(){
+    $('.purchased-list-cont .product-listing-box').html();
+    $('.liked-list-cont .product-listing-box').html();
 
-    var html = "<div class='mosaic-overlay' style='display: block; opacity: 0;'>" +
-            "<a href='' class='remove-product'></a>" +
-            "<div class='mini-product-details'>" +
-                "<span class='outfit-detail-size'>$" + outfitEntity['price'] + "</span>" +
-                "<span class='outfit-detail-name'>" + outfitEntity['name'] + "</span>" +
+    $("#outfit-box .outfit-item").each(function() {
+        clearOutfitItem($(this));
+    });
+
+    lastLikedItem = 0;
+    lastPurchasedItem = 0;
+    lastClosetItem = 0;
+    inAjaxTransaction = false;    
+}
+
+function displayOutfitItem(outfitEntity){
+    var productBlock = null;
+    $(".create-outfit-cont .outfit-item").each(function(){
+        if($(this).find('.product-id').val() == "" && !productBlock){
+            productBlock = $(this);
+        }    
+    });
+    if(productBlock){
+        productBlock = productBlock.find(".product-block");
+        productBlock.find(".product-id").val(outfitEntity["id"]);
+        productBlock.find(".product-slug").val(outfitEntity["slug"]);
+
+        var html = "<div class='mosaic-overlay' style='display: block; opacity: 0;'>" +
+                "<a href='' class='remove-product'></a>" +
+                "<div class='mini-product-details'>" +
+                    "<span class='outfit-detail-size'>$" + outfitEntity['price'] + "</span>" +
+                    "<span class='outfit-detail-name'>" + outfitEntity['name'] + "</span>" +
+                "</div>" +
             "</div>" +
-        "</div>" +
-        "<div class='mosaic-backdrop' style='display: block;'>" +
-            "<img src='" + outfitEntity['img'] + "' alt='" + outfitEntity['name'] + "'>" +
-        "</div>";
-    productBlock.find(".product-list-image").html(html);
+            "<div class='mosaic-backdrop' style='display: block;'>" +
+                "<img src='" + outfitEntity['img'] + "' alt='" + outfitEntity['name'] + "'>" +
+            "</div>";
+        productBlock.find(".product-list-image").html(html);
+    }
+}
+
+function clearOutfitItem(object){
+    object.find(".product-id").val("");
+    object.find(".product-slug").val("");
+    object.find(".product-list-image").html("");
 }
 
 function getOutfitItemCount(){
@@ -241,6 +280,7 @@ function getOutfitItemCount(){
     return outfitItemCount;
 }
 
+// Get a count of selected items at a time.
 function getSelectedCount(){
     var selectedCount = 0;
     $(".srs-closet-items .selected-outfit-item, .purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item").each(function(){
@@ -250,17 +290,30 @@ function getSelectedCount(){
     return selectedCount;
 }
 
+// Check if an item exists in the current outfit.
+function outfitItemExists(selectedProductId){
+    var isItemAdded = false;
+
+    $(".create-outfit-cont .outfit-item").each(function(){
+        if($(this).find('.product-id').val() != '' && $(this).find('.product-id').val() == selectedProductId){
+            isItemAdded = true;      
+        }
+    });    
+
+    return isItemAdded;
+}
+
 $(document).ready(function(){
     $(".fade").mosaic();
     $("#createOutfit").on("click", function(e){
         e.preventDefault(); 
         if(client_id != 0){
             $.blockUI({message: $("#outfit-box"), css: {position :"absolute",top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
+            resetOutfitBox();
             getPurchasedItems(lastPurchasedItem);
             getLikedItems(lastLikedItem);
         }
     });
-    //$.blockUI({message: $("#outfit-box"), css: {top: "0", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
 
     $(".outfit-close").on("click", function(e){
        e.preventDefault();
@@ -269,35 +322,32 @@ $(document).ready(function(){
     
     $(".btn-user-closet").on("click", function(e){
         e.preventDefault();
-        createOutfitItem = $(this);
-        $(".user-closet-cont").fadeIn(300);        
+        if(getOutfitItemCount() < 5){
+            $(".user-closet-cont").fadeIn(300);        
+        }
+        else{
+            alert("You already have 5 items in the outfit. To add, remove one more item first.")
+        }
     });
+    $(".user-closet-close").on("click", function(e){
+        e.preventDefault();
+        $(".user-closet-cont").fadeOut(300);         
+    });
+
     $(".btn-srs-closet").on("click", function(e){
         e.preventDefault();
-        createOutfitItem = $(this);
-        $(".srs-closet-cont").fadeIn(300);        
+        if(getOutfitItemCount() < 5){
+            $(".srs-closet-cont").fadeIn(300);        
+        }
+        else{
+            alert("You already have 5 items in the outfit. To add, remove one more item first.")
+        }      
     });
-    
     $(".srs-closet-close").on("click", function(e){
         e.preventDefault();
         $(".srs-closet-items").html("");
         $(".filter-selected").removeClass("filter-selected");
         $(".srs-closet-cont").fadeOut(300);           
-    });
-    
-    $(".user-closet-close").on("click", function(e){
-        e.preventDefault();
-        $(".user-closet-cont").fadeOut(300);         
-    });
-    
-    // Remove a product from selected list of outfit items
-    $("#outfit-box").on('click', '.remove-product', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var object = $(this).closest(".product-block");
-        object.find(".product-id").val("");
-        object.find(".product-slug").val("");
-        object.find(".product-list-image").html("");
     });
     
     $(".like-cont-link").on("click", function(e){
@@ -320,23 +370,23 @@ $(document).ready(function(){
             });
         } 
     });
-    
+
+    //Load more products
     $(".load-more-purchased").on('click', function(e){
         e.preventDefault();
         getPurchasedItems();
             
     }); 
-    
     $(".load-more-liked").on('click', function(e){
         e.preventDefault();
         getLikedItems();
             
     });
-
     $(".load-more-closet").on('click', function(e){
         e.preventDefault();
         getClosetProducts();
     });
+
 
     $(".product-filter-menu .toggle-tab .product-categories li a").on('click', function(e){
         if(!inAjaxTransaction){
@@ -379,29 +429,43 @@ $(document).ready(function(){
         }
     });
 
+    // Handle the mosiac animations for the outfit section.
     $("#outfit-box").on('mouseenter', '.product-block', function(){
         $(this).find(".mosaic-overlay").stop().animate({"opacity":"1"},300);
     });
-
     $("#outfit-box").on('mouseleave', '.product-block', function(){
         $(this).find(".mosaic-overlay").stop().animate({"opacity":"0"},300);
     });
-    
     $(".chat-container").on('mouseenter', '.product-block', function(){
         $(this).find(".mosaic-overlay").stop().animate({"opacity":"1"},300);
     });
-
     $(".chat-container").on('mouseleave', '.product-block', function(){
         $(this).find(".mosaic-overlay").stop().animate({"opacity":"0"},300);
     });
 
+
+    // Remove a product from selected list of outfit items
+    $("#outfit-box").on('click', '.remove-product', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var object = $(this).closest(".product-block");
+        clearOutfitItem(object);
+    });
+
+    // Handle event of clicking on any product from liked items, purchased items or the closet.
     $(".srs-closet-items, .purchased-list-cont, .liked-list-cont").on("click", ".mosaic-overlay", function(e){
+        var productBox = $(this).closest(".outfit-item");
+        var selectedProductId = productBox.find('.product-id').val();
+
         var selectedCount = getSelectedCount();
         var outfitItemCount = getOutfitItemCount();
+        var isItemAdded = outfitItemExists(selectedProductId);
 
-        var productBox = $(this).closest(".outfit-item");
         if(productBox.hasClass("selected-outfit-item")){
             productBox.removeClass("selected-outfit-item");
+        }
+        else if(isItemAdded){
+            alert("You have already added this item.");   
         }
         else{
             if((selectedCount + outfitItemCount) < 5){
@@ -413,98 +477,36 @@ $(document).ready(function(){
         }
     });
 
-    $("#outfit-box").on('click', ".add-closet-outfit", function(e){
+    $("#outfit-box").on('click', ".add-closet-outfit, .add-purchased-outfit, .add-liked-outfit", function(e){
         e.preventDefault();
-        if($(".srs-closet-items .selected-outfit-item").length == 0){
+        var selectedCount = getSelectedCount();
+        var outfitItemCount = getOutfitItemCount();
+
+        if(!selectedCount){
             alert("Please select an item first.");
         }
         else{
-            var entityBlock = $(".srs-closet-items .selected-outfit-item");
-            var outfitEntity = {
-                'id' : entityBlock.find(".product-id").val(),
-                'slug' : entityBlock.find(".product-slug").val(),
-                'price' : entityBlock.find(".entity-price").text(),
-                'name' : entityBlock.find(".entity-name").text(),
-                'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
-            }
-            var duplicateFlag = false;
-            $('.create-outfit-cont .product-block').each(function(){
-                if($(this)[0] != createOutfitItem.closest(".product-block")[0] && $(this).find(".product-id").val() == outfitEntity['id']){
-                    duplicateFlag = true;      
-                }    
-            });
-            if(duplicateFlag){
-                alert("You have already added this item");    
-            }
-            else{
-                displayOutfitItem(outfitEntity);
-                $(".srs-closet-close").click();
-                $(".product-filter-menu .toggle-tab li").removeClass("filter-selected");    
-            }
-            
-        }
-    });
-    
-    $("#outfit-box").on('click', ".add-purchased-outfit", function(e){
-        e.preventDefault();
-        if($(".purchased-list-cont .selected-outfit-item").length == 0){
-            alert("Please select an item first.");
-        }
-        else{
-            var entityBlock = $(".purchased-list-cont .selected-outfit-item");
-            var outfitEntity = {
-                'id' : entityBlock.find(".product-id").val(),
-                'slug' : entityBlock.find(".product-slug").val(),
-                'price' : entityBlock.find(".entity-price").text(),
-                'name' : entityBlock.find(".entity-name").text(),
-                'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
-            }
-            var duplicateFlag = false;
-            $('.create-outfit-cont .product-block').each(function(){
-                if($(this)[0] != createOutfitItem.closest(".product-block")[0] && $(this).find(".product-id").val() == outfitEntity['id']){
-                    duplicateFlag = true;      
-                }    
-            });
-            if(duplicateFlag){
-                alert("You have already added this item");    
-            }
-            else{
-                displayOutfitItem(outfitEntity);
-                $(".user-closet-close").click();
-                $(".purchased-list-cont .selected-outfit-item").removeClass("selected-outfit-item");    
-            }
-        }
-    });
-    
-    $("#outfit-box").on('click', ".add-liked-outfit", function(e){
-        e.preventDefault();
-        if($(".liked-list-cont .selected-outfit-item").length == 0){
-            alert("Please select an item first.");
-        }
-        else{
-            var entityBlock = $(".liked-list-cont .selected-outfit-item");
-            var outfitEntity = {
-                'id' : entityBlock.find(".product-id").val(),
-                'slug' : entityBlock.find(".product-slug").val(),
-                'price' : entityBlock.find(".entity-price").text(),
-                'name' : entityBlock.find(".entity-name").text(),
-                'img' : entityBlock.find(".mosaic-backdrop img").data("src"),
-            }
-            var duplicateFlag = false;
-            $('.create-outfit-cont .product-block').each(function(){
-                if($(this)[0] != createOutfitItem.closest(".product-block")[0] && $(this).find(".product-id").val() == outfitEntity['id']){
-                    duplicateFlag = true;      
-                }    
-            });
-            if(duplicateFlag){
-                alert("You have already added this item");    
-            }
-            else{
-                displayOutfitItem(outfitEntity);
-                $(".user-closet-close").click();
-                $(".liked-list-cont .selected-outfit-item").removeClass("selected-outfit-item");    
-            }
-            
+            if(outfitItemCount < 5){
+                var isItemAdded;
+                $(".srs-closet-items .selected-outfit-item, .purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item").each(function(){
+                    var $this = $(this);
+                    var outfitEntity = {
+                        'id' : $this.find(".product-id").val(),
+                        'slug' : $this.find(".product-slug").val(),
+                        'price' : $this.find(".entity-price").text(),
+                        'name' : $this.find(".entity-name").text(),
+                        'img' : $this.find(".mosaic-backdrop img").data("src"),
+                    }  
+                    isItemAdded = outfitItemExists($this.find(".product-id").val());
+
+                    if(!isItemAdded && outfitItemCount < 5){
+                        displayOutfitItem(outfitEntity); 
+                        $this.removeClass('selected-outfit-item');
+                        outfitItemCount++;   
+                    }
+                });       
+            }    
+            $(".srs-closet-close, .user-closet-close").click();
         }
     });
     
