@@ -25,7 +25,7 @@ function addPurchasedItems(items){
                             "<div class='mosaic-overlay' style='display: block;'>" + 
                                 "<span class='select-item'></span>" +
                 				"<div class='mini-product-details'>" + 
-            					   "<span class='entity-price'>" + data['Entity']['price'] + "</span>" +
+            					   "<span class='entity-price'>$" + data['Entity']['price'] + "</span>" +
             					   "<span class='entity-name'>" + data['Entity']['name'] + "</span>" +
                 				"</div>" + 
                 			"</div>" + 
@@ -92,7 +92,7 @@ function addLikedItems(items){
                             "<div class='mosaic-overlay' style='display: block;'>" + 
                                 "<span class='select-item'></span>" +
                 				"<div class='mini-product-details'>" + 
-            					   "<span class='entity-price'>" + data['Entity']['price'] + "</span>" +
+            					   "<span class='entity-price'>$" + data['Entity']['price'] + "</span>" +
             					   "<span class='entity-name'>" + data['Entity']['name'] + "</span>" +
                 				"</div>" + 
                 			"</div>" + 
@@ -160,7 +160,7 @@ function addClosetItems(items){
             "<div class='mosaic-overlay' style='display: block;'>" +
             "<span class='select-item'></span>" +
             "<div class='mini-product-details'>" +
-            "<span class='entity-price'>" + data['Entity']['price'] + "</span>" +
+            "<span class='entity-price'>$" + data['Entity']['price'] + "</span>" +
             "<span class='entity-name'>" + data['Entity']['name'] + "</span>" +
             "</div>" +
             "</div>" +
@@ -230,6 +230,8 @@ function resetOutfitBox(){
     $("#outfit-box .outfit-item").each(function() {
         clearOutfitItem($(this));
     });
+
+    $(".like-cont-link").click();
 
     lastLikedItem = 0;
     lastPurchasedItem = 0;
@@ -309,7 +311,6 @@ $(document).ready(function(){
         e.preventDefault(); 
         if(client_id != 0){
             $.blockUI({message: $("#outfit-box"), css: {position :"absolute",top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
-            resetOutfitBox();
             getPurchasedItems(lastPurchasedItem);
             getLikedItems(lastLikedItem);
         }
@@ -318,6 +319,7 @@ $(document).ready(function(){
     $(".outfit-close").on("click", function(e){
        e.preventDefault();
        $.unblockUI(); 
+       resetOutfitBox();
     });
     
     $(".btn-user-closet").on("click", function(e){
@@ -332,6 +334,7 @@ $(document).ready(function(){
     $(".user-closet-close").on("click", function(e){
         e.preventDefault();
         $(".user-closet-cont").fadeOut(300);         
+        $(".purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item").removeClass("selected-outfit-item");
     });
 
     $(".btn-srs-closet").on("click", function(e){
@@ -346,8 +349,8 @@ $(document).ready(function(){
     $(".srs-closet-close").on("click", function(e){
         e.preventDefault();
         $(".srs-closet-items").html("");
-        $(".filter-selected").removeClass("filter-selected");
-        $(".srs-closet-cont").fadeOut(300);           
+        $(".srs-closet-cont").fadeOut(300);       
+        $(".filter-selected").removeClass("filter-selected");   
     });
     
     $(".like-cont-link").on("click", function(e){

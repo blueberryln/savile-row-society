@@ -555,6 +555,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
                 var html = showSentMessage(message, uid);
                 chatContainer.prepend(html);
+                $("#messageToSend").val("");
 
                 $.ajax({
                     url: "<?php echo $this->webroot; ?>messages/send_to_user",
@@ -562,7 +563,6 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     type: 'POST',
                     data: _data,
                     success: function(res) {
-                        $("#messageToSend").val("");
                         res = jQuery.parseJSON(res);
                         if(res['status'] == 'ok'){
                             // var html = showChatMsg(res);
