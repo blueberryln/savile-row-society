@@ -118,6 +118,7 @@ class ConnectController extends AppController {
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($profile['emailAddress']);
                     $email->subject('Welcome to Savile Row Society!');
+                  $email->bcc(array('lisa@savilerowsociety.com', 'andrea@savilerowsociety.com', 'saurabh@mobikasa.com', 'admin@savilerowsociety.com'));
                     $email->template('registration');
                     $email->emailFormat('html');
                     $email->viewVars(array('name' => $profile['firstName']));
@@ -251,6 +252,7 @@ class ConnectController extends AppController {
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                         $email->to($profile['email']);
                         $email->subject('Welcome to Savile Row Society!');
+                  $email->bcc(array('lisa@savilerowsociety.com', 'andrea@savilerowsociety.com', 'saurabh@mobikasa.com', 'admin@savilerowsociety.com'));
                         $email->template('registration');
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));

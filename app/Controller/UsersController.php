@@ -553,6 +553,7 @@ class UsersController extends AppController {
                   $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                   $email->to($user['User']['email']);
                   $email->subject('Welcome to Savile Row Society!');
+                  $email->bcc(array('lisa@savilerowsociety.com', 'andrea@savilerowsociety.com', 'saurabh@mobikasa.com', 'admin@savilerowsociety.com'));
                   $email->template('registration');
                   $email->emailFormat('html');
                   $email->viewVars(array('name' => $user['User']['first_name']));
