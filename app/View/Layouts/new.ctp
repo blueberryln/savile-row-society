@@ -162,6 +162,38 @@
                 }
                 return _isLoggedIn;
             }
+
+            /**
+             * Set and control message notifier
+             */
+            var messageInterval = null;
+            function startMessageNotifier(){
+                <?php if($this->request->params['action'] != "checkout") : ?>
+                if(isLoggedIn()){
+                    messageInterval = setInterval(function(){updateNotifications()}, 10000);
+                }
+                <?php endif; ?>
+            }
+            
+            function updateNotifications(){
+                $.ajax({
+                    url: '<?php echo $this->Html->url('/', true); ?>api/messageNotification',
+                    type: 'POST',
+                    data: {},
+                    success: function(data){
+                        var ret = $.parseJSON(data);
+                        if(ret){
+                            $("#total-notifications").html(ret['total']); 
+                            $(".msg-count span").text(ret['message']);   
+                            $(".outfit-count span").text(ret['outfit']);
+                        }
+                    }    
+                });    
+            }
+
+            $(document).ready(function() { 
+                startMessageNotifier();
+            });
         </script>
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
 
