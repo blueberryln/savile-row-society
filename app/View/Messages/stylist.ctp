@@ -204,10 +204,14 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <option>PartyWear</option>
                     </select>
                 </div>
+                <div class="clear-fix"></div>
+                <div class="eight columns text-center">
+                    <label>Message:</label>
+                    <textarea id='outfitMessageToSend'></textarea>        
+                </div>
             </div>
             <div class="clear-fix"></div>
             <div class="text-center">
-                <br /><br /><br />
                 <a href="" id="add-outfit" class="link-btn black-btn">Suggest the Outfit</a>
             </div>
         </div>
@@ -405,7 +409,11 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             var html = ''; 
             if(chatMsg['Message']['is_outfit'] == 1){
                 html = html + '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
-                html = html + '<div class="message-caption">You suggested new items to complete a style:</div><br>'; 
+                html = html + '<div class="message-caption">You suggested new items to complete a style:</div>'; 
+                if(chatMsg['Message']['body'] != ''){
+                    html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
+                }
+                
                 html = html + '<div class="chat-outfit-box">';
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
                     var imgSrc = webroot + "img/image_not_available-small.png";

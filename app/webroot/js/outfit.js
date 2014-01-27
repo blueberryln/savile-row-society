@@ -520,6 +520,7 @@ $(document).ready(function(){
         var outfitId3 = $("#outfit3 .product-id").val();
         var outfitId4 = $("#outfit4 .product-id").val();
         var outfitId5 = $("#outfit5 .product-id").val();
+        var outfitMsg = $("#outfitMessageToSend").val();
         
         if(outfitId1 == "" && outfitId2 == "" && outfitId3 == "" && outfitId4 == ""  && outfitId5 == ""){
             alert("Please select atleast one product to create an outfit.");
@@ -528,16 +529,28 @@ $(document).ready(function(){
             var outfitLocation = $("#outfit-location").val();
             var outfitStyle = $("#outfit-style").val();
             
-            $.post(webroot + "outfits/postOutfit/",{outfit1 : outfitId1, outfit2 : outfitId2, outfit3 : outfitId3, outfit4 : outfitId4, outfit5 : outfitId5, outfit_location: outfitLocation, outfit_style: outfitStyle, user_id: client_id}, function(data){
-                var ret = $.parseJSON(data);
-                if(ret['status'] == "ok"){
-                    $(".user-closet-close").click();
-                    window.location = webroot + 'messages/index/' + client_id;    
-                }
-                else if(ret['status'] == "error" && ret['msg']){
-                    alert(ret['msg']);    
-                }
-        
+            $.post(
+                webroot + "outfits/postOutfit/",
+                {
+                    outfit1 : outfitId1, 
+                    outfit2 : outfitId2, 
+                    outfit3 : outfitId3, 
+                    outfit4 : outfitId4, 
+                    outfit5 : outfitId5, 
+                    outfit_location: outfitLocation, 
+                    outfit_style: outfitStyle, 
+                    user_id: client_id,
+                    outfit_msg: outfitMsg
+                }, 
+                function(data){
+                    var ret = $.parseJSON(data);
+                    if(ret['status'] == "ok"){
+                        $(".user-closet-close").click();
+                        window.location = webroot + 'messages/index/' + client_id;    
+                    }
+                    else if(ret['status'] == "error" && ret['msg']){
+                        alert(ret['msg']);    
+                    }
             });
         }
     });
