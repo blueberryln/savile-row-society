@@ -82,7 +82,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     </div>
                 </li>
                 <?php endif; ?>
-                <li><a href="<?php echo $this->request->webroot; ?>cart"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <li>
                     <a title="Account">My Account</a>
                     <div class="submenu-container">
