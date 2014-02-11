@@ -28,6 +28,7 @@
  */
 Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 Router::connect('/new', array('controller' => 'pages', 'action' => 'display', 'new'));
+Router::connect('/homepage', array('controller' => 'pages', 'action' => 'display', 'homepage'));
 Router::connect('/signin', array('controller' => 'users', 'action' => 'signin'));
 Router::connect('/register/*', array('controller' => 'users', 'action' => 'register'));
 Router::connect('/signout', array('controller' => 'users', 'action' => 'signout'));

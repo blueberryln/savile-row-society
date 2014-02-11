@@ -13,8 +13,16 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
 <div class="header">
     <div class="wrapper">
+
+        <!--Logo Section-->
+        <div class="header-logo left">
+            <a href="<?php echo $this->request->webroot; ?>" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
+        </div>
+        <!--Logo Section Ends-->
+
         <!--Log In Menu-->
-        <div class="twelve columns card-menu">
+        <div class="card-menu right">
             <ul>
                <!-- <?php
                 if (!$is_logged) {
@@ -32,10 +40,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                  <?php
                 if (!$is_logged) {
                 ?>
-                <li><a href="#" onclick="window.ref_url=''; signUp();"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
-                <?php
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();">Join</a></li> ';
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();">Sign In</a> </li> ';
+                <li><a href="#" onclick="window.ref_url=''; signUp();"><img src="<?php echo $this->webroot; ?>img/cart-new.png" style="vertical-align: middle; width:30px;"  /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                <?php 
+                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();"><img src="'.$this->webroot.'img/sign_in.png" style="vertical-align: middle; width:70px; height:30px;"  /></a> </li> ';
+                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="'.$this->webroot.'img/register.png" style="vertical-align: middle; width:90px; height:30px;"  /> </a></li> ';
+                    
                 } else {
                 ?>
                     <?php if($user) : ?>
@@ -95,16 +104,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         </div>
         <!--Log In Menu Ends-->
 
-        <!--Logo Section-->
-        <div class="twelve columns text-center header-logo">
-            <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
-            <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
-        </div>
-        <!--Logo Section Ends-->
+       
         
         <span id="menu-switcher">&#8801;</span>
         <!--Menu Section-->
-        <div class="twelve columns alpha omega menu text-center">            
+        <div class="menu right">            
             <ul>                
                 <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
 
@@ -124,8 +128,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         </ul>
                     </li>
                 <?php endif; ?>
-                            
-                <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li>
+                <li><a  href="<?php echo $this->request->webroot; ?>booking" data-ref="closet"><span class="underline1">The Fitting room</span></a></li>                            
+                <!--li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li-->
                 
                 
                 <?php if($this->params['controller']=='pages' && $this->params['action']=='display'  && $this->params['pass'][0]=='home') : ?>
@@ -137,6 +141,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             </ul>
         </div>
         <!--Menu Section Ends-->
+        <span class="call-us-at">Call us at +1 347 878 7280</span>
         
 
     </div>   

@@ -3,8 +3,8 @@
  */
 
 .text-center{text-align: center;}
-.text-left{text-align: left;}
-.text-right{text-align: right;}
+.text-left{text-align: left !important;}
+.text-right{text-align: right !important;}
 .text-justify{text-align: justify;}
 .right{float: right !important; }
 .left{float: left !important; }
@@ -76,13 +76,13 @@ input[type="submit"]{color: #fff;}
 
  /****************Header****************/
  .wrapper{position:relative; width: 95%; height: 100%; margin:0 auto; padding: 0;}
- .header {background-color: #000000; width: 100%; height: auto; position: fixed; top: 0px; z-index: 11; }
+ .header {background-color: #FFFFFF; width: 100%; height: 90px; position: fixed; top: 0px; z-index: 11; }
  	/******Right Card Menu****/
-	 .card-menu {position: absolute; right:0; color:white; padding: 0 !important; margin:0px !important;}
-	 .card-menu  ul {padding:3px 0; margin: auto; float: right; }
-	 .card-menu  li {cursor: pointer; font-size: 11px; margin: 0px 0px; padding: 0px 0px; display:inline-block; color:white; font-family: 'Droid Serif', serif;text-decoration: none; text-transform: uppercase; border-left: solid 1px #AF9A59; padding-left:5px; padding-right: 5px;}
+	 .card-menu {color:white; padding: 0 !important; margin:0px !important;}
+	 .card-menu  ul {margin: auto; float: right; }
+	 .card-menu  li {cursor: pointer; font-size: 13px; font-weight: 600; margin: 0; padding: 0px 5px; display:inline-block; color:white; font-family: 'Droid Serif', serif;text-decoration: none; text-transform: uppercase; }
 	 .card-menu ul li:first-child {border-left:none;}
-	.card-menu  li a{color:#AF9A59;}
+	.card-menu  li a{color:#333;}
 	.card-menu .submenu { background-color: #ffffff; border-left: 1px solid #CCCCCC; cursor: auto; padding: 12px;
 	    z-index: 100; }
 	.card-menu .submenu li { border: medium none; margin-bottom: 5px; display: block; float: none; font-size: 12px; }
@@ -99,35 +99,36 @@ input[type="submit"]{color: #fff;}
 	.card-menu li:hover > .submenu-container{ display:block; }
 	/*****Logo Strip and Main Menu****/
 	.header-logo{margin: 0; padding: 0;}
-	.header .logo {padding:15px 0 0 0; width: 250px; margin: 0;}
+	.header-logo a, .header .menu, .card-menu{line-height: 90px;}
+	.header .logo {width: 250px;vertical-align: middle;}
 	.header .menu{background-color: transparent;}
 	.header .menu ul {margin: 0 auto; padding: 0; display: table; margin: auto; }
-	.header .menu li {cursor: pointer; display: inline-block; font-size: 12px; margin: 10px 70px 5px 0; padding: 0 13px; text-transform: uppercase; border:none;}
+	.header .menu li {cursor: pointer; display: inline-block; margin: 0; padding: 0 15px; text-transform: uppercase; border:none;}
 	.header .menu li:last-child{margin-right: 0;}
-	.header .menu li a {color: #ffffff; font-size: 14px; font-family: 'Conv_Novecento-Book',Sans-Serif; padding-bottom: 10px;}
-	.header .menu li span{color: #ffffff;}
+	.header .menu li a {color: #333; font-weight:600; font-size: 13px; font-family: 'Conv_Novecento-Book',Sans-Serif; }
 	.header .menu li span:hover{ border-bottom:1px solid #fff;}
 	.header .menu li:hover > .submenu{ display:block; }
 	.header .menu .submenu { background-color: #ffffff; border: 1px solid #CCCCCC; cursor: auto; display: none; margin: 2px 0 0 -14px; padding: 0; position: absolute; z-index: 100; text-align: left; }
 	.header .menu .submenu li {border:none; display: block;}
 	.header .menu .submenu li a{color: #b4b4b4;}
 	#menu-switcher{color: #fff; font-size: 40px; float: right; padding: 6px 0; display: none; cursor: pointer;}
+	span.call-us-at{position: absolute; bottom: 5px; right:5px; font-family: Helvetica, Arial, sans-serif; font-size: 12px;}
 
 /*******Middle Section*********/
 .content-container{background-color: #fff;}
-.content{margin-top: 94px; padding: 10px 0 20px 0; background-color: #FFFFFF;}
+.content{padding: 10px 0 20px 0; background-color: #FFFFFF;}
 .content p{line-height: 24px; margin-bottom: 20px;}
 .content .page-heading{margin:0 auto; padding: 10px 0; display: block;}
 .content .page-heading h1, .content .block-heading h1, h1.pop-heading{font-family:arial, Helvetica, sans-serif; color:#000; font-size: 30px; text-transform: uppercase; font-weight: normal; margin: 0;}
-.content .page-content{margin:0 auto; display: block;}
+.content .page-content{margin:0 auto; display: block;}	
 
 /*******Footer********/
 .footer-bar{width: 100%; color: #fff; clear:both;}
-.footer{margin: 0; background-color: #000; position: absolute; height: auto; width: 100%;}
+.footer{margin: 0; background-color: #fff; position: absolute; height: auto; width: 100%; border-top: 1px solid #ccc;}
 .footer .menu{background-color: transparent; border: none; margin: 10px auto;}
 .footer .menu li{display: inline-block; padding: 0 10px; margin:0; text-transform: uppercase; border: none;}
-.footer .menu li a{color: #fff; font-size: 10px; font-family: 'Conv_Novecento-Book',Sans-Serif;}
-.footer .copyright{ font-size: 10px; text-transform: uppercase; font-family: 'Conv_Novecento-Book',Sans-Serif; padding-right: 10px; margin: 10px 0;}
+.footer .menu li a{color: #000; font-size: 10px; font-family: 'Conv_Novecento-Book',Sans-Serif;}
+.footer .copyright{color: #000; font-size: 10px; text-transform: uppercase; font-family: 'Conv_Novecento-Book',Sans-Serif; padding-right: 10px; margin: 10px 0;}
 
 /****How it works Page****/
 .membership-flow{width: 100%; margin: 40px 0 10px 0;}
@@ -297,7 +298,7 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
         /*.header .menu .submenu{display: block; position: relative; background-color: transparent; border: none;}
         .header .menu .submenu li a{color:#fff;}*/
         #menu-switcher{display: block;}
-        .team-member{width: 50%;}
+        .team-member{width:75%;}
         .team-member .name{word-wrap:break-word;}
         .footer .menu,.footer .copyright{width: 100%; text-align: center;}
         #your-style .ui-selectable,#suite-frequency .ui-selectable{text-align: center;}
@@ -308,7 +309,13 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
         .sort-block{position: relative !important; top:0 !important;}
         .product-breadcrumb{margin-left: 25px;}   
         .user-container, .stylist-talk, .chat-outfit-box .chat-product-box, .srs-closet-cont .product-listing{width: 95% !important;margin: 20px auto 0 !important; float: none !important;}
-        .outfit-modal{height: 100%; }     
+        .outfit-modal{height: 100%; }  
+        .box-modal{width: 380px;} 
+        ul#branding-partners {text-align: center;}
+        .product-actions{margin-bottom: 25px;}
+        .continue-shopping{width: 100%;}
+        .profile-tabs a{width: 120px;}
+        .brands-logo{text-align: center;}
 
 }
 
@@ -382,7 +389,7 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
 	p.product-breadcrumb { color: #666; margin-bottom: 5px !important; text-transform: uppercase; font-size: 12px; }
 	.product-default-image{ border: 1px solid #ccc; background-color: #FFFFFF; height: 507px; text-align: center; line-height: 506px; margin-bottom: 10px; overflow: hidden; }
 	.product-default-image img{ max-width: 374px; max-height: 506px; vertical-align: middle; }
-	.product-actions{margin-top: 25px;}
+	.product-actions{margin-top: 25px; min-height: 40px;}
 	.product-thumbs{ float: right; width: 45%; text-align: right; }
 	.product-thumbs a{ display: inline-block; margin-left: 5px; height: 36px; width: 36px; }
 	.product-thumbs .thumbs-up{ background: url('../img/thumbs_big.png') no-repeat 0 0; }
@@ -506,3 +513,24 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	.srs-closet-cont .product-top-offset{border-top: 1px solid #D9D9D9; padding: 5px 0 10px;}
 	.srs-closet-cont .product-listing{width: 720px;}
 
+/*******New Home Page*******/
+.works-boxes, .stylist-boxes, .shopping-boxes{display: block; position: relative; margin: 50px auto; text-align: center;}
+.works-boxes .work-box, .stylist-boxes .stylist-box, .shopping-boxes .shopping-box{display: inline-block; position: relative; vertical-align: top; font-family: 'Conv_Novecento-Book',Sans-Serif; }
+.works-boxes .work-box, .shopping-boxes .shopping-box{width: 25%; margin: 0 3%; height:410px; text-align: center; }
+.stylist-box{width: 20%; margin: 0 2%; height: 400px; text-align: left;}
+.works-boxes .work-box img{margin-bottom: 10px;}
+.stylist-box h3, .shopping-box h3{font-size: 14px; line-height: 18px; margin:0 0 3px 7px;}
+.works-desc, .stylist-desc, .shopping-desc  {display: block; font-size: 12px; margin:0 auto 15px auto;  color: #999; line-height: 18px; }
+.stylist-desc, .shopping-desc {font-family: 'Droid Serif', serif; margin-left: 7px;}
+.c-no{display: block; margin: 0 auto; }
+.c-no img{margin-bottom: 5px;}
+.works-btn{background: #000; color:#fff; border-radius:4px; padding:5px 10px; width: 100px; text-transform: uppercase; display: block; margin: 0 auto; position: absolute; bottom: 5px; left:25%; cursor:pointer;}
+.works-btn:hover{color: #fff;}
+div.img-box{position: relative; cursor:pointer;}
+.overlay{position: absolute; top: 0; width: 100%;  height: 100%; background: rgba(0,0,0,0.5); opacity:0; -webkit-transition:opacity 0.2s linear;}
+div.img-box:hover .overlay{opacity:1;}
+.home-branding-partners{width:710px; margin: 50px auto;}
+.testimonials{margin: 35px auto;}
+.testimonials h3{font-size: 20px; line-height: 21px; margin-bottom: 10px; font-weight: bold;}
+.testimonials h4{font-size: 20px; line-height: 21px; margin-bottom: 10px; font-family: 'Conv_Novecento-Book',sans-serif; font-weight: 100; color: #555;}
+.testimonials .testi-desc{font-size: 14px; color: #777;}
