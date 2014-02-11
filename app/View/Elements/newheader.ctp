@@ -40,10 +40,10 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                  <?php
                 if (!$is_logged) {
                 ?>
-                <li><a href="#" onclick="window.ref_url=''; signUp();"><img src="<?php echo $this->webroot; ?>img/cart-new.png" style="vertical-align: middle; width:30px;"  /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                <li><a href="#" onclick="window.ref_url=''; signUp();"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <?php 
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();"><img src="'.$this->webroot.'img/sign_in.png" style="vertical-align: middle; width:70px; height:30px;"  /></a> </li> ';
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="'.$this->webroot.'img/register.png" style="vertical-align: middle; width:90px; height:30px;"  /> </a></li> ';
+                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();"><img class="sign-in" src="'.$this->webroot.'img/sign_in.png" /></a> </li> ';
+                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img class="sign-up" src="'.$this->webroot.'img/register.png" /> </a></li> ';
                     
                 } else {
                 ?>
@@ -81,7 +81,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     </div>
                 </li>
                 <?php endif; ?>
-                <li><a href="<?php echo $this->request->webroot; ?>cart"><img src="<?php echo $this->webroot; ?>img/cart.png" style="vertical-align: middle;" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <li>
                     <a title="Account">My Account</a>
                     <div class="submenu-container">
