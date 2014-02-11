@@ -1,9 +1,40 @@
 <?php
 $meta_description = 'As people today are rarely defined by a single company or career track, clothes have become an absolute reflection of one’s values, personality, attitude, and lifestyle.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
+$script='
+    jQuery(document).ready(function(){        
+        function vidContinerHeight(){
+            var mbHeight = jQuery(".mg-big").height();
+            var mgsHeight = jQuery(".mg-small").height();
+            var mgvHeight = mbHeight - mgsHeight;
+            jQuery(".mg-vid").css("height", mgvHeight);
+        }
+        vidContinerHeight();               
+    });
+    jQuery(window).resize(function(){
+           var mbHeight = jQuery(".mg-big").height();
+            var mgsHeight = jQuery(".mg-small").height();
+            var mgvHeight = mbHeight - mgsHeight;
+            jQuery(".mg-vid").css("height", mgvHeight);
+        }); 
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 <div class="content-container">
-    <div class="twelve columns content inner">   
+    <div class="twelve columns content inner homepage"> 
+    <div class="mega-banner">
+        <div class="mg-big"><img src="<?php echo $this->webroot; ?>img/h_1.jpg" /></div>
+        <div class="mg-vid">
+            <iframe class="max-width-adj" src="http://www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>            
+        </div>
+        <div class="mg-small">
+            <img src="<?php echo $this->webroot; ?>img/h_2.jpg" />
+            <img src="<?php echo $this->webroot; ?>img/h_3.jpg" />
+        </div>
+        <div class="clear-fix"></div> 
+    </div>
+   
+
     <div class="ten columns text-center page-heading">
         <h1>How it works</h1>
     </div>
@@ -89,9 +120,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </div>
 
     <div class="ten columns text-center page-heading">
-        <h1>Our brands</h1>
+        <h1>Our brands</h1>        
     </div>
     <div class="home-branding-partners center-block">
+        <span class="brands-desc">We select the best of the best. From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category. One thing is for sure, all of our partnering brands are passionate about clothing. <a href="<?php echo $this->request->webroot; ?>company/brands">See more brands</a></span>
         <ul id="branding-partners">
                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Bernard_zins.jpg" class="fadein-image" alt="Bernard Zins" /></li>
                         <li><img src="<?php echo $this->webroot; ?>img/branding-partners/7diamonds.png" class="fadein-image" alt="7 Diamonds" /></li>

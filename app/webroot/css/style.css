@@ -458,20 +458,23 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	.srs-closet-cont .product-listing{width: 720px;}
 
 /*******New Home Page*******/
+.homepage{padding-top: 0;}
 .works-boxes, .stylist-boxes, .shopping-boxes{display: block; position: relative; margin: 50px auto; text-align: center;}
 .works-boxes .work-box, .stylist-boxes .stylist-box, .shopping-boxes .shopping-box{display: inline-block; position: relative; vertical-align: top; font-family: 'Conv_Novecento-Book',Sans-Serif; }
 .works-boxes .work-box, .shopping-boxes .shopping-box{width: 25%; margin: 0 3%; height:410px; text-align: center; }
 .stylist-box{width: 20%; margin: 0 2%; height: 400px; text-align: left;}
 .works-boxes .work-box img{margin-bottom: 10px;}
 .stylist-box h3, .shopping-box h3{font-size: 14px; line-height: 18px; margin:0 0 3px 7px;}
-.works-desc, .stylist-desc, .shopping-desc  {display: block; font-size: 12px; margin:0 auto 15px auto;  color: #999; line-height: 18px; }
+.works-desc, .stylist-desc, .shopping-desc, .brands-desc  {display: block; font-size: 12px; margin:0 auto 15px auto;  color: #999; line-height: 18px; }
+.brands-desc a{color: #AF9A59;}
 .stylist-desc, .shopping-desc {font-family: 'Droid Serif', serif; margin-left: 7px;}
 .c-no{display: block; margin: 0 auto; }
 .c-no img{margin-bottom: 5px;}
 .works-btn{background: #000; color:#fff; border-radius:4px; padding:5px 10px; width: 100px; text-transform: uppercase; display: block; margin: 0 auto; position: absolute; bottom: 5px; left:25%; cursor:pointer;}
 .works-btn:hover{color: #fff;}
 div.img-box{position: relative; cursor:pointer;}
-.overlay{position: absolute; top: 0; width: 100%;  height: 100%; background: rgba(0,0,0,0.5); opacity:0; -webkit-transition:opacity 0.2s linear;}
+div.img-box img{border: 12px solid #fff; -webkit-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); -ms-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); box-shadow: 0px 1px 10px rgba(0,0,0,0.3); box-sizing: border-box;} 
+.overlay{position: absolute; top: 0; width: 100%;  height: 99%; background: rgba(0,0,0,0.5); opacity:0; -webkit-transition:opacity 0.2s linear;}
 div.img-box:hover .overlay{opacity:1;}
 .home-branding-partners{width:710px; margin: 50px auto;}
 .testimonials{margin: 35px auto;}
@@ -482,6 +485,14 @@ div.img-box:hover .overlay{opacity:1;}
 div.card-menu ul li img.sign-up{vertical-align: middle; width:90px; height:30px;}
 div.card-menu ul li img.sign-in{vertical-align: middle; width:70px; height:30px;}
 img.cart-img{vertical-align: middle; width:30px;}
+.mg-big, .mg-vid, .mg-small{width: 50%;}
+.mg-small img{width:49%;}
+.mg-small img:first-child{margin-right: 2px;}
+.mg-big{float: left; position: relative;}
+.mg-vid, .mg-small{float: left; position: relative; text-align: right;}
+.mg-vid{min-height: 150px;}
+.mg-vid iframe{width: 99%; height: 98%;}
+
 
 
 /********Mobile CSS**********/
@@ -553,8 +564,7 @@ top: 111px;}
         .profile-tabs a{width: 120px;}
         .brands-logo{text-align: center;}
         .stylist-box{width:30%;}       
-
-
+        .mg-big, .mg-vid, .mg-small, .mg-small img{width: 100%;}
 }
 
 @media screen and (min-width: 240px) and (max-width: 568px) {
@@ -563,7 +573,4 @@ top: 111px;}
 	}
 
 
-	.mg-big, .mg-vid, .mg-small{width: 50%;}
-	.mg-small img{width:49%;}
-	.mg-big{float: left; position: relative;}
-	.mg-vid, .mg-small{float: right; position: relative; text-align: right;}
+	
