@@ -284,16 +284,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <li class="toggle-tab selected open-filter"><span class="filter-block"><a href="<?php echo $this->webroot; ?>closet">Categories</a></span>
                             <ul class="toggle-body product-categories">
                             <?php foreach ($categories as $category): ?>
-                                <li class="<?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "cat-filter-selected" : ""; ?> <?php echo ($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') ? 'highlighted-cat' : '';?>">
-                                <?php if($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') : ?>
+                                <li class="<?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "cat-filter-selected" : ""; ?> <?php echo ($category['Category']['slug'] == 'seasonal') ? 'highlighted-cat' : '';?>">
+                                <?php if($category['Category']['slug'] == 'seasonal') : ?>
                                     <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
                                     <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
                                 <?php endif; ?>
-                                    <?php if($category['Category']['slug'] == "lookbooks") : ?>
-                                        <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>" data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
-                                    <?php else : ?>
-                                        <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
-                                    <?php endif; ?>
+                                    <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
 
 
                                     <?php if ($category['children']) : ?>
@@ -311,7 +307,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             <?php endforeach; ?>
                                         </ul>
                                     <?php endif; ?>
-                                <?php if($category['Category']['slug'] != 'seasonal' && $category['Category']['slug'] != 'lookbooks') : ?>
+                                <?php if($category['Category']['slug'] != 'seasonal') : ?>
                                     <span class="filter-cross"></span>
                                 <?php endif; ?>
                                 </li>
@@ -347,7 +343,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </ul>
                 </div>
             </div>
-            <?php if($entities && strtolower($category_slug) != "lookbooks") : ?>
+            <?php if($entities) : ?>
                 <div class="sort-block">
                     <?php
                         $sortKey = $this->Paginator->sortKey();
@@ -364,7 +360,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <?php endif; ?>
             <div class="ten columns omega product-listing right">
                 <!--<div class="product-top-offset"></div>-->
-                <?php if($entities && strtolower($category_slug) != "lookbooks") : ?>
+                <?php if($entities) : ?>
                     <?php foreach($entities as $entity) : ?>
                         <div class="product-box">
                             <div class="product-block">

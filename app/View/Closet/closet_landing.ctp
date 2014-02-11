@@ -68,7 +68,6 @@ if($user_id){
 }
 
 $script = '
-var lifestyles = ' . json_encode($lifestyles) . ';
 var threeItemPopup = ' . $show_three_item_popup. ';
 var showClosetPopUp = ' . $show_closet_popup . ';
 
@@ -104,40 +103,13 @@ function highLightCategory(prod_id, parent_id){
 
 $(document).ready(function(){   
     
-    /**
-     * Check if Lookbook slider needs to be shown. If yes setup the fancybox and trigger the action 
-     */
-     
-    //Setup the Fancybox plugin for the Lifestyle image popup
-    $(".fancybox").fancybox({ 
-        afterClose : function() {
-	       setCookie("showLifeStyle",1,60);   
-        },  
-		helpers: {
-			title : {
-				type : "over"
-			},
-			overlay : {
-				speedOut : 1000
-			},
-		},
-	}); 
-    var showLifeStyle=getCookie("showLifeStyle");
-    if (showLifeStyle == null || showLifeStyle == ""){
-        
-        // Delay the trigger to open the lookbook slider
-        setTimeout(function(){
-            $(".fancybox").eq(0).trigger("click");    
-        }, 1000);
-    }
-    
     if(isLoggedIn() && threeItemPopup == 1){
         var notificationDetails = new Array();
         notificationDetails["msg"] = "' . $popUpMsg . '";
         notificationDetails["button"] = "<a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
         showNotification(notificationDetails);  
     }    
-    else if(showLifeStyle != null && showLifeStyle != ""){
+    else{
         var closetInfo=getCookie("closetInfo");
         if (closetInfo==null || closetInfo==""){
             $.blockUI({message: $("#closetinfo-box"),css:{top: $(window).height()/2 - $("#closetinfo-box").height()/2}});
@@ -152,13 +124,7 @@ $(document).ready(function(){
     //
     $(".mosaic-overlay").on("click", function(e){
         e.preventDefault();
-        if($(this).hasClass("lifestyle-overlay")){
-            $(".fancybox").eq(0).trigger("click");        
-        }
-        else{
-            window.location = $(this).closest(".product-block").find(".btn-buy").attr("href");
-            
-        }
+        window.location = $(this).closest(".product-block").find(".btn-buy").attr("href");
     });
     
     $(".toggle-tab").on("click", function(e){
@@ -246,80 +212,60 @@ $(document).ready(function(){
     $(".get-related-products").on("click", function(e){
         e.preventDefault();
 
-        if($(this).hasClass("similar-lookbooks")){
-            var currentLifestyle = $(".lifestyle-id").val();
-            if(currentLifestyle == lifestyles[lifestyles.length-1]["Lifestyle"]["id"]){
-                
-            }
-            else{
-                for(var i = 0; i < lifestyles.length; i++){
-                    if(lifestyles[i]["Lifestyle"]["id"] == currentLifestyle){
-                        nextLifestyle = i+1;
-                        $(".lifestyle-id").val(lifestyles[nextLifestyle]["Lifestyle"]["id"]);
-                        var lifestyleBlock = $(this).closest(".product-block");
-                        lifestyleBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'lookbooks/detail/" + lifestyles[nextLifestyle]["Lifestyle"]["id"] + "/" + lifestyles[nextLifestyle]["slug"]});
-                        lifestyleBlock.find(".product-image").slideUp(300).attr({src : "' . $this->request->webroot . "lookbooks/resize/" . '" + lifestyles[nextLifestyle]["Lifestyle"]["image"] + "/158/216", alt: "Lookbooks"}).slideDown(400);
-                        break;
-                    }
-                }
-            }
-        }
-        else{
-            var productBlock = $(this).closest(".product-block");
-            var productId = productBlock.find(".product-id").val(); 
-            var categoryId = productBlock.find(".parent-category-id").val();
-            $.post("' . $this->request->webroot . 'api/similar", { productId: productId, categoryId: categoryId },
-               function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        var entity = ret["product"];
-                        productBlock.find(".product-id").val(entity["Entity"]["id"]);
-                        productBlock.find(".product-slug").val(entity["Entity"]["slug"]);   
-                        productBlock.find(".product-name").text(entity["Entity"]["name"]);   
-                        productBlock.find(".product-brand").text(entity["Brand"]["name"]); 
-                        productBlock.find(".category-id").val(entity["Category"]["category_id"]);
-                        var prod_id = productBlock.find(".category-id").val();
-                        highLightCategory(prod_id, categoryId);
-                        
-                        var productPrice = (entity["Entity"]["price"]> 0) ? "$" + entity["Entity"]["price"] : "Price on request";
-                        productBlock.find(".product-price").text(productPrice);
-                        productBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'product/" + entity["Entity"]["id"] + "/" + entity["Entity"]["slug"]});
-                        
-                        if(entity["Wishlist"]){
-                            if(entity["Wishlist"]["id"]){
-                                productBlock.find(".thumbs-up").addClass("liked");
-                            }
-                            else{
-                                productBlock.find(".thumbs-up").removeClass("liked");
-                            }
-                            if(entity["Dislike"]["id"]){
-                                productBlock.find(".thumbs-down").addClass("disliked");
-                            }
-                            else{
-                                productBlock.find(".thumbs-down").removeClass("disliked");
-                            }
+        var productBlock = $(this).closest(".product-block");
+        var productId = productBlock.find(".product-id").val(); 
+        var categoryId = productBlock.find(".parent-category-id").val();
+        $.post("' . $this->request->webroot . 'api/similar", { productId: productId, categoryId: categoryId },
+           function(data) {
+                var ret = $.parseJSON(data);
+                if(ret["status"] == "ok"){
+                    var entity = ret["product"];
+                    productBlock.find(".product-id").val(entity["Entity"]["id"]);
+                    productBlock.find(".product-slug").val(entity["Entity"]["slug"]);   
+                    productBlock.find(".product-name").text(entity["Entity"]["name"]);   
+                    productBlock.find(".product-brand").text(entity["Brand"]["name"]); 
+                    productBlock.find(".category-id").val(entity["Category"]["category_id"]);
+                    var prod_id = productBlock.find(".category-id").val();
+                    highLightCategory(prod_id, categoryId);
+                    
+                    var productPrice = (entity["Entity"]["price"]> 0) ? "$" + entity["Entity"]["price"] : "Price on request";
+                    productBlock.find(".product-price").text(productPrice);
+                    productBlock.find(".btn-buy").attr({href: "' . $this->request->webroot . 'product/" + entity["Entity"]["id"] + "/" + entity["Entity"]["slug"]});
+                    
+                    if(entity["Wishlist"]){
+                        if(entity["Wishlist"]["id"]){
+                            productBlock.find(".thumbs-up").addClass("liked");
                         }
-                        
-                        var productImage = productBlock.find(".product-image");
-                        productImage.slideUp(300, function(){  
-                            if(typeof(entity["Image"]) != "undefined" && entity["Image"].length > 0){
-                                productImage.attr({src : "' . $this->request->webroot . "products/resize/" . '" + entity["Image"][0]["name"] + "/158/216", alt: entity["Entity"]["name"]});
-                            }
-                            else{
-                                productImage.attr({src : "' . $this->request->webroot . 'img/image_not_available-small.png", alt: entity["Entity"]["name"]});
-                            }
-                            if (productImage.complete) {
-                                $(this).slideDown(400);
-                            } else {
-                                $(this).load(function() {
-                                    $(this).slideDown(400);
-                                });
-                            }
-                        });
+                        else{
+                            productBlock.find(".thumbs-up").removeClass("liked");
+                        }
+                        if(entity["Dislike"]["id"]){
+                            productBlock.find(".thumbs-down").addClass("disliked");
+                        }
+                        else{
+                            productBlock.find(".thumbs-down").removeClass("disliked");
+                        }
                     }
-               }
-            )
-        }
+                    
+                    var productImage = productBlock.find(".product-image");
+                    productImage.slideUp(300, function(){  
+                        if(typeof(entity["Image"]) != "undefined" && entity["Image"].length > 0){
+                            productImage.attr({src : "' . $this->request->webroot . "products/resize/" . '" + entity["Image"][0]["name"] + "/158/216", alt: entity["Entity"]["name"]});
+                        }
+                        else{
+                            productImage.attr({src : "' . $this->request->webroot . 'img/image_not_available-small.png", alt: entity["Entity"]["name"]});
+                        }
+                        if (productImage.complete) {
+                            $(this).slideDown(400);
+                        } else {
+                            $(this).load(function() {
+                                $(this).slideDown(400);
+                            });
+                        }
+                    });
+                }
+           }
+        )
          
     });
     
@@ -339,10 +285,8 @@ $(document).ready(function(){
     ' . $logged_script . '
 });
 ';
-$this->Html->script("jquery.fancybox.js", array('inline' => false));
 $this->Html->script('cookie.js', array('inline' => false));
 $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
-echo $this->Html->css("jquery.fancybox.css");
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 
@@ -361,17 +305,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <li class="toggle-tab selected open-filter"><span class="filter-block">Categories</span>
                             <ul class="toggle-body product-categories">
                             <?php foreach ($categories as $category): ?>
-                                <li <?php echo ($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') ? 'class="highlighted-cat"' : '';?>>
-                                <?php if($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') : ?>
+                                <li <?php echo ($category['Category']['slug'] == 'seasonal') ? 'class="highlighted-cat"' : '';?>>
+                                <?php if($category['Category']['slug'] == 'seasonal') : ?>
                                     <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
                                     <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
                                 <?php endif; ?>
                                 
-                                <?php if($category['Category']['slug'] == "lookbooks") : ?>
-                                    <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="lookbook-cat <?php echo $category_slug == $category['Category']['slug'] ? "active-link" : ""; ?>"  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
-                                <?php else : ?>
-                                    <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
-                                <?php endif; ?>
+                                <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?>  data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
                                 
                                 <?php if ($category['children']) : ?>
                                     <ul class="product-subcategories hide">
@@ -418,88 +358,50 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <!--<div class="product-top-offset"></div>-->
                 <?php if($entities) : ?>
                     <?php foreach($entities as $entity) : ?>
-                        <?php if($entity['Category']['parent_cat'] != $lookbook_id) : ?>
-                            <div class="product-box">
-                                <div class="product-block"> 
-                                    <a href="" class="get-related-products"></a>
-                                    <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
-                                    <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
-                                    <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="category-id">
-                                    <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="parent-category-id">
-                                    <div class="product-list-image mosaic-block fade">
-                                        <div class="mosaic-overlay">
-                            				<div class="mini-product-details">
-                        					   <span class="product-price"><?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></span>
-                        					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
-                        					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
-                            				</div>
-                            			</div>
-                                        <?php 
-                                        if($entity['Image']){
-                                            //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
-                                            $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/158/216'; 
-                                        }
-                                        else{
-                                            $img_src = $this->request->webroot . "img/image_not_available-small.png";
-                                        } 
-                                        ?>
-                                        <div class="mosaic-backdrop">
-                                            <img src="<?php echo $img_src; ?>" alt="<?php echo $entity['Entity']['name']; ?>" class="product-image fadein-image" />
-                                        </div>
-                                    </div>
-                                    <div class="product-list-links">
-                                        <?php if(isset($entity['Wishlist'])) : ?>
-                                            <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
-                                            <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
-                                            <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
-                                        <?php else : ?>
-                                            <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
-                                        <?php endif; ?>
+                        <div class="product-box">
+                            <div class="product-block"> 
+                                <a href="" class="get-related-products"></a>
+                                <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
+                                <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
+                                <input type="hidden" value="<?php echo $entity['Category']['category_id']; ?>" class="category-id">
+                                <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="parent-category-id">
+                                <div class="product-list-image mosaic-block fade">
+                                    <div class="mosaic-overlay">
+                        				<div class="mini-product-details">
+                    					   <span class="product-price"><?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></span>
+                    					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
+                    					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
+                        				</div>
+                        			</div>
+                                    <?php 
+                                    if($entity['Image']){
+                                        //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
+                                        $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/158/216'; 
+                                    }
+                                    else{
+                                        $img_src = $this->request->webroot . "img/image_not_available-small.png";
+                                    } 
+                                    ?>
+                                    <div class="mosaic-backdrop">
+                                        <img src="<?php echo $img_src; ?>" alt="<?php echo $entity['Entity']['name']; ?>" class="product-image fadein-image" />
                                     </div>
                                 </div>
+                                <div class="product-list-links">
+                                    <?php if(isset($entity['Wishlist'])) : ?>
+                                        <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
+                                        <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
+                                        <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
+                                    <?php else : ?>
+                                        <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                        <?php else : ?>
-                            <?php if($lifestyles) : ?>
-                                <div class="product-box">
-                                    <div class="product-block"> 
-                                        <a href="" class="get-related-products similar-lookbooks"></a>
-                                        <input type="hidden" value="<?php echo $lifestyles[0]['Lifestyle']['id']; ?>" class="lifestyle-id">
-                                        <div class="product-list-image lookbooks-block mosaic-block fade">
-                                            <span class="highlight-lookbook"></span>
-                                            <div class="mosaic-overlay lifestyle-overlay">
-                                				<div class="mini-product-details">
-                            					   <span class="product-name">Lookbooks</span>
-                                				</div>
-                                			</div>
-                                            <div class="mosaic-backdrop">
-                                                <img src="<?php echo $this->webroot. "lookbooks/resize/" . $lifestyles[0]['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
-                                            </div>
-                                        </div>
-                                        <div class="product-list-links">
-                                        <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $lifestyles[0]['Lifestyle']['id'] . '/' . $lifestyles[0]['Lifestyle']['slug']; ?>" class="btn-buy">Buy</a>
-                                        </div>
-                                    </div>
-                                </div>    
-                            <?php endif; ?> 
-                        <?php endif; ?>
+                        </div>
                     <?php endforeach; ?>
-                        
-                       
                 <?php endif; ?>
             </div>
         </div>
         <div class="clear-fix"></div>
-        <div class="fourteen columns details-margin row">
-            <div class="lifestyle-images">
-                <?php if($lifestyles && count($lifestyles) > 0) : ?>
-                    <?php foreach($lifestyles as $style) : ?>
-                        <a class="fancybox" data-fancybox-group="lifestyles" title="<?php echo $style['Lifestyle']['caption']; ?>" href="#lifestyle<?php echo $style['Lifestyle']['id']; ?>"></a>
-                        <div class="hide"><div class="fancybox-data-box" id="lifestyle<?php echo $style['Lifestyle']['id']; ?>"><a href="<?php echo $this->webroot . 'lookbooks/detail/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>"><img src="<?php echo $this->webroot;?>files/lifestyles/<?php echo $style['Lifestyle']['image']; ?>"></a><a href="<?php echo $this->webroot . 'lookbooks/detail/' . $style['Lifestyle']['id'] . '/' . $style['Lifestyle']['slug'];?>" class="btn-buy-look link-btn gold-btn">Get The Look</a></div></div>
-                    <?php endforeach; ?>
-                <?php endif; ?> 
-                
-            </div>
-        </div>
     </div>
 </div>
 <div id="closetinfo-box" class="box-modal notification-box hide">

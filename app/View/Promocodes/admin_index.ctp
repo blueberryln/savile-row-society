@@ -19,9 +19,9 @@
                 <tr>
                     <td width="30"><?php echo h($promocode['Promocode']['id']); ?>&nbsp;</td>
                     <td><?php echo h(ucfirst($promocode['Promocode']['name'])); ?>&nbsp;</td>
-                    <td><?php echo h($promocode['Promocode']['promo_code']); ?>&nbsp;</td>
+                    <td><?php echo h($promocode['Promocode']['code']); ?>&nbsp;</td>
                     <td class="actions">
-                        
+                            
                     </td>
                 </tr>
             <?php endforeach; ?>

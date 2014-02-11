@@ -15,7 +15,6 @@ class MessagesController extends AppController {
     }
 
     public function index($messages_for_user_id = null) {
-        $this->layout = 'new';
         $User = ClassRegistry::init('User');
         
         //Get user from session to derterminate if user is stylist

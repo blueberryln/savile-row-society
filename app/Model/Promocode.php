@@ -28,23 +28,39 @@ class Promocode extends AppModel {
         ),
         'total_available' => array(
             'numeric' => array(
+                'rule' => array('numeric')
+            ),
+            'range' => array(
+                'rule' => array('comparison', '>=', 0),
+                'message' => 'Please enter a number greater than or equal to zero.',
+            )
+        ),
+        'use_per_customer' => array(
+            'numeric' => array(
                 'rule' => array('numeric'),
             ),
             'range' => array(
                 'rule' => array('comparison', '>=', 0),
                 'message' => 'Please enter a number greater than or equal to zero.',
-            ),
-            'required' => false,
+            )
         ),
-        'total_available' => array(
+        'type' => array(
+            'notempty' => array(
+                'rule' => array('notempty'),
+            ),
+            'allowedChoice' => array(
+                 'rule'    => array('inList', array('Fixed', 'Percentage')),
+                 'message' => 'Enter either Fixed or Percentage.'
+             )
+        ),
+        'discount_amount' => array(
             'numeric' => array(
                 'rule' => array('numeric'),
             ),
-            'use_per_customer' => array(
-                'rule' => array('comparison', '>=', 0),
-                'message' => 'Please enter a number greater than or equal to zero.',
-            ),
-            'required' => false,
-        )
+            'range' => array(
+                'rule' => array('comparison', '>', 0),
+                'message' => 'Please enter a number greater than zero.',
+            )
+        ),
     );
 }

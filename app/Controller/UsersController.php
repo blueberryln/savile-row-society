@@ -383,7 +383,6 @@ class UsersController extends AppController {
      * Sign up
      */
     public function register($step = null, $user_id = null) {
-        $this->layout = 'new';
         $title_for_layout = '';
 
         // prepare source for "Heard from" combo box 
@@ -616,7 +615,6 @@ class UsersController extends AppController {
      * Settings
      */
     public function edit($action = null) {
-        $this->layout = 'new';
         $this->isLogged();
         // title
         $title_for_layout = 'Edit your account';
@@ -674,7 +672,6 @@ class UsersController extends AppController {
      * Forgot password 
      */
     public function forgot() {
-        $this->layout = 'new';
         // title
         $title_for_layout = 'Reset password';
 
@@ -709,7 +706,6 @@ class UsersController extends AppController {
      * Forgot reset password 
      */
     public function reset($user_id = null, $reset_code = null) {
-        $this->layout = 'new';
 
         $this->autolayout = false;
         $this->autoRender = false;

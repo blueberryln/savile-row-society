@@ -26,8 +26,6 @@ class ClosetController extends AppController {
         else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
             $this->unForceSSL();  
         }
-
-        $this->layout = 'new';
     }
 
 
@@ -56,10 +54,6 @@ class ClosetController extends AppController {
         $entities = array();
 
         if ($category_slug) {
-            if($category_slug == "lookbooks"){
-                $this->redirect('/closet');
-                exit;
-            }
             $category_slug = trim($category_slug);
             $entities = $this->categoryProducts($user_id, $categories, $category_slug, $filter_brand, $filter_color, $filter_used);
         } else {
@@ -138,19 +132,6 @@ class ClosetController extends AppController {
                 }
             }    
         }
-        
-        $lookbooks = $Category->getOneBySlug("lookbooks", "Product");
-        $lookbook_id = 0;
-        if($lookbooks){
-            $lookbook_id = $lookbooks['Category']['id'];
-        }
-        
-        $Lifestyle = ClassRegistry::init('Lifestyle');
-        $lifestyles = $Lifestyle->find('all', array('order' => 'rand()'));
-        
-        $random_lifestyle = $Lifestyle->getByRand();
-        
-        $this->set(compact('lifestyles', 'random_lifestyle', 'lookbook_id'));
 
         return $entities;
     }
@@ -368,13 +349,9 @@ class ClosetController extends AppController {
             }
 
 
-        }
+        } 
         
-        $Lifestyle = ClassRegistry::init('Lifestyle');
-        $lifestyles = $Lifestyle->find('all');
-        
-        
-        $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used','check_count', 'lifestyles'));
+        $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used','check_count'));
         return $data;
     }
 

@@ -29,9 +29,13 @@ class PromocodesController extends AppController{
         $user_id = $this->getLoggedUserID();
         if ($user_id && $this->request->is('post') || $this->request->is('put')) {
             $data = $this->request->data;
+            $this->request->data['Promocode']['code'] = strtoupper($this->request->data['Promocode']['code']);
             $this->Promocode->set($data);
             if($this->Promocode->validates()){
-                print_r($data);
+                $this->Promocode->create();
+                $result = $this->Promocode->save($data);
+                $this->Session->setFlash(__('Promo Code added successfully.'), 'flash' );
+                $this->redirect(array('action' => 'index'));
             }   
             else{
                 $this->Session->setFlash(__('There are errors with the input values. Please, try again'), 'flash' );
@@ -39,61 +43,38 @@ class PromocodesController extends AppController{
         }
     }
     
-    // public function admin_edit($id = null){
-    //     $this->layout = 'admin';
-    //     $this->isAdmin();
-    //     if(!$this->Lifestyle->exists($id)){
-    //         throw new NotFoundException(__('Invalid Lifestyle'));
-    //     }
-    //     $user_id = $this->getLoggedUserID();
-    //     if ($user_id && $this->request->is('post') || $this->request->is('put')) {
-    //         $data = $this->request->data;
-    //         if($data['Lifestyle']['name'] != "" ) {
-    //             $options = array('conditions' => array('Lifestyle.' . $this->Lifestyle->primaryKey => $id));
-    //             $lifestyle = $this->Lifestyle->find('first', $options);
-    //             $lifestyle['Lifestyle']['name'] = $data['Lifestyle']['name'];
-    //             $lifestyle['Lifestyle']['slug'] = strtolower(Inflector::slug($data['Lifestyle']['name'], '-'));
-    //             $lifestyle['Lifestyle']['caption'] = $data['Lifestyle']['caption'];
-                
-    //             if($data['Lifestyle']['image'] && $data['Lifestyle']['image']['size'] > 0){
-    //                 $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
-                    
-    //                 if (!in_array($data['Lifestyle']['image']['type'], $allowed)) {
-    //                     $this->Session->setFlash(__('You have to upload an image.'), 'flash');
-    //                 } else if ($data['Lifestyle']['image']['size'] > 3145728) {
-    //                     $this->Session->setFlash(__('Attached image must be up to 3 MB in size.'), 'flash');
-    //                 } else {
-    //                     $rand = substr(uniqid ('', true), -7);
-    //                     $img = $data['Lifestyle']['name'] . '_' . $rand . '_' . $data['Lifestyle']['image']['name'];
-    //                     $img_type = $data['Lifestyle']['image']['type'];
-    //                     $img_size = $data['Lifestyle']['image']['size'];
-    //                     move_uploaded_file($data['Lifestyle']['image']['tmp_name'], APP . DS . 'webroot' . DS . 'files' . DS . 'lifestyles' . DS . $img);
-    //                 }   
-                    
-    //                 $file = new File('files/lifestyles/' . $lifestyle['Lifestyle']['image'], true, 0777);
-    //                 if ($file->exists()) {
-    //                     $file->delete();
-    //                 } 
-    //                 if ($img) {
-    //                     $lifestyle['Lifestyle']['image'] =$img;
-    //                 }
-    //             }
-                
-    //             if($this->Lifestyle->save($lifestyle)){
-    //                 $this->Session->setFlash(__('Lifestyle has been updated successfully.'), 'flash');
-    //                 $this->redirect('index');    
-    //             }
-    //         }   
-    //     }
-    //     else if($user_id){
-    //         $this->Lifestyle->recursive = 2;
-    //         $this->Lifestyle->LifestyleItem->unbindModel(array("hasMany" => array('LidestyleItem')));
-    //         $options = array('conditions' => array('Lifestyle.' . $this->Lifestyle->primaryKey => $id));
-    //         $this->request->data = $this->Lifestyle->find('first', $options);
-    //     }
+    public function admin_edit($id = null){
+        $this->layout = 'admin';
+        $this->isAdmin();
+        if(!$this->Promocode->exists($id)){
+            throw new NotFoundException(__('Invalid Promocode'));
+        }
+        $user_id = $this->getLoggedUserID();
+        if ($user_id && $this->request->is('post') || $this->request->is('put')) {
+            $data = $this->request->data['Promocode'];
+            //Check if promo code has been used. If yes then disallow changes to code and the discount amount.
+            if(false){  
+                unset($data['Promocode']['code']);
+                unset($data['Promocode']['discount_amount']);
+            }
+            print_r($data);
+            $result = $this->Promocode->updateAll($data);
+            if($result){
+                $this->Session->setFlash(__('Promo Code updated successfully.'), 'flash' );
+                $this->redirect(array('action' => 'edit', $id));
+            }
+            else{
+                $this->Session->setFlash(__('There was a problem updating the promo code. Please try again.'), 'flash' );
+                $this->redirect(array('action' => 'edit', $id));   
+            }
+        }
+        else if($user_id){
+            $options = array('conditions' => array('Promocode.' . $this->Promocode->primaryKey => $id));
+            $this->request->data = $this->Promocode->find('first', $options);
+        }
         
-    //     $this->set(compact('id'));
-    // }
+        $this->set(compact('id'));
+    }
     
     // public function admin_delete($id = null){
     //     $this->layout = 'admin';
