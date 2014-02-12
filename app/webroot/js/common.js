@@ -15,12 +15,37 @@ function fadeInImages(){
 
 // To fix footer at bottom and margin top of content container
 function footerFix(){
-        var winH = $(window).height();
-        var headerH = $("div.header").height();
-        var footerH = $("div.footer").height();
-        var contentMinH = winH - (headerH + footerH); 
-        $("div.content-container").css({"min-height":contentMinH, "margin-top" : headerH});        
-    }
+    var winH = $(window).height();
+    var headerH = $("div.header").height();
+    var footerH = $("div.footer").height();
+    var contentMinH = winH - (headerH + footerH); 
+    $("div.content-container").css({"min-height":contentMinH, "margin-top" : headerH});        
+}
+
+/* function to show signin popup*/
+function signUp(e) {
+    $.blockUI({message: $('#signup-popup'), css: {top: '8%'}});
+    $('.blockOverlay').click($.unblockUI);
+    $.ajax({
+        url: "/register"
+    }).done(function(res) {
+        $("#signup-popup").html(res);
+        overrideEmail();
+        addReferrerToSignUp();
+    });
+}
+
+/* function to show signup popup*/
+function signIn() {
+    $.blockUI({message: $('#signin-popup')});
+    $('.blockOverlay').click($.unblockUI);
+    $.ajax({
+        url: "/signin"
+    }).done(function(res) {
+        $("#signin-popup").html(res);
+        addReferrerToLogIn();
+    });
+}
 
 jQuery(function(){
     fadeInImages();

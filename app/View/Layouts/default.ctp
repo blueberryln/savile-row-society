@@ -10,7 +10,6 @@
         <?php echo $this->Html->charset(); ?>
         <title>Savile Row Society <?php echo $title_for_layout; ?></title>
         <meta name="description" content="Savile Row Society">
-        <meta name="google-site-verification" content="Mexh7IdYEzy4A8dWzHtFHjmhf0UMxyWez8SJn1HU6T0" />
         <?php echo $this->fetch('meta'); ?>
         <!-- Mobile Specific Metas
   ================================================== -->
@@ -39,6 +38,20 @@
         <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-114x114.png">
         
+         <script type="text/javascript">
+            // var _gaq = _gaq || [];
+            // _gaq.push(['_setAccount', 'UA-36935088-1']);
+            // _gaq.push(['_trackPageview']);
+            
+            // (function() {
+            //     var ga = document.createElement('script');
+            //     ga.type = 'text/javascript';
+            //     ga.async = true;
+            //     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            //     var s = document.getElementsByTagName('script')[0];
+            //     s.parentNode.insertBefore(ga, s);
+            // })();
+        </script>
     </head>
     <body>
     
@@ -46,25 +59,25 @@
     ================================ -->
         <div id="fb-root"></div>
         <script>
-    	  window.fbAsyncInit = function() {
-    	    // init the FB JS SDK
-    	    FB.init({
-    	      appId      : '507420839292016', // App ID from the App Dashboard
-    	      frictionlessRequests : true,
-    	      status     : true, // check the login status upon init?
-    	      cookie     : true, // set sessions cookies to allow your server to access the session?
-    	      xfbml      : true,  // parse XFBML tags on this page?
-    	      oauth		 : true    	    });
-    	  };
+    	  // window.fbAsyncInit = function() {
+    	  //   // init the FB JS SDK
+    	  //   FB.init({
+    	  //     appId      : '507420839292016', // App ID from the App Dashboard
+    	  //     frictionlessRequests : true,
+    	  //     status     : true, // check the login status upon init?
+    	  //     cookie     : true, // set sessions cookies to allow your server to access the session?
+    	  //     xfbml      : true,  // parse XFBML tags on this page?
+    	  //     oauth		 : true    	    });
+    	  // };
     
-    	  // Load the SDK's source Asynchronously
-    	  (function(d, s, id, debug){
-    	     var js, fjs = d.getElementsByTagName(s)[0];
-    	     if (d.getElementById(id)) {return;}
-    	     js = d.createElement(s); js.id = id;
-    	     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
-    	     fjs.parentNode.insertBefore(js, fjs);
-    	    }(document, 'script', 'facebook-jssdk', false));
+    	  // // Load the SDK's source Asynchronously
+    	  // (function(d, s, id, debug){
+    	  //    var js, fjs = d.getElementsByTagName(s)[0];
+    	  //    if (d.getElementById(id)) {return;}
+    	  //    js = d.createElement(s); js.id = id;
+    	  //    js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+    	  //    fjs.parentNode.insertBefore(js, fjs);
+    	  //   }(document, 'script', 'facebook-jssdk', false));
     	</script>
     <!-- Facebook javascript API ends
     ================================ -->
@@ -80,10 +93,16 @@
         <?php echo $this->fetch('content'); ?>
         
         
-        
-        <!-- Popup script
+
+
+        <!-- Popup Script
         ================================================== -->
-        <?php /*echo $this->element('popup', array()); */?>
+        <?php
+        if (!$is_logged){
+            echo $this->element('popup/authentication');    
+        }
+        ?>
+        
 
         <div class="bottom footer-bar">
             <div class="footer">
@@ -133,8 +152,7 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.flexslider-min.js" type="text/javascript"></script>        
+        <script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>      
         <script src="<?php echo $this->request->webroot; ?>js/block.ui.js" type="text/javascript"></script>
         <script type="text/javascript">
             /*
@@ -189,20 +207,6 @@
         
 
         <?php echo $this->fetch('script'); ?>
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-36935088-1']);
-            _gaq.push(['_trackPageview']);
-            
-            (function() {
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
 
         <?php echo $this->element('sql_dump'); ?>
 
