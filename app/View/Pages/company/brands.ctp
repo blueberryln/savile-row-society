@@ -67,12 +67,29 @@ $meta_description = 'Savile Row Society partners with brands that have a strong 
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="content-container">
-    <div class="eleven columns container content inner">
+    <div class="container content inner">
         <div class="ten columns text-center page-heading">
             <h1>Branding partners</h1>
         </div>
         
-        <div class="twelve columns page-content">
+        <div class="eleven columns page-content">
+                <div class="timeline bubble-caption">                
+                    <div class="three columns sub-inde text-center">
+                        <div class="img-container">
+                            <div class="profile-img text-center">
+                                <img src="<?php echo $this->request->webroot; ?>img/brands-member-lisa_dolan.jpg" id="user_image">
+                            </div>
+                        </div>
+                        <div class="info-container">
+                                <div id="user-name"><a href="/stylist">Lisa Dolan</a><br>
+                                    <span class="stylist-name">CEO of Savile Row Society</span>
+                                </div>                                          
+                        </div>
+                    </div>
+                    <div class="eight columns sub-inde bubble-wrap">                   
+                        <p>We select the best of the best. From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category. One thing is for sure, all of our partnering brands are passionate about clothing.</p>                                        
+                    </div>
+                </div>
                 <ul id="branding-partners">
                     <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Bernard_zins.jpg" class="fadein-image" alt="Bernard Zins" data-name="bernard" /></li>
                     <li><img src="<?php echo $this->webroot; ?>img/branding-partners/7diamonds.png" class="fadein-image" alt="7 Diamonds" data-name="7diamonds"  /></li>

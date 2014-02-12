@@ -179,7 +179,7 @@ div#independent{margin-bottom: 30px;}
 div.sub-inde, div.sub-blogger{display: inline-block; vertical-align: top;}
 .show-more-text{ background: url("../img/arrow_down.png") no-repeat scroll center center transparent; display: inline-block; height: 24px; margin: 5px auto 24px; overflow: hidden; text-indent: 100%; white-space: nowrap; width: 24px; outline: none; }
 .show-more-text.up { background: url("../img/arrow_up.png") no-repeat scroll center center transparent; }
-div.bloggers{margin-top: 10px;}
+div.bloggers{margin-top: 10px !important;}
 div.blogger-box{margin-bottom: 20px;}
 div.sub-blogger .name{font-family: 'Conv_Novecento-Bold',Sans-Serif; font-size: 22px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase;}
 div.sub-blogger .title{font-family: 'Conv_Novecento-Book',Sans-Serif; font-size: 14px; text-transform: uppercase; vertical-align: middle;}
@@ -459,25 +459,27 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 
 /*******New Home Page*******/
 .homepage{padding-top: 0;}
-.works-boxes, .stylist-boxes, .shopping-boxes{display: block; position: relative; margin: 50px auto; text-align: center;}
+.works-boxes, .stylist-boxes, .shopping-boxes{display: block; position: relative; margin: 20px auto 35px; text-align: center;}
 .works-boxes .work-box, .stylist-boxes .stylist-box, .shopping-boxes .shopping-box{display: inline-block; position: relative; vertical-align: top; font-family: 'Conv_Novecento-Book',Sans-Serif; }
-.works-boxes .work-box, .shopping-boxes .shopping-box{width: 25%; margin: 0 3%; height:410px; text-align: center; }
-.stylist-box{width: 20%; margin: 0 2%; height: 400px; text-align: left;}
+.works-boxes .work-box, .shopping-boxes .shopping-box{width: 25%; margin: 0 3%; min-height:350px; text-align: center; }
+.stylist-box{width: 20%; margin: 0 2%; min-height: 350px; text-align: left;}
 .works-boxes .work-box img{margin-bottom: 10px;}
-.stylist-box h3, .shopping-box h3{font-size: 14px; line-height: 18px; margin:0 0 3px 7px;}
+.stylist-box h3, .shopping-box h3{font-size: 14px; line-height: 18px; margin:8px 3px 0;}
 .works-desc, .stylist-desc, .shopping-desc, .brands-desc  {display: block; font-size: 12px; margin:0 auto 15px auto;  color: #999; line-height: 18px; }
-.brands-desc a{color: #AF9A59;}
-.stylist-desc, .shopping-desc {font-family: 'Droid Serif', serif; margin-left: 7px;}
+.brands-desc as{color: #AF9A59;}
+.stylist-desc, .shopping-desc {font-family: 'Droid Serif', serif; }
 .c-no{display: block; margin: 0 auto; }
 .c-no img{margin-bottom: 5px;}
-.works-btn{background: #000; color:#fff; border-radius:4px; padding:5px 10px; width: 100px; text-transform: uppercase; display: block; margin: 0 auto; position: absolute; bottom: 5px; left:25%; cursor:pointer;}
+.wrok-btn-box{width: 100%; position: absolute; bottom: 0;}
+.works-btn{background: #000; color: #fff; border-radius: 4px; padding: 5px 10px; width: 100px; text-transform: uppercase; cursor: pointer;} 
 .works-btn:hover{color: #fff;}
 div.img-box{position: relative; cursor:pointer;}
-div.img-box img{border: 12px solid #fff; -webkit-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); -ms-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); box-shadow: 0px 1px 10px rgba(0,0,0,0.3); box-sizing: border-box;} 
+div.img-box img, .shopping-box img{border: 12px solid #fff; -webkit-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); -ms-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); box-shadow: 0px 1px 10px rgba(0,0,0,0.3); box-sizing: border-box;} 
 .overlay{position: absolute; top: 0; width: 100%;  height: 99%; background: rgba(0,0,0,0.5); opacity:0; -webkit-transition:opacity 0.2s linear;}
 div.img-box:hover .overlay{opacity:1;}
-.home-branding-partners{width:710px; margin: 50px auto;}
-.testimonials{margin: 35px auto;}
+.home-branding-partners{width:710px; margin: 20px auto 35px;}
+span.brands-desc a{color: #AE9B34;}
+.testimonials{margin: 20px auto 35px;}
 .testimonials h3{font-size: 20px; line-height: 21px; margin-bottom: 10px; font-weight: bold;}
 .testimonials h4{font-size: 20px; line-height: 21px; margin-bottom: 10px; font-family: 'Conv_Novecento-Book',sans-serif; font-weight: 100; color: #555;}
 .testimonials .testi-desc{font-size: 14px; color: #777;}
@@ -485,6 +487,7 @@ div.img-box:hover .overlay{opacity:1;}
 div.card-menu ul li img.sign-up{vertical-align: middle; width:90px; height:30px;}
 div.card-menu ul li img.sign-in{vertical-align: middle; width:70px; height:30px;}
 img.cart-img{vertical-align: middle; width:30px;}
+.mega-banner { margin-bottom: 40px; }
 .mg-big, .mg-vid, .mg-small{width: 50%;}
 .mg-small img{width:49%;}
 .mg-small img:first-child{margin-right: 2px;}
@@ -513,6 +516,11 @@ img.cart-img{vertical-align: middle; width:30px;}
 	div.card-menu ul li img.sign-in{vertical-align: middle; width:55px; height:20px;}
 	img.cart-img{vertical-align: middle; width:25px;}
 	.header .menu li{padding: 0 10px;}
+	.membership-flow{padding: 0 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
+	.membership-flow{padding: 0 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
+	.mg-small img:first-child{margin-right: 0;}
 }
 
 @media screen and (max-width: 767px) {
@@ -572,5 +580,14 @@ top: 111px;}
 	.works-boxes .work-box, .shopping-boxes .shopping-box{width:60%; height:400px; margin-bottom: 20px;}
 	}
 
+.bubble-caption{margin-bottom: 60px;}
+.bubble-caption .info-container{min-height: 100px;}
+.bubble-caption .info-container #user-name{border:none;}
+.bubble-caption .info-container #user-name span.stylist-name{color: #000; font-size: 14px;}
+.bubble-wrap{background: url('../img/bubble.png') no-repeat; background-size: 100% 100%; min-height: 100px; margin-top: 20px;}
+.bubble-wrap p {line-height: 21px; font-size: 14px; padding: 15px 30px 25px 50px; margin: 0;}
+div.sub-inde div.name{font-size: 24px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;}
+div.sub-inde div.title{font-family: Conv_Novecento-Book, sans-serif;}
+div.sub-inde div.title a{text-decoration: underline;}
 
 	
