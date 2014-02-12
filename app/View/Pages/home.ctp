@@ -2,14 +2,13 @@
 $meta_description = 'As people today are rarely defined by a single company or career track, clothes have become an absolute reflection of one’s values, personality, attitude, and lifestyle.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $script='
-    jQuery(document).ready(function(){        
-        function vidContinerHeight(){
+    jQuery(document).ready(function(){       
+        
             var mbHeight = jQuery(".mg-big").height();
             var mgsHeight = jQuery(".mg-small").height();
             var mgvHeight = mbHeight - mgsHeight;
             jQuery(".mg-vid").css("height", mgvHeight);
-        }
-        vidContinerHeight();               
+                   
     });
     jQuery(window).resize(function(){
            var mbHeight = jQuery(".mg-big").height();
@@ -23,13 +22,29 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 <div class="content-container">
     <div class="twelve columns content inner homepage"> 
     <div class="mega-banner">
-        <div class="mg-big"><img src="<?php echo $this->webroot; ?>img/h_1.jpg" /></div>
+        <div class="mg-big">
+            <img src="<?php echo $this->webroot; ?>img/h_1.jpg" />
+            <div id="my-stylist">
+                <a class="link-btn gold-btn" href="">Meet My Stylist</a>
+            </div>
+        </div>
         <div class="mg-vid">
-            <iframe class="max-width-adj" src="http://www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>            
+            <img src="<?php echo $this->webroot; ?>img/h_4.jpg" />
+            <!-- <iframe class="max-width-adj" src="http://www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>  -->           
         </div>
         <div class="mg-small">
-            <img src="<?php echo $this->webroot; ?>img/h_2.jpg" />
-            <img src="<?php echo $this->webroot; ?>img/h_3.jpg" />
+            <div class="mg-small-1">
+                <img src="<?php echo $this->webroot; ?>img/h_2.jpg" />
+                <div class="mgs-btn">
+                    <a class="link-btn black-btn" href="">Make a fitting <br />appointment</a>
+                </div>
+            </div>
+            <div class="mg-small-2">
+                <img src="<?php echo $this->webroot; ?>img/h_3.jpg" />
+                <div class="mgs-btn">
+                    <a class="link-btn black-btn" href="">get this look<br /> from the closet</a>
+                </div>
+            </div>
         </div>
         <div class="clear-fix"></div> 
     </div>
@@ -43,19 +58,19 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <img src="<?php echo $this->webroot; ?>img/how-it-works/1.png" />
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_1.png" /></span>
             <span class="works-desc">Give us your information, and be assigned a personal shopper</span>
-            <a class="works-btn">Register</a>
+            <div class="wrok-btn-box"><a class="works-btn">Register</a></div>
         </div> 
          <div class="work-box">
             <img src="<?php echo $this->webroot; ?>img/how-it-works/2.png" />
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_2.png" /></span>
             <span class="works-desc">Communicate on the website, on the phone or make an in-showroom appointment</span>
-            <a class="works-btn">Talk & shop</a>
+            <div class="wrok-btn-box"><a class="works-btn">Talk & shop</a></div>
         </div> 
          <div class="work-box">
             <img src="<?php echo $this->webroot; ?>img/how-it-works/3.png" />
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_3.png" /></span>
             <span class="works-desc">dress for the life you want</span>
-            <a class="works-btn">Look sharp</a>
+            <div class="wrok-btn-box"><a class="works-btn">Look sharp</a></div>
         </div> 
     </div>
     

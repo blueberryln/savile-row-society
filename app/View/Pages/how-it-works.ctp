@@ -24,7 +24,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </p>
         </div>
 
-        <div class="eleven columns page-content">
+        <div class="eleven columns page-content mem-table">
             <table id="membership-table" class="membership-table-homes" >
                 <thead>
                 <th class="mem-top-left" style="background-color: #E6E6E6; width: 40%;">Features</th>

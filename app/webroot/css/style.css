@@ -461,7 +461,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .homepage{padding-top: 0;}
 .works-boxes, .stylist-boxes, .shopping-boxes{display: block; position: relative; margin: 20px auto 35px; text-align: center;}
 .works-boxes .work-box, .stylist-boxes .stylist-box, .shopping-boxes .shopping-box{display: inline-block; position: relative; vertical-align: top; font-family: 'Conv_Novecento-Book',Sans-Serif; }
-.works-boxes .work-box, .shopping-boxes .shopping-box{width: 25%; margin: 0 3%; min-height:350px; text-align: center; }
+.works-boxes .work-box, .shopping-boxes .shopping-box{width: 25%; margin: 0 3%; min-height:400px; text-align: center; }
 .stylist-box{width: 20%; margin: 0 2%; min-height: 350px; text-align: left;}
 .works-boxes .work-box img{margin-bottom: 10px;}
 .stylist-box h3, .shopping-box h3{font-size: 14px; line-height: 18px; margin:8px 3px 0;}
@@ -489,14 +489,18 @@ div.card-menu ul li img.sign-in{vertical-align: middle; width:70px; height:30px;
 img.cart-img{vertical-align: middle; width:30px;}
 .mega-banner { margin-bottom: 40px; }
 .mg-big, .mg-vid, .mg-small{width: 50%;}
-.mg-small img{width:49%;}
-.mg-small img:first-child{margin-right: 2px;}
+.mg-small div{width:49%; display: inline-block; position: relative;}
+.mg-small div > img{width: 100%;}
+.mg-small-1{margin-right: 3px;}
 .mg-big{float: left; position: relative;}
 .mg-vid, .mg-small{float: left; position: relative; text-align: right;}
 .mg-vid{min-height: 150px;}
-.mg-vid iframe{width: 99%; height: 98%;}
-
-
+.mg-vid iframe, .mg-vid img{width: 99%; height: 98%;}
+#my-stylist, div.mgs-btn{position: absolute; width: 100%; text-align: center; bottom: 20%; left: 0;}
+div.mgs-btn{bottom: 10%;}
+#my-stylist a,div.mgs-btn a{ color: #fff; font-family: Conv_Novecento-Book, sans-serif; border-radius: 2px; padding: 5px 20px;}
+#my-stylist a{background-color: #8F7948;}
+div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
 
 /********Mobile CSS**********/
 @media screen and (min-width: 768px) and (max-width: 959px) {	
@@ -517,10 +521,11 @@ img.cart-img{vertical-align: middle; width:30px;}
 	img.cart-img{vertical-align: middle; width:25px;}
 	.header .menu li{padding: 0 10px;}
 	.membership-flow{padding: 0 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
+	.mg-small-1{margin: 0;}
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
 	.membership-flow{padding: 0 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
-	.mg-small img:first-child{margin-right: 0;}
+	.mg-small-1{margin: 0;}
 }
 
 @media screen and (max-width: 767px) {
@@ -572,12 +577,21 @@ top: 111px;}
         .profile-tabs a{width: 120px;}
         .brands-logo{text-align: center;}
         .stylist-box{width:30%;}       
-        .mg-big, .mg-vid, .mg-small, .mg-small img{width: 100%;}
+        .mg-big, .mg-vid, .mg-vid img, .mg-small, .mg-small div, .mg-small img{width: 100%;}
+ http://srs/img/h_1.jpg       .mg-small-1{margin: 0;}
 }
 
 @media screen and (min-width: 240px) and (max-width: 568px) {
-	.stylist-box{width:60%;}
-	.works-boxes .work-box, .shopping-boxes .shopping-box{width:60%; height:400px; margin-bottom: 20px;}
+	.stylist-box{width:60%; min-height: 300px;}
+	.works-boxes .work-box, .shopping-boxes .shopping-box{width:60%; min-height:300px; margin-bottom: 40px;}
+	span.works-desc{padding-bottom: 20px;}
+	span.brands-desc{padding: 0 10px;}
+	.mg-small-1{margin: 0;}
+	#my-stylist, div.mgs-btn{bottom: 17%;}
+	div.mem-table{margin: 0 !important; padding: 0 !important; width: 97% !important; margin-left: 10px !important;}
+	.box-modal { width: 100%; }
+	.bubble-wrap{background: #f5f5f5 !important; border-radius: 4px !important; padding: 0 !important;}
+	.bubble-wrap p{padding: 10px !important;}
 	}
 
 .bubble-caption{margin-bottom: 60px;}
@@ -590,4 +604,4 @@ div.sub-inde div.name{font-size: 24px; font-weight: bold; text-transform: upperc
 div.sub-inde div.title{font-family: Conv_Novecento-Book, sans-serif;}
 div.sub-inde div.title a{text-decoration: underline;}
 
-	
+
