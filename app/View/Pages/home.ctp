@@ -2,15 +2,25 @@
 $meta_description = 'As people today are rarely defined by a single company or career track, clothes have become an absolute reflection of one’s values, personality, attitude, and lifestyle.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $script='
-    jQuery(document).ready(function(){        
-        function vidContinerHeight(){
-            var mbHeight = jQuery(".mg-big").height();
-            var mgsHeight = jQuery(".mg-small").height();
-            var mgvHeight = mbHeight - mgsHeight;
-            jQuery(".mg-vid").css("height", mgvHeight);
-        }
-        vidContinerHeight();               
-    });
+        
+    jQuery(function(){
+            if(jQuery(".mg-big img")[0].complete){
+                vidContinerHeight()
+            }
+            else{
+                jQuery(".mg-big img").load(function() {
+                    vidContinerHeight()
+                });
+            }        
+    });    
+   
+   
+    function vidContinerHeight(){
+        var mbHeight = jQuery(".mg-big").height();
+        var mgsHeight = jQuery(".mg-small").height();
+        var mgvHeight = mbHeight - mgsHeight;
+        jQuery(".mg-vid").css("height", mgvHeight);
+    }
     jQuery(window).resize(function(){
            var mbHeight = jQuery(".mg-big").height();
             var mgsHeight = jQuery(".mg-small").height();
