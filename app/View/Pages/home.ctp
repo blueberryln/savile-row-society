@@ -4,11 +4,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 $script='
         
     jQuery(function(){
-            if(jQuery(".mg-big img")[0].complete){
+            if(jQuery(".mg-big img")[0].complete && jQuery(".mg-small div img")[0].complete){
                 vidContinerHeight()
             }
             else{
-                jQuery(".mg-big img").load(function() {
+                jQuery(".mg-big img, .mg-small div img").load(function() {
                     vidContinerHeight()
                 });
             }        
