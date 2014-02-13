@@ -2,7 +2,18 @@
 $meta_description = 'As people today are rarely defined by a single company or career track, clothes have become an absolute reflection of one’s values, personality, attitude, and lifestyle.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $script='
-        
+    var testimonials = [
+        {name : "Peter", profession: "Real estate agent", text: "Like most men, shopping can be a very daunting task, however, having my SRS personal stylist saves me the time and energy I would otherwise spend in stores."},
+        {name : "Frank", profession: "Architect", text: "Savile Row Society has made shopping simple and seamless. I now have access to the best brands, the sharpest suits, and the perfect gift suggestions for friends and family. SRS is truly a lifestyle destination."},
+        {name : "Scott", profession: "Investment Manager", text: "I work long hours with minimal time to dedicate to shopping. My stylist has made shopping simple by suggesting outfits and products to develop my wardrobe. Now I no longer need to worry about what I’m going to wear."},
+        {name : "Tyler", profession: "Lawyer", text: "I have recently transitioned from my old suiting and shirting provider to Savile row Society’s custom wear collection. From my experience, their prices are unmatched and the quality of the garment speaks for itself. I would recommend SRS’s custom wear any day over other competitors."}
+    ];
+    var currentTestimonial = 0,
+        testimonialBlock = $(".testimonials");
+        testimonialUser = testimonialBlock.find("h3"),
+        testimonialProfession = testimonialBlock.find("h4"),
+        testimonialText = testimonialBlock.find("span");
+
     jQuery(function(){
             if(jQuery(".mg-big img")[0].complete && jQuery(".mg-small div img")[0].complete){
                 vidContinerHeight()
@@ -11,7 +22,17 @@ $script='
                 jQuery(".mg-big img, .mg-small div img").load(function() {
                     vidContinerHeight()
                 });
-            }        
+            }   
+            
+            var testimonialInterval = setInterval(function(){
+                var newTestimonial = currentTestimonial = (testimonials.length == (currentTestimonial + 1)) ? 0 : currentTestimonial + 1;
+                testimonialBlock.animate({opacity: 0}, 300, function(){
+                    testimonialUser.text(testimonials[newTestimonial]["name"]);
+                    testimonialProfession.text(testimonials[newTestimonial]["profession"]);
+                    testimonialText.text(testimonials[newTestimonial]["text"]);
+                    testimonialBlock.animate({opacity: 1}, 500);
+                })
+            }, 4000);     
     });    
    
    
@@ -172,7 +193,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="six columns text-center center-block testimonials">
         <h3>Peter</h3>
         <h4>real estate agent</h4>
-        <span class="testi-desc">“Like most men, shopping can be a very daunting task, however, having my SRS personal stylist saves me the time and energy I would otherwise spend in stores.”</span>
+        <span class="testi-desc">"Like most men, shopping can be a very daunting task, however, having my SRS personal stylist saves me the time and energy I would otherwise spend in stores."</span>
     </div>
         
 </div>

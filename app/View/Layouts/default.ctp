@@ -7,7 +7,7 @@
 
         <!-- Basic Page Needs
   ================================================== -->
-        <?php echo $this->Html->charset(); ?>
+        <meta charset="utf-8">
         <title>Savile Row Society <?php echo $title_for_layout; ?></title>
         <meta name="description" content="Savile Row Society">
         <?php echo $this->fetch('meta'); ?>
@@ -20,8 +20,6 @@
         <link href='//fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
         <?php        
         echo $this->Html->css('base');
-        // echo $this->Html->css('layout.css?v=1');
-        // echo $this->Html->css('skeleton');
         echo $this->Html->css('lightbox');
         echo $this->Html->css('mosaic');
         echo $this->Html->css('temp');
@@ -92,17 +90,6 @@
         <?php echo $this->Session->flash(); ?>
         <?php echo $this->fetch('content'); ?>
         
-        
-
-
-        <!-- Popup Script
-        ================================================== -->
-        <?php
-        if (!$is_logged){
-            echo $this->element('popup/authentication');    
-        }
-        ?>
-        
 
         <div class="bottom footer-bar">
             <div class="footer">
@@ -121,27 +108,29 @@
                     </ul>
                 </div>
                 <div class="sixteen columns copyright right">
-                    &copy <?php echo date('Y'); ?> Savile Row Society, inc. All Rights reserved.
+                    &copy; <?php echo date('Y'); ?> Savile Row Society, inc. All Rights reserved.
                 </div>
             </div><!-- container -->
         </div>
         
+        
+
+        <!-- Popup Script
+        ================================================== -->
+        <!--Login and register popup-->
+            <?php
+            if (!$is_logged){
+                echo $this->element('popup/authentication');    
+            }
+            ?>
+
         <!--Modal Notifications-->
-            <div id="notification-box" class="hide box-modal notification-box">
-                <div class="box-modal-inside">
-                    <a class="notification-close" href=""></a>
-                    <div class="notification-msg">
-                        
-                    </div>
-                    <div class="notification-check">
-                    
-                    </div>
-                    <div class="notification-buttons">
-                    
-                    </div>
-                </div>
-            </div>
-        <!--End of Modal Notifications-->
+            <?php
+            if (!$is_logged){
+                echo $this->element('popup/notification');    
+            }
+            ?>    
+
 
         <!-- End Document
         ================================================== -->

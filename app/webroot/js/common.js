@@ -24,27 +24,38 @@ function footerFix(){
 
 /* function to show signin popup*/
 function signUp(e) {
-    $.blockUI({message: $('#signup-popup'), css: {top: '8%'}});
-    $('.blockOverlay').click($.unblockUI);
     $.ajax({
         url: "/register"
     }).done(function(res) {
         $("#signup-popup").html(res);
-        overrideEmail();
+        $.blockUI({message: $('#signup-popup')});
+        $('.blockOverlay').click($.unblockUI);
         addReferrerToSignUp();
     });
 }
 
 /* function to show signup popup*/
 function signIn() {
-    $.blockUI({message: $('#signin-popup')});
-    $('.blockOverlay').click($.unblockUI);
     $.ajax({
         url: "/signin"
     }).done(function(res) {
         $("#signin-popup").html(res);
+        $.blockUI({message: $('#signin-popup')});
+        $('.blockOverlay').click($.unblockUI);
         addReferrerToLogIn();
     });
+}
+
+function addReferrerToSignUp(){
+    if(ref_url != undefined){
+        $('#referUrl').val(ref_url);
+    }
+}
+
+function addReferrerToLogIn(){
+    if(ref_url != undefined){
+        $('#referUrlLogIn').val(ref_url);
+    }
 }
 
 jQuery(function(){
@@ -72,6 +83,36 @@ jQuery(function(){
         }else{
             $(".header .menu").css("display","none");
         }
+    });
+
+
+    $("#show-signup").click(function(e) {
+        signUp(e);
+    });
+    /* attach to sign in event on signup popup form.
+     * on click opent sign-in popup form
+     * */
+    $('#signup-popup').on('click', '#show-signin-popup', function(e){
+        e.preventDefault();
+        signIn();
+    });
+    
+    /* attach to sign up event on signin popup form.
+     * on click open sign-up popup form
+     * */
+    $('#signin-popup').on('click', '#show-signup-popup', function(e){
+        e.preventDefault();
+        signUp();
+    });
+    
+
+    $('#signup-popup, #signin-popup').on('click', '.notification-close', function(e){
+        e.preventDefault();
+        $.unblockUI();
+    });
+
+    $(window).resize(function(){
+       $(".blockMsg").css({'left' : $(window).width() / 2 - $(".blockMsg ").width()/2});
     });
     
 });

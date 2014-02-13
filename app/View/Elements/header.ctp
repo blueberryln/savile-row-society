@@ -121,12 +121,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php elseif($is_stylist) : ?>
                     <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Clients</span></a></li>
                 <?php else : ?>
-                    <li>  <a href="<?php echo $this->request->webroot; ?>profile/about">My Stylist</a>
-                        <ul class="submenu">
-                            <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu" data-ref="profile/about">Complete Style Profile</a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking">My Tailor</a></li>
-                        </ul>
-                    </li>
+                    <li>  <a href="<?php echo $this->request->webroot; ?>profile/about">My Stylist</a></li>
                 <?php endif; ?>
                 <li><a  href="<?php echo $this->request->webroot; ?>booking" data-ref="closet"><span class="underline1">The Fitting room</span></a></li>                            
                 <!--li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li-->
