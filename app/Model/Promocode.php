@@ -25,6 +25,10 @@ class Promocode extends AppModel {
             'notempty' => array(
                 'rule' => array('notempty'),
             ),
+            'unique' => array(
+                'rule' => 'isUnique',
+                'required' => 'create'
+            ),
         ),
         'total_available' => array(
             'numeric' => array(

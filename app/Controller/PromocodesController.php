@@ -29,7 +29,11 @@ class PromocodesController extends AppController{
         $user_id = $this->getLoggedUserID();
         if ($user_id && $this->request->is('post') || $this->request->is('put')) {
             $data = $this->request->data;
-            $this->request->data['Promocode']['code'] = strtoupper($this->request->data['Promocode']['code']);
+
+            $data['Promocode']['code'] = strtoupper($data['Promocode']['code']);
+            $data['Promocode']['valid_from'] = date('Y-m-d H:i:s', strtotime($data['Promocode']['valid_from']));
+            $data['Promocode']['valid_to'] = date('Y-m-d H:i:s', strtotime($data['Promocode']['valid_to']));
+
             $this->Promocode->set($data);
             if($this->Promocode->validates()){
                 $this->Promocode->create();
@@ -51,21 +55,20 @@ class PromocodesController extends AppController{
         }
         $user_id = $this->getLoggedUserID();
         if ($user_id && $this->request->is('post') || $this->request->is('put')) {
-            $data = $this->request->data['Promocode'];
+            $data = $this->request->data;
+
+            $data['Promocode']['code'] = strtoupper($data['Promocode']['code']);
             //Check if promo code has been used. If yes then disallow changes to code and the discount amount.
-            if(false){  
-                unset($data['Promocode']['code']);
-                unset($data['Promocode']['discount_amount']);
-            }
-            print_r($data);
-            $result = $this->Promocode->updateAll($data);
-            if($result){
+            unset($data['Promocode']['code']);
+            $this->Promocode->set($data);
+            $this->Promocode->validator()->remove('code');
+            if($this->Promocode->save()){     
                 $this->Session->setFlash(__('Promo Code updated successfully.'), 'flash' );
                 $this->redirect(array('action' => 'edit', $id));
             }
             else{
                 $this->Session->setFlash(__('There was a problem updating the promo code. Please try again.'), 'flash' );
-                $this->redirect(array('action' => 'edit', $id));   
+                //$this->redirect(array('action' =>  'edit', $id));   
             }
         }
         else if($user_id){

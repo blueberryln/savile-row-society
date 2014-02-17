@@ -13,15 +13,16 @@ $this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('
 ?>
 <div class="container content inner">       
     <div class="sixteen columns text-center">
-        <h1><?php echo __('New PromoCode'); ?></h1>
+        <h1><?php echo __('Edit PromoCode'); ?></h1>
     </div>
     <div class="sixteen columns">
         <div class="products form">
             <?php echo $this->Form->create('Promocode'); ?>
             <fieldset class="fifteen columns">
                 <?php
+                echo $this->Form->input('id');
                 echo $this->Form->input('name', array('label' => 'Name', 'required'));
-                echo $this->Form->input('code', array('label' => 'Code', 'required'));
+                echo $this->Form->input('code', array('label' => 'Code', 'readonly'));
                 echo $this->Form->input('total_available', array('label' => 'Total Promo Code Use Count', 'default' => 0));
                 echo $this->Form->input('use_per_customer', array('label' => 'Use per customer', 'default' => 0));
                 echo $this->Form->input('valid_from', array('label' => 'Valid From Date', 'type' => 'text'));
