@@ -7,20 +7,20 @@
 ?>
 
 <div class="content-container">
-    <div class="container content inner register-about">
-        <div class="eight columns text-center page-heading">
-            <h1>PROFILE</h1>
-        </div>	
+    <div class="container content inner register-about">	
         <div class="eight columns register-steps center-block">
             <div class="profile-tabs text-center">
-                        <a class="link-btn gray-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
-                        <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
+
+            <h1 class="text-center">About You</h1>
         </div>
-        <div class="eight columns text-center center-block" id="reg-step">
-            <div class="reg-step1"><img src="<?php echo $this->webroot; ?>img/reg-step1.png"/></div>
-        </div>
-        <div class="nine columns center-block">
+
+        <!-- <div class="eight columns text-center page-heading">
+            <h1>About You</h1>
+        </div> -->
+        <div class="seven columns center-block">
             <?php echo $this->Form->create('User', array('url' => '/register/saveAbout')); ?>
             <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
             <div class="hi-message fourteen columns offset-by-two alpha omega">
@@ -30,7 +30,7 @@
                 </p>
             </div>
             
-            <div class="srs-form five columns left">
+            <div class="srs-form">
                 <div class="form">
                 <?php
                 echo $this->Form->input('User.phone', array( "label"=>"Phone Number",'required', "placeholder" => "Phone number"));
@@ -43,22 +43,13 @@
                     echo $this->Form->month('month', array('monthNames' => false, 'div' => false, 'empty' => 'Month', 'label' => false, 'required', 'name' => 'data[User][month]'));
                     echo $this->Form->year('year', 1900, date('Y'), array('div' => false, 'empty' => 'Year', 'label' => false, 'class' => 'last', 'required', 'name' => 'data[User][year]'));         
                 ?>          
-                </div>         
+                </div>      
+                <?php   
+                    echo $this->Form->input('zip', array("label"=>"Zipcode",'required', "placeholder" => "Zipcode"));
+                ?>
                 <div class="clear-fix"></div>
                 </div>
             </div>
-            
-            
-            <div class="srs-form five columns right">
-                <div class="form">
-                <?php
-                echo $this->Form->input('User.location', array("id"=>"location", "label"=>"City/State",'required', "placeholder" => "City, State"));
-                echo $this->Form->input('User.skype', array("id"=>"skype", "label"=>"Skype ID", "placeholder" => "Skype ID"));
-                echo $this->Form->input('zip', array("label"=>"Zipcode",'required', "placeholder" => "Zipcode"));
-                ?>
-                </div>
-            </div>
-            <div class="clear-fix"></div>
 
             <div class="text-center about-submit">
                 <br/>

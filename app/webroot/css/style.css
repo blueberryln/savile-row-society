@@ -76,7 +76,7 @@ input[type="submit"]{color: #fff;}
     .nine-five.columns{width: 95%;}
 
     .container{position: relative; width: 960px; margin: 0 auto; padding: 0;}
-    .content-container{height: 100%; position: relative;}
+    .content-container{height: 100%; position: relative; margin-top: 90px;}
     /*.container .column, .container .columns{float: none;}*/
     .inner{margin-bottom: 30px;}
     .full-width{width: 100% !important;}
@@ -113,7 +113,7 @@ input[type="submit"]{color: #fff;}
 	.header .menu ul {margin: 0 auto; padding: 0; display: table; margin: auto; }
 	.header .menu li {cursor: pointer; display: inline-block; margin: 0; padding: 0 15px; text-transform: uppercase; border:none;}
 	.header .menu li:last-child{margin-right: 0;}
-	.header .menu li a {color: #333; font-weight:600; font-size: 13px; font-family: 'Conv_Novecento-Book',sans-serif; }
+	.header .menu li a {color: #333; font-weight: bold; font-size: 13px; font-family: 'Conv_Novecento-Book',sans-serif; }
 	.header .menu li span:hover{ border-bottom:1px solid #fff;}
 	.header .menu li:hover > .submenu{ display:block; }
 	.header .menu .submenu { background-color: #ffffff; border: 1px solid #CCCCCC; cursor: auto; display: none; margin: 2px 0 0 -14px; padding: 0; position: absolute; z-index: 100; text-align: left; }
@@ -135,8 +135,8 @@ input[type="submit"]{color: #fff;}
 .footer{margin: 0; background-color: #fff; position: absolute; height: auto; width: 100%; border-top: 1px solid #ccc;}
 .footer .menu{background-color: transparent; border: none; margin: 10px auto;}
 .footer .menu li{display: inline-block; padding: 0 10px; margin:0; text-transform: uppercase; border: none;}
-.footer .menu li a{color: #000; font-size: 10px; font-family: 'Conv_Novecento-Book',sans-serif;}
-.footer .copyright{color: #000; font-size: 10px; text-transform: uppercase; font-family: 'Conv_Novecento-Book',sans-serif; padding-right: 10px; margin: 10px 0;}
+.footer .menu li a{color: #000; font-size: 10px; font-family: 'sweetsans-regular',sans-serif;}
+.footer .copyright{color: #000; font-size: 10px; text-transform: uppercase; font-family: 'sweetsans-regular',sans-serif; padding-right: 10px; margin: 10px 0;}
 
 /****How it works Page****/
 .membership-flow{width: 100%; margin: 40px 0 10px 0;}
@@ -191,13 +191,14 @@ div.blogger-box{margin-bottom: 20px;}
 div.sub-blogger .name{font-family: 'Conv_Novecento-Bold',sans-serif; font-size: 22px; font-weight: bold; margin-bottom: 5px; text-transform: uppercase;}
 div.sub-blogger .title{font-family: 'Conv_Novecento-Book',sans-serif; font-size: 14px; text-transform: uppercase; vertical-align: middle;}
 /*****STYLE PROFILE*******/
-.profile-tabs a { margin-left: 10px; margin-right: 10px; width: 150px; }
+.profile-tabs a { margin-left: 10px; margin-right: 10px; width: 150px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
 .about-submit .submit input[type="submit"],#brands-continue, #Contact-Us{width: auto; background-color: #000; padding: 6px 50px; line-height: 21px; text-transform: uppercase;}
 .dob select{width: 30%; margin-right: 5%;}
 .dob select:last-child{margin-right: 0;}
-.profile-tabs{margin:20px 0;}
+.profile-tabs{margin:20px 0 30px;}
 .profile a{width: 150px; }
 	/*Style Section*/
+	.register-steps h1{font-family: 'sweetsans-regular', sans-serif; color: #8D8D8D; text-transform: capitalize; font-weight: normal; font-size: 40px;}
 	.preferences h5 { margin: 0 0 15px 0; }
 	.preferences #selectable .ui-selecting { background: #917A49; }
 	.preferences #selectable .ui-selected { background: #917A49; color: #FFFFFF; }
@@ -241,7 +242,7 @@ h5.sign { color: #AF9A59; padding-bottom: 15px; margin-bottom: 10px; background:
 /********Branding Partners POP-UP******/
 .brand-info p{ text-align: justify; }
 .brand-logo img{ max-width:150px !important; max-height: 50px; margin-bottom: 10px;}
-.brand-btn{ margin-top: 10px; width:140px;}
+.brand-btn{ margin-top: 15px; width:150px;}
 p.brand-desc{ margin:0;}
 p.brand-title{ font-weight:bold; margin-bottom: 8px;}
 .brand-info .notification-msg{ padding-bottom: 20px; padding-top: 20px;}
@@ -272,6 +273,9 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
 /*******Pages COMMON*****/
 .brand-btn:hover, a.my-profile:hover{color: #fff;}
 /******CLOSET*******/
+	.closet-tabs{margin-bottom: 30px; margin-top: 25px;}
+	.closet-tabs a{ width: 220px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
+
 	/****Filters****/
 	.product-filter-menu{ border-top: 1px solid #D9D9D9; }
 	.product-filter-menu ul{ margin: 0; padding: 0; font-family: 'Conv_Novecento-Book',sans-serif; text-transform: uppercase; }
@@ -305,7 +309,7 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
 	.lookbooks-block{ border: 2px solid #B19861 !important; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 	.highlight-lookbook{ position: absolute; top: 0px; left: 0px; width: 34px; height: 34px; background: url('../img/culflink_lookbook.png') no-repeat center; z-index: 6; }
 	.fadein-image{ opacity: 0; }
-	.mini-product-details{ position: absolute; bottom: 15px; text-align: center; color: #8F7948; line-height: normal; font-weight: bold; text-transform: uppercase; padding: 0 3px; width: 100%; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
+	.mini-product-details{ position: absolute; bottom: 15px; text-align: center; color: #8F7948; line-height: normal; text-transform: uppercase; padding: 0 3px; width: 100%; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
 	.mini-product-details span{ display: block; margin-top: 4px; font-size:12px; color:#EEE; text-transform: capitalize; }
 	.product-list-links { text-align: center; padding-top: 4px; }
 	.product-list-links a { display: inline-block; text-decoration: none; }
@@ -584,7 +588,7 @@ top: 111px;}
         .brands-logo{text-align: center;}
         .stylist-box{width:30%;}       
         .mg-big, .mg-vid, .mg-vid img, .mg-small, .mg-small div, .mg-small img{width: 100%;}
- http://srs/img/h_1.jpg       .mg-small-1{margin: 0;}
+   		.mg-small-1{margin: 0;}
 }
 
 @media screen and (min-width: 240px) and (max-width: 568px) {

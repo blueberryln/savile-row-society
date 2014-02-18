@@ -1,8 +1,8 @@
 <?php
 $script = ' 
-var style = ' . json_encode($style) . ';  
-var wear_suit = ' . json_encode($wear_suit) . ';' .
-'$(document).ready(function(){ 
+var style = ' . json_encode($style) . ',
+    madeToMeasure = ' . json_encode($made_to_measure) . ';  
+$(document).ready(function(){ 
 
         /* Your style */
         $( "#your-style #selectable" ).bind("mousedown", function (e) {
@@ -13,18 +13,6 @@ var wear_suit = ' . json_encode($wear_suit) . ';' .
                 $( ".ui-selected", this ).each(function() {
                     var selected_id = $(this).data("id");
                     $("#your-style input:checkbox#" + selected_id).prop("checked", true);
-                });
-            }
-        });
-        /* Suite Frequency */
-        $( "#suite-frequency #selectable" ).bind("mousedown", function (e) {
-            e.metaKey = false;
-            }).selectable({
-            stop: function() {
-                $("#suite-frequency input:checkbox").prop("checked", false);
-                $( ".ui-selected", this ).each(function() {
-                    var selected_id = $(this).data("id");
-                    $("#suite-frequency input:checkbox#" + selected_id).prop("checked", true);
                 });
             }
         });
@@ -49,16 +37,8 @@ var wear_suit = ' . json_encode($wear_suit) . ';' .
             $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
             $(inputCondition).prop("checked", true);
         }
-        
-        // Mark saved wear suit as selected
-        var wearSuit = getIdFromString(wear_suit);
-        if(selectedId != 0){
-            var liCondition = \'li[data-id = "\' + wearSuit + \'"]\';            
-            var inputCondition = "#" + wearSuit;
 
-            $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
-            $(inputCondition).prop("checked", true);
-        }
+        $("#madeToMeasure").val(madeToMeasure);
 });
 ';
 
@@ -83,17 +63,13 @@ window.registerProcess = true;
 </script>
 <div class="content-container">
     <div class="container content inner preferences register-style">	
-        <div class="eight columns text-center page-heading">
-            <h1>PROFILE</h1>
-        </div>	
         <div class="eight columns register-steps center-block">
             <div class="profile-tabs text-center">
-                        <a class="link-btn gray-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
-                        <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
-        </div>
-        <div class="sixteen columns text-center" id="reg-step">
-            <div class="reg-step2"><img src="<?php echo $this->webroot; ?>img/reg-step2.png"/></div>
+
+            <h1 class="text-center">Your wardrobe needs</h1>
         </div>
         <div class="nine columns center-block">
             <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size')); ?>
@@ -121,25 +97,22 @@ window.registerProcess = true;
             </div><br/>
             <div class="hi-message fourteen columns">
                 
-                <h4>Your suit wearing frequency</h4>
-                <p>
-                    To better understand your needs we'd like to know your suit wearing frequency 
-                </p>
-                <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
-            </div>
-            <div class="twelve columns">
-                <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
-                <div id="suite-frequency">
-                    <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Every Day" id="4" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Couple Times a Week" id="5" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Never" id="6" />
-                    <ol id="selectable">
-                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-1.png" class="fadein-image" /><br/>Every Day</li>
-                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-2.png" class="fadein-image" /><br/>Couple Times a Week</li>
-                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-3.jpg" class="fadein-image" /><br/>Never</li>
-                    </ol>
+                <h4>Made To Measure</h4>
+                <img src="<?php echo $this->request->webroot; ?>img/booking-1.jpg" alt="">
+                <div class="clear-fix"></div>
+                <br />
+                <div class="form form1 text-center columns seven center-block">
+                    <label for="madeToMeasure">Are you interested in our Made-to-Measure collection?</label> 
+                    <div class="input text">                          
+                        <select name="data[UserPreference][made_to_measure]" tabindex="" id="madeToMeasure" >
+                            <option value="">Are you interested?</option>
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+            
             <div class="clear-fix"></div>
             <div class="text-center about-submit">
                          <br/>

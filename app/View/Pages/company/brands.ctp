@@ -56,7 +56,7 @@ $(document).ready(function(){
         else{
             $(".brand-info .link-btn").hide();
         }
-        $.blockUI({message: $("#brandinfo-box"),css:{top:"50px"}});
+        $.blockUI({message: $("#brandinfo-box")});
         $(".blockOverlay").click($.unblockUI);        
     });
 });

@@ -157,6 +157,31 @@ class UsersController extends AppController {
     }
 
     /*
+     * save contacts page profile..
+     * */
+
+    public function saveAbout() {
+        // get edditing in user
+        $user = $this->getEditingUser();
+        $id = $this->getLoggedUserID();
+        
+        $user["User"]["phone"] = $this->request->data["User"]["phone"];
+        $user["User"]["industry"] = $this->request->data["User"]["industry"];
+        $user["User"]["zip"] = $this->request->data["User"]["zip"];
+        if(checkdate($this->request->data["User"]["month"],$this->request->data["User"]["day"], $this->request->data["User"]["year"])){
+            $user["User"]["birthdate"] = date('Y-m-d', strtotime($this->request->data["User"]["year"] . "-" . $this->request->data["User"]["month"] . "-" . $this->request->data["User"]["day"]));
+        }
+
+        if ($this->User->save($user)) {
+            $result = $this->User->getByID($id);
+            $this->Session->write('user', $result); 
+            $this->redirect('register/style/' . $user['User']['id']);
+        } else {
+            // TODO: implement error handling
+        }
+    }
+
+    /*
      * save style page profile, and open register-size page
      * */
 
@@ -171,14 +196,14 @@ class UsersController extends AppController {
         }
         // get data from request
         $data = $this->request->data;
-        if(isset($data['UserPreference']['Style']) || isset($data['UserPreference']['wear_suit'])){
+        if(isset($data['UserPreference']['Style']) || isset($data['UserPreference']['made_to_measure'])){
             if(isset($data['UserPreference']['Style'])){
                 $data_arr = $data['UserPreference']['Style'];  
                 $preferences["UserPreference"]["Style"] = $data_arr;  
             }
-            if(isset($data['UserPreference']['wear_suit'])){
-                $wear_suit = $data['UserPreference']['wear_suit'];
-                $preferences["UserPreference"]["wear_suit"] = $wear_suit;        
+            if(isset($data['UserPreference']['made_to_measure'])){
+                $made_to_mesaure = $data['UserPreference']['made_to_measure'];
+                $preferences["UserPreference"]["made_to_measure"] = $made_to_mesaure;        
             }
             
             $serialized_preferences = serialize($preferences);
@@ -255,34 +280,7 @@ class UsersController extends AppController {
         }
     }
 
-    /*
-     * save contacts page profile..
-     * */
-
-    public function saveAbout() {
-        // get edditing in user
-        $user = $this->getEditingUser();
-        $id = $this->getLoggedUserID();
-        
-        $user["User"]["phone"] = $this->request->data["User"]["phone"];
-        $user["User"]["industry"] = $this->request->data["User"]["industry"];
-        $user["User"]["location"] = $this->request->data["User"]["location"];
-        $user["User"]["skype"] = $this->request->data["User"]["skype"];
-        $user["User"]["zip"] = $this->request->data["User"]["zip"];
-        if(checkdate($this->request->data["User"]["month"],$this->request->data["User"]["day"], $this->request->data["User"]["year"])){
-            $user["User"]["birthdate"] = date('Y-m-d', strtotime($this->request->data["User"]["year"] . "-" . $this->request->data["User"]["month"] . "-" . $this->request->data["User"]["day"]));
-        }
-        
-        
-
-        if ($this->User->save($user)) {
-            $result = $this->User->getByID($id);
-            $this->Session->write('user', $result); 
-            $this->redirect('register/style/' . $user['User']['id']);
-        } else {
-            // TODO: implement error handling
-        }
-    }
+    
     
     
     
@@ -437,10 +435,10 @@ class UsersController extends AppController {
                 $this->saveFinish();
                 break;
             case 'style':
-                $style = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Style'])) ? $preferences['UserPreference']['Style'] : "";
-                $wear_suit = ($preferences['UserPreference'] && isset($preferences['UserPreference']['wear_suit'])) ? $preferences['UserPreference']['wear_suit'] : "";                                
+                $style = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Style'])) ? $preferences['UserPreference']['Style'] : "";  
+                $made_to_measure = ($preferences['UserPreference'] && isset($preferences['UserPreference']['made_to_measure'])) ? $preferences['UserPreference']['made_to_measure'] : "";                             
                 // debug($style);   
-                $this->set(compact('style', 'wear_suit'));
+                $this->set(compact('style', 'made_to_measure'));
                 // title
                 $title_for_layout = 'Sign up';
                 $this->render('register-style');
