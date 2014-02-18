@@ -1,60 +1,18 @@
 <?php
-$script = ' 
-var style = ' . json_encode($style) . ',
-    madeToMeasure = ' . json_encode($made_to_measure) . ';  
+$script = '  
+var size = ' . json_encode($size) . '; 
 $(document).ready(function(){ 
-
-        /* Your style */
-        $( "#your-style #selectable" ).bind("mousedown", function (e) {
-            e.metaKey = false;
-            }).selectable({
-            stop: function() {
-                $("#your-style input:checkbox").prop("checked", false);
-                $( ".ui-selected", this ).each(function() {
-                    var selected_id = $(this).data("id");
-                    $("#your-style input:checkbox#" + selected_id).prop("checked", true);
-                });
-            }
-        });
-        function getIdFromString(s){
-            switch(s){
-                case "Business": return 1;
-                case "Lifestyle": return 2;
-                case "Complete Overhaul": return 3;
-                case "Every Day": return 4;
-                case "Couple Times a Week": return 5;
-                case "Never": return 6;
-                default: return 0;    
-            }
-        }
+    if(size){
+        $("#shirtSize").val(size.shirt_size);
+        $("#jeans").val(size.denim_kind);
+    }
         
-        // Mark saved style as selected
-        var selectedId = getIdFromString(style);
-        if(selectedId != 0){
-            var liCondition = \'li[data-id = "\' + selectedId + \'"]\';            
-            var inputCondition = "#" + selectedId;
-
-            $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
-            $(inputCondition).prop("checked", true);
-        }
-
-        $("#madeToMeasure").val(madeToMeasure);
 });
 ';
-
-
-
-$this->Html->css('ui/jquery-ui', null, array('inline' => false));
-$this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
-$this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
 $meta_description = 'Sign up for Savile Row Society, a groundbreaking online, personalized fashion service.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
-
-// call this line to exclude lyout from rendering. 
-// this is necesary because this view is opening as popup, and don't need to have header, footer etc as rest of the pages.
-// $this->layout = 'ajax'
 
 ?>
 <script>
@@ -69,60 +27,112 @@ window.registerProcess = true;
                 <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
 
-            <h1 class="text-center">Your wardrobe needs</h1>
+            <h1 class="text-center">Your Style</h1>
         </div>
         <div class="nine columns center-block">
-            <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size')); ?>
-            <div class="hi-message twelve columns">
+            <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size', 'type' => 'file')); ?>
+            <div class="hi-message twelve columns text-center">
                 
-                <h4>Your stylist should focus on</h4>
+                <h4>Hi <?php echo ucwords($full_name); ?></h4>
                 <p>
-                    To better understand your needs we'd like to know if your focus in 
+                    Not to worry, this is totally confidential 
                 </p>
                 <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
+
+                <div class='empty-img' id='photo-holder'>
+                <img src='<?php echo $image_url ?>' id='user-photo'/>
+                </div>                
+                <input type='button' value='Upload photo' id='upload-img' class="gray-btn"/>
+
+                <?php
+                    echo $this->Form->input('ProfileImage', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
+                ?>
             </div>
             
-            <div class="twelve columns">
-                <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
-                <div id="your-style">
-                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Business" id="1" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Lifestyle" id="2" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Complete Overhaul" id="3" />
-                    <ol id="selectable">
-                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" class="fadein-image" /><br/>Business</li>
-                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" class="fadein-image" /><br/>Lifestyle</li>
-                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" class="fadein-image" /><br/>Complete Overhaul</li>
-                    </ol>
+            <div class="seven columns center-block">
+                <div class="input text required">
+                    <label for="jeans">WHAT KIND OF JEANS DO YOU WEAR?</label>                            
+                    <select name="data[UserPreference][Size][denim_kind]" tabindex="" id="jeans" >
+                        <option value="DON'T KNOW">Don't Know</option>
+                        <option value="RELAXED FIT">Relaxed Fit</option>
+                        <option value="BOOT CUT">Boot Cut</option>
+                        <option value="STRAIGHT LEG">Straight Leg</option>
+                        <option value="SLIM">Slim</option>
+                        <option value="EXTRA SLIM">Extra Slim</option>
+                    </select>
                 </div>
-            </div><br/>
-            <div class="hi-message fourteen columns">
-                
-                <h4>Made To Measure</h4>
-                <img src="<?php echo $this->request->webroot; ?>img/booking-1.jpg" alt="">
-                <div class="clear-fix"></div>
-                <br />
-                <div class="form form1 text-center columns seven center-block">
-                    <label for="madeToMeasure">Are you interested in our Made-to-Measure collection?</label> 
-                    <div class="input text">                          
-                        <select name="data[UserPreference][made_to_measure]" tabindex="" id="madeToMeasure" >
-                            <option value="">Are you interested?</option>
-                            <option value="Y">Yes</option>
-                            <option value="N">No</option>
-                        </select>
-                    </div>
+
+                <div class="input text required">
+                    <label for="shirtSize">Dress Shirt Cut:</label>                            
+                    <select name="data[UserPreference][Size][shirt_size]" tabindex="" id="shirtSize" >
+                        <option value="">Size</option>
+                        <option value="14">14</option>
+                        <option value="14.5">14.5</option>
+                        <option value="15">15</option>
+                        <option value="15.5">15.5</option>
+                        <option value="16">16</option>
+                        <option value="16.5">16.5</option>
+                        <option value="17">17</option>
+                        <option value="17.5">17.5</option>
+                        <option value="Other">Other</option>
+                        <option value="Don't know">Don't know</option>
+                    </select>
                 </div>
             </div>
             
             <div class="clear-fix"></div>
             <div class="text-center about-submit">
-                         <br/>
-                            <!--<?php echo $this->Form->end(__('Continue')); ?>-->
-                            <div class="submit">                            
-                                <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>profile/about">Back</a> 
-                                <input type="submit" value="Continue" />      
-                            </div>                 
-                         </form>
+                <br/>
+                <div class="submit">                            
+                    <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/wardrobe/<?php echo $user_id; ?>">Back</a> 
+                    <input type="submit" value="Continue" />      
+                </div>                 
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    #upload-img{
+        width:100px;
+    }
+    #uploader-btn{
+        display: none;
+    }
+    #user-photo{
+        /*width:100px;*/
+        height: 100px;
+        opacity: 0;
+        
+    }
+</style>
+<script>
+    window.onload=function(){
+        $("#upload-img").click(function(e){
+            e.preventDefault();
+            $("#uploader-btn").click();
+        });
+        $("#uploader-btn").change(function(){
+        
+            var input = document.getElementById("uploader-btn");
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#user-photo' ).attr('src', e.target.result);
+                    $('#user-photo' ).css('opacity', 1);
+                    $('#photo-holder' ).attr('class', '');
+                };
+                reader.readAsDataURL(input.files[0]);
+//                    if (self.showName) {
+//                        $(self).append("<p>" + input.files[0].name + "</p>");
+//                    }
+                // 
+            }
+        });
+        if($('#user-photo').attr('src') != "#"){
+            $('#user-photo').css('opacity', 1);
+            $('#photo-holder' ).attr('class', '');
+        }
+    }
+</script> 

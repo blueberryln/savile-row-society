@@ -170,18 +170,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 window.registerProcess = true;
 </script>
 <div class="content-container">
-  <div class="eleven columns container content inner preferences register-brands">	
-      <div class="eight columns text-center page-heading">
-          <h1>PROFILE</h1>
-      </div>	
+  <div class="container content inner preferences register-brands">	
       <div class="eight columns register-steps center-block">
           <div class="profile-tabs text-center">
-                      <a class="link-btn gray-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
-                      <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+              <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+              <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
           </div>
-      </div>
-      <div class="twelve columns text-center" id="reg-step">
-          <div class="reg-step4"><img src="<?php echo $this->webroot; ?>img/reg-step4.png"/></div>
+
+          <h1 class="text-center">Brands</h1>
       </div>
 
       <div class="twelve columns">
@@ -220,7 +216,7 @@ window.registerProcess = true;
                   </li>
               </ul>
           </div>
-          <div>
+          <div class="twelve columns center-block">
               <div id="brands" >
                   <div id="polos_tees-brands" class="brand-block">
                      

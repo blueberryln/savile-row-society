@@ -175,7 +175,7 @@ class UsersController extends AppController {
         if ($this->User->save($user)) {
             $result = $this->User->getByID($id);
             $this->Session->write('user', $result); 
-            $this->redirect('register/style/' . $user['User']['id']);
+            $this->redirect('register/wardrobe/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
         }
@@ -185,7 +185,7 @@ class UsersController extends AppController {
      * save style page profile, and open register-size page
      * */
 
-    public function saveStyle() {
+    public function saveWardrobe() {
         // get edditing in user
         $user = $this->getEditingUser();
         $id = $this->getLoggedUserID();
@@ -216,7 +216,40 @@ class UsersController extends AppController {
             }
             
         }
-        $this->redirect('register/size/' . $user['User']['id']);
+        $this->redirect('register/style/' . $user['User']['id']);
+    }
+
+    /*
+     * save style page profile, and open register-size page
+     * */
+
+    public function saveStyle() {
+        // get edditing in user
+        $user = $this->getEditingUser();
+        $id = $this->getLoggedUserID();
+        // extract preferences
+        $preferences = NULL;
+        if ($user && $user['User']['preferences']) {
+            $preferences = unserialize($user['User']['preferences']);
+        }
+        // get data from request
+        $data = $this->request->data;
+
+        $data_arr = $data['UserPreference']['Size'];
+        $preferences["UserPreference"]["Size"] = $data_arr;
+        $serialized_preferences = serialize($preferences);
+        $user['User']['preferences'] = $serialized_preferences;
+
+        // save image
+        if($image = $this->saveImage()){
+            $user['User']['profile_photo_url'] = $image;
+        }
+        
+        if ($this->User->save($user)) {
+            $result = $this->User->getByID($id);
+            $this->Session->write('user', $result);
+            $this->redirect('register/size/' . $user['User']['id']);
+        } 
     }
 
     /*
@@ -234,8 +267,6 @@ class UsersController extends AppController {
         }
         // get data from request
         $data = $this->request->data;
-//        print_r($data);
-//        exit;
         
         // get actual array or string from request
         $data_arr = $data['UserPreference']['Size'];
@@ -356,22 +387,22 @@ class UsersController extends AppController {
         $id = $this->getLoggedUserID();
 
         // file upload
-        if ($this->request->data['ProfileImage'] && $this->request->data['ProfileImage']['size'] > 0) {
+        if ($this->request->data['User']['ProfileImage'] && $this->request->data['User']['ProfileImage']['size'] > 0) {
 
             $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
 
-            if (!in_array($this->request->data['ProfileImage']['type'], $allowed)) {
+            if (!in_array($this->request->data['User']['ProfileImage']['type'], $allowed)) {
                 $this->Session->setFlash(__('You have to upload an image.'), 'flash');
-            } else if ($this->request->data['ProfileImage']['size'] > 5242880) {
+            } else if ($this->request->data['User']['ProfileImage']['size'] > 5242880) {
                 $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
-                $this->redirect('register/last-step/' . $id);
+                $this->redirect('register/style/' . $id);
                 exit;
             } else {
-                $image = $user['User']['email'] . '_' . $this->request->data['ProfileImage']['name'];
-                $image_type = $this->request->data['ProfileImage']['type'];
-                $image_size = $this->request->data['ProfileImage']['size'];
+                $image = $user['User']['email'] . '_' . $this->request->data['User']['ProfileImage']['name'];
+                $image_type = $this->request->data['User']['ProfileImage']['type'];
+                $image_size = $this->request->data['User']['ProfileImage']['size'];
                 $img_path = APP . DS . 'webroot' . DS . 'files' . DS . 'users' . DS . $image;
-                move_uploaded_file($this->request->data['ProfileImage']['tmp_name'], $img_path);
+                move_uploaded_file($this->request->data['User']['ProfileImage']['tmp_name'], $img_path);
                 return $image;
             }
         }
@@ -396,7 +427,7 @@ class UsersController extends AppController {
 
         $this->set(compact('heard_from_options', 'user_id'));
         $user = null;
-        $register_cases = array('saveStyle', 'saveContact', 'saveSize', 'saveBrands', 'saveAbout', 'style', 'size', 'brands', 'about', 'last-step');
+        $register_cases = array('saveStyle', 'saveContact', 'saveSize', 'saveBrands', 'saveAbout', 'style', 'size', 'brands', 'about', 'last-step', 'wardrobe', 'saveWardrobe');
         if(in_array($step, $register_cases)){
             if($user_id){
                 $user = $this->getEditingUser($user_id);
@@ -416,6 +447,9 @@ class UsersController extends AppController {
             case 'saveStyle':
                 $this->saveStyle();
                 break;
+            case 'saveWardrobe':
+                $this->saveWardrobe();
+                break;
             case 'saveContact':
                 $this->saveContact();
                 break;
@@ -434,11 +468,21 @@ class UsersController extends AppController {
             case 'saveFinish':
                 $this->saveFinish();
                 break;
-            case 'style':
+            case 'wardrobe':
                 $style = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Style'])) ? $preferences['UserPreference']['Style'] : "";  
                 $made_to_measure = ($preferences['UserPreference'] && isset($preferences['UserPreference']['made_to_measure'])) ? $preferences['UserPreference']['made_to_measure'] : "";                             
                 // debug($style);   
                 $this->set(compact('style', 'made_to_measure'));
+                // title
+                $title_for_layout = 'Sign up';
+                $this->render('register-wardrobe');
+                break;
+            case 'style':
+                $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
+                $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : "#";                             
+                $size = ($preferences['UserPreference']) ? $preferences['UserPreference']['Size'] : null; 
+                $this->set(compact('size'));
+                $this->set(compact('image_url', 'full_name'));
                 // title
                 $title_for_layout = 'Sign up';
                 $this->render('register-style');
