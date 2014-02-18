@@ -37,7 +37,7 @@ $script = '
 					thumb_links				:	1,			// Individual thumb links for each slide
 					thumbnail_navigation    :   0,			// Thumbnail navigation
 					slides 					:  	[			// Slideshow Images
-														{image : "http://www.savilerowsociety.com/development/img/home-1-big.jpg", title : "Image Credit: Maria Kazvan", thumb : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-1.jpg", url : ""},
+														{image : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/wojno-2.jpg", title : "Image Credit: Maria Kazvan", thumb : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-1.jpg", url : ""},
 														{image : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/kazvan-2.jpg", title : "Image Credit: Maria Kazvan", thumb : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-2.jpg", url : ""},  
 														{image : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/kazvan-3.jpg", title : "Image Credit: Maria Kazvan", thumb : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg", url : ""},
 														{image : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/wojno-1.jpg", title : "Image Credit: Colin Wojno", thumb : "http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/wojno-1.jpg", url : ""},
@@ -55,14 +55,33 @@ $script = '
 				});
 
 				jQuery("div.footer").addClass("h-f");
+				var winH = jQuery(window).height();
+				var hH = jQuery("div.header").height();
+				var fH = jQuery("div.footer").height();
+				console.log(winH);
+				jQuery("div.super").css("height", winH - (hH + fH));
+				jQuery("div.super").css("margin-top",hH);
+
 		    });
+			jQuery(window).resize(function(){
+				var winH = jQuery(window).height();
+				var hH = jQuery("div.header").height();
+				var fH = jQuery("div.footer").height();
+				console.log(winH);
+				jQuery("div.super").css("height", winH - (hH + fH));
+				jQuery("div.super").css("margin-top",hH);
+			});
+
 ';	    
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 
-<div class="container content inner home" style="margin-top: 93px;">
+<!-- <div class="container content inner home" style="margin-top: 93px;">	
+	
+</div> -->
+	<div class="super" style="margin-top:91px; width:100%; height:500px;">
+		
+	</div>
 	<!--Arrow Navigation-->
 	<a id="prevslide" class="load-item"></a>
 	<a id="nextslide" class="load-item"></a>
-	
-</div>

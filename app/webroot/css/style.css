@@ -107,13 +107,13 @@ input[type="submit"]{color: #fff;}
 	.card-menu li:hover > .submenu-container{ display:block; }
 	/*****Logo Strip and Main Menu****/
 	.header-logo{margin: 0; padding: 0;}
-	.header-logo a, .header .menu, .card-menu{line-height: 90px;}
+	.header-logo a, .header .menu, .card-menu{line-height: 91px;}
 	.header .logo {width: 250px;vertical-align: middle;}
 	.header .menu{background-color: transparent;}
 	.header .menu ul {margin: 0 auto; padding: 0; display: table; margin: auto; }
-	.header .menu li {cursor: pointer; display: inline-block; margin: 0; padding: 0 15px; text-transform: uppercase; border:none;}
+	.header .menu li {cursor: pointer; display: inline-block; margin: 0; padding: 0 10px; text-transform: uppercase; border:none;}
 	.header .menu li:last-child{margin-right: 0;}
-	.header .menu li a {color: #333; font-weight: bold; font-size: 13px; font-family: 'Conv_Novecento-Book',sans-serif; }
+	.header .menu li a {color: #333; font-weight: bold; font-size: 13px; font-family: 'sweetsans-regular',sans-serif; }
 	.header .menu li span:hover{ border-bottom:1px solid #fff;}
 	.header .menu li:hover > .submenu{ display:block; }
 	.header .menu .submenu { background-color: #ffffff; border: 1px solid #CCCCCC; cursor: auto; display: none; margin: 2px 0 0 -14px; padding: 0; position: absolute; z-index: 100; text-align: left; }
@@ -513,7 +513,7 @@ div.mgs-btn{bottom: 10%;}
 div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
 
 /********Mobile CSS**********/
-@media screen and (min-width: 768px) and (max-width: 959px) {	
+@media screen and (min-width: 768px) and (max-width: 1024px) {	
 	.container { width: 768px; }	
 	.team-member{width: 30%;}
 	.wrapper{width:100%;}
@@ -532,10 +532,17 @@ div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
 	.header .menu li{padding: 0 10px;}
 	.membership-flow{padding: 0 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
 	.mg-small-1{margin: 0;}
+	.header .menu li a{font-size: 11px;}
+	.header .menu li{padding: 0 6px;}
+	.footer .menu{margin-top: 0;}
+	.footer .copyright{margin-top: 0;}
+
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
 	.membership-flow{padding: 0 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
 	.mg-small-1{margin: 0;}
+
+	
 }
 
 @media screen and (max-width: 767px) {
@@ -616,3 +623,4 @@ div.sub-inde div.title{font-family: Conv_Novecento-Book, sans-serif;}
 div.sub-inde div.title a{text-decoration: underline;}
 
 
+div#book-apt {position: absolute;bottom: 20%; z-index: 100; display: block; width: 100%; text-align: center;}
