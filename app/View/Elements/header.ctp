@@ -92,6 +92,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                             <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>mycloset/liked" class="headerMenu">My Closet</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu">Profile</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>refer-a-friend" class="headerMenu">Refer a friend</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
                         </ul>
                     </div>
