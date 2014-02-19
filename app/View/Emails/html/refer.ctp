@@ -14,9 +14,6 @@
                             <p>I’ve been given the gift of Savile Row Society, and now I want to give the gift to you, and $50 off your first purchase.</p>
                             <p>Register with <a href="http://www.savilerowsociety.com/user/refer/<?php echo $user['User']['id']; ?>">http://www.savilerowsociety.com/user/refer/<?php echo $user['User']['id']; ?></a> to meet your personal stylist, and shop in a smart fashion.</p>
                             <p>Savile Row Society has become my wardrobe and lifestyle destination, and now it can be yours too.</p>
-
-                            <br>
-                            <?php echo $user['User']['full_name']; ?>
                         </td>
                     </tr>
                     <tr>
@@ -25,7 +22,7 @@
                         <br /><br />
                         Thanks,
                         <br/>
-                        <a href="http://www.savilerowsociety.com">Savile Row Society</a>
+                        <?php echo ucwords($user['User']['full_name']); ?>
                         <br /><br /><br />
                     </tr>
                 </table>
