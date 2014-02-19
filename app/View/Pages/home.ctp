@@ -85,7 +85,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="ten columns text-center page-heading">
         <h1>How it works</h1>
     </div>
-    <div class="container works-boxes">
+    <div class="eleven columns container works-boxes">
         <div class="work-box">
             <img src="<?php echo $this->webroot; ?>img/how-it-works/1.png" />
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_1.png" /></span>
@@ -147,7 +147,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="ten columns text-center page-heading">
         <h1>Seamless Shopping</h1>
     </div>
-    <div class="container shopping-boxes">
+    <div class="eleven columns container shopping-boxes">
         <div class="shopping-box text-left">
             <img src="<?php echo $this->webroot; ?>img/how-it-works/img_5.png" />
             <h3>Shop online</h3>
@@ -169,9 +169,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="ten columns text-center page-heading">
         <h1>Our brands</h1>        
     </div>
-    <div class="home-branding-partners center-block">
-        <span class="brands-desc">We select the best of the best. From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category. One thing is for sure, all of our partnering brands are passionate about clothing. <a href="<?php echo $this->request->webroot; ?>company/brands">See more brands</a></span>
-        <ul id="branding-partners">
+    <div class="eleven columns home-branding-partners center-block">
+        <span class="nine columns brands-desc">We select the best of the best. From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category. One thing is for sure, all of our partnering brands are passionate about clothing. <a href="<?php echo $this->request->webroot; ?>company/brands">See more brands</a></span>
+        <ul id="branding-partners" class="eight columns center-block">
                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Bernard_zins.jpg" class="fadein-image" alt="Bernard Zins" /></li>
                         <li><img src="<?php echo $this->webroot; ?>img/branding-partners/7diamonds.png" class="fadein-image" alt="7 Diamonds" /></li>
                         <li><img src="<?php echo $this->webroot; ?>img/branding-partners/agave.jpg" class="fadein-image" alt="AGAVE" /></li>
@@ -190,7 +190,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
      <div class="ten columns text-center page-heading">
         <h1>Testimonials</h1>
     </div>
-    <div class="six columns text-center center-block testimonials">
+    <div class="eight columns text-center center-block testimonials">
         <h3>Peter</h3>
         <h4>real estate agent</h4>
         <span class="testi-desc">"Like most men, shopping can be a very daunting task, however, having my SRS personal stylist saves me the time and energy I would otherwise spend in stores."</span>
