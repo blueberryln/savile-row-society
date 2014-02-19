@@ -684,7 +684,7 @@ class ApiController extends AppController {
                     $email->subject("You've Been Given The Gift Of SRS");
                     $email->template('refer');
                     $email->emailFormat('html');
-                    $email->viewVars(array('user'));
+                    $email->viewVars(compact('user'));
                     $email->send();
                     $flag = 1;
                 }
