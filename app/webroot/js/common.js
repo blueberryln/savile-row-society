@@ -30,7 +30,7 @@ function signUp(e) {
         $("#signup-popup").html(res);
         $.blockUI({message: $('#signup-popup')});
         $('.blockOverlay').click($.unblockUI);
-        addReferrerToSignUp();
+        //addReferrerToSignUp();
     });
 }
 
@@ -42,23 +42,27 @@ function signIn() {
         $("#signin-popup").html(res);
         $.blockUI({message: $('#signin-popup')});
         $('.blockOverlay').click($.unblockUI);
-        addReferrerToLogIn();
+        //addReferrerToLogIn();
     });
 }
 
-function addReferrerToSignUp(){
-    if(ref_url != undefined){
-        $('#referUrl').val(ref_url);
-    }
-}
+// function addReferrerToSignUp(){
+//     if(ref_url != undefined){
+//         $('#referUrl').val(ref_url);
+//     }
+// }
 
-function addReferrerToLogIn(){
-    if(ref_url != undefined){
-        $('#referUrlLogIn').val(ref_url);
-    }
-}
+// function addReferrerToLogIn(){
+//     if(ref_url != undefined){
+//         $('#referUrlLogIn').val(ref_url);
+//     }
+// }
 
 jQuery(function(){
+    if(showRegisterPopup){
+        signUp();    
+    }
+
     fadeInImages();
     footerFix();
     $(".show-more-text").toggle(function() {

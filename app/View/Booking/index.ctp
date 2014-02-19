@@ -78,6 +78,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         
     </div>
     <!--Arrow Navigation-->
-    <a id="prevslide" class="load-item"></a>
-    <a id="nextslide" class="load-item"></a>
+    <!-- <a id="prevslide" class="load-item"></a>
+    <a id="nextslide" class="load-item"></a> -->
     <div id="book-apt"><a href="#" class="link-btn gold-btn">Make an appointment</a></div>

@@ -107,8 +107,21 @@ class ConnectController extends AppController {
                 $linkedin_data['User']['title'] = $profile['headline'];
                 $linkedin_data['User']['industry'] = $profile['industry'];
                 $linkedin_data['User']['location'] = $profile['location']['name'];
+
+                if($this->Session->check('referer')){
+                    $linkedin_data['User']['referred_by'] = $this->Session->read('referer');  
+                    $linkedin_data['User']['vip_discount_flag'] = 1; 
+                } 
+
                 $User->create();
                 if ($User->save($linkedin_data)) {
+
+                    if($this->Session->check('referer')){
+                        $this->Session->delete('referer');
+                        $this->Session->delete('showRegisterPopup'); 
+                        $this->Session->delete('referer_type');
+                    } 
+
                     // set "user" session
                     $linkedin_data['User']['id'] = $User->getInsertID();
                     $this->Session->write('user', $linkedin_data);
@@ -143,6 +156,12 @@ class ConnectController extends AppController {
                 $account['User']['industry'] = $profile['industry'];
                 $account['User']['location'] = $profile['location']['name'];
                 unset($account['User']['updated']);
+
+                if($this->Session->check('referer')){
+                    $this->Session->delete('referer');
+                    $this->Session->delete('showRegisterPopup'); 
+                    $this->Session->delete('referer_type');
+                } 
 
                 if ($User->save($account)) {
                     // set "user" session
@@ -241,8 +260,22 @@ class ConnectController extends AppController {
                     $fb_data['User']['social_network_id'] = $profile['id'];
                     $fb_data['User']['social_network_token'] = $access_token;
                     $fb_data['User']['social_network_secret'] = $access_secret;
+
+                    if($this->Session->check('referer')){
+                        $fb_data['User']['referred_by'] = $this->Session->read('referer');  
+                        $fb_data['User']['vip_discount_flag'] = 1; 
+                    } 
+
+
                     $User->create();
                     if ($User->save($fb_data)) {
+
+                        if($this->Session->check('referer')){=
+                            $this->Session->delete('referer');
+                            $this->Session->delete('showRegisterPopup'); 
+                            $this->Session->delete('referer_type');
+                        }     
+
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
@@ -275,6 +308,12 @@ class ConnectController extends AppController {
                     $account['User']['social_network_token'] = $access_token;
                     $account['User']['social_network_secret'] = $access_secret;
                     unset($account['User']['updated']);
+
+                    if($this->Session->check('referer')){
+                        $this->Session->delete('referer');
+                        $this->Session->delete('showRegisterPopup'); 
+                        $this->Session->delete('referer_type');
+                    } 
 
                     if ($User->save($account)) {
                         // set "user" session

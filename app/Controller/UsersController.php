@@ -71,6 +71,37 @@ class UsersController extends AppController {
         'Venture Capital'=>'Venture Capital',
     );
 
+
+    /**
+     * Refer
+     */
+    public function refer($refer_id = null){
+        $this->autoLayout = false;
+        $this->autoRender = false;
+        $user = $this->getLoggedUser();
+        if(!$user && $refer_id && $refer_id > 0 && $this->User->exists($refer_id)){
+            $referer = $this->User->findById($refer_id);
+
+            if($referer['User']['is_stylist']){
+                $this->Session->write('referer_type', 'stylist');        
+            }
+            else if($referer['User']['is_event']){
+                $this->Session->write('referer_type', 'event');        
+            }
+            else{
+                $this->Session->write('referer_type', 'user');
+            }
+
+            $this->Session->write('referer', $refer_id);
+            $this->Session->write('showRegisterPopup', true);
+            $this->redirect('/');
+        }
+        else{
+            $this->redirect('/');
+        }
+        exit;
+    }
+    
     /**
      * Sign in
      */
@@ -100,6 +131,13 @@ class UsersController extends AppController {
                     // set "user" session
                     $this->Session->write('user', $results);
                     
+                    // Delete refer sessions
+                    if($this->Session->check('referer')){
+                        $this->Session->delete('referer');
+                        $this->Session->delete('showRegisterPopup'); 
+                        $this->Session->delete('referer_type');
+                    }   
+
                     
                     //Set complete style profile popup if style profile not complete
                     if (!$results['User']['preferences']) {
@@ -549,11 +587,14 @@ class UsersController extends AppController {
                 $this->render('register-finish');
                 break;
             default:
-                // title
-                //$title_for_layout = 'Sign up';
-                //$this->render('register');
-                //$this->Session->write('user_registration_step1', $this->request->data);
-                break;
+                if($this->Session->check('referer')){
+                    $User = ClassRegistry::init('User');
+                    $referer_id = $this->Session->read('referer'); 
+                    $referer_type = $this->Session->read('referer_type');
+                    $referer = $User->findById($referer_id);
+                    $this->set(compact('referer_type', 'referer'));
+                }    
+            break;
         }
         $this->set(compact('title_for_layout'));
     }
@@ -583,7 +624,18 @@ class UsersController extends AppController {
             $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
             $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
 
+            if($this->Session->check('referer')){
+                $user['User']['referred_by'] = $this->Session->read('referer');  
+                $user['User']['vip_discount_flag'] = 1; 
+            }
+
             if ($this->User->save($user)) {
+                if($this->Session->check('referer')){
+                    $this->Session->delete('referer');
+                    $this->Session->delete('showRegisterPopup'); 
+                    $this->Session->delete('referer_type');
+                }
+
                 //$this->Session->write('completeProfile', true);
                 // send welcome mail
                 /* uncoment this to deploy code */

@@ -17,6 +17,16 @@ class AppController extends Controller {
         }
         */
         
+        if($this->Session->check('showRegisterPopup')){
+            $showRegisterPopup = 1;
+            $this->Session->delete('showRegisterPopup');
+            //$User = ClassRegistry::init('User');
+            // $referer_id = $this->Session->read('referer'); 
+            // $referer_type = $this->Session->delete('referer_type');
+            // $referer = $User->findById($referer_id);
+            $this->set(compact('showRegisterPopup'));
+        }
+
         $has_stylist = false;
         $is_logged = false;
         if ($user = $this->getLoggedUser()) {
