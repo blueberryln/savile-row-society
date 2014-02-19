@@ -4,7 +4,7 @@ $(document).ready(function(){
     $("#inviteFriendsEmail").click(function(e){
         e.preventDefault();
         $.ajax({
-            url: "' . $this->webroot . 'api/referFriendEmail",
+            url: "api/referFriendEmail",
             type: "post",
             data: {
                 emailList : $("#emailList").val(),    
