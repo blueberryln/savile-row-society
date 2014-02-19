@@ -17,6 +17,14 @@ $(document).ready(function(){
                 $(".referStatus").text("Email could not be sent. Try again.");
             } 
         });
+    });
+
+    $("#inviteFriendsFB").click(function(e){
+        e.preventDefault();
+        FB.ui({
+          method: "send",
+          link: "http://www.savilerowsociety.com/user/refer/' . $user['User']['id'] . '",
+        });
     });           
 });
 ';
@@ -75,7 +83,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <img class="" src="<?php echo $this->request->webroot; ?>img/fb@2x.png" /> 
                 </div>
                 <div class="rw-content nine columns">
-                    <h3>Share it on Facebook</h3>                    
+                    <h3><a href="" id="inviteFriendsFB">Share it on Facebook</a></h3>                    
                 </div>
             </div>
             
