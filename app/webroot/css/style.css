@@ -163,6 +163,9 @@ ul#branding-partners li img,div#brands ol.brands-logo li img{ max-height:52px; m
 ul.product-type li { display: inline-block; margin-right: 60px; margin-bottom: 0; font-family: Conv_Novecento-Book,sans-serif; cursor: pointer; }
 ul.product-type li.selected a { color: #AF9A59; font-weight: bold; }
 ul.product-type li:last-of-type { margin-right: 0; }
+
+.brand-block .ui-slider-horizontal{height: 5px; margin-bottom: 20px;}
+.brand-block .ui-slider .ui-slider-handle{height: 13px; width: 13px;}
 /******Contact Us and Form*******/
 .content .input, select#contact-type {margin: 0 0 18px;}
 .contact-form .form{margin-bottom: 50px;}

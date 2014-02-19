@@ -150,7 +150,74 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
             
             event.preventDefault();     
         }
-       });       
+       });  
+
+
+        $("#polo-range-slider").slider({
+          range: true,
+          min: 50,
+          max: 200,
+          values: [ 20, 200 ],
+          slide: function( event, ui ) {
+            $("#polo-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
+            $("#polo-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
+          }
+        });
+        $("#polo-range").val($("#polo-range-slider").slider("values", 0) + "-" + $("#polo-range-slider").slider("values", 1));  
+        $("#polo-range-text").text("$" + $("#polo-range-slider").slider("values", 0) + " - $" + $("#polo-range-slider").slider("values", 1)); 
+
+
+        $("#jeans-range-slider").slider({
+          range: true,
+          min: 50,
+          max: 300,
+          values: [ 50, 300 ],
+          slide: function( event, ui ) {
+            $("#jeans-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
+            $("#jeans-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
+          }
+        });
+        $("#jeans-range").val($("#jeans-range-slider").slider("values", 0) + "-" + $("#jeans-range-slider").slider("values", 1));
+        $("#jeans-range-text").text("$" + $("#jeans-range-slider").slider("values", 0) + " - $" + $("#jeans-range-slider").slider("values", 1));   
+
+        $("#pants-range-slider").slider({
+          range: true,
+          min: 100,
+          max: 300,
+          values: [ 100, 300 ],
+          slide: function( event, ui ) {
+            $("#pants-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
+            $("#pants-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
+          }
+        });
+        $("#pants-range").val($("#pants-range-slider").slider("values", 0) + "-" + $("#pants-range-slider").slider("values", 1));
+        $("#pants-range-text").text("$" + $("#pants-range-slider").slider("values", 0) + " - $" + $("#pants-range-slider").slider("values", 1));  
+
+        $("#shirt-range-slider").slider({
+          range: true,
+          min: 50,
+          max: 300,
+          values: [ 50, 300 ],
+          slide: function( event, ui ) {
+            $("#shirt-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
+            $("#shirt-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
+          }
+        });
+        $("#shirt-range").val($("#shirt-range-slider").slider("values", 0) + "-" + $("#shirt-range-slider").slider("values", 1)); 
+        $("#shirt-range-text").text("$" + $("#shirt-range-slider").slider("values", 0) + " - $" + $("#shirt-range-slider").slider("values", 1));  
+
+        $("#suits-range-slider").slider({
+          range: true,
+          min: 400,
+          max: 2000,
+          values: [ 400, 2000 ],
+          slide: function( event, ui ) {
+            $("#suits-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
+            $("#suits-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
+          }
+        });
+        $("#suits-range").val($("#suits-range-slider").slider("values", 0) + "-" + $("#suits-range-slider").slider("values", 1)); 
+        $("#suits-range-text").text("$" + $("#suits-range-slider").slider("values", 0) + " - $" + $("#suits-range-slider").slider("values", 1)); 
        
 });
 ';
@@ -158,6 +225,7 @@ $this->Html->css('ui/jquery-ui', null, array('inline' => false));
 $this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
 $this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+$this->Html->script("jquery.ui.touch-punch.min.js", array('inline' => false));
 $this->Html->script('brands.js', array('inline' => false));
 
 
@@ -217,9 +285,17 @@ window.registerProcess = true;
               </ul>
           </div>
           <div class="twelve columns center-block">
+
               <div id="brands" >
                   <div id="polos_tees-brands" class="brand-block">
                      
+                      <p>
+                        <label for="polo-range">How much do you usually spend on Polos &amp; Tees ($50 - $200):</label>
+                        <input type="hidden" id="polo-range" name="data[UserPreference][Brands][range][polo_tees]">
+                      </p>
+                      <div id="polo-range-slider"></div>
+                      <p id="polo-range-text" class="text-center"></p>
+
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Hugo Boss" id="1" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Banana Republic" id="2" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Calvin Klein" id="3" />
@@ -251,6 +327,12 @@ window.registerProcess = true;
                   
                    <div id="jeans-brands" class="brand-block hide">
                      
+                      <p>
+                        <label for="jeans-range">How much do you usually spend on Jeans ($50 - $300):</label>
+                        <input type="hidden" id="jeans-range" name="data[UserPreference][Brands][range][jeans_tees]">
+                      </p>
+                      <div id="jeans-range-slider"></div>
+                      <p id="jeans-range-text" class="text-center"></p>
 
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Acne" id="1" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Adriano Goldschmied" id="2" />
@@ -283,6 +365,12 @@ window.registerProcess = true;
                   
                    <div id="pants-brands" class="brand-block hide">
                       
+                      <p>
+                        <label for="pants-range">How much do you usually spend on Pantsu ($100 - $300):</label>
+                        <input type="hidden" id="pants-range" name="data[UserPreference][Brands][range][pants_tees]">
+                      </p>
+                      <div id="pants-range-slider"></div>
+                      <p id="pants-range-text" class="text-center"></p>
 
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Brioni" id="1" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Incotex" id="2" />
@@ -317,7 +405,13 @@ window.registerProcess = true;
 
                   <div id="shirt-brands" class="brand-block hide">
                       
-                      
+                      <p>
+                        <label for="shirt-range">How much do you usually spend on Shirts ($50 - $300):</label>
+                        <input type="hidden" id="shirt-range" name="data[UserPreference][Brands][range][shirt_tees]">
+                      </p>
+                      <div id="shirt-range-slider"></div>
+                      <p id="shirt-range-text" class="text-center"></p>
+
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Etro" id="1" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Ascot Chang" id="2" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Brooks Brothers" id="3" />
@@ -349,7 +443,14 @@ window.registerProcess = true;
                   </div>
                   <div class="clear"></div>               
 
-                  <div id="suits-brands" class="brand-block hide">                     
+                  <div id="suits-brands" class="brand-block hide">  
+
+                      <p>
+                        <label for="suits-range">How much do you usually spend on Suits ($400 - $2,000):</label>
+                        <input type="hidden" id="suits-range" name="data[UserPreference][Brands][range][suits_tees]">
+                      </p>
+                      <div id="suits-range-slider"></div>
+                      <p id="suits-range-text" class="text-center"></p>                   
 
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Armani" id="1" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Brooks Brothers" id="2" />
@@ -378,6 +479,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/suits/suitsupply_logo.png" class="fadein-image" alt="SUITSUPPLY" /></li>
                       </ol>
                   </div>
+
               </div>
           </div>
           <div class="clear"></div>
