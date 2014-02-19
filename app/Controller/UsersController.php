@@ -273,8 +273,8 @@ class UsersController extends AppController {
         // get data from request
         $data = $this->request->data;
 
-        $data_arr = $data['UserPreference']['Size'];
-        $preferences["UserPreference"]["Size"] = $data_arr;
+        $data_arr = $data['UserPreference']['StyleSize'];
+        $preferences["UserPreference"]["StyleSize"] = $data_arr;
         $serialized_preferences = serialize($preferences);
         $user['User']['preferences'] = $serialized_preferences;
 
@@ -518,7 +518,7 @@ class UsersController extends AppController {
             case 'style':
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
                 $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : "#";                             
-                $size = ($preferences['UserPreference']) ? $preferences['UserPreference']['Size'] : null; 
+                $size = ($preferences['UserPreference'] && isset($preferences['UserPreference']['StyleSize'])) ? $preferences['UserPreference']['StyleSize'] : null; 
                 $this->set(compact('size'));
                 $this->set(compact('image_url', 'full_name'));
                 // title
@@ -527,8 +527,8 @@ class UsersController extends AppController {
                 break;
             case 'size':
                 // title
-                $title_for_layout = 'Sign up';
-                $size = ($preferences['UserPreference']) ? $preferences['UserPreference']['Size'] : null;
+                $title_for_layout = 'Sign up';         
+                $size = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Size'])) ? $preferences['UserPreference']['Size'] : null; 
                 // debug($size);   
                 $this->set(compact('size'));
                 $this->render('register-size');
@@ -558,24 +558,7 @@ class UsersController extends AppController {
                 $title_for_layout = 'Sign up';
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
                 $this->set(compact('full_name'));
-                $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : "#";
-                $contact = (isset($preferences['UserPreference']) && isset($preferences['UserPreference']['Contact'])) ? $preferences['UserPreference']['Contact'] : null;
-                $personal_shopper = "";
-                $shopper_email = "";
-                $refer_medium = "";
-                if($user['User']['personal_shopper']){
-                    $personal_shopper = $user['User']['personal_shopper'];
-                }
-                if($user['User']['shopper_email']){
-                    $shopper_email = $user['User']['shopper_email'];
-                }
-                if($user['User']['refer_medium']){
-                    $refer_medium = $user['User']['refer_medium'];
-                }
-
-                $this->set(compact('personal_shopper','refer_medium', 'shopper_email'));
-                $this->set(compact('contact'));
-                $this->set(compact('image_url'));
+                
                 $this->render('register-last-step');
                 break;
 

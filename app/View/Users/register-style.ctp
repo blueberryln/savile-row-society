@@ -52,7 +52,7 @@ window.registerProcess = true;
             <div class="seven columns center-block">
                 <div class="input text required">
                     <label for="jeans">WHAT KIND OF JEANS DO YOU WEAR?</label>                            
-                    <select name="data[UserPreference][Size][denim_kind]" tabindex="" id="jeans" >
+                    <select name="data[UserPreference][StyleSize][denim_kind]" tabindex="" id="jeans" >
                         <option value="DON'T KNOW">Don't Know</option>
                         <option value="RELAXED FIT">Relaxed Fit</option>
                         <option value="BOOT CUT">Boot Cut</option>
@@ -64,7 +64,7 @@ window.registerProcess = true;
 
                 <div class="input text required">
                     <label for="shirtSize">Dress Shirt Cut:</label>                            
-                    <select name="data[UserPreference][Size][shirt_size]" tabindex="" id="shirtSize" >
+                    <select name="data[UserPreference][StyleSize][shirt_size]" tabindex="" id="shirtSize" >
                         <option value="">Size</option>
                         <option value="14">14</option>
                         <option value="14.5">14.5</option>

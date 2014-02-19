@@ -1,7 +1,34 @@
 <?php
 $script = ' var brands = ' . json_encode($brands) . '; ' .
 ' $(document).ready(function(){ 
-	   
+	    var jeans = "50-300",
+          pants = "100-300",
+          polo_tees = "50-200",
+          shirt = "50-300",
+          suits = "400-2000";
+
+      if(brands.range){
+        if(brands.range.jeans){
+          jeans = brands.range.jeans;  
+        }
+
+        if(brands.range.pants){
+          pants = brands.range.pants;  
+        }
+
+        if(brands.range.polo_tees){
+          polo_tees = brands.range.polo_tees;  
+        }
+
+        if(brands.range.shirt){
+          shirt = brands.range.shirt;  
+        }
+
+        if(brands.range.suits){
+          suits = brands.range.suits;  
+        }
+      }
+
         /* Brands */
        $( "#polos_tees-brands #selectable" ).bind("mousedown", function(e) {
          e.metaKey = true;
@@ -157,7 +184,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
           range: true,
           min: 50,
           max: 200,
-          values: [ 20, 200 ],
+          values: [ polo_tees.split("-")[0], polo_tees.split("-")[1] ],
           slide: function( event, ui ) {
             $("#polo-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
             $("#polo-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
@@ -171,7 +198,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
           range: true,
           min: 50,
           max: 300,
-          values: [ 50, 300 ],
+          values: [ jeans.split("-")[0], jeans.split("-")[1] ],
           slide: function( event, ui ) {
             $("#jeans-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
             $("#jeans-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
@@ -184,7 +211,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
           range: true,
           min: 100,
           max: 300,
-          values: [ 100, 300 ],
+          values: [ pants.split("-")[0], pants.split("-")[1] ],
           slide: function( event, ui ) {
             $("#pants-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
             $("#pants-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
@@ -197,7 +224,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
           range: true,
           min: 50,
           max: 300,
-          values: [ 50, 300 ],
+          values: [ shirt.split("-")[0], shirt.split("-")[1] ],
           slide: function( event, ui ) {
             $("#shirt-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
             $("#shirt-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
@@ -210,7 +237,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
           range: true,
           min: 400,
           max: 2000,
-          values: [ 400, 2000 ],
+          values: [ suits.split("-")[0], suits.split("-")[1] ],
           slide: function( event, ui ) {
             $("#suits-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
             $("#suits-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
@@ -329,7 +356,7 @@ window.registerProcess = true;
                      
                       <p>
                         <label for="jeans-range">How much do you usually spend on Jeans ($50 - $300):</label>
-                        <input type="hidden" id="jeans-range" name="data[UserPreference][Brands][range][jeans_tees]">
+                        <input type="hidden" id="jeans-range" name="data[UserPreference][Brands][range][jeans]">
                       </p>
                       <div id="jeans-range-slider"></div>
                       <p id="jeans-range-text" class="text-center"></p>
@@ -367,7 +394,7 @@ window.registerProcess = true;
                       
                       <p>
                         <label for="pants-range">How much do you usually spend on Pantsu ($100 - $300):</label>
-                        <input type="hidden" id="pants-range" name="data[UserPreference][Brands][range][pants_tees]">
+                        <input type="hidden" id="pants-range" name="data[UserPreference][Brands][range][pants]">
                       </p>
                       <div id="pants-range-slider"></div>
                       <p id="pants-range-text" class="text-center"></p>
@@ -407,7 +434,7 @@ window.registerProcess = true;
                       
                       <p>
                         <label for="shirt-range">How much do you usually spend on Shirts ($50 - $300):</label>
-                        <input type="hidden" id="shirt-range" name="data[UserPreference][Brands][range][shirt_tees]">
+                        <input type="hidden" id="shirt-range" name="data[UserPreference][Brands][range][shirt]">
                       </p>
                       <div id="shirt-range-slider"></div>
                       <p id="shirt-range-text" class="text-center"></p>
@@ -447,7 +474,7 @@ window.registerProcess = true;
 
                       <p>
                         <label for="suits-range">How much do you usually spend on Suits ($400 - $2,000):</label>
-                        <input type="hidden" id="suits-range" name="data[UserPreference][Brands][range][suits_tees]">
+                        <input type="hidden" id="suits-range" name="data[UserPreference][Brands][range][suits]">
                       </p>
                       <div id="suits-range-slider"></div>
                       <p id="suits-range-text" class="text-center"></p>                   

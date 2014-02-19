@@ -74,6 +74,11 @@ class PagesController extends AppController {
             }
             $this->set(compact('user'));
         }
+        else if ($page == 'refer-a-friend') {
+            $this->isLogged();
+            $user = $this->getLoggedUser();
+            $this->set(compact('user'));
+        }
         
         $this->set(compact('page', 'subpage', 'title_for_layout'));
         $this->render(implode('/', $path));

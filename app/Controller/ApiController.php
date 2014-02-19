@@ -2,6 +2,7 @@
 
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
+App::uses('Validation', 'Utility');
 
 class ApiController extends AppController {
 
@@ -660,6 +661,43 @@ class ApiController extends AppController {
                 $User->save($user);
                 echo $action;
             }
+        }
+        exit;
+    }
+
+    /**
+     * Refer Friend using email
+     */
+    public function referFriendEmail(){
+        $emailList = $this->request->data['emailList'];
+        $email_array = explode(',', $emailList);    
+        $user = $this->getLoggedUser();
+        $flag = 0;
+        for($i=0; $i < count($email_array); $i++){
+            if(Validation::email($email_array[$i])){
+                try{
+                    //send personal stylist mail
+                    $email = new CakeEmail('default');
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->to($email_array[$i]);
+                    $email->bcc('admin@savilerowsociety.com');
+                    $email->subject("You've Been Given The Gift Of SRS");
+                    $email->template('refer');
+                    $email->emailFormat('html');
+                    $email->viewVars(array('user'));
+                    $email->send();
+                    $flag = 1;
+                }
+                catch(Exception $e){
+                    
+                }    
+            }
+        } 
+        if($flag){
+            echo "success";
+        }
+        else{
+            echo "fail";
         }
         exit;
     }
