@@ -226,6 +226,15 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
 	#size-chart-box ul li { display: inline-block; width:45px; margin-bottom: 5px; text-align: center; border:1px solid rgba(30, 30, 30, 0.2); text-transform: uppercase; font-size: 10px; cursor: pointer; }
 	#size-chart-box ul li.selected{ background: #b2d2fb; }
 	/******Last Step Section****/
+	.register-last-step .finalizing{margin-bottom: 50px;}
+	.pref-time, .contact-options p{font-size: 20px; color: #777;}
+	.pref-time{margin-top: 30px;}
+	.contact-options p{margin: 30px 0 20px 0;}
+	.pref-time input{margin:0 10px 15px 0;}
+	.pref-time .pref-options{font-size: 16px; font-weight: normal;}
+	.contact-options span,.contact-options input[type="radio"]{margin-right: 10px;}
+	.contact-options input[type="text"]{width: 50%;}
+	.contact-options input.skype-field{display: none;}
 	#upload-img{padding: 6px 12px; width: auto !important; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box;}
 	.finalizing .about-submit{margin-top: 20px;}
 	/***finish page***/
@@ -545,6 +554,7 @@ div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
 	.header .menu ul { width: 100%; background: #fff; }
 	.header .menu li { text-align: center; width: 100%; padding: 10px 0; }
 	.works-boxes .work-box, .shopping-boxes .shopping-box {min-height: 350px;}
+	div.finalizing{width:66.66666666666666% !important;}
 
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
