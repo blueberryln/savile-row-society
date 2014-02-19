@@ -14,7 +14,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="eight columns page-content refer-options">
             <div class="refer-way one">
                 <div class="icon">
-                    <img class="" src="<?php echo $this->request->webroot; ?>img/facebook-small.png" /> 
+                    <img class="" src="<?php echo $this->request->webroot; ?>img/ic_srs.png" /> 
                 </div>
                 <div class="rw-content nine columns">
                     <h3>Your personal refer link:</h3>
@@ -25,7 +25,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>
             <div class="refer-way two">
                 <div class="icon">
-                    <img class="" src="<?php echo $this->request->webroot; ?>img/facebook-small.png" /> 
+                    <img class="" src="<?php echo $this->request->webroot; ?>img/mail@2x.png" /> 
                 </div>
                 <div class="rw-content nine columns">
                     <h3>Mail it</h3>
@@ -38,7 +38,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             </div>
             <div class="refer-way three">
                 <div class="icon">
-                    <img class="" src="<?php echo $this->request->webroot; ?>img/facebook-small.png" /> 
+                    <img class="" src="<?php echo $this->request->webroot; ?>img/fb@2x.png" /> 
                 </div>
                 <div class="rw-content nine columns">
                     <h3>Share it on Facebook</h3>                    

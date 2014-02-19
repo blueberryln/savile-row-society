@@ -498,6 +498,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .works-boxes .work-box img{margin-bottom: 10px;}
 .stylist-box h3, .shopping-box h3{font-size: 14px; line-height: 18px; margin:8px 3px 0;}
 .works-desc, .stylist-desc, .shopping-desc, .brands-desc  {display: block; font-size: 12px; margin:0 auto 15px auto;  color: #999; line-height: 18px; }
+.works-desc{text-transform: uppercase;}
 .brands-desc as{color: #AF9A59;}
 .stylist-desc, .shopping-desc {font-family: 'sweetsans-regular', sans-serif; }
 .c-no{display: block; margin: 0 auto; }
@@ -520,6 +521,7 @@ span.brands-desc a{color: #AE9B34;}
 div.card-menu ul li img.sign-up{vertical-align: middle; width:90px; height:30px;}
 div.card-menu ul li img.sign-in{vertical-align: middle; width:70px; height:30px;}
 img.cart-img{vertical-align: middle; width:30px;}
+#msg-notifications img{width: 30px;}
 .mega-banner { margin-bottom: 40px; }
 .mg-big, .mg-vid, .mg-small{width: 50%;}
 .mg-small div{width:49%; display: inline-block; position: relative;}
@@ -536,6 +538,11 @@ div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
 div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}
 
 /********Mobile CSS**********/
+
+@media screen and (min-width: 1367px) and (max-width: 3000px) {	
+	.works-boxes .work-box {min-height: 480px;}
+	}
+
 @media screen and (min-width: 768px) and (max-width: 1024px) {	
 	.container { width: 768px; }	
 	.team-member{width: 30%;}
@@ -654,6 +661,7 @@ div.sub-inde div.title a{text-decoration: underline;}
 
 
 div#book-apt {position: absolute;bottom: 20%; z-index: 100; display: block; width: 100%; text-align: center;}
+div#book-apt a{border-radius: 4px;}
 
 /******REFER FRIEND*****/
 .refer-options{margin-top: 50px !important;}
@@ -663,5 +671,6 @@ div.rw-field{display: block;}
 div.refer-a-friend .page-heading{text-align: left; margin-top: 30px;}
 div.refer-a-friend .page-heading h1{font-size: 26px; line-height: normal; text-transform: none;}
 div.refer-a-friend span.gold{color:#af9a59;}
-div.rw-content h3{font-family: 'sweetsans-regular',sans-serif; font-size: 20px; font-weight: bold; margin-bottom: 5px; color: #666;} 
+.rw-content{margin-top: 5px;}
+div.rw-content h3{font-family: 'sweetsans-regular',sans-serif; font-size: 22px; font-weight: bold; margin-bottom: 5px; color: #333;} 
 div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
