@@ -277,6 +277,16 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
 .signin-content{width: 300px; margin: 0 auto;}
 .signin-btn{width: 100%; padding: 8px; margin: 30px 0 0 0;}
 
+/*Sign-: ;in and Sign-up pop-up*/
+div.signup-content, div.signin-content/*, div.style-srs*/ { padding: 0 40px; width: 301px; }
+.signup-btn, .signin-btn/*, .complete-style-btn */{ width: 301px; margin-top: 30px; padding: 11px 0;}
+.sign-or { margin-bottom: 10px; }
+.sign-or, .popup-or { color: #AF9A59;}
+#signin-form label, #register-form label{display: none;}
+.signup-options, .signin-options { font-size: 13px; }
+#signin-form input,#register-form input{margin-bottom: 5px;}
+ .already-member a { color: #3686a9; }
+.forget-passwrd a { float: right; color: #3686a9 !important; text-decoration: none; }
 
 
 .h-f{bottom: 0;}
@@ -523,6 +533,7 @@ div.mgs-btn{bottom: 10%;}
 #my-stylist a,div.mgs-btn a{ color: #fff; font-family: Conv_Novecento-Book, sans-serif; border-radius: 2px; padding: 5px 20px;}
 #my-stylist a{background-color: #8F7948;}
 div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
+div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}
 
 /********Mobile CSS**********/
 @media screen and (min-width: 768px) and (max-width: 1024px) {	
@@ -643,3 +654,14 @@ div.sub-inde div.title a{text-decoration: underline;}
 
 
 div#book-apt {position: absolute;bottom: 20%; z-index: 100; display: block; width: 100%; text-align: center;}
+
+/******REFER FRIEND*****/
+.refer-options{margin-top: 50px !important;}
+.refer-way{display:block; margin-bottom: 40px;}
+.refer-way div{display: inline-block; vertical-align: top; margin-right: 20px;}
+div.rw-field{display: block;}
+div.refer-a-friend .page-heading{text-align: left; margin-top: 30px;}
+div.refer-a-friend .page-heading h1{font-size: 26px; line-height: normal; text-transform: none;}
+div.refer-a-friend span.gold{color:#af9a59;}
+div.rw-content h3{font-family: 'sweetsans-regular',sans-serif; font-size: 20px; font-weight: bold; margin-bottom: 5px; color: #666;} 
+div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
