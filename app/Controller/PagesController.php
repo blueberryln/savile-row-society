@@ -53,7 +53,7 @@ class PagesController extends AppController {
         }
 
         if($page == 'home'){
-            
+
         }
         else if ($page == 'tailor') {
             $this->isLogged();

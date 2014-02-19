@@ -391,20 +391,18 @@ class UsersController extends AppController {
             }
             // get data from request
             $data = $this->request->data;
+            if(!isset($data['UserPreference']['Contact']['weekDays'])){
+                unset($data['UserPreference']['Contact']['wdTime']);
+            }
+            if(!isset($data['UserPreference']['Contact']['weekEnd'])){
+                unset($data['UserPreference']['Contact']['weTime']);
+            }
+
             // get actual array or string from request
             $data_arr = $data['UserPreference']['Contact'];
             $preferences["UserPreference"]["Contact"] = $data_arr;
-            $preferences['UserPreference']['is_complete'] = $data['UserPreference']['is_complete'];
+            $preferences['UserPreference']['is_complete'] = 1;
             $serialized_preferences = serialize($preferences);
-            $user['User']['preferences'] = $serialized_preferences;
-            $user['User']['personal_shopper'] = $data['User']['personal_shopper'];
-            $user['User']['shopper_email'] = $data['User']['shopper_email'];
-            $user['User']['refer_medium'] = $data['User']['refer_medium'];
-
-            // save image
-            if($image = $this->saveImage()){
-                $user['User']['profile_photo_url'] = $image;
-            }
             
             if ($this->User->save($user)) {
                 $result = $this->User->getByID($id);
