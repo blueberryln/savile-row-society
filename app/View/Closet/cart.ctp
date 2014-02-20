@@ -135,7 +135,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                         if($item['CartItem']['quantity'] >= 10){
                                             $max_quantity = $item['CartItem']['quantity'];   
                                         } 
-                                        echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range($min_quantity,$max_quantity), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1));
+                                        // echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range($min_quantity,$max_quantity), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1));
+                                        echo $item['CartItem']['quantity'];
                                     } 
                                     ?>    
                                 </td>
@@ -157,9 +158,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
             <?php endif; ?>
             <div class="mycart text-center">
                 <?php if ($cart_list) : ?>
-                    <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn continue-shopping">CONTINUE SHOPPING</a>
-                    <a href="" class="link-btn green-btn update-quantity">UPDATE QUANTITY</a>
-                    <a href="<?php echo $this->webroot; ?>checkout" class="link-btn black-btn checkout">CHECKOUT</a>
+                    <a href="<?php echo $this->webroot; ?>closet" class="link-btn black-btn continue-shopping">CONTINUE SHOPPING</a>
+                    <!-- <a href="" class="link-btn green-btn update-quantity">UPDATE QUANTITY</a> -->
+                    <a href="<?php echo $this->webroot; ?>checkout" class="link-btn gold-btn checkout">CHECKOUT</a>
                 <?php else : ?>
                     <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn continue-shopping">CONTINUE SHOPPING</a>
                 <?php endif; ?>
