@@ -36,6 +36,10 @@ $(document).ready(function(){
             }
         );
     });
+});
+';
+
+$update_script = '
     
     $(".update-quantity").on("click", function(e){
         e.preventDefault();
@@ -58,8 +62,8 @@ $(document).ready(function(){
         }
         console.log(cartItems);
     });
-});
 ';
+
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->meta('description', 'First mover', array('inline' => false));
 ?>

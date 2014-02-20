@@ -509,6 +509,7 @@ class ClosetController extends AppController {
 
             $CartItem = ClassRegistry::init('CartItem');
             $Entity = ClassRegistry::init('Entity');
+            $User = ClassRegistry::init('User');
             $BillingAddress = ClassRegistry::init('BillingAddress');
             $cart = $Cart->getExistingUserCart($user_id);
             
@@ -542,7 +543,7 @@ class ClosetController extends AppController {
                     }
                 }
             }
-            $user = $this->getLoggedUser();
+            $user = $User->findById($user_id);
             $address = $BillingAddress->getByUserID($user_id);
             $data['billing']['billfirst_name'] = $user['User']['first_name'];
             $data['billing']['billlast_name'] = $user['User']['last_name'];
@@ -573,7 +574,7 @@ class ClosetController extends AppController {
                 exit;
             }
                        
-            $this->set(compact('cart_list', 'cart_id', 'country_list'));
+            $this->set(compact('cart_list', 'cart_id', 'country_list', 'user'));
         }
     }
     
@@ -711,46 +712,57 @@ class ClosetController extends AppController {
             if($request_cart_id != $cart_id){
                 $error_cart = true;
             }
-            
-            //Check if promocode is valid
-            $promo_result = false;
-            $discount = false;
-            $discounted_price = 0;
-            $final_price = 0;
-            if($promo_code != ""){
-                $promo_result = $this->validate_promo_code($promo_code, true);    
-            }
-            
-            if($promo_result){
-                if($promo_result['status']=="ok"){
-                    if(isset($promo_result['percent'])){
-                        
-                        $discount = floor($promo_result['amount'] * $total_price / 100);  
-                        $discounted_price = $total_price - $discount;
-                        if($request_total_price != $discounted_price){
-                            $error_cart = true;
-                        }    
-                        $final_price = $discounted_price;    
-                    }
-                    else{
-                        $discount = $promo_result['amount'];  
-                        $discounted_price = $total_price - $discount;
-                        if($request_total_price != $discounted_price){
-                            $error_cart = true;
-                        }    
-                        $final_price = $discounted_price;    
-                    }
-                }   
-                else{
-                    $this->Session->setFlash(__('The promo code used is not valid.'), 'flash');
-                    $this->redirect('/checkout');
+
+            if(isset($this->request->data['vip-discount'])){
+                $promo_code = ""; 
+                $discount = 50;
+                $discounted_price = $total_price - $discount;
+                if($request_total_price != $discounted_price){
+                    $error_cart = true;
                 } 
+                $final_price = $discounted_price;
             }
             else{
-                if($request_total_price != $total_price){
-                    $error_cart = true;
-                }    
-                $final_price = $total_price;
+                //Check if promocode is valid
+                $promo_result = false;
+                $discount = false;
+                $discounted_price = 0;
+                $final_price = 0;
+                if($promo_code != ""){
+                    $promo_result = $this->validate_promo_code($promo_code, true);    
+                }
+                
+                if($promo_result){
+                    if($promo_result['status']=="ok"){
+                        if(isset($promo_result['percent'])){
+                            
+                            $discount = floor($promo_result['amount'] * $total_price / 100);  
+                            $discounted_price = $total_price - $discount;
+                            if($request_total_price != $discounted_price){
+                                $error_cart = true;
+                            }    
+                            $final_price = $discounted_price;    
+                        }
+                        else{
+                            $discount = $promo_result['amount'];  
+                            $discounted_price = $total_price - $discount;
+                            if($request_total_price != $discounted_price){
+                                $error_cart = true;
+                            }    
+                            $final_price = $discounted_price;    
+                        }
+                    }   
+                    else{
+                        $this->Session->setFlash(__('The promo code used is not valid.'), 'flash');
+                        $this->redirect('/checkout');
+                    } 
+                }
+                else{
+                    if($request_total_price != $total_price){
+                        $error_cart = true;
+                    }    
+                    $final_price = $total_price;
+                }
             }
 
             
@@ -767,7 +779,7 @@ class ClosetController extends AppController {
                 $this->Session->write('transaction_complete', "fail");
                 // $this->Session->setFlash(__('Billing'), 'flash');
             }
-            
+
             //Add order
             if($discount){
                 $order_id = $this->addOrder($cart_list, $total_price, $promo_code, $discount, $discounted_price);
@@ -828,6 +840,16 @@ class ClosetController extends AppController {
     
                     $this->Session->write('transaction_complete', "success");
                     $this->Session->write('transaction_data', $transaction_result);
+
+                    //Write VIP discount data
+                    if(isset($this->request->data['vip-discount'])){
+                        $User = ClassRegistry::init('User'); 
+                        $user = $User->findById($user_id);
+                        $user['User']['vip_discount_flag']  = 0;
+                        $user['User']['vip_discount']  = 1; 
+
+                        $User->save($user);
+                    }
                     // $this->Session->setFlash(__('Success'), 'flash');
                 }
                 else{
@@ -947,7 +969,7 @@ class ClosetController extends AppController {
             $data['Order']['confirmed'] = 0;
             $data['Order']['shipped'] = 0;  
             
-            if($promo_code != false){
+            if($promo_code !== false){
                 $data['Order']['final_price'] = $discounted_price; 
                 $data['Order']['promo_discount'] = $discount;
                 $data['Order']['promo_code'] = $promo_code;   

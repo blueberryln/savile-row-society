@@ -324,10 +324,19 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 <td class="text-right item-price"><?php echo $this->Number->currency($item['Entity']['price'] * $item['CartItem']['quantity']); ?></td>
                             </tr>
                         <?php endforeach; ?>
+                        
+                        <?php 
+                        if($total_price >= 250 && $user['User']['vip_discount_flag'] && !$user['User']['vip_discount']){
+                            $total_price = $total_price - 50;   
+                        }
+                        ?>
+
                         <tr class="last">
                             <td colspan="3" rowspan="2">
                                 <!-- Enable only when total is equal or more than $120 -->
-                                <?php if($total_price >= 120) : ?> 
+                                <?php if($total_price >= 250 && $user['User']['vip_discount_flag'] && !$user['User']['vip_discount']) : ?>
+
+                                <?php elseif($total_price >= 120) : ?> 
                                     <div class="srs-form columns four left" style="margin-left:10px;">
                                         <div class="form">
                                            <div class="input text" style="margin-bottom: 0;">
@@ -347,8 +356,17 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                     </div>
                                 <?php endif; ?>
                             </td>
-                            <td colspan="2" class="text-right bold">(-) Discount:</td>
-                            <td class="text-right cart-discount"><?php echo $this->Number->currency(0); ?></td>
+                            <?php if($total_price >= 250 && $user['User']['vip_discount_flag'] && !$user['User']['vip_discount']) : ?>
+                                <td colspan="2" class="text-right bold">(-) Discount:</td>
+                                <td class="text-right cart-discount">
+                                    <?php echo $this->Number->currency(50); ?>
+                                    <input type="hidden" name="vip-discount" value="50" />
+                                </td>
+                            <?php else : ?>
+                                <td colspan="2" class="text-right bold">(-) Discount:</td>
+                                <td class="text-right cart-discount"><?php echo $this->Number->currency(0); ?></td>
+                            <?php endif; ?>
+                            
                         </tr>
                         <tr class="last">
                             <td colspan="2" class="text-right bold">Total Amount:</td>
