@@ -398,14 +398,28 @@ class UsersController extends AppController {
                 unset($data['UserPreference']['Contact']['weTime']);
             }
 
+            if(isset($data['UserPreference']['Contact']['type']) && $data['UserPreference']['Contact']['type'] == "Phone"){
+                unset($data['UserPreference']['Contact']['skype']);
+            }
+            else if(isset($data['UserPreference']['Contact']['type']) && $data['UserPreference']['Contact']['type'] == "Skype"){
+                unset($data['UserPreference']['Contact']['phone']);
+            }
+
             // get actual array or string from request
             $data_arr = $data['UserPreference']['Contact'];
             $preferences["UserPreference"]["Contact"] = $data_arr;
             $preferences['UserPreference']['is_complete'] = 1;
             $serialized_preferences = serialize($preferences);
+            $user['User']['preferences'] = $serialized_preferences;
             
             if ($this->User->save($user)) {
                 $result = $this->User->getByID($id);
+
+                //Assign Stylist
+                if(!$result['User']['stylist_id']){
+                    $this->assign_refer_stylist($id);
+                }
+
                 $this->Session->write('user', $result);
                 $this->redirect('register/finish/' . $user['User']['id']);
             } else {
@@ -534,7 +548,7 @@ class UsersController extends AppController {
             case 'brands':
                 // title
                 $title_for_layout = 'Sign up';
-                $brands = ($preferences['UserPreference']) ? $preferences['UserPreference']['Brands'] : null;
+                $brands = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Brands'])) ? $preferences['UserPreference']['Brands'] : null;
                 // debug($brands);   
                 $this->set(compact('brands'));
                 $this->render('register-brands');
@@ -555,7 +569,8 @@ class UsersController extends AppController {
             case 'last-step': // not in use
                 $title_for_layout = 'Sign up';
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
-                $this->set(compact('full_name'));
+                $contact = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Contact'])) ? $preferences['UserPreference']['Contact'] : null; 
+                $this->set(compact('full_name', 'contact'));
                 
                 $this->render('register-last-step');
                 break;
@@ -617,6 +632,7 @@ class UsersController extends AppController {
                     $this->Session->delete('referer_type');
                 }
 
+
                 //$this->Session->write('completeProfile', true);
                 // send welcome mail
                 /* uncoment this to deploy code */
@@ -645,20 +661,16 @@ class UsersController extends AppController {
                     // set "user" session
                     $this->Session->write('user', $results);
 
-                    // redirect to done
-                    //$this->redirect('/register/done');
-                    //if($refer_url){
-//                        $this->redirect($refer_url);
-//                        exit;
-//                    }
-//                    $this->redirect($this->referer());
+                    if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
+                        $this->assignVipDiscount($results['User']['referred_by']);
+                    }
 
                     $this->redirect('/profile/about');
-                    exit();
+                    exit;
                 } else {
                     // redirect to home
                     $this->redirect($this->referer());
-                    exit();
+                    exit;
                 }
             } else {
                 $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
@@ -667,6 +679,17 @@ class UsersController extends AppController {
         } else {
             $this->Session->setFlash(__('Please, sign in.'), 'flash', array('title' => 'You are already registered!'));
             $this->redirect($this->referer());
+        }
+    }
+
+    /**
+     * Assign VIP dicsount
+     */
+    public function assignVipDiscount($referer_id){
+        $referer = $this->User->findById($referer_id);  
+        if(!$referer['User']['vip_discount']){
+            $referer['User']['vip_discount_flag'] = 1;
+            $this->User->save($referer);    
         }
     }
 
@@ -862,7 +885,74 @@ class UsersController extends AppController {
         }
     }
 
+    public function assign_refer_stylist($user_id){
+        $user = $this->User->findById($user_id);
+        $default_stylist = $this->User->findByEmail("contactus@savilerowsociety.com");
+        $new_stylist = array();
+        if($user['User']['referred_by']){
+            $referer = $this->User->getByID($user['User']['referred_by']);
+            if($referer && $referer['User']['is_stylist']){
+                $user['User']['stylist_id'] = $referer['User']['id'];
+                $new_stylist = $referer;
+            }
+            else if ($referer && $referer['User']['stylist_id'] && $user_stylist = $this->User->getByID($referer['User']['stylist_id'])){
+                $user['User']['stylist_id'] = $referer['User']['stylist_id'];    
+                $new_stylist = $user_stylist;
+            }
+            else if($default_stylist){
+                $user['User']['stylist_id'] = $default_stylist['User']['id']; 
+                $new_stylist = $default_stylist;   
+            }
+            else{
+                $casey = $this->User->findByEmail("casey@savilerowsociety.com"); 
+                if($casey){
+                    $user['User']['stylist_id'] = $casey['User']['id']; 
+                    $new_stylist = $casey;         
+                }   
+            }
+        }
+        else{
+            if($default_stylist){
+                $user['User']['stylist_id'] = $default_stylist['User']['id'];    
+            }
+            else{
+                $casey = $this->User->findByEmail("casey@savilerowsociety.com"); 
+                if($casey){
+                    $user['User']['stylist_id'] = $casey['User']['id'];     
+                }   
+            }    
+        }
+        $this->User->save($user);
 
+        $stylist_email = $new_stylist['User']['email'];
+        $stylist_name = $new_stylist['User']['first_name'];
+        
+        //Get user data
+        $name = $user['User']['first_name'];
+
+        try{
+            $email = new CakeEmail('default');
+            $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+            $email->to($user['User']['email']);
+            $email->subject('Savile Row Stylist: Your stylist!');
+            $email->template('user_stylist');
+            $email->emailFormat('html');
+            $email->viewVars(compact('name', 'stylist_name'));
+            $email->send();
+
+            $email = new CakeEmail('default');
+            $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+            $email->to($stylist_email);
+            $email->subject('Savile Row Stylist: Your stylist!');
+            $email->template('stylist_notification');
+            $email->emailFormat('html');
+            $email->viewVars(compact('name', 'stylist_name'));
+            $email->send();
+        }
+        catch(Exception $e){
+            
+        }
+    }
 
     /**
      * Actions for the admin below.

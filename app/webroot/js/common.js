@@ -115,8 +115,101 @@ jQuery(function(){
         $.unblockUI();
     });
 
+    $('#signin-popup').on('click', '.signin-btn', function(e){ 
+        e.preventDefault();
+        var error = false;
+        if($("#signin-email").val() == "")
+        {              
+            $("#signin-email").addClass("err-msg");
+            error = true;                   
+        }
+        else{
+            $("#signin-email").removeClass("err-msg");
+        }
+        if($("#signin-password").val() == "")
+        {              
+            $("#signin-password").addClass("err-msg"); 
+            error = true;                 
+        }
+        else{
+            $("#signin-password").removeClass("err-msg");
+        }
+        
+        if(error){
+            var authElement = $(".err-msg");
+            if(authElement.length){
+                authElement.first().focus(); 
+            }     
+            return false;    
+        }   else{            
+            $("#signin-form").submit();
+        }   
+    });
+
+    $('#signup-popup').on('click', '.signup-btn', function(e){
+        e.preventDefault();
+        var error = false;
+        if($("#first-name").val() == "")
+        {
+            $("#first-name").addClass("err-msg");
+            error = true;
+        }
+        else{
+            $("#first-name").removeClass("err-msg");
+        }
+        if($("#last-name").val() == "")
+        {
+            $("#last-name").addClass("err-msg");
+            error = true;
+        }
+        else{
+            $("#last-name").removeClass("err-msg");   
+        }
+        if($("#register-email").val() == "")
+        {              
+            $("#register-email").addClass("err-msg");
+            error = true;                   
+        }
+        else{
+            $("#register-email").removeClass("err-msg");
+        }
+        if($("#register-password").val() == "")
+        {              
+            $("#register-password").addClass("err-msg"); 
+            error = true;                 
+        }
+        else{
+            $("#register-password").removeClass("err-msg");
+        }
+        
+        if(error){
+            var authElement = $(".err-msg");
+            if(authElement.length){
+                authElement.first().focus(); 
+            }     
+            return false;    
+        }   else{            
+            $("#register-form").submit();
+        } 
+           
+    });
+
+
     $(window).resize(function(){
        $(".blockMsg").css({'left' : $(window).width() / 2 - $(".blockMsg ").width()/2});
+    });
+
+
+    if($('#flash-box').length){
+        $.blockUI({message: $('#flash-box'), timeout: 5000});
+    }
+    $('.blockOverlay, .notification-close').on('click', function(e){
+        e.preventDefault();
+        $.unblockUI();
+    });
+    $('#signup-popup, #signin-popup').on('click', '.notification-close', function(e){
+        e.preventDefault();
+        $.unblockUI();
     });
     
 });

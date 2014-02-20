@@ -7,7 +7,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
           shirt = "50-300",
           suits = "400-2000";
 
-      if(brands.range){
+      if(brands && brands.range){
         if(brands.range.jeans){
           jeans = brands.range.jeans;  
         }

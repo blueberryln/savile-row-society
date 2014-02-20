@@ -1,21 +1,53 @@
 <?php
 
-// $script = ' var contact = ' . json_encode($contact) . '; ' .
-// ' $(document).ready(function(){ 
-//     if(contact.weekDays == "on"){
-//         $("input[name=\"data[UserPreference][Contact][weekEnd]\"]").attr("checked","checked");   
-//     }
-//     $(".contact-options input[type=\"radio\"]").on("click",function(){
-//         var currentRad = $(this).attr("id");
-//         if (currentRad == "phone-field") {
-//             $("input[type=\"text\"].phone-field").show();
-//             $("input[type=\"text\"].skype-field").hide();
-//         } else if(currentRad == "skype-field"){
-//              $("input[type=\"text\"].skype-field").show();
-//             $("input[type=\"text\"].phone-field").hide();
-//         };
-//      });
-// });';
+$script = ' var contact = ' . json_encode($contact) . '; ' .
+' $(document).ready(function(){ 
+    if(contact.weekDays == "on"){
+        $("input[name=\"data[UserPreference][Contact][weekDays]\"]").attr("checked","checked"); 
+        if(contact.wdTime){
+            $("input[name=\"data[UserPreference][Contact][wdTime]\"][value= " + contact.wdTime + "]").attr("checked","checked");    
+        }
+    }
+    if(contact.weekEnd == "on"){
+        $("input[name=\"data[UserPreference][Contact][weekEnd]\"]").attr("checked","checked");   
+        if(contact.weTime){
+            $("input[name=\"data[UserPreference][Contact][weTime]\"][value= " + contact.weTime + "]").attr("checked","checked");   
+        }
+    }
+
+    if(contact.type && contact.type == "Phone"){
+        $("input[name=\"data[UserPreference][Contact][type]\"][value=\"Phone\"]").attr("checked","checked");
+        if(contact.phone){
+            $("input[type=\"text\"].phone-field").val(contact.phone).show();    
+        }
+        else{
+            $("input[type=\"text\"].phone-field").show();
+        }
+        $("input[type=\"text\"].skype-field").hide();
+    }
+    else if(contact.type && contact.type == "Skype"){
+        $("input[name=\"data[UserPreference][Contact][type]\"][value=\"Skype\"]").attr("checked","checked");
+        if(contact.skype){
+            $("input[type=\"text\"].skype-field").val(contact.skype).show();    
+        }
+        else{
+            $("input[type=\"text\"].skype-field").show();
+        }
+        $("input[type=\"text\"].phone-field").hide();
+
+    }
+
+    $(".contact-options input[type=\"radio\"]").on("click",function(){
+        var currentRad = $(this).attr("id");
+        if (currentRad == "phone-field") {
+            $("input[type=\"text\"].phone-field").show();
+            $("input[type=\"text\"].skype-field").hide();
+        } else if(currentRad == "skype-field"){
+             $("input[type=\"text\"].skype-field").show();
+            $("input[type=\"text\"].phone-field").hide();
+        };
+     });
+});';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 <div class="content-container">
@@ -39,20 +71,20 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <div class="five columns pref-time left">
                 <input type="checkbox" name="data[UserPreference][Contact][weekDays]">Week Days<br>
                 <div class="pref-options">
-                    <input type="radio" name="data[UserPreference][Contact][wdTime]">Morning(8am to 12am)<br>
-                    <input type="radio" name="data[UserPreference][Contact][wdTime]">Lunch time(12 to 2pm)<br>
-                    <input type="radio" name="data[UserPreference][Contact][wdTime]">Afternoon(2pm to 6pm)<br>
-                    <input type="radio" name="data[UserPreference][Contact][wdTime]">Evening(6pm to 9pm)<br>                    
+                    <input type="radio" name="data[UserPreference][Contact][wdTime]" value="1">Morning(8am to 12am)<br>
+                    <input type="radio" name="data[UserPreference][Contact][wdTime]" value="2">Lunch time(12 to 2pm)<br>
+                    <input type="radio" name="data[UserPreference][Contact][wdTime]" value="3">Afternoon(2pm to 6pm)<br>
+                    <input type="radio" name="data[UserPreference][Contact][wdTime]" value="4">Evening(6pm to 9pm)<br>                    
                 </div>
                 
             </div>
             <div class="five columns pref-time right">
                 <input type="checkbox" name="data[UserPreference][Contact][weekEnd]">Week End<br>  
                 <div class="pref-options">
-                    <input type="radio" name="data[UserPreference][Contact][weTime]">Morning(8am to 12am)<br>
-                    <input type="radio" name="data[UserPreference][Contact][weTime]">Lunch time(12 to 2pm)<br>
-                    <input type="radio" name="data[UserPreference][Contact][weTime]">Afternoon(2pm to 6pm)<br>
-                    <input type="radio" name="data[UserPreference][Contact][weTime]">Evening(6pm to 9pm)<br>                     
+                    <input type="radio" name="data[UserPreference][Contact][weTime]" value="1">Morning(8am to 12am)<br>
+                    <input type="radio" name="data[UserPreference][Contact][weTime]" value="2">Lunch time(12 to 2pm)<br>
+                    <input type="radio" name="data[UserPreference][Contact][weTime]" value="3">Afternoon(2pm to 6pm)<br>
+                    <input type="radio" name="data[UserPreference][Contact][weTime]" value="4">Evening(6pm to 9pm)<br>                     
                 </div>                             
             </div>
             <div class="clear-fix"></div>
