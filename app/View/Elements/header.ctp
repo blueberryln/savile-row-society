@@ -58,13 +58,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                 
                                 <?php if(!$is_stylist) : ?>
                                     <a href="<?php echo $this->webroot; ?>messages/index/">
-                                        <div class="msg-count left">
-                                            <span><?php echo $message_notification['message']; ?></span><br />
-                                            Messages
+                                        <div class="msg-count">
+                                            <span><?php echo $message_notification['message']; ?></span> Messages
                                         </div>
-                                        <div class="outfit-count right">
-                                            <span><?php echo $message_notification['outfit']; ?></span><br />
-                                            Outfits
+                                        <div class="outfit-count">
+                                            <span><?php echo $message_notification['outfit']; ?></span> Outfits
                                         </div>
                                     </a>
                                 <?php else : ?>
