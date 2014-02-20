@@ -1,8 +1,9 @@
 <?php
+
 $this->Html->css("supersized", null, array("inline" => false));
 $this->Html->script("supersized.3.2.7.js", array("inline" => false));
-$this->Html->script("//code.jquery.com/ui/1.10.3/jquery-ui.min.js", array("inline" => false));
-            
+$this->Html->script("//code.jquery.com/ui/1.10.3/jquery-ui.min.js", array("inline" => false));       
+
 $script = ' 
             jQuery(function($){
                 
@@ -56,7 +57,34 @@ $script = '
                 console.log(winH);
                 jQuery("div.super").css("height", winH - (hH + fH));
                 jQuery("div.super").css("margin-top",hH);
+                
+                $("#BookingDate").datepicker({ dateFormat: "d MM, yy" });
+                    $("#book-button").on("click", function(e){
+                        e.preventDefault();
+                        var error = false;
+                        if($("#BookingDate").val() == ""){
+                            error = true;    
+                        }
+                        if($("#BookingType").val() == ""){
+                            error = true;    
+                        }
+                        if($("#BookingComment").val() == ""){
+                            error = true;    
+                        }
+                        
+                        if(error){
+                            $(".book-it-btn .err-message").show();
+                        }
+                        else{
+                            $(".book-it-btn .err-message").hide();
+                            $("#BookingIndexForm").submit();
+                        }
+                    });
 
+                jQuery("#book-apt").on("click", function(){
+                    $.blockUI({message: $("#bookapt-box")});
+                    $(".blockOverlay").click($.unblockUI); 
+                });  
             });
             jQuery(window).resize(function(){
                 var winH = jQuery(window).height();
@@ -69,6 +97,10 @@ $script = '
 
 ';      
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+$this->Html->css('ui/jquery-ui', null, array('inline' => false));
+$this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
+$meta_description = 'As a member, you will be up to date on styles, always look put together, and develop a wardrobe that captures the look you desire.';
+$this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 
 <!-- <div class="container content inner home" style="margin-top: 93px;">   
@@ -81,3 +113,56 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <!-- <a id="prevslide" class="load-item"></a>
     <a id="nextslide" class="load-item"></a> -->
     <div id="book-apt"><a href="#" class="link-btn gold-btn">Make an appointment</a></div>
+    <div id="bookapt-box" class="box-modal notification-box hide">
+        <div class="box-modal-inside">
+            <a class="notification-close" href=""></a>
+            <div class="book-apt-info">
+                <h5 class="book-apt-title">Book An Appointment</h5>
+
+                <div class="book-apt-content">
+                    <div class="showroom">                       
+                        <div class="contact-info left text-left">
+                            <h4>Showroom:</h4>
+                            <p>902 Broadway, 6th Floor, <br />New York, NY 10010</p>                            
+                            <p class="phone">+1 347 878 7280</p>
+                        </div>
+                        <div class="s-map right">                          
+                            <iframe height="105" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0">                                
+                        </iframe>
+                        </div>
+                        <div class="clear-fix"></div>
+                    </div>
+
+                    <div class="apt-form">
+                        <?php if ($user && $booking_types) : ?>
+                            <?php echo $this->Form->create('Booking', array('url' => array('controller' => 'booking', 'action' => 'index'))); ?>                
+                            <p class="apt-form-title">When would you like to come?</p> 
+                            <div>
+                                <input type="text" style="height: 0; visibility: hidden; padding:0; margin: 0; border: none; position: absolute; text-indent: -999999;">
+                                <label>Please select a date</label>
+                                <input class="datepicker" name="data[Booking][date]" id="BookingDate" value="" type="text" placeholder="Please select a date" />
+                            </div>
+                            
+                            <div class="input text required text-left">
+                                        <label class="apt-type-title">Appointment type</label>
+                                         <?php foreach($booking_types as $booking_type): ?>
+                                         <input type="checkbox" value="<?php echo $booking_type['BookingType']['id']; ?>" name="data[BookingType][id]"><span class="apt-type-lbl"><?php echo $booking_type['BookingType']['name']; ?></span><br />
+                                         <?php endforeach; ?>                                         
+                            </div>
+                            
+                            <div class="apt-comment">
+                            <label>ADD A COMMENT</label>
+                            <textarea name="data[Booking][comment]" id="BookingComment"></textarea>
+                            </div>
+                            <div class="book-it-btn">
+                                <?php echo $this->Form->end(array('value'=>'Submit', 'id' => 'book-button')); ?>
+                                <span class="err-message">Please complete all the fields first.</span>
+                            </div>
+                            
+                        <?php endif; ?>
+                    </div>
+                    
+                </div>               
+            </div> 
+        </div>
+    </div>
