@@ -531,7 +531,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .c-no{display: block; margin: 0 auto; }
 .c-no img{margin-bottom: 5px;}
 .wrok-btn-box{width: 100%; position: absolute; bottom: 0;}
-.works-btn{background: #000; color: #fff; border-radius: 4px; padding: 5px 10px; width: 100px; text-transform: uppercase; cursor: pointer;} 
+.works-btn, .works-btn:visited{background: #000; color: #fff; border-radius: 4px; padding: 5px 10px; width: 100px; text-transform: uppercase; cursor: pointer;} 
 .works-btn:hover{color: #fff;}
 div.img-box{position: relative; cursor:pointer;}
 div.img-box img, .shopping-box img{border: 12px solid #fff; -webkit-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); -moz-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); -ms-box-shadow: 0px 1px 10px rgba(0,0,0,0.3); box-shadow: 0px 1px 10px rgba(0,0,0,0.3); box-sizing: border-box;} 

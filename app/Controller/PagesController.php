@@ -53,7 +53,8 @@ class PagesController extends AppController {
         }
 
         if($page == 'home'){
-
+            $user = $this->getLoggedUser();
+            $this->set(compact('user'));
         }
         else if ($page == 'tailor') {
             $this->isLogged();

@@ -16,6 +16,10 @@ class BookingController extends AppController {
      * @return void
      */
     public function index() {
+        $user_id = $this->getLoggedUserID();
+        if(!$user_id){
+            $this->Session->write('showRegisterPopup', true);
+        }
         $this->isLogged();
 
         // init

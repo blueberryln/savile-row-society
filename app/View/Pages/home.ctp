@@ -57,7 +57,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         <div class="mg-big">
             <img src="<?php echo $this->webroot; ?>img/h_1.jpg" />
             <div id="my-stylist">
-                <a class="link-btn gold-btn" href="">Meet My Stylist</a>
+                <?php if($is_logged && $has_stylist) : ?>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Meet My Stylist</a>
+                <?php elseif($is_logged) : ?>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>profile/about">Meet My Stylist</a>
+                <?php else : ?>
+                    <a class="link-btn gold-btn" href="#" onclick="window.ref_url=''; signUp();">Meet My Stylist</a>
+                <?php endif; ?>
             </div>
         </div>
         <div class="mg-vid">
@@ -68,14 +74,14 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <div class="mg-small-1">
                 <img src="<?php echo $this->webroot; ?>img/h_2.jpg" />
                 <div class="mgs-btn">
-                    <a class="link-btn black-btn" href="">Make a fitting <br />appointment</a>
+                    <a class="link-btn black-btn" href="/fitting-room">Make a fitting <br />appointment</a>
                 </div>
             </div>
             <div class="mg-small-2">
                 <img src="<?php echo $this->webroot; ?>img/h_3.jpg" />
-                <div class="mgs-btn">
+                <!-- <div class="mgs-btn">
                     <a class="link-btn black-btn" href="">get this look<br /> from the closet</a>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="clear-fix"></div> 
@@ -91,18 +97,38 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_1.png" /></span>
             <span class="works-desc">Give us your information, and be assigned a personal shopper</span>
             <div class="wrok-btn-box"><a class="works-btn">Register</a></div>
+
+            <?php if($is_logged && $has_stylist) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>myprofile">Register</a></div>
+            <?php elseif($is_logged) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Register</a></div>
+            <?php else : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
+            <?php endif; ?>
         </div> 
          <div class="work-box">
             <img src="<?php echo $this->webroot; ?>img/how-it-works/2.png" />
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_2.png" /></span>
             <span class="works-desc">Communicate on the website, on the phone or make an in-showroom appointment</span>
-            <div class="wrok-btn-box"><a class="works-btn">Talk & shop</a></div>
+            <?php if($is_logged && $has_stylist) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
+            <?php elseif($is_logged) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Talk & shop</a></div>
+            <?php else : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
+            <?php endif; ?>
         </div> 
          <div class="work-box">
             <img src="<?php echo $this->webroot; ?>img/how-it-works/3.png" />
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_3.png" /></span>
             <span class="works-desc">dress for the life you want</span>
-            <div class="wrok-btn-box"><a class="works-btn">Look sharp</a></div>
+            <?php if($is_logged && $has_stylist) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Look sharp</a></div>
+            <?php elseif($is_logged) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Look sharp</a></div>
+            <?php else : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
+            <?php endif; ?>
         </div> 
     </div>
     
