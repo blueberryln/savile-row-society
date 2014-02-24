@@ -23,7 +23,7 @@ $(document).ready(function(){
         e.preventDefault();
         FB.ui({
           method: "send",
-          link: "http://www.savilerowsociety.com/development/users/refer/' . $user['User']['id'] . '",
+          link: "http://www.savilerowsociety.com/users/refer/' . $user['User']['id'] . '",
         });
     });           
 });
@@ -58,7 +58,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class="rw-content nine columns">
                     <h3>Your personal refer link:</h3>
                     <div class="rw-field">
-                        <input class="eleven columns" type="text" readonly value="http://www.savilerowsociety.com/user/refer/<?php echo $user['User']['id']; ?>">                        
+                        <input class="eleven columns" type="text" readonly value="http://www.savilerowsociety.com/users/refer/<?php echo $user['User']['id']; ?>">                        
                     </div>                    
                 </div>
             </div>
