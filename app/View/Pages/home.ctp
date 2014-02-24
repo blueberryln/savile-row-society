@@ -52,6 +52,16 @@ $script='
 if(isset($noindex)){
     echo $this->Html->meta(array('name' => 'robots', 'content' => 'noindex, nofollow'),null,array('inline'=>false));
 }
+
+$meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. We\'ll perfect your image from head to toe.';
+$img_src = "//www.savilerowsociety.com/img/SRS_600.png";
+$meta_keywords="mens personal shopping,professional fashion advice,mens shopping advice,mens personal styling,mens fashion consulting,mens clothing stylist,mens personal branding,mens personal outfits,mens professional stylist,made to measure suits,tailored suits,mens business suits,bespoke suits,custom suit,high quality suits,mens tailor nyc,suits in nyc,custom suiting,tailor in nyc,custom bespoke suits,tailor in new york city,trunk club,tailor in manhattan,suits in new york city,men made to measure suits,bombfell";
+$this->Html->meta("keywords", $meta_keywords, array("inline" => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+$this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Society', ),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 <div class="content-container">
