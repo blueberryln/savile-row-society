@@ -23,7 +23,7 @@ $(document).ready(function(){
         e.preventDefault();
         FB.ui({
           method: "send",
-          link: "http://www.savilerowsociety.com/user/refer/' . $user['User']['id'] . '",
+          link: "http://www.savilerowsociety.com/development/user/refer/' . $user['User']['id'] . '",
         });
     });           
 });
@@ -78,14 +78,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </div>
                 </div>
             </div>
-            <!-- <div class="refer-way three">
+            <div class="refer-way three">
                 <div class="icon">
                     <img class="" src="<?php echo $this->request->webroot; ?>img/fb@2x.png" /> 
                 </div>
                 <div class="rw-content nine columns">
                     <h3><a href="" id="inviteFriendsFB">Share it on Facebook</a></h3>                    
                 </div>
-            </div> -->
+            </div>
             
         </div>        
        

@@ -49,6 +49,9 @@ $script='
             jQuery(".mg-vid").css("height", mgvHeight);
         }); 
 ';
+if(isset($noindex)){
+    echo $this->Html->meta(array('name' => 'robots', 'content' => 'noindex, nofollow'),null,array('inline'=>false));
+}
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 <div class="content-container">

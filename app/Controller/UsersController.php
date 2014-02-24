@@ -76,8 +76,8 @@ class UsersController extends AppController {
      * Refer
      */
     public function refer($refer_id = null){
-        $this->autoLayout = false;
-        $this->autoRender = false;
+        //$this->autoLayout = false;
+        //$this->autoRender = false;
         $user = $this->getLoggedUser();
         if(!$user && $refer_id && $refer_id > 0 && $this->User->exists($refer_id)){
             $referer = $this->User->findById($refer_id);
@@ -94,12 +94,17 @@ class UsersController extends AppController {
 
             $this->Session->write('referer', $refer_id);
             $this->Session->write('showRegisterPopup', true);
-            $this->redirect('/');
+
+            $noindex = 1;
+            $this->set(compact('noindex'));
+            //$this->redirect('/');
         }
         else{
             $this->redirect('/');
+            exit;
         }
-        exit;
+        $this->render('/Pages/home');
+        //exit;
     }
     
     /**

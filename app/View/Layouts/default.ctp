@@ -9,7 +9,7 @@
   ================================================== -->
         <meta charset="utf-8">
         <title>Savile Row Society <?php echo $title_for_layout; ?></title>
-        <meta name="description" content="Savile Row Society">
+        <!-- <meta name="description" content="Savile Row Society"> -->
         <?php echo $this->fetch('meta'); ?>
         <!-- Mobile Specific Metas
   ================================================== -->
