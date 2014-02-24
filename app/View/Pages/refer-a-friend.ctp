@@ -23,7 +23,7 @@ $(document).ready(function(){
         e.preventDefault();
         FB.ui({
           method: "send",
-          link: "http://www.savilerowsociety.com/development/user/refer/' . $user['User']['id'] . '",
+          link: "http://www.savilerowsociety.com/development/users/refer/' . $user['User']['id'] . '",
         });
     });           
 });
