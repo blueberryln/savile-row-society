@@ -60,6 +60,12 @@ function signIn() {
 // }
 
 jQuery(function(){
+
+    $(".card-menu ul li:last-child").click(function(){
+        $(this).next(".submenu-container").show();
+    });
+
+
     if(showRegisterPopup){
         signUp();    
     }
@@ -202,7 +208,7 @@ jQuery(function(){
 
 
     if($('#flash-box').length){
-        $.blockUI({message: $('#flash-box'), timeout: 5000});
+        $.blockUI({message: $('#flash-box'), timeout: 50000});
     }
     $('.blockOverlay, .notification-close').on('click', function(e){
         e.preventDefault();

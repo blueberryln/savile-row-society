@@ -108,11 +108,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 </div> -->
     <div class="super" style="margin-top:91px; width:100%; height:500px;">
         
+        <div id="book-apt"><a href="#" class="link-btn gold-btn">Make an appointment</a></div>
     </div>
     <!--Arrow Navigation-->
     <!-- <a id="prevslide" class="load-item"></a>
     <a id="nextslide" class="load-item"></a> -->
-    <div id="book-apt"><a href="#" class="link-btn gold-btn">Make an appointment</a></div>
+    
     <div id="bookapt-box" class="box-modal notification-box hide">
         <div class="box-modal-inside">
             <a class="notification-close" href=""></a>
