@@ -115,10 +115,17 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Stylist</span></a></li>
                 <?php elseif($is_stylist) : ?>
                     <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Clients</span></a></li>
-                <?php else : ?>
+                <?php elseif($is_logged) : ?>
                     <li>  <a href="<?php echo $this->request->webroot; ?>profile/about">My Stylist</a></li>
+                <?php else : ?>
+                    <li>  <a href="#" onclick="window.ref_url=''; signUp();">My Stylist</a></li>
                 <?php endif; ?>
-                <li><a  href="<?php echo $this->request->webroot; ?>fitting-room" data-ref="closet"><span class="underline1">The Fitting room</span></a></li>                            
+
+                <?php if($is_logged) : ?>
+                    <li><a  href="<?php echo $this->request->webroot; ?>fitting-room" data-ref="closet"><span class="underline1">The Fitting room</span></a></li> 
+                <?php else : ?>
+                    <li><a href="#" onclick="window.ref_url=''; signUp();"><span class="underline1">The Fitting room</span></a></li> 
+                <?php endif; ?>                           
                 <!--li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li-->
 
             </ul>

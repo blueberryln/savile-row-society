@@ -270,7 +270,7 @@ class ConnectController extends AppController {
                     $User->create();
                     if ($User->save($fb_data)) {
 
-                        if($this->Session->check('referer')){=
+                        if($this->Session->check('referer')){
                             $this->Session->delete('referer');
                             $this->Session->delete('showRegisterPopup'); 
                             $this->Session->delete('referer_type');
