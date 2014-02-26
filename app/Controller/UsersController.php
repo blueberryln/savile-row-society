@@ -534,7 +534,7 @@ class UsersController extends AppController {
                 break;
             case 'style':
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
-                $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : "#";                             
+                $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : $this->webroot . "img/dummy_image.jpg";                             
                 $size = ($preferences['UserPreference'] && isset($preferences['UserPreference']['StyleSize'])) ? $preferences['UserPreference']['StyleSize'] : null; 
                 $this->set(compact('size'));
                 $this->set(compact('image_url', 'full_name'));
