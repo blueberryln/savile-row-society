@@ -131,8 +131,6 @@ class UsersController extends AppController {
                 
                 // check submitted email and password 
                 $results = $this->User->checkCredentials($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
-                print_r($results);
-                exit;
                 if ($results) {
                     
                     // set "user" session
