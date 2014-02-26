@@ -49,7 +49,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <p>Today, Lisa likes to work long hours on SRS, trying out the best bars and restaurants New York City has to offer. She also competes athletically, participating in both duathlons (cycling and running) and triathlons (swimming, cycling, and running). She looks forward to seeing you on the starting line as a member of Savile Row Society, Inc.</p>
                     </div>                    
                     <div class="text-center info-btn">
-                        <a class="more-info-text" href="#" title="Show more">Show more</a>
+                        <a class="more-info-text" href="#" title="Show more">More Info</a>
                     </div>
                 </div>
                 
@@ -112,7 +112,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             
             <div class="team-member">
                 <div>
-                    <img src="<?php echo $this->request->webroot; ?>img/Deborah_Sequeira.jpg" data-member-name="Joey Glazer" class="fadein-image" />
+                    <img src="<?php echo $this->request->webroot; ?>img/joye-tm.jpg" data-member-name="Joey Glazer" class="fadein-image" />
                 </div>
                 <div>
                     <div class="name">Joey Glazer</div>
