@@ -2,6 +2,19 @@
 $script = '
 
 $(document).ready(function(){   
+    $(".flexslider").flexslider({
+                animation: "slide",
+                animationSpeed: 300,  
+                animationLoop: true,
+                slideshow: false,          
+                slideshowSpeed: 4000, 
+                video: true,
+                useCSS: true,
+                pauseOnAction: false,
+                controlNav: false,
+                directionNav: true,
+                keyboard: false                
+            });
     
     $(".thumbs-up").click(function(e) {
         e.preventDefault();
@@ -83,7 +96,8 @@ $(document).ready(function(){
 
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
-$this->Html->script("jquery.slides.min.js", array('inline' => false));
+$this->Html->script('jquery.flexslider-min.js', array('inline' => false));
+$this->Html->css('flexslider', null, array("inline" => false));
 
 $meta_description = 'Show your support and desire to be an SRS member by sporting one of our iPhones/iPad cases!';
 $this->Html->meta('description', $meta_description, array('inline' => false));
@@ -93,45 +107,48 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         display: none;
     }
 </style>
-
-<div class="container content inner">	
-    <div class="sixteen columns text-center">
-        <h1>Lookbooks</h1>
-    </div>
-    <div class="fifteen offset-by-half columns omega">
-        <div class="twelve columns omega product-listing">
-            <div class="product-top-offset"></div>
-            <div class="text-center" id="slides">
-                <?php
-                    foreach($lifestyles as $lifestyle){
-                    ?>
-                        <img src="<?php echo $this->request->webroot; ?>files/lifestyles/<?php echo $lifestyle['Lifestyle']['image']; ?>" class="fadein-image max-width-adj" data-lifestyle-id="<?php echo $lifestyle['Lifestyle']['id']; ?>" />
-                    <?php      
-                    }
-                ?>
-                <a href="#" class="slidesjs-previous slidesjs-navigation">&lt;</a>
-                <a href="#" class="slidesjs-next slidesjs-navigation">&gt;</a>
-            </div>
-
-            <table class="lb-products">
-                <thead>    
-                    <tr>               
-                        <th width="15%"></th>
-                        <th width="55%"></th>
-                        <th width="30%"></th>
-                    </tr> 
-                </thead>
-                
-                <tbody>
-                    
-                </tbody>
-            </table>
-
+<div class="content-container">
+    <div class="twelve columns content inner">	
+        <div class="closet-tabs text-center">
+            <a href="<?php echo $this->webroot . 'closet'; ?>" class="link-btn black-btn">Curated Collection</a>
+            <a href="<?php echo $this->webroot . 'lookbooks/'; ?>" class="link-btn gold-btn">Lookbooks</a>
         </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="sixteen columns">
-        
+        <div class="twelve columns">
+            <div class="twelve columns">
+                <div class="product-top-offset"></div>
+                <div class="flexslider text-center" >
+                    <ul class="slides">
+                        <?php
+                        foreach($lifestyles as $lifestyle){
+                        ?>
+                            <li><img src="<?php echo $this->request->webroot; ?>files/lifestyles/<?php echo $lifestyle['Lifestyle']['image']; ?>" class="fadein-image max-width-adj" data-lifestyle-id="<?php echo $lifestyle['Lifestyle']['id']; ?>" />
+                            </li>
+                        <?php      
+                        }
+                    ?>
+                    </ul>    
+                </div>
+                <div class="lifestyle-table center-block">
+                    <table class="lb-products">
+                        <thead>    
+                            <tr>               
+                                <th width="20%"></th>
+                                <th width="55%"></th>
+                                <th width="25%"></th>
+                            </tr> 
+                        </thead>
+                        
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="sixteen columns">
+            
+        </div>
     </div>
 </div>
 
@@ -164,32 +181,30 @@ var loadLookbookItems = function(lookbookId){
 
                 curLookbookItemHtml = 
                     "<tr class='lifestyle-product-block'>" +
-                        "<td class='v-top product-thumb text-center'>" +
+                        "<td class='product-thumb text-center'>" +
                             "<div class='product-thumb-cont'>" + 
                                 "<a href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id']  + "/" + curEntity['Entity']['slug'] + "'>" + 
                                     "<img src='" + entityImage + "' alt='' />" + 
                                 "</a>" +
                             "</div>" +
                         "</td>" + 
-                        "<td class='v-top'>" + 
+                        "<td class=''>" + 
                             "<h6><a href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>" + curEntity['Entity']['name'] + "</a></h6>" + 
                             "<small class='description'>" + entityDesc + "</small>" + 
                         "</td>" + 
-                        "<td class='like-dislike-links'>" + 
+                        "<td class='like-dislike-links text-center'>" + 
                             "<input type='hidden' value='" + curEntity['Entity']['id'] + "' class='product-id' />";
 
-                var loggedUser = "<?php echo $user_id ? $user_id : 0; ?>";
-
-                if(loggedUser){
+                if(curEntity['Wishlist'] != undefined){
                     var dislikeClass = (curEntity['Dislike']['id']) ? "disliked" : "";
                     var likeClass = (curEntity['Wishlist']['id']) ? "liked" : "";
                     curLookbookItemHtml += "<a href='' class='thumbs-up " + likeClass + "'></a>" + 
-                    "<a class='link-btn gold-btn lb-to-cart' href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>BUY</a>" + 
+                    "<a class='link-btn black-btn lb-to-cart' href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>BUY</a>" + 
                     "<a href='' class='thumbs-down " + dislikeClass + "'></a>" + 
                     "<td></tr>";
                 }
                 else{
-                    curLookbookItemHtml += "<a class='link-btn gold-btn lb-to-cart' href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>BUY</a>" + 
+                    curLookbookItemHtml += "<a class='link-btn black-btn lb-to-cart' href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>BUY</a>" + 
                     "</td></tr>";
                 }  
                 
