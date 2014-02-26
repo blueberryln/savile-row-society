@@ -36,7 +36,8 @@
         <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-114x114.png">
         
-         <script type="text/javascript">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
             // var _gaq = _gaq || [];
             // _gaq.push(['_setAccount', 'UA-36935088-1']);
             // _gaq.push(['_trackPageview']);
@@ -138,8 +139,6 @@
         <!--[if lt IE 9]>
         <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>      
         <script src="<?php echo $this->request->webroot; ?>js/block.ui.js" type="text/javascript"></script>

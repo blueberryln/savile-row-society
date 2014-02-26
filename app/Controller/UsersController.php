@@ -972,25 +972,30 @@ class UsersController extends AppController {
      * @return void
      */
     public function admin_index() {
-        // Default order: Users to be listed ranked by uresers with uread messages first and date of last message sent.
         $this->layout = 'admin';
         $this->isAdmin();
+        // $this->Paginator->settings = array(
+        //         'fields' => array('User.*'),
+        //         'joins' => array(
+        //             array('table' => 'messages',
+        //                 'alias' => 'Message',
+        //                 'type' => 'LEFT',
+        //                 'conditions' => array(
+        //                     'User.id = Message.user_from_id'
+        //                 )
+        //             ),
+
+        //         ),
+        //         'limit' => 20,
+        //         'group' => array('User.id'),
+        //         'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
+        // );
         $this->Paginator->settings = array(
                 'fields' => array('User.*'),
-                'joins' => array(
-                    array('table' => 'messages',
-                        'alias' => 'Message',
-                        'type' => 'LEFT',
-                        'conditions' => array(
-                            'User.id = Message.user_from_id'
-                        )
-                    ),
-
-                ),
                 'limit' => 20,
-                'group' => array('User.id'),
-                'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
+                'order' => array('User.id' => 'DESC', ),
         );
+
         $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
         $users = $this->Paginator->paginate();
         $this->set(compact('stylists','users'));

@@ -14,7 +14,6 @@
                 echo $this->Form->input('first_name');
                 echo $this->Form->input('last_name');
                 echo $this->Form->input('username');
-                echo $this->Form->input('profile_image');
                 echo $this->Form->input('phone');
                 echo $this->Form->input('title');
                 echo $this->Form->input('industry');
@@ -25,8 +24,13 @@
                 echo $this->Form->input('is_editor');
                 echo $this->Form->input('is_stylist');
                 echo $this->Form->input('is_admin');
+                echo $this->Form->input('is_event');
                 echo $this->Form->input('active');
                 ?>
+            </fieldset>
+            <fieldset>
+                <legend><?php echo __('User Preferences'); ?></legend>
+                
             </fieldset>
             <fieldset>
                 <legend><?php echo __('Actions'); ?></legend>

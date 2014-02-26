@@ -190,6 +190,7 @@ $(document).ready(function(){
 ';
 $this->Html->script("lightbox-2.6.min.js", array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+
 $meta_description = $entity['Entity']['name'];
 if ($entity) {
     $meta_description = Sanitize::html($entity['Entity']['description'], array('remove' => true));
@@ -254,8 +255,8 @@ $columns = 'eleven';
                     <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI would like to recommend this product to you. Check out <?php echo Router::url( $this->here, true ); ?>." id="lnk-email"></a></div>
                     <?php if(isset($entity['Wishlist'])) : ?>
                     <div class="product-thumbs">
-                        <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
-                        <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
+                        <a href="#" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
+                        <a href="#" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
                     </div>
                     <?php endif; ?>
                 </div>

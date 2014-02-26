@@ -47,4 +47,11 @@ class LifestyleItem extends AppModel {
             'fields' => array('LifestyleItem.product_entity_id')
         ));
     }
+
+    public function getLifestyleProductsList($id){
+        return $this->find('all', array(
+            'conditions' => array('LifestyleItem.lifestyle_id' => $id),
+            'fields' => array('LifestyleItem.product_entity_id')
+        ));
+    }
 }

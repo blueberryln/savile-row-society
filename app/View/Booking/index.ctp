@@ -147,7 +147,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <div class="input text required text-left">
                                         <label class="apt-type-title">Appointment type</label>
                                          <?php foreach($booking_types as $booking_type): ?>
-                                         <input type="checkbox" value="<?php echo $booking_type['BookingType']['id']; ?>" name="data[BookingType][id]"><span class="apt-type-lbl"><?php echo $booking_type['BookingType']['name']; ?></span><br />
+                                         <input type="radio" value="<?php echo $booking_type['BookingType']['id']; ?>" name="data[BookingType][id]"><span class="apt-type-lbl"><?php echo $booking_type['BookingType']['name']; ?></span><br />
                                          <?php endforeach; ?>                                         
                             </div>
                             

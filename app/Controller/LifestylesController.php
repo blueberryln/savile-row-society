@@ -16,23 +16,58 @@ class LifestylesController extends AppController{
     }
     
     public function index(){
+        $User = ClassRegistry::init('User');
         $user_id = $this->getLoggedUserID();
-        $Category = ClassRegistry::init('Category');
-        $Brand = ClassRegistry::init('Brand');
-        $Colorgroup = ClassRegistry::init('Colorgroup');
         
-        // get data
-        $categories = $Category->getAll();
-        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
-        $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
+
+        $this->Lifestyle->recursive = 1;
+        $lifestyle_list = $this->Lifestyle->find('all');
+        $lifestyle_ids = array();
+        $lifestyles = array();
+
+        foreach($lifestyle_list as $item){
+            $lifestyles[$item['Lifestyle']['id']] = $item;
+            $lifestyle_ids[] = $item['Lifestyle']['id'];
+        }
+
+
+        $entity_list = $this->Lifestyle->LifestyleItem->getLifestyleProducts($lifestyle_ids);
         
-        $this->set(compact('categories', 'brands', 'colors'));
-          
-        $this->Lifestyle->recursive = 0;
-        $this->Paginator->settings = array('limit' => 12);
-        $lifestyles = $this->Paginator->paginate($this->Lifestyle);
-        $this->set(compact('lifestyles'));
+        $Entity = ClassRegistry::init('Entity');
+        if($user_id){
+            $entity_data = $Entity->getEntitiesById($entity_list, $user_id);    
+        }
+        else{
+            $entity_data = $Entity->getEntitiesById($entity_list);    
+        }
+
+        $entities = array();
+
+        foreach($entity_data as $entity){
+            $entities[$entity['Entity']['id']] = $entity;
+        }
+        
+        $this->set(compact('lifestyles', 'lifestyle_ids', 'entities', 'user_id'));
     }
+
+    // public function index(){
+    //     $user_id = $this->getLoggedUserID();
+    //     $Category = ClassRegistry::init('Category');
+    //     $Brand = ClassRegistry::init('Brand');
+    //     $Colorgroup = ClassRegistry::init('Colorgroup');
+        
+    //     // get data
+    //     $categories = $Category->getAll();
+    //     $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+    //     $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
+        
+    //     $this->set(compact('categories', 'brands', 'colors'));
+          
+    //     $this->Lifestyle->recursive = 0;
+    //     $this->Paginator->settings = array('limit' => 12);
+    //     $lifestyles = $this->Paginator->paginate($this->Lifestyle);
+    //     $this->set(compact('lifestyles'));
+    // }
     
     public function detail($id = null, $slug = null){
         if($id == null || $slug == null){

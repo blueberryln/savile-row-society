@@ -10,7 +10,6 @@
                     <th><?php echo $this->Paginator->sort('email'); ?></th>
                     <th><?php echo $this->Paginator->sort('full_name'); ?></th>
                     <th>Style Profile</th>
-                    <th><?php echo $this->Paginator->sort('personal_shopper'); ?></th>
                     <th><?php echo $this->Paginator->sort('zip'); ?></th>
                     <th><?php echo $this->Paginator->sort('created'); ?></th>
                     <th><?php echo __('Actions'); ?></th>
@@ -31,11 +30,6 @@
                                 }
                             ?>
                         </td>
-                        <?php if($user['User']['personal_shopper']) : ?>
-                            <td><?php echo h($user['User']['personal_shopper']); ?>&nbsp;</td>
-                        <?php else : ?>
-                            <td>N/A</td>
-                        <?php endif; ?>
                         <?php if($user['User']['zip']) : ?>
                             <td><?php echo h($user['User']['zip']); ?>&nbsp;</td>
                         <?php else : ?>
