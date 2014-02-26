@@ -86,18 +86,15 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <!-- <iframe class="max-width-adj" src="http://www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>  -->           
         </div>
         <div class="mg-small">
-            <div class="mg-small-1">
-                
-                    <img src="<?php echo $this->webroot; ?>img/h_2.jpg" />
-              
+            <div class="mg-small-1"> 
+
+                <a href="" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_2.jpg" /></a>     
                 <div class="mgs-btn">
                     <a class="link-btn black-btn" href="/fitting-room">Make a fitting <br />appointment</a>
-                </div>
+                </div> 
             </div>
-            <div class="mg-small-2">
-                
-                    <img src="<?php echo $this->webroot; ?>img/h_3.jpg" />
-                
+            <div class="mg-small-2">                
+                <a href="" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_3.jpg" /></a>              
                 <div class="mgs-btn">
                     <a class="link-btn black-btn" href="">get this look<br /> from the closet</a>
                 </div> 

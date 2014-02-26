@@ -98,7 +98,8 @@ input[type="submit"]{color: #fff;}
 	.card-menu .submenu li a:hover { color:#8f7948; }
 	.welcome-name, .welcome-name a {cursor: default;}
 	.msg-notify-box .submenu { overflow: hidden; color: #000; }
-	.msg-count, .outfit-count{ width: 80px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box; text-align: center; text-transform: uppercase; padding: 10px 0; border:1px solid #E6E6E6; background-color: #F2F2F2; margin-bottom: 10px; font-size: 10px;}
+	.msg-count, .outfit-count{ width: 100px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box; text-align: center; text-transform: uppercase; padding: 10px 0; border:1px solid #E6E6E6; background-color: #F2F2F2; margin-bottom: 10px; font-size: 10px;}
+	.outfit-count{margin-bottom: 0;}
 	.msg-count:hover, .outfit-count:hover{ background-color: #E6E6E6; }
 	.submenu-container { display:none; position:absolute; right:5px; margin-top: 0; /*padding-top: 7px;*/ -moz-box-shadow: rgba(30,30,30,0.3) 0px 2px 3px 1px; -webkit-box-shadow: rgba(30,30,30,0.3) 0px 2px 3px 1px; box-shadow: rgba(30,30,30,0.3) 0px 2px 3px 1px; z-index: 200; background: url('../img/bg-top-menu.png') no-repeat 88% 0; filter:progid:DXImageTransform.Microsoft.Shadow(color='#333333',direction='120',strength='4'); }
 	.card-menu .submenu { background-color: #ffffff; border-left: 1px solid #CCCCCC; cursor: auto; padding: 12px; z-index: 100; color: #000;}
@@ -273,7 +274,7 @@ div.tm-pdesc::-webkit-scrollbar-thumb{
 	background-color: #000;
 }
 /*Create outfit POP-Up*/
-.outfit-modal { height: 630px; margin-top: 0;  -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.outfit-modal { height: 650px; margin-top: 0;  -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
 /********Chat-Upload Image POP-up******/
 .signin-content{width: 300px; margin: 0 auto;}
 .signin-btn{padding: 8px; margin: 30px 0 0 0;}
@@ -318,6 +319,7 @@ div.apt-form div.apt-comment{margin-top:10px; margin-bottom:20px;}
 
 /*******Pages COMMON*****/
 .brand-btn:hover, a.my-profile:hover{color: #fff;}
+.product-list-links .btn-user-closet, .product-list-links .btn-srs-closet{float: none; margin-bottom: 5px; }
 /******CLOSET*******/
 	.closet-tabs{margin-bottom: 30px; margin-top: 25px;}
 	.closet-tabs a{ width: 220px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
@@ -389,6 +391,7 @@ div.apt-form div.apt-comment{margin-top:10px; margin-bottom:20px;}
 	.remove-product { display: block; position: absolute; right: 5px; top: 5px; z-index: 250; height: 20px; width: 20px; text-decoration: none; background: url('../img/cross_liked_items.png') no-repeat center center; }
 	/*****Product Details Page***/
 	p.product-breadcrumb { color: #666; margin-bottom: 5px !important; text-transform: uppercase; font-size: 12px; }
+	p.product-breadcrumb a:hover{color: #af9a59;}
 	.product-default-image{ border: 1px solid #ccc; background-color: #FFFFFF; text-align: center; margin-bottom: 10px; overflow: hidden; }
 	.product-default-image img{ max-width: 374px !important; max-height: 499px ; vertical-align: middle; }
 	.product-actions{margin-top: 25px; min-height: 40px;}
@@ -398,7 +401,7 @@ div.apt-form div.apt-comment{margin-top:10px; margin-bottom:20px;}
 	.product-thumbs .thumbs-up.liked{ background: url('../img/thumbs_big.png') no-repeat 0 100%; }
 	.product-thumbs .thumbs-down{ margin-right: 19px; background: url('../img/thumbs_big.png') no-repeat 100% 0; }
 	.product-thumbs .thumbs-down.disliked{ background: url('../img/thumbs_big.png') no-repeat 100% 100%; }
-	.product-actions .product-share{ float:left; width: 45%; font-size: 16px; color: #B29957; margin: 0; position: absolute;}
+	.product-actions .product-share{ float:left; width: 45%; font-size: 16px; color: #B29957; margin: 0; }
 	.product-actions .product-share span{ display: inline-block; height: 36px; line-height: 36px; }
 	.product-actions .product-share a{ width: 36px; height: 36px; text-decoration: none; display: inline-block; position: absolute; margin-left: 5px; }
 	#lnk-fb-share{ background: url('../img/share_icons.png') no-repeat 0 0;	}
@@ -461,7 +464,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 
 /*****Stylist and messages page****/
 	/*****Chat page****/
-	.user-container{width: 280px; float: left; margin: 30px 0 0 20px;}
+	.user-container{width: 280px; float: left; margin: 30px 0 0 20px; text-align: center;}
 	.stylist-talk{width: 580px; float: right; margin:30px 20px 0 0;}
 	.stylist-talk h4.talk-to{clear: both; padding-top: 20px; }
 	.timeline .img-container{ background-color: #C5B770; height: 135px; border-top-right-radius: 7px; border-top-left-radius: 7px; -moz-border-top-left-radius: 7px; -webkit-border-top-left-radius: 7px; -moz-border-top-right-radius: 7px; -webkit-border-top-right-radius: 7px; border-left: solid 1px #A59A3E; border-right: solid 1px #A59A3E; border-top: solid 1px #A59A3E; }
@@ -470,16 +473,17 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	.timeline #user-name{ padding-top: 50px; text-align: center; font-family: Conv_Novecento-Book, sans-serif; font-size: 19px; text-transform: uppercase; color: #AE9B34; border-bottom: 1px solid  #DEDEDE; padding-bottom: 20px; }
 	.timeline #user-name a, .timeline .stylist-info a { color: #AE9B34; text-decoration: none; }
 	span.stylist-name { color: #87878F; font-family: 'sweetsans-regular',sans-serif !important; font-size: 12px; text-transform: capitalize; }
-	.timeline .stylist-info { color: #A7A7A7; padding: 15px 10px 15px 40px; font-size: 12px; word-wrap: break-word; }
+	.timeline .stylist-info { color: #A7A7A7; padding: 15px 5px; font-size: 12px; word-wrap: break-word; }
 	.timeline .stylist-info span img { margin-right: 8px; }
 	.timeline .last-user-purchase, .timeline .recent-activity { color: #A7A7A7; text-align: center; border-bottom: 1px solid #DEDEDE; padding:15px 10px; font-size:12px; }
 	.timeline .recent-activity{border: none;}
 	.timeline .last-user-purchase span, .timeline .recent-activity span { color: #444444; }
-	.timeline input.my-profile { border: none; color: white; width: 150px; background-color: #B09A34; border-radius: 3px; margin-left: 65px; height: 30px; }
+	.timeline input.my-profile { border: none; color: white; background-color: #B09A34; border-radius: 3px; padding: 5px; height: 30px; }
 	div.stylist-talk .chat-msg-txtbox {width: 100%; padding: 10px; height: 90px; border: 1px solid #B09A34; border-radius: 5px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
-	div.stylist-talk #sendMessages, #createOutfit{float: right; width: auto; padding: 1px 15px;}
+	div.stylist-talk #sendMessages, #createOutfit{float: right;}
 	p.send-photo{text-align: right;}
-	p.send-photo a#sendphoto {padding: 1px 12px;}
+	#createOutfit{padding: 1px 12px;  line-height: 21px;}
+	p.send-photo a#sendphoto ,div.stylist-talk #sendMessages {padding: 1px 12px; width: 170px; text-align: center; line-height: 21px;}
 	.new-clients-head{font-size: 16px;padding-left: 8px; margin-right: 5px;}
 	.new-clients{ border: 1px solid #D2D2D2; padding: 5px; height: 266px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     -o-border-radius: 5px; border-radius: 5px; overflow-y: scroll; }
@@ -505,7 +509,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	.chat-msg-box.cur-user-msg {  background-color: #EDEDED; }
 	.chat-outfit-box { margin-left: 10px; }
 	.chat-msg-box .product-list-image { height: 137px; border: 1px solid #797979; background-color: #FFFFFF; line-height: 135px; text-align: center; }
-	.chat-outfit-box .chat-product-box{width: 100px; margin-right: 10px; display: inline-block;}
+	.chat-outfit-box .chat-product-box{width: 100px; margin-right: 10px; margin-bottom: 5px; display: inline-block;}
 	#loadOldMsgs { text-align: center; border: 1px solid #D2D2D2; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; margin-top: 19px; padding: 10px; }
 	div.stylist-talk div.select{margin: 0; float: left; width: 50%;}
 	div.stylist-talk div.select select{padding: 2px; max-width: 100% !important;}
@@ -568,7 +572,8 @@ div.mgs-btn{bottom: 10%;}
 div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
 div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}
 	/******Anchor on images*****/
-	a.over-img{display: block}
+	a.over-img{display: block;}
+	a.over-img img{width: 100%;}
 
 /********Mobile CSS**********/
 
@@ -657,7 +662,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}
         .product-box, .outfit-item{margin: 0 0 20px 25px !important; /*width: 100% !important;*/}
         .sort-block{position: relative !important; top:0 !important;}
         .product-breadcrumb{margin-left: 25px;}   
-        .user-container, .stylist-talk, .chat-outfit-box .chat-product-box, .srs-closet-cont .product-listing{width: 95% !important;margin: 20px auto 0 !important; float: none !important;}
+        .user-container, .stylist-talk, .srs-closet-cont .product-listing{width: 95%;margin: 20px auto 0 !important; float: none !important;}
         .outfit-modal{height: 100%; }  
         .box-modal{width: 380px;} 
         ul#branding-partners {text-align: center;}
@@ -698,7 +703,6 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}
 	.popup-info-sign { margin-top: 25px;}
 	div.stylist-talk div.select{width: 100%;}
 	div.stylist-talk h4.talk-to{clear: both; padding: 20px 0 0;}
-	.product-list-links .btn-user-closet, .product-list-links .btn-srs-closet{float: none; margin-bottom: 5px; }
 	#add-outfit{margin-right: 0;}
 	div.outfit-form div {margin: 10px 0;}
 	.liked-list-cont .product-listing-box, .purchased-list-cont .product-listing-box{height: 1600px;}
