@@ -68,7 +68,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="twelve columns content inner homepage"> 
     <div class="mega-banner">
         <div class="mg-big">
-            <a href="#" class="over-img">
+            <?php if($is_logged && $has_stylist) : ?>
+                <a class="over-img" href="<?php echo $this->request->webroot; ?>messages/index/">
+            <?php elseif($is_logged) : ?>
+                <a class="over-img" href="<?php echo $this->request->webroot; ?>profile/about">
+            <?php else : ?>
+                <a class="over-img" href="#" onclick="window.ref_url=''; signUp();">
+            <?php endif; ?>
                 <img src="<?php echo $this->webroot; ?>img/h_1.jpg" />
             </a>
             <div id="my-stylist">
@@ -87,16 +93,23 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         </div>
         <div class="mg-small">
             <div class="mg-small-1"> 
-
-                <a href="" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_2.jpg" /></a>     
+                <?php if($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>fitting-room" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_2.jpg" /></a>
+                <?php else : ?>
+                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_2.jpg" /></a>
+                <?php endif; ?>    
                 <div class="mgs-btn">
-                    <a class="link-btn black-btn" href="/fitting-room">Make a fitting <br />appointment</a>
+                    <?php if($is_logged) : ?>
+                        <a class="link-btn black-btn" href="<?php echo $this->request->webroot; ?>fitting-room">Make a fitting <br />appointment</a>
+                    <?php else : ?>
+                        <a class="link-btn black-btn" href="#" onclick="window.ref_url=''; signUp();">Make a fitting <br />appointment</a>
+                    <?php endif; ?> 
                 </div> 
             </div>
             <div class="mg-small-2">                
-                <a href="" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_3.jpg" /></a>              
+                <a href="<?php echo $this->request->webroot; ?>/lookbooks/" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_3.jpg" /></a>              
                 <div class="mgs-btn">
-                    <a class="link-btn black-btn" href="">get this look<br /> from the closet</a>
+                    <a class="link-btn black-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">get this look<br /> from the closet</a>
                 </div> 
             </div>
         </div>
@@ -109,7 +122,16 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>
     <div class="eleven columns container works-boxes">
         <div class="work-box">
-            <a href="#" class="over-img"><img src="<?php echo $this->webroot; ?>img/how-it-works/1.png" /></a>
+            <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>myprofile" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/1.png" />
+            </a>
+
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_1.png" /></span>
             <span class="works-desc">Give us your information, and be assigned a personal shopper</span>
             <div class="wrok-btn-box"><a class="works-btn">Register</a></div>
@@ -123,7 +145,16 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <?php endif; ?>
         </div> 
          <div class="work-box">
-            <a href="#" class="over-img"><img src="<?php echo $this->webroot; ?>img/how-it-works/2.png" /></a>
+            <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/2.png" />
+            </a>
+
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_2.png" /></span>
             <span class="works-desc">Communicate on the website, on the phone or make an in-showroom appointment</span>
             <?php if($is_logged && $has_stylist) : ?>
@@ -135,11 +166,20 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <?php endif; ?>
         </div> 
          <div class="work-box">
-            <a href="#" class="over-img"><img src="<?php echo $this->webroot; ?>img/how-it-works/3.png" /></a>
+            <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/3.png" />
+            </a>
+
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_3.png" /></span>
             <span class="works-desc">dress for the life you want</span>
             <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Look sharp</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
             <?php elseif($is_logged) : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Look sharp</a></div>
             <?php else : ?>
@@ -153,7 +193,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>
     <div class="eleven columns stylist-boxes">
         <div class="stylist-box">
-            <a href="#" class="over-img">
+            <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
                 <div class="img-box">
                     <img src="<?php echo $this->webroot; ?>img/how-it-works/img_1.png" />
                     <div class="overlay"></div>
@@ -163,7 +209,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <span class="stylist-desc">Signing up with Savile Row Society means you’ll be assigned a personal stylist who will get to know your tastes and preferences, catering to all of your wardrobe and lifestyle needs.</span>
         </div> 
          <div class="stylist-box">
-            <a href="#" class="over-img">
+           <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
                 <div class="img-box">
                     <img src="<?php echo $this->webroot; ?>img/how-it-works/img_2.jpg" />
                     <div class="overlay"></div>
@@ -173,7 +225,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <span class="stylist-desc">Algorithms are great to find the cheapest flight, but fashion is about more than logic. Our tenured stylists are the best of the best, and will work hard to make our virtual closet, your reality.</span>
         </div> 
          <div class="stylist-box">
-           <a href="#" class="over-img">
+            <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
                <div class="img-box">
                     <img src="<?php echo $this->webroot; ?>img/how-it-works/img_3.jpg" />
                     <div class="overlay"></div>
@@ -183,7 +241,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <span class="stylist-desc">You can chat with your stylist online, on the phone, or even in person during an appointment at our showroom.</span>            
         </div>
         <div class="stylist-box">
-           <a href="#" class="over-img">
+           <a href="<?php echo $this->request->webroot; ?>closet" class="over-img">
                <div class="img-box">
                     <img src="<?php echo $this->webroot; ?>img/how-it-works/img_4.png" />
                     <div class="overlay"></div>
@@ -199,7 +257,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>
     <div class="eleven columns container shopping-boxes">
         <div class="shopping-box text-left">
-            <a href="#" class="over-img">
+            <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
                 <div class="img-box">
                     <img src="<?php echo $this->webroot; ?>img/how-it-works/img_5.jpg" />
                     <div class="overlay"></div>
@@ -210,7 +274,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 </span>
         </div> 
          <div class="shopping-box text-left">
-            <a href="#" class="over-img">
+            <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>fitting-room" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
                 <div class="img-box">
                     <img src="<?php echo $this->webroot; ?>img/how-it-works/img_6.jpg" />
                     <div class="overlay"></div>
@@ -220,7 +290,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <span class="shopping-desc">Try on our ready to wear by booking a free appointment in our showroom.<br />Tailor your life with our made-to-measure collection by scheduling a free consultation with our tailor.<br />Our showroom is located in New York.</span>
         </div> 
          <div class="shopping-box text-left">
-            <a href="#" class="over-img">
+            <?php if($is_logged && $has_stylist) : ?>
+                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
+            <?php elseif($is_logged) : ?>
+                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
+            <?php else : ?>
+                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+            <?php endif; ?>
                 <div class="img-box">
                     <img src="<?php echo $this->webroot; ?>img/how-it-works/img_7.jpg" />
                     <div class="overlay"></div>

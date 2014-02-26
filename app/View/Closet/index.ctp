@@ -276,7 +276,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <div class="eleven columns container content inner">	
         <div class="closet-tabs text-center">
             <a href="<?php echo $this->webroot . 'closet'; ?>" class="link-btn gold-btn">Curated Collection</a>
-            <a href="<?php echo $this->webroot . 'lookbooks'; ?>" class="link-btn black-btn">Lookbooks</a>
+            <a href="<?php echo $this->webroot . 'lookbooks/'; ?>" class="link-btn black-btn">Lookbooks</a>
         </div>
         <div class="twelve columns">
             <div class="two columns alpha side-filter left">
