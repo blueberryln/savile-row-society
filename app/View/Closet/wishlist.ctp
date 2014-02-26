@@ -37,8 +37,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
         </div>
             <div class="eleven columns omega product-listing center-block wishlist">
                 <div class="mycloset-tabs text-center">
-                    <a href="<?php echo $this->webroot . 'mycloset/liked/' . $user_id; ?>" class="link-btn black-btn">Liked Items</a>
-                    <a href="<?php echo $this->webroot . 'mycloset/purchased/' . $user_id; ?>" class="link-btn gray-btn">Purchased Items</a>
+                    <a href="<?php echo $this->webroot . 'mycloset/liked/' . $user_id; ?>" class="link-btn gold-btn">Liked Items</a>
+                    <a href="<?php echo $this->webroot . 'mycloset/purchased/' . $user_id; ?>" class="link-btn black-btn">Purchased Items</a>
                 </div>
                 <?php if ($wishlists) : ?>
                     <?php foreach ($wishlists as $item) : ?>

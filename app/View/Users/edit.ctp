@@ -35,7 +35,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         <div class="eight columns register-steps center-block">
             <div class="profile-tabs text-center">
                         <a class="link-btn black-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
-                        <a class="link-btn gray-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+                        <a class="link-btn gold-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
         </div>
         <?php echo $this->Form->create('User'); ?>        

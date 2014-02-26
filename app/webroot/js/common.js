@@ -208,7 +208,7 @@ jQuery(function(){
 
 
     if($('#flash-box').length){
-        $.blockUI({message: $('#flash-box'), timeout: 50000});
+        $.blockUI({message: $('#flash-box'), timeout: 5000});
     }
     $('.blockOverlay, .notification-close').on('click', function(e){
         e.preventDefault();

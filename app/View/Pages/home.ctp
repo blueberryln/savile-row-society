@@ -68,7 +68,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="twelve columns content inner homepage"> 
     <div class="mega-banner">
         <div class="mg-big">
-            <img src="<?php echo $this->webroot; ?>img/h_1.jpg" />
+            <a href="#" class="over-img">
+                <img src="<?php echo $this->webroot; ?>img/h_1.jpg" />
+            </a>
             <div id="my-stylist">
                 <?php if($is_logged && $has_stylist) : ?>
                     <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Meet My Stylist</a>
@@ -79,22 +81,23 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php endif; ?>
             </div>
         </div>
-        <div class="mg-vid">
-            <img src="<?php echo $this->webroot; ?>img/h_4.jpg" />
+        <div class="mg-vid">            
+                <img src="<?php echo $this->webroot; ?>img/h_4.jpg" />
             <!-- <iframe class="max-width-adj" src="http://www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>  -->           
         </div>
         <div class="mg-small">
-            <div class="mg-small-1">
-                <img src="<?php echo $this->webroot; ?>img/h_2.jpg" />
+            <div class="mg-small-1"> 
+
+                <a href="" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_2.jpg" /></a>     
                 <div class="mgs-btn">
                     <a class="link-btn black-btn" href="/fitting-room">Make a fitting <br />appointment</a>
-                </div>
+                </div> 
             </div>
-            <div class="mg-small-2">
-                <img src="<?php echo $this->webroot; ?>img/h_3.jpg" />
-                <!-- <div class="mgs-btn">
+            <div class="mg-small-2">                
+                <a href="" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_3.jpg" /></a>              
+                <div class="mgs-btn">
                     <a class="link-btn black-btn" href="">get this look<br /> from the closet</a>
-                </div> -->
+                </div> 
             </div>
         </div>
         <div class="clear-fix"></div> 
@@ -106,7 +109,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>
     <div class="eleven columns container works-boxes">
         <div class="work-box">
-            <img src="<?php echo $this->webroot; ?>img/how-it-works/1.png" />
+            <a href="#" class="over-img"><img src="<?php echo $this->webroot; ?>img/how-it-works/1.png" /></a>
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_1.png" /></span>
             <span class="works-desc">Give us your information, and be assigned a personal shopper</span>
             <div class="wrok-btn-box"><a class="works-btn">Register</a></div>
@@ -120,7 +123,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <?php endif; ?>
         </div> 
          <div class="work-box">
-            <img src="<?php echo $this->webroot; ?>img/how-it-works/2.png" />
+            <a href="#" class="over-img"><img src="<?php echo $this->webroot; ?>img/how-it-works/2.png" /></a>
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_2.png" /></span>
             <span class="works-desc">Communicate on the website, on the phone or make an in-showroom appointment</span>
             <?php if($is_logged && $has_stylist) : ?>
@@ -132,7 +135,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <?php endif; ?>
         </div> 
          <div class="work-box">
-            <img src="<?php echo $this->webroot; ?>img/how-it-works/3.png" />
+            <a href="#" class="over-img"><img src="<?php echo $this->webroot; ?>img/how-it-works/3.png" /></a>
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_3.png" /></span>
             <span class="works-desc">dress for the life you want</span>
             <?php if($is_logged && $has_stylist) : ?>
@@ -150,34 +153,42 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>
     <div class="eleven columns stylist-boxes">
         <div class="stylist-box">
-            <div class="img-box">
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/img_1.png" />
-                <div class="overlay"></div>
-            </div>            
+            <a href="#" class="over-img">
+                <div class="img-box">
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_1.png" />
+                    <div class="overlay"></div>
+                </div>            
+            </a>
             <h3>Your own very stylist</h3>
             <span class="stylist-desc">Signing up with Savile Row Society means you’ll be assigned a personal stylist who will get to know your tastes and preferences, catering to all of your wardrobe and lifestyle needs.</span>
         </div> 
          <div class="stylist-box">
-            <div class="img-box">
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/img_2.png" />
-                <div class="overlay"></div>
-            </div>            
+            <a href="#" class="over-img">
+                <div class="img-box">
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_2.jpg" />
+                    <div class="overlay"></div>
+                </div>   
+            </a>         
             <h3>A real expert</h3>
             <span class="stylist-desc">Algorithms are great to find the cheapest flight, but fashion is about more than logic. Our tenured stylists are the best of the best, and will work hard to make our virtual closet, your reality.</span>
         </div> 
          <div class="stylist-box">
-           <div class="img-box">
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/img_3.png" />
-                <div class="overlay"></div>
-            </div>            
+           <a href="#" class="over-img">
+               <div class="img-box">
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_3.jpg" />
+                    <div class="overlay"></div>
+                </div>    
+            </a>        
             <h3>Communicate easily</h3>
             <span class="stylist-desc">You can chat with your stylist online, on the phone, or even in person during an appointment at our showroom.</span>            
         </div>
         <div class="stylist-box">
-           <div class="img-box">
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/img_4.png" />
-                <div class="overlay"></div>
-            </div>            
+           <a href="#" class="over-img">
+               <div class="img-box">
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_4.png" />
+                    <div class="overlay"></div>
+                </div>            
+            </a>
             <h3>Rate products</h3>
             <span class="stylist-desc">Your personal stylist wants your feedback! Like and dislike their suggestions to give them a better sense of your style preferences.</span>
         </div>  
@@ -188,18 +199,33 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>
     <div class="eleven columns container shopping-boxes">
         <div class="shopping-box text-left">
-            <img src="<?php echo $this->webroot; ?>img/how-it-works/img_5.png" />
+            <a href="#" class="over-img">
+                <div class="img-box">
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_5.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </a>
             <h3>Shop online</h3>
             <span class="shopping-desc">From your personal stylist’s selection curated solely for you.<br />In the Closet, where we display a selection of our products.<br />Get free shipping and hassle free return.
 </span>
         </div> 
          <div class="shopping-box text-left">
-            <img src="<?php echo $this->webroot; ?>img/how-it-works/img_6.png" />
+            <a href="#" class="over-img">
+                <div class="img-box">
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_6.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </a>
             <h3>Shop in person</h3>
             <span class="shopping-desc">Try on our ready to wear by booking a free appointment in our showroom.<br />Tailor your life with our made-to-measure collection by scheduling a free consultation with our tailor.<br />Our showroom is located in New York.</span>
         </div> 
          <div class="shopping-box text-left">
-            <img src="<?php echo $this->webroot; ?>img/how-it-works/img_7.png" />
+            <a href="#" class="over-img">
+                <div class="img-box">
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_7.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </a>
             <h3>You decide</h3>
             <span class="shopping-desc">Your personal stylist is here to guide you through our collection and find the best products for your lifestyle, however, you and only you, decide what you want on your doorstep at the end of the day</span>
         </div> 

@@ -40,7 +40,7 @@ window.registerProcess = true;
                 <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
 
                 <div class='empty-img' id='photo-holder'>
-                <img src='<?php echo $image_url ?>' id='user-photo'/>
+                <img src='<?php echo $image_url; ?>' id='user-photo'/>
                 </div>                
                 <input type='button' value='Upload photo' id='upload-img' class="gray-btn"/>
 
