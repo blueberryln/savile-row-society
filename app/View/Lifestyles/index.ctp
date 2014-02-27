@@ -2,20 +2,6 @@
 $script = '
 
 $(document).ready(function(){   
-    $(".flexslider").flexslider({
-                animation: "slide",
-                animationSpeed: 300,  
-                animationLoop: true,
-                slideshow: false,          
-                slideshowSpeed: 4000, 
-                video: true,
-                useCSS: true,
-                pauseOnAction: false,
-                controlNav: false,
-                directionNav: true,
-                keyboard: false                
-            });
-    
     $(".thumbs-up").click(function(e) {
         e.preventDefault();
         $this = $(this);
@@ -77,26 +63,11 @@ $(document).ready(function(){
             );
         }
     });
-    
-    $("#slides").slidesjs({
-        width: 940,
-        height: 528,
-        navigation: false,
-          active: true,
-      });
-
-    $(".slidesjs-previous").click(function(){
-        console.log("previous");
-    })
-    $(".slidesjs-next").click(function(){
-        console.log("next");
-    })
 });
 ';
 
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
-$this->Html->script('jquery.flexslider-min.js', array('inline' => false));
 $this->Html->css('flexslider', null, array("inline" => false));
 
 $meta_description = 'Show your support and desire to be an SRS member by sporting one of our iPhones/iPad cases!';
@@ -151,7 +122,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         </div>
     </div>
 </div>
-
+<script src="/js/jquery.flexslider-min.js"></script>
 <script type="text/javascript">
 <?php
 echo '
@@ -161,61 +132,82 @@ echo '
 ?>
 var loadLookbookItems = function(lookbookId){
     var lookbookProductBox = $(".lb-products tbody");
+    lookbookProductBox.html('');
 
     if(lifestyles[lookbookId] != undefined){
         var curLookbook = lifestyles[lookbookId],
-            curLookbookLength = curLookbook.LifestyleItem.length,
+            curLookbookLength = curLookbook["LifestyleItem"].length,
             curLookbookItemHtml = "";
         if(curLookbookLength){
             for(var i=0; i<curLookbookLength; i++){
-                var curEntityId = curLookbook["LifestyleItem"][i]["product_entity_id"],
-                    curEntity = entities[curEntityId];
-                
-                var entityDesc = curEntity["Entity"]["description"].substr(0, 120);
-                if(curEntity["Image"] != undefined){
-                    entityImage = "<?php echo $this->request->webroot; ?>products/resize/" + curEntity["Image"][0]["name"] + "/65/87"; 
-                }
-                else{
-                    entityImage = "<?php echo $this->request->webroot; ?>img/image_not_available-small.png";
-                } 
+                var curEntityId = curLookbook["LifestyleItem"][i]["product_entity_id"];
+                if(entities[curEntityId]){
+                    var curEntity = entities[curEntityId];
+                    
+                    var entityDesc = curEntity["Entity"]["description"].substr(0, 120);
+                    if(curEntity["Image"] != undefined){
+                        entityImage = "<?php echo $this->request->webroot; ?>products/resize/" + curEntity["Image"][0]["name"] + "/65/87"; 
+                    }
+                    else{
+                        entityImage = "<?php echo $this->request->webroot; ?>img/image_not_available-small.png";
+                    } 
 
-                curLookbookItemHtml = 
-                    "<tr class='lifestyle-product-block'>" +
-                        "<td class='product-thumb text-center'>" +
-                            "<div class='product-thumb-cont'>" + 
-                                "<a href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id']  + "/" + curEntity['Entity']['slug'] + "'>" + 
-                                    "<img src='" + entityImage + "' alt='' />" + 
-                                "</a>" +
-                            "</div>" +
-                        "</td>" + 
-                        "<td class=''>" + 
-                            "<h6><a href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>" + curEntity['Entity']['name'] + "</a></h6>" + 
-                            "<small class='description'>" + entityDesc + "</small>" + 
-                        "</td>" + 
-                        "<td class='like-dislike-links text-center'>" + 
-                            "<input type='hidden' value='" + curEntity['Entity']['id'] + "' class='product-id' />";
+                    curLookbookItemHtml = 
+                        "<tr class='lifestyle-product-block'>" +
+                            "<td class='product-thumb text-center'>" +
+                                "<div class='product-thumb-cont'>" + 
+                                    "<a href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id']  + "/" + curEntity['Entity']['slug'] + "'>" + 
+                                        "<img src='" + entityImage + "' alt='' />" + 
+                                    "</a>" +
+                                "</div>" +
+                            "</td>" + 
+                            "<td class=''>" + 
+                                "<h6><a href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>" + curEntity['Entity']['name'] + "</a></h6>" + 
+                                "<small class='description'>" + entityDesc + "</small>" + 
+                            "</td>" + 
+                            "<td class='like-dislike-links text-center'>" + 
+                                "<input type='hidden' value='" + curEntity['Entity']['id'] + "' class='product-id' />";
 
-                if(curEntity['Wishlist'] != undefined){
-                    var dislikeClass = (curEntity['Dislike']['id']) ? "disliked" : "";
-                    var likeClass = (curEntity['Wishlist']['id']) ? "liked" : "";
-                    curLookbookItemHtml += "<a href='' class='thumbs-up " + likeClass + "'></a>" + 
-                    "<a class='link-btn black-btn lb-to-cart' href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>BUY</a>" + 
-                    "<a href='' class='thumbs-down " + dislikeClass + "'></a>" + 
-                    "<td></tr>";
-                }
-                else{
-                    curLookbookItemHtml += "<a class='link-btn black-btn lb-to-cart' href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>BUY</a>" + 
-                    "</td></tr>";
-                }  
-                
-                lookbookProductBox.append(curLookbookItemHtml);     
+                    if(curEntity['Wishlist'] != undefined){
+                        var dislikeClass = (curEntity['Dislike']['id']) ? "disliked" : "";
+                        var likeClass = (curEntity['Wishlist']['id']) ? "liked" : "";
+                        curLookbookItemHtml += "<a href='' class='thumbs-up " + likeClass + "'></a>" + 
+                        "<a class='link-btn black-btn lb-to-cart' href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>BUY</a>" + 
+                        "<a href='' class='thumbs-down " + dislikeClass + "'></a>" + 
+                        "<td></tr>";
+                    }
+                    else{
+                        curLookbookItemHtml += "<a class='link-btn black-btn lb-to-cart' href='<?php echo $this->request->webroot; ?>product/" + curEntity['Entity']['id'] + "/" + curEntity['Entity']['slug'] + "'>BUY</a>" + 
+                        "</td></tr>";
+                    }  
+                    
+                    lookbookProductBox.append(curLookbookItemHtml); 
+                }    
             }
-        } 
-        window.location.hash = lookbookId;   
+        }   
     }    
 }
 $(document).ready(function(){
-    loadLookbookItems(lifestylesIds[0]);
+    $(".flexslider").flexslider({
+        animation: "slide",
+        animationSpeed: 300,  
+        animationLoop: true,
+        slideshow: false,          
+        slideshowSpeed: 4000, 
+        video: true,
+        useCSS: true,
+        pauseOnAction: false,
+        controlNav: false,
+        directionNav: true,
+        keyboard: false,
+        after: function(slider) {
+            var newLookbookId = $(".flex-active-slide img").data("lifestyle-id");
+            console.log(newLookbookId);
+            loadLookbookItems(newLookbookId);
+        }                
+    });
+    
+    loadLookbookItems(lifestylesIds[0]);  
 });
 
 </script>

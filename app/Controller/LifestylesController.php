@@ -32,7 +32,7 @@ class LifestylesController extends AppController{
 
 
         $entity_list = $this->Lifestyle->LifestyleItem->getLifestyleProducts($lifestyle_ids);
-        
+
         $Entity = ClassRegistry::init('Entity');
         if($user_id){
             $entity_data = $Entity->getEntitiesById($entity_list, $user_id);    

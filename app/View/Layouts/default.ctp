@@ -127,9 +127,7 @@
 
         <!--Modal Notifications-->
             <?php
-            if (!$is_logged){
                 echo $this->element('popup/notification');    
-            }
             ?>    
 
 
