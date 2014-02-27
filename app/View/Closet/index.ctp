@@ -405,7 +405,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <?php else : ?>
                 <div class="product-top-offset"></div>
                 <div class="closet-sorry">
-                    <h4 class="text-center">SORRY!</h4> 
+                    <h4>SORRY!</h4> 
                     <h5>There are no products available for this category.</h5>            
                 </div>                
                 <?php endif; ?>
