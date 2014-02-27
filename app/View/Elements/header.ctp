@@ -1,7 +1,8 @@
 <?php
 $script='
     jQuery(document).ready(function(){
-        jQuery("#menu-switcher").on("click", function(){            
+        jQuery("#menu-switcher").on("click", function(){  
+            jQuery(this).toggleClass("menu-anim");          
             var menu = jQuery(".header .menu");
             jQuery(menu).slideToggle();  
         });
@@ -105,7 +106,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
        
         
-        <span id="menu-switcher">&#8801;</span>
+        <span id="menu-switcher"><!-- &#8801; --><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span>
         <!--Menu Section-->
         <div class="menu right">            
             <ul>                
