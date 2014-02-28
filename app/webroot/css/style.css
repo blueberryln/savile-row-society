@@ -106,9 +106,11 @@ input[type="submit"]{color: #fff;}
 	.header .menu .submenu { background-color: #ffffff; border: 1px solid #CCCCCC; cursor: auto; display: none; margin: 2px 0 0 -14px; padding: 0; position: absolute; z-index: 100; text-align: left; }
 	.header .menu .submenu li {border:none; display: block;}
 	.header .menu .submenu li a{color: #b4b4b4;}
-	#menu-switcher{color: #000; font-size: 40px; position: absolute; right: 5px; bottom: 5px; display: none; cursor: pointer;}
+	#menu-switcher{color: #000; font-size: 40px; position: absolute; right: 5px; bottom: 5px; display: none; cursor: pointer; -webkit-transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; -ms-transition: all 0.3s linear; transition: all 0.3s linear;}
+	#menu-switcher img{width: 28px; height: 28px;}
 	span.call-us-at{position: absolute; bottom: 5px; right:5px; font-family: Helvetica, Arial, sans-serif; font-size: 12px;}
-
+	/******Menu Switcher Animation*****/
+	.menu-anim{-webkit-transform: rotate(-90deg); -moz-transform: rotate(90deg); -o-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg);}
 /*******Middle Section*********/
 .content-container{background-color: #fff;}
 .content{padding: 10px 0 20px 0; background-color: #FFFFFF;}
@@ -751,3 +753,4 @@ div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
 	.slides img{max-height: 200px !important;}
 	.content .page-heading h1, .content .block-heading h1, h1.pop-heading{line-height: normal;}
 	}
+
