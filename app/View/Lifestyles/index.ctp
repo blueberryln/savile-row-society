@@ -184,30 +184,56 @@ var loadLookbookItems = function(lookbookId){
                     lookbookProductBox.append(curLookbookItemHtml); 
                 }    
             }
-        }   
+        } 
+        window.location.hash = lookbookId;  
     }    
 }
 $(document).ready(function(){
-    $(".flexslider").flexslider({
-        animation: "slide",
-        animationSpeed: 300,  
-        animationLoop: true,
-        slideshow: false,          
-        slideshowSpeed: 4000, 
-        video: true,
-        useCSS: true,
-        pauseOnAction: false,
-        controlNav: false,
-        directionNav: true,
-        keyboard: false,
-        after: function(slider) {
-            var newLookbookId = $(".flex-active-slide img").data("lifestyle-id");
-            console.log(newLookbookId);
-            loadLookbookItems(newLookbookId);
-        }                
-    });
-    
-    loadLookbookItems(lifestylesIds[0]);  
+    var loadLookbookId = window.location.hash.replace("#","");
+    if(loadLookbookId != "" && loadLookbookId > 0 && lifestyles[loadLookbookId] != undefined){
+
+        $(".flexslider").flexslider({
+            animation: "slide",
+            animationSpeed: 300,  
+            animationLoop: true,
+            slideshow: false,          
+            slideshowSpeed: 4000, 
+            video: true,
+            useCSS: true,
+            pauseOnAction: false,
+            controlNav: false,
+            directionNav: true,
+            keyboard: false,
+            startAt: lifestylesIds.indexOf(loadLookbookId),
+            after: function(slider) {
+                var newLookbookId = $(".flex-active-slide img").data("lifestyle-id");
+                console.log(newLookbookId);
+                loadLookbookItems(newLookbookId);
+            }                
+        });
+        loadLookbookItems(loadLookbookId);
+    }
+    else{
+        $(".flexslider").flexslider({
+            animation: "slide",
+            animationSpeed: 300,  
+            animationLoop: true,
+            slideshow: false,          
+            slideshowSpeed: 4000, 
+            video: true,
+            useCSS: true,
+            pauseOnAction: false,
+            controlNav: false,
+            directionNav: true,
+            keyboard: false,
+            after: function(slider) {
+                var newLookbookId = $(".flex-active-slide img").data("lifestyle-id");
+                console.log(newLookbookId);
+                loadLookbookItems(newLookbookId);
+            }                
+        });    
+        loadLookbookItems(lifestylesIds[0]);
+    }
 });
 
 </script>

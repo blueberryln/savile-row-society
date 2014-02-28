@@ -300,7 +300,7 @@ class OutfitsController extends AppController {
                     $Message = ClassRegistry::init('Message');
                     $data['Message']['user_to_id'] = $client_id;
                     $data['Message']['user_from_id'] = $user_id;
-                    $data['Message']['body'] = $this->request->data['outfit_msg'];
+                    $data['Message']['body'] = (isset($this->request->data['outfit_msg']) && $this->request->data['outfit_msg']) ? $this->request->data['outfit_msg'] : "outfit";
                     $data['Message']['is_outfit'] = 1;
                     $data['Message']['outfit_id'] = $outfit_id;
                     $Message->create();

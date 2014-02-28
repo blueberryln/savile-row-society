@@ -26,13 +26,13 @@ $script='
             
             var testimonialInterval = setInterval(function(){
                 var newTestimonial = currentTestimonial = (testimonials.length == (currentTestimonial + 1)) ? 0 : currentTestimonial + 1;
-                testimonialBlock.animate({opacity: 0}, 300, function(){
+                testimonialBlock.animate({opacity: 0}, 400, function(){
                     testimonialUser.text(testimonials[newTestimonial]["name"]);
                     testimonialProfession.text(testimonials[newTestimonial]["profession"]);
                     testimonialText.text(testimonials[newTestimonial]["text"]);
-                    testimonialBlock.animate({opacity: 1}, 500);
+                    testimonialBlock.animate({opacity: 1}, 700);
                 })
-            }, 4000);     
+            }, 6000);     
     });    
    
    

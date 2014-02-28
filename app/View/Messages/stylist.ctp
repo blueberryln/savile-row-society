@@ -410,7 +410,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             if(chatMsg['Message']['is_outfit'] == 1){
                 html = html + '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
                 html = html + '<div class="message-caption">You suggested new items to complete a style:</div>'; 
-                if(chatMsg['Message']['body'] != ''){
+                if(chatMsg['Message']['body'] != '' && chatMsg['Message']['body'] != 'outfit'){
                     html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
                 }
                 

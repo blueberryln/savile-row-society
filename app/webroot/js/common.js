@@ -28,7 +28,8 @@ function signUp(e) {
         url: "/register"
     }).done(function(res) {
         $("#signup-popup").html(res);
-        $.blockUI({message: $('#signup-popup'), css: {top: $(window).height()/2 - $("#signup-popup").height()/2}});
+        var blockTop = $(window).height()/2 - $("#signup-popup").height()/2;
+        $.blockUI({message: $('#signup-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
         $('.blockOverlay').click($.unblockUI);
         //addReferrerToSignUp();
     });
@@ -40,7 +41,8 @@ function signIn() {
         url: "/signin"
     }).done(function(res) {
         $("#signin-popup").html(res);
-        $.blockUI({message: $('#signin-popup'), css: {top: $(window).height()/2 - $("#signin-popup").height()/2}});
+        var blockTop = $(window).height()/2 - $("#signin-popup").height()/2;
+        $.blockUI({message: $('#signin-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
         $('.blockOverlay').click($.unblockUI);
 
         //addReferrerToLogIn();

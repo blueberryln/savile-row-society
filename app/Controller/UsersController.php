@@ -419,17 +419,19 @@ class UsersController extends AppController {
             
             if ($this->User->save($user)) {
                 $result = $this->User->getByID($id);
-
                 //Assign Stylist
                 if(!$result['User']['stylist_id']){
                     $this->assign_refer_stylist($id);
+
+                    App::import('Controller', 'Messages');
+                    $Messages = new MessagesController;
+                    $Messages->send_welcome_message($id);
                 }
 
                 $this->Session->write('user', $result);
-                $this->redirect('register/finish/' . $user['User']['id']);
-            } else {
-                // TODO: implement error handling
-            }
+
+                $this->redirect('/messages');
+            } 
         }
     }
 
@@ -748,16 +750,6 @@ class UsersController extends AppController {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
-
-        $heard_from_options = array(
-            '' => 'Please select',
-            'Search Engine' => 'Search Engine',
-            'Advertisement' => 'Advertisement',
-            'Friend' => 'Friend',
-            'Facebook' => 'Facebook',
-            'Twitter' => 'Twitter',
-            'Other' => 'Other'
-        );
         
         $industry = $this->industry_options;
         
@@ -918,12 +910,14 @@ class UsersController extends AppController {
         }
         else{
             if($default_stylist){
-                $user['User']['stylist_id'] = $default_stylist['User']['id'];    
+                $user['User']['stylist_id'] = $default_stylist['User']['id']; 
+                $new_stylist = $default_stylist;    
             }
             else{
                 $casey = $this->User->findByEmail("casey@savilerowsociety.com"); 
                 if($casey){
-                    $user['User']['stylist_id'] = $casey['User']['id'];     
+                    $user['User']['stylist_id'] = $casey['User']['id'];  
+                    $new_stylist = $casey;   
                 }   
             }    
         }
