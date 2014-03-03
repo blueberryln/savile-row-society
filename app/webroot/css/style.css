@@ -731,7 +731,7 @@ div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
 	.product-thumbs .thumbs-down{margin-right: 0;}
 	li.welcome-name{display: none;}
 	.box-modal-inside{padding: 25px 0;}
-	div.signup-content, div.signin-content{width: 100%; padding: 0 5px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box;}}
+	div.signup-content, div.signin-content{width: 100%; padding: 0 5px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box;}
 	.tm-info{padding: 0 5px;}
 	.team-member { width: 75%; }	
 	#closetinfo-box{width: 100%; height: auto; background-size: cover; padding: 0; padding-top: 45px; font-size: 14px; line-height: 18px;}
