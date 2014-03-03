@@ -319,20 +319,18 @@ $columns = 'eleven';
                 
                 
                 <?php if($entity['Entity']['price'] > 0) : ?>                                        
-                    <a href="" class="link-btn black-btn add-to-cart full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
+                    <a href="" class="link-btn gold-btn add-to-cart full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
                 <?php elseif($user_id) : ?>
                     <br>
                     <textarea class="txt-price-request" placeholder="Comments"></textarea>
-                    <a href="" class="link-btn black-btn btn-request-price full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
+                    <a href="" class="link-btn gold-btn btn-request-price full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
                 <?php else : ?>
                     <br>
                     <input type="text" placeholder="Email" id="request-email">
                     <span class="err-email-message">Please enter an email.</span>
                     <textarea class="txt-price-request" placeholder="Comments"></textarea>
-                    <a href="" class="link-btn black-btn btn-request-price full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
-                <?php endif; ?>
-                
-                <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue full-width text-center" >Continue Shopping</a>                 
+                    <a href="" class="link-btn gold-btn btn-request-price full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
+                <?php endif; ?>                
             </div>
             <div class="clear-fix"></div>
         </div>

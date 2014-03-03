@@ -313,24 +313,18 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="eleven columns home-branding-partners center-block">
         <span class="nine columns brands-desc">We select the best of the best. From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category. One thing is for sure, all of our partnering brands are passionate about clothing. <a href="<?php echo $this->request->webroot; ?>company/brands">See more brands</a></span>
         <ul id="branding-partners" class="eight columns center-block">
-                        <li><a href="http://blog.savilerowsociety.com/louis-walton/"><img src="<?php echo $this->webroot; ?>img/branding-partners/louis-walton.png" class="fadein-image" alt="Louis Walton" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/soxfords/"><img src="<?php echo $this->webroot; ?>img/branding-partners/soxfords.png" class="fadein-image" alt="Soxfords" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/austen-heller/"><img src="<?php echo $this->webroot; ?>img/branding-partners/austen-heller.png" class="fadein-image" alt="Austen Heller" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/clay-tompkins-press/"><img src="<?php echo $this->webroot; ?>img/branding-partners/tompkins.png" class="fadein-image" alt="Clay Tompkins" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/lacoste-press/"><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/paul-evans/"><img src="<?php echo $this->webroot; ?>img/branding-partners/paulevans.png" class="fadein-image" alt="Paul Evals" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/daniel-wellington/"><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/margo-petitti-2/"><img src="<?php echo $this->webroot; ?>img/branding-partners/petiti.png" class="fadein-image" alt="Margo Petitti" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/bernard-zins/"><img src="<?php echo $this->webroot; ?>img/branding-partners/Bernard_zins.jpg" class="fadein-image" alt="Bernard Zins" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/vk-nagrani/"><img src="<?php echo $this->webroot; ?>img/branding-partners/vknagrani.png" class="fadein-image" alt="VK Nagrani" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/smathers-and-branson/"><img src="<?php echo $this->webroot; ?>img/branding-partners/smathersAndBransonLogo.png" class="fadein-image" alt="Smathers and Branson" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/7-diamonds/"><img src="<?php echo $this->webroot; ?>img/branding-partners/7diamonds.png" class="fadein-image" alt="7 Diamonds" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/m-clip/"><img src="<?php echo $this->webroot; ?>img/branding-partners/mclip.gif" class="fadein-image" alt="M-Clip" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/edward-armah/"><img src="<?php echo $this->webroot; ?>img/branding-partners/edward.png" class="fadein-image" alt="Edward Armah" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/moore-and-giles/"><img src="<?php echo $this->webroot; ?>img/branding-partners/MooreandGiles.jpg" class="fadein-image" alt="Moore and Giles" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/agave-denim/"><img src="<?php echo $this->webroot; ?>img/branding-partners/agave.jpg" class="fadein-image" alt="Agave Denim" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/castaway-nantucket-island/"><img src="<?php echo $this->webroot; ?>img/branding-partners/castaway.jpg" class="fadein-image" alt="Castaway Nantucket Island" /></a></li>
-                        <li><a href="http://blog.savilerowsociety.com/cafe-blue/"><img src="<?php echo $this->webroot; ?>img/branding-partners/CafeBleu.png" class="fadein-image" alt="Cafe Blue" /></a></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/" class="fadein-image" alt="Barbour" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/smathersAndBransonLogo.png" class="fadein-image" alt="Smathers and Branson" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/vknagrani.png" class="fadein-image" alt="VK Nagrani" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/" class="fadein-image" alt="Cole Haan" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/paulevans.png" class="fadein-image" alt="Paul Evals" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/" class="fadein-image" alt="Allen Edmonds" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/agave.jpg" class="fadein-image" alt="Agave Denim" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/saxx-underwear.png" class="fadein-image" alt="SAXX-Underwear"></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/mclip.png" class="fadein-image" alt="M-Clip" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/edward.png" class="fadein-image" alt="Edward Harmah" /></li>
         </ul>
     </div>
 
