@@ -2,7 +2,7 @@
 $script = ' var brands = ' . json_encode($brands) . '; ' .
 ' $(document).ready(function(){ 
 	    var jeans = "50-300",
-          pants = "100-300",
+          shoes = "100-300",
           polo_tees = "50-200",
           shirt = "50-300",
           suits = "400-2000";
@@ -12,8 +12,8 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
           jeans = brands.range.jeans;  
         }
 
-        if(brands.range.pants){
-          pants = brands.range.pants;  
+        if(brands.range.shoes){
+          shoes = brands.range.shoes;  
         }
 
         if(brands.range.polo_tees){
@@ -56,15 +56,15 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
            }
        });
 	   
-       $( "#pants-brands #selectable" ).bind("mousedown", function(e) {
+       $( "#shoes-brands #selectable" ).bind("mousedown", function(e) {
          e.metaKey = true;
        }).selectable({
            stop: function() {
-               $("#pants-brands input:checkbox").prop("checked", false);
+               $("#shoes-brands input:checkbox").prop("checked", false);
                $( ".ui-selected", this ).each(function() {
                    $("p.error-msg").slideUp(300);
                    var selected_id = $(this).data("id");
-                   $("#pants-brands input:checkbox#" + selected_id).prop("checked", true);
+                   $("#shoes-brands input:checkbox#" + selected_id).prop("checked", true);
                });
            }
        });
@@ -118,13 +118,13 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
                     });
                 }
             }
-            if(brands.pants){
-                for(var i = 0; i<brands.pants.length; i++){
-                    $("#pants-brands > ol > li").each(function(){
-                        if($(this).find("img").attr("alt") == brands.pants[i]){
+            if(brands.shoes){
+                for(var i = 0; i<brands.shoes.length; i++){
+                    $("#shoes-brands > ol > li").each(function(){
+                        if($(this).find("img").attr("alt") == brands.shoes[i]){
                             $(this).attr("class", "ui-state-default ui-selectee ui-selected"); 
                             var id = $(this).data("id");
-                            $("#pants-brands input:checkbox#" +  id).prop("checked", true);   
+                            $("#shoes-brands input:checkbox#" +  id).prop("checked", true);   
                         }
                     });
                 }
@@ -159,7 +159,7 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
        });
        
        $("#brands-continue").click(function(event){                
-        if($("#polos_tees-brands li.ui-selected").length > 0 && $("#shirt-brands li.ui-selected").length > 0 && $("#pants-brands li.ui-selected").length > 0 && $("#jeans-brands li.ui-selected").length > 0 && $("#suits-brands li.ui-selected").length > 0)
+        if($("#polos_tees-brands li.ui-selected").length > 0 && $("#shirt-brands li.ui-selected").length > 0 && $("#shoes-brands li.ui-selected").length > 0 && $("#jeans-brands li.ui-selected").length > 0 && $("#suits-brands li.ui-selected").length > 0)
         {
               $("p.error-msg").slideUp(300);                    
         }else{
@@ -207,18 +207,18 @@ $script = ' var brands = ' . json_encode($brands) . '; ' .
         $("#jeans-range").val($("#jeans-range-slider").slider("values", 0) + "-" + $("#jeans-range-slider").slider("values", 1));
         $("#jeans-range-text").text("$" + $("#jeans-range-slider").slider("values", 0) + " - $" + $("#jeans-range-slider").slider("values", 1));   
 
-        $("#pants-range-slider").slider({
+        $("#shoes-range-slider").slider({
           range: true,
           min: 100,
           max: 300,
-          values: [ pants.split("-")[0], pants.split("-")[1] ],
+          values: [ shoes.split("-")[0], shoes.split("-")[1] ],
           slide: function( event, ui ) {
-            $("#pants-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
-            $("#pants-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
+            $("#shoes-range").val(ui.values[ 0 ] + "-" + ui.values[1] );
+            $("#shoes-range-text").text("$" + ui.values[ 0 ] + " - $" + ui.values[1] );
           }
         });
-        $("#pants-range").val($("#pants-range-slider").slider("values", 0) + "-" + $("#pants-range-slider").slider("values", 1));
-        $("#pants-range-text").text("$" + $("#pants-range-slider").slider("values", 0) + " - $" + $("#pants-range-slider").slider("values", 1));  
+        $("#shoes-range").val($("#shoes-range-slider").slider("values", 0) + "-" + $("#shoes-range-slider").slider("values", 1));
+        $("#shoes-range-text").text("$" + $("#shoes-range-slider").slider("values", 0) + " - $" + $("#shoes-range-slider").slider("values", 1));  
 
         $("#shirt-range-slider").slider({
           range: true,
@@ -294,9 +294,14 @@ window.registerProcess = true;
                           <span>Jeans</span>
                       </a>
                   </li>
-                   <li>
+                   <!--<li>
                       <a data-tab="pants-brands" class="brand-link" data-origin-css='brands-pants'>
                           <span>Pants</span>
+                      </a>
+                  </li>-->
+                  <li>
+                      <a data-tab="shoes-brands" class="brand-link" data-origin-css='brands-shoes'>
+                          <span>Shoes</span>
                       </a>
                   </li>
                    <li>
@@ -333,7 +338,7 @@ window.registerProcess = true;
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="John Varvatos" id="8" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Polo Ralph Lauren" id="9" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Vineyard Vines" id="10" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="VK Nagrani" id="11" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Fred Perry" id="11" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Agave" id="12" />
                       <ol id="selectable" class="brands-logo">
                           <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/tees/hugo-boss.jpg" class="fadein-image" alt="Hugo Boss" /></li>
@@ -346,7 +351,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/tees/john-varvatos.jpg" class="fadein-image" alt="John Varvatos" /></li>
                           <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/tees/ralph-lauren.jpg" class="fadein-image" alt="Polo Ralph Lauren" /></li>
                           <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/tees/vineyard-vines.jpg" class="fadein-image" alt="Vineyard Vines" /></li>
-                          <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/tees/vknagrani.png" class="fadein-image" alt="VK Nagrani" /></li>
+                          <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/tees/fred-perry.png" class="fadein-image" alt="Fred Perry" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/tees/agave.jpg" class="fadein-image" alt="Agave" /></li>
                       </ol>
                   </div>
@@ -390,42 +395,22 @@ window.registerProcess = true;
                   </div>
                    <div class="clear"></div>
                   
-                   <div id="pants-brands" class="brand-block hide">
+                   <div id="shoes-brands" class="brand-block hide">
                       
                       <p>
-                        <label for="pants-range">How much do you usually spend on Pantsu ($100 - $300):</label>
-                        <input type="hidden" id="pants-range" name="data[UserPreference][Brands][range][pants]">
+                        <label for="shoes-range">How much do you usually spend on shoes ($100 - $300):</label>
+                        <input type="hidden" id="shoes-range" name="data[UserPreference][Brands][range][shoes]">
                       </p>
-                      <div id="pants-range-slider"></div>
-                      <p id="pants-range-text" class="text-center"></p>
+                      <div id="shoes-range-slider"></div>
+                      <p id="shoes-range-text" class="text-center"></p>
 
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Brioni" id="1" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Incotex" id="2" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Hugo Boss" id="3" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Dolce & Gabbana" id="4" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Banana Republic" id="5" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Hiltl" id="6" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Gucci" id="7" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Jil Sander" id="8" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Zegna" id="9" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="MCQ Alexander Mcqueen" id="10" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Michael Bastian" id="11" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Armani" id="12" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][pants][]" value="Abercrombie" id="13" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Ben Sherman" id="1" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Fred Perry" id="2" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Ralph Lauren" id="3" />                      
                       <ol id="selectable" class="brands-logo">
-                          <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/pants/brioni.jpg" class="fadein-image" alt="Brioni" /></li>
-                          <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/pants/incotex.jpg" class="fadein-image" alt="Incotex" /></li>
-                          <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/pants/hugo-boss.jpg" class="fadein-image" alt="Hugo Boss" /></li>
-                          <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/pants/dolce-gabana.jpg" class="fadein-image" alt="Dolce & Gabbana" /></li>
-                          <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/pants/banana-replublic.jpg" class="fadein-image" alt="Banana Republic" /></li>
-                          <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/pants/hilti.jpg" class="fadein-image" alt="Hiltl" /></li>
-                          <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/pants/gucci.jpg" class="fadein-image" alt="Gucci" /></li>
-                          <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/pants/jil-sander.jpg" class="fadein-image" alt="Jil Sander" /></li>
-                          <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/pants/ermenegildo-zegna.jpg" class="fadein-image" alt="Zegna" /></li>
-                          <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/pants/mcqueen.jpg" class="fadein-image" alt="MCQ Alexander Mcqueen" /></li>
-                          <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/pants/michael-bastian.jpg" class="fadein-image" alt="Michael Bastian" /></li>
-                          <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/pants/emporio-armani.jpg" class="fadein-image" alt="Armani" /></li>
-                          <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/pants/Abercrombie-n-Fitch.jpg" class="fadein-image" alt="Abercrombie" /></li>
+                          <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/shoes/ben-sherman.png" class="fadein-image" alt="Ben Sherman" /></li>
+                          <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/shoes/fred-perry.png" class="fadein-image" alt="Fred Perry" /></li>
+                          <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/shoes/ralph-lauren.png" class="fadein-image" alt="Ralph Lauren" /></li>                          
                       </ol>
                   </div>
                    <div class="clear"></div>

@@ -48,9 +48,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     
                 } else {
                 ?>
-                    <?php if($user) : ?>
+                    <!-- <?php if($user) : ?>
                         <li class="welcome-name"><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
                 <?php if(($has_stylist && !$is_admin) || $is_stylist) : ?>
                 <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
                     <div class="submenu-container msg-notify-box <?php echo $is_stylist ? "stylist-notify-box" : ""; ?>">
@@ -133,6 +133,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         </div>
         <!--Menu Section Ends-->
         <span class="call-us-at">Call us at +1 347 878 7280</span>
+         <?php if($user) : ?>
+                        <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span>
+                <?php endif; ?>
         
 
     </div>   

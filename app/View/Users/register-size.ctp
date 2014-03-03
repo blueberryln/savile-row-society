@@ -2,6 +2,14 @@
  
 $script = ' var size = ' . json_encode($size) . '; ' .
 ' $(document).ready(function(){ 
+        
+        $("div.submit input").click(function(){
+            if($("#jacketSize").val() == "" || $("#neckSize").val() == "" || $("#poloSize").val() == "" || $("#pantSize").val() == "" || $("#shoeSize").val() == "" )
+            {                
+                $("p.error-msg").slideDown(300);
+                event.preventDefault();
+            }
+        });         
 
    if(size){
        $("#jacketSize").val(size.jacket_size);
@@ -41,12 +49,11 @@ window.registerProcess = true;
             
             <div class="input text required">
                 <label for="jeans">Jacket Size</label>                            
-                <select name="data[UserPreference][Size][jacket_size]" tabindex="" id="jacketSize" >
+                <select name="data[UserPreference][Size][jacket_size]" tabindex="" required="required" id="jacketSize" >
                     <option value="">Jacket Size:</option>
                     <option value="36">36</option>
                     <option value="38">38</option>
-                    <option value="40">40</option>
-                    <option value="41">41</option>
+                    <option value="40">40</option>                    
                     <option value="42">42</option>
                     <option value="44">44</option>
                     <option value="46">46</option>
@@ -56,7 +63,7 @@ window.registerProcess = true;
 
             <div class="input text required">
                 <label for="shirtSize">NECK SIZE:</label>                            
-                <select name="data[UserPreference][Size][neck_size]" tabindex="" id="neckSize" >
+                <select name="data[UserPreference][Size][neck_size]" tabindex="" required="required" id="neckSize" >
                     <option value="">Neck Size</option>
                     <option value="14">14</option>
                     <option value="14.5">14.5</option>
@@ -71,23 +78,26 @@ window.registerProcess = true;
 
             <div class="input text required chest-size">
                 <label for="chestSize">POLO SIZE:</label>                            
-                <select name="data[UserPreference][Size][polo_size]" tabindex="" id="poloSize" >
+                <select name="data[UserPreference][Size][polo_size]" tabindex="" required="required" id="poloSize" >
                     <option value="">Polo Size</option>
-                    <option value="37">37</option>
-                    <option value="38">38</option>
-                    <option value="39">39</option>
-                    <option value="40">40</option>
-                    <option value="41">41</option>
-                    <option value="42">42</option>
-                    <option value="43">43</option>
-                    <option value="44">44</option>
+                    <option value="xs">xs</option>
+                    <option value="s">s</option>
+                    <option value="m">m</option>
+                    <option value="l">l</option>
+                    <option value="xl">xl</option>
+                    <option value="xxl">xxl</option>
+                    <option value="xxxl">xxxl</option>                    
                 </select>
             </div>
 
             <div class="input text required chest-size">
                 <label for="chestSize">PANT SIZE:</label>                            
-                <select name="data[UserPreference][Size][pant_size]" tabindex="" id="pantSize" >
+                <select name="data[UserPreference][Size][pant_size]" tabindex="" required="required" id="pantSize" >
                     <option value="">Pant Size</option>
+                    <option value="s">s</option>
+                    <option value="m">m</option>
+                    <option value="l">l</option>
+                    <option value="xl">xl</option>
                     <option value="28">28</option>
                     <option value="29">29</option>
                     <option value="30">30</option>
@@ -101,21 +111,32 @@ window.registerProcess = true;
                     <option value="38">38</option>
                     <option value="39">39</option>
                     <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
                 </select>
             </div>
 
             <div class="input text required chest-size">
                 <label for="chestSize">SHOE SIZE:</label>                            
-                <select name="data[UserPreference][Size][shoe_size]" tabindex="" id="shoeSize" >
-                    <option value="">Shoe Size</option>
-                    <option value="6">6</option>
+                <select name="data[UserPreference][Size][shoe_size]" tabindex="" required="required" id="shoeSize" >
+                    <option value="">Shoe Size</option>                    
                     <option value="7">7</option>
+                    <option value="7.5">7.5</option>
                     <option value="8">8</option>
+                    <option value="8.5">8.5</option>
                     <option value="9">9</option>
+                    <option value="9.5">9.5</option>
                     <option value="10">10</option>
+                    <option value="10.5">10.5</option>
                     <option value="11">11</option>
+                    <option value="11.5">11.5</option>
                     <option value="12">12</option>
+                    <option value="12.5">12.5</option>
                     <option value="13">13</option>
+                    <option value="13.5">13.5</option>
+                    <option value="14">14</option>
                 </select>
             </div>
                         
@@ -124,7 +145,8 @@ window.registerProcess = true;
                  <br/>                       
                     <div class="submit">                            
                         <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/style/<?php echo $user_id; ?>">Back</a> 
-                        <input type="submit" value="Continue" />                                                       
+                        <input type="submit" value="Continue" />
+                        <p class="error-msg">All the fields are mandatory.</p>
                     </div>
                  </form>
             </div>

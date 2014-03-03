@@ -2,10 +2,20 @@
 $script = '  
 var size = ' . json_encode($size) . '; 
 $(document).ready(function(){ 
-    if(size){
-        $("#shirtSize").val(size.shirt_size);
-        $("#jeans").val(size.denim_kind);
-    }
+        
+        /****Jeans Cut*****/
+        $("div#jeans-cut li, div#shirt-cut li").click(function(){
+            $("p.error-msg").slideUp(300);
+            $(this).addClass("ui-selected").siblings().removeClass("ui-selected");
+        });
+
+        $("div.submit input").click(function(){
+            if($("div#jeans-cut").find("li.ui-selected").length == 0 || $("div#shirt-cut").find("li.ui-selected").length == 0)
+            {
+                event.preventDefault();
+                $("p.error-msg").slideDown(300);
+            }            
+        });   
         
 });
 ';
@@ -47,10 +57,27 @@ window.registerProcess = true;
                 <?php
                     echo $this->Form->input('ProfileImage', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
                 ?>
+                <div class="clear-fix"></div>
             </div>
-            
-            <div class="seven columns center-block">
-                <div class="input text required">
+        </div>
+        <div>
+            <div class="hi-message twelve columns text-center">                
+                <h4>Jeans Cut</h4>
+            </div>
+            <div class="twelve columns center-block text-center">
+                <div id="jeans-cut">
+                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Bootcut" id="1" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Relaxed" id="2" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Straight" id="3" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Slim" id="4" />
+                    <ol id="selectable">
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/size/Bootcut.jpg" class="fadein-image" /><br/>Bootcut</li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/size/Relaxed.png" class="fadein-image" /><br/>Relaxed</li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/size/Straight.png" class="fadein-image" /><br/>Straight</li>
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/size/Slim.png" class="fadein-image" /><br/>Slim</li>
+                    </ol>
+                </div>
+                <!-- <div class="input text required">
                     <label for="jeans">WHAT KIND OF JEANS DO YOU WEAR?</label>                            
                     <select name="data[UserPreference][StyleSize][denim_kind]" tabindex="" id="jeans" >
                         <option value="DON'T KNOW">Don't Know</option>
@@ -77,15 +104,30 @@ window.registerProcess = true;
                         <option value="Other">Other</option>
                         <option value="Don't know">Don't know</option>
                     </select>
+                </div> -->
+            </div>
+            <div class="hi-message twelve columns text-center">                
+                <h4>Dress Shirt Cut</h4>
+            </div>
+            <div class="twelve columns center-block text-center">
+                <div id="shirt-cut">
+                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Slim" id="5" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Regular" id="6" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Relaxed" id="7" />
+                    <ol id="selectable">
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/size/shirt-slim.png" class="fadein-image" /><br/>Slim</li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/size/Regular.png" class="fadein-image" /><br/>Regular</li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->request->webroot; ?>img/size/shirt-relaxed.png" class="fadein-image" /><br/>Relaxed</li>                        
+                    </ol>
                 </div>
             </div>
-            
             <div class="clear-fix"></div>
             <div class="text-center about-submit">
                 <br/>
                 <div class="submit">                            
                     <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/wardrobe/<?php echo $user_id; ?>">Back</a> 
-                    <input type="submit" value="Continue" />      
+                    <input type="submit" value="Continue" /> 
+                    <p class="error-msg">All the fields are mandatory.</p>      
                 </div>                 
                 </form>
             </div>

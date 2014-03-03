@@ -47,6 +47,36 @@ $script = ' var contact = ' . json_encode($contact) . '; ' .
             $("input[type=\"text\"].phone-field").hide();
         };
      });
+    $("div.submit input").click(function(){
+                if($("#phone-field").is(":checked") && $("input.phone-field").val() == "" )
+                {
+                    event.preventDefault();
+                    $("p.error-msg").slideDown(300);                    
+                }  
+                if($("#skype-field").is(":checked") && $("input.skype-field").val() == "" )
+                {
+                    event.preventDefault();
+                    $("p.error-msg").slideDown(300);                    
+                }            
+
+                $("div.pref-time").each(function(){      
+                    if(!$(this).find("input[type=\"checkbox\"]").is(":checked"))     
+                    {
+                        event.preventDefault();
+                        $("p.error-msg").slideDown(300);    
+                    }else   
+                    {
+                        $("p.error-msg").slideUp(300);
+                    }
+                });
+                if(!$("div.pref-options input[type=\"radio\"]").is(":checked"))
+                {
+                        event.preventDefault();
+                        $("p.error-msg").slideDown(300); 
+                }                    
+                
+            });
+    
 });';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
@@ -106,7 +136,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <br/>                       
                 <div class="submit">                            
                     <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a> 
-                    <input type="submit" value="Continue" />                                                       
+                    <input type="submit" value="Continue" />
+                    <p class="error-msg">All the fields are mandatory.</p> 
                 </div>
             </div>
         </form>

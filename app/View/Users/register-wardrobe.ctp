@@ -11,11 +11,13 @@ $(document).ready(function(){
             stop: function() {
                 $("#your-style input:checkbox").prop("checked", false);
                 $( ".ui-selected", this ).each(function() {
+                    $("p.error-msg").slideUp(300);
                     var selected_id = $(this).data("id");
                     $("#your-style input:checkbox#" + selected_id).prop("checked", true);
                 });
             }
         });
+
         function getIdFromString(s){
             switch(s){
                 case "Business": return 1;
@@ -39,6 +41,19 @@ $(document).ready(function(){
         }
 
         $("#madeToMeasure").val(madeToMeasure);
+        
+        $("div.submit input").click(function(){
+            if($("div#your-style").find("li.ui-selected").length == 0 || $("select#madeToMeasure").val() == "")
+            {
+                event.preventDefault();
+                $("p.error-msg").slideDown(300);
+            }            
+        });
+        $("select#madeToMeasure").change(function(){
+            if( !$("select#madeToMeasure").val() == ""){
+                $("p.error-msg").slideUp(300);
+            }
+        });
 });
 ';
 
@@ -89,9 +104,9 @@ window.registerProcess = true;
                     <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Lifestyle" id="2" />
                     <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Complete Overhaul" id="3" />
                     <ol id="selectable">
-                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" class="fadein-image" /><br/>Business</li>
-                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" class="fadein-image" /><br/>Lifestyle</li>
-                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" class="fadein-image" /><br/>Complete Overhaul</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" class="fadein-image" /><br/>Formal</li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" class="fadein-image" /><br/>Casual</li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" class="fadein-image" /><br/>Business Casual</li>
                     </ol>
                 </div>
             </div><br/>
@@ -119,7 +134,8 @@ window.registerProcess = true;
                             <!--<?php echo $this->Form->end(__('Continue')); ?>-->
                             <div class="submit">                            
                                 <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>profile/about">Back</a> 
-                                <input type="submit" value="Continue" />      
+                                <input type="submit" value="Continue" />   
+                                <p class="error-msg">All the fields are mandatory.</p>   
                             </div>                 
                          </form>
             </div>

@@ -1,9 +1,17 @@
 <?php
+$script = ' 
+    $(function(){
+        $("div.submit input").click(function(){
+            if($("input").val() == "" || $("select").val() == "")
+            {                
+                $("p.error-msg").slideDown(300);
+            }
+        });
+    });
+';
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+$this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
 
 <div class="content-container">
@@ -53,7 +61,8 @@
 
             <div class="text-center about-submit">
                 <br/>
-                <?php echo $this->Form->end(__('Continue')); ?>    
+                <?php echo $this->Form->end(__('Continue')); ?> 
+                <p class="error-msg">All the fields are mandatory.</p>    
                    
             </div>
             
