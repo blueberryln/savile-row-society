@@ -76,7 +76,7 @@ input[type="submit"]{color: #fff;}
 	 .card-menu  ul {margin: auto; float: right; }
 	 .card-menu  li {cursor: pointer; font-size: 12px; font-weight: normal; margin: 0; padding: 0px 5px; display:inline-block; color:white; font-family: 'sweetsans-regular', sans-serif;text-decoration: none; text-transform: uppercase; }
 	 .card-menu ul li:first-child {border-left:none;}
-	.card-menu  li a{color:#333;}
+	.card-menu  li a{color:#444;}
 	.card-menu .submenu { background-color: #ffffff; border-left: 1px solid #CCCCCC; cursor: auto; padding: 12px;
 	    z-index: 100; }
 	.card-menu .submenu li { border: medium none; margin-bottom: 5px; display: block; float: none; font-size: 12px; }
@@ -100,7 +100,8 @@ input[type="submit"]{color: #fff;}
 	.header .menu ul {margin: 0 auto; padding: 0; display: table; margin: auto; }
 	.header .menu li {cursor: pointer; display: inline-block; margin: 0; padding: 0 10px; text-transform: uppercase; border:none;}
 	.header .menu li:last-child{margin-right: 0;}
-	.header .menu li a {color: #333; font-weight: normal; font-size: 12px; font-family: 'sweetsans-regular',sans-serif; }
+	.header .menu li a {color: #444; font-weight: normal; font-size: 12px; font-family: 'sweetsans-regular',sans-serif; }
+	.header .menu li a:hover, .card-menu  li a:hover{color: #000;}
 	.header .menu li span:hover{ border-bottom:1px solid #fff;}
 	.header .menu li:hover > .submenu{ display:block; }
 	.header .menu .submenu { background-color: #ffffff; border: 1px solid #CCCCCC; cursor: auto; display: none; margin: 2px 0 0 -14px; padding: 0; position: absolute; z-index: 100; text-align: left; }
@@ -535,7 +536,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .works-boxes .work-box, .shopping-boxes .shopping-box{width: 20%; margin: 0 3%; min-height:400px; text-align: center; }
 .stylist-box{width: 20%; margin: 0 2%; min-height: 350px; text-align: left;}
 .works-boxes .work-box img{margin-bottom: 10px;}
-.stylist-box h3, .shopping-box h3{font-size: 14px; line-height: 18px; margin:8px 3px 0;}
+.stylist-box h3, .shopping-box h3{font-size: 14px; line-height: 18px; margin:8px 0px 0;}
 .works-desc, .stylist-desc, .shopping-desc, .brands-desc  {display: block; font-size: 12px; margin:0 auto 15px auto;  color: #999; line-height: 18px; }
 .works-desc{text-transform: uppercase;}
 .brands-desc as{color: #AF9A59;}

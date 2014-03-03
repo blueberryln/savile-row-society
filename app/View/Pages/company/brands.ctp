@@ -37,8 +37,6 @@ $script = '
 var brandsInfo = ' . json_encode($brands_info) . ';
 $(document).ready(function(){    
     
-    
-    
     $("ul#branding-partners li").click(function(){
         var brandImage = $(this).find("img");
         var brandName = brandImage.data("name");

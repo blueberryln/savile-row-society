@@ -1,7 +1,30 @@
 <?php
+
+$brands_info = array(
+    "edwardamrah" => array("title" => "For The Man Who Loves To Rock A Bowtie", "desc" => "Edward Armah: A Signature Name for High-End Designer Dress Furnishing for Men High-end affordable designer garments allure every man. Our custom bowties are an embodiment of the vividness in our style, class, design and exuberant taste and passion towards offering the finest quality accessories for men. Be it our custom fashion bowties or 4 in 1 bowties, Edward Armah has been instrumental in revolutionizing the way men used to dress formally.", "id" => "20"),
+    "mclip" => array("title" => "For The Man Who Is Tired Of His Wallet", "desc" => "The World&apos;s Finest Money Clip&apos; and &apos;Finally, A Money Clip that Works&apos; ... these are the registered trademarks and descriptions that we take very seriously about our product. From superior base metal materials and ultra-high machined tolerances for each component part, to individually hand selected hides and finishes, the M-Clip is constructed and assembled by hand with one goal in mind: to make the absolute best, most functional, highest quality money clip you can buy - anywhere.", "id" => "20"),    
+    "paulevans" => array("title" => "For The Man Who Takes Pride In His Shoes", "desc" => "Luxury men's footwear based in New York City.<br><br> 
+High quality dress shoes made in Europe using time-honored craftsmanship and the finest materials.<br><br>
+Calf leather uppers, matching leather soles, leather lining. Goodyear/blake construction. Smart colors.<br><br>
+What do your shoes say about you?  
+", "id" => "19"),    
+    "saxx" => array("title" => "For The Active Man", "desc" => "On a fishing trip in Alaska, our inventor experienced intense chafing that left him wondering why men&apos;s underwear wasn&apos;t designed for how men are actually built. When he returned, he couldn&apos;t shake the notion that a better design was possible. He teamed up with a designer and started brainstorming and working on prototypes. On the fourteenth attempt they combined four key innovations resulting in a new level of comfort and performance.", "id" => "15"),
+    "smathers" => array("title" => "For The Man Who Can Be Found At The Derby", "desc" => "In 2004, while roommates at Bowdoin College, we decided to start a company that offered needlepoint belts. We set out to make the belts more available, attractive and affordable. We began testing the market in the spring of 2005, and quickly, the once treasured gift became the epicenter of a thriving business. Smathers amp; Branson defines their mission: &apos;to offer the finest products with customer service to match.&apos;", "id" => "9"),
+    "nagrani" => array("title" => "For The Man Who Takes Risks", "desc" => "Great clothing should be made to get better with age and be designed to offer a timeless aesthetic. In addition, it must function to enhance your way of life. It is this philosophy that I bring forth each time I create a new garment. Reserved for men of discerning taste, I continuously work to find ways to make something better. I never set out to be something for everyone; instead, I want to be everything to someone.", "id" => "16"),
+    "dw" => array("title" => "", "desc" => "The &quot;preppy&quot; trend is bigger than ever before. And while there are many big players in the fashion industry that caters to preppy needs, such as Ralph Lauren, Gant and Brooks Brothers, we felt that there was an empty space in the watch market. There was something missing.<br><br>
+We believe that Daniel Wellington fills that gap. Our vision is that when someone thinks of a preppy dressed person, he or she is wearing a Daniel Wellington watch.", "id" => "22"),
+    "lacoste" => array("title" => "For The Man Who Can Be Found At The Country Club", "desc" => "Founded in 1933 by tennis player and inventor Rene Lacoste, Olympic medalist in 1924, the Crocodile brand has always accompanied teams and athletes all around the world. When he revolutionized sports, Rene Lacoste also revolutionized fashion; his quest for comfort and freedom of movement made him more competitive without losing an ounce of elegance.", "id" => "12"),
+    "barbour" => array("title" => "", "desc" => "", "id" => "5"),
+    "colehaan" => array("title" => "", "desc" => "", "id" => ""),
+    "allenedmonds" => array("title" => "", "desc" => "", "id" => ""),
+    "agave" => array("title" => "", "desc" => "", "id" => "3")
+    
+);
+
 $meta_description = 'As people today are rarely defined by a single company or career track, clothes have become an absolute reflection of one’s values, personality, attitude, and lifestyle.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $script='
+    var brandsInfo = ' . json_encode($brands_info) . ';
     var testimonials = [
         {name : "Peter", profession: "Real Estate Agent", text: "Like most men, shopping can be a very daunting task, however, having my SRS personal stylist saves me the time and energy I would otherwise spend in stores."},
         {name : "Frank", profession: "Architect", text: "Savile Row Society has made shopping simple and seamless. I now have access to the best brands, the sharpest suits, and the perfect gift suggestions for friends and family. SRS is truly a lifestyle destination."},
@@ -32,7 +55,28 @@ $script='
                     testimonialText.text(testimonials[newTestimonial]["text"]);
                     testimonialBlock.animate({opacity: 1}, 700);
                 })
-            }, 6000);     
+            }, 6000);    
+
+            $("ul#branding-partners li").click(function(){
+                var brandImage = $(this).find("img");
+                var brandName = brandImage.data("name");
+                var brandDesc = brandsInfo[brandName]["desc"];
+                var brandTitle = brandsInfo[brandName]["title"];
+                var brandID = brandsInfo[brandName]["id"];
+                imgSrc = brandImage.attr("src");
+                $("div.brand-logo img").attr("src",imgSrc);
+                $("p.brand-title").html(brandTitle);
+                $("p.brand-desc").html(brandDesc);  
+                if(brandID != ""){
+                    $(".brand-info .link-btn").attr({href:"' .$this->webroot . 'closet/all/" + brandID + "/none/brand"});
+                    $(".brand-info .link-btn").show();
+                }
+                else{
+                    $(".brand-info .link-btn").hide();
+                }
+                $.blockUI({message: $("#brandinfo-box"), css: {top: $(window).height()/2 - $("#brandinfo-box").height()/2}});
+                $(".blockOverlay").click($.unblockUI);        
+            }); 
     });    
    
    
@@ -313,18 +357,18 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="eleven columns home-branding-partners center-block">
         <span class="nine columns brands-desc">We select the best of the best. From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category. One thing is for sure, all of our partnering brands are passionate about clothing. <a href="<?php echo $this->request->webroot; ?>company/brands">See more brands</a></span>
         <ul id="branding-partners" class="eight columns center-block">
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/" class="fadein-image" alt="Barbour" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/smathersAndBransonLogo.png" class="fadein-image" alt="Smathers and Branson" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/vknagrani.png" class="fadein-image" alt="VK Nagrani" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/" class="fadein-image" alt="Cole Haan" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/paulevans.png" class="fadein-image" alt="Paul Evals" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/" class="fadein-image" alt="Allen Edmonds" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/agave.jpg" class="fadein-image" alt="Agave Denim" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/saxx-underwear.png" class="fadein-image" alt="SAXX-Underwear"></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/mclip.png" class="fadein-image" alt="M-Clip" /></li>
-                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/edward.png" class="fadein-image" alt="Edward Harmah" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/barbourlogo.jpg" class="fadein-image" alt="Barbour" data-name="barbour"/></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste"data-name="lacoste" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/smathersAndBransonLogo.png" class="fadein-image" alt="Smathers and Branson" data-name="smathers"/></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/vknagrani.png" class="fadein-image" alt="VK Nagrani" data-name="nagrani"/></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Cole_Haan_Logo.jpg" class="fadein-image" alt="Cole Haan" data-name="colehaan"/></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/paulevans.png" class="fadein-image" alt="Paul Evans" data-name="paulevans"/></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/allen-edmonds-logo.jpg" class="fadein-image" alt="Allen Edmonds" data-name="allenedmonds"/></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/DW_logo.png" class="fadein-image" alt="Daniel Wellington" data-name="dw"/></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/agave.jpg" class="fadein-image" alt="Agave Denim" data-name="agave" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/saxx-underwear.png" class="fadein-image" alt="SAXX-Underwear" data-name="saxx"></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/mclip.png" class="fadein-image" alt="M-Clip" data-name="mclip" /></li>
+                        <li><img src="<?php echo $this->webroot; ?>img/branding-partners/edward.png" class="fadein-image" alt="Edward Harmah" data-name="edwardamrah"/></li>
         </ul>
     </div>
 
@@ -338,4 +382,19 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>
         
 </div>
+<div id="brandinfo-box" class="box-modal notification-box hide">
+        <div class="box-modal-inside">
+            <a class="notification-close" href=""></a>
+            <div class="brand-info">
+                <div class="brand-logo"><img src="" class="fadein-image" alt="" /></div>  
+                <div class="notification-msg">
+                    <p class="brand-title"></p>
+                    <p class="brand-desc">
+                    </p>  
+                </div>
+                <a href="" class="link-btn black-btn brand-btn">see products</a> 
+                 
+            </div> 
+        </div>
+    </div>
 </div>
