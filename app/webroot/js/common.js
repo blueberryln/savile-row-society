@@ -243,5 +243,19 @@ jQuery(function(){
         e.preventDefault();
         $.unblockUI();
     });
-    
+
+
+    $("#block-vip-access").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#vip-box')});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
+    $(".vip-access-btn").on("click", function(e){
+        e.preventDefault();
+        var vipCode = $(".vip-access-code").val();
+        if(vipCode != ''){
+            location = "/users/refer/" + vipCode;
+        }
+    });
 });
