@@ -8,14 +8,14 @@ $(document).ready(function(){
             $("p.error-msg").slideUp(300);
             $(this).addClass("ui-selected").siblings().removeClass("ui-selected");
             var selected_id = $(this).data("id");
-            $("#jeans-cut input:checkbox#" + selected_id).prop("checked", true);
+            $("#jeans-cut input:radio#" + selected_id).prop("checked", true);
         });
 
         $("div#shirt-cut li").click(function(){
             $("p.error-msg").slideUp(300);
             $(this).addClass("ui-selected").siblings().removeClass("ui-selected");
             var selected_id = $(this).data("id");
-            $("#shirt-cut input:checkbox#" + selected_id).prop("checked", true);
+            $("#shirt-cut input:radio#" + selected_id).prop("checked", true);
         });
 
         $("div.submit input").click(function(){
@@ -34,7 +34,7 @@ $(document).ready(function(){
                 case "Slim": return 4;
                 case "SlimShirt": return 5;
                 case "RegularShirt": return 6;
-                case "RelaxedShirt": return 6;
+                case "RelaxedShirt": return 7;
                 default: return 0;    
             }
         }

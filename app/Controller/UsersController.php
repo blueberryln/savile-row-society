@@ -278,10 +278,12 @@ class UsersController extends AppController {
         // get data from request
         $data = $this->request->data;
 
-        $data_arr = $data['UserPreference']['StyleSize'];
-        $preferences["UserPreference"]["StyleSize"] = $data_arr;
-        $serialized_preferences = serialize($preferences);
-        $user['User']['preferences'] = $serialized_preferences;
+        if(isset($data['UserPreference']['StyleSize'])){
+            $data_arr = $data['UserPreference']['StyleSize'];
+            $preferences["UserPreference"]["StyleSize"] = $data_arr;
+            $serialized_preferences = serialize($preferences);
+            $user['User']['preferences'] = $serialized_preferences;
+        }
 
         // save image
         if($image = $this->saveImage()){
