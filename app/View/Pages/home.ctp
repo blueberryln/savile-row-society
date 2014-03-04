@@ -84,7 +84,7 @@ $script='
         var mbHeight = jQuery(".mg-big").height();
         var mgsHeight = jQuery(".mg-small").height();
         var mgvHeight = mbHeight - mgsHeight;
-        jQuery(".mg-vid").css("height", mgvHeight);
+        jQuery(".mg-vid").css("height", mgvHeight -6);
     }
     jQuery(window).resize(function(){
            var mbHeight = jQuery(".mg-big").height();
@@ -153,7 +153,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <div class="mg-small-2">                
                 <a href="<?php echo $this->request->webroot; ?>/lookbooks/" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_3.jpg" /></a>              
                 <div class="mgs-btn">
-                    <a class="link-btn black-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">get this look<br /> from the closet</a>
+                    <a class="link-btn black-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Buy this <br> look</a>
                 </div> 
             </div>
         </div>
@@ -221,7 +221,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             </a>
 
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_3.png" /></span>
-            <span class="works-desc">dress for the life you want</span>
+            <span class="works-desc">Enjoy a seamless shopping experience and dress for the life you want</span>
             <?php if($is_logged && $has_stylist) : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
             <?php elseif($is_logged) : ?>
@@ -314,7 +314,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 </div>
             </a>
             <h3>Shop online</h3>
-            <span class="shopping-desc">From your personal stylist’s selection curated solely for you.<br />In the Closet, where we display a selection of our products.<br />Get free shipping and hassle free return.
+            <span class="shopping-desc"><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />From your personal stylist’s selection curated solely for you.<br />In the Closet, where we display a selection of our products.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />Get free shipping and hassle free return.
 </span>
         </div> 
          <div class="shopping-box text-left">
@@ -331,7 +331,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 </div>
             </a>
             <h3>Shop in person</h3>
-            <span class="shopping-desc">Try on our ready to wear by booking a free appointment in our showroom.<br />Tailor your life with our made-to-measure collection by scheduling a free consultation with our tailor.<br />Our showroom is located in New York.</span>
+            <span class="shopping-desc"><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />Try on our ready to wear by booking a free appointment in our showroom.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />Tailor your life with our made-to-measure collection by scheduling a free consultation with our tailor.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />Our showroom is located in New York.</span>
         </div> 
          <div class="shopping-box text-left">
             <?php if($is_logged && $has_stylist) : ?>
@@ -373,7 +373,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     </div>
 
      <div class="ten columns text-center page-heading">
-        <h1>Testimonials</h1>
+        <h1>See what others are saying about us</h1>
     </div>
     <div class="eight columns text-center center-block testimonials">
         <h3>Peter</h3>

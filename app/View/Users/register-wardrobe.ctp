@@ -42,7 +42,7 @@ $(document).ready(function(){
 
         $("#madeToMeasure").val(madeToMeasure);
         
-        $("div.submit input").click(function(){
+        $("div.submit input").click(function(){            
             if($("div#your-style").find("li.ui-selected").length == 0 || $("select#madeToMeasure").val() == "")
             {
                 event.preventDefault();

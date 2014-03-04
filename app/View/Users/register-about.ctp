@@ -1,10 +1,11 @@
 <?php
 $script = ' 
     $(function(){
-        $("div.submit input").click(function(){
+        $("div.submit input").click(function(){                       
             if($("input").val() == "" || $("select").val() == "")
-            {                
-                $("p.error-msg").slideDown(300);
+            {                                      
+                $("p.error-msg").slideDown(300);     
+                event.preventDefault();            
             }
         });
     });

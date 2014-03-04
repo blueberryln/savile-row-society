@@ -132,7 +132,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             </ul>
         </div>
         <!--Menu Section Ends-->
-        <span class="call-us-at">Call us at +1 347 878 7280</span>
+        <span class="call-us-at"><!-- <img src="<?php echo $this->webroot; ?>img/call-us.png" /> -->Call us at +1 347 878 7280</span>
          <?php if($user) : ?>
                         <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span>
                 <?php endif; ?>
