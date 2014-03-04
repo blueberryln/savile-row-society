@@ -75,7 +75,7 @@ class ApiController extends AppController {
                             $preferences = unserialize($user['User']['preferences']);
                         }
                         
-                        if(isset($preferences) && isset($preferences['UserPreference']['is_complete']) && $preferences['UserPreference']['is_complete'] == "completed"){
+                        if(isset($preferences) && isset($preferences['UserPreference']['is_complete']) && ($preferences['UserPreference']['is_complete'] == "completed" || $preferences['UserPreference']['is_complete'] == "1")){
                             $ret['profile_status'] = "complete";
                         }
                         else{

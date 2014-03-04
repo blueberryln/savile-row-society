@@ -113,8 +113,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 
 
                 <?php
-                    if (!$is_logged) {
-                        echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-5-big.jpg"/></a></li> ';                   
+                    if (!$is_logged && false) {
+                        echo '<li><a href="#" onclick="signUp();"><img src="' . $this->webroot . 'img/home-5-big.jpg"/></a></li> ';                   
                     } else {
                         echo ' <li><img src="' . $this->webroot . 'img/home-5-big.jpg"/></li>';
                     }
@@ -126,8 +126,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </li>
 
                 <?php
-                    if (!$is_logged) {
-                        echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-2-big.jpg"/></a></li> ';                   
+                    if (!$is_logged && false) {
+                        echo '<li><a href="#" onclick="signUp();"><img src="' . $this->webroot . 'img/home-2-big.jpg"/></a></li> ';                   
                     } else {
                         echo ' <li><img src="' . $this->webroot . 'img/home-2-big.jpg"/></li>';
                     }
