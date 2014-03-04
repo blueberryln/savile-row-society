@@ -131,9 +131,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
                 <textarea class="chat-msg-txtbox" id='messageToSend'></textarea>
                 <!--<input type="button" value="Send messages" id="sendMessages" />-->
-                <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
+                <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a><a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a>
                 <div class="clear-fix"></div>
-                <p class="send-photo">Send a picture to stylist: <a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a></p>
                 
                 <div class="chat-container">
                     

@@ -1,4 +1,127 @@
 <?php
+
+$script ='
+   var player; 
+   $(".flexslider").flexslider({
+                animation: "fade",
+                animationSpeed: 300,  
+                animationLoop: false,
+                slideshow: true,          
+                slideshowSpeed: 4000, 
+                video: true,
+                useCSS: false,
+                pauseOnAction: false,
+                manualControls: ".flex-control-nav li",
+                controlsContainer: ".flexslider",
+                controlNav: true,
+                directionNav: false,
+                keyboard: false,
+                start: function(slider){
+                    jQuery(".flex-control-nav li a").mouseover(function(){
+                         var activeSlide = "false";
+                         if (jQuery(this).hasClass("flex-active")){  
+                            activeSlide = "true";                       
+                         }
+                         if (activeSlide == "false"){
+                            var position = $(this).position();
+                            jQuery(this).trigger("click"); 
+                            $(".flex-active-bar").stop(false, false).animate({left: position.left + "px"}, 500, "swing");
+                         }
+                     });      
+                },
+                before: function(slider){
+                    var slideTo = slider.animatingTo;
+                    var nextSlide = $(".flex-control-nav li").eq(slideTo);
+                    var position = nextSlide.position();
+                    $(".flex-active-bar").stop(false, false).animate({left: position.left + "px"}, 500, "swing");
+                },
+            });
+    $("#lnk-fb-share").on("click", function(e){
+        e.preventDefault(); 
+        window.open(
+          "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href), 
+          "facebook-share-dialog", 
+          "width=626,height=436"); 
+    });
+    
+    $(".register-popup-share-link").on("click", function(e){
+        e.preventDefault();
+        $("#lnk-fb-share").click();
+        $.unblockUI();    
+    });
+    
+    //Load you tube api
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player("homeVideoHowItWorks", {
+          events: {
+            "onStateChange": function(event) {
+                if (event.data == 1 || event.data == 3) {
+                    $(".flexslider").flexslider("pause");
+                }
+                else if (event.data == 0 || event.data == 2 || event.data == 5) {
+                    $(".flexslider").flexslider("play");
+                }
+            }
+          }
+        });
+    }
+    
+    $(document).ready(function(){
+        
+        $("#closetCuffLink").hover(
+            function(){
+                $("#closet-slide-banner").fadeIn(300);      
+            },
+            function(){
+                $("#closet-slide-banner").delay(200).fadeOut(300);      
+            }
+        );
+        $("#tailorCuffLink").hover(
+            function(){
+                $("#tailor-slide-banner").fadeIn(300);      
+            },
+            function(){
+                $("#tailor-slide-banner").delay(200).fadeOut(300);      
+            }
+        );
+        $("#stylistCuffLink").hover(
+            function(){
+                $("#stylist-slide-banner").fadeIn(300);      
+            },
+            function(){
+                $("#stylist-slide-banner").delay(200).fadeOut(300);      
+            }
+        );
+        
+        $(".highlight-slide").hover(
+            function(){
+                var $this = $(this);
+                var hoverText = $this.find(".home-slider-overlay span");
+                hoverText.css({top: $this.height()/2 - hoverText.height()/2});
+                $(this).find(".home-slider-overlay").fadeOut(300);
+                $(this).find(".home-slider-overlay").fadeIn(300);
+            },
+            function(){
+                var $this = $(this);
+                var hoverText = $this.find(".home-slider-overlay span");
+                $(this).find(".home-slider-overlay").fadeOut(300);
+            }
+        );
+
+        $(".danielle").on("click", function(e){  
+            location = "http://www.savilerowsociety.com/closet/all/22/none/brand";
+        });
+    });
+
+';
+$this->Html->css('flexslider', null, array("inline" => false));
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+
 $meta_description = 'As people today are rarely defined by a single company or career track, clothes have become an absolute reflection of one’s values, personality, attitude, and lifestyle.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
@@ -8,6 +131,72 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <h1>About Us</h1>
     </div>
     <div class="eleven columns page-content">
+        <div class="flexslider loader" style="height: 438px;">
+            <ul class="slides">
+                
+                <li><a href="<?php echo $this->request->webroot; ?>closet"><img src="<?php echo $this->request->webroot; ?>img/home-6-big.jpg"/></a></li>
+                 <?php
+                    if (!$is_logged) {
+                        echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-1-big.jpg"/></a></li> ';                   
+                    } else {
+                        echo ' <li><img src="' . $this->webroot . 'img/home-1-big.jpg"/></li>';
+                    }
+                    ?>
+                <li>
+                    <div class="slides-cont">
+                        <img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled" id="getStyledImage" />
+                        <img src="<?php echo $this->request->webroot; ?>img/1.png" id="closet-slide-banner" />
+                        <img src="<?php echo $this->request->webroot; ?>img/2.png" id="tailor-slide-banner" />
+                        <img src="<?php echo $this->request->webroot; ?>img/3.png" id="stylist-slide-banner" />
+                    </div>
+                </li>
+
+                <?php
+                    if (!$is_logged) {
+                        echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-5-big.jpg"/></a></li> ';                   
+                    } else {
+                        echo ' <li><img src="' . $this->webroot . 'img/home-5-big.jpg"/></li>';
+                    }
+                    ?> 
+
+                <li class="highlight-slide danielle">
+                    <img src="<?php echo $this->request->webroot; ?>img/home-7-big.jpg" style="max-height: 438px; width: auto !important; display: inline;" />
+                    <div class="home-slider-overlay hide"><span>Check Out Danielle Wellington</span></div>
+                </li>
+
+                <li><img src="<?php echo $this->request->webroot; ?>img/home-8-big.jpg" style="max-height: 438px; width: auto !important; display: inline;" /></li>
+                <?php
+                    if (!$is_logged) {
+                        echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-2-big.jpg"/></a></li> ';                   
+                    } else {
+                        echo ' <li><img src="' . $this->webroot . 'img/home-2-big.jpg"/></li>';
+                    }
+                    ?>     
+                <li>
+                    <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>
+                </li>    
+                
+            </ul>
+        </div>
+        <div class="clear"></div>    
+        <div class="custom-flex-cont sixteen columns">
+            <div class="flex-active-bar"></div>
+            <ul class="flex-control-nav">
+                <li><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">4</a></li>
+                <li><a href="">5</a></li>
+                <li><a href="">6</a></li>
+                <li><a href="">7</a></li>
+                <li><a href="">8</a></li>
+            </ul>
+        </div>
+        
+        <div class="clear"></div>
+
+        <!--Flexslider ends here -->
+
         <p>
             Savile Row Society is an exclusive <strong>Men’s</strong> club, designed to enhance the personal 
             branding of professional men and transform their shopping <strong>experience</strong> through 
@@ -60,3 +249,4 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     </div>
 </div>
 </div>
+<script src="/js/jquery.flexslider-min.js"></script>

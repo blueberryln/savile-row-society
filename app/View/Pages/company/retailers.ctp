@@ -25,7 +25,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </div>
                 </div>
                 <div class="eight columns sub-inde bubble-wrap">                   
-                    <p>Savile Row Society has the Brick & Mortar DNA; however, our standards for client care and expectations for consumer experience are only shared by a handful of businesses, which is why we only partner with retailers that we believe share the same level of quality and care as SRS. </p>                                        
+                    <!-- <p>Savile Row Society has the Brick & Mortar DNA; however, our standards for client care and expectations for consumer experience are only shared by a handful of businesses, which is why we only partner with retailers that we believe share the same level of quality and care as SRS. </p> -->       
+                    <p>To cater to your every need, we have partnered with retailers that share the same standards of quality and care as SRS</p>                                 
                 </div>
             </div>
 

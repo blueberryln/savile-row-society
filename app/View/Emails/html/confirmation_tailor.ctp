@@ -10,21 +10,26 @@
                         <td valign="top">
                 
                             <p>You have requested for a tailor appointment. Following are the details you have provided.</p>
-                            Name: <?php echo $user['User']['first_name']; ?> <?php echo $user['User']['last_name']; ?><br/>
-                            E-mail: <?php echo $user['User']['email']; ?><br/>
-                            Phone: <?php echo $user['User']['phone']; ?><br/>
+                            <b>Name:</b> <?php echo $user['User']['first_name']; ?> <?php echo $user['User']['last_name']; ?><br/><br/>
+                            <b>E-mail:</b> <?php echo $user['User']['email']; ?><br/><br/>
+                            <b>Phone:</b> <?php echo $user['User']['phone']; ?><br/><br/>
+                            <b>Type:</b> <br />
                             <?php
-                            if ($data['Booking']['booking_type_id'] == 1) {
-                                echo 'Type: A free personal appointment<br/>';
-                            }
-                            if ($data['Booking']['booking_type_id'] == 2) {
-                                echo 'Type: An initial measurement<br/>';
-                            }
-                            if ($data['Booking']['booking_type_id'] == 3) {
-                                echo 'Type: A collection and fitting<br/>';
-                            }
-                            ?>
-                            Date: <?php echo date('m/d/Y', $data['Booking']['date_start']); ?><br/>
+                            foreach ($data['Booking']['booking_type_id'] as $value) {
+                
+                                if ($value == 1) {
+                                    echo '-A free personal appointment<br/>';
+                                }
+                                if ($value == 2) {
+                                    echo '-An initial measurement<br/>';
+                                }
+                                if ($value == 3) {
+                                    echo '-A collection and fitting<br/>';
+                                }
+                             }
+                            ?><br/>
+                            <b>Date:</b> <?php echo date('m/d/Y', $data['Booking']['date_start']); ?><br/><br/>
+                            <b>Comment:</b> <?php echo $data['Booking']['comment']; ?><br />
                         </td>
                     </tr>
                     <tr>
