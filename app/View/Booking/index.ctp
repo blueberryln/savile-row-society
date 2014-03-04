@@ -137,7 +137,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <div class="apt-form">
                         <?php if ($user && $booking_types) : ?>
                             <?php echo $this->Form->create('Booking', array('url' => array('controller' => 'booking', 'action' => 'index'))); ?>                
-                            <p class="apt-form-title">When would you like to come?</p> 
                             <div>
                                 <input type="text" style="height: 0; visibility: hidden; padding:0; margin: 0; border: none; position: absolute; text-indent: -999999;">
                                 <label>Please select a date</label>
@@ -147,7 +146,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <div class="input text required text-left">
                                         <label class="apt-type-title">Appointment type</label>
                                          <?php foreach($booking_types as $booking_type): ?>
-                                         <input type="radio" value="<?php echo $booking_type['BookingType']['id']; ?>" name="data[BookingType][id]"><span class="apt-type-lbl"><?php echo $booking_type['BookingType']['name']; ?></span><br />
+                                         <input type="checkbox" value="<?php echo $booking_type['BookingType']['id']; ?>" name="data[BookingType][id][]"><span class="apt-type-lbl"><?php echo $booking_type['BookingType']['name']; ?></span><br />
                                          <?php endforeach; ?>                                         
                             </div>
                             

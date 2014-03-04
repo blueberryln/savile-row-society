@@ -31,23 +31,23 @@ class BookingController extends AppController {
         $user = $this->getLoggedUser();
 
         if ($this->request->is('post')) {
-            if (isset($this->request->data['BookingType']['id']) && $this->request->data['Booking']['date']) {
+            if (isset($this->request->data['BookingType']['id']) && count($this->request->data['BookingType']['id']) > 0 && $this->request->data['Booking']['date']) {
                 $this->Booking->create();
                 $data = array();
                 $data['Booking']['user_id'] = $this->getLoggedUserID();
-                $data['Booking']['booking_type_id'] = $this->request->data['BookingType']['id'];
+                $data['Booking']['booking_type_id'] = implode(',', $this->request->data['BookingType']['id']);
                 $data['Booking']['date_start'] = strtotime($this->request->data['Booking']['date']);
                 $data['Booking']['date_end'] = strtotime($this->request->data['Booking']['date']);                
                 $data['Booking']['comment'] = $this->request->data['Booking']['comment'];
-
                 if ($this->Booking->save($data)) {
 
+                    $data['Booking']['booking_type_id'] = explode(',', $data['Booking']['booking_type_id']);
                     // send personal stylist mail
                     $user = $this->getLoggedUser();
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to('fitting@savilerowsociety.com');
-                    $email->cc('joey@savilerowsociety.com');
+                    //$email->cc('joey@savilerowsociety.com');
                     $email->bcc('admin@savilerowsociety.com');
                     $email->subject('Tailor booking: ' . $user['User']['first_name'] . ' ' . $user['User']['last_name']);
                     $email->template('tailor');
