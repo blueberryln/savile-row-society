@@ -42,7 +42,7 @@ $(document).ready(function(){
 
         $("#madeToMeasure").val(madeToMeasure);
         
-        $("div.submit input").click(function(){            
+        $("div.submit input").click(function(event){            
             if($("div#your-style").find("li.ui-selected").length == 0 || $("select#madeToMeasure").val() == "")
             {
                 event.preventDefault();
@@ -50,7 +50,7 @@ $(document).ready(function(){
             }            
         });
 
-        $("select#madeToMeasure").change(function(){
+        $("select#madeToMeasure").change(function(event){
             if( !$("select#madeToMeasure").val() == ""){
                 $("p.error-msg").slideUp(300);
             }

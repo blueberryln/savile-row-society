@@ -18,7 +18,7 @@ $(document).ready(function(){
             $("#shirt-cut input:radio#" + selected_id).prop("checked", true);
         });
 
-        $("div.submit input").click(function(){
+        $("div.submit input").click(function(event){
             if($("div#jeans-cut").find("li.ui-selected").length == 0 || $("div#shirt-cut").find("li.ui-selected").length == 0)
             {
                 event.preventDefault();

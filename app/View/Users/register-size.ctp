@@ -3,7 +3,7 @@
 $script = ' var size = ' . json_encode($size) . '; ' .
 ' $(document).ready(function(){ 
         
-        $("div.submit input").click(function(){
+        $("div.submit input").click(function(event){
             if($("#jacketSize").val() == "" || $("#neckSize").val() == "" || $("#poloSize").val() == "" || $("#pantSize").val() == "" || $("#shoeSize").val() == "" )
             {                
                 $("p.error-msg").slideDown(300);
