@@ -102,6 +102,9 @@
                         <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>
+                        <?php if(!$is_logged) : ?>
+                        <li><a href="">VIP ACCESS</a></li>
+                        <?php endif; ?>
                         <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>contact">Contact us</a></li>
@@ -121,7 +124,8 @@
         <!--Login and register popup-->
             <?php
             if (!$is_logged){
-                echo $this->element('popup/authentication');    
+                echo $this->element('popup/authentication'); 
+                echo $this->element('popup/vip_access');    
             }
             ?>
 

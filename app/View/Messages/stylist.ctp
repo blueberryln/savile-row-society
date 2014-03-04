@@ -83,7 +83,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     
                     <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
                     <textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
-                    <a class="link-btn black-btn"  id="sendMessages"  href="">Send Messages</a>
+                    <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a>
                     <div class="clear-fix"></div>
                 
                 <div class="chat-container">
