@@ -55,7 +55,7 @@ $script='
                     testimonialText.text(testimonials[newTestimonial]["text"]);
                     testimonialBlock.animate({opacity: 1}, 700);
                 })
-            }, 6000);    
+            }, 7000);    
 
             $("ul#branding-partners li").click(function(){
                 var brandImage = $(this).find("img");
