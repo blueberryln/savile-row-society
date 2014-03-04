@@ -465,6 +465,14 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }    
             });
         });
+
+        $(".chat-container").on("click", ".mosaic-overlay", function(e){
+            e.preventDefault();
+            var productBlock = $(this).closest(".product-block");
+            var productSlug = productBlock.find(".product-slug").val();
+            var productId = productBlock.find(".product-id").val();
+            window.location = productBlock.find(".btn-buy").attr("href");
+        });
         
     }
 

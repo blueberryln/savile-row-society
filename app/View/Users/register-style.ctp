@@ -2,11 +2,20 @@
 $script = '  
 var size = ' . json_encode($size) . '; 
 $(document).ready(function(){ 
-        
+
         /****Jeans Cut*****/
-        $("div#jeans-cut li, div#shirt-cut li").click(function(){
+        $("div#jeans-cut li").click(function(){
             $("p.error-msg").slideUp(300);
             $(this).addClass("ui-selected").siblings().removeClass("ui-selected");
+            var selected_id = $(this).data("id");
+            $("#jeans-cut input:checkbox#" + selected_id).prop("checked", true);
+        });
+
+        $("div#shirt-cut li").click(function(){
+            $("p.error-msg").slideUp(300);
+            $(this).addClass("ui-selected").siblings().removeClass("ui-selected");
+            var selected_id = $(this).data("id");
+            $("#shirt-cut input:checkbox#" + selected_id).prop("checked", true);
         });
 
         $("div.submit input").click(function(){
@@ -16,6 +25,43 @@ $(document).ready(function(){
                 $("p.error-msg").slideDown(300);
             }            
         });   
+
+        function getIdFromString(s){
+            switch(s){
+                case "Bootcut": return 1;
+                case "Relaxed": return 2;
+                case "Straight": return 3;
+                case "Slim": return 4;
+                case "SlimShirt": return 5;
+                case "RegularShirt": return 6;
+                case "RelaxedShirt": return 6;
+                default: return 0;    
+            }
+        }
+        
+        if(size["denim_kind"]){
+            // Mark saved style as selected
+            var selectedId = getIdFromString(size["denim_kind"]);
+            if(selectedId != 0){
+                var liCondition = \'li[data-id = "\' + selectedId + \'"]\';            
+                var inputCondition = "#" + selectedId;
+
+                $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
+                $(inputCondition).prop("checked", true);
+            }
+        }
+
+        if(size["shirt_size"]){
+            // Mark saved style as selected
+            var selectedId = getIdFromString(size["shirt_size"]);
+            if(selectedId != 0){
+                var liCondition = \'li[data-id = "\' + selectedId + \'"]\';            
+                var inputCondition = "#" + selectedId;
+
+                $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
+                $(inputCondition).prop("checked", true);
+            }
+        }
         
 });
 ';
@@ -39,8 +85,8 @@ window.registerProcess = true;
 
             <h1 class="text-center">Your Style</h1>
         </div>
+        <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size', 'type' => 'file')); ?>
         <div class="nine columns center-block">
-            <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size', 'type' => 'file')); ?>
             <div class="hi-message twelve columns text-center">
                 
                 <h4>Hi <?php echo ucwords($full_name); ?></h4>
@@ -66,10 +112,10 @@ window.registerProcess = true;
             </div>
             <div class="twelve columns center-block text-center">
                 <div id="jeans-cut">
-                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Bootcut" id="1" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Relaxed" id="2" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Straight" id="3" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Slim" id="4" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Bootcut" id="1" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Relaxed" id="2" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Straight" id="3" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Slim" id="4" />
                     <ol id="selectable">
                         <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/size/Bootcut.jpg" class="fadein-image" /><br/>Bootcut</li>
                         <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/size/Relaxed.png" class="fadein-image" /><br/>Relaxed</li>
@@ -77,43 +123,16 @@ window.registerProcess = true;
                         <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/size/Slim.png" class="fadein-image" /><br/>Slim</li>
                     </ol>
                 </div>
-                <!-- <div class="input text required">
-                    <label for="jeans">WHAT KIND OF JEANS DO YOU WEAR?</label>                            
-                    <select name="data[UserPreference][StyleSize][denim_kind]" tabindex="" id="jeans" >
-                        <option value="DON'T KNOW">Don't Know</option>
-                        <option value="RELAXED FIT">Relaxed Fit</option>
-                        <option value="BOOT CUT">Boot Cut</option>
-                        <option value="STRAIGHT LEG">Straight Leg</option>
-                        <option value="SLIM">Slim</option>
-                        <option value="EXTRA SLIM">Extra Slim</option>
-                    </select>
-                </div>
-
-                <div class="input text required">
-                    <label for="shirtSize">Dress Shirt Cut:</label>                            
-                    <select name="data[UserPreference][StyleSize][shirt_size]" tabindex="" id="shirtSize" >
-                        <option value="">Size</option>
-                        <option value="14">14</option>
-                        <option value="14.5">14.5</option>
-                        <option value="15">15</option>
-                        <option value="15.5">15.5</option>
-                        <option value="16">16</option>
-                        <option value="16.5">16.5</option>
-                        <option value="17">17</option>
-                        <option value="17.5">17.5</option>
-                        <option value="Other">Other</option>
-                        <option value="Don't know">Don't know</option>
-                    </select>
-                </div> -->
             </div>
+
             <div class="hi-message twelve columns text-center">                
                 <h4>Dress Shirt Cut</h4>
             </div>
             <div class="twelve columns center-block text-center">
                 <div id="shirt-cut">
-                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Slim" id="5" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Regular" id="6" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][StyleSize]" value="Relaxed" id="7" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][shirt_size]" value="SlimShirt" id="5" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][shirt_size]" value="RegularShirt" id="6" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][shirt_size]" value="RelaxedShirt" id="7" />
                     <ol id="selectable">
                         <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/size/shirt-slim.png" class="fadein-image" /><br/>Slim</li>
                         <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/size/Regular.png" class="fadein-image" /><br/>Regular</li>

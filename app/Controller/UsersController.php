@@ -396,18 +396,19 @@ class UsersController extends AppController {
             }
             // get data from request
             $data = $this->request->data;
-            if(!isset($data['UserPreference']['Contact']['weekDays'])){
-                unset($data['UserPreference']['Contact']['wdTime']);
-            }
-            if(!isset($data['UserPreference']['Contact']['weekEnd'])){
-                unset($data['UserPreference']['Contact']['weTime']);
-            }
 
             if(isset($data['UserPreference']['Contact']['type']) && $data['UserPreference']['Contact']['type'] == "Phone"){
                 unset($data['UserPreference']['Contact']['skype']);
             }
             else if(isset($data['UserPreference']['Contact']['type']) && $data['UserPreference']['Contact']['type'] == "Skype"){
                 unset($data['UserPreference']['Contact']['phone']);
+            }
+
+            if($data['User']['phone'] && $data['User']['phone'] != ""){
+                $user['User']['phone'] = $data['User']['phone'];
+            }
+            if($data['User']['skype'] && $data['User']['skype'] != ""){
+                $user['User']['skype'] = $data['User']['skype'];
             }
 
             // get actual array or string from request
@@ -577,7 +578,7 @@ class UsersController extends AppController {
                 $title_for_layout = 'Sign up';
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
                 $contact = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Contact'])) ? $preferences['UserPreference']['Contact'] : null; 
-                $this->set(compact('full_name', 'contact'));
+                $this->set(compact('full_name', 'contact', 'user'));
                 
                 $this->render('register-last-step');
                 break;

@@ -49,6 +49,7 @@ $(document).ready(function(){
                 $("p.error-msg").slideDown(300);
             }            
         });
+
         $("select#madeToMeasure").change(function(){
             if( !$("select#madeToMeasure").val() == ""){
                 $("p.error-msg").slideUp(300);

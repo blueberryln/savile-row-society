@@ -123,11 +123,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             </a>
             <div id="my-stylist">
                 <?php if($is_logged && $has_stylist) : ?>
-                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/" style="padding: 15px 30px;">Meet My Stylist</a>
                 <?php elseif($is_logged) : ?>
-                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>profile/about">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>profile/about" style="padding: 15px 30px;">Meet My Stylist</a>
                 <?php else : ?>
-                    <a class="link-btn gold-btn" href="#" onclick="window.ref_url=''; signUp();">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="#" onclick="window.ref_url=''; signUp();" style="padding: 15px 30px;">Meet My Stylist</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -287,7 +287,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         <div class="stylist-box">
            <a href="<?php echo $this->request->webroot; ?>closet" class="over-img">
                <div class="img-box">
-                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_4.png" />
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_4.jpg" />
                     <div class="overlay"></div>
                 </div>            
             </a>
