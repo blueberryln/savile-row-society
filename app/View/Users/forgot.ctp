@@ -5,18 +5,21 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 <script>
 window.registerProcess = true;
 </script>
-<div class="container content inner">	
-    <div class="sixteen columns text-center">
-        <h1>Reset password</h1>
-    </div>
-    <div class="sixteen columns">
-        <?php echo $this->Form->create('User'); ?>
-        <div class="five columns offset-by-five">
-            <?php echo $this->Form->input('email'); ?>
-        </div>
-        <div class="clearfix"></div>
-        <div class="text-center">
-            <?php echo $this->Form->end(__('Reset')); ?>
+<div class="content-container">
+    <div class="container content inner">   
+        <div class="ten columns text-center page-heading">
+            <h1>Reset password</h1>
+        </div>	
+        <div class="eleven columns page-content text-center">
+            <?php echo $this->Form->create('User'); ?>
+            <div class="five columns center-block">
+                <?php echo $this->Form->input('email'); ?>
+            </div>
+            <div class="clearfix"></div>
+            <div class="text-center">
+                <input type="submit" value="Reset" class="black-btn link-btn">
+            </div>
+            </form>
         </div>
     </div>
 </div>
