@@ -566,7 +566,8 @@ img.cart-img{vertical-align: middle; width:30px;}
 .mega-banner { margin-bottom: 40px; }
 .mg-big, .mg-vid, .mg-small{width: 50%;}
 .mg-small div{width:49%; display: inline-block; position: relative;}
-.mg-small div > img{width: 100%;}
+.mg-small div > img{width: 100%; display: block;}
+.mg-big > img{display: block;}
 .mg-small-1{margin-right: 0.5%;}
 .mg-big{float: left; position: relative;}
 .mg-vid{margin-bottom: 6px;}

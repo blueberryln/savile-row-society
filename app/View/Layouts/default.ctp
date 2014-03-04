@@ -103,7 +103,7 @@
                         <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>
                         <?php if(!$is_logged) : ?>
-                        <li><a href="">VIP ACCESS</a></li>
+                        <li><a href="" id="block-vip-access">VIP ACCESS</a></li>
                         <?php endif; ?>
                         <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li>
