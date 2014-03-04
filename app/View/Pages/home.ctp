@@ -90,7 +90,7 @@ $script='
            var mbHeight = jQuery(".mg-big").height();
             var mgsHeight = jQuery(".mg-small").height();
             var mgvHeight = mbHeight - mgsHeight;
-            jQuery(".mg-vid").css("height", mgvHeight);
+            jQuery(".mg-vid").css("height", mgvHeight-6);
         }); 
 ';
 if(isset($noindex)){

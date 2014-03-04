@@ -491,6 +491,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	p.send-photo{text-align: right;}
 	#createOutfit{padding: 1px 12px;  line-height: 21px;}
 	p.send-photo a#sendphoto ,div.stylist-talk #sendMessages {padding: 1px 12px; width: 170px; text-align: center; line-height: 21px;}
+	a#sendphoto{float: right; padding: 1px 12px;}
 	.new-clients-head{font-size: 16px;padding-left: 8px; margin-right: 5px;}
 	.new-clients{ border: 1px solid #D2D2D2; padding: 5px; height: 266px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     -o-border-radius: 5px; border-radius: 5px; overflow-y: scroll; }
