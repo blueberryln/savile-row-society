@@ -185,9 +185,18 @@ $(document).ready(function(){
     $("select#product-size").change(function(){
         $("span.err-size-message").fadeOut(300);    
     });    
+
+    $("#zoom_01").elevateZoom({
+    zoomType: "inner",
+cursor: "crosshair",
+zoomWindowFadeIn: 500,
+zoomWindowFadeOut: 750
+   }); 
+
     ' . $logged_script . '
 });
 ';
+$this->Html->script("jquery.elevateZoom-3.0.8.min.js", array('inline' => false));
 $this->Html->script("lightbox-2.6.min.js", array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
@@ -231,7 +240,7 @@ $columns = 'eleven';
             <div class="six columns left">
                 <div class="product-default-image">
                     <?php if(count($entity['Image']) > 0) : ?>
-                        <a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" /></a>
+                        <a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images"><img id="zoom_01" src="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" data-zoom-image="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" /></a>
                     <?php else : ?>
                         <img src="<?php echo $this->webroot; ?>img/image_not_available.png" class="fadein-image" />                    
                     <?php endif; ?>
