@@ -7,7 +7,7 @@ $script ='
                 animationSpeed: 300,  
                 animationLoop: false,
                 slideshow: true,          
-                slideshowSpeed: 4000, 
+                slideshowSpeed: 6000, 
                 video: true,
                 useCSS: false,
                 pauseOnAction: false,
@@ -73,31 +73,6 @@ $script ='
     
     $(document).ready(function(){
         
-        $("#closetCuffLink").hover(
-            function(){
-                $("#closet-slide-banner").fadeIn(300);      
-            },
-            function(){
-                $("#closet-slide-banner").delay(200).fadeOut(300);      
-            }
-        );
-        $("#tailorCuffLink").hover(
-            function(){
-                $("#tailor-slide-banner").fadeIn(300);      
-            },
-            function(){
-                $("#tailor-slide-banner").delay(200).fadeOut(300);      
-            }
-        );
-        $("#stylistCuffLink").hover(
-            function(){
-                $("#stylist-slide-banner").fadeIn(300);      
-            },
-            function(){
-                $("#stylist-slide-banner").delay(200).fadeOut(300);      
-            }
-        );
-        
         $(".highlight-slide").hover(
             function(){
                 var $this = $(this);
@@ -131,25 +106,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <h1>About Us</h1>
     </div>
     <div class="eleven columns page-content">
-        <div class="flexslider loader" style="height: 438px;">
+        <div class="flexslider loader">
             <ul class="slides">
                 
                 <li><a href="<?php echo $this->request->webroot; ?>closet"><img src="<?php echo $this->request->webroot; ?>img/home-6-big.jpg"/></a></li>
-                 <?php
-                    if (!$is_logged) {
-                        echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-1-big.jpg"/></a></li> ';                   
-                    } else {
-                        echo ' <li><img src="' . $this->webroot . 'img/home-1-big.jpg"/></li>';
-                    }
-                    ?>
-                <li>
-                    <div class="slides-cont">
-                        <img src="<?php echo $this->request->webroot; ?>img/home-3-big.jpg" usemap="#getstyled" id="getStyledImage" />
-                        <img src="<?php echo $this->request->webroot; ?>img/1.png" id="closet-slide-banner" />
-                        <img src="<?php echo $this->request->webroot; ?>img/2.png" id="tailor-slide-banner" />
-                        <img src="<?php echo $this->request->webroot; ?>img/3.png" id="stylist-slide-banner" />
-                    </div>
-                </li>
+                
 
                 <?php
                     if (!$is_logged) {
@@ -164,17 +125,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <div class="home-slider-overlay hide"><span>Check Out Danielle Wellington</span></div>
                 </li>
 
-                <li><img src="<?php echo $this->request->webroot; ?>img/home-8-big.jpg" style="max-height: 438px; width: auto !important; display: inline;" /></li>
                 <?php
                     if (!$is_logged) {
                         echo '<li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img src="' . $this->webroot . 'img/home-2-big.jpg"/></a></li> ';                   
                     } else {
                         echo ' <li><img src="' . $this->webroot . 'img/home-2-big.jpg"/></li>';
                     }
-                    ?>     
-                <li>
-                    <iframe id="homeVideoHowItWorks" width="100%" height="438" src="//www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>
-                </li>    
+                    ?>    
                 
             </ul>
         </div>
@@ -186,10 +143,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <li><a href="">2</a></li>
                 <li><a href="">3</a></li>
                 <li><a href="">4</a></li>
-                <li><a href="">5</a></li>
-                <li><a href="">6</a></li>
-                <li><a href="">7</a></li>
-                <li><a href="">8</a></li>
             </ul>
         </div>
         
