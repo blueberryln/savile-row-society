@@ -251,7 +251,7 @@ $columns = 'eleven';
                         <ul>
                             <?php for($i=1; $i < count($entity['Image']); $i++) : ?> 
                                 <?php if($i != 4) : ?>
-                                    <li><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
+                                    <li><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images1"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
                                 <?php else : ?>
                                     <li class="last"><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
                                 <?php endif; ?>
