@@ -112,7 +112,7 @@ $(document).ready(function(){
     else{
         var closetInfo=getCookie("closetInfo");
         if (closetInfo==null || closetInfo==""){
-            $.blockUI({message: $("#closetinfo-box"),css:{top: $(window).height()/2 - $("#closetinfo-box").height()/2}});
+            $.blockUI({message: $("#closetinfo-box"),css:{position: "absolute"}});
             $(".blockOverlay").click($.unblockUI);
         }
     }

@@ -123,11 +123,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             </a>
             <div id="my-stylist">
                 <?php if($is_logged && $has_stylist) : ?>
-                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/" style="padding: 15px 30px;">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Meet My Stylist</a>
                 <?php elseif($is_logged) : ?>
-                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>profile/about" style="padding: 15px 30px;">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>profile/about">Meet My Stylist</a>
                 <?php else : ?>
-                    <a class="link-btn gold-btn" href="#" onclick="window.ref_url=''; signUp();" style="padding: 15px 30px;">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="#" onclick="window.ref_url=''; signUp();">Meet My Stylist</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -314,7 +314,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 </div>
             </a>
             <h3>Shop online</h3>
-            <span class="shopping-desc"><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />From your personal stylist’s selection curated solely for you.<br />In the Closet, where we display a selection of our products.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />Get free shipping and hassle free return.
+            <span class="shopping-desc"><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />From your personal stylist’s selection curated solely for you.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />In the Closet, where we display a selection of our products.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />Get free shipping and hassle free return.
 </span>
         </div> 
          <div class="shopping-box text-left">
@@ -331,7 +331,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 </div>
             </a>
             <h3>Shop in person</h3>
-            <span class="shopping-desc"><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />Try on our ready to wear by booking a free appointment in our showroom.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />Tailor your life with our made-to-measure collection by scheduling a free consultation with our tailor.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet2.png" />Our showroom is located in New York.</span>
+            <span class="shopping-desc"><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />Try on our ready to wear by booking a free appointment in our showroom.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />Tailor your life with our made-to-measure collection by scheduling a free consultation with our tailor.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />Our showroom is located in New York.</span>
         </div> 
          <div class="shopping-box text-left">
             <?php if($is_logged && $has_stylist) : ?>

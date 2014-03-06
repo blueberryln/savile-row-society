@@ -4,41 +4,44 @@ var style = ' . json_encode($style) . ',
     madeToMeasure = ' . json_encode($made_to_measure) . ';  
 $(document).ready(function(){ 
 
-        /* Your style */
-        $( "#your-style #selectable" ).bind("mousedown", function (e) {
-            e.metaKey = false;
-            }).selectable({
-            stop: function() {
-                $("#your-style input:checkbox").prop("checked", false);
-                $( ".ui-selected", this ).each(function() {
-                    $("p.error-msg").slideUp(300);
-                    var selected_id = $(this).data("id");
-                    $("#your-style input:checkbox#" + selected_id).prop("checked", true);
-                });
+        $("#your-style li").click(function(){
+            $("p.error-msg").slideUp(300);
+            if($(this).hasClass("ui-selected")){
+                $(this).removeClass("ui-selected");
+                var selected_id = $(this).data("id");
+                $("#your-style input:checkbox#" + selected_id).prop("checked", false);    
             }
+            else{
+                $(this).addClass("ui-selected");
+                var selected_id = $(this).data("id");
+                $("#your-style input:checkbox#" + selected_id).prop("checked", true);
+            }
+            
         });
 
         function getIdFromString(s){
             switch(s){
-                case "Business": return 1;
-                case "Lifestyle": return 2;
-                case "Complete Overhaul": return 3;
-                case "Every Day": return 4;
-                case "Couple Times a Week": return 5;
-                case "Never": return 6;
+                case "Formal": return 1;
+                case "Casual": return 2;
+                case "Business Casual": return 3;
                 default: return 0;    
             }
         }
         
         // Mark saved style as selected
-        var selectedId = getIdFromString(style);
-        if(selectedId != 0){
-            var liCondition = \'li[data-id = "\' + selectedId + \'"]\';            
-            var inputCondition = "#" + selectedId;
+        if(style && style.length > 0){
+            for(var i = 0; i < style.length; i++){
+                var selectedId = getIdFromString(style[i]);
+                if(selectedId != 0){
+                    var liCondition = \'li[data-id = "\' + selectedId + \'"]\';            
+                    var inputCondition = "#" + selectedId;
 
-            $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
-            $(inputCondition).prop("checked", true);
+                    $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
+                    $(inputCondition).prop("checked", true);
+                }    
+            }
         }
+        
 
         $("#madeToMeasure").val(madeToMeasure);
         
@@ -101,13 +104,13 @@ window.registerProcess = true;
             <div class="twelve columns">
                 <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
                 <div id="your-style">
-                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Business" id="1" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Lifestyle" id="2" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Complete Overhaul" id="3" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Style][]" value="Formal" id="1" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Style][]" value="Casual" id="2" />
+                    <input class="hide" type="checkbox" name="data[UserPreference][Style][]" value="Business Casual" id="3" />
                     <ol id="selectable">
-                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" class="fadein-image" /><br/>Formal</li>
                         <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" class="fadein-image" /><br/>Casual</li>
-                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" class="fadein-image" /><br/>Business Casual</li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.png" class="fadein-image" /><br/>Business Casual</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" class="fadein-image" /><br/>Formal</li>
                     </ol>
                 </div>
             </div><br/>

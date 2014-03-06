@@ -121,7 +121,7 @@ class MessagesController extends AppController {
                 $clients = array();   
                 $clients_data = $User->getUserWriteToMe($this->getLoggedUserID());
                 foreach ($clients_data as $client) {
-                    $clients[$client['User']['id']] = $client['User']['full_name'];
+                    $clients[$client['User']['id']] = (strlen($client['User']['full_name']) < 30) ? $client['User']['full_name'] : substr($client['User']['full_name'], 0, 30) . "...";
                 }
 
                 $new_clients = $User->getNewClients($user_id);

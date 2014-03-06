@@ -208,7 +208,6 @@ class UsersController extends AppController {
         $user = $this->getEditingUser();
         $id = $this->getLoggedUserID();
         
-        $user["User"]["phone"] = $this->request->data["User"]["phone"];
         $user["User"]["industry"] = $this->request->data["User"]["industry"];
         $user["User"]["zip"] = $this->request->data["User"]["zip"];
         if(checkdate($this->request->data["User"]["month"],$this->request->data["User"]["day"], $this->request->data["User"]["year"])){
@@ -399,19 +398,8 @@ class UsersController extends AppController {
             // get data from request
             $data = $this->request->data;
 
-            if(isset($data['UserPreference']['Contact']['type']) && $data['UserPreference']['Contact']['type'] == "Phone"){
-                unset($data['UserPreference']['Contact']['skype']);
-            }
-            else if(isset($data['UserPreference']['Contact']['type']) && $data['UserPreference']['Contact']['type'] == "Skype"){
-                unset($data['UserPreference']['Contact']['phone']);
-            }
-
-            if($data['User']['phone'] && $data['User']['phone'] != ""){
-                $user['User']['phone'] = $data['User']['phone'];
-            }
-            if($data['User']['skype'] && $data['User']['skype'] != ""){
-                $user['User']['skype'] = $data['User']['skype'];
-            }
+            $user['User']['phone'] = $data['User']['phone'];
+            $user['User']['skype'] = $data['User']['skype'];
 
             // get actual array or string from request
             $data_arr = $data['UserPreference']['Contact'];

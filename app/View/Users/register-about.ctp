@@ -42,7 +42,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             <div class="srs-form">
                 <div class="form">
                 <?php
-                echo $this->Form->input('User.phone', array( "label"=>"Phone Number",'required', "placeholder" => "Phone number"));
                 echo $this->Form->input('User.industry', array('label' => 'Industry', 'type' => 'select', 'required' , 'options' => $industry, 'empty' => 'Select Industry'));
                 ?>
                 <div class="input select dob">

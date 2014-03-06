@@ -82,7 +82,7 @@ $script = '
                     });
 
                 jQuery("#book-apt").on("click", function(){
-                    $.blockUI({message: $("#bookapt-box")});
+                    $.blockUI({message: $("#bookapt-box"), css: {"position": "absolute"}});
                     $(".blockOverlay").click($.unblockUI); 
                 });  
             });

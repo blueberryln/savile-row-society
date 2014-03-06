@@ -58,10 +58,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                             <div class="submenu-inner">
                                 
                                 <?php if(!$is_stylist) : ?>
-                                    <a href="<?php echo $this->webroot; ?>messages/index/">
+                                    <a href="<?php echo $this->webroot; ?>messages/index/" class="msg-count-cont">
                                         <div class="msg-count">
                                             <span><?php echo $message_notification['message']; ?></span> Messages
                                         </div>
+                                    </a>
+                                    <a href="<?php echo $this->webroot; ?>messages/index/">
                                         <div class="outfit-count">
                                             <span><?php echo $message_notification['outfit']; ?></span> Outfits
                                         </div>
@@ -69,8 +71,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                 <?php else : ?>
                                     <a href="<?php echo $this->webroot; ?>messages/index/">
                                         <div class="msg-count">
-                                            <span><?php echo $message_notification['message']; ?></span><br />
-                                            Messages
+                                            <span><?php echo $message_notification['message']; ?></span> Messages
                                         </div>
                                     </a>    
                                 <?php endif; ?>

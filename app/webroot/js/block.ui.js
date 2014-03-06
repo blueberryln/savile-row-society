@@ -127,7 +127,7 @@
 				margin:		0,
 				width:		'auto',
 				//top:		'20%',
-				top: $(window).height()/2 - $(".box-modal").height()/2,
+				top: (($(window).height()/2 - $(".box-modal").height()/2) >= 0) ? $(window).height()/2 - $(".box-modal").height()/2 : 0,
 				//left:		'35%',	
                 left: $(window).width()/2 - $(".box-modal").width()/2,
 				textAlign:	'center',

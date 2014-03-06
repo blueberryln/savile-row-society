@@ -101,7 +101,7 @@ $meta_description = 'As people today are rarely defined by a single company or c
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="content-container">
-    <div class="container content inner">   
+    <div class="container content inner aboutus">   
     <div class="ten columns text-center page-heading">
         <h1>About Us</h1>
     </div>
