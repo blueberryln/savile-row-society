@@ -47,6 +47,7 @@ Router::connect('/checkout', array('controller' => 'closet', 'action' => 'checko
 Router::connect('/payment', array('controller' => 'closet', 'action' => 'payment'));
 Router::connect('/confirmation', array('controller' => 'closet', 'action' => 'confirmation'));
 Router::connect('/product/*', array('controller' => 'closet', 'action' => 'product'));
+Router::connect('/user-outfit/*', array('controller' => 'closet', 'action' => 'userOutfit'));
 Router::connect('/profile/*', array('controller' => 'users', 'action' => 'register'));
 
 /* Admin */

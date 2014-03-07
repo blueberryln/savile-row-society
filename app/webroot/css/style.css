@@ -104,7 +104,7 @@ input[type="submit"]{color: #fff;}
 	.header .menu li a {color: #444; font-weight: normal; font-size: 12px; font-family: 'sweetsans-regular',sans-serif; }
 	.header .menu li a:hover, .card-menu  li a:hover{color: #000;}
 	.header .menu li span:hover{ border-bottom:1px solid #fff;}
-	.header .menu li:hover > .submenu{ display:block; }
+	.header .menu li:hover > .submenu{ display:block !important; }
 	.header .menu .submenu { background-color: #ffffff; border: 1px solid #CCCCCC; cursor: auto; display: none; margin: 2px 0 0 -14px; padding: 0; position: absolute; z-index: 100; text-align: left; }
 	.header .menu .submenu li {border:none; display: block;}
 	.header .menu .submenu li a{color: #b4b4b4;}

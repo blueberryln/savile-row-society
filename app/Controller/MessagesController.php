@@ -152,17 +152,17 @@ class MessagesController extends AppController {
     /**
      * Send first message to the user when he/she is assigned the stylist.
      */
-    public function send_welcome_message($user_id){
+    public function send_welcome_message($user_id, $stylist_id){
         $this->autoLayout = false;
         $this->autoRender = false;
         $User = ClassRegistry::init('User');
         
         $user = $User->getById($user_id);
 
-        if($user && $user['User']['stylist_id']){
+        if($user && $stylist_id){
             $this->Message->create();    
 
-            $stylist = $User->getById($user['User']['stylist_id']);
+            $stylist = $User->getById($stylist_id);
             $body = ucwords($user['User']['first_name']) . ",
                     
                     Thank you for registering with Savile Row Society and for taking the time to fill out your style profile. We have paired you with our premier personal stylist " . $stylist['User']['first_name'] . ". She will be reaching out to you shortly, however, do not hesitate to reach out to her if you have any questions or concerns. In the meantime, help " . $stylist['User']['first_name'] . " get to know you even better by liking and disliking the products we have suggested for you. We appreciate your support and patronage and look forward to being a destination for your wardrobe and lifestyle needs. 
@@ -170,10 +170,10 @@ class MessagesController extends AppController {
                     Sincerely, 
                     The Savile Row Society Team ";
 
-            $this->Message->data['Message']['user_from_id'] = $user['User']['stylist_id'];
+            $this->Message->data['Message']['user_from_id'] = $stylist_id;
             $this->Message->data['Message']['user_to_id'] = $user_id;
             $this->Message->data['Message']['body'] = $body;
-            
+
             if ($this->Message->validates($this->Message->data)) {
                 // store in db
                 $res = $this->Message->save($this->Message->data);

@@ -6,24 +6,37 @@ class AppController extends Controller {
 
     var $components = array('Session');
     
+    /**
+     * To redirect any https request to http for any request to a controller action other than Closet Controller.
+     * @return none
+     */
+    function beforeFilter() {
+        if($this->request->is('ssl')){ 
+            if($this->request->params['controller'] != "closet"){
+                $this->redirect('http://' . env('SERVER_NAME') . $this->here);
+            }
+        } 
+           
+    }
+
+
+    /**
+     * Before render:
+     * 1. Set logged status.
+     * 2. Check and set if stylist has been assigned.
+     * 3. Set cart count.
+     * 4. Check if user has admin rights.
+     * 5. Check if user has stylist rights.
+     * 6. Check if register popup needs to be shown.
+     * 7. Get message notification.
+     * 8. Check if complete style profile popup needs to be shown.
+     */
     public function beforeRender() {
         parent::beforeRender();
-        
-        /* To show holiday popup
-        if($this->Session->read('holidayCode')){
-            $this->Session->delete('holidayCode');
-            $showHolidayPopup = true;
-            $this->set(compact('showHolidayPopup'));
-        }
-        */
         
         if($this->Session->check('showRegisterPopup')){
             $showRegisterPopup = 1;
             $this->Session->delete('showRegisterPopup');
-            //$User = ClassRegistry::init('User');
-            // $referer_id = $this->Session->read('referer'); 
-            // $referer_type = $this->Session->delete('referer_type');
-            // $referer = $User->findById($referer_id);
             $this->set(compact('showRegisterPopup'));
         }
 
@@ -66,28 +79,20 @@ class AppController extends Controller {
         }
         
     }
-    
-    function beforeFilter() {
-        //Redirect all pages to http except checkout page 
-        if($this->request->is('ssl')){ 
-            if($this->request->params['controller'] != "closet"){
-                $this->redirect('http://' . env('SERVER_NAME') . $this->here);
-            }
-        } 
-           
-    }
+
 
     /**
      * Get Logged User from Session
-     * @return type 
+     * @return values od user session. 
      */
     function getLoggedUser() {
         return $this->Session->read('user');
     }
 
+
     /**
      * Get Logged User ID
-     * @return type 
+     * @return User id of the logged user. 
      */
     function getLoggedUserID() {
         // fill $user with session data
@@ -95,14 +100,15 @@ class AppController extends Controller {
         return $user['User']['id'];
     }
 
+
     /**
-     * Check if User (client) is logged in 
+     * Check if the current user is logged in. 
      */
     function isLogged() {
         // fill $user with session data
         $user = $this->getLoggedUser();
 
-        // if the $user is empty,
+        // If the $user is empty,
         // send user to login page
         if (!$user) {
 
@@ -118,6 +124,7 @@ class AppController extends Controller {
             $this->Session->delete('return_url');
         }
     }
+
 
     /**
      * Check current logged User's
@@ -138,9 +145,10 @@ class AppController extends Controller {
         $this->set('is_admin', $is_admin);
     }
     
+
     /**
      * Check current logged User's
-     * Admin premissions
+     * Stylist premissions
      */
     function checkStylistRights() {
 
@@ -157,20 +165,21 @@ class AppController extends Controller {
         $this->set('is_stylist', $is_stylist);
     }
 
+
     /**
-     * Check if User (client) is logged in 
+     * Check if current user is admin
      */
     function isAdmin() {
         // fill $user with session data
         $user = $this->getLoggedUser();
 
-        // if the $user is empty,
-        // send user to login page
+        // if is_admin is not set to 1, redirect to home.
         if ($user['User']['is_admin'] == 0) {
-            $this->redirect('/signin');
+            $this->redirect('/');
             exit();
         }
     }
+
 
     /**
      * Get Cart items count
@@ -193,6 +202,7 @@ class AppController extends Controller {
         $this->Session->write('cart_items', $cart_items_count);
         $this->set('cart_items', $cart_items_count);
     }
+    
     
     /**
      * Get notification count: total, new messages, new outfits

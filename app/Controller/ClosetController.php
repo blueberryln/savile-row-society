@@ -439,6 +439,66 @@ class ClosetController extends AppController {
         }
     }
 
+
+    /**
+     * Action to fetch and display outfit items on a single page
+     * @id : outfit id
+     */
+    /*public function userOutfit($id = null) {
+        $this->isLogged();
+        $user_id = $this->getLoggedUserID();
+        App::uses('Sanitize', 'Utility');
+
+        if ($id) {
+
+            // init
+            $Entity = ClassRegistry::init('Entity');
+            $Category = ClassRegistry::init('Category');
+            $Product = ClassRegistry::init('Product');
+
+            // get data
+            $entity = $Entity->getById($id, $user_id);
+            
+            if($slug != $entity['Entity']['slug']){
+                $this->redirect('/product/' . $id . '/' . $entity['Entity']['slug']);
+                exit;    
+            }
+
+            if (!$entity) {
+                throw new NotFoundException;
+            }
+            
+            //Check if product is a gift card
+            if($entity['Entity']['is_gift'] && $entity['Entity']['price'] > 0){
+                //Get all the gift cards
+                $gift_cards = $Entity->getGiftCards();
+                
+                $this->set(compact('entity', 'category', 'parent_category', 'user_id', 'check_count', 'gift_cards'));
+                $this->render('gift');       
+            }
+            else if($entity['Entity']['is_gift'] && $entity['Entity']['price'] <= 0){
+                $this->redirect('/closet');       
+            }
+            else{
+                $sizes = $Entity->Detail->getAvailableSize($id);
+            
+                $product_id = $entity['Entity']['product_id'];
+                $similar_results = $Entity->getSimilarProducts($id, $product_id);
+                $similar = array();
+                foreach($similar_results as $row){
+                    if($row['Color'] && count($row['Color']) > 0){
+                        $similar[] = $row;
+                    }
+                }
+                
+                // send data to view
+                $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id', 'check_count'));
+                
+                $this->render('product');    
+            }   
+        }
+    }*/
+
     /**
      * Cart
      */

@@ -410,13 +410,14 @@ class UsersController extends AppController {
             
             if ($this->User->save($user)) {
                 $result = $this->User->getByID($id);
+
                 //Assign Stylist
                 if(!$result['User']['stylist_id']){
-                    $this->assign_refer_stylist($id);
+                    $stylist_id = $this->assign_refer_stylist($id);
 
                     App::import('Controller', 'Messages');
                     $Messages = new MessagesController;
-                    $Messages->send_welcome_message($id);
+                    $Messages->send_welcome_message($id, $stylist_id);
                 }
 
                 $this->Session->write('user', $result);
@@ -942,6 +943,8 @@ class UsersController extends AppController {
         catch(Exception $e){
             
         }
+
+        return $new_stylist['User']['id'];
     }
 
     /**
@@ -1097,6 +1100,10 @@ class UsersController extends AppController {
             if($this->request->data['User']['stylist_id'] == ""){
                 $this->request->data['User']['stylist_id'] = null;
             }
+
+            $this->request->data['User']['password'] = Security::hash($this->request->data['User']['password']);
+
+            
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'), 'flash');
                 $this->redirect(array('action' => 'index'));

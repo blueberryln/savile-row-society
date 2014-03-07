@@ -258,4 +258,12 @@ jQuery(function(){
             location = "/users/refer/" + vipCode;
         }
     });
+
+    jQuery(".msg-notify-box").mouseup(function(){
+        return false;
+    });
+
+    $(document).mouseup(function(){
+        $(".msg-notify-box .submenu").hide();   
+    });
 });
