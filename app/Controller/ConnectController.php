@@ -355,8 +355,8 @@ class ConnectController extends AppController {
 
             $login_url_params = array(
                 'scope' => 'email',
-                'redirect_uri' => Configure::read('Social.callback_url') . 'connect/facebook',
-                'next' => Configure::read('Social.callback_url') . 'connect/facebook'
+                'redirect_uri' => Configure::read('Social.callback_url') . 'development/connect/facebook',
+                'next' => Configure::read('Social.callback_url') . 'development/connect/facebook'
             );
             $login_url = $facebook->getLoginUrl($login_url_params);
 
