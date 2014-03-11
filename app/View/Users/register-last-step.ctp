@@ -32,14 +32,14 @@ $(document).ready(function(){
         $("input[name=\"data[UserPreference][Contact][weTime4]\"]").attr("checked","checked");   
     }
 
-    if(contact.type && contact.type == "Chat"){
-        $("input[name=\"data[UserPreference][Contact][type]\"][value=\"Chat\"]").attr("checked","checked");
+    if(contact.type &&  $.inArray("Chat", contact.type) >= 0){
+        $("input[type=\"checkbox\"][value=\"Chat\"]").attr("checked","checked");
     }
-    else if(contact.type && contact.type == "Phone"){
-        $("input[name=\"data[UserPreference][Contact][type]\"][value=\"Phone\"]").attr("checked","checked");
+    if(contact.type && $.inArray("Phone", contact.type) >= 0){
+        $("input[type=\"checkbox\"][value=\"Phone\"]").attr("checked","checked");
     }
-    else if(contact.type && contact.type == "Skype"){
-        $("input[name=\"data[UserPreference][Contact][type]\"][value=\"Skype\"]").attr("checked","checked");
+    if(contact.type && $.inArray("Skype", contact.type) >= 0){
+        $("input[type=\"checkbox\"][value=\"Skype\"]").attr("checked","checked");
     }
 
     $("div.submit input").click(function(event){
@@ -84,44 +84,44 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         <?php echo $this->Form->create('User', array('url' => '/register/saveContact', 'class' => 'form')); ?>
         <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
         <div class="hi-message twelve columns text-center">
-              <h4 class="hi-message">Preferred time to be reached</h4>                  
+              <h4 class="hi-message">Preferred time to be reached?</h4>                  
         </div>     
 
         <div class="finalizing seven columns center-block" >
             <div class="five columns pref-time left">
                 <p>Week Days</p>
                 <div class="pref-options">
-                    <input type="checkbox" name="data[UserPreference][Contact][wdTime1]" value="1">Morning(8am to 12am)<br>
-                    <input type="checkbox" name="data[UserPreference][Contact][wdTime2]" value="2">Lunch time(12 to 2pm)<br>
-                    <input type="checkbox" name="data[UserPreference][Contact][wdTime3]" value="3">Afternoon(2pm to 6pm)<br>
-                    <input type="checkbox" name="data[UserPreference][Contact][wdTime4]" value="4">Evening(6pm to 9pm)<br>                    
+                    <input type="checkbox" name="data[UserPreference][Contact][wdTime1]" value="1">Morning (8am to 12am)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][wdTime2]" value="2">Lunch time (12 to 2pm)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][wdTime3]" value="3">Afternoon (2pm to 6pm)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][wdTime4]" value="4">Evening (6pm to 9pm)<br>                    
                 </div>
                 
             </div>
             <div class="five columns pref-time right">
                 <p>Week End</p>
                 <div class="pref-options">
-                    <input type="checkbox" name="data[UserPreference][Contact][weTime1]" value="1">Morning(8am to 12am)<br>
-                    <input type="checkbox" name="data[UserPreference][Contact][weTime2]" value="2">Lunch time(12 to 2pm)<br>
-                    <input type="checkbox" name="data[UserPreference][Contact][weTime3]" value="3">Afternoon(2pm to 6pm)<br>
-                    <input type="checkbox" name="data[UserPreference][Contact][weTime4]" value="4">Evening(6pm to 9pm)<br>                     
+                    <input type="checkbox" name="data[UserPreference][Contact][weTime1]" value="1">Morning (8am to 12am)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][weTime2]" value="2">Lunch time (12 to 2pm)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][weTime3]" value="3">Afternoon (2pm to 6pm)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][weTime4]" value="4">Evening (6pm to 9pm)<br>                     
                 </div>                             
             </div>
             <div class="clear-fix"></div>
         </div> 
 
         <div class="hi-message twelve columns text-center">
-              <h4 class="hi-message">How would you like to be reached</h4>                  
+              <h4 class="hi-message">How would you like to be reached?</h4>                  
         </div>
         <div class="finalizing seven columns center-block contact-options" >
             <ul>
-                <li><input type="radio" name="data[UserPreference][Contact][type]" id="srs-chat" checked="checked" value="Chat">SRS Chat &amp; Email</li>
+                <li><input type="checkbox" name="data[UserPreference][Contact][type][]" id="srs-chat" value="Chat"> SRS Chat &amp; Email</li>
                 <li>
-                    <input type="radio" name="data[UserPreference][Contact][type]" id="phone-field" checked="checked" value="Phone"><span>Phone</span>
+                    <input type="checkbox" name="data[UserPreference][Contact][type][]" id="phone-field" value="Phone"><span> Phone</span>
                     <input type="text" placeholder="Enter your Phone No" class="phone-field" name="data[User][phone]" value="<?php echo $user['User']['phone'] ?>"><br>
                 </li>
                 <li>
-                    <input type="radio" name="data[UserPreference][Contact][type]" id="skype-field" value="Skype"><span>Skype </span>
+                    <input type="checkbox" name="data[UserPreference][Contact][type][]" id="skype-field" value="Skype"><span> Skype </span>
                     <input type="text" placeholder="Enter your Skype ID" class="skype-field" name="data[User][skype]"value="<?php echo $user['User']['skype'] ?>">
                 </li>
             </ul>

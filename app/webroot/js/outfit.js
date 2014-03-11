@@ -310,7 +310,7 @@ $(document).ready(function(){
     $("#createOutfit").on("click", function(e){
         e.preventDefault(); 
         if(client_id != 0){
-            $.blockUI({message: $("#outfit-box"), css: {top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px" }});
+            $.blockUI({message: $("#outfit-box"), css: {top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px", position: 'absolute' }});
             getPurchasedItems(lastPurchasedItem);
             getLikedItems(lastLikedItem);
         }
@@ -531,7 +531,7 @@ $(document).ready(function(){
                 $(this).addClass("outfit-suggessted");
                 var outfitLocation = $("#outfit-location").val();
                 var outfitStyle = $("#outfit-style").val();
-                
+                $(".suggest-outfit-loader").show();
                 $.post(
                     webroot + "outfits/postOutfit/",
                     {

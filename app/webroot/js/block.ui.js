@@ -133,7 +133,7 @@
 				textAlign:	'center',
 				color:		'#000',
                 border:		'none',
-				backgroundColor:'#fff',
+				backgroundColor:'#fff'
 			},
 
 			// minimal style set used when themes are used

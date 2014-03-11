@@ -48,9 +48,9 @@ window.registerProcess = true;
             <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
             
             <div class="input text required">
-                <label for="jeans">Jacket Size</label>                            
+                <label for="jeans">Suit Size:</label>                            
                 <select name="data[UserPreference][Size][jacket_size]" tabindex="" required="required" id="jacketSize" >
-                    <option value="">Jacket Size:</option>
+                    <option value="">Suit Size</option>
                     <option value="36">36</option>
                     <option value="38">38</option>
                     <option value="40">40</option>                    

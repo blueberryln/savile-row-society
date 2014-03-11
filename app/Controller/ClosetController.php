@@ -444,60 +444,64 @@ class ClosetController extends AppController {
      * Action to fetch and display outfit items on a single page
      * @id : outfit id
      */
-    /*public function userOutfit($id = null) {
-        $this->isLogged();
+    public function userOutfit($id = null) {
+        //$this->isLogged();
         $user_id = $this->getLoggedUserID();
         App::uses('Sanitize', 'Utility');
 
         if ($id) {
+            //Check if outfit exists else show page not found.
+            $Outfit = ClassRegistry::init('Outfit');
+            if(!$Outfit->exists($id)){
+                throw new NotFoundException(__('Outfit Not Found.'));
+            }
 
-            // init
+            //Get all the products present in the outfit.
+            $OutfitItem = ClassRegistry::init('OutfitItem');
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $id)));
+            $entity_list = array();
+            foreach($outfit as $value){
+                $entity_list[] = $value['OutfitItem']['product_entity_id'];
+            }
+
             $Entity = ClassRegistry::init('Entity');
-            $Category = ClassRegistry::init('Category');
-            $Product = ClassRegistry::init('Product');
 
             // get data
-            $entity = $Entity->getById($id, $user_id);
-            
-            if($slug != $entity['Entity']['slug']){
-                $this->redirect('/product/' . $id . '/' . $entity['Entity']['slug']);
-                exit;    
+            $entity = $Entity->getMultipleById($entity_list, $user_id);
+            $products_list = array();
+            foreach ($entity as $key => $value) {
+                $products_list[] = $value['Entity']['product_id'];
+            }
+        
+            $similar_results = $Entity->getSimilarProducts($id, $products_list);
+            $similar = array();
+            foreach($similar_results as $row){
+                if($row['Color'] && count($row['Color']) > 0){
+                    $similar[$row['Entity']['product_id']][] = $row; 
+                }
             }
 
-            if (!$entity) {
-                throw new NotFoundException;
-            }
-            
-            //Check if product is a gift card
-            if($entity['Entity']['is_gift'] && $entity['Entity']['price'] > 0){
-                //Get all the gift cards
-                $gift_cards = $Entity->getGiftCards();
-                
-                $this->set(compact('entity', 'category', 'parent_category', 'user_id', 'check_count', 'gift_cards'));
-                $this->render('gift');       
-            }
-            else if($entity['Entity']['is_gift'] && $entity['Entity']['price'] <= 0){
-                $this->redirect('/closet');       
-            }
-            else{
-                $sizes = $Entity->Detail->getAvailableSize($id);
-            
-                $product_id = $entity['Entity']['product_id'];
-                $similar_results = $Entity->getSimilarProducts($id, $product_id);
-                $similar = array();
-                foreach($similar_results as $row){
-                    if($row['Color'] && count($row['Color']) > 0){
-                        $similar[] = $row;
-                    }
+            $entities = array();
+
+            foreach ($entity as $key => $value) {
+                $entities[$value['Entity']['id']] = $value;
+                if(isset($similar[$value['Entity']['product_id']])){
+                    $entities[$value['Entity']['id']]['Similar'] = $similar[$value['Entity']['product_id']];
                 }
-                
-                // send data to view
-                $this->set(compact('entity', 'sizes', 'category', 'parent_category', 'similar', 'user_id', 'check_count'));
-                
-                $this->render('product');    
-            }   
+            }
+
+            $Size = ClassRegistry::init('Size');
+            $size_list = $Size->find('list');
+            
+            $this->set(compact('entities', 'size_list', 'user_id'));
+            
+            $this->render('outfit');    
+            
         }
-    }*/
+        else{
+            throw new NotFoundException(__('Outfit Not Found.'));    
+        }
+    }
 
     /**
      * Cart

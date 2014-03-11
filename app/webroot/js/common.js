@@ -259,11 +259,7 @@ jQuery(function(){
         }
     });
 
-    jQuery(".msg-notify-box").mouseup(function(){
-        return false;
-    });
-
-    $(document).mouseup(function(){
-        $(".msg-notify-box .submenu").hide();   
+    $("#msg-notifications").click(function(e){
+        e.preventDefault();
     });
 });

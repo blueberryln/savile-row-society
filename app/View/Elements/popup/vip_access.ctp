@@ -6,7 +6,7 @@
             <p>Enter your private code here.</p> 
             
             <form>
-                <input type="text" class="vip-access-code text-center" placeholder="Enter VIP code">
+                <input type="text" class="vip-access-code" placeholder="Enter VIP code">
                 <input type="submit" class="link-btn black-btn vip-access-btn" value="SIGN IN" /> 
             </form> 
         </div> 

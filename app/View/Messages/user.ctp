@@ -284,9 +284,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 '</div>' + 
                             '</div>' + 
                             '<div class="product-list-links">' + 
-                            '<a href="" class="thumbs-up ' + likedClass + '"></a>' +
-                                '<a href="' + webroot + 'product/' + chatMsg['Outfit'][i]['Entity']['id'] + '/' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="btn-buy" target="_blank">Buy</a>' + 
-                                '<a href="" class="thumbs-down ' + dislikedClass + '"></a>' +
+                            //'<a href="" class="thumbs-up ' + likedClass + '"></a>' +
+                                '<a href="' + webroot + 'user-outfit/' + chatMsg['Message']['outfit_id'] + '/" class="btn-buy" target="_blank">Buy</a>' + 
+                                //'<a href="" class="thumbs-down ' + dislikedClass + '"></a>' +
                             '</div>' + 
                         '</div>' + 
                     '</div>';        
@@ -468,8 +468,6 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         $(".chat-container").on("click", ".mosaic-overlay", function(e){
             e.preventDefault();
             var productBlock = $(this).closest(".product-block");
-            var productSlug = productBlock.find(".product-slug").val();
-            var productId = productBlock.find(".product-id").val();
             window.location = productBlock.find(".btn-buy").attr("href");
         });
         

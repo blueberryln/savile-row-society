@@ -124,11 +124,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <div class="showroom">                       
                         <div class="contact-info left text-left">
                             <h4>Showroom:</h4>
-                            <p>902 Broadway, 6th Floor, <br />New York, NY 10010</p>                            
+                            <p>1115 Broadway | 10th Floor, <br />New York, NY 10010</p>                            
                             <p class="phone">+1 347 878 7280</p>
                         </div>
                         <div class="s-map right">                          
-                            <iframe height="105" scrolling="no" frameborder="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=902+Broadway,+New+York,+NY,+United+States&amp;sll=40.763641,-73.977728&amp;sspn=0.056948,0.132093&amp;ie=UTF8&amp;hq=&amp;hnear=902+Broadway,+New+York,+10010&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=near" marginwidth="0" marginheight="0">                                
+                            <iframe height="105" scrolling="no" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3022.99474281726!2d-73.9924649!3d40.7401412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a30dea63cf%3A0x2249fd473bf11f33!2s1115+Broadway!5e0!3m2!1sen!2sin!4v1394536779484" marginwidth="0" marginheight="0">   
+                             
                         </iframe>
                         </div>
                         <div class="clear-fix"></div>

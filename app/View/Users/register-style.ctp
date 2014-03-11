@@ -117,10 +117,10 @@ window.registerProcess = true;
                     <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Straight" id="3" />
                     <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Slim" id="4" />
                     <ol id="selectable">
-                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/size/Bootcut.jpg" class="fadein-image" /><br/>Bootcut</li>
-                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/size/Relaxed.png" class="fadein-image" /><br/>Relaxed</li>
-                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/size/Straight.png" class="fadein-image" /><br/>Straight</li>
                         <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/size/Slim.png" class="fadein-image" /><br/>Slim</li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/size/Straight.png" class="fadein-image" /><br/>Straight</li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/size/Relaxed.png" class="fadein-image" /><br/>Relaxed</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/size/Bootcut.jpg" class="fadein-image" /><br/>Bootcut</li>
                     </ol>
                 </div>
             </div>

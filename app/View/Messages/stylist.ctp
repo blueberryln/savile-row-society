@@ -213,6 +213,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <div class="clear-fix"></div>
             <div class="text-center">
                 <a href="" id="add-outfit" class="link-btn black-btn">Suggest the Outfit</a>
+                <div class="hide suggest-outfit-loader"><img src="<?php echo $this->webroot; ?>img/loader.gif"></div>
             </div>
         </div>
             <div class="clear-fix"></div>
@@ -437,7 +438,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 '</div>' + 
                             '</div>' + 
                             '<div class="product-list-links">' +
-                                '<a href="' + webroot + 'product/' + chatMsg['Outfit'][i]['Entity']['id'] + '/' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="btn-buy" target="_blank">Buy</a>' +                             
+                                '<a href="' + webroot + 'user-outfit/' + chatMsg['Message']['outfit_id'] + '/" class="btn-buy">Buy</a>' +                             
                             '</div>' + 
                         '</div>' + 
                     '</div>';        
@@ -629,8 +630,6 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         $(".chat-container").on("click", ".mosaic-overlay", function(e){
             e.preventDefault();
             var productBlock = $(this).closest(".product-block");
-            var productSlug = productBlock.find(".product-slug").val();
-            var productId = productBlock.find(".product-id").val();
             window.location = productBlock.find(".btn-buy").attr("href");
         });
     }

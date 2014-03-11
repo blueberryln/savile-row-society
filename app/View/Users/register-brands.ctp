@@ -322,7 +322,7 @@ window.registerProcess = true;
                   <div id="polos_tees-brands" class="brand-block">
                      
                       <p>
-                        <label for="polo-range">How much do you usually spend on Polos &amp; Tees ($50 - $200):</label>
+                        <label for="polo-range">How much do you usually spend on Polos &amp; Tees ($50 - $200)?</label>
                         <input type="hidden" id="polo-range" name="data[UserPreference][Brands][range][polo_tees]">
                       </p>
                       <div id="polo-range-slider"></div>
@@ -360,7 +360,7 @@ window.registerProcess = true;
                    <div id="jeans-brands" class="brand-block hide">
                      
                       <p>
-                        <label for="jeans-range">How much do you usually spend on Jeans ($50 - $300):</label>
+                        <label for="jeans-range">How much do you usually spend on Jeans ($50 - $300)?</label>
                         <input type="hidden" id="jeans-range" name="data[UserPreference][Brands][range][jeans]">
                       </p>
                       <div id="jeans-range-slider"></div>
@@ -398,15 +398,12 @@ window.registerProcess = true;
                    <div id="shoes-brands" class="brand-block hide">
                       
                       <p>
-                        <label for="shoes-range">How much do you usually spend on shoes ($100 - $500):</label>
+                        <label for="shoes-range">How much do you usually spend on shoes ($100 - $500)?</label>
                         <input type="hidden" id="shoes-range" name="data[UserPreference][Brands][range][shoes]">
                       </p>
                       <div id="shoes-range-slider"></div>
                       <p id="shoes-range-text" class="text-center"></p>
-
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Ben Sherman" id="1" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Fred Perry" id="2" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Ralph Lauren" id="3" />    
+  
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Allen Edmonds" id="4" />   
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Berluti" id="5" />     
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Church" id="6" />     
@@ -419,10 +416,7 @@ window.registerProcess = true;
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Sperry" id="13" />     
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Ted Baker" id="14" />     
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Tods" id="15" />                      
-                      <ol id="selectable" class="brands-logo eleven columns center-block">
-                          <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/shoes/ben-sherman.png" class="fadein-image" alt="Ben Sherman" /></li>
-                          <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/shoes/fred-perry.png" class="fadein-image" alt="Fred Perry" /></li>
-                          <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/shoes/ralph-lauren.png" class="fadein-image" alt="Ralph Lauren" /></li>                       
+                      <ol id="selectable" class="brands-logo eleven columns center-block">                       
                           <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Allen Edmonds.jpg" class="fadein-image" alt="Allen Edmonds" /></li>       
                           <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Berluti.png" class="fadein-image" alt="Berluti" /></li>                        
                           <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Church.jpg" class="fadein-image" alt="Church" /></li>                        
@@ -442,7 +436,7 @@ window.registerProcess = true;
                   <div id="shirt-brands" class="brand-block hide">
                       
                       <p>
-                        <label for="shirt-range">How much do you usually spend on Shirts ($50 - $300):</label>
+                        <label for="shirt-range">How much do you usually spend on Shirts ($50 - $300)?</label>
                         <input type="hidden" id="shirt-range" name="data[UserPreference][Brands][range][shirt]">
                       </p>
                       <div id="shirt-range-slider"></div>
@@ -451,13 +445,12 @@ window.registerProcess = true;
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Etro" id="1" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Ascot Chang" id="2" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Brooks Brothers" id="3" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Robert Graham" id="4" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Burberry" id="5" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="J. Crew" id="6" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Prada" id="7" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Eton" id="8" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Hugo Boss" id="9" />
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="John Varvatos" id="10" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Ralph Lauren" id="10" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Tom Ford" id="11" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Zara" id="12" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Abercrombie" id="13" />
@@ -465,13 +458,12 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/shirts/etro.jpg" class="fadein-image" alt="Etro" /></li>
                           <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/shirts/ascoi-chang.jpg" class="fadein-image" alt="Ascot Chang" /></li>
                           <li class="ui-state-default" data-id="3"><img src="<?php echo $this->webroot; ?>img/brands/shirts/brooks-brothers.jpg" class="fadein-image" alt="Brooks Brothers" /></li>
-                          <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/shirts/robert-graham.jpg" class="fadein-image" alt="Robert Graham" /></li>
                           <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/shirts/burberry.jpg" class="fadein-image" alt="Burberry" /></li>
                           <li class="ui-state-default" data-id="6"><img src="<?php echo $this->webroot; ?>img/brands/shirts/jcrew.jpg" class="fadein-image" alt="J. Crew" /></li>
                           <li class="ui-state-default" data-id="7"><img src="<?php echo $this->webroot; ?>img/brands/shirts/prada.jpg" class="fadein-image" alt="Prada" /></li>
                           <li class="ui-state-default" data-id="8"><img src="<?php echo $this->webroot; ?>img/brands/shirts/eton.jpg" class="fadein-image" alt="Eton" /></li>                        
                           <li class="ui-state-default" data-id="9"><img src="<?php echo $this->webroot; ?>img/brands/shirts/hugo-boss.jpg" class="fadein-image" alt="Hugo Boss" /></li>
-                          <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/shirts/john-varvatos.jpg" class="fadein-image" alt="John Varvatos" /></li>
+                          <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/shirts/ralph-lauren.jpg" class="fadein-image" alt="Ralph Lauren" /></li>
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/shirts/tom-ford.jpg" class="fadein-image" alt="Tom Ford" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/shirts/zara.jpg" class="fadein-image" alt="Zara" /></li>
                           <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/shirts/Abercrombie-n-Fitch.jpg" class="fadein-image" alt="Abercrombie" /></li>
@@ -482,7 +474,7 @@ window.registerProcess = true;
                   <div id="suits-brands" class="brand-block hide">  
 
                       <p>
-                        <label for="suits-range">How much do you usually spend on Suits ($400 - $2,000):</label>
+                        <label for="suits-range">How much do you usually spend on Suits ($400 - $2,000)?</label>
                         <input type="hidden" id="suits-range" name="data[UserPreference][Brands][range][suits]">
                       </p>
                       <div id="suits-range-slider"></div>
