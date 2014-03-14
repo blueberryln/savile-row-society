@@ -73,7 +73,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 </div>
                 <div class="contact-info no-margin">
                     <h4>Showroom:</h4>
-                    <p>902 Broadway, 6th Floor, <br />New York, NY 10010</p>
+                    <p>1115 Broadway | 10th Floor<br />New York, NY  10010</p>
                     <p class="phone">+1 347 878 7280</p>
                 </div>
             </div>

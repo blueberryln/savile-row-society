@@ -151,7 +151,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 </div> 
             </div>
             <div class="mg-small-2">                
-                <a href="<?php echo $this->request->webroot; ?>/lookbooks/" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_3.jpg" /></a>              
+                <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_3.jpg" /></a>              
                 <div class="mgs-btn">
                     <a class="link-btn black-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Buy this <br> look</a>
                 </div> 

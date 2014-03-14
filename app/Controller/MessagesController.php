@@ -426,7 +426,7 @@ class MessagesController extends AppController {
                             $entities[] = $value['OutfitItem']['product_entity_id'];
                         }
                         $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getEntitiesById($entities, $user_id);
+                        $entity_list = $Entity->getProductDetails($entities);
                         $row['Outfit'] = $entity_list;
                     }
                 }

@@ -230,6 +230,7 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
 	.contact-options span{width: 50px; display: inline-block;}
 	.contact-options p{margin: 30px 0 20px 0;}
 	.pref-time input{margin:0 10px 15px 0;}
+	.contact-options input[type="checkbox"]{margin:0 10px 0 0;}
 	.pref-time .pref-options{font-size: 16px; font-weight: normal;}
 	.contact-options span,.contact-options input[type="radio"]{margin-right: 10px;}
 	.contact-options input[type="text"]{width: 50%;}
