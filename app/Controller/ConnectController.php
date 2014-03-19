@@ -108,6 +108,11 @@ class ConnectController extends AppController {
                 $linkedin_data['User']['industry'] = $profile['industry'];
                 $linkedin_data['User']['location'] = $profile['location']['name'];
 
+                //save social media image
+                if($linkedin_data['User']['profile_image'] && $linkedin_data['User']['email']) {
+                    $linkedin_data['User']['profile_photo_url'] = $this->saveSocialMediaImage($linkedin_data['User']['profile_image'], $linkedin_data['User']['email']);
+                }
+
                 if($this->Session->check('referer')){
                     $linkedin_data['User']['referred_by'] = $this->Session->read('referer');  
                     $linkedin_data['User']['vip_discount_flag'] = 1; 
@@ -241,7 +246,7 @@ class ConnectController extends AppController {
             $access_secret = $facebook->getApiSecret();
 
             try {
-                $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(80).height(80)', 'GET', array('access_token' => $access_token));
+                $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
 
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
@@ -260,6 +265,11 @@ class ConnectController extends AppController {
                     $fb_data['User']['social_network_id'] = $profile['id'];
                     $fb_data['User']['social_network_token'] = $access_token;
                     $fb_data['User']['social_network_secret'] = $access_secret;
+
+                    //save social media image
+                    if($fb_data['User']['profile_image'] && $fb_data['User']['email']) {
+                        $fb_data['User']['profile_photo_url'] = $this->saveSocialMediaImage($fb_data['User']['profile_image'], $fb_data['User']['email']);
+                    }
 
                     if($this->Session->check('referer')){
                         $fb_data['User']['referred_by'] = $this->Session->read('referer');  
@@ -361,6 +371,30 @@ class ConnectController extends AppController {
             header("Location: $login_url");
             exit();
         }
+    }
+
+    /**
+     * Save user profile image from a url
+     */
+    public function saveSocialMediaImage($url, $email) {
+        $image_name = $email . "-usersocial.jpg";
+        $img_path = APP . DS . 'webroot' . DS . 'files' . DS . 'users' . DS . $image_name;
+
+        $ch = curl_init ($url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+        curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+        $rawdata=curl_exec($ch);
+        curl_close ($ch);
+        if(file_exists($img_path)){
+            unlink($img_path);
+        }
+        $fp = fopen($img_path,'x');
+        fwrite($fp, $rawdata);
+        fclose($fp);
+
+        return $image_name;
     }
 
     /**

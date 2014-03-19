@@ -83,7 +83,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php endif; ?>
                 <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <li>
-                    <a title="Account">My Account</a>
+                    <a title="Account" id="myaccount-drop">My Account</a>
                     <div class="submenu-container">
                         <ul class="submenu">
                             <?php if ($is_admin) : ?>
@@ -123,8 +123,10 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <li>  <a href="#" onclick="window.ref_url=''; signUp();">My Stylist</a></li>
                 <?php endif; ?>
 
-                <?php if($is_logged) : ?>
+                <?php if($is_logged && $has_stylist) : ?>
                     <li><a  href="<?php echo $this->request->webroot; ?>fitting-room" data-ref="closet"><span class="underline1">The Fitting room</span></a></li> 
+                 <?php elseif($is_logged) : ?>
+                    <li><a  href="<?php echo $this->request->webroot; ?>profile/about" data-ref="closet"><span class="underline1">The Fitting room</span></a></li> 
                 <?php else : ?>
                     <li><a href="#" onclick="window.ref_url=''; signUp();"><span class="underline1">The Fitting room</span></a></li> 
                 <?php endif; ?>                           

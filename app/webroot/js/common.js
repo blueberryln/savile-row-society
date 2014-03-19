@@ -24,29 +24,16 @@ function footerFix(){
 
 /* function to show signin popup*/
 function signUp(e) {
-    $.ajax({
-        url: "/register"
-    }).done(function(res) {
-        $("#signup-popup").html(res);
-        var blockTop = $(window).height()/2 - $("#signup-popup").height()/2;
-        $.blockUI({message: $('#signup-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
-        $('.blockOverlay').click($.unblockUI);
-        //addReferrerToSignUp();
-    });
+    var blockTop = $(window).height()/2 - $("#signup-popup").height()/2;
+    $.blockUI({message: $('#signup-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
 }
 
 /* function to show signup popup*/
 function signIn() {
-    $.ajax({
-        url: "/signin"
-    }).done(function(res) {
-        $("#signin-popup").html(res);
-        var blockTop = $(window).height()/2 - $("#signin-popup").height()/2;
-        $.blockUI({message: $('#signin-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
-        $('.blockOverlay').click($.unblockUI);
-
-        //addReferrerToLogIn();
-    });
+    var blockTop = $(window).height()/2 - $("#signin-popup").height()/2;
+    $.blockUI({message: $('#signin-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
 }
 
 function showNotification(notificationDetails, isFade){
@@ -259,7 +246,21 @@ jQuery(function(){
         }
     });
 
-    $("#msg-notifications").click(function(e){
+    $("#msg-notifications, #myaccount-drop").click(function(e){
         e.preventDefault();
+        if($(this).siblings(".submenu-container").is(":visible")){
+            $(this).siblings(".submenu-container").hide();    
+        }
+        else{
+            $(this).siblings(".submenu-container").show();    
+        }
+    });
+
+    $(document).on('touchstart', function(e){
+        //alert("hdhkdj");
+        var container = $(".submenu-container");
+        if(container.is(":visible") && container.has(e.target).length === 0 ){
+            container.hide();
+        }    
     });
 });

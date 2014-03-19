@@ -3,20 +3,29 @@ $script = '
 $(document).ready(function(){ 
     $("#inviteFriendsEmail").click(function(e){
         e.preventDefault();
-        $.ajax({
-            url: "api/referFriendEmail",
-            type: "post",
-            data: {
-                emailList : $("#emailList").val(),    
-            },
-        }).done(function(res) {
-            if(res=="success"){
-                $(".referStatus").text("Email Sent");
-            }   
-            else{
-                $(".referStatus").text("Email could not be sent. Try again.");
-            } 
-        });
+
+        if($("#emailList").val() != "" && !$(this).hasClass("activeRefer")) {
+            $this = $(this);
+            $this.addClass("activeRefer");
+            $this.text("Wait");
+            $.ajax({
+                url: "api/referFriendEmail",
+                type: "post",
+                data: {
+                    emailList : $("#emailList").val(),    
+                },
+            }).done(function(res) {
+                if(res=="success"){
+                    $(".referStatus").text("Email Sent");
+                }   
+                else{
+                    $(".referStatus").text("Email could not be sent. Try again.");
+                } 
+                $this.text("Send");
+                $this.removeClass("activeRefer");
+                $("#emailList").val("");
+            });
+        }
     });
 
     $("#inviteFriendsFB").click(function(e){

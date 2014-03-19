@@ -55,6 +55,15 @@ class AppController extends Controller {
                 $this->Session->write('user', $user);
             }
         }
+        else{
+            if($this->Session->check('referer')){
+                $User = ClassRegistry::init('User');
+                $referer_id = $this->Session->read('referer'); 
+                $referer_type = $this->Session->read('referer_type');
+                $referer = $User->findById($referer_id);
+                $this->set(compact('referer_type', 'referer'));
+            } 
+        }
 
         $this->getCartCount();
         $this->checkAdminRights();

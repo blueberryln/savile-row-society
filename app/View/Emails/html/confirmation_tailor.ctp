@@ -18,17 +18,16 @@
                             foreach ($data['Booking']['booking_type_id'] as $value) {
                 
                                 if ($value == 1) {
-                                    echo '-A free personal appointment<br/>';
+                                    echo '-Meeting with my personal Stylist<br/>';
                                 }
                                 if ($value == 2) {
-                                    echo '-An initial measurement<br/>';
+                                    echo '-Made to measure fitting<br/>';
                                 }
                                 if ($value == 3) {
-                                    echo '-A collection and fitting<br/>';
+                                    echo '-Specific occasion (please detail below)<br/>';
                                 }
                              }
                             ?><br/>
-                            <b>Date:</b> <?php echo date('m/d/Y', $data['Booking']['date_start']); ?><br/><br/>
                             <b>Comment:</b> <?php echo $data['Booking']['comment']; ?><br />
                         </td>
                     </tr>

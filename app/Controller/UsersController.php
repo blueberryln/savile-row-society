@@ -71,13 +71,33 @@ class UsersController extends AppController {
         'Venture Capital'=>'Venture Capital',
     );
 
+    public function savefbimage(){
+        Configure::write('debug', 2);
+        $fullpath = APP . DS . 'webroot' . DS . 'files' . DS . 'users' . DS . "saurabh.jpg";
+
+        $my_img = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/t1.0-1/c25.0.81.81/s80x80/252231_1002029915278_1941483569_s.jpg";
+
+        $ch = curl_init ($my_img);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+        curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+        $rawdata=curl_exec($ch);
+        curl_close ($ch);
+        if(file_exists($fullpath)){
+            unlink($fullpath);
+        }
+        $fp = fopen($fullpath,'x');
+        fwrite($fp, $rawdata);
+        fclose($fp);
+
+        exit;
+    }
 
     /**
-     * Refer
+     * User Referral
      */
     public function refer($refer_id = null){
-        //$this->autoLayout = false;
-        //$this->autoRender = false;
         $user = $this->getLoggedUser();
         if(!$user && $refer_id && $refer_id > 0 && $this->User->exists($refer_id)){
             $referer = $this->User->findById($refer_id);
@@ -104,8 +124,8 @@ class UsersController extends AppController {
             exit;
         }
         $this->render('/Pages/home');
-        //exit;
     }
+
     
     /**
      * Sign in
@@ -188,15 +208,10 @@ class UsersController extends AppController {
                 exit;
             }
         }
-        else if ($this->request->is('ajax')){
-            
-        }
         else{
             $this->redirect('/');
             exit;
         }
-
-        $this->set(compact('title_for_layout'));
     }
 
     /*
@@ -461,20 +476,7 @@ class UsersController extends AppController {
      * Sign up
      */
     public function register($step = null, $user_id = null) {
-        $title_for_layout = '';
-
-        // prepare source for "Heard from" combo box 
-        $heard_from_options = array(
-            '' => 'Please select',
-            'Search Engine' => 'Search Engine',
-            'Advertisement' => 'Advertisement',
-            'Friend' => 'Friend',
-            'Facebook' => 'Facebook',
-            'Twitter' => 'Twitter',
-            'Other' => 'Other'
-        );
-
-        $this->set(compact('heard_from_options', 'user_id'));
+        $this->set(compact('user_id'));
         $user = null;
         $register_cases = array('saveStyle', 'saveContact', 'saveSize', 'saveBrands', 'saveAbout', 'style', 'size', 'brands', 'about', 'last-step', 'wardrobe', 'saveWardrobe');
         if(in_array($step, $register_cases)){

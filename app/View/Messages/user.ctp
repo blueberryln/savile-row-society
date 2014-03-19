@@ -5,80 +5,7 @@
  */
 $script = ' 
 var uid = ' . $user_id . ';
-var webroot = "' . $this->webroot . '";
-$(document).ready(function(){
-
-    /**
-     * Event handler to check for thumbs up click
-     */
-    $(".chat-container").on("click", ".thumbs-up", function(e) {
-        e.preventDefault();
-        $this = $(this);
-        var productBlock = $this.closest(".product-block");
-        var productId = productBlock.find(".product-id").val();
-        if(!$this.hasClass("liked")){
-            $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
-                function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.addClass("liked");
-                        $this.closest(".chat-container").find(".thumbs-down").removeClass("disliked");
-                    }
-                    
-                    if(ret["profile_status"] == "incomplete"){
-                        var notificationDetails = new Array();
-                        notificationDetails["msg"] = ret["profile_msg"];
-                        notificationDetails["button"] = "<a href=\"' . $this->webroot . 'profile/about\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
-                        showNotification(notificationDetails);
-                    }
-                }
-            );
-        }
-        else{
-            $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
-                function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.removeClass("liked");
-                    }
-                }
-            );
-        }
-    });
-
-
-    /**
-     * Event handler to check for thumbs down click
-     */
-    $(".chat-container").on("click", ".thumbs-down", function(e) {
-        e.preventDefault();
-        $this = $(this);
-        var productBlock = $this.closest(".product-block");
-        var productId = productBlock.find(".product-id").val();
-        if(!$this.hasClass("disliked")){
-            $.post("' . $this->request->webroot . 'api/dislike/save", { product_id: productId},
-                function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.addClass("disliked");
-                        $this.closest(".chat-container").find(".thumbs-up").removeClass("liked");
-                    }
-                }
-            );
-        }
-        else{
-            $.post("' . $this->request->webroot . 'api/dislike/remove", { product_id: productId},
-                function(data) {
-                    var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.removeClass("disliked");
-                    }
-                }
-            );
-        }
-    });   
-});
-';
+var webroot = "' . $this->webroot . '";';
 
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
@@ -104,28 +31,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     </div>
                 </div>
                 <div class="info-container">
-                        <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
-                            <div id="user-name"><a href="<?php echo $this->webroot; ?>stylist"><?php echo $client_user['User']['full_name']; ?></a><br />
-                                <span class="stylist-name">Your Personal Stylist</span>
-                            </div> 
-                        <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?> 
-                            <div id="user-name"><a href="<?php echo $this->webroot; ?>booking#profile"><?php echo $client_user['User']['full_name']; ?></a><br />
-                                <span class="stylist-name">Your Personal Stylist</span>
-                            </div> 
-                        <?php else : ?>
-                            <div id="user-name"><?php echo $client_user['User']['full_name']; ?><br />
-                                <span class="stylist-name">Your Personal Stylist</span>
-                            </div> 
-                        <?php endif; ?>                      
-                            <div class="stylist-info">
-                                <a href="mailto:<?php echo $client_user['User']['email']; ?>"><span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span></a><br />
-                            </div><br />                
-                </div><br />
-                <?php if($client_user['User']['email'] == "casey@savilerowsociety.com") : ?>
-                    <input type='button' value="CASEY'S PROFILE" class='my-profile' data-redirect="stylist" />   
-                <?php elseif($client_user['User']['email'] == "joey@savilerowsociety.com") : ?>
-                    <input type='button' value="JOEY'S PROFILE" class='my-profile' data-redirect="booking#profile" /> 
-                <?php endif; ?>     
+                    <div id="user-name"><?php echo $client_user['User']['full_name']; ?><br />
+                        <span class="stylist-name">Your Personal Stylist</span>
+                    </div>        
+                    <div class="stylist-info">
+                        <a href="mailto:<?php echo $client_user['User']['email']; ?>"><span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span></a><br />
+                    </div>               
+                </div>   
             </div>
             <div class="stylist-talk">
                 <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
@@ -368,12 +280,18 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
           return format;
         }
 
+        
+        function nl2br (str, is_xhtml) {   
+            var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+            return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+        }
+
         function showSentMessage(message, uid){
             var curDate = new Date().format("yyyy-MM-dd h:mm:ss")
             var html = '' + 
                 '<div class="chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
                     '<div class="message-caption">You Said:</div>' + 
-                    '<div class="message-body">' + message + '</div>' + 
+                    '<div class="message-body">' + nl2br(message) + '</div>' + 
                     '<div class="message-date">' +
                         '<small>' + curDate + '</small>' +
                     '</div>' + 

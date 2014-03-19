@@ -192,7 +192,7 @@ $(document).ready(function(){
     var loadLookbookId = window.location.hash.replace("#","");
     if(loadLookbookId != "" && loadLookbookId > 0 && lifestyles[loadLookbookId] != undefined){
 
-        $(".flexslider").flexslider({
+        jQuery(".flexslider").flexslider({
             animation: "slide",
             animationSpeed: 300,  
             animationLoop: true,
@@ -206,7 +206,7 @@ $(document).ready(function(){
             keyboard: false,
             startAt: lifestylesIds.indexOf(loadLookbookId),
             after: function(slider) {
-                var newLookbookId = $(".flex-active-slide img").data("lifestyle-id");
+                var newLookbookId = jQuery(".flex-active-slide img").data("lifestyle-id");
                 console.log(newLookbookId);
                 loadLookbookItems(newLookbookId);
             }                
@@ -214,7 +214,7 @@ $(document).ready(function(){
         loadLookbookItems(loadLookbookId);
     }
     else{
-        $(".flexslider").flexslider({
+        jQuery(".flexslider").flexslider({
             animation: "slide",
             animationSpeed: 300,  
             animationLoop: true,
@@ -227,7 +227,7 @@ $(document).ready(function(){
             directionNav: true,
             keyboard: false,
             after: function(slider) {
-                var newLookbookId = $(".flex-active-slide img").data("lifestyle-id");
+                var newLookbookId = jQuery(".flex-active-slide img").data("lifestyle-id");
                 console.log(newLookbookId);
                 loadLookbookItems(newLookbookId);
             }                

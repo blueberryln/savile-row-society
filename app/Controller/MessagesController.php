@@ -143,9 +143,26 @@ class MessagesController extends AppController {
         else {
             $stylist_id = $user['User']['stylist_id'];
             $client_user = $User->getByID($stylist_id);
+            if(!$client_user){
+                $stylist_id = $this->updateMissingStylist($user['User']['id']);
+                $client_user = $User->getByID($stylist_id);
+            }
             $this->set(compact('client_user'));
             $this->render("user");
         }
+    }
+
+
+    /**
+     * Assign stylist to a user who has a unknown stylist.
+     * Return stylist id.
+     */
+    function updateMissingStylist($user_id){
+        App::import('Controller', 'Users');
+        $Users = new UsersController;
+        $stylist_id = $Users->assign_refer_stylist($user_id);
+
+        return $stylist_id;
     }
 
 
@@ -233,7 +250,7 @@ class MessagesController extends AppController {
         $notification['is_photo'] = false;
         $notification['to_stylist'] = true;
         $notification['client_id'] = $msg['Message']['user_from_id'];
-        $notification['message'] = $res['Message']['body'];
+        $notification['message'] = nl2br($res['Message']['body']);
         $notification['to_name'] = $to_user['User']['first_name'];
         $notification['from_name'] = $from_user['User']['first_name'];
         $notification['to_email'] = $to_user['User']['email'];
@@ -355,7 +372,7 @@ class MessagesController extends AppController {
             
             $notification['is_photo'] = false;
             $notification['to_stylist'] = false;
-            $notification['message'] = $res['Message']['body'];
+            $notification['message'] = nl2br($res['Message']['body']);
             $notification['to_name'] = $to_user['User']['first_name'];
             $notification['from_name'] = $from_user['User']['first_name']; 
             $notification['to_email'] = $to_user['User']['email'];
@@ -526,7 +543,7 @@ class MessagesController extends AppController {
                             $entities[] = $value['OutfitItem']['product_entity_id'];
                         }
                         $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getEntitiesById($entities, $user_id);
+                        $entity_list = $Entity->getProductDetails($entities);
                         $row['Outfit'] = $entity_list;
                     }
                 }
@@ -641,7 +658,7 @@ class MessagesController extends AppController {
                                 $entities[] = $value['OutfitItem']['product_entity_id'];
                             }
                             $Entity = ClassRegistry::init('Entity');
-                            $entity_list = $Entity->getEntitiesById($entities, $user_id);
+                            $entity_list = $Entity->getProductDetails($entities);
                             $row['Outfit'] = $entity_list;
                         }
                     }

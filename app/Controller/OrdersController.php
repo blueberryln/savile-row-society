@@ -35,9 +35,21 @@ class OrdersController extends AppController {
         );
         $this->Paginator->settings = $find_array;
         $orders = $this->Paginator->paginate($this->Order);
+
+        //Get all the referers
+        $referer_list = array();
+        for($i = 0; $i < count($orders); $i++ ) {
+            if($orders[$i]['User']['referred_by']){
+                $referer_list[] = $orders[$i]['User']['referred_by'];
+            }
+        }
+
+        $User = ClassRegistry::init('User');
+        $referers = $User->find('list', array('conditions' => array('User.id' => $referer_list))); 
+
         $Size = ClassRegistry::init('Size');
         $sizes = $Size->find('list');
-        $this->set(compact('orders', 'sizes'));
+        $this->set(compact('orders', 'sizes', 'referers'));
 
     }
     

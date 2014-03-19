@@ -57,29 +57,6 @@ $script = '
                 console.log(winH);
                 jQuery("div.super").css("height", winH - (hH + fH));
                 jQuery("div.super").css("margin-top",hH);
-                
-                $("#BookingDate").datepicker({ dateFormat: "d MM, yy" });
-                    $("#book-button").on("click", function(e){
-                        e.preventDefault();
-                        var error = false;
-                        if($("#BookingDate").val() == ""){
-                            error = true;    
-                        }
-                        if($("#BookingType").val() == ""){
-                            error = true;    
-                        }
-                        if($("#BookingComment").val() == ""){
-                            error = true;    
-                        }
-                        
-                        if(error){
-                            $(".book-it-btn .err-message").show();
-                        }
-                        else{
-                            $(".book-it-btn .err-message").hide();
-                            $("#BookingIndexForm").submit();
-                        }
-                    });
 
                 jQuery("#book-apt").on("click", function(){
                     $.blockUI({message: $("#bookapt-box"), css: {"position": "absolute"}});
@@ -97,8 +74,8 @@ $script = '
 
 ';      
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
-$this->Html->css('ui/jquery-ui', null, array('inline' => false));
-$this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
+//$this->Html->css('ui/jquery-ui', null, array('inline' => false));
+//$this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $meta_description = 'As a member, you will be up to date on styles, always look put together, and develop a wardrobe that captures the look you desire.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
@@ -121,6 +98,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <h5 class="book-apt-title">Book An Appointment</h5>
 
                 <div class="book-apt-content">
+                    <p style="color: #666;">Visit our showroom for some face time with your stylist, to try on our clothing or to get fitted for our made to measure collection.</p>
                     <div class="showroom">                       
                         <div class="contact-info left text-left">
                             <h4>Showroom:</h4>
@@ -138,12 +116,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <div class="apt-form">
                         <?php if ($user && $booking_types) : ?>
                             <?php echo $this->Form->create('Booking', array('url' => array('controller' => 'booking', 'action' => 'index'))); ?>                
-                            <div>
-                                <input type="text" style="height: 0; visibility: hidden; padding:0; margin: 0; border: none; position: absolute; text-indent: -999999;">
-                                <label>Please select a date</label>
-                                <input class="datepicker" name="data[Booking][date]" id="BookingDate" value="" type="text" placeholder="Please select a date" />
-                            </div>
-                            
                             <div class="input text required text-left">
                                         <label class="apt-type-title">Appointment type</label>
                                          <?php foreach($booking_types as $booking_type): ?>

@@ -539,12 +539,18 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
           return format;
         }
 
+        
+        function nl2br (str, is_xhtml) {   
+            var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+            return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+        }
+
         function showSentMessage(message, uid){
             var curDate = new Date().format("yyyy-MM-dd h:mm:ss")
             var html = '' + 
                         '<div class="chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
                             '<div class="message-caption">You Said:</div>' + 
-                            '<div class="message-body">' + message + '</div>' + 
+                            '<div class="message-body">' + nl2br(message) + '</div>' + 
                             '<div class="message-date">' +
                                 '<small>' + curDate + '</small>' +
                             '</div>' + 

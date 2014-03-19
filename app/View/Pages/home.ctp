@@ -1,23 +1,18 @@
 <?php
 
 $brands_info = array(
-    "edwardamrah" => array("title" => "For The Man Who Loves To Rock A Bowtie", "desc" => "Edward Armah: A Signature Name for High-End Designer Dress Furnishing for Men High-end affordable designer garments allure every man. Our custom bowties are an embodiment of the vividness in our style, class, design and exuberant taste and passion towards offering the finest quality accessories for men. Be it our custom fashion bowties or 4 in 1 bowties, Edward Armah has been instrumental in revolutionizing the way men used to dress formally.", "id" => "20"),
-    "mclip" => array("title" => "For The Man Who Is Tired Of His Wallet", "desc" => "The World&apos;s Finest Money Clip&apos; and &apos;Finally, A Money Clip that Works&apos; ... these are the registered trademarks and descriptions that we take very seriously about our product. From superior base metal materials and ultra-high machined tolerances for each component part, to individually hand selected hides and finishes, the M-Clip is constructed and assembled by hand with one goal in mind: to make the absolute best, most functional, highest quality money clip you can buy - anywhere.", "id" => "20"),    
-    "paulevans" => array("title" => "For The Man Who Takes Pride In His Shoes", "desc" => "Luxury men's footwear based in New York City.<br><br> 
-High quality dress shoes made in Europe using time-honored craftsmanship and the finest materials.<br><br>
-Calf leather uppers, matching leather soles, leather lining. Goodyear/blake construction. Smart colors.<br><br>
-What do your shoes say about you?  
-", "id" => "19"),    
-    "saxx" => array("title" => "For The Active Man", "desc" => "On a fishing trip in Alaska, our inventor experienced intense chafing that left him wondering why men&apos;s underwear wasn&apos;t designed for how men are actually built. When he returned, he couldn&apos;t shake the notion that a better design was possible. He teamed up with a designer and started brainstorming and working on prototypes. On the fourteenth attempt they combined four key innovations resulting in a new level of comfort and performance.", "id" => "15"),
+    "barbour" => array("title" => "The legendary maker of weatherproof clothing.", "desc" => "The famous brand of waxed jackets, quilted jackets, motorcycle jackets; of country gear and casual clothing. A British brand to the core. Founded in 1894 by John Barbour, in South Shields in the North East of England, the company supplied oilskins and other garments to protect the growing community of sailors, fishermen and dockers. Since then, Barbour has continued to thrive on the unique values of the British countryside, and offers a full range of wardrobe essentials and this year marks the 120th anniversary.", "id" => "5"),
+    "lacoste" => array("title" => "For The Man Who Can Be Found At The Country Club", "desc" => "Founded in 1933 by tennis player and inventor Rene Lacoste, Olympic medalist in 1924, the Crocodile brand has always accompanied teams and athletes all around the world. When he revolutionized sports, Rene Lacoste also revolutionized fashion; his quest for comfort and freedom of movement made him more competitive without losing an ounce of elegance.", "id" => "12"),
     "smathers" => array("title" => "For The Man Who Can Be Found At The Derby", "desc" => "In 2004, while roommates at Bowdoin College, we decided to start a company that offered needlepoint belts. We set out to make the belts more available, attractive and affordable. We began testing the market in the spring of 2005, and quickly, the once treasured gift became the epicenter of a thriving business. Smathers amp; Branson defines their mission: &apos;to offer the finest products with customer service to match.&apos;", "id" => "9"),
     "nagrani" => array("title" => "For The Man Who Takes Risks", "desc" => "Great clothing should be made to get better with age and be designed to offer a timeless aesthetic. In addition, it must function to enhance your way of life. It is this philosophy that I bring forth each time I create a new garment. Reserved for men of discerning taste, I continuously work to find ways to make something better. I never set out to be something for everyone; instead, I want to be everything to someone.", "id" => "16"),
-    "dw" => array("title" => "", "desc" => "The &quot;preppy&quot; trend is bigger than ever before. And while there are many big players in the fashion industry that caters to preppy needs, such as Ralph Lauren, Gant and Brooks Brothers, we felt that there was an empty space in the watch market. There was something missing.<br><br>
-We believe that Daniel Wellington fills that gap. Our vision is that when someone thinks of a preppy dressed person, he or she is wearing a Daniel Wellington watch.", "id" => "22"),
-    "lacoste" => array("title" => "For The Man Who Can Be Found At The Country Club", "desc" => "Founded in 1933 by tennis player and inventor Rene Lacoste, Olympic medalist in 1924, the Crocodile brand has always accompanied teams and athletes all around the world. When he revolutionized sports, Rene Lacoste also revolutionized fashion; his quest for comfort and freedom of movement made him more competitive without losing an ounce of elegance.", "id" => "12"),
-    "barbour" => array("title" => "", "desc" => "", "id" => "5"),
-    "colehaan" => array("title" => "", "desc" => "", "id" => ""),
-    "allenedmonds" => array("title" => "", "desc" => "", "id" => ""),
-    "agave" => array("title" => "", "desc" => "", "id" => "3")
+    "colehaan" => array("title" => "", "desc" => "Trafton Cole and Eddie Haan began Cole Haan in 1928, resolving to make good goods and nothing but good goods. Their entrepreneurial spirit and timeless vision still inspire. Today Cole Haan create shoes, bags and finishing touches for people who are ingenuous, resourceful and want to make a difference. Their intrepid tribe manages to look good wether at work or play, and believes a sense of style and sense of humor are perfect complements.", "id" => ""),
+    "paulevans" => array("title" => "For The Man Who Takes Pride In His Shoes", "desc" => "Luxury men's footwear based in New York City.<br><br> High quality dress shoes made in Europe using time-honored craftsmanship and the finest materials.<br><br>Calf leather uppers, matching leather soles, leather lining. Goodyear/blake construction. Smart colors.<br><br>What do your shoes say about you?", "id" => "19"),    
+    "allenedmonds" => array("title" => "", "desc" => "Allen Edmonds began handcrafting Made in U.S.A. shoes in 1922 on the shores of Lake Michigan in Wisconsin. Today we continue this manufacturing tradition and offer the finest men's dress and casual shoes available featuring classic American styling and fine craftsmanship. Allen Edmonds prides itself on using superior leathers such as calf skin and cordovan. These materials are combined with cork footbeds to create unmatched comfort. ", "id" => "43"),
+    "dw" => array("title" => "", "desc" => "The &quot;preppy&quot; trend is bigger than ever before. And while there are many big players in the fashion industry that caters to preppy needs, such as Ralph Lauren, Gant and Brooks Brothers, we felt that there was an empty space in the watch market. There was something missing.<br><br>We believe that Daniel Wellington fills that gap. Our vision is that when someone thinks of a preppy dressed person, he or she is wearing a Daniel Wellington watch.", "id" => "22"),
+    "agave" => array("title" => "For The Man With That West Coast Mentality", "desc" => "Designed in Portland and handcrafted in California, Agave remains true to its roots of designing and crafting the best tailored, most beautiful and highest quality denim jeans, authentically sewn and hand-finished exclusively in California. Agave is represented by friends, artisans and passionate people who stand for Courage, Compassion amp; Conservation. Agave is an adventure lifestyle with an ecological point of view combined with luxury and ALWAYS beautiful denim and sumptuous tees.", "id" => "3"),
+    "saxx" => array("title" => "For The Active Man", "desc" => "On a fishing trip in Alaska, our inventor experienced intense chafing that left him wondering why men&apos;s underwear wasn&apos;t designed for how men are actually built. When he returned, he couldn&apos;t shake the notion that a better design was possible. He teamed up with a designer and started brainstorming and working on prototypes. On the fourteenth attempt they combined four key innovations resulting in a new level of comfort and performance.", "id" => "15"),
+    "mclip" => array("title" => "For The Man Who Is Tired Of His Wallet", "desc" => "The World&apos;s Finest Money Clip&apos; and &apos;Finally, A Money Clip that Works&apos; ... these are the registered trademarks and descriptions that we take very seriously about our product. From superior base metal materials and ultra-high machined tolerances for each component part, to individually hand selected hides and finishes, the M-Clip is constructed and assembled by hand with one goal in mind: to make the absolute best, most functional, highest quality money clip you can buy - anywhere.", "id" => "11"),
+    "edwardamrah" => array("title" => "For The Man Who Loves To Rock A Bowtie", "desc" => "Edward Armah: A Signature Name for High-End Designer Dress Furnishing for Men High-end affordable designer garments allure every man. Our custom bowties are an embodiment of the vividness in our style, class, design and exuberant taste and passion towards offering the finest quality accessories for men. Be it our custom fashion bowties or 4 in 1 bowties, Edward Armah has been instrumental in revolutionizing the way men used to dress formally.", "id" => "20"),
     
 );
 
@@ -78,7 +73,25 @@ $script='
                 $(".blockOverlay").click($.unblockUI);        
             }); 
     });    
-   
+    $(window).load(function() {
+        //var dropdown=getCookie("dropdown");
+        var dropdown = getCookie("cyberDropdown");
+        if (dropdown==null || dropdown=="")
+        {
+            setTimeout(function (){
+                $("#sign-up-drop-down").slideDown(1000, "easeOutBack");
+            }, 500);
+        }
+
+
+        $(".close").click(function(e){
+            e.preventDefault();
+            //setCookie("dropdown",1,1);
+            setCookie("cyberDropdown",1,1);
+            $("#sign-up-drop-down").slideUp(600, "easeInBack");
+        });
+        
+    });
    
     function vidContinerHeight(){
         var mbHeight = jQuery(".mg-big").height();
@@ -107,9 +120,30 @@ $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_descri
 $this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+$this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
+$this->Html->script('cookie.js', array('inline' => false));
 ?>
 <div class="content-container">
+
     <div class="twelve columns content inner homepage"> 
+
+    <?php if (!$is_logged) { ?>
+    <div id="sign-up-drop-down">
+        <div class="close"><a href="#"> &#215;</a></div>
+        <p><span>Tailor</span> Your <span>Life</span></p>
+        <div class="initial-module container">
+            <div class="fourteen columns offset-by-one">
+                <?php
+                    echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
+                    echo '<p class="show-login-form">Savile Row Society is not going to be free forever.<br>Sign-up now, and get FREE MEMBERSHIP for life.</p>';
+        
+                ?>
+            </div>
+        </div>
+
+    </div>
+    <?php } ?>
+    
     <div class="mega-banner">
         <div class="mg-big">
             <?php if($is_logged && $has_stylist) : ?>

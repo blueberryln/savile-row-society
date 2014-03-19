@@ -43,6 +43,19 @@ $(document).ready(function(){
     }
 
     $("div.submit input").click(function(event){
+        var contactCount = 0;
+            timingsCount = 0;
+        $(".contact-options input[type=\"checkbox\"]").each(function(){
+            if($(this).is(":checked")){
+                contactCount++;
+            }
+        });
+
+        if(!contactCount){
+            event.preventDefault();
+            $("p.error-msg").slideDown(300);
+        }
+
         if($("#phone-field").is(":checked") && $("input.phone-field").val() == "" )
         {
             event.preventDefault();
@@ -53,14 +66,12 @@ $(document).ready(function(){
             event.preventDefault();
             $("p.error-msg").slideDown(300);                    
         }   
-        var timingsCount = 0;
 
         $(".pref-time input[type=\"checkbox\"]").each(function(){
             if($(this).attr("checked") == "checked"){
                 timingsCount++;
             }
-        });                
-        console.log(timingsCount);
+        });
         if(!timingsCount){
             event.preventDefault();
             $("p.error-msg").slideDown(300);    

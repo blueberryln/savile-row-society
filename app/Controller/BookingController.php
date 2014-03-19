@@ -31,14 +31,15 @@ class BookingController extends AppController {
         $user = $this->getLoggedUser();
 
         if ($this->request->is('post')) {
-            if (isset($this->request->data['BookingType']['id']) && count($this->request->data['BookingType']['id']) > 0 && $this->request->data['Booking']['date']) {
+            if (isset($this->request->data['BookingType']['id']) && count($this->request->data['BookingType']['id']) > 0) {
                 $this->Booking->create();
                 $data = array();
                 $data['Booking']['user_id'] = $this->getLoggedUserID();
                 $data['Booking']['booking_type_id'] = implode(',', $this->request->data['BookingType']['id']);
-                $data['Booking']['date_start'] = strtotime($this->request->data['Booking']['date']);
-                $data['Booking']['date_end'] = strtotime($this->request->data['Booking']['date']);                
+                $data['Booking']['date_start'] = strtotime(date('Y-m-d'));
+                $data['Booking']['date_end'] = strtotime(date('Y-m-d'));                
                 $data['Booking']['comment'] = $this->request->data['Booking']['comment'];
+
                 if ($this->Booking->save($data)) {
 
                     $data['Booking']['booking_type_id'] = explode(',', $data['Booking']['booking_type_id']);

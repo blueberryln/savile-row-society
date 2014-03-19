@@ -14,3 +14,7 @@ div.signin-content label, div.signup-content label{
 #ProfileImageRegisterForm label{
     display: block !important;
 }
+
+#UserYearYear{
+	margin-right: 0px !important;
+}
