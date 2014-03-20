@@ -27,35 +27,32 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+Router::connect('/refer-a-friend', array('controller' => 'pages', 'action' => 'display', 'refer-a-friend'));
+Router::connect('/fitting-room', array('controller' => 'booking'));
 Router::connect('/signin', array('controller' => 'users', 'action' => 'signin'));
 Router::connect('/register/*', array('controller' => 'users', 'action' => 'register'));
 Router::connect('/signout', array('controller' => 'users', 'action' => 'signout'));
 Router::connect('/forgot', array('controller' => 'users', 'action' => 'forgot'));
 Router::connect('/reset/*', array('controller' => 'users', 'action' => 'reset'));
 Router::connect('/myprofile/*', array('controller' => 'users', 'action' => 'edit'));
-Router::connect('/closet/liked/*', array('controller' => 'closet', 'action' => 'liked'));
-Router::connect('/closet/purchased/*', array('controller' => 'closet', 'action' => 'purchased'));
+Router::connect('/mycloset/liked/*', array('controller' => 'closet', 'action' => 'liked'));
+Router::connect('/mycloset/purchased/*', array('controller' => 'closet', 'action' => 'purchased'));
+Router::connect('/closet/validatecard/*', array('controller' => 'closet', 'action' => 'validatecard'));
+Router::connect('/closet/validate_promo_code/*', array('controller' => 'closet', 'action' => 'validate_promo_code'));
 Router::connect('/closet/*', array('controller' => 'closet', 'action' => 'index'));
+Router::connect('/lookbooks', array('controller' => 'lifestyles'));
+Router::connect('/lookbooks/:action/*', array('controller' => 'lifestyles'));
 Router::connect('/cart', array('controller' => 'closet', 'action' => 'cart'));
 Router::connect('/checkout', array('controller' => 'closet', 'action' => 'checkout'));
 Router::connect('/payment', array('controller' => 'closet', 'action' => 'payment'));
 Router::connect('/confirmation', array('controller' => 'closet', 'action' => 'confirmation'));
 Router::connect('/product/*', array('controller' => 'closet', 'action' => 'product'));
+Router::connect('/user-outfit/*', array('controller' => 'closet', 'action' => 'userOutfit'));
 Router::connect('/profile/*', array('controller' => 'users', 'action' => 'register'));
 
 /* Admin */
 Router::connect('/admin', array('controller' => 'products', 'action' => 'index', 'admin' => true));
 
-//Router::connect('/contacts', array('controller' => 'contacts', 'action' => 'stylist'));
-//Router::connect('/personal-stylist', array('controller' => 'contacts', 'action' => 'stylist'));
-//Router::connect('/personal-stylist/gallery', array('controller' => 'contacts', 'action' => 'stylist_gallery'));
-//Router::connect('/personal-stylist/submissions', array('controller' => 'contacts', 'action' => 'stylist_submissions'));
-//Router::connect('/personal-stylist/ask', array('controller' => 'contacts', 'action' => 'stylist_ask'));
-//Router::connect('/coach', array('controller' => 'contacts', 'action' => 'coach'));
-//Router::connect('/coach/ask', array('controller' => 'contacts', 'action' => 'coach_ask'));
-//Router::connect('/custom-wear', array('controller' => 'contacts', 'action' => 'custom_wear'));
-//Router::connect('/custom-wear/submissions', array('controller' => 'contacts', 'action' => 'custom_wear_submissions'));
-//Router::connect('/custom-wear/ask', array('controller' => 'contacts', 'action' => 'custom_wear_ask'));
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.
@@ -67,25 +64,15 @@ Router::connect('/company/team', array('controller' => 'pages', 'action' => 'dis
 Router::connect('/company/bloggers', array('controller' => 'pages', 'action' => 'display', 'company/bloggers'));
 
 Router::connect('/company/brands', array('controller' => 'pages', 'action' => 'display', 'company/brands'));
-Router::connect('/company/retails', array('controller' => 'pages', 'action' => 'display', 'company/retails'));
+Router::connect('/company/retailers', array('controller' => 'pages', 'action' => 'display', 'company/retailers'));
 Router::connect('/membership', array('controller' => 'pages', 'action' => 'display', 'membership'));
 Router::connect('/contact', array('controller' => 'pages', 'action' => 'display', 'contact'));
+Router::connect('/new', array('controller' => 'pages', 'action' => 'display', 'new'));
 Router::connect('/how-it-works', array('controller' => 'pages', 'action' => 'display', 'how-it-works'));
 Router::connect('/tailor', array('controller' => 'pages', 'action' => 'display', 'tailor'));
 Router::connect('/stylist', array('controller' => 'pages', 'action' => 'display', 'stylist'));
-//Router::connect('/trainer', array('controller' => 'pages', 'action' => 'display', 'trainer'));
 Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 Router::connect('/faq', array('controller' => 'pages', 'action' => 'display', 'faq'));
-
-
-/**
- * New pages for closet
- */
-Router::connect('/detail', array('controller' => 'pages', 'action' => 'display', 'detail'));
-Router::connect('/mycart', array('controller' => 'pages', 'action' => 'display', 'mycart'));
-Router::connect('/finalizing', array('controller' => 'pages', 'action' => 'display', 'finalizing'));
-Router::connect('/style', array('controller' => 'pages', 'action' => 'display', 'style'));
-Router::connect('/billing', array('controller' => 'pages', 'action' => 'display', 'billing'));
 
 /**
  * Load all plugin routes.  See the CakePlugin documentation on

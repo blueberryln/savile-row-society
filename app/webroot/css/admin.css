@@ -1,3 +1,9 @@
+.header{
+    position: relative !important;    
+}
+.content{
+    margin-top: 0 !important;
+}
 table{
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 12px;
@@ -128,3 +134,31 @@ fieldset input[type="checkbox"], fieldset input[type="radio"] {
 .paging span {
     padding: 5px;
 }
+
+/******ORDERED ITEMS******/
+ul.ordered-items
+{
+    margin-top:10px;
+}
+ul.ordered-items li
+{
+    display: inline-block;
+    margin-right:60px;
+}
+ul.ordered-items li:last-of-type
+{
+    margin-right:0;
+}
+
+ul.ordered-items select
+{
+    padding:3px 6px;
+}
+
+/****Product Color****/
+.product-color .input
+{
+    max-height: 140px !important;
+    overflow-y:scroll !important;
+}
+

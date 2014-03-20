@@ -35,11 +35,15 @@ class ColorsController extends AppController {
             $this->Color->create();
             if ($this->Color->save($this->request->data)) {
                 $this->Session->setFlash(__('The color has been saved'), 'flash', array('title' => 'Success!'));
-                $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The color could not be saved. Please, try again'), 'flash');
             }
+            $this->redirect(array('action' => 'index'));
         }
+        
+        //Get all colorgroups
+        $colorgroups = $this->Color->Colorgroup->find('list');
+        $this->set(compact('colorgroups'));
     }
 
     /**
@@ -61,9 +65,12 @@ class ColorsController extends AppController {
                 $this->Session->setFlash(__('The color could not be saved. Please, try again'), 'flash');
             }
         } else {
+            $this->Color->recursive = 1;
             $options = array('conditions' => array('Color.' . $this->Color->primaryKey => $id));
             $this->request->data = $this->Color->find('first', $options);
         }
+        $colorgroups = $this->Color->Colorgroup->find('list');
+        $this->set(compact('colorgroups'));
     }
 
     /**
@@ -79,7 +86,7 @@ class ColorsController extends AppController {
             throw new NotFoundException(__('Invalid color'));
         }
         $this->request->onlyAllow('post', 'delete');
-        if ($this->Color->delete()) {
+        if ($this->Color->remove($id)) {
             $this->Session->setFlash(__('Color deleted'), 'flash', array('title' => 'Success!'));
             $this->redirect(array('action' => 'index'));
         }

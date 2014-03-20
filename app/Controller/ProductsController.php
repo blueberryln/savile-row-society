@@ -8,6 +8,8 @@ App::uses('AppController', 'Controller');
  * @property Product $Product
  */
 class ProductsController extends AppController {
+    public $components = array('Paginator');
+    public $helpers = array('Paginator');
     
     public function beforeRender() {
         parent::beforeRender();
@@ -21,6 +23,7 @@ class ProductsController extends AppController {
      * @return void
      */
     public function admin_index() {
+        //Configure::write('debug', 2);
         $this->Product->recursive = 0;
         $this->set('products', $this->paginate());
     }
@@ -35,6 +38,15 @@ class ProductsController extends AppController {
             $this->Product->create();
             $user_id = $this->getLoggedUserID();
             $this->request->data['Product']['user_id'] = $user_id;
+            if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
+                unset($this->request->data['Product']['season_id']);
+            }
+            if(isset($this->request->data['Category']['SubCategory']) && $this->request->data['Category']['SubCategory'] != ""){
+                $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
+            }
+            if(isset($this->request->data['Category']['SubSubCategory']) && $this->request->data['Category']['SubSubCategory'] != ""){
+                $this->request->data['Category']['Category'] = $this->request->data['Category']['SubSubCategory'];
+            }
             if ($result = $this->Product->save($this->request->data)) {
                 $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'admin_edit', $result['Product']['id']));
@@ -45,10 +57,17 @@ class ProductsController extends AppController {
         }
         
         //$userTypes = $this->Product->UserType->find('list');
-        $categories = $this->Product->Category->find('list');
+        $category_list = array();
+        $category_thread = $this->Product->Category->find('threaded');
+        foreach($category_thread as $row){
+            $category_list[$row['Category']['id']] = $row;
+        }
+        
+        $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
+        $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         
-        $this->set(compact('userTypes', 'categories', 'brands'));
+        $this->set(compact('userTypes', 'categories', 'brands', 'seasons', 'category_list'));
     }
 
     /**
@@ -65,6 +84,16 @@ class ProductsController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             $user_id = $this->getLoggedUserID();
             $this->request->data['Product']['user_id'] = $user_id;
+            if($this->request->data['Product']['season_id'] == 0 || $this->request->data['Product']['season_id'] == ''){
+                $this->request->data['Product']['season_id'] = null;
+            }
+            if(isset($this->request->data['Category']['SubCategory']) && $this->request->data['Category']['SubCategory'] != ""){
+                $this->request->data['Category']['Category'] = $this->request->data['Category']['SubCategory'];
+            }
+            if(isset($this->request->data['Category']['SubSubCategory']) && $this->request->data['Category']['SubSubCategory'] != ""){
+                $this->request->data['Category']['Category'] = $this->request->data['Category']['SubSubCategory'];
+            }
+            
             if ($this->Product->save($this->request->data)) {
                 $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'admin_edit', $id));
@@ -78,40 +107,125 @@ class ProductsController extends AppController {
             $this->request->data = $this->Product->find('first', $options);
         }   
         // get data
-        $categories = $this->Product->Category->find('list');
+        $category_list = array();
+        $category_thread = $this->Product->Category->find('threaded');
+        foreach($category_thread as $row){
+            $category_list[$row['Category']['id']] = $row;
+        }
+        
+        $parent_id = 0;
+        $super_parent_id = 0;
+        $selected_category_id = 0;
+        if($this->request->data['Category']){
+            $selected_category_id = $this->request->data['Category'][0]['id'];
+            $selected_data = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $selected_category_id)));
+            if($selected_data['Category']['parent_id']){
+                $parent_id = $selected_data['Category']['parent_id'];
+                $parent_data = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $parent_id)));
+                if($parent_data['Category']['parent_id']){
+                    $super_parent_id = $parent_data['Category']['parent_id'];
+                }
+            }    
+        }
+        
+        
+        $categories = $this->Product->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
+        
+        $seasons = $this->Product->Season->find('list');
         $brands = $this->Product->Brand->find('list');
         $entities = $this->request->data['Entity'];
         
 
-        $this->set(compact('categories', 'brands', 'entities', 'id'));
+        $this->set(compact('categories', 'brands', 'seasons', 'entities', 'id', 'category_list', 'parent_id', 'super_parent_id', 'selected_category_id'));
     }
+    
+    /**
+     * admin_search method: search entities filters(product id, product code, product name)
+     *
+     * @param $product_id ID of the product entity
+     * @param   $product_code internal product code used by SRS team
+     * @param   $product_name product name to match
+     */
+    public function admin_search($product_id = null, $product_code = null, $product_name = null) {
+        //Check if atleast one input has a value
+        if((is_null($product_id) || $product_id == '') && (is_null($product_code) || $product_code == '') && (is_null($product_name) || $product_name == '')) {
+            $products = null;
+        }
+        else {
+            $find_array = array(
+                'limit' => 20,
+                'conditions' => array('OR' => array()),    
+            );
+
+            if((!is_null($product_id) && $product_id != '')){
+                $find_array['conditions']['OR']['id'] = $product_id; 
+            }
+
+            if((!is_null($product_code) && $product_code != '')){
+                $find_array['conditions']['OR']['productcode'] = $product_code; 
+            }
+
+            if((!is_null($product_name) && $product_name != '')){
+                $find_array['conditions']['OR']['LOWER(name) LIKE'] = '%' . strtolower($product_name) . '%'; 
+            }
+
+            $this->Paginator->settings = $find_array;
+            $products = $this->Paginator->paginate($this->Product->Entity);
+
+        }
+        $product_id = is_null($product_id) || $product_id == 'null' ? '' : $product_id;
+        $product_code = is_null($product_code) || $product_code == 'null'  ? '' : $product_code;
+        $product_name = is_null($product_name) || $product_name == 'null'  ? '' : $product_name;
+        $this->set(compact('products', 'product_id', 'product_code', 'product_name'));
+    }
+    
     
     /**
      * admin_properties method
      * 
      * @param type $id
      */
-    public function admin_entities($action = null, $id = null) {
+    public function admin_entities($action = null, $id = null, $copy_id = null) {
         if($action == "add"){
             // init
             $Entity = ClassRegistry::init('Entity');
-            
+
             //$Color = ClassRegistry::init('Color');
             $colors = $Entity->Color->find('list');
             
             if ($this->request->is('post') || $this->request->is('put')) {
                 // add properties
-                if ($this->request->data['Entity']) {
+
+                if (isset($this->request->data['Entity'])) {
                     $data = array();
                     $Entity->create();
                     $data['Color'] = $this->request->data['Color'];
                     $data['Entity']['product_id'] = $id;
+                    if($this->request->data['Entity']['order'] >= 0){
+                        $data['Entity']['order'] = $this->request->data['Entity']['order'];    
+                    }
+                    
                     $data['Entity']['name'] = $this->request->data['Entity']['name'];
                     $data['Entity']['description'] = $this->request->data['Entity']['description'];
-                    $data['Entity']['sku'] = $this->request->data['Entity']['sku'];
-                    $data['Entity']['slug'] = $this->request->data['Entity']['slug'];
+                    $data['Entity']['productcode'] = trim($this->request->data['Entity']['productcode']);
+                    
+                    if($this->request->data['Entity']['sku'] == ""){
+                        $data['Entity']['sku'] = uniqid();    
+                    }
+                    else{
+                        $data['Entity']['sku'] = $this->request->data['Entity']['sku'];
+                    }
+                    
+                    if($this->request->data['Entity']['slug'] == ""){
+                        $data['Entity']['slug'] = strtolower(Inflector::slug($data['Entity']['name'], '-'));
+                    }
+                    else{
+                        $data['Entity']['slug'] = strtolower(Inflector::slug($this->request->data['Entity']['slug'], '-'));
+                    }
                     $data['Entity']['price'] = $this->request->data['Entity']['price'];
                     //$data['Entity']['stock'] = $this->request->data['Entity']['stock'];
+                    $data['Entity']['is_gift'] = $this->request->data['Entity']['is_gift'];
+                    $data['Entity']['is_featured'] = $this->request->data['Entity']['is_featured'];
                     $data['Entity']['show'] = $this->request->data['Entity']['show'];
                     $data['Entity']['user_id'] = $this->getLoggedUserID();
                     
@@ -119,6 +233,13 @@ class ProductsController extends AppController {
                     if($result = $Entity->save($data)){
                         $product_entity_id = $result['Entity']['id'];
                         $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
+                        
+                        //Add each image
+                        foreach($this->request->data['Image']['name'] as $request_image){
+                            if ($request_image && $request_image['size'] > 0) {  
+                                $this->add_image($request_image, $product_entity_id);    
+                            }
+                        }
                         $this->redirect('entities/edit/' . $product_entity_id);
                     }
                     else{
@@ -126,7 +247,15 @@ class ProductsController extends AppController {
                     }
                 }
             }
-            
+
+            if($copy_id && $Entity->exists($copy_id)){
+                $Entity->recursive = 1;
+                $options = array('conditions' => array('Entity.' . $Entity->primaryKey => $copy_id));
+                $this->request->data = $Entity->find('first', $options); 
+                unset($this->request->data['Entity']['sku']);    
+                unset($this->request->data['Entity']['slug']);   
+                unset($this->request->data['Color']);
+            }
             // set to view
             $this->set(compact('colors', 'id'));
             $this->render('admin_add_entities');
@@ -145,6 +274,26 @@ class ProductsController extends AppController {
             $colors = $Entity->Color->find('list');
             
             if($this->request->is('post') || $this->request->is('put')){
+                $this->request->data['Entity']['productcode'] = trim($this->request->data['Entity']['productcode']);
+                
+                //Set order to zero (0) if order is not greater than equal to zero (0) 
+                if($this->request->data['Entity']['order'] >= 0){
+                    $data['Entity']['order'] = 0;    
+                }
+                
+                if($this->request->data['Entity']['sku'] == ""){
+                    $this->request->data['Entity']['sku'] = uniqid();    
+                }
+                else{
+                    $this->request->data['Entity']['sku'] = $this->request->data['Entity']['sku'];
+                }
+                
+                if($this->request->data['Entity']['slug'] == ""){
+                    $this->request->data['Entity']['slug'] = strtolower(Inflector::slug($this->request->data['Entity']['name'], '-'));
+                }
+                else{
+                    $this->request->data['Entity']['slug'] = strtolower(Inflector::slug($this->request->data['Entity']['slug'], '-'));
+                }
                 if ($this->request->data['Entity']) {
                     if ($Entity->save($this->request->data)) {
                         $this->Session->setFlash(__('The product has been saved'), 'flash', array('title' => 'Success!'));
@@ -152,6 +301,7 @@ class ProductsController extends AppController {
                         $this->Session->setFlash(__('The product could not be saved. Please, try again'), 'flash');
                     }
                 }
+                
             }
             else{
                 
@@ -341,7 +491,7 @@ class ProductsController extends AppController {
             $this->render('admin_entity_image');
         }
         else if($action == 'remove'){
-
+            
             $this->autolayout = false;
             $this->autoRender = false;
             $image_id = $id;
@@ -364,45 +514,46 @@ class ProductsController extends AppController {
             }
         }
     }
-     
-    /*public function admin_edit($id = null) {
-        if (!$this->Product->exists($id)) {
-            throw new NotFoundException(__('Invalid product'));
-        }
-        if ($this->request->is('post') || $this->request->is('put')) {
-            $this->request->data['Product']['slug'] = strtolower(Inflector::slug($this->request->data['Product']['slug'], '-'));
-            if ($this->Product->save($this->request->data)) {
-                $this->Session->setFlash(__('The product has been saved'), 'modal', array('class' => 'success', 'title' => 'Success!'));
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The product could not be saved. Please, try again'), 'modal', array('class' => 'error', 'title' => 'Houston we have a problem!'));
-            }
+    
+    public function add_image($request_image, $entity_id){
+        $Image = ClassRegistry::init('Image');
+                
+        $img = null;
+        $img_type = '';
+        $img_size = '';
+        
+        $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+                    
+        if (!in_array($request_image['type'], $allowed)) {
+            
+        } else if ($request_image['size'] > 3145728) {
+            
         } else {
-            $this->Product->recursive = 1;
-            $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
-            $this->request->data = $this->Product->find('first', $options);
+            $rand = substr(uniqid ('', true), -7);
+            $img = $entity_id . '_' . $rand . '_' . $request_image['name'];
+            $img_type = $request_image['type'];
+            $img_size = $request_image['size'];
+            move_uploaded_file($request_image['tmp_name'], APP . DS . 'webroot' . DS . 'files' . DS . 'products' . DS . $img);
         }
+        
+        // save image
+        if ($img) {
+            // init
+            $file = array();
+            $file['Image']['product_entity_id'] = $entity_id;
+            $file['Image']['name'] = $img;
+            $file['Image']['type'] = $img_type;
+            $file['Image']['size'] = $img_size;
+            
+            
 
-        // get data
-        $userTypes = $this->Product->UserType->find('list');
-        $categories = $this->Product->Category->find('list');
-        $brands = $this->Product->Brand->find('list');
-        $attached = $this->Product->Attached->getByProductID($id);
-        $properties = $this->Product->Property->getByProductID($id);
-
-        $images_list = array();
-        if ($attached) {
-            foreach ($attached as $file) {
-                if (isset($file['Attachment']) && $file['Color']) {
-                    $images_list = array_merge($images_list, array($file['Attachment']['name'] => $file['Color'][0]['name']));
-                }
+            $Image->create();
+            if ($Image->save($file)) {
+                    
             }
-        } else {
-            $images_list = array('' => 'None');
-        }
-
-        $this->set(compact('userTypes', 'categories', 'brands', 'attached', 'properties', 'images_list', 'id'));
-    }*/
+        }    
+        
+    }
 
     /**
      * admin_delete method
@@ -660,6 +811,71 @@ class ProductsController extends AppController {
         }
         imagedestroy($dst);
         exit;
+    }
+    
+    /**
+     * Export to Excel
+     */
+    function admin_export() {
+
+        $this->autoRender = false;
+        $this->autoLayout = 'xls';
+        $this->isAdmin();
+        
+        $Size = ClassRegistry::init('Size');
+        $Category = ClassRegistry::init('Category');
+        
+        $sizes = $Size->find('list');
+        $categories = $Category->find('list');
+        
+        $find_array = array(
+            'contain' => array('Color', 'Detail'),
+            'conditions' => array( 
+            ),
+            'joins' => array(
+                array('table' => 'products_categories',
+                    'alias' => 'Category',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Category.product_id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+            ),
+            'order' => array('Entity.id' => 'ASC'),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*', 'Category.category_id'
+            ),
+        );
+        $products = $this->Product->Entity->find('all', $find_array);
+        $this->set(compact('products', 'sizes', 'categories'));
+        
+        $this->set('filename', 'SRS_Products_' . date('m.d.Y-H.i'));
+        $this->render('admin_export', 'xls');
+    }
+    
+    function admin_googlecsv(){
+        $products = $this->Product->Entity->getGoogleProductShopping();
+        $this->autoRender = false;
+        $this->autoLayout = 'xls';
+        $this->isAdmin();
+
+        $this->set(compact('products'));
+        $this->set('filename', 'SRS_Google_Products_' . date('m.d.Y-H.i'));
+        $this->render('admin_googlecsv', 'xls');
     }
 
 }

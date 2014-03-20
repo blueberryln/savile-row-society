@@ -52,27 +52,21 @@ class PagesController extends AppController {
             $title_for_layout = Inflector::humanize($path[$count - 1]);
         }
 
-        /*
-        if ($page == 'membership') {
+        if($page == 'home'){
+            $user = $this->getLoggedUser();
+            $this->set(compact('user'));
+        }
+        else if ($page == 'tailor') {
             $this->isLogged();
             $user = $this->getLoggedUser();
             $this->set(compact('user'));
         }
-        */
-
-        if ($page == 'tailor') {
+        else if ($page == 'trainer') {
             $this->isLogged();
             $user = $this->getLoggedUser();
             $this->set(compact('user'));
         }
-
-        if ($page == 'trainer') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            $this->set(compact('user'));
-        }
-        
-        if ($page == 'stylist') {
+        else if ($page == 'stylist') {
             $this->isLogged();
             $user = $this->getLoggedUser();
             if(!$user['User']['preferences']){
@@ -81,7 +75,12 @@ class PagesController extends AppController {
             }
             $this->set(compact('user'));
         }
-
+        else if ($page == 'refer-a-friend') {
+            $this->isLogged();
+            $user = $this->getLoggedUser();
+            $this->set(compact('user'));
+        }
+        
         $this->set(compact('page', 'subpage', 'title_for_layout'));
         $this->render(implode('/', $path));
     }

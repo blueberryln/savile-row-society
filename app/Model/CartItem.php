@@ -38,7 +38,33 @@ class CartItem extends AppModel {
         )
     );
     
-
+    
+    /**
+     * hasMany associations
+     *
+     * @var array
+     */
+    public $hasMany = array(
+        'CartGiftItem' => array(
+            'className' => 'CartGiftItem',
+            'foreignKey' => 'cart_item_id',
+            'conditions' => '',
+            'order' => '',
+            'limit' => '',
+            'dependent' => true         
+        ),
+    );
+    
+    
+    /**
+     * Get a single cart item id based on cart id and the product_entity_id
+     */
+    function getCartItemByCart($cart_id, $entity_id){
+        return $this->find('first', array(
+            'conditions' => array('CartItem.cart_id' => $cart_id, 'CartItem.product_entity_id' => $entity_id), 
+        ));
+    }
+    
     function getCartItems($cart_id){
         return $this->find('count', array(
             'conditions' => array('CartItem.cart_id' => $cart_id)

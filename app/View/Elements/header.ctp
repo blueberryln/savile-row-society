@@ -1,9 +1,29 @@
+<?php
+$script='
+    jQuery(document).ready(function(){
+        jQuery("#menu-switcher").on("click", function(){  
+            jQuery(this).toggleClass("menu-anim");          
+            var menu = jQuery(".header .menu");
+            jQuery(menu).slideToggle();  
+        });
+    });
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+?>
+
 
 <div class="header">
+    <div class="wrapper">
 
-    <div class="container">
+        <!--Logo Section-->
+        <div class="header-logo left">
+            <a href="<?php echo $this->request->webroot; ?>" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
+        </div>
+        <!--Logo Section Ends-->
 
-        <div class="sixteen columns card-menu">
+        <!--Log In Menu-->
+        <div class="card-menu right">
             <ul>
                <!-- <?php
                 if (!$is_logged) {
@@ -17,24 +37,62 @@
                                 </li> ';
                 }
                 ?> -->
-                
+
                  <?php
                 if (!$is_logged) {
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();">Join</a></li> ';
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();">Sign In</a> </li> ';
+                ?>
+                <li><a href="#" onclick="window.ref_url=''; signUp();"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                <?php 
+                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();"><img class="sign-in" src="'.$this->webroot.'img/sign_in.png" /></a> </li> ';
+                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img class="sign-up" src="'.$this->webroot.'img/register.png" /> </a></li> ';
+                    
                 } else {
                 ?>
+                    <!-- <?php if($user) : ?>
+                        <li class="welcome-name"><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
+                    <?php endif; ?> -->
+                <?php if(($has_stylist && !$is_admin) || $is_stylist) : ?>
+                <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
+                    <div class="submenu-container msg-notify-box <?php echo $is_stylist ? "stylist-notify-box" : ""; ?>">
+                        <div class="submenu">
+                            <div class="submenu-inner">
+                                
+                                <?php if(!$is_stylist) : ?>
+                                    <a href="<?php echo $this->webroot; ?>messages/index/" class="msg-count-cont">
+                                        <div class="msg-count">
+                                            <span><?php echo $message_notification['message']; ?></span> Messages
+                                        </div>
+                                    </a>
+                                    <a href="<?php echo $this->webroot; ?>messages/index/">
+                                        <div class="outfit-count">
+                                            <span><?php echo $message_notification['outfit']; ?></span> Outfits
+                                        </div>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?php echo $this->webroot; ?>messages/index/">
+                                        <div class="msg-count">
+                                            <span><?php echo $message_notification['message']; ?></span> Messages
+                                        </div>
+                                    </a>    
+                                <?php endif; ?>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <?php endif; ?>
+                <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                 <li>
-                    <a title="Account">My Account</a>
+                    <a title="Account" id="myaccount-drop">My Account</a>
                     <div class="submenu-container">
                         <ul class="submenu">
                             <?php if ($is_admin) : ?>
                                 <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                             <?php endif; ?>
-                            <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu"><?php echo $cart_items; ?></span>) </a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>closet/liked" class="headerMenu">My Closet</a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>myprofile" class="headerMenu">Settings</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>mycloset/liked" class="headerMenu">My Closet</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu">Profile</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>refer-a-friend" class="headerMenu">Refer a friend</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
                         </ul>
                     </div>
@@ -44,105 +102,45 @@
                 ?>
 
             </ul>
-
         </div>
+        <!--Log In Menu Ends-->
 
-        <div class="sixteen columns text-center" style="height: 75px;">
+       
+        
+        <span id="menu-switcher"><!-- &#8801; --><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span>
+        <!--Menu Section-->
+        <div class="menu right">            
+            <ul>                
+                <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
 
-            <!--            <div class="banner"></div> -->
-            <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
-        </div>
-        <div class="sixteen columns alpha omega menu">
-            <ul>
-                
-                <li><a href="<?php echo $this->request->webroot; ?>closet" class="headerMenu" data-ref="closet">The Closet</a></li> 
-                <li>
-                    <a href="<?php echo $this->request->webroot; ?>stylist" class="headerMenu" data-ref="stylist">My Stylist</a>
-                </li>
-                <li>
-                    <a href="<?php echo $this->request->webroot; ?>booking" class="headerMenu" data-ref="booking">My Tailor</a>
-                </li>                
-                <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com">The Blog</a></li>
-                <?php if($is_logged) : ?>
-                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/">Chat</a></li>
+                <?php if($is_logged && $has_stylist && !$is_stylist) : ?>
+                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Stylist</span></a></li>
+                <?php elseif($is_stylist) : ?>
+                    <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Clients</span></a></li>
+                <?php elseif($is_logged) : ?>
+                    <li>  <a href="<?php echo $this->request->webroot; ?>profile/about">My Stylist</a></li>
+                <?php else : ?>
+                    <li>  <a href="#" onclick="window.ref_url=''; signUp();">My Stylist</a></li>
                 <?php endif; ?>
-                
+
+                <?php if($is_logged && $has_stylist) : ?>
+                    <li><a  href="<?php echo $this->request->webroot; ?>fitting-room" data-ref="closet"><span class="underline1">The Fitting room</span></a></li> 
+                 <?php elseif($is_logged) : ?>
+                    <li><a  href="<?php echo $this->request->webroot; ?>profile/about" data-ref="closet"><span class="underline1">The Fitting room</span></a></li> 
+                <?php else : ?>
+                    <li><a href="#" onclick="window.ref_url=''; signUp();"><span class="underline1">The Fitting room</span></a></li> 
+                <?php endif; ?>                           
+                <!--li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li-->
 
             </ul>
         </div>
-        <div id="signup-box-wrapper">
-            <div id="signup-box" >
-                <div>
-
-                    <div style=" height: 60px;"><a href="#" id="closeSignUp"><i class="cancel" style="float:right;"></i></a></div>
-                </div>
-
-
-
-                <a class="signin-social" href="<?php echo $this->request->webroot; ?>connect/linkedin">Try us on with LinkedIn <img src="<?php echo $this->request->webroot; ?>img/linkedin-small-logo.png" /></a>
-                <a class="signin-social" href="<?php echo $this->request->webroot; ?>connect/facebook">Try us on with Facebook <img src="<?php echo $this->request->webroot; ?>img/facebook-small-logo.png" /></a>
-
-                <div class="separator" ><span>OR</span></div>
-
-                <input type="text" class="signin-email" placeholder="YOUR EMAIL ADDRESS" id="enter-email"/>
-                <br/>
-                <a class="register" id="show-registration-popup" href="#">Enter</a>
-                <br/>                
-                <br/>
-                Already a Member? 
-
-                <a class="signin" id="show-signin-popup" href="#">Sign in</a>
-
-                <!--<a class="register" href="<?php echo $this->request->webroot; ?>register">Sign up</a> -->
-                <!-- <a class="register" id="show-registration-popup" href="#">Sign up</a> -->
-                <!--<a class="signin" id="signin-box" href="<?php echo $this->request->webroot; ?>signin">Sign in</a>-->
-                <!-- <a class="signin" id="show-signin-popup" href="#">Sign in</a> -->
-            </div>
-            
-            <div id="presignup-box" style="display: none;">
-                <div style="width:90%" class="container content">
-                    <h1>Welcome to Savile Row Society!</h1>
-                    <p class="sign-up-notice text-center">Thank you for visiting Savile Row Society. We are hard at work getting ready for our October launch. In the meantime, sign up now and you will receive a $30 credit toward your first Savile Row Society purchase! <br />
-<strong>"Live a Tailored Life"</strong></p>
-                </div>
-                <br />
-                <form action="<?php echo $this->request->webroot; ?>newusers" method="post" id="presignup-box-form">
-                    <input type="text" class="signin-email" placeholder="YOUR EMAIL ADDRESS" id="enter-email" name="email" style="width: 88%;" />
-                    <br />
-                    <br />
-                    <a class="register" id="btn-presignup" href="#">Submit</a>
-                </form>
-                <br/>                
-                <br/>
-                <br />
-                <br />
-
-                <!--<a class="register" href="<?php echo $this->request->webroot; ?>register">Sign up</a> -->
-                <!-- <a class="register" id="show-registration-popup" href="#">Sign up</a> -->
-                <!--<a class="signin" id="signin-box" href="<?php echo $this->request->webroot; ?>signin">Sign in</a>-->
-                <!-- <a class="signin" id="show-signin-popup" href="#">Sign in</a> -->
-            </div>
-        </div>
+        <!--Menu Section Ends-->
+        <span class="call-us-at"><!-- <img src="<?php echo $this->webroot; ?>img/call-us.png" /> -->Call us at +1 347 878 7280</span>
+         <?php if($user) : ?>
+                        <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span>
+                <?php endif; ?>
         
-        <!-- inside this element open signin view -->
-        <div id="signin-popup" style="display: none">
 
-        </div>
-        <!-- inside this element open signin view (start signup wizard) -->
-        <div id="signup-popup" style="display: none">
-
-        </div>
-        
-        <div id="profile-popup" style="display: none;">
-            <div style="width:430px;" class="container content">	
-                <div class="text-center">
-                    <h1>Welcome to Savile Row Society!</h1>
-                    <p>To be able to match you with one of our premier personal stylists, please complete this quick style profile.</p>
-                    <p><a href="<?php echo $this->request->webroot; ?>profile/about" class="text-center complete-profile">Complete my style profile</a></p>
-                    <br />
-                    <p>Or you can book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">tailor</a>, or check out our highlighted products in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div>   
 </div>
+

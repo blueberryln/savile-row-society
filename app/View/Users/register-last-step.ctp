@@ -1,144 +1,152 @@
 <?php
 
 $script = ' var contact = ' . json_encode($contact) . '; ' .
-' $(document).ready(function(){ 
-    if(contact){
-        $("#contact-time").val(contact.time);
-        $("#contact-type").val(contact.type);        
+' 
+var user = ' . json_encode($user["User"]) . '
+$(document).ready(function(){  
+    
+    //Check contact timings checkboxes
+    if(contact.wdTime1){
+        $("input[name=\"data[UserPreference][Contact][wdTime1]\"]").attr("checked","checked");    
     }
+    if(contact.wdTime2){
+        $("input[name=\"data[UserPreference][Contact][wdTime2]\"]").attr("checked","checked");    
+    }
+    if(contact.wdTime3){
+        $("input[name=\"data[UserPreference][Contact][wdTime3]\"]").attr("checked","checked");    
+    }
+    if(contact.wdTime4){
+        $("input[name=\"data[UserPreference][Contact][wdTime4]\"]").attr("checked","checked");    
+    }
+    $("input[name=\"data[UserPreference][Contact][weekEnd]\"]").attr("checked","checked");   
+    if(contact.weTime1){
+        $("input[name=\"data[UserPreference][Contact][weTime1]\"]").attr("checked","checked");   
+    }
+    if(contact.weTime2){
+        $("input[name=\"data[UserPreference][Contact][weTime2]\"]").attr("checked","checked");   
+    }
+    if(contact.weTime3){
+        $("input[name=\"data[UserPreference][Contact][weTime3]\"]").attr("checked","checked");   
+    }
+    if(contact.weTime4){
+        $("input[name=\"data[UserPreference][Contact][weTime4]\"]").attr("checked","checked");   
+    }
+
+    if(contact.type &&  $.inArray("Chat", contact.type) >= 0){
+        $("input[type=\"checkbox\"][value=\"Chat\"]").attr("checked","checked");
+    }
+    if(contact.type && $.inArray("Phone", contact.type) >= 0){
+        $("input[type=\"checkbox\"][value=\"Phone\"]").attr("checked","checked");
+    }
+    if(contact.type && $.inArray("Skype", contact.type) >= 0){
+        $("input[type=\"checkbox\"][value=\"Skype\"]").attr("checked","checked");
+    }
+
+    $("div.submit input").click(function(event){
+        var contactCount = 0;
+            timingsCount = 0;
+        $(".contact-options input[type=\"checkbox\"]").each(function(){
+            if($(this).is(":checked")){
+                contactCount++;
+            }
+        });
+
+        if(!contactCount){
+            event.preventDefault();
+            $("p.error-msg").slideDown(300);
+        }
+
+        if($("#phone-field").is(":checked") && $("input.phone-field").val() == "" )
+        {
+            event.preventDefault();
+            $("p.error-msg").slideDown(300);                    
+        }  
+        if($("#skype-field").is(":checked") && $("input.skype-field").val() == "" )
+        {
+            event.preventDefault();
+            $("p.error-msg").slideDown(300);                    
+        }   
+
+        $(".pref-time input[type=\"checkbox\"]").each(function(){
+            if($(this).attr("checked") == "checked"){
+                timingsCount++;
+            }
+        });
+        if(!timingsCount){
+            event.preventDefault();
+            $("p.error-msg").slideDown(300);    
+        }
+    });
+    
 });';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
+<div class="content-container">
+    <div class="container content inner register-last-step">
+        <div class="eight columns register-steps center-block">
+          <div class="profile-tabs text-center">
+              <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+              <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+          </div>
 
-<div class="container content inner ">	
+          <h1 class="text-center">Finalizing</h1>
+        </div>        
+        
+        <?php echo $this->Form->create('User', array('url' => '/register/saveContact', 'class' => 'form')); ?>
+        <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
+        <div class="hi-message twelve columns text-center">
+              <h4 class="hi-message">Preferred time to be reached?</h4>                  
+        </div>     
 
-     <div class="sixteen columns alpha omega text-center  offset-by-three">
-        <div class="reg-step5"></div>
-    </div>
-    <?php echo $this->Form->create('ProfileImage', array('url' => '/register/saveContact','type' => 'file')); ?>
-    <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
-    <div class="sixteen columns text-center">        
-        <div class="hi-message fourteen columns offset-by-one alpha omega">
-            <h4 class="hi-message">Hi <?php echo $full_name; ?></h4>
-            <p>
-                Don't be shy, you'd be surprised what we can do with photo.
-            </p>
-            <div class='empty-img' id='photo-holder'>
-            <img src='<?php echo $image_url ?>' id='user-photo'/>
+        <div class="finalizing seven columns center-block" >
+            <div class="five columns pref-time left">
+                <p>Week Days</p>
+                <div class="pref-options">
+                    <input type="checkbox" name="data[UserPreference][Contact][wdTime1]" value="1">Morning (8am to 12am)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][wdTime2]" value="2">Lunch time (12 to 2pm)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][wdTime3]" value="3">Afternoon (2pm to 6pm)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][wdTime4]" value="4">Evening (6pm to 9pm)<br>                    
+                </div>
+                
             </div>
-        <input type='button' value='Upload photo' id='upload-img'/>
-<!--        <input type='file' id='uploader-btn'  />-->
-        <?php
-            echo $this->Form->input('', array('type' => 'file', 'id'=>'uploader-btn'));
-        ?>
+            <div class="five columns pref-time right">
+                <p>Week End</p>
+                <div class="pref-options">
+                    <input type="checkbox" name="data[UserPreference][Contact][weTime1]" value="1">Morning (8am to 12am)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][weTime2]" value="2">Lunch time (12 to 2pm)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][weTime3]" value="3">Afternoon (2pm to 6pm)<br>
+                    <input type="checkbox" name="data[UserPreference][Contact][weTime4]" value="4">Evening (6pm to 9pm)<br>                     
+                </div>                             
+            </div>
+            <div class="clear-fix"></div>
+        </div> 
+
+        <div class="hi-message twelve columns text-center">
+              <h4 class="hi-message">How would you like to be reached?</h4>                  
         </div>
-        
-        
-        
-        <div class="finalizing six columns offset-by-five text-left" >
-        <h5>What is the best time for your stylist to contact you?</h5>
-        <select name="data[UserPreference][Contact][time]" id="contact-time" required=required >
-            <option value="">Time</option>
-            <option value="9:00 AM">9:00 AM</option>
-            <option value="9:15 AM">9:15 AM</option>
-            <option value="9:30 AM">9:30 AM</option>
-            <option value="9:45 AM">9:45 AM</option>
-
-            <option value="10:00 AM">10:00 AM</option>
-            <option value="10:15 AM">10:15 AM</option>
-            <option value="10:30 AM">10:30 AM</option>
-            <option value="10:45 AM">10:45 AM</option>
-
-            <option value="11:00 AM">11:00 AM</option>
-            <option value="11:15 AM">11:15 AM</option>
-            <option value="11:30 AM">11:30 AM</option>
-            <option value="11:45 AM">11:45 AM</option>
-
-            <option value="12:00 PM">12:00 PM</option>
-            <option value="12:15 PM">12:15 PM</option>
-            <option value="12:30 PM">12:30 PM</option>
-            <option value="12:45 PM">12:45 PM</option>
-
-            <option value="1:00 PM">1:00 PM</option>
-            <option value="1:15 PM">1:15 PM</option>
-            <option value="1:30 PM">1:30 PM</option>
-            <option value="1:45 PM">1:45 PM</option>
-
-            <option value="2:00 PM">2:00 PM</option>
-            <option value="2:15 PM">2:15 PM</option>
-            <option value="2:30 PM">2:30 PM</option>
-            <option value="2:45 PM">2:45 PM</option>
-
-            <option value="3:00 PM">3:00 PM</option>
-            <option value="3:15 PM">3:15 PM</option>
-            <option value="3:30 PM">3:30 PM</option>
-            <option value="3:45 PM">3:45 PM</option>
-
-            <option value="4:00 PM">4:00 PM</option>
-            <option value="4:15 PM">4:15 PM</option>
-            <option value="4:30 PM">4:30 PM</option>
-            <option value="4:45 PM">4:45 PM</option>
-
-            <option value="5:00 PM">5:00 PM</option>
-            <option value="5:15 PM">5:15 PM</option>
-            <option value="5:30 PM">5:30 PM</option>
-            <option value="5:45 PM">5:45 PM</option>
-        </select>
-        
-        <h5>How would you like us to reach out ?</h5>
-        <select name="data[UserPreference][Contact][type]" id="contact-type" required=required >
-            <option value="">Contact type</option>
-            <option value="Phone">Phone</option>
-            <option value="Email">Email</option>
-            <option value="Skype">Skype</option>
-        </select>          
-        
-         <?php echo $this->Form->end(__('Upload')); ?>      
-             
-         </div>
-    </div>    
-    <br/> 
+        <div class="finalizing seven columns center-block contact-options" >
+            <ul>
+                <li><input type="checkbox" name="data[UserPreference][Contact][type][]" id="srs-chat" value="Chat"> SRS Chat &amp; Email</li>
+                <li>
+                    <input type="checkbox" name="data[UserPreference][Contact][type][]" id="phone-field" value="Phone"><span> Phone</span>
+                    <input type="text" placeholder="Enter your Phone No" class="phone-field" name="data[User][phone]" value="<?php echo $user['User']['phone'] ?>"><br>
+                </li>
+                <li>
+                    <input type="checkbox" name="data[UserPreference][Contact][type][]" id="skype-field" value="Skype"><span> Skype </span>
+                    <input type="text" placeholder="Enter your Skype ID" class="skype-field" name="data[User][skype]"value="<?php echo $user['User']['skype'] ?>">
+                </li>
+            </ul>
+        </div>
+        <div class="clear-fix"></div>   
+        <div class="clear-fix"></div>
+            <div class="text-center about-submit">
+                <br/>                       
+                <div class="submit">                            
+                    <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/brands/<?php echo $user_id; ?>">Back</a> 
+                    <input type="submit" value="Continue" />
+                    <p class="error-msg">All the fields are mandatory.</p> 
+                </div>
+            </div>
+        </form>
+    </div>            
 </div>
-
-<style>
-    #upload-img{
-        width:100px;
-    }
-    #uploader-btn{
-        display: none;
-    }
-    #user-photo{
-        /*width:100px;*/
-        height: 100px;
-        opacity: 0;
-        
-    }
-</style>
-<script>
-    window.onload=function(){
-        $("#upload-img").click(function(){
-            $("#uploader-btn").click();
-        });
-        $("#uploader-btn").change(function(){
-        
-            var input = document.getElementById("uploader-btn");
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#user-photo' ).attr('src', e.target.result);
-                    $('#user-photo' ).css('opacity', 1);
-                    $('#photo-holder' ).attr('class', '');
-                };
-                reader.readAsDataURL(input.files[0]);
-//                    if (self.showName) {
-//                        $(self).append("<p>" + input.files[0].name + "</p>");
-//                    }
-                // 
-            }
-        });
-        if($('#user-photo').attr('src') != "#"){
-            $('#user-photo').css('opacity', 1);
-            $('#photo-holder' ).attr('class', '');
-        }
-    }
-</script>    

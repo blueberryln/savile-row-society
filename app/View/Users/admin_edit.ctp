@@ -14,27 +14,36 @@
                 echo $this->Form->input('first_name');
                 echo $this->Form->input('last_name');
                 echo $this->Form->input('username');
-                echo $this->Form->input('profile_image');
                 echo $this->Form->input('phone');
                 echo $this->Form->input('title');
                 echo $this->Form->input('industry');
                 echo $this->Form->input('location');
                 echo $this->Form->input('skype');
                 echo $this->Form->input('heard_from');
+                echo $this->Form->input('stylist_id', array('empty' => 'Select Stylist'));
                 echo $this->Form->input('is_editor');
                 echo $this->Form->input('is_stylist');
                 echo $this->Form->input('is_admin');
+                echo $this->Form->input('is_event');
                 echo $this->Form->input('active');
                 ?>
             </fieldset>
             <fieldset>
+                <legend><?php echo __('User Preferences'); ?></legend>
+                
+            </fieldset>
+            <fieldset>
                 <legend><?php echo __('Actions'); ?></legend>
-                <a href="<?php echo $this->webroot; ?>users/register/style/<?php echo $id; ?>" class="btn">Edit Preferences</a> | <?php echo $this->Form->postLink(__('Delete user'), array('action' => 'delete', $id), null, __('Are you sure you want to delete this user?')); ?>
+                <a href="<?php echo $this->webroot; ?>users/register/style/<?php echo $id; ?>" class="btn">Edit Preferences</a> <!-- | <?php //echo $this->Html->link(__('Delete user'), array('action' => 'delete', $id), null, __('Are you sure you want to delete this user?')); ?>-->
             </fieldset>
             <div class="clearfix"></div>
             <div class="text-center">
-                <?php echo $this->Form->end(__('Update')); ?>
+                <div class="submit">
+                    <input type="submit" value="Update">
+                </div>
             </div>
+            <?php echo $this->Form->end(); ?>
+            
         </div>
     </div>
 </div>

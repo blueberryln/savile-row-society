@@ -32,24 +32,30 @@ class CategoriesController extends AppController {
     public function admin_add() {
         if ($this->request->is('post')) {
             $this->Category->create();
-            if ($this->request->data['Category']['parent_id'] == 0) {
+            if ($this->request->data['Category']['parent_id'] == 0 || $this->request->data['Category']['parent_id'] == '') {
                 unset($this->request->data['Category']['parent_id']);
             }
-            if ($this->Category->save($this->request->data)) {
-
-//                if ($this->request->data['Category']['parent_id'] == 0) {
-//                    $this->request->data['Category']['parent_id'] = null;
-//                }
-
+            if($this->request->data['Category']['SubCategory'] != ""){
+                $this->request->data['Category']['parent_id'] = $this->request->data['Category']['SubCategory'];       
+            }
+            
+            $this->request->data['Category']['slug'] = Inflector::slug(trim($this->request->data['Category']['slug']), '-');
+            
+            if ($result = $this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('The category has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The category could not be saved. Please, try again'), 'flash');
             }
         }
-        $parents = $this->Category->find('list');
-        array_unshift($parents, 'None');
-        $this->set(compact('parents'));
+        
+        $category_list = array();
+        $category_thread = $this->Category->find('threaded');
+        foreach($category_thread as $row){
+            $category_list[$row['Category']['id']] = $row;
+        }
+        $parents = $this->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
+        $this->set(compact('parents', 'category_list'));
     }
 
     /**
@@ -64,15 +70,15 @@ class CategoriesController extends AppController {
             throw new NotFoundException(__('Invalid category'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
-            if ($this->request->data['Category']['parent_id'] == 0) {
+            if ($this->request->data['Category']['parent_id'] == 0 || $this->request->data['Category']['parent_id'] == '') {
                 $this->request->data['Category']['parent_id'] = null;
             }
+            if($this->request->data['Category']['SubCategory'] != ""){
+                $this->request->data['Category']['parent_id'] = $this->request->data['Category']['SubCategory'];       
+            }
+            $this->request->data['Category']['slug'] = Inflector::slug(trim($this->request->data['Category']['slug']), '-');
+            
             if ($this->Category->save($this->request->data)) {
-
-//                if ($this->request->data['Category']['parent_id'] == 0) {
-//                    $this->request->data['Category']['parent_id'] = null;
-//                }
-
                 $this->Session->setFlash(__('The category has been saved'), 'flash', array('title' => 'Success!'));
                 $this->redirect(array('action' => 'index'));
             } else {
@@ -81,13 +87,27 @@ class CategoriesController extends AppController {
         } else {
             $options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
             $this->request->data = $this->Category->find('first', $options);
-            if ($this->request->data['Category']['parent_id'] == 0) {
-                unset($this->request->data['Category']['parent_id']);
-            }
         }
-        $parents = $this->Category->find('list');
-        array_unshift($parents, 'None');
-        $this->set(compact('parents'));
+        
+        $category_list = array();
+        $category_thread = $this->Category->find('threaded');
+        foreach($category_thread as $row){
+            $category_list[$row['Category']['id']] = $row;
+        }
+        
+        $parent_id = 0;
+        $parent_parent_id = 0;
+        if($this->request->data['Category']['parent_id']){
+            $parent_id = $this->request->data['Category']['parent_id'];
+            $parent_data = $this->Category->find('first', array('conditions' => array('Category.id' => $parent_id)));
+            if($parent_data && $parent_data['Category']['parent_id']){
+                $parent_parent_id = $parent_data['Category']['parent_id'];    
+            }
+        }  
+        
+        $parents = $this->Category->find('list', array('conditions' => array('Category.parent_id IS NULL')));
+        
+        $this->set(compact('parents', 'category_list', 'parent_id', 'parent_parent_id'));
     }
 
     /**
@@ -104,6 +124,7 @@ class CategoriesController extends AppController {
         }
         $this->request->onlyAllow('post', 'delete');
         if ($this->Category->delete()) {
+            //$this->Category->reorder();
             $this->Session->setFlash(__('Category deleted'), 'flash', array('title' => 'Success!'));
             $this->redirect(array('action' => 'index'));
         }

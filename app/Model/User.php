@@ -208,6 +208,13 @@ class User extends AppModel {
         ),
     );
 
+    function hasStylist($user_id){
+        return $this->find('first', array(
+            'conditions' => array('User.id' => $user_id),
+            'fields' => array('User.stylist_id'),
+        ));
+    }
+
     /**
      * Check User credentials on Login
      * @param type $email
@@ -307,16 +314,65 @@ class User extends AppModel {
      * Return list of user that write to stylist
      */
     public function getUserWriteToMe($stylist_Id) {
-        return $this->query("SELECT DISTINCT User.id,
-                                CONCAT(
-                                        User.first_name,
-                                        ' ',
-                                        User.last_name
-                                ) AS full_name
-                            FROM users as User
-                            INNER JOIN messages m ON m.user_from_id = User.id
-                            WHERE m.user_to_id = $stylist_Id
-                ");
+        return $this->find('all', array(
+            'conditions' => array('User.stylist_id' => $stylist_Id, 'User.is_stylist' => false, 'User.is_admin' => false),
+            'fields' => array('User.id', 'User.full_name'),
+            'order' => array('User.first_name' => 'ASC'),
+        ));
     }
+    
 
+    /**
+     * Returns a list of users with $stylist_id as a stylist.
+     * Condition: Stylist has not sent any message to the user.
+     */
+    public function getNewClients($stylist_id){
+        return $this->find('all', array(
+            'conditions' => array('User.stylist_id' => $stylist_id, 'User.is_admin' => false, 'User.is_stylist' => false, 'User.is_editor' => false),
+            'joins' => array(
+                array(
+                    'table' => 'messages',
+                    'alias' => 'Message',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'User.id = Message.user_to_id',
+                        'Message.user_from_id' => $stylist_id,
+                    )
+                ) 
+            ), 
+            'fields' => array('User.first_name', 'User.last_name', 'User.id'),
+            'group' => array('User.id HAVING count(Message.id) = 0'),
+        ));
+    }
+    
+    
+    public function getAdminUser(){
+        return $this->find('first', array(
+            'conditions' => array('User.is_admin' => true) 
+        ));
+    }
+    
+    
+    /**
+     * Get Stylist User Notification data
+     */
+    public function getStylistUserNotification($user_id){
+        $find_array = array(
+            'fields' => array('User.*', '(SUM(IF(`Message`.`is_read` = 0, 1, 0))) AS unread_count '),
+            'joins' => array(
+                array('table' => 'messages',
+                    'alias' => 'Message',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'User.id = Message.user_from_id'
+                    )
+                ),
+            ),
+            'conditions' => array('User.stylist_id' => $user_id),
+            'group' => array('User.id HAVING (SUM(IF(`Message`.`is_read` = 0, 1, 0))) > 0'),
+            'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
+        );
+        
+        return $this->find('all', $find_array);
+    }
 }

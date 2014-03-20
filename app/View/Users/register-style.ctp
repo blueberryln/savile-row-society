@@ -1,143 +1,199 @@
 <?php
-$script = ' 
-var style = ' . json_encode($style) . ';  
-var wear_suit = ' . json_encode($wear_suit) . ';' .
-'$(document).ready(function(){ 
+$script = '  
+var size = ' . json_encode($size) . '; 
+$(document).ready(function(){ 
 
-        /* Your style */
-        $( "#your-style #selectable" ).bind("mousedown", function (e) {
-            e.metaKey = false;
-            }).selectable({
-            stop: function() {
-                $("#your-style input:checkbox").prop("checked", false);
-                $( ".ui-selected", this ).each(function() {
-                    var selected_id = $(this).data("id");
-                    $("#your-style input:checkbox#" + selected_id).prop("checked", true);
-                });
-            }
+        /****Jeans Cut*****/
+        $("div#jeans-cut li").click(function(){
+            $("p.error-msg").slideUp(300);
+            $(this).addClass("ui-selected").siblings().removeClass("ui-selected");
+            var selected_id = $(this).data("id");
+            $("#jeans-cut input:radio#" + selected_id).prop("checked", true);
         });
-        /* Suite Frequency */
-        $( "#suite-frequency #selectable" ).bind("mousedown", function (e) {
-            e.metaKey = false;
-            }).selectable({
-            stop: function() {
-                $("#suite-frequency input:checkbox").prop("checked", false);
-                $( ".ui-selected", this ).each(function() {
-                    var selected_id = $(this).data("id");
-                    $("#suite-frequency input:checkbox#" + selected_id).prop("checked", true);
-                });
-            }
+
+        $("div#shirt-cut li").click(function(){
+            $("p.error-msg").slideUp(300);
+            $(this).addClass("ui-selected").siblings().removeClass("ui-selected");
+            var selected_id = $(this).data("id");
+            $("#shirt-cut input:radio#" + selected_id).prop("checked", true);
         });
+
+        $("div.submit input").click(function(event){
+            if($("div#jeans-cut").find("li.ui-selected").length == 0 || $("div#shirt-cut").find("li.ui-selected").length == 0)
+            {
+                event.preventDefault();
+                $("p.error-msg").slideDown(300);
+            }            
+        });   
+
         function getIdFromString(s){
             switch(s){
-                case "Business": return 1;
-                case "Lifestyle": return 2;
-                case "Complete Overhaul": return 3;
-                case "Every Day": return 4;
-                case "Couple Times a Week": return 5;
-                case "Never": return 6;
+                case "Bootcut": return 1;
+                case "Relaxed": return 2;
+                case "Straight": return 3;
+                case "Slim": return 4;
+                case "SlimShirt": return 5;
+                case "RegularShirt": return 6;
+                case "RelaxedShirt": return 7;
                 default: return 0;    
             }
         }
         
-        // Mark saved style as selected
-        var selectedId = getIdFromString(style);
-        if(selectedId != 0){
-            var liCondition = \'li[data-id = "\' + selectedId + \'"]\';            
-            var inputCondition = "#" + selectedId;
+        if(size["denim_kind"]){
+            // Mark saved style as selected
+            var selectedId = getIdFromString(size["denim_kind"]);
+            if(selectedId != 0){
+                var liCondition = \'li[data-id = "\' + selectedId + \'"]\';            
+                var inputCondition = "#" + selectedId;
 
-            $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
-            $(inputCondition).prop("checked", true);
+                $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
+                $(inputCondition).prop("checked", true);
+            }
+        }
+
+        if(size["shirt_size"]){
+            // Mark saved style as selected
+            var selectedId = getIdFromString(size["shirt_size"]);
+            if(selectedId != 0){
+                var liCondition = \'li[data-id = "\' + selectedId + \'"]\';            
+                var inputCondition = "#" + selectedId;
+
+                $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
+                $(inputCondition).prop("checked", true);
+            }
         }
         
-        // Mark saved wear suit as selected
-        var wearSuit = getIdFromString(wear_suit);
-        if(selectedId != 0){
-            var liCondition = \'li[data-id = "\' + wearSuit + \'"]\';            
-            var inputCondition = "#" + wearSuit;
-
-            $(liCondition).attr("class", "ui-state-default ui-selectee ui-selected");
-            $(inputCondition).prop("checked", true);
-        }
 });
 ';
-
-
-
-$this->Html->css('ui/jquery-ui', null, array('inline' => false));
-$this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
-$this->Html->script('http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
 $meta_description = 'Sign up for Savile Row Society, a groundbreaking online, personalized fashion service.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
-
-// call this line to exclude lyout from rendering. 
-// this is necesary because this view is opening as popup, and don't need to have header, footer etc as rest of the pages.
-// $this->layout = 'ajax'
 
 ?>
 <script>
 window.registerProcess = true;
 
 </script>
-<div class="container content inner preferences register-style">	
-    <div class="sixteen columns alpha omega text-center  offset-by-three">
-        <div class="reg-step2"></div>
-    </div>
-    
-    
-    
-    <div class="sixteen columns ">
-        <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size')); ?>
-        <div class="hi-message fourteen columns offset-by-two alpha omega">
-            
-            <h4>Your stylist should focus on</h4>
-            <p>
-                To better understand your needs we'd like to know if your focus in 
-            </p>
-            <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
+<div class="content-container">
+    <div class="container content inner preferences register-style">	
+        <div class="eight columns register-steps center-block">
+            <div class="profile-tabs text-center">
+                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
+            </div>
+
+            <h1 class="text-center">Your Style</h1>
         </div>
-        
-        <div class="twelve columns offset-by-two alpha omega text-center">
-            <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
-            <div id="your-style">
-                <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Business" id="1" />
-                <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Lifestyle" id="2" />
-                <input class="hide" type="checkbox" name="data[UserPreference][Style]" value="Complete Overhaul" id="3" />
-                <ol id="selectable">
-                    <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-1.jpg" /><br/>Business</li>
-                    <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-2.jpg" /><br/>Lifestyle</li>
-                    <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/preferences/your-style-3.jpg" /><br/>Complete Overhaul</li>
-                </ol>
+        <?php echo $this->Form->create('User', array('url' => '/register/saveStyle', 'id' => 'register-size', 'type' => 'file')); ?>
+        <div class="nine columns center-block">
+            <div class="hi-message twelve columns text-center">
+                
+                <h4>Hi <?php echo ucwords($full_name); ?></h4>
+                <p>
+                    Not to worry, this is totally confidential 
+                </p>
+                <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
+
+                <div class='empty-img' id='photo-holder'>
+                <img src='<?php echo $image_url; ?>' id='user-photo'/>
+                </div>                
+                <input type='button' value='Upload photo' id='upload-img' class="gray-btn"/>
+
+                <?php
+                    echo $this->Form->input('ProfileImage', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
+                ?>
+                <div class="clear-fix"></div>
             </div>
         </div>
-        <div class="hi-message fourteen columns offset-by-two alpha omega">
-            
-            <h4>Your suite wearing frequency</h4>
-            <p>
-                To better understand your needs we'd like to know your suite wearing frequency 
-            </p>
-            <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
-        </div>
-        <div class="twelve columns offset-by-two alpha omega text-center">
-            <!--<h5>To better understand your needs <br/>we’d like to know if your focus is</h5>-->
-            <div id="suite-frequency">
-                <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Every Day" id="4" />
-                <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Couple Times a Week" id="5" />
-                <input class="hide" type="checkbox" name="data[UserPreference][wear_suit]" value="Never" id="6" />
-                <ol id="selectable">
-                    <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-1.png" /><br/>Every Day</li>
-                    <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-2.png" /><br/>Couple Times a Week</li>
-                    <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/preferences/frequency-3.png" /><br/>Never</li>
-                </ol>
+        <div>
+            <div class="hi-message twelve columns text-center">                
+                <h4>Jeans Cut</h4>
             </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="text-center">
-            <br/>
-            <?php echo $this->Form->end(__('Continue')); ?>
-            <br/>
+            <div class="twelve columns center-block text-center">
+                <div id="jeans-cut">
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Bootcut" id="1" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Relaxed" id="2" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Straight" id="3" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][denim_kind]" value="Slim" id="4" />
+                    <ol id="selectable">
+                        <li class="ui-state-default" data-id="4"><img src="<?php echo $this->request->webroot; ?>img/size/Slim.png" class="fadein-image" /><br/>Slim</li>
+                        <li class="ui-state-default" data-id="3"><img src="<?php echo $this->request->webroot; ?>img/size/Straight.png" class="fadein-image" /><br/>Straight</li>
+                        <li class="ui-state-default" data-id="2"><img src="<?php echo $this->request->webroot; ?>img/size/Relaxed.png" class="fadein-image" /><br/>Relaxed</li>
+                        <li class="ui-state-default" data-id="1"><img src="<?php echo $this->request->webroot; ?>img/size/Bootcut.jpg" class="fadein-image" /><br/>Bootcut</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="hi-message twelve columns text-center">                
+                <h4>Dress Shirt Cut</h4>
+            </div>
+            <div class="twelve columns center-block text-center">
+                <div id="shirt-cut">
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][shirt_size]" value="SlimShirt" id="5" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][shirt_size]" value="RegularShirt" id="6" />
+                    <input class="hide" type="radio" name="data[UserPreference][StyleSize][shirt_size]" value="RelaxedShirt" id="7" />
+                    <ol id="selectable">
+                        <li class="ui-state-default" data-id="5"><img src="<?php echo $this->request->webroot; ?>img/size/shirt-slim.png" class="fadein-image" /><br/>Slim</li>
+                        <li class="ui-state-default" data-id="6"><img src="<?php echo $this->request->webroot; ?>img/size/Regular.png" class="fadein-image" /><br/>Regular</li>
+                        <li class="ui-state-default" data-id="7"><img src="<?php echo $this->request->webroot; ?>img/size/shirt-relaxed.png" class="fadein-image" /><br/>Relaxed</li>                        
+                    </ol>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="text-center about-submit">
+                <br/>
+                <div class="submit">                            
+                    <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/wardrobe/<?php echo $user_id; ?>">Back</a> 
+                    <input type="submit" value="Continue" /> 
+                    <p class="error-msg">All the fields are mandatory.</p>      
+                </div>                 
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    #upload-img{
+        width:100px;
+    }
+    #uploader-btn{
+        display: none;
+    }
+    #user-photo{
+        /*width:100px;*/
+        height: 100px;
+        opacity: 0;
+        
+    }
+</style>
+<script>
+    window.onload=function(){
+        $("#upload-img").click(function(e){
+            e.preventDefault();
+            $("#uploader-btn").click();
+        });
+        $("#uploader-btn").change(function(){
+        
+            var input = document.getElementById("uploader-btn");
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#user-photo' ).attr('src', e.target.result);
+                    $('#user-photo' ).css('opacity', 1);
+                    $('#photo-holder' ).attr('class', '');
+                };
+                reader.readAsDataURL(input.files[0]);
+//                    if (self.showName) {
+//                        $(self).append("<p>" + input.files[0].name + "</p>");
+//                    }
+                // 
+            }
+        });
+        if($('#user-photo').attr('src') != "#"){
+            $('#user-photo').css('opacity', 1);
+            $('#photo-holder' ).attr('class', '');
+        }
+    }
+</script> 

@@ -38,6 +38,13 @@ class OrderItem extends AppModel {
         )
     );
 
+    public function getByOrderId($order_id){
+        return $this->find('all', array(
+            'contain' => array('Entity'),
+            'conditions' => array('OrderItem.order_id' => $order_id), 
+        ));
+    }
+    
     public function getByEntityId($entity_id){
         return $this->find('first', array(
             'conditions' => array('OrderItem.product_entity_id' => $entity_id),
@@ -63,29 +70,7 @@ class OrderItem extends AppModel {
     }
     
     //Function to get purchased items after last purchased id
-    public function getUniqueUserItems($user_id, $last_purchased_id=0, $limit = 8){
-        //$find_array = array(
-//            'conditions' => array('Order.user_id' => $user_id),
-//            'joins' => array(
-//                array('table' => 'orders',
-//                    'alias' => 'Order',
-//                    'type' => 'INNER',
-//                    'conditions' => array(
-//                        'Order.id = OrderItem.order_id'
-//                    )
-//                )
-//            ),
-//            'group' => array('OrderItem.product_entity_id'),
-//            'fields' => array('OrderItem.product_entity_id', 'MAX(OrderItem.id) AS order_id'),
-//            'order' => array('order_id DESC'),
-//            'limit' => $limit,
-//        );
-//        
-//        if($last_purchased_id > 0){
-//            $find_array['conditions'][] = 'OrderItem.id < ' . $last_purchased_id; 
-//        }
-//        
-//        return $this->find('all', $find_array);
+    public function getUniqueUserItems($user_id, $last_purchased_id=0){
         
         $db = $this->getDataSource();
         $user_id = $db->value($user_id);
@@ -101,7 +86,7 @@ class OrderItem extends AppModel {
                 FROM (SELECT `OrderItem`.`product_entity_id`, MAX(`OrderItem`.`id`) AS order_id 
                 FROM `srs_development`.`orders_items` AS `OrderItem` 
                 INNER JOIN `srs_development`.`orders` AS `Order` ON (`Order`.`id` = `OrderItem`.`order_id`) 
-                WHERE `Order`.`user_id` = 219  
+                WHERE `Order`.`user_id` = " . $user_id . " AND Order.paid = 1 
                 GROUP BY `OrderItem`.`product_entity_id` 
                 ORDER BY `order_id` DESC) AS Orders
                 " . $condition . "               

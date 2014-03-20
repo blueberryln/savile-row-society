@@ -20,26 +20,7 @@ class Color extends AppModel {
 
     //The Associations below have been created with all possible keys, those that are not needed can be removed
 
-    /**
-     * hasMany associations
-     *
-     * @var array
-     */
-    public $hasMany = array(
-        'Property' => array(
-            'className' => 'Property',
-            'foreignKey' => 'color_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
-    );
+    
 
     /**
      * hasAndBelongsToMany associations
@@ -47,11 +28,11 @@ class Color extends AppModel {
      * @var array
      */
     public $hasAndBelongsToMany = array(
-        'Attached' => array(
-            'className' => 'Attached',
-            'joinTable' => 'attached_colors',
+        'Entity' => array(
+            'className' => 'Entity',
+            'joinTable' => 'colors_entities',
             'foreignKey' => 'color_id',
-            'associationForeignKey' => 'attached_id',
+            'associationForeignKey' => 'product_entity_id',
             'unique' => 'keepExisting',
             'conditions' => '',
             'fields' => '',
@@ -62,11 +43,11 @@ class Color extends AppModel {
             'deleteQuery' => '',
             'insertQuery' => ''
         ),
-        'Entity' => array(
-            'className' => 'Entity',
-            'joinTable' => 'product_entity_id',
-            'foreignKey' => 'colors_entities',
-            'associationForeignKey' => 'color_id',
+        'Colorgroup' => array(
+            'className' => 'Colorgroup',
+            'joinTable' => 'colorgroups_items',
+            'foreignKey' => 'color_id',
+            'associationForeignKey' => 'colorgroup_id',
             'unique' => 'keepExisting',
             'conditions' => '',
             'fields' => '',
@@ -78,4 +59,8 @@ class Color extends AppModel {
             'insertQuery' => ''
         ),
     );
+    
+    function remove($color_id){
+        return $this->delete($color_id, true);
+    }
 }

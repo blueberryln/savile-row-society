@@ -1,3 +1,44 @@
+<?php
+$script = '
+var categoryList = ' . json_encode($category_list) . ';
+function addSubcategoryList(subCategories){
+    $("#sub-category").html("");
+    if(subCategories.length > 0){
+        $("#sub-category").append("<option value>None</option>");
+        for(i=0; i<subCategories.length; i++){
+            $("#sub-category").append("<option value=\"" + subCategories[i]["Category"]["id"] + "\">" + subCategories[i]["Category"]["name"] + "</option>");        
+        }
+        $("#sub-category").closest("div").removeClass("hide");
+    }
+    else{
+        $("#sub-category").closest("div").addClass("hide");    
+    }
+}
+$(document).ready(function(){
+    var catSelected = $("#CategoryParentId").val();
+    if(catSelected != "" && categoryList[catSelected]["children"].length > 0){
+        addSubcategoryList(categoryList[catSelected]["children"]);
+    }
+    
+    $("#CategoryParentId").on("change", function(e){
+        var catSelected = $(this).val();
+        if(catSelected == ""){
+            $("#sub-category").closest("div").addClass("hide");   
+            $("#sub-category").html("");    
+        }
+        else if(categoryList[catSelected]["children"].length > 0){
+            addSubcategoryList(categoryList[catSelected]["children"]);
+        }   
+        else{
+            $("#sub-category").closest("div").addClass("hide");   
+            $("#sub-category").html(""); 
+        }
+    });
+});
+';
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+
+?>
 <div class="container content inner">		
     <div class="sixteen columns text-center">
         <h1><?php echo __('New Category'); ?></h1>
@@ -10,10 +51,15 @@
                 <?php
                 echo $this->Form->input('name');
                 echo $this->Form->input('slug');
-                echo $this->Form->input('parent_id');
+                echo $this->Form->input('order', array('value' => 0));
+                echo $this->Form->input('parent_id', array('empty'=>'None'));
 //                echo $this->Form->input('lft', array('label' => 'Is after...', 'type' => 'select', 'options' => $lft));
 //                echo $this->Form->input('rght', array('label' => 'and before...', 'type' => 'select', 'options' => $rght));
                 ?>
+                <div class="input select hide">
+                    <label for="sub-category">Sub Category</label>
+                    <select name="data[Category][SubCategory]" id="sub-category"></select>
+                </div>
             </fieldset>
             <div class="clearfix"></div>
             <div class="text-center">

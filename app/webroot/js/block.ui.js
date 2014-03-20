@@ -126,15 +126,14 @@
 				padding:	0,
 				margin:		0,
 				width:		'auto',
-				top:		'20%',
+				//top:		'20%',
+				top: (($(window).height()/2 - $(".box-modal").height()/2) >= 0) ? $(window).height()/2 - $(".box-modal").height()/2 : 0,
 				//left:		'35%',	
                 left: $(window).width()/2 - $(".box-modal").width()/2,
 				textAlign:	'center',
 				color:		'#000',
-				//border:		'3px solid #aaa',
-                                border:		'none',
-				backgroundColor:'#fff',
-				//cursor:		'wait'
+                border:		'none',
+				backgroundColor:'#fff'
 			},
 
 			// minimal style set used when themes are used

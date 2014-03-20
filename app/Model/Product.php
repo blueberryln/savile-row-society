@@ -54,6 +54,13 @@ class Product extends AppModel {
             'fields' => '',
             'order' => ''
         ),
+        'Season' => array(
+            'className' => 'Season',
+            'foreignKey' => 'season_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
         /*'User' => array(
             'className' => 'User',
             'foreignKey' => 'user_id',
@@ -77,19 +84,6 @@ class Product extends AppModel {
             'limit' => '',
             'dependent' => true         
         ),
-        //'Order' => array(
-//            'className' => 'Order',
-//            'foreignKey' => 'product_id',
-//            'dependent' => false,
-//            'conditions' => '',
-//            'fields' => '',
-//            'order' => '',
-//            'limit' => '',
-//            'offset' => '',
-//            'exclusive' => '',
-//            'finderQuery' => '',
-//            'counterQuery' => ''
-//        )
     );
 
     /**
@@ -113,21 +107,6 @@ class Product extends AppModel {
             'deleteQuery' => '',
             'insertQuery' => ''
         ),
-        //'UserType' => array(
-//            'className' => 'UserType',
-//            'joinTable' => 'products_user_types',
-//            'foreignKey' => 'product_id',
-//            'associationForeignKey' => 'user_type_id',
-//            'unique' => 'keepExisting',
-//            'conditions' => '',
-//            'fields' => '',
-//            'order' => '',
-//            'limit' => '',
-//            'offset' => '',
-//            'finderQuery' => '',
-//            'deleteQuery' => '',
-//            'insertQuery' => ''
-//        )
     );
 
     /**

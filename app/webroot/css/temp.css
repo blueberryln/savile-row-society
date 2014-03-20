@@ -1,58 +1,73 @@
-.outfit-modal{
-    height: 700px;
+
+
+/*  changes on 07-11-2013 ----   */
+div#brands ol.brands-logo li{
+    margin-top:30px !important;
 }
-.outfit-modal-inside{  
+
+div.brands-cont .submit{
+    margin-top: 0px!important;
 }
-.btn-outfit{
-    background-color: #AF9A59;
-    color: #fff !important;
+.preferences #selectable li{
+    height: 280px;
+}
+
+/*---- sign-up-drop-down ---*/
+#sign-up-drop-down{
+    width: 100%;
+    background: #F2F2F2 url('../img/srs_viewing_done.png') no-repeat center;
+    height: 220px;
+    /*margin:124px 0 0 0;*/
+    padding: 0px;
+    display:none;
     text-transform: uppercase;
-    padding: 1px 3px;
-    font-size: 11px;
 }
-.btn-outfit:hover{
-    background-color: #8F7948;
+#sign-up-drop-down p{
+    color:#222;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 35px;
 }
-.btn-user-closet{
-    float:left;
+#sign-up-drop-down p span{
+    font-weight: bolder;
 }
-.btn-srs-closet{
-    float:right;
+#sign-up-drop-down .initial-module{
+    text-align: center;
 }
-.outfit-close, .srs-closet-close, .user-closet-close{
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 9px;
-    right: 7px;
+.initial-module .join_button{
+    font-size: 15px;
+    padding: 10px 25px;
+    background-color: #222;
+    border-radius:2px;
+    color:#FFFFFF;
+    margin-top: 10px;
+
+}
+.initial-module .show-login-form{
+    color: #222;
     display: block;
-    background: url('../img/cross_menue.png') no-repeat center center;
+    margin-top: 25px;
+    text-align: center;
+    width: auto;
+    padding: 0 !important;
+    font-size: 15px !important;
+    font-weight: bold;
 }
-.user-closet-cont{
+#sign-up-drop-down .close{
+    float: right;
+    font-size: 30px;
+    padding-top: 10px;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    z-index: 10;
+    right: 15px;
 }
-.srs-closet-cont{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    z-index: 10;
+#sign-up-drop-down .close a{
+    color: #222;
+    text-decoration: none;
 }
+.initial-module a, .initial-module a:visited, .initial-module a:active{
+    outline: 0;
+    border: 0;
+}
+.content.home {
 
-.liked-list-cont .product-listing-box, .purchased-list-cont .product-listing-box{
-    overflow-y: scroll;
-    height: 460px;
-}
-
-.btn-outfit-cont{
-    margin-right: 10px;
-    margin-top: 5px;
-}
-
-.user-closet-list-cont .row{
-    margin-bottom: 10px;
 }
