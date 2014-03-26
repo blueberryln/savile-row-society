@@ -69,6 +69,7 @@ if($user_id){
 
 $script = '
 var threeItemPopup = ' . $show_three_item_popup. ';
+var addCartPopup = ' . $show_add_cart_popup. ';
 var showClosetPopUp = ' . $show_closet_popup . ';
 
 function highLightCategory(prod_id, parent_id){
@@ -108,7 +109,12 @@ $(document).ready(function(){
         notificationDetails["msg"] = "' . $popUpMsg . '";
         notificationDetails["button"] = "<a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
         showNotification(notificationDetails);  
-    }    
+    }  
+    else if(isLoggedIn() && addCartPopup == 1){
+        var notificationDetails = new Array();
+        notificationDetails["msg"] = "Item has been added to the cart.";
+        showNotification(notificationDetails);        
+    }  
     else{
         var closetInfo=getCookie("closetInfo");
         if (closetInfo==null || closetInfo==""){

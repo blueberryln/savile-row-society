@@ -6,6 +6,14 @@ function isNumber(evt) {
     }
     return true;
 }
+function isAlphaNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if((charCode > 47 && charCode < 58) || (charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
+        return true;
+    }
+    return false;
+}
 function goToByScroll(id){
   // Remove "link" from the ID
     id = id.replace("link", "");

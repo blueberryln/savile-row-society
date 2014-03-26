@@ -346,7 +346,7 @@ class ApiController extends AppController {
                     }
                     
                     if($ret['status'] == "ok" && $ret['count'] != 3){
-                        $this->Session->setFlash("Item has been added to the cart.", 'flash');    
+                        $this->Session->write('add-cart', 1);   
                     }
                     else if($ret['status'] == "ok" && $ret['count'] == 3){
                         $this->Session->write('cart-three-items', 1);    

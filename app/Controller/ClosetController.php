@@ -60,6 +60,13 @@ class ClosetController extends AppController {
             $entities = $this->closetProducts($user_id);
         }
         
+        
+        $show_add_cart_popup = 0;
+        if($this->Session->read('add-cart')){
+            $show_add_cart_popup = 1;
+            $this->Session->delete('add-cart');
+        }
+
         $popUpMsg = '';
         $show_three_item_popup = 0;
         if($this->Session->read('cart-three-items')){
@@ -78,7 +85,7 @@ class ClosetController extends AppController {
         }
         
         // send data to view
-        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg'));
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
 
         if(!$category_slug){
             $this->render('closet_landing');     

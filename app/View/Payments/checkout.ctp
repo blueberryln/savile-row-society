@@ -80,7 +80,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                 <div class="form">
                                                    <div class="input text" style="margin-bottom: 0;">
                                                         <?php
-                                                            echo $this->Form->input('promocode', array('div'=> false, 'label'=> false, 'id'=>'promocode', 'style' => 'letter-spacing:1px;', 'autocomplete' => 'off', 'placeholder' => 'Promo Code'));
+                                                            echo $this->Form->input('promocode', array('div'=> false, 'label'=> false, 'id'=>'promocode', 'style' => 'letter-spacing:1px;', 'autocomplete' => 'off', 'placeholder' => 'Promo Code', 'onkeypress' => 'return isAlphaNumber(event)'));
                                                         ?>
                                                    </div>
                                                    <a href="" class="remove-pc hide">Remove Promo Code</a>                    

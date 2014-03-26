@@ -548,6 +548,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	.srs-closet-cont .product-top-offset{border-top: 1px solid #D9D9D9; padding: 5px 0 10px;}
 	.srs-closet-cont .product-listing{width: 720px;}
 	/*Outfit Css*/
+	#outfit-box .product-listing .product-list-image{height: 216px; line-height: 215px;}
 	.outfit-modal{margin-top: 0 !important;}
 	.create-outfit-cont .product-listing .product-list-image{background: none;}
 	.btn-outfit{background-color: #AF9A59; color: #fff !important; text-transform: uppercase; padding: 1px 3px; font-size: 11px;}
