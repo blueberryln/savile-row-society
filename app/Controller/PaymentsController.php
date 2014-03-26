@@ -101,6 +101,8 @@ class PaymentsController extends AppController {
                 $result = $Cart->save($cart);
             }
             else{
+                echo "test";
+                exit;
                 $this->redirect('/closet');
                 exit;
             }
