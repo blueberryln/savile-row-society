@@ -15,7 +15,7 @@ class PaymentsController extends AppController {
     function beforeFilter() {
         
         if (!$this->request->is('ssl')) {
-            $this->forceSSL();
+            //$this->forceSSL();
         }  
     }
 
@@ -101,8 +101,6 @@ class PaymentsController extends AppController {
                 $result = $Cart->save($cart);
             }
             else{
-                echo "test";
-                exit;
                 $this->redirect('/closet');
                 exit;
             }
