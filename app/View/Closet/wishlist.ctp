@@ -35,13 +35,16 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
         <div class="twelve columns text-center page-heading">
             <h1>MY CLOSET</h1>
         </div>
-            <div class="eleven columns omega product-listing center-block wishlist">
+            <div class="eleven columns omega product-listing center-block wishlist text-center">
                 <div class="mycloset-tabs text-center">
                     <a href="<?php echo $this->webroot . 'mycloset/liked/' . $user_id; ?>" class="link-btn gold-btn">Liked Items</a>
                     <a href="<?php echo $this->webroot . 'mycloset/purchased/' . $user_id; ?>" class="link-btn black-btn">Purchased Items</a>
                 </div>
                 <?php if ($wishlists) : ?>
-                    <?php foreach ($wishlists as $item) : ?>
+                    <?php 
+                    for($i = 0; $i < count($wishlists); $i++){
+                        $item = $wishlists[$i];
+                    ?>
                         <?php if(isset($item['Entity']) && $item['Entity']) : ?>
                             <div class="product-box">
                                 <div class="product-block">
@@ -73,7 +76,27 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 </div>
                             </div>
                         <?php endif;?>
-                    <?php endforeach; ?>  
+                    <?php
+                        if($i == (count($wishlists)-1) && count($wishlists) % 5 == 4){
+                            echo '<div class="product-box"><div class="product-block"></div></div>';
+                        }
+                        if($i == (count($wishlists)-1) && count($wishlists) % 5 == 3){
+                            echo '<div class="product-box"><div class="product-block"></div></div>';
+                            echo '<div class="product-box"><div class="product-block"></div></div>';  
+                        }
+                        else if($i == (count($wishlists)-1) && count($wishlists) % 5 == 2){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                        else if($i == (count($wishlists)-1) && count($wishlists) % 5 == 1){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                    }
+                    ?> 
                 <?php else: ?>
                     <h2 class="subhead text-center">There are no liked items.</h2>  
                 <?php endif; ?>

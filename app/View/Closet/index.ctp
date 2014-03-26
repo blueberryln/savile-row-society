@@ -359,10 +359,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <?php endif; ?> 
                 </div>
             <?php endif; ?>
-            <div class="ten columns omega product-listing right">
+            <div class="ten columns omega product-listing right text-center closet">
                 <!--<div class="product-top-offset"></div>-->
                 <?php if($entities) : ?>
-                    <?php foreach($entities as $entity) : ?>
+                    <?php 
+                    for($i = 0; $i < count($entities); $i++){
+                        $entity = $entities[$i];
+                    ?>
                         <div class="product-box">
                             <div class="product-block">
                                 <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">
@@ -380,7 +383,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <?php 
                                     if($entity['Image']){
                                         //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
-                                        $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/158/216'; 
+                                        $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/260/350'; 
                                     }
                                     else{
                                         $img_src = $this->request->webroot . "img/image_not_available-small.png";
@@ -401,7 +404,21 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    <?php
+                        if($i == (count($entities)-1) && count($entities) % 4 == 3){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                        else if($i == (count($entities)-1) && count($entities) % 4 == 2){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                        else if($i == (count($entities)-1) && count($entities) % 4 == 1){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                    }
+                    ?>
                 <?php else : ?>
                 <div class="product-top-offset"></div>
                 <div class="closet-sorry">

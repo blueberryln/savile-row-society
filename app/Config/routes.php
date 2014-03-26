@@ -38,14 +38,14 @@ Router::connect('/myprofile/*', array('controller' => 'users', 'action' => 'edit
 Router::connect('/mycloset/liked/*', array('controller' => 'closet', 'action' => 'liked'));
 Router::connect('/mycloset/purchased/*', array('controller' => 'closet', 'action' => 'purchased'));
 Router::connect('/closet/validatecard/*', array('controller' => 'closet', 'action' => 'validatecard'));
-Router::connect('/closet/validate_promo_code/*', array('controller' => 'closet', 'action' => 'validate_promo_code'));
+Router::connect('/payments/validate_promo_code/*', array('controller' => 'payments', 'action' => 'validate_promo_code'));
 Router::connect('/closet/*', array('controller' => 'closet', 'action' => 'index'));
 Router::connect('/lookbooks', array('controller' => 'lifestyles'));
 Router::connect('/lookbooks/:action/*', array('controller' => 'lifestyles'));
 Router::connect('/cart', array('controller' => 'closet', 'action' => 'cart'));
-Router::connect('/checkout', array('controller' => 'closet', 'action' => 'checkout'));
-Router::connect('/payment', array('controller' => 'closet', 'action' => 'payment'));
-Router::connect('/confirmation', array('controller' => 'closet', 'action' => 'confirmation'));
+Router::connect('/checkout', array('controller' => 'payments', 'action' => 'checkout'));
+Router::connect('/payment', array('controller' => 'payments', 'action' => 'payment'));
+Router::connect('/confirmation', array('controller' => 'payments', 'action' => 'confirmation'));
 Router::connect('/product/*', array('controller' => 'closet', 'action' => 'product'));
 Router::connect('/user-outfit/*', array('controller' => 'closet', 'action' => 'userOutfit'));
 Router::connect('/profile/*', array('controller' => 'users', 'action' => 'register'));

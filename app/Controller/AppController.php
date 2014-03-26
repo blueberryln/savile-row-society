@@ -11,12 +11,11 @@ class AppController extends Controller {
      * @return none
      */
     function beforeFilter() {
-        if($this->request->is('ssl')){ 
-            if($this->request->params['controller'] != "closet"){
+        if($this->request->is('ssl')){
+            if($this->request->params['controller'] != "payments"){
                 $this->redirect('http://' . env('SERVER_NAME') . $this->here);
             }
-        } 
-           
+        }     
     }
 
 
@@ -85,8 +84,7 @@ class AppController extends Controller {
                 $this->set('profilePopup', array('completeProfile' => true));   
             }
             $this->Session->delete('completeProfile');    
-        }
-        
+        }  
     }
 
 

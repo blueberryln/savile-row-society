@@ -72,7 +72,7 @@ class ApiController extends AppController {
                         
                         $user = $this->getLoggedUser();
                         if ($user && $user['User']['preferences']) {
-                            $preferences = unserialize($user['User']['preferences']);
+                            $preferences = unserialize($user['User']['preferences']);   
                         }
                         
                         if(isset($preferences) && isset($preferences['UserPreference']['is_complete']) && ($preferences['UserPreference']['is_complete'] == "completed" || $preferences['UserPreference']['is_complete'] == "1")){
@@ -204,43 +204,6 @@ class ApiController extends AppController {
         }
         echo json_encode($ret);
         exit;
-    }
-
-    /**
-     * Comment
-     * Post comment
-     */
-    public function comment($param = null) {
-
-        Configure::write('debug', 0);
-
-        $this->autolayout = false;
-        $this->autoRender = false;
-
-        // init
-        $Comment = ClassRegistry::init('Comment');
-        $user_id = $this->getLoggedUserID();
-
-        // save wishlist item
-        if ($user_id && $param && $param == 'save') {
-
-            if ($this->request->is('ajax')) {
-                $user = $this->getLoggedUser();
-                $model_id = $this->request->data['model_id'];
-                $model = $this->request->data['model'];
-                $text = $this->request->data['text'];
-
-                $Comment->create();
-                $comment['Comment']['user_id'] = $user_id;
-                $comment['Comment']['model_id'] = $model_id;
-                $comment['Comment']['model'] = $model;
-                $comment['Comment']['text'] = $text;
-
-                if ($Comment->save($comment)) {
-                    echo $user['User']['full_name'];
-                }
-            }
-        }
     }
 
     /**
@@ -594,40 +557,6 @@ class ApiController extends AppController {
         echo json_encode($message_notification);
         exit;
     }
-    
-    /**
-     * Message Notification
-     */
-    // Commented due to change in logic
-    /*
-    public function getNewClients() {
-        //$this->autolayout = false;
-        //$this->autoRender = false;
-        $ret = array();
-        
-        $user = $this->getLoggedUser();
-        $user_id = $user['User']['id'];
-        $client_string = $this->request->data['clientString'];
-        $client_array = explode(',', $client_string);
-        if($user_id && $user['User']['is_stylist'] == '1' && $client_array && $client_array != "" && count($client_array) > 0){
-            $User = ClassRegistry::init('User');
-            $new_clients = $User->getNewClients($client_array, $user_id);
-            if($new_clients){
-                $ret['status'] = 'ok';
-                $ret['clients'] = $new_clients;        
-            }
-            else{
-                $ret['status'] = 'error';    
-            }
-        }
-        else{
-            $ret['status'] = 'error1';
-        }
-            
-        //echo json_encode($ret);
-        //exit;
-    }
-    */
     
     
     /**

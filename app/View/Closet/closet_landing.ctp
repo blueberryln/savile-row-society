@@ -250,7 +250,7 @@ $(document).ready(function(){
                     var productImage = productBlock.find(".product-image");
                     productImage.slideUp(300, function(){  
                         if(typeof(entity["Image"]) != "undefined" && entity["Image"].length > 0){
-                            productImage.attr({src : "' . $this->request->webroot . "products/resize/" . '" + entity["Image"][0]["name"] + "/158/216", alt: entity["Entity"]["name"]});
+                            productImage.attr({src : "' . $this->request->webroot . "products/resize/" . '" + entity["Image"][0]["name"] + "/260/350", alt: entity["Entity"]["name"]});
                         }
                         else{
                             productImage.attr({src : "' . $this->request->webroot . 'img/image_not_available-small.png", alt: entity["Entity"]["name"]});
@@ -355,10 +355,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </ul>
                 </div><br />
             </div>
-            <div class="ten columns omega product-listing right">
+            <div class="ten columns omega product-listing right text-center">
                 <!--<div class="product-top-offset"></div>-->
                 <?php if($entities) : ?>
-                    <?php foreach($entities as $entity) : ?>
+                    <?php 
+                    for($i = 0; $i < count($entities); $i++){
+                        $entity = $entities[$i];
+                    ?>
                         <div class="product-box">
                             <div class="product-block"> 
                                 <a href="" class="get-related-products"></a>
@@ -368,16 +371,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <input type="hidden" value="<?php echo $entity['Category']['parent_cat']; ?>" class="parent-category-id">
                                 <div class="product-list-image mosaic-block fade">
                                     <div class="mosaic-overlay">
-                        				<div class="mini-product-details">
-                    					   <span class="product-price"><?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></span>
-                    					   <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
-                    					   <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
-                        				</div>
-                        			</div>
+                                        <div class="mini-product-details">
+                                           <span class="product-price"><?php echo ($entity['Entity']['price'] > 0) ? "$" . $entity['Entity']['price'] : "Price on request"; ?></span>
+                                           <span class="product-name"><?php echo $entity['Entity']['name']; ?></span>
+                                           <span class="product-brand"><?php echo $entity['Brand']['name']; ?></span>
+                                        </div>
+                                    </div>
                                     <?php 
                                     if($entity['Image']){
                                         //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
-                                        $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/158/216'; 
+                                        $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/260/350'; 
                                     }
                                     else{
                                         $img_src = $this->request->webroot . "img/image_not_available-small.png";
@@ -397,8 +400,22 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <?php endif; ?>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                        </div>    
+                    <?php
+                       if($i == (count($entities)-1) && count($entities) % 4 == 3){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                        else if($i == (count($entities)-1) && count($entities) % 4 == 2){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                        else if($i == (count($entities)-1) && count($entities) % 4 == 1){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                    }
+                    ?>
                 <?php endif; ?>
             </div>
         </div>

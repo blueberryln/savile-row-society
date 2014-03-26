@@ -195,8 +195,6 @@
         </script>
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
 
-        
-
         <?php echo $this->fetch('script'); ?>
 
         <?php echo $this->element('sql_dump'); ?>

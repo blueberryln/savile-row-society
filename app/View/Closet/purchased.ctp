@@ -33,13 +33,16 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
         <div class="twelve columns text-center page-heading">
             <h1>MY CLOSET</h1>
         </div>
-            <div class="eleven columns product-listing center-block purchased">
+            <div class="eleven columns product-listing center-block purchased text-center">
                 <div class="mycloset-tabs text-center">
                     <a href="<?php echo $this->webroot . 'mycloset/liked/' . $user_id; ?>" class="link-btn black-btn">Liked Items</a>
                     <a href="<?php echo $this->webroot . 'mycloset/purchased/' . $user_id; ?>" class="link-btn gold-btn">Purchased Items</a>
                 </div>
                 <?php if ($purchased_list) : ?>
-                    <?php foreach ($purchased_list as $item) : ?>
+                    <?php 
+                    for($i = 0; $i < 5; $i++){
+                        $item = $purchased_list[$i];
+                    ?>
                         <?php if(isset($item['Entity']) && $item['Entity']) : ?>
                             <div class="product-box">
                                 <div class="product-block">
@@ -54,10 +57,10 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                         					   <span>Size: <?php echo $sizes[$item['OrderItem']['size_id']]; ?></span>
                                                <?php
                                                     $color_text = "";
-                                                    if($item['Color']){
+                                                    if($item['Color'] && count($item['Color']) > 0){
                                                         $color_text = $item['Color'][0]['name'];
-                                                        for($i=1; $i<count($item['Color']); $i++){
-                                                            $color_text = $color_text . '/ ' . $item['Color'][$i]['name'];
+                                                        for($j=1; $j<count($item['Color']); $j++){
+                                                            $color_text = $color_text . '/ ' . $item['Color'][$j]['name'];
                                                         }
                                                     }
                                                ?>
@@ -80,7 +83,27 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 </div>
                             </div>
                         <?php endif; ?>
-                    <?php endforeach; ?>    
+                    <?php
+                        if($i == (count($purchased_list)-1) && count($purchased_list) % 5 == 4){
+                            echo '<div class="product-box"><div class="product-block"></div></div>';
+                        }
+                        if($i == (count($purchased_list)-1) && count($purchased_list) % 5 == 3){
+                            echo '<div class="product-box"><div class="product-block"></div></div>';
+                            echo '<div class="product-box"><div class="product-block"></div></div>';  
+                        }
+                        else if($i == (count($purchased_list)-1) && count($purchased_list) % 5 == 2){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                        else if($i == (count($purchased_list)-1) && count($purchased_list) % 5 == 1){
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                            echo '<div class="product-box"><div class="product-block"></div></div>'; 
+                        }
+                    }
+                    ?>    
                 <?php else: ?>
                     <h2 class="subhead text-center">You haven't purchased anything yet.</h2>  
                 <?php endif; ?>

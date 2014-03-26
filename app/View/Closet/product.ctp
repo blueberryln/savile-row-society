@@ -8,7 +8,7 @@ if($user_id){
             var productBlock = $this.closest(".product-detail-cont");
             var productId = productBlock.find(".product-id").val();
             if(!$this.hasClass("liked")){
-                $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
+                $.post("' . $this->request->webroot . 'wishlists/save", { product_id: productId},
                     function(data) {
                         var ret = $.parseJSON(data);
                         if(ret["status"] == "ok"){
@@ -26,7 +26,7 @@ if($user_id){
                 );
             }
             else{
-                $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
+                $.post("' . $this->request->webroot . 'wishlists/remove", { product_id: productId},
                     function(data) {
                         var ret = $.parseJSON(data);
                         if(ret["status"] == "ok"){
