@@ -154,6 +154,82 @@ class MessagesController extends AppController {
 
 
     /**
+     * Outfit page
+     */
+    public function detail($id){
+        $User = ClassRegistry::init('User');
+        
+        //Get user from session to derterminate if user is stylist
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];   
+
+        $msg = $this->Message->findById($id);
+
+        //If invalid message id or message is not an outfit, redirect to index.
+        if(!$msg || !$msg['Message']['is_outfit']){
+            $this->redirect('/messages/index');
+        }
+
+        if($msg['Message']['user_from_id'] == $user_id || $msg['Message']['user_from_id'] != $user_id || $is_admin){
+            $outfit_id = $msg['Message']['outfit_id'];
+
+            //Check if outfit exists else show page not found.
+            $Outfit = ClassRegistry::init('Outfit');
+            if(!$Outfit->exists($outfit_id)){
+                $this->redirect('/messages/index');
+            }
+
+            //Get all the products present in the outfit.
+            $OutfitItem = ClassRegistry::init('OutfitItem');
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+            $entity_list = array();
+            foreach($outfit as $value){
+                $entity_list[] = $value['OutfitItem']['product_entity_id'];
+            }
+
+            $Entity = ClassRegistry::init('Entity');
+
+            // get data
+            $entity = $Entity->getMultipleById($entity_list, $user_id);
+            $products_list = array();
+            foreach ($entity as $key => $value) {
+                $products_list[] = $value['Entity']['product_id'];
+            }
+        
+            $similar_results = $Entity->getSimilarProducts($outfit_id, $products_list);
+            $similar = array();
+            foreach($similar_results as $row){
+                if($row['Color'] && count($row['Color']) > 0){
+                    $similar[$row['Entity']['product_id']][] = $row; 
+                }
+            }
+
+            $entities = array();
+
+            foreach ($entity as $key => $value) {
+                $entities[$value['Entity']['id']] = $value;
+                if(isset($similar[$value['Entity']['product_id']])){
+                    $entities[$value['Entity']['id']]['Similar'] = $similar[$value['Entity']['product_id']];
+                }
+            }
+
+            $Size = ClassRegistry::init('Size');
+            $size_list = $Size->find('list');
+            
+            $this->set(compact('entities', 'size_list', 'user_id'));
+            
+            
+        }
+        else{
+            $this->redirect('/messages/index');
+        }
+
+    }
+
+
+
+    /**
      * Assign stylist to a user who has a unknown stylist.
      * Return stylist id.
      */
