@@ -2,7 +2,7 @@
 
     <table cellspacing="0" cellpadding="0" style=" width: 640px; margin: 5px auto; text-align: left;">
         
-        <tbody style="background: #fff;">
+        <tbody style="background-color: #ffffff;">
           
         <tr>
             <td style="text-align: center; padding: 20px 0 15px;"><img src="http://www.savilerowsociety.com/img/srs_logo_black.png" alt="Logo" /></td>
