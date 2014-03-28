@@ -575,9 +575,6 @@ class PaymentsController extends AppController {
             $shipped_order = $Order->find('first', $options);
             $Size = ClassRegistry::init('Size');
             $sizes = $Size->find('list');
-
-            print_r($shipped_order);
-            exit;
             
             if($shipped_order['User']['email']){
                 try{               
