@@ -1,6 +1,6 @@
 <body style=" font-family: Arial; text-align: center; font-size: 14px; color: #595959; background: #F2F2F2; margin: 0; padding: 0;">
 
-    <table cellspacing="0" cellpadding="0" style=" width: 640px; margin: 5px auto; text-align: left;">
+    <table cellspacing="0" cellpadding="0" style=" width: 640px; margin: 5px auto; text-align: left; background-color: #ffffff;">
         
         <tbody style="background-color: #ffffff;">
           
