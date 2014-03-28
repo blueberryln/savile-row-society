@@ -22,17 +22,17 @@
                       <tr>
                         <td><b>Bill To:</b></td>
                         <td>
-                          <p>
+                          <p valign="top">
                             <?php echo ucfirst($shipped_order['User']['first_name']); ?><br>  
-                            <?php echo $shipped_order['BillingAddress']['address']; ?><br>
-                            <?php echo $shipped_order['BillingAddress']['city']; ?>, <?php echo $shipped_order['BillingAddress']['state']; ?> - <?php echo $shipped_order['BillingAddress']['zip']; ?><br>
-                            <?php echo $shipped_order['BillingAddress']['country']; ?><br>
-                            <?php echo $shipped_order['BillingAddress']['fax']; ?>
+                            <?php echo $shipped_order['User']['BillingAddress']['address']; ?><br>
+                            <?php echo $shipped_order['User']['BillingAddress']['city']; ?>, <?php echo $shipped_order['User']['BillingAddress']['state']; ?> - <?php echo $shipped_order['User']['BillingAddress']['zip']; ?><br>
+                            <?php echo $shipped_order['User']['BillingAddress']['country']; ?><br>
+                            <?php echo $shipped_order['User']['BillingAddress']['fax']; ?>
                           </p>
                         </td>
                       </tr>
                       <tr>
-                        <td><b>Ship To:</b></td>
+                        <td valign="top"><b>Ship To:</b></td>
                         <td>
                           <p>
                             <?php echo ucfirst($shipped_order['User']['first_name']); ?><br>  
@@ -46,7 +46,7 @@
                     <br>
                     <p><b>Order Information</b></p>
                     <table cellspacing="0" cellpadding="5" border="0" width="100%" style="border: 1px solid #aaa; border-bottom: none; border-right: none;">
-                      <tr style="background-color:#ccc; color: #eee; font-weight:normal; font-size: 14px; text-align:center;">
+                      <tr style="background-color:#ccc; color: #444; font-weight:normal; font-size: 14px; text-align:center;border-bottom: 1px solid #aaa;">
                         <th width="20%">SKU</th>
                         <th width="40%">Item Name</th>
                         <th width="20%">Quantity</th>
@@ -54,7 +54,7 @@
                       </tr>
                       <?php foreach($shipped_order['OrderItem'] as $item) : ?>
                           <tr>
-                            <td style="border-bottom: 1px solid #444; border-right: 1px solid #aaa;"><?php echo $item['Entity']['productcode']; ?></td>
+                            <td style="border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;"><?php echo $item['Entity']['productcode']; ?></td>
                             <td style="border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">
                                     <?php echo $item['Entity']['name']; ?>
                                     <br />
@@ -65,15 +65,15 @@
                           </tr>
                         <?php endforeach; ?>
                           <tr>
-                            <td colspan="3" style="text-align: left; font-weight: bold; background-color: #ccc; color: #eee; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">(-)Discount</td>
+                            <td colspan="3" style="text-align: left; font-weight: bold; background-color: #ccc; color: #444; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">(-)Discount</td>
                             <td style="text-align: right; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;"><?php echo $this->Number->format($shipped_order['Order']['promo_discount'], array('places' => 2, 'before' => '$')); ?></td> 
                           </tr>
                           <tr>
-                            <td colspan="3" style="text-align: left; font-weight: bold; background-color: #ccc; color: #eee; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">(-)Tax - New York @ <?php echo $this->Number->format($shipped_order['Order']['tax'], array('places' => 2)); ?>%</td>
+                            <td colspan="3" style="text-align: left; font-weight: bold; background-color: #ccc; color: #444; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">(-)Tax - New York @ <?php echo $this->Number->format($shipped_order['Order']['tax'], array('places' => 2)); ?>%</td>
                             <td style="text-align: right; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;"><?php echo $this->Number->format($shipped_order['Order']['tax_amount'], array('places' => 2, 'before' => '$')); ?></td> 
                           </tr>
                       <tr>
-                        <td colspan="3" style="text-align: left; font-weight: bold; background-color: #ccc; color: #eee; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">Total</td>
+                        <td colspan="3" style="text-align: left; font-weight: bold; background-color: #ccc; color: #444; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">Total</td>
                         <td style="text-align: right; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;"><?php echo $this->Number->format($shipped_order['Order']['final_price'], array('places' => 2, 'before' => '$')); ?></td>  
                       </tr>
                     </table>
