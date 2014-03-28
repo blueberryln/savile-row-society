@@ -638,7 +638,7 @@ class UsersController extends AppController {
                 // send welcome mail
                 /* uncoment this to deploy code */
                 try{
-                  $bcc = Configure::read('Email.contact');
+                  $bcc = Configure::read('Email.test');
                   $email = new CakeEmail('default');
 
 
