@@ -569,19 +569,24 @@ class PaymentsController extends AppController {
             //Send confirmation email to the customer.
             $Order->recursive = 3;
             $Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
-            $Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
+            $Order->User->unbindModel(array('belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $Order->primaryKey => $id));
             $shipped_order = $Order->find('first', $options);
             $Size = ClassRegistry::init('Size');
             $sizes = $Size->find('list');
+
+            print_r($shipped_order);
+            exit;
             
             if($shipped_order['User']['email']){
-                try{                    
+                try{               
+                    $bcc = Configure::read('Email.contact');     
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($shipped_order['User']['email']);
-                    $email->subject('Your order transaction is complete.');
+                    $email->bcc($bcc);
+                    $email->subject('Order Confirmation');
                     $email->template('order_confirmation');
                     $email->emailFormat('html');
                     $email->viewVars(compact('shipped_order','sizes'));

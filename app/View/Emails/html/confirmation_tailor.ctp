@@ -14,7 +14,7 @@
                 <p style="padding-top: 15px;">Hi <?php echo ucfirst($user['User']['first_name']); ?>,</p>
 
                 <div style=" padding: 5px 0;">
-                    <p >Thank you for making an in-showroom appointment. Your personal stylist, {Stylist-name}, will be contacting you shortly to finalize the details.</p>
+                    <p >Thank you for making an in-showroom appointment. Your personal stylist, <?php echo ucwords($stylist['User']['full_name']); ?>, will be contacting you shortly to finalize the details.</p>
                 </div>
 
                 <p style="margin-bottom: 5px; padding-bottom: 0">Best,</p> 

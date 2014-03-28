@@ -638,7 +638,7 @@ class UsersController extends AppController {
                 // send welcome mail
                 /* uncoment this to deploy code */
                 try{
-                  $bcc = Configure::read('Email.test');
+                  $bcc = Configure::read('Email.contact');
                   $email = new CakeEmail('default');
 
 
@@ -773,7 +773,7 @@ class UsersController extends AppController {
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->to($user['User']['email']);
-                $email->subject('Welcome to Savile Row Society!');
+                $email->subject('Forgotten Password');
                 $email->template('forgot');
                 $email->emailFormat('html');
                 $email->viewVars(array('user' => $user));
@@ -819,11 +819,10 @@ class UsersController extends AppController {
 
                 if ($this->User->save($user)) {
 
-                    //$email = new CakeEmail(array('log' => true));
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($user['User']['email']);
-                    $email->subject('Welcome to Savile Row Society!');
+                    $email->subject('New Password!');
                     $email->template('password_new');
                     $email->emailFormat('html');
                     $email->viewVars(array('user' => $user));
@@ -934,10 +933,12 @@ class UsersController extends AppController {
             $email->viewVars(compact('name', 'stylist_name'));
             $email->send();
 
+            $bcc = Configure::read('Email.contact');
             $email = new CakeEmail('default');
             $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
             $email->to($stylist_email);
-            $email->subject('Savile Row Stylist: Your stylist!');
+            $email->bcc($bcc);
+            $email->subject('You Have A New Client!');
             $email->template('stylist_notification');
             $email->emailFormat('html');
             $email->viewVars(compact('name', 'stylist_name'));
@@ -1055,10 +1056,12 @@ class UsersController extends AppController {
                         $email->viewVars(compact('name', 'stylist_name'));
                         $email->send();
 
+                        $bcc = Configure::read('Email.contact');
                         $email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                         $email->to($stylist_email);
-                        $email->subject('Savile Row Stylist: Your stylist!');
+                        $email->bcc($bcc);
+                        $email->subject('You Have A New Client!');
                         $email->template('stylist_notification');
                         $email->emailFormat('html');
                         $email->viewVars(compact('name', 'stylist_name'));

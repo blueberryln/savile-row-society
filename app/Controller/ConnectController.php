@@ -132,11 +132,12 @@ class ConnectController extends AppController {
                     $this->Session->write('user', $linkedin_data);
 
                     // send welcome mail
+                    $bcc = Configure::read('Email.contact');
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($profile['emailAddress']);
-                    $email->subject('Welcome to Savile Row Society!');
-                  $email->bcc(array('lisa@savilerowsociety.com', 'andrea@savilerowsociety.com', 'saurabh@mobikasa.com', 'admin@savilerowsociety.com'));
+                    $email->subject('Welcome To Savile Row Society');
+                    $email->bcc($bcc);
                     $email->template('registration');
                     $email->emailFormat('html');
                     $email->viewVars(array('name' => $profile['firstName']));
@@ -294,8 +295,8 @@ class ConnectController extends AppController {
                         $email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                         $email->to($profile['email']);
-                        $email->subject('Welcome to Savile Row Society!');
-                  $email->bcc(array('lisa@savilerowsociety.com', 'andrea@savilerowsociety.com', 'saurabh@mobikasa.com', 'admin@savilerowsociety.com'));
+                        $email->subject('Welcome To Savile Row Society');
+                        $email->bcc($bcc);
                         $email->template('registration');
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));

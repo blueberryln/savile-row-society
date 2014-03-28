@@ -606,11 +606,12 @@ class ApiController extends AppController {
             if(Validation::email($email_array[$i])){
                 try{
                     //send personal stylist mail
+                    $bcc = Configure::read('Email.contact');
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($email_array[$i]);
-                    $email->bcc('admin@savilerowsociety.com');
-                    $email->subject("You've Been Given The Gift Of SRS");
+                    $email->bcc($bcc);
+                    $email->subject("Discover Savile Row Society");
                     $email->template('refer');
                     $email->emailFormat('html');
                     $email->viewVars(compact('user'));

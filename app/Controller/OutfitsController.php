@@ -306,7 +306,7 @@ class OutfitsController extends AppController {
                     $Message->create();
                     if ($Message->validates()) {
                         $Message->save($data);
-                        $this->sendOutfitNotification($outfit_array, $client_id);
+                        $this->sendOutfitNotification($outfit_id, $outfit_array, $client_id);
                     }
                     
                     $ret['status'] = "ok";
@@ -325,7 +325,7 @@ class OutfitsController extends AppController {
         exit;    
     }
     
-    public function sendOutfitNotification($entity_list, $client_id){
+    public function sendOutfitNotification($outfit_id, $entity_list, $client_id){
         
         $User = ClassRegistry::init('User');
         $Entity = ClassRegistry::init('Entity');
@@ -335,12 +335,12 @@ class OutfitsController extends AppController {
         if($entities && $client){
             try{
                 $email = new CakeEmail('default');
-                $email->from(array('admin@savilerowsociety.com' => 'SRS Team'));
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->to($client['User']['email']);
-                $email->subject('SRS Team: New Outfit');
+                $email->subject('Your Stylist Has Created A New Outfit For You!');
                 $email->template('new_outfit');
                 $email->emailFormat('html');
-                $email->viewVars(compact('entities', 'client'));
+                $email->viewVars(compact('entities', 'client', 'outfit_id'));
                 $email->send();
             }
             catch(Exception $e){

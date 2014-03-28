@@ -278,7 +278,7 @@ class MessagesController extends AppController {
                 $notification['to_name'] = $user['User']['first_name'];
                 $notification['from_name'] = $stylist['User']['first_name']; 
                 $notification['to_email'] = $user['User']['email'];
-                $notification['from_email'] = $stylist['User']['email']; 
+                $notification['from_email'] = Configure::read('Email.admin'); 
                 
                 $this->sendEmailNotification($notification, $user);    
             }
@@ -330,7 +330,7 @@ class MessagesController extends AppController {
         $notification['to_name'] = $to_user['User']['first_name'];
         $notification['from_name'] = $from_user['User']['first_name'];
         $notification['to_email'] = $to_user['User']['email'];
-        $notification['from_email'] = $from_user['User']['email']; 
+        $notification['from_email'] = Configure::read('Email.admin'); 
         
         $this->sendEmailNotification($notification);
 
@@ -395,7 +395,7 @@ class MessagesController extends AppController {
                         $notification['to_name'] = $to_user['User']['first_name'];
                         $notification['from_name'] = $from_user['User']['first_name']; 
                         $notification['to_email'] = $to_user['User']['email'];
-                        $notification['from_email'] = $from_user['User']['email'];
+                        $notification['from_email'] = Configure::read('Email.admin');
                         
                         $this->sendEmailNotification($notification);
                     }
@@ -452,7 +452,7 @@ class MessagesController extends AppController {
             $notification['to_name'] = $to_user['User']['first_name'];
             $notification['from_name'] = $from_user['User']['first_name']; 
             $notification['to_email'] = $to_user['User']['email'];
-            $notification['from_email'] = $from_user['User']['email']; 
+            $notification['from_email'] = Configure::read('Email.admin'); 
             
             $this->sendEmailNotification($notification);
             
@@ -781,13 +781,12 @@ class MessagesController extends AppController {
         try{
             $email = new CakeEmail('default');
             $email->to($to_email);
-            $email->bcc('admin@savilerowsociety.com');
             $email->template('message_notification');
             $email->emailFormat('html');
             
             if($to_stylist){
-                $email->from(array($from_email => $from_name));
-                $email->subject('SRS Team: New Message from' . $from_name);
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->subject('You Have A New Message!');
                 if($is_photo){
                     $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo', 'client_id'));
                 }
@@ -796,8 +795,8 @@ class MessagesController extends AppController {
                 } 
             }  
             else{
-                $email->from(array($from_email => 'SRS Team'));
-                $email->subject('SRS Team: New Message');
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->subject('You Have A New Message!');
                 $email->viewVars(compact('to_name','from_name','message','to_stylist','is_photo'));
             }
             
