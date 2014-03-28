@@ -20,26 +20,22 @@
 
                     <table>
                       <tr>
-                        <td><b>Bill To:</b></td>
+                        <td valign="top"><b>Bill To:</b></td>
                         <td>
-                          <p valign="top">
                             <?php echo ucfirst($shipped_order['User']['first_name']); ?><br>  
                             <?php echo $shipped_order['User']['BillingAddress']['address']; ?><br>
                             <?php echo $shipped_order['User']['BillingAddress']['city']; ?>, <?php echo $shipped_order['User']['BillingAddress']['state']; ?> - <?php echo $shipped_order['User']['BillingAddress']['zip']; ?><br>
                             <?php echo $shipped_order['User']['BillingAddress']['country']; ?><br>
                             <?php echo $shipped_order['User']['BillingAddress']['fax']; ?>
-                          </p>
                         </td>
                       </tr>
                       <tr>
                         <td valign="top"><b>Ship To:</b></td>
                         <td>
-                          <p>
                             <?php echo ucfirst($shipped_order['User']['first_name']); ?><br>  
                             <?php echo $shipped_order['ShippingAddress']['address']; ?><br>
                             <?php echo $shipped_order['ShippingAddress']['city']; ?>, <?php echo $shipped_order['ShippingAddress']['state']; ?> - <?php echo $shipped_order['ShippingAddress']['zip']; ?><br>
                             <?php echo $shipped_order['ShippingAddress']['country']; ?>
-                          </p>
                         </td>
                       </tr>
                     </table>
