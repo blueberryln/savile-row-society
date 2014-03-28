@@ -69,7 +69,7 @@
                             <td style="text-align: right; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;"><?php echo $this->Number->format($shipped_order['Order']['promo_discount'], array('places' => 2, 'before' => '$')); ?></td> 
                           </tr>
                           <tr>
-                            <td colspan="3" style="text-align: left; font-weight: bold; background-color: #ccc; color: #444; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">(-)Tax - New York @ <?php echo $this->Number->format($shipped_order['Order']['tax'], array('places' => 2)); ?>%</td>
+                            <td colspan="3" style="text-align: left; font-weight: bold; background-color: #ccc; color: #444; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;">(-)Tax @ <?php echo $this->Number->format($shipped_order['Order']['tax'], array('places' => 2)); ?>%</td>
                             <td style="text-align: right; border-bottom: 1px solid #aaa; border-right: 1px solid #aaa;"><?php echo $this->Number->format($shipped_order['Order']['tax_amount'], array('places' => 2, 'before' => '$')); ?></td> 
                           </tr>
                       <tr>
