@@ -57,6 +57,8 @@ function showNotification(notificationDetails, isFade){
     else{
         $.blockUI({message: $('#notification-box')});
     }   
+
+    $('.blockOverlay').click($.unblockUI);
 }
 
 // function addReferrerToSignUp(){
