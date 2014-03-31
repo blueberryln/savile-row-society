@@ -27,6 +27,7 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
 .back-btn{padding:6px 50px;}
 .fancybox-inner .btn-buy-look { font-size: 14px; line-height: 20px; position: absolute; top: 15px; right: 15px; }
 .fancybox-inner a, .fancybox-inner .fancybox-data-box { font-size: 0px; line-height: 0; }
+.loader{text-align: center};
 /****FONTS***/
 @font-face {
     font-family: 'sweetsans-regular';

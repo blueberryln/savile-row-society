@@ -342,9 +342,10 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                 </div>
             </div>
 
-            <div class="contact-container ten columns center-block">
+            <div class="contact-container ten columns center-block continue-block">
                 <div class="profile text-center" >
                     <a class="link-btn black-btn" id="confirm-payment" tabindex="25" href="">Make Payment</a>
+                    <p class="loader hide"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p>
                 </div>
             </div>
         </div>

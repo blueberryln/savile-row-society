@@ -40,10 +40,16 @@ $(function(){
 
 	$("#continue-2").on('click', function(e){
 		e.preventDefault();
-		var loader = $(".continue-block").closest(".continue-block").find(".loader"),
+		var loader = $(this).closest(".continue-block").find(".loader"),
         	isError = false,
         	$this = $(this);
 		loader.removeClass("hide");
+        if($this.hasClass('clicked')){
+            return false;
+        }
+        else{
+            $this.addClass('clicked');
+        }
 
         $(".billing-shipping :input[required=\"\"], .billing-shipping :input[required]").each(function(){
             if($(this).val() == ""){
@@ -67,6 +73,7 @@ $(function(){
                 goToByScroll("shipping-data-head");
             }
             loader.addClass("hide");
+            $this.removeClass('clicked');
         }
         else{
         	goToByScroll("step-1");
@@ -100,7 +107,8 @@ $(function(){
                     	$("#step-2").slideUp(500, function(){
                     		$("#step-3").slideDown(500);
                     	});	
-                    });       
+                    });  
+                    $this.removeClass('clicked');     
                 }
             });
         }
@@ -226,6 +234,13 @@ $(function(){
         var isError = false;
         $this = $(this);
 
+        if($this.hasClass('clicked')){
+            return false;
+        }
+        else{
+            $this.addClass('clicked');
+        }
+
         /**
          * Validate billing and shipping data and refresh page if error
          */
@@ -254,10 +269,14 @@ $(function(){
             if(cardErrorElement.length){
                 cardErrorElement.first().focus();
                 goToByScroll("step-3");
+                $this.removeClass('clicked');
                 return false;
             }	
+            $this.removeClass('clicked');
         }
         else{
+            var loader = $this.closest('.continue-block').find('.loader');
+            loader.removeClass("hide");
         	$.ajax({
 	            url: baseUrl + "payments/validatecard",
 	            type: "POST",
@@ -307,11 +326,14 @@ $(function(){
 	                    $this.closest("form").submit();   
 	                }
 	                else{
+                        loader.addClass('loader');
 	                    var cardErrorElement = $("#card-data").find(".input-error");
 	                    if(cardErrorElement.length){
 	                        cardErrorElement.first().focus();
 	                        goToByScroll("step-3");
+
 	                    }
+                        $this.removeClass('clicked');
 	                }
 	                
 	            }
