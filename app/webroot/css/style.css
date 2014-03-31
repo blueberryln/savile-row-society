@@ -431,14 +431,16 @@ div.apt-form div.apt-comment{margin-top:10px; margin-bottom:20px;}
 	.add-to-cart{margin-top: 20px;}
 	#product-size , #product-quantity, .outfit-page-item .product-size , .outfit-page-item .product-quantity{width: 120px;}
 	#product-size, .outfit-page-item .product-size{margin-left: 50px;}
-	.product-icon-cont ul li { list-style-type: none;  display:inline-block; height: 92px; width: 68px; margin-right: 28px; background-color: #FFFFFF; border: 1px solid #ccc; text-align: center; line-height: 92px; }
-	.product-icon-cont ul li img{ max-height: 92px; max-width: 68px; vertical-align: middle; }
+	.product-icon-cont ul li { list-style-type: none;  display:inline-block; height: 92px; width: 68px; margin-right: 28px; background-color: #FFFFFF; border: 1px solid #ccc; text-align: center; line-height: 88px; }
+	.product-icon-cont ul li img{ max-height: 90px; max-width: 68px; vertical-align: middle; }
 	li.last { margin-right: 0px !important; }
 	div.closet-sorry{margin-left:75px; text-align: left;}
 
 /******Outfit page****/
 	.outfit-page-item{margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid #e0e0e0;}
 	.outfit-page-item:last-child{margin-bottom: 0; padding-bottom: 0; border-bottom: none;}
+	.outfit-page-item .product-default-image img{ max-width: 288px !important; max-height: 344px;}
+	.outfit-page-item .product-icon-cont ul li{margin-right: 0;}
 
 /******Lifestyle*****/
 	.lifestyle-table{width: 65%; margin-top: 40px;}

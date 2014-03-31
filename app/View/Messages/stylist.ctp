@@ -438,7 +438,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 '</div>' + 
                             '</div>' + 
                             '<div class="product-list-links">' +
-                                '<a href="' + webroot + 'user-outfit/' + chatMsg['Message']['outfit_id'] + '/" class="btn-buy">Buy</a>' +                             
+                                '<a href="' + webroot + 'messages/detail/' + chatMsg['Message']['id'] + '/" class="btn-buy" target="_blank">Buy</a>' +                              
                             '</div>' + 
                         '</div>' + 
                     '</div>';        

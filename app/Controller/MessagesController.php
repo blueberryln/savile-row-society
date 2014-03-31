@@ -162,7 +162,8 @@ class MessagesController extends AppController {
         //Get user from session to derterminate if user is stylist
         $user = $this->getLoggedUser();
         $user_id = $user["User"]["id"]; 
-        $is_admin = $user["User"]["is_admin"];   
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];   
 
         $msg = $this->Message->findById($id);
 
@@ -171,7 +172,7 @@ class MessagesController extends AppController {
             $this->redirect('/messages/index');
         }
 
-        if($msg['Message']['user_from_id'] == $user_id || $msg['Message']['user_from_id'] != $user_id || $is_admin){
+        if($msg['Message']['user_from_id'] == $user_id || $msg['Message']['user_to_id'] == $user_id || $is_admin){
             $outfit_id = $msg['Message']['outfit_id'];
 
             //Check if outfit exists else show page not found.
@@ -214,11 +215,27 @@ class MessagesController extends AppController {
                 }
             }
 
+            //Get other users data
+            if($user_id == $msg['Message']['user_from_id']){
+                $second_user_id = $msg['Message']['user_to_id'];
+            }
+            else{
+                $second_user_id = $msg['Message']['user_from_id'];    
+            }
+
+            $second_user = $User->findById($second_user_id);
+
             $Size = ClassRegistry::init('Size');
             $size_list = $Size->find('list');
             
-            $this->set(compact('entities', 'size_list', 'user_id'));
-            
+
+            $show_add_cart_popup = 0;
+            if($this->Session->read('add-cart')){
+                $show_add_cart_popup = 1;
+                $this->Session->delete('add-cart');
+            }
+
+            $this->set(compact('entities', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup'));
             
         }
         else{
@@ -569,6 +586,9 @@ class MessagesController extends AppController {
      * Get new messages
      */
     public function getNewMessages($with_user_id = null){
+        if(!$this->request->is('ajax')){
+            $this->redirect('/');
+        }
         $result = array();
         $user_id = $this->getLoggedUserID();
         if ($user_id){

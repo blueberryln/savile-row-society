@@ -33,7 +33,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <div class="info-container">
                     <div id="user-name"><?php echo $client_user['User']['full_name']; ?><br />
                         <span class="stylist-name">Your Personal Stylist</span>
-                    </div>        
+                    </div>     
+                       
                     <div class="stylist-info">
                         <a href="mailto:<?php echo $client_user['User']['email']; ?>"><span><img src="<?php echo $this->webroot; ?>img/email.png" class="fadein-image" /><?php echo $client_user['User']['email']; ?></span></a><br />
                     </div>               
@@ -197,7 +198,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             '</div>' + 
                             '<div class="product-list-links">' + 
                             //'<a href="" class="thumbs-up ' + likedClass + '"></a>' +
-                                '<a href="' + webroot + 'user-outfit/' + chatMsg['Message']['outfit_id'] + '/" class="btn-buy" target="_blank">Buy</a>' + 
+                                '<a href="' + webroot + 'messages/detail/' + chatMsg['Message']['id'] + '/" class="btn-buy" target="_blank">Buy</a>' + 
                                 //'<a href="" class="thumbs-down ' + dislikedClass + '"></a>' +
                             '</div>' + 
                         '</div>' + 
