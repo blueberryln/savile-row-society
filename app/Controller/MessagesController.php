@@ -235,7 +235,16 @@ class MessagesController extends AppController {
                 $this->Session->delete('add-cart');
             }
 
-            $this->set(compact('entities', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup'));
+            $popUpMsg = '';
+            $show_three_item_popup = 0;
+            if($this->Session->read('cart-three-items')){
+                $show_three_item_popup = 1;
+                $popUpMsg = $this->Session->read('cart-three-items-msg');
+                $this->Session->delete('cart-three-items');
+                $this->Session->delete('cart-three-items-msg');
+            }
+
+            $this->set(compact('entities', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg'));
             
         }
         else{

@@ -342,7 +342,7 @@ class ApiController extends AppController {
                         }
                         
                         $ret['cart_total'] = $cart_total;
-                        $ret['cart_message'] = "Dear " . ucwords($user['User']['full_name']) . ",<br>We would like to remind you that you currently have three items in your cart, totaling $" . number_format($cart_total, 2) . ".";
+                        $ret['cart_message'] = "Dear " . ucwords($user['User']['first_name']) . ",<br>We would like to remind you that you currently have three items in your cart, totaling $" . number_format($cart_total, 2) . ".";
                     }
                     
                     if($ret['status'] == "ok" && $ret['count'] != 3){

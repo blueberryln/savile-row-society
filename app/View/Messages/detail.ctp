@@ -67,10 +67,17 @@ if($user_id){
 }
 
 $script = '
+var threeItemPopup = ' . $show_three_item_popup. ';
 var addCartPopup = ' . $show_add_cart_popup. ';
 $(document).ready(function(){  
     
-    if(isLoggedIn() && addCartPopup == 1){
+    if(isLoggedIn() && threeItemPopup == 1){
+        var notificationDetails = new Array();
+        notificationDetails["msg"] = "' . $popUpMsg . '";
+        notificationDetails["button"] = "<a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
+        showNotification(notificationDetails);  
+    }  
+    else if(isLoggedIn() && addCartPopup == 1){
         var notificationDetails = new Array();
         notificationDetails["msg"] = "Item has been added to the cart.";
         showNotification(notificationDetails, true);        
