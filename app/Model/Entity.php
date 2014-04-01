@@ -500,23 +500,6 @@ class Entity extends AppModel {
      * 
      */
     function getClosestItems(){
-        //Check if product stock is available
-        //$sql = "SELECT pe.id, pc.category_id 
-//                FROM products_entities pe
-//                INNER JOIN products_categories pc ON pe.product_id = pc.product_id
-//                INNER JOIN categories cat ON pc.category_id = cat.id 
-//                INNER JOIN products_details pd ON pd.product_entity_id = pe.id 
-//                WHERE pe.show = 1 AND cat.parent_id IS NULL AND pd.show = 1 AND pd.stock > (SELECT COALESCE(SUM(Item.quantity),0) AS usedstock FROM carts_items Item INNER JOIN carts Cart ON Item.cart_id = Cart.id WHERE Cart.updated > (NOW() - INTERVAL 1 DAY) AND Item.product_entity_id = pe.id AND pd.size_id = Item.size_id) 
-//                GROUP BY pc.category_id";
-                
-        //$sql = "SELECT pe.id, pc.category_id 
-//                FROM products_entities pe
-//                INNER JOIN products_categories pc ON pe.product_id = pc.product_id
-//                INNER JOIN categories cat ON pc.category_id = cat.id 
-//                WHERE pe.show = 1     
-//                GROUP BY pc.category_id";
-        
-        
         $sql = "SELECT pe.id, pc.category_id 
                 FROM products_entities pe
                 INNER JOIN products_categories pc ON pe.product_id = pc.product_id
@@ -617,6 +600,41 @@ class Entity extends AppModel {
              
         ));
     }
+
+
+    /**
+     * Get list of random products for the closet landing - SRS Team
+     * 
+     */
+    function getTeamClosestItems(){
+        $sql = "SELECT pe.id, pc.category_id 
+                FROM products_entities pe
+                INNER JOIN products_categories pc ON pe.product_id = pc.product_id
+                INNER JOIN categories cat ON pc.category_id = cat.id 
+                WHERE pe.show = 1 AND pe.is_featured = 1 AND pe.is_gift != 1   
+                GROUP BY pc.category_id";
+                
+        $result = $this->query($sql);
+        return $result;
+    }
+
+
+    /**
+    * Get list of random products for the closet landing - Client
+     * 
+     */
+    function getClientClosestItems(){
+        $sql = "SELECT pe.id, pc.category_id 
+                FROM products_entities pe
+                INNER JOIN products_categories pc ON pe.product_id = pc.product_id
+                INNER JOIN categories cat ON pc.category_id = cat.id 
+                WHERE pe.show = 1 AND pe.is_featured = 1 AND pe.hide_from_client = 0 AND pe.is_gift != 1  
+                GROUP BY pc.category_id";
+                
+        $result = $this->query($sql);
+        return $result;
+    }
+
     
     
     /**

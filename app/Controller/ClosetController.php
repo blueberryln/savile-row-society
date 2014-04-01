@@ -98,9 +98,17 @@ class ClosetController extends AppController {
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
 
-        //$parent_categories = $Category->getParentCategories();
-        //$random_list = $Entity->getCloset($parent_categories);
-        $random_list = $Entity->getClosestItems();
+        $user = $this->getLoggedUser();
+
+        //Get the list of random product list for the closet
+        if($user['User']['is_stylist'] || $user['User']['is_admin']){
+            $random_list = $Entity->getTeamClosestItems();
+        }
+        else{
+            $random_list = $Entity->getClientClosestItems();    
+        }
+
+        
         $entity_list = array();
         $entity_list_cat = array();
         
@@ -148,10 +156,13 @@ class ClosetController extends AppController {
     public function categoryProducts($user_id, $categories, $category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null){
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
+
+        $user = $this->getLoggedUser();
             
         if($filter_used != "color" && $filter_used != "brand"){
             $filter_used = "error";
         }
+
         // Get the parent id
         $parent_id = false;
         if($category_slug != "all"){
@@ -235,13 +246,13 @@ class ClosetController extends AppController {
                     )
                 ),
                 
-                //array('table' => 'products_details',
-//                    'alias' => 'Detail',
-//                    'type' => 'INNER',
-//                    'conditions' => array(
-//                        'Detail.product_entity_id = Entity.id',
-//                    )
-//                ),
+               //  array('table' => 'products_details',
+               //     'alias' => 'Detail',
+               //     'type' => 'INNER',
+               //     'conditions' => array(
+               //         'Detail.product_entity_id = Entity.id',
+               //     )
+               // ),
             ),
             'order' => array('Entity.order' => 'ASC'),
             'fields' => array(
@@ -252,6 +263,11 @@ class ClosetController extends AppController {
         
         if($category_slug != 'all'){
             $find_array['conditions']['Category.category_id'] = $category_ids;
+        }
+
+        //Hide products restricted for website user (hide_from_client)
+        if(!$user['User']['is_stylist'] && !$user['User']['is_admin']){
+            $find_array['conditions']['Entity.hide_from_client'] = false; 
         }
         
         //Query additions for a logged in user
