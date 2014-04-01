@@ -15,7 +15,7 @@ class PaymentsController extends AppController {
     function beforeFilter() {
         
         if (!$this->request->is('ssl')) {
-            $this->forceSSL();
+            //$this->forceSSL();
         }  
     }
 
