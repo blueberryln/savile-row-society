@@ -71,8 +71,8 @@ class OrdersController extends AppController {
                 //Send confirmation email to the customer.
                 $this->Order->recursive = 3;
                 $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-                $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
-                $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+                $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
+                $this->Order->User->unbindModel(array('belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
                 $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
                 $shipped_order = $this->Order->find('first', $options);
                 $Size = ClassRegistry::init('Size');
@@ -262,8 +262,8 @@ class OrdersController extends AppController {
             //Send confirmation email to the customer.
             $this->Order->recursive = 3;
             $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-            $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
-            $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+            $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
+            $this->Order->User->unbindModel(array('belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
             $shipped_order = $this->Order->find('first', $options);
         }

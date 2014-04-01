@@ -573,6 +573,7 @@ class PaymentsController extends AppController {
             $Order->User->unbindModel(array('belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $Order->primaryKey => $id));
             $shipped_order = $Order->find('first', $options);
+
             $Size = ClassRegistry::init('Size');
             $sizes = $Size->find('list');
             
@@ -684,7 +685,7 @@ class PaymentsController extends AppController {
                     $OrderItem->create();
                     $item_result = $OrderItem->save($data);
                     if($item_result){
-                        if($data['OrderItem']['is_gift'] == 1){
+                        if(isset($data['OrderItem']['is_gift']) && $data['OrderItem']['is_gift'] == 1){
                             $gift_details = $CartGiftItem->getGiftCardDetails($row['CartItem']['id']);
                             $gift_card_uniqid = 'SRS-Gift-' . uniqid();
                             

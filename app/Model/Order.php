@@ -85,6 +85,13 @@ class Order extends AppModel {
             'conditions' => '',
             'fields' => '',
         ),
+        'Transactions' => array(
+            'className' => 'Transactions',
+            'foreignKey' => 'order_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+        ),
     );
 
     public $hasMany = array(

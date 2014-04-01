@@ -38,6 +38,18 @@
                             <?php echo $shipped_order['ShippingAddress']['country']; ?>
                         </td>
                       </tr>
+                      <tr>
+                        <td valign="top"><b>Payment Type:</b></td>
+                        <td>
+                            <?php echo ucfirst($shipped_order['Transactions']['card_type']); ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td valign="top"><b>Credit Card Number:</b></td>
+                        <td>
+                            <?php echo ucfirst($shipped_order['Transactions']['account_number']); ?>
+                        </td>
+                      </tr>
                     </table>
                     <br>
                     <p><b>Order Information</b></p>
