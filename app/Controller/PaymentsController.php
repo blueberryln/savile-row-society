@@ -684,19 +684,19 @@ class PaymentsController extends AppController {
                     $OrderItem->create();
                     $item_result = $OrderItem->save($data);
                     if($item_result){
-                        // if($data['OrderItem']['is_gift'] == 1){
-                        //     $gift_details = $CartGiftItem->getGiftCardDetails($row['CartItem']['id']);
-                        //     $gift_card_uniqid = 'SRS-Gift-' . uniqid();
+                        if($data['OrderItem']['is_gift'] == 1){
+                            $gift_details = $CartGiftItem->getGiftCardDetails($row['CartItem']['id']);
+                            $gift_card_uniqid = 'SRS-Gift-' . uniqid();
                             
-                        //     $data['OrderGiftItem']['order_item_id'] = $item_result['OrderItem']['id'];
-                        //     $data['OrderGiftItem']['recipient_email'] = $gift_details['CartGiftItem']['recipient_email'];
-                        //     $data['OrderGiftItem']['recipient_name'] = $gift_details['CartGiftItem']['recipient_name'];
-                        //     $data['OrderGiftItem']['message'] = $gift_details['CartGiftItem']['message'];
-                        //     $data['OrderGiftItem']['gift_card_uniqid'] = $gift_card_uniqid;
+                            $data['OrderGiftItem']['order_item_id'] = $item_result['OrderItem']['id'];
+                            $data['OrderGiftItem']['recipient_email'] = $gift_details['CartGiftItem']['recipient_email'];
+                            $data['OrderGiftItem']['recipient_name'] = $gift_details['CartGiftItem']['recipient_name'];
+                            $data['OrderGiftItem']['message'] = $gift_details['CartGiftItem']['message'];
+                            $data['OrderGiftItem']['gift_card_uniqid'] = $gift_card_uniqid;
                             
-                        //     $OrderGiftItem->create();
-                        //     $OrderGiftItem->save($data);    
-                        // }    
+                            $OrderGiftItem->create();
+                            $OrderGiftItem->save($data);    
+                        }    
                     }
                     else{
                         $transaction_error = true;

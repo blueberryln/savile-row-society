@@ -250,7 +250,7 @@ $columns = 'eleven';
 ?>
 <div class="content-container">
     <div class="container content inner">	
-        <div class="one columns alpha omega">&nbsp;</div>
+        <div class="one columns">&nbsp;</div>
         <div class="ten columns details-margin row center-block">
             <p class="product-breadcrumb" >
                 <a href="<?php echo $this->webroot . "closet" ; ?>">Closet</a>
