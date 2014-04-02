@@ -78,6 +78,7 @@ $(function(){
         else{
         	goToByScroll("step-1");
             var zipcode = $("#shipZip").val();
+            var country = $("#shipCountry").val();
             if($(".copy-billing-info").is(":checked")){
                 zipcode = $("#billZip").val();
             }
@@ -89,6 +90,7 @@ $(function(){
                 type: "POST",
                 data: {
                 	total: total,
+                    country: country,
                 },
                 success: function(data){
                     var ret = $.parseJSON(data);

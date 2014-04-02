@@ -1019,9 +1019,10 @@ class PaymentsController extends AppController {
         $this->autoLayout = false;
         $ret = array();
         $total = $this->request->data['total'];
+        $country = $this->request->data['country'];
 
         $Tax = ClassRegistry::init('Tax');
-        if($zipcode){
+        if($zipcode && $country == 'USA'){
             $result = $Tax->getByZip($zipcode);
             if($result) {
                 $tax = $result['Tax']['tax'];
