@@ -274,9 +274,4 @@ class OrdersController extends AppController {
         $this->set(compact('value','shipped_order', 'sizes'));
     }
 
-
-
-
-
-
 }
