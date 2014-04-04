@@ -283,7 +283,6 @@ class PaymentsController extends AppController {
                 // TODO: if shipping address could not be saved.
                 $error = true;
                 $this->Session->write('transaction_complete', "fail");
-                // $this->Session->setFlash(__('Shipping'), 'flash');
             }
             
             //If all order data has been added. Continue transaction.
@@ -542,7 +541,7 @@ class PaymentsController extends AppController {
         }
 
         if($final_price != $data['Cart']['total']){
-            $error_cart = true;    
+            $error_cart = true;
         }
 
 

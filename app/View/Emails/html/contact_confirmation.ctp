@@ -1,6 +1,6 @@
 <body style=" font-family: Arial; text-align: center; font-size: 14px; color: #595959; background: #F2F2F2; margin: 0; padding: 0;">
 
-    <table cellspacing="0" cellpadding="0" style=" width: 640px; margin: 5px auto; text-align: left; background-color: #ffffff;">
+    <table cellspacing="0" cellpadding="0" style=" width: 640px; margin: 5px auto; text-align: left;background-color: #ffffff;">
         
         <tbody style="background-color: #ffffff;">
           
@@ -20,8 +20,8 @@
                     </p>
                 </div>
 
-                <p style="margin-bottom: 5px; padding-bottom: 0">Best,</p> 
-                <p style="padding-bottom: 15px;">The Savile Row Society Team</p>
+                <p style="margin-bottom: 10px;">Best,<br>
+                The Savile Row Society Team</p>
             
             </td>        
         </tr>
@@ -33,19 +33,15 @@
         </tr>
             
         </tbody> 
-        
-        <tfoot>
-            
-            <tr>
-                <td style="padding-top: 10px;">
-                    <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">Savile Row Society, Inc. </p>
-                    
-                    <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">1115 Broadway | New York, NY, 10010</p>
-                </td>
-            </tr>
-        
-        </tfoot>
-        
     </table>
-    
+    <br>
+    <table cellspacing="0" cellpadding="0" style="width: 640px; margin: auto; text-align: center;">
+        <tr>
+            <td>
+                <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">Savile Row Society, Inc. </p>
+                
+                <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">1115 Broadway | New York, NY, 10010</p>
+            </td>
+        </tr>
+    </table>
 </body>

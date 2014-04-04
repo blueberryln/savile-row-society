@@ -96,7 +96,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                         </div>
                                     <?php endif; ?>
                                 </td>
-                                <?php if($cart_total >= 250 && $vip_flag) : ?>
+                                <?php if($cart_total >= 250 && $vip_flag) : 
+                                    $cart_total = $cart_total - 50;
+                                ?>
                                     <td colspan="2" class="text-right bold">(-) Discount:</td>
                                     <td class="text-right cart-discount">
                                         <?php echo $this->Number->currency(50); ?>
