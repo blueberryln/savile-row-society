@@ -14,7 +14,7 @@
                 <p style="padding-top: 15px;">Hi <?php echo ucfirst($client['User']['first_name']); ?>,</p>
 
                 <div style=" padding: 5px 0;">
-                    <p >Your personal stylist, {Stylist-name}, has created a new outfit for you:</p>
+                    <p >Your personal stylist, <?php echo ucfirst($stylist['User']['first_name']); ?>, has created a new outfit for you:</p>
                     <p><a href="<?php echo Configure::read('Social.callback_url'); ?>user-outfit/<?php echo $outfit_id; ?>" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">VIEW MY OUTFIT</a></p>
                     <br>
                     <table cellspacing="0" cellpadding="0" border="1" width="100%">

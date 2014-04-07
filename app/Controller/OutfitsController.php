@@ -331,6 +331,7 @@ class OutfitsController extends AppController {
         $Entity = ClassRegistry::init('Entity');
         $entities = $Entity->getProductDetails($entity_list);
         $client = $User->getByID($client_id);
+        $stylist = $User->getByID($client['User']['stylist_id']);
         
         if($entities && $client){
             try{
@@ -340,7 +341,7 @@ class OutfitsController extends AppController {
                 $email->subject('Your Stylist Has Created A New Outfit For You!');
                 $email->template('new_outfit');
                 $email->emailFormat('html');
-                $email->viewVars(compact('entities', 'client', 'outfit_id'));
+                $email->viewVars(compact('entities', 'client', 'outfit_id', 'stylist'));
                 $email->send();
             }
             catch(Exception $e){

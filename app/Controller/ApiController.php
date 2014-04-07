@@ -475,14 +475,14 @@ class ApiController extends AppController {
             $PriceRequest->create();
             if($PriceRequest->save($data)){
                 try{
-                    $user_email = new CakeEmail('default');
-                    $user_email->from(array($data['PriceRequest']['request_email'] => $request_name));
-                    $user_email->to('admin@savilerowsociety.com');
-                    $user_email->subject('Savile Row Society: Product Price Request');
-                    $user_email->template('price_request');
-                    $user_email->emailFormat('html');
-                    $user_email->viewVars(array('entity' => $entity, 'data' => $data, 'user' => $user));
-                    $user_email->send();
+                    // $user_email = new CakeEmail('default');
+                    // $user_email->from(array($data['PriceRequest']['request_email'] => $request_name));
+                    // $user_email->to('admin@savilerowsociety.com');
+                    // $user_email->subject('Savile Row Society: Product Price Request');
+                    // $user_email->template('price_request');
+                    // $user_email->emailFormat('html');
+                    // $user_email->viewVars(array('entity' => $entity, 'data' => $data, 'user' => $user));
+                    // $user_email->send();
                 }
                 catch(Exception $e){
                     

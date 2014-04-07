@@ -924,14 +924,14 @@ class UsersController extends AppController {
         $name = $user['User']['first_name'];
 
         try{
-            $email = new CakeEmail('default');
-            $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-            $email->to($user['User']['email']);
-            $email->subject('Savile Row Stylist: Your stylist!');
-            $email->template('user_stylist');
-            $email->emailFormat('html');
-            $email->viewVars(compact('name', 'stylist_name'));
-            $email->send();
+            // $email = new CakeEmail('default');
+            // $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+            // $email->to($user['User']['email']);
+            // $email->subject('Savile Row Stylist: Your stylist!');
+            // $email->template('user_stylist');
+            // $email->emailFormat('html');
+            // $email->viewVars(compact('name', 'stylist_name'));
+            // $email->send();
 
             $bcc = Configure::read('Email.contact');
             $email = new CakeEmail('default');
@@ -1047,14 +1047,14 @@ class UsersController extends AppController {
                     $name = $user_data['User']['first_name'];
                     
                     try{
-                        $email = new CakeEmail('default');
-                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                        $email->to($user_data['User']['email']);
-                        $email->subject('Savile Row Stylist: Your stylist!');
-                        $email->template('user_stylist');
-                        $email->emailFormat('html');
-                        $email->viewVars(compact('name', 'stylist_name'));
-                        $email->send();
+                        // $email = new CakeEmail('default');
+                        // $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        // $email->to($user_data['User']['email']);
+                        // $email->subject('Savile Row Stylist: Your stylist!');
+                        // $email->template('user_stylist');
+                        // $email->emailFormat('html');
+                        // $email->viewVars(compact('name', 'stylist_name'));
+                        // $email->send();
 
                         $bcc = Configure::read('Email.contact');
                         $email = new CakeEmail('default');
@@ -1103,11 +1103,17 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
+            $user_data = $this->User->findById($id);
             if($this->request->data['User']['stylist_id'] == ""){
                 $this->request->data['User']['stylist_id'] = null;
             }
 
-            $this->request->data['User']['password'] = Security::hash($this->request->data['User']['password']);
+            if($user_data['User']['password'] != $this->request->data['User']['password']) {
+                $this->request->data['User']['password'] = Security::hash($this->request->data['User']['password']);
+            }
+            else{
+                unset($this->request->data['User']['password']);
+            }
 
             
             if ($this->User->save($this->request->data)) {
