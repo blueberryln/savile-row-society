@@ -113,7 +113,7 @@ $(document).ready(function(){
     else if(isLoggedIn() && addCartPopup == 1){
         var notificationDetails = new Array();
         notificationDetails["msg"] = "Item has been added to the cart.";
-        showNotification(notificationDetails, true);        
+        showNotification(notificationDetails);        
     }  
     else{
         var closetInfo=getCookie("closetInfo");
