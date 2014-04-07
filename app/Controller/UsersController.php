@@ -837,6 +837,10 @@ class UsersController extends AppController {
                     $this->Session->setFlash(__('We cannot reset your password at the moment'), 'flash');
                 }
             }
+            else{
+                $this->redirect('/');
+                exit();    
+            }
         } else {
             $this->redirect('/');
             exit();

@@ -17,8 +17,8 @@
                     <p >Thank you for signing up for Savile Row Society. Once you have completed your Style Profile, your personal stylist will be able to work with you to create your ideal wardrobe.</p>
                 </div>
 
-                <p style="margin-bottom: 5px; padding-bottom: 0">Best,</p> 
-                <p style="padding-bottom: 15px;">The Savile Row Society Team</p>
+                <p style="margin-bottom: 10px; margin-top: 15px;">Best,<br>
+                The Savile Row Society Team</p>
             
             </td>        
         </tr>
@@ -30,19 +30,15 @@
         </tr>
             
         </tbody> 
-        
-        <tfoot>
-            
-            <tr>
-                <td style="padding-top: 10px;">
-                    <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">Savile Row Society, Inc. </p>
-                    
-                    <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">1115 Broadway | New York, NY, 10010</p>
-                </td>
-            </tr>
-        
-        </tfoot>
-        
     </table>
-    
+    <br>
+    <table cellspacing="0" cellpadding="0" style="width: 640px; margin: auto; text-align: center;">
+        <tr>
+            <td>
+                <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">Savile Row Society, Inc. </p>
+                
+                <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">1115 Broadway | New York, NY, 10010</p>
+            </td>
+        </tr>
+    </table>
 </body>

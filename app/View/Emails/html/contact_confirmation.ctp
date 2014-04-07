@@ -20,7 +20,7 @@
                     </p>
                 </div>
 
-                <p style="margin-bottom: 10px;">Best,<br>
+                <p style="margin-bottom: 10px; margin-top: 15px;">Best,<br>
                 The Savile Row Society Team</p>
             
             </td>        
