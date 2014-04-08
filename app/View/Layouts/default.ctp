@@ -23,7 +23,7 @@
         echo $this->Html->css('lightbox');
         echo $this->Html->css('mosaic');
         echo $this->Html->css('temp');
-        echo $this->Html->css('style?v=1'); 
+        echo $this->Html->css('style'); 
         echo $this->fetch('css');
         ?>
         <!-- Favicons
