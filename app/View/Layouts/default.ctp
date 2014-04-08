@@ -99,14 +99,14 @@
                 <div class="menu left">
                     <ul>
                         <li><a href="<?php echo $this->request->webroot; ?>company">About us</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li>
+                        <!-- <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li> -->
                         <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>
                         <?php if(!$is_logged) : ?>
                         <li class="vip-access"><a href="" id="block-vip-access">VIP ACCESS</a></li>
                         <?php endif; ?>
-                        <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li>
+                        <!-- <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li> -->
+                        <!-- <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li> -->
                         <li><a href="<?php echo $this->request->webroot; ?>contact">Contact us</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
                     </ul>

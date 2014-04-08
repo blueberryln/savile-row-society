@@ -4,42 +4,43 @@ $script = ' var contact = ' . json_encode($contact) . '; ' .
 ' 
 var user = ' . json_encode($user["User"]) . '
 $(document).ready(function(){  
-    
-    //Check contact timings checkboxes
-    if(contact.wdTime1){
-        $("input[name=\"data[UserPreference][Contact][wdTime1]\"]").attr("checked","checked");    
-    }
-    if(contact.wdTime2){
-        $("input[name=\"data[UserPreference][Contact][wdTime2]\"]").attr("checked","checked");    
-    }
-    if(contact.wdTime3){
-        $("input[name=\"data[UserPreference][Contact][wdTime3]\"]").attr("checked","checked");    
-    }
-    if(contact.wdTime4){
-        $("input[name=\"data[UserPreference][Contact][wdTime4]\"]").attr("checked","checked");    
-    }
-    $("input[name=\"data[UserPreference][Contact][weekEnd]\"]").attr("checked","checked");   
-    if(contact.weTime1){
-        $("input[name=\"data[UserPreference][Contact][weTime1]\"]").attr("checked","checked");   
-    }
-    if(contact.weTime2){
-        $("input[name=\"data[UserPreference][Contact][weTime2]\"]").attr("checked","checked");   
-    }
-    if(contact.weTime3){
-        $("input[name=\"data[UserPreference][Contact][weTime3]\"]").attr("checked","checked");   
-    }
-    if(contact.weTime4){
-        $("input[name=\"data[UserPreference][Contact][weTime4]\"]").attr("checked","checked");   
-    }
+    if(contact){
+        //Check contact timings checkboxes
+        if(contact.wdTime1){
+            $("input[name=\"data[UserPreference][Contact][wdTime1]\"]").attr("checked","checked");    
+        }
+        if(contact.wdTime2){
+            $("input[name=\"data[UserPreference][Contact][wdTime2]\"]").attr("checked","checked");    
+        }
+        if(contact.wdTime3){
+            $("input[name=\"data[UserPreference][Contact][wdTime3]\"]").attr("checked","checked");    
+        }
+        if(contact.wdTime4){
+            $("input[name=\"data[UserPreference][Contact][wdTime4]\"]").attr("checked","checked");    
+        }
+        $("input[name=\"data[UserPreference][Contact][weekEnd]\"]").attr("checked","checked");   
+        if(contact.weTime1){
+            $("input[name=\"data[UserPreference][Contact][weTime1]\"]").attr("checked","checked");   
+        }
+        if(contact.weTime2){
+            $("input[name=\"data[UserPreference][Contact][weTime2]\"]").attr("checked","checked");   
+        }
+        if(contact.weTime3){
+            $("input[name=\"data[UserPreference][Contact][weTime3]\"]").attr("checked","checked");   
+        }
+        if(contact.weTime4){
+            $("input[name=\"data[UserPreference][Contact][weTime4]\"]").attr("checked","checked");   
+        }
 
-    if(contact.type &&  $.inArray("Chat", contact.type) >= 0){
-        $("input[type=\"checkbox\"][value=\"Chat\"]").attr("checked","checked");
-    }
-    if(contact.type && $.inArray("Phone", contact.type) >= 0){
-        $("input[type=\"checkbox\"][value=\"Phone\"]").attr("checked","checked");
-    }
-    if(contact.type && $.inArray("Skype", contact.type) >= 0){
-        $("input[type=\"checkbox\"][value=\"Skype\"]").attr("checked","checked");
+        if(contact.type &&  $.inArray("Chat", contact.type) >= 0){
+            $("input[type=\"checkbox\"][value=\"Chat\"]").attr("checked","checked");
+        }
+        if(contact.type && $.inArray("Phone", contact.type) >= 0){
+            $("input[type=\"checkbox\"][value=\"Phone\"]").attr("checked","checked");
+        }
+        if(contact.type && $.inArray("Skype", contact.type) >= 0){
+            $("input[type=\"checkbox\"][value=\"Skype\"]").attr("checked","checked");
+        }
     }
 
     $("div.submit input").click(function(event){

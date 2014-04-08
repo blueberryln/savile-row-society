@@ -35,7 +35,7 @@
                         <p><a href="<?php echo Configure::read('Social.callback_url'); ?>messages/index" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">SEE FULL CONVERSATION </a></p>
                     </div>
                 <?php endif; ?>
-                    <p style="margin-bottom: 10px; margin-top: 15px;">Best,<br>
+                    <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
                 The Savile Row Society Team</p>
             
             </td>        

@@ -33,11 +33,11 @@ $script='
         testimonialText = testimonialBlock.find("span");
 
     jQuery(function(){
-            if(jQuery(".mg-big img")[0].complete && jQuery(".mg-small div img")[0].complete){
+            if(jQuery(".mg-big img")[0].complete && jQuery(".mg-small img")[0].complete){
                 vidContinerHeight()
             }
             else{
-                jQuery(".mg-big img, .mg-small div img").load(function() {
+                jQuery(".mg-big img, .mg-small img").load(function() {
                     vidContinerHeight()
                 });
             }   
@@ -155,22 +155,27 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php endif; ?>
                 <img src="<?php echo $this->webroot; ?>img/h_1.jpg" />
             </a>
-            <div id="my-stylist">
+            <div id="my-stylist" style="left: 0; top: 5%;">
                 <?php if($is_logged && $has_stylist) : ?>
-                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Meet My<br>Stylist</a>
                 <?php elseif($is_logged) : ?>
-                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>profile/about">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>profile/about">Meet My<br>Stylist</a>
                 <?php else : ?>
-                    <a class="link-btn gold-btn" href="#" onclick="window.ref_url=''; signUp();">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="#" onclick="window.ref_url=''; signUp();">Meet My<br>Stylist</a>
                 <?php endif; ?>
             </div>
         </div>
         <div class="mg-vid">            
-                <img src="<?php echo $this->webroot; ?>img/h_4.jpg" />
+            <img src="<?php echo $this->webroot; ?>img/h_2.jpg" />
+            <div class="mgs-btn" style="right: 0; top: 40%;">
+                <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>lookbooks/#29" style="margin-right: 0;">GET THIS <br>LOOK</a>
+            </div>
             <!-- <iframe class="max-width-adj" src="http://www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>  -->           
         </div>
         <div class="mg-small">
-            <div class="mg-small-1"> 
+            <img src="<?php echo $this->webroot; ?>img/h_4.jpg" />
+
+            <!-- <div class="mg-small-1"> 
                 <?php if($is_logged) : ?>
                     <a href="<?php echo $this->request->webroot; ?>fitting-room" class="over-img"><img src="<?php echo $this->webroot; ?>img/h_2.jpg" /></a>
                 <?php else : ?>
@@ -189,7 +194,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <div class="mgs-btn">
                     <a class="link-btn black-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Buy this <br> look</a>
                 </div> 
-            </div>
+            </div>  -->
         </div>
         <div class="clear-fix"></div> 
     </div>
@@ -207,19 +212,19 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/1.png" />
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/Step1.jpg" />
             </a>
 
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_1.png" /></span>
-            <span class="works-desc">Give us your information, and be assigned a personal shopper</span>
-            <div class="wrok-btn-box"><a class="works-btn">Register</a></div>
-
+            <span class="works-desc">Fill out a quick style profile and you will be matched with your very own personal shopper.</span>
+            
+            
             <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>myprofile">Register</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>myprofile">Register</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Register</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Register</a></div>
             <?php else : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
             <?php endif; ?>
         </div> 
          <div class="work-box">
@@ -230,17 +235,19 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/2.png" />
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/Step2.jpg" />
             </a>
 
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_2.png" /></span>
-            <span class="works-desc">Communicate on the website, on the phone or make an in-showroom appointment</span>
+            <span class="works-desc">Communicate on the website, on the phone or in-person. Buy what you want from your stylist’s recommendations.</span>
+            
+            
             <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Talk & shop</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Talk & shop</a></div>
             <?php else : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
             <?php endif; ?>
         </div> 
          <div class="work-box">
@@ -251,11 +258,42 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/3.png" />
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/Step3.jpg" />
             </a>
 
             <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_3.png" /></span>
-            <span class="works-desc">Enjoy a seamless shopping experience and dress for the life you want</span>
+            <span class="works-desc">Have your purchases delivered for free. Verify that the fit is perfect. Dress for the life you want.</span>
+            
+            
+            <?php if($is_logged && $has_stylist) : ?>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
+            <?php elseif($is_logged) : ?>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Look sharp</a></div>
+            <?php else : ?>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
+            <?php endif; ?>
+        </div> 
+    </div>
+    <div class="eleven columns container works-boxes only-desktop">
+        <div class="work-box">
+            <?php if($is_logged && $has_stylist) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>myprofile">Register</a></div>
+            <?php elseif($is_logged) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Register</a></div>
+            <?php else : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
+            <?php endif; ?>
+        </div> 
+         <div class="work-box">
+            <?php if($is_logged && $has_stylist) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
+            <?php elseif($is_logged) : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>profile/about">Talk & shop</a></div>
+            <?php else : ?>
+                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
+            <?php endif; ?>
+        </div> 
+         <div class="work-box">
             <?php if($is_logged && $has_stylist) : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
             <?php elseif($is_logged) : ?>
@@ -266,7 +304,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div> 
     </div>
     
-    <div class="ten columns text-center page-heading">
+    <!-- <div class="ten columns text-center page-heading">
         <h1>our idea of stylist</h1>
     </div>
     <div class="eleven columns stylist-boxes">
@@ -328,30 +366,20 @@ $this->Html->script('cookie.js', array('inline' => false));
             <h3>Rate products</h3>
             <span class="stylist-desc">Your personal stylist wants your feedback! Like and dislike their suggestions to give them a better sense of your style preferences.</span>
         </div>  
-    </div>
+    </div> -->
 
     <div class="ten columns text-center page-heading">
-        <h1>Seamless Shopping</h1>
+        <h1>How To Shop With Us</h1>
     </div>
     <div class="eleven columns container shopping-boxes">
-        <div class="shopping-box text-left">
-            <?php if($is_logged && $has_stylist) : ?>
-                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
-            <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>profile/about" class="over-img">
-            <?php else : ?>
-                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
-            <?php endif; ?>
-                <div class="img-box">
-                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_5.jpg" />
-                    <div class="overlay"></div>
-                </div>
+        <div class="shopping-box">
+            <a href="<?php echo $this->request->webroot; ?>closet" class="over-img">
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/The_Closet.png" />
             </a>
             <h3>Shop online</h3>
-            <span class="shopping-desc"><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />From your personal stylist’s selection curated solely for you.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />In the Closet, where we display a selection of our products.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />Get free shipping and hassle free return.
-</span>
+            <span class="shopping-desc">Browse our curated selection. In the Closet, you will find samples of everything from dress shoes to swimsuits.</span>
         </div> 
-         <div class="shopping-box text-left">
+         <div class="shopping-box">
             <?php if($is_logged && $has_stylist) : ?>
                 <a href="<?php echo $this->request->webroot; ?>fitting-room" class="over-img">
             <?php elseif($is_logged) : ?>
@@ -359,15 +387,12 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
-                <div class="img-box">
-                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_6.jpg" />
-                    <div class="overlay"></div>
-                </div>
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/My_Stylist.png" />
             </a>
-            <h3>Shop in person</h3>
-            <span class="shopping-desc"><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />Try on our ready to wear by booking a free appointment in our showroom.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />Tailor your life with our made-to-measure collection by scheduling a free consultation with our tailor.<br /><img class="diamond-bullet" src="<?php echo $this->webroot; ?>img/diamond-bullet.png" />Our showroom is located in New York.</span>
+            <h3>My Stylist</h3>
+            <span class="shopping-desc">Have a conversation with your stylist and see her personalized recommendations. Our stylists have access to our entire collection. </span>
         </div> 
-         <div class="shopping-box text-left">
+         <div class="shopping-box">
             <?php if($is_logged && $has_stylist) : ?>
                 <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
             <?php elseif($is_logged) : ?>
@@ -375,13 +400,10 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
-                <div class="img-box">
-                    <img src="<?php echo $this->webroot; ?>img/how-it-works/img_7.jpg" />
-                    <div class="overlay"></div>
-                </div>
+                <img src="<?php echo $this->webroot; ?>img/how-it-works/The_Fitting_Room.png" />
             </a>
-            <h3>You decide</h3>
-            <span class="shopping-desc">Your personal stylist is here to guide you through our collection and find the best products for your lifestyle, however, you and only you, decide what you want on your doorstep at the end of the day</span>
+            <h3>The Fitting Room</h3>
+            <span class="shopping-desc">Make an appointment to meet with your stylist, try on our collection or get measured for our made-to-measure collection. </span>
         </div> 
     </div>
 

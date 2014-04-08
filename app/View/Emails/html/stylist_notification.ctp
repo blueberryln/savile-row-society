@@ -17,7 +17,7 @@
                     <p >You have been assigned a new client. Please follow up with him shortly.</p>
                 </div>
 
-                <p style="margin-bottom: 10px; margin-top: 15px;">Best,<br>
+                <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
                 The Savile Row Society Team</p>
             
             </td>        

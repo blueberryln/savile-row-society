@@ -17,7 +17,7 @@
                     <p >Thank you for making an in-showroom appointment. Your personal stylist, <?php echo ucwords($stylist['User']['full_name']); ?>, will be contacting you shortly to finalize the details.</p>
                 </div>
 
-                <p style="margin-bottom: 10px; margin-top: 15px;">Best,<br>
+                <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
                 The Savile Row Society Team</p>
             
             </td>        
