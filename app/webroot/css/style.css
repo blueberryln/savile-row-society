@@ -582,7 +582,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 
 /*******New Home Page*******/
 .homepage{padding-top: 0;}
-#my-stylist .link-btn{padding: 15px 30px;}
+#my-stylist .link-btn, div.mgs-btn .link-btn{padding: 15px 30px;}
 .works-boxes, .stylist-boxes, .shopping-boxes{display: block; position: relative; margin: 20px auto 35px; text-align: center;}
 .works-boxes .work-box, .stylist-boxes .stylist-box, .shopping-boxes .shopping-box{display: inline-block; position: relative; vertical-align: top; font-family: 'sweetsans-regular',sans-serif; }
 .works-boxes .work-box, .shopping-boxes .shopping-box{width: 20%; margin: 0 3%; text-align: center; }
@@ -628,8 +628,8 @@ img.cart-img{vertical-align: middle; width:30px;}
 div.mgs-btn{bottom: 10%;}
 #my-stylist a,div.mgs-btn a{ color: #fff; font-family: Conv_Novecento-Book, sans-serif; padding: 5px 20px; font-size: 16px; text-align: center;}
 #my-stylist a{background-color: #8F7948;}
-div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
-div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}
+/*div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
+div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 	/******Anchor on images*****/
 	a.over-img{display: block;}
 	a.over-img img{width: 100%;}
@@ -699,7 +699,7 @@ div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
 	div.finalizing{width:66.66666666666666% !important;}
 	.product-icon-cont ul li{margin-right: 10px;}
 	#my-stylist{bottom: 17%;}
-	#my-stylist .link-btn {padding: 10px 22px}
+	#my-stylist .link-btn, div.mgs-btn .link-btn {padding: 10px 22px}
 
 	#sign-up-drop-down .close{right:45px;}
 }
@@ -776,7 +776,7 @@ div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
 	span.works-desc{padding-bottom: 20px;}	
 	.mg-small-1{margin: 0;}
 	#my-stylist, div.mgs-btn{bottom: 17%;}
-	#my-stylist .link-btn {padding: 5px 12px;}
+	#my-stylist .link-btn, div.mgs-btn .link-btn {padding: 5px 12px; font-size: 14px;}
 	div.mem-table{margin: 0 !important; padding: 0 !important; width: 97% !important; margin-left: 10px !important;}
 	.box-modal , .contact-options input[type="text"]{ width: 100%; }
 	.bubble-wrap{background: #f5f5f5 !important; border-radius: 4px !important; padding: 0 !important;}

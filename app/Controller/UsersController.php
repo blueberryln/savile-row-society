@@ -919,7 +919,12 @@ class UsersController extends AppController {
                 }   
             }    
         }
-        $this->User->save($user);
+
+        $this->User->updateAll(
+            array('User.stylist_id' => $user['User']['stylist_id']),
+            array('User.id' => $user['User']['id'])
+        );
+        //$this->User->save($user);
 
         $stylist_email = $new_stylist['User']['email'];
         $stylist_name = $new_stylist['User']['first_name'];

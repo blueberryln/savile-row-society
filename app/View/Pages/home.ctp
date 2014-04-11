@@ -155,7 +155,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php endif; ?>
                 <img src="<?php echo $this->webroot; ?>img/h_1.jpg" />
             </a>
-            <div id="my-stylist" style="left: 0; top: 5%;">
+            <div id="my-stylist" style="left: 0; top: 40px;">
                 <?php if($is_logged && $has_stylist) : ?>
                     <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Meet My<br>Stylist</a>
                 <?php elseif($is_logged) : ?>
@@ -167,7 +167,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div>
         <div class="mg-vid">            
             <img src="<?php echo $this->webroot; ?>img/h_2.jpg" />
-            <div class="mgs-btn" style="right: 0; top: 40%;">
+            <div class="mgs-btn" style="right: 0; top: 40px;">
                 <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>lookbooks/#29" style="margin-right: 0;">GET THIS <br>LOOK</a>
             </div>
             <!-- <iframe class="max-width-adj" src="http://www.youtube.com/embed/f6eqZnrWuQ8?enablejsapi=1&rel=0&version=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>  -->           
