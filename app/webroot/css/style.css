@@ -590,7 +590,8 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .works-boxes .work-box img{margin-bottom: 10px;}
 .stylist-box h3, .shopping-box h3{font-size: 17px; line-height: 18px; margin:8px 0px 5px; text-transform: uppercase; }
 .works-desc, .stylist-desc, .shopping-desc, .brands-desc  {display: block; font-size: 12px; margin:0 auto 15px auto;  color: #999; line-height: 18px;}
-.works-desc{text-transform: uppercase;}
+.works-desc, .shopping-desc{text-transform: uppercase;}
+.brands-desc{font-size: 14px;}
 .brands-desc as{color: #AF9A59;}
 .stylist-desc, .shopping-desc {font-family: 'sweetsans-regular', sans-serif; }
 .c-no{display: block; margin: 0 auto; }
@@ -610,8 +611,8 @@ span.brands-desc a{color: #AE9B34;}
 .testimonials h4{font-size: 20px; line-height: 21px; margin-bottom: 10px; font-family: 'sweetsans-regular',sans-serif; font-weight: 100; color: #555;}
 .testimonials .testi-desc{font-size: 14px; color: #777;}
 
-div.card-menu ul li img.sign-up{vertical-align: middle; width:90px; height:30px;}
-div.card-menu ul li img.sign-in{vertical-align: middle; width:70px; height:30px;}
+div.card-menu ul li img.sign-up{vertical-align: middle; height:30px;}
+div.card-menu ul li img.sign-in{vertical-align: middle; height:30px;}
 img.cart-img{vertical-align: middle; width:30px;}
 #msg-notifications img{width: 30px;}
 .mega-banner { margin-bottom: 40px; }

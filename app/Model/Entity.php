@@ -517,7 +517,7 @@ class Entity extends AppModel {
             'conditions' => array(
                 'Entity.show' => true, 
                 'Entity.id !=' => $product_id, 
-                //'Entity.is_featured' => true,
+                'Entity.hide_from_client' => false,
             ),
             'joins' => array(
                 array('table' => 'products_categories',
