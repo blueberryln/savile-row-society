@@ -79,7 +79,7 @@ window.registerProcess = true;
     <div class="container content inner preferences register-style">	
         <div class="eight columns register-steps center-block">
             <div class="profile-tabs text-center">
-                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>register/wardrobe">My Style</a>
                 <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
 

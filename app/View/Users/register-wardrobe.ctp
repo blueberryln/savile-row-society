@@ -84,7 +84,7 @@ window.registerProcess = true;
     <div class="container content inner preferences register-style">	
         <div class="eight columns register-steps center-block">
             <div class="profile-tabs text-center">
-                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>register/wardrobe">My Style</a>
                 <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
 
@@ -96,7 +96,7 @@ window.registerProcess = true;
                 
                 <h4>Your stylist should focus on</h4>
                 <p>
-                    To better understand your needs we'd like to know if your focus in 
+                    To better understand your needs we'd like to know if your focus in
                 </p>
                 <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" />
             </div>
@@ -137,7 +137,6 @@ window.registerProcess = true;
                          <br/>
                             <!--<?php echo $this->Form->end(__('Continue')); ?>-->
                             <div class="submit">                            
-                                <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>profile/about">Back</a> 
                                 <input type="submit" value="Continue" />   
                                 <p class="error-msg">All the fields are mandatory.</p>   
                             </div>                 

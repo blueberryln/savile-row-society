@@ -232,7 +232,7 @@ class UsersController extends AppController {
         if ($this->User->save($user)) {
             $result = $this->User->getByID($id);
             $this->Session->write('user', $result); 
-            $this->redirect('register/wardrobe/' . $user['User']['id']);
+            $this->redirect('register/brands/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
         }
@@ -335,7 +335,7 @@ class UsersController extends AppController {
         if ($this->User->save($user)) {
             $result = $this->User->getByID($id);
             $this->Session->write('user', $result); 
-            $this->redirect('register/brands/' . $user['User']['id']);
+            $this->redirect('/profile/about/' . $user['User']['id']);
         } else {
             // TODO: implement error handling
         }
@@ -667,7 +667,7 @@ class UsersController extends AppController {
                         $this->assignVipDiscount($results['User']['referred_by']);
                     }
 
-                    $this->redirect('/profile/about');
+                    $this->redirect('/register/wardrobe');
                     exit;
                 } else {
                     // redirect to home

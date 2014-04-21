@@ -268,7 +268,7 @@ window.registerProcess = true;
   <div class="container content inner preferences register-brands">	
       <div class="eight columns register-steps center-block">
           <div class="profile-tabs text-center">
-              <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+              <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>register/wardrobe">My Style</a>
               <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
           </div>
 
@@ -340,6 +340,8 @@ window.registerProcess = true;
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Vineyard Vines" id="10" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Fred Perry" id="11" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="Agave" id="12" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][polos_tees][]" value="None" id="13" />
+
                       <ol id="selectable" class="brands-logo eleven columns center-block">
                           <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/tees/hugo-boss.jpg" class="fadein-image" alt="Hugo Boss" /></li>
                           <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/tees/banana-replublic.jpg" class="fadein-image" alt="Banana Republic" /></li>
@@ -353,6 +355,8 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/tees/vineyard-vines.jpg" class="fadein-image" alt="Vineyard Vines" /></li>
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/tees/fred-perry.png" class="fadein-image" alt="Fred Perry" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/tees/agave.jpg" class="fadein-image" alt="Agave" /></li>
+                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>
+
                       </ol>
                   </div>
                   <div class="clear"></div>
@@ -378,6 +382,7 @@ window.registerProcess = true;
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="True Religion" id="10" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Big Star" id="11" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="Agave" id="12" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][jeans][]" value="None" id="13" />
                       <ol id="selectable" class="brands-logo eleven columns center-block">
                           <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/jeans/acne.jpg" class="fadein-image" alt="Acne" /></li>
                           <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/jeans/adriano.jpg" class="fadein-image" alt="Adriano Goldschmied" /></li>
@@ -391,6 +396,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/jeans/true-religion.jpg" class="fadein-image" alt="True Religion" /></li>
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/jeans/big-star.jpg" class="fadein-image" alt="Big Star" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/jeans/agave.jpg" class="fadein-image" alt="Agave" /></li>
+                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>
                       </ol>
                   </div>
                    <div class="clear"></div>
@@ -415,7 +421,8 @@ window.registerProcess = true;
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Nike" id="12" />     
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Sperry" id="13" />     
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Ted Baker" id="14" />     
-                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Tods" id="15" />                      
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="Tods" id="15" />  
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shoes][]" value="None" id="16" />                    
                       <ol id="selectable" class="brands-logo eleven columns center-block">                       
                           <li class="ui-state-default" data-id="4"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Allen Edmonds.jpg" class="fadein-image" alt="Allen Edmonds" /></li>       
                           <li class="ui-state-default" data-id="5"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Berluti.png" class="fadein-image" alt="Berluti" /></li>                        
@@ -428,7 +435,8 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Nike.jpg" class="fadein-image" alt="Nike" /></li>                        
                           <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Sperry.jpg" class="fadein-image" alt="Sperry" /></li>                        
                           <li class="ui-state-default" data-id="14"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Ted Baker.jpg" class="fadein-image" alt="Ted Baker" /></li>                        
-                          <li class="ui-state-default" data-id="15"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Tods.jpg" class="fadein-image" alt="Tods" /></li>                       
+                          <li class="ui-state-default" data-id="15"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Tods.jpg" class="fadein-image" alt="Tods" /></li> 
+                          <li class="ui-state-default" data-id="16" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>                      
                       </ol>
                   </div>
                    <div class="clear"></div>
@@ -454,6 +462,7 @@ window.registerProcess = true;
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Tom Ford" id="11" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Zara" id="12" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="Abercrombie" id="13" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][shirts][]" value="None" id="14" />
                       <ol id="selectable" class="brands-logo eleven columns center-block">
                           <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/shirts/etro.jpg" class="fadein-image" alt="Etro" /></li>
                           <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/shirts/ascoi-chang.jpg" class="fadein-image" alt="Ascot Chang" /></li>
@@ -467,6 +476,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/shirts/tom-ford.jpg" class="fadein-image" alt="Tom Ford" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/shirts/zara.jpg" class="fadein-image" alt="Zara" /></li>
                           <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/shirts/Abercrombie-n-Fitch.jpg" class="fadein-image" alt="Abercrombie" /></li>
+                          <li class="ui-state-default" data-id="14" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>
                       </ol>
                   </div>
                   <div class="clear"></div>               
@@ -492,6 +502,7 @@ window.registerProcess = true;
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Paul Smith" id="10" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="Thom Browne" id="11" />
                       <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="SUITSUPPLY" id="12" />
+                      <input class="hide" type="checkbox" name="data[UserPreference][Brands][suits][]" value="None" id="13" />
                       <ol id="selectable" class="brands-logo eleven columns center-block">
                           <li class="ui-state-default" data-id="1"><img src="<?php echo $this->webroot; ?>img/brands/suits/enporio-armani.jpg" class="fadein-image" alt="Armani" /></li>
                           <li class="ui-state-default" data-id="2"><img src="<?php echo $this->webroot; ?>img/brands/suits/brooks-brothers.jpg" class="fadein-image" alt="Brooks Brothers" /></li>
@@ -505,6 +516,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/suits/paul-smith.jpg" class="fadein-image" alt="Paul Smith" /></li>
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/suits/thombrowne.jpg" class="fadein-image" alt="Thom Browne" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/suits/suitsupply_logo.png" class="fadein-image" alt="SUITSUPPLY" /></li>
+                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>
                       </ol>
                   </div>
 
@@ -514,7 +526,7 @@ window.registerProcess = true;
           <div class="text-center brands-cont">
               <br/>                          
               <div class="submit">                            
-                  <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/size/<?php echo $user_id; ?>">Back</a> 
+                  <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>profile/about/<?php echo $user_id; ?>">Back</a> 
                   <input id="brands-continue" type="submit" value="Continue" />
                   <p class="error-msg">Please select atleast one brand from each category.</p> 
               </div>            

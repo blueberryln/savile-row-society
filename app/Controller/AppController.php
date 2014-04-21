@@ -77,7 +77,7 @@ class AppController extends Controller {
          * Set values for profile completion popup
          */
         if($this->Session->check('completeProfile') && $this->Session->read('completeProfile')){
-            if($this->params->url == "profile/about"){
+            if($this->params->url == "register/wardrobe"){
                 $this->set('profilePopup', array('completeProfile' => true, 'isProfile' => true));
             }
             else{

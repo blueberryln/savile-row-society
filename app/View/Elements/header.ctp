@@ -91,7 +91,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                             <?php endif; ?>
                             <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>mycloset/liked" class="headerMenu">My Closet</a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>profile/about" class="headerMenu">Profile</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="headerMenu">Profile</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>refer-a-friend" class="headerMenu">Refer a friend</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
                         </ul>
@@ -118,7 +118,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php elseif($is_stylist) : ?>
                     <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Clients</span></a></li>
                 <?php elseif($is_logged) : ?>
-                    <li>  <a href="<?php echo $this->request->webroot; ?>profile/about">My Stylist</a></li>
+                    <li>  <a href="<?php echo $this->request->webroot; ?>register/wardrobe">My Stylist</a></li>
                 <?php else : ?>
                     <li>  <a href="#" onclick="window.ref_url=''; signUp();">My Stylist</a></li>
                 <?php endif; ?>
@@ -126,7 +126,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php if($is_logged && $has_stylist) : ?>
                     <li><a  href="<?php echo $this->request->webroot; ?>fitting-room" data-ref="closet"><span class="underline1">The Fitting room</span></a></li> 
                  <?php elseif($is_logged) : ?>
-                    <li><a  href="<?php echo $this->request->webroot; ?>profile/about" data-ref="closet"><span class="underline1">The Fitting room</span></a></li> 
+                    <li><a  href="<?php echo $this->request->webroot; ?>register/wardrobe" data-ref="closet"><span class="underline1">The Fitting room</span></a></li> 
                 <?php else : ?>
                     <li><a href="#" onclick="window.ref_url=''; signUp();"><span class="underline1">The Fitting room</span></a></li> 
                 <?php endif; ?>                           

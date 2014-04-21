@@ -20,7 +20,7 @@
                     <?php else : ?>
                         <div style=" padding: 5px 0;">
                             <p >Your client, <?php echo ucfirst($from_name); ?>, has sent you a new message:</p>
-                            <p><?php echo $message; ?></p>
+                            <p><?php echo nl2br($message); ?></p>
                             <br />
                             <p><a href="<?php echo Configure::read('Social.callback_url'); ?>messages/index/<?php echo $client_id; ?>" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">SEE FULL CONVERSATION </a></p>
                         </div>    
@@ -30,7 +30,7 @@
 
                     <div style=" padding: 5px 0;">
                         <p >Your personal stylist, <?php echo ucfirst($from_name); ?>, has sent you a new message:</p>
-                        <p><?php echo $message; ?></p>
+                        <p><?php echo nl2br($message); ?></p>
                         <br />
                         <p><a href="<?php echo Configure::read('Social.callback_url'); ?>messages/index" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">SEE FULL CONVERSATION </a></p>
                     </div>

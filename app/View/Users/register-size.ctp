@@ -37,7 +37,7 @@ window.registerProcess = true;
     <div class="container content inner preferences register-size">	
         <div class="eight columns register-steps center-block">
             <div class="profile-tabs text-center">
-                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>register/wardrobe">My Style</a>
                 <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
 
@@ -57,7 +57,8 @@ window.registerProcess = true;
                     <option value="42">42</option>
                     <option value="44">44</option>
                     <option value="46">46</option>
-                    <option value="48">48</option>                
+                    <option value="48">48</option>  
+                    <option value="I don't know">I don't know</option>              
                 </select>
             </div>
 
@@ -72,21 +73,23 @@ window.registerProcess = true;
                     <option value="16">16</option>
                     <option value="16.5">16.5</option>
                     <option value="17">17</option>
-                    <option value="17.5">17.5</option>
+                    <option value="17.5">17.5</option>  
+                    <option value="I don't know">I don't know</option>   
                 </select>
             </div>
 
             <div class="input text required chest-size">
-                <label for="chestSize">POLO SIZE:</label>                            
+                <label for="chestSize">T-SHIRT SIZE:</label>                            
                 <select name="data[UserPreference][Size][polo_size]" tabindex="" required="required" id="poloSize" >
-                    <option value="">Polo Size</option>
+                    <option value="">T-shirt Size</option>
                     <option value="xs">xs</option>
                     <option value="s">s</option>
                     <option value="m">m</option>
                     <option value="l">l</option>
                     <option value="xl">xl</option>
                     <option value="xxl">xxl</option>
-                    <option value="xxxl">xxxl</option>                    
+                    <option value="xxxl">xxxl</option>    
+                    <option value="I don't know">I don't know</option>                     
                 </select>
             </div>
 
@@ -94,10 +97,6 @@ window.registerProcess = true;
                 <label for="chestSize">PANT SIZE:</label>                            
                 <select name="data[UserPreference][Size][pant_size]" tabindex="" required="required" id="pantSize" >
                     <option value="">Pant Size</option>
-                    <option value="s">s</option>
-                    <option value="m">m</option>
-                    <option value="l">l</option>
-                    <option value="xl">xl</option>
                     <option value="28">28</option>
                     <option value="29">29</option>
                     <option value="30">30</option>
@@ -114,7 +113,8 @@ window.registerProcess = true;
                     <option value="41">41</option>
                     <option value="42">42</option>
                     <option value="43">43</option>
-                    <option value="44">44</option>
+                    <option value="44">44</option>  
+                    <option value="I don't know">I don't know</option>   
                 </select>
             </div>
 
@@ -136,7 +136,8 @@ window.registerProcess = true;
                     <option value="12.5">12.5</option>
                     <option value="13">13</option>
                     <option value="13.5">13.5</option>
-                    <option value="14">14</option>
+                    <option value="14">14</option>  
+                    <option value="I don't know">I don't know</option>   
                 </select>
             </div>
                         

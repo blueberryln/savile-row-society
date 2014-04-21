@@ -104,12 +104,13 @@ input[type="submit"]{color: #fff;}
 	.header .menu li {cursor: pointer; display: inline-block; margin: 0; padding: 0 10px; text-transform: uppercase; border:none;}
 	.header .menu li:last-child{margin-right: 0;}
 	.header .menu li a {color: #444; font-weight: normal; font-size: 12px; font-family: 'sweetsans-regular',sans-serif; }
-	.header .menu li a:hover, .card-menu  li a:hover{color: #000;}
+	.header .menu li a:hover, .card-menu  li a:hover{color: #af9a59;}
 	.header .menu li span:hover{ border-bottom:1px solid #fff;}
 	.header .menu li:hover > .submenu{ display:block !important; }
 	.header .menu .submenu { background-color: #ffffff; border: 1px solid #CCCCCC; cursor: auto; display: none; margin: 2px 0 0 -14px; padding: 0; position: absolute; z-index: 100; text-align: left; }
 	.header .menu .submenu li {border:none; display: block;}
 	.header .menu .submenu li a{color: #b4b4b4;}
+	#myaccount-drop { padding-right: 12px; background: url('../img/down-arrow.png') no-repeat right center; }
 	#menu-switcher{color: #000; font-size: 40px; position: absolute; right: 5px; bottom: 0px; display: none; cursor: pointer; -webkit-transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; -ms-transition: all 0.3s linear; transition: all 0.3s linear;}
 	#menu-switcher img{width: 28px; height: 28px;}
 	span.call-us-at{position: absolute; top: 2px; right:5px; font-family:'sweetsans-regular', sans-serif; font-size: 12px; line-height: 18px;}
@@ -156,6 +157,7 @@ ol.brands-logo{margin: 0 auto !important;}
 ul#branding-partners li,div#brands ol.brands-logo li{ display:inline-block; background: #fff; border:1px solid #CCCCCC; vertical-align: middle;  line-height: 57px; text-align: center;  margin:15px !important; cursor: pointer;  padding:0 3px;  height:60px;  width:140px; font-size: 14px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box; }
 div#brands ol.brands-logo li.ui-selected, div#brands ol.brands-logo li:hover { border: 2px solid #AF9A59; background: white !important; }
 ul#branding-partners li img,div#brands ol.brands-logo li img{ max-height:52px; max-width:138px; vertical-align:middle;}
+#brands .ui-selected {color: #555 !important;}
 .register-brands .product-type{text-align: center; margin-bottom: 20px;}
 ul.product-type li { display: inline-block; margin-right: 60px; margin-bottom: 0; font-family: Conv_Novecento-Book,sans-serif; cursor: pointer; }
 ul.product-type li.selected a { color: #AF9A59; font-weight: bold; }
@@ -627,7 +629,7 @@ img.cart-img{vertical-align: middle; width:30px;}
 .mg-vid iframe, .mg-vid img, .mg-small img{width: 99%;}
 #my-stylist, div.mgs-btn{position: absolute; width: 100%;}
 div.mgs-btn{bottom: 10%;}
-#my-stylist a,div.mgs-btn a{ color: #fff; font-family: Conv_Novecento-Book, sans-serif; padding: 5px 20px; font-size: 16px; text-align: center;}
+#my-stylist a,div.mgs-btn a{ color: #fff; font-family: Conv_Novecento-Book, sans-serif; padding: 5px 20px; font-size: 16px; text-align: center; width: 33%; opacity: 0.7;}
 #my-stylist a{background-color: #8F7948;}
 /*div.mgs-btn a{background-color: rgba(0,0,0,0.8);}
 div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/

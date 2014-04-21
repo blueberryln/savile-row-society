@@ -19,7 +19,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
     <div class="container content inner register-about">	
         <div class="eight columns register-steps center-block">
             <div class="profile-tabs text-center">
-                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>profile/about">My Style</a>
+                <a class="link-btn gold-btn my-style" href="<?php echo $this->webroot; ?>register/wardrobe">My Style</a>
                 <a class="link-btn black-btn my-profile" href="<?php echo $this->webroot; ?>myprofile">My Profile</a>
             </div>
 
@@ -61,11 +61,15 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
             <div class="text-center about-submit">
                 <br/>
-                <?php echo $this->Form->end(__('Continue')); ?> 
-                <p class="error-msg">All the fields are mandatory.</p>    
+                <div class="submit"> 
+                    <a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/size/<?php echo $user_id; ?>">Back</a> 
+                    <input type="submit" value="Continue">
+                    <!--<?php echo $this->Form->end(__('Continue')); ?> -->
+                    <p class="error-msg">All the fields are mandatory.</p> 
+                </div>   
                    
             </div>
-            
+            </form>
         </div>
         
     </div>
