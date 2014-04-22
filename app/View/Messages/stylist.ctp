@@ -320,7 +320,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <div class="clear-fix"></div>
                 <div class="btn-outfit-cont text-right">
                     <img src="<?php echo $this->webroot; ?>img/loading.gif" width="28" class="hide closet-load-icon" style="position: relative; top: 8px;" /> &nbsp;
-                    <a href="" class="link-btn black-btn load-more-closet">Load More</a>
+                    <a href="" class="link-btn black-btn clear-all-closet">Clear All</a>
+                    <!-- <a href="" class="link-btn black-btn load-more-closet">Load More</a> -->
                     <a href="" class="link-btn black-btn add-closet-outfit">Add to outfit</a>
                 </div>
                     

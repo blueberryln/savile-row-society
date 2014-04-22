@@ -561,6 +561,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 	.btn-outfit:hover{background-color: #8F7948;}
 	.btn-user-closet{float:left;}
 	.btn-srs-closet{float:right;}
+	.filter-selected{padding-right: 14px !important; background: url('../img/cross_menue.png') no-repeat 99% 2px;}
 	.outfit-close, .srs-closet-close, .user-closet-close{width: 16px; height: 16px; position: absolute; top: 9px; right: 7px; display: block; background: url('../img/close-popup.png') no-repeat center center;}
 	.user-closet-cont{ position: absolute; width: 100%; height: 100%; background-color: #fff; z-index: 10; top: 0;}
 	.srs-closet-cont{ position: absolute; width: 100%; height: 100%; background-color: #fff; z-index: 10; top: 0; }

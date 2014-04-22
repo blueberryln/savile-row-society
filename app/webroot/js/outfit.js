@@ -196,8 +196,8 @@ function getClosetProducts(){
     //console.log(strBrand);
     //console.log(strColor);
     inAjaxTransaction = true;
-    $(".load-more-closet").hide();
-    $(".closet-load-icon").show();
+    // $(".load-more-closet").hide();
+    // $(".closet-load-icon").show();
     $.post(webroot + "outfits/getClosetItems/",{category_slug : categoryId,str_brand : strBrand, str_color : strColor, last_closet_item : lastClosetItem}, function(data){
         //console.log(data);
         
@@ -211,11 +211,11 @@ function getClosetProducts(){
                 addClosetItems(ret['data']);
                 lastClosetItem = ret['last_closet_item'];
             }
-            $(".load-more-closet").show();
-            $(".closet-load-icon").hide();
+            // $(".load-more-closet").show();
+            // $(".closet-load-icon").hide();
         }
         else if(ret['status'] == "end"){
-            $(".closet-load-icon").hide();    
+            // $(".closet-load-icon").hide();    
         }
 
     });
@@ -372,6 +372,13 @@ $(document).ready(function(){
                 $(".purchased-list-cont").fadeIn(300);        
             });
         } 
+    });
+
+    //Clear srs closet selections
+    $(".clear-all-closet").on("click", function(e) {
+        e.preventDefault();
+        $(".srs-closet-items").html("");      
+        $(".filter-selected").removeClass("filter-selected");
     });
 
     //Load more products
@@ -558,4 +565,14 @@ $(document).ready(function(){
             }
         }
     });
+
+
+    $(".srs-closet-items").scroll(function(){
+        var div = $(this);
+        //console.log(div.height());
+        //console.log(div.scrollTop());
+        if (div[0].scrollHeight - div.scrollTop() == div.height()){
+            getClosetProducts();   
+        }
+    })
 });
