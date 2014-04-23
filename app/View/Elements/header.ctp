@@ -69,11 +69,16 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         </div>
                                     </a>
                                 <?php else : ?>
-                                    <a href="<?php echo $this->webroot; ?>messages/index/">
+                                    <a href="<?php echo $this->webroot; ?>messages/index/" class="msg-count-cont">
                                         <div class="msg-count">
                                             <span><?php echo $message_notification['message']; ?></span> Messages
                                         </div>
-                                    </a>    
+                                    </a>   
+                                    <a href="<?php echo $this->webroot; ?>messages/index/">
+                                        <div class="client-count">
+                                            <span><?php echo $message_notification['clients']; ?></span> Clients
+                                        </div>
+                                    </a> 
                                 <?php endif; ?>
                                 <div class="clear"></div>
                             </div>

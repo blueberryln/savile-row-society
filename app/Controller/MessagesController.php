@@ -455,6 +455,7 @@ If interested, I would also be happy to meet with you in our New York City based
             if ($this->Message->validates()) {
                 // store in db
                 $res = $this->Message->save($this->Message->data);
+
                 $msg['status'] = 'ok';            
                 $msg['Message'] = $res['Message'];
                 $timestamp = strtotime($msg['Message']['created']);
@@ -472,6 +473,10 @@ If interested, I would also be happy to meet with you in our New York City based
             // Prepare data for email notification
             $to_user = $User->getById($msg['Message']['user_to_id']);
             $from_user = $User->getById($msg['Message']['user_from_id']);
+
+            if($to_user['User']['stylist_notification']){
+                $User->disableStylistNotification($to_id);
+            }
             
             $notification['is_photo'] = false;
             $notification['to_stylist'] = false;

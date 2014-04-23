@@ -569,10 +569,22 @@ $(document).ready(function(){
 
     $(".srs-closet-items").scroll(function(){
         var div = $(this);
-        //console.log(div.height());
-        //console.log(div.scrollTop());
         if (div[0].scrollHeight - div.scrollTop() == div.height()){
             getClosetProducts();   
+        }
+    })
+
+    $(".purchased-list-cont .product-listing-box").scroll(function(){
+        var div = $(this);
+        if (div[0].scrollHeight - div.scrollTop() == div.height()){
+            getPurchasedItems();  
+        }
+    })
+
+    $(".liked-list-cont .product-listing-box").scroll(function(){
+        var div = $(this);
+        if (div[0].scrollHeight - div.scrollTop() == div.height()){
+            getLikedItems(); 
         }
     })
 });

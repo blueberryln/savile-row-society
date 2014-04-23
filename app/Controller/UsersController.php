@@ -921,7 +921,7 @@ class UsersController extends AppController {
         }
 
         $this->User->updateAll(
-            array('User.stylist_id' => $user['User']['stylist_id']),
+            array('User.stylist_id' => $user['User']['stylist_id'], 'User.stylist_notification' => 1),
             array('User.id' => $user['User']['id'])
         );
         //$this->User->save($user);
@@ -1041,6 +1041,9 @@ class UsersController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             if($this->request->data['User']['stylist_id'] == ""){
                 unset($this->request->data['User']['stylist_id']);
+            }
+            else{
+                $this->request->data['User']['stylist_notification'] = 1;
             }
             if ($this->User->save($this->request->data)) {
                 if(isset($this->request->data['User']['stylist_id']) && $this->request->data['User']['stylist_id'] > 0){

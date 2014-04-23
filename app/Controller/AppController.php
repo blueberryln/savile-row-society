@@ -216,14 +216,25 @@ class AppController extends Controller {
      */
     function getMessageNotification(){
         $user_id = $this->getLoggedUserID();
+        $user = $this->getLoggedUser();
         $Message = ClassRegistry::init('Message');
+        $User = ClassRegistry::init('User');
         $message_notification = array();
-        if($user_id){
+        if($user_id && $user['User']['is_stylist']){
             $message_notification['total'] = $Message->getTotalNotificationCount($user_id);
             $message_notification['message'] = $Message->getNewMessageCount($user_id);
             $message_notification['outfit'] = $Message->getNewOutfitCount($user_id);
+            $message_notification['clients'] = $User->getNewClientsCount($user_id);
+
+            $message_notification['total'] = $message_notification['total'] + $message_notification['clients'];
             return $message_notification;
         }    
+        else if($user_id) {
+            $message_notification['total'] = $Message->getTotalNotificationCount($user_id);
+            $message_notification['message'] = $Message->getNewMessageCount($user_id);
+            $message_notification['outfit'] = $Message->getNewOutfitCount($user_id);
+            return $message_notification;    
+        }
         return false;
     } 
 }

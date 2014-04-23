@@ -306,6 +306,13 @@ class OutfitsController extends AppController {
                     $Message->create();
                     if ($Message->validates()) {
                         $Message->save($data);
+
+                        $User = ClassRegistry::init('User');
+                        $to_user = $User->getById($client_id);
+                        if($to_user['User']['stylist_notification']){
+                            $User->disableStylistNotification($client_id);
+                        }
+
                         $this->sendOutfitNotification($outfit_id, $outfit_array, $client_id);
                     }
                     

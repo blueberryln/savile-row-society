@@ -15,7 +15,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <?php if(isset($new_clients) && count($new_clients) > 0) {
                         foreach($new_clients as $new_cl){
                             echo '<div class="client-row">' . 
-                                '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '">' . $new_cl['User']['first_name'] . '</a> has been assigned to you.' . 
+                                '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '">' . $new_cl['User']['first_name'] . ' has been assigned to you.</a>' . 
                             '</div>';    
                         }    
                     }

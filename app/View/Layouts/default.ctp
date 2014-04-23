@@ -184,6 +184,9 @@
                             $("#total-notifications").html(ret['total']); 
                             $(".msg-count span").text(ret['message']);   
                             $(".outfit-count span").text(ret['outfit']);
+                            if(typeof ret['clients'] != "undefined") {
+                                $(".client-count span").text(ret['clients']);
+                            }
                         }
                     }    
                 });    
