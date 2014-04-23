@@ -521,6 +521,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
     .client-row { border: 1px solid #D2D2D2; border-radius: 2px; margin-bottom: 4px; background-color: #EDEDED;
     color: #555; }
 	.client-row a{ color: #222; text-decoration: none; display: inline-block; padding: 5px 10px; text-align: left;}
+	.client-row a span { font-weight: bold; }
 	.get-style-btn { padding: 10px 20px; margin-top: 10px; }
 	.content.booking h1 { color: #888; font-size: 30px; line-height: 36px; margin: 20px 0; text-transform: uppercase; font-weight: normal; }
 	.content.booking h6 { color: #6C6C6C; font-family: 'sweetsans-regular',sans-serif; font-size: 16px; line-height: 26px; margin: 0 0 10px; text-transform: uppercase; }

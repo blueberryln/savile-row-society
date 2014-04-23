@@ -58,7 +58,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <?php if(isset($new_clients) && count($new_clients) > 0) {
                         foreach($new_clients as $new_cl){
                             echo '<div class="client-row">' . 
-                                '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '">' . $new_cl['User']['first_name'] . ' has been assigned to you.</a>' . 
+                                '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '"><span>' . ucfirst($new_cl['User']['first_name']) . '</span> has been assigned to you.</a>' . 
                             '</div>';    
                         }    
                     }
