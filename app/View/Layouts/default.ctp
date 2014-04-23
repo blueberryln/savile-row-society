@@ -197,10 +197,25 @@
             });
         </script>
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
-
+        
+        <!-- Google Code for Remarketing Tag -->
+        <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 979436043;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+        </script>
+        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+        </script>
+        <noscript>
+        <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/979436043/?value=0&amp;guid=ON&amp;script=0"/>
+        </div>
+        </noscript>
+        
         <?php echo $this->fetch('script'); ?>
 
         <?php echo $this->element('sql_dump'); ?>
-
     </body>
 </html>
