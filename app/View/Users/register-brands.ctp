@@ -355,7 +355,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/tees/vineyard-vines.jpg" class="fadein-image" alt="Vineyard Vines" /></li>
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/tees/fred-perry.png" class="fadein-image" alt="Fred Perry" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/tees/agave.jpg" class="fadein-image" alt="Agave" /></li>
-                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>
+                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of these brands are among my favorites</li>
 
                       </ol>
                   </div>
@@ -396,7 +396,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/jeans/true-religion.jpg" class="fadein-image" alt="True Religion" /></li>
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/jeans/big-star.jpg" class="fadein-image" alt="Big Star" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/jeans/agave.jpg" class="fadein-image" alt="Agave" /></li>
-                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>
+                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of these brands are among my favorites</li>
                       </ol>
                   </div>
                    <div class="clear"></div>
@@ -436,7 +436,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Sperry.jpg" class="fadein-image" alt="Sperry" /></li>                        
                           <li class="ui-state-default" data-id="14"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Ted Baker.jpg" class="fadein-image" alt="Ted Baker" /></li>                        
                           <li class="ui-state-default" data-id="15"><img src="<?php echo $this->webroot; ?>img/brands/shoes/Tods.jpg" class="fadein-image" alt="Tods" /></li> 
-                          <li class="ui-state-default" data-id="16" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>                      
+                          <li class="ui-state-default" data-id="16" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of these brands are among my favorites</li>                      
                       </ol>
                   </div>
                    <div class="clear"></div>
@@ -476,7 +476,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/shirts/tom-ford.jpg" class="fadein-image" alt="Tom Ford" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/shirts/zara.jpg" class="fadein-image" alt="Zara" /></li>
                           <li class="ui-state-default" data-id="13"><img src="<?php echo $this->webroot; ?>img/brands/shirts/Abercrombie-n-Fitch.jpg" class="fadein-image" alt="Abercrombie" /></li>
-                          <li class="ui-state-default" data-id="14" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>
+                          <li class="ui-state-default" data-id="14" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of these brands are among my favorites</li>
                       </ol>
                   </div>
                   <div class="clear"></div>               
@@ -516,7 +516,7 @@ window.registerProcess = true;
                           <li class="ui-state-default" data-id="10"><img src="<?php echo $this->webroot; ?>img/brands/suits/paul-smith.jpg" class="fadein-image" alt="Paul Smith" /></li>
                           <li class="ui-state-default" data-id="11"><img src="<?php echo $this->webroot; ?>img/brands/suits/thombrowne.jpg" class="fadein-image" alt="Thom Browne" /></li>
                           <li class="ui-state-default" data-id="12"><img src="<?php echo $this->webroot; ?>img/brands/suits/suitsupply_logo.png" class="fadein-image" alt="SUITSUPPLY" /></li>
-                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of this brands are among my favorites.</li>
+                          <li class="ui-state-default" data-id="13" style="line-height: 16px; padding-top: 5px;"><img alt="None" class="hide">None of these brands are among my favorites</li>
                       </ol>
                   </div>
 

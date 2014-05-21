@@ -363,7 +363,9 @@ class User extends AppModel {
                     'alias' => 'Message',
                     'type' => 'LEFT',
                     'conditions' => array(
-                        'User.id = Message.user_from_id'
+                        'User.id = Message.user_from_id',
+                        'User.is_stylist' => false,
+                        'User.is_admin' => false,
                     )
                 ),
             ),
