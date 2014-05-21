@@ -21,6 +21,7 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
 
 .link-btn{ border: none; color: #FFFFFF; display: inline-block; font-size: 14px; margin: 5px 5px 5px 0; padding: 6px 12px; text-decoration: none; text-transform: uppercase; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box; }
 .gray-btn { background-color: #F1F1F1; color: #333 }
+.grey1-btn, .grey1-btn:hover, .grey1-btn:visited { background-color: #BBB7B7; color: #fff; }
 .green-btn, .green-btn:hover, .green-btn:visited { background-color: #497775; color: #fff; }
 .black-btn,.black-btn:hover, .black-btn:visited { background-color: #000; color: #fff; text-transform: uppercase;}
 .gold-btn, .gold-btn:hover, .gold-btn:visited{ background-color: #af9a59; color: #fff; }
@@ -479,6 +480,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .mycart { margin-top: 40px; }
 .mycart button { color: white; font-family: 'sweetsans-regular',sans-serif; width: 200px; height: 40px; border:none; margin-right: 40px; } 
 .mycart button:last-of-type { margin-right: 0; }
+.my-cart #product-quantity{width: 60px;}
 .description { color: #B3B3B3; font-size: 11px; padding-bottom: 2px; line-height: 14px; }
 .divider { border-top: 1px solid #DEDEDE; margin: 0 auto; width: 90%; }
 .card-expiration .srs-form{float: left; margin:0 2%;}

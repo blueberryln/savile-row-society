@@ -36,11 +36,7 @@ $(document).ready(function(){
             }
         );
     });
-});
-';
 
-$update_script = '
-    
     $(".update-quantity").on("click", function(e){
         e.preventDefault();
         var cartItems = new Array();
@@ -51,17 +47,15 @@ $update_script = '
                 cartItems.push({"item-id" : cartItemId, "quantity" : cartItemQuantity}); 
             }   
         });
-        console.log(cartItems);
         if(cartItems.length > 0){
             $.post("' . $this->request->webroot . 'api/cart/update", { items: cartItems },
                 function(data) {
-                    console.log(data);
                     window.location.reload();
                 }
             );    
         }
-        console.log(cartItems);
     });
+});
 ';
 
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
@@ -139,8 +133,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                         if($item['CartItem']['quantity'] >= 10){
                                             $max_quantity = $item['CartItem']['quantity'];   
                                         } 
-                                        // echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range($min_quantity,$max_quantity), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1));
-                                        echo $item['CartItem']['quantity'];
+                                        echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range($min_quantity,$max_quantity), 'label' => false, 'div' => false, 'value' => $item['CartItem']['quantity']-1));
+                                        // echo $item['CartItem']['quantity'];
                                     } 
                                     ?>    
                                 </td>
@@ -162,8 +156,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
             <?php endif; ?>
             <div class="mycart text-center">
                 <?php if ($cart_list) : ?>
-                    <a href="<?php echo $this->webroot; ?>closet" class="link-btn black-btn continue-shopping">CONTINUE SHOPPING</a>
-                    <!-- <a href="" class="link-btn green-btn update-quantity">UPDATE QUANTITY</a> -->
+                    <a href="<?php echo $this->webroot; ?>closet" class="link-btn grey1-btn continue-shopping">CONTINUE SHOPPING</a>
+                    <a href="" class="link-btn black-btn update-quantity">UPDATE QUANTITY</a>
                     <a href="<?php echo $this->webroot; ?>checkout" class="link-btn gold-btn checkout">CHECKOUT</a>
                 <?php else : ?>
                     <a href="<?php echo $this->webroot; ?>closet" class="link-btn black-btn continue-shopping">CONTINUE SHOPPING</a>
