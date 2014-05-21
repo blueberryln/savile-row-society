@@ -284,11 +284,10 @@ class MessagesController extends AppController {
             $stylist = $User->getById($stylist_id);
             $body = "Hi " . ucwords($user['User']['first_name']) . ",
 
-                    Thank you for registering with Savile Row Society. My name is " . ucwords($stylist['User']['first_name']) . "and I will be your personal stylist. Feel free to ask me any questions about our services and products, and I will get back to you shortly. In the meantime, you can browse the samples from our collection that we are currently featuring in The Closet. 
+                    Thank you for registering with Savile Row Society. My name is " . ucwords($stylist['User']['first_name']) . " and I will be your personal stylist. Feel free to ask me any questions about our services and products, and I will get back to you shortly. In the meantime, you can browse the samples from our collection that we are currently featuring in The Closet. 
 If interested, I would also be happy to meet with you in our New York City based showroom.
-                    Welcome to Savile Row Society!
                     
-                    Thanks a lot.";
+                    Welcome to Savile Row Society!";
 
             $this->Message->data['Message']['user_from_id'] = $stylist_id;
             $this->Message->data['Message']['user_to_id'] = $user_id;

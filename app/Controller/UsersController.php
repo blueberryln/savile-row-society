@@ -882,7 +882,7 @@ class UsersController extends AppController {
 
     public function assign_refer_stylist($user_id){
         $user = $this->User->findById($user_id);
-        $default_stylist = $this->User->findByEmail("contactus@savilerowsociety.com");
+        $default_stylist = $this->User->findByEmail("Leslie@srsstylist.com");
         $new_stylist = array();
         if($user['User']['referred_by']){
             $referer = $this->User->getByID($user['User']['referred_by']);
@@ -1059,14 +1059,6 @@ class UsersController extends AppController {
                     $name = $user_data['User']['first_name'];
                     
                     try{
-                        // $email = new CakeEmail('default');
-                        // $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                        // $email->to($user_data['User']['email']);
-                        // $email->subject('Savile Row Stylist: Your stylist!');
-                        // $email->template('user_stylist');
-                        // $email->emailFormat('html');
-                        // $email->viewVars(compact('name', 'stylist_name'));
-                        // $email->send();
 
                         $bcc = Configure::read('Email.contact');
                         $email = new CakeEmail('default');
