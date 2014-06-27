@@ -28,12 +28,19 @@
                 <?php else : ?>
                     <p style="padding-top: 15px;">Hi <?php echo ucfirst($to_name); ?>,</p>
 
-                    <div style=" padding: 5px 0;">
-                        <p >Your personal stylist, <?php echo ucfirst($from_name); ?>, has sent you a new message:</p>
-                        <p><?php echo nl2br($message); ?></p>
-                        <br />
-                        <p><a href="<?php echo Configure::read('Social.callback_url'); ?>messages/index" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">SEE FULL CONVERSATION </a></p>
-                    </div>
+                    <?php if($is_photo) : ?>
+                        <div style=" padding: 5px 0;">
+                            <p >Your stylist, <?php echo ucfirst($from_name); ?>, has sent you a new image:</p>
+                            <p><img src="<?php echo Configure::read('Social.callback_url'); ?>files/chat/<?php echo $photo_url; ?>" /></p>
+                        </div>
+                    <?php else : ?>
+                        <div style=" padding: 5px 0;">
+                            <p >Your personal stylist, <?php echo ucfirst($from_name); ?>, has sent you a new message:</p>
+                            <p><?php echo nl2br($message); ?></p>
+                            <br />
+                            <p><a href="<?php echo Configure::read('Social.callback_url'); ?>messages/index" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">SEE FULL CONVERSATION </a></p>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
                     <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
                 The Savile Row Society Team</p>

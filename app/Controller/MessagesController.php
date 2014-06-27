@@ -433,6 +433,80 @@ If interested, I would also be happy to meet with you in our New York City based
 
 
     /**
+     * Action to allow stylist to send photo to the user
+     */
+    public function sendPhotoToUser($id){
+        $this->autoLayout = false;
+            
+        if($this->request->is('post') || $this->request->is('put')){
+            $Image = ClassRegistry::init('Image');
+            
+            $img = null;
+            $img_type = '';
+            $img_size = '';
+            // file upload
+            if ($this->request->data['Message']['Image']['name'] && $this->request->data['Message']['Image']['size'] > 0) {
+                $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+                $data_image = $this->request->data['Message']['Image'];
+                
+                if (!in_array($data_image['type'], $allowed)) {
+                    $this->Session->setFlash(__('You have to upload an image.'), 'flash');
+                } else if ($data_image['size'] > 5242880) {
+                    $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
+                } else {
+                    $rand = substr(uniqid ('', true), -7);
+                    $img = $rand . '_' . $data_image['name'];
+                    $img_type = $data_image['type'];
+                    $img_size = $data_image['size'];
+                    move_uploaded_file($data_image['tmp_name'], APP . DS . 'webroot' . DS . 'files' . DS . 'chat' . DS . $img);
+                }
+                
+                // save image
+                if ($img) {
+                    $User = ClassRegistry::init('User');
+            
+                    // get stylist ID
+                    $user = $User->getByID($this->getLoggedUserID());
+                    $client_id = $id;
+                    $client = $User->getByID($client_id);
+
+                    if(!$client || $client['User']['stylist_id'] != $user['User']['id']){
+                        $this->redirect('index');
+                        exit;
+                    }
+                    
+                    $data = array();
+                    $data['Message']['user_to_id'] = $client_id;
+                    $data['Message']['user_from_id'] = $user['User']['id'];
+                    $data['Message']['body'] = "user image";
+                    $data['Message']['image'] = $img;
+
+                    $this->Message->create();
+                    if ($this->Message->validates($data)) {
+                        $res = $this->Message->save($data);
+                        
+                        // Prepare data for email notification
+                        $to_user = $User->getById($res['Message']['user_to_id']);
+                        $from_user = $User->getById($res['Message']['user_from_id']);
+                        
+                        $notification['is_photo'] = true;
+                        $notification['to_stylist'] = false;
+                        $notification['photo_url'] = $res['Message']['image'];
+                        $notification['to_name'] = $to_user['User']['first_name'];
+                        $notification['from_name'] = $from_user['User']['first_name']; 
+                        $notification['to_email'] = $to_user['User']['email'];
+                        $notification['from_email'] = Configure::read('Email.admin');
+                        
+                        $this->sendEmailNotification($notification);
+                    }
+                }
+            }
+        }
+        $this->redirect('index/' . $id);    
+    }
+
+
+    /**
      * Send message from stylist to user
      */
     public function send_to_user() {
@@ -831,7 +905,12 @@ If interested, I would also be happy to meet with you in our New York City based
             else{
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->subject('You Have A New Message!');
-                $email->viewVars(compact('to_name','from_name','message','to_stylist','is_photo'));
+                if($is_photo){
+                    $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo'));
+                }
+                else{
+                    $email->viewVars(compact('to_name','from_name','message','to_stylist','is_photo'));
+                }
             }
             
             $email->send();

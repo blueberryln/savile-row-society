@@ -84,6 +84,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
                     <textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
                     <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a>
+                    <a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a>
                     <div class="clear-fix"></div>
                 
                 <div class="chat-container">
@@ -103,6 +104,22 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 </div>
 <?php echo $this->Form->end(); ?>
 
+<div id="chatimage-box" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="signin-content">
+            <h5 class="sign">Send Photo</h5>  
+            
+            <?php echo $this->Form->create('Message', array('type' => 'file', 'url' => '/messages/sendPhotoToUser/' . $client_id)); ?> 
+                <?php
+                    echo $this->Form->input('Image', array('type' => 'file', 'label' => false, 'class' => 'style-photo'));
+                ?>
+                <input type="submit" class="link-btn black-btn signin-btn" value="Upload Photo" /> 
+                <br /><br />
+            </form> 
+        </div> 
+    </div>
+</div>
 
 <!-- Create outfit popup-->
 <div id="outfit-box" class="hide outfit-modal container content">
@@ -632,6 +649,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     } 
                 }    
             });
+        });
+
+
+        $("#sendphoto").on('click', function(e){
+            e.preventDefault();
+            $.blockUI({message: $("#chatimage-box")});   
         });
 
         $(".chat-container").on("click", ".mosaic-overlay", function(e){

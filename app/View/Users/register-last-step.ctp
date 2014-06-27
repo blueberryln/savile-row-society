@@ -41,6 +41,10 @@ $(document).ready(function(){
         if(contact.type && $.inArray("Skype", contact.type) >= 0){
             $("input[type=\"checkbox\"][value=\"Skype\"]").attr("checked","checked");
         }
+
+        $(".phone-field").val("' . $phone . '");
+        $(".skype-field").val("' . $skype . '");
+
     }
 
     $("div.submit input").click(function(event){

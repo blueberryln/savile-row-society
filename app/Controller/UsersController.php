@@ -569,20 +569,22 @@ class UsersController extends AppController {
                 break;
             case 'last-step': // not in use
                 $title_for_layout = 'Sign up';
+                $phone = $user['User']['phone'];
+                $skype = $user['User']['skype'];
                 $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
                 $contact = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Contact'])) ? $preferences['UserPreference']['Contact'] : null; 
-                $this->set(compact('full_name', 'contact', 'user'));
+                $this->set(compact('full_name', 'contact', 'user', 'phone', 'skype'));
                 
                 $this->render('register-last-step');
                 break;
 
-            case 'finish':
-                $this->isLogged();
-                $user_id = $this->getLoggedUserID();
-                $user = $this->User->getByID($user_id);
-                $this->Session->write('user', $user);
-                $this->render('register-finish');
-                break;
+            // case 'finish':
+            //     $this->isLogged();
+            //     $user_id = $this->getLoggedUserID();
+            //     $user = $this->User->getByID($user_id);
+            //     $this->Session->write('user', $user);
+            //     $this->render('register-finish');
+            //     break;
             default:
                 if($this->Session->check('referer')){
                     $User = ClassRegistry::init('User');

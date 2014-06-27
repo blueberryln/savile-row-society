@@ -3,7 +3,7 @@ $script = '
 $(document).ready(function(){
     $("#upload-image").click(function(e) {
         e.preventDefault();
-        $.blockUI({ message: $("#upload") });
+        $.blockUI({ message: $("#upload"), css: {top: "50px", left: $(window).width()/2 - $("#upload").width()/2 + "px"}});
         $(".blockOverlay").click($.unblockUI);
         $.ajax({
            url: "' . $this->request->webroot . 'admin/products/entities/upload/' . $id . '" 
@@ -14,7 +14,7 @@ $(document).ready(function(){
     
     $("#add-size").click(function(e) {
         e.preventDefault();
-        $.blockUI({ message: $("#block-size") });
+        $.blockUI({ message: $("#block-size"), css: {top: "50px", left: $(window).width()/2 - $("#block-size").width()/2 + "px"} });
         $(".blockOverlay").click($.unblockUI);
         $.ajax({
            url: "' . $this->request->webroot . 'admin/products/entities/sizeadd/' . $id . '" 
@@ -26,7 +26,7 @@ $(document).ready(function(){
     $(".edit-detail").click(function(e) {
         e.preventDefault();
         var detail_id = $(this).data("detail_id");
-        $.blockUI({ message: $("#block-size") });
+        $.blockUI({ message: $("#block-size"), css: {top: "50px", left: $(window).width()/2 - $("#block-size").width()/2 + "px"} });
         $(".blockOverlay").click($.unblockUI);
         $.ajax({
            url: "' . $this->request->webroot . 'admin/products/entities/sizeedit/" + detail_id 
