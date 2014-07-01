@@ -32,7 +32,7 @@
                       <tr>
                         <td valign="top"><b>Ship To:</b></td>
                         <td>
-                            <?php echo ucfirst($shipped_order['User']['first_name']); ?><br>  
+                            <?php echo ucfirst($shipped_order['ShippingAddress']['first_name']) . " " . ucfirst($shipped_order['ShippingAddress']['last_name']); ?><br>  
                             <?php echo $shipped_order['ShippingAddress']['address']; ?><br>
                             <?php echo $shipped_order['ShippingAddress']['city']; ?>, <?php echo $shipped_order['ShippingAddress']['state']; ?> - <?php echo $shipped_order['ShippingAddress']['zip']; ?><br>
                             <?php echo $shipped_order['ShippingAddress']['country']; ?>

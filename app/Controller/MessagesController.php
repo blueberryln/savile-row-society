@@ -304,8 +304,9 @@ If interested, I would also be happy to meet with you in our New York City based
                 $notification['to_name'] = $user['User']['first_name'];
                 $notification['from_name'] = $stylist['User']['first_name']; 
                 $notification['to_email'] = $user['User']['email'];
-                $notification['from_email'] = Configure::read('Email.admin'); 
-                
+                // $notification['from_email'] = Configure::read('Email.admin'); 
+                $notification['from_email'] = $stylist['User']['email']; 
+
                 $this->sendEmailNotification($notification, $user);    
             }
         }    
@@ -495,7 +496,7 @@ If interested, I would also be happy to meet with you in our New York City based
                         $notification['to_name'] = $to_user['User']['first_name'];
                         $notification['from_name'] = $from_user['User']['first_name']; 
                         $notification['to_email'] = $to_user['User']['email'];
-                        $notification['from_email'] = Configure::read('Email.admin');
+                        $notification['from_email'] = $from_user['User']['email']; 
                         
                         $this->sendEmailNotification($notification);
                     }
@@ -557,7 +558,7 @@ If interested, I would also be happy to meet with you in our New York City based
             $notification['to_name'] = $to_user['User']['first_name'];
             $notification['from_name'] = $from_user['User']['first_name']; 
             $notification['to_email'] = $to_user['User']['email'];
-            $notification['from_email'] = Configure::read('Email.admin'); 
+            $notification['from_email'] = $from_user['User']['email'];  
             
             $this->sendEmailNotification($notification);
             
@@ -904,6 +905,7 @@ If interested, I would also be happy to meet with you in our New York City based
             }  
             else{
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->replyTo(array($from_email => 'Savile Row Society'));
                 $email->subject('You Have A New Message!');
                 if($is_photo){
                     $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo'));

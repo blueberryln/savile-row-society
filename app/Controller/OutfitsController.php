@@ -344,6 +344,7 @@ class OutfitsController extends AppController {
             try{
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->replyTo(array($stylist['User']['email'] => 'Savile Row Society'));
                 $email->to($client['User']['email']);
                 $email->subject('Your Stylist Has Created A New Outfit For You!');
                 $email->template('new_outfit');
