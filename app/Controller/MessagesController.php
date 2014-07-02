@@ -904,7 +904,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 } 
             }  
             else{
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->from(array($from_email => 'Savile Row Society'));
                 $email->replyTo(array($from_email => 'Savile Row Society'));
                 $email->subject('You Have A New Message!');
                 if($is_photo){

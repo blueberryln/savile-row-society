@@ -421,9 +421,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     ?>
                 <?php else : ?>
                 <div class="product-top-offset"></div>
-                <div class="closet-sorry">
-                    <h4>SORRY!</h4> 
-                    <h5>There are no products available for this category.</h5>            
+                <div class="closet-sorry" style="text-align: center;">
+                    <h4>WE LOVE THAT BRAND TOO! </h4> 
+                    <h5>However, the products from this brand are only available to our stylists. So don’t hesitate to ask your stylist for an outfit that will include this brand.</h5>           
                 </div>                
                 <?php endif; ?>
                 
