@@ -234,9 +234,24 @@ jQuery(function(){
     });
 
 
-    $("#block-vip-access").on("click", function(e){
+    $("#block-vip-access,#block-vip-access-link").on("click", function(e){
         e.preventDefault();
         $.blockUI({message: $('#vip-box')});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
+
+
+$("#block-request-access").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#request-box')});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
+
+$("#block-step-access").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#step-box')});
         $('.blockOverlay').click($.unblockUI);
     });
 

@@ -17,6 +17,15 @@
                         <li><a href="<?php echo $this->request->webroot; ?>admin/users/export">Export</a></li>
                     </ul>
                 </li>
+                <!--stylish- profile-->
+                <li>
+                    <a href="<?php echo $this->request->webroot; ?>admin/styles">Style Profile</a>
+                    <ul class="submenu">
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/styles/add">Add New Style</a></li>
+                    </ul>
+                </li>
+                <!--stylish profile end-->
+                
                 <li>
                     <a href="<?php echo $this->request->webroot; ?>admin/products">Products</a>
                     <ul class="submenu">

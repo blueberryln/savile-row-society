@@ -137,7 +137,9 @@
             <?php
             if (!$is_logged){
                 echo $this->element('popup/authentication'); 
-                echo $this->element('popup/vip_access');    
+                echo $this->element('popup/vip_access');  
+                echo $this->element('popup/requestpop'); 
+                echo $this->element('popup/steprequest');    
             }
             ?>
 

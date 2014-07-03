@@ -631,5 +631,38 @@ class ApiController extends AppController {
         }
         exit;
     }
+
+
+    public function requestinvite(){
+        $title_for_layout = 'Request Invitation';
+        if ($this->request->is('post')) {
+            //print_r($this->request->data[email]);
+            //exit;
+             $toemail = $this->request->data['email'];
+                    if ($toemail) {
+                        //$email = new CakeEmail(array('log' => true));
+                        $email = new CakeEmail('default');
+                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        $email->to($toemail);
+                        $email->subject('Welcome to Savile Row Society!');
+                        $email->template('requestinvite');
+                        $email->emailFormat('html');
+                        $email->viewVars(compact($toemail));
+
+                            if ($email->send()) {
+                                $this->Session->setFlash(__('requestinvite  are sent'), 'flash', array( 'title' => 'Check your E-mail!'));
+                                $this->redirect('/');
+                            } else {
+                                $this->Session->setFlash(__('We cannot send requestinvite  at the moment'), 'flash');
+                            }
+                    } else {
+                        $this->Session->setFlash(__('We cannot send requestinvite  at the moment'), 'flash');
+                    }
+                }
+
+            $this->set(compact('title_for_layout'));
+
+    }
+
 }
 

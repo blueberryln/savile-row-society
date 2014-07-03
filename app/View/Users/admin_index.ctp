@@ -131,7 +131,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             ?>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!--<tr>
                                         <td>Birth Date:</td>
                                         <td>
                                             <?php
@@ -143,7 +143,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             }
                                             ?>
                                         </td>
-                                    </tr>
+                                    </tr>-->
                                     <tr>
                                         <td>Phone:</td>
                                         <td>
@@ -169,8 +169,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             ?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Industry:</td>
+                                    <!--<tr>
+                                        <td>Style Profile:</td>
                                         <td>
                                             <?php
                                             if(!isset($user['User']['industry'])|| $user['User']['industry']==""){
@@ -181,7 +181,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             }
                                             ?>
                                         </td>
-                                    </tr>
+                                    </tr>-->
 
                                 </table>
                                 <table  style="float:right; width: 470px;border-bottom: 1px solid #cccccc;border-left: 1px solid #cccccc;background-color: #E0E0E0;">
@@ -215,7 +215,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                     </tr>
 
 
-                                    <tr>
+                                   <!-- <tr>
                                         <td>Heard From:</td>
                                         <td>
                                             <?php
@@ -227,7 +227,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             }
                                             ?>
                                         </td>
-                                    </tr>
+                                    </tr>-->
                                     <tr>
                                         <td>Active:</td>
                                         <td>
@@ -280,6 +280,51 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             ?> 
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <td>Neck Size:</td>
+                                        <td>
+                                            <?php
+                                            if(isset($user['UserPreference']['neck_size']) || $user['UserPreference']['neck_size'] == ""){
+                                                echo 'N/A';
+                                            }
+                                            else{
+                                                echo $user['UserPreference']['neck_size'];
+                                            }
+                                            ?> 
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>Jacket Size:</td>
+                                        <td>
+                                        <?php
+                                        if(isset($user['UserPreference']['jacket_size']) || $user['UserPreference']['jacket_size'] == ""){
+                                            echo 'N/A';
+                                        }
+                                        else{
+                                            echo $user['UserPreference']['jacket_size'];
+                                        }
+                                        ?> 
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Pant Waist:</td>
+                                        <td>
+                                        <?php
+                                        if(isset($user['UserPreference']['pant_size']) || $user['UserPreference']['jacket_size'] == ""){
+                                            echo 'N/A';
+                                        }
+                                        else{
+                                            echo $user['UserPreference']['jacket_size'];
+                                        }
+                                        ?> 
+                                        </td>
+                                    </tr>
+
+
                                 </table>
 
 
