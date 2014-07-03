@@ -45,6 +45,9 @@ App::uses('CakeEmail', 'Network/Email');
                 if($image = $this->saveImage()){
                     $user['User']['profile_photo_url'] = $image;
                 }
+                else{
+                    $user['User']['profile_photo_url'] = null;    
+                }
 
                 if($this->Session->check('referer')){
                     $user['User']['referred_by'] = $this->Session->read('referer');  
