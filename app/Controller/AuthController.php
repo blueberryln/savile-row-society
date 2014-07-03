@@ -27,7 +27,7 @@ App::uses('CakeEmail', 'Network/Email');
 		{
 
             $data = $this->request->data;
-
+            $data['UserPreference']['style_pref'] = implode(',', $data['UserPreference']['style_pref']); 
 			$this->User->create();
 			if($res = $this->User->saveAll($data)){
 				$user = $this->User->findByEmail($data['User']['email']);
@@ -38,7 +38,6 @@ App::uses('CakeEmail', 'Network/Email');
 			else{
 				
 			}
-			//exit;
 
 		}
 				

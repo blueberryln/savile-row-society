@@ -195,12 +195,9 @@ margin-left: 2px;">
 					  //foreach ($styles as $style): ?>
                      <?php
 					  foreach ($styles as $style): ?> 
-                      <input class="hide" type="checkbox" name="data[UserPreference][style_pref]" value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
-                      <li class="ui-state-default" style="width:150px;padding:0px 0px 0px 0px;" data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /><br/><?php echo $style['Style']['name']; ?></li>
-                       <?php //echo $style['Style']['name']; //echo $style['Style']['name'];
-               // echo $this->Form->input('name');
-                //echo $this->Form->input('name', array('label' => 'Parent Product Name'));
-                ?>
+                      <input class="hide" type="checkbox" name="data[UserPreference][style_pref][]" value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
+                      <li class="ui-state-default" style="width:150px;padding:0px 0px 0px 0px;" data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
+                       
                        <?php endforeach; ?>
                        
                     </ol>
@@ -269,26 +266,9 @@ let your stylist get an idea of what will fit you best.
 
                 </p>
             </div>
-          
-            
-             <div class="input text required">
-                <label for="jeans">Suit Size:</label>                            
-                <select name="data[UserPreference][jacket_size]" tabindex="" required="required" id="jacketSize" >
-                    <option value="">Suit Size</option>
-                    <option value="36">36</option>
-                    <option value="38">38</option>
-                    <option value="40">40</option>                    
-                    <option value="42">42</option>
-                    <option value="44">44</option>
-                    <option value="46">46</option>
-                    <option value="48">48</option>                
-                </select>
-            </div>
-
-
            
             <div class="input text required">
-                <label for="shirtSize">NECK SIZE:</label>                            
+                <label for="neckSize">NECK SIZE:</label>                            
                 <select name="data[UserPreference][neck_size]" tabindex="" required="required" id="neckSize" >
                     <option value="">Neck Size</option>
                     <option value="14">14</option>
@@ -301,11 +281,26 @@ let your stylist get an idea of what will fit you best.
                     <option value="17.5">17.5</option>
                 </select>
             </div>
+          
+            
+             <div class="input text required">
+                <label for="jacketSize">Jacket Size:</label>                            
+                <select name="data[UserPreference][jacket_size]" tabindex="" required="required" id="jacketSize" >
+                    <option value="">Suit Size</option>
+                    <option value="36">36</option>
+                    <option value="38">38</option>
+                    <option value="40">40</option>                    
+                    <option value="42">42</option>
+                    <option value="44">44</option>
+                    <option value="46">46</option>
+                    <option value="48">48</option>                
+                </select>
+            </div>
 
             <div class="input text required chest-size">
-                <label for="chestSize">PANT WAIST:</label>                            
-                <select name="data[UserPreference][polo_size]" tabindex="" required="required" id="poloSize" >
-                    <option value="">PANT WAIST</option>
+                <label for="pantWaist">PANT WAIST:</label>                            
+                <select name="data[UserPreference][pant_waist]" tabindex="" required="required" id="pantWaist" >
+                    <option value="">Pant Waist</option>
                     <option value="xs">xs</option>
                     <option value="s">s</option>
                     <option value="m">m</option>
@@ -317,9 +312,9 @@ let your stylist get an idea of what will fit you best.
             </div>
 
             <div class="input text required chest-size">
-                <label for="chestSize">PANT LENGHT:</label>                            
-                <select name="data[UserPreference][pant_size]" tabindex="" required="required" id="pantSize" >
-                    <option value="">PANT LENGHT</option>
+                <label for="pantLenth">PANT LENGHT:</label>                            
+                <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLenth" >
+                    <option value="">Pant Length</option>
                     <option value="s">s</option>
                     <option value="m">m</option>
                     <option value="l">l</option>
@@ -344,7 +339,7 @@ let your stylist get an idea of what will fit you best.
                 </select>
             </div>
           <div class="input text required chest-size">
-                <label for="chestSize">SHOE SIZE:</label>                            
+                <label for="shoeSize">SHOE SIZE:</label>                            
                 <select name="data[UserPreference][shoe_size]" tabindex="" required="required" id="shoeSize" >
                     <option value="">Shoe Size</option>                    
                     <option value="7">7</option>
@@ -391,33 +386,21 @@ let your stylist get an idea of what will fit you best.
             <br />
             
             <div class="hi-message">
-                <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Tell us more about yourself
-</h4>
-                <p style="margin-top: -25px;
-font-size: 14px;
-margin-left: 2px;">
+                <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Tell us more about yourself</h4>
+                <p style="margin-top: -25px; font-size: 14px; margin-left: 2px;">
                   Help our stylists get to know you better to create a more personalized experience.
-
-
                 </p>
             </div>
-          <style>
-           /*.d .content .input, select#contact-type{
-margin: 0 0 18px 38px;
-width: 210px;
-float: left;
-}*/
-          </style>
             
             <div class="five columns pref-time left">
             <div class="pref-options">
-		   <?php
-                echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => 'First Name:','required', 'placeholder' => 'FIRST NAME'));
-                echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => 'Last Name:','required', 'placeholder' => 'LAST NAME'));
-                echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
-				echo $this->Form->input('User.password', array('id' => 'register-password', 'label' => 'Password:','required', 'placeholder' => 'PASSWORD'));
-			    echo $this->Form->input('User.confirm_password', array('id' => 'register-password', 'label' => 'Confirm Password:', 'placeholder' => 'CONFIRM PASSWORD'));
-			?>
+                <?php
+                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => 'First Name:','required', 'placeholder' => 'FIRST NAME'));
+                    echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => 'Last Name:','required', 'placeholder' => 'LAST NAME'));
+                    echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
+    				echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Password:','required', 'placeholder' => 'PASSWORD'));
+    			    echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Confirm Password:', 'placeholder' => 'CONFIRM PASSWORD'));
+    			?>
             </div>
             </div>
             
