@@ -31,7 +31,7 @@ $(document).ready(function(){
             <p>Due to high demand in our beta period, we have placed you on our waitlist and will notify you as soon as we are able to service you.</p> 
             
             <form method="post" action="api/requestinvite">
-                <input type="text" class="vip-access-code" id="semail" style="width: 216px;height: 32px;margin: 0px 0px 20px 0px;" required name="data[email]" placeholder="Enter email address...">
+                <input type="text" class="" id="semail" style="width: 216px;height: 32px;margin: 0px 0px 20px 0px;" required name="data[email]" placeholder="Enter email address...">
 
                 <?php 
 

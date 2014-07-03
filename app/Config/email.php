@@ -52,13 +52,4 @@ class EmailConfig {
         'transport' => 'Smtp'
     );
 
-    // 
-    // 
-    // public $default = array(
-    //     'host' => 'http://mail.mobikasa.com',
-    //     'username' => 'testing1@mobikasa.com',
-    //     'password' => '123456',
-    //     'transport' => 'Smtp'
-    // );
-
 }

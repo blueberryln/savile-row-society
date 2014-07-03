@@ -3,6 +3,7 @@
 App::uses('AppController', 'Controller');
 App::uses('Security', 'Utility');
 App::uses('CakeEmail', 'Network/Email');
+App::uses('Validation', 'Utility');
 
 /**
  * Users Controller
@@ -125,6 +126,39 @@ class UsersController extends AppController {
             exit;
         }
         $this->render('/Pages/home');
+    }
+
+
+    public function requestinvite(){
+        if ($this->request->is('ajax')) {
+
+            $toemail = $this->request->data['invite-email'];
+            $ret = array();
+            if ($toemail && Validation::email($toemail) && !$this->User->findByEmail($toemail)) {
+                $email = new CakeEmail('default');
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->to($toemail);
+                $email->cc(array('contact@savilerowsociety.com' => 'Savile Row Society'));
+                $email->subject('Thank you!');
+                $email->template('requestinvite');
+                $email->emailFormat('html');
+                $email->viewVars(compact($toemail));
+
+                if ($email->send()) {
+                    $ret['status'] = 'ok';
+                } else {
+                    $ret['status'] = 'error';
+                }
+            } 
+            else if ($toemail && Validation::email($toemail) && $this->User->findByEmail($toemail)){
+                $ret['status'] = 'member';
+            }
+            else {
+                $ret['status'] = 'invalid-email';
+            }
+        }
+        echo json_encode($ret);
+        exit;
     }
 
     
@@ -477,6 +511,9 @@ class UsersController extends AppController {
      * Sign up
      */
     public function register($step = null, $user_id = null) {
+        $this->redirect('/');
+        exit;
+
         $this->set(compact('user_id'));
         $user = null;
         $register_cases = array('saveStyle', 'saveContact', 'saveSize', 'saveBrands', 'saveAbout', 'style', 'size', 'brands', 'about', 'last-step', 'wardrobe', 'saveWardrobe');
@@ -978,54 +1015,52 @@ class UsersController extends AppController {
     public function admin_index() {
         $this->layout = 'admin';
         $this->isAdmin();
-        // $this->Paginator->settings = array(
-        //         'fields' => array('User.*'),
-        //         'joins' => array(
-        //             array('table' => 'messages',
-        //                 'alias' => 'Message',
-        //                 'type' => 'LEFT',
-        //                 'conditions' => array(
-        //                     'User.id = Message.user_from_id'
-        //                 )
-        //             ),
-
-        //         ),
-        //         'limit' => 20,
-        //         'group' => array('User.id'),
-        //         'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
-        // );
-        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
         $this->Paginator->settings = array(
-                'fields' => array('User.*'),
-                'limit' => 20,
-                'order' => array('User.id' => 'DESC', ),
-                'join'  => array(
+                'fields' => array('User.*', 'UserPreference.*'),
+                'joins' => array(
+                    array('table' => 'messages',
+                        'alias' => 'Message',
+                        'type' => 'LEFT',
+                        'conditions' => array(
+                            'User.id = Message.user_from_id'
+                        )
+                    ),
                     array('table' => 'users_preferences',
                         'alias' => 'UserPreference',
                         'type' => 'LEFT',
                         'conditions' => array(
-                            'User.id = UserPreference.user_id',
+                            'User.id = UserPreference.user_id'
                         )
                     ),
+
                 ),
+                'limit' => 20,
+                'group' => array('User.id'),
+                'order' => array('User.id' => 'DESC', 'Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
         );
+        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
+        // $this->Paginator->settings = array(
+        //         'fields' => array('User.*'),
+        //         'limit' => 20,
+        //         'order' => array('User.id' => 'DESC', ),
+        //         'join'  => array(
+        //             array('table' => 'users_preferences',
+        //                 'alias' => 'UserPreference',
+        //                 'type' => 'LEFT',
+        //                 'conditions' => array(
+        //                     'User.id = UserPreference.user_id',
+        //                 )
+        //             ),
+        //         ),
+        // );
 
         $users = $this->Paginator->paginate(); 
- 
         $this->set(compact('stylists','users'));
 
 
         $styles = $this->Style->find('all');
          // print_r($styles);exit;
         $this->set('styles', $styles);
-        $this->User->findById('id');
-
-         $userprefs = $this->UserPreference->find('all' ,array('conditions' => array('UserPreference.user_id' => $this->User->findById('id') )));
-        //   //print_r($userprefs);exit;
-        $this->set('userprefs', $userprefs);
-        // $styles = $this->Style->find('list', array('conditions'=>array('status' => '1')));
-        // $styles = $this->Paginator->paginate();
-        // $this->set(compact('styles',$styles));
     }
     
     /**

@@ -280,4 +280,42 @@ $("#block-step-access").on("click", function(e){
             container.hide();
         }    
     });
+
+
+    $(".btn-request-invite").on('click', function(e){
+        e.preventDefault();
+        var inviteEmail = $("#invite-email").val();
+        if(inviteEmail){
+            $.ajax({
+                url: "/users/requestinvite",
+                data : {
+                    'invite-email' : inviteEmail,
+                },
+                cache: false,
+                type: 'POST',
+                success: function(res) {
+                    var res = jQuery.parseJSON(res);
+                    if (res['status']=='ok') {
+                        $("#request-invite-block").hide();
+                        $("#request-invite-status").show();
+                    }
+                    else if(res['status']=='member'){
+                        var notificationDetails = new Array();
+                        notificationDetails["msg"] = "You are already a member of Savile Row Society.";
+                        showNotification(notificationDetails, true); 
+                    }
+                    else {
+                        var notificationDetails = new Array();
+                        notificationDetails["msg"] = "The request could not be completed right now. Please try after some time.";
+                        showNotification(notificationDetails, true); 
+                    }
+                },
+                error: function(res) {
+                    
+                }
+            }).done(function(res){
+                callInAction = false;
+            });
+        } 
+    });
 });
