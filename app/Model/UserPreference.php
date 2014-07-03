@@ -17,7 +17,7 @@ class UserPreference extends AppModel {
      *
      * @var string
      */
-	public $useTable = 'user_preferences';
+	public $useTable = 'users_preferences';
    
  
 	public $displayField = 'name';

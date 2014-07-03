@@ -13,9 +13,6 @@ App::uses('AppModel', 'Model');
 class Style extends AppModel
 {
 	
-public $displayField = 'name';	
-	
-	
-	}
+}
 
  ?>
