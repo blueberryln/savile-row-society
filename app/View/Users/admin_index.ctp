@@ -264,35 +264,18 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                 </table>
                                 <table  style="float:right; width: 470px;border-bottom: 1px solid #cccccc;border-left: 1px solid #cccccc;background-color: #E0E0E0;">
                                     
-                                    
-                                    
-
-
-                                   <!-- <tr>
-                                        <td>Heard From:</td>
-                                        <td>
-                                            <?php
-                                            if(!isset($user['User']['heard_from'])|| $user['User']['heard_from']==""){
-                                                echo 'N/A';
-                                            }
-                                            else{
-                                                echo h($user['User']['heard_from']);
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>-->
-                                   
+                                 
                                     
                                     
                                     <?php
                                     //print_r($userprefs);exit;
-                                     foreach ($userprefs as $key => $userpref): ?>
+                                     foreach ($userprefs as  $userpref): ?>
                                       
                                     <tr>
                                         <td>Neck Size:</td>
                                         <td>
                                             <?php
-                                            if(isset($userpref['UserPreference']['neck_size'])  == ""){
+                                            if(isset($user['UserPreference']['neck_size'])  == ""){
                                                 echo 'N/A';
                                             }
                                             else{
@@ -357,7 +340,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         </td>
                                     </tr>
 
-
+                                     
                                     <?php 
                                     
                                     //print_r($userprefs);exit;
@@ -380,9 +363,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         ?> 
                                         </td>
                                     </tr>
-                                    <?php  } ?>
 
-                                <?php endforeach; ?>
+
+                                    <?php  } ?>
+<?php endforeach; ?>
+                               
                                 </table>
 
 

@@ -994,23 +994,34 @@ class UsersController extends AppController {
         //         'group' => array('User.id'),
         //         'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
         // );
+        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
         $this->Paginator->settings = array(
                 'fields' => array('User.*'),
                 'limit' => 20,
                 'order' => array('User.id' => 'DESC', ),
+                'join'  => array(
+                    array('table' => 'users_preferences',
+                        'alias' => 'UserPreference',
+                        'type' => 'LEFT',
+                        'conditions' => array(
+                            'User.id = UserPreference.user_id',
+                        )
+                    ),
+                ),
         );
 
-        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
-        $users = $this->Paginator->paginate();
+        $users = $this->Paginator->paginate(); 
+ 
         $this->set(compact('stylists','users'));
 
 
         $styles = $this->Style->find('all');
          // print_r($styles);exit;
         $this->set('styles', $styles);
+        $this->User->findById('id');
 
-        $userprefs = $this->UserPreference->find('all');
-         // print_r($styles);exit;
+         $userprefs = $this->UserPreference->find('all' ,array('conditions' => array('UserPreference.user_id' => $this->User->findById('id') )));
+        //   //print_r($userprefs);exit;
         $this->set('userprefs', $userprefs);
         // $styles = $this->Style->find('list', array('conditions'=>array('status' => '1')));
         // $styles = $this->Paginator->paginate();

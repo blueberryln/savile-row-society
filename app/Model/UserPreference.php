@@ -20,7 +20,7 @@ class UserPreference extends AppModel {
 	public $useTable = 'users_preferences';
    
  
-	public $displayField = 'name';
+	
 
         public $belongsTo = array(
             'User' => array(

@@ -114,7 +114,15 @@ window.registerProcess = true;
 <script>
 $(document).ready(function() {
     $("#cont1").on("click", function(){
+       //var a=$("#im").val(this.value);
+       //var a= $("input[type='checkbox']").val(this.value);
+      // alert(a);
+       //if(a=='')
+       // {
+            //alert(a);
+       // }else{
 		$("a[href='#tabs-2']#t2").trigger("click");
+    //}
 	});
 	$("#cont2").on("click", function(){
 		$("a[href='#tabs-3']#t3").trigger("click");
@@ -185,58 +193,32 @@ margin-left: 2px;">
             <div class="twelve columns">
                
                 <div id="your-style">
-                    
-                    
-                    <!--<input class="hide" type="checkbox" name="data[UserPreference][style_pref]" value="Casual" id="2" />
-                    <input class="hide" type="checkbox" name="data[UserPreference][style_pref]" value="Business Casual" id="3" />-->
-                    
-                    <ol id="selectable" style="margin-left: 45px;">
-                      <?php
-					  //foreach ($styles as $style): ?>
-                     <?php
-					  foreach ($styles as $style): ?> 
-                      <input class="hide" type="checkbox" name="data[UserPreference][style_pref][]" value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
-                      <li class="ui-state-default" style="width:150px;padding:0px 0px 0px 0px;" data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
+                 <ol id="selectable" style="margin-left: 22px;">
+                      
+			     <?php foreach ($styles as $style): ?> 
+                          <input class="hide" type="checkbox" name="data[UserPreference][style_pref][]"   value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
+                          <li class="ui-state-default" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" onclick="yes();"  data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
                        
-                       <?php endforeach; ?>
+                 <?php endforeach; ?>
                        
-                    </ol>
+                 </ol>
                 </div>
             </div>
-            
-          
-              
-           
         </div>
     </div> 
-                <!--ward row end-->
-                <!--style register-->
-                
-
-
-
-<!--style register end-->
-
-<!--Size register end-->
+               
 
   
     </div>
     
-                <!--size register end-->
                 
-                
-
-                <!--brand register-->
-                
-             <!--brand register-->
-             
             
                 
                 </div>
             </div>
 
               <div class="text-center about-submit">
-                 <br/>                       
+                                     
                     <div class="submit">                            
                        <div id="tabs">
                        <ul> 
@@ -363,10 +345,10 @@ let your stylist get an idea of what will fit you best.
             <div class="clear-fix"></div>
             
             <div class="text-center about-submit">
-                 <br/>                       
+                                      
                     <div class="submit">                            
                        <div id="tabs">
-                       <ul> <li><a class="link-btn black-btn back-btn" id="back2" href="#tabs-1">Back</a> </li>
+                       <ul> <!--<li><a class="link-btn black-btn back-btn" id="back2" href="#tabs-1">Back</a> </li>-->
                         <li><a class="link-btn black-btn back-btn" id="cont2" href="#tabs-3">Continue</a> 
                        </li>
                        </ul>
@@ -398,8 +380,8 @@ let your stylist get an idea of what will fit you best.
                     echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => 'First Name:','required', 'placeholder' => 'FIRST NAME'));
                     echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => 'Last Name:','required', 'placeholder' => 'LAST NAME'));
                     echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
-    				echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Password:','required', 'placeholder' => 'PASSWORD'));
-    			    echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Confirm Password:', 'placeholder' => 'CONFIRM PASSWORD'));
+    				echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Password:', 'required','placeholder' => 'PASSWORD'));
+    			    echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Confirm Password:','required', 'placeholder' => 'CONFIRM PASSWORD'));
     			?>
             </div>
             </div>
@@ -431,11 +413,11 @@ let your stylist get an idea of what will fit you best.
                     
             <div class="clear-fix"></div>
             <div class="text-center about-submit">
-                 <br/>   
+                   
                                      
                     <div class="submit">                            
                         <!--<a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/style/">Back</a>--> 
-                       <a class="link-btn black-btn back-btn" id="back3" href="#tabs-2">Back</a>
+                       <!--<a class="link-btn black-btn back-btn" id="back3" href="#tabs-2">Back</a>-->
 						<?php echo $this->Form->end(__('Continue')); ?>
                         <p class="error-msg">All the fields are mandatory.</p>
                     </div>
