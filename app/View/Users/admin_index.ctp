@@ -182,10 +182,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             ?>
                                         </td>
                                     </tr>-->
-
-                                </table>
-                                <table  style="float:right; width: 470px;border-bottom: 1px solid #cccccc;border-left: 1px solid #cccccc;background-color: #E0E0E0;">
-                                    
                                     <tr>
                                         <td>Style Profile:</td>
                                         <td>
@@ -213,22 +209,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             ?>
                                         </td>
                                     </tr>
-
-
-                                   <!-- <tr>
-                                        <td>Heard From:</td>
-                                        <td>
-                                            <?php
-                                            if(!isset($user['User']['heard_from'])|| $user['User']['heard_from']==""){
-                                                echo 'N/A';
-                                            }
-                                            else{
-                                                echo h($user['User']['heard_from']);
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>-->
-                                    <tr>
+                                     <tr>
                                         <td>Active:</td>
                                         <td>
                                             <?php
@@ -280,16 +261,42 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             ?> 
                                         </td>
                                     </tr>
+                                </table>
+                                <table  style="float:right; width: 470px;border-bottom: 1px solid #cccccc;border-left: 1px solid #cccccc;background-color: #E0E0E0;">
+                                    
+                                    
+                                    
 
+
+                                   <!-- <tr>
+                                        <td>Heard From:</td>
+                                        <td>
+                                            <?php
+                                            if(!isset($user['User']['heard_from'])|| $user['User']['heard_from']==""){
+                                                echo 'N/A';
+                                            }
+                                            else{
+                                                echo h($user['User']['heard_from']);
+                                            }
+                                            ?>
+                                        </td>
+                                    </tr>-->
+                                   
+                                    
+                                    
+                                    <?php
+                                    //print_r($userprefs);exit;
+                                     foreach ($userprefs as $key => $userpref): ?>
+                                      
                                     <tr>
                                         <td>Neck Size:</td>
                                         <td>
                                             <?php
-                                            if(isset($user['UserPreference']['neck_size']) || $user['UserPreference']['neck_size'] == ""){
+                                            if(isset($userpref['UserPreference']['neck_size'])  == ""){
                                                 echo 'N/A';
                                             }
                                             else{
-                                                echo $user['UserPreference']['neck_size'];
+                                                echo $userpref['UserPreference']['neck_size'];
                                             }
                                             ?> 
                                         </td>
@@ -300,11 +307,11 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         <td>Jacket Size:</td>
                                         <td>
                                         <?php
-                                        if(isset($user['UserPreference']['jacket_size']) || $user['UserPreference']['jacket_size'] == ""){
+                                        if(isset($userpref['UserPreference']['jacket_size'])  == ""){
                                             echo 'N/A';
                                         }
                                         else{
-                                            echo $user['UserPreference']['jacket_size'];
+                                            echo $userpref['UserPreference']['jacket_size'];
                                         }
                                         ?> 
                                         </td>
@@ -314,17 +321,68 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         <td>Pant Waist:</td>
                                         <td>
                                         <?php
-                                        if(isset($user['UserPreference']['pant_size']) || $user['UserPreference']['jacket_size'] == ""){
+                                        if(isset($userpref['UserPreference']['pant_waist']) == ""){
                                             echo 'N/A';
                                         }
                                         else{
-                                            echo $user['UserPreference']['jacket_size'];
+                                            echo $userpref['UserPreference']['pant_waist'];
+                                        }
+                                        ?> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pant Length:</td>
+                                        <td>
+                                        <?php
+                                        if(isset($userpref['UserPreference']['pant_length'])  == ""){
+                                            echo 'N/A';
+                                        }
+                                        else{
+                                            echo $userpref['UserPreference']['pant_length'];
+                                        }
+                                        ?> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shoe Size:</td>
+                                        <td>
+                                        <?php
+                                        if(isset($userpref['UserPreference']['shoe_size']) == ""){
+                                            echo 'N/A';
+                                        }
+                                        else{
+                                            echo $userpref['UserPreference']['shoe_size'];
                                         }
                                         ?> 
                                         </td>
                                     </tr>
 
 
+                                    <?php 
+                                    
+                                    //print_r($userprefs);exit;
+                                    foreach ($styles as $style) { ?>
+                                        <tr>
+                                        <td>Look: <?php echo $style['Style']['id']; ?></td>
+                                        <td>
+                                        <?php
+                                        
+                                        if($style['Style']['id']==$userpref['UserPreference']['style_pref'])
+                                        {
+                                            echo "Yes";
+
+                                        }else{
+                                            echo "No";
+                                        }
+                                        
+                                            
+                                            
+                                        ?> 
+                                        </td>
+                                    </tr>
+                                    <?php  } ?>
+
+                                <?php endforeach; ?>
                                 </table>
 
 

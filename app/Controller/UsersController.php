@@ -12,7 +12,8 @@ App::uses('CakeEmail', 'Network/Email');
 class UsersController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
-    
+    var $uses = array('User','UserPreference','Style');
+
     //Industry options
     public $industry_options = array(
         'Agriculture'=>'Agriculture',
@@ -1002,6 +1003,18 @@ class UsersController extends AppController {
         $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
         $users = $this->Paginator->paginate();
         $this->set(compact('stylists','users'));
+
+
+        $styles = $this->Style->find('all');
+         // print_r($styles);exit;
+        $this->set('styles', $styles);
+
+        $userprefs = $this->UserPreference->find('all');
+         // print_r($styles);exit;
+        $this->set('userprefs', $userprefs);
+        // $styles = $this->Style->find('list', array('conditions'=>array('status' => '1')));
+        // $styles = $this->Paginator->paginate();
+        // $this->set(compact('styles',$styles));
     }
     
     /**
