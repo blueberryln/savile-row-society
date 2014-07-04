@@ -237,6 +237,7 @@ let your stylist get an idea of what will fit you best.
                     <option value="16.5">16.5</option>
                     <option value="17">17</option>
                     <option value="17.5">17.5</option>
+                    <option value="I don’t know">I don’t know</option>
                 </select>
             </div>
           
@@ -246,12 +247,19 @@ let your stylist get an idea of what will fit you best.
                 <select name="data[UserPreference][jacket_size]" tabindex="" required="required" id="jacketSize" >
                     <option value="">Suit Size</option>
                     <option value="36">36</option>
+                    <option value="37">37</option>
                     <option value="38">38</option>
-                    <option value="40">40</option>                    
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>                    
                     <option value="42">42</option>
+                    <option value="43">43</option>
                     <option value="44">44</option>
+                    <option value="45">45</option>
                     <option value="46">46</option>
-                    <option value="48">48</option>                
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                     <option value="I don’t know">I don’t know</option>                
                 </select>
             </div>
 
@@ -259,28 +267,10 @@ let your stylist get an idea of what will fit you best.
                 <label for="pantWaist">PANT WAIST:</label>                            
                 <select name="data[UserPreference][pant_waist]" tabindex="" required="required" id="jacketSize" >
                     <option value="">Pant Waist</option>
-                    <option value="xs">xs</option>
-                    <option value="s">s</option>
-                    <option value="m">m</option>
-                    <option value="l">l</option>
-                    <option value="xl">xl</option>
-                    <option value="xxl">xxl</option>
-                    <option value="xxxl">xxxl</option>                    
-                </select>
-            </div>
-
-            <div class="input text required chest-size">
-                <label for="pantLength">PANT LENGHT:</label>                            
-                <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
-                    <option value="">Pant Length</option>
-                    <option value="s">s</option>
-                    <option value="m">m</option>
-                    <option value="l">l</option>
-                    <option value="xl">xl</option>
                     <option value="28">28</option>
                     <option value="29">29</option>
                     <option value="30">30</option>
-                    <option value="31">31</option>
+                    <option value="31">3l</option>
                     <option value="32">32</option>
                     <option value="33">33</option>
                     <option value="34">34</option>
@@ -288,12 +278,22 @@ let your stylist get an idea of what will fit you best.
                     <option value="36">36</option>
                     <option value="37">37</option>
                     <option value="38">38</option>
-                    <option value="39">39</option>
-                    <option value="40">40</option>
-                    <option value="41">41</option>
-                    <option value="42">42</option>
-                    <option value="43">43</option>
-                    <option value="44">44</option>
+                    <option value="I don’t know">I don’t know</option>                                        
+                </select>
+            </div>
+
+            <div class="input text required chest-size">
+                <label for="pantLength">PANT LENGHT:</label>                            
+                <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
+                    <option value="">Pant Length</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                     <option value="I don’t know">I don’t know</option>
                 </select>
             </div>
           <div class="input text required chest-size">
@@ -315,6 +315,7 @@ let your stylist get an idea of what will fit you best.
                     <option value="13">13</option>
                     <option value="13.5">13.5</option>
                     <option value="14">14</option>
+                    <option value="I don’t know">I don’t know</option>
                 </select>
             </div>
                         
