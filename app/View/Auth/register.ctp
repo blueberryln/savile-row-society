@@ -139,6 +139,7 @@ echo $this->Form->create('User', array('type' => 'file'));?>
             <br />
             
             <div class="hi-message">
+                <p><img src="<?php echo $this->webroot; ?>img/b.png" alt=""></p>
                 <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Select The Styles You Prefer</h4>
                 <p style="margin-top: -25px;
 font-size: 14px;
@@ -215,6 +216,7 @@ margin-left: 2px;">
                 <br />
                 
                 <div class="hi-message">
+                    <p><img src="<?php echo $this->webroot; ?>img/c.png" alt=""></p>
                     <h4 class="hi-message text-center" style="margin: 0 -1px 24px 0;">What are your basic measurements?</h4>
                     <p class="text-center" style="margin-top: -25px;
     font-size: 14px;">
@@ -343,6 +345,7 @@ margin-left: 2px;">
             <br />
             
             <div class="hi-message">
+                <p><img src="<?php echo $this->webroot; ?>img/d.png" alt=""></p>
                 <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Tell us more about yourself</h4>
                 <p style="margin-top: -25px; font-size: 14px; margin-left: 2px;">
                   Help our stylists get to know you better to create a more personalized experience.
