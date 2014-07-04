@@ -106,7 +106,7 @@ $(document).ready(function() {
 	});
 
     $(".about-submit input[type=submit]").on('click', function(e){
-        if($("#first-name").val() && $("#last-name").val() && $("#UserZip").val() && $("#register-password").val() && $("#register-email").val() && $("#confirm-register-password")){
+        if($("#first-name").val() && $("#last-name").val() && $("#register-password").val() && $("#register-email").val() && $("#confirm-register-password")){
             $("p.about-error").slideUp(300);
         }
         else {
@@ -143,7 +143,7 @@ echo $this->Form->create('User', array('type' => 'file'));?>
                 <p style="margin-top: -25px;
 font-size: 14px;
 margin-left: 2px;">
-                   Your selection gives your stylist an initial impression of what you want to look like
+                   Your selection gives your stylist an initial impression of what you want to look like.
                 </p>
             </div>
             
@@ -211,22 +211,22 @@ margin-left: 2px;">
         </div>
   </div>
   <div id="tabs-2">
-    <div class="seven columns center-block">
-            <br />
-            
-            <div class="hi-message">
-                <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">What are your basic measurements?</h4>
-                <p style="margin-top: -25px;
-font-size: 14px;
-margin-left: 2px;">
-                   Before we have the opportunity to take your measurements in the showroom, 
-let your stylist get an idea of what will fit you best.
+            <div class="seven columns center-block">
+                <br />
+                
+                <div class="hi-message">
+                    <h4 class="hi-message text-center" style="margin: 0 -1px 24px 0;">What are your basic measurements?</h4>
+                    <p class="text-center" style="margin-top: -25px;
+    font-size: 14px;">
+                       Before we have the opportunity to take your measurements in the showroom, <br> 
+    let your stylist get an idea of what will fit you best.
 
-                </p>
-            </div>
-           
+                    </p>
+                </div>
+           </div>
+           <div class="four columns center-block"> 
             <div class="input text required">
-                <label for="neckSize">NECK SIZE:</label>                            
+                <label for="neckSize" class="text-center">NECK SIZE:</label>                            
                 <select name="data[UserPreference][neck_size]" tabindex="" required="required" id="neckSize" >
                     <option value="">Neck Size</option>
                     <option value="14">14</option>
@@ -243,7 +243,7 @@ let your stylist get an idea of what will fit you best.
           
             
              <div class="input text required">
-                <label for="jacketSize">Suit Size:</label>                            
+                <label for="jacketSize" class="text-center">Suit Size:</label>                            
                 <select name="data[UserPreference][jacket_size]" tabindex="" required="required" id="jacketSize" >
                     <option value="">Suit Size</option>
                     <option value="36">36</option>
@@ -264,7 +264,7 @@ let your stylist get an idea of what will fit you best.
             </div>
 
             <div class="input text required chest-size">
-                <label for="pantWaist">PANT WAIST:</label>                            
+                <label for="pantWaist" class="text-center">PANT WAIST:</label>                            
                 <select name="data[UserPreference][pant_waist]" tabindex="" required="required" id="jacketSize" >
                     <option value="">Pant Waist</option>
                     <option value="28">28</option>
@@ -283,7 +283,7 @@ let your stylist get an idea of what will fit you best.
             </div>
 
             <div class="input text required chest-size">
-                <label for="pantLength">PANT LENGHT:</label>                            
+                <label for="pantLength" class="text-center">PANT LENGHT:</label>                            
                 <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
                     <option value="">Pant Length</option>
                     <option value="28">28</option>
@@ -297,7 +297,7 @@ let your stylist get an idea of what will fit you best.
                 </select>
             </div>
           <div class="input text required chest-size">
-                <label for="shoeSize">SHOE SIZE:</label>                            
+                <label for="shoeSize" class="text-center">SHOE SIZE:</label>                            
                 <select name="data[UserPreference][shoe_size]" tabindex="" required="required" id="shoeSize" >
                     <option value="">Shoe Size</option>                    
                     <option value="7">7</option>
@@ -354,7 +354,7 @@ let your stylist get an idea of what will fit you best.
                 <?php
                     echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => 'First Name*','required', 'placeholder' => 'FIRST NAME'));
                     echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => 'Last Name*','required', 'placeholder' => 'LAST NAME'));
-                    echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode*"));
+                    echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
     				echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Password*', 'required','placeholder' => 'PASSWORD'));
     			    echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => 'Confirm Password*','required', 'placeholder' => 'CONFIRM PASSWORD'));
     			?>

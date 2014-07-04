@@ -37,7 +37,7 @@
 	                <?php if($referer_type == 'event') : ?>
 	                    <p>Thank you for attending our <?php echo ucwords($referer['User']['full_name']); ?> event. To thank you for your support and patronage, please enjoy $50 off of your first purchase of $250 or more.</p>
 	                <?php elseif($referer_type == 'stylist') : ?>
-	                    <p>We hear you’re a friend of our premier personal stylist <?php echo ucwords($referer['User']['first_name']); ?>. To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more. </p>
+	                    <p>We hear you’re a friend of our premier personal stylist <?php echo ucwords($referer['User']['first_name']); ?>. To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more.</p>
 	                <?php else : ?>
 	                    <p>Any friend of <?php echo ucwords($referer['User']['first_name']); ?> is a friend of ours! To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more. </p>
 	                <?php endif; ?> 
@@ -59,7 +59,7 @@
 			            </span>
 					</div>
 					<div class="hide" id="request-invite-status">
-						<p>Due to high demand in our beta period, we have placed you on our waitlist and will notify you as soon as we are able to service you.</p>	
+						<p>Thank you for leaving us your email! <br>We have placed you on our waitlist and will notify you as soon as we are able to service you.</p>	
 					</div>
 	            <?php endif; ?>          
 	            <!-- <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
