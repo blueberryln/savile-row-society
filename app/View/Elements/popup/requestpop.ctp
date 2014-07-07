@@ -1,22 +1,22 @@
 <script type="text/javascript">
     
-$(document).ready(function(){
-  $("#block-step-access").click(function(){
-        var input=$("#email").val();
-            $.post("api/requestinvite",
-            {
-              email: input
-            },
+// $(document).ready(function(){
+//   $("#block-step-access").click(function(){
+//         var input=$("#email").val();
+//             $.post("api/requestinvite",
+//             {
+//               email: input
+//             },
        
-            function(data){
-                 //if(data){
-              alert("Data: " + data);
+//             function(data){
+//                  //if(data){
+//               alert("Data: " + data);
 
-           //}
-        });
+//            //}
+//         });
 
-  });
-});
+//   });
+// });
 
 
 </script>
@@ -30,7 +30,7 @@ $(document).ready(function(){
             <hr/ style='border: solid #AF9A59;clear: both;height: 0;border-width: 1px 0 0;margin: 8px 46px 25px;'>           
             <p>Due to high demand in our beta period, we have placed you on our waitlist and will notify you as soon as we are able to service you.</p> 
             
-            <form method="post" action="api/requestinvite">
+            <form method="post" >
                 <input type="text" class="" id="semail" style="width: 216px;height: 32px;margin: 0px 0px 20px 0px;" required name="data[email]" placeholder="Enter email address...">
 
                 <?php 
