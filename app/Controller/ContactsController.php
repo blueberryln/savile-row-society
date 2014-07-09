@@ -44,7 +44,8 @@ class ContactsController extends AppController {
                         $user_email->send();
                     }
                     catch(Exception $e){
-                        
+                        var_dump($e);
+                        exit;    
                     }                   
 
                     $this->Session->setFlash(__('Your message is sent!'), 'flash', array('title' => 'Great!'));

@@ -44,11 +44,19 @@
  */
 class EmailConfig {
 
+    // public $default = array(
+    //     'host' => 'ssl://smtp.gmail.com',
+    //     'port' => 465,
+    //     'username' => 'admin@savilerowsociety.com',
+    //     'password' => 'srsus1234',
+    //     'transport' => 'Smtp'
+    // );
+
     public $default = array(
-        'host' => 'ssl://smtp.gmail.com',
-        'port' => 465,
-        'username' => 'admin@savilerowsociety.com',
-        'password' => 'srsus1234',
+        'host' => 'mail.mobikasa.com',
+        'port' => 25,
+        'username' => 'saurabh@mobikasa.com',
+        'password' => 'S@server27',
         'transport' => 'Smtp'
     );
 
