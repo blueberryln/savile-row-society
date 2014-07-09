@@ -18,29 +18,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $script = ' 
 $(document).ready(function(){ 
 
-        $("#your-style li").click(function(){
-            $("p.error-msg").slideUp(300);
-            if($(this).hasClass("ui-selected")){
-                $(this).removeClass("ui-selected");
-                var selected_id = $(this).data("id");
-                $("#your-style input:checkbox#" + selected_id).prop("checked", false);    
-            }
-            else{
-                $(this).addClass("ui-selected");
-                var selected_id = $(this).data("id");
-                $("#your-style input:checkbox#" + selected_id).prop("checked", true);
-            }
-            
-        });
-
-        function getIdFromString(s){
-            switch(s){
-                case "Formal": return 1;
-                case "Casual": return 2;
-                case "Business Casual": return 3;
-                default: return 0;    
-            }
-        }
         
         
         
@@ -106,7 +83,7 @@ $(document).ready(function() {
 	});
 
     $(".about-submit input[type=submit]").on('click', function(e){
-        if($("#first-name").val() && $("#last-name").val() && $("#register-password").val() && $("#register-email").val() && $("#confirm-register-password")){
+        if($("#first-name").val() && $("#last-name").val() && $("#register-email").val()){
             $("p.about-error").slideUp(300);
         }
         else {
@@ -135,10 +112,13 @@ color:#396; !important
   <div id="tabs-1">
     <div class="seven columns center-block">
             <?php 
-echo $this->Form->create('User', array('type' => 'file'));?>
+echo $this->Form->create('User', array('type' => 'file'));
+echo $this->Form->input('User.id', array('type' => 'hidden'));
+echo $this->Form->input('UserPreference.id', array('type' => 'hidden'));
+echo $this->Form->input('UserPreference.user_id', array('type' => 'hidden'));
+?>
             <br />
-
-            <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" /> 
+            
             <div class="hi-message">
                 <p><img src="<?php echo $this->webroot; ?>img/b.png" alt=""></p>
                 <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Select The Styles You Prefer</h4>
@@ -174,11 +154,25 @@ margin-left: 2px;">
                
                 <div id="your-style">
                  <ol id="selectable" style="margin-left: 22px;">
-                      
-			     <?php foreach ($styles as $style): ?> 
-                          <input class="hide style-check" type="checkbox" name="data[UserPreference][style_pref][]"   value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
-                          <li class="ui-state-default" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" onclick="yes();"  data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
-                       
+            <?php
+              $user_styles = explode(',', $this->data['UserPreference']['style_pref']);
+			     foreach ($styles as $style): ?> 
+              <?php 
+             
+              if(in_array($style['Style']['id'], $user_styles))  { 
+
+                ?>
+                <input class="hide style-check" type="checkbox" name="data[UserPreference][style_pref][]"   value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" checked />
+              <li class="ui-state-default ui-selected" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" onclick="yes();" 
+               data-id="<?php echo $style['Style']['id']; ?>">
+                <img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
+
+              <?php }else{ ?>
+              <input class="hide style-check" type="checkbox" name="data[UserPreference][style_pref][]"   value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
+              <li class="ui-state-default" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" onclick="yes();" 
+               data-id="<?php echo $style['Style']['id']; ?>">
+               <img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
+                       <?php } ?>
                  <?php endforeach; ?>
                        
                  </ol>
@@ -229,8 +223,24 @@ margin-left: 2px;">
            </div>
            <div class="four columns center-block"> 
             <div class="input text required">
-                <label for="neckSize" class="text-center">NECK SIZE:</label>                            
-                <select name="data[UserPreference][neck_size]" tabindex="" required="required" id="neckSize" >
+                 <label for="neckSize" class="text-center">NECK SIZE:</label> 
+                 <?php
+                    echo $this->Form->input('UserPreference.neck_size', array(
+                                                            'options' => array(
+                                                            '14'=>'14', 
+                                                            '14.5'=>'14.5',
+                                                            '15'=>'15',
+                                                            '15.5'=>'15.5',
+                                                            '16'=>'16',
+                                                            '16.5'=>'16.5',
+                                                            '17'=>'17',
+                                                            '17.5'=>'17.5',
+                                                            'I don’t know'=>'I don’t know'),
+                                                            'empty' => 'Neck Size','label' => false,
+                                                            "id"=>"neckSize",
+                                                            ));
+                  ?>                           
+                <!-- <select name="data[UserPreference][neck_size]" tabindex="" required="required" id="neckSize" >
                     <option value="">Neck Size</option>
                     <option value="14">14</option>
                     <option value="14.5">14.5</option>
@@ -241,13 +251,38 @@ margin-left: 2px;">
                     <option value="17">17</option>
                     <option value="17.5">17.5</option>
                     <option value="I don’t know">I don’t know</option>
-                </select>
+                </select>  -->
+
             </div>
           
             
              <div class="input text required">
-                <label for="jacketSize" class="text-center">Suit Size:</label>                            
-                <select name="data[UserPreference][jacket_size]" tabindex="" required="required" id="jacketSize" >
+                <label for="jacketSize" class="text-center">Suit Size:</label>     
+                <?php
+
+                echo $this->Form->input('UserPreference.jacket_size',
+                                                                array(
+                                                            'options' => array(
+                                                                '36'=>'36',
+                                                                '37'=>'37',
+                                                                '38'=>'38',
+                                                                '39'=>'39',
+                                                                '40'=>'40',
+                                                                '41'=>'41',
+                                                                '42'=>'42',
+                                                                '43'=>'43',
+                                                                '44'=>'44',
+                                                                '45'=>'45',
+                                                                '46'=>'46',
+                                                                '47'=>'47',
+                                                                '48'=>'48',
+                                                                'I don’t know'=>'I don’t know'),
+                                                                'empty'=>'Suit Size','label' => false,
+                                                                "id"=>"jacketSize",
+                                                                    ));
+
+                 ?>                       
+                <!-- <select name="data[UserPreference][jacket_size]" tabindex="" required="required" id="jacketSize" >
                     <option value="">Suit Size</option>
                     <option value="36">36</option>
                     <option value="37">37</option>
@@ -263,12 +298,30 @@ margin-left: 2px;">
                     <option value="47">47</option>
                     <option value="48">48</option>
                      <option value="I don’t know">I don’t know</option>                
-                </select>
+                </select> -->
             </div>
 
             <div class="input text required chest-size">
-                <label for="pantWaist" class="text-center">PANT WAIST:</label>                            
-                <select name="data[UserPreference][pant_waist]" tabindex="" required="required" id="pantWaist" >
+                <label for="pantWaist" class="text-center">PANT WAIST:</label>
+                <?php
+
+                            echo $this->form->input('UserPreference.pant_waist',  array(
+                                                        'options' => array(              
+                                                                '28'=>'28',
+                                                                '29'=>'29',
+                                                                '30'=>'30',
+                                                                '31'=>'31',
+                                                                '32'=>'32',
+                                                                '33'=>'33',
+                                                                '34'=>'34',
+                                                                '35'=>'35',
+                                                                '36'=>'36',
+                                                                '37'=>'37',
+                                                                '38'=>'38',
+                                                                'I don’t know'=>'I don’t know',),
+                                                                'empty'=>'Pant Waist', 'label'=>false, "id"=>"pantWaist",));
+                 ?>                            
+                <!-- <select name="data[UserPreference][pant_waist]" tabindex="" required="required" id="jacketSize" >
                     <option value="">Pant Waist</option>
                     <option value="28">28</option>
                     <option value="29">29</option>
@@ -282,12 +335,26 @@ margin-left: 2px;">
                     <option value="37">37</option>
                     <option value="38">38</option>
                     <option value="I don’t know">I don’t know</option>                                        
-                </select>
+                </select> -->
             </div>
 
             <div class="input text required chest-size">
-                <label for="pantLength" class="text-center">PANT LENGHT:</label>                            
-                <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
+                <label for="pantLength" class="text-center">PANT LENGHT:</label> 
+                     <?php
+                     echo $this->form->input('UserPreference.pant_length',  array(
+                                                        'options' => array(              
+                                                                '28'=>'28',
+                                                                '29'=>'29',
+                                                                '30'=>'30',
+                                                                '31'=>'31',
+                                                                '32'=>'32',
+                                                                '33'=>'33',
+                                                                '34'=>'34',
+                                                                'I don’t know'=>'I don’t know',),
+                                                                'empty'=>'Pant Length', 'label'=>false, 'id'=>'pantLength',));
+
+                      ?>                      
+                <!-- <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
                     <option value="">Pant Length</option>
                     <option value="28">28</option>
                     <option value="29">29</option>
@@ -297,11 +364,33 @@ margin-left: 2px;">
                     <option value="33">33</option>
                     <option value="34">34</option>
                      <option value="I don’t know">I don’t know</option>
-                </select>
+                </select> -->
             </div>
           <div class="input text required chest-size">
-                <label for="shoeSize" class="text-center">SHOE SIZE:</label>                            
-                <select name="data[UserPreference][shoe_size]" tabindex="" required="required" id="shoeSize" >
+                <label for="shoeSize" class="text-center">SHOE SIZE:</label> 
+                <?php
+                     echo $this->form->input('UserPreference.shoe_size',  array(
+                                                        'options' => array(              
+                                                                '7'=>'7',
+                                                                '7.5'=>'7.5',
+                                                                '8'=>'8',
+                                                                '8.5'=>'8.5',
+                                                                '9'=>'9',
+                                                                '9.5'=>'9.5',
+                                                                '10'=>'10',
+                                                                '10.5'=>'10.5',
+                                                                '11'=>'11',
+                                                                '11.5'=>'11.5',
+                                                                '12'=>'12',
+                                                                '12.5'=>'12.5',
+                                                                '13'=>'13',
+                                                                '13.5'=>'13.5',
+                                                                '14'=>'14',
+                                                                'I don’t know'=>'I don’t know',),
+                                                                'empty'=>'Shoe Size', 'label'=>false, 'id'=>"shoeSize",));
+
+                      ?>                                 
+                <!-- <select name="data[UserPreference][shoe_size]" tabindex="" required="required" id="shoeSize" >
                     <option value="">Shoe Size</option>                    
                     <option value="7">7</option>
                     <option value="7.5">7.5</option>
@@ -319,7 +408,7 @@ margin-left: 2px;">
                     <option value="13.5">13.5</option>
                     <option value="14">14</option>
                     <option value="I don’t know">I don’t know</option>
-                </select>
+                </select> -->
             </div>
                         
             <div class="clear-fix"></div>
@@ -359,8 +448,7 @@ margin-left: 2px;">
                     echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => 'First Name*','required', 'placeholder' => 'FIRST NAME'));
                     echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => 'Last Name*','required', 'placeholder' => 'LAST NAME'));
                     echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
-    				echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Password*', 'required','placeholder' => 'PASSWORD'));
-    			    echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => 'Confirm Password*','required', 'placeholder' => 'CONFIRM PASSWORD'));
+    				
     			?>
             </div>
             </div>
@@ -376,7 +464,14 @@ margin-left: 2px;">
                 ?> 
                 <div class="hi-message twelve columns text-center">
                <div class='empty-img' id='photo-holder'>
-                <img src='<?php echo $this->webroot . "img/dummy_image.jpg";//echo $image_url; ?>' id='user-photo'/>
+               <?php if($this->data['User']['profile_photo_url']){
+                ?>
+                 <img src='<?php echo $this->webroot ."files/users/". $this->data['User']['profile_photo_url']; ?>' id='user-photo'/>
+                <?php
+               }else{ ?>
+                <img src='<?php echo $this->webroot . "img/dummy_image.jpg"; ?>' id='user-photo'/>
+              <?php } ?>
+               
                 </div>                
                 <input type='button' value='Upload photo' id='upload-img' class="gray-btn"/>
 

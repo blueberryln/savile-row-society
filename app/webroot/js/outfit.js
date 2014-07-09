@@ -177,7 +177,7 @@ function addClosetItems(items){
 // Function to get closet items
 function getClosetProducts(){
     var categoryId = $(".product-categories li a.filter-selected").closest("li").data("category_id");
-    //console.log(categoryId);
+    // str_brandconsole.log(categoryId);
     if(categoryId == undefined){
         categoryId = "all";
     }

@@ -220,6 +220,21 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             ?> 
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <td>Referred Id:</td>
+                                        <td>
+                                            <?php
+                                            if($user['User']['referred_by']!=""){
+                                                
+                                                echo $user['User']['referred_by'];
+                                            }
+                                            else{
+                                                echo 'No';
+                                            }
+                                            ?> 
+                                        </td>
+                                    </tr>
                                 </table>
                                 <table  style="float:right; width: 470px;border-bottom: 1px solid #cccccc;border-left: 1px solid #cccccc;background-color: #E0E0E0;">
                                     
