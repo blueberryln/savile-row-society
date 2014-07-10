@@ -69,7 +69,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <div class="stylist-talk">
                 <?php if($client_id) : ?>
                     <ul id="stylist-options">
-                        <li><a href="<?php echo $this->webroot; ?>register/wardrobe/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>auth/profile/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
                         <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
                         <!--<li><a href="">conversation</a></li>-->                
                     </ul>

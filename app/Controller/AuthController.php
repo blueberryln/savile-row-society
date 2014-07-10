@@ -22,11 +22,14 @@ App::uses('CakeEmail', 'Network/Email');
 	public function register()
 
 	{
+        
         if($this->getLoggedUserID() || !$this->Session->check('referer')){
             $this->redirect('/');
             exit();   
         }
-        else if($this->request->is('post')){
+
+        else
+         if($this->request->is('post') ){
             $user = $this->request->data;
 
             if ($this->User->validates()) {
@@ -198,12 +201,78 @@ App::uses('CakeEmail', 'Network/Email');
                 $image = time() .  '_' . $this->request->data['User']['profile_photo_url']['name'];
                 $image_type = $this->request->data['User']['profile_photo_url']['type'];
                 $image_size = $this->request->data['User']['profile_photo_url']['size'];
-                $img_path = APP . DS . 'webroot' . DS . 'files' . DS . 'users' . DS . $image;
+                $img_path = APP . 'webroot' . DS . 'files' . DS . 'users' . DS . $image;
                 move_uploaded_file($this->request->data['User']['profile_photo_url']['tmp_name'], $img_path);
                 return $image;
             }
         }
     }
 
+
+
+    public function profile($id= null){
+            
+            // if(!$id || !$this->Session->check('user'))
+            // {
+            //         $this->redirect('/');
+            //         exit;
+            // }
+
+            $this->isLogged();
+
+            if (!$this->User->exists($id)) {
+                throw new NotFoundException(__('Invalid user'));
+            }
+
+
+            $user = $this->User->findById($id);
+            $current_user = $this->getLoggedUser();
+
+            if($id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+                $this->redirect('/');
+                exit;
+            }
+
+
+            if($this->request->is('post') || $this->request->is('put'))
+            {
+               
+                    if($image = $this->saveImage()){
+                             $this->request->data['User']['profile_photo_url'] = $image;
+                    }
+                    else{
+                            unset($this->request->data['User']['profile_photo_url']);
+                    }
+
+                     $this->request->data['UserPreference']['style_pref'] = implode(',', $this->request->data['UserPreference']['style_pref']);
+            if($this->User->saveAll($this->request->data))
+            {
+                    $this->Session->setFlash("User Data Hasbeen Saved");
+                    $this->redirect(array('action'=>'profile/'.$id));
+            }
+            else
+            {
+                     $this->Session->setFlash('The User could not be saved. Please, try again.');
+            }
+
+            }
+
+            if (empty($this->request->data)) {
+                    $this->request->data = $this->User->find('first',
+                            array(
+                                'contain' => array('UserPreference'),
+                                'conditions' => array('User.id' => $id  ),
+                            )
+                        );
+            }
+
+            $styles = $this->Style->find('all');
+            $this->set('styles', $styles);  
+    }
+
+
+
+
+    
 
  }

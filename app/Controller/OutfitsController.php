@@ -70,9 +70,8 @@ class OutfitsController extends AppController {
             $total_likes = $Wishlist->find('count', array('conditions' => array('Wishlist.user_id'=>$user_id)));
             
             if($total_likes > 0){
-                $liked_list = $Wishlist->getUserLikedItems($user_id, $last_liked_id, 10);
-                
-                $last_item_id = $last_liked_id;
+               $liked_list = $Wishlist->getUserLikedItems($user_id, $last_liked_id, 10);
+               $last_item_id = $last_liked_id;
                 $entity_list = array();
                 foreach($liked_list as $value){
                     $entity_list[] = $value['Wishlist']['product_entity_id'];

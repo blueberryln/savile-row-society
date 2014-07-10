@@ -13,7 +13,7 @@ App::uses('Validation', 'Utility');
 class UsersController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
-    var $uses = array('User','UserPreference','Style');
+    var $uses = array('User','UserPreference','Style','InvitedUser');
 
     //Industry options
     public $industry_options = array(
@@ -131,10 +131,14 @@ class UsersController extends AppController {
 
     public function requestinvite(){
         if ($this->request->is('ajax')) {
+        	$toemail = $this->request->data['invite-email'];
 
-            $toemail = $this->request->data['invite-email'];
+	        $this->InvitedUser->create();
+	       	$this->InvitedUser->data['InvitedUser']['email'] = $this->request->data['invite-email'];
+	        $this->InvitedUser->save($this->InvitedUser->data['InvitedUser']['email']);
+            
             $ret = array();
-            if ($toemail && Validation::email($toemail) && !$this->User->findByEmail($toemail)) {
+			if ($toemail && Validation::email($toemail) && !$this->User->findByEmail($toemail)) {
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->to($toemail);
@@ -157,6 +161,7 @@ class UsersController extends AppController {
                 $ret['status'] = 'invalid-email';
             }
         }
+
         echo json_encode($ret);
         exit;
     }
@@ -1084,6 +1089,29 @@ class UsersController extends AppController {
         $this->set('users', $this->Paginator->paginate());
     }
     
+
+    //stylist tab start
+
+    // public function admin_stylist(){
+    // 	$this->layout = 'admin';
+    // 	$this->isAdmin();
+    // 	$this->Paginator->settings = array(
+    // 		'fields' => array('User.*') ,
+    // 		'limit'  => 20,
+    // 		'conditions' => array('User.is_stylist' => '1'),
+    // 		'order' => array('User.created' => 'desc'), 
+    // 	);
+    // 	$this->set('ustylist', $this->Paginator->paginate());
+    // }
+
+
+    //stylist tab end
+
+
+
+
+
+
 
      /**
      * admin_assignstylist method
