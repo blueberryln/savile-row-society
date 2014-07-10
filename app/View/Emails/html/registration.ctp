@@ -14,7 +14,7 @@
                 <p style="padding-top: 15px;">Hi <?php echo ucfirst($name); ?>,</p>
 
                 <div style=" padding: 5px 0;">
-                    <p >Thank you for signing up for Savile Row Society. Once you have completed your <a href="http://www.savilerowsociety.com/register/wardrobe">Style Profile</a>, your personal stylist will be able to work with you to create your ideal wardrobe.</p>
+                    <p >Thank you for signing up for Savile Row Society. Once you have completed your <a href="http://www.savilerowsociety.com/auth/profile">Style Profile</a>, your personal stylist will be able to work with you to create your ideal wardrobe.</p>
                 </div>
 
                 <p style="margin-bottom: 10px; margin-top: 15px;">Best,<br>

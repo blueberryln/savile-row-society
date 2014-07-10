@@ -355,10 +355,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
  -->
         <br>
 
-        <p class="text-center">
+        <!-- <p class="text-center">
             <em class="font-big font-bold">"When your clothes fit you completely, all they’ll remember is the man"</em> 
             <br><strong>- Ralph Waldo Emerson</strong>
-        </p>
+        </p> -->
 
         <br/>
 
