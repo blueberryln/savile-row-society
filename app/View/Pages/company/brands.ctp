@@ -44,6 +44,24 @@ What do your shoes say about you?
     "sanyo" => array("title" => "", "desc" => "Sanyo New York was established in 1978 by Sanyo Shokai of Tokyo specifically to target the North American Market. Sanyo Shokai is one the largest apparel manufactures in Japan which has a long rich history dating back to 1943. The Company takes pride in being an innovative outerwear company, producing contemporary coats and jackets.", "id" => ""),
     "pepper" => array("title" => "", "desc" => "Style, Tradition and Authenticity are the Southern pillars that inspired the creation of Southern Proper, Haberdashery for the Southern Gentleman. Southern Proper is based on men’s décor and dress, and each bowtie (BeausTM) and necktie (GentsTM) is adorned with hand-drawn designs, made of superior king twill silk.", "id" => "51"),
     "spivey" => array("title" => "", "desc" => "Tumbled and now polished, her work is a result of the various environments she has explored.  Spivey not only encompasses a cross-cultural feel to her designs, but she also spans time periods, bringing lost antiquated treasures to the market in a modern way.", "id" => "54"),
+    "Calida" => array("title" => "", "desc" => "CALIDA is one of the leading bodywear brands in Europe and has it HQ in Sursee, Switzerland.  Since 1941 the company has been synonymous with premium quality in the best tradition of Swiss craftsmanship: superb, natural fabrics, classic and modern design, and excellent workmanship for perfect fit and exceptional comfort.CALIDA makes bodywear for those who value superb quality and want to feel comfortable in their skin – at work, at home, at leisure, indoors and out.", "id" => "73"),
+    "ck" => array("title" => "", "desc" => "Calvin Klein, Inc. is one of the leading fashion design and marketing studios in the world. It designs and markets women’s and men’s designer collection apparel and a range of other products that are manufactured and marketed through an extensive network of licensing agreements and other arrangements worldwide.", "id" => "72"),
+    "Haspel" => array("title" => "", "desc" => "Joseph Haspel discovered using a lightweight Indian fabric known as seersucker in the manufacturing of men's suits in 1909. His suit solution for Louisiana's blazing summer heat became the brand's signature item, propelling Haspel's popularity beyond its southern roots, while making an indelible mark on American menswear.Still owned by the Haspel family, the brand today has built on it's iconic tradition in Summer Suits and expanded it's roots in menswear to accessories and new products.", "id" => "65"),
+    "Hudson" => array("title" => "", "desc" => "“We make travel gear. Gear because it’s useful and travel because we love a good story.  High in quality.  Low in flash. We’re durability matched only by lore.  From weekend escapes to epic adventures, we’ve got you covered in heavy duty canvas and marine grade nickel.  Our designs are born to travel, bred with history, and ready to be lived in.We believe life happens from 5 to 9. And sometimes, you’ve just got to grab your stuff and go. Here's to The Next Escape.” Grant Hewit, President", "id" => "49"),
+    "Michael" => array("title" => "", "desc" => "Michael Kors is a rapidly growing global luxury lifestyle brand led by a world-class management team and a renowned, award-winning designer. Since launching his namesake brand 30 years ago, Michael Kors has featured distinctive designs, materials and craftsmanship with a jet-set aesthetic that combines stylish elegance and a sporty attitude. Mr. Kors’ vision has taken our Company from its beginnings as an American luxury sportswear house to a global accessories, footwear and apparel company with a presence in 74 countries", "id" => "76"),
+    "Nigel" => array("title" => "", "desc" => "NIGEL KNOX, an upscale purveyor of Nifty Socks, dedicated to perfecting the art of casual sophistication. The collection embodies a British demeanor translated into the American idiom with an overriding sense of whimsy and self-confidence.NIGEL KNOX offers unique, clever, handsome socks featuring re-interpreted classics and notable iconic images. NIGEL KNOX understands sartorial evolution and offers socks that pair perfectly with the contemporary lifestyle. The product range is crafted in Italy from the finest materials and all socks have hand-linked toe closures.", "id" => "70"),
+    "pantherella" => array("title" => "", "desc" => "Pantherella has been making the worlds finest socks since 1937 from the most luxurious fibres. From our early beginnings in the hosiery business Pantherella has strived to be at the forefront of technology, innovation and designs that surpass even the highest of expectations. All of Pantherella socks are still made in our family owned factory in Leicester by highly skilled craftspeople whom have passed their expertise down from generation to generation to help set Pantherella apart from other brands.", "id" => "61"),
+    "Perry" => array("title" => "", "desc" => "It was Perry Ellis's philosophy, both as a designer and a man. He was an innovator. A trailblazer. A man who wasn't afraid to fly by the seat of his pants. From the day he launched his first line in 1976, he made fashion meaningful simply by not taking it so seriously. By believing that clothes should be fun. Following only what felt right. Following his gut. Never settling for what was expected. Choosing optimism. Laughing it off. And in doing so, he redefined an industry…and introduced much-needed wit.", "id" => "75"),
+    "Robert" => array("title" => "", "desc" => "At Robert Talbott, we pride ourselves on our dedication to quality and craftsmanship. We understand that the finest materials and time-tested processes are the foundation for classic style and impeccable clothing—and that is precisely the reputation which we have steadfastly maintained over the course of more than half a century. Our garments represent our understanding of style and workmanship, whether made in our Italian officinas or in our very own Monterey, California workshop. From our early beginnings as a cottage industry in Carmel, California, to our current position as one of the most distinguished manufacturers of fine clothing, the story of Robert Talbott is quite literally that of the American Dream, realized.", "id" => "63"),
+    "RVR" => array("title" => "", "desc" => "RVR is a men's luxury neckwear company.We're passionate about exceeding the demands of the discriminating man.Rich silks, woven by the world's most heralded mills, hand tailored in Italy to _perfection. When you feel an RVR tie, you'll immediately know why it's like no other.With our winning combination of timeless elegance and vibrant colors, you'll always make a statement, wearing an RVR.", "id" => "74"),
+    "Solid" => array("title" => "", "desc" => "Solid & Striped is a collection of swimwear and resortwear conceived in Water Mill, NY and made using the finest quick drying fabrics woven in France, Spain and Italy. Elegant simplicity is the foundation of the brand, which launched in November 2012 and is headquartered in New York City.After spending three seasons perfecting its men’s and boys’ trunks, Solid & Striped launched their first women’s collection for Spring 2014. At the mill, all of their swim fabrics undergo a fade-preventing process to ensure sustained vibrance and protect against sun, saltwater and chlorine. The company strives to produce the most well-crafted, classic and timelessly chic swimwear on the market.", "id" => "57"),
+    "tateossian" => array("title" => "", "desc" => "Tateossian was established in 1990 by Robert Tateossian, whose own international lifestyle and keen sense of aesthetics is at the heart of the company's success.His unique and original style has revolutionized the cufflink industry. Fun, functional and fashionable cufflink designs have soon gained him the accolade The King of Cufflinks. The men's collection has expanded from cufflinks to jewelry and watches. With this success, Tateossian has moved into the women's jewelry market using the same formula of winning designs, securing him three UK British Export Awards for Accessories.", "id" => "55"),
+    "Tommy" => array("title" => "", "desc" => "As one of the world’s leading premium lifestyle brands, Tommy Hilfiger delivers superior styling, quality and value to consumers worldwide. The brand celebrates the essence of Classic American Cool and provides a refreshing twist to the preppy fashion genre.Since its debut in 1985, the Tommy Hilfiger Group has become a US$ 4.6 billion apparel and retail company by offering consumers a breadth of beautifully designed, high quality products including men’s, women’s and children’s apparel, sportswear, denim, and a range of licensed products such as accessories, fragrances and home furnishings.", "id" => "68"),
+    "Trafalgar" => array("title" => "", "desc" => "Celebrating four decades and defined by an unparalleled reputation of elegance and craftsmanship, Trafalgar's classically designed menswear and leather accessories can be found in fine stores the world over. From the legendary line of Limited Edition woven silk braces and suspenders to refined belts, exotic alligator and crocodile wallets, men's gifts and other leather accessories, the Trafalgar name ensures the wearer the absolute standard of excellence. Trafalgar's mission is to provide the highest quality products while maintaining a keen sensitivity to the constantly evolving lifestyles of our customers.", "id" => "69"),
+    "Vince" => array("title" => "", "desc" => "", "id" => "66"),
+    "zimmerli" => array("title" => "", "desc" => "The world's finest underwear – that is what Zimmerli of Switzerland guarantees; that is our obligation. We insist on producing handmade goods. Since 1871, we have held fast to complex manufacturing and finishing processes. We produce knitwear and woven goods using only the highest quality natural fibres. And we are proud of our roots – our manufacturing headquarters in Switzerland.The unmatched feel, the exceptional comfort, the glance in the mirror makes it clear: Zimmerli of Switzerland is a discreet, yet highly sophisticated understatement – your personal commitment to stylish and confident refinement.", "id" => "58"),
+
+    
 );
 
 $script = '
@@ -139,6 +157,52 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <li><img src="<?php echo $this->webroot; ?>img/branding-partners/sanyo.png" class="fadein-image" alt="Sanyo" data-name="sanyo"  /></li>
                     <li><img src="<?php echo $this->webroot; ?>img/branding-partners/southern proper.png" class="fadein-image" alt="Southern Proper" data-name="pepper"  /></li>
                     <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Spivey.png" class="fadein-image" alt="Spivey" data-name="spivey"  /></li>
+
+
+
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Calida.jpeg" class="fadein-image" alt="Calida" data-name="Calida"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Calvin Klein.jpeg" class="fadein-image" alt="Calvin Klein" data-name="ck"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Haspel-logo.gif" class="fadein-image" alt="Haspel" data-name="Haspel"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Hudson Sutler.png" class="fadein-image" alt="Hudson Sutler" data-name="Hudson"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Michael kors.png" class="fadein-image" alt="Michael kors" data-name="Michael"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Nigel Knox.jpg" class="fadein-image" alt="Nigel Knox" data-name="Nigel"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/pantherella.jpg" class="fadein-image" alt="pantherella" data-name="pantherella"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Perry Ellis.gif" class="fadein-image" alt="Perry Ellis" data-name="Perry"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Robert Talbott.jpg" class="fadein-image" alt="Robert Talbott" data-name="Robert"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/RVR.png" class="fadein-image" alt="RVR" data-name="RVR"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Solid & Striped.png" class="fadein-image" alt="Solid & Striped" data-name="Solid"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/tateossian-logo.jpg" class="fadein-image" alt="tateossian" data-name="tateossian"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Tommy Hilfiger.gif" class="fadein-image" alt="Tommy Hilfiger" data-name="Tommy"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Trafalgar_Logo.jpg" class="fadein-image" alt="Trafalgar" data-name="Trafalgar"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/Vince Camuto.jpg" class="fadein-image" alt="Vince Camuto" data-name="Vince"  /></li>
+                    <li><img src="<?php echo $this->webroot; ?>img/branding-partners/zimmerli.png" class="fadein-image" alt="zimmerli" data-name="zimmerli"  /></li>
+
+                    
+
+                    
+
+                    
+
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+
+                    
+
+                    
+
                       
                 </ul>
         </div>
