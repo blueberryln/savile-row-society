@@ -88,7 +88,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <li style="list-style: disc;">
                                 (iii) contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer software or hardware or telecommunications equipment; 
                             </li>
-                                (iv) poses or creates a privacy or security risk to any person; 
+                                <li style="list-style:disc;">
+                                    (iv) poses or creates a privacy or security risk to any person;     
+                                </li>
+                                
                              <li style="list-style: disc;">
                                 (v) constitutes unsolicited or unauthorized advertising, promotional materials, commercial activities and/or sales, “junk mail,” “spam,” “chain letters,” “pyramid schemes,” “contests,” “sweepstakes,” or any other form of solicitation;
                             </li>
@@ -281,9 +284,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <br>
             (IV) STATEMENTS OR CONDUCT OF ANY THIRD PARTY ON THE SERVICE; OR 
             <br>
-            (V) 
-            <br>
-            ANY OTHER MATTER RELATING TO THE SERVICE. IN NO EVENT WILL SAVILE ROW SOCIETY’S TOTAL LIABILITY TO YOU FOR ALL DAMAGES, LOSSES OR CAUSES OF ACTION EXCEED THE AMOUNT YOU HAVE PAID SAVILE ROW SOCIETY IN THE LAST SIX (6) MONTHS, OR, IF GREATER, ONE HUNDRED DOLLARS ($100).
+            (V) ANY OTHER MATTER RELATING TO THE SERVICE. IN NO EVENT WILL SAVILE ROW SOCIETY’S TOTAL LIABILITY TO YOU FOR ALL DAMAGES, LOSSES OR CAUSES OF ACTION EXCEED THE AMOUNT YOU HAVE PAID SAVILE ROW SOCIETY IN THE LAST SIX (6) MONTHS, OR, IF GREATER, ONE HUNDRED DOLLARS ($100).
             <br>
             SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES. ACCORDINGLY, SOME OF THE ABOVE LIMITATIONS SET FORTH ABOVE MAY NOT APPLY TO YOU. IF YOU ARE DISSATISFIED WITH ANY PORTION OF THE SERVICE OR WITH THESE TERMS OF SERVICE, YOUR SOLE AND EXCLUSIVE REMEDY IS TO DISCONTINUE USE OF THE SERVICE.
 
