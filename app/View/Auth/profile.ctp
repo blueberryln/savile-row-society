@@ -18,7 +18,29 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $script = ' 
 $(document).ready(function(){ 
 
-        
+     $("#your-style li").click(function(){
+            $("p.error-msg").slideUp(300);
+            if($(this).hasClass("ui-selected")){
+                $(this).removeClass("ui-selected");
+                var selected_id = $(this).data("id");
+                $("#your-style input:checkbox#" + selected_id).prop("checked", false);    
+            }
+            else{
+                $(this).addClass("ui-selected");
+                var selected_id = $(this).data("id");
+                $("#your-style input:checkbox#" + selected_id).prop("checked", true);
+            }
+            
+        });
+
+        function getIdFromString(s){
+            switch(s){
+                case "Formal": return 1;
+                case "Casual": return 2;
+                case "Business Casual": return 3;
+                default: return 0;    
+            }
+        }    
         
         
         
