@@ -123,10 +123,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
                 <div class="team-member">
                     <div>
-                        <img src="<?php echo $this->request->webroot; ?>img/Jon CLINE.png" data-member-name="Jon Cline Bio" class="fadein-image" width='203' height='230' />
+                        <img src="<?php echo $this->request->webroot; ?>img/Jon CLINE.png" data-member-name="Jon Cline" class="fadein-image" width='203' height='230' />
                     </div>
                     <div>
-                        <div class="name">Jon Cline Bio </div>
+                        <div class="name">Jon Cline </div>
                         <span class="title">Head of Made to Measure</span>
                          
                         <div class="desc">
