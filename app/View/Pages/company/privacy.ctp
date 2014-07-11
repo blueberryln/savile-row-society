@@ -5,7 +5,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 <div class="content-container">
     <div class="container content inner aboutus">   
     <div class="ten columns text-center page-heading">
-        <h1>Pravicy Policy</h1>
+        <h1>Privacy Policy</h1>
     </div>
     <div class="eleven columns page-content">
         

@@ -46,7 +46,7 @@
 		            </div>
 	            <?php else : ?>
 	            	<div id="request-invite-block">
-		            	<p>Due to high demand in our beta period, we have placed you on our waitlist and will notify you as soon as we are able to service you.</p> 
+		            	<p>Due to high demand in our beta period, we will place you on our waitlist and will notify you as soon as we are able to service you.</p> 
 		            
 		            	<div class="input email required">
 		                	<input type="text" id="invite-email" required placeholder="Enter email address...">

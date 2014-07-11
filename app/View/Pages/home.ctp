@@ -149,7 +149,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <a class="over-img" href="<?php echo $this->request->webroot; ?>messages/index/">
             <?php elseif($is_logged) : ?>
-                <a class="over-img" href="<?php echo $this->request->webroot; ?>register/wardrobe">
+                <a class="over-img" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">
             <?php else : ?>
                 <a class="over-img" href="#" onclick="window.ref_url=''; signUp();">
             <?php endif; ?>
@@ -159,7 +159,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged && $has_stylist) : ?>
                     <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Meet My Stylist</a>
                 <?php elseif($is_logged) : ?>
-                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>register/wardrobe">Meet My Stylist</a>
+                    <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Meet My Stylist</a>
                 <?php else : ?>
                     <a class="link-btn gold-btn" href="#" onclick="window.ref_url=''; signUp();">Meet My Stylist</a>
                 <?php endif; ?>
@@ -205,9 +205,9 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="eleven columns container works-boxes">
         <div class="work-box">
             <?php if($is_logged && $has_stylist) : ?>
-                <a href="<?php echo $this->request->webroot; ?>myprofile" class="over-img">
+                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
             <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="over-img">
+                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
@@ -219,9 +219,9 @@ $this->Html->script('cookie.js', array('inline' => false));
             
             
             <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>myprofile">Register</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>register/wardrobe">Register</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
             <?php endif; ?>
@@ -230,7 +230,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
             <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="over-img">
+                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
@@ -244,7 +244,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>register/wardrobe">Talk & shop</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
             <?php endif; ?>
@@ -253,7 +253,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="over-img">
             <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="over-img">
+                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
@@ -267,7 +267,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>register/wardrobe">Look sharp</a></div>
+                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
             <?php endif; ?>
@@ -276,9 +276,9 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="eleven columns container works-boxes only-desktop">
         <div class="work-box">
             <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>myprofile">Register</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>register/wardrobe">Register</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
             <?php endif; ?>
@@ -287,7 +287,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>register/wardrobe">Talk & shop</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
             <?php endif; ?>
@@ -296,7 +296,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>register/wardrobe">Look sharp</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
             <?php endif; ?>
@@ -319,7 +319,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <a href="<?php echo $this->request->webroot; ?>fitting-room" class="over-img">
             <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="over-img">
+                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
@@ -332,7 +332,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
             <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="over-img">
+                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
             <?php else : ?>
                 <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
             <?php endif; ?>
