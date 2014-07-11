@@ -248,7 +248,7 @@ App::uses('CakeEmail', 'Network/Email');
             if($this->User->saveAll($this->request->data))
             {
                     $this->Session->setFlash("User Data Hasbeen Saved");
-                    $this->redirect(array('action'=>'/closet'));
+                    $this->redirect('/closet');
             }
             else
             {
