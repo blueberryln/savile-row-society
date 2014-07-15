@@ -138,7 +138,7 @@ color:#396; !important
 echo $this->Form->create('User', array('type' => 'file'));?>
             <br />
 
-            <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" /> 
+            <!--<input type="hidden" value="<?php //echo $user_id ?>" name="data[User][id]" />--> 
             <div class="hi-message">
                 <p><img src="<?php echo $this->webroot; ?>img/b.png" alt=""></p>
                 <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Select The Styles You Prefer</h4>
