@@ -142,7 +142,7 @@ class UsersController extends AppController {
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->to($toemail);
-                $email->cc(array('contactus@savilerowsociety.com' => 'Savile Row Society'));
+                $email->cc(array('contact@savilerowsociety.com' => 'Savile Row Society'));
                 $email->subject('Thank you!');
                 $email->template('requestinvite');
                 $email->emailFormat('html');
