@@ -396,6 +396,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <div class="product-list-links">
                                     <?php if(isset($entity['Wishlist'])) : ?>
                                         <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
+                                        <input type="hidden" name="data['Post']['is_like']" value="1">
                                         <a href="<?php echo $this->request->webroot . 'product/' . $entity['Entity']['id'] . '/' . $entity['Entity']['slug']; ?>" class="btn-buy">Buy</a>
                                         <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
                                     <?php else : ?>

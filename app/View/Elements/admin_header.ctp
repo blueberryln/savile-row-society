@@ -14,6 +14,7 @@
                     <a href="<?php echo $this->request->webroot; ?>admin/users">Users</a>
                     <ul class="submenu">
                         <!-- <li><a href="<?php echo $this->request->webroot; ?>admin/users/newusers">New Users</a></li> -->
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/users/stylist">Stylist</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>admin/users/export">Export</a></li>
                     </ul>
                 </li>

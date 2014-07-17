@@ -421,59 +421,121 @@ class UsersController extends AppController {
         $this->layout = 'admin';
         $this->isAdmin();
         $this->Paginator->settings = array(
-                'fields' => array('User.*', 'UserPreference.*'),
-                'joins' => array(
-                    array('table' => 'messages',
-                        'alias' => 'Message',
-                        'type' => 'LEFT',
-                        'conditions' => array(
-                            'User.id = Message.user_from_id'
-                        )
-                    ),
-                    array('table' => 'users_preferences',
-                        'alias' => 'UserPreference',
-                        'type' => 'LEFT',
-                        'conditions' => array(
-                            'User.id = UserPreference.user_id'
-                        )
-                    ),
+                 'fields' => array('User.*', 'UserPreference.*'),
+                 'joins' => array(
+                     array('table' => 'messages',
+                         'alias' => 'Message',
+                         'type' => 'LEFT',
+                         'conditions' => array(
+                             'User.id = Message.user_from_id'
+                         )
+                     ),
+                     array('table' => 'users_preferences',
+                         'alias' => 'UserPreference',
+                         'type' => 'LEFT',
+                         'conditions' => array(
+                             'User.id = UserPreference.user_id'
+                         )
+                     ),
 
-                ),
-                'limit' => 20,
-                'group' => array('User.id'),
-                'order' => array('User.id' => 'DESC', 'Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
-        );
-        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
-        // $this->Paginator->settings = array(
-        //         'fields' => array('User.*'),
-        //         'limit' => 20,
-        //         'order' => array('User.id' => 'DESC', ),
-        //         'join'  => array(
-        //             array('table' => 'users_preferences',
-        //                 'alias' => 'UserPreference',
-        //                 'type' => 'LEFT',
-        //                 'conditions' => array(
-        //                     'User.id = UserPreference.user_id',
-        //                 )
-        //             ),
-        //         ),
-        // );
+                 ),
+                 'limit' => 20,
+                 'group' => array('User.id'),
+                 'order' => array('User.id' => 'DESC', 'Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
+         );
+         $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
+        // // $this->Paginator->settings = array(
+        // //         'fields' => array('User.*'),
+        // //         'limit' => 20,
+        // //         'order' => array('User.id' => 'DESC', ),
+        // //         'join'  => array(
+        // //             array('table' => 'users_preferences',
+        // //                 'alias' => 'UserPreference',
+        // //                 'type' => 'LEFT',
+        // //                 'conditions' => array(
+        // //                     'User.id = UserPreference.user_id',
+        // //                 )
+        // //             ),
+        // //         ),
+        // // );
 
         $users = $this->Paginator->paginate(); 
         $this->set(compact('stylists','users'));
-
-
         $styles = $this->Style->find('all');
-         // print_r($styles);exit;
         $this->set('styles', $styles);
+
+
     }
     
     /**
-     * admin_newusers method
+     * admin_stylist method
      *
      * @return void
      */
     
+    public function admin_stylist(){
+         
+        $this->layout = 'admin';
+        $this->isAdmin();
+                // $Stylsts = $this->Paginator->settings = array(
+                //         'fields'=> array('User.*,count(User.id) as usercount'),
+                //         'join()'
+                //         'limit' => 20,
+                //         'order' => array('User.id'=> 'DESC', ),
+                //         'conditions' => array('User.is_stylist' => true,),
+                //         );
+        // $this->Paginator->settings = array(
+        //                 'fields' =>  array('User.*,count(User.id) as usercount'),
+        //                 'joins' =>  array(
+        //                             array(
+        //                         'conditions' => array(
+        //                         'User.is_stylist' => true,
+        //                         'User1.stylist_id'=>'User.id',),
+        //                         'table' =>'users',
+        //                         'alias' =>'User1',
+        //                         'type'  =>'INNER'
+        //                         ),
+                     
+        //                 ),
+        //                 'limit' => 20,
+        //                 'group' => array('User.id'),
+        //                 'order' => array('User.id' => 'DESC',),
+        //         );
+
+
+        //     $Stylsts=$this->User->find('list' array('conditions' => array('User.is_stylist'=> true,))); 
+        //     $this->set('Stylsts',$this->paginate());
+        //     print_r($Stylsts);
+            //     array('conditions'=> array('User.is_stylist'=>true,'User1.stylist_id'=>'User.id'),
+            //         ),);
+                 $this->Paginator->settings= array(
+                'fields' => array('User.*,count(User.id) as usercount'),
+                'joins' => array(
+
+                array(
+                    'conditions' => array(
+                        'User.is_stylist' => true,
+                        'User1.stylist_id = User.id',
+                    ),
+                    'table' => 'users',
+                    'alias' => 'User1',
+                    'type' => 'INNER',
+                ),
+                ),
+                'group' => array(
+                'User.id',
+                ),
+                'limit'=> 20,
+                'order' => array('User.id'=>'DESC'),
+                
+                );
+        //$Stylsts = $this->User->find('all',$options);
+        $Stylsts=$this->Paginator->paginate();
+        $this->set(compact('Stylsts',$Stylsts));
+        //print_r($Stylsts);
+        
+        
+    }
     
 
      /**
