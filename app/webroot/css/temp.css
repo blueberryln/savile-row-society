@@ -8,9 +8,18 @@ div#brands ol.brands-logo li{
 div.brands-cont .submit{
     margin-top: 0px!important;
 }
+
+/*
 .preferences #selectable li{
     height: 280px;
 }
+*/
+/* bhashit style css*/
+.preferences #selectable li{
+    height: 202px;
+}
+
+/* bhashit style css*/
 
 /*---- sign-up-drop-down ---*/
 #sign-up-drop-down{

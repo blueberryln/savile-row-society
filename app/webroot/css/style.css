@@ -64,7 +64,7 @@ input[type="submit"]{color: #fff;}
     .twelve.columns		{ width: 100%; }
     .nine-five.columns{width: 95%;}
 
-    .container{position: relative; width: 960px; margin: 0 auto; padding: 0;}
+    .container{position: relative; width: auto; margin: 0 auto; padding: 0;}
     .content-container{height: 100%; position: relative; margin-top: 81px;}
     /*.container .column, .container .columns{float: none;}*/
     .inner{margin-bottom: 30px;}
@@ -201,7 +201,7 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
 .dob select:last-child{margin-right: 0;}
 .profile-tabs{margin:20px 0 30px;}
 .profile a{width: 150px; }
-	/*Style Section*/
+	/*Style Section
 	.register-steps h1{font-family: 'sweetsans-regular', sans-serif; color: #8D8D8D; text-transform: capitalize; font-weight: normal; font-size: 40px;}
 	.preferences h5 { margin: 0 0 15px 0; }
 	.preferences #selectable .ui-selecting, div#jeans-cut #selectable .ui-selecting, div#shirt-cut #selectable .ui-selecting{ background: #917A49; }
@@ -212,6 +212,23 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
 	.preferences #selectable li.ui-selected:hover{background: #917A49; color: #FFFFFF;}
 	div#jeans-cut #selectable li:hover, div#shirt-cut #selectable li:hover{ background: #917A49; color: #FFFFFF;}
 	.hi-message h4 { color: #9E9248; font-family: Conv_Novecento-Book, sans-serif; margin-bottom: 10px; margin-top: 20px; text-transform: uppercase; font-weight: normal !important; }
+	*/
+
+	/*bhashit bhardwaj Style selecttion*/
+	.register-steps h1{font-family: 'sweetsans-regular', sans-serif; color: #8D8D8D; text-transform: capitalize; font-weight: normal; font-size: 40px;}
+	.preferences h5 { margin: 0 0 15px 0; }
+	.preferences #selectable .ui-selecting, div#jeans-cut #selectable .ui-selecting, div#shirt-cut #selectable .ui-selecting{ background: #917A49; }
+	.preferences #selectable .ui-selected, div#jeans-cut #selectable .ui-selected, div#shirt-cut #selectable .ui-selected{ background: #917A49; color: #FFFFFF; }
+	.preferences #selectable { list-style-type: none;  padding: 0; }
+	.preferences #selectable li { cursor: pointer; display: inline-block; font-size: 16px; line-height: 30px; margin: 5px; padding: 7px 7px; text-align: center; width: 135px; }
+	.preferences #selectable li:hover{background: #ddd; color: #555;}
+	.preferences #selectable li.ui-selected:hover{background: #917A49; color: #FFFFFF;}
+	div#jeans-cut #selectable li:hover, div#shirt-cut #selectable li:hover{ background: #917A49; color: #FFFFFF;}
+	.hi-message h4 { color: #9E9248; font-family: Conv_Novecento-Book, sans-serif; margin-bottom: 10px;  margin-top: 20px; text-transform: uppercase; font-weight: normal !important; }
+	
+	/*bhashit bhardwaj Style selecttion*/
+	
+
 	/*Size Section*/
 	.size-info #height, .size-info #weight { margin-bottom: 10px; }
 	.preferences.register-size #height-result-display, .preferences.register-size #weight-result { border: medium none; cursor: default; text-align: center; }
@@ -222,7 +239,12 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
 	div#body-shape ul#selectable-shape li.selected, div#body-shape #selectable-shape li:hover { background: none repeat scroll 0 0 #917A49; color:#FFFFFF; }
 	div#body-shape #selectable-shape li img { width:100px; height:134px; border: 4px solid #fff; box-shadow: 0 2px 3px 1px rgba(30, 30, 30, 0.3); }
 	.pant-size { position: relative; }
+	/*
 	.style-preference, .register-style, .register-about, .register-brands,.register-last-step, .register-finish{margin-bottom: 30px;}
+	*/
+	/*bhashit*/
+	.style-preference, .register-style, .register-about, .register-brands,.register-last-step, .register-finish{}
+	/*bhashit*/
 	.style-preference .srs-form{width: 40%;}	
 	div#shirt-cut{margin-bottom: 18px;}
 	div#jeans-cut #selectable li,div#shirt-cut #selectable li{border: 1px solid #d3d3d3; background: #e6e6e6; width: 130px;}

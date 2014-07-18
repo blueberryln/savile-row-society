@@ -740,7 +740,7 @@ class UsersController extends AppController {
         }
     }
 
-    /**
+     /**
      * Sign out
      */
     function signout() {
@@ -750,8 +750,6 @@ class UsersController extends AppController {
         // destroy all sessions
         $this->Session->delete('user');
         $this->Session->destroy();
-
-        //$this->Session->setFlash(__('We hope that you\'ll come back'), 'modal', array('class' => 'info', 'title' => 'Good bye :('));
         $this->redirect($this->referer());
         exit();
     }

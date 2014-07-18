@@ -128,84 +128,66 @@ color:#396; !important
 </style>
 <div id="tabs">
   <ul style="list-style: disc" class="hide">
-    <li style="float:left; margin-left:232px;"><br /><div style="margin-left:-30px;"><a href="#tabs-1" id="t1" class="register-tabs">Style</a></div></li>
-    <li style="float:left; margin-left:232px;"><br /><div style="margin-left:-30px;"><a href="#tabs-2" id="t2" class="register-tabs">Size</a></div></li>
-    <li style="float:left; margin-left:232px;"><br /><div style="margin-left:-30px;"><a href="#tabs-3" id="t3" class="register-tabs">Info</a></div></li>
+    <li><br /><a href="#tabs-1" id="t1" class="register-tabs">Style</a></li>
+    <li><br /><a href="#tabs-2" id="t2" class="register-tabs">Size</a></li>
+    <li><br /><a href="#tabs-3" id="t3" class="register-tabs">Info</a></li>
   </ul>
   <div id="tabs-1">
     <div class="seven columns center-block">
             <?php 
 echo $this->Form->create('User', array('type' => 'file'));?>
-            <br />
+            
 
-            <input type="hidden" value="<?php echo $user_id ?>" name="data[User][id]" /> 
-            <div class="hi-message">
-                <p><img src="<?php echo $this->webroot; ?>img/b.png" alt=""></p>
-                <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Select The Styles You Prefer</h4>
-                <p style="margin-top: -25px;
-font-size: 14px;
-margin-left: 2px;">
-                   Your selection gives your stylist an initial impression of what you want to look like.
-                </p>
-            </div>
+            
+            
             
             <div class="srs-form">
                 <div class="form">
-                
-                
-                
-                
-                      
-               
-               <div class="hi-message twelve columns text-center">
-                               
-                
-                <div class="clear-fix"></div>
-            </div>
-                <div style="margin-left:-211px">
                 <!--ward row-->
-                <div class="container content inner preferences register-style">	
-        
-        <div class="nine columns center-block">
-            
-            
-            
-            <div class="twelve columns">
-               
-                <div id="your-style">
-                 <ol id="selectable" style="margin-left: 22px;">
-                      
-			     <?php foreach ($styles as $style): ?> 
-                          <input class="hide style-check" type="checkbox" name="data[UserPreference][style_pref][]"   value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
-                          <li class="ui-state-default" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" onclick="yes();"  data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
-                       
-                 <?php endforeach; ?>
-                       
-                 </ol>
-                </div>
-            </div>
-        </div>
-    </div> 
-               
+                    <div class="container content inner preferences register-style">	
+                        
+                        <div class="nine-five columns center-block">
 
-  
-    </div>
-    
-                
-            
-                
-                </div>
+                            <div class="text-center">
+                                    <img src="<?php echo $this->webroot; ?>img/b.png" alt="">
+                                    <h4 class="hi-message">Select The Styles You Prefer</h4>
+                                    <p>
+                                       Your selection gives your stylist an initial impression of what you want to look like.
+                                    </p>
+                            </div>
+
+
+
+                                <div class="twelve columns">
+                                   
+                                    <div id="your-style">
+                                         <ol id="selectable">
+                                              
+                            			     <?php foreach ($styles as $style): ?> 
+                                                      <input class="hide style-check" type="checkbox" name="data[UserPreference][style_pref][]"   value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
+                                                      <li class="ui-state-default"  onclick="yes();"  data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
+                                                   
+                                             <?php endforeach; ?>
+                                               
+                                         </ol>
+                                    </div>
+                                </div>
+                        </div>
+                    </div> 
+               </div>
             </div>
 
-              <div class="text-center about-submit">
+            <div class="text-center about-submit">
                                      
                     <div class="submit">                            
-                       <div id="tabs">
+                       <!-- <div id="tabs">
                        <ul> 
                         <li><a class="link-btn black-btn back-btn" id="cont1" href="#tabs-2">Continue</a> 
                        </li>
                        </ul>
                        </div>
+                        --> 
+                        <a class="link-btn black-btn back-btn" id="cont1" href="#tabs-2">Continue</a>
                         <p class="error-msg style-error">Please select atleast one style option.</p> 
                     </div>
                  
@@ -216,7 +198,7 @@ margin-left: 2px;">
             <div class="seven columns center-block">
                 <br />
                 
-                <div class="hi-message">
+                <div class="text-center">
                     <p><img src="<?php echo $this->webroot; ?>img/c.png" alt=""></p>
                     <h4 class="hi-message text-center" style="margin: 0 -1px 24px 0;">What are your basic measurements?</h4>
                     <p class="text-center" style="margin-top: -25px;
@@ -345,10 +327,10 @@ margin-left: 2px;">
     <div class="seven columns center-block">
             <br />
             
-            <div class="hi-message">
+            <div class="text-center">
                 <p><img src="<?php echo $this->webroot; ?>img/d.png" alt=""></p>
-                <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Tell us more about yourself</h4>
-                <p style="margin-top: -25px; font-size: 14px; margin-left: 2px;">
+                <h4 class="hi-message">Tell us more about yourself</h4>
+                <p>
                   Help our stylists get to know you better to create a more personalized experience.
                 </p>
             </div>
