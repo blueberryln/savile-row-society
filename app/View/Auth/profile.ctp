@@ -345,7 +345,7 @@ echo $this->Form->input('UserPreference.user_id', array('type' => 'hidden'));
             </div>
 
             <div class="input text required chest-size">
-                <label for="pantLength" class="text-center">PANT LENGHT:</label> 
+                <label for="pantLength" class="text-center">PANT LENGTH:</label> 
                      <?php
                      echo $this->form->input('UserPreference.pant_length',  array(
                                                         'options' => array(              
