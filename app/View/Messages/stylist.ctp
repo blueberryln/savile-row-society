@@ -141,6 +141,22 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
                         <div class="clear-fix"></div>
                     </div>
+
+                    <!--bhashit code-->
+                    <div class="four columns text-center">
+                    <label>Size</label>
+                    <select name="outfit-size1" id="outfit-size1">
+                        <option value="0">Please select Size</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                    </select>
+                </div>
+                    <!--bhashit code end-->
+
                 </div>
             </div>
             
@@ -156,6 +172,21 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
                         <div class="clear-fix"></div>
                     </div>
+
+                    <!--bhashit code-->
+                    <div class="four columns text-center">
+                    <label>Size</label>
+                    <select name="outfit-size2" id="outfit-size2">
+                        <option value="0">Please select Size</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                    </select>
+                </div>
+                    <!--bhashit code end-->
                 </div>
             </div>
             
@@ -171,6 +202,21 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
                         <div class="clear-fix"></div>
                     </div>
+
+                    <!--bhashit code-->
+                    <div class="four columns text-center">
+                    <label>Size</label>
+                    <select name="outfit-size3" id="outfit-size3">
+                    <option value="0">Please select Size</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                    </select>
+                </div>
+                    <!--bhashit code end-->
                 </div>
             </div>
             
@@ -186,6 +232,21 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
                         <div class="clear-fix"></div>
                     </div>
+
+                    <!--bhashit code-->
+                    <div class="four columns text-center">
+                    <label>Size</label>
+                    <select name="outfit-size4" id="outfit-size4">
+                    <option value="0">Please select Size</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                    </select>
+                </div>
+                    <!--bhashit code end-->
                 </div>
             </div>
             
@@ -201,6 +262,21 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
                         <div class="clear-fix"></div>
                     </div>
+
+                    <!--bhashit code-->
+                    <div class="four columns text-center">
+                    <label>Size</label>
+                    <select name="outfit-size5" id="outfit-size5">
+                    <option value="0">Please select Size</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                    </select>
+                </div>
+                    <!--bhashit code end-->
                 </div>
             </div>
             
@@ -213,20 +289,38 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <option value="West Coast">West Coast</option>
                     </select>
                 </div>
-                <div class="four columns text-center">
+                <!--<div class="four columns text-center">
                     <label>Type of the outfit</label>
-                    <select name="outfit-location" id="outfit-style">
-                        <option>Casual</option>
+                    <select name="outfit-location" id="outfit-style">-->
+                        <!-- <option>Casual</option>
                         <option>Formal</option>
-                        <option>PartyWear</option>
-                    </select>
+                        <option>PartyWear</option>-->
+                        <!--bhashit code-->
+                       <!-- <option>OutFit Look 1</option>
+                        <option>OutFit Look 2</option>
+                        <option>OutFit Look 3</option>
+                        <option>OutFit Look 4</option>
+                        <option>OutFit Look 5</option>
+                        <option>OutFit Look 6</option>
+                        <option>OutFit Look 7</option>-->
+                        <!--bhashit code end-->
+                   <!-- </select>
+                </div>-->
+                 <div class="clear-fix"></div>
+                <div class="four columns text-center">
+                    <label>OutFit Name:</label>
+                    <input type="text" name="out-name" id='out-name'>        
                 </div>
+            
+
+
                 <div class="clear-fix"></div>
                 <div class="eight columns text-center">
                     <label>Message:</label>
                     <textarea id='outfitMessageToSend'></textarea>        
                 </div>
             </div>
+
             <div class="clear-fix"></div>
             <div class="text-center">
                 <a href="" id="add-outfit" class="link-btn black-btn">Suggest the Outfit</a>
@@ -244,6 +338,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <div class="mycloset-tabs text-center">
                 <a href="" class="link-btn black-btn like-cont-link">Liked Items</a>
                 <a href="" class="link-btn gray-btn purchased-cont-link">Purchased Items</a>
+                <!--bhashit code start-->
+                <a href="" class="link-btn gray-btn favorites-cont-link">My Favorites</a>
+                <!--bhashit code end-->
             </div>
             <div class="user-closet-list-cont nine-five columns center-block text-left">
                 <div class="purchased-list-cont hide">
@@ -257,6 +354,19 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <a href="" class="link-btn black-btn add-purchased-outfit">Add to outfit</a>
                     </div>
                 </div>
+
+                <!--bhashit code-->
+                <div class="favorites-list-cont hide">
+                   <div class="product-listing-box">
+
+                    </div> 
+                    <div class="clear-fix"></div>
+                    <div class="btn-outfit-cont text-right">
+                        <!-- <a href="" class="link-btn black-btn load-more-purchased">Load More</a> -->
+                        <a href="" class="link-btn black-btn add-favorites-outfit">Add to outfit</a>
+                    </div>
+                </div>
+                <!--bhashit code-->
                 
                 <div class="liked-list-cont">
                     <div class="product-listing-box">

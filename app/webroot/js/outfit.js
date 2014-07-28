@@ -1,5 +1,6 @@
 var lastLikedItem = 0,
     lastPurchasedItem = 0,
+    //lastfavoritesItem = 0,
     lastClosetItem = 0,
     inAjaxTransaction = false;
 
@@ -136,7 +137,78 @@ function getLikedItems(lastPurchasedItem){
     });
 }
 
+//bhashit bhardwaj code
 
+function addfavoritesItems(items){
+    
+    var data = "";
+    var favoritesCont = $(".favorites-list-cont .product-listing-box");
+    for(var i=0; i<items.length; i++){
+        data = items[i];
+        var img_src = webroot + "img/image_not_available-small.png";
+        if(data['Image'].length > 0){
+            img_src = webroot + "products/resize/" + data['Image'][0]['name'] + '/158/216';    
+        }
+        var html = "";
+        html =  "<div class='outfit-item'>" + 
+                    "<div class='product-block'>" + 
+                        "<input type='hidden' value='" + data['Entity']['slug'] + "' class='product-slug'>" + 
+                        "<input type='hidden' value='" + data['Entity']['id'] + "' class='product-id'>" + 
+                        "<div class='product-list-image mosaic-block fade'>" + 
+                            "<div class='mosaic-overlay' style='display: block;'>" + 
+                                "<span class='select-item'></span>" +
+                                "<div class='mini-product-details'>" + 
+                                   "<span class='entity-price'>$" + data['Entity']['price'] + "</span>" +
+                                   "<span class='entity-name'>" + data['Entity']['name'] + "</span>" +
+                                "</div>" + 
+                            "</div>" + 
+                            "<div class='mosaic-backdrop' style='display: block;'>" + 
+                                "<img src='" + img_src + "' alt='" + data['Entity']['name'] + "' data-src='" + img_src + "'>" +
+                            "</div>" + 
+                        "</div>" + 
+                    "</div>" + 
+                "</div>";
+                
+        favoritesCont.append(html);
+    }
+
+}
+// Function to get favorites items
+function getfavoritesItems(lastLikedItem){
+    //alert(lastLikedItem);
+    $.ajax({
+        url: webroot + "outfits/getfavoritesItems/" + lastLikedItem,
+        cache: false,
+        type: 'POST',
+        data: {
+            'client_id': client_id
+        },
+        success: function(data){
+            var ret = $.parseJSON(data);
+            if(ret["status"] == "ok"){
+                if(ret["total"] == 0){
+                    $(".favorites-list-cont .product-listing-box").html("<p>Stylist has not liked any item yet.</p>");
+                }
+                else{
+                    if(lastLikedItem == 0){
+                        $(".favorites-list-cont .product-listing-box").html("");        
+                    }
+                    lastLikedItem = ret['last_liked_id'];
+                    //alert(lastLikedItem);
+                    addfavoritesItems(ret["data"]);
+                    //alert(addLikedItems(ret["data"]));
+                }
+            }
+            else if(ret['status'] == "end"){
+                $(".load-more-liked").fadeOut(300);    
+            }   
+        }
+    });
+   
+}
+
+
+//bhashit bhardwaj code
 
 /**
  * Closet items
@@ -226,6 +298,7 @@ function getClosetProducts(){
 function resetOutfitBox(){
     $('.purchased-list-cont .product-listing-box').html();
     $('.liked-list-cont .product-listing-box').html();
+    $('.favorites-list-cont .product-listing-box').html();
 
     $("#outfit-box .outfit-item").each(function() {
         clearOutfitItem($(this));
@@ -256,6 +329,7 @@ function displayOutfitItem(outfitEntity){
                 "<div class='mini-product-details'>" +
                     "<span class='outfit-detail-size'>$" + outfitEntity['price'] + "</span>" +
                     "<span class='outfit-detail-name'>" + outfitEntity['name'] + "</span>" +
+
                 "</div>" +
             "</div>" +
             "<div class='mosaic-backdrop' style='display: block;'>" +
@@ -285,7 +359,7 @@ function getOutfitItemCount(){
 // Get a count of selected items at a time.
 function getSelectedCount(){
     var selectedCount = 0;
-    $(".srs-closet-items .selected-outfit-item, .purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item").each(function(){
+    $(".srs-closet-items .selected-outfit-item, .purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item, .favorites-list-cont .selected-outfit-item").each(function(){
         selectedCount = selectedCount + 1;
     });
 
@@ -313,6 +387,7 @@ $(document).ready(function(){
             $.blockUI({message: $("#outfit-box"), css: {top: "10px", left: $(window).width()/2 - $("#outfit-box").width()/2 + "px", position: 'absolute' }});
             getPurchasedItems(lastPurchasedItem);
             getLikedItems(lastLikedItem);
+            getfavoritesItems(lastLikedItem);
         }
     });
 
@@ -334,7 +409,7 @@ $(document).ready(function(){
     $(".user-closet-close").on("click", function(e){
         e.preventDefault();
         $(".user-closet-cont").fadeOut(300);         
-        $(".purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item").removeClass("selected-outfit-item");
+        $(".purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item, .favorites-list-cont .selected-outfit-item").removeClass("selected-outfit-item");
     });
 
     $(".btn-srs-closet").on("click", function(e){
@@ -357,8 +432,8 @@ $(document).ready(function(){
         e.preventDefault();
         if(!$(".liked-list-cont").is(":visible")){
             $(this).removeClass("gray-btn").addClass("black-btn");
-            $(".purchased-cont-link").removeClass("black-btn").addClass("gray-btn");
-            $(".purchased-list-cont").fadeOut(300, function(){
+            $(".purchased-cont-link, .favorites-cont-link").removeClass("black-btn").addClass("gray-btn");
+            $(".purchased-list-cont, .favorites-list-cont").fadeOut(300, function(){
                 $(".liked-list-cont").fadeIn(300);        
             });
         } 
@@ -367,12 +442,25 @@ $(document).ready(function(){
         e.preventDefault();
         if(!$(".purchased-list-cont").is(":visible")){
             $(this).removeClass("gray-btn").addClass("black-btn");
-            $(".like-cont-link").removeClass("black-btn").addClass("gray-btn");
-            $(".liked-list-cont").fadeOut(300, function(){
+            $(".like-cont-link, .favorites-cont-link").removeClass("black-btn").addClass("gray-btn");
+            $(".liked-list-cont, .favorites-list-cont").fadeOut(300, function(){
                 $(".purchased-list-cont").fadeIn(300);        
             });
         } 
     });
+    //bhashit code
+    $(".favorites-cont-link").on("click", function(e){
+        e.preventDefault();
+        if(!$(".favorites-list-cont").is(":visible")){
+            $(this).removeClass("gray-btn").addClass("black-btn");
+            $(".like-cont-link, .purchased-cont-link").removeClass("black-btn").addClass("gray-btn");
+            $(".liked-list-cont, .purchased-list-cont").fadeOut(300, function(){
+                $(".favorites-list-cont").fadeIn(300);        
+            });
+        } 
+    });
+
+
 
     //Clear srs closet selections
     $(".clear-all-closet").on("click", function(e) {
@@ -392,6 +480,13 @@ $(document).ready(function(){
         getLikedItems();
             
     });
+
+    $(".load-more-favorites").on('click', function(e){
+        e.preventDefault();
+        getfavoritesItems();
+            
+    });
+
     $(".load-more-closet").on('click', function(e){
         e.preventDefault();
         getClosetProducts();
@@ -463,7 +558,7 @@ $(document).ready(function(){
     });
 
     // Handle event of clicking on any product from liked items, purchased items or the closet.
-    $(".srs-closet-items, .purchased-list-cont, .liked-list-cont").on("click", ".mosaic-overlay", function(e){
+    $(".srs-closet-items, .purchased-list-cont, .liked-list-cont, .favorites-list-cont").on("click", ".mosaic-overlay", function(e){
         var productBox = $(this).closest(".outfit-item");
         var selectedProductId = productBox.find('.product-id').val();
 
@@ -487,7 +582,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#outfit-box").on('click', ".add-closet-outfit, .add-purchased-outfit, .add-liked-outfit", function(e){
+    $("#outfit-box").on('click', ".add-closet-outfit, .add-purchased-outfit, .add-liked-outfit, .add-favorites-outfit", function(e){
         e.preventDefault();
         var selectedCount = getSelectedCount();
         var outfitItemCount = getOutfitItemCount();
@@ -498,7 +593,7 @@ $(document).ready(function(){
         else{
             if(outfitItemCount < 5){
                 var isItemAdded;
-                $(".srs-closet-items .selected-outfit-item, .purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item").each(function(){
+                $(".srs-closet-items .selected-outfit-item, .purchased-list-cont .selected-outfit-item, .liked-list-cont .selected-outfit-item, .favorites-list-cont .selected-outfit-item").each(function(){
                     var $this = $(this);
                     var outfitEntity = {
                         'id' : $this.find(".product-id").val(),
@@ -523,12 +618,28 @@ $(document).ready(function(){
     $("#add-outfit").on('click', function(e){
         e.preventDefault();
 
+        // var outfitId1 = $("#outfit1 .product-id").val();
+        // var outfitId2 = $("#outfit2 .product-id").val();
+        // var outfitId3 = $("#outfit3 .product-id").val();
+        // var outfitId4 = $("#outfit4 .product-id").val();
+        // var outfitId5 = $("#outfit5 .product-id").val();
+        // var outfitMsg = $("#outfitMessageToSend").val();
+
+        //bhashit changes
         var outfitId1 = $("#outfit1 .product-id").val();
         var outfitId2 = $("#outfit2 .product-id").val();
         var outfitId3 = $("#outfit3 .product-id").val();
         var outfitId4 = $("#outfit4 .product-id").val();
         var outfitId5 = $("#outfit5 .product-id").val();
         var outfitMsg = $("#outfitMessageToSend").val();
+        var outfitsize1 = $("#outfit-size1").val();
+        var outfitsize2 = $("#outfit-size2").val();
+        var outfitsize3 = $("#outfit-size3").val();
+        var outfitsize4 = $("#outfit-size4").val();
+        var outfitsize5 = $("#outfit-size5").val();
+
+        
+        //bhashit chnages
         
         if(outfitId1 == "" && outfitId2 == "" && outfitId3 == "" && outfitId4 == ""  && outfitId5 == ""){
             alert("Please select atleast one product to create an outfit.");
@@ -538,6 +649,8 @@ $(document).ready(function(){
                 $(this).addClass("outfit-suggessted");
                 var outfitLocation = $("#outfit-location").val();
                 var outfitStyle = $("#outfit-style").val();
+                var outname = $("#out-name").val();
+        
                 $(".suggest-outfit-loader").show();
                 $.post(
                     webroot + "outfits/postOutfit/",
@@ -548,9 +661,16 @@ $(document).ready(function(){
                         outfit4 : outfitId4, 
                         outfit5 : outfitId5, 
                         outfit_location: outfitLocation, 
-                        outfit_style: outfitStyle, 
+                        //outfit_style: outfitStyle, 
                         user_id: client_id,
-                        outfit_msg: outfitMsg
+                        outfit_msg: outfitMsg,
+                        outsize1 : outfitsize1,
+                        outsize2 : outfitsize2,
+                        outsize3 : outfitsize3,
+                        outsize4 : outfitsize4,
+                        outsize5 : outfitsize5,
+                        out_name : outname,
+
                     }, 
                     function(data){
                         var ret = $.parseJSON(data);
@@ -587,4 +707,14 @@ $(document).ready(function(){
             getLikedItems(); 
         }
     })
+
+
+    //bhashit code
+    $(".favorites-cont-link .product-listing-box").scroll(function(){
+        var div = $(this);
+        if (div[0].scrollHeight - div.scrollTop() == div.height()){
+            getfavoritesItems(); 
+        }
+    })
+
 });

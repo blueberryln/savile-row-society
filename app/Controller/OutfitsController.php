@@ -102,6 +102,56 @@ class OutfitsController extends AppController {
         exit;    
     }
     
+    //bhashit code
+
+    public function getfavoritesItems($last_liked_id = null){
+        $logged_user_id = $this->getLoggedUserID();
+        $ret = array();
+        if(is_null($last_liked_id)){
+            $ret['status'] = "error";    
+        }    
+        else if($logged_user_id && $last_liked_id >= 0 ){
+            $Wishlist = ClassRegistry::init('Wishlist');
+            $Entity = ClassRegistry::init('Entity'); 
+            $total_likes = $Wishlist->find('count', array('conditions' => array('Wishlist.user_id'=>$logged_user_id)));
+            
+            if($total_likes > 0){
+               $liked_list = $Wishlist->getUserLikedItems($logged_user_id, $last_liked_id, 10);
+               $last_item_id = $last_liked_id;
+                $entity_list = array();
+                foreach($liked_list as $value){
+                    $entity_list[] = $value['Wishlist']['product_entity_id'];
+                    $last_item_id = $value['Wishlist']['id'];
+                }
+                
+                $entities = $Entity->getProductDetails($entity_list, $logged_user_id);
+                if($entities){
+                    $ret['status'] = "ok";
+                    $ret['data'] = $entities;
+                    $ret['total'] = $total_likes; 
+                    $ret['last_liked_id'] = $last_item_id;   
+                }
+                else{
+                    $ret['status'] = "end";        
+                }
+            }
+            else{
+                $ret['status'] = "ok";
+                $ret['total'] = $total_likes; 
+            }
+        }
+        else{
+            $ret['status'] = "error";    
+        }
+        
+        echo json_encode($ret);
+        exit;  
+
+    }
+
+//bhashit code
+
+
     public function getClosetItems(){
         $ret = array();
         $user_id = $this->getLoggedUserID();
@@ -276,25 +326,56 @@ class OutfitsController extends AppController {
             if($this->request->data['outfit5'] != "" && $Entity->exists($this->request->data['outfit5'])) {
                 $outfit_array[] = $this->request->data['outfit5'];    
             }
-
             $data['Outfit']['user_id'] = $client_id;
             $data['Outfit']['stylist_id'] = $user_id;
+            //$typeoutfit = $this->request->data['outfit_style'];
+            //bhashit code start
+            
+            $out_name = $this->request->data['out_name'];
+            $data['Outfit']['outfitname'] = $out_name;
+            $outsize_array = array();
+            
+            if($this->request->data['outsize1'] !=""){
+                $outsize_array[] = $this->request->data['outsize1'];
+            }
+            if($this->request->data['outsize2'] !=""){
+                $outsize_array[] = $this->request->data['outsize2'];
+            }
+            if($this->request->data['outsize3'] !=""){
+                $outsize_array[] = $this->request->data['outsize3'];
+            }
+            if($this->request->data['outsize4'] !=""){
+                $outsize_array[] = $this->request->data['outsize4'];
+            }
+            if($this->request->data['outsize5'] !=""){
+                $outsize_array[] = $this->request->data['outsize5'];
+            }
+            $outsize_array = array_unique($outsize_array);
+            //bhashit code end 
 
             $outfit_array = array_unique($outfit_array);
             
             if(count($outfit_array) >= 1){
                 $Outfit = ClassRegistry::init('Outfit');
                 $OutfitItem = ClassRegistry::init('OutfitItem');
+                //bhashit code start
+                //$data['Outfit']['typeoutfit'] = $typeoutfit;
+                $data['Outfit']['outfitname'] = $out_name;
+                //bhashit code end
                 $Outfit->create();
                 if($result = $Outfit->save($data)){
                     $outfit_id = $result['Outfit']['id'];
                     $data['OutfitItem']['outfit_id'] = $outfit_id;
-
-                    foreach($outfit_array as $value){
+                    foreach($outfit_array as $key => $value)
+                    {
                         $data['OutfitItem']['product_entity_id'] = $value;
+                        if(isset($outsize_array[$key])){
+                            $data['OutfitItem']['size_id'] = $outsize_array[$key];
+                        }
                         $OutfitItem->create();
                         $OutfitItem->save($data);    
                     }
+                    
                     
                     $Message = ClassRegistry::init('Message');
                     $data['Message']['user_to_id'] = $client_id;
