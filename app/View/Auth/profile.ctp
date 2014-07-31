@@ -132,7 +132,7 @@ color:#396; !important
     <li style="float:left; margin-left:232px;"><br /><div style="margin-left:-30px;"><a href="#tabs-3" id="t3" class="register-tabs">Info</a></div></li>
   </ul>
   <div id="tabs-1">
-    <div class="seven columns center-block">
+    <div class="container columns center-block">
             <?php 
 echo $this->Form->create('User', array('type' => 'file'));
 echo $this->Form->input('User.id', array('type' => 'hidden'));
@@ -142,26 +142,21 @@ echo $this->Form->input('UserPreference.user_id', array('type' => 'hidden'));
             <br />
             
             
-            
+          <div class="hi-message text-center">
+                    <p><img src="<?php echo $this->webroot; ?>img/b.png" alt=""></p>
+                    <h4 class="hi-message">Select The Styles You Prefer</h4>
+                    <p style=" font-size: 14px; margin-left: 2px;">
+                       Your selection gives your stylist an initial impression of what you want to look like.
+                    </p>
+            </div>  
         <div class="srs-form">
             <div class="form">
                 <!--ward row-->
             <div class="container content inner preferences register-style">	
         
-                <div class="nine-five columns center-block">
+                <div class="nine columns center-block">
             
-            
-
-                    <div class="text-center">
-                        <p><img src="<?php echo $this->webroot; ?>img/b.png" alt=""></p>
-                        <h4 class="hi-message">Select The Styles You Prefer</h4>
-                        <p>
-                           Your selection gives your stylist an initial impression of what you want to look like.
-                        </p>
-                    </div>
-
-            
-                        <div class="twelve columns">
+                        <div class="twelve columns text-center">
                            
                             <div id="your-style">
                              <ol id="selectable">

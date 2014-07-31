@@ -64,7 +64,7 @@ input[type="submit"]{color: #fff;}
     .twelve.columns		{ width: 100%; }
     .nine-five.columns{width: 95%;}
 
-    .container{position: relative; width: auto; margin: 0 auto; padding: 0;}
+    .container{position: relative; width: 960px; margin: 0 auto; padding: 0;}
     .content-container{height: 100%; position: relative; margin-top: 81px;}
     /*.container .column, .container .columns{float: none;}*/
     .inner{margin-bottom: 30px;}
@@ -957,3 +957,5 @@ div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
 		max-height: 250px;
 	}
 }
+
+#your-style ol#selectable{margin-left:0;}

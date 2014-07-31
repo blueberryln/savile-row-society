@@ -133,32 +133,27 @@ color:#396; !important
     <li><br /><a href="#tabs-3" id="t3" class="register-tabs">Info</a></li>
   </ul>
   <div id="tabs-1">
-    <div class="seven columns center-block">
+    <div class="container columns center-block">
             <?php 
 echo $this->Form->create('User', array('type' => 'file'));?>
             
 
             
             
-            
+            <div class="hi-message text-center">
+                    <p><img src="<?php echo $this->webroot; ?>img/b.png" alt=""></p>
+                    <h4 class="hi-message">Select The Styles You Prefer</h4>
+                    <p style=" font-size: 14px; margin-left: 2px;">
+                       Your selection gives your stylist an initial impression of what you want to look like.
+                    </p>
+            </div>
             <div class="srs-form">
                 <div class="form">
                 <!--ward row-->
                     <div class="container content inner preferences register-style">	
                         
-                        <div class="nine-five columns center-block">
-
-                            <div class="text-center">
-                                    <img src="<?php echo $this->webroot; ?>img/b.png" alt="">
-                                    <h4 class="hi-message">Select The Styles You Prefer</h4>
-                                    <p>
-                                       Your selection gives your stylist an initial impression of what you want to look like.
-                                    </p>
-                            </div>
-
-
-
-                                <div class="twelve columns">
+                        <div class="nine columns center-block">
+                                <div class="twelve columns text-center">
                                    
                                     <div id="your-style">
                                          <ol id="selectable">
@@ -268,7 +263,7 @@ echo $this->Form->create('User', array('type' => 'file'));?>
             </div>
 
             <div class="input text required chest-size">
-                <label for="pantLength" class="text-center">PANT LENGHT:</label>                            
+                <label for="pantLength" class="text-center">PANT LENGTH:</label>                            
                 <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
                     <option value="">Pant Length</option>
                     <option value="28">28</option>
