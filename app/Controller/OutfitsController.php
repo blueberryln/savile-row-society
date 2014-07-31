@@ -328,6 +328,7 @@ class OutfitsController extends AppController {
             }
             $data['Outfit']['user_id'] = $client_id;
             $data['Outfit']['stylist_id'] = $user_id;
+
             //$typeoutfit = $this->request->data['outfit_style'];
             //bhashit code start
             
@@ -358,14 +359,22 @@ class OutfitsController extends AppController {
             if(count($outfit_array) >= 1){
                 $Outfit = ClassRegistry::init('Outfit');
                 $OutfitItem = ClassRegistry::init('OutfitItem');
+                $Useroutfit = ClassRegistry::init('Useroutfit');
                 //bhashit code start
                 //$data['Outfit']['typeoutfit'] = $typeoutfit;
                 $data['Outfit']['outfitname'] = $out_name;
+
                 //bhashit code end
+                
                 $Outfit->create();
                 if($result = $Outfit->save($data)){
                     $outfit_id = $result['Outfit']['id'];
                     $data['OutfitItem']['outfit_id'] = $outfit_id;
+                    $data['Useroutfit']['user_id'] = $client_id;
+                    $data['Useroutfit']['stylist_id'] = $user_id;
+                    $data['Useroutfit']['outfit_id'] = $outfit_id;
+                    $Useroutfit->create();  
+                    
                     foreach($outfit_array as $key => $value)
                     {
                         $data['OutfitItem']['product_entity_id'] = $value;
@@ -373,8 +382,10 @@ class OutfitsController extends AppController {
                             $data['OutfitItem']['size_id'] = $outsize_array[$key];
                         }
                         $OutfitItem->create();
-                        $OutfitItem->save($data);    
+                        $OutfitItem->save($data);
+                        $Useroutfit->save($data);    
                     }
+
                     
                     
                     $Message = ClassRegistry::init('Message');

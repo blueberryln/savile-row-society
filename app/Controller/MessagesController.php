@@ -9,6 +9,7 @@ App::uses('CakeEmail', 'Network/Email');
  * @property Message $Message
  */
 class MessagesController extends AppController {
+   
 
     public function beforeFilter(){
         $this->isLogged();
@@ -158,7 +159,6 @@ class MessagesController extends AppController {
      */
     public function detail($id){
         $User = ClassRegistry::init('User');
-        
         //Get user from session to derterminate if user is stylist
         $user = $this->getLoggedUser();
         $user_id = $user["User"]["id"]; 
@@ -577,6 +577,7 @@ If interested, I would also be happy to meet with you in our New York City based
      */
     public function getMyConversation($with_user_id = null) {
         // get converzation for logged in user.
+
         $result = array();
         if ($this->getLoggedUser()){
             $user_id = $this->getLoggedUserID();
@@ -921,4 +922,152 @@ If interested, I would also be happy to meet with you in our New York City based
             
         } 
     }
+
+
+
+    //bhashit code
+    //perticular user outfit list sent by his stylist
+    public function getuseroutfit($client_id = null) {
+
+        $User = ClassRegistry::init('User');
+        
+        //Get user from session to derterminate if user is stylist
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];   
+        $user = $User->getById($client_id);
+        //print_r($user);
+        $Message = ClassRegistry::init('Message');
+        if($user){
+                        $my_conversation = $this->Message->getMyConversationWith($client_id);
+                        $my_outfit = array();
+                        foreach($my_conversation as &$row){
+                            if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                                $outfit_id = $row['Message']['outfit_id'];
+                                $Outfit = ClassRegistry::init('Outfit');
+                                $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$outfit_id)));
+                                $OutfitItem = ClassRegistry::init('OutfitItem');
+                                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                                $entities = array();
+                                foreach($outfit as $value){
+                                     $entities[] = $value['OutfitItem']['product_entity_id'];
+                                
+                                }
+                                $Entity = ClassRegistry::init('Entity');
+
+                                $entity_list = $Entity->getMultipleById($entities);
+                                
+                                $my_outfit[] = array(
+                                    'outfit'    => $outfitnames,
+                                    'entities'  => $entity_list
+                                    );
+                                
+                            }
+                        }
+                  }
+                print_r($my_outfit);
+                die();
+                    
+    }
+
+    // perticular stylist total outfit list
+
+    public function getstylistoutfit($user_id = null){
+
+        $User = ClassRegistry::init('User');
+        
+        //Get user from session to derterminate if user is stylist
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];   
+        $Message = ClassRegistry::init('Message');
+        $Outfit = ClassRegistry::init('Outfit');
+        $my_outfit = array();
+        $stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,)));
+        foreach($stylistoutfit as $row){
+            $stylist_outfit_id = $row['Outfit']['id'];
+            $Outfit = ClassRegistry::init('Outfit');
+            $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+            $OutfitItem = ClassRegistry::init('OutfitItem');
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+            $entities = array();
+            foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                }
+            $Entity = ClassRegistry::init('Entity');
+            $entity_list = $Entity->getMultipleById($entities);
+            $my_outfit[] = array(
+                                'outfit'    => $outfitnames,
+                                'entities'  => $entity_list
+                                );
+
+        }
+        print_r($my_outfit);exit;
+    } 
+
+    //perticular user notes
+
+    public function getusernotes($client_id = null){
+        $User = ClassRegistry::init('User');
+        $Stylistnote = ClassRegistry::init('Stylistnote');
+        //Get user from session to derterminate if user is stylist
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];  
+
+        if($this->request->is('post')){
+            $data=$this->request->data;
+            $this->request->data['Stylistnote']['user_id']=$client_id;
+            $this->request->data['Stylistnote']['stylist_id']=$user_id;
+            $image=$data['Stylistnote']['image']['name'];
+            $this->request->data['Stylistnote']['image']=$image;
+            //image not upload yet pending?
+            if($image || $this->request->data)
+            {
+                $Stylistnote->save($this->request->data);
+                $this->Session->setFlash("User Data Hasbeen Saved");
+                $this->redirect('/messages/getusernotes/'.$client_id);
+            }
+        }
+
+        $notes=$Stylistnote->find('all',array('conditions'=>array('Stylistnote.user_id'=>$client_id,'Stylistnote.stylist_id'=>$user_id,)));
+        $this->set('notes',$notes);
+    }
+
+    // perticular user custom site measurements
+
+    public function getusercustomsize($client_id = null){
+        $User = ClassRegistry::init('User');
+        $Usersizeinformation = ClassRegistry::init('Usersizeinformation');
+        //Get user from session to derterminate if user is stylist
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"]; 
+
+        if($this->request->is('post')){
+            $this->request->data['Usersizeinformation']['user_id']=$client_id;
+            $this->request->data['Usersizeinformation']['stylist_id']=$user_id;
+            $custom_shirt_serialize = serialize($this->request->data['Usersizeinformation']['custom_shirt_measurement']);
+            $custom_jacket_serialize = serialize($this->request->data['Usersizeinformation']['custom_jacket_measurement']);
+            $custom_trouser_serialize = serialize($this->request->data['Usersizeinformation']['custom_trouser_measurement']);
+            $custom_vest_serialize = serialize($this->request->data['Usersizeinformation']['custom_vest_measurement']);
+            $this->request->data['Usersizeinformation']['custom_shirt_measurement'] = $custom_shirt_serialize;
+            $this->request->data['Usersizeinformation']['custom_jacket_measurement'] = $custom_jacket_serialize;
+            $this->request->data['Usersizeinformation']['custom_trouser_measurement'] = $custom_trouser_serialize;
+            $this->request->data['Usersizeinformation']['custom_vest_measurement'] = $custom_vest_serialize;
+                $Usersizeinformation->save($this->request->data);
+                $this->Session->setFlash("User Data Hasbeen Saved");
+                $this->redirect('/messages/getusercustomsize/'.$client_id);
+            
+
+        }
+
+    }
+
+    //bhashit code end
+
 }

@@ -53,6 +53,10 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
                 <?php if(!$is_admin) : ?>
                     <br />
+                    <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/getstylistoutfit/<?php echo $user_id; ?>" target="_blank"><span>Stylist Outfits.</span></a>
+                    </div>
+                    
+                    <br />
                     <h5 class="new-clients-head">New Clients</h5>
                     <div class="new-clients">
                     <?php if(isset($new_clients) && count($new_clients) > 0) {
@@ -71,6 +75,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <ul id="stylist-options">
                         <li><a href="<?php echo $this->webroot; ?>auth/profile/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
                         <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
+                        <!--bhashit code-->
+                        <li><a href="<?php echo $this->webroot; ?>messages/getuseroutfit/<?php echo $client_id; ?>" target="_blank">user outfits</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/getusernotes/<?php echo $client_id; ?>" target="_blank">user Notes</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/getusercustomsize/<?php echo $client_id; ?>" target="_blank">user Size Info.</a></li>
+                        
+                        <!--bhashit code end-->
                         <!--<li><a href="">conversation</a></li>-->                
                     </ul>
                 <?php endif; ?>

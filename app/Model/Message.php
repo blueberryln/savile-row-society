@@ -257,7 +257,29 @@ class Message extends AppModel {
                     )
         ));
     }
-    
+    //bhashit code
+    function getusertoid($client_id){
+        // return $this->find('all',array('conditions'=>array('Message.user_to_id'=>$client_id,'Message.is_outfit'=>true,)
+
+        //     )
+
+        // );
+        $this->find('all', array(
+                    'conditions' => array('AND' =>
+                        array(
+                            'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id)
+                        )
+                    ),
+            
+                    'contain' => array('UserFrom'),
+                    'order' => "Message.created DESC",
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                    ),
+                    
+        ));
+    }
+    //bhashit code end
     function getLastUserMessage($user_id){
         return $this->find('first', array(
             'conditions' => array(
