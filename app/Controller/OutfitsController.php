@@ -310,6 +310,14 @@ class OutfitsController extends AppController {
             $Entity = ClassRegistry::init('Entity');
             $outfit_array = array();
             $client_id = $this->request->data['user_id'];
+            //bhashit code
+            $posts = ClassRegistry::init('Post');
+            $this->request->data['Post']['user_id'] = $client_id;
+            $this->request->data['Post']['stylist_id'] = $user_id;
+            $this->request->data['Post']['is_outfit'] = '1';
+            $posts->save($this->request->data);
+            $post_id = $posts->getLastInsertID();
+            //bhashit code
 
             if($this->request->data['outfit1'] != "" && $Entity->exists($this->request->data['outfit1'])) {
                 $outfit_array[] = $this->request->data['outfit1'];    
@@ -328,8 +336,10 @@ class OutfitsController extends AppController {
             }
             $data['Outfit']['user_id'] = $client_id;
             $data['Outfit']['stylist_id'] = $user_id;
+            //bhashit code
+            $data['Outfit']['post_id'] = $post_id;
+            //bhashit code
 
-            //$typeoutfit = $this->request->data['outfit_style'];
             //bhashit code start
             
             $out_name = $this->request->data['out_name'];
@@ -364,6 +374,7 @@ class OutfitsController extends AppController {
                 //$data['Outfit']['typeoutfit'] = $typeoutfit;
                 $data['Outfit']['outfitname'] = $out_name;
 
+
                 //bhashit code end
                 
                 $Outfit->create();
@@ -373,13 +384,20 @@ class OutfitsController extends AppController {
                     $data['Useroutfit']['user_id'] = $client_id;
                     $data['Useroutfit']['stylist_id'] = $user_id;
                     $data['Useroutfit']['outfit_id'] = $outfit_id;
+                    //bhashit code
+                    $data['Useroutfit']['post_id'] = $post_id;
+                    //bhashit code
                     $Useroutfit->create();  
                     
                     foreach($outfit_array as $key => $value)
                     {
                         $data['OutfitItem']['product_entity_id'] = $value;
+                        //bhashit code
+                        $data['OutfitItem']['post_id'] = $post_id;
+                        //bhashit code
                         if(isset($outsize_array[$key])){
                             $data['OutfitItem']['size_id'] = $outsize_array[$key];
+                            
                         }
                         $OutfitItem->create();
                         $OutfitItem->save($data);

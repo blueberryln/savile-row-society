@@ -55,6 +55,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <br />
                     <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/getstylistoutfit/<?php echo $user_id; ?>" target="_blank"><span>Stylist Outfits.</span></a>
                     </div>
+                    <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/newsfeeds/<?php echo $user_id; ?>" target="_blank"><span>User's news-feed.</span></a>
+                    </div>
                     
                     <br />
                     <h5 class="new-clients-head">New Clients</h5>

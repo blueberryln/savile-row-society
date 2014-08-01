@@ -318,13 +318,25 @@ If interested, I would also be happy to meet with you in our New York City based
      */
     public function send_message_to_stylist() {
         $User = ClassRegistry::init('User');
+        $posts = ClassRegistry::init('Post');
+        //bhashit code
+        $userid = $User->getByID($this->getLoggedUserID());
+        $sty_id = $userid['User']['stylist_id'];
+        $this->request->data['Post']['user_id'] = $this->getLoggedUserID();
+        $this->request->data['Post']['is_message'] = '1';
+        $this->request->data['Post']['stylist_id'] = $sty_id;
+        $posts->save($this->request->data);
+        $post_id = $posts->getLastInsertID();
+        //bhashitcode end
 
         $this->Message->create();
 
         // get stylist ID
+        //bhashit code
         $user = $User->getByID($this->getLoggedUserID());
         $s_id = $user["User"]["stylist_id"];
-
+        $this->Message->data['Message']['post_id'] = $post_id;
+        //bhashit code
         $this->Message->data['Message']['user_to_id'] = $s_id;
         $this->Message->data['Message']['user_from_id'] = $this->getLoggedUserID();
         $this->Message->data['Message']['body'] = $this->request->data('body');
@@ -514,13 +526,14 @@ If interested, I would also be happy to meet with you in our New York City based
 
         $User = ClassRegistry::init('User');
 
+        
         $this->Message->create();
 
         //debug($this->request->data);
         $user = $User->getByID($this->getLoggedUserID());
         $body = $this->request->data('body');
         $to_id = $this->request->data('user_to_id');
-
+        
         $this->Message->data['Message']['user_from_id'] = $this->getLoggedUserID();
         $this->Message->data['Message']['user_to_id'] = $to_id;
         $this->Message->data['Message']['body'] = $body;
@@ -1066,6 +1079,89 @@ If interested, I would also be happy to meet with you in our New York City based
 
         }
 
+    }
+
+    //All user's news feed
+    public function newsfeeds($client_id = null) {
+        $User = ClassRegistry::init('User');
+        $posts = ClassRegistry::init('Post');
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"]; 
+        
+        
+        $post = $posts->find('all', array('conditions'=>array(
+                                            'OR' =>
+                                            array(
+                                            'AND' => array(
+                                                          array('Post.is_like' => true),
+                                                          array('Post.stylist_id' => $client_id)
+                                                    ),
+
+                                                          array('Post.is_message' => true,
+                                                          'Post.stylist_id' => $client_id),
+                                                          array('Post.is_outfit' => true,
+                                                          'Post.stylist_id' => $client_id),
+
+                                                   
+                                            ),
+                              )));
+        
+        $mynewsfeeds = array();
+        foreach ($post as  $post) {
+                $post_id =  $post['Post']['id'];
+                $like_user_id = $post['Post']['user_id'];
+
+                $username = $User->find('all', array('conditions'=>array('User.id'=>$like_user_id)));
+                $userdetails = array();
+                foreach ($username as  $username) {
+                    $userdetails = $username['User']['first_name'];
+                }
+                $like = ClassRegistry::init('Like');
+                $likes = $like->find('all', array('conditions' => array('Like.post_id' => $post_id)));
+                $like_product_id = array();
+                foreach ($likes as  $likes) {
+                        $like_product_id = $likes['Like']['product_entity_id'];
+                        
+                }
+                $Entity = ClassRegistry::init('Entity');
+                $entity_list = $Entity->getMultipleById($like_product_id);
+                
+                $Message = ClassRegistry::init('Message');
+                $messages[] = $Message->find('all', array('conditions'=>array('Message.post_id'=>$post_id)));
+                
+                $Outfit = ClassRegistry::init('Outfit');
+                $outfits = $Outfit->find('all', array('conditions'=>array('Outfit.post_id'=>$post_id,)));
+                $styoutfitid = array();
+                foreach ($outfits as $outfits) {
+                      $styoutfitid[] = $outfits['Outfit']['id'];
+                }
+                
+                $OutfitItem = ClassRegistry::init('OutfitItem');
+                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $styoutfitid)));
+                
+                $outfitentities = array();
+                foreach($outfit as $value){
+                $outfitentities[] = $value['OutfitItem']['product_entity_id'];
+                }
+                $outfitentity_list = $Entity->getMultipleById($outfitentities);
+
+                $mynewsfeeds[] = array(
+                                'entities'  => $entity_list,
+                                'Post_user_id' =>  $like_user_id,
+                                'userdetails' => $userdetails,
+                                'Message' => $messages,
+                                'outfitlist' => $outfitentity_list,
+                                'Outfitname' => $outfits
+                                );
+                
+        }
+        print_r($mynewsfeeds);
+        exit;
+        
+        
+        
     }
 
     //bhashit code end

@@ -37,6 +37,7 @@ class ApiController extends AppController {
             $error = false;
             $Dislike = ClassRegistry::init('Dislike');
             $Like = ClassRegistry::init('Like');
+            $posts = ClassRegistry::init('Post');
             $dislike = $Dislike->get($user_id, $product_id);
             if($dislike && $dislike['Dislike']['show']){
                 $dislike['Dislike']['show'] = 0;
@@ -52,18 +53,33 @@ class ApiController extends AppController {
             
             if($this->request->is('ajax') && !$error) {
                 // get posted product id
-
                 $wishlist = $Wishlist->get($user_id, $product_id);
-
+                //bhashit code
+                $User = ClassRegistry::init('User');
+                $stylistid = $User->getByID($user_id);
+                $sty_id = $stylistid['User']['stylist_id'];
+                $this->request->data['Post']['user_id'] = $user_id;
+                $this->request->data['Post']['stylist_id'] = $sty_id; 
+                $this->request->data['Post']['is_like'] = '1';
+                $posts->save($this->request->data);
+                $post_id = $posts->getLastInsertID();
+                //bhashit code end
                 if (!$wishlist) {
+                    //bhashit code
+                    $wishlist['Wishlist']['post_id'] = $post_id;
+                    //bhashit code
                     $wishlist['Wishlist']['user_id'] = $user_id;
                     $wishlist['Wishlist']['product_entity_id'] = $product_id;
 
                     $Wishlist->create();
                     if ($Wishlist->save($wishlist)) {
                         //Check if present in likes
-                        $like = $Like->get($user_id, $product_id);
+                        
+                       $like = $Like->get($user_id, $product_id);
                         if(!$like){
+                            //bhashitcode
+                            $like['Like']['post_id'] = $post_id;
+                            //bhashitcode end
                             $like['Like']['user_id'] = $user_id;
                             $like['Like']['product_entity_id'] = $product_id;   
                             $Like->create(); 
@@ -128,7 +144,15 @@ class ApiController extends AppController {
 
         // init
         $Dislike = ClassRegistry::init('Dislike');
+        $posts = ClassRegistry::init('Post');
         $user_id = $this->getLoggedUserID();
+
+        //bhashit code
+        $this->request->data['Post']['user_id'] = $user_id;
+        $this->request->data['Post']['is_dislike'] = '1';
+        $posts->save($this->request->data);
+        $post_id = $posts->getLastInsertID();
+        //bhashit code end
 
         // save dislike item
         if ($user_id && $param && $param == 'save') {
@@ -154,6 +178,9 @@ class ApiController extends AppController {
                 $dislike = $Dislike->get($user_id, $product_id);
 
                 if (!$dislike) {
+                    //bhashit code
+                    $dislike['Dislike']['post_id'] = $post_id;
+                    //bhashit code
                     $dislike['Dislike']['user_id'] = $user_id;
                     $dislike['Dislike']['product_entity_id'] = $product_id;
 

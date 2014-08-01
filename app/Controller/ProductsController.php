@@ -878,4 +878,19 @@ class ProductsController extends AppController {
         $this->render('admin_googlecsv', 'xls');
     }
 
+    //bhashit code start
+
+    //All outfits list
+    public function admin_outfitlist() {
+        $Outfit = ClassRegistry::init('Outfit');
+        $alloutfitlists = $Outfit->find('all');
+        $this->set(compact('alloutfitlists',$alloutfitlists));
+        print_r($alloutfitlists);exit;
+        
+
+    }
+
+
+    //bahshit code end
+
 }
