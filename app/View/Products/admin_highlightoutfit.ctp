@@ -40,45 +40,53 @@ $(document).ready(function(){
     <div class="sixteen columns text-center">
         <h1><?php echo __('Outfits'); ?></h1>
     </div>
-    <!-- <div class="sixteen columns text-center order-filter">
+    <div class="sixteen columns text-center order-filter">
+        <?php echo $this->Form->create('Highlightoutfit'); ?>
         <ul class="ordered-items">
+           
             <li>
-                <label for="startDate">User id:</label>
-                <input name="user-id" id="userId" type="text" style="width: 150px;">
+                <label for="startDate">Outfit List: </label>
+                <select name="data[Highlightoutfit][outfit_id]">
+                    <option>Please Select</option>
+                    <?php foreach ($outfitli as $outname) { ?>
+                    <option value="<?php echo $outname['Outfit']['id'] ?>"><?php echo $outname['Outfit']['outfitname'] ?></option>
+                    <?php    } ?>
+                    
+                </select>
             </li>
             <li>
-                <label for="startDate">Name (First/Last name):</label>
-                <input name="user-name" id="userName" type="text" style="width: 150px;">
+                <label for="startDate">Outfit Id:</label>
+                <input name="data[Highlightoutfit][outfit_id2]" type="text" style="width: 150px;">
             </li>
             <li>
-                <label for="startDate">Email:</label>
-                <input name="usere-email" id="userEmail" type="text" style="width: 150px;">
-            </li>       
+                <label for="startDate">Order Number:</label>
+                <input name="data[Highlightoutfit][order_id]" type="text" style="width: 150px;">
+            </li>
+              
         </ul>
-        <a href="" class="btn-user-search link-btn black-btn">Search</a>
+       <?php echo $this->Form->end('ADD HIGHLIGHTED OUTFIT'); ?>
+       <!--  <a href="" class="btn-user-search link-btn black-btn">Search</a> -->
         <br><br>
-    </div> -->
+    </div>
     <div class="sixteen columns">
         <div class="users index">
             <table cellpadding="0" cellspacing="0">
                 <tr>
-                    <th><?php echo $this->Paginator->sort('id'); ?></th>
-                    <th><?php echo $this->Paginator->sort('outfitname'); ?></th>
-                    <th><?php echo $this->Paginator->sort('stylist_id'); ?></th>
+                    <th>id</th>
+                    <th><?php echo 'outfitname'; ?></th>
+                    <th><?php echo 'order Number'; ?></th>
                     <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
 
                 <?php
-                  // print_r($outfitall);exit;
-                 foreach ($outfitall as  $outfitcomplete ):
-                    //print_r($outfitcomplete);
-                    //exit;
-                  ?>
+                //print_r($highlightoutfits);
+                //exit;
+                 foreach ($highlightoutfits as  $outfitcomplete ): ?>
                  
                     <tr class="user-row">
-                        <td><?php echo $outfitcomplete['outfitid']; ?>&nbsp;</td>
-                        <td><?php echo $outfitcomplete['outfitname']; ?>&nbsp;</td>
-                        <td><?php echo $outfitcomplete['outfitstylistdetails'][0]['User']['first_name']; ?>&nbsp;</td>
+                        <td><?php echo $outfitcomplete['Highlightoutfit']['outfit_id']; ?>&nbsp;</td>
+                        <td><?php echo $outfitcomplete['Outfit']['outfitname']; ?>&nbsp;</td>
+                        <td><?php echo $outfitcomplete['Highlightoutfit']['order_id']; ?>&nbsp;</td>
                        
                         
                         <td class="actions">
@@ -93,7 +101,7 @@ $(document).ready(function(){
                             <div class="hide">
                                 <table  style="float:left; width: 470px; border-bottom: 1px solid #cccccc;background-color: #E0E0E0;">
 
-                                    <tr>
+                                    <!-- <tr>
                                         <td>Name Of Clients:</td>
                                         <td>
                                             <?php
@@ -115,7 +123,7 @@ $(document).ready(function(){
                                                 
                                             ?>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <!--<tr>
                                         <td>Sales over the last 30 days :</td>
                                         <td>

@@ -13,7 +13,7 @@ App::uses('Validation', 'Utility');
 class UsersController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
-    var $uses = array('User','UserPreference','Style','InvitedUser');
+    var $uses = array('User','UserPreference','Style','InvitedUser','Userhighlighted');
 
    
     /**
@@ -417,6 +417,7 @@ class UsersController extends AppController {
      *
      * @return void
      */
+    //bhashit code
     public function admin_index() {
         $this->layout = 'admin';
         $this->isAdmin();
@@ -442,23 +443,9 @@ class UsersController extends AppController {
                  'limit' => 20,
                  'group' => array('User.id'),
                  'order' => array('User.id' => 'DESC', 'Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
-         );
-         $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
-        // // $this->Paginator->settings = array(
-        // //         'fields' => array('User.*'),
-        // //         'limit' => 20,
-        // //         'order' => array('User.id' => 'DESC', ),
-        // //         'join'  => array(
-        // //             array('table' => 'users_preferences',
-        // //                 'alias' => 'UserPreference',
-        // //                 'type' => 'LEFT',
-        // //                 'conditions' => array(
-        // //                     'User.id = UserPreference.user_id',
-        // //                 )
-        // //             ),
-        // //         ),
-        // // );
-
+        );
+        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
+        
         $users = $this->Paginator->paginate(); 
         $this->set(compact('stylists','users'));
         $styles = $this->Style->find('all');
@@ -472,43 +459,12 @@ class UsersController extends AppController {
      *
      * @return void
      */
-    
+    //bhashit code
     public function admin_stylist(){
          
         $this->layout = 'admin';
         $this->isAdmin();
-                // $Stylsts = $this->Paginator->settings = array(
-                //         'fields'=> array('User.*,count(User.id) as usercount'),
-                //         'join()'
-                //         'limit' => 20,
-                //         'order' => array('User.id'=> 'DESC', ),
-                //         'conditions' => array('User.is_stylist' => true,),
-                //         );
-        // $this->Paginator->settings = array(
-        //                 'fields' =>  array('User.*,count(User.id) as usercount'),
-        //                 'joins' =>  array(
-        //                             array(
-        //                         'conditions' => array(
-        //                         'User.is_stylist' => true,
-        //                         'User1.stylist_id'=>'User.id',),
-        //                         'table' =>'users',
-        //                         'alias' =>'User1',
-        //                         'type'  =>'INNER'
-        //                         ),
-                     
-        //                 ),
-        //                 'limit' => 20,
-        //                 'group' => array('User.id'),
-        //                 'order' => array('User.id' => 'DESC',),
-        //         );
-
-
-        //     $Stylsts=$this->User->find('list' array('conditions' => array('User.is_stylist'=> true,))); 
-        //     $this->set('Stylsts',$this->paginate());
-        //     print_r($Stylsts);
-            //     array('conditions'=> array('User.is_stylist'=>true,'User1.stylist_id'=>'User.id'),
-            //         ),);
-                 $this->Paginator->settings= array(
+        $this->Paginator->settings= array(
                 'fields' => array('User.*,count(User.id) as usercount'),
                 'joins' => array(
 
@@ -554,6 +510,7 @@ class UsersController extends AppController {
      * @param string $id
      * @return void
      */
+    //bhashit code
     public function admin_edit($id = null) {
 
         $this->layout = 'admin';
@@ -680,6 +637,91 @@ class UsersController extends AppController {
         $email = is_null($email) || $email == 'null'  ? '' : $email;
         $this->set(compact('users', 'user_id', 'user_name', 'email'));
     }
+
+
+    //bhashit code
+    public function admin_highlightedstylist(){
+        $this->layout = 'admin';
+        $this->isAdmin();
+        if($this->request->is('post')){
+            if($this->Userhighlighted->save($this->request->data)){
+                $this->Session->setFlash(__('The Userhighlighted has been saved'), 'flash');
+                $this->redirect(array('action' => 'highlightedstylist'));
+            } else {
+                $this->Session->setFlash(__('The Userhighlighted could not be saved. Please, try again.'), 'flash');
+            }
+        
+        }
+
+        $stylists = $this->User->find('all', array('conditions'=>array('is_stylist' => true,)));
+        $this->set(compact('stylists'));
+        $this->Paginator->settings = array(
+                'fields' => array('User.*,Userhighlighted.*'),
+                'joins' => array(
+
+                array(
+                    'conditions' => array(
+                        'User.is_stylist' => true,
+                        'Userhighlighted.user_id = User.id',
+                    ),
+                    'table' => 'userhighlighteds',
+                    'alias' => 'Userhighlighted',
+                    'type' => 'INNER',
+                ),
+                ),
+                'limit'=> 20,
+                );
+        $Userhighlight= $this->paginate();
+        //print_r($Userhigh);
+        $this->set('Userhighlight',$Userhighlight);
+
+    }
+
+    public function admin_highlightedstylistedit($highlighted_id = null) {
+        $this->layout = 'admin';
+        $this->isAdmin();
+
+        if (!$this->Userhighlighted->exists($highlighted_id)) {
+            throw new NotFoundException(__('Invalid Userhighlighted'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            //print_r($this->request->data);exit;
+            $user_data = $this->Userhighlighted->findById($highlighted_id);
+            if ($this->Userhighlighted->save($this->request->data)) {
+                $this->Session->setFlash(__('The Userhighlighted has been saved'), 'flash');
+                $this->redirect(array('action' => 'highlightedstylist'));
+            } else {
+                $this->Session->setFlash(__('The Userhighlighted could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('Userhighlighted.' . $this->Userhighlighted->primaryKey => $highlighted_id));
+            $this->request->data = $this->Userhighlighted->find('first', $options);
+            //print_r($this->request->data);exit;
+        }
+        
+        $higtlited_condition = $this->Paginator->settings = array(
+                'fields' => array('User.*,Userhighlighted.*'),
+                'joins' => array(
+
+                array(
+                    'conditions' => array(
+                        'User.is_stylist' => true,
+                        'Userhighlighted.user_id = User.id',
+                        'Userhighlighted.id' => $highlighted_id
+                    ),
+                    'table' => 'userhighlighteds',
+                    'alias' => 'Userhighlighted',
+                    'type' => 'INNER',
+                ),
+                ),
+                );
+
+        $highlight = $this->User->find('all', $higtlited_condition);
+        $this->set('highlight',$highlight);
+        
+
+    }
+
 
 }
 

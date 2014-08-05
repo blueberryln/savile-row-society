@@ -58,32 +58,54 @@ $(document).ready(function(){
         <a href="" class="btn-user-search link-btn black-btn">Search</a>
         <br><br>
     </div> -->
+
     <div class="sixteen columns">
         <div class="users index">
             <table cellpadding="0" cellspacing="0">
+                
+                <tr>
+                	<th>STYLIST LIST</th>
+                	
+                	<th>
+                	<?php echo $this->Form->create('Userhighlighted'); ?>
+                	<select name="data[Userhighlighted][user_id]">
+                		<option value="">Select Stylist</option>
+                		<?php  foreach ($stylists as  $value) { ?>
+                		
+                	
+                		<option value="<?php echo $value['User']['id']; ?>"><?php echo $value['User']['first_name']; ?></option>
+                		<?php } ?>
+                	</select>
+                	</th>
+                	<th> Order Number:</th> <th> <input type="text" name="data[Userhighlighted][order_id]"> </th>
+                	<th><br><br><br><br><?php echo $this->Form->end('ADD HIGHLIGHTED'); ?></th>
+                	<?php //echo $this->Form->input('stylist_id', array('empty' => 'Select Stylist')); ?></th>
+                </tr>
+                
                 <tr>
                     <th><?php echo $this->Paginator->sort('id'); ?></th>
-                    <th><?php echo $this->Paginator->sort('outfitname'); ?></th>
-                    <th><?php echo $this->Paginator->sort('stylist_id'); ?></th>
+                    <th><?php echo $this->Paginator->sort('first_name'); ?></th>
+                    <th><?php echo $this->Paginator->sort('order_id'); ?></th>
                     <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
 
                 <?php
-                  // print_r($outfitall);exit;
-                 foreach ($outfitall as  $outfitcomplete ):
+                //error_reporting(0);
+                   //print_r($outfitall);exit;
+                 foreach ($Userhighlight as  $userhighlighted ):
                     //print_r($outfitcomplete);
                     //exit;
                   ?>
                  
                     <tr class="user-row">
-                        <td><?php echo $outfitcomplete['outfitid']; ?>&nbsp;</td>
-                        <td><?php echo $outfitcomplete['outfitname']; ?>&nbsp;</td>
-                        <td><?php echo $outfitcomplete['outfitstylistdetails'][0]['User']['first_name']; ?>&nbsp;</td>
-                       
-                        
+                        <td><?php echo $userhighlighted['User']['id']; ?>&nbsp;</td>
+                        <td><?php echo $userhighlighted['User']['first_name'].'&nbsp;'.$userhighlighted['User']['last_name'];; ?>&nbsp;</td>
+                        <td><?php echo $userhighlighted['Userhighlighted']['order_id']; ?>&nbsp;</td>
                         <td class="actions">
                             <!--<a target="_blank" href="<?php echo $this->webroot; ?>messages/index/<?php echo $user['User']['id']; ?>">Chat</a>-->
-                            <?php //echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
+                            <?php
+                            $highlighted_id = $userhighlighted['Userhighlighted']['id'];
+                             echo $this->Html->link(__('Edit'), array('action' => 'highlightedstylistedit', $highlighted_id)); ?>
                             <a class="detail" href="">Detail</a>
                         </td>
 
@@ -94,11 +116,20 @@ $(document).ready(function(){
                                 <table  style="float:left; width: 470px; border-bottom: 1px solid #cccccc;background-color: #E0E0E0;">
 
                                     <tr>
-                                        <td>Name Of Clients:</td>
+                                        <td>Email Of Stylist:</td>
                                         <td>
                                             <?php
                                             //print_r($usercount);
-                                                echo  $outfitcomplete['outfituserdetails'][0]['User']['first_name'];
+                                                echo  $userhighlighted['User']['email'];
+                                            ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skype Id Of Stylist:</td>
+                                        <td>
+                                            <?php
+                                            //print_r($usercount);
+                                                echo  $userhighlighted['User']['skype'];
                                             ?>
                                         </td>
                                     </tr>
@@ -106,12 +137,10 @@ $(document).ready(function(){
                                         <td>Product Contained Id:</td>
                                         
                                         <td>
+
                                             <?php
-                                            foreach ($outfitcomplete['Outfitproduct'] as  $proutfit) {
-                                                echo  $proutfit['OutfitItem']['product_entity_id'].'<br>';
-                                            }
                                             
-                                            //print_r($usercount);
+                                                echo  $proutfit['OutfitItem']['product_entity_id'].'<br>';
                                                 
                                             ?>
                                         </td>
@@ -151,15 +180,15 @@ $(document).ready(function(){
     <div class="sixteen columns text-center">
         <p>
             <?php
-            // echo $this->Paginator->counter(array(
-            //     'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-            // ));
+             // echo $this->Paginator->counter(array(
+             //     'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+             // ));
             ?>  </p>
         <div class="paging">
             <?php
-           // echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-           // echo $this->Paginator->numbers(array('separator' => ''));
-           // echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+            // echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+            // echo $this->Paginator->numbers(array('separator' => ''));
+            // echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
             ?>
         </div>
     </div>

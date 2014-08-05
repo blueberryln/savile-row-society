@@ -997,6 +997,8 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"];   
         $Message = ClassRegistry::init('Message');
         $Outfit = ClassRegistry::init('Outfit');
+        $userlist = $User->find('all', array('conditions'=>array('User.stylist_id'=>$user_id,)));
+
         $my_outfit = array();
         $stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,)));
         foreach($stylistoutfit as $row){
@@ -1017,7 +1019,8 @@ If interested, I would also be happy to meet with you in our New York City based
                                 );
 
         }
-        print_r($my_outfit);exit;
+        //print_r($my_outfit);exit;
+        $this->set(compact('my_outfit','userlist'));
     } 
 
     //perticular user notes
@@ -1162,6 +1165,25 @@ If interested, I would also be happy to meet with you in our New York City based
         
         
         
+    }
+
+    public function copyoutfituser($outfitid = null){
+        $User = ClassRegistry::init('User');
+        $posts = ClassRegistry::init('Post');
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; exit;
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"]; 
+
+        if($this->request->is('post')){
+            print_r($this->request->data);
+            exit;
+        }
+
+        
+
+
+
     }
 
     //bhashit code end
