@@ -1,10 +1,14 @@
-<?php
-foreach ($my_outfit as $my_outfit) {
-	//print_r($my_outfit);
 
+	
+<form method="post" action="/messages/copyoutfituser/<?php echo $user_id; ?>">
+<?php
+
+foreach ($my_outfit as $my_outfit) {
+	$outfitid = $my_outfit['outfit']['Outfit']['id']; 
 echo $my_outfit['outfit']['Outfit']['outfitname'].'&nbsp&nbsp&nbsp&nbsp';
-echo$outfitid = $my_outfit['outfit']['Outfit']['id'];  ?>
+echo $outfitid; ?>
 <input type="radio" name="data[OutfitItem][outfit_id]" value="<?php echo $outfitid; ?>"><br>
+
 <?php		
 }
 
@@ -23,7 +27,8 @@ foreach ($userlist as $userlist) { ?>
 }
 ?>
 </select>
+
+
 <?php
 echo $this->Form->end('Submit');
  ?>
-

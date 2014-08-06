@@ -53,6 +53,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
                 <?php if(!$is_admin) : ?>
                     <br />
+                    
+                    <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/getstylistsales/<?php echo $user_id; ?>" target="_blank"><span>Stylist Sales History.</span></a>
+                    </div>
                     <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/getstylistoutfit/<?php echo $user_id; ?>" target="_blank"><span>Stylist Outfits.</span></a>
                     </div>
                     <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/newsfeeds/<?php echo $user_id; ?>" target="_blank"><span>User's news-feed.</span></a>

@@ -1020,7 +1020,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
         }
         //print_r($my_outfit);exit;
-        $this->set(compact('my_outfit','userlist'));
+        $this->set(compact('my_outfit','userlist','user_id'));
     } 
 
     //perticular user notes
@@ -1167,25 +1167,82 @@ If interested, I would also be happy to meet with you in our New York City based
         
     }
 
-    public function copyoutfituser($outfitid = null){
+    public function copyoutfituser($user_id = null){
         $User = ClassRegistry::init('User');
         $posts = ClassRegistry::init('Post');
+        $Useroutfit = ClassRegistry::init('Useroutfit');
         $user = $this->getLoggedUser();
-        $user_id = $user["User"]["id"]; exit;
+        $user_id = $user["User"]["id"]; 
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"]; 
-
         if($this->request->is('post')){
-            print_r($this->request->data);
-            exit;
+                    $outfitid = $this->request->data['OutfitItem']['outfit_id'];
+                    $clientid = $this->request->data['Useroutfit']['user_id'];
+                    $this->request->data['Post']['user_id'] = $clientid;
+                    $this->request->data['Post']['stylist_id'] = $user_id;
+                    $this->request->data['Post']['is_outfit'] = '1';
+                    $posts->save($this->request->data);
+                    $post_id = $posts->getLastInsertID();
+                    $Useroutfit->data['Useroutfit']['outfit_id'] = $outfitid;
+                    $Useroutfit->data['Useroutfit']['user_id'] = $clientid;
+                    $Useroutfit->data['Useroutfit']['stylist_id'] = $user_id;
+                    $Useroutfit->data['Useroutfit']['post_id'] = $post_id;
+            if($Useroutfit->save($this->request->data)){
+                    $this->Session->setFlash("User Data Hasbeen Saved");
+                    $this->redirect('/messages/getstylistoutfit/'.$user_id);
+            }
         }
-
-        
-
-
-
     }
 
+    public function getstylistsales($user_id = null) {
+        $User = ClassRegistry::init('User');
+        $posts = ClassRegistry::init('Post');
+        $Useroutfit = ClassRegistry::init('Useroutfit');
+        $Order = ClassRegistry::init('Order');
+        $Entity = ClassRegistry::init('Entity');
+        $OrderItem = ClassRegistry::init('OrderItem');
+        $Product = classRegistry::init('Product');
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];
+
+        $postvalue = $posts->find('all', array('conditions'=>array('Post.is_order'=>true)));
+        $saleshistory = array();
+        foreach ($postvalue as $key => $postvalue) {
+
+            $post_id = $postvalue['Post']['id'];
+            $orderlist = $Order->find('all', array('conditions'=>array('Order.post_id'=>$post_id)));
+            foreach ($orderlist as $orderlist) {
+
+               $orderuserid =  $orderlist['Order']['user_id']; 
+            }
+            $username = $User->getByID($orderuserid);
+            $orderdetailsuser = $OrderItem->getUserPurchaseDetail($orderuserid);
+            foreach ($orderdetailsuser as $orderdetailsuser) {
+            
+            $productid[] = $orderdetailsuser['OrderItem']['product_entity_id'];
+            
+            }
+            $productdetail = $Product->findById($productid);
+            $brand_id = $productdetail['Product']['brand_id'];
+                
+            $Brand = classRegistry::init('Brand');
+            $branddetails = $Brand->find('all',array('conditions'=>array('Brand.id'=>$brand_id)));
+
+
+            //print_r($prid);exit;
+
+            $saleshistory[] = array(
+                'orderlist' =>  $orderlist,
+                'userdetail' => $username,
+                'orderdetailsuser' => $orderdetailsuser,
+                'brand' => $branddetails
+                );
+        } 
+        //print_r($saleshistory);
+        $this->set('saleshistory',$saleshistory);
+    }
     //bhashit code end
 
 }

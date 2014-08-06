@@ -35,6 +35,13 @@ class OrderItem extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
+        ),
+        'Brand' => array(
+            'className' => 'Brand',
+            'foreignKey' => 'id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
         )
     );
 
@@ -113,5 +120,25 @@ class OrderItem extends AppModel {
         );
         
         return $this->find('count', $find_array);    
+    }
+
+    //bhashit code
+
+    function getUserPurchaseDetail($orderuserid){
+        $find_array =   array(
+            'contain' => array('Entity','Brand'),
+            'joins' => array(
+                array('table' => 'orders',
+                    'alias' => 'Order',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Order.id = OrderItem.order_id'
+                    )
+                )
+            ),
+            'conditions' => array('Order.user_id' => $orderuserid),
+            'fields' => array('OrderItem.*', 'Entity.*'),
+        );
+        return $this->find('all',$find_array);
     }
 }
