@@ -60,7 +60,7 @@ $(document).ready(function(){
             </li>
             <li>
                 <label for="startDate">Order Number:</label>
-                <input name="data[Highlightoutfit][order_id]" type="text" style="width: 150px;">
+                <input name="data[Highlightoutfit][order_id]" type="text" style="width: 150px;" required>
             </li>
               
         </ul>
@@ -81,7 +81,9 @@ $(document).ready(function(){
                 <?php
                 //print_r($highlightoutfits);
                 //exit;
-                 foreach ($highlightoutfits as  $outfitcomplete ): ?>
+                 foreach ($highlightoutfits as  $outfitcomplete ):
+                    $highlightoutfitid = $outfitcomplete['Highlightoutfit']['id'];
+                  ?>
                  
                     <tr class="user-row">
                         <td><?php echo $outfitcomplete['Highlightoutfit']['outfit_id']; ?>&nbsp;</td>
@@ -91,8 +93,8 @@ $(document).ready(function(){
                         
                         <td class="actions">
                             <!--<a target="_blank" href="<?php echo $this->webroot; ?>messages/index/<?php echo $user['User']['id']; ?>">Chat</a>-->
-                            <?php //echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-                            <a class="detail" href="">Detail</a>
+                            <?php echo $this->Html->link(__('Edit'), array('action' => 'highlightoutfitedit', $highlightoutfitid)); ?>
+                            <!-- <a class="detail" href="">Detail</a> -->
                         </td>
 
                     </tr>

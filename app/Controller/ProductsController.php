@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('Validation', 'Utility');
 
 /**
  * Products Controller
@@ -894,12 +895,10 @@ class ProductsController extends AppController {
                 $outfit_user_id = $outfitlist['Outfit']['user_id'];
                 $outfit_stylist_id = $outfitlist['Outfit']['stylist_id'];
                 $outfit_name = $outfitlist['Outfit']['outfitname'];
-                //outfit stylist
                 $outfitstylist = $User->find('all', array('conditions'=>array('User.id'=>$outfit_stylist_id)));
                 $outfituserlist = $User->find('all', array('conditions'=>array('User.id'=>$outfit_user_id)));
                 $outfitproduct = $OutfitItem->find('all',array('conditions'=>array('OutfitItem.outfit_id'=>$outfit_id)));
                 $outfitproductdetails = $Entity->find('all',array('conditions'=>array('Entity.id'=>$outfit_id)));
-                //print_r($outfitproductdetails);exit;
                 $outfitall[] = array(
                     'outfitid' => $outfit_id,
                     'outfitname' => $outfit_name,
@@ -910,19 +909,13 @@ class ProductsController extends AppController {
 
                 ); 
         }
-        //$this->Paginator->settings = $outfitall;
-        //$this->Paginator->settings = $this->paginate;
-        //$outfitall = $this->paginate($outfitall);
         $this->set(compact('outfitall'));
-        //print_r($outfitall);
-        
     }
 
     //highlighted outfits
     public function admin_highlightoutfit(){
         $Outfit = ClassRegistry::init('Outfit');
         $Highlightoutfit = ClassRegistry::init('Highlightoutfit');
-        //print_r($Highlightoutfit);exit;
         if($this->request->is('post')){
                     
             if($this->request->data['Highlightoutfit']['outfit_id2'] == null){
@@ -931,10 +924,25 @@ class ProductsController extends AppController {
             } elseif ($this->request->data['Highlightoutfit']['outfit_id']=='Please Select') {
                 $this->request->data['Highlightoutfit']['outfit_id'] = $this->request->data['Highlightoutfit']['outfit_id2'];
             }
-               //$Highlightoutfit->data['Highlightoutfit']['outfit_id'];
-            //exit();
-              //print_r($this->request->data['Highlightoutfit']['outfit_id']);
-              //exit;
+            $highlightoutfit = $this->request->data;
+            
+            if ($Highlightoutfit->validates()) {
+                $checkhighlight = $Highlightoutfit->find('count', array('conditions' => array('Highlightoutfit.order_id' => $highlightoutfit['Highlightoutfit']['order_id'])));
+                $checkoutfit = $Outfit->find('count',array('conditions'=>array('Outfit.id'=>$this->request->data['Highlightoutfit']['outfit_id'])));
+                
+                if($checkhighlight){
+                    $this->Session->setFlash(__('This order number is already added. Please Used anthor.'), 'flash');
+                    $this->redirect(array('action' => 'highlightoutfit'));
+                    exit;    
+                }
+                if($checkoutfit == null){
+                    $this->Session->setFlash(__('This outfit Id is wrong. Please Used anthor. Or Please choose atleast one field.'), 'flash');
+                    $this->redirect(array('action' => 'highlightoutfit'));
+                    exit;    
+                }                
+                
+            }
+            
              if($Highlightoutfit->save($this->request->data)){
                 $this->Session->setFlash(__('The Highlightoutfit has been saved'), 'flash');
                 $this->redirect(array('action' => 'highlightoutfit'));
@@ -979,6 +987,67 @@ class ProductsController extends AppController {
         $outfitli = $Outfit->find('all');
         $this->set('outfitli',$outfitli);
 
+
+    }
+
+    public function admin_highlightoutfitedit($highlightoutfitid = null) {
+        $Outfit = ClassRegistry::init('Outfit');
+        $Highlightoutfit = ClassRegistry::init('Highlightoutfit');
+
+        if($this->request->is('post') || $this->request->is('put')){
+            $outfitdata = $Highlightoutfit->findById($highlightoutfitid);
+                 $checkid=$this->request->data['Highlightoutfit']['order_id'];
+                //echo $outfitdata['Highlightoutfit']['order_id'];
+                //exit;
+                    if($checkid >= $outfitdata['Highlightoutfit']['order_id']){
+                        //echo "check id > manull id";exit;
+                            $Highlightoutfit->updateAll(
+                            array('Highlightoutfit.order_id' => 'Highlightoutfit.order_id+1'),                    
+                            array('Highlightoutfit.id >' => $highlightoutfitid)
+                            );
+                           // print_r($a);exit;
+
+                    }elseif ($checkid < $outfitdata['Highlightoutfit']['order_id']) {
+                        //echo "check id < manull id";exit;
+                            $Highlightoutfit->updateAll(
+                            array('Highlightoutfit.order_id' => 'Highlightoutfit.order_id -1'),                    
+                            array('Highlightoutfit.id <' => $highlightoutfitid)
+                            );
+                         //print_r($a);exit;
+                    }
+                if ($Highlightoutfit->save($this->request->data)) {
+                    
+
+                    $this->Session->setFlash(__('The Highlightoutfit has been saved'), 'flash');
+                    $this->redirect(array('action' => 'highlightoutfit'));
+                } else {
+                    $this->Session->setFlash(__('The Highlightoutfit could not be saved. Please, try again.'), 'flash');
+                }
+            //print_r($this->request->data);
+            //exit;
+        }else {
+            $options = array('conditions' => array('Highlightoutfit.' . $Highlightoutfit->primaryKey => $highlightoutfitid));
+            $this->request->data = $Highlightoutfit->find('first', $options);
+            //print_r($this->request->data);exit;
+        }
+
+        $option  =  array(
+                            'fields' => array('Outfit.*,Highlightoutfit.*'),
+                            'joins' => array(
+
+                            array(
+                                'conditions' => array(
+                                    'Outfit.id = Highlightoutfit.outfit_id',
+                                     'Highlightoutfit.id' => $highlightoutfitid
+                                ),
+                                'table' => 'highlightoutfits',
+                                'alias' => 'Highlightoutfit',
+                                'type' => 'INNER',
+                            ),
+                        ),
+                    );
+        $highlightoutfits = $Outfit->find('all', $option);
+        $this->set('highlightoutfits',$highlightoutfits);
 
     }
 

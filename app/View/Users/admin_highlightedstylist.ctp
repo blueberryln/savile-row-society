@@ -68,7 +68,7 @@ $(document).ready(function(){
                 	
                 	<th>
                 	<?php echo $this->Form->create('Userhighlighted'); ?>
-                	<select name="data[Userhighlighted][user_id]">
+                	<select name="data[Userhighlighted][user_id]" required>
                 		<option value="">Select Stylist</option>
                 		<?php  foreach ($stylists as  $value) { ?>
                 		
@@ -77,7 +77,7 @@ $(document).ready(function(){
                 		<?php } ?>
                 	</select>
                 	</th>
-                	<th> Order Number:</th> <th> <input type="text" name="data[Userhighlighted][order_id]"> </th>
+                	<th> Order Number:</th> <th> <input type="text" name="data[Userhighlighted][order_id]" required> </th>
                 	<th><br><br><br><br><?php echo $this->Form->end('ADD HIGHLIGHTED'); ?></th>
                 	<?php //echo $this->Form->input('stylist_id', array('empty' => 'Select Stylist')); ?></th>
                 </tr>

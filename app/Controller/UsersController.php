@@ -643,7 +643,20 @@ class UsersController extends AppController {
     public function admin_highlightedstylist(){
         $this->layout = 'admin';
         $this->isAdmin();
+       
         if($this->request->is('post')){
+
+            $userhighlights = $this->request->data;
+             if ($this->Userhighlighted->validates()) {
+                $checkhighlight = $this->Userhighlighted->find('count', array('conditions' => array('Userhighlighted.order_id' => $userhighlights['Userhighlighted']['order_id'])));
+                if($checkhighlight){
+                    $this->Session->setFlash(__('This order number is already added. Please Used anthor.'), 'flash');
+                    $this->redirect(array('action' => 'highlightedstylist'));
+                    exit;    
+                }
+            }
+
+
             if($this->Userhighlighted->save($this->request->data)){
                 $this->Session->setFlash(__('The Userhighlighted has been saved'), 'flash');
                 $this->redirect(array('action' => 'highlightedstylist'));
