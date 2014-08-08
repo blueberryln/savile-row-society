@@ -1243,6 +1243,38 @@ If interested, I would also be happy to meet with you in our New York City based
         //print_r($saleshistory);
         $this->set('saleshistory',$saleshistory);
     }
+
+    public function requestanoutfit() {
+        $this->autoLayout = false;
+        $Message = ClassRegistry::init('Message');
+        $User= ClassRegistry::init('User');
+        $posts = ClassRegistry::init('Post');
+        $user = $this->getLoggedUser();
+        $user_id = $user['User']['id'];
+        $stylist_id = $user['User']['stylist_id'];
+            $this->request->data['Post']['user_id'] = $user_id;
+            $this->request->data['Post']['stylist_id'] = $stylist_id;
+            $this->request->data['Post']['is_outfit_request'] = '1';
+            $posts->save($this->request->data);
+            $post_id = $posts->getLastInsertID();
+        if($this->request->is('post') || $this->request->is('put')){
+            $Message->data['Message']['user_from_id'] = $user_id;
+            $Message->data['Message']['user_to_id'] = $stylist_id;
+            $Message->data['Message']['is_request_outfit'] = '1';
+            $Message->data['Message']['post_id'] =  $post_id;
+
+            if($Message->save($this->request->data)){
+                $this->Session->setFlash("Request Outfit Data Hasbeen Send");
+                $this->redirect('/messages/index');
+            }
+            //print_r($this->request->data);
+            //exit;
+
+        }    
+
+
+
+    }
     //bhashit code end
 
 }

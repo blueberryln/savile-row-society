@@ -888,6 +888,33 @@ class ProductsController extends AppController {
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $User = ClassRegistry::init('User');
         $Entity = ClassRegistry::init('Entity');
+        //$outfitlist = $Outfit->find('all');
+        // $find_array = array(
+        //     'conditions' => array( 
+        //     ),
+        //     'joins' => array(
+        //         array('table' => 'outfits_items',
+        //             'alias' => 'OutfitItem',
+        //             'type' => 'INNER',
+        //             'conditions' => array(
+        //             'OutfitItem.outfit_id = Outfit.id' 
+        //             )
+        //         ),
+        //      ),
+            
+        //     'fields' => array(
+        //         'Outfit.*,OutfitItem.product_entity_id'
+        //     ),
+        // );
+        // $outfitall = $Outfit->find('all',$find_array);
+        // $test = array();
+        // foreach ($outfitall as $outfitall) {
+        //     $outfitall['OutfitItem']['']
+        // }
+            
+        // print_r($outfitall);
+        // exit;
+
         $outfitall = array();
         $outfitlists = $Outfit->find('all');
         foreach ($outfitlists as $outfitlist) {

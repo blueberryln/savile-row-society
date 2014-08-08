@@ -44,7 +44,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <h4 class='eight columns '>TALK WITH YOUR STYLIST</h4>
                 <textarea class="chat-msg-txtbox" id='messageToSend'></textarea>
                 <!--<input type="button" value="Send messages" id="sendMessages" />-->
-                <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a><a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a>
+                <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a>
+                <a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a>
+                <a class="link-btn black-btn" href="" id="requestanoutfit">Request an outfit</a>
                 <div class="clear-fix"></div>
                 
                 <div class="chat-container">
@@ -76,6 +78,26 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         </div> 
     </div>
 </div>
+
+
+<!--bhashit code-->
+<div id="chatrequest-box" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="signin-content">
+            <h5 class="sign">Request an Outfit</h5>  
+            
+            <?php echo $this->Form->create('Message', array('url' => '/messages/requestanoutfit')); ?> 
+                <?php
+                    echo $this->Form->input('Message.body', array('type' => 'textarea', 'label' => false, 'class' => 'style-photo'));
+                ?>
+                <input type="submit" class="link-btn black-btn signin-btn" value="Request an Outfit" /> 
+                <br /><br />
+            </form> 
+        </div> 
+    </div>
+</div>
+<!--bhashit code-->
 
 <script>
     window.onload = function() {
@@ -344,6 +366,11 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         $("#sendphoto").on('click', function(e){
             e.preventDefault();
             $.blockUI({message: $("#chatimage-box")});   
+        });
+
+        $("#requestanoutfit").on('click', function(e){
+            e.preventDefault();
+            $.blockUI({message: $("#chatrequest-box")});   
         });
         
         $("#loadOldMsgs a").on('click', function(e){
