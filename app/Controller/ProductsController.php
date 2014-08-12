@@ -885,58 +885,45 @@ class ProductsController extends AppController {
     public function admin_outfitlist() {
 
         $Outfit = ClassRegistry::init('Outfit');
-        $OutfitItem = ClassRegistry::init('OutfitItem');
-        $User = ClassRegistry::init('User');
-        $Entity = ClassRegistry::init('Entity');
-        //$outfitlist = $Outfit->find('all');
-        // $find_array = array(
-        //     'conditions' => array( 
-        //     ),
-        //     'joins' => array(
-        //         array('table' => 'outfits_items',
-        //             'alias' => 'OutfitItem',
-        //             'type' => 'INNER',
-        //             'conditions' => array(
-        //             'OutfitItem.outfit_id = Outfit.id' 
-        //             )
-        //         ),
-        //      ),
-            
-        //     'fields' => array(
-        //         'Outfit.*,OutfitItem.product_entity_id'
-        //     ),
-        // );
-        // $outfitall = $Outfit->find('all',$find_array);
-        // $test = array();
-        // foreach ($outfitall as $outfitall) {
-        //     $outfitall['OutfitItem']['']
-        // }
-            
-        // print_r($outfitall);
-        // exit;
+        $find_array = array(
+            'conditions' => array( 
+            ),
+            'joins' => array(
+                array('table' => 'outfits_items',
+                    'alias' => 'OutfitItem',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                    'OutfitItem.outfit_id = Outfit.id', 
+                    )
+                ),
+                array('table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                    'Outfit.user_id = User.id', 
+                    )
+                ),
+                array('table' => 'users',
+                    'alias' => 'User1',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                    'Outfit.stylist_id = User1.id', 
+                    )
+                ),
 
-        $outfitall = array();
-        $outfitlists = $Outfit->find('all');
-        foreach ($outfitlists as $outfitlist) {
-                $outfit_id = $outfitlist['Outfit']['id'];
-                $outfit_user_id = $outfitlist['Outfit']['user_id'];
-                $outfit_stylist_id = $outfitlist['Outfit']['stylist_id'];
-                $outfit_name = $outfitlist['Outfit']['outfitname'];
-                $outfitstylist = $User->find('all', array('conditions'=>array('User.id'=>$outfit_stylist_id)));
-                $outfituserlist = $User->find('all', array('conditions'=>array('User.id'=>$outfit_user_id)));
-                $outfitproduct = $OutfitItem->find('all',array('conditions'=>array('OutfitItem.outfit_id'=>$outfit_id)));
-                $outfitproductdetails = $Entity->find('all',array('conditions'=>array('Entity.id'=>$outfit_id)));
-                $outfitall[] = array(
-                    'outfitid' => $outfit_id,
-                    'outfitname' => $outfit_name,
-                    'outfitstylistdetails' => $outfitstylist,
-                    'outfituserdetails' =>$outfituserlist,
-                    'Outfitproduct' =>$outfitproduct,
-                    'Outfitproductdet'=>$outfitproductdetails
+             ),
+             'group' => array('Outfit.id'),
+            'fields' => array(
+                'User.first_name as username,User1.first_name as stylistname,GROUP_CONCAT(OutfitItem.product_entity_id),Outfit.outfitname,Outfit.id'
+            ),
+            
+        );
+        //$find_array = $this->paginate();
+        $outfitall= $Outfit->find('all',$find_array);
 
-                ); 
-        }
-        $this->set(compact('outfitall'));
+        
+                
+        $this->set('outfitall',$outfitall);
     }
 
     //highlighted outfits

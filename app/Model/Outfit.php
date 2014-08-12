@@ -19,4 +19,26 @@ class Outfit extends AppModel {
             'dependent' => true         
         ),
     );
+
+     function getoutfitpostid($user_id){
+        
+        $find_array = array(
+            'fields' => array('Outfit.*,OutfitItem.*'),
+            'joins' => array(
+                array(
+                    'table' => 'outfits_items',
+                    'alias' => 'OutfitItem',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = OutfitItem.outfit_id',
+                        'Outfit.stylist_id'=>$user_id,
+                        ),
+                    ),
+                ),
+            ); 
+       return  $this->find('all', $find_array);
+        //$this->find('all',array('conditions'=>array('Outfit.stylist_id' => $user_id)));
+
+
+    }
 }

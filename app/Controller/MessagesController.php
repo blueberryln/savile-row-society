@@ -997,6 +997,30 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"];   
         $Message = ClassRegistry::init('Message');
         $Outfit = ClassRegistry::init('Outfit');
+        $posts = ClassRegistry::init('Post');
+        // $postid = $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id)));
+        // $r = $Outfit->getoutfitpostid($user_id);
+        // //echo "<pre>"; print_r($r);
+        // $my_outfit = array();
+        // foreach ($r as $r) {
+        //     $productid = $r['OutfitItem']['product_entity_id'];
+        //     $username = $User->findById($r['Outfit']['user_id']);
+        //     $Entity = ClassRegistry::init('Entity');
+        //     $entity_list = $Entity->getMultipleById($productid);
+        //     $my_outfit[] =  array(
+        //                          'outfit'    => $r,
+        //                          'name' => $username,
+        //                          'entities'  => $entity_list
+        //                      );
+
+        // }
+        // $this->set(compact('my_outfit','userlist','user_id'));
+        // echo "<pre>"; print_r($my_outfit);
+        // exit;
+        
+        //$t = $Outfit->find('all', $find_array);
+
+       //echo "<pre>"; print_r($t);
         $userlist = $User->find('all', array('conditions'=>array('User.stylist_id'=>$user_id,)));
 
         $my_outfit = array();
@@ -1013,14 +1037,16 @@ If interested, I would also be happy to meet with you in our New York City based
                 }
             $Entity = ClassRegistry::init('Entity');
             $entity_list = $Entity->getMultipleById($entities);
-            $my_outfit[] = array(
+            $my_outfit[] =  array(
                                 'outfit'    => $outfitnames,
+                                //'username' => $userlist,
                                 'entities'  => $entity_list
-                                );
+                            );
 
         }
-        //print_r($my_outfit);exit;
+        //echo "<pre>";print_r($my_outfit);exit;
         $this->set(compact('my_outfit','userlist','user_id'));
+    //exit;
     } 
 
     //perticular user notes
@@ -1238,7 +1264,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 'userdetail' => $username,
                 'orderdetailsuser' => $orderdetailsuser,
                 'brand' => $branddetails
-                );
+            );
         } 
         //print_r($saleshistory);
         $this->set('saleshistory',$saleshistory);

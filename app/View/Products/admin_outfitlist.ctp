@@ -68,17 +68,12 @@ $(document).ready(function(){
                     <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
 
-                <?php
-                  // print_r($outfitall);exit;
-                 foreach ($outfitall as  $outfitcomplete ):
-                    //print_r($outfitcomplete);
-                    //exit;
-                  ?>
+                <?php foreach ($outfitall as  $outfitcomplete ): ?>
                  
                     <tr class="user-row">
-                        <td><?php echo $outfitcomplete['outfitid']; ?>&nbsp;</td>
-                        <td><?php echo $outfitcomplete['outfitname']; ?>&nbsp;</td>
-                        <td><?php echo $outfitcomplete['outfitstylistdetails'][0]['User']['first_name']; ?>&nbsp;</td>
+                        <td><?php echo $outfitcomplete['Outfit']['id']; ?>&nbsp;</td>
+                        <td><?php echo $outfitcomplete['Outfit']['outfitname']; ?>&nbsp;</td>
+                        <td><?php echo $outfitcomplete['User1']['stylistname']; ?>&nbsp;</td>
                        
                         
                         <td class="actions">
@@ -96,43 +91,16 @@ $(document).ready(function(){
                                     <tr>
                                         <td>Name Of Clients:</td>
                                         <td>
-                                            <?php
-                                            //print_r($usercount);
-                                                echo  $outfitcomplete['outfituserdetails'][0]['User']['first_name'];
-                                            ?>
+                                            <?php echo  $outfitcomplete['User']['username']; ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Product Contained Id:</td>
                                         
                                         <td>
-                                            <?php
-                                            foreach ($outfitcomplete['Outfitproduct'] as  $proutfit) {
-                                                echo  $proutfit['OutfitItem']['product_entity_id'].'<br>';
-                                            }
-                                            
-                                            //print_r($usercount);
-                                                
-                                            ?>
+                                            <?php echo $productid = str_replace(',','<br>',$outfitcomplete[0]['GROUP_CONCAT(`OutfitItem`.`product_entity_id`)']); ?>
                                         </td>
                                     </tr>
-                                    <!--<tr>
-                                        <td>Sales over the last 30 days :</td>
-                                        <td>
-                                            <?php
-                                                echo "$2500";
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Number of outfit created :</td>
-                                        <td><?php
-                                                echo "5";
-                                            
-                                            ?>
-                                        </td>
-                                    </tr> -->
-                                    
                                     
                                 </table>
                                 
