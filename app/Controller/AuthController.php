@@ -269,7 +269,12 @@ App::uses('CakeEmail', 'Network/Email');
             $styles = $this->Style->find('all');
             $this->set('styles', $styles);  
     }
-
+     
+    public function stylistbio(){
+        
+    } 
+     
+     
 
 
 

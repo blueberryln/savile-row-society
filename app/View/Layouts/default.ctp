@@ -23,8 +23,10 @@
         echo $this->Html->css('lightbox');
         echo $this->Html->css('mosaic');
         echo $this->Html->css('temp');
+        echo $this->Html->css('flexslider');
         echo $this->Html->css('style.css?v=1'); 
         echo $this->fetch('css');
+       
         ?>
         <!-- Favicons
         ================================================== -->
@@ -104,35 +106,39 @@
         <?php echo $this->fetch('content'); ?>
         
 
-        <div class="bottom footer-bar">
+        <div class="bottom footer-bar twelve columns">
             <div class="footer">
                 <!-- footer -->
-
-                <div class="menu left">
-                    <ul>
-                        <li><a href="<?php echo $this->request->webroot; ?>company">About us</a></li>
-                        <!-- <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li> -->
-                        <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>
-                        <?php if(!$is_logged) : ?>
-                        <li class="vip-access"><a href="" id="block-vip-access">VIP ACCESS</a></li>
-                        <?php endif; ?>
-                        <!-- <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li> -->
-                        <!-- <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li> -->
-                        <li><a href="http://savilerowsociety.com/blog">Blog</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>company/privacy">Privacy</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>company/terms">Terms</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>contact">Contact us</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="sixteen columns copyright right">
-                    &copy; <?php echo date('Y'); ?> Savile Row Society, inc. All Rights reserved.
-                </div>
+                <div class="eleven columns container">
+                    <div class="sixteen columns copyright left footer-buttons">
+                        <ul>
+                            <li><a class="vip-link footer-bnt" href="javascript:;" title="">VIP Access</a></li>
+                            <li><a class="blog-link footer-bnt" href="javascript:;" title="">Blog</a></li>
+                        </ul>
+                        
+                    </div>
+                    <div class="menu right four columns">
+                        <ul>
+                            <li><a href="<?php echo $this->request->webroot; ?>company">About us</a></li>
+                            <!-- <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li> -->
+                            <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/privacy">Privacy</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>contact">Contact</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
+                            <!-- <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li> -->
+                            <!-- <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li> -->
+                            <li><a href="<?php echo $this->request->webroot; ?>company/terms">Terms</a></li>
+                        </ul>
+                        <div class="footer-copyright">(c) Savile Row Society 2014</div>
+                    </div>
+                    
+            </div>
             </div><!-- container -->
         </div>
         
         <!--Start of Zopim Live Chat Script-->
+<!--
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
 d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
@@ -140,6 +146,7 @@ _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
 $.src='//v2.zopim.com/?2EyWSdOlvawNOnH4NsrFdHDbmRHMk5Pq';z.t=+new Date;$.
 type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 </script>
+-->
 <!--End of Zopim Live Chat Script-->
 
         <!-- Popup Script
@@ -220,7 +227,72 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             });
         </script>
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: true,
+                    directionNav: true
+                });
+                $('.slider1').bxSlider({
+                slideWidth: 222,
+                minSlides: 1,
+                maxSlides: 4,
+                moveSlides: 1,
+                slideMargin: 10
+              });
+                $('.slider2').bxSlider({
+                slideWidth: 495,
+                minSlides: 1,
+                maxSlides: 2,
+                moveSlides: 1,
+                slideMargin: 20
+              });
+//                $('.style-time-hover').css('opacity', 0);  
+//                $('.style-time-img').hover(  
+//                   function(){  
+//                      $(this).find('.style-time-hover').stop().fadeTo('slow', 1);  
+//                   },  
+//                   function(){  
+//                      $(this).find('.style-time-hover').stop().fadeTo('slow', 0);  
+//                   });
+                
+                
+                $('.featured-stylist-hover').css('opacity', 0);  
+                $('.featured-stylist ul li').hover(  
+                   function(){  
+                      $(this).find('.featured-stylist-hover').stop().fadeTo('slow', 1);  
+                   },  
+                   function(){  
+                      $(this).find('.featured-stylist-hover').stop().fadeTo('slow', 0);  
+                   });
+                
+               
+                  $('a[href*=#]:not([href=#])').click(function() {
+                    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                      if (target.length) {
+                        $('html,body').animate({
+                          scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                      }
+                    }
+                  });
+                
+                var $scrollingDiv = $(".header");
+                   $(window).scroll(function () {
+                       $scrollingDiv.stop()
+                       $scrollingDiv.css("background-color", (($(window).scrollTop() / $(document).height()) > 0.01) ? "white" : "");
+                   });
+           
+            });
+        </script>
         
+               
         <!-- Google Code for Remarketing Tag -->
         <script type="text/javascript">
         /* <![CDATA[ */
