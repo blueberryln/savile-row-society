@@ -104,6 +104,10 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                             <?php if ($is_admin) : ?>
                                 <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                             <?php endif; ?>
+                            <?php if ($is_stylist) : ?>
+                                <li><a href="<?php echo $this->request->webroot; ?>Auth/stylistbio/<?php echo $user['User']['id']; ?>">Stylist Biography</a></li>
+                            <?php endif; ?>
+                            
                             <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>mycloset/liked" class="headerMenu">My Closet</a></li>
                             <!-- <li><a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="headerMenu">Profile</a></li> -->

@@ -15,7 +15,7 @@ App::uses('CakeEmail', 'Network/Email');
 	 
 	 public $components = array('Paginator');
      public $helpers = array('Paginator');
-	 var $uses = array('User','UserPreference','Style');
+	 var $uses = array('User','UserPreference','Style','Stylistbio','Stylistphotostream');
    
    
    //function register start
@@ -210,15 +210,10 @@ App::uses('CakeEmail', 'Network/Email');
 
 
 
+
     public function profile($id= null){
             
-            // if(!$id || !$this->Session->check('user'))
-            // {
-            //         $this->redirect('/');
-            //         exit;
-            // }
-
-            $this->isLogged();
+           $this->isLogged();
 
             if (!$this->User->exists($id)) {
                 throw new NotFoundException(__('Invalid user'));
@@ -270,14 +265,73 @@ App::uses('CakeEmail', 'Network/Email');
             $this->set('styles', $styles);  
     }
      
-    public function stylistbio(){
+    public function stylistbioashok(){
         
     } 
+
+    public function savePhotostream() {
+        $imagename = null;
+        $image_type = '';
+        $image_size = '';
+        // get edditing in user
+
+        // file upload
+
+        if ($this->request->data['Stylistphotostream']['image'] && $this->request->data['Stylistphotostream']['image']['size'] > 0) {
+
+            $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+
+            if (!in_array($this->request->data['Stylistphotostream']['image']['type'], $allowed)) {
+                $this->Session->setFlash(__('You have to upload an image.'), 'flash');
+            } else if ($this->request->data['Stylistphotostream']['image']['size'] > 5242880) {
+                $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
+                $this->redirect('Auth/stylistbio/' . $id);
+                exit;
+            } else {
+                $imagename = time() .  '_' . $this->request->data['Stylistphotostream']['image']['name'];
+                $image_type = $this->request->data['Stylistphotostream']['image']['type'];
+                $image_size = $this->request->data['Stylistphotostream']['image']['size'];
+                $img_path = APP . 'webroot' . DS . 'files' . DS . 'photostream' . DS . $imagename;
+                move_uploaded_file($this->request->data['Stylistphotostream']['image']['tmp_name'], $img_path);
+                return $imagename;
+            //print_r($imagename);
+            }
+        }
+    }
      
-     
+    public function stylistbio($id= null){
+        if (!$this->User->exists($id)) {
+                throw new NotFoundException(__('Invalid user'));
+            }
+        if($this->request->is('post') || $this->request->is('put')){
+            
+            //$this->request->data['Stylistphotostream']['image'] = $imagename;
+            $this->request->data['Stylistphotostream']['stylist_id'] = $id;
+            $this->request->data['Stylistphotostream']['is_profile'] = '1';
+            $this->request->data['Stylistbio']['stylist_id'] = $id;
+            $facebookdata = json_encode($this->request->data['Stylistbio']['stylist_social_link']);
+            $this->request->data['Stylistbio']['stylist_social_link'] = $facebookdata;
+            //$imagename = $this->request->data['Stylistphotostream']['image']['name'];
+            if($imagename = $this->savePhotostream()){
+                    $this->request->data['Stylistphotostream']['image'] = $imagename;
+                }
+                else{
+                    $this->request->data['Stylistphotostream']['image'] = null;    
+                }
+            //print_r($this->request->data);exit;
+            if($this->Stylistbio->saveAll($this->request->data))
+            {
+                    $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                    $this->redirect('/Auth/stylistbio/'.$id);
+            }
+            else
+            {
+                     $this->Session->setFlash('The Stylistbio could not be saved. Please, try again.');
+            }
+
+        }
 
 
-
-    
+    }
 
  }
