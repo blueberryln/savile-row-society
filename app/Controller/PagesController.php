@@ -54,6 +54,33 @@ class PagesController extends AppController {
 
         if($page == 'home'){
             $user = $this->getLoggedUser();
+            
+            // top highlighted stylist list limit 10
+            $User = ClassRegistry::init('User');
+            $Userhighlighted = ClassRegistry::init('Userhighlighted');
+            $find_array = array(
+            'conditions' => array( 
+            ),
+            'joins' => array(
+                
+                array('table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                    'Userhighlighted.user_id = User.id', 
+                    )
+                ),
+                
+             ),
+            'order' => 'Userhighlighted.order_id asc',
+            'limit' => 10,
+            'fields' => array(
+                'User.first_name,User.last_name,User.profile_photo_url,Userhighlighted.*'
+            ),
+            
+        );
+        $topstylist = $Userhighlighted->find('all', $find_array);
+        //print_r($topstylist);
             $this->set(compact('user'));
         }
         else if ($page == 'tailor') {

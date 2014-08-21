@@ -362,6 +362,7 @@ margin-left: 2px;">
     				echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Password*', 'required','placeholder' => 'PASSWORD'));
     			    echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => 'Confirm Password*','required', 'placeholder' => 'CONFIRM PASSWORD'));
     			?>
+                <label>Additional Comments :</label><textarea name="data[User][comments]"></textarea>
             </div>
             </div>
             
@@ -374,6 +375,10 @@ margin-left: 2px;">
 					
 					
                 ?> 
+                <label>I 'd like to connected on the phone :</label><input type="checkbox" name="data[User][is_phone]">
+                <label>I 'd like to connected through Skype :</label><input type="checkbox" name="data[User][is_skype]">
+                <label>I 'd like to connected using SRS masseging System :</label><input type="checkbox" name="data[User][is_srs_msg]">
+                
                 <div class="hi-message twelve columns text-center">
                <div class='empty-img' id='photo-holder'>
                 <img src='<?php echo $this->webroot . "img/dummy_image.jpg";//echo $image_url; ?>' id='user-photo'/>
