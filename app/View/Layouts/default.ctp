@@ -24,6 +24,8 @@
         echo $this->Html->css('mosaic');
         echo $this->Html->css('temp');
         echo $this->Html->css('flexslider');
+        echo $this->Html->css('jquery.fancybox');
+        echo $this->Html->css('tinyscrollbar');
         echo $this->Html->css('style.css?v=1'); 
         echo $this->fetch('css');
        
@@ -229,6 +231,9 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
+        
         <script type="text/javascript">
             $(document).ready(function(){
                 $('.flexslider').flexslider({
@@ -250,6 +255,27 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 moveSlides: 1,
                 slideMargin: 20
               });
+               //$('.fancybox').fancybox();
+                $(".fancybox").fancybox({
+                    helpers : {
+                        title : {
+                            type : 'over'
+                        }
+                    }
+                });
+                $('.link-older-photos').click(function(){
+                    $('.link-newer-photos').css('display','block');
+                });
+
+//                $('.link-older-photos').click( function(){
+//                    $('.photostream-section').css('margin-left', '-100px');
+//                });
+                
+                $(".link-older-photos").click(function(event){       
+                    event.preventDefault();
+                    $('.photostream-section').animate({scrollLeft:$(this.hash).offset().left}, 1700);
+                });
+                
 //                $('.style-time-hover').css('opacity', 0);  
 //                $('.style-time-img').hover(  
 //                   function(){  
@@ -267,6 +293,15 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                    },  
                    function(){  
                       $(this).find('.featured-stylist-hover').stop().fadeTo('slow', 0);  
+                   });
+                
+                $('.outfit-products-details').css('opacity', 0);  
+                $('.outfit-products li').hover(  
+                   function(){  
+                      $(this).find('.outfit-products-details').stop().fadeTo('slow', 1);  
+                   },  
+                   function(){  
+                      $(this).find('.outfit-products-details').stop().fadeTo('slow', 0);  
                    });
                 
                
@@ -289,6 +324,10 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                        $scrollingDiv.css("background-color", (($(window).scrollTop() / $(document).height()) > 0.01) ? "white" : "");
                    });
            
+            });
+            $(document).ready( function(){
+            $("#scrollbar1").tinyscrollbar({ axis: "y"});
+                
             });
         </script>
         
