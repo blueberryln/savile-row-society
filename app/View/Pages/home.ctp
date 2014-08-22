@@ -144,8 +144,23 @@ $this->Html->script('cookie.js', array('inline' => false));
     </div>
     <?php } ?>
     
-    <div class="mega-banner">
-        <div class="mg-big">
+    <div class="mega-banner" id="one">
+        <div class="flexslider">
+            <ul class="slides">
+                <li><img src="<?php echo $this->request->webroot; ?>images/h_banner_1.jpg"/></li>
+                <li><img src="<?php echo $this->request->webroot; ?>images/h_banner_2.jpg"/></li>
+            </ul>
+        </div>
+        <div class="mega-banner-overlay">
+            <span class="large-size">shop with your personal stylist</span>
+            <span class="small-size">online &amp; in person.</span>
+            <div class="overlay-bnts left">
+                <a class="tell-more gray-btns" href="#" title="">Tell Me More</a>
+                <a class="overlay-started brown-btns"href="#" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
+            </div>
+        </div>
+        
+        <!--<div class="mg-big">
             <?php if($is_logged && $has_stylist) : ?>
                 <a class="over-img" href="<?php echo $this->request->webroot; ?>messages/index/">
             <?php elseif($is_logged) : ?>
@@ -170,9 +185,9 @@ $this->Html->script('cookie.js', array('inline' => false));
             <div class="mgs-btn" style="right: 0; top: 40px;">
                 <a class="link-btn gold-btn" href="<?php echo $this->request->webroot; ?>lookbooks/#29" style="margin-right: 0;">GET THIS LOOK</a>
             </div>          
-        </div>
-        <div class="mg-small">
-            <img src="<?php echo $this->webroot; ?>img/h_4.jpg" />
+        </div>-->
+        <!--<div class="mg-small">
+            <img src="<?php echo $this->webroot; ?>img/h_4.jpg" />-->
 
             <!-- <div class="mg-small-1"> 
                 <?php if($is_logged) : ?>
@@ -194,85 +209,90 @@ $this->Html->script('cookie.js', array('inline' => false));
                     <a class="link-btn black-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Buy this <br> look</a>
                 </div> 
             </div>  -->
-        </div>
+        <!--</div>-->
         <div class="clear-fix"></div> 
     </div>
    
+    <div class="eleven columns container container-box" id="two">
+        <div class="blank-space">&nbsp;</div>
+        <div class="twelve columns text-center page-heading">
+            <h1>How Savile Row Society Works</h1>
+            <h3>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum.</h3>
+            <h3>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</h3>
+            
+        </div>
+        <div class="eleven columns container works-boxes">
+            <div class="work-box">
+                <?php if($is_logged && $has_stylist) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php elseif($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php else : ?>
+                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+                <?php endif; ?>
+                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step1.jpg" />
+                </a>
 
-    <div class="ten columns text-center page-heading">
-        <h1>How it works</h1>
-    </div>
-    <div class="eleven columns container works-boxes">
-        <div class="work-box">
-            <?php if($is_logged && $has_stylist) : ?>
-                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
-            <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
-            <?php else : ?>
-                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
-            <?php endif; ?>
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/Step1.jpg" />
-            </a>
+                <span class="works-heading">Style Profile</span>
+                <span class="works-desc">Fill out a quick style profile and you will be matched with your very own personal shopper.</span>
 
-            <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_1.png" /></span>
-            <span class="works-desc">Fill out a quick style profile and you will be matched with your very own personal shopper.</span>
-            
-            
-            <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
-            <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
-            <?php else : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
-            <?php endif; ?>
-        </div> 
-         <div class="work-box">
-            <?php if($is_logged && $has_stylist) : ?>
-                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
-            <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
-            <?php else : ?>
-                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
-            <?php endif; ?>
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/Step2.jpg" />
-            </a>
 
-            <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_2.png" /></span>
-            <span class="works-desc">Communicate on the website, on the phone or in-person. Buy what you want from your stylist’s recommendations.</span>
-            
-            
-            <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
-            <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
-            <?php else : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
-            <?php endif; ?>
-        </div> 
-         <div class="work-box">
-            <?php if($is_logged && $has_stylist) : ?>
-                <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="over-img">
-            <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
-            <?php else : ?>
-                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
-            <?php endif; ?>
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/Step3.jpg" />
-            </a>
+                <?php if($is_logged && $has_stylist) : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
+                <?php elseif($is_logged) : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
+                <?php else : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
+                <?php endif; ?>
+            </div> 
+             <div class="work-box">
+                <?php if($is_logged && $has_stylist) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
+                <?php elseif($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php else : ?>
+                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+                <?php endif; ?>
+                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step2.jpg" />
+                </a>
 
-            <span class="c-no"><img src="<?php echo $this->webroot; ?>img/how-it-works/no_3.png" /></span>
-            <span class="works-desc">Have your purchases delivered for free. Verify that the fit is perfect. Dress for the life you want.</span>
-            
-            
-            <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
-            <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
-            <?php else : ?>
-                <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
-            <?php endif; ?>
-        </div> 
-    </div>
+                <span class="works-heading">Start Shopping</span>
+                <span class="works-desc">Communicate on the website, on the phone or in-person. Buy what you want from your stylist’s recommendations.</span>
+
+
+                <?php if($is_logged && $has_stylist) : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
+                <?php elseif($is_logged) : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
+                <?php else : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
+                <?php endif; ?>
+            </div> 
+             <div class="work-box">
+                <?php if($is_logged && $has_stylist) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="over-img">
+                <?php elseif($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php else : ?>
+                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+                <?php endif; ?>
+                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step3.jpg" />
+                </a>
+
+                <span class="works-heading">Free Delivery</span>
+                <span class="works-desc">Have your purchases delivered for free. Verify that the fit is perfect. Dress for the life you want.</span>
+
+
+                <?php if($is_logged && $has_stylist) : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
+                <?php elseif($is_logged) : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
+                <?php else : ?>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
+                <?php endif; ?>
+            </div> 
+        </div>
+    </div>             
     <div class="eleven columns container works-boxes only-desktop">
         <div class="work-box">
             <?php if($is_logged && $has_stylist) : ?>
@@ -303,51 +323,263 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div> 
     </div>
     
-
-    <div class="ten columns text-center page-heading">
-        <h1>How To Shop With Us</h1>
+    <div class="eleven columns container container-box" id="three"> 
+        <div class="blank-space">&nbsp;</div>
+        <div class="twelve columns text-center page-heading">
+            <h1>Featured Stylists</h1>
+            <h3>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum.</h3>
+            <h3>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</h3>
+        </div>
+        <div class="eleven columns container stylist-boxes">
+            <div class="featured-stylist ten columns container">
+                <ul class="slider1">
+                    <?php foreach($topstylists as $topstylist): ?>
+                    <li>
+                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>" width="220" height="220" />
+                        <div class="featured-stylist-hover">
+                            <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
+                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+                    <!-- <li>
+                        <img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" />
+                        <div class="featured-stylist-hover">
+                            <span class="featured-stylist-hover-text">Stylist Stylist</span>
+                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_3.jpg" />
+                        <div class="featured-stylist-hover">
+                            <span class="featured-stylist-hover-text">Stylist Stylist</span>
+                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_4.jpg" />
+                        <div class="featured-stylist-hover">
+                            <span class="featured-stylist-hover-text">Stylist Stylist</span>
+                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+            
+<!--
+            <div class="shopping-box">
+                <a href="<?php echo $this->request->webroot; ?>closet" class="over-img">
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/The_Closet.png" />
+                </a>
+                <h3>Shop online</h3>
+                <span class="shopping-desc">Browse our curated selection. In the Closet, you will find samples of everything from dress shoes to swimsuits.</span>
+            </div> 
+-->
+<!--
+             <div class="shopping-box">
+                <?php if($is_logged && $has_stylist) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>fitting-room" class="over-img">
+                <?php elseif($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php else : ?>
+                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+                <?php endif; ?>
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/My_Stylist.png" />
+                </a>
+                <h3>My Stylist</h3>
+                <span class="shopping-desc">Have a conversation with your stylist and see her personalized recommendations. Our stylists have access to our entire collection. </span>
+            </div> 
+-->
+<!--
+             <div class="shopping-box">
+                <?php if($is_logged && $has_stylist) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
+                <?php elseif($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php else : ?>
+                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+                <?php endif; ?>
+                    <img src="<?php echo $this->webroot; ?>img/how-it-works/The_Fitting_Room.png" />
+                </a>
+                <h3>The Fitting Room</h3>
+                <span class="shopping-desc">Make an appointment to meet with your stylist, try on our collection or get measured for our made-to-measure collection. </span>
+            </div> 
+-->
+        </div>
     </div>
-    <div class="eleven columns container shopping-boxes">
-        <div class="shopping-box">
-            <a href="<?php echo $this->request->webroot; ?>closet" class="over-img">
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/The_Closet.png" />
-            </a>
-            <h3>Shop online</h3>
-            <span class="shopping-desc">Browse our curated selection. In the Closet, you will find samples of everything from dress shoes to swimsuits.</span>
-        </div> 
-         <div class="shopping-box">
-            <?php if($is_logged && $has_stylist) : ?>
-                <a href="<?php echo $this->request->webroot; ?>fitting-room" class="over-img">
-            <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
-            <?php else : ?>
-                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
-            <?php endif; ?>
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/My_Stylist.png" />
-            </a>
-            <h3>My Stylist</h3>
-            <span class="shopping-desc">Have a conversation with your stylist and see her personalized recommendations. Our stylists have access to our entire collection. </span>
-        </div> 
-         <div class="shopping-box">
-            <?php if($is_logged && $has_stylist) : ?>
-                <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
-            <?php elseif($is_logged) : ?>
-                <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
-            <?php else : ?>
-                <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
-            <?php endif; ?>
-                <img src="<?php echo $this->webroot; ?>img/how-it-works/The_Fitting_Room.png" />
-            </a>
-            <h3>The Fitting Room</h3>
-            <span class="shopping-desc">Make an appointment to meet with your stylist, try on our collection or get measured for our made-to-measure collection. </span>
-        </div> 
+                        
+    <div class="eleven columns container container-box" id="four"> 
+        <div class="blank-space">&nbsp;</div>
+        <div class="twelve columns text-center page-heading">
+            <h1>Top Outfits</h1>
+            <h3>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum.</h3>
+            <h3>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</h3>
+        </div>
+        <div class="eleven columns container outfit-boxes">
+            <div class="outfit-stylist eleven columns container">
+                <ul class="slider2">
+                    <?php foreach ($my_outfit as $topoutfit) {  //print_r($topoutfit);
+                        ?>
+                    <li>
+                        <div class="shop-outfit left">
+                            <div class="shop-outfit-top">
+                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $topoutfit['stylistimage']['Stylistphotostream']['image']; ?>"  width="215" height="173" /></div>
+                                <div class="outfit-top-content left">
+                                    <div class="outfit-month"><?php echo $topoutfit['outfit']['Outfit']['outfitname']; ?></div>                                    
+                                    <div class="outfit-brand">Styled by <span class="outfit-brand-name"><?php echo $topoutfit['stylistname']['User']['first_name']; ?></span></div>
+                                </div>
+                            </div>
+                            <div class="shop-outfit-bottom left">
+                                <ul>
+                                <?php foreach($topoutfit['entities'] as $rt) { $rt = end($rt); ?>
+                                    
+                                    <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $rt['name']; ?>" /></li>
+                                    <?php } ?>
+                                    <!-- <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" /></li> -->
+                                </ul>
+                                <a class="shop-outfit-bottom-link" href="javascript:;" title="">Shop Outfit</a>
+                            </div>
+                        </div>
+                        <div class="outfit-link-btn"><a href="javascript:;" title="" class="outfilt-btns">Learn about Lesa</a></div>
+                    </li>
+                    <?php } ?>
+                    <!-- <li>
+                        <div class="shop-outfit left">
+                            <div class="shop-outfit-top">
+                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>images/outfits/img_1.jpg" /></div>
+                                <div class="outfit-top-content left">
+                                    <div class="outfit-month">Fourth of July</div>                                    
+                                    <div class="outfit-brand">Styled by <span class="outfit-brand-name">Lisa</span></div>
+                                </div>
+                            </div>
+                            <div class="shop-outfit-bottom left">
+                                <ul>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" /></li>
+                                </ul>
+                                <a class="shop-outfit-bottom-link" href="javascript:;" title="">Shop Outfit</a>
+                            </div>
+                        </div>
+                        <div class="outfit-link-btn"><a href="javascript:;" title="" class="outfilt-btns">Learn about Lisa</a></div>
+                    </li>
+                    <li>
+                        <div class="shop-outfit left">
+                            <div class="shop-outfit-top">
+                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>images/outfits/img_1.jpg" /></div>
+                                <div class="outfit-top-content left">
+                                    <div class="outfit-month">Fourth of July</div>                                    
+                                    <div class="outfit-brand">Styled by <span class="outfit-brand-name">Lisa</span></div>
+                                </div>
+                            </div>
+                            <div class="shop-outfit-bottom left">
+                                <ul>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" /></li>
+                                </ul>
+                                <a class="shop-outfit-bottom-link" href="javascript:;" title="">Shop Outfit</a>
+                            </div>
+                        </div>
+                        <div class="outfit-link-btn"><a href="javascript:;" title="" class="outfilt-btns">Learn about Lisa</a></div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
     </div>
+    
+    <div class="eleven columns container container-box" id="five">
+        <div class="blank-space">&nbsp;</div>
+        <div class="twelve columns text-center page-heading">
+            <h1>Style, On Your Time</h1>
+            <h3>Savile Row Society provides a shopping experience that is tailored to fit your individual lifestyle.</h3>
+            <h3>Stylists are available online, and in person- all at no charge.</h3>
+        </div>
+        <div class="eleven columns container style-time-boxes">
+            <div class="style-time eleven columns container">
+                <ul>
+                    <li>
+                        <div class="style-time-img">
+                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_1.jpg">
+                            <div class="style-time-hover">
+                                <h1><a href="#" title="">Online</a></h1>                                
+                                <div class="style-time-hover-content">
+                                    Talk to your stylist.<br />
+                                    See your outfit suggestions.<br />
+                                    Buy the clothes you want.<br />
+                                    Delivered to your doorstep.<br />
+                                    All at no charge. 
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="style-time-img">
+                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_2.jpg">
+                            <div class="style-time-hover">
+                                <h1><a href="javascritp:;" title="">In person</a></h1>                                
+                                <div class="style-time-hover-content">
+                                    Meet with your stylist.<br />
+                                    Try on our samples.<br />
+                                    Get measured, for the perfect fit.<br />
+                                    Buy the clothes you want. 
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                </ul>
+                <a class="style-time-link" href="javascript:;" title="">Come visit your stylist at our NYC showroom.</a>
+            </div>
+        </div>
+    </div>
+                        
+    <div class="eleven columns container container-box" id="six">
+        <div class="blank-space">&nbsp;</div>
+        <div class="six columns text-center page-heading brand">
+            <h1>Our brands</h1>
+            <h3>Savile Row Society selects the best of the best.</h3>
+            <h3>From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category.</h3>
+        </div>
+        <div class="eleven columns container brand-boxes">
+            <div class="brands nine columns container">
+                <ul>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Hook+Albert_new.png" alt="" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Ben-Sherman_new.png" alt="" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Cole_Haan_new.png" alt="" /></li>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/paulevans_new.png" alt="" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/smathersAndBranson_new.png" alt="" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/7diamonds_new.png" alt="" /></li>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/lacoste_new.png" alt="" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Solid-&-Striped_new.png" alt="" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/tateossian_new.png" alt="" /></li>
+                </ul>
+            </div>
+            <a class="brands-link" href="javascript:;" title="">See &amp; Learn More about Our Brands</a>
+        </div>
+    </div>
+                        
+    <div class="eleven columns container bottom-btn"> 
+        <a class="bottom-get-started" href="#" title="">Get Started</a>
+    </div>
+    
 
+<!--
     <div class="ten columns text-center page-heading">
         <h1>Our brands</h1>        
     </div>
+-->
+<!--
     <div class="eleven columns home-branding-partners center-block">
-        <span class="nine columns brands-desc">We select the best of the best. From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category. One thing is for sure, all of our partnering brands are passionate about clothing. <a href="<?php echo $this->request->webroot; ?>company/brands">See more brands</a></span>
+        <span class="nine columns brands-desc">Savile Row Society selects the best of the best. 
+From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category. </span>
         <ul id="branding-partners" class="eight columns center-block">
                         <li><img src="<?php echo $this->webroot; ?>img/branding-partners/barbourlogo.jpg" class="fadein-image" alt="Barbour" data-name="barbour"/></li>
                         <li><img src="<?php echo $this->webroot; ?>img/branding-partners/lacoste_logo.png" class="fadein-image" alt="Lacoste"data-name="lacoste" /></li>
@@ -363,15 +595,20 @@ $this->Html->script('cookie.js', array('inline' => false));
                         <li><img src="<?php echo $this->webroot; ?>img/branding-partners/edward.png" class="fadein-image" alt="Edward Harmah" data-name="edwardamrah"/></li>
         </ul>
     </div>
+-->
 
+<!--
      <div class="ten columns text-center page-heading">
         <h1>See what others are saying about us</h1>
     </div>
+-->
+<!--
     <div class="eight columns text-center center-block testimonials">
         <h3>Peter</h3>
         <h4>Real Estate Agent</h4>
         <span class="testi-desc">"Like most men, shopping can be a very daunting task, however, having my SRS personal stylist saves me the time and energy I would otherwise spend in stores."</span>
     </div>
+-->
         
 </div>
 <div id="brandinfo-box" class="box-modal notification-box hide">

@@ -277,6 +277,10 @@ App::uses('CakeEmail', 'Network/Email');
         $styles = $this->Style->find('all');
         $this->set('styles', $styles);  
     }
+     
+    public function stylistbioashok(){
+        
+    } 
 
     public function savePhotostream() {
         $imagename = null;
@@ -307,13 +311,18 @@ App::uses('CakeEmail', 'Network/Email');
             }
         }
     }
-
-
+     
     public function stylistbio($id= null){
+        $this->isLogged();
         if (!$this->User->exists($id)) {
                 throw new NotFoundException(__('Invalid user'));
             }
-        
+        $user = $this->User->findById($id);
+        $current_user = $this->getLoggedUser();
+        if($id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
         if($this->request->is('post') || $this->request->is('put')){
             $this->request->data['Stylistphotostream']['stylist_id'] = $id;
             $this->request->data['Stylistphotostream']['is_profile'] = '1';
@@ -338,6 +347,42 @@ App::uses('CakeEmail', 'Network/Email');
         }
     }
 
-    
+    public function stylistbiography($id= null){
+        
+        $Stylistbio = ClassRegistry::init('Stylistbio');
+        $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
+        $find_array = $Stylistbio->find('all',array(
+            'joins' => array(
+                    array(
+                        'table'=>'stylistphotostreams',
+                        'alias'=>'Stylistphotostream',
+                        'type'=>'inner',
+                        'conditions'=>array(
+                            'Stylistbio.id = Stylistphotostream.stylistbio_id',
+                            ),
+                        ),
+                    ),
+            'fields' => array('Stylistphotostream.*,Stylistbio.*'),
+            ));
+        $find_array2 = $Stylistphotostream->find('all',array(
+            'joins'=>array(
+                array(
+                    'table'=>'users',
+                    'alias'=>'User',
+                    'type'=>'left',
+                    'conditions'=> array(
+                        'User.id = Stylistphotostream.stylist_id',
+                        'User.is_stylist'=>true,
+                        'Stylistphotostream.is_profile'=>true,
+                        ),
+                    ),
+
+                ),
+            'fields'=>array('User.first_name,User.last_name,Stylistphotostream.image,User.id'),
+            ));
+        print_r($find_array2);
+        exit;
+
+    }
 
  }

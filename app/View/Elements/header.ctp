@@ -1,3 +1,4 @@
+<!--
 <?php
 $script='
     jQuery(document).ready(function(){
@@ -10,14 +11,23 @@ $script='
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
-
+-->
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("#menu-switcher").on("click", function(){  
+            jQuery(this).toggleClass("menu-anim");          
+            var menu = jQuery(".header .menu");
+            jQuery(menu).slideToggle();  
+        });
+    });
+</script> 
 
 <div class="header">
     <div class="wrapper">
 
         <!--Logo Section-->
         <div class="header-logo left">
-            <a href="<?php echo $this->request->webroot; ?>" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <a href="#one" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
             <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
         </div>
         <!--Logo Section Ends-->
@@ -41,10 +51,10 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                  <?php
                 if (!$is_logged) {
                 ?>
-                <li><a href="#" onclick="window.ref_url=''; signUp();"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+               <!-- <li><a href="#" onclick="window.ref_url=''; signUp();"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>-->
                 <?php 
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();"><img class="sign-in" src="'.$this->webroot.'img/sign_in.png" /></a> </li> ';
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();"><img class="sign-up" src="'.$this->webroot.'img/register.png" /> </a></li> ';
+                    echo ' <li><a class="login btn" href="#" onclick="window.ref_url=\'\'; signIn();">Login</a> </li> ';
+                    echo ' <li><a class="get-stated btn" href="#" onclick="window.ref_url=\'\'; signUp();">Get Started</a></li> ';
                     
                 } else {
                 ?>
@@ -122,8 +132,13 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         <span id="menu-switcher"><!-- &#8801; --><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span>
         <!--Menu Section-->
         <div class="menu right">            
-            <ul>                
-                <li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
+            <ul> 
+                <li><a href="#two" title="">About</a></li>
+                <li><a href="#three" title="">Sylists</a></li>
+                <li><a href="#four" title="">Outfits</a></li>
+                <li><a href="#five" title="">Style on your time</a></li>
+                <li><a href="#six" title="">Brands</a></li>
+                <!--<li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
 
                 <?php if($is_logged && $has_stylist && !$is_stylist) : ?>
                     <li><a href="<?php echo $this->request->webroot; ?>messages/index/" class="headerMenu" data-ref="messages/index/"><span class="underline4">My Stylist</span></a></li>
@@ -142,12 +157,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php else : ?>
                     <li><a href="#" onclick="window.ref_url=''; signUp();"><span class="underline1">The Fitting room</span></a></li> 
                 <?php endif; ?>                           
-                <!--li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li-->
+                <li ><a href="http://blog.savilerowsociety.com" data-ref="http://blog.savilerowsociety.com" target="_blank"><span>The Blog</span></a></li>-->
 
             </ul>
         </div>
         <!--Menu Section Ends-->
-        <span class="call-us-at"><!-- <img src="<?php echo $this->webroot; ?>img/call-us.png" /> -->Call us at +1 347 878 7280</span>
+        <!--<span class="call-us-at"><!-- <img src="<?php echo $this->webroot; ?>img/call-us.png" /> --><!--Call us at +1 347 878 7280</span>-->
          <?php if($user) : ?>
                         <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span>
                 <?php endif; ?>

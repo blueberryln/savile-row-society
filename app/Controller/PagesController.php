@@ -79,9 +79,140 @@ class PagesController extends AppController {
             ),
             
         );
-        $topstylist = $Userhighlighted->find('all', $find_array);
-        //print_r($topstylist);
-            $this->set(compact('user'));
+        $topstylists = $Userhighlighted->find('all', $find_array);
+        
+        //top outfits home page
+        $Highlightoutfit = ClassRegistry::init('Highlightoutfit');
+        $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
+        $Outfit = ClassRegistry::init('Outfit');
+        $Image = ClassRegistry::init('Image');
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $r = $Highlightoutfit->find('all', array('order' => 'Highlightoutfit.order_id asc','limit'=>'10'));
+
+//         SELECT * 
+// FROM  `outfits_items` ot
+// INNER JOIN outfits AS o ON o.id = ot.outfit_id
+// INNER JOIN products_images AS pi ON pi.product_entity_id = ot.product_entity_id
+// LEFT JOIN stylistphotostreams AS sps ON sps.stylist_id = o.stylist_id
+// INNER JOIN users AS u ON u.id = o.stylist_id
+// WHERE o.id
+// IN (
+// '238',  '244',  '239',  '75',  '76',  '84',  '80',  '79'
+// )
+// GROUP BY pi.product_entity_id
+// LIMIT 0 , 30
+    //     $houtfits = $Highlightoutfit->find('all', array(
+    //         'order' => 'Highlightoutfit.order_id asc','limit'=>'10'
+    //     ));
+    //     foreach ($houtfits as $houtfit) {
+    //         $outfitid[] = $houtfit['Highlightoutfit']['outfit_id'];
+    //     }
+    //     $outfits[] = $OutfitItem->find('all',array(
+    //                 'joins' => array(
+    //                         array(
+    //                         'table' => 'outfits',
+    //                         'alias' => 'Outfit',
+    //                         'type' => 'inner',
+    //                         'conditions'=> array(
+    //                             'Outfit.id = OutfitItem.outfit_id',
+    //                             'Outfit.id' =>$outfitid,
+    //                             )
+    //                         ),
+    //                         array(
+    //                         'table' => 'products_images',
+    //                         'alias' => 'Image',
+    //                         'type' => 'inner',
+    //                         'conditions'=> array(
+    //                             'Image.product_entity_id = OutfitItem.product_entity_id',
+    //                             )
+    //                         ),
+    //                         array(
+    //                         'table' => 'users',
+    //                         'alias' => 'User',
+    //                         'type' => 'inner',
+    //                         'conditions'=> array(
+    //                             'User.id = Outfit.stylist_id',
+    //                             )
+    //                         ),
+    //                         array(
+    //                         'table' => 'stylistphotostreams',
+    //                         'alias' => 'Stylistphotostream',
+    //                         'type' => 'left',
+    //                         'conditions'=> array(
+    //                             'Stylistphotostream.stylist_id = Outfit.stylist_id',
+    //                             )
+    //                         ),
+    //                     ),
+    //                 'fields' => array('Outfit.*,OutfitItem.*,Stylistphotostream.*,User.first_name,Image.*'),
+
+    //         ));
+    // print_r($outfits);
+    // exit;
+        // $houtfits = $Highlightoutfit->find('all', array(
+        //     'order' => 'Highlightoutfit.order_id asc','limit'=>'10'
+        // ));
+        // foreach ($houtfits as $houtfit) {
+        //     $outfitid[] = $houtfit['Highlightoutfit']['outfit_id'];
+        // }
+        // $outfits = $OutfitItem->find('all',array(
+        //             'joins' => array(
+        //                     array(
+        //                     'table' => 'outfits',
+        //                     'alias' => 'Outfit',
+        //                     'type' => 'inner',
+        //                     'conditions'=> array(
+        //                         'Outfit.id = OutfitItem.outfit_id',
+        //                         'Outfit.id' =>$outfitid,
+        //                         )
+        //                     ),
+        //                 ),
+        //             'fields' => array('Outfit.*,OutfitItem.*'),
+
+        //     ));
+        // $my_outfit = array();
+        // foreach ($outfits as  $outfits) {
+        //     $product_id[] = $outfits['OutfitItem']['product_entity_id'];
+        //     $outfitnames = $outfits['Outfit']['outfitname'];
+        //     $stylist_id[] = $outfits['Outfit']['stylist_id'];
+        //     $my_outfit[] = array(
+        //             'outfit'    => $outfitnames,
+                    
+        //         );
+        // }
+        // $entity_list = $Image->getByhighlightProductID($product_id);
+        // $stylistimage[] = $Stylistphotostream->find('first', array('conditions'=>array('Stylistphotostream.stylist_id'=>$stylist_id,'Stylistphotostream.is_profile'=>true))); 
+        // $stylistname[] = $User->findById($stylist_id);      
+                
+
+        
+
+        $my_outfit = array();
+        foreach($r as $row){
+                $outfit_id = $row['Highlightoutfit']['outfit_id'];
+                $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$outfit_id)));
+                $stylist_id = $outfitnames['Outfit']['stylist_id'];
+                $stylistname = $User->findById($stylist_id);
+                $stylistimage = $Stylistphotostream->find('first', array('conditions'=>array('Stylistphotostream.stylist_id'=>$stylist_id,'Stylistphotostream.is_profile'=>true)));
+                $OutfitItem = ClassRegistry::init('OutfitItem');
+                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                $entities = array();
+                foreach($outfit as $value){
+                     $entities[] = $value['OutfitItem']['product_entity_id'];
+                
+                }
+                $entity_list = $Image->getByhighlightProductID($entities);
+                //print_r($entity_list);
+                $my_outfit[] = array(
+                    'outfit'    => $outfitnames,
+                    'entities'  => $entity_list,
+                    'stylistname' =>$stylistname,
+                    'stylistimage'=>$stylistimage
+                );
+                
+            }
+        
+       
+        $this->set(compact('user','topstylists','my_outfit'));
         }
         else if ($page == 'tailor') {
             $this->isLogged();
