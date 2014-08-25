@@ -5,7 +5,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 <div class="content-container">
     <div class="eleven columns container content inner stylistbio">
         <div class="twelve columns container stylistbio-section left">
-            
+            <a class="open-left-pannel" href="#" title=""><img src="<?php echo $this->webroot; ?>images/arrow-next.png" alt="" /></a>
             <div class="stylistbio-section-left text-center">
                 <div class=" twelve columns stylistbion-arrow"><img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" /></div>
                 <div class="twelve columns">
@@ -128,7 +128,8 @@ Women- the more leopard the better.</span></div>
                                 <div class="twelve columns left user-photostream">
                                     <h1 class="stylistbio-heading photostream">Jane’s Photostream</h1>
                                     <div class="photostream-section">
-                                        <ul>
+                                        
+                                        <ul id="itemContainer">
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" data-fancybox-group="gallery" title="img-1">
                                                 <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" alt="" />
@@ -169,10 +170,56 @@ Women- the more leopard the better.</span></div>
                                                 <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" alt="" />
                                                 </a>
                                             </li>
+                                            
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" data-fancybox-group="gallery" title="img-1">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" alt="" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" data-fancybox-group="gallery" title="img-2">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" alt="" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" data-fancybox-group="gallery" title="img-3">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" alt="" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" data-fancybox-group="gallery" title="img-4">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" alt="" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" data-fancybox-group="gallery" title="img-5">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" alt="" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" data-fancybox-group="gallery" title="img-6">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" alt="" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" data-fancybox-group="gallery" title="img-7">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" alt="" />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" data-fancybox-group="gallery" title="img-8">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" alt="" />
+                                                </a>
+                                            </li>
+                                            
+                                            
                                         </ul>
+                                        <div class="holder"></div>
                                     </div>
-                                    <a class="link-older-photos right" href="javascript:;" title="">Older Photos > </a>
-                                    <a class="link-newer-photos left" href="javascript:;" title="">Newer Photos < </a>
+<!--
+                                        <a class="link-older-photos right" href="javascript:;" title="">Older Photos &gt; </a>
+                                        <a class="link-newer-photos left" href="javascript:;" title="">  &lt;Newer Photos  </a>
+-->
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
                                     <h1 class="stylistbio-heading photostream top-outits-heading">Jane’s Top Outfits</h1>
