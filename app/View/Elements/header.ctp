@@ -1,18 +1,16 @@
-<!--
 <?php
-$script='
-    jQuery(document).ready(function(){
-        jQuery("#menu-switcher").on("click", function(){  
-            jQuery(this).toggleClass("menu-anim");          
-            var menu = jQuery(".header .menu");
-            jQuery(menu).slideToggle();  
-        });
-    });
-';
-$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+// $script='
+//     jQuery(document).ready(function(){
+//         jQuery("#menu-switcher").on("click", function(){  
+//             jQuery(this).toggleClass("menu-anim");          
+//             var menu = jQuery(".header .menu");
+//             jQuery(menu).slideToggle();  
+//         });
+//     });
+// ';
+// $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 ?>
--->
-<script type="text/javascript">
+ <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery("#menu-switcher").on("click", function(){  
             jQuery(this).toggleClass("menu-anim");          
@@ -20,7 +18,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             jQuery(menu).slideToggle();  
         });
     });
-</script> 
+ </script> 
 
 <div class="header">
     <div class="wrapper">
