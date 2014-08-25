@@ -233,6 +233,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
         
         <script type="text/javascript">
             $(document).ready(function(){
@@ -263,18 +264,40 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                         }
                     }
                 });
-                $('.link-older-photos').click(function(){
-                    $('.link-newer-photos').css('display','block');
+                //$('.link-newer-photos').css('display','none');
+//                $('a.open-left-pannel').click( function(){
+//                    $('.stylistbio-section-left').slideleft();
+//                });
+                
+                
+               $("a.open-left-pannel").click(function(){
+                   $(this).hide(1000);
+                  $(".stylistbio-section-left").animate({left:'0px'}, 1000);
+                });
+                
+                $(".stylistbion-arrow img").click(function(){
+                    $("a.open-left-pannel").show(1000);
+                    $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
+                }); 
+                
+                              
+                
+                $("div.holder").jPages({
+                  containerID : "itemContainer",
+                  //animation   : "bounceInUp"
+                    fallback    : 1000,
+                    previous: "Older Photos",
+                    next: "Newer Photos",
                 });
 
 //                $('.link-older-photos').click( function(){
 //                    $('.photostream-section').css('margin-left', '-100px');
 //                });
                 
-                $(".link-older-photos").click(function(event){       
-                    event.preventDefault();
-                    $('.photostream-section').animate({scrollLeft:$(this.hash).offset().left}, 1700);
-                });
+                //$(".link-older-photos").click(function(event){       
+                  //  event.preventDefault();
+                    //$('.photostream-section').animate({scrollLeft:$(this.hash).offset().left}, 1700);
+                //});
                 
 //                $('.style-time-hover').css('opacity', 0);  
 //                $('.style-time-img').hover(  

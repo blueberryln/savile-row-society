@@ -2,18 +2,19 @@
 $meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. <br/> We\'ll perfect your image from head to toe.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
+
 <div class="content-container">
     <div class="eleven columns container content inner stylistbio">
         <div class="twelve columns container stylistbio-section left">
             <a class="open-left-pannel" href="#" title=""><img src="<?php echo $this->webroot; ?>images/arrow-next.png" alt="" /></a>
-            <div class="stylistbio-section-left text-center">
+           <!-- <div class="stylistbio-section-left text-center">
                 <div class=" twelve columns stylistbion-arrow"><img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" /></div>
                 <div class="twelve columns">
                     <div class="eleven columns container stylistbio-short-note">
                         <div class="short-note">Learn more about all the Savile Row Stylists by clicking through our list of current stylists. </div>
                     </div>
                 </div>
-                 <div class="twelve columns">
+                  <div class="twelve columns">
                     <div class="eleven columns container stylistbio-list">
                         <h3>SRS Stylist List</h3>
                         <div id="scrollbar1">
@@ -27,10 +28,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
                             </li>
                             <?php endforeach; ?>
-                            <!-- <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
                             <li>
                                 <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
                                 <div class="left stylistbio-list-name">Jane Doe</div>
@@ -82,7 +79,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <li>
                                 <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
                                 <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li> -->
+                            </li>
+                            <li>
+                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
+                                <div class="left stylistbio-list-name">Jane Doe</div>
+                            </li>
                             
                         </ul>
                      </div>
@@ -90,16 +91,58 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                        
                     </div>
-                </div>
+                </div> 
                 
-            </div>
+            </div>-->
+
+<?php $stylistbioid  = $find_array[0]['Stylistbio']['id']; ?>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#submit").on('click', function(e){
+        e.preventDefault();
+
+        var hometown = $("#hometown").val();
+        var id = $("#id").val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>Auth/updatestylistbiographyhometown/<?php echo $stylistbioid; ?>",
+            data: {hometown:hometown,id:id},
+            cache: false,
+            success: function(result){
+            //alert(result);
+            }
+        });
+    });
+ 
+    $("#submitfun").on('click', function(e){
+        e.preventDefault();
+
+        var funfect = $("#funfect").val();
+        var id = $("#id").val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>Auth/updatestylistbiographyfunfect/<?php echo $stylistbioid; ?>",
+            data: {funfect:funfect,id:id},
+            cache: false,
+            success: function(result){
+            //alert(url);
+            }
+        });
+    });
+
+
+});
+</script>
+
             <div class="stylistbio-section-right">
                 <div class="eleven columns container">
                     <div class="twelve columns">
                         <div class="stylistbio-profile left text-center">
                             <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $find_array[0]['Stylistphotostream']['image']; ?>" width='277' height='309' alt="" /></div>
                             <div class=" twelve columns social-networks">
-                                <?php //print_r($find_array); ?>
+                                
                                 <ul>
                                 <?php $social = json_decode($find_array[0]['Stylistbio']['stylist_social_link'],true); ?>
                                     <li class="printrest"><a href="<?php echo $social['pintrest']; ?>" target="blank" title="">Printrest</a></li>
@@ -113,7 +156,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <?php echo $find_array[0]['Stylistbio']['stylist_bio']; ?>
                             </div>
                             <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Inspiration</h1>
-                            <div class="user-inspire-desc"> <?php echo $find_array[0]['Stylistbio']['stylist_inspiration']; ?></div>
+                            <div class="user-inspire-desc">
+                            <div class="input taxtarea"><label for="StylebioStylistInspiration">Stylist Inspiration</label><textarea name="data[Stylebio][stylist_inspiration]" value="<?php echo $find_array[0]['Stylistbio']['stylist_inspiration']; ?>" type="taxtarea" id="StylebioStylistInspiration"></textarea></div>
+                            
+                            </div>
                         </div>
                         <div class="stylistbio-details right">
                             <div class="twelve columns left">
@@ -122,8 +168,26 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
-                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['hometown']; ?></span></div>
-                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['funfect']; ?></span></div>
+                                    <div class="home-town"><span class="style-upper">Hometown:</span>
+                                     <span class="style-italic">
+                                     <input type="text" name="data[Stylebio][hometown]" id="hometown" value="<?php echo $find_array[0]['Stylistbio']['hometown']; ?>"><a href="#" id="submit">submit</a>
+                                     
+                                     </span>
+                                     
+
+                                     </div>
+                                     </form>
+                                     
+                                   
+                                   
+                                    <?php
+                                    echo $this->form->create('Stylebio'); 
+                                    echo $this->Form->input('Stylistbio.id', array('type' => 'hidden'));
+                                    ?>
+                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic">
+                                    <input type="hidden" name="data[Stylistbio][id]" id="id" value="<?php echo $find_array[0]['Stylistbio']['id']; ?>">
+                                    <input type="text" name="data[Stylistbio][funfect]" id="funfect" value="<?php echo $find_array[0]['Stylistbio']['funfect']; ?>"><a href="#" id="submitfun">submit</a></span></div>
+                                    </form>
                                     <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['fashiontip']; ?></span></div>
                                 </div>
                                 <div class="twelve columns left user-photostream">
