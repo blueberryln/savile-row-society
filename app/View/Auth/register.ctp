@@ -144,7 +144,7 @@ color:#396; !important
                 <div class="twelve columns text-center page-heading">
                     <div class="hi-message">
                         <div class="twelve columns text-center page-heading">
-                        <p><img src="<?php echo $this->webroot; ?>img/b.png" alt=""></p>
+                        <p><img src="<?php echo $this->webroot; ?>images/register-setp-1.png" alt=""></p>
                         </div>
                         <div class="twelve columns text-center page-heading">
                         <h4 class="hi-message">Style Profile | Step 1</h4>
@@ -216,23 +216,21 @@ color:#396; !important
             </div>
       </div>
       <div id="tabs-2">
-                <div class="seven columns center-block">
+                <div class="eight columns center-block">
                     <br />
 
                     <div class="hi-message">
-                        <p><img src="<?php echo $this->webroot; ?>img/c.png" alt=""></p>
-                        <h4 class="hi-message text-center" style="margin: 0 -1px 24px 0;">What are your basic measurements?</h4>
-                        <p class="text-center" style="margin-top: -25px;
-        font-size: 14px;">
-                           Before we have the opportunity to take your measurements in the showroom, <br> 
-        let your stylist get an idea of what will fit you best.
-
-                        </p>
+                        <p><img src="<?php echo $this->webroot; ?>images/register-setp-2.png" alt=""></p>
+                        <h4 class="hi-message text-center">Style Profile | Step 2</h4>
+                        <div class="hi-message-text">
+                           What are your best measurements? This information helps your stylist select items with a perfect fit.
+                        </div>
                     </div>
                </div>
-               <div class="four columns center-block"> 
-                <div class="input text required">
-                    <label for="neckSize" class="text-center">NECK SIZE:</label>                            
+               <div class="three columns center-block profile-stp2"> 
+                <div class="input text required styled-select">
+<!--                    <label for="neckSize" class="text-center">NECK SIZE:</label>                            -->
+                    <span class="arrow-icon">&nbsp;</span>
                     <select name="data[UserPreference][neck_size]" tabindex="" required="required" id="neckSize" >
                         <option value="">Neck Size</option>
                         <option value="14">14</option>
@@ -245,11 +243,24 @@ color:#396; !important
                         <option value="17.5">17.5</option>
                         <option value="I don’t know">I don’t know</option>
                     </select>
+<!--                    Split Title|This clueTip's contents were created directly from the title attribute|Nice for minimum info.-->
+                    <a class="tt-icon"  target="1">
+                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                    </a>
+                    <div id="div1" class="tt-content">
+                        <h4>INSTRUCTIONS</h4>
+                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <span class="tt-arrow"></span>
+                    </div>
+<!--                    <a href="#" class="tt-icon tipped" data-title="Great New Tooltip|| ahello frineds" data-tipper-options='{"direction":"right"}'><img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" /></a>-->
+<!--                    <span class="tt-icon"></span>-->
+                        
                 </div>
 
 
-                 <div class="input text required">
-                    <label for="jacketSize" class="text-center">Suit Size:</label>                            
+                 <div class="input text required styled-select">
+<!--                    <label for="jacketSize" class="text-center">Suit Size:</label>                            -->
+                     <span class="arrow-icon">&nbsp;</span>
                     <select name="data[UserPreference][jacket_size]" tabindex="" required="required" id="jacketSize" >
                         <option value="">Suit Size</option>
                         <option value="36">36</option>
@@ -267,10 +278,19 @@ color:#396; !important
                         <option value="48">48</option>
                          <option value="I don’t know">I don’t know</option>                
                     </select>
+                     <a class="tt-icon" target="2">
+                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                    </a>
+                    <div id="div2" class="tt-content">
+                        <h4>INSTRUCTIONS</h4>
+                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <span class="tt-arrow"></span>
+                    </div>
                 </div>
 
-                <div class="input text required chest-size">
-                    <label for="pantWaist" class="text-center">PANT WAIST:</label>                            
+                <div class="input text required chest-size styled-select">
+<!--                    <label for="pantWaist" class="text-center">PANT WAIST:</label>                            -->
+                    <span class="arrow-icon">&nbsp;</span>
                     <select name="data[UserPreference][pant_waist]" tabindex="" required="required" id="pantWaist" >
                         <option value="">Pant Waist</option>
                         <option value="28">28</option>
@@ -286,10 +306,19 @@ color:#396; !important
                         <option value="38">38</option>
                         <option value="I don’t know">I don’t know</option>                                        
                     </select>
+                    <a class="tt-icon" target="3">
+                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                    </a>
+                    <div id="div3" class="tt-content">
+                        <h4>INSTRUCTIONS</h4>
+                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <span class="tt-arrow"></span>
+                    </div>
                 </div>
 
-                <div class="input text required chest-size">
-                    <label for="pantLength" class="text-center">PANT LENGHT:</label>                            
+                <div class="input text required chest-size styled-select">
+<!--                    <label for="pantLength" class="text-center">PANT LENGHT:</label>                            -->
+                    <span class="arrow-icon">&nbsp;</span>
                     <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
                         <option value="">Pant Length</option>
                         <option value="28">28</option>
@@ -301,9 +330,18 @@ color:#396; !important
                         <option value="34">34</option>
                          <option value="I don’t know">I don’t know</option>
                     </select>
+                    <a class="tt-icon" target="4">
+                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                    </a>
+                    <div id="div4" class="tt-content">
+                        <h4>INSTRUCTIONS</h4>
+                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <span class="tt-arrow"></span>
+                    </div>
                 </div>
-              <div class="input text required chest-size">
-                    <label for="shoeSize" class="text-center">SHOE SIZE:</label>                            
+              <div class="input text required chest-size styled-select">
+<!--                    <label for="shoeSize" class="text-center">SHOE SIZE:</label>                            -->
+                  <span class="arrow-icon">&nbsp;</span>
                     <select name="data[UserPreference][shoe_size]" tabindex="" required="required" id="shoeSize" >
                         <option value="">Shoe Size</option>                    
                         <option value="7">7</option>
@@ -323,6 +361,14 @@ color:#396; !important
                         <option value="14">14</option>
                         <option value="I don’t know">I don’t know</option>
                     </select>
+                  <a class="tt-icon" target="5">
+                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                    </a>
+                    <div id="div5" class="tt-content">
+                        <h4>INSTRUCTIONS</h4>
+                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <span class="tt-arrow"></span>
+                    </div>
                 </div>
 
                 <div class="clear-fix"></div>
@@ -332,7 +378,7 @@ color:#396; !important
                         <div class="submit">                            
                            <div id="tabs">
                            <ul> <!--<li><a class="link-btn black-btn back-btn" id="back2" href="#tabs-1">Back</a> </li>-->
-                            <li><a class="link-btn black-btn back-btn" id="cont2" href="#tabs-3">Continue</a> 
+                            <li><a class="setp-btn" id="cont2" href="#tabs-3">Next</a> 
                            </li>
                            </ul>
                            </div>
@@ -349,13 +395,62 @@ color:#396; !important
                 <br />
 
                 <div class="hi-message">
-                    <p><img src="<?php echo $this->webroot; ?>img/d.png" alt=""></p>
-                    <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Tell us more about yourself</h4>
-                    <p style="margin-top: -25px; font-size: 14px; margin-left: 2px;">
-                      Help our stylists get to know you better to create a more personalized experience.
-                    </p>
+                    <p><img src="<?php echo $this->webroot; ?>images/register-setp-3.png" alt=""></p>
+                    <h4 class="hi-message">Style Profile | Step 3</h4>
+                    <div class="hi-message-text">
+                      Please complete the following fields.
+                    </div>
                 </div>
-
+                <div class="eleven columns center-block">
+                    <h1>General Info</h1>
+                    <div class="twelve columns left">
+                        <div class="five columns pref-time left">
+                            <div class="pref-options">
+                                <?php
+                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'FIRST NAME'));
+                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'EMAIL'));
+                                    echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode"));
+                                ?>
+                            </div>
+                        </div>
+                         <div class="five columns pref-time right">
+                            <div class="pref-options">      
+                              <?php
+                                echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'LAST NAME'));
+                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'PASSWORD'));
+                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'CONFIRM PASSWORD'));
+                                ?> 
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="eleven columns center-block">
+                    <h1>General Info</h1>
+                    <div class="twelve columns left">
+                        <div class="five columns pref-time left">
+                            <div class="pref-options">
+                                <?php
+                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number"));
+                                    echo $this->Form->input('User.skype', array( 'label' => false, 'placeholder' => 'Skype Id'));
+                                ?>
+                            </div>
+                        </div>
+                         <div class="five columns pref-time right">
+                            <div class="pref-options">      
+                              <?php
+                                echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'LAST NAME'));
+                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'PASSWORD'));
+                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'CONFIRM PASSWORD'));
+                                ?> 
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    
                 <div class="five columns pref-time left">
                 <div class="pref-options">
                     <?php
@@ -388,7 +483,9 @@ color:#396; !important
                     ?>
                     <div class="clear-fix"></div>
                 </div>
-                    </div></div>
+                    </div>
+                </div>
+            
 
 
                      </div>

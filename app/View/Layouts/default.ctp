@@ -26,6 +26,7 @@
         echo $this->Html->css('flexslider');
         echo $this->Html->css('jquery.fancybox');
         echo $this->Html->css('tinyscrollbar');
+//        echo $this->Html->css('jquery.cluetip');
         echo $this->Html->css('style.css?v=1'); 
         echo $this->fetch('css');
        
@@ -234,6 +235,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
+<!--        <script src="<?php echo $this->request->webroot; ?>js/jquery.cluetip.js" type="text/javascript"></script>-->
         
         <script type="text/javascript">
             $(document).ready(function(){
@@ -278,7 +280,24 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $(".stylistbion-arrow img").click(function(){
                     $("a.open-left-pannel").show(1000);
                     $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
-                }); 
+                });
+                
+//                $('span[title]').css({borderBottom: '1px solid #900'}).cluetip({
+//                  splitTitle: '|',
+//                  arrows: true,
+//                  dropShadow: false,
+//                  cluetipClass: 'jtip'}
+//                );
+//                $('span.tt-icon').find('img').hover(function(){
+//                    $('.tt-content').show(500);
+//                });
+                
+                $('.tt-icon').hover(function(){
+                 $('#div'+$(this).attr('target')).css({opacity: 1});
+                });
+                $('.tt-icon').mouseleave(function(){
+                 $('#div'+$(this).attr('target')).css({opacity: 0});
+                });
                 
                               
                 

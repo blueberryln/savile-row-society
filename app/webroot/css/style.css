@@ -254,7 +254,7 @@ ul.product-type li:last-of-type { margin-right: 0; }
 .brand-block .ui-slider-horizontal{height: 5px; margin-bottom: 20px;}
 .brand-block .ui-slider .ui-slider-handle{height: 13px; width: 13px;}
 /******Contact Us and Form*******/
-.content .input, select#contact-type {margin: 0 0 18px;}
+.content .input, select#contact-type {margin: 0 0 25px;}
 .contact-form .form{margin-bottom: 50px;}
 .contact-map-info .contact-map{margin-top: 20px !important;}
 /*******Faq Page******/
@@ -302,6 +302,26 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
 	div#jeans-cut #selectable li:hover, div#shirt-cut #selectable li:hover{ background: #917A49; color: #FFFFFF;}
 	.hi-message h4 { color: #af9a59; font-family: 'ProximaNovaCond-Regular'; margin: 10px 0 20px 0; text-transform: uppercase; font-weight: bold !important; font-size: 48px; padding: 10px 0; }
     .hi-message-text { font-family: 'ProximaNovaCond-Regular'; font-size: 20px; color: #55585e; display: block; padding: 0 0 30px 0; background:  url("../img/steps-divider.png") no-repeat center bottom}
+    .profile-stp2 { padding: 80px 0px;}
+    .styled-select select { border:none; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #c7c7c7 0px 1px 1px; -moz-box-shadow: #c7c7c7 0px 1px 1px; box-shadow: #c7c7c7 0px 1px 1px; outline:none; display: inline-block; -webkit-appearance:none; -moz-appearance:none; appearance:none; padding: 15px 10px 9px; cursor:pointer;
+    background: #fefefe;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fefefe), to(#f4f4f4));
+    background: -webkit-linear-gradient(#fefefe, #f4f4f4);
+    background: -moz-linear-gradient(#fefefe, #f4f4f4);
+    background: -ms-linear-gradient(#fefefe, #f4f4f4);
+    background: -o-linear-gradient(#fefefe, #f4f4f4);
+    background: linear-gradient(#fefefe, #f4f4f4);
+    -pie-background: linear-gradient(#fefefe, #f4f4f4);
+    }
+.styled-select select option { padding:0px 10px; border: none; outline: none;}
+.styled-select span.arrow-icon{ position: absolute; top: 0px; right: 0px; background: url('../images/dropdown-arrow.png') no-repeat; width: 46px; height: 45px; pointer-events: none; }
+.styled-select { height: 46px;position: relative; }
+a.tt-icon { position: absolute; top: 7px; right: -60px; width: 32px; height: 32px;}
+.tt-content{ position: absolute; top: -38px; right: -95%; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border-bottom: 3px solid #1a1822; background:#515151; width: 180px; min-height: 60px; text-align: left; font-size: 12px; line-height: 12px; color: #a8afc5; padding-bottom: 10px; opacity: 0;}
+.tt-content span.tt-arrow {position: absolute; background:url('../images/tooltip-arrow.png') no-repeat left center; width: 8px; height: 18px; margin: auto 0; top: 0px; bottom: 0px; left: -8px;}
+.tt-content h4{ background: #464540; font-size: 12px; color:#a8afc5; padding: 2px 15px 0px; -webkit-border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; font-weight: 600;}
+.tt-content p {padding: 5px 15px 0; line-height: 14px; margin-bottom: 0px;}
+
 	/*Size Section*/
 	.size-info #height, .size-info #weight { margin-bottom: 10px; }
 	.preferences.register-size #height-result-display, .preferences.register-size #weight-result { border: medium none; cursor: default; text-align: center; }
@@ -767,7 +787,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .outfit-stylist .bx-wrapper { margin-left: 13px;}
 .outfit-stylist li .shop-outfit{ border: 8px solid #e6e5e1; background: #fff;}
 .outfit-stylist li .shop-outfit .shop-outfit-top { width: 100%; display:inline-block; border-bottom: 1px solid #e6e5e1;}
-.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block;}
+.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block; width: 45%;  }
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img img { width: 100%; height: auto; margin-bottom: -5px;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content { padding:50px 15px 0 25px; font-family: 'ProximaNovaCond-Regular'; font-size: 27px; text-align: left;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-month { color: #d19b03; display: block; padding-bottom: 15px; text-transform: uppercase;}
@@ -839,7 +859,7 @@ div.rw-content h3{font-family: 'sweetsans-regular',sans-serif; font-size: 22px; 
 div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
 /*****STYLE PROFILE STEP 1********/
 .srs-form { margin: 20px 0 0;}
-.setp-btn { background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-size: 25px; color: #fff; padding: 18px 120px 12px; text-transform: uppercase;}
+a.setp-btn { background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-size: 25px; color: #fff; padding: 18px 120px 12px; text-transform: uppercase;}
 /*****STYLISTBIO*****/
 .stylistbio{ background: #fff; margin-top: 116px; padding: 0; font-family: 'ProximaNovaCond-Regular';}
 .stylistbio-section { background: #ffffff;}
