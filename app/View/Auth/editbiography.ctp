@@ -131,8 +131,51 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $("#submit_stylist_inspiration").on('click',function(e){
+        e.preventDefault();
+        var id = $("#id").val();
+        var Inspiration = $("#StylebioStylistInspiration").val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>Auth/updatestylistbiographyInspiration/<?php echo $stylistbioid; ?>",
+            data: {stylist_inspiration:Inspiration,id:id},
+            cache: false,
+            success: function(result){
+                //alert(result);
+            }
+        });
+    });
 
+    $("#submit_stylist_bio").on('click',function(e){
+        e.preventDefault();
+        var id = $("#id").val();
+        var Bio = $("#StylebioStylistBio").val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyBio/<?php echo $stylistbioid; ?>",
+            data: {stylist_bio:Bio,id:id},
+            cache: false,
+            success: function(result){
+                //alert(result);
+            }
+        });
+    });
 
+    $("#submit_fashiontip").on('click',function(e){
+        e.preventDefault();
+        var id = $("#id").val();
+        var fashiontip = $("#fashiontip").val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyFashionTip/<?php echo $stylistbioid; ?>",
+            data: {fashiontip:fashiontip,id:id},
+            cache: false,
+            success: function(result){
+                //alert(result);
+            }
+        });
+    });
 });
 </script>
 
@@ -153,11 +196,12 @@ $(document).ready(function(){
                             </div>
                             <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Bio</h1>
                             <div class="user-desc">
-                                <?php echo $find_array[0]['Stylistbio']['stylist_bio']; ?>
+                            <div class="input taxtarea"><textarea name="data[Stylebio][stylist_bio]"  rows="10" cols="30"  id="StylebioStylistBio"><?php echo $find_array[0]['Stylistbio']['stylist_bio']; ?></textarea><a href="#" id="submit_stylist_bio">submit</a></div>
+                               
                             </div>
                             <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Inspiration</h1>
                             <div class="user-inspire-desc">
-                            <div class="input taxtarea"><label for="StylebioStylistInspiration">Stylist Inspiration</label><textarea name="data[Stylebio][stylist_inspiration]" value="<?php echo $find_array[0]['Stylistbio']['stylist_inspiration']; ?>" type="taxtarea" id="StylebioStylistInspiration"></textarea></div>
+                            <div class="input taxtarea"><textarea name="data[Stylebio][stylist_inspiration]"  rows="10" cols="30"  id="StylebioStylistInspiration"><?php echo $find_array[0]['Stylistbio']['stylist_inspiration']; ?></textarea><a href="#" id="submit_stylist_inspiration">submit</a></div>
                             
                             </div>
                         </div>
@@ -176,19 +220,18 @@ $(document).ready(function(){
                                      
 
                                      </div>
-                                     </form>
                                      
-                                   
-                                   
-                                    <?php
-                                    echo $this->form->create('Stylebio'); 
-                                    echo $this->Form->input('Stylistbio.id', array('type' => 'hidden'));
-                                    ?>
-                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic">
+                                     
+                                   <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic">
                                     <input type="hidden" name="data[Stylistbio][id]" id="id" value="<?php echo $find_array[0]['Stylistbio']['id']; ?>">
                                     <input type="text" name="data[Stylistbio][funfect]" id="funfect" value="<?php echo $find_array[0]['Stylistbio']['funfect']; ?>"><a href="#" id="submitfun">submit</a></span></div>
                                     </form>
-                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['fashiontip']; ?></span></div>
+                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic">
+                                    <input type="text" name="data[Stylistbio][fashiontip]" id="fashiontip" value="<?php echo $find_array[0]['Stylistbio']['fashiontip']; ?>">
+                                    <a href="#" id="submit_fashiontip">Submit</a>
+                                    
+
+                                    </span></div>
                                 </div>
                                 <div class="twelve columns left user-photostream">
                                     <h1 class="stylistbio-heading photostream"><?php echo $find_array[0]['User']['first_name']; ?>’s Photostream</h1>
@@ -201,6 +244,7 @@ $(document).ready(function(){
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>
+
                                             <!-- 
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" data-fancybox-group="gallery" title="img-1">
@@ -288,6 +332,25 @@ $(document).ready(function(){
                                         </ul>
                                         <div class="holder"></div>
                                     </div>
+                                    <div class="submit"><a href="#" id="block-file-upload-photo" class="link-btn black-btn">Upload</a></div>
+                                    
+                                    <!--file upload -->
+                                    <div id="file-box-photo" class="box-modal notification-box" style="display: none;">
+                                    <div class="box-modal-inside">
+                                    <a class="notification-close" href=""></a>
+                                    <div class="vip-content">
+                                    <h5 class="sign">Photo Stream</h5>            
+                                    <p>Drag & Drop Your Image Here</p> 
+
+                                    <form>
+                                    <input type="text" class="file-photo" placeholder="Enter Caption">
+                                    <input type="checkbox">: Make My Profile Pic.
+                                    <input type="submit" class="link-btn black-btn file-box-photo" value="Submit" /> 
+                                    </form> 
+                                    </div> 
+                                    </div>
+                                    </div>
+                                    <!-- file upload-->
 <!--
                                         <a class="link-older-photos right" href="javascript:;" title="">Older Photos &gt; </a>
                                         <a class="link-newer-photos left" href="javascript:;" title="">  &lt;Newer Photos  </a>

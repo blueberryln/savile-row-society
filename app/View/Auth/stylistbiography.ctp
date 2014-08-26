@@ -122,7 +122,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
-                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['hometown']; ?></span></div>
+                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic" \\><?php echo $find_array[0]['Stylistbio']['hometown']; ?></span></div>
                                     <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['funfect']; ?></span></div>
                                     <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['fashiontip']; ?></span></div>
                                 </div>

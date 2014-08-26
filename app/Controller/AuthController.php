@@ -474,7 +474,73 @@ App::uses('CakeEmail', 'Network/Email');
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             $stylistbiographyid = $Stylistbio->findById($stylistbioid);
-             $id = $stylistbiographyid['Stylistbio']['stylist_id'];
+            $id = $stylistbiographyid['Stylistbio']['stylist_id'];
+            if ($Stylistbio->save($this->request->data)) {
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$id);
+            } else {
+                $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('Stylistbio.' . $Stylistbio->primaryKey => $stylistbioid));
+            $this->request->data = $Stylistbio->find('first', $options);
+        }
+
+    }
+
+    public function updatestylistbiographyInspiration($stylistbioid = null){
+        $Stylistbio = ClassRegistry::init('Stylistbio');
+        if (!$Stylistbio->exists($stylistbioid)) {
+            throw new NotFoundException(__('Invalid Userhighlighted'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $stylistbiographyid = $Stylistbio->findById($stylistbioid);
+            $id = $stylistbiographyid['Stylistbio']['stylist_id'];
+
+            if ($Stylistbio->save($this->request->data)) {
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$id);
+            } else {
+                $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('Stylistbio.' . $Stylistbio->primaryKey => $stylistbioid));
+            $this->request->data = $Stylistbio->find('first', $options);
+        }
+
+    }
+
+    public function updateStylistBiographyBio($stylistbioid = null){
+        $Stylistbio = ClassRegistry::init('Stylistbio');
+        if (!$Stylistbio->exists($stylistbioid)) {
+            throw new NotFoundException(__('Invalid Userhighlighted'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $stylistbiographyid = $Stylistbio->findById($stylistbioid);
+            $id = $stylistbiographyid['Stylistbio']['stylist_id'];
+
+            if ($Stylistbio->save($this->request->data)) {
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$id);
+            } else {
+                $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('Stylistbio.' . $Stylistbio->primaryKey => $stylistbioid));
+            $this->request->data = $Stylistbio->find('first', $options);
+        }
+
+    }
+
+    public function updateStylistBiographyFashionTip($stylistbioid = null){
+        $Stylistbio = ClassRegistry::init('Stylistbio');
+        if (!$Stylistbio->exists($stylistbioid)) {
+            throw new NotFoundException(__('Invalid Userhighlighted'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $stylistbiographyid = $Stylistbio->findById($stylistbioid);
+            $id = $stylistbiographyid['Stylistbio']['stylist_id'];
+
             if ($Stylistbio->save($this->request->data)) {
                 $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
                 $this->redirect('/Auth/editbiography/'.$id);
