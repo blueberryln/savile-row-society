@@ -7,95 +7,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <div class="eleven columns container content inner stylistbio">
         <div class="twelve columns container stylistbio-section left">
             <a class="open-left-pannel" href="#" title=""><img src="<?php echo $this->webroot; ?>images/arrow-next.png" alt="" /></a>
-           <!-- <div class="stylistbio-section-left text-center">
-                <div class=" twelve columns stylistbion-arrow"><img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" /></div>
-                <div class="twelve columns">
-                    <div class="eleven columns container stylistbio-short-note">
-                        <div class="short-note">Learn more about all the Savile Row Stylists by clicking through our list of current stylists. </div>
-                    </div>
-                </div>
-                  <div class="twelve columns">
-                    <div class="eleven columns container stylistbio-list">
-                        <h3>SRS Stylist List</h3>
-                        <div id="scrollbar1">
-                            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-            <div class="viewport">
-                 <div class="overview">
-                        <ul>
-                        <?php foreach ($stylists as  $stylist): ?>
-                            <li><a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $stylist['User']['id']; ?>">
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylist['Stylistphotostream']['image'] ?>" width='31' height='31' alt="" /></div>
-                                <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
-                            </li>
-                            <?php endforeach; ?>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            
-                        </ul>
-                     </div>
-                </div>
-                            </div>
-                       
-                    </div>
-                </div> 
-                
-            </div>-->
+           
 
-<?php $stylistbioid  = $find_array[0]['Stylistbio']['id']; ?>
+<?php
+$stylistbioid  = $find_array[0]['Stylistbio']['id'];
+$stylistid  = $find_array[0]['Stylistbio']['stylist_id'];
+ ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -176,6 +93,35 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $("#file-upload-submit").on('click',function(e){
+        e.preventDefault();
+        var caption = $("#caption").val();
+        var fileupload = $("#uploader-btn").val();
+        var is_profile = $("#is_profile").val();
+        alert(fileupload);
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyimage/<?php echo $stylistid; ?>",
+            data: {image:fileupload,caption:caption,is_profile:is_profile},
+            cache: false,
+            success: function(result){
+                //alert(result);
+            }
+        });
+    });
+    $("#topoutfit").click(function(){
+    $("#topout").toggle();
+    });
+    $("#topoutfit2").click(function(){
+    $("#topout2").toggle();
+    });
+    $("#topoutfit3").click(function(){
+    $("#topout3").toggle();
+    });
+
+    
+
 });
 </script>
 
@@ -224,6 +170,7 @@ $(document).ready(function(){
                                      
                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic">
                                     <input type="hidden" name="data[Stylistbio][id]" id="id" value="<?php echo $find_array[0]['Stylistbio']['id']; ?>">
+
                                     <input type="text" name="data[Stylistbio][funfect]" id="funfect" value="<?php echo $find_array[0]['Stylistbio']['funfect']; ?>"><a href="#" id="submitfun">submit</a></span></div>
                                     </form>
                                     <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic">
@@ -245,86 +192,6 @@ $(document).ready(function(){
                                             </li>
                                         <?php endforeach; ?>
 
-                                            <!-- 
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" data-fancybox-group="gallery" title="img-1">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" data-fancybox-group="gallery" title="img-2">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" data-fancybox-group="gallery" title="img-3">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" data-fancybox-group="gallery" title="img-4">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" data-fancybox-group="gallery" title="img-5">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" data-fancybox-group="gallery" title="img-6">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" data-fancybox-group="gallery" title="img-7">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" data-fancybox-group="gallery" title="img-8">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            
-
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" data-fancybox-group="gallery" title="img-2">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" data-fancybox-group="gallery" title="img-3">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" data-fancybox-group="gallery" title="img-4">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" data-fancybox-group="gallery" title="img-5">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" data-fancybox-group="gallery" title="img-6">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" data-fancybox-group="gallery" title="img-7">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" data-fancybox-group="gallery" title="img-8">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" alt="" />
-                                                </a>
-<<<<<<< HEAD:app/View/Auth/stylistbiography.ctp
-                                            </li> -->
-
                                             </li>
                                             
                                             
@@ -333,87 +200,492 @@ $(document).ready(function(){
                                         <div class="holder"></div>
                                     </div>
                                     <div class="submit"><a href="#" id="block-file-upload-photo" class="link-btn black-btn">Upload</a></div>
-                                    
-                                    <!--file upload -->
+                                    <!--drag & drop data -->
+                                    <?php
+                                    // echo $this->html->css('drag/css/bootstrap.min');
+                                    // echo $this->html->css('drag/css/jquery.fileupload');
+                                    ?>
+                                   
+                                     <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+                                     <!--file upload -->
                                     <div id="file-box-photo" class="box-modal notification-box" style="display: none;">
                                     <div class="box-modal-inside">
                                     <a class="notification-close" href=""></a>
                                     <div class="vip-content">
                                     <h5 class="sign">Photo Stream</h5>            
-                                    <p>Drag & Drop Your Image Here</p> 
+                                           
+                                            <div class='empty-img' id='photo-holder'>
+                                            <img src='<?php echo $this->webroot . "img/dummy_image.jpg";//echo $image_url; ?>' id='user-photo'/>
+                                            </div>                
+                                            <!-- <input type='button' value='Upload photo' id='upload-img' class="gray-btn"/> -->
+                                            <span style="position:relative; height:150px;">
+                                            <input type="file" name="files[]" id="uploader-btn" style="display:block;height:150px;color: transparent;"><span class="hideformatefile"></span>
+                                            <span> Drop Here</span>
+                                            </span>
+                                            
+                                            
+                                   
 
-                                    <form>
-                                    <input type="text" class="file-photo" placeholder="Enter Caption">
-                                    <input type="checkbox">: Make My Profile Pic.
-                                    <input type="submit" class="link-btn black-btn file-box-photo" value="Submit" /> 
-                                    </form> 
+                                    <input type="text" class="file-photo" name="data[Stylistphotostream][caption]" id='caption' placeholder="Enter Caption">
+                                    <input type="checkbox" id='is_profile' name="data[Stylistphotostream][is_profile]">: Make My Profile Pic.
+                                     <a href="#" class="link-btn black-btn file-box-photo" id="file-upload-submit" class="btn btn-primary"> Submit</a> 
                                     </div> 
                                     </div>
                                     </div>
+                                   
+
+                                                <style>
+                                                .hideformatefile{
+                                                    background: #fff;
+                                                    position: absolute;
+                                                    top: -145px;
+                                                    left: -153px;
+                                                    width: 100px;
+                                                    height: 24px;
+                                                }
+                                               
+                                                    #upload-img{
+                                                        width:100px;
+                                                    }
+                                                    #uploader-btn{
+                                                        display: none;
+                                                    }
+                                                    #user-photo{
+                                                        /*width:100px;*/
+                                                        height: 100px;
+                                                        opacity: 0;
+                                                    }
+                                                </style>
+                                        <script>
+                                            window.onload=function(){
+                                                $("#upload-img").click(function(e){
+                                                    e.preventDefault();
+                                                $("#uploader-btn").click();
+                                                    });
+                                                $("#uploader-btn").change(function(){
+
+                                                    var input = document.getElementById("uploader-btn");
+                                                    if (input.files && input.files[0]) {
+                                                    var reader = new FileReader();
+                                                    reader.onload = function (e) {
+                                                    $('#user-photo' ).attr('src', e.target.result);
+                                                    $('#user-photo' ).css('opacity', 1);
+                                                    $('#photo-holder' ).attr('class', '');
+                                                    };
+                                                    reader.readAsDataURL(input.files[0]);
+                                                
+                                                    }
+                                                });
+                                                if($('#user-photo').attr('src') != "#"){
+                                                    $('#user-photo').css('opacity', 1);
+                                                    $('#photo-holder' ).attr('class', '');
+                                                }
+                                            }
+                                        </script> 
                                     <!-- file upload-->
-<!--
-                                        <a class="link-older-photos right" href="javascript:;" title="">Older Photos &gt; </a>
-                                        <a class="link-newer-photos left" href="javascript:;" title="">  &lt;Newer Photos  </a>
--->
+                                    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+                                    <?php
+                                    // echo $this->html->script('drag/js/vendor/jquery.ui.widget.js');
+                                    // echo $this->html->script('drag/js/load-image.min.js');
+                                    // echo $this->html->script('drag/js/jquery.fileupload.js');
+                                    // echo $this->html->script('drag/js/jquery.fileupload-process.js');
+                                    // echo $this->html->script('drag/js/jquery.fileupload-image.js');
+                                    ?>
+                                    <script>
+                                    // /*jslint unparam: true, regexp: true */
+                                    // /*global window, $ */
+                                    // $(function () {
+                                    // 'use strict';
+                                    // // Change this to the location of your server-side upload handler:
+                                    // var url = window.location.hostname === '127.0.0.1' ?
+                                    // '//SRS/' : '<?php echo $this->webroot; ?>files/server/php/',
+                                    // uploadButton = $('<button/>')
+                                    // .addClass('btn btn-primary')
+                                    // .prop('disabled', true)
+                                    // .text('Processing...')
+                                    // .on('click', function () {
+                                    // var $this = $(this),
+                                    // data = $this.data();
+                                    // $this
+                                    // .off('click')
+                                    // .text('Abort')
+                                    // .on('click', function () {
+                                    // $this.remove();
+                                    // data.abort();
+                                    // });
+                                    // data.submit().always(function () {
+                                    // $this.remove();
+                                    // });
+                                    // });
+                                    // $('#fileupload').fileupload({
+                                    // url: url,
+                                    // dataType: 'json',
+                                    // autoUpload: false,
+                                    // acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                                    // maxFileSize: 5000000, // 5 MB
+                                    // // Enable image resizing, except for Android and Opera,
+                                    // // which actually support image resizing, but fail to
+                                    // // send Blob objects via XHR requests:
+
+                                    // disableImageResize: /Android(?!.*Chrome)|Opera/
+                                    // .test(window.navigator.userAgent),
+
+                                    // previewMaxWidth: 100,
+                                    // previewMaxHeight: 100,
+                                    // previewCrop: true
+                                    // }).on('fileuploadadd', function (e, data) {
+                                    // data.context = $('<div/>').appendTo('#files');
+                                    // $.each(data.files, function (index, file) {
+                                    // var node = $('<p/>')
+                                    // .append($('<span/>').text(file.name));
+                                    // if (!index) {
+                                    // node
+                                    // .append('<br>')
+                                    // .append(uploadButton.clone(true).data(data));
+                                    // }
+                                    // node.appendTo(data.context);
+                                    // });
+                                    // }).on('fileuploadprocessalways', function (e, data) {
+                                    // var index = data.index,
+                                    // file = data.files[index],
+                                    // node = $(data.context.children()[index]);
+                                    // if (file.preview) {
+                                    // node
+                                    // .prepend('<br>')
+                                    // .prepend(file.preview);
+                                    // }
+                                    // if (file.error) {
+                                    // node
+                                    // .append('<br>')
+                                    // .append($('<span class="text-danger"/>').text(file.error));
+                                    // }
+                                    // if (index + 1 === data.files.length) {
+                                    // data.context.find('button')
+                                    // .text('Upload')
+                                    // .prop('disabled', !!data.files.error);
+                                    // }
+                                    // }).on('fileuploadprogressall', function (e, data) {
+                                    //     alert(formData);
+                                    // // var progress = parseInt(data.loaded / data.total * 100, 10);
+                                    // // $('#progress .progress-bar').css(
+                                    // // 'width',
+                                    // // progress + '%'
+                                    // // );
+                                    // }).on('fileuploaddone', function (e, data) {
+                                    // $.each(data.result.files, function (index, file) {
+                                    // if (file.url) {
+                                    // var link = $('<a>')
+
+                                    // .attr('target', '_blank')
+                                    // .prop('href', file.url);
+                                    // $(data.context.children()[index])
+                                    // .wrap(link);
+                                    // } else if (file.error) {
+                                    // var error = $('<span class="text-danger"/>').text(file.error);
+                                    // $(data.context.children()[index])
+                                    // .append('<br>')
+                                    // .append(error);
+                                    // }
+                                    // });
+                                    // }).on('fileuploadfail', function (e, data) {
+                                    // $.each(data.files, function (index, file) {
+                                    // var error = $('<span class="text-danger"/>').text('File upload failed.');
+                                    // $(data.context.children()[index])
+                                    // .append('<br>')
+                                    // .append(error);
+                                    // });
+                                    // }).prop('disabled', !$.support.fileInput)
+                                    // .parent().addClass($.support.fileInput ? undefined : 'disabled');
+                                    // });
+ 
+                                    </script>
+
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
                                     <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Top Outfits</h1>
+                                    <p id="topoutfit">Edit</p>
+                                    <?php //print_r($stylistoutfit); ?>
+                                    <?php if(isset($stylistoutfit[0]) != null){ ?>
+                                    <input type="hidden" name="data[StylistTopOutfit][id]" id="id" value="<?php echo $stylistoutfit[0]['StylistTopOutfit']['id'] ?>" >
+                                    <?php }else{} ?>
+                                    
+                                    <div id="topout" style="display:none;">
+                                        <select id="outfit">
+                                            <option>Pleasa Select Outfit</option>
+                                            <?php foreach($outfits as  $outfit): ?>
+                                                <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfitname'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <br>
+                                        <select id="order">
+                                            <option>Please Select Order</option>
+                                            <option value="1">1</option>
+                                            <!-- <option value="2">2</option>
+                                            <option value="3">3</option> -->
+                                        </select>
+                                        <a href="#" id="submit_outfit">Submit</a>
+                                    </div>
+                                    
+                                    <script>
+                                    $(document).ready(function(){
+                                    $("#submit_outfit").on('click',function(e){
+                                        e.preventDefault();
+                                            var order = $("#order").val();
+                                            var outfit = $("#outfit").val();
+                                            var id = $("#id").val();
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyoutfit/<?php echo $stylistid; ?>",
+                                                    data: {order_id:order,outfit_id:outfit,id:id},
+                                                    cache: false,
+                                                    success: function(data){
+                                                      data = $.parseJSON(data);
+                                                      //alert(data);
+
+                                                    html = '';
+
+                                                    $.each(data,  function (index){
+                                                        html = html + '<li>';
+                                                        html = html + '<div class="twelve columns top-outfits">';
+                                                        html = html + '<div class="eleven columns container">';
+                                                        html = html + '<h2>'+this.outfit.Outfit.outfitname+'</h2>';
+                                                        html = html + '<div class="outfit-products">';
+                                                        html = html + '<ul>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[0].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[0].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[1].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[1].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[2].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[2].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[3].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[3].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[4].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[4].Entity.name+'</div></li>';
+                                                        html = html + '</ul>';
+                                                        html = html + '</div>';
+                                                        html = html + '</div>';
+                                                        html = html + '</div>';
+                                                        html = html + '</li>';
+                                                        //console.log("this.entities");
+                                                            });
+                                                            $("#stylisttopoutfit").html(html);
+
+                                                        }
+                                                });
+                                                
+                                        $("#topout").hide( "slow", function() {
+                                        });
+                                    });
+                                });
+                                    </script>
+
                                     <ul>
-                                        <li>
+                                    <?php //print_r($my_outfit); ?>
+                                        <li id="stylisttopoutfit">
+                                            <?php if(isset($stylistoutfit[0]) != null){ ?>
                                             <div class="twelve columns top-outfits">
                                                 <div class="eleven columns container">
-                                                    <h2>Beach Day</h2>
+                                                    <h2><?php echo $my_outfit[0]['outfit']['Outfit']['outfitname']; ?></h2>
                                                     <div class="outfit-products">
                                                         <ul>
-                                                            <li>
-                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
-                                                           </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[0]['entities'][0]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[0]['entities'][0]['Entity']['name']; ?>  $<?php echo $my_outfit[0]['entities'][0]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[0]['entities'][1]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[0]['entities'][1]['Entity']['name']; ?>  $<?php echo $my_outfit[0]['entities'][1]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[0]['entities'][2]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[0]['entities'][2]['Entity']['name']; ?>  $<?php echo $my_outfit[0]['entities'][2]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[0]['entities'][3]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[0]['entities'][3]['Entity']['name']; ?>  $<?php echo $my_outfit[0]['entities'][3]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[0]['entities'][4]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[0]['entities'][4]['Entity']['name']; ?>  $<?php echo $my_outfit[0]['entities'][4]['Entity']['price']; ?></div></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php }else{} ?> 
+
                                         </li>
-                                        <li>
-                                            <div class="twelve columns top-outfits">
+                                            
+
+                                        <!-- top outfit 2 -->
+                                        <p id="topoutfit2">Edit</p>
+                                        <?php if(isset($stylistoutfit[1]) != null){ ?>
+                                    <input type="hidden" name="data[StylistTopOutfit][id]" id="id2" value="<?php echo $stylistoutfit[1]['StylistTopOutfit']['id'] ?>" >
+                                   
+                                    <?php }else{ ?>
+
+                                        <input type="hidden" name="data[StylistTopOutfit][id]" id="id2" value="" >
+                                        <?php } ?>
+                                    <div id="topout2" style="display:none;">
+                                        <select id="outfit2">
+                                            <option>Pleasa Select Outfit</option>
+                                            <?php foreach($outfits as  $outfit): ?>
+                                                <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfitname'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <br>
+                                        <select id="order2">
+                                            <option>Please Select Order</option>
+                                            <!-- <option value="1">1</option> -->
+                                            <option value="2">2</option>
+                                            <!-- <option value="3">3</option> -->
+                                        </select>
+                                        <a href="#" id="submit_outfit2">Submit</a>
+                                    </div>
+
+                                    <script>
+                                    $(document).ready(function(){
+                                    $("#submit_outfit2").on('click',function(e){
+                                        e.preventDefault();
+                                            var order = $("#order2").val();
+                                            var outfit = $("#outfit2").val();
+                                            var id  = $("#id2").val();
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyoutfit2/<?php echo $stylistid; ?>",
+                                                    data: {order_id:order,outfit_id:outfit,id:id},
+                                                    cache: false,
+                                                    success: function(data){
+                                                      data = $.parseJSON(data);
+                                                      //alert(data);
+
+                                                    html = '';
+
+                                                    $.each(data,  function (index){
+                                                        html = html + '<li>';
+                                                        html = html + '<div class="twelve columns top-outfits">';
+                                                        html = html + '<div class="eleven columns container">';
+                                                        html = html + '<h2>'+this.outfit.Outfit.outfitname+'</h2>';
+                                                        html = html + '<div class="outfit-products">';
+                                                        html = html + '<ul>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[0].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[0].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[1].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[1].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[2].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[2].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[3].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[3].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[4].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[4].Entity.name+'</div></li>';
+                                                        html = html + '</ul>';
+                                                        html = html + '</div>';
+                                                        html = html + '</div>';
+                                                        html = html + '</div>';
+                                                        html = html + '</li>';
+                                                        //console.log("this.entities");
+                                                            });
+                                                            $("#stylisttopoutfit2").html(html);
+
+                                                        }
+                                                });
+                                                
+                                        $("#topout2").hide( "slow", function() {
+                                        });
+                                    });
+                                });
+                                    </script>
+                                    <li id="stylisttopoutfit2">
+                                        <?php if(isset($stylistoutfit[1]) != null){ ?>
+                                        <div class="twelve columns top-outfits">
                                                 <div class="eleven columns container">
-                                                    <h2>Beach Day</h2>
+                                                    <h2><?php echo $my_outfit[1]['outfit']['Outfit']['outfitname']; ?></h2>
                                                     <div class="outfit-products">
                                                         <ul>
-                                                            <li>
-                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
-                                                           </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[1]['entities'][0]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[1]['entities'][0]['Entity']['name']; ?>  $<?php echo $my_outfit[1]['entities'][0]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[1]['entities'][1]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[1]['entities'][1]['Entity']['name']; ?>  $<?php echo $my_outfit[1]['entities'][1]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[1]['entities'][2]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[1]['entities'][2]['Entity']['name']; ?>  $<?php echo $my_outfit[1]['entities'][2]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[1]['entities'][3]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[1]['entities'][3]['Entity']['name']; ?>  $<?php echo $my_outfit[1]['entities'][3]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[1]['entities'][4]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[1]['entities'][4]['Entity']['name']; ?>  $<?php echo $my_outfit[1]['entities'][4]['Entity']['price']; ?></div></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="twelve columns top-outfits">
+                                            <?php }else{} ?>
+                                    </li>
+
+                                    <!--top outfit 3-->
+                                    
+                                        <p id="topoutfit3">Edit</p>
+                                        <?php
+                                        //print_r($stylistoutfit);
+                                         if(isset($stylistoutfit[2]) != null){ ?>
+                                    <input type="hidden" name="data[StylistTopOutfit][id]" id="id3" value="<?php echo $stylistoutfit[2]['StylistTopOutfit']['id'] ?>" >
+                                    <?php }else{} ?>
+                                    <div id="topout3" style="display:none;">
+                                        <select id="outfit3">
+                                            <option>Pleasa Select Outfit</option>
+                                            <?php foreach($outfits as  $outfit): ?>
+                                                <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfitname'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <br>
+                                        <select id="order3">
+                                            <option>Please Select Order</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                        <a href="#" id="submit_outfit3">Submit</a>
+                                    </div>
+
+                                    <script>
+                                    $(document).ready(function(){
+                                    $("#submit_outfit3").on('click',function(e){
+                                        e.preventDefault();
+                                            var order = $("#order3").val();
+                                            var outfit = $("#outfit3").val();
+                                            var id = $("#id3").val();
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyoutfit3/<?php echo $stylistid; ?>",
+                                                    data: {order_id:order,outfit_id:outfit,id:id},
+                                                    cache: false,
+                                                    success: function(data){
+                                                      data = $.parseJSON(data);
+                                                      //alert(data);
+
+                                                    html = '';
+
+                                                    $.each(data,  function (index){
+                                                        html = html + '<li>';
+                                                        html = html + '<div class="twelve columns top-outfits">';
+                                                        html = html + '<div class="eleven columns container">';
+                                                        html = html + '<h2>'+this.outfit.Outfit.outfitname+'</h2>';
+                                                        html = html + '<div class="outfit-products">';
+                                                        html = html + '<ul>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[0].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[0].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[1].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[1].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[2].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[2].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[3].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[3].Entity.name+'</div></li>';
+                                                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[4].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[4].Entity.name+'</div></li>';
+                                                        html = html + '</ul>';
+                                                        html = html + '</div>';
+                                                        html = html + '</div>';
+                                                        html = html + '</div>';
+                                                        html = html + '</li>';
+                                                        //console.log("this.entities");
+                                                            });
+                                                            $("#stylisttopoutfit3").html(html);
+
+                                                        }
+                                                });
+                                                
+                                        $("#topout3").hide( "slow", function() {
+                                        });
+                                    });
+                                });
+                                    </script>
+                                    <li id="stylisttopoutfit3">
+                                            <?php if(isset($stylistoutfit[2]) != null){ ?>
+                                        <div class="twelve columns top-outfits">
                                                 <div class="eleven columns container">
-                                                    <h2>Beach Day</h2>
+                                                    <h2><?php echo $my_outfit[2]['outfit']['Outfit']['outfitname']; ?></h2>
                                                     <div class="outfit-products">
                                                         <ul>
-                                                            <li>
-                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
-                                                           </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[2]['entities'][0]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[2]['entities'][0]['Entity']['name']; ?>  $<?php echo $my_outfit[2]['entities'][0]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[2]['entities'][1]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[2]['entities'][1]['Entity']['name']; ?>  $<?php echo $my_outfit[2]['entities'][1]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[2]['entities'][2]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[2]['entities'][2]['Entity']['name']; ?>  $<?php echo $my_outfit[2]['entities'][2]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[2]['entities'][3]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[2]['entities'][3]['Entity']['name']; ?>  $<?php echo $my_outfit[2]['entities'][3]['Entity']['price']; ?></div></li>
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[2]['entities'][4]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[2]['entities'][4]['Entity']['name']; ?>  $<?php echo $my_outfit[2]['entities'][4]['Entity']['price']; ?></div></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
+                                            <?php }else{} ?>
+
+
+                                    </li>
+
+
+
+
+
                                     </ul>
+                                    
                                 </div>
                             </div>
                             <div class="twelve columns left bottom-section">

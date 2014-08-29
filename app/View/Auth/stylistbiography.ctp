@@ -27,62 +27,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
                             </li>
                             <?php endforeach; ?>
-                            <!-- <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li> -->
                             
                         </ul>
                      </div>
@@ -99,7 +43,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div class="stylistbio-profile left text-center">
                             <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $find_array[0]['Stylistphotostream']['image']; ?>" width='277' height='309' alt="" /></div>
                             <div class=" twelve columns social-networks">
-                                <?php //print_r($find_array); ?>
                                 <ul>
                                 <?php $social = json_decode($find_array[0]['Stylistbio']['stylist_social_link'],true); ?>
                                     <li class="printrest"><a href="<?php echo $social['pintrest']; ?>" target="blank" title="">Printrest</a></li>
@@ -137,155 +80,35 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>
-                                            <!-- 
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" data-fancybox-group="gallery" title="img-1">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" alt="" />
-                                                </a>
                                             </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" data-fancybox-group="gallery" title="img-2">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" data-fancybox-group="gallery" title="img-3">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" data-fancybox-group="gallery" title="img-4">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" data-fancybox-group="gallery" title="img-5">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" data-fancybox-group="gallery" title="img-6">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" data-fancybox-group="gallery" title="img-7">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" data-fancybox-group="gallery" title="img-8">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            
-
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" data-fancybox-group="gallery" title="img-2">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" data-fancybox-group="gallery" title="img-3">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_3.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" data-fancybox-group="gallery" title="img-4">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_4.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" data-fancybox-group="gallery" title="img-5">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_5.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" data-fancybox-group="gallery" title="img-6">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_6.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" data-fancybox-group="gallery" title="img-7">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_7.jpg" alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" data-fancybox-group="gallery" title="img-8">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" alt="" />
-                                                </a>
-<<<<<<< HEAD:app/View/Auth/stylistbiography.ctp
-                                            </li> -->
-
-                                            </li>
-                                            
-                                            
-
-                                        </ul>
+                                            </ul>
                                         <div class="holder"></div>
                                     </div>
-<!--
-                                        <a class="link-older-photos right" href="javascript:;" title="">Older Photos &gt; </a>
-                                        <a class="link-newer-photos left" href="javascript:;" title="">  &lt;Newer Photos  </a>
--->
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
                                     <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Top Outfits</h1>
                                     <ul>
+                                    <?php foreach($my_outfit as $my_outfit): ?>
                                         <li>
                                             <div class="twelve columns top-outfits">
                                                 <div class="eleven columns container">
-                                                    <h2>Beach Day</h2>
+                                                    <h2><?php echo $my_outfit['outfit']['Outfit']['outfitname']; ?></h2>
                                                     <div class="outfit-products">
                                                         <ul>
-                                                            <li>
-                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
-                                                           </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                            <?php foreach($my_outfit['entities'] as $entities): ?>
+                                                                <li>
+                                                            <img src="<?php echo $this->webroot; ?>files/products/<?php echo $entities['Image'][0]['name']; ?>" height="108" width="122" />
+                                                            <div class="outfit-products-details"><?php echo $entities['Entity']['name'] ?>  $<?php echo $entities['Entity']['price']; ?></div>
+                                                        </li>
+                                                            <?php endforeach; ?>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="twelve columns top-outfits">
-                                                <div class="eleven columns container">
-                                                    <h2>Beach Day</h2>
-                                                    <div class="outfit-products">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
-                                                           </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="twelve columns top-outfits">
-                                                <div class="eleven columns container">
-                                                    <h2>Beach Day</h2>
-                                                    <div class="outfit-products">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
-                                                           </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                    <?php endforeach; ?>
+                                        
+                                        
                                     </ul>
                                 </div>
                             </div>

@@ -351,6 +351,35 @@ App::uses('CakeEmail', 'Network/Email');
         $User = ClassRegistry::init('User');
         $Stylistbio = ClassRegistry::init('Stylistbio');
         $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
+        $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
+        $Outfit = ClassRegistry::init('Outfit');
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $Entity = ClassRegistry::init('Entity');    
+        
+        //check data outfit start
+        
+        $my_outfit = array();
+        $stylistoutfit= $StylistTopOutfit->find('all', array('conditions'=>array('StylistTopOutfit.stylist_id'=>$id,),'order'=>'StylistTopOutfit.order_id  asc',));
+        foreach($stylistoutfit as $row){
+            $stylist_outfit_id = $row['StylistTopOutfit']['outfit_id'];
+            $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+            $entities = array();
+            foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                }
+            $entity_list = $Entity->getMultipleById($entities);
+            $my_outfit[] =  array(
+                                'outfit'    => $outfitnames,
+                                //'username' => $userlist,
+                                'entities'  => $entity_list
+                            );
+        }
+        
+        
+
+        //check data outfit end
+
         $find_array = $Stylistbio->find('all',array(
             'joins' => array(
                     array(
@@ -397,19 +426,17 @@ App::uses('CakeEmail', 'Network/Email');
              'fields'=>array('Stylistphotostream.image,Stylistphotostream.caption'),
             ));
         
-        $this->set(compact('find_array','stylists','stylistphoto'));
+        $this->set(compact('find_array','stylists','stylistphoto','my_outfit'));
     }
 
     public function editbiography($id = null) {
         $User = ClassRegistry::init('User');
         $Stylistbio = ClassRegistry::init('Stylistbio');
         $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
-        if($this->request->is('post') || $this->request->is('put')){
-            print_r($this->request->data);
-
-            exit();
-        }
-
+        $Outfit = ClassRegistry::init('Outfit');
+        $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $Entity = ClassRegistry::init('Entity');   
         $find_array = $Stylistbio->find('all',array(
             'joins' => array(
                     array(
@@ -442,7 +469,27 @@ App::uses('CakeEmail', 'Network/Email');
             ),
              'fields'=>array('Stylistphotostream.image,Stylistphotostream.caption'),
             ));
-        $this->set(compact('find_array','stylistphoto'));
+        
+        $outfits = $Outfit->find('all',array('conditions'=>array('Outfit.stylist_id'=>$id,),'fields'=>'Outfit.outfitname,Outfit.id'));
+
+        $my_outfit = array();
+        $stylistoutfit= $StylistTopOutfit->find('all', array('conditions'=>array('StylistTopOutfit.stylist_id'=>$id,)));
+        foreach($stylistoutfit as $row){
+            $stylist_outfit_id = $row['StylistTopOutfit']['outfit_id'];
+            $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+            $entities = array();
+            foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                }
+            $entity_list = $Entity->getMultipleById($entities);
+            $my_outfit[] =  array(
+                                'outfit'    => $outfitnames,
+                                'entities'  => $entity_list
+                            );
+        }
+
+        $this->set(compact('find_array','stylistphoto','outfits','my_outfit','stylistoutfit'));
     }
 
     public function updatestylistbiographyfunfect($stylistbioid = null){
@@ -553,6 +600,288 @@ App::uses('CakeEmail', 'Network/Email');
         }
 
     }
+
+    public function updateStylistBiographyimage($stylistid = null){
+        $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
+        
+        if ($this->request->is('post')) {
+
+            $this->request->data['Stylistphotostream']['stylist_id'] = $stylistid;
+            $this->request->data['Stylistphotostream']['is_profile'] = '1';
+            $this->request->data['Stylistphotostream']['image'] = $this->request->data['image'];
+            $this->request->data['Stylistphotostream']['caption'] = $this->request->data['caption'];
+            $this->request->data['Stylistphotostream']['image'];
+
+            $imagename = null;
+            $image_type = '';
+            $image_size = '';
+
+                $imagename = time() .  '_' . $this->request->data['Stylistphotostream']['image']['name'];
+                $image_type = $this->request->data['Stylistphotostream']['image']['type'];
+                $image_size = $this->request->data['Stylistphotostream']['image']['size'];
+                $img_path = APP . 'webroot' . DS . 'files' . DS . 'photostream' . DS . $imagename;
+                move_uploaded_file($this->request->data['Stylistphotostream']['image']['tmp_name'], $img_path);
+                $this->request->data['Stylistphotostream']['image'] = $imagename;
+                if ($Stylistphotostream->save($this->request->data)) {
+                //print_r($Stylistphotostream->save($this->request->data));
+                //exit;
+                
+                $this->Session->setFlash("Stylistphotostream Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$stylistid);
+            } else {
+                $this->Session->setFlash(__('The Stylistphotostream could not be saved. Please, try again.'), 'flash');
+            }
+        }else{
+                $this->Session->setFlash('The Stylistphotostream could not be saved. Please, try again.');
+        }
+    }
+
+    public function updateStylistBiographyoutfit($stylistid = null){
+        $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
+        $Outfit = ClassRegistry::init('Outfit');
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $Entity = ClassRegistry::init('Entity');    
+        
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $topoutfitdata = $StylistTopOutfit->getStylistOrderOne($stylistid);
+            
+            if($topoutfitdata != null){
+                $id = $topoutfitdata['StylistTopOutfit']['id'];
+            }
+            $this->request->data['StylistTopOutfit']['stylist_id'] = $stylistid;
+            $this->request->data['StylistTopOutfit']['outfit_id'] = $this->request->data['outfit_id'];
+            $this->request->data['StylistTopOutfit']['id'] = $this->request->data['id'];
+            $this->request->data['StylistTopOutfit']['order_id'] = $this->request->data['order_id'];
+            if ($StylistTopOutfit->save($this->request->data)) {
+
+                    $my_outfit = array();
+                    $stylistoutfit= $StylistTopOutfit->find('all', array('conditions'=>array('StylistTopOutfit.stylist_id'=>$stylistid,'StylistTopOutfit.order_id'=>1,),'order'=>'StylistTopOutfit.order_id  asc',));
+                    foreach($stylistoutfit as $row){
+                    $stylist_outfit_id = $row['StylistTopOutfit']['outfit_id'];
+                    $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+                    $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+                    $entities = array();
+                    foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                    }
+                    $entity_list = $Entity->getMultipleById($entities);
+                    $my_outfit[] =  array(
+                        'outfit'    => $outfitnames,
+                        'entities'  => $entity_list
+                    );
+                    }
+                    echo json_encode($my_outfit);
+
+                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$stylistid);
+            } else {
+                $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('StylistTopOutfit.' . $StylistTopOutfit->primaryKey => $id));
+            $this->request->data = $StylistTopOutfit->find('first', $options);
+        }
+    }
+
+
+public function updateStylistBiographyoutfit2($stylistid = null){
+        $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
+        $Outfit = ClassRegistry::init('Outfit');
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $Entity = ClassRegistry::init('Entity');    
+        
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $topoutfitdata = $StylistTopOutfit->getStylistTopOutfittwo($stylistid);
+            
+            if($topoutfitdata != null){
+                $id = $topoutfitdata['StylistTopOutfit']['id'];
+            }
+            $this->request->data['StylistTopOutfit']['stylist_id'] = $stylistid;
+            $this->request->data['StylistTopOutfit']['outfit_id'] = $this->request->data['outfit_id'];
+            $this->request->data['StylistTopOutfit']['id'] = $this->request->data['id'];
+            $this->request->data['StylistTopOutfit']['order_id'] = $this->request->data['order_id'];
+            if ($StylistTopOutfit->save($this->request->data)) {
+
+                    $my_outfit = array();
+                    $stylistoutfit= $StylistTopOutfit->find('all', array('conditions'=>array('StylistTopOutfit.stylist_id'=>$stylistid,'StylistTopOutfit.order_id'=>2,),'order'=>'StylistTopOutfit.order_id  asc',));
+                    foreach($stylistoutfit as $row){
+                    $stylist_outfit_id = $row['StylistTopOutfit']['outfit_id'];
+                    $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+                    $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+                    $entities = array();
+                    foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                    }
+                    $entity_list = $Entity->getMultipleById($entities);
+                    $my_outfit[] =  array(
+                        'outfit'    => $outfitnames,
+                        'entities'  => $entity_list
+                    );
+                    }
+                    echo json_encode($my_outfit);
+
+                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$stylistid);
+            } else {
+                $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('StylistTopOutfit.' . $StylistTopOutfit->primaryKey => $id));
+            $this->request->data = $StylistTopOutfit->find('first', $options);
+        }
+    }
+
+
+
+    public function updateStylistBiographyoutfit3($stylistid = null){
+        $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
+        $Outfit = ClassRegistry::init('Outfit');
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $Entity = ClassRegistry::init('Entity');    
+        
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $topoutfitdata = $StylistTopOutfit->getStylistOrderTopOutfitthree($stylistid);
+            
+            if($topoutfitdata != null){
+                $id = $topoutfitdata['StylistTopOutfit']['id'];
+            }
+            $this->request->data['StylistTopOutfit']['stylist_id'] = $stylistid;
+            $this->request->data['StylistTopOutfit']['outfit_id'] = $this->request->data['outfit_id'];
+            $this->request->data['StylistTopOutfit']['id'] = $this->request->data['id'];
+            $this->request->data['StylistTopOutfit']['order_id'] = $this->request->data['order_id'];
+            if ($StylistTopOutfit->save($this->request->data)) {
+
+                    $my_outfit = array();
+                    $stylistoutfit= $StylistTopOutfit->find('all', array('conditions'=>array('StylistTopOutfit.stylist_id'=>$stylistid,'StylistTopOutfit.order_id'=>3,),'order'=>'StylistTopOutfit.order_id  asc',));
+                    foreach($stylistoutfit as $row){
+                    $stylist_outfit_id = $row['StylistTopOutfit']['outfit_id'];
+                    $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+                    $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+                    $entities = array();
+                    foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                    }
+                    $entity_list = $Entity->getMultipleById($entities);
+                    $my_outfit[] =  array(
+                        'outfit'    => $outfitnames,
+                        'entities'  => $entity_list
+                    );
+                    }
+                    echo json_encode($my_outfit);
+
+                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$stylistid);
+            } else {
+                $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('StylistTopOutfit.' . $StylistTopOutfit->primaryKey => $id));
+            $this->request->data = $StylistTopOutfit->find('first', $options);
+        }
+    }
+
+
+    // public function updateStylistBiographyoutfit2($stylistid = null){
+    //     $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
+    //     $Outfit = ClassRegistry::init('Outfit');
+    //     $OutfitItem = ClassRegistry::init('OutfitItem');
+    //     $Entity = ClassRegistry::init('Entity');    
+        
+    //     if ($this->request->is('post') || $this->request->is('put')) {
+    //         $topoutfitdata = $StylistTopOutfit->getStylistTopOutfittwo($stylistid);
+    //         print_r($topoutfitdata);
+    //         if($topoutfitdata != null){
+    //             $id = $topoutfitdata['StylistTopOutfit']['id'];
+    //         }
+    //         $this->request->data['StylistTopOutfit']['stylist_id'] = $stylistid;
+    //         $this->request->data['StylistTopOutfit']['outfit_id'] = $this->request->data['outfit_id'];
+    //         $this->request->data['StylistTopOutfit']['order_id'] = 2;
+    //         if($this->request->data['id'] != null){
+    //              $this->request->data['StylistTopOutfit']['id'] = $this->request->data['id'];
+    //         }
+
+           
+    //         if ($StylistTopOutfit->save($this->request->data)) {
+
+    //                 $my_outfit = array();
+    //                 $stylistoutfit= $StylistTopOutfit->find('all', array('conditions'=>array('StylistTopOutfit.stylist_id'=>$stylistid,'StylistTopOutfit.order_id'=>2,),'order'=>'StylistTopOutfit.order_id  asc',));
+    //                 foreach($stylistoutfit as $row){
+    //                 $stylist_outfit_id = $row['StylistTopOutfit']['outfit_id'];
+    //                 $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+    //                 $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+    //                 $entities = array();
+    //                 foreach($outfit as $value){
+    //                 $entities[] = $value['OutfitItem']['product_entity_id'];
+    //                 }
+    //                 $entity_list = $Entity->getMultipleById($entities);
+    //                 $my_outfit[] =  array(
+    //                     'outfit'    => $outfitnames,
+    //                     'entities'  => $entity_list
+    //                 );
+    //                 }
+    //                 echo json_encode($my_outfit);
+
+    //             $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved");
+    //             $this->redirect('/Auth/editbiography/'.$stylistid);
+    //         } else {
+    //             $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+    //         }
+    //     } else {
+    //         $options = array('conditions' => array('StylistTopOutfit.' . $StylistTopOutfit->primaryKey => $id));
+    //         $this->request->data = $StylistTopOutfit->find('first', $options);
+    //     }
+
+        
+    // }
+
+
+    // public function updateStylistBiographyoutfit3($stylistid = null){
+    //     $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
+    //     $Outfit = ClassRegistry::init('Outfit');
+    //     $OutfitItem = ClassRegistry::init('OutfitItem');
+    //     $Entity = ClassRegistry::init('Entity');    
+        
+    //     if ($this->request->is('post') || $this->request->is('put')) {
+    //         $topoutfitdata = $StylistTopOutfit->getStylistOrderTopOutfitthree($stylistid);
+    //         if($topoutfitdata != null){
+    //             $id = $topoutfitdata['StylistTopOutfit']['id'];
+    //         }
+    //         $this->request->data['StylistTopOutfit']['stylist_id'] = $stylistid;
+    //         $this->request->data['StylistTopOutfit']['outfit_id'] = $this->request->data['outfit_id'];
+    //         $this->request->data['StylistTopOutfit']['order_id'] = $this->request->data['order_id'];
+    //         if ($StylistTopOutfit->save($this->request->data)) {
+
+    //                 $my_outfit = array();
+    //                 $stylistoutfit= $StylistTopOutfit->find('all', array('conditions'=>array('StylistTopOutfit.stylist_id'=>$stylistid,'StylistTopOutfit.order_id'=>3,),'order'=>'StylistTopOutfit.order_id  asc',));
+    //                 foreach($stylistoutfit as $row){
+    //                 $stylist_outfit_id = $row['StylistTopOutfit']['outfit_id'];
+    //                 $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+    //                 $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+    //                 $entities = array();
+    //                 foreach($outfit as $value){
+    //                 $entities[] = $value['OutfitItem']['product_entity_id'];
+    //                 }
+    //                 $entity_list = $Entity->getMultipleById($entities);
+    //                 $my_outfit[] =  array(
+    //                     'outfit'    => $outfitnames,
+    //                     'entities'  => $entity_list
+    //                 );
+    //                 }
+    //                 echo json_encode($my_outfit);
+
+    //             $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved");
+    //             $this->redirect('/Auth/editbiography/'.$stylistid);
+    //         } else {
+    //             $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+    //         }
+    //     } else {
+    //         $options = array('conditions' => array('StylistTopOutfit.' . $StylistTopOutfit->primaryKey => $id));
+    //         $this->request->data = $StylistTopOutfit->find('first', $options);
+    //     }
+
+        
+    // }
+    
 
 
 }
