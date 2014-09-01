@@ -998,29 +998,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $Message = ClassRegistry::init('Message');
         $Outfit = ClassRegistry::init('Outfit');
         $posts = ClassRegistry::init('Post');
-        // $postid = $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id)));
-        // $r = $Outfit->getoutfitpostid($user_id);
-        // //echo "<pre>"; print_r($r);
-        // $my_outfit = array();
-        // foreach ($r as $r) {
-        //     $productid = $r['OutfitItem']['product_entity_id'];
-        //     $username = $User->findById($r['Outfit']['user_id']);
-        //     $Entity = ClassRegistry::init('Entity');
-        //     $entity_list = $Entity->getMultipleById($productid);
-        //     $my_outfit[] =  array(
-        //                          'outfit'    => $r,
-        //                          'name' => $username,
-        //                          'entities'  => $entity_list
-        //                      );
-
-        // }
-        // $this->set(compact('my_outfit','userlist','user_id'));
-        // echo "<pre>"; print_r($my_outfit);
-        // exit;
         
-        //$t = $Outfit->find('all', $find_array);
-
-       //echo "<pre>"; print_r($t);
         $userlist = $User->find('all', array('conditions'=>array('User.stylist_id'=>$user_id,)));
 
         $my_outfit = array();
@@ -1044,9 +1022,9 @@ If interested, I would also be happy to meet with you in our New York City based
                             );
 
         }
-        //echo "<pre>";print_r($my_outfit);exit;
+        
         $this->set(compact('my_outfit','userlist','user_id'));
-    //exit;
+    
     } 
 
     //perticular user notes
@@ -1083,7 +1061,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
     public function getusercustomsize($client_id = null){
         $User = ClassRegistry::init('User');
-        $Usersizeinformation = ClassRegistry::init('Usersizeinformation');
+        $UserSizeInformation = ClassRegistry::init('UserSizeInformation');
         //Get user from session to derterminate if user is stylist
         $user = $this->getLoggedUser();
         $user_id = $user["User"]["id"]; 
@@ -1091,17 +1069,17 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"]; 
 
         if($this->request->is('post')){
-            $this->request->data['Usersizeinformation']['user_id']=$client_id;
-            $this->request->data['Usersizeinformation']['stylist_id']=$user_id;
-            $custom_shirt_serialize = serialize($this->request->data['Usersizeinformation']['custom_shirt_measurement']);
-            $custom_jacket_serialize = serialize($this->request->data['Usersizeinformation']['custom_jacket_measurement']);
-            $custom_trouser_serialize = serialize($this->request->data['Usersizeinformation']['custom_trouser_measurement']);
-            $custom_vest_serialize = serialize($this->request->data['Usersizeinformation']['custom_vest_measurement']);
-            $this->request->data['Usersizeinformation']['custom_shirt_measurement'] = $custom_shirt_serialize;
-            $this->request->data['Usersizeinformation']['custom_jacket_measurement'] = $custom_jacket_serialize;
-            $this->request->data['Usersizeinformation']['custom_trouser_measurement'] = $custom_trouser_serialize;
-            $this->request->data['Usersizeinformation']['custom_vest_measurement'] = $custom_vest_serialize;
-                $Usersizeinformation->save($this->request->data);
+            $this->request->data['UserSizeInformation']['user_id']=$client_id;
+            $this->request->data['UserSizeInformation']['stylist_id']=$user_id;
+            $custom_shirt_serialize = serialize($this->request->data['UserSizeInformation']['custom_shirt_measurement']);
+            $custom_jacket_serialize = serialize($this->request->data['UserSizeInformation']['custom_jacket_measurement']);
+            $custom_trouser_serialize = serialize($this->request->data['UserSizeInformation']['custom_trouser_measurement']);
+            $custom_vest_serialize = serialize($this->request->data['UserSizeInformation']['custom_vest_measurement']);
+            $this->request->data['UserSizeInformation']['custom_shirt_measurement'] = $custom_shirt_serialize;
+            $this->request->data['UserSizeInformation']['custom_jacket_measurement'] = $custom_jacket_serialize;
+            $this->request->data['UserSizeInformation']['custom_trouser_measurement'] = $custom_trouser_serialize;
+            $this->request->data['UserSizeInformation']['custom_vest_measurement'] = $custom_vest_serialize;
+                $UserSizeInformation->save($this->request->data);
                 $this->Session->setFlash("User Data Hasbeen Saved");
                 $this->redirect('/messages/getusercustomsize/'.$client_id);
             

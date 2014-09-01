@@ -7,7 +7,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Product $Product
  */
-class Usersizeinformation extends AppModel {
+class UserSizeInformation extends AppModel {
 
 
 }

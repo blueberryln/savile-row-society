@@ -248,6 +248,13 @@ $("#block-request-access").on("click", function(e){
         $('.blockOverlay').click($.unblockUI);
     });
 
+//upload file 
+$("#block-file-upload-photo").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#file-box-photo')});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
 
 $("#block-step-access").on("click", function(e){
         e.preventDefault();
