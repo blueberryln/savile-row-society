@@ -77,7 +77,7 @@
                                         <div class="twelve columns left product-dtls">
                                             <div class="eleven columns container product-view">
                                                 <div class="twelve columns left product-dtl-area">
-                                                    <div class="product-dtl-img left">&nbsp;</div>
+                                                    <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt=""/></div>
                                                     <div class="product-dtl-desc left">&nbsp;</div>
                                                     <div class="product-dtl-links left">&nbsp;</div>
                                                 </div>
