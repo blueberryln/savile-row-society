@@ -21,7 +21,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="viewport">
                  <div class="overview">
                         <ul>
-                            <li>
+                        <?php foreach ($stylists as  $stylist): ?>
+                            <li><a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $stylist['User']['id']; ?>">
+                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylist['Stylistphotostream']['image'] ?>" width='31' height='31' alt="" /></div>
+                                <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
+                            </li>
+                            <?php endforeach; ?>
+                            <!-- <li>
                                 <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
                                 <div class="left stylistbio-list-name">Jane Doe</div>
                             </li>
@@ -76,11 +82,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <li>
                                 <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
                                 <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
-                            <li>
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/small-img.jpg" alt="" /></div>
-                                <div class="left stylistbio-list-name">Jane Doe</div>
-                            </li>
+                            </li> -->
                             
                         </ul>
                      </div>
@@ -95,41 +97,47 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class="eleven columns container">
                     <div class="twelve columns">
                         <div class="stylistbio-profile left text-center">
-                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/profile-img.jpg" alt="" /></div>
+                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $find_array[0]['Stylistphotostream']['image']; ?>" width='277' height='309' alt="" /></div>
                             <div class=" twelve columns social-networks">
+                                <?php //print_r($find_array); ?>
                                 <ul>
-                                    <li class="printrest"><a href="" title="">Printrest</a></li>
-                                    <li class="twitter"><a href="" title="">Twitter</a></li>
-                                    <li class="linkdin"><a href="" title="">Linkdin</a></li>
-                                    <li class="facebbok"><a href="" title="">facebook</a></li>
+                                <?php $social = json_decode($find_array[0]['Stylistbio']['stylist_social_link'],true); ?>
+                                    <li class="pintrest"><a href="<?php echo $social['pinterest']; ?>" target="blank" title="">Printrest</a></li>
+                                    <li class="twitter"><a href="<?php echo $social['twiter']; ?>" target="blank" title="">Twitter</a></li>
+                                    <li class="linkdin"><a href="<?php echo $social['linkdin']; ?>" target="blank" title="">Linkdin</a></li>
+                                    <li class="facebbok"><a href="<?php echo $social['facebook']; ?>" target="blank" title="">facebook</a></li>
                                 </ul>
                             </div>
-                            <h1 class="stylistbio-heading">Jane’s Bio</h1>
+                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Bio</h1>
                             <div class="user-desc">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+                                <?php echo $find_array[0]['Stylistbio']['stylist_bio']; ?>
                             </div>
-                            <h1 class="stylistbio-heading">Jane’s Inspiration</h1>
-                            <div class="user-inspire-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-- sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
--Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Inspiration</h1>
+                            <div class="user-inspire-desc"> <?php echo $find_array[0]['Stylistbio']['stylist_inspiration']; ?></div>
                         </div>
                         <div class="stylistbio-details right">
                             <div class="twelve columns left">
-                                <div class="stylistbio-user">Jane Doe | Stylist</div>
-                                <div class="start-today"><a href="javascript:;">get started with Jane Today!</a></div>
+                                <div class="stylistbio-user"><?php echo $find_array[0]['User']['first_name'].'&nbsp;'.$find_array[0]['User']['last_name']; ?> | Stylist</div>
+                                <div class="start-today"><a href="javascript:;">get started with <?php echo $find_array[0]['User']['first_name']; ?> Today!</a></div>
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
-                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic">San Diego, California</span></div>
-                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic">I can drink a 6 pack in 2 minutes</span></div>
-                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic">Men- get your suits fitted correctly;<br>
-Women- the more leopard the better.</span></div>
+                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['hometown']; ?></span></div>
+                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['funfect']; ?></span></div>
+                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['fashiontip']; ?></span></div>
                                 </div>
                                 <div class="twelve columns left user-photostream">
-                                    <h1 class="stylistbio-heading photostream">Jane’s Photostream</h1>
+                                    <h1 class="stylistbio-heading photostream"><?php echo $find_array[0]['User']['first_name']; ?>’s Photostream</h1>
                                     <div class="photostream-section">
-                                        
                                         <ul id="itemContainer">
+                                            <?php  foreach ($stylistphoto as $stylistphoto): ?>
+                                            <li>
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $stylistphoto['Stylistphotostream']['caption']; ?>">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" alt="" />
+                                                </a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                            <!-- 
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" data-fancybox-group="gallery" title="img-1">
                                                 <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" alt="" />
@@ -171,11 +179,7 @@ Women- the more leopard the better.</span></div>
                                                 </a>
                                             </li>
                                             
-                                            <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" data-fancybox-group="gallery" title="img-1">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_1.jpg" alt="" />
-                                                </a>
-                                            </li>
+
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" data-fancybox-group="gallery" title="img-2">
                                                 <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_2.jpg" alt="" />
@@ -210,9 +214,13 @@ Women- the more leopard the better.</span></div>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" data-fancybox-group="gallery" title="img-8">
                                                 <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/photo-stream_8.jpg" alt="" />
                                                 </a>
+<<<<<<< HEAD:app/View/Auth/stylistbiography.ctp
+                                            </li> -->
+
                                             </li>
                                             
                                             
+
                                         </ul>
                                         <div class="holder"></div>
                                     </div>
@@ -222,7 +230,7 @@ Women- the more leopard the better.</span></div>
 -->
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
-                                    <h1 class="stylistbio-heading photostream top-outits-heading">Jane’s Top Outfits</h1>
+                                    <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Top Outfits</h1>
                                     <ul>
                                         <li>
                                             <div class="twelve columns top-outfits">
@@ -282,8 +290,8 @@ Women- the more leopard the better.</span></div>
                                 </div>
                             </div>
                             <div class="twelve columns left bottom-section">
-                                <div class="stylistbio-user">Like Jane’s Style?</div>
-                                <div class="start-today"><a href="javascript:;">get started with Jane Today!</a></div>
+                                <div class="stylistbio-user">Like <?php echo $find_array[0]['User']['first_name']; ?>’s Style?</div>
+                                <div class="start-today"><a href="javascript:;">get started with <?php echo $find_array[0]['User']['first_name']; ?> Today!</a></div>
                             </div>
                         </div>
                     </div>

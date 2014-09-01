@@ -141,7 +141,7 @@
         </div>
         
         <!--Start of Zopim Live Chat Script-->
-<!--
+
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
 d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
@@ -149,7 +149,7 @@ _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
 $.src='//v2.zopim.com/?2EyWSdOlvawNOnH4NsrFdHDbmRHMk5Pq';z.t=+new Date;$.
 type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 </script>
--->
+
 <!--End of Zopim Live Chat Script-->
 
         <!-- Popup Script
@@ -281,6 +281,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     $("a.open-left-pannel").show(1000);
                     $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
                 });
+                  
                 
 //                $('span[title]').css({borderBottom: '1px solid #900'}).cluetip({
 //                  splitTitle: '|',
@@ -293,13 +294,49 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 //                });
                 
                 $('.tt-icon').hover(function(){
-                 $('#div'+$(this).attr('target')).css({opacity: 1});
+                    $('#div'+$(this).attr('target')).css({'opacity': 1, 'z-index':9999});
                 });
+                    
                 $('.tt-icon').mouseleave(function(){
-                 $('#div'+$(this).attr('target')).css({opacity: 0});
+                    $('#div'+$(this).attr('target')).css({'opacity': 0, 'z-index':0});
                 });
                 
-                              
+//                $('.brands img').click(function(){
+//                    $('.brand-details').slideToggle();
+//                });
+                
+                $('ul#branding-ptners>li:nth-child(3n)').after('<div class="clear-fix"></div>');
+                $('ul#branding-ptners li').click(function(){
+                     $('.brand-details').slideDown('');
+                });
+                $('ul#branding-ptners li').dblclick(function(){
+                     $('.brand-details').slideUp('');
+                });
+//                                
+//                $('ul#branding-ptners li').toggle(function() {
+//                    $('.brand-details').slideDown('');
+//                    return false;
+//                  },
+//                    function() {
+//                      $('.brand-details').slideUp('');
+//                    return false;
+//                  });
+//                
+//                             
+//                
+//                $('ul#branding-ptners li').click(function() {
+//                    $(this).addClass('active').siblings().removeClass('active');
+//                })
+                
+                jQuery("#dd-nav-switcher").on("click", function(){  
+                    jQuery(this).toggleClass("menu-anim");          
+                    var menu = jQuery(".dd-nav");
+                    jQuery(menu).slideToggle();  
+                });
+                
+               
+                
+                
                 
                 $("div.holder").jPages({
                   containerID : "itemContainer",
@@ -369,8 +406,26 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             });
             $(document).ready( function(){
             $("#scrollbar1").tinyscrollbar({ axis: "y"});
-                
+            $("#scrollbar2").tinyscrollbar({ axis: "y"});
             });
+            
+            
+             $(".stylistbion-arrow img").click(function(){
+                    $("a.open-left-pannel").show(1000);
+                    $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
+                });
+            
+            
+            $('.product-desc').css('opacity', 0);  
+                $('.client-outfits-img li').hover(  
+                   function(){  
+                      $(this).find('.product-desc').stop().fadeTo('slow', 1);  
+                   },  
+                   function(){  
+                      $(this).find('.product-desc').stop().fadeTo('slow', 0);  
+                   });
+            
+            
         </script>
         
                

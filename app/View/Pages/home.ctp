@@ -333,14 +333,16 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="eleven columns container stylist-boxes">
             <div class="featured-stylist ten columns container">
                 <ul class="slider1">
+                    <?php foreach($topstylists as $topstylist): ?>
                     <li>
-                        <img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_1.jpg" />
+                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>" width="220" height="220" />
                         <div class="featured-stylist-hover">
-                            <span class="featured-stylist-hover-text">Stylist Stylist</span>
+                            <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
                             <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
                         </div>
                     </li>
-                    <li>
+                <?php endforeach; ?>
+                    <!-- <li>
                         <img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" />
                         <div class="featured-stylist-hover">
                             <span class="featured-stylist-hover-text">Stylist Stylist</span>
@@ -360,7 +362,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                             <span class="featured-stylist-hover-text">Stylist Stylist</span>
                             <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             
@@ -416,7 +418,35 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="eleven columns container outfit-boxes">
             <div class="outfit-stylist eleven columns container">
                 <ul class="slider2">
+                    <?php foreach ($my_outfit as $topoutfit) {  //print_r($topoutfit);
+                        ?>
                     <li>
+                        <div class="shop-outfit left">
+                            <div class="shop-outfit-top">
+                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $topoutfit['stylistimage']['Stylistphotostream']['image']; ?>"  width="215" height="173" /></div>
+                                <div class="outfit-top-content left">
+                                    <div class="outfit-month"><?php echo $topoutfit['outfit']['Outfit']['outfitname']; ?></div>                                    
+                                    <div class="outfit-brand">Styled by <span class="outfit-brand-name"><?php echo $topoutfit['stylistname']['User']['first_name']; ?></span></div>
+                                </div>
+                            </div>
+                            <div class="shop-outfit-bottom left">
+                                <ul>
+                                <?php foreach($topoutfit['entities'] as $rt) { $rt = end($rt); ?>
+                                    
+                                    <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $rt['name']; ?>" /></li>
+                                    <?php } ?>
+                                    <!-- <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" /></li>
+                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" /></li> -->
+                                </ul>
+                                <a class="shop-outfit-bottom-link" href="javascript:;" title="">Shop Outfit</a>
+                            </div>
+                        </div>
+                        <div class="outfit-link-btn"><a href="javascript:;" title="" class="outfilt-btns">Learn about Lesa</a></div>
+                    </li>
+                    <?php } ?>
+                    <!-- <li>
                         <div class="shop-outfit left">
                             <div class="shop-outfit-top">
                                 <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>images/outfits/img_1.jpg" /></div>
@@ -438,7 +468,6 @@ $this->Html->script('cookie.js', array('inline' => false));
                         </div>
                         <div class="outfit-link-btn"><a href="javascript:;" title="" class="outfilt-btns">Learn about Lisa</a></div>
                     </li>
-                    
                     <li>
                         <div class="shop-outfit left">
                             <div class="shop-outfit-top">
@@ -460,29 +489,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                             </div>
                         </div>
                         <div class="outfit-link-btn"><a href="javascript:;" title="" class="outfilt-btns">Learn about Lisa</a></div>
-                    </li>
-                    <li>
-                        <div class="shop-outfit left">
-                            <div class="shop-outfit-top">
-                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>images/outfits/img_1.jpg" /></div>
-                                <div class="outfit-top-content left">
-                                    <div class="outfit-month">Fourth of July</div>                                    
-                                    <div class="outfit-brand">Styled by <span class="outfit-brand-name">Lisa</span></div>
-                                </div>
-                            </div>
-                            <div class="shop-outfit-bottom left">
-                                <ul>
-                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" /></li>
-                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" /></li>
-                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" /></li>
-                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" /></li>
-                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" /></li>
-                                </ul>
-                                <a class="shop-outfit-bottom-link" href="javascript:;" title="">Shop Outfit</a>
-                            </div>
-                        </div>
-                        <div class="outfit-link-btn"><a href="javascript:;" title="" class="outfilt-btns">Learn about Lisa</a></div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

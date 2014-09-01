@@ -135,7 +135,7 @@ color:#396; !important
         <li style="float:left; margin-left:232px;"><br /><div style="margin-left:-30px;"><a href="#tabs-3" id="t3" class="register-tabs">Info</a></div></li>
       </ul>
       <div id="tabs-1">
-        <div class="eleven columns center-block">
+        <div class="eleven columns center-block step1-text-aera">
                 <?php 
     echo $this->Form->create('User', array('type' => 'file'));?>
                 <br />
@@ -165,15 +165,15 @@ color:#396; !important
 
                     <div class="clear-fix"></div>
                 </div>
-                    <div class="eleven columns container">
+                    <div class="eleven columns container step1-text-aera ">
                     <!--ward row-->
                     <div class="container inner preferences register-style">	
 
-            <div class="nine columns center-block">
+            <div class="nine columns center-block step1-text-aera">
 
 
 
-                <div class="twelve columns">
+                <div class="twelve columns step1-text-aera">
 
                     <div id="your-style">
                      <ol id="selectable" style="margin-left: 22px;">
@@ -215,8 +215,8 @@ color:#396; !important
                 </div> 
             </div>
       </div>
-      <div id="tabs-2">
-                <div class="eight columns center-block">
+      <div id="tabs-2" class="step1-text-aera">
+                <div class="eight columns center-block step2-text-aera">
                     <br />
 
                     <div class="hi-message">
@@ -391,7 +391,7 @@ color:#396; !important
             </div>
       </div>
       <div id="tabs-3">
-        <div class="seven columns center-block">
+        <div class="seven columns center-block step3-text-aera">
                 <br />
 
                 <div class="hi-message">
@@ -401,14 +401,14 @@ color:#396; !important
                       Please complete the following fields.
                     </div>
                 </div>
-                <div class="eleven columns center-block">
+                <div class="twelve columns left profile-stp3">
                     <h1>General Info</h1>
-                    <div class="twelve columns left">
+                    <div class="eleven columns center-block step3-text-aera">
                         <div class="five columns pref-time left">
                             <div class="pref-options">
                                 <?php
-                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'FIRST NAME'));
-                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'EMAIL'));
+                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'First Name'));
+                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'Email'));
                                     echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode"));
                                 ?>
                             </div>
@@ -416,9 +416,9 @@ color:#396; !important
                          <div class="five columns pref-time right">
                             <div class="pref-options">      
                               <?php
-                                echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'LAST NAME'));
-                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'PASSWORD'));
-                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'CONFIRM PASSWORD'));
+                                echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'Last Name'));
+                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'Password'));
+                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'Confirm Password'));
                                 ?> 
                                 
                                 </div>
@@ -426,9 +426,10 @@ color:#396; !important
                         </div>
                     </div>
             
-                    <div class="eleven columns center-block">
-                    <h1>General Info</h1>
-                    <div class="twelve columns left">
+                    <div class="twelve columns left profile-stp3">
+                    <h1>Communication preferences</h1>
+                    <h3>This information will be given to the stylist so they know they best way to contact you.</h3>
+                    <div class="eleven columns center-block step3-text-aera">
                         <div class="five columns pref-time left">
                             <div class="pref-options">
                                 <?php
@@ -438,19 +439,75 @@ color:#396; !important
                             </div>
                         </div>
                          <div class="five columns pref-time right">
-                            <div class="pref-options">      
-                              <?php
-                                echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'LAST NAME'));
-                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'PASSWORD'));
-                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'CONFIRM PASSWORD'));
-                                ?> 
+                            <div class="pref-options">
+                                <div class="connect">
+                                    <div class="squared">
+                                        <input type="checkbox" id="squared" name="data[User][is_phone]">
+                                        <label for="squared"></label>
+                                    </div>
+                                    <label>I 'd like to connected on the phone :</label>
+                                </div>
+                                <div class="connect">
+                                    <div class="squared">
+                                        <input type="checkbox" id="squared_1" name="data[User][is_skype]">
+                                        <label for="squared_1"></label>
+                                    </div>
+                                    <label>I 'd like to connected through Skype :</label>
+                                </div>
+                                <div class="connect">
+                                     <div class="squared">
+                                        <input type="checkbox" id="squared_2" name="data[User][is_srs_msg]">
+                                        <label for="squared_2"></label>
+                                    </div>
+                                    <label>I’d prefer to be contacted through SRS Messaging  System :</label>
+                                </div>
                                 
                                 </div>
                             </div>
                         </div>
                     </div>
+            
+                    <div class="twelve columns left clear-fix step3-text-aera">
+                    <div class="eleven columns center-block step3-text-aera">
+                        <div class="five columns pref-time left">
+                            <div class="pref-options">
+                                </label><textarea name="data[User][comments]">Please add any additional comments you’d like your stylist to know.</textarea>
+                            </div>
+                        </div>
+                         <div class="five columns pref-time right">
+                            <div class="pref-options ">
+                                <div class="seven columns center-block uplod-profile-img">
+                                <div class='empty-img' id='photo-holder'>
+                                    <img src='<?php echo $this->webroot . "images/dummy_image.jpg";//echo $image_url; ?>' id='user-photo'/>
+                                    </div>
+                                    </div>
+                                    <input type='button' value='Upload profile Photo' id='upload-img' class="gray-btn"/>
+
+                                    <?php
+                                        echo $this->Form->input('User.profile_photo_url', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
+                                    ?>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          <div class="clear-fix"></div>
+                <div class="text-center about-submit">
+
+
+                        <div class="submit">                            
+                            
+                            <?php echo $this->Form->end(__('REGISTER')); ?>
+                        </div>
+                            <p class="error-msg about-error">Please complete all mandatory fields.</p>
+
+                </div>
+          </div>
+        </div>
+    </div>
                 
                     
+<!--
                 <div class="five columns pref-time left">
                 <div class="pref-options">
                     <?php
@@ -462,7 +519,9 @@ color:#396; !important
                     ?>
                 </div>
                 </div>
+-->
 
+<!--
                  <div class="five columns pref-time right">
                 <div class="pref-options">      
                   <?php
@@ -485,18 +544,130 @@ color:#396; !important
                 </div>
                     </div>
                 </div>
+-->
             
 
 
-                     </div>
+                     
 
+<!--<<<<<<< HEAD-->
+<!--
+            <div class="input text required chest-size">
+                <label for="pantLength" class="text-center">PANT LENGHT:</label>                            
+                <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
+                    <option value="">Pant Length</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                     <option value="I don’t know">I don’t know</option>
+                </select>
+            </div>
+-->
+<!--
+          <div class="input text required chest-size">
+                <label for="shoeSize" class="text-center">SHOE SIZE:</label>                            
+                <select name="data[UserPreference][shoe_size]" tabindex="" required="required" id="shoeSize" >
+                    <option value="">Shoe Size</option>                    
+                    <option value="7">7</option>
+                    <option value="7.5">7.5</option>
+                    <option value="8">8</option>
+                    <option value="8.5">8.5</option>
+                    <option value="9">9</option>
+                    <option value="9.5">9.5</option>
+                    <option value="10">10</option>
+                    <option value="10.5">10.5</option>
+                    <option value="11">11</option>
+                    <option value="11.5">11.5</option>
+                    <option value="12">12</option>
+                    <option value="12.5">12.5</option>
+                    <option value="13">13</option>
+                    <option value="13.5">13.5</option>
+                    <option value="14">14</option>
+                    <option value="I don’t know">I don’t know</option>
+                </select>
+            </div>
+-->
+                        
+<!--
+            <div class="clear-fix"></div>
+            <br>
+            <div class="text-center about-submit">
+                                      
+                    <div class="submit">                            
+                       <div id="tabs">
+                       <ul> <li><a class="link-btn black-btn back-btn" id="back2" href="#tabs-1">Back</a> </li>
+                        <li><a class="link-btn black-btn back-btn" id="cont2" href="#tabs-3">Continue</a> 
+                       </li>
+                       </ul>
+                       </div>
+                        <p class="error-msg size-error">All the fields are mandatory.</p>
+                    </div>
+                 
+            </div> 
+-->
+            
+            
+       
+<!--
+  <div id="tabs-3">
+    <div class="seven columns center-block">
+            <br />
+            
+            <div class="hi-message">
+                <p><img src="<?php echo $this->webroot; ?>img/d.png" alt=""></p>
+                <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Tell us more about yourself</h4>
+                <p style="margin-top: -25px; font-size: 14px; margin-left: 2px;">
+                  Help our stylists get to know you better to create a more personalized experience.
+                </p>
+            </div>
+            
+            <div class="five columns pref-time left">
+            <div class="pref-options">
+                <?php
+                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => 'First Name*','required', 'placeholder' => 'FIRST NAME'));
+                    echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => 'Last Name*','required', 'placeholder' => 'LAST NAME'));
+                    echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
+    				echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => 'Password*', 'required','placeholder' => 'PASSWORD'));
+    			    echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => 'Confirm Password*','required', 'placeholder' => 'CONFIRM PASSWORD'));
+    			?>
+                <label>Additional Comments :</label><textarea name="data[User][comments]"></textarea>
+            </div>
+            </div>
+            
+             <div class="five columns pref-time right">
+            <div class="pref-options">      
+              <?php
+               echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => 'Email*','required', 'placeholder' => 'EMAIL'));
+					echo $this->Form->input('User.phone', array("label"=>"Phone No", "placeholder" => "Phone Number"));
+				    echo $this->Form->input('User.skype', array( 'label' => 'Skype Id', 'placeholder' => 'Skype Id'));
+					
+					
+                ?> 
+                <label>I 'd like to connected on the phone :</label><input type="checkbox" name="data[User][is_phone]">
+                <label>I 'd like to connected through Skype :</label><input type="checkbox" name="data[User][is_skype]">
+                <label>I 'd like to connected using SRS masseging System :</label><input type="checkbox" name="data[User][is_srs_msg]">
+                
+                <div class="hi-message twelve columns text-center">
+               <div class='empty-img' id='photo-holder'>
+                <img src='<?php echo $this->webroot . "img/dummy_image.jpg";//echo $image_url; ?>' id='user-photo'/>
+                </div>                
+                <input type='button' value='Upload photo' id='upload-img' class="gray-btn"/>
+
+                <?php
+                    echo $this->Form->input('User.profile_photo_url', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
+                ?>
+=======
+>>>>>>> bc42967a3dc24116a4d7374e0f87a3b5811ecd9a
                 <div class="clear-fix"></div>
                 <div class="text-center about-submit">
 
 
                         <div class="submit">                            
-                            <!--<a class="link-btn black-btn back-btn" href="<?php echo $this->webroot; ?>users/register/style/">Back</a>--> 
-                           <!--<a class="link-btn black-btn back-btn" id="back3" href="#tabs-2">Back</a>-->
+                            
                             <?php echo $this->Form->end(__('Submit')); ?>
                         </div>
                             <p class="error-msg about-error">Please complete all mandatory fields.</p>
@@ -507,6 +678,7 @@ color:#396; !important
     </div>    
     </div>
 </div>
+-->
 
         
     </form>    

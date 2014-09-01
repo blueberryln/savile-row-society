@@ -45,6 +45,16 @@ App::uses('CakeEmail', 'Network/Email');
                 $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
                 $user['UserPreference']['style_pref'] = implode(',', $user['UserPreference']['style_pref']);
 
+                if($user['User']['is_phone']==true){
+                   $user['User']['is_phone']='1'; 
+                }
+                if($user['User']['is_skype']==true){
+                   $user['User']['is_skype']='1'; 
+                }
+                if($user['User']['is_srs_msg']==true){
+                   $user['User']['is_srs_msg']='1'; 
+                }
+
                 if($image = $this->saveImage()){
                     $user['User']['profile_photo_url'] = $image;
                 }
@@ -212,57 +222,60 @@ App::uses('CakeEmail', 'Network/Email');
 
 
     public function profile($id= null){
-            
-           $this->isLogged();
+        $this->isLogged();
+        if (!$this->User->exists($id)) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        $user = $this->User->findById($id);
+        $current_user = $this->getLoggedUser();
 
-            if (!$this->User->exists($id)) {
-                throw new NotFoundException(__('Invalid user'));
+        if($id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
+        if($this->request->is('post') || $this->request->is('put')){
+            if(!empty($this->request->data['User']['is_phone'])){
+                $this->request->data['User']['is_phone']='1'; 
+            }else{
+                $this->request->data['User']['is_phone']='0';
             }
-
-
-            $user = $this->User->findById($id);
-            $current_user = $this->getLoggedUser();
-
-            if($id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
-                $this->redirect('/');
-                exit;
+            if(!empty($this->request->data['User']['is_skype'])){
+                $this->request->data['User']['is_skype']='1'; 
+            }else{
+                $this->request->data['User']['is_skype']='0';
             }
-
-
-            if($this->request->is('post') || $this->request->is('put'))
-            {
-               
-                    if($image = $this->saveImage()){
-                             $this->request->data['User']['profile_photo_url'] = $image;
-                    }
-                    else{
-                            unset($this->request->data['User']['profile_photo_url']);
-                    }
-
-                     $this->request->data['UserPreference']['style_pref'] = implode(',', $this->request->data['UserPreference']['style_pref']);
+            if(!empty($this->request->data['User']['is_srs_msg'])){
+                $this->request->data['User']['is_srs_msg']='1'; 
+            }else{
+                $this->request->data['User']['is_srs_msg']='0';
+            }
+            if($image = $this->saveImage()){
+                $this->request->data['User']['profile_photo_url'] = $image;
+            }
+            else{
+                unset($this->request->data['User']['profile_photo_url']);
+            }
+            $this->request->data['UserPreference']['style_pref'] = implode(',', $this->request->data['UserPreference']['style_pref']);
             if($this->User->saveAll($this->request->data))
             {
-                    $this->Session->setFlash("User Data Hasbeen Saved");
-                    $this->redirect('/closet');
+                $this->Session->setFlash("User Data Hasbeen Saved");
+                $this->redirect('/closet');
             }
             else
             {
-                     $this->Session->setFlash('The User could not be saved. Please, try again.');
+                $this->Session->setFlash('The User could not be saved. Please, try again.');
             }
-
-            }
-
-            if (empty($this->request->data)) {
-                    $this->request->data = $this->User->find('first',
-                            array(
-                                'contain' => array('UserPreference'),
-                                'conditions' => array('User.id' => $id  ),
-                            )
-                        );
-            }
-
-            $styles = $this->Style->find('all');
-            $this->set('styles', $styles);  
+        }
+        if (empty($this->request->data)) {
+                $this->request->data = $this->User->find('first',
+                        array(
+                            'contain' => array('UserPreference'),
+                            'conditions' => array('User.id' => $id  ),
+                        )
+                    );
+        }
+        $styles = $this->Style->find('all');
+        $this->set('styles', $styles);  
     }
      
     public function stylistbioashok(){
@@ -300,38 +313,180 @@ App::uses('CakeEmail', 'Network/Email');
     }
      
     public function stylistbio($id= null){
+        $this->isLogged();
         if (!$this->User->exists($id)) {
                 throw new NotFoundException(__('Invalid user'));
             }
+        $user = $this->User->findById($id);
+        $current_user = $this->getLoggedUser();
+        if($id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
         if($this->request->is('post') || $this->request->is('put')){
-            
-            //$this->request->data['Stylistphotostream']['image'] = $imagename;
             $this->request->data['Stylistphotostream']['stylist_id'] = $id;
             $this->request->data['Stylistphotostream']['is_profile'] = '1';
             $this->request->data['Stylistbio']['stylist_id'] = $id;
             $facebookdata = json_encode($this->request->data['Stylistbio']['stylist_social_link']);
             $this->request->data['Stylistbio']['stylist_social_link'] = $facebookdata;
-            //$imagename = $this->request->data['Stylistphotostream']['image']['name'];
             if($imagename = $this->savePhotostream()){
                     $this->request->data['Stylistphotostream']['image'] = $imagename;
                 }
-                else{
+            else{
                     $this->request->data['Stylistphotostream']['image'] = null;    
                 }
-            //print_r($this->request->data);exit;
             if($this->Stylistbio->saveAll($this->request->data))
             {
-                    $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
-                    $this->redirect('/Auth/stylistbio/'.$id);
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->redirect('/Auth/stylistbio/'.$id);
             }
             else
             {
-                     $this->Session->setFlash('The Stylistbio could not be saved. Please, try again.');
+                $this->Session->setFlash('The Stylistbio could not be saved. Please, try again.');
             }
+        }
+    }
 
+    public function stylistbiography($id= null){
+        $User = ClassRegistry::init('User');
+        $Stylistbio = ClassRegistry::init('Stylistbio');
+        $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
+        $find_array = $Stylistbio->find('all',array(
+            'joins' => array(
+                    array(
+                        'table'=>'stylistphotostreams',
+                        'alias'=>'Stylistphotostream',
+                        'type'=>'inner',
+                        'conditions'=>array(
+                            'Stylistbio.id = Stylistphotostream.stylistbio_id',
+                            'Stylistphotostream.is_profile'=>true,
+                            ),
+                    ),
+                    array(
+                        'table'=>'users',
+                        'alias'=>'User',
+                        'type'=>'inner',
+                        'conditions'=>array(
+                            'User.id = Stylistbio.stylist_id',
+                            'User.id' => $id,
+                            ),
+                    ),
+                ),
+            'fields' => array('Stylistphotostream.*,Stylistbio.*,User.*'),
+            ));
+            
+            $stylists = $User->find('all',array(
+                'joins' => array(
+                    array(
+                        'table'=>'stylistphotostreams',
+                        'alias'=>'Stylistphotostream',
+                        'type'=>'inner',
+                        'conditions'=>array(
+                        'User.id = Stylistphotostream.stylist_id',
+                        'User.is_stylist'=>true,
+                            ),
+                        ),
+                    ),
+                'fields'=>array('User.first_name,User.last_name,User.id,User.email,Stylistphotostream.image'),
+            ));
+        $stylistphoto = $Stylistphotostream->find('all',
+            array(
+            'conditions'=>array(
+            'Stylistphotostream.stylist_id'=>$id,
+            ),
+             'fields'=>array('Stylistphotostream.image,Stylistphotostream.caption'),
+            ));
+        
+        $this->set(compact('find_array','stylists','stylistphoto'));
+    }
+
+    public function editbiography($id = null) {
+        $User = ClassRegistry::init('User');
+        $Stylistbio = ClassRegistry::init('Stylistbio');
+        $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
+        if($this->request->is('post') || $this->request->is('put')){
+            print_r($this->request->data);
+
+            exit();
         }
 
+        $find_array = $Stylistbio->find('all',array(
+            'joins' => array(
+                    array(
+                        'table'=>'stylistphotostreams',
+                        'alias'=>'Stylistphotostream',
+                        'type'=>'inner',
+                        'conditions'=>array(
+                            'Stylistbio.id = Stylistphotostream.stylistbio_id',
+                            'Stylistphotostream.is_profile'=>true,
+                            ),
+                    ),
+                    array(
+                        'table'=>'users',
+                        'alias'=>'User',
+                        'type'=>'inner',
+                        'conditions'=>array(
+                            'User.id = Stylistbio.stylist_id',
+                            'User.id' => $id,
+                            ),
+                    ),
+                ),
+            'fields' => array('Stylistphotostream.*,Stylistbio.*,User.*'),
+            ));
+            
+           
+        $stylistphoto = $Stylistphotostream->find('all',
+            array(
+            'conditions'=>array(
+            'Stylistphotostream.stylist_id'=>$id,
+            ),
+             'fields'=>array('Stylistphotostream.image,Stylistphotostream.caption'),
+            ));
+        $this->set(compact('find_array','stylistphoto'));
+    }
+
+    public function updatestylistbiographyfunfect($stylistbioid = null){
+        
+        $Stylistbio = ClassRegistry::init('Stylistbio');
+        if (!$Stylistbio->exists($stylistbioid)) {
+            throw new NotFoundException(__('Invalid Userhighlighted'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $stylistbiographyid = $Stylistbio->findById($stylistbioid);
+             $id = $stylistbiographyid['Stylistbio']['stylist_id'];
+            if ($Stylistbio->save($this->request->data)) {
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$id);
+            } else {
+                $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('Stylistbio.' . $Stylistbio->primaryKey => $stylistbioid));
+            $this->request->data = $Stylistbio->find('first', $options);
+        }
+    }
+
+
+    public function updatestylistbiographyhometown($stylistbioid = null){
+        $Stylistbio = ClassRegistry::init('Stylistbio');
+        if (!$Stylistbio->exists($stylistbioid)) {
+            throw new NotFoundException(__('Invalid Userhighlighted'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            $stylistbiographyid = $Stylistbio->findById($stylistbioid);
+             $id = $stylistbiographyid['Stylistbio']['stylist_id'];
+            if ($Stylistbio->save($this->request->data)) {
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->redirect('/Auth/editbiography/'.$id);
+            } else {
+                $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('Stylistbio.' . $Stylistbio->primaryKey => $stylistbioid));
+            $this->request->data = $Stylistbio->find('first', $options);
+        }
 
     }
 
- }
+
+}

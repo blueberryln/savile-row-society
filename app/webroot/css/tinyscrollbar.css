@@ -1,18 +1,22 @@
-#scrollbar1
+#scrollbar1,
+#scrollbar2
 {
     width:100%;
     margin:20px auto 10px;
     position: relative;
 }
 
-#scrollbar1 .viewport
+#scrollbar1 .viewport,
+#scrollbar2 .viewport
 {
     height: 800px;
     overflow:hidden;
     position:relative;
     }
+#scrollbar2 .viewport { height: 400px;}
 
-#scrollbar1 .overview
+#scrollbar1 .overview,
+#scrollbar2 .overview
 {
     list-style:none;
     position:absolute;
@@ -21,8 +25,10 @@
     margin:0;
     padding: 0;
 }
+#scrollbar2 .overview{ right: 0;}
 
-#scrollbar1 .scrollbar
+#scrollbar1 .scrollbar,
+#scrollbar2 .scrollbar
 {
     background:transparent url(images/bg-scrollbar-track-y.png) no-repeat 0 0;
     position:absolute;
@@ -31,8 +37,10 @@
     top:0;
     width:15px;
 }
+#scrollbar2 .scrollbar { display: none;}
 
-#scrollbar1 .track
+#scrollbar1 .track,
+#scrollbar2 .track
 {
     background:#f0f0ec;;
     height:100%;
@@ -44,7 +52,8 @@
     border-radius: 5px;
 }
 
-#scrollbar1 .thumb
+#scrollbar1 .thumb,
+#scrollbar2 .thumb
 {
     background:#d9d9d5;
     height:20px;
@@ -59,7 +68,8 @@
     border-radius: 3px;
 }
 
-#scrollbar1 .thumb .end
+#scrollbar1 .thumb .end,
+#scrollbar2 .thumb .end
 {
     background:#d9d9d5;
     overflow:hidden;
@@ -67,7 +77,8 @@
     width:6px;
 }
 
-#scrollbar1 .disable
+#scrollbar1 .disable,
+#scrollbar2 .disable
 {
     display:none;
 }

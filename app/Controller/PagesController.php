@@ -54,7 +54,68 @@ class PagesController extends AppController {
 
         if($page == 'home'){
             $user = $this->getLoggedUser();
-            $this->set(compact('user'));
+            
+            // top highlighted stylist list limit 10
+            $User = ClassRegistry::init('User');
+            $Userhighlighted = ClassRegistry::init('Userhighlighted');
+            $find_array = array(
+            'conditions' => array( 
+            ),
+            'joins' => array(
+                
+                array('table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                    'Userhighlighted.user_id = User.id', 
+                    )
+                ),
+                
+             ),
+            'order' => 'Userhighlighted.order_id asc',
+            'limit' => 10,
+            'fields' => array(
+                'User.first_name,User.last_name,User.profile_photo_url,Userhighlighted.*'
+            ),
+            
+        );
+        $topstylists = $Userhighlighted->find('all', $find_array);
+        
+        //top outfits home page
+        $Highlightoutfit = ClassRegistry::init('Highlightoutfit');
+        $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
+        $Outfit = ClassRegistry::init('Outfit');
+        $Image = ClassRegistry::init('Image');
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $r = $Highlightoutfit->find('all', array('order' => 'Highlightoutfit.order_id asc','limit'=>'10'));
+
+        $my_outfit = array();
+        foreach($r as $row){
+                $outfit_id = $row['Highlightoutfit']['outfit_id'];
+                $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$outfit_id)));
+                $stylist_id = $outfitnames['Outfit']['stylist_id'];
+                $stylistname = $User->findById($stylist_id);
+                $stylistimage = $Stylistphotostream->find('first', array('conditions'=>array('Stylistphotostream.stylist_id'=>$stylist_id,'Stylistphotostream.is_profile'=>true)));
+                $OutfitItem = ClassRegistry::init('OutfitItem');
+                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                $entities = array();
+                foreach($outfit as $value){
+                     $entities[] = $value['OutfitItem']['product_entity_id'];
+                
+                }
+                $entity_list = $Image->getByhighlightProductID($entities);
+                //print_r($entity_list);
+                $my_outfit[] = array(
+                    'outfit'    => $outfitnames,
+                    'entities'  => $entity_list,
+                    'stylistname' =>$stylistname,
+                    'stylistimage'=>$stylistimage
+                );
+                
+            }
+        
+       
+        $this->set(compact('user','topstylists','my_outfit'));
         }
         else if ($page == 'tailor') {
             $this->isLogged();
@@ -77,6 +138,26 @@ class PagesController extends AppController {
         }
         else if ($page == 'refer-a-friend') {
             $this->isLogged();
+            $user = $this->getLoggedUser();
+            $this->set(compact('user'));
+        }
+        else if ($page == 'messageone') {
+            //$this->isLogged();
+            $user = $this->getLoggedUser();
+            $this->set(compact('user'));
+        }
+        else if ($page == 'messagetwo') {
+            //$this->isLogged();
+            $user = $this->getLoggedUser();
+            $this->set(compact('user'));
+        }
+        else if ($page == 'messagethree') {
+            //$this->isLogged();
+            $user = $this->getLoggedUser();
+            $this->set(compact('user'));
+        }
+        else if ($page == 'messagefour') {
+            //$this->isLogged();
             $user = $this->getLoggedUser();
             $this->set(compact('user'));
         }

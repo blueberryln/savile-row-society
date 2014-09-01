@@ -470,6 +470,7 @@ margin-left: 2px;">
                     echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => 'First Name*','required', 'placeholder' => 'FIRST NAME'));
                     echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => 'Last Name*','required', 'placeholder' => 'LAST NAME'));
                     echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
+                    echo $this->Form->input('User.comments', array("type"=>"textarea"));
     				
     			?>
             </div>
@@ -481,9 +482,18 @@ margin-left: 2px;">
                echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => 'Email*','required', 'placeholder' => 'EMAIL'));
 					echo $this->Form->input('User.phone', array("label"=>"Phone No", "placeholder" => "Phone Number"));
 				    echo $this->Form->input('User.skype', array( 'label' => 'Skype Id', 'placeholder' => 'Skype Id'));
-					
-					
-                ?> 
+                ?>
+
+
+                <label>I 'd like to connected on the phone :</label><input type="checkbox" <?php if($this->data['User']['is_phone']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_phone]">
+                
+
+                <label>I 'd like to connected through Skype :</label><input type="checkbox" <?php if($this->data['User']['is_skype']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_skype]">
+                
+
+                <label>I 'd like to connected using SRS masseging System :</label><input type="checkbox" <?php if($this->data['User']['is_srs_msg']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_srs_msg]"> 
+                
+
                 <div class="hi-message twelve columns text-center">
                <div class='empty-img' id='photo-holder'>
                <?php if($this->data['User']['profile_photo_url']){
