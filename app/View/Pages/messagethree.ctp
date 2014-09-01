@@ -5,7 +5,7 @@
             <div class="twelve columns container left message-box">
                 <div class="eleven columns container pad-none">
                     <div class="twelve columns message-box-heading pad-none">
-                        <h1>Kyle Harper | <span>Messages</span></h1>
+                        <h1>Kyle Harper | <span>Outfit Detail</span></h1>
                         <div class="client-img-small"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" /></div>
                     </div>
                     <div class="my-profile-img m-ver">
@@ -36,9 +36,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="right-pannel right">
-                                <div class="twelve columns message-area left pad-none">
+                            <div class="right-pannel product-detials right">
+                                <div class="twelve columns message-area product-area left pad-none">
                                     <div class="eleven columns container pad-none">
+<!--
                                         <div class="short-by-date">
                                             <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
                                             <select>
@@ -50,6 +51,7 @@
                                                 <option>7-Aug-2014</option>
                                             </select>
                                         </div>
+-->
                                         <div class="twelve columns outfit-dtls left">
                                             <h1>BEACH DAY</h1>
                                             <div class="eleven columns container outfits-dtls-area pad-none">
@@ -77,9 +79,190 @@
                                         <div class="twelve columns left product-dtls">
                                             <div class="eleven columns container product-view">
                                                 <div class="twelve columns left product-dtl-area">
-                                                    <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt=""/></div>
-                                                    <div class="product-dtl-desc left">&nbsp;</div>
-                                                    <div class="product-dtl-links left">&nbsp;</div>
+                                                    <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
+                                                    <div class="product-dtl-desc left">
+                                                        <div class="product-dtl-desc-top left">
+                                                            <div class="desc-top-brand">Solid Cali | Solid &amp; Stripes</div>
+                                                            <div class="desc-top-brand-price">$140.00</div>
+                                                            
+                                                        </div>
+                                                        <div class="product-dtl-desc-middle left">
+                                                           <ul>
+                                                                <li><span>&ndash;</span>17cm inseam.</li>
+                                                                <li><span>&ndash;</span>Elastic waistband.</li>
+                                                                <li><span>&ndash;</span>Side pockets and a plain back.</li>
+                                                                <li><span>&ndash;</span>Cotton mesh lining for ultimate comfort.</li>
+                                                            </ul>
+                                                           
+                                                        </div>
+                                                        <div class="product-dtl-desc-bottom left">
+                                                            <div class="slect-options left">
+                                                                <div class="select-color select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Color</option>
+                                                                        <option>Blue</option>
+                                                                        <option>Red</option>
+                                                                        <option>Green</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="select-size select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Size</option>
+                                                                        <option>38</option>
+                                                                        <option>40</option>
+                                                                        <option>42</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="select-quantity select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Quantity</option>
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-dtl-specifiation left">Specifications preselected from Stylist  Recommendations</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-dtl-links left">
+                                                        <a class="product-add-cart" href="javascript:;" title="">Add to Cart</a>
+                                                        <a class="product-my-likes"href="javascript:;" title="">Add to My Likes</a>
+                                                        <div class="product-social-likes">
+                                                            <ul>
+                                                                <li><a class="product-social-likes-pintrest" href="javascript:;" title="">Pintrest</a></li>
+                                                                <li><a class="product-social-likes-facebook" href="javascript:;" title="">Faceboook</a></li>
+                                                                <li><a class="product-social-likes-twitter" href="javascript:;" title="">Twitter</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="twelve columns left product-dtl-area">
+                                                    <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
+                                                    <div class="product-dtl-desc left">
+                                                        <div class="product-dtl-desc-top left">
+                                                            <div class="desc-top-brand">Solid Cali | Solid &amp; Stripes</div>
+                                                            <div class="desc-top-brand-price">$140.00</div>
+                                                            
+                                                        </div>
+                                                        <div class="product-dtl-desc-middle left">
+                                                           <ul>
+                                                                <li><span>&ndash;</span>17cm inseam.</li>
+                                                                <li><span>&ndash;</span>Elastic waistband.</li>
+                                                                <li><span>&ndash;</span>Side pockets and a plain back.</li>
+                                                                <li><span>&ndash;</span>Cotton mesh lining for ultimate comfort.</li>
+                                                            </ul>
+                                                           
+                                                        </div>
+                                                        <div class="product-dtl-desc-bottom left">
+                                                            <div class="slect-options left">
+                                                                <div class="select-color select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Color</option>
+                                                                        <option>Blue</option>
+                                                                        <option>Red</option>
+                                                                        <option>Green</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="select-size select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Size</option>
+                                                                        <option>38</option>
+                                                                        <option>40</option>
+                                                                        <option>42</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="select-quantity select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Quantity</option>
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-dtl-specifiation left">Specifications preselected from Stylist  Recommendations</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-dtl-links left">
+                                                        <a class="product-add-cart" href="javascript:;" title="">Add to Cart</a>
+                                                        <a class="product-my-likes"href="javascript:;" title="">Add to My Likes</a>
+                                                        <div class="product-social-likes">
+                                                            <ul>
+                                                                <li><a class="product-social-likes-pintrest" href="javascript:;" title="">Pintrest</a></li>
+                                                                <li><a class="product-social-likes-facebook" href="javascript:;" title="">Faceboook</a></li>
+                                                                <li><a class="product-social-likes-twitter" href="javascript:;" title="">Twitter</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="twelve columns left product-dtl-area">
+                                                    <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
+                                                    <div class="product-dtl-desc left">
+                                                        <div class="product-dtl-desc-top left">
+                                                            <div class="desc-top-brand">Solid Cali | Solid &amp; Stripes</div>
+                                                            <div class="desc-top-brand-price">$140.00</div>
+                                                            
+                                                        </div>
+                                                        <div class="product-dtl-desc-middle left">
+                                                           <ul>
+                                                                <li><span>&ndash;</span>17cm inseam.</li>
+                                                                <li><span>&ndash;</span>Elastic waistband.</li>
+                                                                <li><span>&ndash;</span>Side pockets and a plain back.</li>
+                                                                <li><span>&ndash;</span>Cotton mesh lining for ultimate comfort.</li>
+                                                            </ul>
+                                                           
+                                                        </div>
+                                                        <div class="product-dtl-desc-bottom left">
+                                                            <div class="slect-options left">
+                                                                <div class="select-color select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Color</option>
+                                                                        <option>Blue</option>
+                                                                        <option>Red</option>
+                                                                        <option>Green</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="select-size select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Size</option>
+                                                                        <option>38</option>
+                                                                        <option>40</option>
+                                                                        <option>42</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="select-quantity select-style left">
+                                                                    <span class="selct-arrow"></span>
+                                                                    <select>
+                                                                        <option>Quantity</option>
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-dtl-specifiation left">Specifications preselected from Stylist  Recommendations</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-dtl-links left">
+                                                        <a class="product-add-cart" href="javascript:;" title="">Add to Cart</a>
+                                                        <a class="product-my-likes"href="javascript:;" title="">Add to My Likes</a>
+                                                        <div class="product-social-likes">
+                                                            <ul>
+                                                                <li><a class="product-social-likes-pintrest" href="javascript:;" title="">Pintrest</a></li>
+                                                                <li><a class="product-social-likes-facebook" href="javascript:;" title="">Faceboook</a></li>
+                                                                <li><a class="product-social-likes-twitter" href="javascript:;" title="">Twitter</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
