@@ -1063,6 +1063,7 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 
 /*******Message Three CSS********/
 
+.right-pannel.product-detials, .message-area.product-area { padding-bottom: 0px;}
 .outfit-dtls, .outfit-dtls-img { background: #fff; font-family: 'ProximaNovaCond-Regular'; font-size: 18px; margin-bottom: 3px;}
 .outfit-dtls h1 { font-size: 36px; color: #212125; line-height: 38px; padding:20px 4% 10px; margin-bottom: 0; border-bottom: 1px solid #f0f0f0;}
 .outfit-desc {  color: #918f8f; padding: 20px 0 35px; font-size: 18px; line-height: 22px;}
@@ -1073,9 +1074,61 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .product-dtls { background: #fff; padding: 25px 0px;}
 .eleven.columns.product-view { width: 96%;}
 .product-dtl-area { padding: 20px 0; background: url('../images/product-dtl-divider.png') repeat-x left bottom;}
-.product-dtl-img { width: 30%;}
-.product-dtl-desc { width: 40%;}
-.product-dtl-links { width: 30%;}
+.product-dtl-img { width: 25%; text-align: center;}
+.product-dtl-desc { width: 45%; font-family: 'ProximaNovaCond-Regular';}
+.product-dtl-desc-top { font-size: 18px; color: #918f8f; padding-right: 10%; width: auto; max-width: 90%; background: url('../images/product-dtl-divider.png') repeat-x left bottom; padding-bottom: 10px;}
+.desc-top-brand, .desc-top-brand-price, .product-dtl-desc-middle, .slect-options, .product-dtl-specifiation { width: 100%;}
+.product-dtl-desc-middle { padding: 10px 0 8px; }
+.desc-top-brand-price { color: #af9a59; font-weight: 700;}
+.product-dtl-desc-middle li { display: block; font-size: 12px; line-height: 12px; color: #af9a59; margin-bottom: 0px;}
+.product-dtl-desc-middle li span { margin-right: 5px;}
+.select-color, .select-size, .select-quantity { width: 30%;}
+.select-size { margin: 0 5%;}
+.select-style { position: relative; height: 30px;}
+.slect-options { width: 95%; float: left; padding: 12px 0 0; }
+.select-style span.selct-arrow{ position: absolute; top:1px; right: 0px; background: url('../images/select-arrow.png') no-repeat right top; width: 22px; height: 29px; pointer-events: none;}
+.select-style select  { font-size: 11px; color: #757575; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #cacaca 0px 1px 1px; -moz-box-shadow: #cacaca 0px 1px 1px; box-shadow: #cacaca 0px 1px 1px; height: 30px; border: none; border-top: 1px solid #e5e5e5;
+    background: #fefefe;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fefefe), to(#f4f4f4));
+    background: -webkit-linear-gradient(#fefefe, #f4f4f4);
+    background: -moz-linear-gradient(#fefefe, #f4f4f4);
+    background: -ms-linear-gradient(#fefefe, #f4f4f4);
+    background: -o-linear-gradient(#fefefe, #f4f4f4);
+    background: linear-gradient(#fefefe, #f4f4f4);
+    -pie-background: linear-gradient(#fefefe, #f4f4f4);
+}
+.select-style select option { padding: 3px 5px;}
+.product-dtl-links { width: 25%; text-align: center;}
+.product-dtl-links a.product-add-cart, .product-dtl-links a.product-my-likes { text-transform: uppercase; padding: 10px 0 10px; width: 90%; float: right; background: #927e41; margin-bottom: 25px; color: #fff;}
+.product-dtl-links a.product-my-likes{ background: #7d7d7d;}
+.product-dtl-specifiation { font-size: 11px; font-style: italic; color: #918f8f; padding: 7px 0 2px;}
+.product-social-likes { width: 90%; float: right; text-align: center;}
+.product-social-likes li { display: inline-block; margin: 0 5px;}
+.product-social-likes li a { background: url('../images/sprit-social-icons.png') no-repeat 0px 0px; text-indent: -9999px; display: inline-block; background-size: cover; width: 26px; height: 26px;}
+.product-social-likes li a.product-social-likes-pintrest { background-position: 0px 0px; }
+.product-social-likes li a.product-social-likes-facebook { background-position: -106px 0px;}
+.product-social-likes li a.product-social-likes-twitter { background-position: -35px 0px ;}
+
+
+/******** Message Four CSS  **********/
+.tab-btns { width: 150px; height: 31px; background: #cccccc; font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #444; text-align: center; line-height: 32px; float: left; margin-right: 5px; margin-top: 14px; text-transform: uppercase; cursor: pointer;}
+.tab-btns a { width: 100%; height: 31px; display: block;}
+.tab-btns.active, .purchase-container { background: #fff;}
+.purchase-area{}
+.purchase-dtls{ padding: 50px 0 100px;}
+.purchase-dtls li { float:left; width: 100%; margin-bottom: 15px; border-bottom: 1px solid #f1f1f1; padding-bottom: 10px;}
+.purchase-dtls .heading { font-size: 18px; text-transform: uppercase; color: #040404; text-align: center; font-weight: 700;}
+.purchase-dtls-date, .purchase-dtls-items, .purchase-dtls-outfit, .purchase-dtls-price { display: inline-block; font-size: 14px; color: #303030; line-height: 16px; }
+
+.purchase-dtls-date.heading, .purchase-dtls-items.heading{ text-align: left;}
+.purchase-dtls-items.heading { width: 25%; padding-left: 5%;}
+.purchase-dtls-date { width: 15%; margin-right: 5%;}
+.purchase-dtls-items{ width: 30%; margin-right: 4%;}
+.purchase-dtls-items .purchase-dtls-items-img { width: 19%; float: left;}
+.purchase-dtls-items .purchase-dtls-items-desc { padding:2px 0 0 10%; width: 70%; float: right;}
+.purchase-dtls-items .purchase-dtls-items-desc span { width: 100%; float: left;}
+.purchase-dtls-outfit{ width: 25%; margin-right: 4%; text-align: center;}
+.purchase-dtls-price{ width: 15%; text-align: center;}
 
 /********Mobile CSS**********/
 
