@@ -97,7 +97,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-name"><?php echo $my_outfit['entities'][0]['Entity']['name']; ?></span>
                                                                 <span class="product-brand"><?php echo $my_outfit['entities'][0]['Brand']['name']; ?></span>
                                                                 <span class="product-price">$<?php echo $my_outfit['entities'][0]['Entity']['price']; ?></span>
-                                                                <span class="product-dtls"><a href="javascript:;" title="">Details</a></span>
+                                                                <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links">
                                                                     <a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>
                                                                     <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
@@ -111,7 +111,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-name"><?php echo $my_outfit['entities'][1]['Entity']['name']; ?></span>
                                                                 <span class="product-brand"><?php echo $my_outfit['entities'][1]['Brand']['name']; ?></span>
                                                                 <span class="product-price">$<?php echo $my_outfit['entities'][1]['Entity']['price']; ?></span>
-                                                                <span class="product-dtls"><a href="javascript:;" title="">Details</a></span>
+                                                                <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links">
                                                                     <a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>
                                                                     <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
@@ -125,9 +125,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-name"><?php echo $my_outfit['entities'][2]['Entity']['name']; ?></span>
                                                                 <span class="product-brand"><?php echo $my_outfit['entities'][2]['Brand']['name']; ?></span>
                                                                 <span class="product-price">$<?php echo $my_outfit['entities'][2]['Entity']['price']; ?></span>
-                                                                <span class="product-dtls"><a href="javascript:;" title="">Details</a></span>
+                                                                <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links">
-                                                                    <a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>
+                                                                    <a class="add-to-cart" href="" title="">Add to Cart +</a>
                                                                     <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
                                                                        
                                                                 </span>
@@ -139,7 +139,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-name"><?php echo $my_outfit['entities'][3]['Entity']['name']; ?></span>
                                                                 <span class="product-brand"><?php echo $my_outfit['entities'][3]['Brand']['name']; ?></span>
                                                                 <span class="product-price">$<?php echo $my_outfit['entities'][3]['Entity']['price']; ?></span>
-                                                                <span class="product-dtls"><a href="javascript:;" title="">Details</a></span>
+                                                                <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links">
                                                                     <a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>
                                                                     <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
@@ -155,7 +155,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-price">$<?php echo $my_outfit['entities'][4]['Entity']['price']; ?></span>
                                                                 <span class="product-dtls"><a href="javascript:;" title="">Details</a></span>
                                                                 <span class="bottm-links">
-                                                                    <a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>
+                                                                    <a class="add-to-cart" href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Add to Cart +</a>
                                                                     <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
                                                                        
                                                                 </span>
@@ -169,7 +169,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                 <div class="twelve columns left client-outfit-bottom pad-none">
                                                     <div class="client-comments left">
                                                         <h2>Stylist Comment</h2>
-                                                        <div class="client-comments-text left">Kyle- Your upcoming trip to Hawaii<br>would be a great chance to wear.... <a href="javascript:;" title="">Read More</a></div>
+                                                        <div class="client-comments-text left">Kyle- <?php echo $my_outfit['comments']; ?> <a href="javascript:;" title="">Read More</a></div>
                                                     </div>
                                                     <div class="share-outfit right">Share Outfit</div>
                                                 </div>

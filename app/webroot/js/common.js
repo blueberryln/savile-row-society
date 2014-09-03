@@ -19,7 +19,7 @@ function footerFix(){
     var headerH = $("div.header").height();
     var footerH = $("div.footer").height();
     var contentMinH = winH - (headerH + footerH); 
-    $("div.content-container").css({"min-height":contentMinH});        
+    //$("div.content-container").css({"min-height":contentMinH});        
 }
 
 /* function to show signin popup*/

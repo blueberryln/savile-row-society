@@ -12,7 +12,14 @@ $this->Html->script('outfit.js', array('inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
-
+<?php
+    $img = "";
+        if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
+            $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
+         }else{
+            $img = $this->webroot . "img/dummy_image.jpg";    
+        }
+?>
 <!--new design and code start here-->
 
 <div class="content-container">
@@ -22,13 +29,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             <div class="twelve columns container left message-box">
                 <div class="eleven columns container pad-none">
                     <div class="twelve columns message-box-heading pad-none">
-                        <h1>Kyle Harper | <span>Messages</span></h1>
-                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" data-name="Haspel" /></div>
+                        <h1><?php echo $user['User']['first_name'].'&nbsp;'.$user['User']['last_name']; ?> | <span>Messages</span></h1>
+                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url'] ?>" alt="" data-name="Haspel" /></div>
                     </div>
                     <div class="my-profile-img m-ver">
-                        <h2>LISA D.<span>My Stylist</span></h2>
+                        <h2><?php echo $client_user['User']['first_name'].'&nbsp;'.$client_user['User']['last_name']; ?>.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $client_user['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
                         </div>
                         <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
@@ -36,8 +43,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <ul>
                             <li class="active"><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
                             <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-                            <li><a href="javascript:;">Purchases/Likes</a></li>
-                            <li><a href="javascript:;">Profile</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>Auth/profile/<?php echo $user_id; ?>">Profile</a></li>
                         </ul>
                     </div>
                     <div class="twelve columns left inner-content pad-none">
@@ -45,13 +52,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <div class="left-pannel left">
                                 <div class="client-img">
 
-                                <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" data-name="Haspel" /></div>
+                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url'] ?>" alt="" height="134" width="148" data-name="Haspel" /></div>
                                 <div class="twelve columns left left-nav">
                                     <ul>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-                                        <li><a href="javascript:;">Purchases/Likes</a></li>
-                                        <li><a href="javascript:;">Profile</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>Auth/profile/<?php echo $user_id; ?>">Profile</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -70,7 +77,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                         
                                     </div>
                                 </div>
-                                <div class="twelve coloumns left">
+                                <div class="twelve columns left">
                                     <div class="bottom-text">
                                         <div class="dummy-text">
                                             <textarea class="chat-msg-txtbox" id='messageToSend'></textarea>
@@ -94,23 +101,15 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <div class="inner-right right">
                             <div class="twelve columns text-center my-profile">
                                 <div class="my-profile-img">
-                                    <a href="javascript:;" title="">
+                                    <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $client_user['User']['id']; ?>" title="">
 
-                            <?php
-                        $img = "";
-                        if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
-                            $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
-                        }
-                        else{
-                            $img = $this->webroot . "img/dummy_image.jpg";    
-                        }
-                    ?>
+                            
                     <img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
                                 </div>
                                 <div class="my-profile-detials">
                                     <?php echo $client_user['User']['full_name']; ?>
                                     <span>My Stylist</span>
-                                    <a class="view-profile" href="javascript:;">View My Profile</a> 
+                                    <a class="view-profile" href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $client_user['User']['id']; ?>">View My Profile</a> 
                                 </div>
                                 
                             

@@ -259,7 +259,7 @@ class ApiController extends AppController {
                     // Get product Entity ID and Get the information for the entity
                     $entity_id = $this->request->data['product_id'];
                     $entity = $Entity->getById($entity_id, $user_id);
-                    
+                    //print_r($entity);
                     //Prepare data array for adding cart information
                     if($entity['Entity']['is_gift']){
                         $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
@@ -300,6 +300,8 @@ class ApiController extends AppController {
                             $existing_item['CartItem']['quantity'] = intval($existing_item['CartItem']['quantity']) + $new_quantity;
                             
                             if($result = $CartItem->save($existing_item)){
+                                print_r($result);
+                                exit;
                                 $ret['status'] = 'ok';    
                             }
                             else{
@@ -311,6 +313,7 @@ class ApiController extends AppController {
                             $cart_id = $result['Cart']['id'];
                             $CartItem->create();
                             if($result = $CartItem->save($data)){
+
                                 $ret['status'] = 'ok';    
                             }
                             else{
@@ -381,6 +384,7 @@ class ApiController extends AppController {
                     }
                     
                     echo json_encode($ret);
+                   
                     exit;
                 }
             } 

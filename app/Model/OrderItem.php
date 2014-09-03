@@ -103,6 +103,34 @@ class OrderItem extends AppModel {
         $result = $this->query($sql);
         return $result;
     }
+
+    public function getUniqueUserItemPurchase($user_id){
+        
+        $db = $this->getDataSource();
+        $user_id = $db->value($user_id);
+        //$last_purchased = $db->value($last_purchased_id);
+        
+        $condition = "";
+        //if($last_purchased_id > 0){
+          //  $condition = 'WHERE Orders.order_id < ' . $last_purchased;
+        //}
+        
+        $sql = "
+                SELECT Orders.product_entity_id, Orders.order_id 
+                FROM (SELECT `OrderItem`.`product_entity_id`, MAX(`OrderItem`.`id`) AS order_id 
+                FROM `srs_development`.`orders_items` AS `OrderItem` 
+                INNER JOIN `srs_development`.`orders` AS `Order` ON (`Order`.`id` = `OrderItem`.`order_id`) 
+                WHERE `Order`.`user_id` = " . $user_id . " AND Order.paid = 1 
+                GROUP BY `OrderItem`.`product_entity_id` 
+                ORDER BY `order_id` DESC) AS Orders
+                " . $condition . "               
+                ORDER BY Orders.order_id DESC  
+                LIMIT 10";
+        
+        $result = $this->query($sql);
+        return $result;
+    }
+    
     
     //Function to get total purchased items of a user
     function getTotalUserPurchaseCount($user_id){

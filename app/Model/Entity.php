@@ -528,6 +528,109 @@ class Entity extends AppModel {
         return $entity;
     }
 
+
+    function getEntitiesByIdLikes($entity_list, $user_id = null) {
+        $find_array = array(
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+            ),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+            'order' => array('FROM_UNIXTIME(Wishlist.created) DESC'),
+            
+        );
+        
+        
+        if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.user_id' => $user_id,
+                                            'Wishlist.product_entity_id = Entity.id'
+                                        ),
+                                        
+                                    );
+            
+            $find_array['fields'][] = 'Wishlist.*';
+             
+        }
+        
+        $entity = $this->find('all', $find_array);
+
+        return $entity;
+    }
+
+    function getEntitiesByIdLikesAsc($entity_list, $user_id = null) {
+        $find_array = array(
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+            ),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+            'order' => array('FROM_UNIXTIME(Wishlist.created) ASC'),
+            
+        );
+        
+        
+        if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.user_id' => $user_id,
+                                            'Wishlist.product_entity_id = Entity.id'
+                                        ),
+                                        
+                                    );
+            
+            $find_array['fields'][] = 'Wishlist.*';
+             
+        }
+        
+        $entity = $this->find('all', $find_array);
+
+        return $entity;
+    }
+
     function getCloset($parent_categories){
         return $this->find('all', array(
             'conditions' => array('Entity.show' => true),
@@ -635,6 +738,7 @@ class Entity extends AppModel {
             ),
         ));
     }
+
     
     function getEntityStockAvailable($entity_id){
         $find_array = array(
