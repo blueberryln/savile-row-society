@@ -115,6 +115,7 @@
                 <div class="eleven columns container">
                     <div class="sixteen columns copyright left footer-buttons">
                         <ul>
+<!--                            <li class="vip-access"><a href="" id="block-vip-access">VIP ACCESS</a></li>-->
                             <li><a class="vip-link footer-bnt" href="javascript:;" title="">VIP Access</a></li>
                             <li><a class="blog-link footer-bnt" href="javascript:;" title="">Blog</a></li>
                         </ul>
@@ -424,6 +425,19 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                    function(){  
                       $(this).find('.product-desc').stop().fadeTo('slow', 0);  
                    });
+            
+            
+            $(".new-address").click(function(){
+                $(".address-overlay").fadeIn()
+                $(".newaddress-popup").fadeIn();
+            });
+            $(".notification-close,.address-overlay").click(function(){
+                $(".address-overlay").fadeOut()
+                $(".newaddress-popup").fadeOut(200);
+            });
+            
+            
+            
             
             
         </script>

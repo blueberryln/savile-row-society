@@ -52,10 +52,10 @@
                                             </select>
                                         </div>
 -->
-                                        <div class="twelve columns outfit-dtls left">
+                                        <div class="twelve columns outfit-dtls pad-none left">
                                             <h1>BEACH DAY</h1>
                                             <div class="eleven columns container outfits-dtls-area pad-none">
-                                                <div class="twelve columns left outfit-desc">
+                                                <div class="twelve columns left outfit-desc pad-none">
                                                     <div class="outfit-dtls-date"><span>Date Created:</span> 7/27/13</div>
                                                     <div class="outfit-dtls-price"><span>Outfit Price:</span> $1600</div>
                                                     <div class="outfit-dtls-brnads"><span>Brands in Outfit:</span></div>
@@ -65,7 +65,7 @@
                                                 </div>   
                                             </div>
                                         </div>
-                                        <div class="twelve columns left outfit-dtls-img">
+                                        <div class="twelve columns left outfit-dtls-img pad-none">
                                             <div class="eleven columns container outfit-dtls-img-list pad-none">
                                                 <ul>
                                                     <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></li>
@@ -76,9 +76,9 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="twelve columns left product-dtls">
-                                            <div class="eleven columns container product-view">
-                                                <div class="twelve columns left product-dtl-area">
+                                        <div class="twelve columns left product-dtls pad-none">
+                                            <div class="eleven columns container product-view pad-none">
+                                                <div class="twelve columns left product-dtl-area pad-none">
                                                     <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
                                                     <div class="product-dtl-desc left">
                                                         <div class="product-dtl-desc-top left">
@@ -140,7 +140,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="twelve columns left product-dtl-area">
+                                                <div class="twelve columns left product-dtl-area pad-none">
                                                     <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
                                                     <div class="product-dtl-desc left">
                                                         <div class="product-dtl-desc-top left">
@@ -202,7 +202,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="twelve columns left product-dtl-area">
+                                                <div class="twelve columns left product-dtl-area pad-none">
                                                     <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
                                                     <div class="product-dtl-desc left">
                                                         <div class="product-dtl-desc-top left">
