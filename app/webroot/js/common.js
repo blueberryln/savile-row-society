@@ -36,6 +36,12 @@ function signIn() {
     $('.blockOverlay').click($.unblockUI);
 }
 
+function newAddress() {
+    var blockTop = $(window).height()/2 - $("#newaddess-popup").height()/2;
+    $.blockUI({message: $('#newaddress-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
 function showNotification(notificationDetails, isFade){
     if(isFade === undefined)
         isFade = false;
@@ -255,7 +261,14 @@ $("#block-file-upload-photo").on("click", function(e){
         $('.blockOverlay').click($.unblockUI);
     });
 
-
+//add new address
+$("#block-request-address").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#requestaddress-box')});
+        $('.blockOverlay').click($.unblockUI);
+    });  
+    
+    
 $("#block-step-access").on("click", function(e){
         e.preventDefault();
         $.blockUI({message: $('#step-box')});

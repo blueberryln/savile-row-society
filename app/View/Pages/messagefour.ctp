@@ -52,9 +52,9 @@
                                         </div>
                                         <div class="tab-btns purchase active"><a href="javascript:;" title="">Purchase</a></div>
                                         <div class="tab-btns likes"><a href="javascript:;" title="">Likes</a></div>
-                                        <div class="twelve columns purchase-container left">
+                                        <div class="twelve columns purchase-container left pad-none">
                                             <div class="eleven columns container purchase-area pad-none">
-                                                <div class="twelve columns left purchase-dtls">
+                                                <div class="twelve columns left purchase-dtls pad-none">
                                                    <ul>
                                                         <li>
                                                             <div class="purchase-dtls-date heading left">Date</div>
@@ -117,8 +117,6 @@
                                     <span>My Stylist</span>
                                     <a class="view-profile" href="javascript:;">View My Profile</a> 
                                 </div>
-                                
-                            
                             </div>
                         </div>
                     </div>
