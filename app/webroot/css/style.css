@@ -1180,6 +1180,20 @@ a.save-address { text-transform: uppercase; color: #fff; background: #7d7d7d; he
 .address-overlay {float: left; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5 ); position: fixed; top: 0px; left: 0px; z-index: 9999; overflow-y: hidden; display: none;}
 
 
+/*********** Message Six CSS *************/
+
+.refer-area { padding: 10% 0 20%;}
+.frnd-refer-user { position: relative; width: 93%; float: left; font-family: 'ProximaNovaCond-Regular'; font-size: 25px; color: #9d8957; padding: 0 0 15px 7%; letter-spacing: 1px;}
+.frnd-refer-user span { position: absolute; top: 0px; left: 0px; background: url(../images/sprit-refer-frnd.png) no-repeat 0px 0px; width: 25px; height: 25px;}
+.frnd-refer-user.prsnl-refer span { top: -2px;}
+.frnd-refer-user.email-refer span { background-position: 0px -66px; top: 1px;}
+.frnd-refer-user.fb-refer span { background-position: 0px -123px; top: -3px;}
+
+.refer-frnd-area .input { width: 75%; float: left; margin-left: 7%; padding-bottom: 70px;}
+.refer-frnd-area .input input { height: 47px; line-height: 49px; font-size: 16px; color: #acacac; background: #fff; border: 1px solid #cccccc; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
+a.send-referral {height: 47px; float: right; width: 15%; text-align: center; background: #927e41; line-height: 49px; color: #fff; text-transform: uppercase;}
+
+.frnd-refer-user.fb-refer a{color: #9d8957; text-decoration: underline;}
 
 
 
@@ -1321,6 +1335,11 @@ a.save-address { text-transform: uppercase; color: #fff; background: #7d7d7d; he
     .ten.columns.additional-comment, .five.columns.address-dtls, .five.columns.new-addess-bnt, .five.columns.update-changes { width: 100%;}
     .five.columns.update-changes { margin-top: 30px;}
 /*    .five.columns.new-addess-bnt, .new-addess-bnt a.new-address, .update-changes a.save-changes { float: left!important;}*/
+    
+    .frnd-refer-user { width: 90%; padding-left: 10%; font-size: 20px; padding-bottom: 10px;}
+    .refer-frnd-area .input { width: 70%; margin-left: 10%; padding-bottom: 50px;}
+    .refer-frnd-area .input input { height: 42px; line-height: 44px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+    a.send-referral { height: 42px; line-height: 44px;}
     
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
@@ -1684,6 +1703,15 @@ a.save-address { text-transform: uppercase; color: #fff; background: #7d7d7d; he
     .add-cards {text-align: center; margin-bottom: 10px;}
     .add-cards a.add-new-card { margin: 0;}
     .new-addess-bnt a.new-address, .update-changes a.save-changes { width: 100%; padding-left: 0px; padding-right: 0px; text-align: center;}
+    
+    .newaddress-popup { width: 80%; padding-bottom: 30px;}
+    .address-bottom-left { width: 100%!important;}
+    .address-top-dtls input, .address-bottom-dtls input { font-size: 11px; line-height: 30px; margin-bottom: 10px;}
+    .address-bottom-right { width: 100%!important;}
+    .pref-time .connect label {font-size: 12px; line-height: 28px;}
+    a.save-address { width: 100%; padding:0px; text-align: center;}
+    
+    .frnd-refer-user { width: 100%; padding-left: 0;}
 
 	.only-mob{display: /*block*/none;}
 	.only-desktop{display: none;}
