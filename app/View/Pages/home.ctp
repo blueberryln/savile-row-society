@@ -429,7 +429,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                                     <div class="outfit-brand">Styled by <span class="outfit-brand-name"><?php echo $topoutfit['stylistname']['User']['first_name']; ?></span></div>
                                 </div>
                             </div>
-                            <div class="shop-outfit-bottom left">
+                            <div class="shop-outfit-bottom">
                                 <ul>
                                 <?php foreach($topoutfit['entities'] as $rt) { $rt = end($rt); ?>
                                     

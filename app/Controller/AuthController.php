@@ -882,6 +882,8 @@ public function updateStylistBiographyoutfit2($stylistid = null){
         
     // }
     
-
+     public function stylistbiographyedit(){
+     
+     }
 
 }
