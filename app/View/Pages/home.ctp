@@ -156,7 +156,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <span class="small-size">online &amp; in person.</span>
             <div class="overlay-bnts left">
                 <a class="tell-more gray-btns" href="#" title="">Tell Me More</a>
-                <a class="overlay-started brown-btns"href="#" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
+                <a class="overlay-started brown-btns" href="#" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
             </div>
         </div>
         
@@ -336,10 +336,11 @@ $this->Html->script('cookie.js', array('inline' => false));
                     <?php foreach($topstylists as $topstylist): ?>
                     <li>
                         <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>" width="220" height="220" />
-                        <div class="featured-stylist-hover">
+                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
                             <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
                             <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
                         </div>
+                        </a>
                     </li>
                 <?php endforeach; ?>
                     <!-- <li>
@@ -423,13 +424,13 @@ $this->Html->script('cookie.js', array('inline' => false));
                     <li>
                         <div class="shop-outfit left">
                             <div class="shop-outfit-top">
-                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $topoutfit['stylistimage']['Stylistphotostream']['image']; ?>"  width="215" height="173" /></div>
+                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $topoutfit['stylistimage']['User']['profile_photo_url']; ?>"  width="215" height="173" /></div>
                                 <div class="outfit-top-content left">
                                     <div class="outfit-month"><?php echo $topoutfit['outfit']['Outfit']['outfitname']; ?></div>                                    
                                     <div class="outfit-brand">Styled by <span class="outfit-brand-name"><?php echo $topoutfit['stylistname']['User']['first_name']; ?></span></div>
                                 </div>
                             </div>
-                            <div class="shop-outfit-bottom left">
+                            <div class="shop-outfit-bottom">
                                 <ul>
                                 <?php foreach($topoutfit['entities'] as $rt) { $rt = end($rt); ?>
                                     
@@ -443,7 +444,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                                 <a class="shop-outfit-bottom-link" href="javascript:;" title="">Shop Outfit</a>
                             </div>
                         </div>
-                        <div class="outfit-link-btn"><a href="javascript:;" title="" class="outfilt-btns">Learn about Lesa</a></div>
+                        <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $topoutfit['stylistname']['User']['id']; ?>" title="" class="outfilt-btns">Learn about <?php echo $topoutfit['stylistname']['User']['first_name']; ?></a></div>
                     </li>
                     <?php } ?>
                     <!-- <li>

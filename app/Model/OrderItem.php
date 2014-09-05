@@ -108,24 +108,35 @@ class OrderItem extends AppModel {
         
         $db = $this->getDataSource();
         $user_id = $db->value($user_id);
-        //$last_purchased = $db->value($last_purchased_id);
-        
-        $condition = "";
-        //if($last_purchased_id > 0){
-          //  $condition = 'WHERE Orders.order_id < ' . $last_purchased;
-        //}
-        
-        $sql = "
-                SELECT Orders.product_entity_id, Orders.order_id 
+            $sql = "
+                SELECT Orders.product_entity_id, Orders.order_id
                 FROM (SELECT `OrderItem`.`product_entity_id`, MAX(`OrderItem`.`id`) AS order_id 
                 FROM `srs_development`.`orders_items` AS `OrderItem` 
                 INNER JOIN `srs_development`.`orders` AS `Order` ON (`Order`.`id` = `OrderItem`.`order_id`) 
                 WHERE `Order`.`user_id` = " . $user_id . " AND Order.paid = 1 
                 GROUP BY `OrderItem`.`product_entity_id` 
-                ORDER BY `order_id` DESC) AS Orders
-                " . $condition . "               
-                ORDER BY Orders.order_id DESC  
-                LIMIT 10";
+                ORDER BY `order_id` DESC ) AS Orders
+                ORDER BY Orders.order_id DESC";  
+                
+        
+        $result = $this->query($sql);
+        return $result;
+    }
+
+    public function getUniqueUserItemPurchaseSorting($user_id,$sortingorder){
+        
+        $db = $this->getDataSource();
+        $user_id = $db->value($user_id);
+            $sql = "
+                SELECT Orders.product_entity_id, Orders.order_id, Orders.created 
+                FROM (SELECT `OrderItem`.`product_entity_id`, MAX(`OrderItem`.`id`) AS order_id, Order.created 
+                FROM `srs_development`.`orders_items` AS `OrderItem` 
+                INNER JOIN `srs_development`.`orders` AS `Order` ON (`Order`.`id` = `OrderItem`.`order_id`) 
+                WHERE `Order`.`user_id` = " . $user_id . " AND Order.paid = 1 
+                GROUP BY `OrderItem`.`product_entity_id` 
+                ORDER BY `created` ".$sortingorder.") AS Orders
+                ORDER BY Orders.created ".$sortingorder;  
+                
         
         $result = $this->query($sql);
         return $result;

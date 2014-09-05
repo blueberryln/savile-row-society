@@ -115,8 +115,9 @@
                 <div class="eleven columns container">
                     <div class="sixteen columns copyright left footer-buttons">
                         <ul>
-<!--                            <li class="vip-access"><a href="" id="block-vip-access">VIP ACCESS</a></li>-->
-                            <li><a class="vip-link footer-bnt" href="javascript:;" title="">VIP Access</a></li>
+                        <?php if(!$is_logged) : ?>
+                            <li><a class="vip-link footer-bnt" href="" id="block-vip-access" >VIP Access</a></li>
+                        <?php endif; ?>
                             <li><a class="blog-link footer-bnt" href="javascript:;" title="">Blog</a></li>
                         </ul>
                         
@@ -248,14 +249,18 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.slider1').bxSlider({
                 slideWidth: 222,
                 minSlides: 1,
-                maxSlides: 4,
+<<<<<<< HEAD
+                maxSlides: 3,
+=======
+                maxSlides: 10,
+>>>>>>> 6bc07aa13c97625ab70638587ce3c7d09c0a9879
                 moveSlides: 1,
                 slideMargin: 10
               });
                 $('.slider2').bxSlider({
                 slideWidth: 495,
                 minSlides: 1,
-                maxSlides: 2,
+                maxSlides: 6,
                 moveSlides: 1,
                 slideMargin: 20
               });
@@ -267,11 +272,6 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                         }
                     }
                 });
-                //$('.link-newer-photos').css('display','none');
-//                $('a.open-left-pannel').click( function(){
-//                    $('.stylistbio-section-left').slideleft();
-//                });
-                
                 
                $("a.open-left-pannel").click(function(){
                    $(this).hide(1000);
@@ -282,18 +282,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     $("a.open-left-pannel").show(1000);
                     $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
                 });
-                  
-                
-//                $('span[title]').css({borderBottom: '1px solid #900'}).cluetip({
-//                  splitTitle: '|',
-//                  arrows: true,
-//                  dropShadow: false,
-//                  cluetipClass: 'jtip'}
-//                );
-//                $('span.tt-icon').find('img').hover(function(){
-//                    $('.tt-content').show(500);
-//                });
-                
+
                 $('.tt-icon').hover(function(){
                     $('#div'+$(this).attr('target')).css({'opacity': 1, 'z-index':9999});
                 });
@@ -434,6 +423,28 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             $(".notification-close,.address-overlay").click(function(){
                 $(".address-overlay").fadeOut()
                 $(".newaddress-popup").fadeOut(200);
+            });
+            
+            $('.home-edit-section').click(function(){
+                $('.home-edit').fadeIn();
+            });
+            $('.fun-edit-section').click(function(){
+                $('.fun-edit').fadeIn();
+            });
+            $('.tip-edit-section').click(function(){
+                $('.tip-edit').fadeIn();
+            });
+            $('.edit-section-stylistbio-heading').click(function(){
+                $('.stylistbio-heading-edit').fadeIn();
+            });
+            $('.edit-section-stylist-insp').click(function(){
+                $('.stylist-insp-edit').fadeIn();
+            });
+            
+            
+            
+            $('.edit-save-btn, .cancel-btn').click(function(){
+                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit').fadeOut();
             });
             
             

@@ -580,7 +580,8 @@ class Entity extends AppModel {
         return $entity;
     }
 
-    function getEntitiesByIdLikesAsc($entity_list, $user_id = null) {
+    function getEntitiesByIdLikesAsc($entity_list, $user_id = null,$sortingorder) {
+        
         $find_array = array(
             'contain' => array('Image'),
             'conditions' => array(
@@ -606,7 +607,7 @@ class Entity extends AppModel {
             'fields' => array(
                 'Entity.*', 'Product.*', 'Brand.*',
             ),
-            'order' => array('FROM_UNIXTIME(Wishlist.created) ASC'),
+            'order' => array('FROM_UNIXTIME(Wishlist.created)' => $sortingorder),
             
         );
         
@@ -628,6 +629,49 @@ class Entity extends AppModel {
         
         $entity = $this->find('all', $find_array);
 
+        return $entity;
+    }
+
+
+    function getEntitiesByIdPurchaseSorting($entity_list, $user_id = null, $sortingorder) {
+        $find_array = array(
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                
+                array('table' => 'orders_items',
+                    'alias' => 'OrderItem',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'OrderItem.product_entity_id = Product.id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+            ),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*','OrderItem.created,OrderItem.product_entity_id',
+            ),
+            'order' => array('OrderItem.created' => $sortingorder,),
+            
+        );
+print_r($find_array);
+        $entity = $this->find('all', $find_array);
         return $entity;
     }
 

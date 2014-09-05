@@ -75,7 +75,7 @@ class PagesController extends AppController {
             'order' => 'Userhighlighted.order_id asc',
             'limit' => 10,
             'fields' => array(
-                'User.first_name,User.last_name,User.profile_photo_url,Userhighlighted.*'
+                'User.id,User.first_name,User.last_name,User.profile_photo_url,Userhighlighted.*'
             ),
             
         );
@@ -86,6 +86,7 @@ class PagesController extends AppController {
         $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
         $Outfit = ClassRegistry::init('Outfit');
         $Image = ClassRegistry::init('Image');
+        $User = ClassRegistry::init('User');
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $r = $Highlightoutfit->find('all', array('order' => 'Highlightoutfit.order_id asc','limit'=>'10'));
 
@@ -95,7 +96,7 @@ class PagesController extends AppController {
                 $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$outfit_id)));
                 $stylist_id = $outfitnames['Outfit']['stylist_id'];
                 $stylistname = $User->findById($stylist_id);
-                $stylistimage = $Stylistphotostream->find('first', array('conditions'=>array('Stylistphotostream.stylist_id'=>$stylist_id,'Stylistphotostream.is_profile'=>true)));
+                $stylistimage = $User->find('first', array('conditions'=>array('User.id'=>$stylist_id,'User.is_stylist'=>true)));
                 $OutfitItem = ClassRegistry::init('OutfitItem');
                 $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
                 $entities = array();

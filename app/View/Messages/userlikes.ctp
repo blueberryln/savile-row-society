@@ -13,19 +13,21 @@ $(document).ready(function(){
             //alert(result);
             data = $.parseJSON(result);
             html = '';
-            html = html + '<ul id="ascsort">';
+            html = html + '<ul>';
             html = html + '<li><div class="purchase-dtls-date heading left">Date</div><div class="purchase-dtls-items heading left">Item</div><div class="purchase-dtls-outfit heading left">Outfit</div><div class="purchase-dtls-price heading left">Price</div></li>';
             $.each(data,  function (index){
-                html = html + '<li>';
-                html = html + '<div class="purchase-dtls-date left">'+this.Entity.updated +'</div>';
+                html = html + '<li>';7
+                html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
                 html = html + '<div class="purchase-dtls-items left">';
-                html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt="" height="108" width="122" /></div>';
+                html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
                 html = html + '<div class="purchase-dtls-items-desc">'+this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
                 html = html + '</div>';
                 html = html + '<div class="purchase-dtls-outfit left">Business Lunch</div>';        
-                html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div></li>';        
-                html = html + '</ul>';
+                html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
+                html = html + '</li>';        
+                
                 });
+            html = html + '</ul>';
                 $("#ascsort").html(html);
             }
         });
@@ -36,7 +38,14 @@ $(document).ready(function(){
 
 </script>
 
-
+<?php
+    $img = "";
+        if(isset($Userdata) && $Userdata[0]['User']['profile_photo_url'] && $Userdata[0]['User']['profile_photo_url'] != ""){
+            $img = $this->webroot . "files/users/" . $Userdata[0]['User']['profile_photo_url'];
+         }else{
+            $img = $this->webroot . "img/dummy_image.jpg";    
+        }
+?>
 <div class="content-container">
     <div class="twelve columns black">&nbsp;</div>
     <div class="twelve columns container">
@@ -48,9 +57,9 @@ $(document).ready(function(){
                         <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>" alt="" /></div>
                     </div>
                     <div class="my-profile-img m-ver">
-                        <h2>LISA D.<span>My Stylist</span></h2>
+                        <h2><?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?><span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
                         </div>
                         <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
@@ -59,7 +68,7 @@ $(document).ready(function(){
                             <li><a href="?php echo $this->webroot; ?>messages/index">Messages</a></li>
                             <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
                             <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                            <li><a href="javascript:;">Profile</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
                         </ul>
                     </div>
                     <div class="twelve columns left inner-content pad-none">
@@ -71,7 +80,7 @@ $(document).ready(function(){
                                         <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                                        <li><a href="javascript:;">Profile</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -83,8 +92,8 @@ $(document).ready(function(){
                                             <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
                                             <select id="sortdate">
                                                 <!-- <option >Sort by Date</option> -->
-                                                <option value="desc">Sort by Date DESC</option>
-                                                <option value="asc">Sort By Date ASC</option>
+                                                <option value="DESC">Sort by Date DESC</option>
+                                                <option value="ASC">Sort By Date ASC</option>
                                                 
                                             </select>
                                         </div>
