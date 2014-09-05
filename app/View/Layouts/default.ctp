@@ -249,11 +249,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.slider1').bxSlider({
                 slideWidth: 222,
                 minSlides: 1,
-<<<<<<< HEAD
-                maxSlides: 3,
-=======
                 maxSlides: 10,
->>>>>>> 6bc07aa13c97625ab70638587ce3c7d09c0a9879
                 moveSlides: 1,
                 slideMargin: 10
               });
