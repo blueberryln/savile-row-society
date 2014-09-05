@@ -929,7 +929,8 @@ a.open-left-pannel { display: none;}
 .social-networks li.twitter a{ background-position: -44px 0px;}
 .social-networks li.linkdin a{ background-position: -87px 0px;}
 .social-networks li.facebbok a { background-position: -131px 0px;}
-h1.stylistbio-heading { font-size: 28px; color: #d19b03; margin: 0; padding: 16px 0 10px; text-transform: uppercase; font-weight: normal;}
+.stylistbio-heading-section{ position: relative;}
+h1.stylistbio-heading { position: relative; font-size: 28px; color: #d19b03; margin: 0; padding: 16px 0 10px; text-transform: uppercase; font-weight: normal;}
 .user-desc { font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:20px 0 15px 10px; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; margin-bottom: 15px; margin-top:15px;}
 .user-inspire-desc {font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:10px 0 15px 10px;}
 .stylistbio-user { float: left; color: #7f7f7f; font-size: 30px; text-transform: uppercase; padding-top: 11px;}
@@ -1200,16 +1201,16 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
 .edit-section { width: 16px; height: 16px;display: inline-block; margin-left: 5px; cursor: pointer;}
 .edit-section img { width: 100%;}
 
-.home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit { width: 90%; padding: 5px 5%; position: absolute; top: 0px; left: 0px; background: #f0f0f0; border: 1px solid #e9e9e9; z-index: 99999;}
-.home-edit label, .fun-edit label, .tip-edit label, .stylistbio-heading-edit label { font-size: 18px; font-family: 'ProximaNovaCond-Regular'; padding: 10px 0 12px 0; color: #212125; text-transform: none;}
+.home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit, .stylist-insp-edit { width: 90%; padding: 5px 5%; position: absolute; top: 0px; left: 0px; background: #f0f0f0; border: 1px solid #e9e9e9; z-index: 99999;}
+.home-edit label, .fun-edit label, .tip-edit label, .stylistbio-heading-edit label, .stylist-insp-edit label { font-size: 18px; font-family: 'ProximaNovaCond-Regular'; padding: 10px 0 12px 0; color: #212125; text-transform: none;}
 .edit-content { width: 100%; background: #fff; font-size: 16px; line-height: 18px; color: #212125;}
 
 .actions { margin: 10px 0px;}
 .primry-btn, .secondry-btn {background: #d19b03; height: 35px; line-height: 35px; padding: 0 15px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; color: #fff; text-transform: uppercase;}
 .secondry-btn { background: #575757;}
 
-.stylistbio-heading, .stylistbio-profile { position: relative;}
-.home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit { display: none;}
+.stylistbio-heading, .stylistbio-profile, .stylist-insp { position: relative;}
+.home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit, .stylist-insp-edit { display: none;}
 
 
 

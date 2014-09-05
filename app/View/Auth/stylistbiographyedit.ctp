@@ -51,22 +51,36 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <li class="facebbok"><a href="<?php echo $social['facebook']; ?>" target="blank" title="">facebook</a></li>
                                 </ul>
                             </div>
-                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Bio <span class="edit-section-stylistbio-heading"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span></h1>
+                            <div class="stylistbio-heading-section">
+                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Bio <span class="edit-section edit-section-stylistbio-heading"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span></h1>
                             
                                         <form class="stylistbio-heading-edit" method="post" action="" name="edithometown">
-                                            <label>Your Fun Fact</label>
+                                            <label>Your Name</label>
                                             <div class="edit-content">
-                                                <input type="text" placeholder="Edit your Fun Fact" name="hometown">
+                                                <input type="text" placeholder="Edit your Name" name="yourname">
                                             </div>
                                             <p class="actions">
                                             <input class="edit-save-btn primry-btn" type="submit" value="Save">
                                             <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                             </p>
                                         </form>
+                                </div>
                             <div class="user-desc">
                                 <?php echo $find_array[0]['Stylistbio']['stylist_bio']; ?>
                             </div>
-                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Inspiration</h1>
+                            <div class="stylist-insp">
+                                <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Inspiration<span class="edit-section edit-section-stylist-insp"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span></h1>
+                                <form class="stylist-insp-edit" method="post" action="" name="edithometown">
+                                    <label>Inspiration</label>
+                                    <div class="edit-content">
+                                        <input type="text" placeholder="Edit Inspiration" name="inspiration">
+                                    </div>
+                                    <p class="actions">
+                                    <input class="edit-save-btn primry-btn" type="submit" value="Save">
+                                    <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                    </p>
+                                </form>
+                            </div>
                             <div class="user-inspire-desc"> <?php echo $find_array[0]['Stylistbio']['stylist_inspiration']; ?></div>
                         </div>
                         <div class="stylistbio-details right">
@@ -136,6 +150,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
                                     <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Top Outfits</h1>
+<!--
                                     <ul>
                                     <?php foreach($my_outfit as $my_outfit): ?>
                                         <li>
@@ -150,6 +165,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                             <div class="outfit-products-details"><?php echo $entities['Entity']['name'] ?>  $<?php echo $entities['Entity']['price']; ?></div>
                                                         </li>
                                                             <?php endforeach; ?>
+                                                            
+                                                            
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -158,6 +175,64 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <?php endforeach; ?>
                                         
                                         
+                                    </ul>
+
+-->
+                                    <ul>
+                                        <li>
+                                            <div class="twelve columns top-outfits">
+                                                <div class="eleven columns container">
+                                                    <h2 contenteditable="true">Beach Day</h2>
+                                                    <div class="outfit-products">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
+                                                           </li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="twelve columns top-outfits">
+                                                <div class="eleven columns container">
+                                                    <h2>Beach Day</h2>
+                                                    <div class="outfit-products">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
+                                                           </li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="twelve columns top-outfits">
+                                                <div class="eleven columns container">
+                                                    <h2>Beach Day</h2>
+                                                    <div class="outfit-products">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
+                                                           </li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
+                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

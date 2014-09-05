@@ -432,11 +432,14 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             $('.edit-section-stylistbio-heading').click(function(){
                 $('.stylistbio-heading-edit').fadeIn();
             });
+            $('.edit-section-stylist-insp').click(function(){
+                $('.stylist-insp-edit').fadeIn();
+            });
             
             
             
             $('.edit-save-btn, .cancel-btn').click(function(){
-                $('.home-edit, .tip-edit, .fun-edit ').fadeOut();
+                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit').fadeOut();
             });
             
             
