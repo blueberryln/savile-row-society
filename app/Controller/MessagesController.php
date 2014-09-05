@@ -1546,7 +1546,7 @@ If interested, I would also be happy to meet with you in our New York City based
                     $entity_list[] = $value['Orders']['product_entity_id'];
                     $last_item_id = $value['Orders']['order_id'];
                 }
-            $purchases = $Entity->getEntitiesByIdPurchaseSorting($entity_list, $user_id,$sortingorder);
+            $purchases = $Entity->getEntitiesByIdPurchaseSorting($entity_list,$sortingorder);
                  
         }
         echo json_encode($purchases);

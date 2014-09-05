@@ -8,6 +8,7 @@ $(document).ready(function(){
             data: {valueSelected:valueSelected},
             cache: false,
             success: function(result){
+                
                 data = $.parseJSON(result);
                 
                 html = '';
@@ -22,7 +23,7 @@ $(document).ready(function(){
                 html = html + '<li>';
                 html = html + '<div class="purchase-dtls-date left">'+ this.Entity.updated +'</div>';
                 html = html + '<div class="purchase-dtls-items left">';
-                html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt=""/></div>';
+            html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt=""/></div>';
             html = html + '<div class="purchase-dtls-items-desc">'+ this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
                 html = html + '</div>';
                 html = html + '<div class="purchase-dtls-outfit left">Business Lunch</div>';

@@ -65,15 +65,16 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
-                                    <div class="chat-container">
-                    
-                                    </div>
-                                    <div class="clear-fix"></div>
+                                    
                                         <p id="loadOldMsgs" class="hide">
                                             <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
                                             <a href="">Load Old Messages</a>
                                         </p>
-                                    <br />
+                                    
+                                    <div class="chat-container">
+                    
+                                    </div>
+                                    <br>
                                         
                                     </div>
                                 </div>
@@ -272,7 +273,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         if(arrMsg.length){
                             for(var i=0; i < arrMsg.length; i++){
                                 var html = showChatMsg(arrMsg[i]);
-                                chatContainer.append(html);
+                                chatContainer.prepend(html);
                                 firstMsgId = arrMsg[i]['Message']['id'];
                             }
                             if(res['msg_remaining'] > 0){
@@ -463,7 +464,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
 
                 var html = showSentMessage(message, uid);
-                chatContainer.prepend(html);
+                chatContainer.append(html);
                 $("#messageToSend").val("");
                 
                 $("#messageToSend").removeClass("sending");
@@ -520,7 +521,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             var arrMsg = res['Messages'];
                             for(var i=0; i < arrMsg.length; i++){
                                 var html = showChatMsg(arrMsg[i]);
-                                chatContainer.append(html);
+                                chatContainer.prepend(html);
                                 
                                 firstMsgId = arrMsg[i]['Message']['id'];
                             }

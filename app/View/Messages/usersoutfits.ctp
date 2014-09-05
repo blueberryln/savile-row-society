@@ -219,6 +219,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                 <h1><?php echo $my_outfit['outfit'][0]['Outfit']['outfitname']; ?></h1>
                                                 <div class="twelve columns client-outfits-img pad-none">
                                                     <ul>
+                                                    <?php if(isset($my_outfit['entities'][0])!=''){ ?>
                                                         <li>
                                                             <img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][0]['Image'][0]['name']; ?>" alt="" />
                                                             <div class="product-desc">
@@ -233,6 +234,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 </span>
                                                             </div>
                                                         </li>
+                                                        <?php }else{} ?>
+                                                         <?php if(isset($my_outfit['entities'][1])!=''){ ?>
                                                         <li>
                                                             <img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][1]['Image'][0]['name']; ?>" alt="" />
                                                             <div class="product-desc">
@@ -247,6 +250,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 </span>
                                                             </div>
                                                         </li>
+                                                        <?php }else{} ?>
+                                                        <?php if(isset($my_outfit['entities'][2])!=''){ ?>
                                                         <li>
                                                             <img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][2]['Image'][0]['name']; ?>" alt="" />
                                                             <div class="product-desc">
@@ -261,6 +266,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 </span>
                                                             </div>
                                                         </li>
+                                                        <?php }else{} ?>
+                                                         <?php if(isset($my_outfit['entities'][3])!=''){ ?>
                                                         <li>
                                                             <img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][3]['Image'][0]['name']; ?>" alt="" />
                                                             <div class="product-desc">
@@ -275,6 +282,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 </span>
                                                             </div>
                                                         </li>
+                                                        <?php }else{} ?>
+                                                        <?php if(isset($my_outfit['entities'][4])!=''){ ?>
                                                         <li>
                                                             <img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][4]['Image'][0]['name']; ?>" alt="" />
                                                             <div class="product-desc">
@@ -289,6 +298,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 </span>
                                                             </div>
                                                         </li>
+                                                        <?php }else{} ?>
                                                        
                                                     </ul>
                                                 </div>

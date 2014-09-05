@@ -633,45 +633,26 @@ class Entity extends AppModel {
     }
 
 
-    function getEntitiesByIdPurchaseSorting($entity_list, $user_id = null, $sortingorder) {
-        $find_array = array(
-            'contain' => array('Image'),
-            'conditions' => array(
-                'Entity.show' => true,
-                'Entity.id' => $entity_list
-            ),
-            'joins' => array(
-                array('table' => 'products',
-                    'alias' => 'Product',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Product.id = Entity.product_id'
-                    )
-                ),
-                
-                array('table' => 'orders_items',
-                    'alias' => 'OrderItem',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'OrderItem.product_entity_id = Product.id'
-                    )
-                ),
-                array('table' => 'brands',
-                    'alias' => 'Brand',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Product.brand_id = Brand.id'
-                    )
-                ),
-            ),
-            'fields' => array(
-                'Entity.*', 'Product.*', 'Brand.*','OrderItem.created,OrderItem.product_entity_id',
-            ),
-            'order' => array('OrderItem.created' => $sortingorder,),
-            
-        );
-print_r($find_array);
-        $entity = $this->find('all', $find_array);
+    function getEntitiesByIdPurchaseSorting($entity_list,$sortingorder) {
+        $ids = join(',',$entity_list);
+        $db = $this->getDataSource();
+        
+               echo $sql = "Select * 
+                FROM (
+                SELECT Entity.name, Entity.id, OrderItem.created,(Image.name) as imagename ,(Brand.name) as brandname,Entity.price
+                FROM  `products_entities` AS Entity
+                INNER JOIN products_images AS Image ON Entity.id = Image.product_entity_id
+                INNER JOIN products AS Product ON Entity.product_id = Product.id
+                INNER JOIN brands AS Brand ON Product.brand_id = Brand.id
+                INNER JOIN orders_items AS OrderItem ON Entity.id = OrderItem.product_entity_id
+                WHERE Entity.id
+                IN (".$ids.") 
+                GROUP BY Image.product_entity_id
+                ORDER BY OrderItem.created ".$sortingorder."
+                ) AS abc
+                ORDER BY created ".$sortingorder;
+
+        $entity = $this->query($sql);
         return $entity;
     }
 
