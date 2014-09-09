@@ -1,4 +1,94 @@
 <?php
+$logged_script = '';
+if($user_id){   
+
+//     $logged_script = '
+//         $(".thumb-icon").click(function(e) {
+//             e.preventDefault();
+//             $this = $(this);
+//             //var productBlock = $this.closest(".product-block");
+//             var productId = productBlock.find("#product-id").val();
+//             alert(productId);
+//             if(!$this.hasClass("-like")){
+//                 $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
+//                     function(data) {
+//                         var ret = $.parseJSON(data);
+//                         if(ret["status"] == "ok"){
+//                             $this.addClass("-like");
+//                             $this.closest(".check-data-like").find(".thumb-icon").removeClass("thumb-icon-like");
+//                         }
+                        
+                        
+//                     }
+//                 );
+//             }
+//             else{
+//                 $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
+//                     function(data) {
+//                         var ret = $.parseJSON(data);
+//                         if(ret["status"] == "ok"){
+//                             $this.removeClass("-like");
+//                         }
+//                     }
+//                 );
+//             }
+//         });
+        
+//         $(".thumbs-down").click(function(e) {
+//             e.preventDefault();
+//             $this = $(this);
+//             var productBlock = $this.closest(".product-block");
+//             var productId = productBlock.find(".product-id").val();
+//             if(!$this.hasClass("disliked")){
+//                 $.post("' . $this->request->webroot . 'api/dislike/save", { product_id: productId},
+//                     function(data) {
+//                         var ret = $.parseJSON(data);
+//                         if(ret["status"] == "ok"){
+//                             $this.addClass("disliked");
+//                             $this.closest(".product-list-links").find(".thumbs-up").removeClass("liked");
+//                         }
+//                     }
+//                 );
+//             }
+//             else{
+//                 $.post("' . $this->request->webroot . 'api/dislike/remove", { product_id: productId},
+//                     function(data) {
+//                         var ret = $.parseJSON(data);
+//                         if(ret["status"] == "ok"){
+//                             $this.removeClass("disliked");
+//                         }
+//                     }
+//                 );
+//             }
+//         });
+//     ';
+// }
+?>
+
+  <script type="text/javascript">
+ $(document).ready(function(){
+    $(".thumb-icon").click(function(e) {
+        e.preventDefault();
+        $this = $(this);
+        var productBlock = $this.closest(".bottm-links");
+        var productId = productBlock.find("#product_id").val();
+        var outfit_id = productBlock.find("#outfit_id").val();
+            $.ajax({
+                type:"POST",
+                url : "<?php echo $this->request->webroot; ?>api/wishlist/save",
+                data:{product_id: productId,outfit_id:outfit_id},
+                cache: false,
+                success: function(result){
+                //$(".thumb-icon").addClass('thumb-icon-like');           
+               }
+            });
+    });
+ });
+
+
+</script>   
+<?php
+}
 $script = '
 $(document).ready(function(){
     $(".fade").mosaic();
@@ -43,111 +133,6 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                     cache: false,
                     success: function(result){
                     
-                    data = $.parseJSON(result);
-                    html = '';
-
-                    $.each(data, function(index){
-
-                    html = html + '<div class="twelve columns client-outfits left">';
-                    html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                    html = html + '<h1>'+this.outfit[0].Outfit.outfitname +'</h1>';
-                    html = html + '<div class="twelve columns client-outfits-img pad-none">';
-                    html = html + '<ul>';
-                    html = html + '<li>';
-                    html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[0].Image[0].name +' alt="" />';
-                    html = html + '<div class="product-desc">';
-                    html = html + '<span class="product-name">'+ this.entities[0].Entity.name +'</span>';
-                    html = html + '<span class="product-brand">'+ this.entities[0].Brand.name +'</span>';
-                    html = html + '<span class="product-price">$'+ this.entities[0].Entity.price +'</span>';
-                    html = html + '<span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/'+ this.outfit[0].Outfit.id +'" title="">Details</a></span>';
-                    html = html + '<span class="bottm-links">';
-                    html = html + '<a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>';
-                    html = html + '<img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />';
-
-                    html = html + '</span>';
-                    html = html + '</div>';
-                    html = html + '</li>';
-                    // html = html + '<li>';
-                    // html = html + '<img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][1]['Image'][0]['name']; ?>" alt="" />';
-                    // html = html + '<div class="product-desc">';
-                    // html = html + '<span class="product-name"><?php echo $my_outfit['entities'][1]['Entity']['name']; ?></span>';
-                    // html = html + '<span class="product-brand"><?php echo $my_outfit['entities'][1]['Brand']['name']; ?></span>';
-                    // html = html + '<span class="product-price">$<?php echo $my_outfit['entities'][1]['Entity']['price']; ?></span>';
-                    // html = html + '<span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>';
-                    // html = html + '<span class="bottm-links">';
-                    // html = html + '<a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>';
-                    // html = html + '<img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />';
-
-                    // html = html + '</span>';
-                    // html = html + '</div>';
-                    // html = html + '</li>';
-                    // html = html + '<li>';
-                    // html = html + '<img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][2]['Image'][0]['name']; ?>" alt="" />';
-                    // html = html + '<div class="product-desc">';
-                    // html = html + '<span class="product-name"><?php echo $my_outfit['entities'][2]['Entity']['name']; ?></span>';
-                    // html = html + '<span class="product-brand"><?php echo $my_outfit['entities'][2]['Brand']['name']; ?></span>';
-                    // html = html + '<span class="product-price">$<?php echo $my_outfit['entities'][2]['Entity']['price']; ?></span>';
-                    // html = html + '<span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>';
-                    // html = html + '<span class="bottm-links">';
-                    // html = html + '<a class="add-to-cart" href="" title="">Add to Cart +</a>';
-                    // html = html + '<img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />';
-
-                    // html = html + '</span>';
-                    // html = html + '</div>';
-                    // html = html + '</li>';
-                    // html = html + '<li>';
-                    // html = html + '<img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][3]['Image'][0]['name']; ?>" alt="" />';
-                    // html = html + '<div class="product-desc">';
-                    // html = html + '<span class="product-name"><?php echo $my_outfit['entities'][3]['Entity']['name']; ?></span>';
-                    // html = html + '<span class="product-brand"><?php echo $my_outfit['entities'][3]['Brand']['name']; ?></span>';
-                    // html = html + '<span class="product-price">$<?php echo $my_outfit['entities'][3]['Entity']['price']; ?></span>';
-                    // html = html + '<span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>';
-                    // html = html + '<span class="bottm-links">';
-                    // html = html + '<a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>';
-                    // html = html + '<img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />';
-
-                    // html = html + '</span>';
-                    // html = html + '</div>';
-                    // html = html + '</li>';
-                    // html = html + '<li>';
-                    // html = html + '<img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][4]['Image'][0]['name']; ?>" alt="" />';
-                    // html = html + '<div class="product-desc">';
-                    // html = html + '<span class="product-name"><?php echo $my_outfit['entities'][4]['Entity']['name']; ?></span>';
-                    // html = html + '<span class="product-brand"><?php echo $my_outfit['entities'][4]['Brand']['name']; ?></span>';
-                    // html = html + '<span class="product-price">$<?php echo $my_outfit['entities'][4]['Entity']['price']; ?></span>';
-                    // html = html + '<span class="product-dtls"><a href="javascript:;" title="">Details</a></span>';
-                    // html = html + '<span class="bottm-links">';
-                    // html = html + '<a class="add-to-cart" href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Add to Cart +</a>';
-                    // html = html + '<img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />';
-
-                    // html = html + '</span>';
-                    // html = html + '</div>';
-                    // html = html + '</li>';
-
-                    html = html + '</ul>';
-                    html = html + '</div>';
-
-
-                    html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-                    html = html + '<div class="client-comments left">';
-                    html = html + '<h2>Stylist Comment</h2>';
-                    html = html + '<div class="client-comments-text left">Kyle- '+ this.comments +'<a href="javascript:;" title="">Read More</a></div>';
-                    html = html + '</div>';
-                    html = html + '<div class="share-outfit right">Share Outfit</div>';
-                    html = html + '</div>';
-                    html = html + '</div>';
-                    html = html + '</div>';
-
-
-
-                       });
-                $("#ascsort").html(html);
-                       
-
-
-
-
-
                     }
                 });
             //alert(sorting);
@@ -192,7 +177,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                         <div class="inner-left left">
                             <div class="left-pannel left">
                                 <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>" height="134" width="148" alt=""/></div>
-                                <div class=" twelve columns left left-nav">
+                                <div class="twelve columns left left-nav">
                                     <ul>
                                         <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
@@ -229,8 +214,16 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links">
                                                                     <a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>
-                                                                    <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
-                                                                       
+                                                                    
+                                                                    <input type="hidden" id="product_id" value="<?php echo $my_outfit['entities'][0]['Entity']['id']; ?>"> 
+                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
+                                                                    
+                                                                <?php //foreach ($my_outfit['entities'][0] as $wishllist ) : 
+                                                                 ?>
+                                                                <a href="#" id="<?php echo $my_outfit['entities'][0]['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon"></a>
+                                                                
+                                                                
+                                                                    <?php //endforeach; ?>   
                                                                 </span>
                                                             </div>
                                                         </li>
@@ -245,7 +238,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links">
                                                                     <a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>
-                                                                    <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
+                                                                    <input type="hidden" id="product_id" value="<?php echo $my_outfit['entities'][1]['Entity']['id']; ?>"> 
+                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
+                                                                    <a href="#" id="<?php echo $my_outfit['entities'][1]['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon"></a>
                                                                        
                                                                 </span>
                                                             </div>
@@ -261,7 +256,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links">
                                                                     <a class="add-to-cart" href="" title="">Add to Cart +</a>
-                                                                    <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
+                                                                    <input type="hidden" id="product_id" value="<?php echo $my_outfit['entities'][2]['Entity']['id']; ?>"> 
+                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
+                                                                    <a href="#" id="<?php echo $my_outfit['entities'][2]['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon"></a>
                                                                        
                                                                 </span>
                                                             </div>
@@ -277,7 +274,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links">
                                                                     <a class="add-to-cart" href="javascript:;" title="">Add to Cart +</a>
-                                                                    <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
+                                                                    <input type="hidden" id="product_id" value="<?php echo $my_outfit['entities'][3]['Entity']['id']; ?>"> 
+                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
+                                                                    <a href="#" id="<?php echo $my_outfit['entities'][3]['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon"></a>
                                                                        
                                                                 </span>
                                                             </div>
@@ -293,7 +292,9 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                                 <span class="product-dtls"><a href="javascript:;" title="">Details</a></span>
                                                                 <span class="bottm-links">
                                                                     <a class="add-to-cart" href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Add to Cart +</a>
-                                                                    <img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />
+                                                                    <input type="hidden" id="product_id" value="<?php echo $my_outfit['entities'][4]['Entity']['id']; ?>"> 
+                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
+                                                                    <a href="#" id="<?php echo $my_outfit['entities'][4]['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon"></a>
                                                                        
                                                                 </span>
                                                             </div>

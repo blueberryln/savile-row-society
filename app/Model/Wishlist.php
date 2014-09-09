@@ -125,7 +125,7 @@ class Wishlist extends AppModel {
     function getUserLikeProduct($user_id){
         $find_array = array(
             'conditions' => array('Wishlist.user_id' => $user_id),
-            'fields' => array('Wishlist.product_entity_id', 'Wishlist.id'),
+            'fields' => array('Wishlist.product_entity_id', 'Wishlist.id','Wishlist.outfit_id'),
             'order' => array('FROM_UNIXTIME(Wishlist.created) DESC'),
             
         );

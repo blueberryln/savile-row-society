@@ -22,7 +22,7 @@ $(document).ready(function(){
                 html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
                 html = html + '<div class="purchase-dtls-items-desc">'+this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
                 html = html + '</div>';
-                html = html + '<div class="purchase-dtls-outfit left">Business Lunch</div>';        
+                html = html + '<div class="purchase-dtls-outfit left">'+this.Outfit.outfitname +'</div>';        
                 html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
                 html = html + '</li>';        
                 
@@ -112,15 +112,22 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit heading left">Outfit</div>
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                   
+                                                  
                                                        <?php foreach ($likeitems as $likeitem): ?>
                                                        <li>
-                                                            <div class="purchase-dtls-date left"><?php echo $likeitem['Wishlist']['created']; ?></div>
+                                                            <div class="purchase-dtls-date left"><?php
+                                                                $php_timestamp = $likeitem['Wishlist']['created'];
+                                                                $php_timestamp_date = date("d/M/Y", $php_timestamp);
+                                                             echo $php_timestamp_date; ?></div>
                                                             <div class="purchase-dtls-items left">
                                                                 <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $likeitem['Image'][0]['name']; ?>" alt=""/></div>
                                                                 <div class="purchase-dtls-items-desc"><?php echo $likeitem['Entity']['name']; ?><span><?php echo $likeitem['Brand']['name']; ?></span></div>
                                                            </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
+                                                            
+                                                            <div class="purchase-dtls-outfit left">
+                                                            <?php if($likeitem['Outfit']['outfitname']!=''){ 
+                                                            echo $likeitem['Outfit']['outfitname']; }else {  echo "outfit null "; } ?></div>
+                                                       
                                                             <div class="purchase-dtls-price left">$<?php echo $likeitem['Entity']['price']; ?></div>
                                                        </li>
                                                        <?php endforeach; ?>

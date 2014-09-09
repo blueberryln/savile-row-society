@@ -33,6 +33,7 @@ class ApiController extends AppController {
         // save wishlist item
         if ($user_id && $param && $param == 'save') {
             $product_id = $this->request->data['product_id'];
+            $outfit_id = $this->request->data['outfit_id'];
 
             $error = false;
             $Dislike = ClassRegistry::init('Dislike');
@@ -53,7 +54,7 @@ class ApiController extends AppController {
             
             if($this->request->is('ajax') && !$error) {
                 // get posted product id
-                $wishlist = $Wishlist->get($user_id, $product_id);
+                $wishlist = $Wishlist->get($user_id, $product_id, $outfit_id);
                 //bhashit code
                 $User = ClassRegistry::init('User');
                 $stylistid = $User->getByID($user_id);
@@ -70,18 +71,20 @@ class ApiController extends AppController {
                     //bhashit code
                     $wishlist['Wishlist']['user_id'] = $user_id;
                     $wishlist['Wishlist']['product_entity_id'] = $product_id;
+                    $wishlist['Wishlist']['outfit_id'] = $outfit_id;
 
                     $Wishlist->create();
                     if ($Wishlist->save($wishlist)) {
                         //Check if present in likes
                         
-                       $like = $Like->get($user_id, $product_id);
+                       $like = $Like->get($user_id, $product_id, $outfit_id);
                         if(!$like){
                             //bhashitcode
                             $like['Like']['post_id'] = $post_id;
                             //bhashitcode end
                             $like['Like']['user_id'] = $user_id;
-                            $like['Like']['product_entity_id'] = $product_id;   
+                            $like['Like']['product_entity_id'] = $product_id;
+                            $like['Like']['outfit_id'] = $outfit_id;   
                             $Like->create(); 
                             $Like->save($like); 
                         }

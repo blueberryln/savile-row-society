@@ -279,7 +279,7 @@ class Entity extends AppModel {
 
     function getMultipleByIdUser($id, $user_id=null) {
         $find_array = array(
-            'contain' => array('Image'),
+            'contain' => array('Image','Wishlist'),
             'conditions' => array('Entity.id' => $id),
             'joins' => array(
                 array('table' => 'products',
@@ -551,15 +551,18 @@ class Entity extends AppModel {
                         'Product.brand_id = Brand.id'
                     )
                 ),
+
+              
             ),
             'fields' => array(
                 'Entity.*', 'Product.*', 'Brand.*',
             ),
             'order' => array('FROM_UNIXTIME(Wishlist.created) DESC'),
-            
+
+           
         );
         
-        
+       
         if($user_id){
             $find_array['joins'][] = array('table' => 'wishlists',
                                         'alias' => 'Wishlist',
@@ -569,14 +572,26 @@ class Entity extends AppModel {
                                             'Wishlist.product_entity_id = Entity.id'
                                         ),
                                         
+                                        
                                     );
+        $find_array['joins'][] = array('table' => 'outfits',
+                    'alias' => 'Outfit',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = Wishlist.outfit_id',
+                    )
+                );
+
             
+        
             $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Outfit.*';
+
              
         }
         
         $entity = $this->find('all', $find_array);
-
+        //print_r($entity);
         return $entity;
     }
 
@@ -622,12 +637,21 @@ class Entity extends AppModel {
                                         ),
                                         
                                     );
+            $find_array['joins'][] = array('table' => 'outfits',
+                    'alias' => 'Outfit',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = Wishlist.outfit_id',
+                    )
+                );
+
             
             $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Outfit.*';
              
         }
         
-        $entity = $this->find('all', $find_array);
+    $entity = $this->find('all', $find_array);
 
         return $entity;
     }
@@ -637,7 +661,7 @@ class Entity extends AppModel {
         $ids = join(',',$entity_list);
         $db = $this->getDataSource();
         
-               echo $sql = "Select * 
+                echo $sql = "Select * 
                 FROM (
                 SELECT Entity.name, Entity.id, OrderItem.created,(Image.name) as imagename ,(Brand.name) as brandname,Entity.price
                 FROM  `products_entities` AS Entity

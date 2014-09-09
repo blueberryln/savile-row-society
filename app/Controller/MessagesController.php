@@ -1447,24 +1447,20 @@ If interested, I would also be happy to meet with you in our New York City based
                 
 
         $Userdata=$User->find('all',$find_array);
-         //print_r($Userdata);
         $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity'); 
-        //$total_likes = $Wishlist->find('count', array('conditions' => array('Wishlist.user_id'=>$user_id)));
         $liked_list = $Wishlist->getUserLikeProduct($user_id);
-        //print_r($liked_list);
-                //$last_item_id = $last_liked_id;
+        
                 $entity_list = array();
                 foreach($liked_list as $value){
                     $entity_list[] = $value['Wishlist']['product_entity_id'];
                     $last_item_id = $value['Wishlist']['id'];
+                    
                 }
-                //print_r($entity_list);
-                $likeitems = $Entity->getEntitiesByIdLikes($entity_list, $user_id);
-
-             $this->set(compact('likeitems','user_id','Userdata'));
-        //print_r($likeitems);
-        //die;
+        $likeitems = $Entity->getEntitiesByIdLikes($entity_list, $user_id);
+    
+        $this->set(compact('likeitems','user_id','Userdata'));
+        
     }
 
     
@@ -1472,18 +1468,15 @@ If interested, I would also be happy to meet with you in our New York City based
         $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity'); 
         $sortingorder = $this->request->data['valueSelected'];
-        
-        //$total_likes = $Wishlist->find('count', array('conditions' => array('Wishlist.user_id'=>$user_id)));
         $liked_list = $Wishlist->getUserLikeProductAsc($user_id);
-        //print_r($liked_list);
-                //$last_item_id = $last_liked_id;
                 $entity_list = array();
                 foreach($liked_list as $value){
                     $entity_list[] = $value['Wishlist']['product_entity_id'];
                     $last_item_id = $value['Wishlist']['id'];
+                    
                 }
                 
-                $likeitems = $Entity->getEntitiesByIdLikesAsc($entity_list, $user_id, $sortingorder);
+        $likeitems = $Entity->getEntitiesByIdLikesAsc($entity_list, $user_id, $sortingorder);
         echo json_encode($likeitems);
         exit;
         
@@ -1503,7 +1496,7 @@ If interested, I would also be happy to meet with you in our New York City based
                     $last_item_id = $value['Orders']['order_id'];
                 }
             $purchases = $Entity->getEntitiesByIdLikes($entity_list, $user_id);
-                 
+            
         }
         $find_array = array(
                 'fields' => array('User.*,User1.*'),
@@ -1523,8 +1516,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
         $Userdata=$User->find('all',$find_array);
         $this->set(compact('purchases','user_id','Userdata'));
-        //print_r($entities);
-        //exit;
+        
     }
     //user purchase sorting
 
