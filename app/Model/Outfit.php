@@ -37,8 +37,29 @@ class Outfit extends AppModel {
                 ),
             ); 
        return  $this->find('all', $find_array);
-        //$this->find('all',array('conditions'=>array('Outfit.stylist_id' => $user_id)));
+    }
 
+    function getOutfitUserByStylist($stylist_id,$client_id = null){
+       $find_array = array(
+            'fields' => array('Outfit.id,OutfitItem.product_entity_id,Outfit.outfitname'),
+            'joins' => array(
+                array(
+                    'table' => 'outfits_items',
+                    'alias' => 'OutfitItem',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = OutfitItem.outfit_id',
+                        'Outfit.stylist_id'=>$stylist_id,
+                        'Outfit.user_id' => $client_id
+                        ),
+                    ),
+                ),
+            ); 
+       return  $this->find('all', $find_array); 
 
     }
+
+
+
+
 }

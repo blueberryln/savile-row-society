@@ -216,18 +216,7 @@ $(document).ready(function(){
           "width=626,height=436"); 
     });
     
-    // $("#request-email").change(function(){
-    //     $("span.err-email-message").fadeOut(300);    
-    // });
-
-    // $("select#product-quantity").change(function(){
-    //     $("span.err-message").fadeOut(300);    
-    // });
     
-    // $("select#product-size").change(function(){
-    //     $("span.err-size-message").fadeOut(300);    
-    // });    
-
     $(".zoom_01").elevateZoom({
         zoomType: "inner",
         cursor: "crosshair",
@@ -345,7 +334,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                             </div>
                                         </div>
                                         <div class="twelve columns left product-dtls">
-                                            <div class="eleven columns container product-view">
+                                            <div class="eleven columns container product-view outfit-page-item">
                                             <?php foreach ($entities as $entity) : ?>
                                                 <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">  
                                                 <input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">  

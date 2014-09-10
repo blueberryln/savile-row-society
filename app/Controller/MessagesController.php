@@ -938,57 +938,6 @@ If interested, I would also be happy to meet with you in our New York City based
 
 
 
-    //bhashit code
-    //perticular user outfit list sent by his stylist
-    // public function getuseroutfit($client_id = null) {
-
-    //     $User = ClassRegistry::init('User');
-        
-    //     //Get user from session to derterminate if user is stylist
-    //     $user = $this->getLoggedUser();
-    //     $user_id = $user["User"]["id"]; 
-    //     $is_admin = $user["User"]["is_admin"];
-    //     $is_stylist = $user["User"]["is_stylist"];   
-    //     $user = $User->getById($client_id);
-    //     //print_r($user);
-    //     $Message = ClassRegistry::init('Message');
-    //     if($user){
-    //                     $my_conversation = $this->Message->getMyConversationWith($client_id);
-    //                     $my_outfit = array();
-    //                     foreach($my_conversation as &$row){
-    //                         if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-    //                             $outfit_id = $row['Message']['outfit_id'];
-    //                             $msg = $Message->find('first',array('conditions'=>array('Message.outfit_id'=>$outfit_id,)));
-    //                             print_r($msg);
-    //                             $Outfit = ClassRegistry::init('Outfit');
-    //                             $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$outfit_id)));
-    //                             $OutfitItem = ClassRegistry::init('OutfitItem');
-    //                             $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-    //                             $entities = array();
-    //                             foreach($outfit as $value){
-    //                                  $entities[] = $value['OutfitItem']['product_entity_id'];
-                                
-    //                             }
-    //                             $Entity = ClassRegistry::init('Entity');
-
-    //                             $entity_list = $Entity->getMultipleById($entities);
-                                
-    //                             $my_outfit[] = array(
-    //                                 'outfit'    => $outfitnames,
-    //                                 'msg' =>$msg,
-    //                                 'entities'  => $entity_list
-    //                                 );
-                                
-    //                         }
-    //                     }
-    //               }
-    //             print_r($my_outfit);
-    //             die();
-                    
-    // }
-
-
-
     //perticular user outfit list sent by his stylist
     public function usersoutfits($client_id = null) {
 
@@ -1017,8 +966,6 @@ If interested, I would also be happy to meet with you in our New York City based
                 
 
         $Userdata=$User->find('all',$find_array);
-        //echo $sorting;
-        //print_r($user);
         $Message = ClassRegistry::init('Message');
         
         if($user){
@@ -1052,14 +999,63 @@ If interested, I would also be happy to meet with you in our New York City based
                             }
                         }
                     }
-                    //print_r($Userdata);
-       
-                    //die;
+                    
         $this->set(compact('my_outfits','user_id','Userdata'));
         // json_encode($my_outfits);
 
     }
+   
 
+   // user outfis list optimize query
+
+    // public function usersoutfits($client_id = null) {
+    //     $User = ClassRegistry::init('User');
+    //     //Get user from session to derterminate if user is stylist
+    //     $user = $this->getLoggedUser();
+    //     $is_admin = $user["User"]["is_admin"];
+    //     $is_stylist = $user["User"]["is_stylist"];
+    //     $stylist_id = $user["User"]["stylist_id"];
+    //     $user_id = $user["User"]["id"];
+    //     $Outfit = ClassRegistry::init('Outfit');
+
+    //     $getoutfitids = $Outfit->getOutfitUserByStylist($stylist_id,$client_id);
+    //     //$entities = array();
+    //     foreach ($getoutfitids as $getoutfitid) {
+    //         $product_id[] = $getoutfitid['OutfitItem']['product_entity_id'];
+    //         $outfitnames = $getoutfitid['Outfit']['outfitname'];
+    //     }
+
+    //     $Entity = ClassRegistry::init('Entity');
+    //     $entity_list = $Entity->getMultipleByIdUser($product_id);
+    //                             $my_outfits[] = array(
+    //                                 'outfit'    => $outfitnames,
+    //                                 //'comments' =>$comments,
+    //                                 'entities'  => $entity_list
+    //                             );
+    //     //print_r($my_outfits);
+
+    //     $find_array = array(
+    //         'fields' => array('User.*,User1.*'),
+    //         'joins' => array(
+    //         array(
+    //             'conditions' => array(
+    //                 'User.id = User1.stylist_id',
+    //                 'User1.id'=>$user_id,
+    //             ),
+    //             'table' => 'users',
+    //             'alias' => 'User1',
+    //             'type' => 'INNER',
+    //         ),
+    //         ),
+    //     );
+        
+
+    // $Userdata=$User->find('all',$find_array);
+    // $this->set(compact('my_outfits','user_id','Userdata'));    
+
+
+
+    // }
 
     // outfits sorting 
 
@@ -1073,11 +1069,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];   
         $user = $User->getById($client_id);
-        
-        //echo $sorting;
-        //print_r($user);
         $Message = ClassRegistry::init('Message');
-        //$sorting = $this->->data['sorting'];
         if($this->request->is('post')){
            $sorting =  $this->request->data['sorting'];
         } else{
@@ -1086,8 +1078,6 @@ If interested, I would also be happy to meet with you in our New York City based
         if($user){
 
                         $my_conversation = $this->Message->getMyConversationWithStylistSorting($client_id,$sorting);
-                        //print_r($my_conversation);
-                        //die;
                         $my_outfits = array();
                         foreach($my_conversation as $row){
                             if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
@@ -1097,37 +1087,23 @@ If interested, I would also be happy to meet with you in our New York City based
                                 $outfitnames = $Outfit->find('all', array('conditions'=> array('Outfit.id'=>$outfit_id)));
                                 $OutfitItem = ClassRegistry::init('OutfitItem');
                                 $outfit = $OutfitItem->find('all',array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id,)));
-                                // $outfit = $OutfitItem->find('all', 
-                                //     array(
-                                //         'conditions'=>array('OutfitItem.outfit_id' => $outfit_id),
-                                //         'order'=> array('OutfitItem.created'=> $sorting,),
-                                //         ));
-
-                                //print_r($outfit);
                                 $entities = array();
                                 foreach($outfit as $value){
                                      $entities[] = $value['OutfitItem']['product_entity_id'];
-                                
                                 }
                                 $Entity = ClassRegistry::init('Entity');
-
                                 $entity_list = $Entity->getMultipleByIdUser($entities);
-                                
                                 $my_outfits[] = array(
                                     'outfit'    => $outfitnames,
                                     'comments' =>$comments,
                                     'entities'  => $entity_list
-                                    );
+                                );
                                 
                             }
                         }
                     }
-                    //print_r($my_outfits);
-       
-                    //die;
-        //$this->set(compact('my_outfits','user_id'));
         echo json_encode($my_outfits);
-
+        exit;
     }
 
     // perticular stylist total outfit list
