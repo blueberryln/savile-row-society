@@ -21,13 +21,13 @@ $(document).ready(function(){
                 html = html + '</li>';
              $.each(data,  function (index){
                 html = html + '<li>';
-                html = html + '<div class="purchase-dtls-date left">'+ this.Entity.updated +'</div>';
+                html = html + '<div class="purchase-dtls-date left">'+ this.purchase_data_sort.created +'</div>';
                 html = html + '<div class="purchase-dtls-items left">';
-            html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt=""/></div>';
-            html = html + '<div class="purchase-dtls-items-desc">'+ this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
+            html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.purchase_data_sort.imagename +'" alt=""/></div>';
+            html = html + '<div class="purchase-dtls-items-desc">'+ this.purchase_data_sort.name +'<span>'+ this.purchase_data_sort.brandname +'</span></div>';
                 html = html + '</div>';
-                html = html + '<div class="purchase-dtls-outfit left">Business Lunch</div>';
-                html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
+                html = html + '<div class="purchase-dtls-outfit left">'+ this.purchase_data_sort.outfitname +'</div>';
+                html = html + '<div class="purchase-dtls-price left">$'+ this.purchase_data_sort.price +'</div>';
                 html = html + '</li>'; 
             });
                 html = html + '</ul>';
@@ -117,13 +117,13 @@ $(document).ready(function(){
                                                    
                                                        <?php foreach ($purchases as $purchase): //print_r($purchase); ?>
                                                        <li>
-                                                            <div class="purchase-dtls-date left"><?php echo $purchase['Entity']['updated']; ?></div>
+                                                            <div class="purchase-dtls-date left"><?php echo $purchase['purchase_data']['created']; ?></div>
                                                             <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $purchase['Image'][0]['name']; ?>" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc"><?php echo $purchase['Entity']['name']; ?><span><?php echo $purchase['Brand']['name']; ?></span></div>
+                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $purchase['purchase_data']['imagename']; ?>" alt=""/></div>
+                                                                <div class="purchase-dtls-items-desc"><?php echo $purchase['purchase_data']['name']; ?><span><?php echo $purchase['purchase_data']['brandname']; ?></span></div>
                                                            </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
-                                                            <div class="purchase-dtls-price left">$<?php echo $purchase['Entity']['price']; ?></div>
+                                                            <div class="purchase-dtls-outfit left"><?php echo $purchase['purchase_data']['outfitname']; ?></div>
+                                                            <div class="purchase-dtls-price left">$<?php echo $purchase['purchase_data']['price']; ?></div>
                                                        </li> 
                                                        <?php endforeach; ?>
                                                        <!-- <li>

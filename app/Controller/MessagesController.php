@@ -1488,6 +1488,7 @@ If interested, I would also be happy to meet with you in our New York City based
             $OrderItem = ClassRegistry::init('OrderItem');
             $Entity = ClassRegistry::init('Entity'); 
             $total_purchases = $OrderItem->getTotalUserPurchaseCount($user_id);
+            
             if($total_purchases > 0){
                 $order_item_list = $OrderItem->getUniqueUserItemPurchase($user_id);
                 $entity_list = array();
@@ -1495,7 +1496,8 @@ If interested, I would also be happy to meet with you in our New York City based
                     $entity_list[] = $value['Orders']['product_entity_id'];
                     $last_item_id = $value['Orders']['order_id'];
                 }
-            $purchases = $Entity->getEntitiesByIdLikes($entity_list, $user_id);
+
+            $purchases = $Entity->getEntitiesByIdPurchaseDes($entity_list);
             
         }
         $find_array = array(
@@ -1513,7 +1515,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 ),
             );
                 
-
+        //print_r($purchases);
         $Userdata=$User->find('all',$find_array);
         $this->set(compact('purchases','user_id','Userdata'));
         

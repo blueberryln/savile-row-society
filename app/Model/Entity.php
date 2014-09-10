@@ -661,20 +661,46 @@ class Entity extends AppModel {
         $ids = join(',',$entity_list);
         $db = $this->getDataSource();
         
-                echo $sql = "Select * 
+                $sql = "Select * 
                 FROM (
-                SELECT Entity.name, Entity.id, OrderItem.created,(Image.name) as imagename ,(Brand.name) as brandname,Entity.price
+                SELECT Entity.name, Entity.id, OrderItem.created,(Image.name) as imagename ,(Brand.name) as brandname,Entity.price,Outfit.outfitname,(Outfit.id) as outfitid
                 FROM  `products_entities` AS Entity
                 INNER JOIN products_images AS Image ON Entity.id = Image.product_entity_id
                 INNER JOIN products AS Product ON Entity.product_id = Product.id
                 INNER JOIN brands AS Brand ON Product.brand_id = Brand.id
                 INNER JOIN orders_items AS OrderItem ON Entity.id = OrderItem.product_entity_id
+                INNER JOIN outfits AS Outfit ON OrderItem.outfit_id = Outfit.id
                 WHERE Entity.id
                 IN (".$ids.") 
                 GROUP BY Image.product_entity_id
                 ORDER BY OrderItem.created ".$sortingorder."
-                ) AS abc
+                ) AS purchase_data_sort
                 ORDER BY created ".$sortingorder;
+
+        $entity = $this->query($sql);
+        return $entity;
+    }
+
+
+    function getEntitiesByIdPurchaseDes($entity_list) {
+        $ids = join(',',$entity_list);
+        $db = $this->getDataSource();
+        
+                $sql = "Select * 
+                FROM (
+                SELECT Entity.name, Entity.id, OrderItem.created,(Image.name) as imagename ,(Brand.name) as brandname,Entity.price,Outfit.outfitname,(Outfit.id) as outfitid
+                FROM  `products_entities` AS Entity
+                INNER JOIN products_images AS Image ON Entity.id = Image.product_entity_id
+                INNER JOIN products AS Product ON Entity.product_id = Product.id
+                INNER JOIN brands AS Brand ON Product.brand_id = Brand.id
+                INNER JOIN orders_items AS OrderItem ON Entity.id = OrderItem.product_entity_id
+                INNER JOIN outfits AS Outfit ON OrderItem.outfit_id = Outfit.id
+                WHERE Entity.id
+                IN (".$ids.") 
+                GROUP BY Image.product_entity_id
+                ORDER BY OrderItem.created DESC
+                ) AS purchase_data
+                ORDER BY created DESC";
 
         $entity = $this->query($sql);
         return $entity;
