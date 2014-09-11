@@ -21,9 +21,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             <div class="viewport">
                  <div class="overview">
                         <ul>
-                        <?php foreach ($stylists as  $stylist): ?>
+                        <?php foreach ($stylistlist as  $stylist): ?>
                             <li><a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $stylist['User']['id']; ?>">
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylist['Stylistphotostream']['image'] ?>" width='31' height='31' alt="" /></div>
+                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
                                 <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
                             </li>
                             <?php endforeach; ?>
@@ -41,42 +41,46 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class="eleven columns container">
                     <div class="twelve columns">
                         <div class="stylistbio-profile left text-center">
-                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $find_array[0]['Stylistphotostream']['image']; ?>" width='277' height='309' alt="" /></div>
+                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $user_profile_photo; ?>" alt="" /></div>
                             <div class=" twelve columns social-networks">
                                 <ul>
-                                <?php $social = json_decode($find_array[0]['Stylistbio']['stylist_social_link'],true); ?>
-                                    <li class="pintrest"><a href="<?php echo $social['pinterest']; ?>" target="blank" title="">Printrest</a></li>
+                                <?php  $social = json_decode(isset($find_array[0]['Stylistbio']['stylist_social_link']),true); 
+                                //print_r($social);
+                                
+                                ?>
+                                    <li class="pintrest"><a href="<?php echo $social['pintrest']; ?>" target="blank" title="">Printrest</a></li>
                                     <li class="twitter"><a href="<?php echo $social['twiter']; ?>" target="blank" title="">Twitter</a></li>
                                     <li class="linkdin"><a href="<?php echo $social['linkdin']; ?>" target="blank" title="">Linkdin</a></li>
                                     <li class="facebbok"><a href="<?php echo $social['facebook']; ?>" target="blank" title="">facebook</a></li>
+                                <?php  //} ?>
                                 </ul>
                             </div>
-                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Bio</h1>
+                            <h1 class="stylistbio-heading"><?php echo $user_first_name; ?>’s Bio</h1>
                             <div class="user-desc">
-                                <?php echo $find_array[0]['Stylistbio']['stylist_bio']; ?>
+                                <?php echo isset($find_array[0]['Stylistbio']['stylist_bio']); ?>
                             </div>
-                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Inspiration</h1>
-                            <div class="user-inspire-desc"> <?php echo $find_array[0]['Stylistbio']['stylist_inspiration']; ?></div>
+                            <h1 class="stylistbio-heading"><?php echo $user_first_name; ?>’s Inspiration</h1>
+                            <div class="user-inspire-desc"> <?php echo isset($find_array[0]['Stylistbio']['stylist_inspiration']); ?></div>
                         </div>
                         <div class="stylistbio-details right">
                             <div class="twelve columns left">
-                                <div class="stylistbio-user"><?php echo $find_array[0]['User']['first_name'].'&nbsp;'.$find_array[0]['User']['last_name']; ?> | Stylist</div>
-                                <div class="start-today"><a href="javascript:;">get started with <?php echo $find_array[0]['User']['first_name']; ?> Today!</a></div>
+                                <div class="stylistbio-user"><?php echo $user_first_name.'&nbsp;'.$user_last_name; ?> | Stylist</div>
+                                <div class="start-today"><a href="javascript:;">get started with <?php echo $user_first_name; ?> Today!</a></div>
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
-                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic" \\><?php echo $find_array[0]['Stylistbio']['hometown']; ?></span></div>
-                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['funfect']; ?></span></div>
-                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php echo $find_array[0]['Stylistbio']['fashiontip']; ?></span></div>
+                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic"><?php echo isset($find_array[0]['Stylistbio']['hometown']); ?></span></div>
+                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php echo isset($find_array[0]['Stylistbio']['funfect']); ?></span></div>
+                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php echo isset($find_array[0]['Stylistbio']['fashiontip']); ?></span></div>
                                 </div>
                                 <div class="twelve columns left user-photostream">
-                                    <h1 class="stylistbio-heading photostream"><?php echo $find_array[0]['User']['first_name']; ?>’s Photostream</h1>
+                                    <h1 class="stylistbio-heading photostream"><?php echo $user_first_name; ?>’s Photostream</h1>
                                     <div class="photostream-section">
                                         <ul id="itemContainer">
                                             <?php  foreach ($stylistphoto as $stylistphoto): ?>
                                             <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $stylistphoto['Stylistphotostream']['caption']; ?>">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" alt="" />
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $stylistphoto['Stylistphotostream']['caption']; ?>">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" alt="" />
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>
@@ -86,7 +90,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     </div>
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
-                                    <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Top Outfits</h1>
+                                    <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $user_first_name; ?>’s Top Outfits</h1>
                                     <ul>
                                     <?php foreach($my_outfit as $my_outfit): ?>
                                         <li>
@@ -97,8 +101,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                         <ul>
                                                             <?php foreach($my_outfit['entities'] as $entities): ?>
                                                                 <li>
-                                                            <img src="<?php echo $this->webroot; ?>files/products/<?php echo $entities['Image'][0]['name']; ?>" height="108" width="122" />
-                                                            <div class="outfit-products-details"><?php echo $entities['Entity']['name'] ?>  $<?php echo $entities['Entity']['price']; ?></div>
+                                                            <img src="<?php echo $this->webroot; ?>files/products/<?php echo isset($entities['Image'][0]['name']); ?>" height="108" width="122" />
+                                                            <div class="outfit-products-details"><?php echo isset($entities['Entity']['name']); ?>  $<?php echo isset($entities['Entity']['price']); ?></div>
                                                         </li>
                                                             <?php endforeach; ?>
                                                         </ul>
@@ -113,8 +117,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </div>
                             </div>
                             <div class="twelve columns left bottom-section">
-                                <div class="stylistbio-user">Like <?php echo $find_array[0]['User']['first_name']; ?>’s Style?</div>
-                                <div class="start-today"><a href="javascript:;">get started with <?php echo $find_array[0]['User']['first_name']; ?> Today!</a></div>
+                                <div class="stylistbio-user">Like <?php echo $user_first_name; ?>’s Style?</div>
+                                <div class="start-today"><a href="javascript:;">get started with <?php echo $user_first_name; ?> Today!</a></div>
                             </div>
                         </div>
                     </div>

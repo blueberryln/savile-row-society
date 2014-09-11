@@ -279,11 +279,7 @@ App::uses('CakeEmail', 'Network/Email');
         $styles = $this->Style->find('all');
         $this->set('styles', $styles);  
     }
-     
-    public function stylistbioashok(){
-        
-    } 
-
+    
     public function savePhotostream() {
         $imagename = null;
         $image_type = '';
@@ -352,13 +348,22 @@ App::uses('CakeEmail', 'Network/Email');
     public function stylistbiography($id= null){
         $User = ClassRegistry::init('User');
         $Stylistbio = ClassRegistry::init('Stylistbio');
-        $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
         $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
         $Outfit = ClassRegistry::init('Outfit');
         $OutfitItem = ClassRegistry::init('OutfitItem');
-        $Entity = ClassRegistry::init('Entity');    
+        $Entity = ClassRegistry::init('Entity');
+        $user = $User->findById($id);
+        $user_profile_photo = $user['User']['profile_photo_url'];
+        $user_first_name = $user['User']['first_name'];
+        $user_last_name = $user['User']['last_name'];    
         
+        //get stylist list
+
+        $stylistlist = $User->find('all',array('conditions'=>array('User.is_stylist'=>true,),'fields'=>array('User.first_name,User.last_name,User.id,User.profile_photo_url')));
+
+
         //check data outfit start
+        
         
         $my_outfit = array();
         $stylistoutfit= $StylistTopOutfit->find('all', array('conditions'=>array('StylistTopOutfit.stylist_id'=>$id,),'order'=>'StylistTopOutfit.order_id  asc',));
@@ -377,22 +382,19 @@ App::uses('CakeEmail', 'Network/Email');
                                 'entities'  => $entity_list
                             );
         }
-        
-        
+        $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
+        $stylistphoto = $Stylistphotostream->find('all',
+            array(
+            'conditions'=>array(
+            'Stylistphotostream.stylist_id'=>$id,
+            ),
+             'fields'=>array('Stylistphotostream.image,Stylistphotostream.caption'),
+            ));
 
         //check data outfit end
 
         $find_array = $Stylistbio->find('all',array(
             'joins' => array(
-                    array(
-                        'table'=>'stylistphotostreams',
-                        'alias'=>'Stylistphotostream',
-                        'type'=>'inner',
-                        'conditions'=>array(
-                            'Stylistbio.id = Stylistphotostream.stylistbio_id',
-                            'Stylistphotostream.is_profile'=>true,
-                            ),
-                    ),
                     array(
                         'table'=>'users',
                         'alias'=>'User',
@@ -403,32 +405,12 @@ App::uses('CakeEmail', 'Network/Email');
                             ),
                     ),
                 ),
-            'fields' => array('Stylistphotostream.*,Stylistbio.*,User.*'),
+            'fields' => array('Stylistbio.*,User.*'),
             ));
             
-            $stylists = $User->find('all',array(
-                'joins' => array(
-                    array(
-                        'table'=>'stylistphotostreams',
-                        'alias'=>'Stylistphotostream',
-                        'type'=>'inner',
-                        'conditions'=>array(
-                        'User.id = Stylistphotostream.stylist_id',
-                        'User.is_stylist'=>true,
-                            ),
-                        ),
-                    ),
-                'fields'=>array('User.first_name,User.last_name,User.id,User.email,Stylistphotostream.image'),
-            ));
-        $stylistphoto = $Stylistphotostream->find('all',
-            array(
-            'conditions'=>array(
-            'Stylistphotostream.stylist_id'=>$id,
-            ),
-             'fields'=>array('Stylistphotostream.image,Stylistphotostream.caption'),
-            ));
+            
         
-        $this->set(compact('find_array','stylists','stylistphoto','my_outfit'));
+        $this->set(compact('find_array','my_outfit','stylistlist','stylistphoto','user_profile_photo','user_first_name','user_last_name'));
     }
 
     public function editbiography($id = null) {
