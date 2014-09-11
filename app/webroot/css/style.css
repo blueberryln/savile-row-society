@@ -1046,7 +1046,8 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .client-outfits-area { font-family: 'ProximaNovaCond-Regular';}
 .client-outfits-area h1 { font-size: 24px; line-height: 26px; margin-bottom: 0; color: #ac985d; padding:20px 0 10px;}
 .client-outfits-img li { display: inline-block; width: 19%; position: relative; text-align: center; vertical-align: middle; min-height: 148px; margin-bottom: 0px;}
-.client-outfits-img li .product-desc { position: absolute; top: 0px; left: 0px; width: 100%; background:rgba(235, 235, 235, 0.79); height: 80%; padding: 10% 0;}
+.client-outfits-img li .product-desc { opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; background:rgba(235, 235, 235, 0.79); height: 80%; padding: 10% 0;}
+.client-outfits-img li .product-desc:hover { opacity: 1;}
 .client-outfits-img li .product-desc span { width: 80%; padding: 0px 10%; float: left; text-align: left; font-family: 'ProximaNovaCond-Regular'; font-size: 13px; line-height: 18px; color: #444444;}
 .client-outfits-img li .product-desc span.product-brand { font-style: italic;}
 .client-outfits-img li .product-desc span.product-price { color: #af9a59;}

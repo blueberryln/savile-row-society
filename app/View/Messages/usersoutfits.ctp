@@ -1,31 +1,31 @@
 <?php
-//if($user_id){   
+if($user_id){   
 ?>
 <script type="text/javascript">
- // $(document).ready(function(){
- //    $(".thumb-icon").click(function(e) {
- //        e.preventDefault();
- //        $this = $(this);
- //        var productBlock = $this.closest(".bottm-links");
- //        var productId = productBlock.find("#product_id").val();
- //        var outfit_id = productBlock.find("#outfit_id").val();
- //            $.ajax({
- //                type:"POST",
- //                url : "<?php echo $this->request->webroot; ?>api/wishlist/save",
- //                data:{product_id: productId,outfit_id:outfit_id},
- //                cache: false,
- //                success: function(result){
- //                //$(".thumb-icon").addClass('thumb-icon-like');           
- //               }
- //            });
- //    });
- // });
+ $(document).ready(function(){
+    $(".thumb-icon").click(function(e) {
+        e.preventDefault();
+        $this = $(this);
+        var productBlock = $this.closest(".bottm-links");
+        var productId = productBlock.find("#product_id").val();
+        var outfit_id = productBlock.find("#outfit_id").val();
+            $.ajax({
+                type:"POST",
+                url : "<?php echo $this->request->webroot; ?>api/wishlist/save",
+                data:{product_id: productId,outfit_id:outfit_id},
+                cache: false,
+                success: function(result){
+                //$(".thumb-icon").addClass('thumb-icon-like');           
+               }
+            });
+    });
+ });
 </script>   
 <?php
-// }
-// $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
-// $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
-// $this->Html->meta('description', 'First mover', array('inline' => false));
+}
+//$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
+$this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
+$this->Html->meta('description', 'First mover', array('inline' => false));
 ?>
 <?php
 $script = '
@@ -35,12 +35,13 @@ $(document).ready(function(){
         e.preventDefault();
         var productBlock = $(this).closest(".outfit-page-item"),
             productQuantity = productBlock.find("select.product-quantity").val(),
-            productSize = productBlock.find("#").val();
-            var id = $(this).data("product_id");
+            productSize = productBlock.find(".product-size").val();
+            //var id = $(this).data("product_id");
+            var id = productBlock.find(".product-id").val();
             var quantity = parseInt(productQuantity) + 1;
             var size = productSize;
         
-        $.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: quantity, product_size: size },
+        $.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: 1, product_size: 23 },
             function(data) {
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
@@ -55,14 +56,8 @@ $(document).ready(function(){
     });
     
     
-    
-        
-
-    
 });
 ';
-$this->Html->script("jquery.elevateZoom-3.0.8.min.js", array('inline' => false));
-$this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $this->Html->script("jquery.colorbox-min.js", array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->css('colorbox', null, array('inline' => false));
@@ -205,9 +200,10 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                                 <span class="product-price">$<?php echo $my_outfit['entities'][0]['Entity']['price']; ?></span>
                                                                 <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">Details</a></span>
                                                                 <span class="bottm-links outfit-page-item">
-                                                                    <a class="add-to-cart link-btn gold-btn add-to-cart full-width text-center" data-product_id="<?php echo $my_outfit['entities'][0]['Entity']['id']; ?>" href="" title="">Add to Cart +</a>
+                                                                    <a class="add-to-cart" data-product_id="<?php echo $my_outfit['entities'][0]['Entity']['id']; ?>" href="" title="">Add to Cart +</a>
                                                                     
-                                                                    <input type="hidden" id="product_id" value="<?php echo $my_outfit['entities'][0]['Entity']['id']; ?>"> 
+                                                                    <input type="hidden" id="product_id" class="product-id" value="<?php echo $my_outfit['entities'][0]['Entity']['id']; ?>">
+                                                                    <!-- <input type="hidden" id="product-size" class="product-size" value="<?php echo $my_outfit['entities'][0]['OutfitItem']['size_id']; ?>">  -->
                                                                     <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
                                                                     <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
                                                                     

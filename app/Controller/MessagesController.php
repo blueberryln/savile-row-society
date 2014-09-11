@@ -984,6 +984,7 @@ If interested, I would also be happy to meet with you in our New York City based
                                 $entities = array();
                                 foreach($outfit as $value){
                                      $entities[] = $value['OutfitItem']['product_entity_id'];
+                                     
                                 
                                 }
                                 $Entity = ClassRegistry::init('Entity');
@@ -993,13 +994,15 @@ If interested, I would also be happy to meet with you in our New York City based
                                 $my_outfits[] = array(
                                     'outfit'    => $outfitnames,
                                     'comments' =>$comments,
+                                    
                                     'entities'  => $entity_list
                                     );
                                 
                             }
                         }
                     }
-                    
+                    // print_r($my_outfits);
+                    // die;
         $this->set(compact('my_outfits','user_id','Userdata'));
         // json_encode($my_outfits);
 
