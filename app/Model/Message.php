@@ -209,6 +209,34 @@ class Message extends AppModel {
                     'limit' => 20
         ));
     }
+
+
+    public function getMyConversationWithStylist($user_id_with){
+        return $this->find('all', array(
+                    'conditions' => array('AND' =>
+                        array(
+                            'OR' => array('Message.user_to_id' => $user_id_with, 'Message.user_from_id' => $user_id_with)
+                        )
+                    ),
+            
+                    'contain' => array('UserFrom'),
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                    ),
+        ));
+    }
+
+
+    //bhashit for outfit sorting
+    public function getMyConversationWithStylistSorting($user_id_with,$sorting){
+         return $this->find('all', array(
+                    'conditions' => array('Message.user_to_id' => $user_id_with, 'Message.is_outfit' => 1,),
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id',
+                    ),
+                    'order' =>  array('Message.created' => $sorting,),
+        ));
+    }
     
     public function getUserWriteToMe($id){
         return $this->find('list', array( 

@@ -115,15 +115,16 @@
                 <div class="eleven columns container">
                     <div class="sixteen columns copyright left footer-buttons">
                         <ul>
-<!--                            <li class="vip-access"><a href="" id="block-vip-access">VIP ACCESS</a></li>-->
-                            <li><a class="vip-link footer-bnt" href="javascript:;" title="">VIP Access</a></li>
+                        <?php if(!$is_logged) : ?>
+                            <li><a class="vip-link footer-bnt" href="" id="block-vip-access" >VIP Access</a></li>
+                        <?php endif; ?>
                             <li><a class="blog-link footer-bnt" href="javascript:;" title="">Blog</a></li>
                         </ul>
                         
                     </div>
                     <div class="menu right four columns">
                         <ul>
-                            <li><a href="<?php echo $this->request->webroot; ?>company">About us</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>#two">About us</a></li>
                             <!-- <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li> -->
                             <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>company/privacy">Privacy</a></li>

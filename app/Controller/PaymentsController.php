@@ -14,15 +14,15 @@ class PaymentsController extends AppController {
 
     function beforeFilter() {
         
-        if (!$this->request->is('ssl')) {
-            $this->forceSSL();
-        }  
+        // if (!$this->request->is('ssl')) {
+        //     $this->forceSSL();
+        // }  
     }
 
 
-    public function forceSSL() {
-        $this->redirect('https://' . $_SERVER['SERVER_NAME'] . $this->here);
-    }
+    // public function forceSSL() {
+    //     $this->redirect('https://' . $_SERVER['SERVER_NAME'] . $this->here);
+    // }
     public function unForceSSL() {
         $this->redirect('http://' . $_SERVER['SERVER_NAME'] . $this->here);
     }

@@ -276,6 +276,56 @@ class Entity extends AppModel {
         return $this->find('all', $find_array);
     }
 
+//for users outfits
+    function getMultipleByIdUser($id, $user_id=null) {
+        $find_array = array(
+            'contain' => array('Image','Wishlist'),
+            'conditions' => array('Entity.id' => $id),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ),
+                // array('table' => 'outfits_items',
+                //     'alias' => 'OutfitItem',
+                //     'type' => 'LEFT',
+                //     'conditions' => array(
+                //         'Entity.product_id = OutfitItem.product_entity_id',
+                //     )
+                // ),          
+            ), 
+            'fields' => array(
+                //'Entity.*', 'Product.*', 'Brand.*','OutfitItem.size_id',
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+        );
+        
+        if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                    'alias' => 'Wishlist',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Wishlist.user_id' => $user_id,
+                        'Wishlist.product_entity_id = Entity.id'
+                    )
+                );
+            
+            $find_array['fields'][] = 'Wishlist.*'; 
+        }
+        
+        return $this->find('all', $find_array);
+    }
+
     function getCategory($id){
         return $this->find('first', array(
                 'conditions' => array('Entity.id' => $id),
@@ -476,6 +526,184 @@ class Entity extends AppModel {
         return $entity;
     }
 
+
+    function getEntitiesByIdLikes($entity_list, $user_id = null) {
+        $find_array = array(
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+
+              
+            ),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+            'order' => array('FROM_UNIXTIME(Wishlist.created) DESC'),
+
+           
+        );
+        
+       
+        if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.user_id' => $user_id,
+                                            'Wishlist.product_entity_id = Entity.id'
+                                        ),
+                                        
+                                        
+                                    );
+        $find_array['joins'][] = array('table' => 'outfits',
+                    'alias' => 'Outfit',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = Wishlist.outfit_id',
+                    )
+                );
+
+            
+        
+            $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Outfit.*';
+
+             
+        }
+        
+        $entity = $this->find('all', $find_array);
+        //print_r($entity);
+        return $entity;
+    }
+
+    function getEntitiesByIdLikesAsc($entity_list, $user_id = null,$sortingorder) {
+        
+        $find_array = array(
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+            ),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+            'order' => array('FROM_UNIXTIME(Wishlist.created)' => $sortingorder),
+            
+        );
+        
+        
+        if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.user_id' => $user_id,
+                                            'Wishlist.product_entity_id = Entity.id'
+                                        ),
+                                        
+                                    );
+            $find_array['joins'][] = array('table' => 'outfits',
+                    'alias' => 'Outfit',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = Wishlist.outfit_id',
+                    )
+                );
+
+            
+            $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Outfit.*';
+             
+        }
+        
+    $entity = $this->find('all', $find_array);
+
+        return $entity;
+    }
+
+
+    function getEntitiesByIdPurchaseSorting($entity_list,$sortingorder) {
+        $ids = join(',',$entity_list);
+        $db = $this->getDataSource();
+        
+                $sql = "Select * 
+                FROM (
+                SELECT Entity.name, Entity.id, OrderItem.created,(Image.name) as imagename ,(Brand.name) as brandname,Entity.price,Outfit.outfitname,(Outfit.id) as outfitid
+                FROM  `products_entities` AS Entity
+                INNER JOIN products_images AS Image ON Entity.id = Image.product_entity_id
+                INNER JOIN products AS Product ON Entity.product_id = Product.id
+                INNER JOIN brands AS Brand ON Product.brand_id = Brand.id
+                INNER JOIN orders_items AS OrderItem ON Entity.id = OrderItem.product_entity_id
+                INNER JOIN outfits AS Outfit ON OrderItem.outfit_id = Outfit.id
+                WHERE Entity.id
+                IN (".$ids.") 
+                GROUP BY Image.product_entity_id
+                ORDER BY OrderItem.created ".$sortingorder."
+                ) AS purchase_data_sort
+                ORDER BY created ".$sortingorder;
+
+        $entity = $this->query($sql);
+        return $entity;
+    }
+
+
+    function getEntitiesByIdPurchaseDes($entity_list) {
+        $ids = join(',',$entity_list);
+        $db = $this->getDataSource();
+        
+                $sql = "Select * 
+                FROM (
+                SELECT Entity.name, Entity.id, OrderItem.created,(Image.name) as imagename ,(Brand.name) as brandname,Entity.price,Outfit.outfitname,(Outfit.id) as outfitid
+                FROM  `products_entities` AS Entity
+                INNER JOIN products_images AS Image ON Entity.id = Image.product_entity_id
+                INNER JOIN products AS Product ON Entity.product_id = Product.id
+                INNER JOIN brands AS Brand ON Product.brand_id = Brand.id
+                INNER JOIN orders_items AS OrderItem ON Entity.id = OrderItem.product_entity_id
+                INNER JOIN outfits AS Outfit ON OrderItem.outfit_id = Outfit.id
+                WHERE Entity.id
+                IN (".$ids.") 
+                GROUP BY Image.product_entity_id
+                ORDER BY OrderItem.created DESC
+                ) AS purchase_data
+                ORDER BY created DESC";
+
+        $entity = $this->query($sql);
+        return $entity;
+    }
+
     function getCloset($parent_categories){
         return $this->find('all', array(
             'conditions' => array('Entity.show' => true),
@@ -583,6 +811,7 @@ class Entity extends AppModel {
             ),
         ));
     }
+
     
     function getEntityStockAvailable($entity_id){
         $find_array = array(

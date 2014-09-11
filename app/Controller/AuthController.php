@@ -50,9 +50,11 @@ App::uses('CakeEmail', 'Network/Email');
                 }
                 if($user['User']['is_skype']==true){
                    $user['User']['is_skype']='1'; 
+                }else{
+                    $user['User']['is_skype']='0'; 
                 }
                 if($user['User']['is_srs_msg']==true){
-                   $user['User']['is_srs_msg']='1'; 
+                   $user['User']['is_srs_msg']=1; 
                 }
 
                 if($image = $this->saveImage()){

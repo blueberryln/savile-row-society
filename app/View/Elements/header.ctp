@@ -26,7 +26,7 @@
 
         <!--Logo Section-->
         <div class="header-logo left">
-            <a href="#one" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <a href="/#one" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
             <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
         </div>
         <!--Logo Section Ends-->
@@ -104,15 +104,15 @@
                                 <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                             <?php endif; ?>
                             <?php if ($is_stylist) : ?>
-                                <li><a href="<?php echo $this->request->webroot; ?>Auth/stylistbio/<?php echo $user['User']['id']; ?>">Stylist Biography</a></li>
+                                <li><a href="<?php echo $this->request->webroot; ?>Auth/editbiography/<?php echo $user['User']['id']; ?>">Stylist Biography</a></li>
                             <?php endif; ?>
                             
                             <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>mycloset/liked" class="headerMenu">My Closet</a></li>
                             <!-- <li><a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="headerMenu">Profile</a></li> -->
                             <li>
-
-                            <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="headerMenu">Profile</a></li>
+                            <a href="<?php echo $this->request->webroot; ?>messages/userprofiles/<?php echo $user['User']['id']; ?>" class="headerMenu">Profile</a></li>
+                            <!-- <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="headerMenu">Profile</a></li> -->
                             <li><a href="<?php echo $this->request->webroot; ?>refer-a-friend" class="headerMenu">Refer a friend</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
                         </ul>
@@ -132,11 +132,11 @@
         <!--Menu Section-->
         <div class="menu right">            
             <ul> 
-                <li><a href="#two" title="">About</a></li>
-                <li><a href="#three" title="">Sylists</a></li>
-                <li><a href="#four" title="">Outfits</a></li>
-                <li><a href="#five" title="">Style on your time</a></li>
-                <li><a href="#six" title="">Brands</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two" title="">About</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three" title="">Sylists</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#four" title="">Outfits</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#five" title="">Style on your time</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#six" title="">Brands</a></li>
                 <!--<li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
 
                 <?php if($is_logged && $has_stylist && !$is_stylist) : ?>

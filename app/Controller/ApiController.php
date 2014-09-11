@@ -33,6 +33,7 @@ class ApiController extends AppController {
         // save wishlist item
         if ($user_id && $param && $param == 'save') {
             $product_id = $this->request->data['product_id'];
+            $outfit_id = $this->request->data['outfit_id'];
 
             $error = false;
             $Dislike = ClassRegistry::init('Dislike');
@@ -53,7 +54,7 @@ class ApiController extends AppController {
             
             if($this->request->is('ajax') && !$error) {
                 // get posted product id
-                $wishlist = $Wishlist->get($user_id, $product_id);
+                $wishlist = $Wishlist->get($user_id, $product_id, $outfit_id);
                 //bhashit code
                 $User = ClassRegistry::init('User');
                 $stylistid = $User->getByID($user_id);
@@ -70,18 +71,20 @@ class ApiController extends AppController {
                     //bhashit code
                     $wishlist['Wishlist']['user_id'] = $user_id;
                     $wishlist['Wishlist']['product_entity_id'] = $product_id;
+                    $wishlist['Wishlist']['outfit_id'] = $outfit_id;
 
                     $Wishlist->create();
                     if ($Wishlist->save($wishlist)) {
                         //Check if present in likes
                         
-                       $like = $Like->get($user_id, $product_id);
+                       $like = $Like->get($user_id, $product_id, $outfit_id);
                         if(!$like){
                             //bhashitcode
                             $like['Like']['post_id'] = $post_id;
                             //bhashitcode end
                             $like['Like']['user_id'] = $user_id;
-                            $like['Like']['product_entity_id'] = $product_id;   
+                            $like['Like']['product_entity_id'] = $product_id;
+                            $like['Like']['outfit_id'] = $outfit_id;   
                             $Like->create(); 
                             $Like->save($like); 
                         }
@@ -243,7 +246,7 @@ class ApiController extends AppController {
         $this->autoRender = false;
         
         $ret = array();
-        
+
         // init
         $Entity = ClassRegistry::init('Entity');
         $user_id = $this->getLoggedUserID();
@@ -259,7 +262,9 @@ class ApiController extends AppController {
                     // Get product Entity ID and Get the information for the entity
                     $entity_id = $this->request->data['product_id'];
                     $entity = $Entity->getById($entity_id, $user_id);
-                    
+                    //print_r($entity);
+                    //print_r($ret);
+                    //exit;   
                     //Prepare data array for adding cart information
                     if($entity['Entity']['is_gift']){
                         $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
@@ -300,6 +305,7 @@ class ApiController extends AppController {
                             $existing_item['CartItem']['quantity'] = intval($existing_item['CartItem']['quantity']) + $new_quantity;
                             
                             if($result = $CartItem->save($existing_item)){
+                               
                                 $ret['status'] = 'ok';    
                             }
                             else{
@@ -310,7 +316,11 @@ class ApiController extends AppController {
                             $data['CartItem']['cart_id'] = $result['Cart']['id'];
                             $cart_id = $result['Cart']['id'];
                             $CartItem->create();
+                            
                             if($result = $CartItem->save($data)){
+                                print_r($entity['Entity']['id']);
+                                exit;
+                        
                                 $ret['status'] = 'ok';    
                             }
                             else{
@@ -327,6 +337,7 @@ class ApiController extends AppController {
                         $cart_id = $result['Cart']['id'];
                         $CartItem->create();
                         if($result = $CartItem->save($data)){
+                            
                             $ret['status'] = 'ok';    
                         }
                         else{
@@ -381,6 +392,7 @@ class ApiController extends AppController {
                     }
                     
                     echo json_encode($ret);
+                   
                     exit;
                 }
             } 
