@@ -273,7 +273,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                   $(".stylistbio-section-left").animate({left:'0px'}, 1000);
                 });
                 
-                $(".stylistbion-arrow img").click(function(){
+                $("img.back-for-mobile").click(function(){
                     $("a.open-left-pannel").show(1000);
                     $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
                 });
@@ -362,10 +362,10 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.outfit-products-details').css('opacity', 0);  
                 $('.outfit-products li').hover(  
                    function(){  
-                      $(this).find('.outfit-products-details').stop().fadeTo('slow', 1);  
+                      $(this).find('.outfit-products-details').stop().fadeTo('', 1);  
                    },  
                    function(){  
-                      $(this).find('.outfit-products-details').stop().fadeTo('slow', 0);  
+                      $(this).find('.outfit-products-details').stop().fadeTo('', 0);  
                    });
                 
                
@@ -395,7 +395,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             });
             
             
-             $(".stylistbion-arrow img").click(function(){
+             $(".stylistbion-arrow img.back-for-mobile").click(function(){
                     $("a.open-left-pannel").show(1000);
                     $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
                 });
@@ -436,10 +436,24 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.stylist-insp-edit').fadeIn();
             });
             
+            $('.beachday-content-update1').click(function(){
+                $('.beachday-update1').fadeIn();
+            });
+            $('.beachday-content-update2').click(function(){
+                $('.beachday-update2').fadeIn();
+            });
+            $('.beachday-content-update3').click(function(){
+                $('.beachday-update3').fadeIn();
+            });
+            
             
             
             $('.edit-save-btn, .cancel-btn').click(function(){
-                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit').fadeOut();
+                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3').fadeOut();
+            });
+            
+            $('.edit-outfit-section').click (function(){
+                $('.edit-beachday-section').toggle();
             });
             
             
