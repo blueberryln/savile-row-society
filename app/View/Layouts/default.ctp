@@ -124,7 +124,7 @@
                     </div>
                     <div class="menu right four columns">
                         <ul>
-                            <li><a href="<?php echo $this->request->webroot; ?>company">About us</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>#two">About us</a></li>
                             <!-- <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li> -->
                             <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>company/privacy">Privacy</a></li>

@@ -40,6 +40,8 @@ $(document).ready(function(){
             var id = productBlock.find(".product-id").val();
             var quantity = parseInt(productQuantity) + 1;
             var size = productSize;
+            alert(id);
+            
         
         $.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: 1, product_size: 23 },
             function(data) {
@@ -52,6 +54,7 @@ $(document).ready(function(){
                     signUp();       
                 }
             }
+        
         );
     });
     
@@ -91,9 +94,11 @@ $this->Html->css('colorbox', null, array('inline' => false));
                         html = html + '<span class="product-brand">'+ entitiesData[index1].Brand.name +'</span>';
                         html = html + '<span class="product-price">$'+ entitiesData[index1].Entity.price +'</span>';
                         html = html + '<span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/'+ outfitData.Outfit.id +'" title="">Details</a></span>';
-                        html = html + '<span class="bottm-links">';
-                        html = html + '<a class="add-to-cart"  href="javascript:;" title="">Add to Cart +</a>';
-                        html = html + '<img class="thumb-icon" src="<?php echo $this->webroot; ?>images/thumb-icon.png" alt="" />';
+                        html = html + '<span class="bottm-links outfit-page-item">';
+                        html = html + '<a class="add-to-cart"  data-product_id="'+ entitiesData[index1].Entity.id +'" href="">Add to Cart +</a>';
+                        html = html +'<input type="hidden" id="product_id" class="product-id" value="'+ entitiesData[index1].Entity.id +'">';
+                        html = html +'<input type="hidden" id="outfit_id" class="outfit_id" value="'+ outfitData.Outfit.id +'">';
+                        html = html + '<a id="'+ entitiesData[index1].Entity.id +'-'+ outfitData.Outfit.user_id +'" class="thumb-icon" /></a>';
                         html = html + '</span>';
                         html = html + '</div>';
                         html = html + '</li>';
@@ -205,7 +210,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                                     <input type="hidden" id="product_id" class="product-id" value="<?php echo $my_outfit['entities'][0]['Entity']['id']; ?>">
                                                                     <!-- <input type="hidden" id="product-size" class="product-size" value="<?php echo $my_outfit['entities'][0]['OutfitItem']['size_id']; ?>">  -->
                                                                     <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
-                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
+                                                                    <!-- <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>">  -->
                                                                     
                                                                 <?php //foreach ($my_outfit['entities'][0] as $wishllist ) : 
                                                                  ?>

@@ -88,7 +88,7 @@ class PagesController extends AppController {
         $Image = ClassRegistry::init('Image');
         $User = ClassRegistry::init('User');
         $OutfitItem = ClassRegistry::init('OutfitItem');
-        $r = $Highlightoutfit->find('all', array('order' => 'Highlightoutfit.order_id asc','limit'=>'10'));
+        $r = $Highlightoutfit->find('all', array('order' => 'Highlightoutfit.order_id asc','limit'=>'6'));
 
         $my_outfit = array();
         foreach($r as $row){

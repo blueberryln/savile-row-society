@@ -26,7 +26,7 @@
 
         <!--Logo Section-->
         <div class="header-logo left">
-            <a href="#one" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <a href="/#one" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
             <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
         </div>
         <!--Logo Section Ends-->
@@ -132,11 +132,11 @@
         <!--Menu Section-->
         <div class="menu right">            
             <ul> 
-                <li><a href="#two" title="">About</a></li>
-                <li><a href="#three" title="">Sylists</a></li>
-                <li><a href="#four" title="">Outfits</a></li>
-                <li><a href="#five" title="">Style on your time</a></li>
-                <li><a href="#six" title="">Brands</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two" title="">About</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three" title="">Sylists</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#four" title="">Outfits</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#five" title="">Style on your time</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#six" title="">Brands</a></li>
                 <!--<li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
 
                 <?php if($is_logged && $has_stylist && !$is_stylist) : ?>

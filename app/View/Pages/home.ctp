@@ -335,7 +335,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <ul class="slider1">
                     <?php foreach($topstylists as $topstylist): ?>
                     <li>
-                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>" width="220" height="220" />
+                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />
                         <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
                             <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
                             <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
@@ -424,7 +424,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                     <li>
                         <div class="shop-outfit left">
                             <div class="shop-outfit-top">
-                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $topoutfit['stylistimage']['User']['profile_photo_url']; ?>"  width="215" height="173" /></div>
+                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $topoutfit['stylistimage']['User']['profile_photo_url']; ?>"  /></div>
                                 <div class="outfit-top-content left">
                                     <div class="outfit-month"><?php echo $topoutfit['outfit']['Outfit']['outfitname']; ?></div>                                    
                                     <div class="outfit-brand">Styled by <span class="outfit-brand-name"><?php echo $topoutfit['stylistname']['User']['first_name']; ?></span></div>
@@ -537,7 +537,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                     </li>
                     
                 </ul>
-                <a class="style-time-link" href="javascript:;" title="">Come visit your stylist at our NYC showroom.</a>
+                <a class="style-time-link" href="http://www.savilerowsociety.com/contact" title="">Come visit your stylist at our NYC showroom.</a>
             </div>
         </div>
     </div>
@@ -563,7 +563,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                     <li><img src="<?php echo $this->webroot; ?>images/branding-partners/tateossian_new.png" alt="" /></li>
                 </ul>
             </div>
-            <a class="brands-link" href="javascript:;" title="">See &amp; Learn More about Our Brands</a>
+            <a class="brands-link" href="<?php echo $this->webroot; ?>company/brands" title="">See &amp; Learn More about Our Brands</a>
         </div>
     </div>
                         

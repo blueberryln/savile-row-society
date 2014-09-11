@@ -246,7 +246,7 @@ class ApiController extends AppController {
         $this->autoRender = false;
         
         $ret = array();
-        
+
         // init
         $Entity = ClassRegistry::init('Entity');
         $user_id = $this->getLoggedUserID();
@@ -263,6 +263,8 @@ class ApiController extends AppController {
                     $entity_id = $this->request->data['product_id'];
                     $entity = $Entity->getById($entity_id, $user_id);
                     //print_r($entity);
+                    //print_r($ret);
+                    //exit;   
                     //Prepare data array for adding cart information
                     if($entity['Entity']['is_gift']){
                         $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
@@ -303,8 +305,7 @@ class ApiController extends AppController {
                             $existing_item['CartItem']['quantity'] = intval($existing_item['CartItem']['quantity']) + $new_quantity;
                             
                             if($result = $CartItem->save($existing_item)){
-                                print_r($result);
-                                exit;
+                               
                                 $ret['status'] = 'ok';    
                             }
                             else{
@@ -315,8 +316,11 @@ class ApiController extends AppController {
                             $data['CartItem']['cart_id'] = $result['Cart']['id'];
                             $cart_id = $result['Cart']['id'];
                             $CartItem->create();
+                            
                             if($result = $CartItem->save($data)){
-
+                                print_r($entity['Entity']['id']);
+                                exit;
+                        
                                 $ret['status'] = 'ok';    
                             }
                             else{
@@ -333,6 +337,7 @@ class ApiController extends AppController {
                         $cart_id = $result['Cart']['id'];
                         $CartItem->create();
                         if($result = $CartItem->save($data)){
+                            
                             $ret['status'] = 'ok';    
                         }
                         else{
