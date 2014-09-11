@@ -970,8 +970,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 ),
                 ),
             );
-                
-
+        
         $Userdata=$User->find('all',$find_array);
         $Message = ClassRegistry::init('Message');
         
@@ -1634,11 +1633,7 @@ If interested, I would also be happy to meet with you in our New York City based
             }
 
             $this->set(compact('entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata'));
-            //print_r($entities);
-        //}
-        //else{
-            //$this->redirect('/messages/usersoutfits/'.$user_id);
-        //}
+           
     }
 
     public function userprofiles($user_id = null) {

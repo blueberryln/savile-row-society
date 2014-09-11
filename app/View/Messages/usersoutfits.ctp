@@ -3,8 +3,9 @@ if($user_id){
 ?>
 <script type="text/javascript">
  $(document).ready(function(){
-    $(".thumb-icon").click(function(e) {
+    $(document).on("click", ".thumb-icon", function(e) {
         e.preventDefault();
+        alert('hi');
         $this = $(this);
         var productBlock = $this.closest(".bottm-links");
         var productId = productBlock.find("#product_id").val();
@@ -15,7 +16,8 @@ if($user_id){
                 data:{product_id: productId,outfit_id:outfit_id},
                 cache: false,
                 success: function(result){
-                //$(".thumb-icon").addClass('thumb-icon-like');           
+                //$(".thumb-icon").addClass('thumb-icon-like');
+
                }
             });
     });
@@ -31,12 +33,11 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
 $script = '
 $(document).ready(function(){  
     
-    $(".add-to-cart").click(function(e) {
+    $(document).on("click",".add-to-cart", function(e) {
         e.preventDefault();
         var productBlock = $(this).closest(".outfit-page-item"),
             productQuantity = productBlock.find("select.product-quantity").val(),
             productSize = productBlock.find(".product-size").val();
-            //var id = $(this).data("product_id");
             var id = productBlock.find(".product-id").val();
             var quantity = parseInt(productQuantity) + 1;
             var size = productSize;
@@ -94,11 +95,11 @@ $this->Html->css('colorbox', null, array('inline' => false));
                         html = html + '<span class="product-brand">'+ entitiesData[index1].Brand.name +'</span>';
                         html = html + '<span class="product-price">$'+ entitiesData[index1].Entity.price +'</span>';
                         html = html + '<span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/'+ outfitData.Outfit.id +'" title="">Details</a></span>';
-                        html = html + '<span class="bottm-links outfit-page-item">';
-                        html = html + '<a class="add-to-cart"  data-product_id="'+ entitiesData[index1].Entity.id +'" href="">Add to Cart +</a>';
+                        html = html + '<span class="bottm-links outfit-page-item ">';
+                        html = html + '<a class="add-to-cart"  data-product_id="'+ entitiesData[index1].Entity.id +'" href="" title="">Add to Cart +</a>';
                         html = html +'<input type="hidden" id="product_id" class="product-id" value="'+ entitiesData[index1].Entity.id +'">';
                         html = html +'<input type="hidden" id="outfit_id" class="outfit_id" value="'+ outfitData.Outfit.id +'">';
-                        html = html + '<a id="'+ entitiesData[index1].Entity.id +'-'+ outfitData.Outfit.user_id +'" class="thumb-icon" /></a>';
+                        html = html + '<a id="'+ entitiesData[index1].Entity.id +'-'+ outfitData.Outfit.user_id +'" class="thumb-icon" href="#"/></a>';
                         html = html + '</span>';
                         html = html + '</div>';
                         html = html + '</li>';
@@ -208,12 +209,10 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                                     <a class="add-to-cart" data-product_id="<?php echo $my_outfit['entities'][0]['Entity']['id']; ?>" href="" title="">Add to Cart +</a>
                                                                     
                                                                     <input type="hidden" id="product_id" class="product-id" value="<?php echo $my_outfit['entities'][0]['Entity']['id']; ?>">
-                                                                    <!-- <input type="hidden" id="product-size" class="product-size" value="<?php echo $my_outfit['entities'][0]['OutfitItem']['size_id']; ?>">  -->
-                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
-                                                                    <!-- <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>">  -->
                                                                     
-                                                                <?php //foreach ($my_outfit['entities'][0] as $wishllist ) : 
-                                                                 ?>
+                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
+                                                                   
+                                                                    
                                                                 <a href="#" id="<?php echo $my_outfit['entities'][0]['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon"></a>
                                                                 
                                                                 

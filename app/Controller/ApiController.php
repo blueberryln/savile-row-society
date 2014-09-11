@@ -318,8 +318,7 @@ class ApiController extends AppController {
                             $CartItem->create();
                             
                             if($result = $CartItem->save($data)){
-                                print_r($entity['Entity']['id']);
-                                exit;
+                                
                         
                                 $ret['status'] = 'ok';    
                             }
