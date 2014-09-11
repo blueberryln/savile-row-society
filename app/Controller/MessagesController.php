@@ -940,7 +940,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
     //perticular user outfit list sent by his stylist
     public function usersoutfits($client_id = null) {
-
+        $this->isLogged();
         $User = ClassRegistry::init('User');
         
         //Get user from session to derterminate if user is stylist
@@ -949,6 +949,13 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];   
         $user = $User->getById($client_id);
+        $current_user = $this->getLoggedUser();
+
+        if($client_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
+
         $find_array = array(
                 'fields' => array('User.*,User1.*'),
                 'joins' => array(
@@ -1403,12 +1410,18 @@ If interested, I would also be happy to meet with you in our New York City based
     }
     
     public function userLikes($user_id = null){
+        $this->isLogged();
          $User= ClassRegistry::init('User');
          $user = $User->findById($user_id);
+
          $stylist_id = $user['User']['stylist_id'];
-         //print_r($stylist_id);  
-        //echo $user_id;
-        
+         
+        $current_user = $this->getLoggedUser();
+
+        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
         $find_array = array(
                 'fields' => array('User.*,User1.*'),
                 'joins' => array(
@@ -1462,8 +1475,15 @@ If interested, I would also be happy to meet with you in our New York City based
     }
 
     public function userPurchases($user_id = null){
-
+            $this->isLogged();
             $User= ClassRegistry::init('User');
+            $user = $User->getById($user_id);
+            $current_user = $this->getLoggedUser();
+
+            if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+                $this->redirect('/');
+                exit;
+            }
             $OrderItem = ClassRegistry::init('OrderItem');
             $Entity = ClassRegistry::init('Entity'); 
             $total_purchases = $OrderItem->getTotalUserPurchaseCount($user_id);
@@ -1527,13 +1547,37 @@ If interested, I would also be happy to meet with you in our New York City based
     }
 
     public function outfitdetails($outfit_id = null) {
-       
+        $this->isLogged();
         $User = ClassRegistry::init('User');
-        //Get user from session to derterminate if user is stylist
         $user = $this->getLoggedUser();
         $user_id = $user["User"]["id"]; 
+        $user = $User->findById($user_id);
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
+        
+         $current_user = $this->getLoggedUser();
+        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
+        //Get user from session to derterminate if user is stylist
+        $find_array = array(
+                'fields' => array('User.*,User1.*'),
+                'joins' => array(
+                array(
+                    'conditions' => array(
+                        'User.id = User1.stylist_id',
+                        'User1.id'=>$user_id,
+                    ),
+                    'table' => 'users',
+                    'alias' => 'User1',
+                    'type' => 'INNER',
+                ),
+                ),
+            );
+                
+        //print_r($purchases);
+        $Userdata=$User->find('all',$find_array);
         $Outfit = ClassRegistry::init('Outfit');
         $outfitname = $Outfit->findById($outfit_id);
         $OutfitItem = ClassRegistry::init('OutfitItem');
@@ -1589,7 +1633,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 $this->Session->delete('cart-three-items-msg');
             }
 
-            $this->set(compact('entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg'));
+            $this->set(compact('entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata'));
             //print_r($entities);
         //}
         //else{
@@ -1598,9 +1642,16 @@ If interested, I would also be happy to meet with you in our New York City based
     }
 
     public function userprofiles($user_id = null) {
-        //echo $user_id;
+        $this->isLogged();
         $User = ClassRegistry::init('User');
         $user = $User->findById($user_id);
+
+        $current_user = $this->getLoggedUser();
+
+        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
         //print_r($user);
         $stylist_id = $user['User']['stylist_id'];
         $find_array = array(

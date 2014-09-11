@@ -74,7 +74,7 @@ $(document).ready(function(){
                     <div class="twelve columns left inner-content pad-none">
                         <div class="inner-left left">
                             <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>" height="134" width="148" alt=""/></div>
+                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>"  alt=""/></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
                                         <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
