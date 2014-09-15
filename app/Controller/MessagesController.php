@@ -1211,35 +1211,91 @@ If interested, I would also be happy to meet with you in our New York City based
     
     } 
 
-    //perticular user notes
 
-    public function getusernotes($client_id = null){
+//stylist user notes
+
+    public function stylistusernotes($clientid = null) {
         $User = ClassRegistry::init('User');
         $Stylistnote = ClassRegistry::init('Stylistnote');
-        //Get user from session to derterminate if user is stylist
-        $user = $this->getLoggedUser();
-        $user_id = $user["User"]["id"]; 
-        $is_admin = $user["User"]["is_admin"];
-        $is_stylist = $user["User"]["is_stylist"];  
+        $client = $User->findById($clientid);
+        $clientid = $client['User']['id'];
+        $stylistid = $client['User']['stylist_id'];
 
         if($this->request->is('post')){
             $data=$this->request->data;
-            $this->request->data['Stylistnote']['user_id']=$client_id;
-            $this->request->data['Stylistnote']['stylist_id']=$user_id;
-            $image=$data['Stylistnote']['image']['name'];
-            $this->request->data['Stylistnote']['image']=$image;
-            //image not upload yet pending?
-            if($image || $this->request->data)
+            $this->request->data['Stylistnote']['user_id']=$clientid;
+            $this->request->data['Stylistnote']['stylist_id']=$stylistid;
+            if($Stylistnote->save($this->request->data))
             {
-                $Stylistnote->save($this->request->data);
                 $this->Session->setFlash("User Data Hasbeen Saved");
-                $this->redirect('/messages/getusernotes/'.$client_id);
+                $this->redirect('/messages/stylistusernotes/'.$clientid);
             }
         }
 
-        $notes=$Stylistnote->find('all',array('conditions'=>array('Stylistnote.user_id'=>$client_id,'Stylistnote.stylist_id'=>$user_id,)));
-        $this->set('notes',$notes);
+        // get notes data
+
+        $usernotes = $Stylistnote->find('all', array('conditions'=>array('Stylistnote.stylist_id'=>$stylistid,'Stylistnote.user_id'=>$clientid,)));
+
+
+
+        $this->set(compact('clientid','client','usernotes'));
+
     }
+
+    // remove stylist user notes
+
+    public function removestylistusernotes($id = null){
+        $Stylistnote = ClassRegistry::init('Stylistnote');
+
+        echo $user = $this->getLoggedUser();
+       print_r($user);
+        exit;
+
+        if (!$id) {
+            $this->Session->setFlash('Invalid id for Stylistnote');
+            $this->redirect(array('action' => '/messages/stylistusernotes'));
+        }   
+
+        if ($this->Style->delete($id)) {
+            $this->Session->setFlash('Styles  deleted');
+        } else {
+            $this->Session->setFlash(__('Styles was not deleted', true));
+        }
+
+        $this->redirect(array('action' => 'index'));
+
+
+
+    }
+    //perticular user notes
+
+    // public function getusernotes($client_id = null){
+    //     $User = ClassRegistry::init('User');
+    //     $Stylistnote = ClassRegistry::init('Stylistnote');
+    //     //Get user from session to derterminate if user is stylist
+    //     $user = $this->getLoggedUser();
+    //     $user_id = $user["User"]["id"]; 
+    //     $is_admin = $user["User"]["is_admin"];
+    //     $is_stylist = $user["User"]["is_stylist"];  
+
+    //     if($this->request->is('post')){
+    //         $data=$this->request->data;
+    //         $this->request->data['Stylistnote']['user_id']=$client_id;
+    //         $this->request->data['Stylistnote']['stylist_id']=$user_id;
+    //         $image=$data['Stylistnote']['image']['name'];
+    //         $this->request->data['Stylistnote']['image']=$image;
+    //         //image not upload yet pending?
+    //         if($image || $this->request->data)
+    //         {
+    //             $Stylistnote->save($this->request->data);
+    //             $this->Session->setFlash("User Data Hasbeen Saved");
+    //             $this->redirect('/messages/getusernotes/'.$client_id);
+    //         }
+    //     }
+
+    //     $notes=$Stylistnote->find('all',array('conditions'=>array('Stylistnote.user_id'=>$client_id,'Stylistnote.stylist_id'=>$user_id,)));
+    //     $this->set('notes',$notes);
+    // }
 
     // perticular user custom site measurements
 
