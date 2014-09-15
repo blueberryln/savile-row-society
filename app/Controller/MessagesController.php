@@ -936,7 +936,60 @@ If interested, I would also be happy to meet with you in our New York City based
         } 
     }
 
+    // stylist user outfits
 
+    public function stylistuseroutfits($client_id = null){
+        $this->isLogged();
+        $User = ClassRegistry::init('User');
+        
+        //Get user from session to derterminate if user is stylist
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];   
+        $client = $User->getById($client_id);
+        $clientid = $client['User']['id'];
+        
+       
+        
+        
+        if($user){
+
+                        $my_conversation = $this->Message->getMyConversationWithStylist($client_id);
+                        $my_outfits = array();
+                        foreach($my_conversation as $row){
+                            if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                                $outfit_id = $row['Message']['outfit_id'];
+                                $comments = $row['Message']['body'];
+                                $Outfit = ClassRegistry::init('Outfit');
+                                $outfitnames = $Outfit->find('all', array('conditions'=> array('Outfit.id'=>$outfit_id)));
+                                $OutfitItem = ClassRegistry::init('OutfitItem');
+                                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id),));
+                                //print_r($outfit);
+                                $entities = array();
+                                foreach($outfit as $value){
+                                     $entities[] = $value['OutfitItem']['product_entity_id'];
+                                     
+                                
+                                }
+                                $Entity = ClassRegistry::init('Entity');
+
+                                $entity_list = $Entity->getMultipleByIdUser($entities);
+                                
+                                $my_outfits[] = array(
+                                    'outfit'    => $outfitnames,
+                                    'comments' =>$comments,
+                                    
+                                    'entities'  => $entity_list
+                                    );
+                                
+                            }
+                        }
+                    }
+                    // print_r($my_outfits);
+                    // die;
+        $this->set(compact('my_outfits','client','user_id','clientid'));
+    }
 
     //perticular user outfit list sent by his stylist
     public function usersoutfits($client_id = null) {

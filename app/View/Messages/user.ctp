@@ -307,7 +307,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         var arrMsg = res['Messages'];
                         for(var i=0; i < arrMsg.length; i++){
                             var html = showChatMsg(arrMsg[i]);
-                            chatContainer.prepend(html);
+                            chatContainer.append(html);
                         }
                     }
                     callInAction = false;   
