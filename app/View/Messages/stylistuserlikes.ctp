@@ -6,7 +6,7 @@ $(document).ready(function(){
         //alert(valueSelected);
         $.ajax({
             type: "POST",
-            url: "<?php echo $this->webroot; ?>messages/userLikesAsc/<?php echo $user_id; ?>",
+            url: "<?php echo $this->webroot; ?>messages/userLikesAsc/<?php echo $clientid; ?>",
             data: {valueSelected:valueSelected},
             cache: false,
             success: function(result){
@@ -38,10 +38,11 @@ $(document).ready(function(){
 
 </script>
 
-<?php
+<?php 
+
     $img = "";
-        if(isset($Userdata) && $Userdata[0]['User']['profile_photo_url'] && $Userdata[0]['User']['profile_photo_url'] != ""){
-            $img = $this->webroot . "files/users/" . $Userdata[0]['User']['profile_photo_url'];
+        if(isset($client) && $client['User']['profile_photo_url'] && $client['User']['profile_photo_url'] != ""){
+            $img = $this->webroot . "files/users/" . $client['User']['profile_photo_url'];
          }else{
             $img = $this->webroot . "img/dummy_image.jpg";    
         }
@@ -53,34 +54,34 @@ $(document).ready(function(){
             <div class="twelve columns container left message-box">
                 <div class="eleven columns container pad-none">
                     <div class="twelve columns message-box-heading pad-none">
-                        <h1><?php echo $Userdata[0]['User1']['first_name'].'&nbsp;'.$Userdata[0]['User1']['last_name']; ?> | <span>Likes Items</span></h1>
-                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>" alt="" /></div>
+                        <h1><?php echo $client['User']['first_name'].'&nbsp;'.$client['User']['last_name']; ?> | <span>Likes Items</span></h1>
+                        <div class="client-img-small"><img src="$img" alt="" /></div>
                     </div>
                     <div class="my-profile-img m-ver">
-                        <h2><?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?><span>My Stylist</span></h2>
+                        
                         <div class="client-img-small right">
-                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
+                       
                         </div>
                         <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>
-                            <li><a href="?php echo $this->webroot; ?>messages/index">Messages</a></li>
-                            <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
+                            <li><a href="?php echo $this->webroot; ?>messages/index/<?php echo $clientid; ?>">Messages</a></li>
+                            <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $clientid; ?>">Outfits</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $clientid; ?>">Purchases/Likes</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $clientid; ?>">Profile</a></li>
                         </ul>
                     </div>
                     <div class="twelve columns left inner-content pad-none">
                         <div class="inner-left left">
                             <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>"  alt=""/></div>
+                                <div class="client-img"><img src="<?php echo $img; ?>"  alt=""/></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $clientid; ?>">Messages</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $clientid; ?>">Outfits</a></li>
+                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $clientid; ?>">Purchases/Likes</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $clientid; ?>">Profile</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -97,10 +98,10 @@ $(document).ready(function(){
                                                 
                                             </select>
                                         </div>
-                                        <div class="tab-btns purchase"><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>" title="">Purchase</a>
+                                        <div class="tab-btns purchase"><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $clientid; ?>" title="">Purchase</a>
                                             
                                         </div>
-                                        <div class="tab-btns likes active"><a href="<?php echo $this->webroot; ?>messages/userlikes/<?php echo $user_id; ?>" title="">Likes</a></div>
+                                        <div class="tab-btns likes active"><a href="<?php echo $this->webroot; ?>messages/userlikes/<?php echo $clientid; ?>" title="">Likes</a></div>
                                         <div class="twelve columns purchase-container left">
                                             <div class="eleven columns container purchase-area pad-none">
                                                 <div class="twelve columns left purchase-dtls">
@@ -141,20 +142,7 @@ $(document).ready(function(){
                             </div>
                         
                         </div>
-                        <div class="inner-right right">
-                            <div class="twelve columns text-center my-profile">
-                                <div class="my-profile-img">
-                                    <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User']['profile_photo_url']; ?>" alt="" data-name="Haspel" /></a>
-                                </div>
-                                <div class="my-profile-detials">
-                                    <?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?>
-                                    <span>My Stylist</span>
-                                    <a class="view-profile" href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>">View My Profile</a> 
-                                </div>
-                                
-                            
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

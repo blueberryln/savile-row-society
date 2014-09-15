@@ -1460,9 +1460,34 @@ If interested, I would also be happy to meet with you in our New York City based
 
         }    
     }
-    
-    public function userLikes($user_id = null){
+
+
+
+// stylist user likes
+
+
+    public function stylistuserlikes($clientid = null) {
         $this->isLogged();
+        $User= ClassRegistry::init('User');
+        $client = $User->findById($clientid);
+        $clientid = $client['User']['id'];
+        $stylist_id = $client['User']['stylist_id'];
+        $current_user = $this->getLoggedUser();
+        $Wishlist = ClassRegistry::init('Wishlist');
+        $Entity = ClassRegistry::init('Entity'); 
+        $liked_list = $Wishlist->getUserLikeProduct($clientid);
+                $entity_list = array();
+                foreach($liked_list as $value){
+                    $entity_list[] = $value['Wishlist']['product_entity_id'];
+                    $last_item_id = $value['Wishlist']['id'];
+                }
+        $likeitems = $Entity->getEntitiesByIdLikes($entity_list, $clientid);
+        $this->set(compact('likeitems','clientid','client'));
+    }
+
+
+    public function userLikes($user_id = null){
+         $this->isLogged();
          $User= ClassRegistry::init('User');
          $user = $User->findById($user_id);
 
