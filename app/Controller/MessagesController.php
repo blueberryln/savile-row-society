@@ -1551,6 +1551,33 @@ If interested, I would also be happy to meet with you in our New York City based
         
     }
 
+// stylist user purchase
+
+    public function stylistuserpurchase($clientid = null) {
+        $this->isLogged();
+            $User= ClassRegistry::init('User');
+            $client = $User->getById($clientid);
+            $clientid = $client['User']['id'];
+            $OrderItem = ClassRegistry::init('OrderItem');
+            $Entity = ClassRegistry::init('Entity'); 
+            $total_purchases = $OrderItem->getTotalUserPurchaseCount($clientid);
+            
+            if($total_purchases > 0){
+                $order_item_list = $OrderItem->getUniqueUserItemPurchase($clientid);
+                $entity_list = array();
+                foreach($order_item_list as $value){
+                    $entity_list[] = $value['Orders']['product_entity_id'];
+                    $last_item_id = $value['Orders']['order_id'];
+                }
+
+            $purchases = $Entity->getEntitiesByIdPurchaseDes($entity_list);
+            
+        }
+        $this->set(compact('purchases','clientid','client'));
+
+    }
+
+
     public function userPurchases($user_id = null){
             $this->isLogged();
             $User= ClassRegistry::init('User');
