@@ -7,7 +7,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="twelve columns container stylistbio-section left">
             <a class="open-left-pannel" href="#" title=""><img src="<?php echo $this->webroot; ?>images/arrow-next.png" alt="" /></a>
             <div class="stylistbio-section-left text-center">
-                <div class=" twelve columns stylistbion-arrow"><img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" /></div>
+                <div class=" twelve columns stylistbion-arrow">
+                    <img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" />
+                    <img class="back-for-mobile" src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" />
+                </div>
                 <div class="twelve columns">
                     <div class="eleven columns container stylistbio-short-note">
                         <div class="short-note">Learn more about all the Savile Row Stylists by clicking through our list of current stylists. </div>
@@ -149,7 +152,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     </div>
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
-                                    <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Top Outfits</h1>
+                                    <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Top Outfits <span class="edit-section edit-outfit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span></h1>
 <!--
                                     <ul>
                                     <?php foreach($my_outfit as $my_outfit): ?>
@@ -180,24 +183,24 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 -->
                                     <ul>
                                         <li>
-                                            <div class="twelve columns top-outfits">
-                                                <div class="eleven columns container">
-                                                    <h2 contenteditable="true">Beach Day</h2>
-                                                    <div class="outfit-products">
-                                                        <ul>
-                                                            <li>
-                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
-                                                           </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
-                                                        </ul>
-                                                    </div>
+                                            <span class="edit-section edit-beachday-section right beachday-content-update1"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <form class="beachday-update1" method="post" action="" name="beachday">
+                                                <label>Select Your Outfit</label>
+                                                <div class="edit-content">
+                                                    <span class="edit-content-icon"></span>
+                                                    <select>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                    </select>
+                                                    
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li>
+                                                <p class="actions">
+                                                <input class="edit-save-btn primry-btn" type="submit" value="Save">
+                                                <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                                </p>
+                                            </form>
                                             <div class="twelve columns top-outfits">
                                                 <div class="eleven columns container">
                                                     <h2>Beach Day</h2>
@@ -205,17 +208,48 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                         <ul>
                                                             <li>
                                                                 <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
                                                            </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
+                                            <span class="edit-section edit-beachday-section right beachday-content-update2"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <form class="beachday-update2" method="post" action="" name="beachday">
+                                                <label>Select Your Outfit</label>
+                                                <div class="edit-content">
+                                                    <span class="edit-content-icon"></span>
+                                                    <select>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                    </select>
+                                                    
+                                                </div>
+                                                <p class="actions">
+                                                <input class="edit-save-btn primry-btn" type="submit" value="Save">
+                                                <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                                </p>
+                                            </form>
                                             <div class="twelve columns top-outfits">
                                                 <div class="eleven columns container">
                                                     <h2>Beach Day</h2>
@@ -223,11 +257,73 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                         <ul>
                                                             <li>
                                                                 <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
                                                            </li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" /><div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" /></li>
-                                                            <li><img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" /></li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="edit-section edit-beachday-section right beachday-content-update3"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <form class="beachday-update3" method="post" action="" name="beachday">
+                                                <label>Select Your Outfit</label>
+                                                <div class="edit-content">
+                                                    <span class="edit-content-icon"></span>
+                                                    <select>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                        <option>Select Outfits</option>
+                                                    </select>
+                                                    
+                                                </div>
+                                                <p class="actions">
+                                                <input class="edit-save-btn primry-btn" type="submit" value="Save">
+                                                <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                                </p>
+                                            </form>
+                                            <div class="twelve columns top-outfits">
+                                                <div class="eleven columns container">
+                                                    <h2>Beach Day</h2>
+                                                    <div class="outfit-products">
+                                                        <ul>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_1.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                           </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_2.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_3.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_4.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
+                                                            <li>
+                                                                <img src="<?php echo $this->webroot; ?>images/stylistbio/top-outfilt_5.jpg" alt="" />
+                                                                <div class="outfit-products-details">Teal Swim Shorts Ben Sherman $88.00</div>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>

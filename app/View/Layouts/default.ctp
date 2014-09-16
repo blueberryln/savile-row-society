@@ -246,6 +246,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     controlNav: true,
                     directionNav: true
                 });
+                
                 $('.slider1').bxSlider({
                 slideWidth: 222,
                 minSlides: 1,
@@ -253,6 +254,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 moveSlides: 1,
                 slideMargin: 10
               });
+                
                 $('.slider2').bxSlider({
                 slideWidth: 495,
                 minSlides: 1,
@@ -260,7 +262,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 moveSlides: 1,
                 slideMargin: 20
               });
-               //$('.fancybox').fancybox();
+               
                 $(".fancybox").fancybox({
                     helpers : {
                         title : {
@@ -268,13 +270,30 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                         }
                     }
                 });
+  
+                var homepagebanner = function () {
+                var overlay = $('.mega-banner-overlay'),
+                    mbanner = $('.mega-banner'),
+                    overlay_height = overlay.height()+40,
+                    mbanner_height = mbanner.height(),
+                    top_offset = -(overlay_height)/2
+                    $('.mega-banner-overlay').css({"margin-top":top_offset})
+                    
+                };
+
+                $(function () {
+                    $(document).resize(function () {
+                        homepagebanner();
+                    }).resize();
+                });
+                
                 
                $("a.open-left-pannel").click(function(){
                    $(this).hide(1000);
                   $(".stylistbio-section-left").animate({left:'0px'}, 1000);
                 });
                 
-                $(".stylistbion-arrow img").click(function(){
+                $("img.back-for-mobile").click(function(){
                     $("a.open-left-pannel").show(1000);
                     $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
                 });
@@ -363,10 +382,10 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.outfit-products-details').css('opacity', 0);  
                 $('.outfit-products li').hover(  
                    function(){  
-                      $(this).find('.outfit-products-details').stop().fadeTo('slow', 1);  
+                      $(this).find('.outfit-products-details').stop().fadeTo('', 1);  
                    },  
                    function(){  
-                      $(this).find('.outfit-products-details').stop().fadeTo('slow', 0);  
+                      $(this).find('.outfit-products-details').stop().fadeTo('', 0);  
                    });
                 
                
@@ -396,7 +415,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             });
             
             
-             $(".stylistbion-arrow img").click(function(){
+             $(".stylistbion-arrow img.back-for-mobile").click(function(){
                     $("a.open-left-pannel").show(1000);
                     $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
                 });
@@ -437,10 +456,24 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.stylist-insp-edit').fadeIn();
             });
             
+            $('.beachday-content-update1').click(function(){
+                $('.beachday-update1').fadeIn();
+            });
+            $('.beachday-content-update2').click(function(){
+                $('.beachday-update2').fadeIn();
+            });
+            $('.beachday-content-update3').click(function(){
+                $('.beachday-update3').fadeIn();
+            });
+            
             
             
             $('.edit-save-btn, .cancel-btn').click(function(){
-                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit').fadeOut();
+                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3').fadeOut();
+            });
+            
+            $('.edit-outfit-section').click (function(){
+                $('.edit-beachday-section').toggle();
             });
             
             

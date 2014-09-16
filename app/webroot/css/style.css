@@ -148,7 +148,7 @@ input[type="submit"]{color: #fff;}
     .nine-five.columns{width: 95%;}
 
     .container{position: relative; width: 960px; margin: 0 auto; padding: 0;}
-    .content-container{height: 100%; position: relative; margin-top: 81px;}
+    .content-container{height: 100%; position: relative; margin-top: 81px; z-index: 0;}
     .container-box { background: #ffffff; /*margin-top: 130px;*/}
     /*.container .column, .container .columns{float: none;}*/
     .inner{margin-bottom: 30px;}
@@ -774,9 +774,9 @@ img.cart-img{vertical-align: middle; width:30px;}
 .mega-banner{ margin-top: -81px; position: relative;}
 .mega-banner ul{ margin: 0; padding: 0; list-style: none;}
 .mega-banner ul li{ display: inline-block; width: 100%; margin-bottom: 0px;}
-.mega-banner ul li img{ width: 100%; height: auto;}
+.mega-banner ul li img{ width: 100%!important; height: auto;}
 /***********Start Amendment******/
-.mega-banner-overlay{ width: 750px; position: absolute; padding: 25px 0 60px; bottom: 140px; left: 0; right:0; margin: 0 auto; text-align: center; color: #ffffff; text-transform: uppercase; font-size: 24px; background: rgba(0, 0, 0, 0.7); letter-spacing: 1px;}
+.mega-banner-overlay{ width: 750px; position: absolute; padding: 25px 0 60px; top: 50%; left: 0; right:0; margin: 0 auto; text-align: center; color: #ffffff; text-transform: uppercase; font-size: 24px; background: rgba(0, 0, 0, 0.7); letter-spacing: 1px;}
 .mega-banner-overlay span.large-size{ font-size: 72px; float: left; width: 100%; line-height: 85px; font-family: 'Proximanova Bold'; font-weight: 500;}
 .mega-banner-overlay span.small-size{ font-size: 42px; float: left; width: 100%; padding-top: 22px; font-family: 'ProximaNovaCond-Light'; text-transform: lowercase;}
 .mega-banner-overlay .overlay-bnts{ width:100%; margin-top: 80px; font-family: 'Proximanova'; }
@@ -808,7 +808,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .featured-stylist ul li, .outfit-stylist ul li, .style-time ul li, .brand-boxes ul li { display: inline-block; margin-bottom: 0px;}
 .featured-stylist ul li {position: relative;}
 .featured-stylist .bx-wrapper { margin: 0 auto; overflow: hidden;}
-.featured-stylist ul li img { display: block; margin: 0px 10px; }
+.featured-stylist ul li img { width: 100%; margin: 0px 10px; }
 .featured-stylist ul li .featured-stylist-hover { position: absolute; top: 0px; left: 10px; background: rgba(209, 155, 3, 0.6); width: 100%; height: 100%; cursor: pointer;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-text { position: absolute; top:20%; left: 15%; font-family: 'Proximanova'; font-weight: 600; color: #fff; text-transform: uppercase; font-size: 16px; width: 40%; display: block; line-height: 22px;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-img { position: absolute; bottom: 20%; left: 10%; width: 34px; height: 34px;}
@@ -825,10 +825,10 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .outfit-stylist li { width: 47%;}
 .outfit-stylist .bx-wrapper { margin:  0 auto;}
 .outfit-stylist li .shop-outfit{ border: 8px solid #e6e5e1; background: #fff;}
-.outfit-stylist li .shop-outfit .shop-outfit-top { width: 100%; height: 173px; display:inline-block; border-bottom: 1px solid #e6e5e1;}
-<<<<<<< HEAD
+.outfit-stylist li .shop-outfit .shop-outfit-top { width: 100%; height: 173px; display:inline-block; border-bottom: 1px solid #e6e5e1; overflow: hidden;}
+
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block; width: 45%;  }
-=======
+
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block;width: 45%;}
 >>>>>>> 59af2e537327dee25c46ceb9db2bf6b22dccaea9
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img img { width: 100%; height: auto; margin-bottom: -5px;}
@@ -909,7 +909,8 @@ a.setp-btn { background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-s
 .stylistbio-section-left{ width: 20%; float: left;}
 a.open-left-pannel { display: none;}
 .stylistbio-section-right{ width: 79.8%; float: left; border-left: 1px solid #d7d7d7; padding-top: 50px;}
-.stylistbion-arrow { padding-top: 50px;}
+.stylistbion-arrow { padding-top: 50px; position: relative;}
+.stylistbion-arrow img.back-for-mobile { position: absolute; margin: 0 auto; left: 0px; right: 0px; display: none;}
 .stylistbion-arrow img { cursor: pointer;}
 .stylistbio-short-note, .stylistbio-list { width:180px!important;}
 .stylistbio-short-note { margin-top:148px; }
@@ -960,7 +961,7 @@ a.jp-previous { background: url("../images/newer-photos-bnt.png") no-repeat 0px 
 a.jp-next { background: url("../images/older-photos-btn.png") no-repeat 0px 0px; width: 133px; height: 18px; text-indent: -99999px; color: transparent;}
 a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .top-outfits h2 { text-align: center; color: #c3c3c2; font-size: 20px;}
-.user-top-outfit li { border-bottom: 1px solid #ebebeb; padding-bottom: 10px;}
+.user-top-outfit li { border-bottom: 1px solid #ebebeb; padding-bottom: 10px; margin-bottom: 0px;}
 .user-top-outfit li:last-child { border-bottom: none; padding-bottom: 0px;}
 .outfit-products ul { width: 100%; margin-left: 0px;}
 .outfit-products li { display: inline-block; margin:0 3px; width:18%; position: relative; border-bottom: none; padding-bottom: 0px;}
@@ -984,8 +985,9 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 /*******Message One CSS********/
 .black { background: #212125; min-height:37px;}
 .message-box { background: #fff; font-family: 'ProximaNovaCond-Regular';}
-.message-box-heading { font-family: 'ProximaNovaCond-Regular'; font-size: 36px; padding: 38px 0px 19px; border-bottom: 1px solid #e8e8e8;}
-.message-box-heading h1{ color: #918f8f; margin: 0; padding: 0;}
+.message-box-heading, .myclient-heading { font-family: 'ProximaNovaCond-Regular'; font-size: 36px; padding: 38px 0px 19px; border-bottom: 1px solid #e8e8e8;}
+.myclient-heading { padding-top: 0px; margin-bottom: 25px;}
+.message-box-heading h1, .myclient-heading h1{ color: #918f8f; margin: 0; padding: 0;}
 .client-img-small, .m-ver, .dd-nav{ display: none;}
 .message-box-heading h1 span{ color: #c8bf93;}
 .inner-content{padding: 37px 0 0px;}
@@ -1203,8 +1205,8 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
 .edit-section { width: 16px; height: 16px;display: inline-block; margin-left: 5px; cursor: pointer;}
 .edit-section img { width: 100%;}
 
-.home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit, .stylist-insp-edit { width: 90%; padding: 5px 5%; position: absolute; top: 0px; left: 0px; background: #f0f0f0; border: 1px solid #e9e9e9; z-index: 99999;}
-.home-edit label, .fun-edit label, .tip-edit label, .stylistbio-heading-edit label, .stylist-insp-edit label { font-size: 18px; font-family: 'ProximaNovaCond-Regular'; padding: 10px 0 12px 0; color: #212125; text-transform: none;}
+.home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3 { width: 90%; padding: 5px 5%; position: absolute; top: 0px; left: 0px; background: #f0f0f0; border: 1px solid #e9e9e9; z-index: 99999;}
+.home-edit label, .fun-edit label, .tip-edit label, .stylistbio-heading-edit label, .stylist-insp-edit label, .beachday-update1 label, .beachday-update2 label, .beachday-update3 label { font-size: 18px; font-family: 'ProximaNovaCond-Regular'; padding: 10px 0 12px 0; color: #212125; text-transform: none;}
 .edit-content { width: 100%; background: #fff; font-size: 16px; line-height: 18px; color: #212125;}
 
 .actions { margin: 10px 0px;}
@@ -1212,7 +1214,79 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
 .secondry-btn { background: #575757;}
 
 .stylistbio-heading, .stylistbio-profile, .stylist-insp { position: relative;}
-.home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit, .stylist-insp-edit { display: none;}
+.home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3 { display: none;}
+.user-top-outfit li { position: relative;}
+.edit-beachday-section{ position: absolute; top: 10px; right: 10px; display: none;z-index: 10;}
+.beachday-update1, .beachday-update2, .beachday-update3 { height: 100%; padding-top: 0px; padding-bottom: 0px;}
+.beachday-update1 label, .beachday-update2 label, .beachday-update3 label{ padding-bottom: 25px; padding-top: 25px;}
+.beachday-update1 .edit-content, .beachday-update2 .edit-content, .beachday-update3 .edit-content   { margin-bottom: 30px; position: relative;}
+.edit-content select { background: #fff; font-size: 16px; line-height: 18px; color: #212125; }
+.edit-content span.edit-content-icon { background: #ffffff url('../images/down-arrow.png') no-repeat center center; width: 30px; position: absolute; top: 1px; right: 1px; height: 96%; pointer-events: none;}
+.edit-content select option { padding: 4px 5px;}
+
+/************ Stylist One Section *************/
+.admin-nav ul li { display: inline-block; margin-right: 1px; position: relative; margin-bottom: 0px;}
+.admin-nav ul li a { color: #fff; text-transform: uppercase; font-family: 'ProximaNovaCond-Regular'; font-size: 22px; padding: 0px 64px; height: 37px; line-height: 37px; display: block; -webkit-transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; -ms-transition: all 0.3s linear; transition: all 0.3s linear;}
+.admin-nav ul li a:hover, .admin-nav ul li.active a  { background: #c2c2c2; color: #000; }
+span.client-nav-switcher { width: 63px;background: #fff; float: right; text-align: center; height: 37px;}
+span.client-nav-switcher img { width: 37px;}
+
+.admin-top-right ul{ float: right;  }
+.admin-top-right ul li { height: 37px; vertical-align: middle; display: inline-block; margin-left: 15px; margin-bottom: 0px; color: #fff; font-size: 13px; position: relative;}
+.admin-top-right ul li a { color: #fff;}
+.cart-icons { width: 26px; vertical-align: middle; margin-top: 6px;}
+.admin-top-right ul li .admin-top-right-dropdown{ position: absolute; top:37px; z-index: 1; right: 0px; width:150px; background: #fff; -webkit-box-shadow: #e1e1e1 0px 1px 1px;  -moz-box-shadow: #e1e1e1 0px 1px 1px; box-shadow: #e1e1e1 0px 1px 1px; display: none;}
+.admin-top-right ul li .admin-top-right-dropdown ul { margin: 0px; padding: 0px; width: 100%;}
+.admin-top-right ul li .admin-top-right-dropdown ul li {display: block; width: 100%; margin: 0 0 1px; font-family: 'ProximaNovaCond-Regular'; font-size: 13px; border-bottom: 1px solid #e1e1e1; height: auto;}
+.admin-top-right ul li .admin-top-right-dropdown ul li a { padding: 5px 5% 5px; color: #212125; text-align: center; width: 90%; text-transform: uppercase; display: block;}
+.admin-top-right ul li .admin-top-right-dropdown ul li:last-child { margin-bottom: 0px;}
+.admin-top-right ul li:hover .admin-top-right-dropdown { display: block;}
+.inner-myclient {width: 100%;}
+
+.myclient-left { width: 18.5%; border: 1px solid #e9e9e9; -webkit-box-shadow: #e9e9e9 0px 0px 3px inset;  -moz-box-shadow: #e9e9e9 0px 0px 3px inset; box-shadow: #e9e9e9 0px 0px 3px inset; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.myclient-topsec { }
+.filter-myclient-area, .search-myclient-area {display: block; width:90%; padding:10px 5%; background: #f0f0f0;}
+.filter-myclient-area { border-bottom: 1px solid #d6d6d6;}
+.search-myclient-area { border-top: 1px solid #ffffff;}
+.myclient-btmsec {}
+.filter-myclient, .search-myclient {position: relative;}
+.filter-myclient span.downarw { width:24px; height: 22px; position: absolute; top: 1px; right: 1px; background: url('../images/myclient-dd.jpg') no-repeat 0px 0px; pointer-events: none; -webkit-border-radius: 0 2px 2px 0; -moz-border-radius: 0 2px 2px 0; border-radius: 0 2px 2px 0;}
+.search-myclient span.srch { width:24px; height: 22px; position: absolute; top: 1px; right: 1px; background: url('../images/myclient-search.jpg') no-repeat 0px 0px; cursor: pointer; -webkit-border-radius: 0 2px 2px 0; -moz-border-radius: 0 2px 2px 0; border-radius: 0 2px 2px 0;}
+
+
+.filter-myclient select,
+.search-myclient input { font-family: 'Proximanova'; font-size: 12px; color: #282828; height: 24px; line-height: 24px; padding: 0 5px; border:1px solid #969696; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #d8d8d8 0px 1px 0px; -moz-box-shadow: #d8d8d8 0px 1px 0px; box-shadow: #d8d8d8 0px 1px 0px; 
+background: #fdfdfd;
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fdfdfd), to(#f0f0f2));
+background: -webkit-linear-gradient(#fdfdfd, #f0f0f2);
+background: -moz-linear-gradient(#fdfdfd, #f0f0f2);
+background: -ms-linear-gradient(#fdfdfd, #f0f0f2);
+background: -o-linear-gradient(#fdfdfd, #f0f0f2);
+background: linear-gradient(#fdfdfd, #f0f0f2);
+-pie-background: linear-gradient(#fdfdfd, #f0f0f2);
+}
+.myclient-list { padding: 15px 0;}
+.myclient-list, .myclient-list li { width: 100%; float: left;}
+.myclient-list li { border-bottom: 1px solid #e9e9e9; margin-bottom: 1px;}
+.myclient-list li a {width: 80%; float: left; padding: 10px 10%; position: relative; font-family: 'Proximanova';font-size: 11px}
+.myclient-list li a:hover, .myclient-list li.active a {background: #c2c2c2;}
+
+.myclient-list li a .myclient-img { width: 40px; height: 36px; float: left; position: relative; border: 1px solid #000;}
+.myclient-list li a .myclient-img img { width: 100%;}
+.myclient-list li a .myclient-dtl { width: 125px; float: left; padding: 7px 0 0 12px; font-size: 11px; line-height: 12px;}
+.myclient-list li a .myclient-dtl span { width: 100%; display: block;}
+.myclient-list li a .myclient-dtl span.myclient-name {font-weight: bold; padding-bottom: 3px;}
+.client-outfits-img ul { position: relative; width: 100%; display: block;}
+.outfit-quick-view { position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; width: 150px; height: 70px; line-height: 70px; padding: 0 20px 0 78px; background: rgba(255, 255, 255, 0.57); display: none; margin: auto;}
+.client-outfits-img:hover .outfit-quick-view { display: block;}
+.outfit-quick-view span.outfit-quick-view-icons { position: absolute; top: 13px; left: 30px; width: 40px; height: 40xp;}
+.outfit-quick-view span.outfit-quick-view-icons img {width: 100%;}
+/*
+.dashboard-container { margin-left: 0px;}
+.dashboard-area {width: 100%;}
+.dashboard-pannel {width: 20%; height: 100%;}
+*/
+.myclient-right { width: 75%; margin-right: 3%;}
 
 
 
@@ -1296,12 +1370,13 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
 
 	#sign-up-drop-down .close{right:45px;}
     
-    a.open-left-pannel { display: block; position: absolute; top: 0px; left: -5%; width: 82px; height: 70px; z-index: 10;}
+    a.open-left-pannel { display: block; position: absolute; top: 0px; left: -5%; width: 35px;  z-index: 10;}
     .stylistbio-section { position: relative;}
     .stylistbio-section-left { width: 27%; position: absolute; background: #fff; height: 100%; left: -50%;  z-index: 1;}
     #scrollbar1 .scrollbar { right: -16px;}
     .stylistbio-section-right { width: 100%; border-left: none;}
     .stylistbio-profile { width: 22%;}
+    .social-networks li a {margin: 0px;}
     .stylistbio-details { width: 75%;}
     .social-networks li { margin: 0px 0 0;}
     .photostream-section li { width: 23.2%;}
@@ -1357,6 +1432,9 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
     .refer-frnd-area .input { width: 70%; margin-left: 10%; padding-bottom: 50px;}
     .refer-frnd-area .input input { height: 42px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
     a.send-referral { height: 42px; line-height: 44px;}
+    .stylistbion-arrow img.back-for-mobile { display: block;}
+    .stylistbion-arrow img { display: none;}
+    .edit-content select{background: #fff;}
     
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
@@ -1736,6 +1814,9 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
     .frnd-refer-user.email-refer span { background-position: 0px -52px;}
     .frnd-refer-user.fb-refer span { top: 0; height: 21px; background-position: 0px -99px;}
     a.send-referral { width: 100%; margin-bottom: 20px;}
+    
+    .stylistbion-arrow img.back-for-mobile { display: block; position: relative;}
+    .stylistbion-arrow img { display: none;}
     
 	.only-mob{display: /*block*/none;}
 	.only-desktop{display: none;}

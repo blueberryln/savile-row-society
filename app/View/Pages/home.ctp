@@ -33,14 +33,14 @@ $script='
         testimonialText = testimonialBlock.find("span");
 
     jQuery(function(){
-            if(jQuery(".mg-big img")[0].complete && jQuery(".mg-small img")[0].complete){
-                vidContinerHeight()
-            }
-            else{
-                jQuery(".mg-big img, .mg-small img").load(function() {
-                    vidContinerHeight()
-                });
-            }   
+//            if(jQuery(".mg-big img")[0].complete && jQuery(".mg-small img")[0].complete){
+//                vidContinerHeight()
+//            }
+//            else{
+//                jQuery(".mg-big img, .mg-small img").load(function() {
+//                    vidContinerHeight()
+//                });
+//            }   
             
             var testimonialInterval = setInterval(function(){
                 var newTestimonial = currentTestimonial = (testimonials.length == (currentTestimonial + 1)) ? 0 : currentTestimonial + 1;
