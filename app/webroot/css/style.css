@@ -1289,6 +1289,35 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 .myclient-right { width: 75%; margin-right: 3%;}
 
 
+.notes-area { background: #f7f7f7; padding: 15px 0 0; color: #000; font-size: 14px;  }
+.notes-txt-area {background: #d7d7d7; padding-bottom: 40px;}
+.notes-heading { font-weight: bold;}
+.notes-heading li, .notes-content-area li { display: inline-block; margin-bottom: 0px; width: 100%;}
+.notes-heading li .notes-date, .notes-content-area li .notes-date { width:10%; float: left;}
+.notes-heading li .notes-dtl, .notes-content-area li .notes-dtl { width: 65%; float: left;}
+.notes-heading li .notes-btns, .notes-content-area li .notes-btns { width: 25%; float: left; text-align: center;}
+.notes-content-area li { padding: 15px 0 60px 0; margin-bottom: 1px; border-bottom: 1px solid #d9d9d9}
+
+.notes-content-area li .notes-btns a { display: inline-block; padding: 0px 15px; background: #ffffff; border: 1px solid #ccc; height: 28px; line-height: 28px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; margin: 0 5px 0;}
+.type-note {padding: 30px 0px; border-bottom: 1px solid #d9d9d9;}
+.type-note-area { width: 75%; float: left;}
+.type-note-area input { height: 45px;background: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border: 1px solid #ccc; padding: 5px 25px 0px;}
+.note-save {width: 20%; margin-left: 10px; float: left; text-align: center;}
+.note-save a { width: 100%; float: left; background: #b3b3b3; color: #fff; height: 45px; line-height: 45px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+
+.note-gal-sec {padding-bottom: 0px;}
+.gal-area {}
+.gal-area h1 {border-left:1px solid #dedede; border-right: 1px solid #dedede; background: #f7f7f7; font-size: 30px; color: #000; text-align: center; margin: 0px; border-bottom: 1px solid #dedede;}
+.gallery-area {border-left:1px solid #dedede; border-right: 1px solid #dedede; display: flex; border-top: 1px solid #dadada; padding: 30px 0px 15px;}
+.myclient-gallery {}   
+.myclient-gallery .bx-wrapper { margin: 0 auto; position: relative;}
+.myclient-gallery .bx-wrapper .bx-viewport { height: 180px!important;}
+.myclient-gallery .bx-wrapper a.bx-prev, .myclient-gallery .bx-wrapper a.bx-next { position: absolute; bottom: 0px; background: url("../images/gal-arrow.png") no-repeat; text-indent: -9999px; width: 16px; height: 31px;}
+.myclient-gallery .bx-wrapper a.bx-prev { background-position: 0px 0px; left: 40%;}
+.myclient-gallery .bx-wrapper a.bx-next { background-position: -16px 0px; right: 40%;}
+.gal-btns {text-align: center; padding: 30px 0 0px;}
+a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; background: #927e41; display: inline-block; padding: 0px 20px; text-transform: uppercase; color: #fff;}
+
 
 /********Mobile CSS**********/
 
