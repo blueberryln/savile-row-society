@@ -262,6 +262,16 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 moveSlides: 1,
                 slideMargin: 20
               });
+                
+                $('.slider3').bxSlider({
+                slideWidth: 202,
+                minSlides: 1,
+                maxSlides: 3,
+                moveSlides: 1,
+                slideMargin: 40
+              });
+                
+                
                
                 $(".fancybox").fancybox({
                     helpers : {

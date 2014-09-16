@@ -126,73 +126,55 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="right-pannel right">
-                                <div class="twelve columns message-area left pad-none">
+                            <div class="right-pannel right note-gal-sec">
+                                <div class="twelve columns notes-area left pad-none">
                                     <div class="eleven columns container pad-none">
-                                        <div class="short-by-date">
-                                            <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
-                                            <select>
-                                                <option>Sort by Date</option>
-                                                <option>7-Aug-2014</option>
-                                                <option>7-Aug-2014</option>
-                                                <option>7-Aug-2014</option>
-                                                <option>7-Aug-2014</option>
-                                                <option>7-Aug-2014</option>
-                                            </select>
+                                        <div class="twelve columns left note-area-heading">
+                                            <div class="notes-heading">
+                                                <ul>
+                                                    <li>
+                                                        <div class="notes-date">Date</div>
+                                                        <div class="notes-dtl">Stylist Notes</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            
                                         </div>
-                                        <div class="tab-btns purchase active"><a href="javascript:;" title="">Purchase</a></div>
-                                        <div class="tab-btns likes"><a href="javascript:;" title="">Likes</a></div>
-                                        <div class="twelve columns purchase-container left pad-none">
-                                            <div class="eleven columns container purchase-area pad-none">
-                                                <div class="twelve columns left purchase-dtls pad-none">
-                                                   <ul>
-                                                        <li>
-                                                            <div class="purchase-dtls-date heading left">Date</div>
-                                                            <div class="purchase-dtls-items heading left">Item</div>
-                                                            <div class="purchase-dtls-outfit heading left">Outfit</div>
-                                                            <div class="purchase-dtls-price heading left">Price</div>
-                                                       </li>
-                                                       <li>
-                                                            <div class="purchase-dtls-date left">11/06/2014</div>
-                                                            <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
-                                                           </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
-                                                            <div class="purchase-dtls-price left">$105.00</div>
-                                                       </li>
-                                                       <li>
-                                                            <div class="purchase-dtls-date left">11/06/2014</div>
-                                                            <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
-                                                           </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
-                                                            <div class="purchase-dtls-price left">$105.00</div>
-                                                       </li>
-                                                       <li>
-                                                            <div class="purchase-dtls-date left">11/06/2014</div>
-                                                            <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
-                                                           </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
-                                                            <div class="purchase-dtls-price left">$105.00</div>
-                                                       </li>
-                                                       <li>
-                                                            <div class="purchase-dtls-date left">11/06/2014</div>
-                                                            <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
-                                                           </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
-                                                            <div class="purchase-dtls-price left">$105.00</div>
-                                                       </li>
-                                                    </ul>
-                                                </div>   
+                                    </div>
+                                </div>
+                                <div class="twelve columns notes-txt-area left pad-none">
+                                    <div class="eleven columns container pad-none">
+                                        <div class="notes-content-area">
+                                            <ul>
+                                                <li><div class="notes-date">7/2/14</div>
+                                                    <div class="notes-dtl">He doesn't usually like t-shirt, he is more into butto down shirts.</div>
+                                                    <div class="notes-btns">
+                                                        <a href="#" title="">Edit</a>
+                                                        <a href="#" title="">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div class="twelve columns type-note left">
+                                                <div class="type-note-area"><input type="text"  placeholder="Type notes here" /></div>                                                                  <div class="note-save"><a href="#" class="">Save</a></div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="twelve columns gal-area left pad-none">
+                                    <h1>Kyle's Gallery</h1>
+                                    <div class="gallery-area">
+                                        <div class="eleven columns container pad-none">
+                                            <div class="twelve columns myclient-gallery left pad-none">
+                                                <ul class="slider3">
+                                                    <li><img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" /></li>
+                                                    <li><img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" /></li>
+                                                    <li><img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" /></li>
+                                                </ul>
+                                            </div>
+                                            <div class="twelve columns left gal-btns"><a class="upload-gal-photos" href="#" title="">Upload Photos</a></div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         
