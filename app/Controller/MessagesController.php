@@ -1240,7 +1240,8 @@ If interested, I would also be happy to meet with you in our New York City based
         $client = $User->findById($clientid);
         $clientid = $client['User']['id'];
         $stylistid = $client['User']['stylist_id'];
-
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+       
         if($this->request->is('post')){
             $data=$this->request->data;
             $this->request->data['Stylistnote']['user_id']=$clientid;
@@ -1258,7 +1259,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
 
 
-        $this->set(compact('clientid','client','usernotes'));
+        $this->set(compact('clientid','client','usernotes','userlists'));
 
     }
 

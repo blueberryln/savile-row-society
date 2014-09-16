@@ -166,7 +166,7 @@
                 <div class="myclient-right right">
                     <div class="twelve columns left inner-content pad-none">
                          <div class="twelve columns myclient-heading pad-none">
-                            <h1><?php echo $client['User']['first_name'].'&nbsp;'.$client['User']['last_name']; ?> | <span>Messages</span></h1>
+                            <h1><?php echo $client['User']['first_name'].'&nbsp;'.$client['User']['last_name']; ?> | <span>Outfits</span></h1>
                             <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client['User']['profile_photo_url']; ?>" alt="" /></div>
                         </div>
                         <div class="inner-left inner-myclient left">

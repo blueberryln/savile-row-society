@@ -1304,7 +1304,7 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 .type-note-area { width: 75%; float: left;}
 .type-note-area input { height: 45px;background: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border: 1px solid #ccc; padding: 5px 25px 0px;}
 .note-save {width: 20%; margin-left: 10px; float: left; text-align: center;}
-.note-save a { width: 100%; float: left; background: #b3b3b3; color: #fff; height: 45px; line-height: 45px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.note-save input.savenotes { width: 100%; float: left; background: #b3b3b3; color: #fff; height: 45px; line-height: 45px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 
 .note-gal-sec {padding-bottom: 0px;}
 .gal-area {}
