@@ -235,7 +235,14 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->css('colorbox', null, array('inline' => false));
 
 ?>
-
+<?php
+    $img = "";
+        if(isset($Userdata) && $Userdata[0]['User']['profile_photo_url'] && $Userdata[0]['User']['profile_photo_url'] != ""){
+            $img = $this->webroot . "files/users/" . $Userdata[0]['User']['profile_photo_url'];
+         }else{
+            $img = $this->webroot . "img/dummy_image.jpg";    
+        }
+?>
 <div class="content-container">
 <div class="twelve columns black">&nbsp;</div>
 <div class="twelve columns container">
@@ -243,34 +250,34 @@ $this->Html->css('colorbox', null, array('inline' => false));
 <div class="twelve columns container left message-box">
 <div class="eleven columns container pad-none">
 <div class="twelve columns message-box-heading pad-none">
-<h1>Kyle Harper | <span>Outfit Detail</span></h1>
-<div class="client-img-small"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" /></div>
+<h1><?php echo $Userdata[0]['User1']['first_name'].'&nbsp;'.$Userdata[0]['User1']['last_name']; ?> | <span>Outfit Detail</span></h1>
+<div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url'] ?>" alt="" data-name="Haspel" /></div>
 </div>
 <div class="my-profile-img m-ver">
-<h2>LISA D.<span>My Stylist</span></h2>
+<h2><?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?><span>My Stylist</span></h2>
 <div class="client-img-small right">
-<a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+<a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
 </div>
 <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
 </div>
 <div class="dd-nav">
 <ul>
-<li><a href="javascript:;">Messages</a></li>
-<li class="active"><a href="javascript:;">Outfits</a></li>
-<li><a href="javascript:;">Purchases/Likes</a></li>
-<li><a href="javascript:;">Profile</a></li>
+<li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
+<li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
+<li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
+<li><a href="j<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
 </ul>
 </div>
 <div class="twelve columns left inner-content pad-none">
 <div class="inner-left left">
 <div class="left-pannel left">
-<div class="client-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+<div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>"  alt=""/></div>
 <div class=" twelve columns left left-nav">
 <ul>
-<li><a href="javascript:;">Messages</a></li>
-<li class="active"><a href="javascript:;">Outfits</a></li>
-<li><a href="javascript:;">Purchases/Likes</a></li>
-<li><a href="javascript:;">Profile</a></li>
+<li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
+<li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
+<li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
+<li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
 </ul>
 </div>
 </div>
@@ -428,12 +435,12 @@ if($sizes) : ?>
 <div class="inner-right right">
 <div class="twelve columns text-center my-profile">
 <div class="my-profile-img">
-<a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" data-name="Haspel" /></a>
+<a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User']['profile_photo_url']; ?>" alt="" data-name="Haspel" /></a>
 </div>
 <div class="my-profile-detials">
-LISA D.
+<?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?>
 <span>My Stylist</span>
-<a class="view-profile" href="javascript:;">View My Profile</a> 
+<a class="view-profile" href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>">View My Profile</a> 
 </div>
 
 

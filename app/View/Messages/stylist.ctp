@@ -15,13 +15,10 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <?php echo $this->Form->create('User', array('url' => '/messages/send_to_user', 'type' => 'file')); ?>
-<div class="content-container">
-    <div class="container content inner timeline">	
-        <div>
-            <div class="user-container">
-                <div class="img-container">
-                    <div class="profile-img text-center">
-                    <?php
+
+<!--Client Image-->
+
+<?php
                         $img = "";
                         if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
                             $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
@@ -30,93 +27,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             $img = $this->webroot . "img/dummy_image.jpg";    
                         }
                     ?>
-                        <img src="<?php echo $img; ?>" id="user_image" />
-                    </div>
-                </div>
-                <div class="info-container">
-                    <?php if($client_id) : ?>
-                        <div id="user-name"><?php echo $client_user['User']['full_name']; ?></div>
-                            <div class="last-user-purchase">
-                                <?php if(isset($last_purchase['Order'])) : ?>
-                                    Last Purchase: <span>$<?php echo $last_purchase['Order']['total_price']; ?></span> <br />
-                                    on <?php echo date('l:jS F Y, h:ia', strtotime($last_purchase['Order']['created'])); ?>
-                                <?php else : ?>
-                                    Last Purchase: <span>No purchases yet.</span>
-                                <?php endif; ?>
-                            </div>
-                            <div class="recent-activity">
-                                Recent Activity (30 Days): <br />
-                                -Amount Spent: <span>$<?php echo $recent_purchase; ?></span><br />
-                                -Messages Sent: <span><?php echo $recent_messages; ?></span>
-                            </div><br />
-                    <?php endif; ?>
-                </div>
-                <?php if(!$is_admin) : ?>
-                    <br />
-                    
-                    <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/getstylistsales/<?php echo $user_id; ?>" target="_blank"><span>Stylist Sales History.</span></a>
-                    </div>
-                    <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/getstylistoutfit/<?php echo $user_id; ?>" target="_blank"><span>Stylist Outfits.</span></a>
-                    </div>
-                    <div class="client-row"><a href="<?php echo $this->webroot; ?>messages/newsfeeds/<?php echo $user_id; ?>" target="_blank"><span>User's news-feed.</span></a>
-                    </div>
-                    
-                    <br />
-                    <h5 class="new-clients-head">New Clients</h5>
-                    <div class="new-clients">
-                    <?php if(isset($new_clients) && count($new_clients) > 0) {
-                        foreach($new_clients as $new_cl){
-                            echo '<div class="client-row">' . 
-                                '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '"><span>' . ucfirst($new_cl['User']['first_name']) . '</span> has been assigned to you.</a>' . 
-                            '</div>';    
-                        }    
-                    }
-                    ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-            <div class="stylist-talk">
-                <?php if($client_id) : ?>
-                    <ul id="stylist-options">
-                        <li><a href="<?php echo $this->webroot; ?>auth/profile/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
-                        <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
-                        <!--bhashit code-->
-                        <li><a href="<?php echo $this->webroot; ?>messages/getuseroutfit/<?php echo $client_id; ?>" target="_blank">user outfits</a></li>
-                        <li><a href="<?php echo $this->webroot; ?>messages/getusernotes/<?php echo $client_id; ?>" target="_blank">user Notes</a></li>
-                        <li><a href="<?php echo $this->webroot; ?>messages/getusercustomsize/<?php echo $client_id; ?>" target="_blank">user Size Info.</a></li>
-                        
-                        <!--bhashit code end-->
-                        <!--<li><a href="">conversation</a></li>-->                
-                    </ul>
-                <?php endif; ?>
-                <h4 class='talk-to bold'>TALK WITH YOUR CLIENT</h4>
-                    <?php if(!$is_admin) : ?>
-                    <?php
-                    echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client', 'style' => 'max-width: 68%;'));
-                    ?> 
-                    <?php endif; ?>  
-                    
-                    <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
-                    <textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
-                    <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a>
-                    <a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a>
-                    <div class="clear-fix"></div>
-                
-                <div class="chat-container">
-                    
-                </div>
-                
-                <p id="loadOldMsgs" class="hide">
-                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                    <a href="">Load Old Messages</a>
-                </p>
-                <br />
-            </div>   
-            <div class="clear-fix"></div>         
-        </div>
+<!--client image end-->
 
-    </div>
-</div>
+
+
+
+
+
 <?php echo $this->Form->end(); ?>
 
 <div id="chatimage-box" class="box-modal notification-box hide">
@@ -481,6 +398,112 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
 
 
+ 
+
+
+
+
+
+<!--bhashit new code start -->
+
+<div class="content-container">
+    <div class="twelve columns black">&nbsp;</div>
+    <div class="twelve columns container">
+        <div class="eleven columns container message-box-area">
+            <div class="twelve columns container left message-box">
+                <div class="eleven columns container pad-none">
+                    <div class="twelve columns message-box-heading pad-none">
+                        <h1><?php echo $client_user['User']['full_name']; ?> | <span>Messages</span></h1>
+                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" data-name="Haspel" /></div>
+                    </div>
+
+                    
+
+                    <div class="my-profile-img m-ver">
+                       <!--  <h2>LISA D.<span>My Stylist</span></h2> -->
+                        <!-- <div class="client-img-small right">
+                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        </div> -->
+                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                    </div>
+                    <div class="dd-nav">
+                        <ul>
+                            <li class="active"><a href="javascript:;">Messages</a></li>
+                            <li><a href="javascript:;">Outfits</a></li>
+                            <li><a href="javascript:;">Purchases/Likes</a></li>
+                            <li><a href="javascript:;">Profile</a></li>
+                        </ul>
+                    </div>
+                    <div class="twelve columns left inner-content pad-none">
+                        <div class="inner-left left">
+                            <div class="left-pannel left">
+                                <div class="client-img"><img src="<?php echo $img; ?>" id="user_image" /></div>
+                                <div class=" twelve columns left left-nav">
+                                    <ul>
+                                        <li class="active"><a href="javascript:;">Messages</a></li>
+                                        <li><a href="javascript:;">Outfits</a></li>
+                                        <li><a href="javascript:;">Purchases/Likes</a></li>
+                                        <li><a href="javascript:;">Profile</a></li>
+                                        <li>
+                            <?php if(!$is_admin) : ?>
+                        <?php
+                    echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client', 'style' => 'max-width: 68%;'));
+                    ?> 
+                    <?php endif; ?></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+                            <div class="right-pannel right">
+                                <div class="twelve columns message-area left pad-none">
+                                    <div class="eleven columns container pad-none">
+                                        <p id="loadOldMsgs" class="hide">
+                                            <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                            <a href="">Load Old Messages</a>
+                                        </p>
+                                        <br />
+                                        
+                                         <div class="chat-container">
+                    
+                                        </div>
+                                        
+                                    
+                                    </div>
+                                </div>
+                                <div class="twelve coloumns left">
+                                    <div class="bottom-text">
+                                        <div class="dummy-text">
+                                            
+                    <textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
+                   
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" twelve columns left bottom-btns">
+                                    <!-- <a class="create-outfit left" href="#" title="">Create Outfit</a> -->
+                                    <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
+                                    <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
+                                    <a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a>
+                                    <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--bhashit code end-->
+
+
+
 <script>
     window.onload = function() {
         // prepare data for ui binding. 
@@ -537,7 +560,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         var arrMsg = res['Messages'];
                         for(var i=0; i < arrMsg.length; i++){
                             var html = showChatMsg(arrMsg[i]);
-                            chatContainer.prepend(html);
+                            chatContainer.append(html);
                         }
                     }
                 },
@@ -552,45 +575,43 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showChatMsg(chatMsg) {
             var html = ''; 
             if(chatMsg['Message']['is_outfit'] == 1){
-                html = html + '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
-                html = html + '<div class="message-caption">You suggested new items to complete a style:</div>'; 
+                //html = html + '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
+                //html = html + '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' suggested new items to complete a style:</div>'; 
                 if(chatMsg['Message']['body'] != '' && chatMsg['Message']['body'] != 'outfit'){
-                    html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
+                    //html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
                 }
                 
-                html = html + '<div class="chat-outfit-box">';
+                html = html +   '<div class="client-outfit">'+
+                                    '<div class="client-msg-reply"><span>Beach Day</span></div>' + 
+                                        '<ul>';
+                ;
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
                     var imgSrc = webroot + "img/image_not_available-small.png";
                     if(typeof(chatMsg['Outfit'][i]["Image"]) != "undefined" && chatMsg['Outfit'][i]["Image"].length > 0){
                         imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
                     }
+                    
+                    var likedClass = "";
+                    var dislikedClass = "";
+                    if(chatMsg['Outfit'][i]['Wishlist'] && chatMsg['Outfit'][i]['Wishlist']['id'] && chatMsg['Outfit'][i]['Wishlist']['id'] > 0){
+                        likedClass = "liked"    
+                    }
+                    
+                    if(chatMsg['Outfit'][i]['Dislike'] && chatMsg['Outfit'][i]['Dislike']['id'] && chatMsg['Outfit'][i]['Dislike']['id'] > 0){
+                        dislikedClass = "disliked"    
+                    }
+                    
+                    
                     html = html + 
-                    '<div class="chat-product-box">' +
-                        '<div class="product-block">' + 
-                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
+                    
+                        '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
                             '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
-                            '<div class="product-list-image mosaic-block fade">' + 
-                                '<div class="mosaic-overlay" style="display: block;">' + 
-                    				'<div class="mini-product-details">' + 
-                					   '<span>$' + chatMsg['Outfit'][i]['Entity']['price'] + '</span>' + 
-                					   '<span>' + chatMsg['Outfit'][i]['Entity']['name'] + '</span>' + 
-                    				'</div>' + 
-                    			'</div>' + 
-                            '<div class="mosaic-backdrop" style="display: block;">' + 
-                                    '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" class="product-image fadein-image" style="opacity: 1;">' + 
-                                '</div>' + 
-                            '</div>' + 
-                            '<div class="product-list-links">' +
-                                '<a href="' + webroot + 'messages/detail/' + chatMsg['Message']['id'] + '/" class="btn-buy" target="_blank">Buy</a>' +                              
-                            '</div>' + 
-                        '</div>' + 
-                    '</div>';        
-                } 
-                html = html + '</div>' + 
-                    '<div class="message-date">' +
-                        '<small>' + chatMsg['Message']['created'] + '</small>' +
-                    '</div>' + 
-                    '</div>';
+                            '<li><img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" alt="" /></li>'; 
+                }
+
+                    html = html +  '</ul>' +
+                                    '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
+                                    '</div>';
             }
             else if(chatMsg['Message']['image']){
                 html = '' + 
@@ -604,22 +625,21 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             }
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
+                    
                     html = '' + 
                         '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                            '<div class="message-caption">You Said:</div>' + 
-                            '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
-                            '<div class="message-date">' +
-                                '<small>' + chatMsg['Message']['created'] + '</small>' +
-                            '</div>' + 
+                            '<div class="client-msg">' + 
+                            '<div class="client-msg-reply">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</idv>' +
                         '</div>';
                 }
                 else{
+                    
                     html = '' + 
-                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                            '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
-                            '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
-                            '<div class="message-date">' +
-                                '<small>' + chatMsg['Message']['created'] + '</small>' +
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
+                            '<div class="user-msg">' + 
+                            '<div class="msg">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
                             '</div>' + 
                         '</div>';
                 }
@@ -692,11 +712,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             var curDate = new Date().format("yyyy-MM-dd h:mm:ss")
             var html = '' + 
                         '<div class="chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
-                            '<div class="message-caption">You Said:</div>' + 
-                            '<div class="message-body">' + nl2br(message) + '</div>' + 
-                            '<div class="message-date">' +
-                                '<small>' + curDate + '</small>' +
-                            '</div>' + 
+                            '<div class="client-msg">' + 
+                            '<div class="client-msg-reply">' + nl2br(message) + '</div>' + 
+                            '<div class="msg-date">' + curDate + '</div>' + 
                         '</div>'; 
             return html;   
         }
@@ -712,7 +730,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
 
                 var html = showSentMessage(message, uid);
-                chatContainer.prepend(html);
+                chatContainer.append(html);
                 $("#messageToSend").val("");
 
                 $.ajax({
@@ -723,8 +741,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     success: function(res) {
                         res = jQuery.parseJSON(res);
                         if(res['status'] == 'ok'){
-                            // var html = showChatMsg(res);
-                            // chatContainer.prepend(html);
+                             //var html = showChatMsg(res);
+                             //chatContainer.append(html);
                         }
                     },
                     error: function(res) {
@@ -757,7 +775,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             var arrMsg = res['Messages'];
                             for(var i=0; i < arrMsg.length; i++){
                                 var html = showChatMsg(arrMsg[i]);
-                                chatContainer.append(html);
+                                chatContainer.prepend(html);
                                 
                                 firstMsgId = arrMsg[i]['Message']['id'];
                             }
@@ -791,5 +809,3 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
     
 
 </script>
-
-

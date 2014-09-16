@@ -118,7 +118,7 @@
                         <?php if(!$is_logged) : ?>
                             <li><a class="vip-link footer-bnt" href="" id="block-vip-access" >VIP Access</a></li>
                         <?php endif; ?>
-                            <li><a class="blog-link footer-bnt" href="javascript:;" title="">Blog</a></li>
+                            <li><a class="blog-link footer-bnt" href="http://www.savilerowsociety.com/blog" title="">Blog</a></li>
                         </ul>
                         
                     </div>
