@@ -140,50 +140,58 @@
                                                 <option>7-Aug-2014</option>
                                             </select>
                                         </div>
-                                        <div class="twelve columns client-outfits left">
-                                            <div class="eleven columns container client-outfits-area pad-none">
-                                                <h1>BEACH DAY</h1>
-                                                <div class="twelve columns client-outfits-img pad-none">
-                                                    <ul>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
+                                        <div class="tab-btns purchase active"><a href="javascript:;" title="">Purchase</a></div>
+                                        <div class="tab-btns likes"><a href="javascript:;" title="">Likes</a></div>
+                                        <div class="twelve columns purchase-container left pad-none">
+                                            <div class="eleven columns container purchase-area pad-none">
+                                                <div class="twelve columns left purchase-dtls pad-none">
+                                                   <ul>
+                                                        <li>
+                                                            <div class="purchase-dtls-date heading left">Date</div>
+                                                            <div class="purchase-dtls-items heading left">Item</div>
+                                                            <div class="purchase-dtls-outfit heading left">Outfit</div>
+                                                            <div class="purchase-dtls-price heading left">Price</div>
+                                                       </li>
+                                                       <li>
+                                                            <div class="purchase-dtls-date left">11/06/2014</div>
+                                                            <div class="purchase-dtls-items left">
+                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
+                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
+                                                           </div>
+                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
+                                                            <div class="purchase-dtls-price left">$105.00</div>
+                                                       </li>
+                                                       <li>
+                                                            <div class="purchase-dtls-date left">11/06/2014</div>
+                                                            <div class="purchase-dtls-items left">
+                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
+                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
+                                                           </div>
+                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
+                                                            <div class="purchase-dtls-price left">$105.00</div>
+                                                       </li>
+                                                       <li>
+                                                            <div class="purchase-dtls-date left">11/06/2014</div>
+                                                            <div class="purchase-dtls-items left">
+                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
+                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
+                                                           </div>
+                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
+                                                            <div class="purchase-dtls-price left">$105.00</div>
+                                                       </li>
+                                                       <li>
+                                                            <div class="purchase-dtls-date left">11/06/2014</div>
+                                                            <div class="purchase-dtls-items left">
+                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
+                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
+                                                           </div>
+                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
+                                                            <div class="purchase-dtls-price left">$105.00</div>
+                                                       </li>
                                                     </ul>
-                                                    <div class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</div>
-                                                </div>
-                                                <div class="twelve columns left client-outfit-bottom pad-none">
-                                                    <div class="client-comments left">
-                                                        <h2>Stylist Comment</h2>
-                                                        <div class="client-comments-text left">Kyle- Your upcoming trip to Hawaii<br>would be a great chance to wear.... <a href="javascript:;" title="">Read More</a></div>
-                                                    </div>
-                                                    <div class="share-outfit right">Share Outfit</div>
-                                                </div>
+                                                </div>   
                                             </div>
                                         </div>
-                                        <div class="twelve columns client-outfits left">
-                                            <div class="eleven columns container client-outfits-area pad-none">
-                                                <h1>BEACH DAY</h1>
-                                                <div class="twelve columns client-outfits-img pad-none">
-                                                    <ul>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
-                                                    </ul>
-                                                    <div class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</div>
-                                                </div>
-                                                <div class="twelve columns left client-outfit-bottom pad-none">
-                                                    <div class="client-comments left">
-                                                        <h2>Stylist Comment</h2>
-                                                        <div class="client-comments-text left">Kyle- Your upcoming trip to Hawaii<br>would be a great chance to wear.... <a href="javascript:;" title="">Read More</a></div>
-                                                    </div>
-                                                    <div class="share-outfit right">Share Outfit</div>
-                                                </div>
-                                            </div>
-                                        </div> 
                                     </div>
                                 </div>
                             </div>
