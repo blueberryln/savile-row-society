@@ -940,17 +940,15 @@ If interested, I would also be happy to meet with you in our New York City based
 //stylist user filter list
 
     public function stylistUserFilterList($clientid = null){
-         $User = ClassRegistry::init('User');
+        $User = ClassRegistry::init('User');
+        $client = $User->getById($clientid);
+        $clientid = $client['User']['id'];
+        $stylist_id = $client['User']['stylist_id'];
          if($this->request->is('post')){
             $usersearch = $this->request->data['usersearch'];
-            
-           
-           
+            $searchdata = $User->find('all',array('conditions'=>array('User.first_name LIKE' => '%' . $usersearch . '%', 'User.stylist_id' => $stylist_id))); 
+         
          }
-         //echo $find_array['User.first_name LIKE'] = '%' . strtolower($usersearch) . '%'; 
-         $searchdata = $User->find('all',array('conditions'=>array('User.stylist_id'=>$clientid, 'User.first_name LIKE' => '%' . strtolower($usersearch) . '%',
-            ))); 
-         print_r($searchdata);
          echo json_encode($searchdata);
          exit;
 
@@ -1656,6 +1654,9 @@ If interested, I would also be happy to meet with you in our New York City based
         $clientid = $client['User']['id'];
         $stylist_id = $client['User']['stylist_id'];
         $current_user = $this->getLoggedUser();
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylist_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+       
+
         $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity'); 
         $liked_list = $Wishlist->getUserLikeProduct($clientid);
@@ -1665,7 +1666,7 @@ If interested, I would also be happy to meet with you in our New York City based
                     $last_item_id = $value['Wishlist']['id'];
                 }
         $likeitems = $Entity->getEntitiesByIdLikes($entity_list, $clientid);
-        $this->set(compact('likeitems','clientid','client'));
+        $this->set(compact('likeitems','clientid','client','userlists'));
     }
 
 
@@ -1741,6 +1742,10 @@ If interested, I would also be happy to meet with you in our New York City based
             $User= ClassRegistry::init('User');
             $client = $User->getById($clientid);
             $clientid = $client['User']['id'];
+            $stylist_id = $client['User']['stylist_id'];
+            $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylist_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+       
+
             $OrderItem = ClassRegistry::init('OrderItem');
             $Entity = ClassRegistry::init('Entity'); 
             $total_purchases = $OrderItem->getTotalUserPurchaseCount($clientid);
@@ -1756,7 +1761,7 @@ If interested, I would also be happy to meet with you in our New York City based
             $purchases = $Entity->getEntitiesByIdPurchaseDes($entity_list);
             
         }
-        $this->set(compact('purchases','clientid','client'));
+        $this->set(compact('purchases','clientid','client','userlists'));
 
     }
 

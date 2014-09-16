@@ -15,6 +15,26 @@
                     success: function(result){
                         data = $.parseJSON(result);
 
+            html = '';
+            html = html + '<ul>';
+            
+            $.each(data,  function (index){
+                html = html + '<li>';
+                html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
+                html = html + '<div class="myclient-img">';
+                html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
+                html = html + '</div>';
+                html = html + '<div class="myclient-dtl">';
+                html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
+                html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
+                html = html + '</div>';
+                html = html + '</a>';
+                html = html + '</li>';      
+                
+                });
+            html = html + '</ul>';
+                $("#searchuserlist").html(html);
+
                     }
 
              }); 
@@ -89,9 +109,9 @@
                             </div>
                         </div>
                         <div class="myclient-list">
-                            <ul>
+                            <ul id="searchuserlist">
                             <?php  foreach($userlists as $userlist ): ?>
-                                <li class="active">
+                                <li <?php if($userlist['User']['id']==$clientid){ echo "class='active'"; } ?>>
                                     <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
                                         <div class="myclient-img">
                                             <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
