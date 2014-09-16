@@ -231,24 +231,22 @@ color:#396; !important
                     </div> 
                 </div>
           </div>
-          <div id="tabs-2">
-                    <div class="seven columns center-block">
+          <div id="tabs-2" class="step1-text-aera">
+                    <div class="eight columns center-block step2-text-aera">
                         <br />
 
                         <div class="hi-message">
-                            <p><img src="<?php echo $this->webroot; ?>img/c.png" alt=""></p>
-                            <h4 class="hi-message text-center" style="margin: 0 -1px 24px 0;">What are your basic measurements?</h4>
-                            <p class="text-center" style="margin-top: -25px;
-            font-size: 14px;">
-                               Before we have the opportunity to take your measurements in the showroom, <br> 
-            let your stylist get an idea of what will fit you best.
-
-                            </p>
+                            <p><img src="<?php echo $this->webroot; ?>images/register-setp-2.png" alt=""></p>
+                            <h4 class="hi-message text-center">Style Profile | Step 2</h4>
+                            <div class="hi-message-text">
+                               What are your best measurements? This information helps your stylist select items with a perfect fit.
+                            </div>
                         </div>
                    </div>
-                   <div class="four columns center-block"> 
-                    <div class="input text required">
-                         <label for="neckSize" class="text-center">NECK SIZE:</label> 
+                   <div class="three columns center-block profile-stp2"> 
+                    <div class="input text required styled-select">
+                        <span class="arrow-icon">&nbsp;</span>
+<!--                         <label for="neckSize" class="text-center">NECK SIZE:</label> -->
                          <?php
                             echo $this->Form->input('UserPreference.neck_size', array(
                                                                     'options' => array(
@@ -264,7 +262,15 @@ color:#396; !important
                                                                     'empty' => 'Neck Size','label' => false,
                                                                     "id"=>"neckSize",
                                                                     ));
-                          ?>                           
+                          ?>
+                        <a class="tt-icon"  target="1">
+                            <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                        </a>
+                        <div id="div1" class="tt-content">
+                            <h4>INSTRUCTIONS</h4>
+                            <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                            <span class="tt-arrow"></span>
+                        </div>
                         <!-- <select name="data[UserPreference][neck_size]" tabindex="" required="required" id="neckSize" >
                             <option value="">Neck Size</option>
                             <option value="14">14</option>
@@ -281,8 +287,9 @@ color:#396; !important
                     </div>
 
 
-                     <div class="input text required">
-                        <label for="jacketSize" class="text-center">Suit Size:</label>     
+                     <div class="input text required styled-select">
+                         <span class="arrow-icon">&nbsp;</span>
+<!--                        <label for="jacketSize" class="text-center">Suit Size:</label>     -->
                         <?php
 
                         echo $this->Form->input('UserPreference.jacket_size',
@@ -306,7 +313,15 @@ color:#396; !important
                                                                         "id"=>"jacketSize",
                                                                             ));
 
-                         ?>                       
+                         ?> 
+                         <a class="tt-icon"  target="2">
+                            <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                        </a>
+                        <div id="div2" class="tt-content">
+                            <h4>INSTRUCTIONS</h4>
+                            <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                            <span class="tt-arrow"></span>
+                        </div>
                         <!-- <select name="data[UserPreference][jacket_size]" tabindex="" required="required" id="jacketSize" >
                             <option value="">Suit Size</option>
                             <option value="36">36</option>
@@ -326,8 +341,9 @@ color:#396; !important
                         </select> -->
                     </div>
 
-                    <div class="input text required chest-size">
-                        <label for="pantWaist" class="text-center">PANT WAIST:</label>
+                    <div class="input text required styled-select">
+                        <span class="arrow-icon">&nbsp;</span>
+<!--                        <label for="pantWaist" class="text-center">PANT WAIST:</label>-->
                         <?php
 
                                     echo $this->form->input('UserPreference.pant_waist',  array(
@@ -345,7 +361,15 @@ color:#396; !important
                                                                         '38'=>'38',
                                                                         'I don’t know'=>'I don’t know',),
                                                                         'empty'=>'Pant Waist', 'label'=>false, "id"=>"pantWaist",));
-                         ?>                            
+                         ?>
+                        <a class="tt-icon"  target="3">
+                            <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                        </a>
+                        <div id="div3" class="tt-content">
+                            <h4>INSTRUCTIONS</h4>
+                            <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                            <span class="tt-arrow"></span>
+                        </div>
                         <!-- <select name="data[UserPreference][pant_waist]" tabindex="" required="required" id="jacketSize" >
                             <option value="">Pant Waist</option>
                             <option value="28">28</option>
@@ -363,8 +387,9 @@ color:#396; !important
                         </select> -->
                     </div>
 
-                    <div class="input text required chest-size">
-                        <label for="pantLength" class="text-center">PANT LENGHT:</label> 
+                    <div class="input text required styled-select">
+                        <span class="arrow-icon">&nbsp;</span>
+<!--                        <label for="pantLength" class="text-center">PANT LENGHT:</label> -->
                              <?php
                              echo $this->form->input('UserPreference.pant_length',  array(
                                                                 'options' => array(              
@@ -378,7 +403,15 @@ color:#396; !important
                                                                         'I don’t know'=>'I don’t know',),
                                                                         'empty'=>'Pant Length', 'label'=>false, 'id'=>'pantLength',));
 
-                              ?>                      
+                              ?>
+                                <a class="tt-icon"  target="4">
+                                    <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                                </a>
+                                <div id="div4" class="tt-content">
+                                    <h4>INSTRUCTIONS</h4>
+                                    <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                                    <span class="tt-arrow"></span>
+                                </div>
                         <!-- <select name="data[UserPreference][pant_length]" tabindex="" required="required" id="pantLength" >
                             <option value="">Pant Length</option>
                             <option value="28">28</option>
@@ -391,8 +424,9 @@ color:#396; !important
                              <option value="I don’t know">I don’t know</option>
                         </select> -->
                     </div>
-                  <div class="input text required chest-size">
-                        <label for="shoeSize" class="text-center">SHOE SIZE:</label> 
+                  <div class="input text required styled-select">
+                      <span class="arrow-icon">&nbsp;</span>
+<!--                        <label for="shoeSize" class="text-center">SHOE SIZE:</label> -->
                         <?php
                              echo $this->form->input('UserPreference.shoe_size',  array(
                                                                 'options' => array(              
@@ -414,7 +448,15 @@ color:#396; !important
                                                                         'I don’t know'=>'I don’t know',),
                                                                         'empty'=>'Shoe Size', 'label'=>false, 'id'=>"shoeSize",));
 
-                              ?>                                 
+                              ?>
+                              <a class="tt-icon"  target="5">
+                                    <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                                </a>
+                                <div id="div5" class="tt-content">
+                                    <h4>INSTRUCTIONS</h4>
+                                    <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                                    <span class="tt-arrow"></span>
+                                </div>
                         <!-- <select name="data[UserPreference][shoe_size]" tabindex="" required="required" id="shoeSize" >
                             <option value="">Shoe Size</option>                    
                             <option value="7">7</option>
@@ -443,7 +485,7 @@ color:#396; !important
                             <div class="submit">                            
                                <div id="tabs">
                                <ul> <!--<li><a class="link-btn black-btn back-btn" id="back2" href="#tabs-1">Back</a> </li>-->
-                                <li><a class="link-btn black-btn back-btn" id="cont2" href="#tabs-3">Continue</a> 
+                                <li><a class="setp-btn" id="cont2" href="#tabs-3">Next</a>  
                                </li>
                                </ul>
                                </div>
@@ -456,69 +498,120 @@ color:#396; !important
                 </div>
           </div>
           <div id="tabs-3">
-            <div class="seven columns center-block">
+            <div class="seven columns center-block step3-text-aera">
                     <br />
 
                     <div class="hi-message">
-                        <p><img src="<?php echo $this->webroot; ?>img/d.png" alt=""></p>
-                        <h4 class="hi-message" style="margin: 2px -1px 24px 72px;">Tell us more about yourself</h4>
-                        <p style="margin-top: -25px; font-size: 14px; margin-left: 2px;">
-                          Help our stylists get to know you better to create a more personalized experience.
-                        </p>
+                        <p><img src="<?php echo $this->webroot; ?>images/register-setp-3.png" alt=""></p>
+                        <h4 class="hi-message">Style Profile | Step 3</h4>
+                        <div class="hi-message-text">
+                          Please complete the following fields.
+                        </div>
                     </div>
 
-                    <div class="five columns pref-time left">
-                    <div class="pref-options">
-                        <?php
-                            echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => 'First Name*','required', 'placeholder' => 'FIRST NAME'));
-                            echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => 'Last Name*','required', 'placeholder' => 'LAST NAME'));
-                            echo $this->Form->input('User.zip', array("label"=>"Zipcode", "placeholder" => "Zipcode"));
-                            echo $this->Form->input('User.comments', array("type"=>"textarea"));
-
-                        ?>
+                <div class="twelve columns left profile-stp3">
+                    <h1>General Info</h1>
+                    <div class="eleven columns center-block step3-text-aera">
+                        <div class="five columns pref-time left">
+                            <div class="pref-options">
+                                <?php
+                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', "label"=> false,'required', 'placeholder' => 'FIRST NAME'));
+                                    echo $this->Form->input('User.email', array('id' => 'register-email', "label"=> false,'required', 'placeholder' => 'EMAIL'));
+                                   
+                                ?>
+                            </div>
+                        </div>
+                         <div class="five columns pref-time right">
+                            <div class="pref-options">      
+                              <?php
+                                echo $this->Form->input('User.last_name', array('id' => 'last-name', "label"=> false, 'required', 'placeholder' => 'LAST NAME'));
+                                echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode"));
+                               ?> 
+                                
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                
+                <div class="twelve columns left profile-stp3">
+                    <h1>Communication preferences</h1>
+                    <h3>This information will be given to the stylist so they know they best way to contact you.</h3>
+                    <div class="eleven columns center-block step3-text-aera">
+                        <div class="five columns pref-time left">
+                            <div class="pref-options">
+                                <?php
+                                    echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number"));
+                                    echo $this->Form->input('User.skype', array("label"=> false, 'placeholder' => 'Skype Id'));
+                                ?>
+                            </div>
+                        </div>
+                         <div class="five columns pref-time right">
+                            <div class="pref-options">
+                                <div class="connect">
+                                    <div class="squared">
+                                        <input type="checkbox" id="squared" <?php if($this->data['User']['is_phone']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_phone]">
+<!--                                        <input type="checkbox" id="squared" name="data[User][is_phone]">-->
+                                        <label for="squared"></label>
+                                    </div>
+                                    <label>I 'd like to connected on the phone :</label>
+                                </div>
+                                <div class="connect">
+                                    <div class="squared">
+                                        <input type="checkbox" id="squared_1" <?php if($this->data['User']['is_skype']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_skype]">
+<!--                                        <input type="checkbox" id="squared_1" name="data[User][is_skype]">-->
+                                        <label for="squared_1"></label>
+                                    </div>
+                                    <label>I 'd like to connected through Skype :</label>
+                                </div>
+                                <div class="connect">
+                                     <div class="squared">
+<!--                                        <input type="checkbox" id="squared_2" name="data[User][is_srs_msg]">-->
+                                         <input type="checkbox" id="squared_2" <?php if($this->data['User']['is_srs_msg']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_srs_msg]">
+                                        <label for="squared_2"></label>
+                                    </div>
+                                    <label>I’d prefer to be contacted through SRS Messaging  System :</label>
+                                </div>
+                                
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                
+                
+                <div class="twelve columns left clear-fix step3-text-aera">
+                    <div class="eleven columns center-block step3-text-aera">
+                        <div class="five columns pref-time left">
+                            <div class="pref-options">
+                            <?php                            
+                                echo $this->Form->input('User.comments', array("type"=>"textarea",'label'=>false));
+                            ?>
+                            
+                            </div>
+                        </div>
+                         <div class="five columns pref-time right">
+                            <div class="pref-options ">
+                                <div class="seven columns center-block uplod-profile-img">
+                                <div class='empty-img' id='photo-holder'>
+                                    <?php if($this->data['User']['profile_photo_url']){
+                                        ?>
+                                         <img src='<?php echo $this->webroot ."files/users/". $this->data['User']['profile_photo_url']; ?>' id='user-photo'/>
+                                        <?php
+                                       }else{ ?>
+                                        <img src='<?php echo $this->webroot . "img/dummy_image.jpg"; ?>' id='user-photo'/>
+                                      <?php } ?>
+                                    </div>
+                                    </div>
+                                    <input type='button' value='Upload profile Photo' id='upload-img' class="gray-btn"/>
 
-                     <div class="five columns pref-time right">
-                    <div class="pref-options">      
-                      <?php
-                       echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => 'Email*','required', 'placeholder' => 'EMAIL'));
-                            echo $this->Form->input('User.phone', array("label"=>"Phone No", "placeholder" => "Phone Number"));
-                            echo $this->Form->input('User.skype', array( 'label' => 'Skype Id', 'placeholder' => 'Skype Id'));
-                        ?>
-
-
-                        <label>I 'd like to connected on the phone :</label><input type="checkbox" <?php if($this->data['User']['is_phone']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_phone]">
-
-
-                        <label>I 'd like to connected through Skype :</label><input type="checkbox" <?php if($this->data['User']['is_skype']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_skype]">
-
-
-                        <label>I 'd like to connected using SRS masseging System :</label><input type="checkbox" <?php if($this->data['User']['is_srs_msg']=='1'){ ?> checked <?php } else{} ?> name="data[User][is_srs_msg]"> 
-
-
-                        <div class="hi-message twelve columns text-center">
-                       <div class='empty-img' id='photo-holder'>
-                       <?php if($this->data['User']['profile_photo_url']){
-                        ?>
-                         <img src='<?php echo $this->webroot ."files/users/". $this->data['User']['profile_photo_url']; ?>' id='user-photo'/>
-                        <?php
-                       }else{ ?>
-                        <img src='<?php echo $this->webroot . "img/dummy_image.jpg"; ?>' id='user-photo'/>
-                      <?php } ?>
-
-                        </div>                
-                        <input type='button' value='Upload photo' id='upload-img' class="gray-btn"/>
-
-                        <?php
-                            echo $this->Form->input('User.profile_photo_url', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
-                        ?>
-                        <div class="clear-fix"></div>
+                                    <?php
+                                        echo $this->Form->input('User.profile_photo_url', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
+                                    ?>
+                                
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                        </div></div>
-
-
-                         </div>
+                </div>
 
                     <div class="clear-fix"></div>
                     <div class="text-center about-submit">
