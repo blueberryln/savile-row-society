@@ -936,6 +936,28 @@ If interested, I would also be happy to meet with you in our New York City based
         } 
     }
 
+
+//stylist user filter list
+
+    public function stylistUserFilterList($clientid = null){
+         $User = ClassRegistry::init('User');
+         if($this->request->is('post')){
+            $usersearch = $this->request->data['usersearch'];
+            
+           
+           
+         }
+         //echo $find_array['User.first_name LIKE'] = '%' . strtolower($usersearch) . '%'; 
+         $searchdata = $User->find('all',array('conditions'=>array('User.stylist_id'=>$clientid, 'User.first_name LIKE' => '%' . strtolower($usersearch) . '%',
+            ))); 
+         print_r($searchdata);
+         echo json_encode($searchdata);
+         exit;
+
+
+    }
+
+
     // stylist user outfits
 
     public function stylistuseroutfits($client_id = null){
@@ -949,7 +971,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"];   
         $client = $User->getById($client_id);
         $clientid = $client['User']['id'];
-        
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
        
         
         
@@ -988,7 +1010,7 @@ If interested, I would also be happy to meet with you in our New York City based
                     }
                     // print_r($my_outfits);
                     // die;
-        $this->set(compact('my_outfits','client','user_id','clientid'));
+        $this->set(compact('my_outfits','client','user_id','clientid','userlists'));
     }
 
     //perticular user outfit list sent by his stylist
@@ -1377,7 +1399,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 'like_product' => $entity_list 
             );
         print_r($like_product_list);
-        
+
 
 
                 // $username = $User->find('all', array('conditions'=>array('User.id'=>$like_user_id)));
