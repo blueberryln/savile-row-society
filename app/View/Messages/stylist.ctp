@@ -87,14 +87,15 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
                 <div class="two columns right admin-top-right">
                     <ul>
-                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
-                        <li>
+                       <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                       <!--  <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>-->
+                        <li> 
                             <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                             <div class="admin-top-right-dropdown">
                                 <ul>
                                     <li><a href="#" title="">view my cart/checkout</a></li>
                                     <li><a href="#" title="">refer a friend</a></li>
-                                    <li><a href="#" title="">sign out</a></li>
+                                    <li><a href="<?php echo $this->request->webroot; ?>signout" title="">sign out</a></li>
                                 </ul>
                             </div>
                         </li>
