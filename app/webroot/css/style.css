@@ -1289,7 +1289,7 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 */
 .myclient-right { width: 75%; margin-right: 3%;}
 
-
+/************ Stylist Three Section *************/
 .notes-area { background: #f7f7f7; padding: 15px 0 0; color: #000; font-size: 14px;  }
 .notes-txt-area {background: #d7d7d7; padding-bottom: 40px;}
 .notes-heading { font-weight: bold;}
@@ -1318,6 +1318,16 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 .myclient-gallery .bx-wrapper a.bx-next { background-position: -16px 0px; right: 40%;}
 .gal-btns {text-align: center; padding: 30px 0 0px;}
 a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; background: #927e41; display: inline-block; padding: 0px 20px; text-transform: uppercase; color: #fff;}
+
+/************ Stylist Five Section *************/
+
+.activity-feed-section {}
+.activity-feed-section li {width: 100%; float: left; background: #fff; min-height: 125px;}
+.activity-content-area{ width: 96%; padding: 0 2%; float: left;}
+.activity-icn {width: 43px; float: left;}
+.activity-user-img { width: 55px; float: left; padding: 22px 20px 0 20px;}
+.activity-msg-area { float:left; display: block;}
+.activity-date-section {width: 10%; float: right;}
 
 
 /********Mobile CSS**********/

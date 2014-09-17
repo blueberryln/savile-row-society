@@ -104,10 +104,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="twelve columns brand-box-area">
         <div class="eleven columns container brand-boxes">
             <div class="brands eleven columns container">
+<!--
                 <div id="scrollbar2">
                             <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
             <div class="viewport">
                  <div class="overview">
+-->
                 <ul id="branding-ptners">
                     <li data-id="hook"><img src="<?php echo $this->webroot; ?>images/branding-partners/Hook+Albert_new.png" alt="Hook and Albert" data-name="hook" /><span class="brand-divider"></span></li>
                     <li data-id="bensherman"><img src="<?php echo $this->webroot; ?>images/branding-partners/Ben-Sherman_new.png" alt="Ben Sherman" data-name="bensherman" /><span class="brand-divider"></span></li>
@@ -131,9 +133,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <li><img src="<?php echo $this->webroot; ?>images/branding-partners/spivey.jpg" alt="" data-name="spivey" /><span class="brand-divider"></span></li>
                     <li><img src="<?php echo $this->webroot; ?>images/branding-partners/tommy-hilfiger.jpg" alt="" data-name="Tommy" /></li>
                 </ul>
+<!--
                          </div>
                     </div>
                 </div>
+-->
             </div>
         </div>
         </div>    
