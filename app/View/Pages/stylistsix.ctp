@@ -137,7 +137,7 @@
                                                 <div class="five columns left">
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Jacket</label></div>
-                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                        <div class=" six columns left msrmnt-input-area"><input type="text" name="" /></div>
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Pant Waist</label></div>
@@ -145,18 +145,292 @@
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Pant Length</label></div>
-                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                        <div class=" six columns left msrmnt-input-area"><input type="text" name="" /></div>
                                                     </div>
                                                 </div>
                                                 <div class="five columns right">
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Neck</label></div>
-                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                        <div class=" six columns left msrmnt-input-area"><input type="text" name="" /></div>
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Shoe</label></div>
-                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                        <div class=" six columns left msrmnt-input-area"><input type="text" name="" /></div>
                                                     </div>
+                                                </div>
+                                                <div class="twelve columns left">
+                                                    <div class="three columns left msrmnt-label"><label>Style Profile Comments</label></div>
+                                                    <div class="nine columns left msrmnt-input-area"><textarea name="comment"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </textarea></div>
+                                                </div>
+                                                <div class="twelve columns left cstm-msrmnt">
+                                                    <div class="twelve columns left cstm-msrmnt-section">
+                                                        <h1>Custom Measurements</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="twelve columns left cstm-msrmnt-content">
+                                                    <div id="horizontalTab">
+                                                        <ul>
+                                                            <li><a href="#11">Shirt</a></li>
+                                                            <li><a href="#12">Jacket</a></li>
+                                                            <li><a href="#13">Trousers</a></li>
+                                                            <li><a href="#14">Vests</a></li>
+                                                            
+                                                        </ul>
+
+                                                        <div id="11">
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Neck</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Chest</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Waist</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Hip</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Left Cuff</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Right Cuff</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Right Sleeve</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Left Sleeve</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Overarm</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Posture</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Yoke</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Shoulderline</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left msrmnt-label"><label>Style Profile Comments</label></div>
+                                                                <div class="nine columns left msrmnt-input-area"><textarea name="comment"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </textarea></div>
+                                                            </div>
+                                                        </div>
+                                                            
+                                                        <div id="12">
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Neck</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Chest</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Waist</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Hip</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Left Cuff</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Right Cuff</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Right Sleeve</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Left Sleeve</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Overarm</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Posture</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Yoke</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Shoulderline</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left msrmnt-label"><label>Style Profile Comments</label></div>
+                                                                <div class="nine columns left msrmnt-input-area"><textarea name="comment"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </textarea></div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="13">
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Neck</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Chest</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Waist</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Hip</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Left Cuff</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Right Cuff</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Right Sleeve</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Left Sleeve</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Overarm</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Posture</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Yoke</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Shoulderline</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left msrmnt-label"><label>Style Profile Comments</label></div>
+                                                                <div class="nine columns left msrmnt-input-area"><textarea name="comment"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </textarea></div>
+                                                            </div>
+                                                        </div>
+                                                            
+                                                        <div id="14">
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Neck</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Chest</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Waist</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Hip</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Left Cuff</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Right Cuff</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Right Sleeve</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Left Sleeve</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Overarm</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left">
+                                                                    <label>Posture</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left cstm-msrmnt-center">
+                                                                    <label>Yoke</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                                <div class="three columns left">
+                                                                    <label>Shoulderline</label>
+                                                                    <input type="text" name="" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns left">
+                                                                <div class="three columns left msrmnt-label"><label>Style Profile Comments</label></div>
+                                                                <div class="nine columns left msrmnt-input-area"><textarea name="comment"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </textarea></div>
+                                                            </div>
+                                                        </div>
+                                                       
+
+                                                    </div>
+                                                
                                                 </div>
                                             </div>
                                         </div>

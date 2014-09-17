@@ -834,7 +834,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { color: #55585e; font-size: 25px; display: block; font-style: italic;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand span.outfit-brand-name { text-decoration: underline;}
 .outfit-stylist li .shop-outfit .shop-outfit-bottom { display: block; padding: 5px 0px 12px 0px; position: relative;}
-.outfit-stylist li .shop-outfit .shop-outfit-bottom li { display: inline-block; margin-left: -2px; width: 18%; vertical-align: top;}
+.outfit-stylist li .shop-outfit .shop-outfit-bottom li { display: inline-block; margin-left: -2px; width: 18%; vertical-align: middle;}
 .outfit-stylist li .shop-outfit .shop-outfit-bottom li img { width: 100%;}
 .outfit-stylist li .shop-outfit .shop-outfit-bottom a.shop-outfit-bottom-link { border-bottom: 1px solid #d0d0d0; color: #444; font-size: 16px; font-style: italic; font-family: 'ProximaNovaCond-Regular';float: right; margin-right: 20px; margin-bottom: 10px; text-transform: uppercase;}
 .outfit-stylist li .outfit-link-btn { width: auto; margin: 20px auto 0; text-align: center; display: inline-block;}
@@ -1337,9 +1337,37 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 
 
 /************ Stylist Six Section *************/
-.msrmnt-section h1 { text-align: center;}
+.msrmnt-section h1, .cstm-msrmnt-section h1 { text-align: center;}
 .msrmnt-label {text-align: right;}
 .msrmnt-label label {padding-right: 10px;}
+.three.columns.left.msrmnt-label { width: 20.9%;}
+.nine.columns.left.msrmnt-input-area { width: 79.2%; margin-left: -1px;}
+.cstm-msrmnt-center{ margin-left: 12.5%; margin-right: 12.5%}
+.cstm-msrmnt-content {text-align: center;}
+
+.r-tabs .r-tabs-nav {
+    margin: 0;
+    padding: 0;
+}
+
+.r-tabs .r-tabs-tab {
+    display: inline-block;
+    margin: 0;
+    list-style: none;
+}
+
+.r-tabs .r-tabs-panel {
+    padding: 15px;
+    display: none;
+}
+
+.r-tabs .r-tabs-accordion-title {
+    display: none;
+}
+
+.r-tabs .r-tabs-panel.r-tabs-state-active {
+    display: block;
+}
 
 
 /********Mobile CSS**********/
@@ -1487,6 +1515,14 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
     .stylistbion-arrow img.back-for-mobile { display: block;}
     .stylistbion-arrow img { display: none;}
     .edit-content select{background: #fff;}
+    
+    .r-tabs .r-tabs-nav {
+        display: none;
+    }
+
+    .r-tabs .r-tabs-accordion-title {
+        display: block;
+    }
     
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 

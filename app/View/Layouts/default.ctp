@@ -237,6 +237,8 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
+        
 <!--        <script src="<?php echo $this->request->webroot; ?>js/jquery.cluetip.js" type="text/javascript"></script>-->
         
         <script type="text/javascript">
@@ -270,6 +272,21 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 moveSlides: 1,
                 slideMargin: 40
               });
+                
+            $('#horizontalTab').responsiveTabs({
+                rotate: false,
+                startCollapsed: 'accordion',
+                collapsible: 'accordion',
+                setHash: true,
+                //disabled: [3,4],
+//                activate: function(e, tab) {
+//                    $('.info').html('Tab <strong>' + tab.id + '</strong> activated!');
+//                },
+                activateState: function(e, state) {
+                    //console.log(state);
+                    $('.info').html('Switched from <strong>' + state.oldState + '</strong> state to <strong>' + state.newState + '</strong> state!');
+                }
+            });
                 
                 
                

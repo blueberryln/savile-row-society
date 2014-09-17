@@ -551,7 +551,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div>
         <div class="eleven columns container brand-boxes">
             <div class="brands nine columns container">
-                <ul>
+                <ul id="branding-ptners">
                     <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Hook+Albert_new.png" alt="" /><span class="brand-divider"></span></li>
                     <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Ben-Sherman_new.png" alt="" /><span class="brand-divider"></span></li>
                     <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Cole_Haan_new.png" alt="" /></li>
