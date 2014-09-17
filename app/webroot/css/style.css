@@ -828,10 +828,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .outfit-stylist li .shop-outfit .shop-outfit-top { width: 100%; height: 173px; display:inline-block; border-bottom: 1px solid #e6e5e1; overflow: hidden;}
 
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block; width: 45%;  }
-
-.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block;width: 45%;}
->>>>>>> 59af2e537327dee25c46ceb9db2bf6b22dccaea9
-.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img img { width: 100%; height: auto; margin-bottom: -5px;}
+.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img img { width: 100%; margin-bottom: -5px;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content { padding:50px 15px 0 25px; font-family: 'ProximaNovaCond-Regular'; font-size: 27px; text-align: left;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-month { color: #d19b03; display: block; padding-bottom: 15px; text-transform: uppercase;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { color: #55585e; font-size: 25px; display: block; font-style: italic;}
@@ -1359,7 +1356,7 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
     .header .menu { width: 100%; border: none; top: 78px!important; background: #fcfcfb;}
     .card-menu { line-height:normal!important;}
     .mega-banner{ margin-top: 0px;}
-    .mega-banner-overlay {bottom: 35px; width: 640px;}
+    .mega-banner-overlay {width: 640px; margin-top: -140px!important;}
     .mega-banner-overlay span.large-size { font-size: 55px; line-height: 55px;}
     .mega-banner-overlay span.small-size { font-size: 35px;}
     .mega-banner-overlay .overlay-bnts { margin-top: 40px;}
@@ -1372,7 +1369,7 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
     .works-heading { line-height: 30px;}
     .works-boxes .work-box, .shopping-boxes .shopping-box { width: 24%; margin: 0 4%; }
     .works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes { margin-top: 20px; padding-bottom: 30px;}
-    .featured-stylist ul li { width: 171px!important;}
+    .featured-stylist ul li { width: 171px!important; height: 171px; line-height: 171px; overflow: hidden;}
     .featured-stylist .bx-wrapper { margin-left: -12px;}
     .featured-stylist a.bx-prev, .featured-stylist a.bx-next { top: 35px;}
     .featured-stylist a.bx-prev { left: -50px;}
