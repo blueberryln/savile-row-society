@@ -190,7 +190,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     
                                     </div>
                                 </div>
-                                <div class="twelve coloumns left">
+                                <div class="twelve columns left">
                                     <div class="bottom-text">
                                         <div class="dummy-text"><textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea></div>
                                     </div>
