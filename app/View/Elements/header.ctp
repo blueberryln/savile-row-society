@@ -112,6 +112,7 @@
                             <!-- <li><a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="headerMenu">Profile</a></li> -->
                             <li>
                             <a href="<?php echo $this->request->webroot; ?>messages/userprofiles/<?php echo $user['User']['id']; ?>" class="headerMenu">Profile</a></li>
+                        <li>    <a href="<?php echo $this->request->webroot; ?>Auth/profile/<?php echo $user['User']['id']; ?>" class="headerMenu">Style Profile</a></li>
                             <!-- <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="headerMenu">Profile</a></li> -->
                             <li><a href="<?php echo $this->request->webroot; ?>refer-a-friend" class="headerMenu">Refer a friend</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
