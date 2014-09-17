@@ -129,31 +129,36 @@
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
-                                        <div class="twelve columns left activity-feed-section">
-                                            <ul>
-                                                <li class="activity-wishlist">
-                                                    <div class="activity-content-area">
-                                                        <div class="activity-icn"></div>
-                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
-                                                        <div class="activity-msg-area">
-                                                            <div class="activity-user-name"><strong>Kyle Harper</strong> liked an item,</div>
-                                                            <div class="activity-msg-dtl">
-                                                                <span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>
-                                                                <span class="activity-product-dtl">
-                                                                    <strong>Nice Loafers</strong><br>
-                                                                    Prada<br>
-                                                                    $650.00
-                                                                </span>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        <div class="activity-date-section">
-                                                            August 7, 2013<br>
-                                                            12:30 pm EST<br>
-                                                            <a href="#" title="">Send a Message</a>                                                                                                            </div>
+                                        <div class="twelve columns left">
+                                            <div class="ten columns center-block">
+                                                <div class="twelve columns left msrmnt-section">
+                                                    <h1>Profile Sizes</h1>
+                                                </div>
+                                                <div class="five columns left">
+                                                    <div class="twelve columns left">
+                                                        <div class="six columns left msrmnt-label"><label>Jacket</label></div>
+                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
                                                     </div>
-                                                </li>
-                                            </ul>
+                                                    <div class="twelve columns left">
+                                                        <div class="six columns left msrmnt-label"><label>Pant Waist</label></div>
+                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                    </div>
+                                                    <div class="twelve columns left">
+                                                        <div class="six columns left msrmnt-label"><label>Pant Length</label></div>
+                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                    </div>
+                                                </div>
+                                                <div class="five columns right">
+                                                    <div class="twelve columns left">
+                                                        <div class="six columns left msrmnt-label"><label>Neck</label></div>
+                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                    </div>
+                                                    <div class="twelve columns left">
+                                                        <div class="six columns left msrmnt-label"><label>Shoe</label></div>
+                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

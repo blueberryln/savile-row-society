@@ -248,7 +248,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 });
                 
                 $('.slider1').bxSlider({
-                slideWidth: 222,
+                slideWidth: 220,
                 minSlides: 1,
                 maxSlides: 10,
                 moveSlides: 1,
@@ -258,7 +258,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.slider2').bxSlider({
                 slideWidth: 495,
                 minSlides: 1,
-                maxSlides: 6,
+                maxSlides: 2,
                 moveSlides: 1,
                 slideMargin: 20
               });
