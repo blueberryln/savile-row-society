@@ -115,10 +115,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <div class="filter-myclient-area">
                             <div class="filter-myclient">
                                 <span class="downarw"></span>
-                                <select>
+                                <select onchange="location = this.options[this.selectedIndex].value;">
                                     <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
+                                    <?php  foreach($userlists as $userlist ): ?>
+                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></option>
+                                     <?php endforeach; ?>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -162,11 +164,11 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" /></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
-                                        <li><a href="javascript:;">Activity Feed</a></li>
-                                        <li><a href="javascript:;">Messages</a></li>
-                                        <li><a href="javascript:;">Outfits</a></li>
-                                        <li class="active"><a href="javascript:;">Purchases/Likes</a></li>
-                                        <li><a href="javascript:;">Notes &amp; Gallery</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuseractivityfeed/<?php echo $client_id; ?>">Activity Feed</a></li>
+                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $client_id; ?>">Messages</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuseroutfits/<?php echo $client_id; ?>">Outfits</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuserpurchase/<?php echo $client_id; ?>">Purchases/Likes</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistusernotes/<?php echo $client_id; ?>">Notes &amp; Gallery</a></li>
                                         <li><a href="javascript:;">Measurements</a></li>
                                     </ul>
                                 </div>
@@ -174,40 +176,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
-                                        <!-- <div class="user-msg">
-                                            <div class="user-req">Outfit Request</div>
-                                            <div class="client-name">Lisa,</div>
-                                            <div class="msg">I’ve got a Hawaii Vacation in 2 weeks. Any ideasfor a versatile outfit? I I want to limit what I bring- I hate packing!!</div>
-                                            <div class="msg-date">8/10/14, 8:30 AM</div>
-                                        </div> -->
-                                        <!-- <div class="client-msg">
-                                            <div class="client-msg-reply">Sure! Let me look through the closet, and pick out some key pieces that will do the trick. I’ll get back with you later today.</div>
-                                            <div class="msg-date">8/10/14, 8:30 AM</div>
-                                        </div> -->
-                                        <!-- <div class="client-msg">
-                                            <div class="client-msg-reply">I’ve created an outfit for your upcoming Hawaii vacation. It’s casual enough to wear to the pool, but still is okay to an afternoon enjoying cocktails on your yacht ! </div>
-                                            <div class="msg-date">8/10/14, 8:30 AM</div>
-                                        </div> -->
-                                        <!-- <div class="client-outfit">
-                                            <div class="client-msg-reply"><span>Beach Day</span></div>
-                                            <ul>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
-                                            </ul>
-                                            <div class="msg-date">8/10/14, 8:30 AM</div>
-                                        </div> -->
                                         
-                                        <!-- <div class="user-msg">
-                                            <div class="msg">Thank you so much... saved me so much time.</div>
-                                            <div class="msg-date">8/10/14, 8:30 AM</div>
-                                        </div>
-                                        <div class="user-msg">
-                                            <div class="msg">I will! Don’t you worry.</div>
-                                            <div class="msg-date">8/10/14, 8:30 AM</div>
-                                        </div> -->
                                         
                                         <p id="loadOldMsgs" class="hide">
                                             <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
@@ -250,7 +219,24 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
     </div>
 </div>
 
+<?php echo $this->Form->end(); ?>
 
+<div id="chatimage-box" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="signin-content">
+            <h5 class="sign">Send Photo</h5>  
+            
+            <?php echo $this->Form->create('Message', array('type' => 'file', 'url' => '/messages/sendPhotoToUser/' . $client_id)); ?> 
+                <?php
+                    echo $this->Form->input('Image', array('type' => 'file', 'label' => false, 'class' => 'style-photo'));
+                ?>
+                <input type="submit" class="link-btn black-btn signin-btn" value="Upload Photo" /> 
+                <br /><br />
+            </form> 
+        </div> 
+    </div>
+</div>
 
 <script>
     window.onload = function() {
