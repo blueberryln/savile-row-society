@@ -827,7 +827,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .outfit-stylist li .shop-outfit{ border: 8px solid #e6e5e1; background: #fff;}
 .outfit-stylist li .shop-outfit .shop-outfit-top { width: 100%; height: 173px; display:inline-block; border-bottom: 1px solid #e6e5e1; overflow: hidden;}
 
-.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block; width: 45%;  }
+.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block; width: 35%;  }
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img img { width: 100%; margin-bottom: -5px;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content { padding:50px 15px 0 25px; font-family: 'ProximaNovaCond-Regular'; font-size: 27px; text-align: left;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-month { color: #d19b03; display: block; padding-bottom: 15px; text-transform: uppercase;}
