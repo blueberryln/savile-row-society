@@ -806,10 +806,10 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .featured-stylist, .outfit-stylist{ position: relative;}
 .featured-stylist ul, .outfit-stylist ul, .style-time ul, .brand-boxes ul { margin: 0; padding: 0; list-style: none;}
 .featured-stylist ul li, .outfit-stylist ul li, .style-time ul li, .brand-boxes ul li { display: inline-block; margin-bottom: 0px;}
-.featured-stylist ul li {position: relative;}
+.featured-stylist ul li {position: relative; height: 220px; overflow: hidden; line-height: 220px;}
 .featured-stylist .bx-wrapper { margin: 0 auto; overflow: hidden;}
-.featured-stylist ul li img { width: 100%; margin: 0px 10px; }
-.featured-stylist ul li .featured-stylist-hover { position: absolute; top: 0px; left: 10px; background: rgba(209, 155, 3, 0.6); width: 100%; height: 100%; cursor: pointer;}
+.featured-stylist ul li img { width: 96%; margin: 0px 10px; }
+.featured-stylist ul li .featured-stylist-hover { position: absolute; top: 0px; left: 10px; background: rgba(209, 155, 3, 0.6); width: 100%; height: 100%; cursor: pointer;line-height: normal;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-text { position: absolute; top:20%; left: 15%; font-family: 'Proximanova'; font-weight: 600; color: #fff; text-transform: uppercase; font-size: 16px; width: 40%; display: block; line-height: 22px;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-img { position: absolute; bottom: 20%; left: 10%; width: 34px; height: 34px;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-img img { width: 100%; height: auto;}
@@ -1321,13 +1321,26 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 
 /************ Stylist Five Section *************/
 
-.activity-feed-section {}
+.activity-feed-section {font-family: 'Proximanova'; font-size: 12px; color: #252525;}
 .activity-feed-section li {width: 100%; float: left; background: #fff; min-height: 125px;}
 .activity-content-area{ width: 96%; padding: 0 2%; float: left;}
-.activity-icn {width: 43px; float: left;}
+.activity-feed-section li .activity-icn {width: 43px; float: left; min-height: 78px; background: url("../images/activity-icons.png")no-repeat 0px 0px;}
 .activity-user-img { width: 55px; float: left; padding: 22px 20px 0 20px;}
-.activity-msg-area { float:left; display: block;}
-.activity-date-section {width: 10%; float: right;}
+.activity-msg-area { float:left; display: block; padding-top: 19px; width: 34em; max-width: 65%;}
+.activity-user-name { display: block;font-size: 16px; padding-bottom: 10px;}
+.activity-msg-dtl { float: left; width: 100%;}
+.activity-msg-dtl span.activity-prdct-img { width: 100px; max-height: 100px; float: left; margin-right: 30px;}
+.activity-msg-dtl span.activity-prdct-img img { width: 100%;}
+.activity-msg-dtl span.activity-product-dtl {display: block; padding:20px 0 0 0; font-style: italic; font-size: 14px;}
+.activity-msg-dtl span.activity-product-dtl strong { font-style: normal;}
+.activity-date-section {width: 15%; float: right; color: #555; padding: 22px 0 0;}
+.activity-date-section a {}
+
+
+/************ Stylist Six Section *************/
+.msrmnt-section h1 { text-align: center;}
+.msrmnt-label {text-align: right;}
+.msrmnt-label label {padding-right: 10px;}
 
 
 /********Mobile CSS**********/
