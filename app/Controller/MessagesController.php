@@ -37,9 +37,10 @@ class MessagesController extends AppController {
         else if($is_admin && is_null($messages_for_user_id)){
             $this->redirect('/admin/users');
         }    
-        
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+         //print_r($userlists);
          // make user_id, user
-        $this->set(compact('user_id', 'user', 'messages_for_user_id'));
+        $this->set(compact('user_id', 'user', 'messages_for_user_id','userlists'));
         //print_r($user);
         /**
          * Choose to show user/stylist or admin view
