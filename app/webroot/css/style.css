@@ -329,7 +329,7 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
 .styled-select span.arrow-icon{ position: absolute; top: 0px; right: 0px; background: url('../images/dropdown-arrow.png') no-repeat; width: 46px; height: 45px; pointer-events: none; }
 .styled-select { height: 46px;position: relative; }
 a.tt-icon { position: absolute; top: 7px; right: -60px; width: 32px; height: 32px;}
-.tt-content{ position: absolute; top: -38px; right: -95%; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border-bottom: 3px solid #1a1822; background:#515151; width: 180px; min-height: 60px; text-align: left; font-size: 12px; line-height: 12px; color: #a8afc5; padding-bottom: 10px; opacity: 0;}
+.tt-content{ position: absolute; top: -38px; /*right: -95%;*/ right: -260px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border-bottom: 3px solid #1a1822; background:#515151; width: 180px; min-height: 60px; text-align: left; font-size: 12px; line-height: 12px; color: #a8afc5; padding-bottom: 10px; opacity: 0;}
 .tt-content span.tt-arrow {position: absolute; background:url('../images/tooltip-arrow.png') no-repeat left center; width: 8px; height: 18px; margin: auto 0; top: 0px; bottom: 0px; left: -8px;}
 .tt-content h4{ background: #464540; font-size: 12px; color:#a8afc5; padding: 2px 15px 0px; -webkit-border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; font-weight: 600;}
 .tt-content p {padding: 5px 15px 0; line-height: 14px; margin-bottom: 0px;}
@@ -1290,7 +1290,7 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 */
 .myclient-right { width: 75%; margin-right: 3%;}
 
-
+/************ Stylist Three Section *************/
 .notes-area { background: #f7f7f7; padding: 15px 0 0; color: #000; font-size: 14px;  }
 .notes-txt-area {background: #d7d7d7; padding-bottom: 40px;}
 .notes-heading { font-weight: bold;}
@@ -1319,6 +1319,16 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 .myclient-gallery .bx-wrapper a.bx-next { background-position: -16px 0px; right: 40%;}
 .gal-btns {text-align: center; padding: 30px 0 0px;}
 a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; background: #927e41; display: inline-block; padding: 0px 20px; text-transform: uppercase; color: #fff;}
+
+/************ Stylist Five Section *************/
+
+.activity-feed-section {}
+.activity-feed-section li {width: 100%; float: left; background: #fff; min-height: 125px;}
+.activity-content-area{ width: 96%; padding: 0 2%; float: left;}
+.activity-icn {width: 43px; float: left;}
+.activity-user-img { width: 55px; float: left; padding: 22px 20px 0 20px;}
+.activity-msg-area { float:left; display: block;}
+.activity-date-section {width: 10%; float: right;}
 
 
 /********Mobile CSS**********/
