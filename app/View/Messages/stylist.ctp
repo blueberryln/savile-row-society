@@ -18,447 +18,197 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
 <!--Client Image-->
 
-<?php
-                        $img = "";
-                        if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
-                            $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
-                        }
-                        else{
-                            $img = $this->webroot . "img/dummy_image.jpg";    
-                        }
-                    ?>
-<!--client image end-->
+
+<script type="text/javascript">
+    $(document).ready(function(){
 
 
+    $(".search-myclient").on('keydown',function(){
+         
+         //var r = $('input').focus();
+         var usersearch = $("#usersearch").val();
+         //alert(usersearch);
+          $.ajax({
+                type:"POST",
+                url:"<?php echo $this->webroot; ?>messages/stylistUserFilterList/<?php echo $client_id; ?>",
+                data:{usersearch:usersearch},
+                cache: false,
+                    success: function(result){
+                        data = $.parseJSON(result);
 
-
-
-
-<?php echo $this->Form->end(); ?>
-
-<div id="chatimage-box" class="box-modal notification-box hide">
-    <div class="box-modal-inside">
-        <a class="notification-close" href=""></a>
-        <div class="signin-content">
-            <h5 class="sign">Send Photo</h5>  
+            html = '';
+            html = html + '<ul>';
             
-            <?php echo $this->Form->create('Message', array('type' => 'file', 'url' => '/messages/sendPhotoToUser/' . $client_id)); ?> 
-                <?php
-                    echo $this->Form->input('Image', array('type' => 'file', 'label' => false, 'class' => 'style-photo'));
-                ?>
-                <input type="submit" class="link-btn black-btn signin-btn" value="Upload Photo" /> 
-                <br /><br />
-            </form> 
-        </div> 
-    </div>
-</div>
-
-<!-- Create outfit popup-->
-<div id="outfit-box" class="hide outfit-modal container content">
-    <div class="create-outfit-cont">
-        <a class="outfit-close" href=""></a>
-        <div class="text-center">
-            <h1 class="pop-heading">Create a new outfit</h1>
-        </div>
-        <div class="eleven columns center-block product-listing">            
-            <div class="outfit-item" id="outfit1">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-                    
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-
-                    <!--bhashit code-->
-                    <div class="four columns text-center">
-                    <label>Size</label>
-                    <select name="outfit-size1" id="outfit-size1">
-                        <option value="0">Please select Size</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                    </select>
-                </div>
-                    <!--bhashit code end-->
-
-                </div>
-            </div>
-            
-            <div class="outfit-item" id="outfit2">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-
-                    <!--bhashit code-->
-                    <div class="four columns text-center">
-                    <label>Size</label>
-                    <select name="outfit-size2" id="outfit-size2">
-                        <option value="0">Please select Size</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                    </select>
-                </div>
-                    <!--bhashit code end-->
-                </div>
-            </div>
-            
-            <div class="outfit-item" id="outfit3">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-
-                    <!--bhashit code-->
-                    <div class="four columns text-center">
-                    <label>Size</label>
-                    <select name="outfit-size3" id="outfit-size3">
-                    <option value="0">Please select Size</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                    </select>
-                </div>
-                    <!--bhashit code end-->
-                </div>
-            </div>
-            
-            <div class="outfit-item" id="outfit4">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-
-                    <!--bhashit code-->
-                    <div class="four columns text-center">
-                    <label>Size</label>
-                    <select name="outfit-size4" id="outfit-size4">
-                    <option value="0">Please select Size</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                    </select>
-                </div>
-                    <!--bhashit code end-->
-                </div>
-            </div>
-            
-            <div class="outfit-item" id="outfit5">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-
-                    <!--bhashit code-->
-                    <div class="four columns text-center">
-                    <label>Size</label>
-                    <select name="outfit-size5" id="outfit-size5">
-                    <option value="0">Please select Size</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                    </select>
-                </div>
-                    <!--bhashit code end-->
-                </div>
-            </div>
-            
-            <div class="clear-fix"></div>            
-            <div class="form outfit-form">
-                <div class="four columns text-center">
-                    <label>Location (East Coast or West Coast)</label>
-                    <select name="outfit-location" id="outfit-location">
-                        <option value="East Coast">East Coast</option>
-                        <option value="West Coast">West Coast</option>
-                    </select>
-                </div>
-                <!--<div class="four columns text-center">
-                    <label>Type of the outfit</label>
-                    <select name="outfit-location" id="outfit-style">-->
-                        <!-- <option>Casual</option>
-                        <option>Formal</option>
-                        <option>PartyWear</option>-->
-                        <!--bhashit code-->
-                       <!-- <option>OutFit Look 1</option>
-                        <option>OutFit Look 2</option>
-                        <option>OutFit Look 3</option>
-                        <option>OutFit Look 4</option>
-                        <option>OutFit Look 5</option>
-                        <option>OutFit Look 6</option>
-                        <option>OutFit Look 7</option>-->
-                        <!--bhashit code end-->
-                   <!-- </select>
-                </div>-->
-                 <div class="clear-fix"></div>
-                <div class="four columns text-center">
-                    <label>OutFit Name:</label>
-                    <input type="text" name="out-name" id='out-name'>        
-                </div>
-            
-
-
-                <div class="clear-fix"></div>
-                <div class="eight columns text-center">
-                    <label>Message:</label>
-                    <textarea id='outfitMessageToSend'></textarea>        
-                </div>
-            </div>
-
-            <div class="clear-fix"></div>
-            <div class="text-center">
-                <a href="" id="add-outfit" class="link-btn black-btn">Suggest the Outfit</a>
-                <div class="hide suggest-outfit-loader"><img src="<?php echo $this->webroot; ?>img/loader.gif"></div>
-            </div>
-        </div>
-            <div class="clear-fix"></div>
-    </div>
-    <div class="user-closet-cont hide">
-        <a class="user-closet-close" href=""></a>
-        <div class="sixteen columns text-center">
-            <h1>User Closet</h1>
-        </div>
-        <div class="sixteen columns product-listing">
-            <div class="mycloset-tabs text-center">
-                <a href="" class="link-btn black-btn like-cont-link">Liked Items</a>
-                <a href="" class="link-btn gray-btn purchased-cont-link">Purchased Items</a>
-                <!--bhashit code start-->
-                <a href="" class="link-btn gray-btn favorites-cont-link">My Favorites</a>
-                <!--bhashit code end-->
-            </div>
-            <div class="user-closet-list-cont nine-five columns center-block text-left">
-                <div class="purchased-list-cont hide">
-                    <div class="product-listing-box">
-
-                    </div>
-                    
-                    <div class="clear-fix"></div>
-                    <div class="btn-outfit-cont text-right">
-                        <!-- <a href="" class="link-btn black-btn load-more-purchased">Load More</a> -->
-                        <a href="" class="link-btn black-btn add-purchased-outfit">Add to outfit</a>
-                    </div>
-                </div>
-
-                <!--bhashit code-->
-                <div class="favorites-list-cont hide">
-                   <div class="product-listing-box">
-
-                    </div> 
-                    <div class="clear-fix"></div>
-                    <div class="btn-outfit-cont text-right">
-                        <!-- <a href="" class="link-btn black-btn load-more-purchased">Load More</a> -->
-                        <a href="" class="link-btn black-btn add-favorites-outfit">Add to outfit</a>
-                    </div>
-                </div>
-                <!--bhashit code-->
+            $.each(data,  function (index){
+                html = html + '<li>';
+                html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
+                html = html + '<div class="myclient-img">';
+                html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
+                html = html + '</div>';
+                html = html + '<div class="myclient-dtl">';
+                html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
+                html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
+                html = html + '</div>';
+                html = html + '</a>';
+                html = html + '</li>';      
                 
-                <div class="liked-list-cont">
-                    <div class="product-listing-box">
+                });
+            html = html + '</ul>';
+                $("#searchuserlist").html(html);
 
-                    </div>
-                    
-                    <div class="clear-fix"></div>
-                    <div class="btn-outfit-cont text-right">
-                        <!-- <a href="" class="link-btn black-btn load-more-liked">Load More</a> -->
-                        <a href="" class="link-btn black-btn add-liked-outfit">Add to outfit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="srs-closet-cont hide">
-        <a class="srs-closet-close" href=""></a>
-        <div class="sixteen columns text-center">
-            <h1>SRS Closet</h1>
-        </div>
-        
-        <div class="nine-five columns omega center-block">
-            <div class="two columns alpha left">
-                <div class="product-filter-menu">
-                    <ul class="text-left">
-                        <li class="toggle-tab selected open-filter" style="height: 140px;overflow-y: auto;"><span>Categories</span>
-                            <ul class="toggle-body product-categories">
-                            <?php foreach ($categories as $category): ?>
-                                <li data-category_id="<?php echo $category['Category']['slug']; ?>">
-                                    <a><?php echo $category['Category']['name']; ?></a>
-                                    <ul class="product-subcategories">
-                                        <?php foreach ($category['children'] as $subcategory): ?>
-                                            <li data-category_id="<?php echo $subcategory['Category']['slug']; ?>">
-                                                <a><?php echo $subcategory['Category']['name']; ?></a>
-                                                <?php if ($subcategory['children']) : ?>
-                                                    <ul class="product-subcategories product-subsubcategories">
-                                                        <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
-                                                            <li data-category_id="<?php echo $subsubcategory['Category']['slug']; ?>">
-                                                                <a><?php echo $subsubcategory['Category']['name']; ?></a>
-                                                            </li>    
-                                                        <?php endforeach; ?>
-                                                    </ul>       
-                                                <?php endif; ?>     
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </li>
-                            <?php endforeach; ?>
-                            </ul>
-                        </li>
-                        <li class="toggle-tab" style="height: 140px;overflow-y: auto;"><span>Brand</span>
-                            <ul class="toggle-body brand-filter">
-                            <?php if($brands) : ?>
-                                <?php foreach($brands as $brand) : ?>
-                                    <li data-brand_id="<?php echo $brand['Brand']['id']; ?>"><?php echo $brand['Brand']['name']; ?></li>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                            </ul>
-                        </li>
-                        <li class="toggle-tab" style="height: 140px;overflow-y: auto;"><span>Color</span>
-                            <ul class="toggle-body color-filter">
-                            <?php if($colors) : ?>
-                                <?php foreach($colors as $color) : ?>
-                                        <li data-color_id="<?php echo $color['Colorgroup']['id']; ?>"><?php echo $color['Colorgroup']['name']; ?></li>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                            </ul>
-                        </li>
+                    }
+
+             }); 
+
+
+    });
+});
+
+</script>
+<?php
+    $img = "";
+        if(isset($client) && $client['User']['profile_photo_url'] && $client['User']['profile_photo_url'] != ""){
+            $img = $this->webroot . "files/users/" . $client['User']['profile_photo_url'];
+         }else{
+            $img = $this->webroot . "img/dummy_image.jpg";    
+        }
+?>
+<div class="content-container">
+    <div class="twelve columns black">
+        <div class="eleven columns container">
+            <div class="twelve columns container left ">
+                <div class="ten columns left admin-nav">
+                    <ul>
+                        <li class="active"><a href="#" title="">My Clients</a></li>
+                        <li><a href="#" title="">Dashboard</a></li>
+                        <li><a href="#" title="">My outfits</a></li>
+                        <li><a href="#" title="">The CLoset</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="nine columns product-listing right text-left">
-                <div class="product-top-offset text-center">
-                    <span class="text-center">Click on a product to select it.</span>
-                </div>
+                <div class="two columns right admin-top-right">
+                    <ul>
+                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
+                        <li>
+                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
+                            <div class="admin-top-right-dropdown">
+                                <ul>
+                                    <li><a href="#" title="">view my cart/checkout</a></li>
+                                    <li><a href="#" title="">refer a friend</a></li>
+                                    <li><a href="#" title="">sign out</a></li>
+                                </ul>
+                            </div>
+                        </li>
 
-                <div class="srs-closet-items"></div>
-                <div class="clear-fix"></div>
-                <div class="btn-outfit-cont text-right">
-                    <img src="<?php echo $this->webroot; ?>img/loading.gif" width="28" class="hide closet-load-icon" style="position: relative; top: 8px;" /> &nbsp;
-                    <a href="" class="link-btn black-btn clear-all-closet">Clear All</a>
-                    <!-- <a href="" class="link-btn black-btn load-more-closet">Load More</a> -->
-                    <a href="" class="link-btn black-btn add-closet-outfit">Add to outfit</a>
+                    </ul>    
                 </div>
-                    
             </div>
-            <div class="clear-fix"></div>
-            
         </div>
         
-        
-        
-        
     </div>
-    </div>
-</div>
-
-
-
- 
-
-
-
-
-
-<!--bhashit new code start -->
-
-<div class="content-container">
-    <div class="twelve columns black">&nbsp;</div>
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
-                <div class="eleven columns container pad-none">
-                    <div class="twelve columns message-box-heading pad-none">
-                        <h1><?php echo $client_user['User']['full_name']; ?> | <span>Messages</span></h1>
-                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" data-name="Haspel" /></div>
+                
+                
+                <div class="myclient-left left">
+                    <div class="myclient-topsec"> 
+                        <div class="filter-myclient-area">
+                            <div class="filter-myclient">
+                                <span class="downarw"></span>
+                                <select>
+                                    <option>Filter Clients</option>
+                                    <option>Filter Clients</option>
+                                    <option>Filter Clients</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="search-myclient-area">
+                            <div class="search-myclient">
+                                <span class="srch"></span>
+                               <input type="text" name="myclient-search" id="usersearch" />
+                            </div>
+                        </div>
+                        <div class="myclient-list">
+                            <ul id="searchuserlist">
+                            <?php  foreach($userlists as $userlist ): ?>
+                                <li <?php if($userlist['User']['id']==$client_id){ echo "class='active'"; } ?>>
+                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
+                                        <div class="myclient-img">
+                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
+                                        </div>
+                                        <div class="myclient-dtl">
+                                            <span class="myclient-name"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></span>
+                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$userlist['User']['updated']); ?></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                                
+                            </ul>
+                        </div>
                     </div>
-
-                    
-
-                    <div class="my-profile-img m-ver">
-                       <!--  <h2>LISA D.<span>My Stylist</span></h2> -->
-                        <!-- <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
-                        </div> -->
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
-                    </div>
-                    <div class="dd-nav">
-                        <ul>
-                            <li class="active"><a href="javascript:;">Messages</a></li>
-                            <li><a href="javascript:;">Outfits</a></li>
-                            <li><a href="javascript:;">Purchases/Likes</a></li>
-                            <li><a href="javascript:;">Profile</a></li>
-                        </ul>
-                    </div>
+                </div>
+                
+                
+                <div class="myclient-right right">
                     <div class="twelve columns left inner-content pad-none">
-                        <div class="inner-left left">
+                         <div class="twelve columns myclient-heading pad-none">
+                            <h1><?php echo $client_user['User']['full_name']; ?> | <span>Messages</span></h1>
+                            <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" /></div>
+                        </div>
+                        <div class="inner-left inner-myclient left">
+<!--                            <div class="dashboard-pannel left">&nbsp;</div>-->
                             <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $img; ?>" id="user_image" /></div>
+                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" /></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
-                                        <li class="active"><a href="javascript:;">Messages</a></li>
+                                        <li><a href="javascript:;">Activity Feed</a></li>
+                                        <li><a href="javascript:;">Messages</a></li>
                                         <li><a href="javascript:;">Outfits</a></li>
-                                        <li><a href="javascript:;">Purchases/Likes</a></li>
-                                        <li><a href="javascript:;">Profile</a></li>
-                                        <li>
-                            <?php if(!$is_admin) : ?>
-                        <?php
-                    echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client', 'style' => 'max-width: 68%;'));
-                    ?> 
-                    <?php endif; ?></li>
+                                        <li class="active"><a href="javascript:;">Purchases/Likes</a></li>
+                                        <li><a href="javascript:;">Notes &amp; Gallery</a></li>
+                                        <li><a href="javascript:;">Measurements</a></li>
                                     </ul>
                                 </div>
                             </div>
-
-
-
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
+                                        <!-- <div class="user-msg">
+                                            <div class="user-req">Outfit Request</div>
+                                            <div class="client-name">Lisa,</div>
+                                            <div class="msg">I’ve got a Hawaii Vacation in 2 weeks. Any ideasfor a versatile outfit? I I want to limit what I bring- I hate packing!!</div>
+                                            <div class="msg-date">8/10/14, 8:30 AM</div>
+                                        </div> -->
+                                        <!-- <div class="client-msg">
+                                            <div class="client-msg-reply">Sure! Let me look through the closet, and pick out some key pieces that will do the trick. I’ll get back with you later today.</div>
+                                            <div class="msg-date">8/10/14, 8:30 AM</div>
+                                        </div> -->
+                                        <!-- <div class="client-msg">
+                                            <div class="client-msg-reply">I’ve created an outfit for your upcoming Hawaii vacation. It’s casual enough to wear to the pool, but still is okay to an afternoon enjoying cocktails on your yacht ! </div>
+                                            <div class="msg-date">8/10/14, 8:30 AM</div>
+                                        </div> -->
+                                        <!-- <div class="client-outfit">
+                                            <div class="client-msg-reply"><span>Beach Day</span></div>
+                                            <ul>
+                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
+                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
+                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
+                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
+                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
+                                            </ul>
+                                            <div class="msg-date">8/10/14, 8:30 AM</div>
+                                        </div> -->
+                                        
+                                        <!-- <div class="user-msg">
+                                            <div class="msg">Thank you so much... saved me so much time.</div>
+                                            <div class="msg-date">8/10/14, 8:30 AM</div>
+                                        </div>
+                                        <div class="user-msg">
+                                            <div class="msg">I will! Don’t you worry.</div>
+                                            <div class="msg-date">8/10/14, 8:30 AM</div>
+                                        </div> -->
+                                        
                                         <p id="loadOldMsgs" class="hide">
                                             <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
                                             <a href="">Load Old Messages</a>
@@ -468,21 +218,18 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                          <div class="chat-container">
                     
                                         </div>
-                                        
                                     
                                     </div>
                                 </div>
                                 <div class="twelve coloumns left">
                                     <div class="bottom-text">
-                                        <div class="dummy-text">
-                                            
-                    <textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
-                   
-
-                                        </div>
+                                        <div class="dummy-text"><textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea></div>
                                     </div>
                                 </div>
                                 <div class=" twelve columns left bottom-btns">
+                                   <!--  <a class="create-outfit left" href="#" title="">Create Outfit</a>
+                                    <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                    <a class="send-btn right" href="#" title="">Send</a> -->
                                     <!-- <a class="create-outfit left" href="#" title="">Create Outfit</a> -->
                                     <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
                                     <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
@@ -492,15 +239,16 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             </div>
                         
                         </div>
-                        
                     </div>
+                
                 </div>
+                
+                
+                
             </div>
         </div>
     </div>
 </div>
-
-<!--bhashit code end-->
 
 
 

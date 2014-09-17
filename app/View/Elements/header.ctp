@@ -104,7 +104,7 @@
                                 <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                             <?php endif; ?>
                             <?php if ($is_stylist) : ?>
-                                <li><a href="<?php echo $this->request->webroot; ?>Auth/editbiography/<?php echo $user['User']['id']; ?>">Stylist Biography</a></li>
+                                <li><a href="#">Stylist Biography</a></li>
                             <?php endif; ?>
                             
                             <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
