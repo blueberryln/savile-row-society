@@ -57,10 +57,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                             <h1 class="stylistbio-heading"><?php echo $user_first_name; ?>’s Bio</h1>
                             <div class="user-desc">
-                                <?php echo isset($find_array[0]['Stylistbio']['stylist_bio']); ?>
+                                <?php if(isset($find_array[0]['Stylistbio'])!='') {  echo $find_array[0]['Stylistbio']['stylist_bio']; }else{} ?>
                             </div>
                             <h1 class="stylistbio-heading"><?php echo $user_first_name; ?>’s Inspiration</h1>
-                            <div class="user-inspire-desc"> <?php echo isset($find_array[0]['Stylistbio']['stylist_inspiration']); ?></div>
+                            <div class="user-inspire-desc"> <?php if(isset($find_array[0]['Stylistbio'])!='') { echo $find_array[0]['Stylistbio']['stylist_inspiration']; }else{} ?></div>
                         </div>
                         <div class="stylistbio-details right">
                             <div class="twelve columns left">
@@ -69,9 +69,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
-                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic"><?php echo isset($find_array[0]['Stylistbio']['hometown']); ?></span></div>
-                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php echo isset($find_array[0]['Stylistbio']['funfect']); ?></span></div>
-                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php echo isset($find_array[0]['Stylistbio']['fashiontip']); ?></span></div>
+                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio'])!='') {  echo $find_array[0]['Stylistbio']['hometown']; }else{} ?></span></div>
+                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio'])!='') {  echo $find_array[0]['Stylistbio']['funfect']; }else{} ?></span></div>
+                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio'])!='') {  echo $find_array[0]['Stylistbio']['fashiontip']; }else{} ?></span></div>
                                 </div>
                                 <div class="twelve columns left user-photostream">
                                     <h1 class="stylistbio-heading photostream"><?php echo $user_first_name; ?>’s Photostream</h1>
@@ -101,8 +101,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                         <ul>
                                                             <?php foreach($my_outfit['entities'] as $entities): ?>
                                                                 <li>
-                                                            <img src="<?php echo $this->webroot; ?>files/products/<?php echo isset($entities['Image'][0]['name']); ?>" height="108" width="122" />
-                                                            <div class="outfit-products-details"><?php echo isset($entities['Entity']['name']); ?>  $<?php echo isset($entities['Entity']['price']); ?></div>
+                                                            <img src="<?php echo $this->webroot; ?>files/products/<?php if(isset($entities['Image'][0])!='') {  echo $entities['Image'][0]['name']; }else{} ?>" height="108" width="122" />
+                                                            <div class="outfit-products-details"><?php if(isset($entities['Entity'])!=''){ echo $entities['Entity']['name']; }else{} ?>  $<?php if(isset($entities['Entity'])!=''){ echo $entities['Entity']['price']; }else{} ?></div>
                                                         </li>
                                                             <?php endforeach; ?>
                                                         </ul>
