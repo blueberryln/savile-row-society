@@ -95,10 +95,12 @@
                         <div class="filter-myclient-area">
                             <div class="filter-myclient">
                                 <span class="downarw"></span>
-                                <select>
+                                <select onchange="location = this.options[this.selectedIndex].value;">
                                     <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
+                                    <?php  foreach($userlists as $userlist ): ?>
+                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></option>
+                                     <?php endforeach; ?>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -123,39 +125,7 @@
                                     </a>
                                 </li>
                             <?php endforeach; ?>
-                                <!-- <li class="active">
-                                    <a href="#" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name">Kyle HARPER</span>
-                                            <span class="myclient-status">last active at 4:30 PM</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name">Kyle HARPER</span>
-                                            <span class="myclient-status">last active at 4:30 PM</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name">Kyle HARPER</span>
-                                            <span class="myclient-status">last active at 4:30 PM</span>
-                                        </div>
-                                    </a>
-                                </li> -->
+                                
                             </ul>
                         </div>
                     </div>
@@ -178,8 +148,8 @@
                                         <li><a href="<?php echo $this->webroot; ?>messages/stylistuseractivityfeed/<?php echo $clientid; ?>">Activity Feed</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $clientid; ?>">Messages</a></li>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/stylistuseroutfits/<?php echo $clientid; ?>">Outfits</a></li>
-                                        <li><a href="javascript:;">Purchases/Likes</a></li>
-                                        <li><a href="javascript:;">Notes &amp; Gallery</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuserpurchase/<?php echo $clientid; ?>">Purchases/Likes</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistusernotes/<?php echo $clientid; ?>">Notes &amp; Gallery</a></li>
                                         <li><a href="javascript:;">Measurements</a></li>
                                     </ul>
                                 </div>
