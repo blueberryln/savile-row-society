@@ -1333,9 +1333,17 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 .activity-msg-dtl span.activity-product-dtl {width: 180px; float: left; padding:20px 0 0 0; font-style: italic; font-size: 14px;}
 .activity-msg-dtl span.activity-product-dtl strong { font-style: normal;}
 .activity-date-section {width: 15%; float: right; color: #555; padding: 22px 0 0;}
-.activity-date-section a { color: #a68933; text-decoration: underline;}
+.activity-date-section a, span.activity-product-dtl a { color: #a68933; text-decoration: underline; font-style: normal; font-size: 12px;}
 .activity-feed-section li.activity-notification .activity-icn {background-position: 0px -184px;}
-.activity-feed-section li.activity-notification .activity-msg-dtl span.activity-product-dtl { padding-top: 0px;}
+.activity-feed-section li.activity-notification .activity-msg-dtl span.activity-product-dtl,
+.activity-feed-section li.activity-msg .activity-msg-dtl span.activity-product-dtl{ padding-top: 0px;}
+.activity-feed-section li.activity-purchase .activity-icn {background-position: 0px -369px;}
+.activity-feed-section li.activity-refferal .activity-icn {background-position: 0px -552px;}
+.activity-feed-section li.activity-msg .activity-icn {background-position: 0px -685px;}
+.activity-feed-section li.activity-outfit .activity-icn {background-position: 0px -830px;}
+.activity-feed-section li .client-outfits-area {padding-bottom: 20px;}
+.activity-feed-section li .client-outfits-area h1 { padding:0 0 0 20px; font-size: 17px; letter-spacing: 1px;}
+.activity-feed-section li .client-outfits-area .client-outfits-img ul li { width: 18%;}
 
 
 /************ Stylist Six Section *************/

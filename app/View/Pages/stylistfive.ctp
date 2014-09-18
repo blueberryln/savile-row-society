@@ -174,6 +174,91 @@
                                                     </div>
                                                 </li>
                                                 
+                                                <li class="activity-purchase">
+                                                    <div class="activity-content-area">
+                                                        <div class="activity-icn"></div>
+                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-msg-area">
+                                                            <div class="activity-user-name"><strong>Kyle Harper</strong> purchased an item.</div>
+                                                            <div class="activity-msg-dtl">
+                                                                <span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>
+                                                                <span class="activity-product-dtl">
+                                                                    <strong>Nice Loafers</strong><br>
+                                                                    Prada<br>
+                                                                    $650.00
+                                                                </span>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="activity-date-section">
+                                                            August 7, 2013<br>
+                                                            12:30 pm EST<br>
+                                                            <a href="#" title="">Send a Message</a>                                                                                                            </div>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li class="activity-refferal">
+                                                    <div class="activity-content-area">
+                                                        <div class="activity-icn"></div>
+                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-msg-area">
+                                                            <div class="activity-user-name"><strong>Kyle Harper</strong> referred a friend, Emmanuel Garcia.</div>
+                                                        </div>
+                                                        <div class="activity-date-section">
+                                                            August 7, 2013<br>
+                                                            12:30 pm EST<br>
+                                                            <a href="#" title="">Send a Message</a>                                                                                                            </div>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li class="activity-msg">
+                                                    <div class="activity-content-area">
+                                                        <div class="activity-icn"></div>
+                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-msg-area">
+                                                            <div class="activity-user-name"><strong>Kyle Harper</strong> sent you a message.</div>
+                                                            <div class="activity-msg-dtl">
+                                                                <span class="activity-product-dtl">
+                                                                    “Hi Lisa, I had a quick question about the pants I bought......” <a href="#" title="">Read more</a>
+                                                                </span>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="activity-date-section">
+                                                            August 7, 2013<br>
+                                                            12:30 pm EST<br>
+                                                            <a href="#" title="">Create an Outfit</a>                                                                                                            </div>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li class="activity-outfit">
+                                                    <div class="activity-content-area">
+                                                        <div class="activity-icn"></div>
+                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-msg-area">
+                                                            <div class="activity-user-name"><strong>You created Kyle an outfit,</strong> “Beach Day”</div>
+                                                        </div>
+                                                        <div class="activity-date-section">
+                                                            August 7, 2013<br>
+                                                            12:30 pm EST<br>
+                                                            <a href="#" title="">Send a Message</a>                                                                                                            </div>
+                                                    </div>
+                                                    <div class="ten columns container">
+                                                        <div class="twelve columns left client-outfits-area">
+                                                            <h1>BEACH DAY</h1>
+                                                            <div class="twelve columns client-outfits-img pad-none">
+                                                                <ul>
+                                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
+                                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
+                                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
+                                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
+                                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                
                                                 
                                             </ul>
                                         </div>
