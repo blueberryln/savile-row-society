@@ -1322,7 +1322,7 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 
 .activity-feed-section {font-family: 'Proximanova'; font-size: 12px; color: #252525;}
 .activity-feed-section li {width: 100%; float: left; background: #fff; min-height: 125px;}
-.activity-content-area{ width: 96%; padding: 0 2%; float: left;}
+.activity-content-area{ width: 96%; padding: 0 2% 15px; float: left;}
 .activity-feed-section li .activity-icn {width: 43px; float: left; min-height: 78px; background: url("../images/activity-icons.png")no-repeat 0px 0px;}
 .activity-user-img { width: 55px; float: left; padding: 22px 20px 0 20px;}
 .activity-msg-area { float:left; display: block; padding-top: 19px; width: 34em; max-width: 65%;}
@@ -1330,20 +1330,32 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 .activity-msg-dtl { float: left; width: 100%;}
 .activity-msg-dtl span.activity-prdct-img { width: 100px; max-height: 100px; float: left; margin-right: 30px;}
 .activity-msg-dtl span.activity-prdct-img img { width: 100%;}
-.activity-msg-dtl span.activity-product-dtl {display: block; padding:20px 0 0 0; font-style: italic; font-size: 14px;}
+.activity-msg-dtl span.activity-product-dtl {width: 180px; float: left; padding:20px 0 0 0; font-style: italic; font-size: 14px;}
 .activity-msg-dtl span.activity-product-dtl strong { font-style: normal;}
 .activity-date-section {width: 15%; float: right; color: #555; padding: 22px 0 0;}
-.activity-date-section a {}
+.activity-date-section a { color: #a68933; text-decoration: underline;}
+.activity-feed-section li.activity-notification .activity-icn {background-position: 0px -184px;}
+.activity-feed-section li.activity-notification .activity-msg-dtl span.activity-product-dtl { padding-top: 0px;}
 
 
 /************ Stylist Six Section *************/
-.msrmnt-section h1, .cstm-msrmnt-section h1 { text-align: center;}
+.msrmnt-block { font-family: 'ProximaNovaCond-Regular'; color: #444;}
+.msrmnt-section h1, .cstm-msrmnt-section h1 { text-align: center; font-size: 36px; font-weight: normal; line-height: 36px; margin: 0; padding-bottom: 20px; color: #444;}
 .msrmnt-label {text-align: right;}
 .msrmnt-label label {padding-right: 10px;}
 .three.columns.left.msrmnt-label { width: 20.9%;}
 .nine.columns.left.msrmnt-input-area { width: 79.2%; margin-left: -1px;}
+.cstm-msrmnt-section { padding-top: 20px;}
+.msrmnt-block label{font-family: 'ProximaNovaCond-Regular'; font-size: 20px; color: #444; text-transform: none; line-height: 48px; font-weight: normal;}
+.three.columns.left.msrmnt-label label { line-height: 24px}
+.cstm-msrmnt-content label { margin-bottom: 0px;}
+.msrmnt-input-area input, .cstm-msrmnt-content input { height: 48px; line-height: 48px; background: #fff; border: 1px solid #bcbcbc; margin-bottom: 35px; text-align: center;}
+.cstm-msrmnt-content input { margin-bottom: 15px;}
+.msrmnt-input-area textarea, .cstm-msrmnt-content textarea  { background: #fff; border: 1px solid #bcbcbc; font-size: 18px; line-height: 20px; padding: 10px; color: #212125; overflow: hidden; height: 80px;}
 .cstm-msrmnt-center{ margin-left: 12.5%; margin-right: 12.5%}
 .cstm-msrmnt-content {text-align: center;}
+.cstm-msrmnt-content li { display: inline-block; padding: 5px 10px; margin: 0 2px;}
+.cstm-msrmnt-content li.r-tabs-state-active, .cstm-msrmnt-content li:hover {background: #fff;}
 
 .r-tabs .r-tabs-nav {
     margin: 0;

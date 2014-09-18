@@ -129,7 +129,7 @@
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
-                                        <div class="twelve columns left">
+                                        <div class="twelve columns left msrmnt-block">
                                             <div class="ten columns center-block">
                                                 <div class="twelve columns left msrmnt-section">
                                                     <h1>Profile Sizes</h1>
@@ -141,7 +141,7 @@
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Pant Waist</label></div>
-                                                        <div class=" six columns left msrmnt-input-are"><input type="text" name="" /></div>
+                                                        <div class=" six columns left msrmnt-input-area"><input type="text" name="" /></div>
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Pant Length</label></div>

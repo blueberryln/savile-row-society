@@ -153,6 +153,28 @@
                                                             <a href="#" title="">Send a Message</a>                                                                                                            </div>
                                                     </div>
                                                 </li>
+                                                
+                                                <li class="activity-notification">
+                                                    <div class="activity-content-area">
+                                                        <div class="activity-icn"></div>
+                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-msg-area">
+                                                            <div class="activity-user-name"><strong>Kyle Harper</strong> requested an outfit.</div>
+                                                            <div class="activity-msg-dtl">
+                                                                <span class="activity-product-dtl">
+                                                                    “I need an outfit appropriate for a business conference in Shanghai.”
+                                                                </span>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="activity-date-section">
+                                                            August 7, 2013<br>
+                                                            12:30 pm EST<br>
+                                                            <a href="#" title="">Create an Outfit</a>                                                                                                            </div>
+                                                    </div>
+                                                </li>
+                                                
+                                                
                                             </ul>
                                         </div>
                                     </div>
