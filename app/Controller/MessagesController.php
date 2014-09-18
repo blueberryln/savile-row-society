@@ -1319,6 +1319,56 @@ If interested, I would also be happy to meet with you in our New York City based
     //     $this->set('notes',$notes);
     // }
 
+
+
+// stylist user measurement
+
+
+    public function stylistUserMeasurements($clientid = null, $id = null) {
+        $User = ClassRegistry::init('User');
+        $UserSizeInformation = ClassRegistry::init('UserSizeInformation');
+        $UserPreference = ClassRegistry::init('UserPreference');
+        $client = $User->findById($clientid);
+        $clientid = $client['User']['id'];
+        $stylistid = $client['User']['stylist_id'];
+
+        $userprofile = $UserPreference->find('all',array('conditions'=>array('UserPreference.user_id'=>$clientid,)));
+
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        
+
+        if($this->request->is('post') || $this->request->is('put')){
+            
+             $id = $this->request->data['UserSizeInformation']['id'];
+            
+            $this->request->data['UserSizeInformation']['user_id']=$clientid;
+            $this->request->data['UserSizeInformation']['stylist_id']=$stylistid;
+            $custom_shirt_serialize = json_encode($this->request->data['UserSizeInformation']['custom_shirt_measurement']);
+            $custom_jacket_serialize = json_encode($this->request->data['UserSizeInformation']['custom_jacket_measurement']);
+            $custom_trouser_serialize = json_encode($this->request->data['UserSizeInformation']['custom_trouser_measurement']);
+            $custom_vest_serialize = json_encode($this->request->data['UserSizeInformation']['custom_vest_measurement']);
+            $this->request->data['UserSizeInformation']['custom_shirt_measurement'] = $custom_shirt_serialize;
+            $this->request->data['UserSizeInformation']['custom_jacket_measurement'] = $custom_jacket_serialize;
+            $this->request->data['UserSizeInformation']['custom_trouser_measurement'] = $custom_trouser_serialize;
+            $this->request->data['UserSizeInformation']['custom_vest_measurement'] = $custom_vest_serialize;
+            if($UserSizeInformation->save($this->request->data)){
+                $this->Session->setFlash("User Data Hasbeen Saved");
+                $this->redirect('/messages/stylistusermeasurements/'.$clientid);
+            } else {
+                $this->Session->setFlash(__('The stylistusermeasurements could not be saved. Please, try again.'), 'flash');
+            }
+
+        }  else {
+            $options = array('conditions' => array('UserSizeInformation.' . $UserSizeInformation->primaryKey => $id));
+            $this->request->data = $UserSizeInformation->find('first', $options);
+        }
+
+        $customdata = $UserSizeInformation->find('all',array('conditions'=>array('UserSizeInformation.user_id'=>$clientid,'UserSizeInformation.stylist_id'=>$stylistid,)));
+        $this->set(compact('userlists','clientid','client','customdata','userprofile'));
+    }
+
+
+
     // perticular user custom site measurements
 
     public function getusercustomsize($client_id = null){
@@ -1611,7 +1661,8 @@ If interested, I would also be happy to meet with you in our New York City based
                 'brand' => $branddetails
             );
         } 
-        //print_r($saleshistory);
+        print_r($saleshistory);
+        die;
         $this->set('saleshistory',$saleshistory);
     }
 
