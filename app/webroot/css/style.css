@@ -1389,6 +1389,38 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
     display: block;
 }
 
+/************ Stylist Seven Section *************/
+.myaccount-right { width: 65%; margin-left: 5.5%; float: left; font-family: 'ProximaNovaCond-Regular';}
+.myaccount-heading h1 {font-family: 'ProximaNovaCond-Regular'; font-size: 32px; color: #918f8f; border-bottom: 1px solid #dddddd; text-transform: uppercase; font-weight: normal; padding: 15px 0 12px; letter-spacing: 1px;}
+.myaccount-sales-dtl { font-size: 32px; line-height: 38px; color: #444;}
+.myaccount-sales-dtl p { margin-bottom: 0px;}
+table.highchart { width: 100%; text-align: center;}
+.sales-snapshot { border-top: 1px solid #ddd; padding-top: 15px; font-size: 18px; color: #212125; margin-top: 15px;}
+.highcharts-axis {text-transform: uppercase;}
+.highcharts-grid { border: 3px solid #c5c5c5;}
+.chart-table {display: none;}
+.ratio-analyize { color: #818181; font-family: 'ProximaNovaCond-Regular';}
+.ratio-analyize li {float: left; padding: 10px 30px 15px; border-right: 1px solid #8e8e8e;}
+.ratio-analyize ul { padding-left: 50px;}
+.ratio-analyize li .ratio-analyize-price{ font-size: 20px; padding-bottom: 10px;}
+.ratio-analyize li span { float: left; font-size:12px; text-transform: uppercase;}
+.ratio-analyize li:last-child{border-right: none;}
+.itm-sls-list {border-top: 1px solid #ddd; padding-top: 15px;}
+.itm-sls-list p { margin-bottom: 10px;}
+.itm-sls-list-content { padding-bottom: 100px;}
+.itm-sls-list-content ul { border: 2px solid #c1c1c1; float: left; width: 100%;}
+.itm-sls-list-content ul li {border-bottom: 1px solid #eeeeee; float: left; width: 100%; text-align: center; text-transform: uppercase; padding: 15px 0px 12px; margin-bottom: 0px;}
+.itm-sls-list-content ul li.itm-sls-list-section { font-size: 13px;}
+.itm-sls-list-content ul li .itm-sls-list-date{ width: 10%; float: left; line-height: 29px;}
+.itm-sls-list-content ul li .itm-sls-list-item{ width: 50%; float: left;}
+.itm-sls-list-content ul li .itm-sls-list-client{ width: 15%; float: left; line-height: 29px;}
+.itm-sls-list-content ul li .itm-sls-list-outfit{ width: 15%; float: left; line-height: 29px;}
+.itm-sls-list-content ul li .itm-sls-list-amt{ width: 10%; float: left; line-height: 29px;}
+.itm-sls-list-content ul li .itm-sls-list-item span.sls-itm-img { width: 29px; display: inline-table; vertical-align: middle; overflow: hidden; margin-right: 5px; border: 1px solid #eceaea; padding: 1px;}
+.itm-sls-list-content ul li .itm-sls-list-item span.sls-itm-img img { width: 100%; margin-bottom: -5px;}
+
+
+
 
 /********Mobile CSS**********/
 

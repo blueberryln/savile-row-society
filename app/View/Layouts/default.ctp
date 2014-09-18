@@ -238,6 +238,10 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/highcharts.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.highchartTable.js" type="text/javascript"></script>
+       
+        
         
 <!--        <script src="<?php echo $this->request->webroot; ?>js/jquery.cluetip.js" type="text/javascript"></script>-->
         
@@ -272,6 +276,8 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 moveSlides: 1,
                 slideMargin: 40
               });
+                
+            $('table.highchart').highchartTable();
                 
             $('#horizontalTab').responsiveTabs({
                 rotate: false,
