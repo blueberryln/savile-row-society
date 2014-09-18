@@ -1614,6 +1614,53 @@ If interested, I would also be happy to meet with you in our New York City based
             }
         }
     }
+// stylist all user sales
+
+
+    public function stylistallusersales($clientid = null) {
+        $User = ClassRegistry::init('User');
+        $posts = ClassRegistry::init('Post');
+        $Useroutfit = ClassRegistry::init('Useroutfit');
+        $Order = ClassRegistry::init('Order');
+        $Entity = ClassRegistry::init('Entity');
+        $OrderItem = ClassRegistry::init('OrderItem');
+        $Product = classRegistry::init('Product');
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];
+
+        $postvalue = $posts->find('all', array('conditions'=>array('Post.is_order'=>true)));
+        $saleshistory = array();
+        foreach ($postvalue as $key => $postvalue) {
+            $post_id = $postvalue['Post']['id'];
+            $orderlist = $Order->find('all', array('conditions'=>array('Order.post_id'=>$post_id)));
+            foreach ($orderlist as $orderlist) {
+               $orderuserid =  $orderlist['Order']['user_id']; 
+            }
+            $username = $User->getByID($orderuserid);
+            $orderdetailsuser = $OrderItem->getUserPurchaseDetail($orderuserid);
+            foreach ($orderdetailsuser as $orderdetailsuser) {
+            $productid[] = $orderdetailsuser['OrderItem']['product_entity_id'];
+            }
+            $productdetail = $Product->findById($productid);
+            $brand_id = $productdetail['Product']['brand_id'];
+                
+            $Brand = classRegistry::init('Brand');
+            $branddetails = $Brand->find('all',array('conditions'=>array('Brand.id'=>$brand_id)));
+
+            $saleshistory[] = array(
+                'orderlist' =>  $orderlist,
+                'userdetail' => $username,
+                'orderdetailsuser' => $orderdetailsuser,
+                'brand' => $branddetails
+            );
+        } 
+        
+        $this->set(compact('saleshistory'));
+
+    }
+
 
     public function getstylistsales($user_id = null) {
         $User = ClassRegistry::init('User');
