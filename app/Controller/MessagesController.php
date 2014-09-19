@@ -1629,6 +1629,8 @@ If interested, I would also be happy to meet with you in our New York City based
         $user_id = $user["User"]["id"]; 
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        
         $find_array2 = array(
                 'fields' => array('count(User.id) as usercount'),
                 'joins' => array(
@@ -1684,7 +1686,81 @@ If interested, I would also be happy to meet with you in our New York City based
         }
         $totalSale = $Order->find('all',array('conditions'=>array('Order.user_id'=>$orderuserid,'Order.post_id'=>$post_id,),'fields'=>array('sum(Order.final_price) as finalamount')));
             
-        $this->set(compact('saleshistory','userclient','totalSale'));
+        $this->set(compact('saleshistory','userclient','totalSale','userlists','clientid'));
+
+    }
+
+
+    // stylist all user sales
+
+
+    public function stylisteachusersales($clientid = null) {
+        $User = ClassRegistry::init('User');
+        $posts = ClassRegistry::init('Post');
+        $Useroutfit = ClassRegistry::init('Useroutfit');
+        $Order = ClassRegistry::init('Order');
+        $Entity = ClassRegistry::init('Entity');
+        $OrderItem = ClassRegistry::init('OrderItem');
+        $Product = classRegistry::init('Product');
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $client = $User->findById($clientid);
+
+        $find_array2 = array(
+                'fields' => array('count(User.id) as usercount'),
+                'joins' => array(
+                array(
+                    'conditions' => array(
+                        'User.is_stylist' => true,
+                        'User1.stylist_id = User.id',
+                        'User.id' => $user_id
+                    ),
+                    'table' => 'users',
+                    'alias' => 'User1',
+                    'type' => 'INNER',
+                  ),
+                ),
+                'group' => array('User.id',),
+            );
+        $userclient = $User->find('all',$find_array2);
+        //print_r($userclient);die;
+        $postvalue = $posts->find('all', array('conditions'=>array('Post.is_order'=>true,'Post.user_id'=>$clientid,)));
+        $saleshistory = array();
+        foreach ($postvalue as  $postvalue) {
+            $post_id = $postvalue['Post']['id'];
+            
+            $orderlist = $Order->find('all', array('conditions'=>array('Order.post_id'=>$post_id,'Order.user_id'=>$clientid,'Order.post_id != "" ',)));
+            
+            $username = $User->getByID($clientid);
+            $orderdetailsuser = $OrderItem->getEachUserPurchasingData($clientid,$post_id);
+            //print_r($orderdetailsuser);
+            foreach ($orderdetailsuser as $orderdetailsuser) {
+                $productid[] = $orderdetailsuser['OrderItem']['product_entity_id'];
+            }
+            //print_r($productid);
+            $productdetail = $Product->findById($productid);
+            //print_r($productdetail);
+            $brand_id = $productdetail['Product']['brand_id'];
+                
+            $Brand = classRegistry::init('Brand');
+            $branddetails = $Brand->find('all',array('conditions'=>array('Brand.id'=>$brand_id)));
+            
+
+             $saleshistory[] = array(
+                'orderlist' =>  $orderlist,
+                'userdetail' => $username,
+                'orderdetailsuser' => $orderdetailsuser,
+                'brand' => $branddetails,
+                //'totalSale' => $totalSale
+            );
+        }
+       //print_r($saleshistory);
+        $totalSale = $Order->find('all',array('conditions'=>array('Order.user_id'=>$clientid,'Order.post_id'=>$post_id,),'fields'=>array('sum(Order.final_price) as finalamount')));
+            
+        $this->set(compact('saleshistory','userclient','totalSale','userlists','clientid','client'));
 
     }
 
