@@ -1518,6 +1518,16 @@ border-bottom-right-radius:7px;
 button.delete { position: absolute; top: 10px; right: 10px;}
 
 
+/************ Stylist Eleven Section *************/
+.eleven.columns.otft-img-bdr { width: 99%;}
+.myotft-right { width: 81%; float: right;}
+.otft-img-bdr { border: 3px solid #ececec;}
+.myotft h1 { padding-left: 0px; padding-right: 0px;}
+.outfit-desc.myotft-dsc { padding-bottom: 10px;}
+.myotft-btn a { float: right; padding: 8px 15px 6px; margin: 0 3px 0 30px; color:#fff; background: #7d7d7d;}
+a.bkmrk-btn{ background: #927e41;}
+
+
 
 
 
