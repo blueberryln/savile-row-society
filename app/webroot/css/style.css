@@ -1362,7 +1362,7 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 .cstm-msrmnt-content input { margin-bottom: 15px;}
 .msrmnt-input-area textarea, .cstm-msrmnt-content textarea  { background: #fff; border: 1px solid #bcbcbc; font-size: 18px; line-height: 20px; padding: 10px; color: #212125; overflow: hidden; height: 80px;}
 .cstm-msrmnt-center{ margin-left: 12.5%; margin-right: 12.5%}
-.cstm-msrmnt-content {text-align: center;}
+.cstm-msrmnt-content {text-align: center; padding-bottom: 30px;}
 .cstm-msrmnt-content li { display: inline-block; padding: 5px 10px; margin: 0 2px;}
 .cstm-msrmnt-content li.r-tabs-state-active, .cstm-msrmnt-content li:hover {background: #fff;}
 

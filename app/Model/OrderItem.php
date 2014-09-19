@@ -36,11 +36,12 @@ class OrderItem extends AppModel {
             'fields' => '',
             'order' => ''
         ),
-        'Brand' => array(
-            'className' => 'Brand',
-            'foreignKey' => 'id',
+        
+        'Image' => array(
+            'className' => 'Image',
+            'foreignKey' => 'product_entity_id',
             'conditions' => '',
-            'fields' => '',
+            'fields' => 'name',
             'order' => ''
         )
     );
@@ -142,7 +143,10 @@ class OrderItem extends AppModel {
         return $result;
     }
     
-    
+    public function getAllUserTotalPurchase($user_id = null){
+        //$find_array
+
+    }
     //Function to get total purchased items of a user
     function getTotalUserPurchaseCount($user_id){
         $find_array = array(
@@ -165,7 +169,7 @@ class OrderItem extends AppModel {
 
     function getUserPurchaseDetail($orderuserid){
         $find_array =   array(
-            'contain' => array('Entity','Brand'),
+            'contain' => array('Entity','Image'),
             'joins' => array(
                 array('table' => 'orders',
                     'alias' => 'Order',
@@ -173,10 +177,32 @@ class OrderItem extends AppModel {
                     'conditions' => array(
                         'Order.id = OrderItem.order_id'
                     )
-                )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = OrderItem.product_entity_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+                // array('table' => 'outfits',
+                //     'alias' => 'Outfit',
+                //     'type' => 'INNER',
+                //     'conditions' => array(
+                //         'Order.outfit_id = Outfit.id'
+                //     )
+                // ),
+
             ),
             'conditions' => array('Order.user_id' => $orderuserid),
-            'fields' => array('OrderItem.*', 'Entity.*'),
+            'fields' => array('OrderItem.*', 'Entity.*','Brand.*'),
         );
         return $this->find('all',$find_array);
     }

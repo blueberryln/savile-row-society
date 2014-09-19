@@ -142,7 +142,7 @@
                         <div class="inner-left inner-myclient left">
 <!--                            <div class="dashboard-pannel left">&nbsp;</div>-->
                             <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client['User']['profile_photo_url']; ?>" alt="" /></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
                                         <li><a href="<?php echo $this->webroot; ?>messages/stylistuseractivityfeed/<?php echo $clientid; ?>">Activity Feed</a></li>
@@ -150,7 +150,7 @@
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/stylistuseroutfits/<?php echo $clientid; ?>">Outfits</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/stylistuserpurchase/<?php echo $clientid; ?>">Purchases/Likes</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/stylistusernotes/<?php echo $clientid; ?>">Notes &amp; Gallery</a></li>
-                                        <li><a href="javascript:;">Measurements</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistusermeasurements/<?php echo $clientid; ?>">Measurements</a></li>
                                     </ul>
                                 </div>
                             </div>
