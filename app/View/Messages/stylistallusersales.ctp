@@ -110,7 +110,7 @@
                         <h1>My Account</h1>
                     </div>
                     <div class="twelve columns left myaccount-sales-dtl">
-                        <p>Total Number of Clients: 20</p>
+                        <p>Total Number of Clients: <?php echo $userclient[0][0]['usercount']; ?></p>
                         <p>Average Monthly Sales: $4,000</p>
                         <p>Average Sale per Client: $365</p>
                     </div>
@@ -123,11 +123,13 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($saleshistory as $sales): //print_r($saleshistory); ?>
+                            <?php foreach ($saleshistory as $sales):
+                            $date = strtotime($sales['orderdetailsuser']['OrderItem']['created']);
+                            $datefinal = strtolower(date('M', $date));    
+                            ?>
+                            
                             <tr>
-                              <td><?php
-                                 $date = strtotime($saleshistory['orderdetailsuser']['OrderItem']['created']);
-                                     echo date('M', $date); ?></td>
+                              <td><?php echo $datefinal; ?></td>
                               <td><?php echo $sales['orderdetailsuser']['Entity']['price']; ?></td>
                             </tr>
                         <?php endforeach; ?>
@@ -194,7 +196,7 @@
                                     <span>MOnthlyRevenue</span>
                                 </li>
                                 <li>
-                                    <div class="ratio-analyize-price">20</div>
+                                    <div class="ratio-analyize-price"><?php echo $userclient[0][0]['usercount']; ?></div>
                                     <span>Total CUstomers</span>
                                 </li>
                                 <li>

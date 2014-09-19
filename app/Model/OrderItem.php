@@ -143,7 +143,10 @@ class OrderItem extends AppModel {
         return $result;
     }
     
-    
+    public function getAllUserTotalPurchase($user_id = null){
+        //$find_array
+
+    }
     //Function to get total purchased items of a user
     function getTotalUserPurchaseCount($user_id){
         $find_array = array(

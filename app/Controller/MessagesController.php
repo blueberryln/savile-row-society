@@ -1630,6 +1630,27 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
 
+       $find_array2 = array(
+                'fields' => array('count(User.id) as usercount'),
+                'joins' => array(
+
+                array(
+                    'conditions' => array(
+                        'User.is_stylist' => true,
+                        'User1.stylist_id = User.id',
+                        'User.id' => $user_id
+                    ),
+                    'table' => 'users',
+                    'alias' => 'User1',
+                    'type' => 'INNER',
+                ),
+                ),
+                'group' => array(
+                'User.id',
+                ),
+                );
+        $userclient = $User->find('all',$find_array2);
+        //print_r($userclient);die;
         $postvalue = $posts->find('all', array('conditions'=>array('Post.is_order'=>true)));
         $saleshistory = array();
         foreach ($postvalue as $key => $postvalue) {
@@ -1657,7 +1678,7 @@ If interested, I would also be happy to meet with you in our New York City based
             );
         } 
         
-        $this->set(compact('saleshistory'));
+        $this->set(compact('saleshistory','userclient'));
 
     }
 
