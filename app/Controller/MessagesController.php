@@ -1629,11 +1629,9 @@ If interested, I would also be happy to meet with you in our New York City based
         $user_id = $user["User"]["id"]; 
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
-
-       $find_array2 = array(
+        $find_array2 = array(
                 'fields' => array('count(User.id) as usercount'),
                 'joins' => array(
-
                 array(
                     'conditions' => array(
                         'User.is_stylist' => true,
@@ -1643,21 +1641,19 @@ If interested, I would also be happy to meet with you in our New York City based
                     'table' => 'users',
                     'alias' => 'User1',
                     'type' => 'INNER',
+                  ),
                 ),
-                ),
-                'group' => array(
-                'User.id',
-                ),
-                );
+                'group' => array('User.id',),
+            );
         $userclient = $User->find('all',$find_array2);
         //print_r($userclient);die;
         $postvalue = $posts->find('all', array('conditions'=>array('Post.is_order'=>true)));
         $saleshistory = array();
         foreach ($postvalue as $key => $postvalue) {
-            $post_id = $postvalue['Post']['id'];
+            $post_id[] = $postvalue['Post']['id'];
             $orderlist = $Order->find('all', array('conditions'=>array('Order.post_id'=>$post_id)));
             foreach ($orderlist as $orderlist) {
-               $orderuserid =  $orderlist['Order']['user_id']; 
+               $orderuserid[] =  $orderlist['Order']['user_id'];
             }
             $username = $User->getByID($orderuserid);
             $orderdetailsuser = $OrderItem->getUserPurchaseDetail($orderuserid);
@@ -1669,16 +1665,26 @@ If interested, I would also be happy to meet with you in our New York City based
                 
             $Brand = classRegistry::init('Brand');
             $branddetails = $Brand->find('all',array('conditions'=>array('Brand.id'=>$brand_id)));
+            //$totalSale = $Order->getAllTotalPurchaseUser($orderuserid,$post_id);
+            //echo $post_id;
+            // $finalamount = array();
+            // foreach ($totalSale as $key => $totalSale) {
+                
+            //        $finalamount[$key] = $totalSale[0];
+            // }
+            // print_r($finalamount);
 
-            $saleshistory[] = array(
+             $saleshistory[] = array(
                 'orderlist' =>  $orderlist,
                 'userdetail' => $username,
                 'orderdetailsuser' => $orderdetailsuser,
-                'brand' => $branddetails
+                'brand' => $branddetails,
+                //'totalSale' => $totalSale
             );
-        } 
-        
-        $this->set(compact('saleshistory','userclient'));
+        }
+        $totalSale = $Order->find('all',array('conditions'=>array('Order.user_id'=>$orderuserid,'Order.post_id'=>$post_id,),'fields'=>array('sum(Order.final_price) as finalamount')));
+            
+        $this->set(compact('saleshistory','userclient','totalSale'));
 
     }
 

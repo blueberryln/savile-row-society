@@ -111,8 +111,8 @@
                     </div>
                     <div class="twelve columns left myaccount-sales-dtl">
                         <p>Total Number of Clients: <?php echo $userclient[0][0]['usercount']; ?></p>
-                        <p>Average Monthly Sales: $4,000</p>
-                        <p>Average Sale per Client: $365</p>
+                        <p>Average Monthly Sales: $<?php echo  $avgsalepermonths =   $totalSale[0][0]['finalamount']/12; ?></p>
+                        <p>Average Sale per Client: $<?php echo  $avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); ?></p>
                     </div>
                     <div class="twelve columns left chart-table">
                         <table class="highchart" data-graph-container=".. .. .highchart-container" data-graph-type="line">
@@ -188,11 +188,11 @@
                         <div class="twelve columns left ratio-analyize">
                             <ul>
                                 <li>
-                                    <div class="ratio-analyize-price">$ 17,000</div>
+                                    <div class="ratio-analyize-price">$<?php echo  $totalSale[0][0]['finalamount']; ?></div>
                                     <span>Total earnings</span>
                                 </li>
                                 <li>
-                                    <div class="ratio-analyize-price">$2,000</div>
+                                    <div class="ratio-analyize-price">$<?php echo  $avgsalepermonths =   $totalSale[0][0]['finalamount']/12; ?></div>
                                     <span>MOnthlyRevenue</span>
                                 </li>
                                 <li>
@@ -200,7 +200,7 @@
                                     <span>Total CUstomers</span>
                                 </li>
                                 <li>
-                                    <div class="ratio-analyize-price">$520.01</div>
+                                    <div class="ratio-analyize-price">$<?php echo  $avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); ?></div>
                                     <span>AVg. Sales Per Custom</span>
                                 </li>
                             </ul>
