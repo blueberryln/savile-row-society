@@ -200,7 +200,8 @@
                         </table>
                     </div>
                     <div class="twelve columns left sales-snapshot">
-                        <p>Sales Snapshot: All Clients</p>
+                        <p style="float:left;">Sales Snapshot: <?php echo $client['User']['username']; ?></p>
+                        <p style="float:right;"><a href="<?php echo $this->webroot; ?>messages/stylistallusersales">Clear Client Filter</a></p>
                         <div class="highchart-container">
                         </div>
                         <div class="twelve columns left ratio-analyize">
@@ -240,10 +241,8 @@
                                 <?php foreach ($saleshistory as $saleshistory): //print_r($saleshistory); ?>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date"><?php
-                                    $date = strtotime($saleshistory['orderdetailsuser']['OrderItem']['created']);
-                                     echo date('M', $date);
-                                    
-                                     ?></div>
+                                  echo  $saleshistory['orderdetailsuser']['OrderItem']['created'];
+                                    ?></div>
                                     <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $saleshistory['orderdetailsuser']['Image']['name']; ?>" alt=""/></span><?php echo $saleshistory['orderdetailsuser']['Entity']['name']; ?>, <?php echo $saleshistory['orderdetailsuser']['Brand']['name']; ?> </div>
                                     <div class="itm-sls-list-client"><?php echo $saleshistory['userdetail']['User']['username']; ?></div>
                                     <div class="itm-sls-list-outfit">Beach day</div>

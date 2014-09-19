@@ -640,6 +640,14 @@ class PaymentsController extends AppController {
     
     public function addOrder($cart_items, $total_price, $tax, $tax_amount, $promo_code = false, $discount = false, $discounted_price = false){
         $user_id = $this->getLoggedUserID();
+        //bhashit
+                $posts = ClassRegistry::init('Post');
+                $this->request->data['Post']['user_id'] = $user_id;
+                //$this->request->data['Post']['stylist_id'] = ''; 
+                $this->request->data['Post']['is_order'] = '1';
+                $posts->save($this->request->data);
+                $post_id = $posts->getLastInsertID();
+                //bhashit
         $data = array();
         if($user_id){
             $transaction_error = false;
@@ -651,14 +659,16 @@ class PaymentsController extends AppController {
             $data['Order']['final_price'] = $total_price; 
             $data['Order']['paid'] = 0;    
             $data['Order']['confirmed'] = 0;
-            $data['Order']['shipped'] = 0;  
-            
+            $data['Order']['shipped'] = 0;
+            $data['Order']['post_id'] = $post_id;     
+
             if($promo_code !== false){
                 $data['Order']['final_price'] = $discounted_price; 
                 $data['Order']['promo_discount'] = $discount;
-                $data['Order']['promo_code'] = $promo_code;   
+                $data['Order']['promo_code'] = $promo_code;
+                $data['Order']['post_id'] = $post_id;   
             }
-           
+            
             $Order = ClassRegistry::init('Order');
             $CartGiftItem = ClassRegistry::init('CartGiftItem');
             $OrderGiftItem = ClassRegistry::init('OrderGiftItem');
@@ -668,6 +678,7 @@ class PaymentsController extends AppController {
             if($result){
                 $order_id = $result['Order']['id'];
                 $OrderItem = ClassRegistry::init('OrderItem');
+                
                 foreach($cart_items as $row){
                     $data['OrderItem'] = array();
                     $data['OrderItem']['order_id'] = $result['Order']['id'];
