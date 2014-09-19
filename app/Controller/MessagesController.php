@@ -1650,31 +1650,29 @@ If interested, I would also be happy to meet with you in our New York City based
         $userclient = $User->find('all',$find_array2);
         //print_r($userclient);die;
         $postvalue = $posts->find('all', array('conditions'=>array('Post.is_order'=>true)));
+         //print_r($postvalue);
         $saleshistory = array();
-        foreach ($postvalue as $key => $postvalue) {
-            $post_id[] = $postvalue['Post']['id'];
+        foreach ($postvalue as  $postvalue) {
+            $post_id = $postvalue['Post']['id'];
             $orderlist = $Order->find('all', array('conditions'=>array('Order.post_id'=>$post_id)));
+            //print_r($orderlist);
             foreach ($orderlist as $orderlist) {
-               $orderuserid[] =  $orderlist['Order']['user_id'];
+               $orderuserid =  $orderlist['Order']['user_id'];
+               $orderid =  $orderlist['Order']['id'];
             }
+            //print_r($orderid);
             $username = $User->getByID($orderuserid);
-            $orderdetailsuser = $OrderItem->getUserPurchaseDetail($orderuserid);
+            $orderdetailsuser = $OrderItem->getUserPurchaseDetail($orderid);
+            //print_r($orderdetailsuser);
             foreach ($orderdetailsuser as $orderdetailsuser) {
-            $productid[] = $orderdetailsuser['OrderItem']['product_entity_id'];
+             $productid = $orderdetailsuser['OrderItem']['product_entity_id'];
             }
             $productdetail = $Product->findById($productid);
             $brand_id = $productdetail['Product']['brand_id'];
                 
             $Brand = classRegistry::init('Brand');
             $branddetails = $Brand->find('all',array('conditions'=>array('Brand.id'=>$brand_id)));
-            //$totalSale = $Order->getAllTotalPurchaseUser($orderuserid,$post_id);
-            //echo $post_id;
-            // $finalamount = array();
-            // foreach ($totalSale as $key => $totalSale) {
-                
-            //        $finalamount[$key] = $totalSale[0];
-            // }
-            // print_r($finalamount);
+            
 
              $saleshistory[] = array(
                 'orderlist' =>  $orderlist,
@@ -1728,6 +1726,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $userclient = $User->find('all',$find_array2);
         //print_r($userclient);die;
         $postvalue = $posts->find('all', array('conditions'=>array('Post.is_order'=>true,'Post.user_id'=>$clientid,)));
+       
         $saleshistory = array();
         foreach ($postvalue as  $postvalue) {
             $post_id = $postvalue['Post']['id'];

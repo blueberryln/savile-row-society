@@ -200,7 +200,8 @@
                         </table>
                     </div>
                     <div class="twelve columns left sales-snapshot">
-                        <p>Sales Snapshot: <?php echo $client['User']['username']; ?></p>
+                        <p style="float:left;">Sales Snapshot: <?php echo $client['User']['username']; ?></p>
+                        <p style="float:right;"><a href="<?php echo $this->webroot; ?>messages/stylistallusersales">Clear Client Filter</a></p>
                         <div class="highchart-container">
                         </div>
                         <div class="twelve columns left ratio-analyize">

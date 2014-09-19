@@ -164,7 +164,8 @@ class OrderItem extends AppModel {
 
     //bhashit code
 
-    function getUserPurchaseDetail($orderuserid){
+    function getUserPurchaseDetail($orderid){
+        echo $orderid;
         $find_array =   array(
             'contain' => array('Entity','Image'),
             'joins' => array(
@@ -192,7 +193,7 @@ class OrderItem extends AppModel {
                 
 
             ),
-            'conditions' => array('Order.user_id' => $orderuserid),
+            'conditions' => array('Order.id' => $orderid),
             'fields' => array('OrderItem.*', 'Entity.*','Brand.*'),
         );
         return $this->find('all',$find_array);
