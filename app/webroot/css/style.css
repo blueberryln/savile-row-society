@@ -1063,7 +1063,8 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .client-comments h2 { font-size: 18px; line-height: 20px; padding: 5px 0 3px; margin: 0; color: #b9a979; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
 .client-comments-text { font-size: 12px; line-height: 14px;}
 .client-comments-text  a{ font-style: italic; text-decoration: underline; color: #af9a59;}
-.share-outfit{ font-size: 14px; color: #c2c2c2; text-transform: uppercase; padding:10px 0 10px   30px; background: url('../images/share-icon.png') no-repeat left center; position: absolute; bottom: 14px; right: 0px;}
+.share-outfit, .bkmrk-outfit{ font-size: 14px; color: #c2c2c2; text-transform: uppercase; padding:10px 0 10px   30px; background: url('../images/share-icon.png') no-repeat left center; position: absolute; bottom: 14px; right: 26px;}
+.bkmrk-outfit { bottom: 38px; right: 0px; background: url('../images/bkmrk-icon.png') no-repeat left center;}
 
 /*******Message Three CSS********/
 
@@ -1419,6 +1420,26 @@ table.highchart { width: 100%; text-align: center;}
 .itm-sls-list-content ul li .itm-sls-list-item span.sls-itm-img { width: 29px; display: inline-table; vertical-align: middle; overflow: hidden; margin-right: 5px; border: 1px solid #eceaea; padding: 1px;}
 .itm-sls-list-content ul li .itm-sls-list-item span.sls-itm-img img { width: 100%; margin-bottom: -5px;}
 
+
+/************ Stylist Eight Section *************/
+.closet-section { width: 96%;}
+.closet-top-section{}
+.closet-top-rgt li { display: inline-block; width: 40%; margin: 0 4%;}
+
+
+/************ Stylist Nine Section *************/
+.myoutfit-right { width: 77.5%; margin-right: 3%;}
+.inner-content.my-outfit { padding-top: 15px;}
+.crt-new-outfit { width: 94%; margin: 0px 4% 0 0; float: left; text-align: center; font-family: 'ProximaNovaCond-Regular'; font-size: 30px; background: #927e41; color: #fff; text-transform: uppercase; line-height: 35px; padding: 10px 1%;}
+.my-outfit-filters { width: 95%; float: right; font-size: 16px; color: #242424; text-align: center; padding: 30px 0 0;}
+.my-outfit-filters p { text-transform: uppercase; text-decoration: underline;}
+.my-outfit-filters li {width: 100%; float: left; margin-bottom: 1px;}
+.my-outfit-filters li a {width: 100%; float: left; padding: 12px 0 9px; color: #242424;}
+.my-outfit-filters li a:hover {background: #d7d7d7;}
+.outfit-srt { padding-top: 30px; float: left; width: 100%;}
+.myoutfit-srch { width: 98%; float: right; margin-right: 2%; position: relative; margin-top: 15px;}
+.myoutfit-srch input { border: 1px solid #d9d9d9; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow:  #f2f2f2 0px 0px 3px inset; -moz-box-shadow: #f2f2f2 0px 0px 3px inset; box-shadow: #f2f2f2 0px 0px 3px inset; text-align: center; font-size: 16px; color: #b2b1b1; font-family: 'ProximaNovaCond-Regular';}
+.myoutfit-srch span{ position: absolute; top: 9px; left: 25px; background: url("../images/srch-icn.png") no-repeat 0 0; width: 16px; height: 16px;}
 
 
 
