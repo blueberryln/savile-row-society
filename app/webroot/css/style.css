@@ -1527,9 +1527,9 @@ button.delete { position: absolute; top: 10px; right: 10px;}
 .myotft-btn a { float: right; padding: 8px 15px 6px; margin: 0 3px 0 30px; color:#fff; background: #7d7d7d;}
 a.bkmrk-btn{ background: #927e41;}
 
-#create-otft-popup .box-modal, #reuse-otft-popup .box-modal { width: 550px;}
-#create-otft-popup .box-modal-inside, #reuse-otft-popup .box-modal-inside { display: inline-block;}
-.crt-new-otft-content { width: 500px; margin: 0 auto;}
+#create-otft-popup .box-modal, #reuse-otft-popup .box-modal, #view-otft-popup .box-modal { width: 550px;}
+#create-otft-popup .box-modal-inside, #reuse-otft-popup .box-modal-inside, #view-otft-popup .box-modal-inside, #cnfrm-otft-popup .box-modal-inside { display: inline-block;}
+.crt-new-otft-content, .view-otft-content  { width: 500px; margin: 0 auto;}
 .myclient-popup {}
 .otft-pop-rgt-area { position: relative; height: 100%; text-align: center;}
 .five.columns.otft-pop-rgt, .five.columns.otft-pop-lft { width: 49%;}
@@ -1545,8 +1545,47 @@ a.bkmrk-btn{ background: #927e41;}
 .otft-pop-rgt-top p.small-txt{ color: #927e41; font-size: 14px; line-height: 16px;}
 a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; margin: 0 5%; position: absolute; bottom: 0px; right: 0px;}
 
+.view-otft-content h1 { font-size: 30px; color: #6d7179; font-family: 'ProximaNovaCond-Regular';}
+.view-otft-list { width: 100%;}
+.view-otft-list li { display: block;overflow: hidden; margin-bottom: 0px;}
+.view-otft-list li img { width: 50%;}
+.view-otft-dtl { text-transform: uppercase; font-size: 16px; color: #242424; text-align: left;}
+.view-otft-dtl-top p { margin-bottom: 5px; font-size: 14px; }
+.otft-overview-box { width: 99%; float: left; border: 1px solid #9f9f9f; padding:10px 0; position: relative; margin-top: 40px;}
+.otft-overview-box span.otft-overview-box-head { position: absolute; height: 20px; line-height:22px; font-size: 12px;  top: -26px; left: -1px; padding:2px 10px; color: #242424; -webkit-border-radius: 0px 5px 0px 0px; -moz-border-radius: 0px 5px 0px 0px; border-radius: 0px 5px 0px 0px; border: 1px solid #9f9f9f; border-bottom: 1px solid #fff; font-weight: bold;}
+.otft-overview-box p { font-weight: bold; margin-bottom: 0px;}
+.otft-overview-box-recmnd, .otft-overview-box-brnds { padding:5px 10px; display: block; min-height: 150px; border-bottom: 1px solid #9f9f9f; font-size: 14px;}
+.otft-overview-box-brnds { border-bottom: none;}
+.otft-overview-box-recmnd li, .otft-overview-box-brnds li { margin-bottom: 1px; color: #ac985d; text-transform: none;}
+.otft-overview-box-brnds li { color: #242424;}
+.otft-overview-links { font-size: 12px; font-weight: bold; padding-top: 15px;}
+.otft-overview-links a {border-bottom: 1px solid #242424;}
 
+#cnfrm-otft-popup .box-modal { width: 680px;}
+#cnfrm-otft-popup .box-modal-inside { padding: 0px; width: 100%; display: inline-block;}
+.cnfrm-otft-top { background: #bcbdc0; padding: 20px 0 8px; font-family: 'ProximaNovaCond-Regular';}
+.cnfrm-otft-top h1 { font-size: 32px; line-height: 32px; color: #fff; text-align: left; padding: 0 5% 3px; margin-bottom: 0px;}
+.cnfrm-otft-top span {padding-right: 5%; font-size: 12px; font-style: italic; color:#fff;}
+#cnfrm-otft-popup a.otft-close { background: url("../images/close_btn_wht.png") no-repeat center center; background-size: cover;}
+.cnfrm-otft-middle { padding: 10px 0;}
+.cnfrm-otft-itms li { width: 33.33%; float: left; vertical-align: middle;}
+.cnfrm-otft-itms li .cnfrm-otft-prdct-dtl { width: 50%; margin: 10px 25%; font-size: 12px; line-height: 14px; padding: 5px 0 0; color: #939598; border-top: 2px solid #e3e4e5;}
+.shp-this-otft { font-size: 12px; font-style: italic; color: #242424;}
+.cnfrm-otft-bottom { background: #939598; padding: 10px 0px;}
+.otft-stylist-review { font-size: 14px; color: #fff; line-height: 18px; font-style: italic; text-align: left;}
+.otft-stylist-review p { margin-bottom: 0px; padding-right: 50px;},
+.otft-btm-links { padding: 10px 0;}
+.cnfrm-bottom-link { padding: 10px 0;}
+.cnfrm-otft-edit, .cnfrm-otft-send { width: 20%;}
+.cnfrm-otft-edit a, .cnfrm-otft-send a {background: #7d7d7d; font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #fff; height: 49px; line-height: 50px; float: left; padding: 0px 30px;}
+.cnfrm-otft-send a { float: right; background: #927e41; position: relative; padding-right: 41px;}
+.cnfrm-otft-send a span { position: absolute; top: 22px; right: 20px; width: 11px; height: 8px; background: url("../images/right-arrow.png") no-repeat 0px 0px; }
 
+.cnfrm-otft-social { width: 40%; margin: 0 10%; text-align: center;}
+.cnfrm-otft-social li {display: inline-block; width: 32px; height: 32px; margin: 8px 5px;}
+.cnfrm-otft-social li a { text-decoration: none; display: block; text-indent: -9999px; background: url("../images/social-links.png") no-repeat 0px 0px; width: 32px; height: 32px;}
+.cnfrm-otft-social li.cnfrm-otft-social-twtr a{ background-position: -51px 0;}
+.cnfrm-otft-social li.cnfrm-otft-social-pntrst a{ background-position: -97px 0;}
 
 
 

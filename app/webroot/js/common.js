@@ -49,6 +49,18 @@ function reuseoutFit() {
     $('.blockOverlay').click($.unblockUI);
 }
 
+function viewoutFit() {
+    var blockTop = $(window).height()/2 - $("#view-otft-popup").height()/2;
+    $.blockUI({message: $('#view-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+function cnfrmoutFit() {
+    var blockTop = $(window).height()/2 - $("#cnfrm-otft-popup").height()/2;
+    $.blockUI({message: $('#cnfrm-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
 
 function newAddress() {
     var blockTop = $(window).height()/2 - $("#newaddess-popup").height()/2;
@@ -163,7 +175,19 @@ jQuery(function(){
         reuseoutFit();
     });
     
+    $('.outfit-quick-view').on('click', function(e){
+        e.preventDefault();
+        viewoutFit();
+    });
+    
+    $('#sbmt-cnfrmation').on('click', function(e){
+        e.preventDefault();
+        cnfrmoutFit();
+    });
+    
 
+    
+    
     $('#signup-popup, #signin-popup, #crt-new-otft').on('click', '.notification-close', function(e){
         e.preventDefault();
         $.unblockUI();
@@ -272,17 +296,11 @@ jQuery(function(){
         $.unblockUI();
     });
 
-     $('#create-otft-popup').on('click', '.otft-close', function(e){
+     $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup').on('click', '.otft-close', function(e){
         e.preventDefault();
         $.unblockUI();
     });
-    
-    $('#reuse-otft-popup').on('click', '.otft-close', function(e){
-        e.preventDefault();
-        $.unblockUI();
-    });
-    
-
+   
     $("#block-vip-access,#block-vip-access-link").on("click", function(e){
         e.preventDefault();
         $.blockUI({message: $('#vip-box')});
