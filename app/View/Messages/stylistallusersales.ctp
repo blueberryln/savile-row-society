@@ -1,12 +1,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
-
-
     $(".search-myclient").on('keydown',function(){
-         
-         //var r = $('input').focus();
          var usersearch = $("#usersearch").val();
-         //alert(usersearch);
           $.ajax({
                 type:"POST",
                 url:"<?php echo $this->webroot; ?>messages/stylistUserFilterList/<?php echo $clientid; ?>",
@@ -44,6 +39,7 @@
 });
 
 </script>
+
 <div class="content-container">
     <div class="twelve columns black">
         <div class="eleven columns container">
@@ -133,7 +129,8 @@
                         <p>Average Sale per Client: $<?php echo  $avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); ?></p>
                     </div>
                     <div class="twelve columns left chart-table">
-                        <table class="highchart" data-graph-container=".. .. .highchart-container" data-graph-type="line">
+                        <table class="highchart"  data-graph-container=".. .. .highchart-container" data-graph-datalabels-enabled="1" data-graph-type="line" >
+                      
                           <thead>
                             <tr>
                               <th>Month</th>
@@ -148,7 +145,7 @@
                             
                             <tr>
                               <td><?php echo $datefinal; ?></td>
-                              <td><?php echo $sales['orderdetailsuser']['Entity']['price']; ?></td>
+                              <td ><?php echo $sales['orderdetailsuser']['Entity']['price']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                             <!-- <tr>
@@ -240,8 +237,8 @@
                                 <?php foreach ($saleshistory as $saleshistory): //print_r($saleshistory); ?>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date"><?php
-                                    $date = strtotime($saleshistory['orderdetailsuser']['OrderItem']['created']);
-                                     echo date('M', $date);
+                                    echo $saleshistory['orderdetailsuser']['OrderItem']['created'];
+                                     //echo date('M', $date);
                                     
                                      ?></div>
                                     <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $saleshistory['orderdetailsuser']['Image']['name']; ?>" alt=""/></span><?php echo $saleshistory['orderdetailsuser']['Entity']['name']; ?>, <?php echo $saleshistory['orderdetailsuser']['Brand']['name']; ?> </div>

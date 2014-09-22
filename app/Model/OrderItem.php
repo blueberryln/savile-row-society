@@ -165,7 +165,6 @@ class OrderItem extends AppModel {
     //bhashit code
 
     function getUserPurchaseDetail($orderid){
-        echo $orderid;
         $find_array =   array(
             'contain' => array('Entity','Image'),
             'joins' => array(
