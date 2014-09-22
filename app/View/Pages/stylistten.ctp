@@ -58,11 +58,13 @@
                                                     <div class="basket">
                                                         <div class="basket_list">
                                                             <ul>
+<!--
                                                                 <li><strong>Drag &amp; drop <br />items here</strong></li>
                                                                 <li><strong>Drag &amp; drop <br />items here</strong></li>
                                                                 <li><strong>Drag &amp; drop <br />items here</strong></li>
                                                                 <li><strong>Drag &amp; drop <br />items here</strong></li>
                                                                 <li><strong>Drag &amp; drop <br />items here</strong></li>
+-->
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -80,7 +82,79 @@
                                             <div class="left otft-stylst-cmnt-heading">
                                                 <h1>Stylist Comments</h1>
                                                 <textarea placeholder="Write a comment to your client before you send outfit"></textarea>
-                                                <a class="sbmt-btn" href="#" title="">Submit Outfit</a>
+                                                <a id="sbmt-cnfrmation" class="sbmt-btn" href="#" title="">Submit Outfit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="cnfrm-otft-popup" style="display: none">
+                                        <div class="box-modal">
+                                            <div class="box-modal-inside">
+                                                <a href="#" title="" class="otft-close"></a>
+                                                <div class="twelve columns left cnfrm-otft-content">
+                                                    <div class="twelve columns left cnfrm-otft-top">
+                                                        <h1>Weekend in the Hamptons</h1>
+                                                        <span class="otft-prc right">outfit price: $1270</span>
+                                                    </div>
+                                                    <div class="twelve columns left cnfrm-otft-middle">
+                                                        <div class="eleven columns container">
+                                                            <div class="twelve columns left cnfrm-otft-itms">
+                                                                <div class="right shp-this-otft">shop this outfit &gt;</div>
+                                                                <ul>
+                                                                    <li>
+                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" />
+                                                                        <div class="cnfrm-otft-prdct-dtl">
+                                                                            White knight twills<br />
+                                                                            Whit &amp; co<br />
+                                                                            $600.00
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" />
+                                                                        <div class="cnfrm-otft-prdct-dtl">
+                                                                            White knight twills<br />
+                                                                            Whit &amp; co<br />
+                                                                            $600.00
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" />
+                                                                        <div class="cnfrm-otft-prdct-dtl">
+                                                                            White knight twills<br />
+                                                                            Whit &amp; co<br />
+                                                                            $600.00
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twelve columns left cnfrm-otft-bottom">
+                                                        <div class="eleven columns container">
+                                                            <div class="twelve columns left otft-stylist-review">
+                                                                <p>Dear Kyle<br/>
+                                                                I've created an outfit for your upcoming weekend in the hamptons. I think these pieces are versatile enought to easily be incorporated into day and night time looks. If you have any questions, please get in contact with me.
+                                                                </p><br/>
+                                                                <p>Your Stylist,<br/>
+                                                                Lisa</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twelve columns left cnfrm-bottom-link">
+                                                        <div class="eleven columns container">
+                                                            <div class="twelve columns left otft-btm-links">
+                                                                <div class="cnfrm-otft-edit left"><a href="#" title="">Edit</a></div>
+                                                                <div class="cnfrm-otft-social left">
+                                                                    <ul>
+                                                                        <li class="cnfrm-otft-social-fb"><a href="#" title="">facebook</a></li>
+                                                                        <li class="cnfrm-otft-social-twtr"><a href="#" title="">twitter</a></li>
+                                                                        <li class="cnfrm-otft-social-pntrst"><a href="#" title="">pintrest</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="cnfrm-otft-send right"><a href="#" title="">Send <span></span></a></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
