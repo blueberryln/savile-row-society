@@ -2040,7 +2040,75 @@ If interested, I would also be happy to meet with you in our New York City based
                     $entity_list[] = $value['Wishlist']['product_entity_id'];
                     $last_item_id = $value['Wishlist']['id'];
                 }
-        $likeitems = $Entity->getEntitiesByIdLikes($entity_list, $clientid);
+        ///$likeitems = $Entity->getEntitiesByIdLikes($entity_list, $clientid);
+        
+        //pagination
+        $find_array = array(
+             'limit' => 10,
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+
+              
+            ),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+            'order' => array('FROM_UNIXTIME(Wishlist.created) DESC'),
+
+           
+        );
+        
+       
+        if($clientid){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.user_id' => $clientid,
+                                            'Wishlist.product_entity_id = Entity.id'
+                                        ),
+                                        
+                                        
+                                    );
+        $find_array['joins'][] = array('table' => 'outfits',
+                    'alias' => 'Outfit',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = Wishlist.outfit_id',
+                    )
+                );
+
+            
+        
+            $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Outfit.*';
+
+             
+        }
+        //pagiantion
+
+
+        $this->Paginator->settings = $find_array;
+        $likeitems = $this->Paginator->paginate($Entity);
+
         $this->set(compact('likeitems','clientid','client','userlists'));
     }
 
@@ -2251,17 +2319,19 @@ If interested, I would also be happy to meet with you in our New York City based
             $OrderItem = ClassRegistry::init('OrderItem');
             $Entity = ClassRegistry::init('Entity'); 
             $total_purchases = $OrderItem->getTotalUserPurchaseCount($clientid);
-            
+            //print_r($total_purchases);
             if($total_purchases > 0){
                 $order_item_list = $OrderItem->getUniqueUserItemPurchase($clientid);
+                //print_r($order_item_list);
                 $entity_list = array();
                 foreach($order_item_list as $value){
                     $entity_list[] = $value['Orders']['product_entity_id'];
                     $last_item_id = $value['Orders']['order_id'];
                 }
+                print_r($entity_list);
 
             $purchases = $Entity->getEntitiesByIdPurchaseDes($entity_list);
-            
+            //print_r($purchases);
         }
         $this->set(compact('purchases','clientid','client','userlists'));
 

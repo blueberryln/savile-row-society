@@ -217,7 +217,7 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit heading left">Outfit</div>
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                       <?php foreach ($purchases as $purchase): //print_r($purchase); ?>
+                                                       <?php foreach ($purchases as $purchase): print_r($purchase); ?>
                                                        <li>
                                                             <div class="purchase-dtls-date left"><?php echo $purchase['purchase_data']['created']; ?></div>
                                                             <div class="purchase-dtls-items left">

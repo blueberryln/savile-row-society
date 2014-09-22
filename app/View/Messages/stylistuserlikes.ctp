@@ -215,7 +215,9 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit heading left">Outfit</div>
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                       <?php foreach ($likeitems as $likeitem): ?>
+                                                       <?php  for($i = 0; $i < count($likeitems); $i++){
+                                                                $likeitem = $likeitems[$i];
+                                                    ?>
                                                        <li>
                                                             <div class="purchase-dtls-date left"><?php
                                                                 $php_timestamp = $likeitem['Wishlist']['created'];
@@ -232,9 +234,16 @@ $(document).ready(function(){
                                                        
                                                             <div class="purchase-dtls-price left">$<?php echo $likeitem['Entity']['price']; ?></div>
                                                        </li>
-                                                       <?php endforeach; ?>
+                                                       <?php } ?>
                                                        
                                                     </ul>
+                                                    <div class="pagination stylistuserlikes">
+                    <?php
+                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                    ?>
+                </div>
                                                 </div>   
                                             </div>
                                         </div>
