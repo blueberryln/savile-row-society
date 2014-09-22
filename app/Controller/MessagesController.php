@@ -9,7 +9,8 @@ App::uses('CakeEmail', 'Network/Email');
  * @property Message $Message
  */
 class MessagesController extends AppController {
-   
+    public $components = array('Paginator');
+    public $helpers = array('Paginator');
 
     public function beforeFilter(){
         $this->isLogged();
@@ -1081,6 +1082,8 @@ If interested, I would also be happy to meet with you in our New York City based
                             }
                         }
                     }
+                $this->Paginator->settings = $my_outfits;
+                $this->Paginator->paginate($Entity);
                     // print_r($my_outfits);
                     // die;
         $this->set(compact('my_outfits','user_id','Userdata'));
@@ -1970,10 +1973,78 @@ If interested, I would also be happy to meet with you in our New York City based
                     $last_item_id = $value['Wishlist']['id'];
                     
                 }
-        $likeitems = $Entity->getEntitiesByIdLikes($entity_list, $user_id);
-    
-        $this->set(compact('likeitems','user_id','Userdata'));
+
+        ///$likeitems = $Entity->getEntitiesByIdLikes($entity_list, $user_id);
         
+        //pagination
+        $find_array = array(
+             'limit' => 10,
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+
+              
+            ),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+            'order' => array('FROM_UNIXTIME(Wishlist.created) DESC'),
+
+           
+        );
+        
+       
+        if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.user_id' => $user_id,
+                                            'Wishlist.product_entity_id = Entity.id'
+                                        ),
+                                        
+                                        
+                                    );
+        $find_array['joins'][] = array('table' => 'outfits',
+                    'alias' => 'Outfit',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = Wishlist.outfit_id',
+                    )
+                );
+
+            
+        
+            $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Outfit.*';
+
+             
+        }
+        //pagiantion
+
+
+        $this->Paginator->settings = $find_array;
+        $likeitems = $this->Paginator->paginate($Entity);
+        
+        $this->set(compact('likeitems','user_id','Userdata'));
+        $this->render('userlikes');
     }
 
     
@@ -2239,6 +2310,13 @@ If interested, I would also be happy to meet with you in our New York City based
 
     }
 
+
+    //stylist create outfits
+
+    public function stylistCreateOutfits($clientid=null) {
+
+
+    }   
 
     //bhashit code end
 

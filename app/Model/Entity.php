@@ -529,6 +529,7 @@ class Entity extends AppModel {
 
     function getEntitiesByIdLikes($entity_list, $user_id = null) {
         $find_array = array(
+             'limit' => 10,
             'contain' => array('Image'),
             'conditions' => array(
                 'Entity.show' => true,

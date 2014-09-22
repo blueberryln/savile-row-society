@@ -292,9 +292,10 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                                 </span>
                                                             </div>
                                                         </li>
-                                                        <?php }else{} ?>
+                                                        <?php }else{   } ?>
                                                        
                                                     </ul>
+
                                                 </div>
                                             
                                                  
@@ -308,12 +309,20 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
-                                        
+                                         
                                       </div>  
+
                                     </div>
+                                    <div class="pagination usersoutfits">
+                    <?php
+                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                    ?>
+                </div>
                                 </div>
                             </div>
-                        
+                       
                         </div> 
                         <div class="inner-right right">
                             <div class="twelve columns text-center my-profile">
