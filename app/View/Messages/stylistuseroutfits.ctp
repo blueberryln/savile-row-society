@@ -165,7 +165,7 @@
                                                 <option value="ASC">Sort By Date ASC</option>
                                             </select>
                                         </div>
-                                        <?php foreach ($my_outfits as $my_outfit): ?>
+                                        <?php foreach ($my_outfits as $my_outfit): print_r($my_outfit); ?>
                                         <div class="twelve columns client-outfits left">
                                             <div class="eleven columns container client-outfits-area pad-none">
                                                 <h1><?php echo $my_outfit['outfit'][0]['Outfit']['outfitname']; ?></h1>
@@ -175,10 +175,7 @@
                                                        
                                                         <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][$key]['Image'][0]['name']; ?>" alt="" /></li>
                                                         <?php } ?>
-                                                        <!-- <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][$key]['Image'][0]['name']; ?>" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][$key]['Image'][0]['name']; ?>" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][$key]['Image'][0]['name']; ?>" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit['entities'][$key]['Image'][0]['name']; ?>" alt="" /></li> -->
+                                                        
                                                     </ul>
                                                     <div class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</div>
                                                 </div>
@@ -194,28 +191,7 @@
                                         </div>
                                         <?php endforeach; ?>
 
-                                        <!-- <div class="twelve columns client-outfits left">
-                                            <div class="eleven columns container client-outfits-area pad-none">
-                                                <h1>BEACH DAY</h1>
-                                                <div class="twelve columns client-outfits-img pad-none">
-                                                    <ul>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
-                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
-                                                    </ul>
-                                                    <div class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</div>
-                                                </div>
-                                                <div class="twelve columns left client-outfit-bottom pad-none">
-                                                    <div class="client-comments left">
-                                                        <h2>Stylist Comment</h2>
-                                                        <div class="client-comments-text left">Kyle- Your upcoming trip to Hawaii<br>would be a great chance to wear.... <a href="javascript:;" title="">Read More</a></div>
-                                                    </div>
-                                                    <div class="share-outfit right">Share Outfit</div>
-                                                </div>
-                                            </div>
-                                        </div>  -->
+                                        
                                     </div>
                                 </div>
                             </div>
