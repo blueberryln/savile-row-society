@@ -1536,7 +1536,7 @@ a.bkmrk-btn{ background: #927e41;}
 
 .otft-pop-lft .myclient-list li a .myclient-dtl { text-align: left;}
 .myclient-popup { -webkit-box-shadow: #f0f0f0 0px 0px 3px inset; -moz-box-shadow: #f0f0f0 0px 0px 3px inset; box-shadow: #f0f0f0 0px 0px 3px inset; border: 1px solid #f0f0f0;}
-.myclient-popup .myclient-list { overflow: hidden;}
+.myclient-popup .myclient-list { overflow-y: scroll; height: 250px;}
 .otft-close{ width: 20px; height: 20px; position: absolute; top: 16px; right: 16px; display: block; background: url('../images/close_btn.png') no-repeat center center; background-size: cover;}
 .otft-pop-rgt-top { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; min-height: 250px; }
 .otft-pop-rgt-top h1 { font-size: 36px; line-height: 42px; color: #242424; text-transform: uppercase;}

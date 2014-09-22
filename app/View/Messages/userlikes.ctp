@@ -91,7 +91,7 @@ $(document).ready(function(){
                                         <div class="short-by-date">
                                             <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
                                             <select id="sortdate">
-                                                <!-- <option >Sort by Date</option> -->
+                                                <option >Sort by Date</option>
                                                 <option value="DESC">Sort by Date DESC</option>
                                                 <option value="ASC">Sort By Date ASC</option>
                                                 

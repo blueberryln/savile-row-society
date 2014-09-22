@@ -957,6 +957,20 @@ If interested, I would also be happy to meet with you in our New York City based
 
     }
 
+    public function stylistFilterList($user_id = null){
+        $User = ClassRegistry::init('User');
+        $stylist_id = $user_id;
+         if($this->request->is('post')){
+            $usersearch = $this->request->data['usersearch'];
+            $searchdata = $User->find('all',array('conditions'=>array('User.first_name LIKE' => '%' . $usersearch . '%', 'User.stylist_id' => $stylist_id))); 
+         
+         }
+         echo json_encode($searchdata);
+         exit;
+
+
+    }
+
 
     // stylist user outfits
 
@@ -1082,8 +1096,8 @@ If interested, I would also be happy to meet with you in our New York City based
                             }
                         }
                     }
-                $this->Paginator->settings = $my_outfits;
-                $this->Paginator->paginate($Entity);
+                //$this->Paginator->settings = $my_outfits;
+                //$this->Paginator->paginate($Entity);
                     // print_r($my_outfits);
                     // die;
         $this->set(compact('my_outfits','user_id','Userdata'));
@@ -1208,33 +1222,73 @@ If interested, I would also be happy to meet with you in our New York City based
         
         $userlist = $User->find('all', array('conditions'=>array('User.stylist_id'=>$user_id,)));
 
-         $my_outfit = array();
-         $stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfitname','Outfit.id'),));
-        foreach ($stylistoutfit as  $row) {
-            $stylist_outfit_id[] = $row['Outfit']['id'];
-        }
+        $my_outfitss = array();
+        $stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfitname','Outfit.id'),));
+        // foreach ($stylistoutfit as  $row) {
+        //     $stylist_outfit_id[] = $row['Outfit']['id'];
+        // }
         // //print_r($stylist_outfit_id);
         // $Outfit = ClassRegistry::init('Outfit');
         // $OutfitItem = ClassRegistry::init('OutfitItem');
         // $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
         // //print_r($outfit);
-        // $entities = array();
-        // foreach($outfit as $value){
+        // //$entities = array();
+        // foreach($outfit as  $value){
         //         $entities[] = $value['OutfitItem']['product_entity_id'];
+        //         $outfitids[] = $value['OutfitItem']['outfit_id'];
         // }
+        // //print_r($entities);
         // $Entity = ClassRegistry::init('Entity');
-        // $entity_list = $Entity->getMultipleById($entities);
+        // //$entity_list = $Entity->getMultipleById($entities);
+        // //pagintion
+        // $find_array = array(
+        //     'contain' => array('Image'),
+        //     'conditions' => array('Entity.id' => $entities),
+        //     'joins' => array(
+        //         array('table' => 'products',
+        //             'alias' => 'Product',
+        //             'type' => 'INNER',
+        //             'conditions' => array(
+        //                 'Product.id = Entity.product_id'
+        //             )
+        //         ),
+        //         array('table' => 'brands',
+        //             'alias' => 'Brand',
+        //             'type' => 'INNER',
+        //             'conditions' => array(
+        //                 'Product.brand_id = Brand.id',
+        //             )
+        //         ),        
+        //     ), 
+        //     'fields' => array(
+        //         'Entity.name','Entity.id','Entity.price','Brand.name',
+        //     ),
+        // );
+        
+        // //pagintion
+
+        // $entity_lists = $Entity->find('all',$find_array);
+        // $my_outfit[] =  array(
+        //                 'product_id'    => $outfit,
+        //                 //'username' => $userlist,
+        //                 'entities'  => $entity_lists
+        //             );
+       
+        // $this->set(compact('my_outfit','userlist','user_id','entity_lists'));
+
+        
         // $my_outfit[] =  array(
         //                 'outfit'    => $stylist_outfit_id,
         //                 //'username' => $userlist,
         //                 'entities'  => $entity_list
         //             );
-        // print_r($my_outfit);
-        // die;
+        //print_r($entities);
+        //die;
         foreach($stylistoutfit as $row){
             $stylist_outfit_id = $row['Outfit']['id'];
             $Outfit = ClassRegistry::init('Outfit');
             $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+            $messages = $Message->find('all',array('conditions'=>array('Message.outfit_id'=>$stylist_outfit_id,),'fields'=>array('Message.body')));
             $OutfitItem = ClassRegistry::init('OutfitItem');
             $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
             $entities = array();
@@ -1242,16 +1296,46 @@ If interested, I would also be happy to meet with you in our New York City based
                     $entities[] = $value['OutfitItem']['product_entity_id'];
                 }
             $Entity = ClassRegistry::init('Entity');
-            $entity_list = $Entity->getMultipleById($entities);
-            $my_outfit[] =  array(
+            
+
+            //pagintion
+            $find_array = array(
+                'contain' => array('Image'),
+                'conditions' => array('Entity.id' => $entities),
+                'joins' => array(
+                    array('table' => 'products',
+                        'alias' => 'Product',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'brands',
+                        'alias' => 'Brand',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.brand_id = Brand.id',
+                        )
+                    ),        
+                ), 
+                
+                'fields' => array(
+                    'Entity.id','Entity.price','Brand.name',
+                ),
+
+            );
+            //$this->Paginator->settings = $find_array;
+            $items = $Entity->find('all',$find_array);
+            // //pagintion
+            $my_outfitss[] =  array(
                                 'outfit'    => $outfitnames,
-                                //'username' => $userlist,
-                                'entities'  => $entity_list
+                                'comments' => $messages,
+                                'entities'  => $items
                             );
 
         }
-        //print_r($my_outfit);
-        $this->set(compact('my_outfit','userlist','user_id','entity_list'));
+        
+        $this->set(compact('my_outfitss','userlist','user_id'));
     
     } 
 
@@ -1680,6 +1764,34 @@ If interested, I would also be happy to meet with you in our New York City based
             }
         }
     }
+
+    public function reuseOutfit($user_id = null){
+        $User =  ClassRegistry::init('User');
+        $Post = ClassRegistry::init('Post');
+        $CopyUserOutfit = ClassRegistry::init('CopyUserOutfit');
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"]; 
+        if($this->request->is('post')){
+                    $outfitid = $this->request->data['outfit_id'];
+                    $clientid = $this->request->data['user_id'];
+                    $stylistid = $this->request->data['stylist_id'];
+                    $this->request->data['Post']['user_id'] = $clientid;
+                    $this->request->data['Post']['stylist_id'] = $stylistid;
+                    $this->request->data['Post']['is_outfit'] = '1';
+                    $Post->save($this->request->data);
+                    $post_id = $Post->getLastInsertID();
+                    $CopyUserOutfit->data['CopyUserOutfit']['outfit_id'] = $outfitid;
+                    $CopyUserOutfit->data['CopyUserOutfit']['user_id'] = $clientid;
+                    $CopyUserOutfit->data['CopyUserOutfit']['stylist_id'] = $stylistid;
+                    $CopyUserOutfit->data['CopyUserOutfit']['post_id'] = $post_id;
+            $CopyUserOutfit->save($this->request->data);
+                $submitdata = "User Data Hasbeen Saved";
+                echo  json_encode($submitdata);
+                exit;
+        }
+    }
 // stylist all user sales
 
 
@@ -2059,8 +2171,67 @@ If interested, I would also be happy to meet with you in our New York City based
                     $last_item_id = $value['Wishlist']['id'];
                     
                 }
-                
+        //pagination
+
+        // $find_array = array(
+        //     'limit'=> 5, 
+        //     'contain' => array('Image'),
+        //     'conditions' => array(
+        //         'Entity.show' => true,
+        //         'Entity.id' => $entity_list
+        //     ),
+        //     'joins' => array(
+        //         array('table' => 'products',
+        //             'alias' => 'Product',
+        //             'type' => 'INNER',
+        //             'conditions' => array(
+        //                 'Product.id = Entity.product_id'
+        //             )
+        //         ),
+        //         array('table' => 'brands',
+        //             'alias' => 'Brand',
+        //             'type' => 'INNER',
+        //             'conditions' => array(
+        //                 'Product.brand_id = Brand.id'
+        //             )
+        //         ),
+        //     ),
+        //     'fields' => array(
+        //         'Entity.*', 'Product.*', 'Brand.*',
+        //     ),
+        //     'order' => array('FROM_UNIXTIME(Wishlist.created)' => $sortingorder),
+            
+        // );
+        
+        
+        // if($user_id){
+        //     $find_array['joins'][] = array('table' => 'wishlists',
+        //                                 'alias' => 'Wishlist',
+        //                                 'type' => 'LEFT',
+        //                                 'conditions' => array(
+        //                                     'Wishlist.user_id' => $user_id,
+        //                                     'Wishlist.product_entity_id = Entity.id'
+        //                                 ),
+                                        
+        //                             );
+        //     $find_array['joins'][] = array('table' => 'outfits',
+        //             'alias' => 'Outfit',
+        //             'type' => 'INNER',
+        //             'conditions' => array(
+        //                 'Outfit.id = Wishlist.outfit_id',
+        //             )
+        //         );
+
+            
+        //     $find_array['fields'][] = 'Wishlist.*';
+        //     $find_array['fields'][] = 'Outfit.*';
+             
+        // }
+
+        //pagination        
         $likeitems = $Entity->getEntitiesByIdLikesAsc($entity_list, $user_id, $sortingorder);
+        //$this->Paginator->settings = $find_array;
+        //$likeitems = $this->Paginator->paginate($Entity);
         echo json_encode($likeitems);
         exit;
         
@@ -2258,6 +2429,76 @@ If interested, I would also be happy to meet with you in our New York City based
 
             $this->set(compact('entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata'));
            
+    }
+
+
+    //stylist outfit details
+
+    public function stylistOutfitsDetails($outfit_id = null) {
+        $User = ClassRegistry::init('User');
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $user = $User->findById($user_id);
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];
+        $Outfit = ClassRegistry::init('Outfit');
+        $outfitname = $Outfit->findById($outfit_id);
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+        $entity_list = array();
+            foreach($outfit as $value){
+                $entity_list[] = $value['OutfitItem']['product_entity_id'];
+                $size_list[] = $value['OutfitItem']['size_id'];
+            }
+
+            $Entity = ClassRegistry::init('Entity');
+
+            // get data
+            $entity = $Entity->getMultipleById($entity_list, $user_id);
+            //print_r($entity);
+            $products_list = array();
+            foreach ($entity as $key => $value) {
+                $products_list[] = $value['Entity']['product_id'];
+            }
+            $similar_results = $Entity->getSimilarProducts($outfit_id, $products_list);
+            $similar = array();
+            foreach($similar_results as $row){
+                if($row['Color'] && count($row['Color']) > 0){
+                    $similar[$row['Entity']['product_id']][] = $row; 
+                }
+            }
+
+            $entities = array();
+
+            foreach ($entity as $key => $value) {
+                $entities[$value['Entity']['id']] = $value;
+                if(isset($similar[$value['Entity']['product_id']])){
+                    $entities[$value['Entity']['id']]['Similar'] = $similar[$value['Entity']['product_id']];
+                }
+            }
+
+            $Size = ClassRegistry::init('Size');
+            $size_list = $Size->find('list');
+            
+
+            $show_add_cart_popup = 0;
+            if($this->Session->read('add-cart')){
+                $show_add_cart_popup = 1;
+                $this->Session->delete('add-cart');
+            }
+
+            $popUpMsg = '';
+            $show_three_item_popup = 0;
+            if($this->Session->read('cart-three-items')){
+                $show_three_item_popup = 1;
+                $popUpMsg = $this->Session->read('cart-three-items-msg');
+                $this->Session->delete('cart-three-items');
+                $this->Session->delete('cart-three-items-msg');
+            }
+
+            $this->set(compact('userlists','entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg'));
+
     }
 
     public function userprofiles($user_id = null) {
