@@ -36,6 +36,20 @@ function signIn() {
     $('.blockOverlay').click($.unblockUI);
 }
 
+/* function to show create outfit popup*/
+function outFit() {
+    var blockTop = $(window).height()/2 - $("#create-otft-popup").height()/2;
+    $.blockUI({message: $('#create-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+function reuseoutFit() {
+    var blockTop = $(window).height()/2 - $("#reuse-otft-popup").height()/2;
+    $.blockUI({message: $('#reuse-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+
 function newAddress() {
     var blockTop = $(window).height()/2 - $("#newaddess-popup").height()/2;
     $.blockUI({message: $('#newaddress-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
@@ -136,11 +150,30 @@ jQuery(function(){
         signUp();
     });
     
+    /* attach to create-outft event on create outfit.
+     * on click open create-outft popup form
+     * */
+     $('#crt-new-otft').on('click', function(e){
+        e.preventDefault();
+        outFit();
+    });
+    
+    $('#reuse-otft').on('click', function(e){
+        e.preventDefault();
+        reuseoutFit();
+    });
+    
 
-    $('#signup-popup, #signin-popup').on('click', '.notification-close', function(e){
+    $('#signup-popup, #signin-popup, #crt-new-otft').on('click', '.notification-close', function(e){
         e.preventDefault();
         $.unblockUI();
     });
+    
+    $('#crt-new-otft').on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();
+    });
+    
 
     $('#signin-popup').on('click', '.signin-btn', function(e){ 
         e.preventDefault();
@@ -230,7 +263,7 @@ jQuery(function(){
     if($('#flash-box').length){
         $.blockUI({message: $('#flash-box'), timeout: 5000});
     }
-    $('.blockOverlay, .notification-close').on('click', function(e){
+    $('.blockOverlay, .notification-close, .otft-close').on('click', function(e){
         e.preventDefault();
         $.unblockUI();
     });
@@ -239,6 +272,16 @@ jQuery(function(){
         $.unblockUI();
     });
 
+     $('#create-otft-popup').on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();
+    });
+    
+    $('#reuse-otft-popup').on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();
+    });
+    
 
     $("#block-vip-access,#block-vip-access-link").on("click", function(e){
         e.preventDefault();
