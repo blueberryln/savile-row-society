@@ -119,9 +119,101 @@
                                 </div>
                                 <div class="twelve columns left myotft-btn">
                                     <a class="bkmrk-btn" href="#" title="">BOOKMARKED</a>
-                                    <a href="#" title="">REUSE OUTFIT</a>                                    
+                                    <a id="reuse-otft" href="#" title="">REUSE OUTFIT</a>                                    
                                 </div>
                             </div>
+                        </div>
+                        <div id="reuse-otft-popup" style="display: none">
+                            <div class="box-modal">
+                                <div class="box-modal-inside">
+                                    <a href="#" title="" class="otft-close"></a>
+                                    <div class="crt-new-otft-content">
+                                        <div class="five columns left otft-pop-lft">
+                                            <div class="myclient-popup left">
+                                                <div class="myclient-topsec"> 
+                                                    <div class="filter-myclient-area">
+                                                        <div class="filter-myclient">
+                                                            <span class="downarw"></span>
+                                                            <select>
+                                                                <option>Filter Clients</option>
+                                                                <option>Filter Clients</option>
+                                                                <option>Filter Clients</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="search-myclient-area">
+                                                        <div class="search-myclient">
+                                                            <span class="srch"></span>
+                                                            <input type="text" name="myclient-search" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="myclient-list">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" title="">
+                                                                    <div class="myclient-img">
+                                                                        <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                                                    </div>
+                                                                    <div class="myclient-dtl">
+                                                                        <span class="myclient-name">Kyle HARPER</span>
+                                                                        <span class="myclient-status">last active at 4:30 PM</span>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            <li class="active">
+                                                                <a href="#" title="">
+                                                                    <div class="myclient-img">
+                                                                        <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                                                    </div>
+                                                                    <div class="myclient-dtl">
+                                                                        <span class="myclient-name">Kyle HARPER</span>
+                                                                        <span class="myclient-status">last active at 4:30 PM</span>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" title="">
+                                                                    <div class="myclient-img">
+                                                                        <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                                                    </div>
+                                                                    <div class="myclient-dtl">
+                                                                        <span class="myclient-name">Kyle HARPER</span>
+                                                                        <span class="myclient-status">last active at 4:30 PM</span>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" title="">
+                                                                    <div class="myclient-img">
+                                                                        <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                                                    </div>
+                                                                    <div class="myclient-dtl">
+                                                                        <span class="myclient-name">Kyle HARPER</span>
+                                                                        <span class="myclient-status">last active at 4:30 PM</span>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="five columns right otft-pop-rgt">
+                                            <div class="eleven columns container">
+                                                <div class="twelve columns left otft-pop-rgt-area">
+                                                    <div class="otft-pop-rgt-top">
+                                                        <h1>Reuse Outfit:<br><span>Beach Day</span></h1>
+                                                        <p>Please select a client from your client list on the left.</p>
+                                                        <p class="small-txt">You have the option to rename the outfit in the next step.</p>
+                                                        <a class="popup-cont-btn setp-btn" href="#" title="">Continue</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         </div>
                         <div class="twelve columns left outfit-dtls-img pad-none">
                             <div class="eleven columns container outfit-dtls-img-list otft-img-bdr pad-none">

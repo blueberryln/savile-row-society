@@ -519,6 +519,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             
             
             
+            
             $('.edit-save-btn, .cancel-btn').click(function(){
                 $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3').fadeOut();
             });
@@ -526,6 +527,10 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             $('.edit-outfit-section').click (function(){
                 $('.edit-beachday-section').toggle();
             });
+            
+            $(".otft-pop-rgt-top").height($(".myclient-popup").height());
+            
+//            $(".otft-pop-rgt").css({'height':($(".otft-pop-lft").height()+'px'});
             
             
             
