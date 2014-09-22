@@ -1527,9 +1527,9 @@ button.delete { position: absolute; top: 10px; right: 10px;}
 .myotft-btn a { float: right; padding: 8px 15px 6px; margin: 0 3px 0 30px; color:#fff; background: #7d7d7d;}
 a.bkmrk-btn{ background: #927e41;}
 
-#create-otft-popup .box-modal, #reuse-otft-popup .box-modal { width: 550px;}
-#create-otft-popup .box-modal-inside, #reuse-otft-popup .box-modal-inside { display: inline-block;}
-.crt-new-otft-content { width: 500px; margin: 0 auto;}
+#create-otft-popup .box-modal, #reuse-otft-popup .box-modal, #view-otft-popup .box-modal { width: 550px;}
+#create-otft-popup .box-modal-inside, #reuse-otft-popup .box-modal-inside, #view-otft-popup .box-modal-inside { display: inline-block;}
+.crt-new-otft-content, .view-otft-content  { width: 500px; margin: 0 auto;}
 .myclient-popup {}
 .otft-pop-rgt-area { position: relative; height: 100%; text-align: center;}
 .five.columns.otft-pop-rgt, .five.columns.otft-pop-lft { width: 49%;}
@@ -1544,6 +1544,23 @@ a.bkmrk-btn{ background: #927e41;}
 .otft-pop-rgt-top p { line-height: 20px; font-size: 18px; color: #242424;}
 .otft-pop-rgt-top p.small-txt{ color: #927e41; font-size: 14px; line-height: 16px;}
 a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; margin: 0 5%; position: absolute; bottom: 0px; right: 0px;}
+
+.view-otft-content h1 { font-size: 30px; color: #6d7179; font-family: 'ProximaNovaCond-Regular';}
+.view-otft-list { width: 100%;}
+.view-otft-list li { display: block;overflow: hidden; margin-bottom: 0px;}
+.view-otft-list li img { width: 50%;}
+.view-otft-dtl { text-transform: uppercase; font-size: 16px; color: #242424; text-align: left;}
+.view-otft-dtl-top p { margin-bottom: 5px; font-size: 14px; }
+.otft-overview-box { width: 99%; float: left; border: 1px solid #9f9f9f; padding:10px 0; position: relative; margin-top: 40px;}
+.otft-overview-box span.otft-overview-box-head { position: absolute; height: 20px; line-height:22px; font-size: 12px;  top: -26px; left: -1px; padding:2px 10px; color: #242424; -webkit-border-radius: 0px 5px 0px 0px; -moz-border-radius: 0px 5px 0px 0px; border-radius: 0px 5px 0px 0px; border: 1px solid #9f9f9f; border-bottom: 1px solid #fff; font-weight: bold;}
+.otft-overview-box p { font-weight: bold; margin-bottom: 0px;}
+.otft-overview-box-recmnd, .otft-overview-box-brnds { padding:5px 10px; display: block; min-height: 150px; border-bottom: 1px solid #9f9f9f; font-size: 14px;}
+.otft-overview-box-brnds { border-bottom: none;}
+.otft-overview-box-recmnd li, .otft-overview-box-brnds li { margin-bottom: 1px; color: #ac985d; text-transform: none;}
+.otft-overview-box-brnds li { color: #242424;}
+.otft-overview-links { font-size: 12px; font-weight: bold; padding-top: 15px;}
+.otft-overview-links a {border-bottom: 1px solid #242424;}
+
 
 
 
