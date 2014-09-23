@@ -529,7 +529,6 @@ class Entity extends AppModel {
 
     function getEntitiesByIdLikes($entity_list, $user_id = null) {
         $find_array = array(
-             'limit' => 10,
             'contain' => array('Image'),
             'conditions' => array(
                 'Entity.show' => true,
@@ -905,5 +904,54 @@ class Entity extends AppModel {
                 
         $result = $this->query($sql);
         return $result;    
+    }
+
+    // outfit client likes ajax
+
+    function getOutfitClientLikes($entity_list, $user_id = null) {
+        $find_array = array(
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'wishlists',
+                    'alias' => 'Wishlist',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                    'Wishlist.user_id' => $user_id,
+                    'Wishlist.product_entity_id = Entity.id'
+                    ),
+                ),
+            ),
+            'fields' => array('Entity.*', 'Wishlist.*',));
+        $entity = $this->find('all', $find_array);
+        return $entity;
+    }
+
+    // outfit stylist likes ajax
+
+    function getOutfitStylistLikes($entity_list, $user_id = null) {
+        $find_array = array(
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'wishlists',
+                    'alias' => 'Wishlist',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                    'Wishlist.user_id' => $user_id,
+                    'Wishlist.product_entity_id = Entity.id'
+                    ),
+                ),
+            ),
+            'fields' => array('Entity.*', 'Wishlist.*',));
+        $entity = $this->find('all', $find_array);
+        //print_r($entity);
+        return $entity;
     }
 }

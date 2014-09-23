@@ -1,7 +1,8 @@
 <script>
-            $(function () {
 
-                // jQuery UI Draggable
+
+function dragAndDropOutfit(){
+     // jQuery UI Draggable
                 $("#product li").draggable({
 
                     // brings the item back to its place when dragging is over
@@ -53,7 +54,7 @@
                         }
                     }
                 });
-
+                
                 // This function runs onc ean item is added to the basket
                 function addBasket(basket, move) {
                     //var src = $('img').attr('src');
@@ -65,37 +66,264 @@
                             + '<span class="name">' + move.find("h3").html() + '</span>'
                             + '<span class="prc-img">' + + '</span>'
                             + '<img src="'+src+'" />'
-                            + '<select id="size"><option>25</option> <option>26</option> <option>27</option><option>28</option><option>29</option></select>'
+                            + '<select id="size"><option value="25">25</option> <option value="26">26</option> <option value="27">27</option><option value="28">28</option><option value="29">29</option></select>'
                             + '<button class="delete">&#10005;</button>');
                 }
 
-
-                // The function that is triggered once delete button is pressed
+                 // The function that is triggered once delete button is pressed
                 $(".basket ul li button.delete").live("click", function () {
                     $(this).closest("li").remove();
                 });
 
-                $("#sbmt-cnfrmation").live("click", function () {
+}
+
+            $(function () {
+
+               
+                dragAndDropOutfit();
+
+            //get client like data
+            $("#clientlikes").live("click", function () {
+                var user_id = $("#user_id").val();
+
+                $.ajax({
+                        type:"POST",
+                        url:"<?php echo $this->webroot; ?>Messages/getUserLikeAjax/<?php echo $client_id; ?>",
+                        data:{user_id:user_id},
+                        cache: false,
+                        success: function(result){
+                            //alert(result);
+                        data = $.parseJSON(result);
+                            html = '';
+                            html = html + '<div id="product">';
+                            html = html + '<ul class="clear">';
+            
+                        $.each(data,  function (index){
+                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<a href="#">';
+                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
+                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        html = html + '<ul>';            
+                        html = html + '</div>';
+                        $(".otft-prdct-list").html(html);   
+                        dragAndDropOutfit();        
+                    }
+                });
+            });
+
+         //get stylist like data
+            $("#stylistlikes").live("click", function () {
+                var stylist_id = $("#stylist_id").val();
+
+                $.ajax({
+                        type:"POST",
+                        url:"<?php echo $this->webroot; ?>Messages/getUserLikeAjax/<?php echo $stylist_id; ?>",
+                        data:{stylist_id:stylist_id},
+                        cache: false,
+                        success: function(result){
+                            //alert(result);
+                        data = $.parseJSON(result);
+                            html = '';
+                            html = html + '<div id="product">';
+                            html = html + '<ul class="clear">';
+            
+                        $.each(data,  function (index){
+                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<a href="#">';
+                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
+                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        html = html + '<ul>';            
+                        html = html + '</div>';
+                        $(".otft-prdct-list").html(html);   
+                        dragAndDropOutfit();        
+                    }
+                });
+            });
+
+        //get closet ajax data 
+            $("#closetdata").live("click", function () {
+                var user_id = $("#user_id").val();
+                $.ajax({
+                        type:"POST",
+                        url:"<?php echo $this->webroot; ?>Messages/closetAjaxProductData/<?php echo $client_id ?>",
+                        data:{user_id:user_id},
+                        cache: false,
+                        success: function(result){
+                            //alert(result);
+                        data = $.parseJSON(result);
+                            html = '';
+                            html = html + '<div id="product">';
+                            html = html + '<ul class="clear">';
+            
+                        $.each(data,  function (index){
+                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<a href="#">';
+                            var imgs = this.Image;
+                        $.each(imgs,  function (index1){
+                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ imgs[index1].name +'" alt="" /></div>';
+                        });
+                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        html = html + '<ul>';            
+                        html = html + '</div>';
+                        $(".otft-prdct-list").html(html);   
+                        dragAndDropOutfit();        
+                    }
+                });
+            });
+
+//get final submission outfit data
+            $(".sbmt-btn").on("click", function () {
+                        var src = $('#dataid img').map(function(i,n) {
+                       return $(n).attr('src');
+                         }).get().join(',');
+                             
+                        var outfitname = $("#outfitname").val();
+                        var stylist_id = $("#stylist_id").val();
+                        var user_id = $("#user_id").val();
+                        //var size = $("#size").val();
+                        var comments = $("#comments").val();
+                        //var id = ui.draggable.attr("data-id")
+                       var liIds = $('#dataid li').map(function(i,n) {
+                           return $(n).attr('data-id');
+                             }).get().join(',');
+                       var size = $('#dataid select').map(function(i,n) {
+                           return $(n).val();
+                             }).get().join(',');
+
+                        //alert(size);
+
+                        $.ajax({
+                            type:"POST",
+                            url:"<?php echo $this->webroot; ?>Messages/setFinalOutfitData",
+                            data:{outfitid:liIds,user_id:user_id,out_name:outfitname,size_id:size,outfit_msg:comments,src:src},
+                            cache: false,
+                            success: function(result){
+                            data = $.parseJSON(result);
+                            html = '';
+                            html = html + '<div id="cnfrm-otft-popup" style="display: none">';
+                            html = html + '<div class="box-modal">';
+                            html = html + '<div class="box-modal-inside">';
+                            html = html + '<a href="#" title="" class="otft-close"></a>';
+                            html = html + '<div class="twelve columns left cnfrm-otft-content">';
+                            html = html + '<div class="twelve columns left cnfrm-otft-top">';
+                            html = html + '<h1>'+ data[0].outfitname +'</h1>';
+                            
+                            html = html + '<span class="otft-prc right">outfit price: '+ outfitname +'</span>';
+                            html = html + '</div>';
+                            html = html + '<div class="twelve columns left cnfrm-otft-middle">';
+                            html = html + '<div class="eleven columns container">';
+                            html = html + '<div class="twelve columns left cnfrm-otft-itms">';
+                            html = html + '<div class="right shp-this-otft">shop this outfit &gt;</div>';
+                            html = html + '<ul>';
+                            
+                            $.each(data,  function (index){
+                                var src = this.src;
+                                $.each(src,  function (index1){
+                            html = html + '<li >';
+                            html = html + '<img src="'+ src[index1] +'" alt="" />';
+                            html = html + '<div class="cnfrm-otft-prdct-dtl">White knight twills<br />Whit &amp; co<br />$600.00</div>';
+                            html = html + '</li>';
+                        });
+                            });
+                            
+                            
+                            html = html + '</ul>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '<div class="twelve columns left cnfrm-otft-bottom">';
+                            html = html + '<div class="eleven columns container">';
+                            html = html + '<div class="twelve columns left otft-stylist-review">';
+                            html = html + '<p>Dear Kyle<br/>I have created an outfit for your upcoming weekend in the hamptons. I think these pieces are versatile enought to easily be incorporated into day and night time looks. If you have any questions, please get in contact with me.</p><br/>';
+                            html = html + '<p>Your Stylist,<br/>Lisa</p>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '<div class="twelve columns left cnfrm-bottom-link">';
+                            html = html + '<div class="eleven columns container">';
+                            html = html + '<div class="twelve columns left otft-btm-links">';
+                            html = html + '<div class="cnfrm-otft-edit left"><a href="#" title="">Edit</a></div>';
+                            html = html + '<div class="cnfrm-otft-social left">';
+                            html = html + '<ul>';
+                            html = html + '<li class="cnfrm-otft-social-fb"><a href="#" title="">facebook</a></li>';
+                            html = html + '<li class="cnfrm-otft-social-twtr"><a href="#" title="">twitter</a></li>';
+                            html = html + '<li class="cnfrm-otft-social-pntrst"><a href="#" title="">pintrest</a></li>';
+                            html = html + '</ul>';
+                            html = html + '</div>';
+                            html = html + '<div class="cnfrm-otft-send right"><a href="#" title="" id="subfinaloutfit">Send <span></span></a></div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                             $("#cnfrm").html(html); 
+                             dragAndDropOutfit();  
+                        }
+                    }); 
+                });
+    
+    // subfinaloutfit
+              $("#subfinaloutfit").live("click", function () {
                    
-                    var id = $(".basket ul li").attr("data-id");
+                    //var id = $(".basket ul li").attr("data-id");
                     var outfitname = $("#outfitname").val();
                     var stylist_id = $("#stylist_id").val();
                     var user_id = $("#user_id").val();
-                    var size = $("#size").val();
+                    //var size = $("#size").val();
+                    var comments = $("#comments").val();
                     //var id = ui.draggable.attr("data-id")
-                    alert(id);
+                   var liIds = $('#dataid li').map(function(i,n) {
+                       return $(n).attr('data-id');
+                         }).get().join(',');
+                   var size = $('#dataid select').map(function(i,n) {
+                       return $(n).val();
+                         }).get().join(',');
+
+                    alert(size);
 
                     $.ajax({
                         type:"POST",
                         url:"<?php echo $this->webroot; ?>Messages/postOutfit",
-                        data:{outfit1:id,user_id:user_id,out_name:outfitname},
+                        data:{outfitid:liIds,user_id:user_id,out_name:outfitname,size_id:size,outfit_msg:comments},
                         cache: false,
                         success: function(result){
+                            $(".cnfrm-otft-content").html("<h1>Your Outfit Hasbeen Submitted Successfully.</h1>");
+                            location.reload();
                 
                     }
                 }); 
             });
+             
+
         });
+
+
 
 </script>
         
@@ -184,85 +412,15 @@
                                         <div class="twelve columns left otft-stylst-cmnt">
                                             <div class="left otft-stylst-cmnt-heading">
                                                 <h1>Stylist Comments</h1>
-                                                <textarea placeholder="Write a comment to your client before you send outfit"></textarea>
+                                                <textarea placeholder="Write a comment to your client before you send outfit" id="comments"></textarea>
                                                 <a id="sbmt-cnfrmation" class="sbmt-btn" href="#" title="">Submit Outfit</a>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!--popupsubmit-->
-                                    <!-- <div id="cnfrm-otft-popup" style="display: none">
-                                        <div class="box-modal">
-                                            <div class="box-modal-inside">
-                                                <a href="#" title="" class="otft-close"></a>
-                                                <div class="twelve columns left cnfrm-otft-content">
-                                                    <div class="twelve columns left cnfrm-otft-top">
-                                                        <h1>Weekend in the Hamptons</h1>
-                                                        <span class="otft-prc right">outfit price: $1270</span>
-                                                    </div>
-                                                    <div class="twelve columns left cnfrm-otft-middle">
-                                                        <div class="eleven columns container">
-                                                            <div class="twelve columns left cnfrm-otft-itms">
-                                                                <div class="right shp-this-otft">shop this outfit &gt;</div>
-                                                                <ul>
-                                                                <li >
-                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" />
-                                                                        <div class="cnfrm-otft-prdct-dtl">
-                                                                            White knight twills<br />
-                                                                            Whit &amp; co<br />
-                                                                            $600.00
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" />
-                                                                        <div class="cnfrm-otft-prdct-dtl">
-                                                                            White knight twills<br />
-                                                                            Whit &amp; co<br />
-                                                                            $600.00
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" />
-                                                                        <div class="cnfrm-otft-prdct-dtl">
-                                                                            White knight twills<br />
-                                                                            Whit &amp; co<br />
-                                                                            $600.00
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="twelve columns left cnfrm-otft-bottom">
-                                                        <div class="eleven columns container">
-                                                            <div class="twelve columns left otft-stylist-review">
-                                                                <p>Dear Kyle<br/>
-                                                                I've created an outfit for your upcoming weekend in the hamptons. I think these pieces are versatile enought to easily be incorporated into day and night time looks. If you have any questions, please get in contact with me.
-                                                                </p><br/>
-                                                                <p>Your Stylist,<br/>
-                                                                Lisa</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="twelve columns left cnfrm-bottom-link">
-                                                        <div class="eleven columns container">
-                                                            <div class="twelve columns left otft-btm-links">
-                                                                <div class="cnfrm-otft-edit left"><a href="#" title="">Edit</a></div>
-                                                                <div class="cnfrm-otft-social left">
-                                                                    <ul>
-                                                                        <li class="cnfrm-otft-social-fb"><a href="#" title="">facebook</a></li>
-                                                                        <li class="cnfrm-otft-social-twtr"><a href="#" title="">twitter</a></li>
-                                                                        <li class="cnfrm-otft-social-pntrst"><a href="#" title="">pintrest</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="cnfrm-otft-send right"><a href="#" title="">Send <span></span></a></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>  -->
+                                    <div id="cnfrm"></div>
+                                     
                                     <!--popup submit-->
 
                                 </div>
@@ -273,13 +431,13 @@
                                 <div class="eleven columns container">
                                     <div class="twelve columns left otft-rgt-nav">
                                         <ul>
-                                            <li class="active"><a href="#" title="">The Closet</a></li>
+                                            <li class="active"><a href="#" title="" id="closetdata">The Closet</a></li>
                                             <li>|</li>
-                                            <li><a href="#" title="">Client Likes</a></li>
+                                            <li><a href="#" title="" id="clientlikes">Client Likes</a></li>
                                             <li>|</li>
                                             <li><a href="#" title="">Purchased</a></li>
                                             <li>|</li>
-                                            <li><a href="#" title="">My Bookmarks</a></li>
+                                            <li><a href="#" title="" id="stylistlikes">My Bookmarks</a></li>
                                             <li>|</li>
                                             <li><a href="#" title="">Client’s Sizes</a></li>
                                         </ul>

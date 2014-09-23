@@ -41,6 +41,13 @@
 
 
     });
+    $("#createoutfitbitton").on('click',function(){
+    
+        
+        var selectvalue = $("#selectfilter option:selected" ).val();
+        
+        window.location = selectvalue;
+    });
 });
 
 </script>
@@ -103,15 +110,15 @@
                         </div>
                         <div class="myclient-list">
                             <ul id="searchuserlist">
-                            <?php  foreach($userlist as $userlist){?>
+                            <?php  foreach($userlist as $userlists){?>
                                 <li>
-                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
+                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlists['User']['id']; ?>" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
+                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlists['User']['profile_photo_url']; ?>" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
-                                            <span class="myclient-name"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></span>
-                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$userlist['User']['updated']); ?></span>
+                                            <span class="myclient-name"><?php echo $userlists['User']['first_name'].'&nbsp;'.$userlists['User']['last_name']; ?></span>
+                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$userlists['User']['updated']); ?></span>
                                         </div>
                                     </a>
                                 </li>
@@ -139,12 +146,12 @@
                                                     <div class="myclient-popup left">
                                                         <div class="myclient-topsec"> 
                                                             <div class="filter-myclient-area">
-                                                                <div class="filter-myclient">
+                                                                <div class="filter-myclient" >
                                                                     <span class="downarw"></span>
-                                                                    <select  name="data[Outfit][user_id]">
-                                                                    <option>Filter Clients</option>
-                                                                    <?php  foreach($userlist as $filterclientforoutfit ): ?>
-                                                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $filterclientforoutfit['User']['id']; ?>"><?php echo $filterclientforoutfit['User']['first_name'].'&nbsp;'.$filterclientforoutfit['User']['last_name']; ?></option>
+                                                                    <select id="selectfilter">
+                                                                    <option value="">Filter Clients</option>
+                                                                    <?php foreach($userlist as $clientout): ?>
+                                                                    <option value="<?php echo $this->webroot; ?>messages/stylistcreateoutfits/<?php echo $clientout['User']['id']; ?>"><?php echo $clientout['User']['first_name'].'&nbsp;'.$clientout['User']['last_name']; ?></option>
                                                                      <?php endforeach; ?>
                                                                     
                                                                 </select>
@@ -162,7 +169,7 @@
                                                             //$userlist = $searchforoutfit;
                                                              foreach($userlist as $usersearchforoutfit):?>
                                                                 <li>
-                                                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $usersearchforoutfit['User']['id']; ?>" title="">
+                                                                    <a href="<?php echo $this->webroot; ?>messages/stylistcreateoutfits/<?php echo $usersearchforoutfit['User']['id']; ?>" title="">
                                                                         <div class="myclient-img">
                                                                             <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
                                                                         </div>
@@ -185,7 +192,7 @@
                                                             <div class="otft-pop-rgt-top">
                                                                 <h1>Create A new Outfit</h1>
                                                                 <p>Please select a client from your client list on the left.</p>
-                                                                <a class="popup-cont-btn setp-btn" href="#" title="">Continue</a>
+                                                                <a class="popup-cont-btn setp-btn" href="#" id="createoutfitbitton" title="">Continue</a>
                                                             </div>
                                                         </div>
                                                     </div>
