@@ -289,24 +289,33 @@ $this->Html->css('colorbox', null, array('inline' => false));
 
 
     //copy outfit
+    // $("#continue").on('click',function(){
+        
+    //     var user_id =  $("#selectuserid").val();
+    //     var stylist_id =  $("#stylist_id").val();
+    //     var outfitid = $("#outfitid").val();
+        
+    //       $.ajax({
+    //             type:"POST",
+    //             url:"<?php echo $this->webroot; ?>messages/reuseOutfit/<?php echo $user_id; ?>",
+    //             data:{user_id:user_id,stylist_id:stylist_id,outfit_id:outfitid},
+    //             cache: false,
+    //                 success: function(result){
+    //             $(".box-modal-inside").html('<h1>Your Data Has Been Submitted.</h1><a href="#" title="" class="otft-close"></a>');
+    //                 }
+
+    //          }); 
+
+
+    // });
+
+
     $("#continue").on('click',function(){
+    
         
-        var user_id =  $("#selectuserid").val();
-        var stylist_id =  $("#stylist_id").val();
-        var outfitid = $("#outfitid").val();
+        var selectvalue = $("#selectuserid option:selected" ).val();
         
-          $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/reuseOutfit/<?php echo $user_id; ?>",
-                data:{user_id:user_id,stylist_id:stylist_id,outfit_id:outfitid},
-                cache: false,
-                    success: function(result){
-                $(".box-modal-inside").html('<h1>Your Data Has Been Submitted.</h1><a href="#" title="" class="otft-close"></a>');
-                    }
-
-             }); 
-
-
+        window.location = selectvalue;
     });
 });
 
@@ -318,9 +327,9 @@ $this->Html->css('colorbox', null, array('inline' => false));
                 <div class="ten columns left admin-nav">
                     <ul>
                         <li class="active"><a href="#" title="">My Clients</a></li>
-                        <li><a href="#" title="">Dashboard</a></li>
-                        <li><a href="#" title="">My outfits</a></li>
-                        <li><a href="#" title="">The CLoset</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistdashboard" title="">Dashboard</a></li>
+                        <li><a title="" href="<?php echo $this->webroot; ?>messages/stylisttotaloutfit">My outfits</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistcloset" title="">The CLoset</a></li>
                     </ul>
                 </div>
                 <div class="two columns right admin-top-right">
@@ -427,10 +436,12 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                     <div class="filter-myclient-area">
                                                         <div class="filter-myclient">
                                                             <span class="downarw"></span>
+                                                            <input type="hidden" id="outfitid" value="<?php echo $outfitname['Outfit']['id']; ?>">
                                                             <select name="data[Outfit][user_id]" id="selectuserid">
                                                             <option>Filter Clients</option>
+
                                                             <?php  foreach($userlists as $filterclient ): ?>
-                                                            <option value="<?php echo $filterclient['User']['id']; ?>"><?php echo $filterclient['User']['first_name'].'&nbsp;'.$filterclient['User']['last_name']; ?></option>
+                                                            <option value="<?php echo $this->webroot; ?>messages/stylistcreateoutfits/<?php echo $filterclient['User']['id']; ?>/<?php echo $outfitname['Outfit']['id']; ?>"><?php echo $filterclient['User']['first_name'].'&nbsp;'.$filterclient['User']['last_name']; ?></option>
                                                             <?php endforeach; ?>
 
                                                             </select>

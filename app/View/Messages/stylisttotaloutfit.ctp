@@ -42,12 +42,54 @@
 
     });
     $("#createoutfitbitton").on('click',function(){
-    
-        
         var selectvalue = $("#selectfilter option:selected" ).val();
-        
         window.location = selectvalue;
     });
+    
+    //sort by outfit name
+    $("#sortbyname").on('click',function(){
+        var stylist_id = "<?php echo $user_id; ?>";
+        $.ajax({
+                type:"POST",
+                url:"<?php echo $this->webroot; ?>messages/stylistFilterOutfitListName/<?php echo $user_id; ?>",
+                data:{stylist_id:stylist_id},
+                cache: false,
+                    success: function(result){
+                        data = $.parseJSON(result);
+                        html = '';
+                    $.each(data,  function (index){
+                        html = html + '<div class="twelve columns client-outfits left">';
+                        html = html + '<div class="eleven columns container client-outfits-area pad-none">';
+                        html = html + '<h1>'+ this.outfit.Outfit.outfitname +'</h1>';
+                        html = html + '<div class="twelve columns client-outfits-img pad-none">';
+                        html = html + '<ul>';
+                        var entities = this.entities;
+                    $.each(entities,  function (index1){
+                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ entities[index1].Image[0].name +'" alt="" /></li>';
+                    });
+                        html = html + '</ul>';
+
+                        html = html + '<div class="outfit-quick-view"><a href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/'+ this.outfit.Outfit.id +'"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
+                        html = html + '</div>';
+                        html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
+                        html = html + '<div class="client-comments left">';
+                        html = html + '<h2>Stylist Comment</h2>';
+                        html = html + '<div class="client-comments-text left">hi</div>';
+                        html = html + '</div>';
+                        html = html + '<div class="bkmrk-outfit right">Bookmark Outfit</div>';
+                        html = html + '<div class="share-outfit right">Share Outfit</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        
+
+                    });
+                    $(".pad-none").html(html);
+                    }   
+            });
+    });
+
+
 });
 
 </script>
@@ -57,10 +99,10 @@
             <div class="twelve columns container left ">
                 <div class="ten columns left admin-nav">
                     <ul>
-                        <li class="active"><a href="#" title="">My Clients</a></li>
-                        <li><a href="#" title="">Dashboard</a></li>
-                        <li><a href="#" title="">My outfits</a></li>
-                        <li><a href="#" title="">The CLoset</a></li>
+                        <li ><a href="#" title="">My Clients</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistdashboard" title="">Dashboard</a></li>
+                        <li class="active"><a title="" href="<?php echo $this->webroot; ?>messages/stylisttotaloutfit">My outfits</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistcloset" title="">The CLoset</a></li>
                     </ul>
                 </div>
                 <div class="two columns right admin-top-right">
@@ -213,8 +255,8 @@
                                     <div class="outfit-srt">
                                         <p>Sort By</p>
                                         <ul>
-                                            <li><a href="#" title="">Name A-Z</a></li>
-                                            <li><a href="#" title="">Date</a></li>
+                                            <li><a href="#" title="" id="sortbyname">Name A-Z</a></li>
+                                            <li><a href="#" title="" id="sortbydate">Date</a></li>
                                         </ul>
                                     </div>
                                     <div class="myoutfit-srch">

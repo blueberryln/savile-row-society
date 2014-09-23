@@ -335,9 +335,9 @@ function dragAndDropOutfit(){
                 <div class="ten columns left admin-nav">
                     <ul>
                         <li class="active"><a href="#" title="">My Clients</a></li>
-                        <li><a href="#" title="">Dashboard</a></li>
-                        <li><a href="#" title="">My outfits</a></li>
-                        <li><a href="#" title="">The CLoset</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistdashboard" title="">Dashboard</a></li>
+                        <li><a title="" href="<?php echo $this->webroot; ?>messages/stylisttotaloutfit">My outfits</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistcloset" title="">The CLoset</a></li>
                     </ul>
                 </div>
                 <div class="two columns right admin-top-right">
@@ -369,15 +369,24 @@ function dragAndDropOutfit(){
                             <div class="eleven columns container">
                                 <div class="twelve columns left">
                                     <div class="twelve columns left otft-lft-top">
+                                        <?php if(isset($outfitid)): ?>
                                         <div class="otft-lft-top-heading">
-                                            <h3>Create a New Outfit</h3>
-                                            <p>Drag &amp; Drop up to 5 items from <br />the closet to the box below</p>
+                                            <h3>Reuse Outfit</h3>
+                                            <p>Don't very stylist,<br> the outfit is not set in stone!<br> feel free to modify the title and replace the items  of <br> your existing outfits to fit's your <br>clients need. </p>
                                         </div>
+                                    <?php else: ?>
+                                        <h3>Create a New Outfit</h3>
+                                        <p>Drag &amp; Drop up to 5 items from <br />the closet to the box below</p>
+                                    <?php endif;?>
                                     </div>
                                     <div class="eleven columns container">
                                         <div class="twelve columns left otft-lft-title">
                                             <h1>Outfit Title</h1>
+                                        <?php if(isset($outfitid)): ?>
+                                            <input type="text" name="" placeholder="" id="outfitname" value="<?php echo $outfitname['Outfit']['outfitname']; ?>" />
+                                        <?php else: ?>
                                             <input type="text" name="" placeholder="" id="outfitname" />
+                                        <?php endif; ?>
                                             <input type="hidden" name="" placeholder="" id="user_id" value="<?php echo $client_id ?>" />
                                             <input type="hidden" name="" placeholder="" id="stylist_id" value="<?php echo $stylist_id; ?>" />
                                             <p>styled for  <?php echo $clientname; ?> <span>(</span> <span class="otft-lft-txt">Change</span> <span>)</span></p>
@@ -390,12 +399,15 @@ function dragAndDropOutfit(){
                                                     <div class="basket">
                                                         <div class="basket_list">
                                                             <ul id="dataid">
-                                                               
-                                                                <!-- <li><strong>Drag &amp; drop <br />items here</strong></li>
-                                                                <li><strong>Drag &amp; drop <br />items here</strong></li>
-                                                                <li><strong>Drag &amp; drop <br />items here</strong></li>
-                                                                <li><strong>Drag &amp; drop <br />items here</strong></li>
-                                                                <li><strong>Drag &amp; drop <br />items here</strong></li> -->
+                                                               <?php if(isset($outfitid)): ?>
+                                                                <?php foreach ($entities as $entity) : ?>
+                                                                <li data-id="<?php echo $entity['Entity']['id']; ?>"><span class="name"><?php echo $entity['Entity']['name']; ?></span><span class="prc-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $entity['Image'][0]['name']; ?>">
+                                                                <select id="size"><option value="25">25</option> <option value="26">26</option> <option value="27">27</option><option value="28">28</option><option value="29">29</option></select><button class="delete">&#10005;</button></span></li>
+                                                            <?php endforeach; ?>
+                                                                
+                                                            <?php else: ?>
+                                                            <?php endif;?>
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -412,7 +424,7 @@ function dragAndDropOutfit(){
                                         <div class="twelve columns left otft-stylst-cmnt">
                                             <div class="left otft-stylst-cmnt-heading">
                                                 <h1>Stylist Comments</h1>
-                                                <textarea placeholder="Write a comment to your client before you send outfit" id="comments"></textarea>
+                                                <textarea placeholder="Write a comment to your client before you send outfit" id="comments" value="<?php echo $messages[0]['Message']['body']; ?>"><?php echo $messages[0]['Message']['body']; ?></textarea>
                                                 <a id="sbmt-cnfrmation" class="sbmt-btn" href="#" title="">Submit Outfit</a>
                                             </div>
                                         </div>

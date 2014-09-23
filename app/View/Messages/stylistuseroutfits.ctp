@@ -59,9 +59,9 @@
                 <div class="ten columns left admin-nav">
                     <ul>
                         <li class="active"><a href="#" title="">My Clients</a></li>
-                        <li><a href="#" title="">Dashboard</a></li>
-                        <li><a href="#" title="">My outfits</a></li>
-                        <li><a href="#" title="">The CLoset</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistdashboard" title="">Dashboard</a></li>
+                        <li><a title="" href="<?php echo $this->webroot; ?>messages/stylisttotaloutfit">My outfits</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistcloset" title="">The CLoset</a></li>
                     </ul>
                 </div>
                 <div class="two columns right admin-top-right">
@@ -165,7 +165,7 @@
                                                 <option value="ASC">Sort By Date ASC</option>
                                             </select>
                                         </div>
-                                        <?php foreach ($my_outfits as $my_outfit): print_r($my_outfit); ?>
+                                        <?php foreach ($my_outfits as $my_outfit): //print_r($my_outfit); ?>
                                         <div class="twelve columns client-outfits left">
                                             <div class="eleven columns container client-outfits-area pad-none">
                                                 <h1><?php echo $my_outfit['outfit'][0]['Outfit']['outfitname']; ?></h1>
