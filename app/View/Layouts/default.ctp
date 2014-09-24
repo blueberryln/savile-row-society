@@ -296,6 +296,15 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     $('.info').html('Switched from <strong>' + state.oldState + '</strong> state to <strong>' + state.newState + '</strong> state!');
                 }
             });
+//                 $('.myclst-rgt-nav li ul input[type="checkbox"]').click(function(){
+//                    if($(this).prop("checked") == true){
+//                        $(this).addClass("selected")
+//                    }
+//                    else if($(this).prop("checked") == false){
+//                        $(this).removeClass("selected")
+//                    }
+//                });
+                
                 
                 $('.otft-rgt-nav li ul input:checkbox, .myclst-rgt-nav li ul input:checkbox').change(function() {
                     var label = $('label[for="'+$(this).attr('id')+'"]');

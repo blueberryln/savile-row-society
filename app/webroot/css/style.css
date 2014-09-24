@@ -778,7 +778,7 @@ img.cart-img{vertical-align: middle; width:30px;}
 /***********Start Amendment******/
 .mega-banner-overlay{ width: 750px; position: absolute; padding: 25px 0 60px; top: 50%; left: 0; right:0; margin: 0 auto; text-align: center; color: #ffffff; text-transform: uppercase; font-size: 24px; background: rgba(0, 0, 0, 0.7); letter-spacing: 1px;}
 .mega-banner-overlay span.large-size{ font-size: 72px; float: left; width: 100%; line-height: 85px; font-family: 'Proximanova Bold'; font-weight: 500;}
-.mega-banner-overlay span.small-size{ font-size: 42px; float: left; width: 100%; padding-top: 22px; font-family: 'ProximaNovaCond-Light'; text-transform: lowercase;}
+.mega-banner-overlay span.small-size{ font-size: 42px; float: left; width: 100%; padding-top: 22px; font-family: 'ProximaNovaCond-Light'; text-transform: capitalize;}
 .mega-banner-overlay .overlay-bnts{ width:100%; margin-top: 80px; font-family: 'Proximanova'; }
 .mega-banner-overlay .overlay-bnts a.overlay-started { text-decoration: none; padding: 12px 35px 10px; margin: 0px 36px; position: relative;}
 .mega-banner-overlay .overlay-bnts a.overlay-started .get-started-icon { position: absolute; top: 12px; right: 24px;}
@@ -803,6 +803,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 	/******Anchor on images*****/
 	a.over-img{display: block;}
 	a.over-img img{width: 80%;}
+.page-heading h3 a { text-decoration: underline;}
 .featured-stylist, .outfit-stylist{ position: relative;}
 .featured-stylist ul, .outfit-stylist ul, .style-time ul, .brand-boxes ul { margin: 0; padding: 0; list-style: none;}
 .featured-stylist ul li, .outfit-stylist ul li, .style-time ul li, .brand-boxes ul li { display: inline-block; margin-bottom: 0px;}
@@ -1528,7 +1529,7 @@ button.delete { position: absolute; top: 10px; right: 10px;}
 a.bkmrk-btn{ background: #927e41;}
 
 #create-otft-popup .box-modal, #reuse-otft-popup .box-modal, #view-otft-popup .box-modal { width: 550px;}
-#create-otft-popup .box-modal-inside, #reuse-otft-popup .box-modal-inside, #view-otft-popup .box-modal-inside, #cnfrm-otft-popup .box-modal-inside { display: inline-block;}
+#create-otft-popup .box-modal-inside, #reuse-otft-popup .box-modal-inside, #view-otft-popup .box-modal-inside, #cnfrm-otft-popup .box-modal-inside, #myclst-popup .box-modal-inside { display: inline-block;}
 .crt-new-otft-content, .view-otft-content  { width: 500px; margin: 0 auto;}
 .myclient-popup {}
 .otft-pop-rgt-area { position: relative; height: 100%; text-align: center;}
@@ -1639,6 +1640,16 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 /*.otft-prdct-list li .otft-prdt-img { flaot:left; height: 100%; width: 100%; text-align: center;}*/
 .myclst-prdct-list li .myclst-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none;}
 .myclst-prdct-list li:hover .myclst-prdt-overlay { display: block;}
+
+#myclst-popup .box-modal { width: 650px;}
+.myclst-popup-content {width: 600px; margin: 0 auto; text-align: left;}
+#myclst-popup .box-modal-inside { padding: 10px 0 0;}
+#myclst-popup .product-dtl-area { padding: 0px; background: none;}
+#myclst-popup .product-dtl-desc h3 { font-size: 16px; line-height: normal; color: #212125; font-weight: normal; padding: 0px 0 5px; margin: -5px 0 0;}
+#myclst-popup .product-dtl-desc-top{ padding-bottom: 5px; font-size: 12px; line-height: 12px;}
+#myclst-popup .product-dtl-desc-middle {padding-top: 2px;}
+#myclst-popup .product-dtl-links a.product-add-cart, #myclst-popup .product-dtl-links a.product-my-likes { margin-bottom: 5px;}
+#myclst-popup .product-dtl-links { padding-top: 20px;}
 
 
 

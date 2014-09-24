@@ -249,7 +249,7 @@ color:#396; !important
                     </a>
                     <div id="div1" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
-                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <p>Try on a button down shirt and button the collar – you should have enough room for one flinger to fit in between the collar and your neck. </p>
                         <span class="tt-arrow"></span>
                     </div>
 <!--                    <a href="#" class="tt-icon tipped" data-title="Great New Tooltip|| ahello frineds" data-tipper-options='{"direction":"right"}'><img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" /></a>-->
@@ -283,7 +283,7 @@ color:#396; !important
                     </a>
                     <div id="div2" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
-                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <p>Put on your favorite sport coat and button the top button – if it fits well, there will be no pulling or wrinkles in the fabric. To make sure, your hand should fit between your shirt and your buttoned jacket.</p>
                         <span class="tt-arrow"></span>
                     </div>
                 </div>
@@ -311,7 +311,7 @@ color:#396; !important
                     </a>
                     <div id="div3" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
-                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <p>Pant waist is perfect when you can wear them without a belt!</p>
                         <span class="tt-arrow"></span>
                     </div>
                 </div>
@@ -335,7 +335,7 @@ color:#396; !important
                     </a>
                     <div id="div4" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
-                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <p>Your pants should stop right on your shoes, without wrinkles when you stand straight. </p>
                         <span class="tt-arrow"></span>
                     </div>
                 </div>
@@ -366,7 +366,7 @@ color:#396; !important
                     </a>
                     <div id="div5" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
-                        <p>Est ei erat mucius quaeque. Ei his quas phaedrum, efficiantur mediocritatem ne sed, hinc oratio blandit ei sed. </p>
+                        <p> For a well-fitting dress shoe, allow for a half-inch between the tips of your toes and the shoe.</p>
                         <span class="tt-arrow"></span>
                     </div>
                 </div>
