@@ -89,7 +89,7 @@ class PagesController extends AppController {
         $User = ClassRegistry::init('User');
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $r = $Highlightoutfit->find('all', array('order' => 'Highlightoutfit.order_id asc','limit'=>'6'));
-
+        //print_r($r);
         $my_outfit = array();
         foreach($r as $row){
                 $outfit_id = $row['Highlightoutfit']['outfit_id'];

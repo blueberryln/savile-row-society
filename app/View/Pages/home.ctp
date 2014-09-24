@@ -153,7 +153,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div>
         <div class="mega-banner-overlay">
             <span class="large-size">shop with your personal stylist</span>
-            <span class="small-size">online &amp; in person.</span>
+            <span class="small-size">Online &amp; In-person.</span>
             <div class="overlay-bnts left">
                 <a class="tell-more gray-btns" href="#" title="">Tell Me More</a>
                 <a class="overlay-started brown-btns" href="#" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
@@ -217,8 +217,8 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
             <h1>How Savile Row Society Works</h1>
-            <h3>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum.</h3>
-            <h3>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</h3>
+            <h3>Complete your Style Profile, start shopping with your personal stylist and</h3>
+            <h3>get your new wardrobe delivered to your doorstep for free.</h3>
             
         </div>
         <div class="eleven columns container works-boxes">
@@ -327,8 +327,8 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
             <h1>Featured Stylists</h1>
-            <h3>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum.</h3>
-            <h3>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</h3>
+            <h3>Check out some of our featured Personal Stylists</h3>
+            <h3>below and <a href="#" title="">click here to see our full roster</a></h3>
         </div>
         <div class="eleven columns container stylist-boxes">
             <div class="featured-stylist ten columns container">
@@ -413,18 +413,24 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
             <h1>Top Outfits</h1>
-            <h3>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum.</h3>
-            <h3>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</h3>
+            <h3>Check out the top outfits recently recommended by</h3>
+            <h3>our premier Personal Stylists</h3>
+             
+
         </div>
         <div class="eleven columns container outfit-boxes">
             <div class="outfit-stylist eleven columns container">
                 <ul class="slider2">
+                    <?php if($my_outfit): ?>
                     <?php foreach ($my_outfit as $topoutfit) {  //print_r($topoutfit);
                         ?>
                     <li>
                         <div class="shop-outfit left">
                             <div class="shop-outfit-top">
-                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $topoutfit['stylistimage']['User']['profile_photo_url']; ?>"  /></div>
+                                <div class="outfit-main-img left">
+                                
+                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topoutfit['stylistimage']['User']['profile_photo_url']; ?>"  />
+                                </div>
                                 <div class="outfit-top-content left">
                                     <div class="outfit-month"><?php echo $topoutfit['outfit']['Outfit']['outfitname']; ?></div>                                    
                                     <div class="outfit-brand">Styled by <span class="outfit-brand-name"><?php echo $topoutfit['stylistname']['User']['first_name']; ?></span></div>
@@ -447,6 +453,8 @@ $this->Html->script('cookie.js', array('inline' => false));
                         <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $topoutfit['stylistname']['User']['id']; ?>" title="" class="outfilt-btns">Learn about <?php echo $topoutfit['stylistname']['User']['first_name']; ?></a></div>
                     </li>
                     <?php } ?>
+                <?php else: ?>
+                <?php endif; ?>
                     <!-- <li>
                         <div class="shop-outfit left">
                             <div class="shop-outfit-top">

@@ -61,6 +61,12 @@ function cnfrmoutFit() {
     $('.blockOverlay').click($.unblockUI);
 }
 
+function myClst() {
+    var blockTop = $(window).height()/2 - $("#myclst-popup").height()/2;
+    $.blockUI({message: $('#myclst-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
 
 function newAddress() {
     var blockTop = $(window).height()/2 - $("#newaddess-popup").height()/2;
@@ -180,6 +186,12 @@ jQuery(function(){
         viewoutFit();
     });
     
+    $('.myclst-quick-view').on('click', function(e){
+        e.preventDefault();
+        myClst();
+    });
+    
+    
     $('#sbmt-cnfrmation').on('click', function(e){
         e.preventDefault();
         cnfrmoutFit();
@@ -296,7 +308,7 @@ jQuery(function(){
         $.unblockUI();
     });
 
-     $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup').on('click', '.otft-close', function(e){
+     $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup, #myclst-popup').on('click', '.otft-close', function(e){
         e.preventDefault();
         $.unblockUI();
     });

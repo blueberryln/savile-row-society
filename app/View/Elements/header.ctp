@@ -134,7 +134,7 @@
         <div class="menu right">            
             <ul> 
                 <li><a href="<?php echo $this->webroot; ?>#two" title="">About</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#three" title="">Sylists</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three" title="">Stylists</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#four" title="">Outfits</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#five" title="">Style on your time</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#six" title="">Brands</a></li>
