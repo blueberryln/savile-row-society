@@ -91,7 +91,7 @@ $(document).ready(function(){
                                         <div class="short-by-date">
                                             <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
                                             <select id="sortdate">
-                                                <!-- <option >Sort by Date</option> -->
+                                                <option >Sort by Date</option>
                                                 <option value="DESC">Sort by Date DESC</option>
                                                 <option value="ASC">Sort By Date ASC</option>
                                                 
@@ -112,9 +112,12 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit heading left">Outfit</div>
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                  
-                                                       <?php foreach ($likeitems as $likeitem): ?>
-                                                       <li>
+                                                    <?php if ($likeitems) : ?>
+                                                    <?php  for($i = 0; $i < count($likeitems); $i++){
+                                                                $likeitem = $likeitems[$i];
+                                                    ?>
+                                                       <?php //foreach ($likeitems as $likeitem): ?>
+                                                      <li>
                                                             <div class="purchase-dtls-date left"><?php
                                                                 $php_timestamp = $likeitem['Wishlist']['created'];
                                                                 $php_timestamp_date = date("d/M/Y", $php_timestamp);
@@ -130,9 +133,20 @@ $(document).ready(function(){
                                                        
                                                             <div class="purchase-dtls-price left">$<?php echo $likeitem['Entity']['price']; ?></div>
                                                        </li>
-                                                       <?php endforeach; ?>
+                                                       <?php } ?>
+                                                       <?php else: ?>
+                                                        <h2 class="subhead text-center">There are no liked items.</h2>  
+                                                        <?php endif; ?>
+                                                       
                                                        
                                                     </ul>
+                                                    <div class="pagination userlikes">
+                    <?php
+                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                    ?>
+                </div>
                                                 </div>   
                                             </div>
                                         </div>

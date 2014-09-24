@@ -103,9 +103,9 @@ $(document).ready(function(){
                 <div class="ten columns left admin-nav">
                     <ul>
                         <li class="active"><a href="#" title="">My Clients</a></li>
-                        <li><a href="#" title="">Dashboard</a></li>
-                        <li><a href="#" title="">My outfits</a></li>
-                        <li><a href="#" title="">The CLoset</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistdashboard" title="">Dashboard</a></li>
+                        <li><a title="" href="<?php echo $this->webroot; ?>messages/stylisttotaloutfit">My outfits</a></li>
+                        <li><a href="<?php echo $this->webroot; ?>messages/stylistcloset" title="">The CLoset</a></li>
                     </ul>
                 </div>
                 <div class="two columns right admin-top-right">
@@ -117,7 +117,7 @@ $(document).ready(function(){
                                 <ul>
                                     <li><a href="#" title="">view my cart/checkout</a></li>
                                     <li><a href="#" title="">refer a friend</a></li>
-                                    <li><a href="#" title="">sign out</a></li>
+                                    <li><a href="<?php echo $this->request->webroot; ?>signout" title="">sign out</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -138,10 +138,12 @@ $(document).ready(function(){
                         <div class="filter-myclient-area">
                             <div class="filter-myclient">
                                 <span class="downarw"></span>
-                                <select>
+                                <select onchange="location = this.options[this.selectedIndex].value;">
                                     <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
+                                    <?php  foreach($userlists as $userlist ): ?>
+                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></option>
+                                     <?php endforeach; ?>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -217,7 +219,7 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit heading left">Outfit</div>
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                       <?php foreach ($purchases as $purchase): //print_r($purchase); ?>
+                                                       <?php foreach ($purchases as $purchase): print_r($purchase); ?>
                                                        <li>
                                                             <div class="purchase-dtls-date left"><?php echo $purchase['purchase_data']['created']; ?></div>
                                                             <div class="purchase-dtls-items left">
