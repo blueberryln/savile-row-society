@@ -1089,20 +1089,15 @@ If interested, I would also be happy to meet with you in our New York City based
                                 $my_outfits[] = array(
                                     'outfit'    => $outfitnames,
                                     'comments' =>$comments,
-                                    
                                     'entities'  => $entity_list
                                     );
                                 
                             }
                         }
                     }
-                //$this->Paginator->settings = $my_outfits;
-                //$this->Paginator->paginate($Entity);
-                    // print_r($my_outfits);
-                    // die;
+                
         $this->set(compact('my_outfits','user_id','Userdata'));
-        // json_encode($my_outfits);
-
+        
     }
    
 
@@ -1241,6 +1236,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
             //pagintion
             $find_array = array(
+                'limit'=>20,
                 'contain' => array('Image'),
                 'conditions' => array('Entity.id' => $entities),
                 'joins' => array(
@@ -2992,6 +2988,75 @@ If interested, I would also be happy to meet with you in our New York City based
                 ),
 
             );
+            
+            $items = $Entity->find('all',$find_array);
+            $my_outfitss[] =  array(
+                                'outfit'    => $outfitnames,
+                                'comments' => $messages,
+                                'entities'  => $items
+                            );
+
+        }
+        echo json_encode($my_outfitss);
+        exit;
+    }
+
+
+    //stylistFilterOutfitDate
+    public function stylistFilterOutfitDate($user_id = null){
+
+        $User = ClassRegistry::init('User');
+        
+        //Get user from session to derterminate if user is stylist
+           
+        $Message = ClassRegistry::init('Message');
+        $Outfit = ClassRegistry::init('Outfit');
+        $posts = ClassRegistry::init('Post');
+        
+        $my_outfitss = array();
+        $stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfitname','Outfit.id'),'order'=>array('Outfit.created DESC')));
+        
+        foreach($stylistoutfit as $row){
+            $stylist_outfit_id = $row['Outfit']['id'];
+            $Outfit = ClassRegistry::init('Outfit');
+            $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+            $messages = $Message->find('all',array('conditions'=>array('Message.outfit_id'=>$stylist_outfit_id,),'fields'=>array('Message.body')));
+            $OutfitItem = ClassRegistry::init('OutfitItem');
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+            $entities = array();
+            foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                }
+            $Entity = ClassRegistry::init('Entity');
+            
+
+            //pagintion
+            $find_array = array(
+                'limit'=>20,
+                'contain' => array('Image'),
+                'conditions' => array('Entity.id' => $entities),
+                'joins' => array(
+                    array('table' => 'products',
+                        'alias' => 'Product',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'brands',
+                        'alias' => 'Brand',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.brand_id = Brand.id',
+                        )
+                    ),        
+                ), 
+                
+                'fields' => array(
+                    'Entity.id','Entity.price','Brand.name',
+                ),
+
+            );
             //$this->Paginator->settings = $find_array;
             $items = $Entity->find('all',$find_array);
             // //pagintion
@@ -3008,5 +3073,17 @@ If interested, I would also be happy to meet with you in our New York City based
         echo json_encode($my_outfitss);
         exit;
     }
+
+
+
+
+    // Stylist Closet Data
+
+    public function stylistCloset() {
+
+
+
+    }
+
  //bhashit code end
 }

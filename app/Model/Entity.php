@@ -279,7 +279,7 @@ class Entity extends AppModel {
 //for users outfits
     function getMultipleByIdUser($id, $user_id=null) {
         $find_array = array(
-            'contain' => array('Image','Wishlist'),
+            'contain' => array('Image'),
             'conditions' => array('Entity.id' => $id),
             'joins' => array(
                 array('table' => 'products',
@@ -296,32 +296,25 @@ class Entity extends AppModel {
                         'Product.brand_id = Brand.id',
                     )
                 ),
-                // array('table' => 'outfits_items',
-                //     'alias' => 'OutfitItem',
-                //     'type' => 'LEFT',
-                //     'conditions' => array(
-                //         'Entity.product_id = OutfitItem.product_entity_id',
-                //     )
-                // ),          
+                        
             ), 
             'fields' => array(
-                //'Entity.*', 'Product.*', 'Brand.*','OutfitItem.size_id',
                 'Entity.*', 'Product.*', 'Brand.*',
             ),
         );
         
-        if($user_id){
-            $find_array['joins'][] = array('table' => 'wishlists',
-                    'alias' => 'Wishlist',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Wishlist.user_id' => $user_id,
-                        'Wishlist.product_entity_id = Entity.id'
-                    )
-                );
+        // if($user_id){
+        //     $find_array['joins'][] = array('table' => 'wishlists',
+        //             'alias' => 'Wishlist',
+        //             'type' => 'LEFT',
+        //             'conditions' => array(
+        //                 'Wishlist.user_id' => $user_id,
+        //                 'Wishlist.product_entity_id = Entity.id'
+        //             )
+        //         );
             
-            $find_array['fields'][] = 'Wishlist.*'; 
-        }
+        //     $find_array['fields'][] = 'Wishlist.*'; 
+        // }
         
         return $this->find('all', $find_array);
     }
