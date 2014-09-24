@@ -1588,6 +1588,56 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .cnfrm-otft-social li.cnfrm-otft-social-pntrst a{ background-position: -97px 0;}
 
 
+/************ Stylist Closet Section *************/
+.myclst-rgt-heading {padding: 10px 0 15px;}
+.myclst-rgt-nav { text-align: center; text-transform: uppercase;}
+.myclst-rgt-nav li { display: inline-block; margin: 0px 2px; position: relative;}
+.myclst-rgt-nav li a { display: block; padding: 5px 10px 3px;}
+.myclst-rgt-nav li a:hover, .myclst-rgt-nav li.active a { background: #616264; color: #fff;}
+.myclst-rgt-nav li ul { position: absolute; top: 30px; left: 0px; display: inline-block; background: #fff; padding: 10px 20px; margin: 0px; z-index: 50; float: left;  width: 800px;}
+.myclst-rgt-nav li ul .ctg-one { width: 150px; float: left; text-align: left; border-right: 1px solid #a0a1a2; display: inline-block;}
+.myclst-rgt-nav li ul .ctg-one h3 { font-size: 14px; float: left; width: 100%; text-transform: uppercase; margin: 0px; padding: 10px 0 5px; color: #606264; line-height: normal; font-weight: bold;}
+.myclst-rgt-nav li ul .ctg-one input { float: left;}
+.myclst-rgt-nav li ul .ctg-one label { float: left; width: 130px; font-family: 'ProximaNovaCond-Regular'; color: #606264; font-size: 13px;  text-transform: none; cursor: pointer; padding: 5px 8px; position: relative; margin-bottom: 1px;}
+.myclst-rgt-nav li ul .ctg-one label:hover, .myclst-rgt-nav li ul .ctg-one label.checked { background: #606163; color: #fff;}
+.myclst-right-top-srch, .myclst-right-top-srt { width: 160px; float: right; margin: 0px 10px; position: relative; color: #444; font-family: 'Proximanova'; font-size: 12px; text-align: center;}
+.myclst-rgt-nav li ul input[type="checkbox"] { margin:0; padding:0; width:16px; display: none;}
+.myclst-rgt-nav li ul .ctg-one label span { position: absolute; top: 3px; right: 2px; background: url("../images/label-close-btn.png") no-repeat center center; width: 22px; height: 22px; background-size: cover; display: none;}
+.myclst-rgt-nav li ul .ctg-one label.checked span { display: block;}
+
+.second-block, .third-block, .forth-block{ padding: 0px 25px;}
+.myclst-rgt-nav li ul .ctg-one.forth-block {border-right: none;}
+
+
+
+
+
+
+.myclst-right-top-srch input {height: 25px; padding: 0 10px 0 30px; }
+.myclst-right-top-srt select { height: 25px; padding: 0px 10px;}
+.myclst-right-top-srch span { left: 10px; top: 4px; background: url("../images/srch-icn-gld.png") no-repeat;}
+.myclst-prdct-list, .myclst-prdct-list #product { position: relative;}
+.myclst-prdct-list li{ width: 19.5%; float: left; border: 1px solid #9d9fa2; position: relative;  margin: 0px; text-align: center; height: 225px; overflow: hidden;}
+
+.myclst-prdct-list li:before {    /* create a full-height inline block pseudo=element */
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    height: 100%;
+}
+
+.myclst-prdct-list li .myclst-prdt-img {
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    font: 16px/1 Arial sans-serif;        /* <-- reset the font property */
+}
+
+.myclst-prdct-list li a {}
+.myclst-prdct-list li a img { }
+/*.otft-prdct-list li .otft-prdt-img { flaot:left; height: 100%; width: 100%; text-align: center;}*/
+.myclst-prdct-list li .myclst-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none;}
+.myclst-prdct-list li:hover .myclst-prdt-overlay { display: block;}
+
 
 
 /********Mobile CSS**********/

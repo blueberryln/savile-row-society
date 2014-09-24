@@ -297,7 +297,18 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 }
             });
                 
+                $('.myclst-rgt-nav li ul input:checkbox').change(function() {
+                    var label = $('label[for="'+$(this).attr('id')+'"]');
+                    if ($(this).filter(":checked").length) {
+                      label.addClass("checked");
+                    } else {
+                      label.removeClass("checked");
+                    }
+                  }).trigger("change");
                 
+                $('.ctg-one > label').on('click', 'span', function(){
+                    $(this).removeClass("checked");
+                });
                
                 $(".fancybox").fancybox({
                     helpers : {
