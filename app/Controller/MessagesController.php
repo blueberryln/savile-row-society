@@ -2883,6 +2883,8 @@ If interested, I would also be happy to meet with you in our New York City based
 
     // outfit closet ajax data 
     public function closetAjaxProductData($user_id = null) {
+        $this->autoLayout = false;
+        $this->layout = 'ajax';
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
@@ -2924,29 +2926,29 @@ If interested, I would also be happy to meet with you in our New York City based
             ),
             'order' => 'Category.category_id ASC'
         );
-
-    $products = $Entity->find('all',$find_array);
+    $this->Paginator->settings = $find_array;
+    $products = $this->Paginator->paginate($Entity);
+    //$products = $Entity->find('all',$find_array);
     echo json_encode($products);
     exit;
     }
 
 //closetAjaxColorProductSearchData
-    public function closetAjaxColorProductSearchData(){
+    public function closetAjaxColorProductSearchData($colorid=null,$brandid=null,$subcategoryid=null){
+        $this->layout = 'ajax';
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
         $Colorgroup = ClassRegistry::init('Colorgroup');
         $Entity = ClassRegistry::init('Entity');
-        $colorid[] = $this->request->data['colorid'];
-        print_r($colorid);
-
+        
         $find_array = array(
-            'limit' => 12,
-            'contain' => array('Image','Detail'),
+            'limit' => 10,
+            'contain' => array('Image', 'Color'),
             'conditions' => array(
-                'Entity.show' => true,
-                
+                'Entity.show' => true 
             ),
+            'group' => array('Entity.id'),
             'joins' => array(
                 array('table' => 'products_categories',
                     'alias' => 'Category',
@@ -2969,22 +2971,54 @@ If interested, I would also be happy to meet with you in our New York City based
                         'Product.brand_id = Brand.id'
                     )
                 ),
-                array('table' => 'colors_entities',
-                    'alias' => 'ColorItems',
+            ),
+            'order' => array('Entity.order' => 'ASC'),
+            'fields' => array('Entity.*', 'Product.*', 'Brand.*', 'Category.category_id'),
+            'Group' => array('Entity.id'),
+        );
+    //for color
+
+    
+    $colorid = $this->request->data['colorid'];
+    $colorids = explode(',', $colorid);
+    if($colorid){
+                $color_join = array('table' => 'colors_entities',
+                    'alias' => 'Color1',
                     'type' => 'INNER',
                     'conditions' => array(
-                        'ColorItems.product_entity_id = Entity.id',
-                        'ColorItems.color_id'=> $colorid
+                        'Color1.color_id' => $colorids,
+                        'Color1.product_entity_id = Entity.id'
                     )
-                ),
-            ),
-            'fields' => array(
-                'Entity.*', 'Category.category_id', 'Product.*', 'Brand.*', 'ColorItems.*',
-            ),
-            'order' => 'Category.category_id ASC'
-        );
+                );
+                $find_array['joins'][] = $color_join;
+            }
+    
 
-    $products = $Entity->find('all',$find_array);
+    //for brand
+    $brandid = $this->request->data['brandid'];
+    $brandids = explode(',', $brandid);
+    if($brandid){
+        
+            $find_array['conditions']['Product.brand_id'] = $brandids;
+        }
+    //for subcategoryid
+    $subcategoryid = $this->request->data['subcategoryid'];
+    $subcategoryids = explode(',', $subcategoryid);
+
+    if($subcategoryid){
+            $subcategoryid_join = array('table' => 'products_categories',
+                'alias' => 'ProductCategory',
+                'type' => 'INNER',
+                'conditions' => array(
+                    'ProductCategory.category_id' => $subcategoryids,
+                    'ProductCategory.product_id = Entity.id'
+                )
+            );
+            $find_array['joins'][] = $subcategoryid_join;
+        }
+    $this->Paginator->settings = $find_array;
+    $products = $this->Paginator->paginate($Entity);
+    //$products = $Entity->find('all',$find_array);
     echo json_encode($products);
     exit;
     }
@@ -3137,6 +3171,7 @@ If interested, I would also be happy to meet with you in our New York City based
     // Stylist Closet Data
 
     public function stylistCloset($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
+        
         $user_id = $this->getLoggedUserID();
         // init
         $Category = ClassRegistry::init('Category');
@@ -3144,7 +3179,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $Color = ClassRegistry::init('Color');
         $Colorgroup = ClassRegistry::init('Colorgroup');
         $User = ClassRegistry::init('User');
-
+        $Entity = ClassRegistry::init('Entity');
         // get data
         $categories = $Category->getAll();
         $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
@@ -3159,32 +3194,42 @@ If interested, I would also be happy to meet with you in our New York City based
             $entities = $this->closetProducts($user_id);
         }
         
-        
-        // $show_add_cart_popup = 0;
-        // if($this->Session->read('add-cart')){
-        //     $show_add_cart_popup = 1;
-        //     $this->Session->delete('add-cart');
-        // }
+        // for closet products data
 
-        // $popUpMsg = '';
-        // $show_three_item_popup = 0;
-        // if($this->Session->read('cart-three-items')){
-        //     $show_three_item_popup = 1;
-        //     $popUpMsg = $this->Session->read('cart-three-items-msg');
-        //     $this->Session->delete('cart-three-items');
-        //     $this->Session->delete('cart-three-items-msg');
-        // }
+        $find_array2 = array(
+            'limit'=>20,
+
+            'recursive' => -1,
+            'contain' => array('Image', 'Color', 'Detail'),
+            //'conditions' => array('Entity.id' => $entity_list),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ),        
+            ), 
+            'order' =>array('Entity.created DESC'),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+        );
         
-        // $show_closet_popup = 0;
-        // if($user_id && !$this->Session->check('Message.flash')){
-        //     $user = $User->getById($user_id); 
-        //     if($user && $user['User']['show_closet_popup'] == 1){
-        //         $show_closet_popup = 1;
-        //     }
-        // }
         
+        $this->Paginator->settings = $find_array2;
+        $products = $this->Paginator->paginate($Entity);
         // send data to view
-        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
+        //$products = $Entity->find('all',$find_array2);
+        $this->set(compact('entities', 'products', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
 
         if(!$category_slug){
             $this->render('stylistcloset');     
