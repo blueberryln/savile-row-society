@@ -88,8 +88,12 @@ $this->Html->css('colorbox', null, array('inline' => false));
                         html = html + '<ul>';
                         var entitiesData = this.entities; 
                     $.each(entitiesData, function(index1){
+                        var entitiesDataNew = entitiesData[index1].Image 
+                        $.each(entitiesDataNew, function(index2){
+                        
                         html = html + '<li>';
-                        html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
+                        html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesDataNew[index2].name +'" alt="" />';
+                    });
                         html = html + '<div class="product-desc">';
                         html = html + '<span class="product-name">'+ entitiesData[index1].Entity.name +'</span>';
                         html = html + '<span class="product-brand">'+ entitiesData[index1].Brand.name +'</span>';
@@ -104,6 +108,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                         html = html + '</div>';
                         html = html + '</li>';
                     });
+                
                         html = html + '</ul>';
                         html = html + '</div>';
                         html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
@@ -125,7 +130,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                     },function(){
                     $(".product-desc").css("display","none");
             });    
-            
+           
         });
     });
 
@@ -315,9 +320,9 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                     </div>
                                     <div class="pagination usersoutfits">
                     <?php
-                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                    //echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                    //echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                    //echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
                     ?>
                 </div>
                                 </div>
