@@ -2930,7 +2930,64 @@ If interested, I would also be happy to meet with you in our New York City based
     exit;
     }
 
+//closetAjaxColorProductSearchData
+    public function closetAjaxColorProductSearchData(){
+        $Category = ClassRegistry::init('Category');
+        $Brand = ClassRegistry::init('Brand');
+        $Color = ClassRegistry::init('Color');
+        $Colorgroup = ClassRegistry::init('Colorgroup');
+        $Entity = ClassRegistry::init('Entity');
+        $colorid[] = $this->request->data['colorid'];
+        print_r($colorid);
 
+        $find_array = array(
+            'limit' => 12,
+            'contain' => array('Image','Detail'),
+            'conditions' => array(
+                'Entity.show' => true,
+                
+            ),
+            'joins' => array(
+                array('table' => 'products_categories',
+                    'alias' => 'Category',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Category.product_id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+                array('table' => 'colors_entities',
+                    'alias' => 'ColorItems',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'ColorItems.product_entity_id = Entity.id',
+                        'ColorItems.color_id'=> $colorid
+                    )
+                ),
+            ),
+            'fields' => array(
+                'Entity.*', 'Category.category_id', 'Product.*', 'Brand.*', 'ColorItems.*',
+            ),
+            'order' => 'Category.category_id ASC'
+        );
+
+    $products = $Entity->find('all',$find_array);
+    echo json_encode($products);
+    exit;
+    }
 
    //stylistTotalOutfitSortByName ajax
 
@@ -3079,11 +3136,341 @@ If interested, I would also be happy to meet with you in our New York City based
 
     // Stylist Closet Data
 
-    public function stylistCloset() {
+    public function stylistCloset($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
+        $user_id = $this->getLoggedUserID();
+        // init
+        $Category = ClassRegistry::init('Category');
+        $Brand = ClassRegistry::init('Brand');
+        $Color = ClassRegistry::init('Color');
+        $Colorgroup = ClassRegistry::init('Colorgroup');
+        $User = ClassRegistry::init('User');
 
+        // get data
+        $categories = $Category->getAll();
+        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+        $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
 
+        $entities = array();
 
+        if ($category_slug) {
+            $category_slug = trim($category_slug);
+            $entities = $this->categoryProducts($user_id, $categories, $category_slug, $filter_brand, $filter_color, $filter_used);
+        } else {
+            $entities = $this->closetProducts($user_id);
+        }
+        
+        
+        // $show_add_cart_popup = 0;
+        // if($this->Session->read('add-cart')){
+        //     $show_add_cart_popup = 1;
+        //     $this->Session->delete('add-cart');
+        // }
+
+        // $popUpMsg = '';
+        // $show_three_item_popup = 0;
+        // if($this->Session->read('cart-three-items')){
+        //     $show_three_item_popup = 1;
+        //     $popUpMsg = $this->Session->read('cart-three-items-msg');
+        //     $this->Session->delete('cart-three-items');
+        //     $this->Session->delete('cart-three-items-msg');
+        // }
+        
+        // $show_closet_popup = 0;
+        // if($user_id && !$this->Session->check('Message.flash')){
+        //     $user = $User->getById($user_id); 
+        //     if($user && $user['User']['show_closet_popup'] == 1){
+        //         $show_closet_popup = 1;
+        //     }
+        // }
+        
+        // send data to view
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
+
+        if(!$category_slug){
+            $this->render('stylistcloset');     
+        }
     }
 
+
+    public function closetProducts($user_id){
+        $Entity = ClassRegistry::init('Entity');
+        $Category = ClassRegistry::init('Category');
+
+        $user = $this->getLoggedUser();
+
+        //Get the list of random product list for the closet
+        if($user['User']['is_stylist'] || $user['User']['is_admin']){
+            $random_list = $Entity->getTeamClosestItems();
+        }
+        else{
+            $random_list = $Entity->getClientClosestItems();    
+        }
+
+        
+        $entity_list = array();
+        $entity_list_cat = array();
+        
+        $category_list = $Category->find('threaded', array('order' => array('Category.order' => 'ASC')));
+        foreach($category_list as $cat){
+            $cur_list = array();
+            $cur_list[] = $cat['Category']['id'];
+            if(count($cat['children'])>0){
+                foreach($cat['children'] as $sub){
+                    $cur_list[] = $sub['Category']['id'];
+                    if(count($sub['children'] > 0)){
+                        foreach($sub['children'] as $subsub){
+                            $cur_list[] = $subsub['Category']['id'];
+                        }
+                    }
+                }    
+            }
+            
+            foreach($random_list as $item){
+                if(in_array($item['pc']['category_id'], $cur_list)){
+                    $entity_list[] = $item['pe']['id'];
+                    $entity_list_cat[$item['pe']['id']] = array('id' => $item['pe']['id'], 'parent_cat' => $cur_list[0]);
+                    break;    
+                }    
+            }
+        }
+        
+        $unordered_entities = $Entity->getEntitiesById($entity_list, $user_id);
+        $entities = array();
+        
+        foreach($entity_list as $id){
+            foreach($unordered_entities as $entity){
+                if($id == $entity['Entity']['id']){
+                    $entity['Category']['parent_cat'] = $entity_list_cat[$entity['Entity']['id']]['parent_cat'];
+                    $entities[] = $entity;
+                }
+            }    
+        }
+
+        return $entities;
+    }
+    public function categoryProducts($user_id, $categories, $category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null){
+        $Entity = ClassRegistry::init('Entity');
+        $Category = ClassRegistry::init('Category');
+
+        $user = $this->getLoggedUser();
+            
+        if($filter_used != "color" && $filter_used != "brand"){
+            $filter_used = "error";
+        }
+
+        // Get the parent id
+        $parent_id = false;
+        if($category_slug != "all"){
+            foreach($categories as $category){
+                if($category_slug == $category['Category']['slug']){
+                    $parent_id = $category['Category']['id'];
+                    break;
+                }
+                elseif($category['children']){
+                    foreach($category['children'] as $child){
+                        if($category_slug == $child['Category']['slug']){
+                            $parent_id = $category['Category']['id'];
+                            break;
+                        }
+                        else if($child['children']){
+                            foreach($child['children'] as $subchild){
+                                if($category_slug == $subchild['Category']['slug']){
+                                    $parent_id = $category['Category']['id'];
+                                    break;
+                                }    
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Ger the category & sub category using the category slug
+            $category_ids = $Category->getAllBySlug($category_slug);
+        }
+        
+        if($category_slug != "all" && !$category_ids){
+            $this->redirect('/closet');
+        }
+        
+
+        // Prepare the brand filter data
+        $brand_list = array();
+        if($filter_brand && $filter_brand != "none"){
+            $brand_list = explode('-', $filter_brand);
+            $brand_list = array_values(array_unique($brand_list));
+        }
+
+        // Prepare the color filter data
+        $color_list = array();
+        $color_ids  = array();
+        if($filter_color && $filter_color != "none"){
+            $color_list = explode('-', $filter_color);
+            $color_list = array_values(array_unique($color_list));
+        }
+
+        // Find array for products of a category exluding the filter and brand sub categories
+        // and for a unsigned user
+        $find_array = array(
+            'limit' => 12,
+            'contain' => array('Image', 'Color'),
+            'conditions' => array(
+                'Entity.show' => true 
+                //'Detail.show' => true, 'Detail.stock >' => 0,
+            ),
+            'group' => array('Entity.id'),
+            'joins' => array(
+                array('table' => 'products_categories',
+                    'alias' => 'Category',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Category.product_id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+                
+               //  array('table' => 'products_details',
+               //     'alias' => 'Detail',
+               //     'type' => 'INNER',
+               //     'conditions' => array(
+               //         'Detail.product_entity_id = Entity.id',
+               //     )
+               // ),
+            ),
+            'order' => array('Entity.order' => 'ASC'),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*', 'Category.category_id'
+            ),
+            'Group' => array('Entity.id'),
+        );
+        
+        if($category_slug != 'all'){
+            $find_array['conditions']['Category.category_id'] = $category_ids;
+        }
+
+        //Hide products restricted for website user (hide_from_client)
+        if(!$user['User']['is_stylist'] && !$user['User']['is_admin']){
+            $find_array['conditions']['Entity.hide_from_client'] = false; 
+        }
+        
+        //Query additions for a logged in user
+        if($user_id){
+            //Join Like and Dislike tables
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.product_entity_id = Entity.id',
+                                            'Wishlist.user_id' => $user_id
+                                        )
+                                    );
+            $find_array['joins'][] = array('table' => 'dislikes',
+                                        'alias' => 'Dislike',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Dislike.product_entity_id = Entity.id',
+                                            'Dislike.user_id' => $user_id,
+                                            'Dislike.show' => true
+                                        )
+                                    );   
+                     
+            //Fields for likes and dislikes               
+            $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Dislike.*';
+        }
+        
+        // Color filter
+        if($color_list && count($color_list) > 0){
+            
+            //Get product color ids based on colour group ids
+            $Colorgroup = ClassRegistry::init('Colorgroup');
+            $color_data = $Colorgroup->getColors($color_list);
+            if($color_data){
+                foreach($color_data as $color_item){
+                    $color_ids[] = $color_item['ColorItems']['color_id'];
+                }
+            }
+            
+            if($color_ids && count($color_ids) > 0){
+                $color_join = array('table' => 'colors_entities',
+                    'alias' => 'Color1',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Color1.color_id' => $color_ids,
+                        'Color1.product_entity_id = Entity.id'
+                    )
+                );
+                $find_array['joins'][] = $color_join;
+            }
+        }
+
+        // Brand Filter
+        if($brand_list && count($brand_list) > 0){
+            $find_array['conditions']['Product.brand_id'] = $brand_list;
+        }
+        
+
+        
+        if(count($color_ids) == 0 && ($category_slug == null || $category_slug ==  "all") && count($brand_list) == 0 ){
+            $data = array();
+        }
+        else{
+            $this->Paginator->settings = $find_array;
+            $data = $this->Paginator->paginate($Entity);
+            foreach($data as &$entity){
+                if($entity['Category']['category_id']){
+                    $parent = $Category->getParentNode($entity['Category']['category_id']);
+                    if($parent){
+                        $root_parent = $Category->getParentNode($parent['Category']['id']);
+                        if($root_parent){
+                            $entity['Category']['parent_cat'] = $root_parent['Category']['id'];    
+                        }
+                        else{
+                            $entity['Category']['parent_cat'] = $parent['Category']['id'];
+                        }
+                    }
+                    else{
+                        $entity['Category']['parent_cat'] = $entity['Category']['category_id'];
+                    }
+                }
+            }    
+        }
+        
+        // check for login popup
+        $check_count = 0;
+        if(!$user_id && (count($brand_list) > 0 || (isset($category_ids) && count($category_ids)>0))){
+
+            $count = $this->Session->read("count-click");
+
+            if($count){
+                $count++;
+                if($count==3)
+                {
+                    $check_count=1;
+                }
+                $this->Session->write("count-click", $count);
+            }
+            else{
+                $this->Session->write("count-click", 1);
+            }
+
+
+        } 
+        
+        $this->set(compact('parent_id', 'brand_list', 'color_list', 'filter_used','check_count'));
+        return $data;
+    }
  //bhashit code end
 }

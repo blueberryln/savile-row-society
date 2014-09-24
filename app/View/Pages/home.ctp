@@ -421,12 +421,16 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="eleven columns container outfit-boxes">
             <div class="outfit-stylist eleven columns container">
                 <ul class="slider2">
+                    <?php if($my_outfit): ?>
                     <?php foreach ($my_outfit as $topoutfit) {  //print_r($topoutfit);
                         ?>
                     <li>
                         <div class="shop-outfit left">
                             <div class="shop-outfit-top">
-                                <div class="outfit-main-img left"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $topoutfit['stylistimage']['User']['profile_photo_url']; ?>"  /></div>
+                                <div class="outfit-main-img left">
+                                
+                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topoutfit['stylistimage']['User']['profile_photo_url']; ?>"  />
+                                </div>
                                 <div class="outfit-top-content left">
                                     <div class="outfit-month"><?php echo $topoutfit['outfit']['Outfit']['outfitname']; ?></div>                                    
                                     <div class="outfit-brand">Styled by <span class="outfit-brand-name"><?php echo $topoutfit['stylistname']['User']['first_name']; ?></span></div>
@@ -449,6 +453,8 @@ $this->Html->script('cookie.js', array('inline' => false));
                         <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $topoutfit['stylistname']['User']['id']; ?>" title="" class="outfilt-btns">Learn about <?php echo $topoutfit['stylistname']['User']['first_name']; ?></a></div>
                     </li>
                     <?php } ?>
+                <?php else: ?>
+                <?php endif; ?>
                     <!-- <li>
                         <div class="shop-outfit left">
                             <div class="shop-outfit-top">

@@ -1,108 +1,28 @@
-<script>
+<script type="text/javascript">
+    $(document).ready(function(){
 
 
-function dragAndDropOutfit(){
-     // jQuery UI Draggable
-                $("#product li").draggable({
-
-                    // brings the item back to its place when dragging is over
-                    revert:true,
-
-                    // once the dragging starts, we decrease the opactiy of other items
-                    // Appending a class as we do that with CSS
-                    drag:function () {
-                        $(this).addClass("active");
-                        $(this).closest("#product").addClass("active");
-                    },
-
-                    // removing the CSS classes once dragging is over.
-                    stop:function () {
-                        $(this).removeClass("active").closest("#product").removeClass("active");
-                    }
-                });
-
-                // jQuery Ui Droppable
-                $(".basket").droppable({
-
-                    // The class that will be appended to the to-be-dropped-element (basket)
-                    activeClass:"active",
-
-                    // The class that will be appended once we are hovering the to-be-dropped-element (basket)
-                    hoverClass:"hover",
-
-                    // The acceptance of the item once it touches the to-be-dropped-element basket
-                    // For different values http://api.jqueryui.com/droppable/#option-tolerance
-                    tolerance:"touch",
-                    drop:function (event, ui) {
-
-                        var basket = $(this),
-                                move = ui.draggable,
-                                itemId = basket.find("ul li[data-id='" + move.attr("data-id") + "']");
-                                //itemsize = basket.find("#size").val();
-                                //alert(itemsize);
-
-                        // To increase the value by +1 if the same item is already in the basket
-                        if (itemId.html() != null) {
-                            itemId.find("input").val(parseInt(itemId.find("input").val()) + 1);
-                        }
-                        else {
-                            // Add the dragged item to the basket
-                            addBasket(basket, move);
-
-                            // Updating the quantity by +1" rather than adding it to the basket
-                            move.find("input").val(parseInt(move.find("input").val()) + 1);
-                        }
-                    }
-                });
-                
-                // This function runs onc ean item is added to the basket
-                function addBasket(basket, move) {
-                    //var src = $('img').attr('src');
-                    //alert(src);
-                    var src =move.find("img").attr('src');
-                    //var itemsize =move.find("#size").val();
-                    basket.find("ul").append('<li data-id="' + move.attr("data-id") + '">'
-
-                            + '<span class="name">' + move.find("h3").html() + '</span>'
-                            + '<span class="prc-img">' + + '</span>'
-                            + '<img src="'+src+'" />'
-                            + '<select id="size"><option value="25">25</option> <option value="26">26</option> <option value="27">27</option><option value="28">28</option><option value="29">29</option></select>'
-                            + '<button class="delete">&#10005;</button>');
-                }
-
-                 // The function that is triggered once delete button is pressed
-                $(".basket ul li button.delete").live("click", function () {
-                    $(this).closest("li").remove();
-                });
-
-}
-
-            $(function () {
-
-               
-                dragAndDropOutfit();
-
-            //get client like data
-            $("#clientlikes").live("click", function () {
-                var user_id = $("#user_id").val();
+    //get stylist like data
+            $("#stylistbookmarks").live("click", function () {
+                //var stylist_id = $("#stylist_id").val();
 
                 $.ajax({
                         type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/getUserLikeAjax/<?php echo $client_id; ?>",
-                        data:{user_id:user_id},
+                        url:"<?php echo $this->webroot; ?>Messages/getUserLikeAjax/<?php echo $user_id; ?>",
+                        //data:{stylist_id:stylist_id},
                         cache: false,
                         success: function(result){
                             //alert(result);
                         data = $.parseJSON(result);
                             html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
+                            html = html + '<div">';
+                            html = html + '<ul">';
             
                         $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<li>';
                             html = html + '<a href="#">';
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
-                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
+                            html = html + '<div class="myclst-prdt-overlay">';
                             html = html + '<h3>'+ this.Entity.name +'</h3>';
                             var desr = this.Entity.description;
                             html = html + '<p>'+ desr.substr(0,25) +'</p>';
@@ -113,72 +33,35 @@ function dragAndDropOutfit(){
                         });
                         html = html + '<ul>';            
                         html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();        
+                        $(".myclst-prdct-list").html(html);   
+                                
                     }
                 });
             });
 
-         //get stylist like data
-            $("#stylistlikes").live("click", function () {
-                var stylist_id = $("#stylist_id").val();
-
-                $.ajax({
-                        type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/getUserLikeAjax/<?php echo $stylist_id; ?>",
-                        data:{stylist_id:stylist_id},
-                        cache: false,
-                        success: function(result){
-                            //alert(result);
-                        data = $.parseJSON(result);
-                            html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
-            
-                        $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
-                            html = html + '<a href="#">';
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
-                            html = html + '<div class="otft-prdt-overlay">';
-                            html = html + '<h3>'+ this.Entity.name +'</h3>';
-                            var desr = this.Entity.description;
-                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
-                            html = html + '</div>';
-                            html = html + '</a>';
-                            html = html + '</li>';
-
-                        });
-                        html = html + '<ul>';            
-                        html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();        
-                    }
-                });
-            });
-
-        //get closet ajax data 
+//get closet ajax data 
             $("#closetdata").live("click", function () {
-                var user_id = $("#user_id").val();
+                
                 $.ajax({
                         type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/closetAjaxProductData/<?php echo $client_id ?>",
-                        data:{user_id:user_id},
+                        url:"<?php echo $this->webroot; ?>Messages/closetAjaxProductData/<?php echo $user_id ?>",
+                       // data:{user_id:user_id},
                         cache: false,
                         success: function(result){
                             //alert(result);
                         data = $.parseJSON(result);
                             html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
+                            html = html + '<div">';
+                            html = html + '<ul">';
             
                         $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<li>';
                             html = html + '<a href="#">';
-                            var imgs = this.Image;
-                        $.each(imgs,  function (index1){
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ imgs[index1].name +'" alt="" /></div>';
+                            var entityimg = this.Image;
+                        $.each(entityimg,  function (index1){
+                            html = html + '<div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ entityimg[index1].name +'" alt="" /></div>';
                         });
-                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<div class="myclst-prdt-overlay">';
                             html = html + '<h3>'+ this.Entity.name +'</h3>';
                             var desr = this.Entity.description;
                             html = html + '<p>'+ desr.substr(0,25) +'</p>';
@@ -189,145 +72,30 @@ function dragAndDropOutfit(){
                         });
                         html = html + '<ul>';            
                         html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();        
+                        $(".myclst-prdct-list").html(html);   
+                                
                     }
                 });
             });
 
-//get final submission outfit data
-            $(".sbmt-btn").on("click", function () {
-                        var src = $('#dataid img').map(function(i,n) {
-                       return $(n).attr('src');
-                         }).get().join(',');
-                             
-                        var outfitname = $("#outfitname").val();
-                        var stylist_id = $("#stylist_id").val();
-                        var user_id = $("#user_id").val();
-                        //var size = $("#size").val();
-                        var comments = $("#comments").val();
-                        //var id = ui.draggable.attr("data-id")
-                       var liIds = $('#dataid li').map(function(i,n) {
-                           return $(n).attr('data-id');
-                             }).get().join(',');
-                       var size = $('#dataid select').map(function(i,n) {
-                           return $(n).val();
-                             }).get().join(',');
 
-                        //alert(size);
+        $('.colorsearch').live("click",function() {
+                var colorid = $(this).attr("data-color_id");
 
-                        $.ajax({
-                            type:"POST",
-                            url:"<?php echo $this->webroot; ?>Messages/setFinalOutfitData",
-                            data:{outfitid:liIds,user_id:user_id,out_name:outfitname,size_id:size,outfit_msg:comments,src:src},
-                            cache: false,
-                            success: function(result){
-                            data = $.parseJSON(result);
-                            html = '';
-                            html = html + '<div id="cnfrm-otft-popup" style="display: none">';
-                            html = html + '<div class="box-modal">';
-                            html = html + '<div class="box-modal-inside">';
-                            html = html + '<a href="#" title="" class="otft-close"></a>';
-                            html = html + '<div class="twelve columns left cnfrm-otft-content">';
-                            html = html + '<div class="twelve columns left cnfrm-otft-top">';
-                            html = html + '<h1>'+ data[0].outfitname +'</h1>';
-                            
-                            html = html + '<span class="otft-prc right">outfit price: '+ outfitname +'</span>';
-                            html = html + '</div>';
-                            html = html + '<div class="twelve columns left cnfrm-otft-middle">';
-                            html = html + '<div class="eleven columns container">';
-                            html = html + '<div class="twelve columns left cnfrm-otft-itms">';
-                            html = html + '<div class="right shp-this-otft">shop this outfit &gt;</div>';
-                            html = html + '<ul>';
-                            
-                            $.each(data,  function (index){
-                                var src = this.src;
-                                $.each(src,  function (index1){
-                            html = html + '<li >';
-                            html = html + '<img src="'+ src[index1] +'" alt="" />';
-                            html = html + '<div class="cnfrm-otft-prdct-dtl">White knight twills<br />Whit &amp; co<br />$600.00</div>';
-                            html = html + '</li>';
-                        });
-                            });
-                            
-                            
-                            html = html + '</ul>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '<div class="twelve columns left cnfrm-otft-bottom">';
-                            html = html + '<div class="eleven columns container">';
-                            html = html + '<div class="twelve columns left otft-stylist-review">';
-                            html = html + '<p>Dear Kyle<br/>I have created an outfit for your upcoming weekend in the hamptons. I think these pieces are versatile enought to easily be incorporated into day and night time looks. If you have any questions, please get in contact with me.</p><br/>';
-                            html = html + '<p>Your Stylist,<br/>Lisa</p>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '<div class="twelve columns left cnfrm-bottom-link">';
-                            html = html + '<div class="eleven columns container">';
-                            html = html + '<div class="twelve columns left otft-btm-links">';
-                            html = html + '<div class="cnfrm-otft-edit left"><a href="#" title="">Edit</a></div>';
-                            html = html + '<div class="cnfrm-otft-social left">';
-                            html = html + '<ul>';
-                            html = html + '<li class="cnfrm-otft-social-fb"><a href="#" title="">facebook</a></li>';
-                            html = html + '<li class="cnfrm-otft-social-twtr"><a href="#" title="">twitter</a></li>';
-                            html = html + '<li class="cnfrm-otft-social-pntrst"><a href="#" title="">pintrest</a></li>';
-                            html = html + '</ul>';
-                            html = html + '</div>';
-                            html = html + '<div class="cnfrm-otft-send right"><a href="#" title="" id="subfinaloutfit">Send <span></span></a></div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                             $("#cnfrm").html(html); 
-                             dragAndDropOutfit();  
-                        }
-                    }); 
-                });
-    
-    // subfinaloutfit
-              $("#subfinaloutfit").live("click", function () {
-                   
-                    //var id = $(".basket ul li").attr("data-id");
-                    var outfitname = $("#outfitname").val();
-                    var stylist_id = $("#stylist_id").val();
-                    var user_id = $("#user_id").val();
-                    //var size = $("#size").val();
-                    var comments = $("#comments").val();
-                    //var id = ui.draggable.attr("data-id")
-                   var liIds = $('#dataid li').map(function(i,n) {
-                       return $(n).attr('data-id');
-                         }).get().join(',');
-                   var size = $('#dataid select').map(function(i,n) {
-                       return $(n).val();
-                         }).get().join(',');
-
-                    alert(size);
-
-                    $.ajax({
+                console.log(colorid);
+                $.ajax({
                         type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/postOutfit",
-                        data:{outfitid:liIds,user_id:user_id,out_name:outfitname,size_id:size,outfit_msg:comments},
+                        url:"<?php echo $this->webroot; ?>messages/closetAjaxColorProductSearchData",
+                        data:{colorid:colorid},
                         cache: false,
                         success: function(result){
-                            $(".cnfrm-otft-content").html("<h1>Your Outfit Hasbeen Submitted Successfully.</h1>");
-                            location.reload();
-                
+                                
                     }
-                }); 
+                });
             });
-             
 
-        });
-
-
-
+});
 </script>
-        
-        <?php //print_r($products); ?>
 <div class="content-container">
     <div class="twelve columns black">
         <div class="eleven columns container">
@@ -335,9 +103,9 @@ function dragAndDropOutfit(){
                 <div class="ten columns left admin-nav">
                     <ul>
                         <li class="active"><a href="#" title="">My Clients</a></li>
-                        <li><a href="<?php echo $this->webroot; ?>messages/stylistdashboard" title="">Dashboard</a></li>
-                        <li><a title="" href="<?php echo $this->webroot; ?>messages/stylisttotaloutfit">My outfits</a></li>
-                        <li><a href="<?php echo $this->webroot; ?>messages/stylistcloset" title="">The CLoset</a></li>
+                        <li><a href="#" title="">Dashboard</a></li>
+                        <li><a href="#" title="">My outfits</a></li>
+                        <li><a href="#" title="">The CLoset</a></li>
                     </ul>
                 </div>
                 <div class="two columns right admin-top-right">
@@ -364,34 +132,61 @@ function dragAndDropOutfit(){
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
                 <div class="eleven columns container">
-                    <div class="twelve columns left myoutfit-section">
-                        <div class="four columns left otft-lft">
-                            <div class="eleven columns container">
-                                
-                            </div>
-                        </div>
-                        <div class="eight columns right otft-rgt">
-                            <div class="twelve columns left otft-rgt-heading">
+                    <div class="twelve columns left mycloset-section">
+                        <div class="twelve columns left myclst-rgt-heading">
                                 <div class="eleven columns container">
-                                    <div class="twelve columns left otft-rgt-nav">
+                                    <div class="seven columns left myclst-rgt-nav">
                                         <ul>
-                                            <li class="active"><a href="#" title="" id="closetdata">The Closet</a></li>
-                                            <li>|</li>
-                                            <li><a href="#" title="" id="clientlikes">Client Likes</a></li>
-                                            <li>|</li>
-                                            <li><a href="#" title="">Purchased</a></li>
-                                            <li>|</li>
-                                            <li><a href="#" title="" id="stylistlikes">My Bookmarks</a></li>
-                                            <li>|</li>
-                                            <li><a href="#" title="">Client’s Sizes</a></li>
+                                            <li class="active"><a href="#" title="" id="closetdata">The Closet</a>
+                                                <ul>
+                                                <div class="ctg-one" style="overflow-y:scroll;height:350px;width:200px;">
+                                                    <?php foreach ($categories as $category): ?>
+                                                    <h3><?php echo $category['Category']['name']; ?></h3>
+                                                        <?php if ($category['children']) : ?>
+                                                            <?php foreach ($category['children'] as $subcategory): ?>
+                                                                <input type="checkbox" name="" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
+                                                                <label for="s<?php echo $subcategory['Category']['id']; ?>" class=""><?php echo $subcategory['Category']['name']; ?><span></span></label>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </div>   
+                                                
+
+                                                
+                                                    <div class="ctg-one third-block" style="overflow-y:scroll;max-height:300px;">
+                                                        <h3>Brands</h3>
+                                                        <?php if($brands) : ?>
+                                                            <?php foreach($brands as $brand) : ?>
+                                                                <input type="checkbox" name="" value="<?php echo $brand['Brand']['id']; ?>" id="b<?php echo $brand['Brand']['id']; ?>" data-brand_id="<?php echo $brand['Brand']['id']; ?>" />
+                                                                <label for="b<?php echo $brand['Brand']['id']; ?>" class=""><?php echo $brand['Brand']['name']; ?><span></span></label>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                        
+                                                        
+                                                    </div>
+                                                    <div class="ctg-one forth-block" style="overflow-y:scroll;max-height:300px;">
+                                                        <h3>Colors</h3>
+                                                        
+                                                        <?php if($colors) : ?>
+                                                            <?php foreach($colors as $color) :?>
+                                                                <input type="checkbox" name="" class="colorsearch" data-color_id="<?php echo $color['Colorgroup']['id']; ?>" value="<?php echo $color['Colorgroup']['id']; ?>" id="c<?php echo $color['Colorgroup']['id']; ?>" />
+                                                                <label for="c<?php echo $color['Colorgroup']['id']; ?>"  class=""><?php echo $color['Colorgroup']['name']; ?><span></span></label>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+
+                                                    </div>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#" title="" id="stylistbookmarks">My Bookmarks</a></li>
+                                            <li><a href="#" title="">Purchased Items</a></li>
                                         </ul>
                                     </div>
-                                    <div class="otft-right-top">
-                                        <div class="otft-right-top-srch">
+                                    <div class="myclst-right-top">
+                                        <div class="myclst-right-top-srch">
                                             <span></span>
                                             <input type="text" name="" />
                                         </div>
-                                        <div class="otft-right-top-srt">
+                                        <div class="myclst-right-top-srt">
                                             <select>
                                                 <option>Sort By</option>
                                                 <option>Sort By</option>
@@ -402,92 +197,199 @@ function dragAndDropOutfit(){
                                     </div>
                                 </div>
                             </div>
-                            <div class="twelve columns left otft-prdct-list">
-                                <div id="product">
-                                    <ul class="clear">
-                                    
-
-                                        <li data-id="2">
+                            <div class="twelve columns left myclst-prdct-list">
+                                <div>
+                                    <ul>
+                                        <li>
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
+                                               <div class="myclst-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li data-id="3">
+                                        <li>
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li data-id="4">
+                                        <li>
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
                                                 </div>
                                                 
                                             </a>
                                         </li>
-                                        <li data-id="5">
+                                        <li>
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li data-id="6">
+                                        <li>
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li data-id="7">
+                                        <li>
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                               <div class="otft-prdt-overlay">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
+                                               <div class="myclst-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li data-id="8">
+                                        <li>
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
                                                 </div>
                                             </a>
-                                        </li> 
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
+                                               <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                                
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
+                                               <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
+                                               <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
+                                                <div class="myclst-prdt-overlay">
+                                                    <h3>Some crazy circuit</h3>
+                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                </div>
+                                            </a>
+                                        </li>
                                     </ul>
-                                    <div class="pagination userlikes">
-                                        <?php
-                                        //echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                                        //echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                                        //echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
-                                        ?>
-                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
                 
                 
-               
+                
                 
                 
                 

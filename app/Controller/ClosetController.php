@@ -1550,4 +1550,9 @@ class ClosetController extends AppController {
         $this->set(compact('purchased_list', 'sizes', 'user_id'));
         
     }
+
+    // bhashit code start
+
+    
+    //bhashit code end
 }
