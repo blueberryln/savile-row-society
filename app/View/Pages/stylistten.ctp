@@ -166,7 +166,118 @@
                                 <div class="eleven columns container">
                                     <div class="twelve columns left otft-rgt-nav">
                                         <ul>
-                                            <li class="active"><a href="#" title="">The Closet</a></li>
+                                            <li class="active"><a href="#" title="">The Closet</a>
+                                                <ul>
+                                                    <div class="ctg-one">
+                                                        <h3>Seasonal SRS Picks</h3>
+                                                        <input type="checkbox" name="" value="" id="1" />
+                                                        <label for="1" class="">Subcategory1<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="2" />
+                                                        <label for="2" class="">Subcategory2<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="3" />
+                                                        <label for="3" class="">Subcategory3<span></span></label>
+                                                        
+                                                        
+                                                        <h3>Sweaters</h3>
+                                                        
+                                                        <h3>Shirts</h3>
+                                                        
+                                                        <h3>shoes</h3>
+                                                        <input type="checkbox" name="" value="" id="4" />
+                                                        <label for="4" class="">Subcategory1<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="5" />
+                                                        <label for="5" class="">Subcategory2<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="6" />
+                                                        <label for="6" class="">Subcategory3<span></span></label>
+                                                        
+                                                        <h3>Trousers</h3>
+                                                        
+                                                        <h3>Denim</h3>
+                                                        
+                                                        <h3>Shorts &amp; Sweamwear</h3>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                    <div class="ctg-one second-block">
+                                                        <h3>Loungh Wear, Underwear and Socks</h3>
+                                                        <input type="checkbox" name="" value="" id="7" />
+                                                        <label for="7" class="">Subcategory1<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="8" />
+                                                        <label for="8" class="">Subcategory2<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="9" />
+                                                        <label for="9" class="">Subcategory3<span></span></label>
+                                                        
+                                                        
+                                                        <h3>Sports Coat</h3>
+                                                        
+                                                        <h3>Ourterwear</h3>
+                                                        
+                                                        <h3>Accessories</h3>
+                                                        <input type="checkbox" name="" value="" id="10" />
+                                                        <label for="10" class="">Subcategory1<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="11" />
+                                                        <label for="11" class="">Subcategory2<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="12" />
+                                                        <label for="12" class="">Subcategory3<span></span></label>
+                                                        
+                                                        <h3>Belts, Bags and leather goods</h3>
+                                                    </div>
+                                                    <div class="ctg-one third-block">
+                                                        <h3>Brands</h3>
+                                                        <input type="checkbox" name="" value="" id="13" />
+                                                        <label for="13" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="14" />
+                                                        <label for="14" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="15" />
+                                                        <label for="15" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="16" />
+                                                        <label for="16" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="17" />
+                                                        <label for="17" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="18" />
+                                                        <label for="18" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="19" />
+                                                        <label for="19" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="20" />
+                                                        <label for="20" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="21" />
+                                                        <label for="21" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="22" />
+                                                        <label for="22" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="23" />
+                                                        <label for="23" class="">Brand<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="24" />
+                                                        <label for="24" class="">Brand<span></span></label>
+                                                        
+                                                    </div>
+                                                    <div class="ctg-one forth-block">
+                                                        <h3>Colors</h3>
+                                                        <input type="checkbox" name="" value="" id="27" />
+                                                        <label for="27" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="28" />
+                                                        <label for="28" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="29" />
+                                                        <label for="29" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="30" />
+                                                        <label for="30" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="31" />
+                                                        <label for="31" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="32" />
+                                                        <label for="32" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="33" />
+                                                        <label for="33" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="34" />
+                                                        <label for="34" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="35" />
+                                                        <label for="35" class="">Colors<span></span></label>
+                                                        <input type="checkbox" name="" value="" id="36" />
+                                                        <label for="36" class="">Colors<span></span></label>
+                                                    </div>
+                                                </ul>
+                                            
+                                            </li>
                                             <li>|</li>
                                             <li><a href="#" title="">Client Likes</a></li>
                                             <li>|</li>
