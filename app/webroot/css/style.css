@@ -1482,10 +1482,10 @@ a.sbmt-btn { width: 100%; display: block; padding: 18px 0 12px; background: #b6a
 .otft-rgt-nav li { display: inline-block; margin: 0px 2px;}
 .otft-rgt-nav li a { display: block; padding: 5px 10px 3px;}
 .otft-rgt-nav li a:hover, .otft-rgt-nav li.active a { background: #fff; color: #212125;}
-.otft-right-top-srch, .otft-right-top-srt { width: 160px; float: right; margin: 0px 10px; position: relative; color: #444; font-family: 'Proximanova'; font-size: 12px; text-align: center;}
-.otft-right-top-srch input {height: 25px; padding: 0 10px 0 30px; }
-.otft-right-top-srt select { height: 25px; padding: 0px 10px;}
-.otft-right-top-srch span { left: 10px; top: 4px; background: url("../images/srch-icn-gld.png") no-repeat;}
+.otft-right-top-srch, .otft-right-top-srt, .myclst-right-top-srch, .myclst-right-top-srt { width: 160px; float: right; margin: 0px 10px; position: relative; color: #444; font-family: 'Proximanova'; font-size: 12px; text-align: center;}
+.otft-right-top-srch input, .myclst-right-top-srch input {height: 25px; padding: 0 10px 0 30px; }
+.otft-right-top-srt select, .myclst-right-top-srt select { height: 25px; padding: 0px 10px;}
+.otft-right-top-srch span, .myclst-right-top-srch span { left: 10px; top: 4px; background: url("../images/srch-icn-gld.png") no-repeat;}
 .otft-prdct-list, .otft-prdct-list #product { position: relative;}
 .otft-prdct-list li{ width: 33%; float: left; border: 1px solid #9d9fa2; position: relative;  margin: 0px; text-align: center; height: 225px; overflow: hidden;}
 
