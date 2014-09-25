@@ -1603,7 +1603,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .otft-rgt-nav li, .myclst-rgt-nav li { display: inline-block; margin: 0px 2px; position: relative;}
 .otft-rgt-nav li a, .myclst-rgt-nav li a { display: block; padding: 5px 10px 3px;}
 .myclst-rgt-nav li a:hover, .myclst-rgt-nav li.active a { background: #616264; color: #fff;}
-<<<<<<< HEAD
+
 .myclst-rgt-nav li ul { position: absolute; top: 26px; left: 0px; display: inline-block; background: #fff; padding: 10px 20px; margin: 0px; z-index: 50; float: left;  width: 800px; display: none;}
 .myclst-rgt-nav li:hover ul { display: block;}
 .myclst-rgt-nav li ul .ctg-one { width: 150px; float: left; text-align: left; border-right: 1px solid #a0a1a2; display: inline-block;}
@@ -1615,7 +1615,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .myclst-rgt-nav li ul input[type="checkbox"] { margin:0; padding:0; width:16px; display: none;}
 .myclst-rgt-nav li ul .ctg-one label span { position: absolute; top: 3px; right: 2px; background: url("../images/label-close-btn.png") no-repeat center center; width: 22px; height: 22px; background-size: cover; display: none;}
 .myclst-rgt-nav li ul .ctg-one label.checked span { display: block;}
-=======
+
 .otft-rgt-nav li ul, .myclst-rgt-nav li ul { position: absolute; top: 26px; left: 0px; display: inline-block; background: #fff; padding: 10px 20px; margin: 0px; z-index: 50; float: left;  width: 800px; display: none;}
 .otft-rgt-nav li:hover ul, .myclst-rgt-nav li:hover ul { display: block;}
 .otft-rgt-nav li ul .ctg-one, .myclst-rgt-nav li ul .ctg-one { width: 150px; float: left; text-align: left; border-right: 1px solid #a0a1a2; display: inline-block;}
@@ -1627,16 +1627,11 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .otft-rgt-nav li ul input[type="checkbox"], .myclst-rgt-nav li ul input[type="checkbox"] { margin:0; padding:0; width:16px; display: none;}
 .otft-rgt-nav li ul .ctg-one label span, .myclst-rgt-nav li ul .ctg-one label span { position: absolute; top: 3px; right: 2px; background: url("../images/label-close-btn.png") no-repeat center center; width: 22px; height: 22px; background-size: cover; display: none;}
 .otft-rgt-nav li ul .ctg-one label.checked span, .myclst-rgt-nav li ul .ctg-one label.checked span { display: block;}
->>>>>>> 29d8bcd105832372fe875ff36645bd581a7589a6
+
 
 .second-block, .third-block, .forth-block{ padding: 0px 25px;}
 .otft-rgt-nav li ul .ctg-one.forth-block, .myclst-rgt-nav li ul .ctg-one.forth-block {border-right: none;}
 .otft-rgt-nav li ul { left: -180px;}
-
-
-
-
-
 
 .myclst-right-top-srch input {height: 25px; padding: 0 10px 0 30px; }
 .myclst-right-top-srt select { height: 25px; padding: 0px 10px;}
@@ -1672,6 +1667,48 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 #myclst-popup .product-dtl-desc-middle {padding-top: 2px;}
 #myclst-popup .product-dtl-links a.product-add-cart, #myclst-popup .product-dtl-links a.product-my-likes { margin-bottom: 5px;}
 #myclst-popup .product-dtl-links { padding-top: 20px;}
+
+
+
+.defalut-check { width: 50%; padding-bottom: 15px; margin: 0 auto;}
+.defalut-check label {font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #444;}
+.defalut-check input[type="checkbox"] { visibility: visible;}
+#chkall { width: 20px; float: left; height: 20px;border:none; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #c7c7c7 0px 1px 1px; -moz-box-shadow: #c7c7c7 0px 1px 1px; box-shadow: #c7c7c7 0px 1px 1px; outline:none; display: inline-block; -webkit-appearance:none; -moz-appearance:none; appearance:none; padding: 15px 10px 9px; cursor:pointer;
+    background: #fefefe;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fefefe), to(#f4f4f4));
+    background: -webkit-linear-gradient(#fefefe, #f4f4f4);
+    background: -moz-linear-gradient(#fefefe, #f4f4f4);
+    background: -ms-linear-gradient(#fefefe, #f4f4f4);
+    background: -o-linear-gradient(#fefefe, #f4f4f4);
+    background: linear-gradient(#fefefe, #f4f4f4);
+    -pie-background: linear-gradient(#fefefe, #f4f4f4); }
+
+/************ Stylist deshboard Section *************/
+.mydesbrd-right { width: 81%; margin-right: 0px;}
+.inner-content.mydesbrd-inner { padding-top: 10px;}
+.mydesbrd-right .left-pannel { width: 18.5%; margin-right: 1%;}
+.mydesbrd-right .right-pannel{ width: 80%;}
+.mydesbrd-right .right-pannel .message-area { background: none; padding-top: 0px;} 
+.mydesbrd-right .right-pannel .activity-feed-section li .activity-content-area { width: 97%; padding: 0 1% 15px; border: 1px solid #e5e5e5; margin-left: .5%;}
+.mydesbrd-right .right-pannel .activity-feed-section li .activity-msg-area{ padding-left: 15px}
+.mydesbrd-acc, .mydesbrd-items { border: 1px solid #ededed;}
+.mydesbrd-items { margin-top: 15px;}
+.mydesbrd-heading { text-align: center; font-family: 'ProximaNovaCond-Regular'; font-size: 20px; color: #090808; background: #d7d7d7; padding: 15px 0px; text-decoration: underline; text-transform: uppercase;}
+.mydesbrd-acc-content { font-size:20px; line-height: 24px;  padding: 20px 5px; color: #b7b7b7;}
+.mydesbrd-acc-content p { margin-bottom: 1px;}
+.mydesbrd-acc-content p span { color: #090808;}
+.mydesbrd-acc-content a { text-decoration: underline; color: #090808; margin-top: 20px; display: inline-block;}
+.mydesbrd-items-content { padding: 35px 0; position: relative;}
+.mydesbrd-items-content li { width: 100%; display: block; text-align: center; min-height: 170px; margin-bottom: 1px; vertical-align: middle;}
+.mydesbrd-items-content li img { width: 80%;}
+.mydesbrd-items-content a.bx-prev, .mydesbrd-items-content a.bx-next { position: absolute; width: 31px; height: 16px; left: 41%; text-indent:-9999px; background: url("../images/vertical-slider-arrow.png") no-repeat; outline: none;}
+.mydesbrd-items-content a.bx-prev { top: 10px; background-position: 0 0;}
+.mydesbrd-items-content a.bx-next { bottom:10px; background-position: 0 -16px}
+.mydesbrd-items-content .bx-pager.bx-default-pager { display: none;}
+
+
+
+
 
 
 

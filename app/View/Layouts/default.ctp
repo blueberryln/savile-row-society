@@ -250,6 +250,16 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         
         <script type="text/javascript">
             $(document).ready(function(){
+                
+                $("#chkall").click(function(){
+                if($(this).is(':checked')){
+                    $('.profile-stp2').find('select').val("I don’t know");
+                }
+                else{ 
+                    $('.profile-stp2').find('select').val("");
+                    }
+                    });
+                
                 $('.flexslider').flexslider({
                     animation: "slide",
                     controlNav: true,
@@ -278,6 +288,15 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 maxSlides: 3,
                 moveSlides: 1,
                 slideMargin: 40
+              });
+                
+                 $('.slider4').bxSlider({
+                slideWidth: 202,
+                mode:'vertical',
+                minSlides: 3,
+                maxSlides: 3,
+                moveSlides: 1,
+                slideMargin: 1
               });
                 
             $('table.highchart').highchartTable();
@@ -318,7 +337,29 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.ctg-one > label').on('click', 'span', function(){
                     $(this).removeClass("checked");
                 });
-               
+                
+//                $(".defalut-check input:checkbox").change(function(){
+//                    var value = $("#chkall").val();
+//                    if(value==checked){
+//                    $(".profile-stp2 select option").val("I don’t know");
+//                    
+//                    }
+//                    alert(value);
+//                });
+
+//                $('.defalut-check input[type="checkbox"]').click(function () {
+//                var x = $("select > option").val();
+//                    if ($(this).is(':checked')) {
+//                        $("select > option").val ("I don't know")
+////                        var y = $(this).val();
+////                        if (x < y) {
+////                            $("#test").val($(this).val());
+////                        }
+//                    }
+//                });
+                
+                
+                
                 $(".fancybox").fancybox({
                     helpers : {
                         title : {
