@@ -267,7 +267,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 });
                 
                 $('.slider1').bxSlider({
-                slideWidth: 220,
+                //slideWidth: 220,
                 minSlides: 1,
                 maxSlides: 10,
                 moveSlides: 1,
