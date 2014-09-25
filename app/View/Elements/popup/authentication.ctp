@@ -42,7 +42,7 @@
 	                    <p>Any friend of <?php echo ucwords($referer['User']['first_name']); ?> is a friend of ours! To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more. </p>
 	                <?php endif; ?> 
 		            <div class="text-center">
-		            	<a href="<?php echo $this->webroot; ?>auth/register" class="link-btn black-btn signin-btn">Start</a>
+		            	<a href="<?php echo $this->webroot; ?>users/register" class="link-btn black-btn signin-btn">Start</a>
 		            </div>
 	            <?php else : ?>
 	            	<div id="request-invite-block">

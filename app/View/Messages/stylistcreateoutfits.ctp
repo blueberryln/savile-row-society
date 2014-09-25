@@ -56,19 +56,48 @@ function dragAndDropOutfit(){
                 });
                 
                 // This function runs onc ean item is added to the basket
+                
                 function addBasket(basket, move) {
                     //var src = $('img').attr('src');
                     //alert(src);
                     var src =move.find("img").attr('src');
+                    var price =move.find("h4").html();
+                    alert(price);
                     //var itemsize =move.find("#size").val();
-                    basket.find("ul").append('<li data-id="' + move.attr("data-id") + '">'
+                basket.find("ul").append('<li data-id="' + move.attr("data-id") + '" data-price="'+ move.attr("data-price") +'">'
 
                             + '<span class="name">' + move.find("h3").html() + '</span>'
-                            + '<span class="prc-img">' + + '</span>'
+                            + '<span class="prc-img">' + move.find("h4").html() + '</span>'
                             + '<img src="'+src+'" />'
                             + '<select id="size"><option value="25">25</option> <option value="26">26</option> <option value="27">27</option><option value="28">28</option><option value="29">29</option></select>'
                             + '<button class="delete">&#10005;</button>');
+                    
+                    var countli =  basket.find("ul li").length;
+                    if(countli ==5 ){
+                        alert(countli);
+                        basket.find("ul").append("<li>Please Stop Your Limit Is over</li>");
+
+                    }
+
+                        var overall = 0;
+                        $("ul#dataid li").each(function()
+                        {
+                            var allprice = $(this).data("price");
+                            var sum = parseInt(allprice);
+
+                            overall+= sum;
+                        });
+                        
+                        $("#total").html('Total Outfit Price ' + overall);
+                  
                 }
+                
+               
+                    
+               
+                
+                    
+                //$("#total").text($overall);
 
                  // The function that is triggered once delete button is pressed
                 $(".basket ul li button.delete").live("click", function () {
@@ -411,13 +440,13 @@ function dragAndDropOutfit(){
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="twelve columns left otft-drp-ttl">
-                                                        Total Outfit Price: $1600.00
+                                                    <div class="twelve columns left otft-drp-ttl" id="total">
+                                                        
                                                         <p><a href="" title="">clear all</a></p>
                                                     </div>
                                                 </div>
                                             </div>
-<!--                                            <div class="otft-drp-btm-line left">&nbsp;</div>-->
+
                                         </div>
                                     </div>
                                     <div class="eleven columns container">
@@ -475,9 +504,8 @@ function dragAndDropOutfit(){
                                     <ul class="clear">
                                     <?php  for($i = 0; $i < count($products); $i++){
                                                 $product = $products[$i];
-                                                //print_r($product);
-                                                    ?>
-                                        <li  data-id="<?php echo $product['Entity']['id']; ?>">
+                                    ?>
+                                        <li  data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>">
                                         <?php foreach ($product['Detail'] as $key => $details) { ?>
                                         <input type="hidden" id="size" value="<?php echo $details['size_id'];?>">
                                         <?php } ?>
@@ -486,76 +514,12 @@ function dragAndDropOutfit(){
                                                 <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
                                                <div class="otft-prdt-overlay">
                                                     <h3><?php echo $product['Entity']['name']; ?></h3>
+                                                    <h4><?php echo $product['Entity']['price']; ?></h4>
                                                     <p><?php echo substr($product['Entity']['description'],0,25); ?></p>
                                                 </div>
                                             </a>
                                         </li>
                                     <?php } ?>
-
-                                        <!-- <li data-id="2">
-                                            <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li data-id="3">
-                                            <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li data-id="4">
-                                            <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                                
-                                            </a>
-                                        </li>
-                                        <li data-id="5">
-                                            <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li data-id="6">
-                                            <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li data-id="7">
-                                            <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                               <div class="otft-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li data-id="8">
-                                            <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="otft-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li> -->
                                     </ul>
                                     <div class="pagination userlikes">
                                         <?php

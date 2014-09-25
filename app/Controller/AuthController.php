@@ -415,6 +415,18 @@ App::uses('CakeEmail', 'Network/Email');
 
     public function editbiography($id = null) {
         $User = ClassRegistry::init('User');
+        $this->isLogged();
+        if (!$this->User->exists($id)) {
+                throw new NotFoundException(__('Invalid user'));
+            }
+
+        $user = $User->findById($id);
+        $current_user = $this->getLoggedUser();
+
+        if($id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
         $Stylistbio = ClassRegistry::init('Stylistbio');
         $Stylistphotostream = ClassRegistry::init('Stylistphotostream');
         $Outfit = ClassRegistry::init('Outfit');
