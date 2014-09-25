@@ -1,13 +1,14 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-        var firstPageId = 0;
+        //var firstPageId = 0;
 
         $("#loadMoreProduct a").on('click', function(e){
             e.preventDefault();
             $this = $(this);
             
             var firstPageId = $("#limit").val();
+           
             alert(firstPageId);
             $.ajax({
                 url: '<?php echo $this->webroot; ?>messages/closetAjaxProductData',
@@ -16,7 +17,7 @@
                 data : {last_limit:firstPageId},
                 success: function(data){
                     res = jQuery.parseJSON(data);
-                    $("$loadMoreProduct").html('<p id="loadMoreProduct"><span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span><input type="hidden" id="limit" value="<?php echo $ProductRowCount; ?>"><a href="" id="<?php echo $ProductRowCount; ?>">Load More Products</a></p>');
+                    alert(res);
                     
                 }    
             });
@@ -323,10 +324,27 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="pagination">
+                                        
+                                    </div>
                             
                             <p id="loadMoreProduct">
+                            <?php
+                                        $start = 0;
+                                        $diff = 20;
+                                        $count = $ProductRowCount/$diff;
+
+                                        for($i=1;$i<=$count;$i++){
+                echo "<a href='#' class='countw' id='".$i."'>".$i."</a>".'<br>';
+                echo "<input type='hidden' id='limit' value='".$i."'>";
+                                        }
+                                        echo  $this->Paginator->options(array('update' => '#posts-list','evalScripts' => true));
+                                        echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                                        echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                                        echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                                        ?>
                                 <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                                <input type="hidden" id="limit" value="<?php echo $ProductRowCount; ?>">
+                                
                                 <a href="" id="<?php echo $ProductRowCount; ?>">Load More Products</a>
                             </p>
                             

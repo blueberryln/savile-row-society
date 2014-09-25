@@ -2884,12 +2884,9 @@ If interested, I would also be happy to meet with you in our New York City based
     // outfit closet ajax data 
     public function closetAjaxProductData($user_id = null) {
         
-        if($this->request->data['last_limit']){
-            $last_product_id = $this->request->data['last_limit'];
-            $last_product_id = $last_product_id.',';
-        }else{
-            $last_product_id = '0';
-        }
+        
+        //$last_product_id = $this->request->data['last_limit'];
+            
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
@@ -2897,7 +2894,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $Entity = ClassRegistry::init('Entity');
 
         $find_array = array(
-            'limit' => $last_product_id,20,
+            'limit' => 20,
             'contain' => array('Image', 'Color','Detail'),
             'conditions' => array(
                 'Entity.show' => true,
@@ -2935,6 +2932,7 @@ If interested, I would also be happy to meet with you in our New York City based
     $this->Paginator->settings = $find_array;
     $products = $this->Paginator->paginate($Entity);
     //$products = $Entity->find('all',$find_array);
+
     echo json_encode($products);
     exit;
     }
@@ -3231,7 +3229,7 @@ If interested, I would also be happy to meet with you in our New York City based
         
         $this->Paginator->settings = $find_array2;
         $products = $this->Paginator->paginate($Entity);
-        $ProductRowCount = count($products);
+        $ProductRowCount = $Entity->find('count',$find_array2);
         //print_r($ProductRowCount);
         if ($this->RequestHandler->isAjax()) { 
                         $this->render('/stylistCloset'); 
