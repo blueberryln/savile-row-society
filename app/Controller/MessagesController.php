@@ -2517,10 +2517,8 @@ If interested, I would also be happy to meet with you in our New York City based
         $this->isLogged();
         $User = ClassRegistry::init('User');
         $user = $User->findById($user_id);
-
         $current_user = $this->getLoggedUser();
-
-        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] == $user['User']['stylist_id']){
             $this->redirect('/');
             exit;
         }
@@ -2885,7 +2883,7 @@ If interested, I would also be happy to meet with you in our New York City based
     public function closetAjaxProductData($user_id = null) {
         
         
-        //$last_product_id = $this->request->data['last_limit'];
+        $last_product_id = $this->request->data['last_limit'];
             
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
@@ -2895,6 +2893,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
         $find_array = array(
             'limit' => 20,
+            'offset'=> $last_product_id,
             'contain' => array('Image', 'Color','Detail'),
             'conditions' => array(
                 'Entity.show' => true,
@@ -2929,9 +2928,9 @@ If interested, I would also be happy to meet with you in our New York City based
             'order' => 'Category.category_id DESC',
             'Group' => 'Entity.id',
         );
-    $this->Paginator->settings = $find_array;
-    $products = $this->Paginator->paginate($Entity);
-    //$products = $Entity->find('all',$find_array);
+    //$this->Paginator->settings = $find_array;
+    //$products = $this->Paginator->paginate($Entity);
+    $products = $Entity->find('all',$find_array);
 
     echo json_encode($products);
     exit;
@@ -3174,7 +3173,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
     // Stylist Closet Data
 
-    public function stylistCloset($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null,$id = null) {
+    public function stylistCloset($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
         
         $user_id = $this->getLoggedUserID();
         // init
@@ -3229,12 +3228,9 @@ If interested, I would also be happy to meet with you in our New York City based
         
         $this->Paginator->settings = $find_array2;
         $products = $this->Paginator->paginate($Entity);
-        $ProductRowCount = $Entity->find('count',$find_array2);
-        //print_r($ProductRowCount);
-        if ($this->RequestHandler->isAjax()) { 
-                        $this->render('/stylistCloset'); 
-                        return; 
-                } 
+        $ProductRowCount = count($products);
+        
+        
         // send data to view
         //$products = $Entity->find('all',$find_array2);
         $this->set(compact('entities', 'products','ProductRowCount', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
@@ -3364,7 +3360,7 @@ If interested, I would also be happy to meet with you in our New York City based
         // Find array for products of a category exluding the filter and brand sub categories
         // and for a unsigned user
         $find_array = array(
-            'limit' => 12,
+            //'limit' => 12,
             'contain' => array('Image', 'Color'),
             'conditions' => array(
                 'Entity.show' => true 
