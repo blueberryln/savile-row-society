@@ -125,7 +125,7 @@
                     </div>
                     <div class="twelve columns left myaccount-sales-dtl">
                         <p>Total Number of Clients: <?php echo $userclient[0][0]['usercount']; ?></p>
-                        <p>Average Monthly Sales: $<?php echo  $avgsalepermonths =   $totalSale[0][0]['finalamount']/12; ?></p>
+                        <p>Average Monthly Sales: $<?php echo  $avgsalepermonths =   round($totalSale[0][0]['finalamount']/12); ?></p>
                         <p>Average Sale per Client: $<?php echo  $avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); ?></p>
                     </div>
                     <div class="twelve columns left chart-table">

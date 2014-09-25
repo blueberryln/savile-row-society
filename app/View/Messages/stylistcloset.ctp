@@ -51,8 +51,8 @@
                             //alert(result);
                         data = $.parseJSON(result);
                             html = '';
-                            html = html + '<div">';
-                            html = html + '<ul">';
+                            html = html + '<div  id="updated_div_id">';
+                            html = html + '<ul>';
             
                         $.each(data,  function (index){
                             html = html + '<li>';
@@ -78,23 +78,106 @@
                 });
             });
 
-
+        var myCheckboxescolour = new Array();
+        var mycolour;
+        var myCheckboxesbrand = new Array();
+        var mybrand;
+        var myCheckboxessubcategory = new Array();
+        var mysubcategory;
         $('.colorsearch').live("click",function() {
-                var colorid = $(this).attr("data-color_id");
-
-                console.log(colorid);
+                mycolour='';
+                mybrand='';
+                mysubcategory='';
+                if(jQuery(this).attr('title')=='colour')
+                {    
+                    if(this.checked==true)
+                    {
+                        myCheckboxescolour.push(jQuery(this).val());
+                    }
+                    else
+                    {   
+                        removindexitem =new Array(); 
+                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxescolour);// Uncheckbox here 
+                        myCheckboxescolour.splice(removindexitem ,1);
+                    
+                    }
+                }
+                else if(jQuery(this).attr('title')=='brand')
+                {    
+                    if(this.checked==true)
+                    {
+                        myCheckboxesbrand.push(jQuery(this).val());
+                    }
+                    else
+                    {   
+                        removindexitem =new Array(); 
+                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxesbrand);// Uncheckbox here 
+                        myCheckboxesbrand.splice(removindexitem ,1);
+                    
+                    }
+                }
+                else if(jQuery(this).attr('title')=='subcategory')
+                {    
+                    if(this.checked==true)
+                    {
+                        myCheckboxessubcategory.push(jQuery(this).val());
+                    }
+                    else
+                    {   
+                        removindexitem =new Array(); 
+                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxessubcategory);// Uncheckbox here 
+                        myCheckboxessubcategory.splice(removindexitem ,1);
+                    
+                    }
+                }
+                mycolour = myCheckboxescolour.join(",");
+                mybrand = myCheckboxesbrand.join(",");
+                mysubcategory = myCheckboxessubcategory.join(",");
+                //console.log(mybrand);
                 $.ajax({
                         type:"POST",
                         url:"<?php echo $this->webroot; ?>messages/closetAjaxColorProductSearchData",
-                        data:{colorid:colorid},
+                        data:{colorid:mycolour,brandid:mybrand,subcategoryid:mysubcategory},
                         cache: false,
                         success: function(result){
-                                
+                            data = $.parseJSON(result);
+                            html = '';
+                            html = html + '<div>';
+                            html = html + '<ul">';
+            
+                        $.each(data,  function (index){
+                            html = html + '<li>';
+                            html = html + '<a href="#">';
+                            var entityimg = this.Image;
+                        $.each(entityimg,  function (index1){
+                            html = html + '<div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ entityimg[index1].name +'" alt="" /></div>';
+                        });
+                            html = html + '<div class="myclst-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        html = html + '<ul>';            
+                        html = html + '</div>';
+                        $(".myclst-prdct-list").html(html);     
                     }
                 });
             });
 
+
 });
+</script>
+<script>
+    $(document).ready(function(){
+        $(".paginator a").click(function(){
+            $("#updated_div_id").load(this.href);
+            return false;
+        })
+    });
 </script>
 <div class="content-container">
     <div class="twelve columns black">
@@ -144,7 +227,7 @@
                                                     <h3><?php echo $category['Category']['name']; ?></h3>
                                                         <?php if ($category['children']) : ?>
                                                             <?php foreach ($category['children'] as $subcategory): ?>
-                                                                <input type="checkbox" name="" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
+                                                                <input type="checkbox" name="" title="subcategory" class="colorsearch" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
                                                                 <label for="s<?php echo $subcategory['Category']['id']; ?>" class=""><?php echo $subcategory['Category']['name']; ?><span></span></label>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
@@ -157,7 +240,7 @@
                                                         <h3>Brands</h3>
                                                         <?php if($brands) : ?>
                                                             <?php foreach($brands as $brand) : ?>
-                                                                <input type="checkbox" name="" value="<?php echo $brand['Brand']['id']; ?>" id="b<?php echo $brand['Brand']['id']; ?>" data-brand_id="<?php echo $brand['Brand']['id']; ?>" />
+                                                                <input type="checkbox" name="" title="brand" class="colorsearch" value="<?php echo $brand['Brand']['id']; ?>" id="b<?php echo $brand['Brand']['id']; ?>" data-brand_id="<?php echo $brand['Brand']['id']; ?>" />
                                                                 <label for="b<?php echo $brand['Brand']['id']; ?>" class=""><?php echo $brand['Brand']['name']; ?><span></span></label>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
@@ -169,7 +252,7 @@
                                                         
                                                         <?php if($colors) : ?>
                                                             <?php foreach($colors as $color) :?>
-                                                                <input type="checkbox" name="" class="colorsearch" data-color_id="<?php echo $color['Colorgroup']['id']; ?>" value="<?php echo $color['Colorgroup']['id']; ?>" id="c<?php echo $color['Colorgroup']['id']; ?>" />
+                                                                <input type="checkbox" name="color[]" title="colour" class="colorsearch" data-color_id="<?php echo $color['Colorgroup']['id']; ?>" value="<?php echo $color['Colorgroup']['id']; ?>" id="c<?php echo $color['Colorgroup']['id']; ?>" />
                                                                 <label for="c<?php echo $color['Colorgroup']['id']; ?>"  class=""><?php echo $color['Colorgroup']['name']; ?><span></span></label>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
@@ -197,194 +280,51 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="twelve columns left myclst-prdct-list">
-                                <div>
+                            <div class="twelve columns left myclst-prdct-list" >
+                                <div id="updated_div_id" >
                                     <ul>
-                                        <li>
+
+                                    <?php  for($i = 0; $i < count($products); $i++){
+                                                $product = $products[$i];
+                                                //print_r($product);
+                                                    ?>
+                                        <li  >
                                             <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
+                                            <?php foreach ($product['Image'] as $images):?>
+                                            
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $images['name']; ?>" alt="" /></div>
+                                            <?php endforeach; ?>
                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                    <h3><?php echo $product['Entity']['name']; ?></h3>
+                                                    <p><?php echo substr($product['Entity']['description'],0,25); ?></p>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                                
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                               <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
-                                               <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                                
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                               <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
-                                               <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
-                                                <div class="myclst-prdt-overlay">
-                                                    <h3>Some crazy circuit</h3>
-                                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                                                </div>
-                                            </a>
-                                        </li>
+                                    <?php } ?>
+
+                                        
+                                        <!-- <div class="pagination">
+                                        <span class="prev disabled" id="pre">></span><span class="next disabled" id="next"><</span>
+                    
+                                        </div> -->
+
                                     </ul>
                                 </div>
                             </div>
+                            <div class="paginator">
+        <?php echo $this->paginator->first(' First ', null, null, array('class' => 'disabled')); ?>
+        <?php echo $this->paginator->prev('Previous ', null, null, array('class' => 'disabled')); ?>
+        <?php echo $this->paginator->numbers(); ?>
+       <?php echo $this->paginator->next(' Next ', null, null, array('class' => 'disabled')); ?>
+        <?php echo $this->paginator->last(' Last ', null, null, array('class' => 'disabled')); ?>
+</div> 
+<!--                             <div class="pagination stylistcloset">
+                                        <?php
+                                        echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                                        echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                                        echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                                        ?>
+                                    </div> -->
                         </div>
                     </div>
                 
