@@ -9,7 +9,7 @@ App::uses('CakeEmail', 'Network/Email');
  * @property Message $Message
  */
 class MessagesController extends AppController {
-    public $components = array('Paginator');
+    public $components = array('Paginator','RequestHandler');
     public $helpers = array('Paginator');
 
     public function beforeFilter(){
@@ -2524,7 +2524,7 @@ If interested, I would also be happy to meet with you in our New York City based
             $this->redirect('/');
             exit;
         }
-        //print_r($user);
+        print_r($user);
         $stylist_id = $user['User']['stylist_id'];
         $find_array = array(
                 'fields' => array('User.*,User1.*'),
@@ -2883,8 +2883,10 @@ If interested, I would also be happy to meet with you in our New York City based
 
     // outfit closet ajax data 
     public function closetAjaxProductData($user_id = null) {
-        $this->autoLayout = false;
-        $this->layout = 'ajax';
+        
+        
+        //$last_product_id = $this->request->data['last_limit'];
+            
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
@@ -2892,7 +2894,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $Entity = ClassRegistry::init('Entity');
 
         $find_array = array(
-            'limit' => 12,
+            'limit' => 20,
             'contain' => array('Image', 'Color','Detail'),
             'conditions' => array(
                 'Entity.show' => true,
@@ -2924,11 +2926,13 @@ If interested, I would also be happy to meet with you in our New York City based
             'fields' => array(
                 'Entity.*', 'Category.category_id', 'Product.*', 'Brand.*',
             ),
-            'order' => 'Category.category_id ASC'
+            'order' => 'Category.category_id DESC',
+            'Group' => 'Entity.id',
         );
     $this->Paginator->settings = $find_array;
     $products = $this->Paginator->paginate($Entity);
     //$products = $Entity->find('all',$find_array);
+
     echo json_encode($products);
     exit;
     }
@@ -3170,7 +3174,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
     // Stylist Closet Data
 
-    public function stylistCloset($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
+    public function stylistCloset($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null,$id = null) {
         
         $user_id = $this->getLoggedUserID();
         // init
@@ -3198,8 +3202,6 @@ If interested, I would also be happy to meet with you in our New York City based
 
         $find_array2 = array(
             'limit'=>20,
-
-            'recursive' => -1,
             'contain' => array('Image', 'Color', 'Detail'),
             //'conditions' => array('Entity.id' => $entity_list),
             'joins' => array(
@@ -3227,9 +3229,15 @@ If interested, I would also be happy to meet with you in our New York City based
         
         $this->Paginator->settings = $find_array2;
         $products = $this->Paginator->paginate($Entity);
+        $ProductRowCount = $Entity->find('count',$find_array2);
+        //print_r($ProductRowCount);
+        if ($this->RequestHandler->isAjax()) { 
+                        $this->render('/stylistCloset'); 
+                        return; 
+                } 
         // send data to view
         //$products = $Entity->find('all',$find_array2);
-        $this->set(compact('entities', 'products', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
+        $this->set(compact('entities', 'products','ProductRowCount', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
 
         if(!$category_slug){
             $this->render('stylistcloset');     

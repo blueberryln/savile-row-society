@@ -224,9 +224,9 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="eleven columns container works-boxes">
             <div class="work-box">
                 <?php if($is_logged && $has_stylist) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="over-img">
                 <?php elseif($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="over-img">
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
@@ -238,9 +238,9 @@ $this->Html->script('cookie.js', array('inline' => false));
 
 
                 <?php if($is_logged && $has_stylist) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
                 <?php elseif($is_logged) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
                 <?php else : ?>
                     <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
                 <?php endif; ?>
@@ -249,7 +249,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged && $has_stylist) : ?>
                     <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
                 <?php elseif($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="over-img">
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
@@ -263,7 +263,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged && $has_stylist) : ?>
                     <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
                 <?php elseif($is_logged) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
                 <?php else : ?>
                     <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
                 <?php endif; ?>
@@ -272,7 +272,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged && $has_stylist) : ?>
                     <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="over-img">
                 <?php elseif($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="over-img">
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
@@ -286,7 +286,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged && $has_stylist) : ?>
                     <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
                 <?php elseif($is_logged) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
+                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
                 <?php else : ?>
                     <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
                 <?php endif; ?>
@@ -296,9 +296,9 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="eleven columns container works-boxes only-desktop">
         <div class="work-box">
             <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
             <?php endif; ?>
@@ -307,7 +307,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
             <?php endif; ?>
@@ -316,7 +316,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <?php if($is_logged && $has_stylist) : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
             <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
+                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
             <?php else : ?>
                 <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
             <?php endif; ?>
@@ -336,34 +336,14 @@ $this->Html->script('cookie.js', array('inline' => false));
                     <?php foreach($topstylists as $topstylist): ?>
                     <li>
                         <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />
-                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
+                        <a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
                             <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
                             <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
                         </div>
                         </a>
                     </li>
                 <?php endforeach; ?>
-                    <!-- <li>
-                        <img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" />
-                        <div class="featured-stylist-hover">
-                            <span class="featured-stylist-hover-text">Stylist Stylist</span>
-                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_3.jpg" />
-                        <div class="featured-stylist-hover">
-                            <span class="featured-stylist-hover-text">Stylist Stylist</span>
-                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_4.jpg" />
-                        <div class="featured-stylist-hover">
-                            <span class="featured-stylist-hover-text">Stylist Stylist</span>
-                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
-                        </div>
-                    </li> -->
+                    
                 </ul>
             </div>
             
@@ -450,7 +430,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                                 <a class="shop-outfit-bottom-link" href="javascript:;" title="">Shop Outfit</a>
                             </div>
                         </div>
-                        <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $topoutfit['stylistname']['User']['id']; ?>" title="" class="outfilt-btns">Learn about <?php echo $topoutfit['stylistname']['User']['first_name']; ?></a></div>
+                        <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $topoutfit['stylistname']['User']['id']; ?>" title="" class="outfilt-btns">Learn about <?php echo $topoutfit['stylistname']['User']['first_name']; ?></a></div>
                     </li>
                     <?php } ?>
                 <?php else: ?>

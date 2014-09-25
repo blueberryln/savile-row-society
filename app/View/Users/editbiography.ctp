@@ -1,8 +1,3 @@
-<?php
-$meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. <br/> We\'ll perfect your image from head to toe.';
-$this->Html->meta('description', $meta_description, array('inline' => false));
-?>
-
 <div class="content-container">
     <div class="eleven columns container content inner stylistbio">
         <div class="twelve columns container stylistbio-section left">
@@ -11,7 +6,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
 <?php
 $stylistbioid  = $find_array[0]['Stylistbio']['id'];
-$stylistid  = $find_array[0]['Stylistbio']['stylist_id'];
+$stylistid  = $user['User']['id'];
  ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -24,7 +19,7 @@ $(document).ready(function(){
         var id = $("#id").val();
         $.ajax({
             type: "POST",
-            url: "<?php echo $this->webroot; ?>Auth/updatestylistbiographyhometown/<?php echo $stylistbioid; ?>",
+            url: "<?php echo $this->webroot; ?>users/updatestylistbiographyhometown/<?php echo $stylistbioid; ?>",
             data: {hometown:hometown,id:id},
             cache: false,
             success: function(result){
@@ -40,7 +35,7 @@ $(document).ready(function(){
         var id = $("#id").val();
         $.ajax({
             type: "POST",
-            url: "<?php echo $this->webroot; ?>Auth/updatestylistbiographyfunfect/<?php echo $stylistbioid; ?>",
+            url: "<?php echo $this->webroot; ?>users/updatestylistbiographyfunfect/<?php echo $stylistbioid; ?>",
             data: {funfect:funfect,id:id},
             cache: false,
             success: function(result){
@@ -55,7 +50,7 @@ $(document).ready(function(){
         var Inspiration = $("#StylebioStylistInspiration").val();
         $.ajax({
             type: "POST",
-            url: "<?php echo $this->webroot; ?>Auth/updatestylistbiographyInspiration/<?php echo $stylistbioid; ?>",
+            url: "<?php echo $this->webroot; ?>users/updatestylistbiographyInspiration/<?php echo $stylistbioid; ?>",
             data: {stylist_inspiration:Inspiration,id:id},
             cache: false,
             success: function(result){
@@ -70,7 +65,7 @@ $(document).ready(function(){
         var Bio = $("#StylebioStylistBio").val();
         $.ajax({
             type: "POST",
-            url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyBio/<?php echo $stylistbioid; ?>",
+            url: "<?php echo $this->webroot; ?>users/updateStylistBiographyBio/<?php echo $stylistbioid; ?>",
             data: {stylist_bio:Bio,id:id},
             cache: false,
             success: function(result){
@@ -85,7 +80,7 @@ $(document).ready(function(){
         var fashiontip = $("#fashiontip").val();
         $.ajax({
             type: "POST",
-            url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyFashionTip/<?php echo $stylistbioid; ?>",
+            url: "<?php echo $this->webroot; ?>users/updateStylistBiographyFashionTip/<?php echo $stylistbioid; ?>",
             data: {fashiontip:fashiontip,id:id},
             cache: false,
             success: function(result){
@@ -102,7 +97,7 @@ $(document).ready(function(){
         alert(fileupload);
         $.ajax({
             type: "POST",
-            url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyimage/<?php echo $stylistid; ?>",
+            url: "<?php echo $this->webroot; ?>users/updateStylistBiographyimage/<?php echo $stylistid; ?>",
             data: {image:fileupload,caption:caption,is_profile:is_profile},
             cache: false,
             success: function(result){
@@ -124,12 +119,12 @@ $(document).ready(function(){
 
 });
 </script>
-
+<?php //echo $find_array[0]['Stylistphotostream']['image']; die;?>
             <div class="stylistbio-section-right">
                 <div class="eleven columns container">
                     <div class="twelve columns">
                         <div class="stylistbio-profile left text-center">
-                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $find_array[0]['Stylistphotostream']['image']; ?>" width='277' height='309' alt="" /></div>
+                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url']; ?>" width='277' height='309' alt="" /></div>
                             <div class=" twelve columns social-networks">
                                 
                                 <ul>
@@ -140,12 +135,12 @@ $(document).ready(function(){
                                     <li class="facebbok"><a href="<?php echo $social['facebook']; ?>" target="blank" title="">facebook</a></li>
                                 </ul>
                             </div>
-                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Bio</h1>
+                            <h1 class="stylistbio-heading"><?php echo $user['User']['first_name']; ?>’s Bio</h1>
                             <div class="user-desc">
                             <div class="input taxtarea"><textarea name="data[Stylebio][stylist_bio]"  rows="10" cols="30"  id="StylebioStylistBio"><?php echo $find_array[0]['Stylistbio']['stylist_bio']; ?></textarea><a href="#" id="submit_stylist_bio">submit</a></div>
                                
                             </div>
-                            <h1 class="stylistbio-heading"><?php echo $find_array[0]['User']['first_name']; ?>’s Inspiration</h1>
+                            <h1 class="stylistbio-heading"><?php echo $user['User']['first_name']; ?>’s Inspiration</h1>
                             <div class="user-inspire-desc">
                             <div class="input taxtarea"><textarea name="data[Stylebio][stylist_inspiration]"  rows="10" cols="30"  id="StylebioStylistInspiration"><?php echo $find_array[0]['Stylistbio']['stylist_inspiration']; ?></textarea><a href="#" id="submit_stylist_inspiration">submit</a></div>
                             
@@ -153,8 +148,8 @@ $(document).ready(function(){
                         </div>
                         <div class="stylistbio-details right">
                             <div class="twelve columns left">
-                                <div class="stylistbio-user"><?php echo $find_array[0]['User']['first_name'].'&nbsp;'.$find_array[0]['User']['last_name']; ?> | Stylist</div>
-                                <div class="start-today"><a href="javascript:;">get started with <?php echo $find_array[0]['User']['first_name']; ?> Today!</a></div>
+                                <div class="stylistbio-user"><?php echo $user['User']['first_name'].'&nbsp;'.$user['User']['last_name']; ?> | Stylist</div>
+                                <div class="start-today"><a href="javascript:;">get started with <?php echo $user['User']['first_name']; ?> Today!</a></div>
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
@@ -282,123 +277,7 @@ $(document).ready(function(){
                                                 }
                                             }
                                         </script> 
-                                    <!-- file upload-->
-                                    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-                                    <?php
-                                    // echo $this->html->script('drag/js/vendor/jquery.ui.widget.js');
-                                    // echo $this->html->script('drag/js/load-image.min.js');
-                                    // echo $this->html->script('drag/js/jquery.fileupload.js');
-                                    // echo $this->html->script('drag/js/jquery.fileupload-process.js');
-                                    // echo $this->html->script('drag/js/jquery.fileupload-image.js');
-                                    ?>
-                                    <script>
-                                    // /*jslint unparam: true, regexp: true */
-                                    // /*global window, $ */
-                                    // $(function () {
-                                    // 'use strict';
-                                    // // Change this to the location of your server-side upload handler:
-                                    // var url = window.location.hostname === '127.0.0.1' ?
-                                    // '//SRS/' : '<?php echo $this->webroot; ?>files/server/php/',
-                                    // uploadButton = $('<button/>')
-                                    // .addClass('btn btn-primary')
-                                    // .prop('disabled', true)
-                                    // .text('Processing...')
-                                    // .on('click', function () {
-                                    // var $this = $(this),
-                                    // data = $this.data();
-                                    // $this
-                                    // .off('click')
-                                    // .text('Abort')
-                                    // .on('click', function () {
-                                    // $this.remove();
-                                    // data.abort();
-                                    // });
-                                    // data.submit().always(function () {
-                                    // $this.remove();
-                                    // });
-                                    // });
-                                    // $('#fileupload').fileupload({
-                                    // url: url,
-                                    // dataType: 'json',
-                                    // autoUpload: false,
-                                    // acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-                                    // maxFileSize: 5000000, // 5 MB
-                                    // // Enable image resizing, except for Android and Opera,
-                                    // // which actually support image resizing, but fail to
-                                    // // send Blob objects via XHR requests:
-
-                                    // disableImageResize: /Android(?!.*Chrome)|Opera/
-                                    // .test(window.navigator.userAgent),
-
-                                    // previewMaxWidth: 100,
-                                    // previewMaxHeight: 100,
-                                    // previewCrop: true
-                                    // }).on('fileuploadadd', function (e, data) {
-                                    // data.context = $('<div/>').appendTo('#files');
-                                    // $.each(data.files, function (index, file) {
-                                    // var node = $('<p/>')
-                                    // .append($('<span/>').text(file.name));
-                                    // if (!index) {
-                                    // node
-                                    // .append('<br>')
-                                    // .append(uploadButton.clone(true).data(data));
-                                    // }
-                                    // node.appendTo(data.context);
-                                    // });
-                                    // }).on('fileuploadprocessalways', function (e, data) {
-                                    // var index = data.index,
-                                    // file = data.files[index],
-                                    // node = $(data.context.children()[index]);
-                                    // if (file.preview) {
-                                    // node
-                                    // .prepend('<br>')
-                                    // .prepend(file.preview);
-                                    // }
-                                    // if (file.error) {
-                                    // node
-                                    // .append('<br>')
-                                    // .append($('<span class="text-danger"/>').text(file.error));
-                                    // }
-                                    // if (index + 1 === data.files.length) {
-                                    // data.context.find('button')
-                                    // .text('Upload')
-                                    // .prop('disabled', !!data.files.error);
-                                    // }
-                                    // }).on('fileuploadprogressall', function (e, data) {
-                                    //     alert(formData);
-                                    // // var progress = parseInt(data.loaded / data.total * 100, 10);
-                                    // // $('#progress .progress-bar').css(
-                                    // // 'width',
-                                    // // progress + '%'
-                                    // // );
-                                    // }).on('fileuploaddone', function (e, data) {
-                                    // $.each(data.result.files, function (index, file) {
-                                    // if (file.url) {
-                                    // var link = $('<a>')
-
-                                    // .attr('target', '_blank')
-                                    // .prop('href', file.url);
-                                    // $(data.context.children()[index])
-                                    // .wrap(link);
-                                    // } else if (file.error) {
-                                    // var error = $('<span class="text-danger"/>').text(file.error);
-                                    // $(data.context.children()[index])
-                                    // .append('<br>')
-                                    // .append(error);
-                                    // }
-                                    // });
-                                    // }).on('fileuploadfail', function (e, data) {
-                                    // $.each(data.files, function (index, file) {
-                                    // var error = $('<span class="text-danger"/>').text('File upload failed.');
-                                    // $(data.context.children()[index])
-                                    // .append('<br>')
-                                    // .append(error);
-                                    // });
-                                    // }).prop('disabled', !$.support.fileInput)
-                                    // .parent().addClass($.support.fileInput ? undefined : 'disabled');
-                                    // });
- 
-                                    </script>
+                                    
 
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
@@ -435,7 +314,7 @@ $(document).ready(function(){
                                             var id = $("#id").val();
                                                 $.ajax({
                                                     type: "POST",
-                                                    url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyoutfit/<?php echo $stylistid; ?>",
+                                                    url: "<?php echo $this->webroot; ?>users/updateStylistBiographyoutfit/<?php echo $stylistid; ?>",
                                                     data: {order_id:order,outfit_id:outfit,id:id},
                                                     cache: false,
                                                     success: function(data){
@@ -451,6 +330,7 @@ $(document).ready(function(){
                                                         html = html + '<h2>'+this.outfit.Outfit.outfitname+'</h2>';
                                                         html = html + '<div class="outfit-products">';
                                                         html = html + '<ul>';
+                                                        $.each(data,  function (index){
                                                         html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[0].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[0].Entity.name+'</div></li>';
                                                         html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[1].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[1].Entity.name+'</div></li>';
                                                         html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.entities[2].Image[0].name+'" alt="" height="108" width="122" /><div class="outfit-products-details">'+this.entities[2].Entity.name+'</div></li>';
@@ -532,7 +412,7 @@ $(document).ready(function(){
                                             var id  = $("#id2").val();
                                                 $.ajax({
                                                     type: "POST",
-                                                    url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyoutfit2/<?php echo $stylistid; ?>",
+                                                    url: "<?php echo $this->webroot; ?>users/updateStylistBiographyoutfit2/<?php echo $stylistid; ?>",
                                                     data: {order_id:order,outfit_id:outfit,id:id},
                                                     cache: false,
                                                     success: function(data){
@@ -621,7 +501,7 @@ $(document).ready(function(){
                                             var id = $("#id3").val();
                                                 $.ajax({
                                                     type: "POST",
-                                                    url: "<?php echo $this->webroot; ?>Auth/updateStylistBiographyoutfit3/<?php echo $stylistid; ?>",
+                                                    url: "<?php echo $this->webroot; ?>users/updateStylistBiographyoutfit3/<?php echo $stylistid; ?>",
                                                     data: {order_id:order,outfit_id:outfit,id:id},
                                                     cache: false,
                                                     success: function(data){

@@ -1,6 +1,27 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
+        //var firstPageId = 0;
+
+        $("#loadMoreProduct a").on('click', function(e){
+            e.preventDefault();
+            $this = $(this);
+            
+            var firstPageId = $("#limit").val();
+           
+            alert(firstPageId);
+            $.ajax({
+                url: '<?php echo $this->webroot; ?>messages/closetAjaxProductData',
+                cache: false,
+                type: 'POST',
+                data : {last_limit:firstPageId},
+                success: function(data){
+                    res = jQuery.parseJSON(data);
+                    alert(res);
+                    
+                }    
+            });
+        });
 
     //get stylist like data
             $("#stylistbookmarks").live("click", function () {
@@ -171,14 +192,9 @@
 
 });
 </script>
-<script>
-    $(document).ready(function(){
-        $(".paginator a").click(function(){
-            $("#updated_div_id").load(this.href);
-            return false;
-        })
-    });
-</script>
+
+
+
 <div class="content-container">
     <div class="twelve columns black">
         <div class="eleven columns container">
@@ -281,7 +297,7 @@
                                 </div>
                             </div>
                             <div class="twelve columns left myclst-prdct-list" >
-                                <div id="updated_div_id" >
+                                <div id="posts-list">
                                     <ul>
 
                                     <?php  for($i = 0; $i < count($products); $i++){
@@ -302,29 +318,36 @@
                                         </li>
                                     <?php } ?>
 
-                                        
-                                        <!-- <div class="pagination">
-                                        <span class="prev disabled" id="pre">></span><span class="next disabled" id="next"><</span>
-                    
-                                        </div> -->
+                                       
+                                       
 
                                     </ul>
                                 </div>
                             </div>
-                            <div class="paginator">
-        <?php echo $this->paginator->first(' First ', null, null, array('class' => 'disabled')); ?>
-        <?php echo $this->paginator->prev('Previous ', null, null, array('class' => 'disabled')); ?>
-        <?php echo $this->paginator->numbers(); ?>
-       <?php echo $this->paginator->next(' Next ', null, null, array('class' => 'disabled')); ?>
-        <?php echo $this->paginator->last(' Last ', null, null, array('class' => 'disabled')); ?>
-</div> 
-<!--                             <div class="pagination stylistcloset">
-                                        <?php
+                            <div class="pagination">
+                                        
+                                    </div>
+                            
+                            <p id="loadMoreProduct">
+                            <?php
+                                        $start = 0;
+                                        $diff = 20;
+                                        $count = $ProductRowCount/$diff;
+
+                                        for($i=1;$i<=$count;$i++){
+                echo "<a href='#' class='countw' id='".$i."'>".$i."</a>".'<br>';
+                echo "<input type='hidden' id='limit' value='".$i."'>";
+                                        }
+                                        echo  $this->Paginator->options(array('update' => '#posts-list','evalScripts' => true));
                                         echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
                                         echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
                                         echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
                                         ?>
-                                    </div> -->
+                                <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                
+                                <a href="" id="<?php echo $ProductRowCount; ?>">Load More Products</a>
+                            </p>
+                            
                         </div>
                     </div>
                 
