@@ -35,7 +35,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     <div class="my-profile-img m-ver">
                         <h2><?php echo $client_user['User']['first_name'].'&nbsp;'.$client_user['User']['last_name']; ?>.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $client_user['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
+                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $client_user['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image"  /></a>
                         </div>
                         <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
@@ -52,7 +52,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <div class="left-pannel left">
                                 <div class="client-img">
 
-                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url'] ?>" alt="" height="134" width="148" data-name="Haspel" /></div>
+                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url'] ?>" alt=""  data-name="Haspel" /></div>
                                 <div class="twelve columns left left-nav">
                                     <ul>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>

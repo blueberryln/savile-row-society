@@ -2395,6 +2395,8 @@ If interested, I would also be happy to meet with you in our New York City based
         $outfitname = $Outfit->findById($outfit_id);
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+        $Message = ClassRegistry::init('Message');
+        $messages_outfit_comments = $Message->find('first',array('conditions'=>array('Message.outfit_id'=>$outfit_id,'Message.is_outfit'=>true,),'fields'=>array('Message.body as stylist_comments')));
         $entity_list = array();
             foreach($outfit as $value){
                 $entity_list[] = $value['OutfitItem']['product_entity_id'];
@@ -2445,8 +2447,8 @@ If interested, I would also be happy to meet with you in our New York City based
                 $this->Session->delete('cart-three-items');
                 $this->Session->delete('cart-three-items-msg');
             }
-                print_r($entities);
-            $this->set(compact('entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata'));
+                //print_r($entities);
+            $this->set(compact('outfit_id','messages_outfit_comments', 'entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata'));
            
     }
 

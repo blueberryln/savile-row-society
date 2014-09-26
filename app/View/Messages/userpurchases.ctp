@@ -64,7 +64,7 @@ $(document).ready(function(){
                     <div class="my-profile-img m-ver">
                         <h2><?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?><span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
+                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image"  /></a>
                         </div>
                         <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
@@ -79,7 +79,7 @@ $(document).ready(function(){
                     <div class="twelve columns left inner-content pad-none">
                         <div class="inner-left left">
                             <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>" height="134" width="148" alt=""/></div>
+                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>"  alt=""/></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
                                         <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>

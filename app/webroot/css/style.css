@@ -589,8 +589,8 @@ div.apt-form div.apt-comment{margin-top:10px; margin-bottom:20px;}
 	.product-description label { color: #AD9C56; text-transform: capitalize; font-size: 16px;}
 	.product-description label select { color: #555; font-size: 14px; text-align: center; margin-left: 15px; border: 1px solid #d0d0d0; border-radius: 2px; background-color: #ffffff; padding: 5px; line-height: 25px; }
 	.add-to-cart{margin-top: 20px;}
-	#product-size , #product-quantity, .outfit-page-item .product-size , .outfit-page-item .product-quantity{width: 120px;}
-	#product-size, .outfit-page-item .product-size{margin-left: 50px;}
+	#product-size , #product-quantity, .outfit-page-item .product-size , .outfit-page-item .product-quantity{width: 80px;}
+	/*#product-size, .outfit-page-item .product-size{margin-left: 50px;}*/
 	.product-icon-cont ul li { list-style-type: none;  display:inline-block; height: 92px; width: 68px; margin-right: 28px; background-color: #FFFFFF; border: 1px solid #ccc; text-align: center; line-height: 88px; }
 	.product-icon-cont ul li img{ max-height: 90px; max-width: 68px; vertical-align: middle; }
 	li.last { margin-right: 0px !important; }

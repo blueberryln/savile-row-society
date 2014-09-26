@@ -2,67 +2,26 @@
 $logged_script = '';
 if($user_id){    
 $logged_script = '
-    $(".thumbs-up").click(function(e) {
+    $(".product-my-likes").click(function(e) {
         e.preventDefault();
         $this = $(this);
             var productBlock = $this.closest(".product-detail-cont");
-            var productId = productBlock.find(".product-id").val();
-        if(!$this.hasClass("liked")){
-            $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
+            //var productId = productBlock.find(".product-id").val();
+            var productId = $this.data("product_id");
+            var outfitId = "'.$outfit_id.'";
+            //alert(outfitId);
+        
+            $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId,outfit_id:outfitId},
             function(data) {
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
                     $this.addClass("liked");
-                    $this.closest(".product-thumbs").find(".thumbs-down").removeClass("disliked");
-                }
-
-                if(ret["profile_status"] == "incomplete"){
-                    var notificationDetails = new Array();
-                    notificationDetails["msg"] = ret["profile_msg"];
-                    notificationDetails["button"] = "<a href=\"' . $this->webroot . 'register/wardrobe\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
-                    showNotification(notificationDetails);
+                    $this.closest(".product-my-likes").text("Liked");
                 }
             }
         );
-        }else{
-            $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
-                function(data) {
-                        var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.removeClass("liked");
-                    }
-                }
-            );
-        }
     });
-
-    $(".thumbs-down").click(function(e) {
-            e.preventDefault();
-            $this = $(this);
-            var productBlock = $this.closest(".product-detail-cont");
-            var productId = productBlock.find(".product-id").val();
-            if(!$this.hasClass("disliked")){
-                $.post("' . $this->request->webroot . 'api/dislike/save", { product_id: productId},
-                    function(data) {
-                        var ret = $.parseJSON(data);
-                        if(ret["status"] == "ok"){
-                            $this.addClass("disliked");
-                            $this.closest(".product-thumbs").find(".thumbs-up").removeClass("liked");
-                        }
-                    }
-                );
-            }else{
-                $.post("' . $this->request->webroot . 'api/dislike/remove", { product_id: productId},
-                    function(data) {
-                        var ret = $.parseJSON(data);
-                        if(ret["status"] == "ok"){
-                            $this.removeClass("disliked");
-                        }
-                    }
-                );
-            }
-    });
-    ';
+';
 }
 $script = '
 var threeItemPopup = ' . $show_three_item_popup. ';
@@ -256,7 +215,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
 <div class="my-profile-img m-ver">
 <h2><?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?><span>My Stylist</span></h2>
 <div class="client-img-small right">
-<a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
+<a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image"  /></a>
 </div>
 <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
 </div>
@@ -302,7 +261,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
 
 </div>
 <div class="outfit-stylst-comment"><span>Stylist Comment:</span></div>
-<div class="outfit-stylst-comment-dtl">“Hi Kyle, This will be a great  outfit for your upcoming vacation. The items can be dressed down or up, whether it be for cocktails or poolside lounging.”</div>
+<div class="outfit-stylst-comment-dtl"><?php if($messages_outfit_comments['Message']['stylist_comments']){ echo $messages_outfit_comments['Message']['stylist_comments']; }else{} ?></div>
 </div>   
 </div>
 </div>
@@ -399,7 +358,10 @@ if($similar) : ?>
 <div class="product-dtl-links left">
 
 <a href="" class="link-btn gold-btn add-to-cart full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
-<a class="product-my-likes"href="javascript:;" title="">Add to My Likes</a>
+<input type="">
+
+<a class="product-my-likes"href="#" id="likes" data-product_id="<?php echo $entity['Entity']['id']; ?>"><?php echo ($entity['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
+
 <div class="product-social-likes">
 <ul>
 <li><a class="product-social-likes-pintrest" href="javascript:;" title="">Pintrest</a></li>
