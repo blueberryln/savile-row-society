@@ -1070,8 +1070,8 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .client-outfit-bottom { position: relative; padding:10px 0 20px; }
 .client-comments { width: 60%;}
 .client-comments h2 { font-size: 18px; line-height: 20px; padding: 5px 0 3px; margin: 0; color: #b9a979; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
-.client-comments-text { font-size: 12px; line-height: 14px;}
-.client-comments-text  a{ font-style: italic; text-decoration: underline; color: #af9a59;}
+.client-comments-text { font-size: 12px; line-height: 14px; height: 13px; overflow: hidden; position: relative; padding-right: 65px;}
+.client-comments-text  a.client-comments-text-rm{ position: absolute; bottom: 0px; right: 5px;  font-style: italic; text-decoration: underline; color: #af9a59;}
 .share-outfit, .bkmrk-outfit{ font-size: 14px; color: #c2c2c2; text-transform: uppercase; padding:10px 0 10px   30px; background: url('../images/share-icon.png') no-repeat left center; position: absolute; bottom: 14px; right: 26px;}
 .bkmrk-outfit { bottom: 38px; right: 0px; background: url('../images/bkmrk-icon.png') no-repeat left center;}
 
@@ -1707,6 +1707,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .mydesbrd-items-content .bx-pager.bx-default-pager { display: none;}
 
 
+.rfr-frnd-right { width: 70%; float: left; margin-left: 5.5%;}
 
 
 
@@ -1741,7 +1742,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
     .works-boxes .work-box, .shopping-boxes .shopping-box { width: 24%; margin: 0 4%; }
     .works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes { margin-top: 20px; padding-bottom: 30px;}
     .featured-stylist ul li { width: 171px!important; height: 171px; line-height: 171px; overflow: hidden;}
-    .featured-stylist .bx-wrapper { margin-left: -12px;}
+    .featured-stylist .bx-wrapper { margin: 0 auto;}
     .featured-stylist a.bx-prev, .featured-stylist a.bx-next { top: 35px;}
     .featured-stylist a.bx-prev { left: -50px;}
     .featured-stylist a.bx-next { right: -40px;}
@@ -2089,7 +2090,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 	.product-default-image img{width: 100% !important;}
 	.product-icon-cont ul li { margin-right: 0; }
 	.product-thumbs .thumbs-down{margin-right: 0;}
-	.box-modal-inside{padding: 25px 0;}
+	.box-modal-inside{padding: 25px 15px;}
 	div.signup-content, div.signin-content{width: 100%; padding: 0 5px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box;}
 	.tm-info{padding: 0 5px;}
 	.team-member { width: 75%; }	

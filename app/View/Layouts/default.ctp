@@ -268,7 +268,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 });
                 
                 $('.slider1').bxSlider({
-                //slideWidth: 220,
+                slideWidth: 220,
                 minSlides: 1,
                 maxSlides: 10,
                 moveSlides: 1,
@@ -337,6 +337,10 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 
                 $('.ctg-one > label').on('click', 'span', function(){
                     $(this).removeClass("checked");
+                });
+                
+                $('.client-comments-text > a').click(function(){
+                    $('.client-comments-text').css({height:'auto'});
                 });
                 
 //                $(".defalut-check input:checkbox").change(function(){

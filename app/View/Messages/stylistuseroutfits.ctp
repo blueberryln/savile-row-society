@@ -182,7 +182,7 @@
                                                 <div class="twelve columns left client-outfit-bottom pad-none">
                                                     <div class="client-comments left">
                                                         <h2>Stylist Comment</h2>
-                                                        <div class="client-comments-text left">Kyle-  <?php echo $my_outfit['comments']; ?> <a href="javascript:;" title="">Read More</a></div>
+                                                        <div class="client-comments-text left">Kyle-  <?php echo $my_outfit['comments']; ?> <a class="client-comments-text-rm" href="javascript:;" title="">Read More</a></div>
                                                     </div>
                                                     
                                                     <div class="share-outfit right">Share Outfit</div>
