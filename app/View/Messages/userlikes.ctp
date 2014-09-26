@@ -50,7 +50,7 @@ $(".userlikes a").on('click',function(){
                 data = $.parseJSON(result);
             html = '';
             $.each(data,  function (index){
-                html = html + '<li>';7
+                html = html + '<li>';
                 html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
                 html = html + '<div class="purchase-dtls-items left">';
                 html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';

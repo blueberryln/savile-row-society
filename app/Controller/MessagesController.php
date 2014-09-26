@@ -1067,20 +1067,30 @@ If interested, I would also be happy to meet with you in our New York City based
 
                     //pagination 
 
-                  $find_array = array('conditions' => array('AND' =>
-                        array(
-                            'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id)
-                        )
-                    ),
-                    'contain' => array('UserFrom'),
-                    'limit' => 2,
-                    'fields' => array(
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
-                        ),
-                    );
+                  // $find_array = array('conditions' => array('AND' =>
+                  //       array(
+                  //           'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id)
+                  //       )
+                  //   ),
+                  //   'contain' => array('UserFrom'),
+                  //   'limit' => 2,
+                  //   'fields' => array(
+                  //       'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                  //       ),
+                  //   'order' => array('Message.created DESC'),
+                  //   );
+                    $find_array = array(
+                                    'conditions' => array('Message.user_to_id' => $client_id, 'Message.is_outfit' => 1,),
+                                    'limit' => 2,
+                                    'fields' => array(
+                                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id',
+                                    ),
+                                    'order' =>  array('Message.created DESC'),
+                                );
 
                     $my_conversation = $this->Message->find('all',$find_array);
                     $my_conversation_count = count($my_conversation);
+
                     //pagination
 
 
@@ -1110,61 +1120,12 @@ If interested, I would also be happy to meet with you in our New York City based
                         }
                     }
                 //print_r($my_outfits);
-        $this->set(compact('my_outfits','user_id','Userdata'));
+        $this->set(compact('my_outfits','user_id','Userdata','my_conversation_count'));
         
     }
    
 
-   // user outfis list optimize query
-
-    // public function usersoutfits($client_id = null) {
-    //     $User = ClassRegistry::init('User');
-    //     //Get user from session to derterminate if user is stylist
-    //     $user = $this->getLoggedUser();
-    //     $is_admin = $user["User"]["is_admin"];
-    //     $is_stylist = $user["User"]["is_stylist"];
-    //     $stylist_id = $user["User"]["stylist_id"];
-    //     $user_id = $user["User"]["id"];
-    //     $Outfit = ClassRegistry::init('Outfit');
-
-    //     $getoutfitids = $Outfit->getOutfitUserByStylist($stylist_id,$client_id);
-    //     //$entities = array();
-    //     foreach ($getoutfitids as $getoutfitid) {
-    //         $product_id[] = $getoutfitid['OutfitItem']['product_entity_id'];
-    //         $outfitnames = $getoutfitid['Outfit']['outfitname'];
-    //     }
-
-    //     $Entity = ClassRegistry::init('Entity');
-    //     $entity_list = $Entity->getMultipleByIdUser($product_id);
-    //                             $my_outfits[] = array(
-    //                                 'outfit'    => $outfitnames,
-    //                                 //'comments' =>$comments,
-    //                                 'entities'  => $entity_list
-    //                             );
-    //     //print_r($my_outfits);
-
-    //     $find_array = array(
-    //         'fields' => array('User.*,User1.*'),
-    //         'joins' => array(
-    //         array(
-    //             'conditions' => array(
-    //                 'User.id = User1.stylist_id',
-    //                 'User1.id'=>$user_id,
-    //             ),
-    //             'table' => 'users',
-    //             'alias' => 'User1',
-    //             'type' => 'INNER',
-    //         ),
-    //         ),
-    //     );
-        
-
-    // $Userdata=$User->find('all',$find_array);
-    // $this->set(compact('my_outfits','user_id','Userdata'));    
-
-
-
-    // }
+   
 
     // outfits sorting 
 
@@ -1179,14 +1140,34 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"];   
         $user = $User->getById($client_id);
         $Message = ClassRegistry::init('Message');
-        if($this->request->is('post')){
+        if(isset($this->request->data['sorting'])){
            $sorting =  $this->request->data['sorting'];
         } else{
             $sorting = 'DESC';
         }
-        if($user){
+        
+        if(isset($this->request->data['FirstPageCount'])){
+           $FirstPageCount =  $this->request->data['FirstPageCount'];
+        } else{
+            $FirstPageCount = 0;
+        }
 
-                        $my_conversation = $this->Message->getMyConversationWithStylistSorting($client_id,$sorting);
+        if($user){
+                        
+                        $find_array = array(
+                                'conditions' => array('Message.user_to_id' => $client_id, 'Message.is_outfit' => 1,),
+                                'limit' => 2,
+                                'offset' => $FirstPageCount,
+                                'fields' => array(
+                                    'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id',
+                                ),
+                                'order' =>  array('Message.created' => $sorting,),
+                            );
+
+                        $my_conversation = $Message->find('all',$find_array);
+                        //pagination
+
+                        //$my_conversation = $this->Message->getMyConversationWithStylistSorting($client_id,$sorting);
                         $my_outfits = array();
                         foreach($my_conversation as $row){
                             if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
