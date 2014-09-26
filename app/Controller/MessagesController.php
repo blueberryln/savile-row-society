@@ -1065,7 +1065,26 @@ If interested, I would also be happy to meet with you in our New York City based
         
         if($user){
 
-                        $my_conversation = $this->Message->getMyConversationWithStylist($client_id);
+                    //pagination 
+
+                  $find_array = array('conditions' => array('AND' =>
+                        array(
+                            'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id)
+                        )
+                    ),
+                    'contain' => array('UserFrom'),
+                    'limit' => 2,
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        ),
+                    );
+
+                    $my_conversation = $this->Message->find('all',$find_array);
+                    $my_conversation_count = count($my_conversation);
+                    //pagination
+
+
+                        //$my_conversation = $this->Message->getMyConversationWithStylist($client_id);
                         $my_outfits = array();
                         foreach($my_conversation as $row){
                             if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
@@ -1075,17 +1094,12 @@ If interested, I would also be happy to meet with you in our New York City based
                                 $outfitnames = $Outfit->find('all', array('conditions'=> array('Outfit.id'=>$outfit_id)));
                                 $OutfitItem = ClassRegistry::init('OutfitItem');
                                 $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id),));
-                                //print_r($outfit);
                                 $entities = array();
                                 foreach($outfit as $value){
                                      $entities[] = $value['OutfitItem']['product_entity_id'];
-                                     
-                                
                                 }
                                 $Entity = ClassRegistry::init('Entity');
-
-                                $entity_list = $Entity->getMultipleByIdUser($entities);
-                                
+                                $entity_list = $Entity->getMultipleByIdUser($entities,$user_id);
                                 $my_outfits[] = array(
                                     'outfit'    => $outfitnames,
                                     'comments' =>$comments,
@@ -1095,7 +1109,7 @@ If interested, I would also be happy to meet with you in our New York City based
                             }
                         }
                     }
-                
+                //print_r($my_outfits);
         $this->set(compact('my_outfits','user_id','Userdata'));
         
     }
@@ -2161,11 +2175,12 @@ If interested, I would also be happy to meet with you in our New York City based
         }
         //pagiantion
 
-
-        $this->Paginator->settings = $find_array;
-        $likeitems = $this->Paginator->paginate($Entity);
+        $likeitems = $Entity->find('all',$find_array);
+        $likeitemscount = count($likeitems);
+        //$this->Paginator->settings = $find_array;
+        //$likeitems = $this->Paginator->paginate($Entity);
         
-        $this->set(compact('likeitems','user_id','Userdata'));
+        $this->set(compact('likeitems','user_id','Userdata','likeitemscount'));
         $this->render('userlikes');
     }
 
@@ -2173,7 +2188,12 @@ If interested, I would also be happy to meet with you in our New York City based
     public function userLikesAsc($user_id = null){
         $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity'); 
-        $sortingorder = $this->request->data['valueSelected'];
+        
+        if(isset($this->request->data['valueSelected'])){
+            $sortingorder = $this->request->data['valueSelected'];
+        }else{
+            $sortingorder = 'DESC';
+        }
         $liked_list = $Wishlist->getUserLikeProductAsc($user_id);
                 $entity_list = array();
                 foreach($liked_list as $value){
@@ -2182,66 +2202,72 @@ If interested, I would also be happy to meet with you in our New York City based
                     
                 }
         //pagination
-
-        // $find_array = array(
-        //     'limit'=> 5, 
-        //     'contain' => array('Image'),
-        //     'conditions' => array(
-        //         'Entity.show' => true,
-        //         'Entity.id' => $entity_list
-        //     ),
-        //     'joins' => array(
-        //         array('table' => 'products',
-        //             'alias' => 'Product',
-        //             'type' => 'INNER',
-        //             'conditions' => array(
-        //                 'Product.id = Entity.product_id'
-        //             )
-        //         ),
-        //         array('table' => 'brands',
-        //             'alias' => 'Brand',
-        //             'type' => 'INNER',
-        //             'conditions' => array(
-        //                 'Product.brand_id = Brand.id'
-        //             )
-        //         ),
-        //     ),
-        //     'fields' => array(
-        //         'Entity.*', 'Product.*', 'Brand.*',
-        //     ),
-        //     'order' => array('FROM_UNIXTIME(Wishlist.created)' => $sortingorder),
+        if(isset($this->request->data['totalProductCount'])){
+            $totalProductCount = $this->request->data['totalProductCount'];
+        }else{
+            $totalProductCount = 0;
+        }
+        $find_array = array(
+            'limit'=> 10,
+            'offset'=>$totalProductCount, 
+            'contain' => array('Image'),
+            'conditions' => array(
+                'Entity.show' => true,
+                'Entity.id' => $entity_list
+            ),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+            ),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+            'order' => array('FROM_UNIXTIME(Wishlist.created)' => $sortingorder),
             
-        // );
+        );
         
         
-        // if($user_id){
-        //     $find_array['joins'][] = array('table' => 'wishlists',
-        //                                 'alias' => 'Wishlist',
-        //                                 'type' => 'LEFT',
-        //                                 'conditions' => array(
-        //                                     'Wishlist.user_id' => $user_id,
-        //                                     'Wishlist.product_entity_id = Entity.id'
-        //                                 ),
+        if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                                        'alias' => 'Wishlist',
+                                        'type' => 'LEFT',
+                                        'conditions' => array(
+                                            'Wishlist.user_id' => $user_id,
+                                            'Wishlist.product_entity_id = Entity.id'
+                                        ),
                                         
-        //                             );
-        //     $find_array['joins'][] = array('table' => 'outfits',
-        //             'alias' => 'Outfit',
-        //             'type' => 'INNER',
-        //             'conditions' => array(
-        //                 'Outfit.id = Wishlist.outfit_id',
-        //             )
-        //         );
+                                    );
+            $find_array['joins'][] = array('table' => 'outfits',
+                    'alias' => 'Outfit',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Outfit.id = Wishlist.outfit_id',
+                    )
+                );
 
             
-        //     $find_array['fields'][] = 'Wishlist.*';
-        //     $find_array['fields'][] = 'Outfit.*';
+            $find_array['fields'][] = 'Wishlist.*';
+            $find_array['fields'][] = 'Outfit.*';
              
-        // }
+        }
 
         //pagination        
-        $likeitems = $Entity->getEntitiesByIdLikesAsc($entity_list, $user_id, $sortingorder);
+        //$likeitems = $Entity->getEntitiesByIdLikesAsc($entity_list, $user_id, $sortingorder);
         //$this->Paginator->settings = $find_array;
         //$likeitems = $this->Paginator->paginate($Entity);
+        $likeitems = $Entity->find('all',$find_array);
         echo json_encode($likeitems);
         exit;
         
@@ -2518,11 +2544,11 @@ If interested, I would also be happy to meet with you in our New York City based
         $User = ClassRegistry::init('User');
         $user = $User->findById($user_id);
         $current_user = $this->getLoggedUser();
-        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] == $user['User']['stylist_id']){
+        
+        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id'] || $user_id != $current_user['User']['id'] ){
             $this->redirect('/');
             exit;
         }
-        print_r($user);
         $stylist_id = $user['User']['stylist_id'];
         $find_array = array(
                 'fields' => array('User.*,User1.*'),

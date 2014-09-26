@@ -9,7 +9,7 @@
             
             var firstPageId = $("#limit").val();
             //var id = $("p#loadMoreProduct a").attr('id');
-            alert(firstPageId);
+            //alert(firstPageId);
             $.ajax({
                 url: '<?php echo $this->webroot; ?>messages/closetAjaxProductData',
                 cache: false,
