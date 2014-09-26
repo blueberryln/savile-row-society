@@ -1068,7 +1068,7 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .client-outfits-img li .product-desc span.bottm-links {position: absolute; bottom: 0; left: 0%; width: 100%; padding: 0px;}
 .client-outfits-img li .product-desc span.bottm-links a.add-to-cart { background: #ac985d; padding: 5px; 10px 4px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; text-align: center; text-transform: uppercase; color: #fff;}
 .client-outfits-img li .product-desc span.bottm-links a.thumb-icon{ background: url("../images/thumb-icon.png")  no-repeat 0px 0px; height: 20px; float: right; width: 19px; margin-right: 8px;}
-.client-outfits-img li .product-desc span.bottm-links a.thumb-icon-like{ background: url("../images/thumb-icon-like.png")  no-repeat 0px 0px;  height: 20px; float: right; width: 19px; margin-right: 8px;}
+.client-outfits-img li .product-desc span.bottm-links a.like{ background: url("../images/thumb-icon-like.png")  no-repeat 0px 0px;  height: 20px; float: right; width: 19px; margin-right: 8px;}
 .client-outfit-bottom { position: relative; padding:10px 0 20px; }
 .client-comments { width: 60%;}
 .client-comments h2 { font-size: 18px; line-height: 20px; padding: 5px 0 3px; margin: 0; color: #b9a979; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
