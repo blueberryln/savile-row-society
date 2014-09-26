@@ -115,7 +115,9 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
                                                    
-                                                       <?php foreach ($purchases as $purchase): //print_r($purchase); ?>
+                                                       <?php 
+                                                       if($purchases):
+                                                       foreach ($purchases as $purchase):?>
                                                        <li>
                                                             <div class="purchase-dtls-date left"><?php echo $purchase['purchase_data']['created']; ?></div>
                                                             <div class="purchase-dtls-items left">
@@ -125,34 +127,13 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit left"><?php echo $purchase['purchase_data']['outfitname']; ?></div>
                                                             <div class="purchase-dtls-price left">$<?php echo $purchase['purchase_data']['price']; ?></div>
                                                        </li> 
-                                                       <?php endforeach; ?>
-                                                       <!-- <li>
-                                                            <div class="purchase-dtls-date left">11/06/2014</div>
-                                                            <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
-                                                           </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
-                                                            <div class="purchase-dtls-price left">$105.00</div>
-                                                       </li>
-                                                       <li>
-                                                            <div class="purchase-dtls-date left">11/06/2014</div>
-                                                            <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
-                                                           </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
-                                                            <div class="purchase-dtls-price left">$105.00</div>
-                                                       </li>
-                                                       <li>
-                                                            <div class="purchase-dtls-date left">11/06/2014</div>
-                                                            <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>images/jacket.jpg" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc">LaLa Jacket <span>Armani</span></div>
-                                                           </div>
-                                                            <div class="purchase-dtls-outfit left">Business Lunch</div>
-                                                            <div class="purchase-dtls-price left">$105.00</div>
-                                                       </li>  -->
+                                                       <?php
+                                                            endforeach;
+                                                            else:
+                                                                echo "<h1>There Is no Purchase items.</h1>";
+                                                            endif; 
+                                                        ?>
+                                                       
                                                     </ul>
                                                 </div>   
                                             </div>
