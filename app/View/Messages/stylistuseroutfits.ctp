@@ -91,7 +91,8 @@
                 
                 
                 <div class="myclient-left left">
-                    <div class="myclient-topsec"> 
+                    <div class="myclient-topsec">
+                        <div class="myclient-flt-srch-area">
                         <div class="filter-myclient-area">
                             <div class="filter-myclient">
                                 <span class="downarw"></span>
@@ -109,6 +110,7 @@
                                 <span class="srch"></span>
                                 <input type="text" name="myclient-search" id="usersearch" />
                             </div>
+                        </div>
                         </div>
                         <div class="myclient-list">
                             <ul id="searchuserlist">
