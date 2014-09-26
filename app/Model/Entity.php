@@ -212,8 +212,8 @@ class Entity extends AppModel {
         return $this->find('first', $find_array);
     }
 
-
-    function getMultipleById($id, $user_id=null) {
+//for outfit details
+    function getMultipleById($id, $user_id=null,$outfit_id) {
         $find_array = array(
             'contain' => array('Image', 'Color', 'Detail'),
             'conditions' => array('Entity.id' => $id),
@@ -247,17 +247,16 @@ class Entity extends AppModel {
                         'Wishlist.product_entity_id = Entity.id'
                     )
                 );
-            $find_array['joins'][] = array('table' => 'dislikes',
-                    'alias' => 'Dislike',
-                    'type' => 'LEFT',
+            $find_array['joins'][] = array('table' => 'outfits_items',
+                    'alias' => 'OutfitItem',
+                    'type' => 'INNER',
                     'conditions' => array(
-                        'Dislike.user_id' => $user_id,
-                        'Dislike.product_entity_id = Entity.id',
-                        'Dislike.show' => true
+                        'OutfitItem.product_entity_id = Entity.id',
+                        'OutfitItem.outfit_id' => $outfit_id
                     )
                 );
             
-            $find_array['fields'][] = 'Dislike.*';
+            $find_array['fields'][] = 'OutfitItem.*';
             $find_array['fields'][] = 'Wishlist.*'; 
         }
         

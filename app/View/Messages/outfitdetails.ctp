@@ -383,23 +383,9 @@ if($similar) : ?>
 </div>
 <div class="select-size select-style left">
 <span class="selct-arrow"></span>
-<?php 
-$sizes = isset($entity['Detail']) ? $entity['Detail'] : false;
-if($sizes) : ?>
-<?php if(count($sizes) == 1 && $size_list[$sizes[0]['size_id']] == 'N/A') : ?>
-
-<?php else : ?>
-
 <select class="product-size">
-
-<?php foreach($sizes as $size) : ?>
-<option value="<?php echo $size['size_id']; ?>"><?php echo $size_list[$size['size_id']]; ?></option>
-<?php endforeach; ?>
+<option value="<?php echo $entity['OutfitItem']['size_id']; ?>"><?php echo $entity['OutfitItem']['size_id']; ?></option>
 </select><br/>
-
-
-<?php endif; ?>
-<?php endif; ?>
 </div>
 <div class="select-quantity select-style left">
 
