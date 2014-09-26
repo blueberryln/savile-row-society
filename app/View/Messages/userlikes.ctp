@@ -180,6 +180,7 @@ $(".userlikes a").on('click',function(){
                                                     <?php if($likeitemscount > 10): ?>
                                                     <input type="hidden" id="limit" value="<?php echo $likeitemscount; ?>">
                                                     <a href="#" id="<?php echo $likeitemscount; ?>">Load More</a>
+                                                <?php endif;?>
                                                     </div>
                                                 </div>   
                                             </div>

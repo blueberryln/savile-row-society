@@ -15,8 +15,8 @@ if($user_id){
                 data:{product_id: productId,outfit_id:outfit_id},
                 cache: false,
                 success: function(result){
-                    $this.addClass('-like');
-                $this.closest(".bottm-links").find(".thumbs-icon").addClass('-like');
+                    $this.addClass('like');
+                $this.closest(".bottm-links").find(".thumbs-icon").addClass('like');
                 //$this.closest(".bottm-links").find(".thumbs-icon").replaceWith(".thumbs-icon-like");
 
                }
@@ -26,7 +26,7 @@ if($user_id){
     });
 
 //remove like
-    $(document).on("click", ".thumb-icon-like", function(e) {
+    $(document).on("click", ".like", function(e) {
         e.preventDefault();
         $this = $(this);
         var productBlock = $this.closest(".bottm-links");
@@ -39,8 +39,8 @@ if($user_id){
                 data:{product_id: productId,outfit_id:outfit_id},
                 cache: false,
                 success: function(result){
-                    $this.removeClass('-like');
-                $this.closest(".bottm-links").find(".thumbs-icon-like").removeClass('-like');
+                    $this.removeClass('like');
+                $this.closest(".bottm-links").find(".like").removeClass( "like" );
                 //$this.closest(".bottm-links").find(".thumbs-icon").replaceWith(".thumbs-icon-like");
 
                }
@@ -113,7 +113,7 @@ if($user_id){
 
     // user outfit pagination
 
-    $("#useroutfit-pagination a").on('click',function(){
+    $(document).on("click", "#useroutfit-pagination a",function(){
          var FirstPageCount = $("#limit").val();
          alert(FirstPageCount);
                 //var sorting = this.value;
@@ -169,11 +169,11 @@ if($user_id){
                 $("#ascsort").append(html);
                     }
                 });
-            $(".client-outfits-img li").hover(function(){
-                    $(".product-desc").css("display","block");
-                    },function(){
-                    $(".product-desc").css("display","none");
-            });    
+            // $(".client-outfits-img li").hover(function(){
+            //         $(".product-desc").css("display","block");
+            //         },function(){
+            //         $(".product-desc").css("display","none");
+            // });    
            
         });
 
@@ -312,7 +312,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                                     <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
                                                                    
                                                                    
-                                                                <a href="#" id="<?php echo $enti['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon<?php echo ($enti['Wishlist']['id']) ? '-like' : ''; ?>"></a>
+                                                                <a href="#" id="<?php echo $enti['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon <?php echo ($enti['Wishlist']['id']) ? 'like' : ''; ?>"></a>
                                                                 
                                                                 
                                                                       
