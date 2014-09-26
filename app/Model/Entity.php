@@ -284,6 +284,14 @@ class Entity extends AppModel {
                         'Product.brand_id = Brand.id',
                     )
                 ),
+                // array('table' => 'wishlists',
+                //     'alias' => 'Wishlist',
+                //     'type' => 'INNER',
+                //     'conditions' => array(
+                //         'Wishlist.user_id' => $user_id,
+                //         'Wishlist.product_entity_id'=>$id
+                //     )
+                // ),
                         
             ), 
             'fields' => array(
@@ -291,18 +299,18 @@ class Entity extends AppModel {
             ),
         );
         
-        // if($user_id){
-        //     $find_array['joins'][] = array('table' => 'wishlists',
-        //             'alias' => 'Wishlist',
-        //             'type' => 'LEFT',
-        //             'conditions' => array(
-        //                 'Wishlist.user_id' => $user_id,
-        //                 'Wishlist.product_entity_id = Entity.id'
-        //             )
-        //         );
+         if($user_id){
+            $find_array['joins'][] = array('table' => 'wishlists',
+                    'alias' => 'Wishlist',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Wishlist.user_id' => $user_id,
+                        'Wishlist.product_entity_id = Entity.id'
+                    )
+                );
             
-        //     $find_array['fields'][] = 'Wishlist.*'; 
-        // }
+            $find_array['fields'][] = 'Wishlist.*'; 
+        }
         
         return $this->find('all', $find_array);
     }

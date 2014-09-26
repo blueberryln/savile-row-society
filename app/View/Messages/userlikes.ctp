@@ -34,6 +34,42 @@ $(document).ready(function(){
 
     });
 
+
+$(".userlikes a").on('click',function(){
+
+        var totalProductCount = $('#limit').val();
+        
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>messages/userLikesAsc/<?php echo $user_id; ?>",
+            data: {totalProductCount:totalProductCount},
+            cache: false,
+            success: function(result){
+                var e = 10;
+                $("#limit").val(parseInt(totalProductCount)+e);
+                data = $.parseJSON(result);
+            html = '';
+            $.each(data,  function (index){
+                html = html + '<li>';
+                html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
+                html = html + '<div class="purchase-dtls-items left">';
+                html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
+                html = html + '<div class="purchase-dtls-items-desc">'+this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
+                html = html + '</div>';
+                html = html + '<div class="purchase-dtls-outfit left">'+this.Outfit.outfitname +'</div>';        
+                html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
+                html = html + '</li>';        
+                
+                });
+                $("#ascsort").append(html);
+            
+            }
+        });
+
+    });
+
+
+
 });
 
 </script>
@@ -141,12 +177,10 @@ $(document).ready(function(){
                                                        
                                                     </ul>
                                                     <div class="pagination userlikes">
-                    <?php
-                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
-                    ?>
-                </div>
+                                                    <?php if($likeitemscount > 10): ?>
+                                                    <input type="hidden" id="limit" value="<?php echo $likeitemscount; ?>">
+                                                    <a href="#" id="<?php echo $likeitemscount; ?>">Load More</a>
+                                                    </div>
                                                 </div>   
                                             </div>
                                         </div>

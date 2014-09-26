@@ -1007,6 +1007,8 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .left-nav li a{ display: block; text-align: center; padding: 20px 0px 15px; font-size: 16px; color: #212125;}
 .left-nav li a:hover, .left-nav li.active a { background: #dddddd;}
 .message-area { background: #dddddd; padding: 4% 0;}
+.useroutfit_area{ position: relative;}
+.useroutfit-pagination { position: absolute; bottom: 10px; left: 0; right: 0; margin:0 auto;}
 .user-msg, .client-msg, .client-outfit { width: 52%; float: left; background: #c2c2c2; display: inline-block; padding: 10px 15px 7px 15px; margin-bottom: 18px; }
 .user-req, .client-name, .msg, msg-date, .client-msg-reply { font-family: 'Proximanova'; font-size: 14px; line-height: 17px; color: #000;}
 .user-req { color: #fff; font-style: italic; font-size: 14px; line-height: 18px;}

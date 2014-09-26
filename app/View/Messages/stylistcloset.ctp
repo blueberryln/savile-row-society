@@ -8,16 +8,34 @@
             $this = $(this);
             
             var firstPageId = $("#limit").val();
-           
-            alert(firstPageId);
+            //var id = $("p#loadMoreProduct a").attr('id');
+            //alert(firstPageId);
             $.ajax({
                 url: '<?php echo $this->webroot; ?>messages/closetAjaxProductData',
                 cache: false,
                 type: 'POST',
                 data : {last_limit:firstPageId},
                 success: function(data){
-                    res = jQuery.parseJSON(data);
-                    alert(res);
+                    data = jQuery.parseJSON(data);
+                    var e = 20;
+                    $("#limit").val(parseInt(firstPageId)+e);
+                    html = '';
+                    
+                         $.each(data,  function (index){
+                            html = html + '<li >';
+                            html = html + '<a href="#">';
+                            html = html + '<div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
+                            html = html + '<div class="myclst-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        
+                        $("#listdat").append(html);
                     
                 }    
             });
@@ -298,13 +316,13 @@
                             </div>
                             <div class="twelve columns left myclst-prdct-list" >
                                 <div id="posts-list">
-                                    <ul>
+                                    <ul id="listdat">
 
                                     <?php  for($i = 0; $i < count($products); $i++){
                                                 $product = $products[$i];
                                                 //print_r($product);
                                                     ?>
-                                        <li  >
+                                        <li >
                                             <a href="#">
                                             <?php foreach ($product['Image'] as $images):?>
                                             
@@ -324,27 +342,25 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="pagination">
-                                        
-                                    </div>
+                            
                             
                             <p id="loadMoreProduct">
                             <?php
-                                        $start = 0;
-                                        $diff = 20;
-                                        $count = $ProductRowCount/$diff;
+                //                         $start = 0;
+                //                         $diff = 20;
+                //                         $count = $ProductRowCount/$diff;
 
-                                        for($i=1;$i<=$count;$i++){
-                echo "<a href='#' class='countw' id='".$i."'>".$i."</a>".'<br>';
-                echo "<input type='hidden' id='limit' value='".$i."'>";
-                                        }
-                                        echo  $this->Paginator->options(array('update' => '#posts-list','evalScripts' => true));
-                                        echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                                        echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                                        echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
+                //                         for($i=1;$i<=$count;$i++){
+                // echo "<a href='#' id='countw' id='".$i."'>".$i."</a>".'<br>';
+                // echo "<input type='hidden' id='limit' value='".$i."'>";
+                //                         }
+                //                         echo  $this->Paginator->options(array('update' => '#posts-list','evalScripts' => true));
+                //                         echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
+                //                         echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
+                //                         echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
                                         ?>
                                 <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                                
+                                <input type="hidden" id="limit" value="<?php echo $ProductRowCount; ?>">
                                 <a href="" id="<?php echo $ProductRowCount; ?>">Load More Products</a>
                             </p>
                             
