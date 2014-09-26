@@ -2160,9 +2160,9 @@ If interested, I would also be happy to meet with you in our New York City based
         $likeitemscount = count($likeitems);
         //$this->Paginator->settings = $find_array;
         //$likeitems = $this->Paginator->paginate($Entity);
-        
+        //print_r($likeitems);
         $this->set(compact('likeitems','user_id','Userdata','likeitemscount'));
-        $this->render('userlikes');
+        //$this->render('userlikes');
     }
 
     

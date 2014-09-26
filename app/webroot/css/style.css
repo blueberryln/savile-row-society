@@ -1405,7 +1405,7 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 .myaccount-right { width: 65%; margin-left: 5.5%; float: left; font-family: 'ProximaNovaCond-Regular';}
 .myaccount-heading h1 {font-family: 'ProximaNovaCond-Regular'; font-size: 32px; color: #918f8f; border-bottom: 1px solid #dddddd; text-transform: uppercase; font-weight: normal; padding: 15px 0 12px; letter-spacing: 1px;}
 .myaccount-sales-dtl { font-size: 32px; line-height: 38px; color: #444;}
-.myaccount-sales-dtl p { margin-bottom: 0px;}
+.myaccount-sales-dtl p, .rfr-frnd-dtl p { margin-bottom: 0px;}
 table.highchart { width: 100%; text-align: center;}
 .sales-snapshot { border-top: 1px solid #ddd; padding-top: 15px; font-size: 18px; color: #212125; margin-top: 15px;}
 .highcharts-axis {text-transform: uppercase;}
@@ -1708,8 +1708,17 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .mydesbrd-items-content a.bx-next { bottom:10px; background-position: 0 -16px}
 .mydesbrd-items-content .bx-pager.bx-default-pager { display: none;}
 
+.rfr-frnd-area { margin-top: 20px;}
+.rfr-frnd-links { border-top: 1px solid #ddd; color: #212125; font-size: 18px; margin-top: 20px; padding-top: 35px;}
 
 .rfr-frnd-right { width: 70%; float: left; margin-left: 5.5%;}
+.rfr-frnd-dtl { color: #444; font-size: 32px; line-height: 38px; letter-spacing: 1px;}
+.rfr-frnd-dtl p span, .ten.columns.left.itm-sls-list-content p { font-weight: bold;}
+.ten.columns.left.itm-sls-list-content ul { border: none;}
+.itm-sls-list-content ul li .itm-sls-list-date.refer-frnd-name, .itm-sls-list-content ul li .itm-sls-list-client.refer-frnd-status { width: 20%; text-align: left;}
+.itm-sls-list-content ul li .itm-sls-list-item.refer-frnd-dtd { width: 60%}
+.itm-sls-list-content ul li .itm-sls-list-client.refer-frnd-status { text-align: center;}
+
 
 
 

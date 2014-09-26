@@ -107,152 +107,54 @@
                 
                 <div class="rfr-frnd-right">
                     <div class="twelve columns left myaccount-heading">
-                        <h1>My Account</h1>
+                        <h1>My Account | Refer A Friend</h1>
                     </div>
-                    <div class="twelve columns left myaccount-sales-dtl">
-                        <p>Total Number of Clients: 20</p>
-                        <p>Average Monthly Sales: $4,000</p>
-                        <p>Average Sale per Client: $365</p>
+                    <div class="twelve columns left rfr-frnd-dtl">
+                        <p>Share SRS with potential clients! When they join as your<br /> client, they’ll receive $50 off their first purchase of $250.<br />
+<span>In turn, You’ll receive a $50 bonus.</span></p>
                     </div>
-                    <div class="twelve columns left chart-table">
-                        <table class="highchart" data-graph-container=".. .. .highchart-container" data-graph-type="line">
-                          <thead>
-                            <tr>
-                              <th>Month</th>
-                              <th>Sales</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Jan</td>
-                              <td>3000</td>
-                            </tr>
-                            <tr>
-                              <td>Feb</td>
-                              <td>2500</td>
-                            </tr>
-                            <tr>
-                              <td>Mar</td>
-                              <td>6000</td>
-                            </tr>
-                            <tr>
-                              <td>Apr</td>
-                              <td>12000</td>
-                            </tr>
-                            <tr>
-                              <td>May</td>
-                              <td>6500</td>
-                            </tr>
-                            <tr>
-                              <td>Jun</td>
-                              <td>5000</td>
-                            </tr>
-                            <tr>
-                              <td>Jul</td>
-                              <td>7500</td>
-                            </tr>
-                            <tr>
-                              <td>Aug</td>
-                              <td>15000</td>
-                            </tr>
-                            <tr>
-                              <td>Sep</td>
-                              <td>8500</td>
-                            </tr>
-                            <tr>
-                              <td>Oct</td>
-                              <td>10000</td>
-                            </tr>
-                            <tr>
-                              <td>Nov</td>
-                              <td>16500</td>
-                            </tr>
-                            <tr>
-                              <td>Dec</td>
-                              <td>9000</td>
-                            </tr>
-                              
-                              
-                          </tbody>
-                        </table>
+                    
+                    <div class="twelve columns left rfr-frnd-links">
+                        <div class="eleven columns left refer-frnd-area pad-none">
+                                                    <div class="frnd-refer-user prsnl-refer"><span>&nbsp;</span>SRS Personal Reference link</div>
+                                                    <div class="input text required">
+                                                         <input name="referral" required="required" placeholder="www.savilerowsociety.com/referral" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="eleven columns left refer-frnd-area pad-none">
+                                                    <div class="frnd-refer-user email-refer"><span>&nbsp;</span>Email Referral</div>
+                                                    <div class="input text required">
+                                                         <input name="email" required="required" placeholder="enter email address" type="text">
+                                                    </div>
+                                                    <a class="send-referral" href="#" title="">Send</a>
+                                                </div>
+                                                <div class="eleven columns left refer-frnd-area pad-none">
+                                                    <div class="frnd-refer-user fb-refer"><span>&nbsp;</span><a href="#" title="">Refer via Facebook</a></div>
+                                                </div>
                     </div>
-                    <div class="twelve columns left sales-snapshot">
-                        <p>Sales Snapshot: All Clients</p>
-                        <div class="highchart-container">
-                        </div>
-                        <div class="twelve columns left ratio-analyize">
-                            <ul>
-                                <li>
-                                    <div class="ratio-analyize-price">$ 17,000</div>
-                                    <span>Total earnings</span>
-                                </li>
-                                <li>
-                                    <div class="ratio-analyize-price">$2,000</div>
-                                    <span>MOnthlyRevenue</span>
-                                </li>
-                                <li>
-                                    <div class="ratio-analyize-price">20</div>
-                                    <span>Total CUstomers</span>
-                                </li>
-                                <li>
-                                    <div class="ratio-analyize-price">$520.01</div>
-                                    <span>AVg. Sales Per Custom</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class=" twelve columns left itm-sls-list">
-                        <p>Itemized Sales List: All Clients</p>
-                        <div class="twelve columns left itm-sls-list-content">
+                    <div class=" twelve columns left itm-sls-list rfr-frnd-area ">
+                        <div class="ten columns left itm-sls-list-content">
+                            <p>My Referral Record</p>
                             <ul>
                                 <li class="itm-sls-list-heading">
-                                    <div class="itm-sls-list-date">date</div>
-                                    <div class="itm-sls-list-item">Item</div>
-                                    <div class="itm-sls-list-client">Client</div>
-                                    <div class="itm-sls-list-outfit">OUtfit</div>
-                                    <div class="itm-sls-list-amt">Amount</div>
+                                    <div class="itm-sls-list-date refer-frnd-name">Name</div>
+                                    <div class="itm-sls-list-item refer-frnd-dtd">Referral Method/ Date</div>
+                                    <div class="itm-sls-list-client refer-frnd-status">STatus</div>
                                 </li>
                                 <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
+                                    <div class="itm-sls-list-date refer-frnd-name">Clien lastname</div>
+                                    <div class="itm-sls-list-item refer-frnd-dtd">Facebook,   8/12/14</div>
+                                    <div class="itm-sls-list-client refer-frnd-status">Accepted</div>
                                 </li>
                                 <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
+                                    <div class="itm-sls-list-date refer-frnd-name">Clien lastname</div>
+                                    <div class="itm-sls-list-item refer-frnd-dtd">Email  5/12/14 </div>
+                                    <div class="itm-sls-list-client refer-frnd-status">Denied</div>
                                 </li>
                                 <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
-                                </li>
-                                <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
-                                </li>
-                                <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
-                                </li>
-                                <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
+                                    <div class="itm-sls-list-date refer-frnd-name">Clien lastname</div>
+                                    <div class="itm-sls-list-item refer-frnd-dtd">SRS link   3/12/14 </div>
+                                    <div class="itm-sls-list-client refer-frnd-status">Pending</div>
                                 </li>
                             </ul>
                         </div>
