@@ -101,7 +101,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                         <ul>
                                                             <?php foreach($my_outfit['entities'] as $entities): ?>
                                                                 <li>
-                                                            <img src="<?php echo $this->webroot; ?>files/products/<?php if(isset($entities['Image'][0])!='') {  echo $entities['Image'][0]['name']; }else{} ?>" height="108" width="122" />
+                                                            <img src="<?php echo $this->webroot; ?>files/products/<?php if(isset($entities['Image'][0])!='') {  echo $entities['Image'][0]['name']; }else{} ?>" />
                                                             <div class="outfit-products-details"><?php if(isset($entities['Entity'])!=''){ echo $entities['Entity']['name']; }else{} ?>  $<?php if(isset($entities['Entity'])!=''){ echo $entities['Entity']['price']; }else{} ?></div>
                                                         </li>
                                                             <?php endforeach; ?>

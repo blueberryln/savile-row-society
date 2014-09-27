@@ -236,7 +236,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <script src="<?php echo $this->request->webroot; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
+        
         <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/highcharts.js" type="text/javascript"></script>
@@ -316,15 +316,6 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     $('.info').html('Switched from <strong>' + state.oldState + '</strong> state to <strong>' + state.newState + '</strong> state!');
                 }
             });
-//                 $('.myclst-rgt-nav li ul input[type="checkbox"]').click(function(){
-//                    if($(this).prop("checked") == true){
-//                        $(this).addClass("selected")
-//                    }
-//                    else if($(this).prop("checked") == false){
-//                        $(this).removeClass("selected")
-//                    }
-//                });
-                
                 
                 $('.otft-rgt-nav li ul input:checkbox, .myclst-rgt-nav li ul input:checkbox').change(function() {
                     var label = $('label[for="'+$(this).attr('id')+'"]');
@@ -343,28 +334,6 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     $('.client-comments-text').css({height:'auto'});
                 });
                 
-//                $(".defalut-check input:checkbox").change(function(){
-//                    var value = $("#chkall").val();
-//                    if(value==checked){
-//                    $(".profile-stp2 select option").val("I don’t know");
-//                    
-//                    }
-//                    alert(value);
-//                });
-
-//                $('.defalut-check input[type="checkbox"]').click(function () {
-//                var x = $("select > option").val();
-//                    if ($(this).is(':checked')) {
-//                        $("select > option").val ("I don't know")
-////                        var y = $(this).val();
-////                        if (x < y) {
-////                            $("#test").val($(this).val());
-////                        }
-//                    }
-//                });
-                
-                
-                
                 $(".fancybox").fancybox({
                     helpers : {
                         title : {
@@ -373,7 +342,6 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     }
                 });
   
-                //alert($(window).width());
                 var wit = $(window).width();
                 if(wit == '768' ){
                     var homepagebanner = function () {
@@ -409,9 +377,9 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                    $(this).hide(1000);
                   $(".stylistbio-section-left").animate({left:'0px'}, 1000);
                 });
-                
-                $("img.back-for-mobile").click(function(){
-                    $("a.open-left-pannel").show(1000);
+
+                $(".stylistbion-arrow").on("click", "img", function(){
+                    $("a.open-left-pannel").css({display:'block'});
                     $(".stylistbio-section-left").animate({left:'-50%'}, 1000);
                 });
 
@@ -434,22 +402,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('ul#branding-ptners li').dblclick(function(){
                      $('.brand-details').slideUp('');
                 });
-//                                
-//                $('ul#branding-ptners li').toggle(function() {
-//                    $('.brand-details').slideDown('');
-//                    return false;
-//                  },
-//                    function() {
-//                      $('.brand-details').slideUp('');
-//                    return false;
-//                  });
-//                
-//                             
-//                
-//                $('ul#branding-ptners li').click(function() {
-//                    $(this).addClass('active').siblings().removeClass('active');
-//                })
-                
+            
                 jQuery("#dd-nav-switcher").on("click", function(){  
                     jQuery(this).toggleClass("menu-anim");          
                     var menu = jQuery(".dd-nav");
@@ -468,25 +421,6 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     next: "Newer Photos",
                 });
 
-//                $('.link-older-photos').click( function(){
-//                    $('.photostream-section').css('margin-left', '-100px');
-//                });
-                
-                //$(".link-older-photos").click(function(event){       
-                  //  event.preventDefault();
-                    //$('.photostream-section').animate({scrollLeft:$(this.hash).offset().left}, 1700);
-                //});
-                
-//                $('.style-time-hover').css('opacity', 0);  
-//                $('.style-time-img').hover(  
-//                   function(){  
-//                      $(this).find('.style-time-hover').stop().fadeTo('slow', 1);  
-//                   },  
-//                   function(){  
-//                      $(this).find('.style-time-hover').stop().fadeTo('slow', 0);  
-//                   });
-                
-                
                 $('.featured-stylist-hover').css('opacity', 0);  
                 $('.featured-stylist ul li').hover(  
                    function(){  
@@ -526,10 +460,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                    });
            
             });
-            $(document).ready( function(){
-            $("#scrollbar1").tinyscrollbar({ axis: "y"});
-            $("#scrollbar2").tinyscrollbar({ axis: "y"});
-            });
+            
             
             
              $(".stylistbion-arrow img.back-for-mobile").click(function(){
@@ -603,7 +534,18 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             
             
         </script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
+        <script type="text/javascript">
+           jQuery(window).load(function (){
+                $("#scrollbar1").tinyscrollbar({ axis: "y"});
+                $("#scrollbar2").tinyscrollbar({ axis: "y"});
+                $("#scrollbar3").tinyscrollbar({ axis: "y"});
+                $("#scrollbar4").tinyscrollbar({ axis: "y"});
+                $("#scrollbar5").tinyscrollbar({ axis: "y"});
+            });
+              
         
+        </script>
         
         
                
