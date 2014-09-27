@@ -24,41 +24,56 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
 
     $(".search-myclient").on('keydown',function(){
-         
-         //var r = $('input').focus();
          var usersearch = $("#usersearch").val();
-         //alert(usersearch);
-          $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/stylistUserFilterList/<?php echo $client_id; ?>",
-                data:{usersearch:usersearch},
-                cache: false,
-                    success: function(result){
-                        data = $.parseJSON(result);
-
-            html = '';
-            html = html + '<ul>';
+         //var r = $('input').focus();
+         var usersearchlength = $("#usersearch").val().length;
+            //console.log(usersearchlength);
             
-            $.each(data,  function (index){
-                html = html + '<li>';
-                html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
-                html = html + '<div class="myclient-img">';
-                html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
-                html = html + '</div>';
-                html = html + '<div class="myclient-dtl">';
-                html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
-                html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
-                html = html + '</div>';
-                html = html + '</a>';
-                html = html + '</li>';      
+         //alert(usersearch);
+         $("#searchuserlist li span").each(function(){
+            var usersearch = $("#usersearch").val();
+            var stringuser = $("span.myclient-name").text();
+            //console.log(usersearch);
+            console.log(stringuser);
+            if(usersearch == stringuser){
+                //$("li#setsearchuser").css("display","block");
+            alert('if');
+            }else{
+                alert('else');
+                //$("li#setsearchuser").css("display","none");
+            }
+         });
+         // $.ajax({
+         //        type:"POST",
+         //        url:"<?php echo $this->webroot; ?>messages/stylistUserFilterList/<?php echo $client_id; ?>",
+         //        data:{usersearch:usersearch},
+         //        cache: false,
+         //            success: function(result){
+         //                data = $.parseJSON(result);
+
+         //    html = '';
+         //    html = html + '<ul>';
+            
+         //    $.each(data,  function (index){
+         //        html = html + '<li>';
+         //        html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
+         //        html = html + '<div class="myclient-img">';
+         //        html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
+         //        html = html + '</div>';
+         //        html = html + '<div class="myclient-dtl">';
+         //        html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
+         //        html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
+         //        html = html + '</div>';
+         //        html = html + '</a>';
+         //        html = html + '</li>';      
                 
-                });
-            html = html + '</ul>';
-                $("#searchuserlist").html(html);
+         //        });
+         //    html = html + '</ul>';
+         //        $("#searchuserlist").html(html);
 
-                    }
+         //            }
 
-             }); 
+         //     }); 
 
 
     });
@@ -134,7 +149,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <div class="myclient-list">
                             <ul id="searchuserlist">
                             <?php  foreach($userlists as $userlist ): ?>
-                                <li <?php if($userlist['User']['id']==$client_id){ echo "class='active'"; } ?>>
+                                <li id="setsearchuser" <?php if($userlist['User']['id']==$client_id){ echo "class='active'"; } ?>>
                                     <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
                                         <div class="myclient-img">
                                             <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>

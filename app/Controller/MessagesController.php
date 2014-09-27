@@ -986,12 +986,30 @@ If interested, I would also be happy to meet with you in our New York City based
         $client = $User->getById($client_id);
         $clientid = $client['User']['id'];
         $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
-       
+        $Message = ClassRegistry::init('Message');
         
         
         if($user){
 
-                        $my_conversation = $this->Message->getMyConversationWithStylist($client_id);
+                  $find_array =  array(
+                    'conditions' => array('AND' =>
+                        array(
+                            'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id)
+                        )
+                    ),
+                    'limit'=>5,
+                    'contain' => array('UserFrom'),
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                    ),
+                    'order'=>'Message.created DESC',
+                 );
+
+                    $my_conversation = $Message->find('all',$find_array);
+                    $my_conversation_count = count($my_conversation);
+
+
+                        //$my_conversation = $this->Message->getMyConversationWithStylist($client_id);
                         $my_outfits = array();
                         foreach($my_conversation as $row){
                             if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
@@ -1024,8 +1042,100 @@ If interested, I would also be happy to meet with you in our New York City based
                     }
                     // print_r($my_outfits);
                     // die;
-        $this->set(compact('my_outfits','client','user_id','clientid','userlists'));
+        $this->set(compact('my_outfits','client','user_id','clientid','userlists','my_conversation_count'));
     }
+
+    // stylistuseroutfitssorting for pagiantion and sorting ajax function stylist section
+
+    public function stylistuseroutfitssorting($client_id = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $this->isLogged();
+        $User = ClassRegistry::init('User');
+        
+        //Get user from session to derterminate if user is stylist
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];   
+        $client = $User->getById($client_id);
+        $clientid = $client['User']['id'];
+        $Message = ClassRegistry::init('Message');
+        
+        if(isset($this->request->data['sorting'])){
+           $sorting =  $this->request->data['sorting'];
+        } else{
+            $sorting = 'DESC';
+        }
+
+        if(isset($this->request->data['FirstPageCount'])){
+           $FirstPageCount =  $this->request->data['FirstPageCount'];
+        } else{
+            $FirstPageCount = 0;
+        }
+        
+        
+        if($client){
+
+                  $find_array =  array(
+                    'conditions' => array('AND' =>
+                        array(
+                            'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id,'Message.is_outfit'=>true,)
+                        )
+                    ),
+                    'limit'=>5,
+                    'offset'=>$FirstPageCount,
+                    'contain' => array('UserFrom'),
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                    ),
+                    'orde'=> array('Message.created' => $sorting),
+                 );
+
+                    $my_conversation = $Message->find('all',$find_array);
+                    $my_conversation_count = count($my_conversation);
+                    
+
+                        //$my_conversation = $this->Message->getMyConversationWithStylist($client_id);
+                        $my_outfits = array();
+                        foreach($my_conversation as $row){
+                            if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                                $outfit_id = $row['Message']['outfit_id'];
+                                $comments = $row['Message']['body'];
+                                $Outfit = ClassRegistry::init('Outfit');
+                                $outfitnames = $Outfit->find('all', array('conditions'=> array('Outfit.id'=>$outfit_id)));
+                                $OutfitItem = ClassRegistry::init('OutfitItem');
+                                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id),));
+                                //print_r($outfit);
+                                $entities = array();
+                                foreach($outfit as $value){
+                                     $entities[] = $value['OutfitItem']['product_entity_id'];
+                                     
+                                
+                                }
+                                $Entity = ClassRegistry::init('Entity');
+
+                                $entity_list = $Entity->getMultipleByIdUser($entities);
+                                
+                                $my_outfits[] = array(
+                                    'outfit'    => $outfitnames,
+                                    'comments' =>$comments,
+                                    
+                                    'entities'  => $entity_list
+                                    );
+                                
+                            }
+                        }
+                    }
+                    
+        echo json_encode($my_outfits);
+    }
+
+
+
+
+
+    //
 
     //perticular user outfit list sent by his stylist
     public function usersoutfits($client_id = null) {
@@ -1040,7 +1150,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $user = $User->getById($client_id);
         $current_user = $this->getLoggedUser();
 
-        if($client_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+        if($client_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id'] || $client_id != $current_user['User']['id']){
             $this->redirect('/');
             exit;
         }
@@ -1067,18 +1177,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
                     //pagination 
 
-                  // $find_array = array('conditions' => array('AND' =>
-                  //       array(
-                  //           'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id)
-                  //       )
-                  //   ),
-                  //   'contain' => array('UserFrom'),
-                  //   'limit' => 2,
-                  //   'fields' => array(
-                  //       'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
-                  //       ),
-                  //   'order' => array('Message.created DESC'),
-                  //   );
+                 
                     $find_array = array(
                                     'conditions' => array('Message.user_to_id' => $client_id, 'Message.is_outfit' => 1,),
                                     'limit' => 2,
