@@ -54,8 +54,8 @@
                             //alert(result);
                         data = $.parseJSON(result);
                             html = '';
-                            html = html + '<div">';
-                            html = html + '<ul">';
+                            html = html + '<div>';
+                            html = html + '<ul>';
             
                         $.each(data,  function (index){
                             html = html + '<li>';
@@ -182,7 +182,7 @@
                             data = $.parseJSON(result);
                             html = '';
                             html = html + '<div>';
-                            html = html + '<ul">';
+                            html = html + '<ul>';
             
                         $.each(data,  function (index){
                             html = html + '<li>';
@@ -251,7 +251,7 @@
                 <div class="eleven columns container">
                     <div class="twelve columns left mycloset-section">
                         <div class="twelve columns left myclst-rgt-heading">
-                                <div class="eleven columns container">
+                                <div class="eleven columns container myclst-nav-section ">
                                     <div class="seven columns left myclst-rgt-nav">
                                         <ul>
                                             <li class="active"><a href="#" title="" id="closetdata">The Closet</a>
@@ -324,10 +324,10 @@
                                                     ?>
                                         <li >
                                             <a href="#">
-                                            <?php foreach ($product['Image'] as $images):?>
+                                            <?php //foreach ($product['Image'] as $images):?>
                                             
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $images['name']; ?>" alt="" /></div>
-                                            <?php endforeach; ?>
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
+                                            <?php //endforeach; ?>
                                                <div class="myclst-prdt-overlay">
                                                     <h3><?php echo $product['Entity']['name']; ?></h3>
                                                     <p><?php echo substr($product['Entity']['description'],0,25); ?></p>
