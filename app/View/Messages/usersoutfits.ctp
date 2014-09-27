@@ -50,6 +50,9 @@ if($user_id){
 
         $("#sortdate").change(function(){
                 var sorting = this.value;
+                var FirstPageCount = '<?php echo $my_conversation_count; ?>';
+                //alert(FirstPageCount);
+                $("#limit").val(FirstPageCount);
                 $.ajax({
                     type:"POST",
                     url:"<?php echo $this->webroot; ?>messages/usersoutfitssorting/<?php echo $user_id; ?>",
@@ -115,7 +118,7 @@ if($user_id){
 
     $(document).on("click", "#useroutfit-pagination a",function(){
          var FirstPageCount = $("#limit").val();
-         alert(FirstPageCount);
+         //alert(FirstPageCount);
                 //var sorting = this.value;
                 $.ajax({
                     type:"POST",
