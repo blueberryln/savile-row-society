@@ -41,6 +41,40 @@
 
 
     });
+    
+    $(document).on("click", "#useroutfit-pagination a",function(){
+         var FirstPageCount = $("#limit").val();
+         alert(FirstPageCount);
+                //var sorting = this.value;
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo $this->webroot; ?>messages/stylistusernotespaging/<?php echo $clientid; ?>",
+                    data:{FirstPageCount:FirstPageCount},
+                    cache: false,
+                    success: function(result){
+                        var e = 1;
+                        $("#limit").val(parseInt(FirstPageCount)+e);
+                        data = $.parseJSON(result);
+                        html = '';
+                    $.each(data, function(index){
+                       html = html + '<li><div class="notes-date">'+ this.Stylistnote.created +'</div>';
+                       html = html + '<div class="notes-dtl">'+ this.Stylistnote.notes +'</div>';
+                       html = html + '<div class="notes-btns">';
+                       html = html + '<a href="#" title="" >Edit</a>';
+                       html = html + '<a href="<?php echo $this->webroot; ?>messages/removestylistusernotes/' + this.Stylistnote.id +'/<?php echo $clientid; ?>">Delete</a>';
+                       html = html + '</div>';
+                       html = html +'</li>'; 
+                        
+                    });
+                $("#ascsort").append(html);
+                    }
+                });
+             
+           
+        });
+
+
+    
 });
 
 </script>
@@ -169,18 +203,24 @@
                                 <div class="twelve columns notes-txt-area left pad-none">
                                     <div class="eleven columns container pad-none">
                                         <div class="notes-content-area">
-                                            <ul>
+                                            <ul id="ascsort">
                                             <?php foreach ($usernotes as $usernote): ?>
                                                 <li><div class="notes-date"><?php echo $usernote['Stylistnote']['created'] ?></div>
                                                     <div class="notes-dtl"><?php echo $usernote['Stylistnote']['notes'] ?></div>
                                                     <div class="notes-btns">
                                                         <a href="#" title="">Edit</a>
-                                                        <a href="<?php echo $this->webroot; ?>messages/removestylistusernotes/<?php echo $usernote['Stylistnote']['id'] ?>">Delete</a>
+                                                        <a href="<?php echo $this->webroot; ?>messages/removestylistusernotes/<?php  echo $usernote['Stylistnote']['id'] ?>/<?php echo $clientid; ?>" >Delete</a>
                                                     </div>
                                                 </li> 
                                              <?php endforeach; ?>  
                                                
                                             </ul>
+                                            <?php if($usernotescount): ?>
+                                    <div class="pagination useroutfit-pagination" id="useroutfit-pagination">
+                                    <input type="hidden" id="limit" value="<?php echo $usernotescount; ?>">
+                                    <a href="javascript:;" id="<?php echo $usernotescount; ?>">Load More</a>
+                                    </div> 
+                                <?php endif; ?>
                                             <?php echo $this->Form->create('Stylistnote'); ?>
                                             <div class="twelve columns type-note left">
                                                 <div class="type-note-area">
@@ -219,7 +259,7 @@
                 </div>
                 
                 
-                <div class="eleven columns container pad-none">
+                <!-- <div class="eleven columns container pad-none">
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
@@ -235,7 +275,7 @@
                             <li><a href="javascript:;">Profile</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

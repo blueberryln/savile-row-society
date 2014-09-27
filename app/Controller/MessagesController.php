@@ -1005,6 +1005,7 @@ If interested, I would also be happy to meet with you in our New York City based
                     'order'=>'Message.created DESC',
                  );
 
+
                     $my_conversation = $Message->find('all',$find_array);
                     $my_conversation_count = count($my_conversation);
 
@@ -1312,8 +1313,13 @@ If interested, I would also be happy to meet with you in our New York City based
         $userlist = $User->find('all', array('conditions'=>array('User.stylist_id'=>$user_id,)));
 
         $my_outfitss = array();
-        $stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfitname','Outfit.id'),));
+        $stylistoutfit= $Outfit->find('all', array(
+            'limit' => 5,
+            'order' => 'Outfit.created DESC',
+            'conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfitname','Outfit.id'),));
         
+
+
         foreach($stylistoutfit as $row){
             $stylist_outfit_id = $row['Outfit']['id'];
             $Outfit = ClassRegistry::init('Outfit');
@@ -1442,69 +1448,60 @@ If interested, I would also be happy to meet with you in our New York City based
 
         // get notes data
 
-        $usernotes = $Stylistnote->find('all', array('conditions'=>array('Stylistnote.stylist_id'=>$stylistid,'Stylistnote.user_id'=>$clientid,)));
+        
+        $find_array = array(
+            'limit'=> 1,
+            'conditions'=>array('Stylistnote.stylist_id'=>$stylistid,'Stylistnote.user_id'=>$clientid,));
+        $usernotes = $Stylistnote->find('all',$find_array);
+        $usernotescount = count($usernotes);
 
+        $this->set(compact('usernotescount','clientid','client','usernotes','userlists'));
 
+    }
 
-        $this->set(compact('clientid','client','usernotes','userlists'));
+    //stylistusernotespaging 
+
+    public function stylistusernotespaging($clientid = null){
+         $this->layout = 'ajax';
+        $this->autoRender = false;
+        $User = ClassRegistry::init('User');
+        $Stylistnote = ClassRegistry::init('Stylistnote');
+        $client = $User->findById($clientid);
+        $clientid = $client['User']['id'];
+        $stylistid = $client['User']['stylist_id'];
+        if(isset($this->request->data['FirstPageCount'])){
+            $FirstPageCount = $this->request->data['FirstPageCount'];
+            
+           
+        }else{
+            $FirstPageCount= 0;
+        }
+        $find_array = array(
+            'limit'=> 1,
+            'offset'=>$FirstPageCount,
+            'conditions'=>array('Stylistnote.stylist_id'=>$stylistid,'Stylistnote.user_id'=>$clientid,));
+        $usernotes = $Stylistnote->find('all',$find_array);
+        echo json_encode($usernotes);
 
     }
 
     // remove stylist user notes
 
-    public function removestylistusernotes($id = null){
+    public function removestylistusernotes($id = null,$clientid= null){
         $Stylistnote = ClassRegistry::init('Stylistnote');
+            if($id){
+                $Stylistnote->delete($id);
+                $this->redirect(array('action' => 'stylistusernotes/'.$clientid));
 
-        echo $user = $this->getLoggedUser();
-       print_r($user);
-        exit;
-
-        if (!$id) {
-            $this->Session->setFlash('Invalid id for Stylistnote');
-            $this->redirect(array('action' => '/messages/stylistusernotes'));
-        }   
-
-        if ($this->Style->delete($id)) {
-            $this->Session->setFlash('Styles  deleted');
-        } else {
-            $this->Session->setFlash(__('Styles was not deleted', true));
-        }
-
-        $this->redirect(array('action' => 'index'));
-
-
-
+            }else{
+                $this->redirect(array('action' => 'stylistusernotes/'.$clientid));
+            }
+        
     }
     //perticular user notes
 
     // public function getusernotes($client_id = null){
-    //     $User = ClassRegistry::init('User');
-    //     $Stylistnote = ClassRegistry::init('Stylistnote');
-    //     //Get user from session to derterminate if user is stylist
-    //     $user = $this->getLoggedUser();
-    //     $user_id = $user["User"]["id"]; 
-    //     $is_admin = $user["User"]["is_admin"];
-    //     $is_stylist = $user["User"]["is_stylist"];  
-
-    //     if($this->request->is('post')){
-    //         $data=$this->request->data;
-    //         $this->request->data['Stylistnote']['user_id']=$client_id;
-    //         $this->request->data['Stylistnote']['stylist_id']=$user_id;
-    //         $image=$data['Stylistnote']['image']['name'];
-    //         $this->request->data['Stylistnote']['image']=$image;
-    //         //image not upload yet pending?
-    //         if($image || $this->request->data)
-    //         {
-    //             $Stylistnote->save($this->request->data);
-    //             $this->Session->setFlash("User Data Hasbeen Saved");
-    //             $this->redirect('/messages/getusernotes/'.$client_id);
-    //         }
-    //     }
-
-    //     $notes=$Stylistnote->find('all',array('conditions'=>array('Stylistnote.user_id'=>$client_id,'Stylistnote.stylist_id'=>$user_id,)));
-    //     $this->set('notes',$notes);
-    // }
-
+    
 
 
 // stylist user measurement
@@ -2071,6 +2068,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity'); 
         $liked_list = $Wishlist->getUserLikeProduct($clientid);
+                //print_r($liked_list);
                 $entity_list = array();
                 foreach($liked_list as $value){
                     $entity_list[] = $value['Wishlist']['product_entity_id'];
@@ -2142,10 +2140,11 @@ If interested, I would also be happy to meet with you in our New York City based
         //pagiantion
 
 
-        $this->Paginator->settings = $find_array;
-        $likeitems = $this->Paginator->paginate($Entity);
+        //$this->Paginator->settings = $find_array;
+        $likeitems = $Entity->find('all',$find_array);
+        $likeitemscount = count($likeitems);
 
-        $this->set(compact('likeitems','clientid','client','userlists'));
+        $this->set(compact('likeitemscount','likeitems','clientid','client','userlists'));
     }
 
 
@@ -2376,12 +2375,12 @@ If interested, I would also be happy to meet with you in our New York City based
                     $entity_list[] = $value['Orders']['product_entity_id'];
                     $last_item_id = $value['Orders']['order_id'];
                 }
-                print_r($entity_list);
+                //print_r($entity_list);
 
-            $purchases = $Entity->getEntitiesByIdPurchaseDes($entity_list);
+            $stylistbyuserpurchase = $Entity->getEntitiesByIdPurchaseDes($entity_list);
             //print_r($purchases);
         }
-        $this->set(compact('purchases','clientid','client','userlists'));
+        $this->set(compact('stylistbyuserpurchase','clientid','client','userlists'));
 
     }
 
@@ -2554,7 +2553,8 @@ If interested, I would also be happy to meet with you in our New York City based
 
     //stylist outfit details
 
-    public function stylistOutfitsDetails($outfit_id = null) {
+    public function stylistOutfitsDetails($user_id=null,$outfit_id = null) {
+       
         $User = ClassRegistry::init('User');
         $user = $this->getLoggedUser();
         $user_id = $user["User"]["id"]; 
@@ -2575,7 +2575,7 @@ If interested, I would also be happy to meet with you in our New York City based
             $Entity = ClassRegistry::init('Entity');
 
             // get data
-            $entity = $Entity->getMultipleById($entity_list, $user_id);
+            $entity = $Entity->getMultipleById($entity_list, $user_id,$outfit_id);
             //print_r($entity);
             $products_list = array();
             foreach ($entity as $key => $value) {

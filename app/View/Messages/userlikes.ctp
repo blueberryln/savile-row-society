@@ -3,6 +3,8 @@ $(document).ready(function(){
     $("#sortdate").change(function(){
 
         var valueSelected = this.value;
+        var totalProductCount = '<?php echo $likeitemscount; ?>';
+         $("#limit").val(totalProductCount);
         //alert(valueSelected);
         $.ajax({
             type: "POST",
@@ -16,7 +18,7 @@ $(document).ready(function(){
             html = html + '<ul>';
             html = html + '<li><div class="purchase-dtls-date heading left">Date</div><div class="purchase-dtls-items heading left">Item</div><div class="purchase-dtls-outfit heading left">Outfit</div><div class="purchase-dtls-price heading left">Price</div></li>';
             $.each(data,  function (index){
-                html = html + '<li>';7
+                html = html + '<li>';
                 html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
                 html = html + '<div class="purchase-dtls-items left">';
                 html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
@@ -177,7 +179,7 @@ $(".userlikes a").on('click',function(){
                                                        
                                                     </ul>
                                                     <div class="pagination userlikes">
-                                                    <?php if($likeitemscount > 10): ?>
+                                                    <?php if($likeitemscount): ?>
                                                     <input type="hidden" id="limit" value="<?php echo $likeitemscount; ?>">
                                                     <a href="#" id="<?php echo $likeitemscount; ?>">Load More</a>
                                                 <?php endif;?>

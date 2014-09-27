@@ -219,7 +219,10 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit heading left">Outfit</div>
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                       <?php foreach ($purchases as $purchase): print_r($purchase); ?>
+                                                       <?php
+                                                       print_r($stylistbyuserpurchase);
+                                                        if($stylistbyuserpurchase > 0):  ?>
+                                                       <?php foreach ($stylistbyuserpurchase as $purchase):  ?>
                                                        <li>
                                                             <div class="purchase-dtls-date left"><?php echo $purchase['purchase_data']['created']; ?></div>
                                                             <div class="purchase-dtls-items left">
@@ -230,6 +233,9 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-price left">$<?php echo $purchase['purchase_data']['price']; ?></div>
                                                        </li> 
                                                        <?php endforeach; ?>
+                                                   <?php else: ?>
+                                                    <h1>There are no items.</h1>
+                                                   <?php endif; ?>
                                                        
                                                     </ul>
                                                 </div>   

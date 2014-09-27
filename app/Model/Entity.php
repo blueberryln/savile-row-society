@@ -214,6 +214,7 @@ class Entity extends AppModel {
 
 //for outfit details
     function getMultipleById($id, $user_id=null,$outfit_id) {
+       
         $find_array = array(
             'contain' => array('Image', 'Color', 'Detail'),
             'conditions' => array('Entity.id' => $id),

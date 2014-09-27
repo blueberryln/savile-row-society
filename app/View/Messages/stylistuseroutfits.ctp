@@ -49,7 +49,7 @@
                 var sorting = this.value;
                 var FirstPageCount = '<?php echo $my_conversation_count; ?>';
                 //alert(sorting);
-                //$("#limit").val(FirstPageCount);
+                $("#limit").val(FirstPageCount);
                 $.ajax({
                     type:"POST",
                     url:"<?php echo $this->webroot; ?>messages/stylistuseroutfitssorting/<?php echo $clientid; ?>",
@@ -69,22 +69,12 @@
                     $.each(entitiesData, function(index1){
                         html = html + '<li>';
                         html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
-                        html = html + '<div class="product-desc">';
-                        html = html + '<span class="product-name">'+ entitiesData[index1].Entity.name +'</span>';
-                        html = html + '<span class="product-brand">'+ entitiesData[index1].Brand.name +'</span>';
-                        html = html + '<span class="product-price">$'+ entitiesData[index1].Entity.price +'</span>';
-                        html = html + '<span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/'+ outfitData.Outfit.id +'" title="">Details</a></span>';
-                        html = html + '<span class="bottm-links outfit-page-item ">';
-                        html = html + '<a class="add-to-cart"  data-product_id="'+ entitiesData[index1].Entity.id +'" href="" title="">Add to Cart +</a>';
-                        html = html +'<input type="hidden" id="product_id" class="product-id" value="'+ entitiesData[index1].Entity.id +'">';
-                        html = html +'<input type="hidden" id="outfit_id" class="outfit_id" value="'+ outfitData.Outfit.id +'">';
-                        html = html + '<a id="'+ entitiesData[index1].Entity.id +'-'+ outfitData.Outfit.user_id +'" class="thumb-icon" href="#"/></a>';
-                        html = html + '</span>';
-                        html = html + '</div>';
+                        
                         html = html + '</li>';
                     });
                 
                         html = html + '</ul>';
+                        html = html + '<div class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</div>';
                         html = html + '</div>';
                         html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
                         html = html + '<div class="client-comments left">';
@@ -135,22 +125,11 @@
                     $.each(entitiesData, function(index1){
                         html = html + '<li>';
                         html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
-                        html = html + '<div class="product-desc">';
-                        html = html + '<span class="product-name">'+ entitiesData[index1].Entity.name +'</span>';
-                        html = html + '<span class="product-brand">'+ entitiesData[index1].Brand.name +'</span>';
-                        html = html + '<span class="product-price">$'+ entitiesData[index1].Entity.price +'</span>';
-                        html = html + '<span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/'+ outfitData.Outfit.id +'" title="">Details</a></span>';
-                        html = html + '<span class="bottm-links outfit-page-item ">';
-                        html = html + '<a class="add-to-cart"  data-product_id="'+ entitiesData[index1].Entity.id +'" href="" title="">Add to Cart +</a>';
-                        html = html +'<input type="hidden" id="product_id" class="product-id" value="'+ entitiesData[index1].Entity.id +'">';
-                        html = html +'<input type="hidden" id="outfit_id" class="outfit_id" value="'+ outfitData.Outfit.id +'">';
-                        html = html + '<a id="'+ entitiesData[index1].Entity.id +'-'+ outfitData.Outfit.user_id +'" class="thumb-icon" href="#"/></a>';
-                        html = html + '</span>';
-                        html = html + '</div>';
-                        html = html + '</li>';
+                        
+                        
                     });
-                
                         html = html + '</ul>';
+                        html = html + '<div class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</div>';
                         html = html + '</div>';
                         html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
                         html = html + '<div class="client-comments left">';
@@ -302,6 +281,7 @@
                                             </select>
                                         </div>
                                         <div id="ascsort">
+                                        <?php if($my_outfits): ?>
                                         <?php foreach ($my_outfits as $my_outfit): //print_r($my_outfit); ?>
                                         <div class="twelve columns client-outfits left">
                                             <div class="eleven columns container client-outfits-area pad-none">
@@ -327,6 +307,9 @@
                                             </div>
                                         </div>
                                         <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <h1>There are no outfits .</h1>
+                                    <?php endif; ?>
                                         </div>
                                         
                                     </div>

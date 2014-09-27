@@ -3,6 +3,8 @@ $(document).ready(function(){
     $("#sortdate").change(function(){
 
         var valueSelected = this.value;
+         var totalProductCount = '<?php echo $likeitemscount; ?>';
+         $("#limit").val(totalProductCount);
         //alert(valueSelected);
         $.ajax({
             type: "POST",
@@ -16,7 +18,7 @@ $(document).ready(function(){
             html = html + '<ul>';
             html = html + '<li><div class="purchase-dtls-date heading left">Date</div><div class="purchase-dtls-items heading left">Item</div><div class="purchase-dtls-outfit heading left">Outfit</div><div class="purchase-dtls-price heading left">Price</div></li>';
             $.each(data,  function (index){
-                html = html + '<li>';7
+                html = html + '<li>';
                 html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
                 html = html + '<div class="purchase-dtls-items left">';
                 html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
@@ -29,6 +31,42 @@ $(document).ready(function(){
                 });
             html = html + '</ul>';
                 $("#ascsort").html(html);
+            }
+        });
+
+    });
+
+
+    //pagination
+
+    $(".userlikes a").on('click',function(){
+
+        var totalProductCount = $('#limit').val();
+        
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>messages/userLikesAsc/<?php echo $clientid; ?>",
+            data: {totalProductCount:totalProductCount},
+            cache: false,
+            success: function(result){
+                var e = 10;
+                $("#limit").val(parseInt(totalProductCount)+e);
+                data = $.parseJSON(result);
+            html = '';
+            $.each(data,  function (index){
+                html = html + '<li>';
+                html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
+                html = html + '<div class="purchase-dtls-items left">';
+                html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
+                html = html + '<div class="purchase-dtls-items-desc">'+this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
+                html = html + '</div>';
+                html = html + '<div class="purchase-dtls-outfit left">'+this.Outfit.outfitname +'</div>';        
+                html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
+                html = html + '</li>';        
+                
+                });
+                $("#ascsort").append(html);
+            
             }
         });
 
@@ -215,7 +253,9 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit heading left">Outfit</div>
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                       <?php  for($i = 0; $i < count($likeitems); $i++){
+                                                       <?php
+                                                        if($likeitems):
+                                                         for($i = 0; $i < count($likeitems); $i++){
                                                                 $likeitem = $likeitems[$i];
                                                     ?>
                                                        <li>
@@ -235,15 +275,16 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-price left">$<?php echo $likeitem['Entity']['price']; ?></div>
                                                        </li>
                                                        <?php } ?>
-                                                       
+                                                       <?php else: ?>
+                                                        <h1>There are no items</h1>
+                                                       <?php endif; ?>
                                                     </ul>
-                                                    <div class="pagination stylistuserlikes">
-                    <?php
-                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
-                    ?>
-                </div>
+                                                    <div class="pagination userlikes">
+                                                    <?php if($likeitemscount): ?>
+                                                    <input type="hidden" id="limit" value="<?php echo $likeitemscount; ?>">
+                                                    <a href="#" id="<?php echo $likeitemscount; ?>">Load More</a>
+                                                <?php endif;?>
+                                                    </div>
                                                 </div>   
                                             </div>
                                         </div>
