@@ -54,8 +54,8 @@
                             //alert(result);
                         data = $.parseJSON(result);
                             html = '';
-                            html = html + '<div">';
-                            html = html + '<ul">';
+                            html = html + '<div>';
+                            html = html + '<ul>';
             
                         $.each(data,  function (index){
                             html = html + '<li>';
@@ -182,7 +182,7 @@
                             data = $.parseJSON(result);
                             html = '';
                             html = html + '<div>';
-                            html = html + '<ul">';
+                            html = html + '<ul>';
             
                         $.each(data,  function (index){
                             html = html + '<li>';
@@ -251,46 +251,67 @@
                 <div class="eleven columns container">
                     <div class="twelve columns left mycloset-section">
                         <div class="twelve columns left myclst-rgt-heading">
-                                <div class="eleven columns container">
+                                <div class="eleven columns container myclst-nav-section ">
                                     <div class="seven columns left myclst-rgt-nav">
                                         <ul>
                                             <li class="active"><a href="#" title="" id="closetdata">The Closet</a>
                                                 <ul>
-                                                <div class="ctg-one" style="overflow-y:scroll;height:350px;width:200px;">
-                                                    <?php foreach ($categories as $category): ?>
-                                                    <h3><?php echo $category['Category']['name']; ?></h3>
-                                                        <?php if ($category['children']) : ?>
-                                                            <?php foreach ($category['children'] as $subcategory): ?>
-                                                                <input type="checkbox" name="" title="subcategory" class="colorsearch" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
-                                                                <label for="s<?php echo $subcategory['Category']['id']; ?>" class=""><?php echo $subcategory['Category']['name']; ?><span></span></label>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; ?>
-                                                </div>   
-                                                
-
-                                                
-                                                    <div class="ctg-one third-block" style="overflow-y:scroll;max-height:300px;">
-                                                        <h3>Brands</h3>
-                                                        <?php if($brands) : ?>
-                                                            <?php foreach($brands as $brand) : ?>
-                                                                <input type="checkbox" name="" title="brand" class="colorsearch" value="<?php echo $brand['Brand']['id']; ?>" id="b<?php echo $brand['Brand']['id']; ?>" data-brand_id="<?php echo $brand['Brand']['id']; ?>" />
-                                                                <label for="b<?php echo $brand['Brand']['id']; ?>" class=""><?php echo $brand['Brand']['name']; ?><span></span></label>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
-                                                        
-                                                        
+                                                <div class="ctg-one">
+                                                    <div id="scrollbar3">
+                                                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                                            <div class="viewport">
+                                                                 <div class="overview">
+                                                                    <?php foreach ($categories as $category): ?>
+                                                                    <h3><?php echo $category['Category']['name']; ?></h3>
+                                                                        <?php if ($category['children']) : ?>
+                                                                            <?php foreach ($category['children'] as $subcategory): ?>
+                                                                                <input type="checkbox" name="" title="subcategory" class="colorsearch" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
+                                                                                <label for="s<?php echo $subcategory['Category']['id']; ?>" class=""><?php echo $subcategory['Category']['name']; ?><span></span></label>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endif; ?>
+                                                                    <?php endforeach; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="ctg-one forth-block" style="overflow-y:scroll;max-height:300px;">
-                                                        <h3>Colors</h3>
-                                                        
-                                                        <?php if($colors) : ?>
-                                                            <?php foreach($colors as $color) :?>
-                                                                <input type="checkbox" name="color[]" title="colour" class="colorsearch" data-color_id="<?php echo $color['Colorgroup']['id']; ?>" value="<?php echo $color['Colorgroup']['id']; ?>" id="c<?php echo $color['Colorgroup']['id']; ?>" />
-                                                                <label for="c<?php echo $color['Colorgroup']['id']; ?>"  class=""><?php echo $color['Colorgroup']['name']; ?><span></span></label>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
+                                                
 
+                                                
+                                                    <div class="ctg-one third-block">
+                                                        <div id="scrollbar4">
+                                                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                                            <div class="viewport">
+                                                                 <div class="overview">
+                                                                    <h3>Brands</h3>
+                                                                    <?php if($brands) : ?>
+                                                                        <?php foreach($brands as $brand) : ?>
+                                                                            <input type="checkbox" name="" title="brand" class="colorsearch" value="<?php echo $brand['Brand']['id']; ?>" id="b<?php echo $brand['Brand']['id']; ?>" data-brand_id="<?php echo $brand['Brand']['id']; ?>" />
+                                                                            <label for="b<?php echo $brand['Brand']['id']; ?>" class=""><?php echo $brand['Brand']['name']; ?><span></span></label>
+                                                                        <?php endforeach; ?>
+                                                                    <?php endif; ?>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ctg-one forth-block">
+                                                        <div id="scrollbar5">
+                                                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                                            <div class="viewport">
+                                                                 <div class="overview">
+                                                                    <h3>Colors</h3>
+
+                                                                    <?php if($colors) : ?>
+                                                                        <?php foreach($colors as $color) :?>
+                                                                            <input type="checkbox" name="color[]" title="colour" class="colorsearch" data-color_id="<?php echo $color['Colorgroup']['id']; ?>" value="<?php echo $color['Colorgroup']['id']; ?>" id="c<?php echo $color['Colorgroup']['id']; ?>" />
+                                                                            <label for="c<?php echo $color['Colorgroup']['id']; ?>"  class=""><?php echo $color['Colorgroup']['name']; ?><span></span></label>
+                                                                        <?php endforeach; ?>
+                                                                    <?php endif; ?>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </ul>
                                             </li>
@@ -324,10 +345,10 @@
                                                     ?>
                                         <li >
                                             <a href="#">
-                                            <?php foreach ($product['Image'] as $images):?>
+                                            <?php //foreach ($product['Image'] as $images):?>
                                             
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $images['name']; ?>" alt="" /></div>
-                                            <?php endforeach; ?>
+                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
+                                            <?php //endforeach; ?>
                                                <div class="myclst-prdt-overlay">
                                                     <h3><?php echo $product['Entity']['name']; ?></h3>
                                                     <p><?php echo substr($product['Entity']['description'],0,25); ?></p>
