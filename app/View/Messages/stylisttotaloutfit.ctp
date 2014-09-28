@@ -41,163 +41,106 @@
 
 
     });
+
+
     $("#createoutfitbitton").on('click',function(){
         var selectvalue = $("#selectfilter option:selected" ).val();
         window.location = selectvalue;
     });
-    
-    //sort by outfit name
-    // $("#sortbyname").on('click',function(){
-    //     var stylist_id = "<?php echo $user_id; ?>";
-    //     $.ajax({
-    //             type:"POST",
-    //             url:"<?php echo $this->webroot; ?>messages/stylistFilterOutfitListName/<?php echo $user_id; ?>",
-    //             data:{stylist_id:stylist_id},
-    //             cache: false,
-    //                 success: function(result){
-    //                         data = $.parseJSON(result);
-    //                                 html = '';
-    //                         $.each(data,  function (index){
-    //                                 html = html + '<div class="twelve columns client-outfits left">';
-    //                                 html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-    //                                 html = html + '<h1>'+ this.outfit.Outfit.outfitname +'</h1>';
-    //                                 html = html + '<div class="twelve columns client-outfits-img pad-none">';
-    //                                 html = html + '<ul>';
-    //                             var entitiesData = this.entities; 
-    //                     $.each(entitiesData, function(index1){
-    //                         var entitiesDataNew = entitiesData[index1].Image; 
-    //                         $.each(entitiesDataNew, function(index2){
-                            
-    //                         html = html + '<li>';
-    //     html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesDataNew[index2].name +'" alt="" />';
-    //                     });
-    //                         html = html + '</ul>';
 
-    //                         html = html + '<div class="outfit-quick-view"><a href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/'+ this.outfit.Outfit.id +'"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
-    //                         html = html + '</div>';
-    //                         html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-    //                         html = html + '<div class="client-comments left">';
-    //                         html = html + '<h2>Stylist Comment</h2>';
-    //                         html = html + '<div class="client-comments-text left">hi</div>';
-    //                         html = html + '</div>';
-    //                         html = html + '<div class="bkmrk-outfit right">Bookmark Outfit</div>';
-    //                         html = html + '<div class="share-outfit right">Share Outfit</div>';
-    //                         html = html + '</div>';
-    //                         html = html + '</div>';
-    //                         html = html + '</div>';
-                            
+    //outfit quickview
 
-    //                     });
-    //                         $(".pad-none").html(html);
-    //                 }   
-    //         });
-    // });
+    $(document).on('click',".outfit-quick-view a#quickoutfit" ,function(){
+        $this = $(this);
+        var productBlock = $this.closest("#findOutfitId");
+        var outfitId = productBlock.find("#outfitidquickview").val();
+        var stylist_id = '<?php echo $user_id; ?>';
+        var totalpriceoutfit = productBlock.find("#totalpriceoutfit").val();
+        //alert(totalpriceoutfit);
 
-
-//sort by outfit date
-    // $("#sortbydate").on('click',function(){
-    //     var stylist_id = "<?php echo $user_id; ?>";
-    //     $.ajax({
-    //             type:"POST",
-    //             url:"<?php echo $this->webroot; ?>messages/stylistFilterOutfitDate/<?php echo $user_id; ?>",
-    //             data:{stylist_id:stylist_id},
-    //             cache: false,
-    //                 success: function(result){
-    //                     data = $.parseJSON(result);
-    //                     html = '';
-    //                 $.each(data,  function (index){
-    //                     html = html + '<div class="twelve columns client-outfits left">';
-    //                     html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-    //                     html = html + '<h1>'+ this.outfit.Outfit.outfitname +'</h1>';
-    //                     html = html + '<div class="twelve columns client-outfits-img pad-none">';
-    //                     html = html + '<ul>';
-    //                    var entitiesData = this.entities; 
-    //                 $.each(entitiesData, function(index1){
+        $.ajax({
+                type:"POST",
+                url:"<?php echo $this->webroot; ?>messages/outfitPopupQuickView/<?php echo $user_id; ?>/",
+                data:{outfitId:outfitId,stylist_id:stylist_id,totalpriceoutfit:totalpriceoutfit},
+                cache: false,
+                    success: function(result){
+                        data = $.parseJSON(result);
+                        html = '';
                         
-    //                     html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name  +'" alt="" /></li>';
-                    
-    //             });
-    //                     html = html + '</ul>';
-
-    //                     html = html + '<div class="outfit-quick-view"><a href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/'+ this.outfit.Outfit.id +'"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
-    //                     html = html + '</div>';
-    //                     html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-    //                     html = html + '<div class="client-comments left">';
-    //                     html = html + '<h2>Stylist Comment</h2>';
-    //                     html = html + '<div class="client-comments-text left">hi</div>';
-    //                     html = html + '</div>';
-    //                     html = html + '<div class="bkmrk-outfit right">Bookmark Outfit</div>';
-    //                     html = html + '<div class="share-outfit right">Share Outfit</div>';
-    //                     html = html + '</div>';
-    //                     html = html + '</div>';
-    //                     html = html + '</div>';
+                        $.each(data,  function (index){
+                        html = html + '<div id="view-otft-popup" style="display: none">';
+                        html = html + '<div class="box-modal">';
+                        html = html + '<div class="box-modal-inside">';
+                        html = html + '<a href="#" title="" class="otft-close"></a>';
+                        html = html + '<div class="view-otft-content">';
+                        html = html + '<h1>Outfit Quickview</h1>';
+                        html = html + '<div class="three columns left">';
+                        html = html + '<div class="twelve columns left">';
+                        html = html + '<div class="view-otft-list">';
+                        html = html + '<ul>';
+                        var entitiesimages = this.product;
+                        $.each(entitiesimages,  function (index1){
+                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></li>';
                         
+                    });
+                        html = html + '</ul>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '<div class="eight columns right">';
+                        html = html + '<div class="twelve columns left">';
+                        html = html + '<div class="view-otft-dtl">';
+                        html = html + '<div class="view-otft-dtl-top">';
+                        html = html + '<p>Outfit Name: '+ this.outfitname.Outfit.outfitname +'</p>';
+                        html = html + '<p>Total Cost: $'+ this.totalpriceoutfit +'</p>';
+                        html = html + '</div>';
+                        html = html + '<div class="otft-overview-box">';
+                        html = html + '<span class="otft-overview-box-head">Overview</span>';
+                        html = html + '<div class="otft-overview-box-recmnd">';
+                        html = html + '<p>Recommended To:</p>';
+                        html = html + '<ul>';
+                        var userrecommendedlist = this.recomndeduser; 
+                        $.each(userrecommendedlist, function(index2){
+                            html = html + '<li>'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</li>';
+                        });
+                        
+                        
+                        html = html + '</ul>';
+                        html = html + '</div>';
+                        html = html + '<div class="otft-overview-box-brnds">';
+                        html = html + '<p>Brands:</p>';
+                        
+                       html = html + '<ul>';
+                         $.each(entitiesimages, function(index3){
+                            html = html + '<li>'+ this.Brand.name +'</li>';
+                        });
+                        
+                        html = html + '</ul>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '<div class="twelve columns left otft-overview-links ">';
+                        html = html + '<a class="left" href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/<?php echo $user_id; ?>/'+ this.outfitname.Outfit.id +'" title="">Resuse Outfit</a>';
+                        html = html + '<a class="right" href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/<?php echo $user_id; ?>/'+ this.outfitname.Outfit.id +'" title="">See Full Outfit Details</a>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
+                        html = html + '</div>';
 
-    //                 });
-    //                 $(".pad-none").html(html);
-    //                 }   
-    //         });
-    // });
+                        });
 
+                        $("#outfitpopupdiv").html(html);
 
+                    }
 
+             }); 
+
+    });
     
-    $("#sortbydate").on('click',function(){
-    <div class="box-modal">
-                                                <div class="box-modal-inside">
-                                                    <a href="#" title="" class="otft-close"></a>
-                                                    <div class="view-otft-content">
-                                                        <h1>Outfit Quickview</h1>
-                                                        <div class="three columns left">
-                                                            <div class="twelve columns left">
-                                                                <div class="view-otft-list">
-                                                                    <ul>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="eight columns right">
-                                                            <div class="twelve columns left">
-                                                                <div class="view-otft-dtl">
-                                                                    <div class="view-otft-dtl-top">
-                                                                        <p>Outfit Name: Beach Day</p>
-                                                                        <p>Total Cost: $1300.00</p>
-                                                                    </div>
-                                                                    <div class="otft-overview-box">
-                                                                        <span class="otft-overview-box-head">Overview</span>
-                                                                        <div class="otft-overview-box-recmnd">
-                                                                            <p>Recommended To:</p>
-                                                                            <ul>
-                                                                                <li>Vincent Bourzelx</li>
-                                                                                <li>Jacques Chirac</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="otft-overview-box-brnds">
-                                                                            <p>Brands:</p>
-                                                                            <ul>
-                                                                                <li>Lacoste</li>
-                                                                                <li>Solld and Stripes</li>
-                                                                                <li>Southern Proper</li>
-                                                                                <li>Hudson Sutler</li>
-                                                                                <li>Austen Heller</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="twelve columns left otft-overview-links ">
-                                                                        <a class="left" href="#" title="">Resuse Outfit</a>
-                                                                        <a class="right" href="#" title="">See Full Outfit Details</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+    
 
 
 });
@@ -382,25 +325,30 @@
                                     <div class="eleven columns container pad-none">
                                        <?php foreach ($my_outfitss as  $entity_list) : ?>  
                                         
-                                        <div class="twelve columns client-outfits left">
+                                        <div class="twelve columns client-outfits left" id="findOutfitId">
                                             <div class="eleven columns container client-outfits-area pad-none">
                                                 <h1><?php echo $entity_list['outfit']['Outfit']['outfitname']; ?></h1>
+                                                <input type="hidden" id="outfitidquickview" data-id="<?php echo $entity_list['outfit']['Outfit']['id']; ?>" value="<?php echo $entity_list['outfit']['Outfit']['id']; ?>">
                                                 <div class="twelve columns client-outfits-img pad-none">
                                                    
                                                     <ul>
-                                                    <?php foreach ($entity_list['entities'] as $key => $value) : ?>
-                                                       
+
+                                                    <?php
+                                                    $totalpriceoutfit = 0;
+                                                     foreach ($entity_list['entities'] as $key => $value) : ?>
+                                                       <?php  $totalpriceoutfit += $value['Entity']['price']; ?>
                                                         <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $value['Image'][0]['name']; ?>" alt="" /></li>
 
-                                                    <?php endforeach; ?>
+                                                    <?php endforeach; //echo $totalpriceoutfit;?>
+                                                    <input type="hidden" id="totalpriceoutfit" value="<?php echo $totalpriceoutfit; ?>">
                                                     </ul>
 
-                                                    <div class="outfit-quick-view"><a href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/<?php  echo $user_id;  ?>/<?php  echo $entity_list['outfit']['Outfit']['id'];  ?>"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
+                                                    <div class="outfit-quick-view"><a href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/<?php  echo $user_id;  ?>/<?php  echo $entity_list['outfit']['Outfit']['id'];  ?>" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
                                                 </div>
                                                 <div class="twelve columns left client-outfit-bottom pad-none">
                                                     <div class="client-comments left">
                                                         <h2>Stylist Comment</h2>
-                                                        <div class="client-comments-text left"><?php if($entity_list['comments'][0]['Message']['body']!=''){ echo $entity_list['comments'][0]['Message']['body'];}else{} ?><!-- <a href="javascript:;" title="">Read More</a> --></div>
+                                                        <div class="client-comments-text left"><?php if(isset($entity_list['comments'][0]['Message']['body'])!=''){ echo $entity_list['comments'][0]['Message']['body'];}else{} ?><!-- <a href="javascript:;" title="">Read More</a> --></div>
                                                     </div>
                                                     <div class="bkmrk-outfit right">Bookmark Outfit</div>
                                                     <div class="share-outfit right">Share Outfit</div>
@@ -429,64 +377,8 @@
                 </div>
                 
                 <!--outfit popup-->
+<div id="outfitpopupdiv"></div>
 
-<div id="view-otft-popup" style="display: none;">
-                                            <div class="box-modal">
-                                                <div class="box-modal-inside">
-                                                    <a href="#" title="" class="otft-close"></a>
-                                                    <div class="view-otft-content">
-                                                        <h1>Outfit Quickview</h1>
-                                                        <div class="three columns left">
-                                                            <div class="twelve columns left">
-                                                                <div class="view-otft-list">
-                                                                    <ul>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="eight columns right">
-                                                            <div class="twelve columns left">
-                                                                <div class="view-otft-dtl">
-                                                                    <div class="view-otft-dtl-top">
-                                                                        <p>Outfit Name: Beach Day</p>
-                                                                        <p>Total Cost: $1300.00</p>
-                                                                    </div>
-                                                                    <div class="otft-overview-box">
-                                                                        <span class="otft-overview-box-head">Overview</span>
-                                                                        <div class="otft-overview-box-recmnd">
-                                                                            <p>Recommended To:</p>
-                                                                            <ul>
-                                                                                <li>Vincent Bourzelx</li>
-                                                                                <li>Jacques Chirac</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="otft-overview-box-brnds">
-                                                                            <p>Brands:</p>
-                                                                            <ul>
-                                                                                <li>Lacoste</li>
-                                                                                <li>Solld and Stripes</li>
-                                                                                <li>Southern Proper</li>
-                                                                                <li>Hudson Sutler</li>
-                                                                                <li>Austen Heller</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="twelve columns left otft-overview-links ">
-                                                                        <a class="left" href="#" title="">Resuse Outfit</a>
-                                                                        <a class="right" href="#" title="">See Full Outfit Details</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                 <!--outfitpoup-->
                 <!-- <div class="eleven columns container pad-none">

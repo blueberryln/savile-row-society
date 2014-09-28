@@ -208,6 +208,16 @@
             });
 
 
+    // closet product popup quick view
+
+    $(".myclst-quick-view").on('click',function(){
+        $this = $(this);
+        var productBlock = $this.closest(".myclst-prdt-overlay");
+        var id = productBlock.find("#prid").val();
+        alert(id);
+    })
+
+
 });
 </script>
 
@@ -343,13 +353,14 @@
                                                 $product = $products[$i];
                                                 //print_r($product);
                                                     ?>
-                                        <li >
-                                            <a href="#">
+                                        <li>
+                                            <a class="myclst-quick-view" href="#">
                                             <?php //foreach ($product['Image'] as $images):?>
                                             
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
+                                                <div class="myclst-prdt-img" ><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
                                             <?php //endforeach; ?>
                                                <div class="myclst-prdt-overlay">
+                                                    <input type="hiddent" value="<?php echo $product['Entity']['name']; ?>" id="prid">
                                                     <h3><?php echo $product['Entity']['name']; ?></h3>
                                                     <p><?php echo substr($product['Entity']['description'],0,25); ?></p>
                                                 </div>
@@ -366,20 +377,6 @@
                             
                             
                             <p id="loadMoreProduct">
-                            <?php
-                //                         $start = 0;
-                //                         $diff = 20;
-                //                         $count = $ProductRowCount/$diff;
-
-                //                         for($i=1;$i<=$count;$i++){
-                // echo "<a href='#' id='countw' id='".$i."'>".$i."</a>".'<br>';
-                // echo "<input type='hidden' id='limit' value='".$i."'>";
-                //                         }
-                //                         echo  $this->Paginator->options(array('update' => '#posts-list','evalScripts' => true));
-                //                         echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                //                         echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                //                         echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
-                                        ?>
                                 <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
                                 <input type="hidden" id="limit" value="<?php echo $ProductRowCount; ?>">
                                 <a href="" id="<?php echo $ProductRowCount; ?>">Load More Products</a>
@@ -390,7 +387,81 @@
                 
                 
                 
-                
+                <!--pop up quick view-->
+
+                <div id="myclst-popup" style="display: none">
+                                <div class="box-modal">
+                                    <div class="box-modal-inside">
+                                        <a href="#" title="" class="otft-close"></a>
+                                        <div class="myclst-popup-content">
+                                            <div class="twelve columns left product-dtl-area pad-none">
+                                                <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
+                                                <div class="product-dtl-desc left">
+                                                    <h3>Item Quickview</h3>
+                                                    <div class="product-dtl-desc-top left">
+                                                        <div class="desc-top-brand">Solid Cali | Solid &amp; Stripes</div>
+                                                        <div class="desc-top-brand-price">$140.00</div>
+
+                                                    </div>
+                                                    <div class="product-dtl-desc-middle left">
+                                                       <ul>
+                                                            <li><span>&ndash;</span>17cm inseam.</li>
+                                                            <li><span>&ndash;</span>Elastic waistband.</li>
+                                                            <li><span>&ndash;</span>Side pockets and a plain back.</li>
+                                                            <li><span>&ndash;</span>Cotton mesh lining for ultimate comfort.</li>
+                                                        </ul>
+
+                                                    </div>
+                                                    <div class="product-dtl-desc-bottom left">
+                                                        <div class="slect-options left">
+                                                            <div class="select-color select-style left">
+                                                                <span class="selct-arrow"></span>
+                                                                <select>
+                                                                    <option>Color</option>
+                                                                    <option>Blue</option>
+                                                                    <option>Red</option>
+                                                                    <option>Green</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="select-size select-style left">
+                                                                <span class="selct-arrow"></span>
+                                                                <select>
+                                                                    <option>Size</option>
+                                                                    <option>38</option>
+                                                                    <option>40</option>
+                                                                    <option>42</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="select-quantity select-style left">
+                                                                <span class="selct-arrow"></span>
+                                                                <select>
+                                                                    <option>Quantity</option>
+                                                                    <option>1</option>
+                                                                    <option>2</option>
+                                                                    <option>3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-dtl-links left">
+                                                    <a class="product-add-cart" href="javascript:;" title="">Add to Cart</a>
+                                                    <a class="product-my-likes"href="javascript:;" title="">Add to My Likes</a>
+                                                    <div class="product-social-likes">
+                                                        <ul>
+                                                            <li><a class="product-social-likes-pintrest" href="javascript:;" title="">Pintrest</a></li>
+                                                            <li><a class="product-social-likes-facebook" href="javascript:;" title="">Faceboook</a></li>
+                                                            <li><a class="product-social-likes-twitter" href="javascript:;" title="">Twitter</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                <!--popup quick view-->
                 
                 
                 
