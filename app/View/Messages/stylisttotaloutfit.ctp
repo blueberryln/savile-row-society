@@ -1,19 +1,16 @@
-<script type="text/javascript">
+<script>
     $(document).ready(function(){
-
 
     $(".search-myclient").on('keydown',function(){
          
-         //var r = $('input').focus();
          var usersearch = $("#usersearch").val();
-         //alert(usersearch);
           $.ajax({
                 type:"POST",
                 url:"<?php echo $this->webroot; ?>messages/stylistFilterList/<?php echo $user_id; ?>",
                 data:{usersearch:usersearch},
                 cache: false,
                     success: function(result){
-                        data = $.parseJSON(result);
+                    data = $.parseJSON(result);
 
             html = '';
             html = html + '<ul>';
@@ -48,16 +45,15 @@
         window.location = selectvalue;
     });
 
-    //outfit quickview
+   
 
-    $(document).on('click',".outfit-quick-view a#quickoutfit" ,function(){
+    $(document).on('click',".outfit-quick-view a#quickoutfit", function(){
         $this = $(this);
         var productBlock = $this.closest("#findOutfitId");
         var outfitId = productBlock.find("#outfitidquickview").val();
         var stylist_id = '<?php echo $user_id; ?>';
         var totalpriceoutfit = productBlock.find("#totalpriceoutfit").val();
-        //alert(totalpriceoutfit);
-
+        
         $.ajax({
                 type:"POST",
                 url:"<?php echo $this->webroot; ?>messages/outfitPopupQuickView/<?php echo $user_id; ?>/",
@@ -82,7 +78,7 @@
                         $.each(entitiesimages,  function (index1){
                         html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></li>';
                         
-                    });
+                        });
                         html = html + '</ul>';
                         html = html + '</div>';
                         html = html + '</div>';
@@ -139,10 +135,9 @@
              }); 
 
     });
-    
-    
+  
 
-
+// end
 });
 
 </script>
@@ -321,7 +316,7 @@
                                 
                             </div>
                             <div class="right-pannel right">
-                                <div class="twelve columns message-area left pad-none">
+                                <div class="twelve columns message-area left pad-none" id="listdat">
                                     <div class="eleven columns container pad-none">
                                        <?php foreach ($my_outfitss as  $entity_list) : ?>  
                                         
@@ -360,13 +355,11 @@
 
                                      <?php endforeach; ?>
                                         
-                                        <div class="pagination stylisttotaloutfit">
-                    <?php
-                    //echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                    //echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                    //echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
-                    ?>
-                </div>
+                                        <p id="loadMoreProduct">
+                                <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                <input type="hidden" id="limit" value="<?php echo $outfitcount; ?>">
+                                <a href="" id="<?php echo $outfitcount; ?>">Load More Products</a>
+                            </p>
                                     </div>
                                 </div>
                             </div>
@@ -381,24 +374,67 @@
 
 
                 <!--outfitpoup-->
-                <!-- <div class="eleven columns container pad-none">
-                    <div class="my-profile-img m-ver">
-                        <h2>LISA D.<span>My Stylist</span></h2>
-                        <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
-                        </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
-                    </div>
-                    <div class="dd-nav">
-                        <ul>
-                            <li><a href="javascript:;">Messages</a></li>
-                            <li class="active"><a href="javascript:;">Outfits</a></li>
-                            <li><a href="javascript:;">Purchases/Likes</a></li>
-                            <li><a href="javascript:;">Profile</a></li>
-                        </ul>
-                    </div>
-                </div -->
+                
             </div>
         </div>
     </div>
 </div>
+
+
+ <!-- //pagination outfitcount
+    // $("#loadMoreProduct a").on('click', function(e){
+    //         e.preventDefault();
+    //         $this = $(this);
+    //         var firstPageId = $("#limit").val();
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "<?php echo $this->webroot; ?>messages/stylistAjaxTotalOutfit",
+    //             data : {last_limit:firstPageId},
+    //             cache: false,
+    //             success: function(data){
+    //                 data = jQuery.parseJSON(data);
+    //                 var e = 5;
+    //                 $("#limit").val(parseInt(firstPageId)+e);
+    //                     html = '';
+    //                      $.each(data,  function (index){
+    //                         html = html + '<div class="twelve columns client-outfits left" id="findOutfitId">';
+    //                         html = html + '<div class="eleven columns container client-outfits-area pad-none">';
+    //                         html = html + '<h1>'+ this.outfit.Outfit.outfitname +'</h1>';
+    //                         html = html + '<input type="hidden" id="outfitidquickview" data-id="'+ this.outfit.Outfit.id +'" value="'+ this.outfit.Outfit.id +'">';
+    //                         html = html + '<div class="twelve columns client-outfits-img pad-none">';
+    //                         html = html + '<ul>';
+    //                         var entimg = this.entities;
+    //                         $.each(entimg,  function (index1){
+    //                         html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ entimg[index1].Image[0].name +'" /></li>';
+    //                         });
+    //                         html = html + '</ul>';
+    //                         html = html + '<div class="outfit-quick-view">';
+    //                         html = html + '<a href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/<?php  echo $user_id;  ?>/'+ this.outfit.Outfit.id +'" id="quickoutfit">';
+    //                         html = html + '<span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
+    //                         html = html + '</div>';
+    //                         html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
+    //                         html = html + '<div class="client-comments left">';
+    //                         html = html + '<h2>Stylist Comment</h2>';
+    //                         var entcomment = this.comments;
+    //                         //$.each(entcomment, function(index3){
+    //                         //if(entcomment[index3].Message.body!==null){
+    //                           // html = html + '<div class="client-comments-text left">'+ this.comments[0].Message.body +'</div>';
+    //                          //}  else{} 
+                            
+    //                         //});
+    //                         html = html + '</div>';
+    //                         html = html + '<div class="bkmrk-outfit right">Bookmark Outfit</div>';
+    //                         html = html + '<div class="share-outfit right">Share Outfit</div>';
+    //                         html = html + '</div>';
+    //                         html = html + '</div>';
+    //                         html = html + '</div>';
+
+    //                     });
+                        
+    //                     $("#listdat").append(html);
+                    
+    //             }    
+    //         });
+    //     });
+
+    //outfit quickview -->

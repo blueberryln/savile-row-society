@@ -1318,7 +1318,8 @@ If interested, I would also be happy to meet with you in our New York City based
             'order' => 'Outfit.created DESC',
             'conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfitname','Outfit.id'),));
         
-
+        $outfitcount = count($stylistoutfit);
+            
 
         foreach($stylistoutfit as $row){
             $stylist_outfit_id = $row['Outfit']['id'];
@@ -1326,7 +1327,8 @@ If interested, I would also be happy to meet with you in our New York City based
             $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
             $messages = $Message->find('all',array('conditions'=>array('Message.outfit_id'=>$stylist_outfit_id,),'fields'=>array('Message.body')));
             $OutfitItem = ClassRegistry::init('OutfitItem');
-            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id),));
+            
             $entities = array();
             foreach($outfit as $value){
                     $entities[] = $value['OutfitItem']['product_entity_id'];
@@ -1336,7 +1338,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
             //pagintion
             $find_array = array(
-                'limit'=>20,
+                
                 'contain' => array('Image'),
                 'conditions' => array('Entity.id' => $entities),
                 'joins' => array(
@@ -1363,6 +1365,7 @@ If interested, I would also be happy to meet with you in our New York City based
             );
             //$this->Paginator->settings = $find_array;
             $items = $Entity->find('all',$find_array);
+
             // //pagintion
             $my_outfitss[] =  array(
                                 'outfit'    => $outfitnames,
@@ -1372,8 +1375,82 @@ If interested, I would also be happy to meet with you in our New York City based
 
         }
         
-        $this->set(compact('my_outfitss','userlist','user_id'));
+        $this->set(compact('my_outfitss','userlist','user_id','outfitcount'));
     
+    } 
+
+    //stylist total outfit pagination
+    public function stylistAjaxTotalOutfit(){
+        $last_product_id = $this->request->data['last_limit'];
+        $User = ClassRegistry::init('User');
+        //Get user from session to derterminate if user is stylist
+        $user = $this->getLoggedUser();
+        $user_id = $user["User"]["id"]; 
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];   
+        $Message = ClassRegistry::init('Message');
+        $Outfit = ClassRegistry::init('Outfit');
+        $last_product_id = $this->request->data['last_limit'];
+        $my_outfitss = array();
+        $stylistoutfit= $Outfit->find('all', array(
+            'limit' => 5,
+            'offset'=> $last_product_id,
+            'order' => 'Outfit.created DESC',
+            'conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfitname','Outfit.id')));
+        
+        foreach($stylistoutfit as $row){
+            $stylist_outfit_id = $row['Outfit']['id'];
+            $Outfit = ClassRegistry::init('Outfit');
+            $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
+            $messages = $Message->find('all',array('conditions'=>array('Message.outfit_id'=>$stylist_outfit_id,),'fields'=>array('Message.body')));
+            $OutfitItem = ClassRegistry::init('OutfitItem');
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id),));
+            
+            $entities = array();
+            foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                }
+            $Entity = ClassRegistry::init('Entity');
+            
+
+            //pagintion
+            $find_array = array(
+                
+                'contain' => array('Image'),
+                'conditions' => array('Entity.id' => $entities),
+                'joins' => array(
+                    array('table' => 'products',
+                        'alias' => 'Product',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'brands',
+                        'alias' => 'Brand',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.brand_id = Brand.id',
+                        )
+                    ),        
+                ), 
+                
+                'fields' => array(
+                    'Entity.id','Entity.price','Brand.name',
+                ),
+
+            );
+            $items = $Entity->find('all',$find_array);
+            $my_outfitss[] =  array(
+                                'outfit'    => $outfitnames,
+                                'comments' => $messages,
+                                'entities'  => $items
+                            );
+
+        }
+         $my_outfitss =  array_filter($my_outfitss);
+        echo json_encode($my_outfitss);
+        
     } 
 
 
@@ -2531,6 +2608,13 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"];
         $Outfit = ClassRegistry::init('Outfit');
         $outfitname = $Outfit->findById($outfit_id);
+        $Message = ClassRegistry::init('Message');
+        $messages_outfit_comments = $Message->find('first',array('conditions'=>array('Message.outfit_id'=>$outfit_id,'Message.is_outfit'=>true,'Message.user_from_id' =>$user_id,),'fields'=>array('Message.body as stylist_comments','Message.user_to_id')));
+        foreach ($messages_outfit_comments as $msg_rec_user) {
+            $msg_recommnded_user[] = $msg_rec_user['user_to_id'];
+        }
+        $usernames_of_recommnded = $User->find('all', array('conditions'=>array('User.id'=>$msg_recommnded_user,),'fields'=>array('User.first_name','User.last_name')));
+        
         $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
@@ -2585,7 +2669,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 $this->Session->delete('cart-three-items-msg');
             }
 
-            $this->set(compact('userlists','entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg'));
+            $this->set(compact('outfit_id','usernames_of_recommnded','userlists','entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg'));
 
     }
 
@@ -3021,8 +3105,16 @@ If interested, I would also be happy to meet with you in our New York City based
         $Colorgroup = ClassRegistry::init('Colorgroup');
         $Entity = ClassRegistry::init('Entity');
         
+        if(isset($this->request->data['firstPageId']))
+            {
+                $firstPageId = $this->request->data['firstPageId'];
+            }else{
+                $firstPageId = 0;
+            }
+
         $find_array = array(
             'limit' => 10,
+            'offset'=>$firstPageId,
             'contain' => array('Image', 'Color'),
             'conditions' => array(
                 'Entity.show' => true 
@@ -3245,7 +3337,44 @@ If interested, I would also be happy to meet with you in our New York City based
     }
 
 
+    // closet page quick pop product data
 
+    public function closetAjaxQuickPopData(){
+        $this->layout= 'ajax';
+        $this->autoRender = false;
+
+        $productid = $this->request->data['productid'];
+
+        $Entity = ClassRegistry::init('Entity');
+
+        $find_array = array(
+            'contain' => array('Image', 'Color', 'Detail'),
+            'conditions' => array('Entity.id' => $productid),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ),        
+            ), 
+            'order' =>array('Entity.created DESC'),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+        );
+        $entitydata = $Entity->find('all',$find_array);
+        echo json_encode($entitydata);
+
+    }
 
     // Stylist Closet Data
 
@@ -3301,7 +3430,20 @@ If interested, I would also be happy to meet with you in our New York City based
             ),
         );
         
-        
+        $show_add_cart_popup = 0;
+            if($this->Session->read('add-cart')){
+                $show_add_cart_popup = 1;
+                $this->Session->delete('add-cart');
+            }
+
+            $popUpMsg = '';
+            $show_three_item_popup = 0;
+            if($this->Session->read('cart-three-items')){
+                $show_three_item_popup = 1;
+                $popUpMsg = $this->Session->read('cart-three-items-msg');
+                $this->Session->delete('cart-three-items');
+                $this->Session->delete('cart-three-items-msg');
+            }
         $this->Paginator->settings = $find_array2;
         $products = $this->Paginator->paginate($Entity);
         $ProductRowCount = count($products);

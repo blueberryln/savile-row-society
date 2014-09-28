@@ -358,9 +358,8 @@ if($similar) : ?>
 <div class="product-dtl-links left">
 
 <a href="" class="link-btn gold-btn add-to-cart full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
-<input type="">
 
-<a class="product-my-likes"href="#" id="likes" data-product_id="<?php echo $entity['Entity']['id']; ?>"><?php echo ($entity['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
+<a class="product-my-likes" href="#" id="likes" data-product_id="<?php echo $entity['Entity']['id']; ?>"><?php echo ($entity['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
 
 <div class="product-social-likes">
 <ul>

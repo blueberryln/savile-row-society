@@ -1,69 +1,42 @@
 <?php
 $logged_script = '';
 if($user_id){    
-$logged_script = '
-    $(".thumbs-up").click(function(e) {
+$logged_script ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+
+    $(".product-my-likes").on("click", function(e) {
         e.preventDefault();
         $this = $(this);
             var productBlock = $this.closest(".product-detail-cont");
             var productId = productBlock.find(".product-id").val();
-        if(!$this.hasClass("liked")){
-            $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
-            function(data) {
+            var outfitId = '<?php echo $outfit_id; ?>';
+            alert(outfitId); 
+        
+             $.ajax({
+                type:"POST",
+                url:"<?php echo $this->webroot; ?>api/wishlist/save/",
+                data:{ product_id: productId,outfit_id:outfitId},
+                cache: false,
+                success: function(result){    
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
                     $this.addClass("liked");
-                    $this.closest(".product-thumbs").find(".thumbs-down").removeClass("disliked");
-                }
-
-                if(ret["profile_status"] == "incomplete"){
-                    var notificationDetails = new Array();
-                    notificationDetails["msg"] = ret["profile_msg"];
-                    notificationDetails["button"] = "<a href=\"' . $this->webroot . 'register/wardrobe\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
-                    showNotification(notificationDetails);
+                    $this.closest(".product-my-likes").text("Liked");
                 }
             }
-        );
-        }else{
-            $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
-                function(data) {
-                        var ret = $.parseJSON(data);
-                    if(ret["status"] == "ok"){
-                        $this.removeClass("liked");
-                    }
-                }
-            );
-        }
-    });
 
-    $(".thumbs-down").click(function(e) {
-            e.preventDefault();
-            $this = $(this);
-            var productBlock = $this.closest(".product-detail-cont");
-            var productId = productBlock.find(".product-id").val();
-            if(!$this.hasClass("disliked")){
-                $.post("' . $this->request->webroot . 'api/dislike/save", { product_id: productId},
-                    function(data) {
-                        var ret = $.parseJSON(data);
-                        if(ret["status"] == "ok"){
-                            $this.addClass("disliked");
-                            $this.closest(".product-thumbs").find(".thumbs-up").removeClass("liked");
-                        }
-                    }
-                );
-            }else{
-                $.post("' . $this->request->webroot . 'api/dislike/remove", { product_id: productId},
-                    function(data) {
-                        var ret = $.parseJSON(data);
-                        if(ret["status"] == "ok"){
-                            $this.removeClass("disliked");
-                        }
-                    }
-                );
-            }
+        });
+        
     });
-    ';
-}
+});
+
+</script>
+    
+
+<?php 
+} 
 $script = '
 var threeItemPopup = ' . $show_three_item_popup. ';
 var addCartPopup = ' . $show_add_cart_popup. ';
@@ -416,7 +389,12 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         <?php echo str_replace(' ', ',', $entity['Brand']['name']); ?>
                                         <?php endforeach; ?>
                                     </div>
-                                    <div class="outfit-dtls-brnads"><span>Recommended to:</span> Client 1, Client 2</div>
+                                    <div class="outfit-dtls-brnads"><span>Recommended to:</span>
+                                    <?php foreach($usernames_of_recommnded as $client_list_recommnded){
+                                        $listRecommended =  $client_list_recommnded['User']['first_name'].'&nbsp;'.$client_list_recommnded['User']['last_name'].',';
+                                        echo str_replace(' ', ',', $listRecommended);
+
+                                        } ?></div>
                                     <div class="outfit-dtls-brnads"><span>Sold to:</span> Client 7, Client 1, Client 2</div>
                                 </div>
                                 <div class="twelve columns left myotft-btn">
@@ -759,23 +737,11 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                 </div>
                                                 <div class="select-size select-style left">
                                                     <span class="selct-arrow"></span>
-                                                    <?php 
-                                                    $sizes = isset($entity['Detail']) ? $entity['Detail'] : false;
-                                                    if($sizes) : ?>
-                                                    <?php if(count($sizes) == 1 && $size_list[$sizes[0]['size_id']] == 'N/A') : ?>
-
-                                                    <?php else : ?>
-
                                                     <select class="product-size">
+                                                    <option value="<?php echo $entity['OutfitItem']['size_id']; ?>"><?php echo $entity['OutfitItem']['size_id']; ?></option>
 
-                                                    <?php foreach($sizes as $size) : ?>
-                                                    <option value="<?php echo $size['size_id']; ?>"><?php echo $size_list[$size['size_id']]; ?></option>
-                                                    <?php endforeach; ?>
                                                     </select><br/>
 
-
-                                                    <?php endif; ?>
-                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="select-quantity select-style left">
                                                     <?php echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range(1,10) , 'label' => false, 'div' => false, 'style' => "")); ?>
@@ -788,7 +754,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                             <div class="product-dtl-links left">
 
                                                 <a href="" class="link-btn gold-btn add-to-cart full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
-                                                <a class="product-my-likes"href="javascript:;" title="">Add to My Likes</a>
+                                                <a class="product-my-likes" href="javascript:;" id="likes" data-product_id="<?php echo $entity['Entity']['id']; ?>"><?php echo ($entity['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
                                                 <div class="product-social-likes">
                                                 <ul>
                                                 <li><a class="product-social-likes-pintrest" href="javascript:;" title="">Pintrest</a></li>
