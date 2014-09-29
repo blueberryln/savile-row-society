@@ -272,7 +272,7 @@ class ClosetController extends AppController {
         
         //Query additions for a logged in user
         if($user_id){
-            //Join Like and Dislike tables
+            //Join Like
             $find_array['joins'][] = array('table' => 'wishlists',
                                         'alias' => 'Wishlist',
                                         'type' => 'LEFT',
@@ -281,19 +281,10 @@ class ClosetController extends AppController {
                                             'Wishlist.user_id' => $user_id
                                         )
                                     );
-            $find_array['joins'][] = array('table' => 'dislikes',
-                                        'alias' => 'Dislike',
-                                        'type' => 'LEFT',
-                                        'conditions' => array(
-                                            'Dislike.product_entity_id = Entity.id',
-                                            'Dislike.user_id' => $user_id,
-                                            'Dislike.show' => true
-                                        )
-                                    );   
+            
                      
-            //Fields for likes and dislikes               
+            //Fields for likes              
             $find_array['fields'][] = 'Wishlist.*';
-            $find_array['fields'][] = 'Dislike.*';
         }
         
         // Color filter
@@ -964,7 +955,7 @@ class ClosetController extends AppController {
             //Send confirmation email to the customer.
             $Order->recursive = 3;
             $Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
+            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
             $Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $Order->primaryKey => $id));
             $shipped_order = $Order->find('first', $options);

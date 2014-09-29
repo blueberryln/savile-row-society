@@ -36,21 +36,8 @@ class ApiController extends AppController {
             $outfit_id = $this->request->data['outfit_id'];
 
             $error = false;
-            $Dislike = ClassRegistry::init('Dislike');
             $Like = ClassRegistry::init('Like');
             $posts = ClassRegistry::init('Post');
-            $dislike = $Dislike->get($user_id, $product_id);
-            if($dislike && $dislike['Dislike']['show']){
-                $dislike['Dislike']['show'] = 0;
-                if($Dislike->save($dislike)){
-                    $error = false;           
-                }
-                else{
-                    $ret['status'] = "error";
-                    $ret['msg'] = 'Item could not be liked.';
-                    $error = true;
-                }    
-            }
             
             if($this->request->is('ajax') && !$error) {
                 // get posted product id
@@ -135,106 +122,7 @@ class ApiController extends AppController {
         exit;
     }
 
-    /**
-     * Dislikes
-     */
-    public function dislike($param = null) {
-
-        Configure::write('debug', 0);
-
-        $this->autolayout = false;
-        $this->autoRender = false;
-
-        // init
-        $Dislike = ClassRegistry::init('Dislike');
-        $posts = ClassRegistry::init('Post');
-        $user_id = $this->getLoggedUserID();
-
-        //bhashit code
-        $this->request->data['Post']['user_id'] = $user_id;
-        $this->request->data['Post']['is_dislike'] = '1';
-        $posts->save($this->request->data);
-        $post_id = $posts->getLastInsertID();
-        //bhashit code end
-
-        // save dislike item
-        if ($user_id && $param && $param == 'save') {
-            $product_id = $this->request->data['product_id'];
-
-            $error = false;
-            $Wishlist = ClassRegistry::init('Wishlist');
-            $wishlist = $Wishlist->get($user_id, $product_id);
-            if($wishlist){
-                if($result = $Wishlist->remove($user_id, $product_id)){
-                    $error = false;    
-                }
-                else{
-                    $ret['status'] = "error";
-                    $ret['msg'] = 'Item could not be diliked.';
-                    $error = true;    
-                }
-            }
-            
-            if ($this->request->is('ajax') && !$error) {
-                // get posted product id
-
-                $dislike = $Dislike->get($user_id, $product_id);
-
-                if (!$dislike) {
-                    //bhashit code
-                    $dislike['Dislike']['post_id'] = $post_id;
-                    //bhashit code
-                    $dislike['Dislike']['user_id'] = $user_id;
-                    $dislike['Dislike']['product_entity_id'] = $product_id;
-
-                    $Dislike->create();
-                    if ($Dislike->save($dislike)) {
-                        $ret['status'] = "ok";
-                        $ret['msg'] = 'Item added to disliked items.';
-                    } else {
-                        $ret['status'] = "error";
-                        $ret['msg'] = 'Item could not be diliked.';
-                    }
-                } else {
-                    $dislike['Dislike']['show'] = 1;
-                    if($Dislike->save($dislike)){
-                        $ret['status'] = "ok";
-                        $ret['msg'] = 'Item added to disliked items.';    
-                    }
-                    else{
-                        $ret['status'] = "error";
-                        $ret['msg'] = 'Sorry, item could not be added right now.';
-                    }
-                }
-            }
-        } elseif ($user_id && $param && $param == 'remove') {
-
-            if ($this->request->is('ajax')) {
-                // get posted product id
-                $product_id = $this->request->data['product_id'];
-                $dislike = $Dislike->get($user_id, $product_id);
-                if ($dislike) {
-                    $dislike['Dislike']['show'] = 0;
-                    if($Dislike->save($dislike)){
-                        $ret['status'] = "ok";
-                        $ret['msg'] = 'Item has been removed from disliked items.';    
-                    }
-                    else{
-                        $ret['status'] = "ok";
-                        $ret['msg'] = 'Item has been removed from disliked items.';
-                    }
-                } else {
-                    $ret['status'] = "error";
-                    $ret['msg'] = 'Sorry, item could not be removed right now.';
-                }
-            }
-        } else {
-            $ret['status'] = "error";
-            $ret['msg'] = 'To dislike an item, you need to sign in first';
-        }
-        echo json_encode($ret);
-        exit;
-    }
+    
 
     /**
      * Cart

@@ -17,20 +17,7 @@ class WishlistsController extends AppController {
             $error = false;
             $product_id = $this->request->data['product_id'];
             $outfit_id = $this->request->data['outfit_id'];
-            $Dislike = ClassRegistry::init('Dislike');
             $Like = ClassRegistry::init('Like');
-            $dislike = $Dislike->get($user_id, $product_id);
-            if($dislike && $dislike['Dislike']['show']){
-                $dislike['Dislike']['show'] = 0;
-                if($Dislike->save($dislike)){
-                    $error = false;           
-                }
-                else{
-                    $ret['status'] = "error";
-                    $ret['msg'] = 'Item could not be liked.';
-                    $error = true;
-                }    
-            }
             
             if(!$error) {
                 // get posted product id

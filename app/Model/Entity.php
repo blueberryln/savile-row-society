@@ -195,17 +195,6 @@ class Entity extends AppModel {
                         'Wishlist.product_entity_id = Entity.id'
                     )
                 );
-            $find_array['joins'][] = array('table' => 'dislikes',
-                    'alias' => 'Dislike',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Dislike.user_id' => $user_id,
-                        'Dislike.product_entity_id = Entity.id',
-                        'Dislike.show' => true
-                    )
-                );
-            
-            $find_array['fields'][] = 'Dislike.*';
             $find_array['fields'][] = 'Wishlist.*'; 
         }
         
@@ -397,19 +386,10 @@ class Entity extends AppModel {
                         'Wishlist.user_id' => $user_id,
                         'Wishlist.product_entity_id = Entity.id'
                     )
-                ),
-                array('table' => 'dislikes',
-                    'alias' => 'Dislike',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Dislike.user_id' => $user_id,
-                        'Dislike.product_entity_id = Entity.id',
-                        'Dislike.show' => true
-                    )
                 )
             ),
             'fields' => array(
-                'Entity.*', 'Wishlist.*', 'Dislike.*'
+                'Entity.*', 'Wishlist.*'
             )
         );
         
@@ -495,18 +475,9 @@ class Entity extends AppModel {
                                             'Wishlist.product_entity_id = Entity.id'
                                         )
                                     );
-            $find_array['joins'][] = array('table' => 'dislikes',
-                                        'alias' => 'Dislike',
-                                        'type' => 'LEFT',
-                                        'conditions' => array(
-                                            'Dislike.user_id' => $user_id,
-                                            'Dislike.product_entity_id = Entity.id',
-                                            'Dislike.show' => true
-                                        )
-                                    );   
+            
             
             $find_array['fields'][] = 'Wishlist.*';
-            $find_array['fields'][] = 'Dislike.*'; 
         }
         
         $entity = $this->find('all', $find_array);
@@ -774,18 +745,9 @@ class Entity extends AppModel {
                                             'Wishlist.product_entity_id = Entity.id'
                                         )
                                     );
-            $find_array['joins'][] = array('table' => 'dislikes',
-                                        'alias' => 'Dislike',
-                                        'type' => 'LEFT',
-                                        'conditions' => array(
-                                            'Dislike.user_id' => $user_id,
-                                            'Dislike.product_entity_id = Entity.id',
-                                            'Dislike.show' => true
-                                        )
-                                    );   
             
-            $find_array['fields'][] = 'Wishlist.*';
-            $find_array['fields'][] = 'Dislike.*';    
+            
+            $find_array['fields'][] = 'Wishlist.*'; 
         }
         
         return $this->find('first', $find_array);
