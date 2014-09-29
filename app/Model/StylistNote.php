@@ -10,9 +10,9 @@ App::uses('AppModel', 'Model');
  * @property Post $Post
  * @property Wishlist $Wishlist
  */
-class Stylistnote extends AppModel {
+class StylistNote extends AppModel {
 
-
+	public $useTable = 'stylist_notes';
 
 
 }

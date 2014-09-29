@@ -8,16 +8,20 @@ App::uses('AppModel', 'Model');
  * @property Attachment $Attachment
  * @property Model $Model
  */
-class Stylistbio extends AppModel {
+class StylistBio extends AppModel {
+    
+    public $useTable = 'stylist_bio';
+
     
     /**
      * hasMany associations
      *
      * @var array
      */
+
     public $hasOne = array(
-        'Stylistphotostream' => array(
-            'className' => 'Stylistphotostream',
+        'StylistPhotostream' => array(
+            'className' => 'StylistPhotostream',
             'foreignKey' => 'stylistbio_id',
             'conditions' => '',
             'fields' => '',
