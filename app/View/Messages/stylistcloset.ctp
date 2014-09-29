@@ -213,38 +213,7 @@
 
 
 
-<div class="content-container">
-    <div class="twelve columns black">
-        <div class="eleven columns container">
-            <div class="twelve columns container left ">
-                <div class="ten columns left admin-nav">
-                    <ul>
-                        <li class="active"><a href="#" title="">My Clients</a></li>
-                        <li><a href="#" title="">Dashboard</a></li>
-                        <li><a href="#" title="">My outfits</a></li>
-                        <li><a href="#" title="">The CLoset</a></li>
-                    </ul>
-                </div>
-                <div class="two columns right admin-top-right">
-                    <ul>
-                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
-                        <li>
-                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
-                            <div class="admin-top-right-dropdown">
-                                <ul>
-                                    <li><a href="#" title="">view my cart/checkout</a></li>
-                                    <li><a href="#" title="">refer a friend</a></li>
-                                    <li><a href="#" title="">sign out</a></li>
-                                </ul>
-                            </div>
-                        </li>
 
-                    </ul>    
-                </div>
-            </div>
-        </div>
-        
-    </div>
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
