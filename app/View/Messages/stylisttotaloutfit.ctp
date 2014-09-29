@@ -311,6 +311,22 @@
                                         <span></span>
                                         <input type="text" name="" placeholder="Search Outfits" />
                                     </div>
+                                    <a id="img_drop" href="#" class="stylist_img_upload">Image Drag &amp; Drop</a>
+                                <!--popup -->
+                                <div id="img-upld-popup" style="display: none">
+                                    <div class="box-modal">
+                                        <div class="box-modal-inside">
+<!--                                            <a href="#" title="" class="otft-close"></a>-->
+                                            <div class="img-upld-content">
+                                                <div id="dropzone">
+                                                    <form action="http://www.torrentplease.com/dropzone.php" class="dropzone" id="demo-upload">
+</form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--popup-->
                                 </div>
                                 
                                 

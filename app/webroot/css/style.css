@@ -1727,7 +1727,48 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .itm-sls-list-content ul li .itm-sls-list-client.refer-frnd-status { text-align: center;}
 
 
+#img-upld-popup .box-modal { width: 250px; height: 250px;}
+#img-upld-popup .box-modal .img-upld-content { width: 250px; margin: 0 auto;}
+#img-upld-popup .box-modal .box-modal-inside { padding: 0px;}
+.dropzone .dz-default.dz-message { opacity: 1; -ms-filter: none; filter: none;
+-webkit-transition: opacity 0.3s ease-in-out;
+-moz-transition: opacity 0.3s ease-in-out;
+-o-transition: opacity 0.3s ease-in-out;
+-ms-transition: opacity 0.3s ease-in-out;
+transition: opacity 0.3s ease-in-out;
+background-image: url("../images/upload_img.png");
+background-repeat: no-repeat;
+background-position: center center;
+background-size: cover;
+position: absolute;
+width: 250px;
+height: 250px;
+top: 0;
+left:0;
+}
 
+.dz-default.dz-message span { display: none;}
+.dropzone.dz-started .dz-message {
+display: block;
+opacity: 0;
+filter: alpha(opacity=0);
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
+.dropzone a.dz-remove, .dropzone-previews a.dz-remove {
+background: #927e41;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+border: 1px solid #eee;
+text-decoration: none;
+display: block;
+padding: 4px 5px;
+text-align: center;
+color: #fff;
+margin-top: 26px;
+}
+#loadMoreProduct { width: 100%; display: inline-block; text-align: center;}
+#loadMoreProduct a {background: #927e41; height: 40px; line-height: 40px; padding: 0 20px; display: inline-block; margin-top: 20px; color: #fff; font-size: 20px;text-align: center;}
 
 
 

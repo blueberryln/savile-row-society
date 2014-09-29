@@ -311,7 +311,7 @@
                         });
                         html = html + '<ul>';            
                         html = html + '</div>';
-                        $(".myclst-prdct-list").append(html);
+                        $(".myclst-prdct-list").html(html);
                         // if(firstPageId >= 10){
                         //     $(".myclst-prdct-list").append(html);
                         // }else{

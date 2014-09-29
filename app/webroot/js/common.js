@@ -67,6 +67,12 @@ function myClst() {
     $('.blockOverlay').click($.unblockUI);
 }
 
+function imgUpld() {
+    var blockTop = $(window).height()/2 - $("#img-upld-popup").height()/2;
+    $.blockUI({message: $('#img-upld-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
 
 function newAddress() {
     var blockTop = $(window).height()/2 - $("#newaddess-popup").height()/2;
@@ -191,6 +197,11 @@ jQuery(function(){
         myClst();
     });
     
+    $('.stylist_img_upload').on('click', function(e){
+        e.preventDefault();
+        imgUpld();
+    });
+    
     
     $('#sbmt-cnfrmation').on('click', function(e){
         e.preventDefault();
@@ -308,7 +319,7 @@ jQuery(function(){
         $.unblockUI();
     });
 
-     $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup, #myclst-popup').on('click', '.otft-close', function(e){
+     $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup, #myclst-popup, #img-upld-popup').on('click', '.otft-close', function(e){
         e.preventDefault();
         $.unblockUI();
     });
