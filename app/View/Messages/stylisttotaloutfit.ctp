@@ -293,7 +293,7 @@
                                         
                                         <div class="twelve columns client-outfits left">
                                             <div class="eleven columns container client-outfits-area pad-none">
-                                                <h1><?php echo $entity_list['outfit']['Outfit']['outfitname']; ?></h1>
+                                                <h1><?php echo $entity_list['outfit']['Outfit']['outfit_name']; ?></h1>
                                                 <div class="twelve columns client-outfits-img pad-none">
                                                    
                                                     <ul>
