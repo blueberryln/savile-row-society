@@ -128,7 +128,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <textarea name="data[Booking][comment]" id="BookingComment"></textarea>
                             </div>
                             <div class="book-it-btn">
-                                <?php echo $this->Form->end(array('value'=>'Submit', 'id' => 'book-button')); ?>
+                                <?php echo $this->Form->end(array('label'=>'NOTIFY MY STYLIST', 'id' => 'book-button')); ?>
                                 <span class="err-message">Please complete all the fields first.</span>
                             </div>
                             

@@ -40,30 +40,40 @@ class BookingController extends AppController {
                 $data['Booking']['date_end'] = strtotime(date('Y-m-d'));                
                 $data['Booking']['comment'] = $this->request->data['Booking']['comment'];
 
+                $User = ClassRegistry::init('User');
+                $user = $User->findById($data['Booking']['user_id']);
+
+                if($user['User']['stylist_id']){
+                    $stylist = $User->findById($user['User']['stylist_id']);
+                    if(!$stylist){
+                        $stylist = $User->findByEmail(Configure::read('Email.contact'));
+                    }
+                }
+                else{
+                    $stylist = $User->findByEmail(Configure::read('Email.contact'));    
+                }
+
                 if ($this->Booking->save($data)) {
 
                     $data['Booking']['booking_type_id'] = explode(',', $data['Booking']['booking_type_id']);
-                    // send personal stylist mail
-                    $user = $this->getLoggedUser();
+
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                    $email->to('fitting@savilerowsociety.com');
-                    //$email->cc('joey@savilerowsociety.com');
-                    $email->bcc('admin@savilerowsociety.com');
-                    $email->subject('Tailor booking: ' . $user['User']['first_name'] . ' ' . $user['User']['last_name']);
+                    $email->to($stylist['User']['email']);
+                    $email->subject('NEW showroom appointment!');
                     $email->template('tailor');
                     $email->emailFormat('html');
-                    $email->viewVars(compact('user', 'data'));
+                    $email->viewVars(compact('user', 'data', 'stylist'));
                     $email->send();
                     
                     //Send a confirmation
                     $user_email = new CakeEmail('default');
                     $user_email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $user_email->to($user['User']['email']);
-                    $user_email->subject('Tailor Booking Confirmation');
+                    $user_email->subject('Your Showroom Appointment!');
                     $user_email->template('confirmation_tailor');
                     $user_email->emailFormat('html');
-                    $user_email->viewVars(compact('user', 'data'));
+                    $user_email->viewVars(compact('user', 'data', 'stylist'));
                     $user_email->send();
 
                     $this->Session->setFlash(__('You will get a confirmation e-mail.'), 'flash');

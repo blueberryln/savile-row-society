@@ -33,10 +33,12 @@ class ApiController extends AppController {
         // save wishlist item
         if ($user_id && $param && $param == 'save') {
             $product_id = $this->request->data['product_id'];
+            $outfit_id = $this->request->data['outfit_id'];
 
             $error = false;
             $Dislike = ClassRegistry::init('Dislike');
             $Like = ClassRegistry::init('Like');
+            $posts = ClassRegistry::init('Post');
             $dislike = $Dislike->get($user_id, $product_id);
             if($dislike && $dislike['Dislike']['show']){
                 $dislike['Dislike']['show'] = 0;
@@ -52,27 +54,44 @@ class ApiController extends AppController {
             
             if($this->request->is('ajax') && !$error) {
                 // get posted product id
-
-                $wishlist = $Wishlist->get($user_id, $product_id);
-
+                $wishlist = $Wishlist->get($user_id, $product_id, $outfit_id);
+                //bhashit code
+                $User = ClassRegistry::init('User');
+                $stylistid = $User->getByID($user_id);
+                $sty_id = $stylistid['User']['stylist_id'];
+                $this->request->data['Post']['user_id'] = $user_id;
+                $this->request->data['Post']['stylist_id'] = $sty_id; 
+                $this->request->data['Post']['is_like'] = '1';
+                $posts->save($this->request->data);
+                $post_id = $posts->getLastInsertID();
+                //bhashit code end
                 if (!$wishlist) {
+                    //bhashit code
+                    $wishlist['Wishlist']['post_id'] = $post_id;
+                    //bhashit code
                     $wishlist['Wishlist']['user_id'] = $user_id;
                     $wishlist['Wishlist']['product_entity_id'] = $product_id;
+                    $wishlist['Wishlist']['outfit_id'] = $outfit_id;
 
                     $Wishlist->create();
                     if ($Wishlist->save($wishlist)) {
                         //Check if present in likes
-                        $like = $Like->get($user_id, $product_id);
+                        
+                       $like = $Like->get($user_id, $product_id, $outfit_id);
                         if(!$like){
+                            //bhashitcode
+                            $like['Like']['post_id'] = $post_id;
+                            //bhashitcode end
                             $like['Like']['user_id'] = $user_id;
-                            $like['Like']['product_entity_id'] = $product_id;   
+                            $like['Like']['product_entity_id'] = $product_id;
+                            $like['Like']['outfit_id'] = $outfit_id;   
                             $Like->create(); 
                             $Like->save($like); 
                         }
                         
                         $user = $this->getLoggedUser();
                         if ($user && $user['User']['preferences']) {
-                            $preferences = unserialize($user['User']['preferences']);
+                            $preferences = unserialize($user['User']['preferences']);   
                         }
                         
                         if(isset($preferences) && isset($preferences['UserPreference']['is_complete']) && ($preferences['UserPreference']['is_complete'] == "completed" || $preferences['UserPreference']['is_complete'] == "1")){
@@ -128,7 +147,15 @@ class ApiController extends AppController {
 
         // init
         $Dislike = ClassRegistry::init('Dislike');
+        $posts = ClassRegistry::init('Post');
         $user_id = $this->getLoggedUserID();
+
+        //bhashit code
+        $this->request->data['Post']['user_id'] = $user_id;
+        $this->request->data['Post']['is_dislike'] = '1';
+        $posts->save($this->request->data);
+        $post_id = $posts->getLastInsertID();
+        //bhashit code end
 
         // save dislike item
         if ($user_id && $param && $param == 'save') {
@@ -154,6 +181,9 @@ class ApiController extends AppController {
                 $dislike = $Dislike->get($user_id, $product_id);
 
                 if (!$dislike) {
+                    //bhashit code
+                    $dislike['Dislike']['post_id'] = $post_id;
+                    //bhashit code
                     $dislike['Dislike']['user_id'] = $user_id;
                     $dislike['Dislike']['product_entity_id'] = $product_id;
 
@@ -207,43 +237,6 @@ class ApiController extends AppController {
     }
 
     /**
-     * Comment
-     * Post comment
-     */
-    public function comment($param = null) {
-
-        Configure::write('debug', 0);
-
-        $this->autolayout = false;
-        $this->autoRender = false;
-
-        // init
-        $Comment = ClassRegistry::init('Comment');
-        $user_id = $this->getLoggedUserID();
-
-        // save wishlist item
-        if ($user_id && $param && $param == 'save') {
-
-            if ($this->request->is('ajax')) {
-                $user = $this->getLoggedUser();
-                $model_id = $this->request->data['model_id'];
-                $model = $this->request->data['model'];
-                $text = $this->request->data['text'];
-
-                $Comment->create();
-                $comment['Comment']['user_id'] = $user_id;
-                $comment['Comment']['model_id'] = $model_id;
-                $comment['Comment']['model'] = $model;
-                $comment['Comment']['text'] = $text;
-
-                if ($Comment->save($comment)) {
-                    echo $user['User']['full_name'];
-                }
-            }
-        }
-    }
-
-    /**
      * Cart
      */
     public function cart($param = null) {
@@ -253,7 +246,7 @@ class ApiController extends AppController {
         $this->autoRender = false;
         
         $ret = array();
-        
+
         // init
         $Entity = ClassRegistry::init('Entity');
         $user_id = $this->getLoggedUserID();
@@ -269,7 +262,9 @@ class ApiController extends AppController {
                     // Get product Entity ID and Get the information for the entity
                     $entity_id = $this->request->data['product_id'];
                     $entity = $Entity->getById($entity_id, $user_id);
-                    
+                    //print_r($entity);
+                    //print_r($ret);
+                    //exit;   
                     //Prepare data array for adding cart information
                     if($entity['Entity']['is_gift']){
                         $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
@@ -310,6 +305,7 @@ class ApiController extends AppController {
                             $existing_item['CartItem']['quantity'] = intval($existing_item['CartItem']['quantity']) + $new_quantity;
                             
                             if($result = $CartItem->save($existing_item)){
+                               
                                 $ret['status'] = 'ok';    
                             }
                             else{
@@ -320,7 +316,10 @@ class ApiController extends AppController {
                             $data['CartItem']['cart_id'] = $result['Cart']['id'];
                             $cart_id = $result['Cart']['id'];
                             $CartItem->create();
+                            
                             if($result = $CartItem->save($data)){
+                                
+                        
                                 $ret['status'] = 'ok';    
                             }
                             else{
@@ -337,6 +336,7 @@ class ApiController extends AppController {
                         $cart_id = $result['Cart']['id'];
                         $CartItem->create();
                         if($result = $CartItem->save($data)){
+                            
                             $ret['status'] = 'ok';    
                         }
                         else{
@@ -379,11 +379,11 @@ class ApiController extends AppController {
                         }
                         
                         $ret['cart_total'] = $cart_total;
-                        $ret['cart_message'] = "Dear " . ucwords($user['User']['full_name']) . ",<br>We would like to remind you that you currently have three items in your cart, totaling $" . number_format($cart_total, 2) . ".";
+                        $ret['cart_message'] = "Dear " . ucwords($user['User']['first_name']) . ",<br>We would like to remind you that you currently have three items in your cart, totaling $" . number_format($cart_total, 2) . ".";
                     }
                     
                     if($ret['status'] == "ok" && $ret['count'] != 3){
-                        $this->Session->setFlash("Item has been added to the cart.", 'flash');    
+                        $this->Session->write('add-cart', 1);   
                     }
                     else if($ret['status'] == "ok" && $ret['count'] == 3){
                         $this->Session->write('cart-three-items', 1);    
@@ -391,6 +391,7 @@ class ApiController extends AppController {
                     }
                     
                     echo json_encode($ret);
+                   
                     exit;
                 }
             } 
@@ -512,14 +513,14 @@ class ApiController extends AppController {
             $PriceRequest->create();
             if($PriceRequest->save($data)){
                 try{
-                    $user_email = new CakeEmail('default');
-                    $user_email->from(array($data['PriceRequest']['request_email'] => $request_name));
-                    $user_email->to('admin@savilerowsociety.com');
-                    $user_email->subject('Savile Row Society: Product Price Request');
-                    $user_email->template('price_request');
-                    $user_email->emailFormat('html');
-                    $user_email->viewVars(array('entity' => $entity, 'data' => $data, 'user' => $user));
-                    $user_email->send();
+                    // $user_email = new CakeEmail('default');
+                    // $user_email->from(array($data['PriceRequest']['request_email'] => $request_name));
+                    // $user_email->to('admin@savilerowsociety.com');
+                    // $user_email->subject('Savile Row Society: Product Price Request');
+                    // $user_email->template('price_request');
+                    // $user_email->emailFormat('html');
+                    // $user_email->viewVars(array('entity' => $entity, 'data' => $data, 'user' => $user));
+                    // $user_email->send();
                 }
                 catch(Exception $e){
                     
@@ -595,40 +596,6 @@ class ApiController extends AppController {
         exit;
     }
     
-    /**
-     * Message Notification
-     */
-    // Commented due to change in logic
-    /*
-    public function getNewClients() {
-        //$this->autolayout = false;
-        //$this->autoRender = false;
-        $ret = array();
-        
-        $user = $this->getLoggedUser();
-        $user_id = $user['User']['id'];
-        $client_string = $this->request->data['clientString'];
-        $client_array = explode(',', $client_string);
-        if($user_id && $user['User']['is_stylist'] == '1' && $client_array && $client_array != "" && count($client_array) > 0){
-            $User = ClassRegistry::init('User');
-            $new_clients = $User->getNewClients($client_array, $user_id);
-            if($new_clients){
-                $ret['status'] = 'ok';
-                $ret['clients'] = $new_clients;        
-            }
-            else{
-                $ret['status'] = 'error';    
-            }
-        }
-        else{
-            $ret['status'] = 'error1';
-        }
-            
-        //echo json_encode($ret);
-        //exit;
-    }
-    */
-    
     
     /**
      * Get cart count
@@ -677,11 +644,12 @@ class ApiController extends AppController {
             if(Validation::email($email_array[$i])){
                 try{
                     //send personal stylist mail
+                    $bcc = Configure::read('Email.contact');
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($email_array[$i]);
-                    $email->bcc('admin@savilerowsociety.com');
-                    $email->subject("You've Been Given The Gift Of SRS");
+                    $email->bcc($bcc);
+                    $email->subject("Discover Savile Row Society");
                     $email->template('refer');
                     $email->emailFormat('html');
                     $email->viewVars(compact('user'));
@@ -702,4 +670,3 @@ class ApiController extends AppController {
         exit;
     }
 }
-

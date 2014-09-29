@@ -132,11 +132,12 @@ class ConnectController extends AppController {
                     $this->Session->write('user', $linkedin_data);
 
                     // send welcome mail
+                    $bcc = Configure::read('Email.contact');
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($profile['emailAddress']);
-                    $email->subject('Welcome to Savile Row Society!');
-                  $email->bcc(array('lisa@savilerowsociety.com', 'andrea@savilerowsociety.com', 'saurabh@mobikasa.com', 'admin@savilerowsociety.com'));
+                    $email->subject('Welcome To Savile Row Society');
+                    $email->bcc($bcc);
                     $email->template('registration');
                     $email->emailFormat('html');
                     $email->viewVars(array('name' => $profile['firstName']));
@@ -144,7 +145,7 @@ class ConnectController extends AppController {
 
                     // redirect to home
                     //$this->Session->setFlash(__('Your account is created with your LinkedIn data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
-                    $this->redirect('/profile/about');
+                    $this->redirect('/register/wardrobe');
                     exit();
                 } else {
                     $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
@@ -294,8 +295,8 @@ class ConnectController extends AppController {
                         $email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                         $email->to($profile['email']);
-                        $email->subject('Welcome to Savile Row Society!');
-                  $email->bcc(array('lisa@savilerowsociety.com', 'andrea@savilerowsociety.com', 'saurabh@mobikasa.com', 'admin@savilerowsociety.com'));
+                        $email->subject('Welcome To Savile Row Society');
+                        $email->bcc($bcc);
                         $email->template('registration');
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
@@ -304,7 +305,7 @@ class ConnectController extends AppController {
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
-                        $this->redirect('/profile/about');
+                        $this->redirect('/register/wardrobe');
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
@@ -346,7 +347,7 @@ class ConnectController extends AppController {
 
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
-                        $this->redirect('/profile/about');
+                        $this->redirect('/register/wardrobe');
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');

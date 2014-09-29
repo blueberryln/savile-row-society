@@ -53,8 +53,19 @@ class PagesController extends AppController {
         }
 
         if($page == 'home'){
+
             $user = $this->getLoggedUser();
-            $this->set(compact('user'));
+            
+            //Get Top Stylists
+            $TopStylist = ClassRegistry::init('TopStylist');
+            $topStylists = $TopStylist->getTopStylists();
+            
+            //Get Top Outfits
+            $TopOutfit = ClassRegistry::init('TopOutfit');
+            $topOutfits = $TopOutfit->getTopOutfits();
+
+            $this->set(compact('user','topStylists','topOutfits'));
+       
         }
         else if ($page == 'tailor') {
             $this->isLogged();

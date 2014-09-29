@@ -15,85 +15,70 @@
              <p>
                 <strong>What is Savile Row Society?</strong>
                 <div>
-                    SavileRow Society is a web based men&apos;s personal shopping platform. Our mission is to deliver an efficient, educational and interactive shopping experience for the man who cares about style but lacks the time to acquire it.
+                    By joining Savile Row Society, men no longer have to take the time or make the effort to shop. Instead, our stylists will create outfits and suggest products that they feel best fit their client's lifestyle and needs.
                 </div>
              </p>
              <p>
-                 <strong>How was the idea for Savile Row Society developed?</strong>
-                <div>A man has to shop either by going store-to-store or buy online.
-    But men hate wasting time going store to store and are weary of buying online because of fitting issues and the hassle of returning items if they get the size wrong.<br /><br />The easiest solution to this problem is to get a personal stylist!
-    The fundamental purpose of Savile Row Society is to provide this valuable service to men in search of style.
-    We guide them step-by-step on how to build a better wardrobe and refine their image through our curated collection of menswear products and our skilled personal stylists.
-    </div>
-             </p>
-             <p>
-                 <strong>What is the Closet?</strong>
-                <div>&quot;The Closet&quot; is our curated collection of products from brands that we believe meet our standards; you get only the best at SRS! Our curated products are best in class, and illustrate our the mission to select the best of the best that may not have the shelf space at a big name retailer where men shop going store to store or searching products online.</div>
-             </p>
-             <p>
-                 <strong>How does The Closet work?</strong>
-                <div>You can purchase items on The Closet or like and dislike items to help our stylists get to know you better. The front page of The Closet is divided into 12 essential menswear categories. Use the arrow on the side of each picture to see a new product in that category.</div>
-             </p>
-             <p>
-                 <strong>How does Savile Row Society&apos;s service work?</strong>
-                <div>-If you like what you see in The Closet and want the SRS personal styling service, you are required to register and fill out a style profile.</div>
-                <div>-After this quick style quiz to understand taste, needs, and body type, the site matches you with a personal shopper,</div>
-                <div>-You can interact with your stylist through the chat feature on our website and even share images with them.</div>
-                <div>-Your stylist is there to solve all your style problems, suggest the right outfit/piece for an upcoming event, etc.</div>
-             </p>
-             <p>
-                 <strong>What is the clothes-to-customer algorithm? How does it work?</strong>
-                <div>Our clothes-to-customer algorithm that was designed by a machine learner and an experienced personal stylist displays personalized product suggestions to each customer based on their style profile and interactions with The Closet.</div><br />
-                <div>When you like a product, it helps our stylists and our clothes-to-customer algorithm, designed by a stylist and machine learner, gets to know you better and make better product suggestions to you.</div>
-             </p>
-             <p>
-                 <strong>What if I change my mind about an item after it is delivered to me?</strong>
-                <div>Not only do we accept returns, we pay for it too! Just send an email to returns@savilerowsociety.com with your order number in the subject line. We&apos;ll process your return and send you a shipping label to send it back to us.</div>
-             </p>
-             <p>
-                 <strong>What makes SRS different from any other personal styling platform?</strong>
-                <div>Unlike other personal styling/shopping platforms in the industry right now, SRS is unique because it offers a combination of diverse brands, personal stylists, custom fitting and data analysis for improved recommendations.</div>
-             </p>
-             
-             <h4 class="faq-title">Personal Stylists</h4>
-             <p>
-                 <strong>How do I become a stylist at SRS?</strong>
-                <div>If you are interested in joining SRS as a stylist, send us an email expressing your interest  to contactus@savilerowsociety.com with the subject line &quot;Stylist Position&quot; and we&apos;ll get back to you as soon as we can!</div>
-             </p>
-             
-             <h4 class="faq-title">Brands</h4>
-             <p>
-                 <strong>How do I become one of SRS&apos;s featured brands?</strong>
-                <div>If you are interested in partnering with SRS please send an email mentioning a brief description of your brand and best times and means to contact you by to contactus@savilerowsociety.com with the subject line &quot;Partnering Brand&quot; and we&apos;ll get back to you as soon as we can.</div>
-             </p> 
-             
-             <h4 class="faq-title">Custom Suiting</h4>
-             <p>
-                 <strong>Are your suits hand-made or machine-made?</strong>
-                <div>An SRS custom garment is completely made by hand.  SRS also incorporates additional hand detailing throughout the jacket and trouser, that no other custom clothier offers.  Many of our clients have commented on how comfortable our clothing feels.  Our gentlemen wear their suits, not the other way around.</div>
-             </p>
-             <p>
-                 <strong>How long does it take for an SRS custom garment to be completed?</strong>
-                <div>The delivery for an SRS custom garment is 4-6 weeks.</div>
-             </p>
-             <p>
-                 <strong>Where do your fabrics come from?</strong>
-                <div>SRS has partnered with the top fabric mills in the fashion industry.  We don&apos;t offer 1,000 choices like many custom clothiers offer, we focus on the needs of our clients and pinpoint exactly what fabrics they need to incorporate into their wardrobe for work, travel, and leisure.</div>
-             </p>
-             <p>
-                 <strong>What makes an SRS suit different from others?</strong>
-                <div>Exceptional tailoring and a handmade garment at a competitive price.</div>
-             </p> 
-             <p>
-                 <strong>How much does an SRS custom suit cost?</strong>
-                <div>Our price points are as follows:
-                    <ul class="price-pts">
-                        <li><span>Suits: &nbsp;</span>$1,495 - $1,895</li>
-                        <li><span>Jackets: &nbsp;</span>$995 - $1,195</li>
-                        <li><span>Shirts: &nbsp;</span>$175 - $295</li>
-                    </ul>
+                 <strong>How am I paired with a stylist?</strong>
+                <div>
+                    To be paired with a SRS stylist, you will need to fill out our quick Style Profile. Our Style Profile will help us to assign you to the stylist that corresponds the best to you and your wardrobe needs.
                 </div>
-             </p>          
+             </p>
+            <p>
+                <strong>Who are the stylists on Savile Row Society? </strong>
+                <div>Our Stylists are fit experts that have experience in fashion, retail and styling. They follow a thorough training once they join SRS for you to have the best user experience.</div>
+            </p>
+            <p>
+                <strong>What happens when I get a Stylist?</strong>
+                <div>Once you are done completing your profile, you are directed to the &quot;My Stylist&quot; page. There you will have the opportunity to chat with your stylist, as well as view the product and outfit suggestions recommended to you by your stylist.</div>
+            </p>
+            <p>
+                <strong>Can I meet my stylist in-person?</strong>
+                <div>Absolutely. You can meet your stylist in our Showroom located in the vibrant Flatiron District in New York City. In the Showroom, you will be able to try on our samples to see what you like and what fits you best. We believe that meeting in-person is the best way to start with SRS, as it allows for your stylist to understand exactly what you look for and what looks best on you.  </div>
+            </p>
+            <p>
+                <strong>What is The Closet?</strong>
+                <div>&quot;The Closet&quot; is our curated collection of products from the brands that we believe to be best in class, and that meet our standard of excellence. Users can browse the featured sample products in The Closet, &quot;like&quot; and &quot;dislike&quot; products, and transact.</div>
+            </p>
+            <p>
+                <strong>Do I have to have a stylist to transact in The Closet?</strong>
+                <div>Each member has the ability to browse The Closet, and transact without having a personal stylist, however, only a sample of our collection is available for users to browse through. Our stylists, however, have access to our entire inventory comprising more than 60 brands, and will be able to recommend you products that are unavailable to those without an SRS stylist.</div>
+            </p>
+            <p>
+                <strong>Is shipping free?</strong>
+                <div>Shipping domestically is free, however, for those outside of the US, there will be a small charge. </div>
+            </p>
+            <p>
+                <strong>Can I return an item after I purchase it?</strong>
+                <div>Of course – we understand that returns are, at times, inevitable. </div>
+            </p>
+            <p>
+                <strong>Do you offer made to measure? </strong>
+                <div>Absolutely. As part of our &quot;one stop&quot; shopping destination, we offer made-to-measure suiting and shirting.</div>
+            </p>
+            <p>
+                <strong>How do I purchase a custom suit or shirt?</strong>
+                <div>
+                    Our custom wear collection, comprised of both suiting and shirting, is housed in our NYC-based showroom, located at 1115 Broadway. If you are interested in a custom suit or shirt, please schedule a fitting appointment by going to &quot;The Fitting Room&quot; page. 
+                    <br>
+                    After an initial fitting session with our tailor, we will then store your measurements in our system. This will allow you to order custom wear in the future through your stylist, without having to come back to the showroom.
+                </div>
+            </p>
+            <p>
+                <strong>Where do your fabrics come from?</strong>
+                <div>Savile Row Society has partnered with the top fabric mills in the fashion industry. Our selection consists of 300+ shirting fabrics, and 200+ suiting fabrics. We are proud to say that we carry fabrics from Holland &amp; Sherry, among other exceptional cloth manufacturers. </div>
+            </p>
+            <p>
+                <strong>Where is your made to measure manufactured?</strong>
+                <div>
+                    Custom shirts are manufactured in Newark, New Jersey with a turnaround time of 3 to 6 weeks. Custom suits are manufactured in China or in the US, depending on the fabric you select. All our suits are tailored in New York with a turnaround time of 4 to 6 weeks. 
+                </div>
+            </p>
+            <p>
+                <strong>How much does a custom suit cost?</strong>
+                <div>Our custom suit prices vary based on the fabric from $1095 to 3995$. </div>
+            </p>
+                    
          </div>
     	
 

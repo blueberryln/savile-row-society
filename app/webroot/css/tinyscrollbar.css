@@ -1,0 +1,119 @@
+#scrollbar1,
+#scrollbar2,
+#scrollbar3,
+#scrollbar4,
+#scrollbar5
+
+{
+    width:100%;
+    margin:20px auto 10px;
+    position: relative;
+}
+
+#scrollbar1 .viewport,
+#scrollbar2 .viewport,
+#scrollbar3 .viewport,
+#scrollbar4 .viewport,
+#scrollbar5 .viewport
+{
+    height: 800px;
+    overflow:hidden;
+    position:relative;
+    }
+#scrollbar2 .viewport { height: 400px;}
+#scrollbar3 .viewport, #scrollbar4 .viewport, #scrollbar5 .viewport { height: 300px;}
+
+#scrollbar1 .overview,
+#scrollbar2 .overview,
+#scrollbar3 .overview,
+#scrollbar4 .overview,
+#scrollbar5 .overview
+{
+    list-style:none;
+    position:absolute;
+    left:0;
+    top:0;
+    margin:0;
+    padding: 0;
+}
+#scrollbar2 .overview, #scrollbar3 .overview, #scrollbar4 .overview, #scrollbar5 .overview { right: 0;}
+
+#scrollbar1 .scrollbar,
+#scrollbar2 .scrollbar,
+#scrollbar3 .scrollbar,
+#scrollbar4 .scrollbar,
+#scrollbar5 .scrollbar {
+    background:transparent url(images/bg-scrollbar-track-y.png) no-repeat 0 0;
+    position:absolute;
+    background-position:0 0;
+    right: -30px;
+    top:0;
+    width:15px;
+}
+#scrollbar3 .scrollbar, #scrollbar4 .scrollbar, #scrollbar5 .scrollbar {right: 0px;}
+#scrollbar2 .scrollbar { display: none;}
+
+#scrollbar1 .track,
+#scrollbar2 .track,
+#scrollbar3 .track,
+#scrollbar4 .track,
+#scrollbar5 .track
+{
+    background:#f0f0ec;;
+    height:100%;
+    width:10px;
+    position:relative;
+    padding:0 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#scrollbar1 .thumb,
+#scrollbar2 .thumb,
+#scrollbar3 .thumb,
+#scrollbar4 .thumb,
+#scrollbar5 .thumb
+{
+    background:#d9d9d5;
+    height:20px;
+    width:6px;
+    cursor:pointer;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:3px;
+     -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#scrollbar1 .thumb .end,
+#scrollbar2 .thumb .end,
+#scrollbar3 .thumb .end,
+#scrollbar4 .thumb .end,
+#scrollbar5 .thumb .end
+{
+    background:#d9d9d5;
+    overflow:hidden;
+    height:5px;
+    width:6px;
+}
+
+#scrollbar1 .disable,
+#scrollbar2 .disable,
+#scrollbar3 .disable,
+#scrollbar4 .disable,
+#scrollbar5 .disable
+{
+    display:none;
+}
+
+.noSelect
+{
+    user-select:none;
+    -o-user-select:none;
+    -moz-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+}

@@ -17,16 +17,16 @@ class ClosetController extends AppController {
      * Index
      */
 
-    function beforeFilter() {
-        $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
+    // function beforeFilter() {
+    //     $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
         
-        // if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
-        //     $this->forceSSL();
-        // }  
-        // else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
-        //     $this->unForceSSL();  
-        // }
-    }
+    //     // if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
+    //     //     $this->forceSSL();
+    //     // }  
+    //     // else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
+    //     //     $this->unForceSSL();  
+    //     // }
+    // }
 
 
     public function forceSSL() {
@@ -60,6 +60,13 @@ class ClosetController extends AppController {
             $entities = $this->closetProducts($user_id);
         }
         
+        
+        $show_add_cart_popup = 0;
+        if($this->Session->read('add-cart')){
+            $show_add_cart_popup = 1;
+            $this->Session->delete('add-cart');
+        }
+
         $popUpMsg = '';
         $show_three_item_popup = 0;
         if($this->Session->read('cart-three-items')){
@@ -78,7 +85,7 @@ class ClosetController extends AppController {
         }
         
         // send data to view
-        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg'));
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
 
         if(!$category_slug){
             $this->render('closet_landing');     
@@ -91,9 +98,17 @@ class ClosetController extends AppController {
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
 
-        //$parent_categories = $Category->getParentCategories();
-        //$random_list = $Entity->getCloset($parent_categories);
-        $random_list = $Entity->getClosestItems();
+        $user = $this->getLoggedUser();
+
+        //Get the list of random product list for the closet
+        if($user['User']['is_stylist'] || $user['User']['is_admin']){
+            $random_list = $Entity->getTeamClosestItems();
+        }
+        else{
+            $random_list = $Entity->getClientClosestItems();    
+        }
+
+        
         $entity_list = array();
         $entity_list_cat = array();
         
@@ -141,10 +156,13 @@ class ClosetController extends AppController {
     public function categoryProducts($user_id, $categories, $category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null){
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
+
+        $user = $this->getLoggedUser();
             
         if($filter_used != "color" && $filter_used != "brand"){
             $filter_used = "error";
         }
+
         // Get the parent id
         $parent_id = false;
         if($category_slug != "all"){
@@ -228,13 +246,13 @@ class ClosetController extends AppController {
                     )
                 ),
                 
-                //array('table' => 'products_details',
-//                    'alias' => 'Detail',
-//                    'type' => 'INNER',
-//                    'conditions' => array(
-//                        'Detail.product_entity_id = Entity.id',
-//                    )
-//                ),
+               //  array('table' => 'products_details',
+               //     'alias' => 'Detail',
+               //     'type' => 'INNER',
+               //     'conditions' => array(
+               //         'Detail.product_entity_id = Entity.id',
+               //     )
+               // ),
             ),
             'order' => array('Entity.order' => 'ASC'),
             'fields' => array(
@@ -245,6 +263,11 @@ class ClosetController extends AppController {
         
         if($category_slug != 'all'){
             $find_array['conditions']['Category.category_id'] = $category_ids;
+        }
+
+        //Hide products restricted for website user (hide_from_client)
+        if(!$user['User']['is_stylist'] && !$user['User']['is_admin']){
+            $find_array['conditions']['Entity.hide_from_client'] = false; 
         }
         
         //Query additions for a logged in user
@@ -1527,4 +1550,9 @@ class ClosetController extends AppController {
         $this->set(compact('purchased_list', 'sizes', 'user_id'));
         
     }
+
+    // bhashit code start
+
+    
+    //bhashit code end
 }

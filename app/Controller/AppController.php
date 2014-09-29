@@ -11,12 +11,11 @@ class AppController extends Controller {
      * @return none
      */
     function beforeFilter() {
-        if($this->request->is('ssl')){ 
-            if($this->request->params['controller'] != "closet"){
+        if($this->request->is('ssl')){
+            if($this->request->params['controller'] != "payments"){
                 $this->redirect('http://' . env('SERVER_NAME') . $this->here);
             }
-        } 
-           
+        }     
     }
 
 
@@ -78,15 +77,14 @@ class AppController extends Controller {
          * Set values for profile completion popup
          */
         if($this->Session->check('completeProfile') && $this->Session->read('completeProfile')){
-            if($this->params->url == "profile/about"){
+            if($this->params->url == "register/wardrobe"){
                 $this->set('profilePopup', array('completeProfile' => true, 'isProfile' => true));
             }
             else{
                 $this->set('profilePopup', array('completeProfile' => true));   
             }
             $this->Session->delete('completeProfile');    
-        }
-        
+        }  
     }
 
 
@@ -218,14 +216,25 @@ class AppController extends Controller {
      */
     function getMessageNotification(){
         $user_id = $this->getLoggedUserID();
+        $user = $this->getLoggedUser();
         $Message = ClassRegistry::init('Message');
+        $User = ClassRegistry::init('User');
         $message_notification = array();
-        if($user_id){
+        if($user_id && $user['User']['is_stylist']){
             $message_notification['total'] = $Message->getTotalNotificationCount($user_id);
             $message_notification['message'] = $Message->getNewMessageCount($user_id);
             $message_notification['outfit'] = $Message->getNewOutfitCount($user_id);
+            $message_notification['clients'] = $User->getNewClientsCount($user_id);
+
+            $message_notification['total'] = $message_notification['total'] + $message_notification['clients'];
             return $message_notification;
         }    
+        else if($user_id) {
+            $message_notification['total'] = $Message->getTotalNotificationCount($user_id);
+            $message_notification['message'] = $Message->getNewMessageCount($user_id);
+            $message_notification['outfit'] = $Message->getNewOutfitCount($user_id);
+            return $message_notification;    
+        }
         return false;
     } 
 }

@@ -3,11 +3,11 @@
 	<div id="signin-box" class="box-modal notification-box">
     <div class="box-modal-inside">
         <a class="notification-close" href=""></a>
-        <div class="signin-content">
+        <div class="signin-content"> 
             <h5 class="sign">SIGN IN</h5>            
-            <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
+            <!-- <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
             <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo $this->webroot; ?>img/linkedin.png" /></a>  
-            <h6 class="sign-or">OR</h6>   
+            <h6 class="sign-or">OR</h6>  -->  
             
             <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate', 'url' => '/signin')); ?> 
                 <?php
@@ -32,17 +32,37 @@
 	    <div class="box-modal-inside">
 	        <a class="notification-close" href=""></a>
 	        <div class="signup-content">
-	            <h5 class="sign">SIGN UP</h5> 
+	            <h5 class="sign"><img src="<?php echo $this->webroot; ?>img/srs_logo_black.png" alt="" style="width: 250px"></h5> 
 	            <?php if(isset($referer_type)) : ?>
 	                <?php if($referer_type == 'event') : ?>
 	                    <p>Thank you for attending our <?php echo ucwords($referer['User']['full_name']); ?> event. To thank you for your support and patronage, please enjoy $50 off of your first purchase of $250 or more.</p>
 	                <?php elseif($referer_type == 'stylist') : ?>
-	                    <p>We hear you’re a friend of our premier personal stylist <?php echo ucwords($referer['User']['first_name']); ?>. To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more. </p>
+	                    <p>We hear you’re a friend of our premier personal stylist <?php echo ucwords($referer['User']['first_name']); ?>. To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more.</p>
 	                <?php else : ?>
 	                    <p>Any friend of <?php echo ucwords($referer['User']['first_name']); ?> is a friend of ours! To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more. </p>
 	                <?php endif; ?> 
+		            <div class="text-center">
+		            	<a href="<?php echo $this->webroot; ?>users/register" class="link-btn black-btn signin-btn">Start</a>
+		            </div>
+	            <?php else : ?>
+	            	<div id="request-invite-block">
+		            	<p>Due to high demand in our beta period, we will place you on our waitlist and will notify you as soon as we are able to service you.</p> 
+		            
+		            	<div class="input email required">
+		                	<input type="text" id="invite-email" required placeholder="Enter email address...">
+		                </div>
+						<div class="text-center">
+			            	<a href="" class="link-btn black-btn signin-btn btn-request-invite">Request Invite</a>
+			            </div>
+			            <span class="already-member">
+			            	<a href="" id="block-vip-access-link" >Have been referred?</a>	
+			            </span>
+					</div>
+					<div class="hide" id="request-invite-status">
+						<p>Thank you for leaving us your email! <br>We have placed you on our waitlist and will notify you as soon as we are able to service you.</p>	
+					</div>
 	            <?php endif; ?>          
-	            <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
+	            <!-- <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
 	            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo $this->webroot; ?>img/linkedin.png" /></a> 
 	            <h6 class="sign-or">OR</h6>               
 	            <?php echo $this->Form->create('User', array('url' => '/register/basic', 'id' => 'register-form', 'novalidate')); ?> 
@@ -59,7 +79,7 @@
 	                
 	                <input type="submit" class="link-btn black-btn signup-btn" value="SIGN UP" /> 
 	                
-	            </form> 
+	            </form>  -->
 	        </div> 
 	    </div>
 	</div>

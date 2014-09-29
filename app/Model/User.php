@@ -91,16 +91,6 @@ class User extends AppModel {
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
             ),
         ),
-        'username' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
     );
 
     //The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -113,6 +103,13 @@ class User extends AppModel {
     public $hasOne = array(
         'BillingAddress' => array(
             'className' => 'BillingAddress',
+            'foreignKey' => 'user_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
+        'UserPreference' => array(
+            'className' => 'UserPreference',
             'foreignKey' => 'user_id',
             'conditions' => '',
             'fields' => '',
@@ -328,20 +325,19 @@ class User extends AppModel {
      */
     public function getNewClients($stylist_id){
         return $this->find('all', array(
-            'conditions' => array('User.stylist_id' => $stylist_id, 'User.is_admin' => false, 'User.is_stylist' => false, 'User.is_editor' => false),
-            'joins' => array(
-                array(
-                    'table' => 'messages',
-                    'alias' => 'Message',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'User.id = Message.user_to_id',
-                        'Message.user_from_id' => $stylist_id,
-                    )
-                ) 
-            ), 
+            'conditions' => array('User.stylist_id' => $stylist_id, 'User.is_admin' => false, 'User.is_stylist' => false, 'User.is_editor' => false, 'User.stylist_notification' => true),
             'fields' => array('User.first_name', 'User.last_name', 'User.id'),
-            'group' => array('User.id HAVING count(Message.id) = 0'),
+        ));
+    }
+
+    /**
+     * Returns a count of users with $stylist_id as a stylist.
+     * Condition: Stylist has not sent any message to the user.
+     */
+    public function getNewClientsCount($stylist_id){
+        return $this->find('count', array(
+            'conditions' => array('User.stylist_id' => $stylist_id, 'User.is_admin' => false, 'User.is_stylist' => false, 'User.is_editor' => false, 'User.stylist_notification' => true),
+            'fields' => array('User.first_name', 'User.last_name', 'User.id'),
         ));
     }
     
@@ -364,7 +360,9 @@ class User extends AppModel {
                     'alias' => 'Message',
                     'type' => 'LEFT',
                     'conditions' => array(
-                        'User.id = Message.user_from_id'
+                        'User.id = Message.user_from_id',
+                        'User.is_stylist' => false,
+                        'User.is_admin' => false,
                     )
                 ),
             ),
@@ -374,5 +372,16 @@ class User extends AppModel {
         );
         
         return $this->find('all', $find_array);
+    }
+
+
+    /**
+     *  Disable stylist notification
+     */
+    public function disableStylistNotification($user_id) {
+        $this->updateAll(
+            array('User.stylist_notification' => 0),
+            array('User.id' => $user_id)
+        );
     }
 }

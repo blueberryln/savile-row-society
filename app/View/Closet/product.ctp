@@ -8,7 +8,7 @@ if($user_id){
             var productBlock = $this.closest(".product-detail-cont");
             var productId = productBlock.find(".product-id").val();
             if(!$this.hasClass("liked")){
-                $.post("' . $this->request->webroot . 'api/wishlist/save", { product_id: productId},
+                $.post("' . $this->request->webroot . 'wishlists/save", { product_id: productId},
                     function(data) {
                         var ret = $.parseJSON(data);
                         if(ret["status"] == "ok"){
@@ -19,14 +19,14 @@ if($user_id){
                         if(ret["profile_status"] == "incomplete"){
                             var notificationDetails = new Array();
                             notificationDetails["msg"] = ret["profile_msg"];
-                            notificationDetails["button"] = "<a href=\"' . $this->webroot . 'profile/about\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
+                            notificationDetails["button"] = "<a href=\"' . $this->webroot . 'register/wardrobe\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
                             showNotification(notificationDetails);
                         }
                     }
                 );
             }
             else{
-                $.post("' . $this->request->webroot . 'api/wishlist/remove", { product_id: productId},
+                $.post("' . $this->request->webroot . 'wishlists/remove", { product_id: productId},
                     function(data) {
                         var ret = $.parseJSON(data);
                         if(ret["status"] == "ok"){
@@ -112,9 +112,21 @@ $(document).ready(function(){
     
     $(".btn-request-price").click(function(e) {
         e.preventDefault();
+        $this = $(this);
+        var loader = $this.next(".loader");
+        if($this.hasClass("clicked")){
+            return false;
+        }
+        else{
+            $this.addClass("clicked");
+            loader.removeClass("hide");
+        }
+
         if($("select#product-quantity").val()== "")
         {
             $("span.err-message").fadeIn(300);
+            $this.removeClass("clicked");
+            loader.addClass("hide");
             return false;
         } 
         else
@@ -124,6 +136,8 @@ $(document).ready(function(){
         if($("select#product-size").val()== "")
         {
             $("span.err-size-message").fadeIn(300);
+            $this.removeClass("clicked");
+            loader.addClass("hide");
             return false;
         } 
         else
@@ -136,6 +150,8 @@ $(document).ready(function(){
         if(!isLoggedIn()){
             if($("#request-email").val()== ""){
                 $("span.err-email-message").fadeIn(300);
+                $this.removeClass("clicked");
+                loader.addClass("hide");
                 return false;
             } 
             else
@@ -146,12 +162,14 @@ $(document).ready(function(){
         } 
 
 
-        var id = $(this).data("product_id");
+        var id = $this.data("product_id");
         var quantity = parseInt($("#product-quantity").val()) + 1;
         var size = $("#product-size").val();
         var comment = $(".txt-price-request").val();
         $.post("' . $this->request->webroot . 'api/requestprice", { product_id: id, product_quantity: quantity, product_size: size, request_comment: comment, request_email: requestEmail },
             function(data) {
+                $this.removeClass("clicked");
+                loader.addClass("hide");
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
                     var notificationDetails = new Array();
@@ -232,7 +250,7 @@ $columns = 'eleven';
 ?>
 <div class="content-container">
     <div class="container content inner">	
-        <div class="one columns alpha omega">&nbsp;</div>
+        <div class="one columns">&nbsp;</div>
         <div class="ten columns details-margin row center-block">
             <p class="product-breadcrumb" >
                 <a href="<?php echo $this->webroot . "closet" ; ?>">Closet</a>
@@ -339,12 +357,14 @@ $columns = 'eleven';
                     <br>
                     <textarea class="txt-price-request" placeholder="Comments"></textarea>
                     <a href="" class="link-btn gold-btn btn-request-price full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
+                    <p class="loader hide"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p>
                 <?php else : ?>
                     <br>
                     <input type="text" placeholder="Email" id="request-email">
                     <span class="err-email-message">Please enter an email.</span>
-                    <textarea class="txt-price-request" placeholder="Comments"></textarea>
+                    <textarea class="txt-price-request" placeholder="Comments" style="margin-top:6px;"></textarea>
                     <a href="" class="link-btn gold-btn btn-request-price full-width text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">Request Price</a>
+                    <p class="loader hide"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p>
                 <?php endif; ?>                
             </div>
             <div class="clear-fix"></div>

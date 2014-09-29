@@ -19,7 +19,7 @@ if($user_id){
                         if(ret["profile_status"] == "incomplete"){
                             var notificationDetails = new Array();
                             notificationDetails["msg"] = ret["profile_msg"];
-                            notificationDetails["button"] = "<a href=\"' . $this->webroot . 'profile/about\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
+                            notificationDetails["button"] = "<a href=\"' . $this->webroot . 'register/wardrobe\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
                             showNotification(notificationDetails);
                         }
                     }

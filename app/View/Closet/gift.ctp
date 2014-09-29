@@ -19,7 +19,7 @@ if($user_id){
                         if(ret["profile_status"] == "incomplete"){
                             var notificationDetails = new Array();
                             notificationDetails["msg"] = ret["profile_msg"];
-                            notificationDetails["button"] = "<a href=\"' . $this->webroot . 'profile/about\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
+                            notificationDetails["button"] = "<a href=\"' . $this->webroot . 'register/wardrobe\" class=\"link-btn gold-btn\">Complete Style Profile</a>";
                             showNotification(notificationDetails);
                         }
                     }
@@ -177,106 +177,108 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 // columns size
 $columns = 'eleven';
 ?>
-<div class="container content inner">	
-    <div class="one columns alpha omega">&nbsp;</div>
-    <div class="fourteen columns details-margin row">
-        <p class="product-breadcrumb" >
-            <a href="<?php echo $this->webroot . "closet" ; ?>">Closet</a>
-            <?php if(isset($parent_category)) : ?>
-                &gt; <a href="<?php echo $this->webroot . "closet/" . $parent_category['Category']['slug'] ; ?>"><?php echo $parent_category['Category']['name']; ?></a>
-            <?php endif; ?>
-            &gt; <a href="<?php echo $this->webroot . "closet/" . $category['Category']['slug'] ; ?>"><?php echo $category['Category']['name']; ?></a></p>
-    </div>
-    <div class="sixteen columns product-detail-cont">
-        <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
-        <div class="one columns alpha omega">&nbsp;</div>
-        <div class="seven columns">
-            <div class="product-default-image">
-                <?php if(count($entity['Image']) > 0) : ?>
-                    <a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" /></a>
-                <?php else : ?>
-                    <img src="<?php echo $this->webroot; ?>img/image_not_available.png" class="fadein-image" />                    
+<div class="content-container">	
+    <div class="container content inner">
+        <div class="one columns">&nbsp;</div>
+        <div class="ten columns details-margin row center-block">
+            <p class="product-breadcrumb" >
+                <a href="<?php echo $this->webroot . "closet" ; ?>">Closet</a>
+                <?php if(isset($parent_category)) : ?>
+                    &gt; <a href="<?php echo $this->webroot . "closet/" . $parent_category['Category']['slug'] ; ?>"><?php echo $parent_category['Category']['name']; ?></a>
                 <?php endif; ?>
-            </div>
-            
-            <?php if(count($entity['Image']) > 1) : ?>
-                <div class="product-icon-cont">
-                    <ul>
-                        <?php for($i=1; $i < count($entity['Image']); $i++) : ?> 
-                            <?php if($i != 4) : ?>
-                                <li><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
-                            <?php else : ?>
-                                <li class="last"><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
-                            <?php endif; ?>
-                        <?php endfor; ?>
-                    </ul>
-                </div>
-            <?php endif; ?>
-            <div class="clear"></div>
-            <div class="product-actions">
-                <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI would like to recommend this product to you. Check out <?php echo Router::url( $this->here, true ); ?>." id="lnk-email"></a></div>
-                <?php if(isset($entity['Wishlist'])) : ?>
-                <div class="product-thumbs">
-                    <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
-                    <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
-                </div>
-                <?php endif; ?>
-            </div>
-            <div class="clear"></div>
+                &gt; <a href="<?php echo $this->webroot . "closet/" . $category['Category']['slug'] ; ?>"><?php echo $category['Category']['name']; ?></a></p>
         </div>
-     
-        <div class="six offset-by-one columns product-description alpha">
-            <div>
-                <h2 class="product-name"><?php echo $entity['Entity']['name']; ?></h2>
-                <?php if($entity['Entity']['price'] > 0) : ?>
-                <h5 class="price">Price: $ <?php echo $entity['Entity']['price']; ?></h5>
-                <?php endif; ?>
-                <h5 class="product-details">Product Details :</h5>
-                <p class="description"><?php echo $entity['Entity']['description']; ?></p>
-            </div>  
-            <br />
-            <div class="form gift-product-form">
-                <div class="input select">
-                    <label>Gift Card Amount: </label>
-                    <select name="data[gift-id]" id="product-gift-id">
-                        <option value="">Select Amount &nbsp;</option>
-                    <?php
-                        foreach($gift_cards as $card){
-                            
-                            if($entity['Entity']['id'] == $card['Entity']['id']){
-                                echo "<option value='" . $card['Entity']['id'] . "' selected>$" . $card['Entity']['price'] . " &nbsp;</option>";    
-                            }
-                            else{
-                                echo "<option value='" . $card['Entity']['id'] . "'>$" . $card['Entity']['price'] . " &nbsp;</option>";
-                            } 
-                        }
-                    ?>
-                    </select>
-                    <br />
-                    <span class="err-message">Please select a gift card.</span>
+        <div class="ten columns product-detail-cont center-block">
+            <input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">
+            <div class="one columns alpha omega">&nbsp;</div>
+            <div class="six columns left">
+                <div class="product-default-image">
+                    <?php if(count($entity['Image']) > 0) : ?>
+                        <a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" /></a>
+                    <?php else : ?>
+                        <img src="<?php echo $this->webroot; ?>img/image_not_available.png" class="fadein-image" />                    
+                    <?php endif; ?>
                 </div>
-                <div class="input">
-                    <label for="RecipientName">Recipient's Name</label>
-                    <input name="data[recipient-name]" placeholder="Recipient's Name" type="text" id="RecipientName">
-                    <br />
-                    <span class="err-message">Please enter Recipient's Name.</span>
-                </div> 
-                <div class="input email">
-                    <label for="RecipientEmail">Recipient's Email</label>
-                    <input name="data[recipient-email]" placeholder="Recipient's Email" type="email" id="RecipientEmail">
-                    <span class="err-message">Please enter Recipient's Email.</span>
-                    <span class="err-message err-message-invalid">Please enter a valid email.</span>
+                
+                <?php if(count($entity['Image']) > 1) : ?>
+                    <div class="product-icon-cont">
+                        <ul>
+                            <?php for($i=1; $i < count($entity['Image']); $i++) : ?> 
+                                <?php if($i != 4) : ?>
+                                    <li><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
+                                <?php else : ?>
+                                    <li class="last"><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+                <div class="clear"></div>
+                <div class="product-actions">
+                    <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI would like to recommend this product to you. Check out <?php echo Router::url( $this->here, true ); ?>." id="lnk-email"></a></div>
+                    <?php if(isset($entity['Wishlist'])) : ?>
+                    <div class="product-thumbs">
+                        <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>
+                        <a href="" class="thumbs-down <?php echo ($entity['Dislike']['id']) ? 'disliked' : ''; ?>"></a>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <div class="clear"></div>
+            </div>
+         
+            <div class="five columns product-description right">
+                <div>
+                    <h2 class="product-name"><?php echo $entity['Entity']['name']; ?></h2>
+                    <?php if($entity['Entity']['price'] > 0) : ?>
+                    <h5 class="price">Price: $ <?php echo $entity['Entity']['price']; ?></h5>
+                    <?php endif; ?>
+                    <h5 class="product-details">Product Details :</h5>
+                    <p class="description"><?php echo $entity['Entity']['description']; ?></p>
                 </div>  
-                <div class="input">
-                    <label for="CardMessage">Message</label>
-                    <textarea name="data[recipient-message]" placeholder="Message" id="CardMessage"></textarea>
-                </div>   
-            </div> 
+                <br />
+                <div class="form gift-product-form">
+                    <div class="input select">
+                        <label>Gift Card Amount: </label>
+                        <select name="data[gift-id]" id="product-gift-id">
+                            <option value="">Select Amount &nbsp;</option>
+                        <?php
+                            foreach($gift_cards as $card){
+                                
+                                if($entity['Entity']['id'] == $card['Entity']['id']){
+                                    echo "<option value='" . $card['Entity']['id'] . "' selected>$" . $card['Entity']['price'] . " &nbsp;</option>";    
+                                }
+                                else{
+                                    echo "<option value='" . $card['Entity']['id'] . "'>$" . $card['Entity']['price'] . " &nbsp;</option>";
+                                } 
+                            }
+                        ?>
+                        </select>
+                        <br />
+                        <span class="err-message">Please select a gift card.</span>
+                    </div>
+                    <div class="input">
+                        <label for="RecipientName">Recipient's Name</label>
+                        <input name="data[recipient-name]" placeholder="Recipient's Name" type="text" id="RecipientName">
+                        <br />
+                        <span class="err-message">Please enter Recipient's Name.</span>
+                    </div> 
+                    <div class="input email">
+                        <label for="RecipientEmail">Recipient's Email</label>
+                        <input name="data[recipient-email]" placeholder="Recipient's Email" type="email" id="RecipientEmail">
+                        <span class="err-message">Please enter Recipient's Email.</span>
+                        <span class="err-message err-message-invalid">Please enter a valid email.</span>
+                    </div>  
+                    <div class="input">
+                        <label for="CardMessage">Message</label>
+                        <textarea name="data[recipient-message]" placeholder="Message" id="CardMessage"></textarea>
+                    </div>   
+                </div> 
+                <div class="clear"></div>
+                                                      
+                <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
+                <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue" >Continue Shopping</a>                 
+            </div>
             <div class="clear"></div>
-                                                  
-            <a href="" class="link-btn black-btn add-to-cart" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
-            <a href="<?php echo $this->webroot; ?>closet" class="link-btn gold-btn prd-continue" >Continue Shopping</a>                 
         </div>
-        <div class="clear"></div> <br /><br /><br />
     </div>
 </div>
