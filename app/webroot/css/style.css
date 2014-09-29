@@ -1010,7 +1010,7 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .left-nav li a:hover, .left-nav li.active a { background: #dddddd;}
 .message-area { background: #dddddd; padding: 4% 0; min-height: 450px;}
 .useroutfit_area{ position: relative;}
-.useroutfit-pagination { position: absolute; bottom: 10px; left: 0; right: 0; margin:0 auto;}
+/*.useroutfit-pagination { position: absolute; bottom: 10px; left: 0; right: 0; margin:0 auto;}*/
 .user-msg, .client-msg, .client-outfit { width: 52%; float: left; background: #c2c2c2; display: inline-block; padding: 10px 15px 7px 15px; margin-bottom: 18px; }
 .user-req, .client-name, .msg, msg-date, .client-msg-reply { font-family: 'Proximanova'; font-size: 14px; line-height: 17px; color: #000;}
 .user-req { color: #fff; font-style: italic; font-size: 14px; line-height: 18px;}
@@ -1045,7 +1045,7 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 -pie-background: linear-gradient(#fdfdfd, #e8e8e8);
 }
 .short-by-date span.short-by-date-arrow { position: absolute; width: 27px; top: 1px; right: 1px;
-height: 24px; padding-top: 6px; text-align: center; pointer-events: none;
+height: 27px; padding-top: 6px; text-align: center; pointer-events: none;
 background: #fdfdfd;
 background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fdfdfd), to(#e8e8e8));
 background: -webkit-linear-gradient(#fdfdfd, #e8e8e8);
@@ -1134,6 +1134,7 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .tab-btns.active, .purchase-container { background: #fff;}
 .purchase-area{}
 .purchase-dtls{ padding: 50px 0 100px;}
+.purchase-dtls h1 {font-size: 24px; color: #303030; line-height: 26px; text-align: center; display: inline-block; padding: 20px; border: 5px dashed #927e41; width: 90%; margin: 20px 0 0 0;}
 .purchase-dtls li { float:left; width: 100%; margin-bottom: 15px; border-bottom: 1px solid #f1f1f1; padding-bottom: 10px;}
 .purchase-dtls .heading { font-size: 18px; text-transform: uppercase; color: #040404; text-align: center; font-weight: 700;}
 .purchase-dtls-date, .purchase-dtls-items, .purchase-dtls-outfit, .purchase-dtls-price { display: inline-block; font-size: 14px; color: #303030; line-height: 16px; }
@@ -1491,28 +1492,21 @@ a.sbmt-btn { width: 100%; display: block; padding: 18px 0 12px; background: #b6a
 .otft-right-top-srt select, .myclst-right-top-srt select { height: 25px; padding: 0px 10px;}
 .otft-right-top-srch span, .myclst-right-top-srch span { left: 10px; top: 4px; background: url("../images/srch-icn-gld.png") no-repeat;}
 .otft-prdct-list, .otft-prdct-list #product { position: relative;}
-.otft-prdct-list li{ width: 33%; float: left; border: 1px solid #9d9fa2; position: relative;  margin: 0px; text-align: center; height: 225px; overflow: hidden;}
+.otft-prdct-list li{ width: 33%; float: left; border: 1px solid #9d9fa2; position: relative; height: 235px; margin: -1px 0 0 -1px;  padding: 0; vertical-align: top; overflow: hidden;}
 
-.otft-prdct-list li:before {    /* create a full-height inline block pseudo=element */
-    content: ' ';
-    display: inline-block;
-    vertical-align: middle;  /* vertical alignment of the inline element */
-    height: 100%;
-}
+.otft-prdct-list li a {line-height:235px; text-align: center; display: inline-block; width: 100%;}
+.otft-prdct-list li .otft-prdt-img {display:inline-block; text-align: center; }
+.otft-prdct-list li img { width: 75%; vertical-align: middle;}
+.otft-prdct-list li .otft-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none; line-height: normal;}
+.otft-prdct-list li .otft-prdt-overlay h3 { font-size: 18px; line-height: 20px; padding: 0px 20px;}
+.otft-prdct-list li .otft-prdt-overlay p{margin-bottom: 0px; font-size: 14px;}
 
-.otft-prdct-list li .otft-prdt-img {
-    display: inline-block;
-    vertical-align: middle;  /* vertical alignment of the inline element */
-    font: 16px/1 Arial sans-serif;        /* <-- reset the font property */
-}
-
-.otft-prdct-list li a {}
-.otft-prdct-list li a img { }
-/*.otft-prdct-list li .otft-prdt-img { flaot:left; height: 100%; width: 100%; text-align: center;}*/
-.otft-prdct-list li .otft-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none;}
 .otft-prdct-list li:hover .otft-prdt-overlay { display: block;}
 .basket { position: relative; min-height: 250px; }
-.basket_list li { display: inline-block; width: 40%; margin: 10px 3%; position: relative; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; height: 130px; border:dashed 5px #ccc6a2;
+.basket_list li { display: inline-block; width: 40%; margin: 10px 3%; position: relative; text-align: center; border: 1px solid #e3e3e3; padding: 5px; 
+
+/*-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; height: 130px; 
+border:dashed 5px #ccc6a2;
 -moz-border-radius-topleft: 12px;
 -moz-border-radius-topright:8px;
 -moz-border-radius-bottomleft:7px;
@@ -1525,10 +1519,15 @@ border-top-left-radius:12px;
 border-top-right-radius:8px;
 border-bottom-left-radius:7px;
 border-bottom-right-radius:7px;
+*/
 }
+.basket_list li .bsket_img {height: 130px; width: 100%; display: inline-block; line-height: 130px; overflow: hidden;}
+.basket_list li img { width: 100%; vertical-align: middle;}
 .basket_list li strong { position: absolute; top: 0px; left: 0px; width: 100%; bottom: 0px; right: 0px; margin: auto; height: 35px; text-align: center; color: #af9a59;}
 
 button.delete { position: absolute; top: 10px; right: 10px;}
+.basket_list li select {margin-top: 10px; display: inline-block; width: 100%;}
+.basket_list li span.name, .basket_list li span.prc-img { display: none;}
 
 
 /************ Stylist Eleven Section *************/
@@ -1767,8 +1766,8 @@ text-align: center;
 color: #fff;
 margin-top: 26px;
 }
-#loadMoreProduct { width: 100%; display: inline-block; text-align: center;}
-#loadMoreProduct a {background: #927e41; height: 40px; line-height: 40px; padding: 0 20px; display: inline-block; margin-top: 20px; color: #fff; font-size: 20px;text-align: center;}
+#loadMoreProduct, .pagination { width: 100%; display: inline-block; text-align: center;}
+#loadMoreProduct a, .pagination a {background: #927e41; height: 40px; line-height: 40px; padding: 0 20px; display: inline-block; margin-top: 20px; color: #fff; font-size: 20px;text-align: center;}
 
 
 

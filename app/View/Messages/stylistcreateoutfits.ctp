@@ -68,7 +68,7 @@ function dragAndDropOutfit(){
 
                             + '<span class="name">' + move.find("h3").html() + '</span>'
                             + '<span class="prc-img">' + move.find("h4").html() + '</span>'
-                            + '<img src="'+src+'" />'
+                            + '<div class="bsket_img">' + '<img src="'+src+'" />' + '</div>'
                             + '<select id="size"><option value="25">25</option> <option value="26">26</option> <option value="27">27</option><option value="28">28</option><option value="29">29</option></select>'
                             + '<button class="delete">&#10005;</button>');
                     
