@@ -56,7 +56,7 @@ class EmailConfig {
         'host' => 'mail.mobikasa.com',
         'port' => 25,
         'username' => 'saurabh@mobikasa.com',
-        'password' => 'S@server27',
+        'password' => '',
         'transport' => 'Smtp'
     );
 
