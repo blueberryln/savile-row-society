@@ -536,7 +536,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         </script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
         <script type="text/javascript">
-           jQuery(window).load(function (){
+           jQuery(document).ready(function (){
                 $("#scrollbar1").tinyscrollbar({ axis: "y"});
                 $("#scrollbar2").tinyscrollbar({ axis: "y"});
                 $("#scrollbar3").tinyscrollbar({ axis: "y"});
