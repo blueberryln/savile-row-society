@@ -145,7 +145,7 @@ $(".userlikes a").on('click',function(){
                                                         <li>
                                                             <div class="purchase-dtls-date heading left">Date</div>
                                                             <div class="purchase-dtls-items heading left">Item</div>
-                                                            <div class="purchase-dtls-outfit heading left">Outfit</div>
+                                                            <!-- <div class="purchase-dtls-outfit heading left">Outfit</div> -->
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
                                                     <?php if ($likeitems) : ?>
@@ -163,9 +163,9 @@ $(".userlikes a").on('click',function(){
                                                                 <div class="purchase-dtls-items-desc"><?php echo $likeitem['Entity']['name']; ?><span><?php echo $likeitem['Brand']['name']; ?></span></div>
                                                            </div>
                                                             
-                                                            <div class="purchase-dtls-outfit left">
+                                                            <!-- <div class="purchase-dtls-outfit left">
                                                             <?php if($likeitem['Outfit']['outfitname']!=''){ 
-                                                            echo $likeitem['Outfit']['outfitname']; }else {  echo "outfit null "; } ?></div>
+                                                            echo $likeitem['Outfit']['outfitname']; }else {  echo "outfit null "; } ?></div> -->
                                                        
                                                             <div class="purchase-dtls-price left">$<?php echo $likeitem['Entity']['price']; ?></div>
                                                        </li>

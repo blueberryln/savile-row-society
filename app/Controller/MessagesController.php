@@ -1312,7 +1312,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $userlist = $User->find('all', array('conditions'=>array('User.stylist_id'=>$user_id,)));
 
         $my_outfitss = array();
-        $stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfitname','Outfit.id'),));
+        $stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfit_name','Outfit.id'),));
         
         foreach($stylistoutfit as $row){
             $stylist_outfit_id = $row['Outfit']['id'];
@@ -2238,18 +2238,18 @@ If interested, I would also be happy to meet with you in our New York City based
                                         
                                         
                                     );
-        $find_array['joins'][] = array('table' => 'outfits',
-                    'alias' => 'Outfit',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Outfit.id = Wishlist.outfit_id',
-                    )
-                );
+        // $find_array['joins'][] = array('table' => 'outfits',
+        //             'alias' => 'Outfit',
+        //             'type' => 'INNER',
+        //             'conditions' => array(
+        //                 'Outfit.id = Wishlist.outfit_id',
+        //             )
+        //         );
 
             
         
             $find_array['fields'][] = 'Wishlist.*';
-            $find_array['fields'][] = 'Outfit.*';
+            // $find_array['fields'][] = 'Outfit.*';
 
              
         }
@@ -2845,13 +2845,13 @@ If interested, I would also be happy to meet with you in our New York City based
                 if($result = $Outfit->save($data)){
                     $outfit_id = $result['Outfit']['id'];
                     $data['OutfitItem']['outfit_id'] = $outfit_id;
-                    $data['Useroutfit']['user_id'] = $client_id;
-                    $data['Useroutfit']['stylist_id'] = $user_id;
-                    $data['Useroutfit']['outfit_id'] = $outfit_id;
+                    // $data['Useroutfit']['user_id'] = $client_id;
+                    // $data['Useroutfit']['stylist_id'] = $user_id;
+                    // $data['Useroutfit']['outfit_id'] = $outfit_id;
+                    // //bhashit code
+                    //$data['Useroutfit']['post_id'] = $post_id;
                     //bhashit code
-                    $data['Useroutfit']['post_id'] = $post_id;
-                    //bhashit code
-                    $Useroutfit->create();  
+                    //$Useroutfit->create();  
                     
                     foreach($outfit_array as $key => $value)
                     {
@@ -2865,7 +2865,7 @@ If interested, I would also be happy to meet with you in our New York City based
                         }
                         $OutfitItem->create();
                         $OutfitItem->save($data);
-                        $Useroutfit->save($data);    
+                        //$Useroutfit->save($data);    
                     }
 
                     
@@ -2991,22 +2991,49 @@ If interested, I would also be happy to meet with you in our New York City based
     public function closetAjaxProductData($user_id = null) {
         
         
-        $last_product_id = $this->request->data['last_limit'];
-            
+        if(isset($this->request->data['last_limit'])){
+            $last_product_id = $this->request->data['last_limit'];
+        }else{
+            $last_product_id = '0';
+        }   
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
         $Colorgroup = ClassRegistry::init('Colorgroup');
         $Entity = ClassRegistry::init('Entity');
+        if(isset($this->request->data['sorting'])){
+            $sorting = $this->request->data['sorting'];
+        }else{
+            $sorting = 'DESC';
+        }
+        if(isset($this->request->data['closettextsearch'])){
+            $closettextsearch = $this->request->data['closettextsearch'];
+        }else{
+            $closettextsearch = '';
+        }
 
+        $productSearchs = $Entity->find('all',array('conditions'=>array('Entity.name Like' => '%' . $closettextsearch . '%',)));
+        $entities = array();
+        foreach ($productSearchs as $productSearch) {
+            $entities[] = $productSearch['Entity']['id'];
+        }
+        
+        if(isset($this->request->data['closettextsearch'])){
+            $entitiesData = array('Entity.id' => $entities);
+        }else{
+            $entitiesData = '';
+        }
+
+        //print_r($productSearch);
+        //exit;
         $find_array = array(
             'limit' => 20,
             'offset'=> $last_product_id,
             'contain' => array('Image', 'Color','Detail'),
             'conditions' => array(
-                'Entity.show' => true,
-                
-            ),
+             'Entity.show' => true,
+              $entitiesData
+             ),
             'joins' => array(
                 array('table' => 'products_categories',
                     'alias' => 'Category',
@@ -3033,16 +3060,29 @@ If interested, I would also be happy to meet with you in our New York City based
             'fields' => array(
                 'Entity.*', 'Category.category_id', 'Product.*', 'Brand.*',
             ),
-            'order' => 'Category.category_id DESC',
+            'order' => array('Entity.created' => $sorting),
             'Group' => 'Entity.id',
         );
-    //$this->Paginator->settings = $find_array;
-    //$products = $this->Paginator->paginate($Entity);
+
+    // if($closettextsearch){
+    //             $closettextsearch_join = array('table' => 'products_entities',
+    //                 'alias' => 'Entity',
+    //                 'type' => 'INNER',
+    //                 'conditions' => array(
+    //                     'Entity.id' => $entities,
+    //                 )
+    //             );
+    //             $find_array['joins'][] = $closettextsearch_join;
+    //         }
     $products = $Entity->find('all',$find_array);
 
     echo json_encode($products);
     exit;
     }
+
+
+
+
 
 //closetAjaxColorProductSearchData
     public function closetAjaxColorProductSearchData($colorid=null,$brandid=null,$subcategoryid=null){
@@ -3333,7 +3373,21 @@ If interested, I would also be happy to meet with you in our New York City based
             ),
         );
         
-        
+        $show_add_cart_popup = 0;
+            if($this->Session->read('add-cart')){
+                $show_add_cart_popup = 1;
+                $this->Session->delete('add-cart');
+            }
+
+            $popUpMsg = '';
+            $show_three_item_popup = 0;
+            if($this->Session->read('cart-three-items')){
+                $show_three_item_popup = 1;
+                $popUpMsg = $this->Session->read('cart-three-items-msg');
+                $this->Session->delete('cart-three-items');
+                $this->Session->delete('cart-three-items-msg');
+            }
+
         $this->Paginator->settings = $find_array2;
         $products = $this->Paginator->paginate($Entity);
         $ProductRowCount = count($products);
@@ -3348,6 +3402,45 @@ If interested, I would also be happy to meet with you in our New York City based
         }
     }
 
+
+    // closet page quick pop product data
+
+    public function closetAjaxQuickPopData(){
+        $this->layout= 'ajax';
+        $this->autoRender = false;
+
+        $productid = $this->request->data['productid'];
+
+        $Entity = ClassRegistry::init('Entity');
+
+        $find_array = array(
+            'contain' => array('Image', 'Color', 'Detail'),
+            'conditions' => array('Entity.id' => $productid),
+            'joins' => array(
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ),        
+            ), 
+            'order' =>array('Entity.created DESC'),
+            'fields' => array(
+                'Entity.*', 'Product.*', 'Brand.*',
+            ),
+        );
+        $entitydata = $Entity->find('all',$find_array);
+        echo json_encode($entitydata);
+
+    }
 
     public function closetProducts($user_id){
         $Entity = ClassRegistry::init('Entity');

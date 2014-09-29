@@ -56,13 +56,13 @@ function dragAndDropOutfit(){
                 });
                 
                 // This function runs onc ean item is added to the basket
-                
+                var cancel = false;
                 function addBasket(basket, move) {
                     //var src = $('img').attr('src');
                     //alert(src);
                     var src =move.find("img").attr('src');
                     var price =move.find("h4").html();
-                    alert(price);
+                    //alert(price);
                     //var itemsize =move.find("#size").val();
                 basket.find("ul").append('<li data-id="' + move.attr("data-id") + '" data-price="'+ move.attr("data-price") +'">'
 
@@ -73,10 +73,11 @@ function dragAndDropOutfit(){
                             + '<button class="delete">&#10005;</button>');
                     
                     var countli =  basket.find("ul li").length;
-                    if(countli ==5 ){
-                        alert(countli);
-                        basket.find("ul").append("<li>Please Stop Your Limit Is over</li>");
-
+                    if(countli === 5 ){
+                        //alert(countli);
+                        basket.find("ul").stop(true,true);
+                        //basket.find("ul").append('<li></li>').stop();
+                        //return false;
                     }
 
                         var overall = 0;
@@ -421,7 +422,7 @@ function dragAndDropOutfit(){
                                         <div class="twelve columns left otft-stylst-cmnt">
                                             <div class="left otft-stylst-cmnt-heading">
                                                 <h1>Stylist Comments</h1>
-                                                <textarea placeholder="Write a comment to your client before you send outfit" id="comments" value="<?php echo $messages[0]['Message']['body']; ?>"><?php echo $messages[0]['Message']['body']; ?></textarea>
+                                                <textarea placeholder="Write a comment to your client before you send outfit" id="comments" value="<?php if(isset($messages[0])!=''){ echo $messages[0]['Message']['body'];} else{}?>"><?php if(isset($messages[0])){ echo $messages[0]['Message']['body'];} else{}?></textarea>
                                                 <a id="sbmt-cnfrmation" class="sbmt-btn" href="#" title="">Submit Outfit</a>
                                             </div>
                                         </div>
@@ -514,41 +515,3 @@ function dragAndDropOutfit(){
         </div>
     </div>
 </div>
-<script type="text/javascript">
-//      window.onload = function() {
-//         alert('hi');
-//         function loadCloset() {
-           
-//             $.ajax({
-//                 url: "<?php echo $this->webroot; ?>closet/index/",
-//                 cache: false,
-//                 type: 'POST',
-//                 success: function(res) {
-//                     alert(res);
-//                     res = jQuery.parseJSON(res);
-//                     if (res['status']=='ok') {
-//                         var arrMsg = res['Messages'];
-//                         if(arrMsg.length){
-//                             for(var i=0; i < arrMsg.length; i++){
-//                                 var html = showChatMsg(arrMsg[i]);
-//                                 chatContainer.append(html);
-//                                 firstMsgId = arrMsg[i]['Message']['id'];
-//                             }
-//                             if(res['msg_remaining'] > 0){
-//                                 $("#loadOldMsgs").fadeIn(300);    
-//                             }
-                            
-//                         }
-//                         else{  
-                            
-//                         } 
-//                     }
-//                 },
-//                 error: function(res) {
-                    
-//                 }
-//             });
-//         }
-
-//      }
-</script>
