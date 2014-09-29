@@ -263,7 +263,6 @@ class ApiController extends AppController {
                     $entity_id = $this->request->data['product_id'];
                     $entity = $Entity->getById($entity_id, $user_id);
                     //print_r($entity);
-                    //print_r($ret);
                     //exit;   
                     //Prepare data array for adding cart information
                     if($entity['Entity']['is_gift']){

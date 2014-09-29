@@ -83,7 +83,7 @@ class Message extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
-                        'dependent' => true
+            'dependent' => true
 		),
 		'UsersTo' => array(
 			'className' => 'User',
