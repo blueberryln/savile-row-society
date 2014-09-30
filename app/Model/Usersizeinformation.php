@@ -9,5 +9,6 @@ App::uses('AppModel', 'Model');
  */
 class UserSizeInformation extends AppModel {
 
-
+	public $useTable = 'users_size_informations';
+	
 }

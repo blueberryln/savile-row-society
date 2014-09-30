@@ -2,7 +2,41 @@
 
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".search-myclient").on('keydown',function(){
+            var usersearch = $("#usersearch").val();
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo $this->webroot; ?>messages/stylistFilterList/<?php echo $stylist_id; ?>",
+                    data:{usersearch:usersearch},
+                    cache: false,
+                    success: function(result){
+                        data = $.parseJSON(result);
 
+                        html = '';
+                        html = html + '<ul>';
+                    $.each(data,  function (index){
+                        html = html + '<li>';
+                        html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
+                        html = html + '<div class="myclient-img">';
+                        html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
+                        html = html + '</div>';
+                        html = html + '<div class="myclient-dtl">';
+                        html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
+                        html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
+                        html = html + '</div>';
+                        html = html + '</a>';
+                        html = html + '</li>';      
+                    });
+                        html = html + '</ul>';
+                        $("#searchuserlist").html(html);
+                    }
+
+                }); 
+        });
+});
+</script> 
 <div class="content-container">
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
@@ -14,67 +48,65 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <div class="filter-myclient-area">
                             <div class="filter-myclient">
                                 <span class="downarw"></span>
-                                <select>
+                                <select onchange="location = this.options[this.selectedIndex].value;">
                                     <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
+                                    <?php  foreach($userlists as $filterclient ): ?>
+                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $filterclient['User']['id']; ?>"><?php echo $filterclient['User']['first_name'].'&nbsp;'.$filterclient['User']['last_name']; ?></option>
+                                     <?php endforeach; ?>
+                                    
                                 </select>
                             </div>
                         </div>
                         <div class="search-myclient-area">
                             <div class="search-myclient">
                                 <span class="srch"></span>
-                                <input type="text" name="myclient-search" />
+                                <input type="text" name="myclient-search" id="usersearch" />
                             </div>
                         </div>
-                        <div class="myclient-list">
-                            <ul>
-                                <li>
-                                    <a href="#" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name">Kyle HARPER</span>
-                                            <span class="myclient-status">last active at 4:30 PM</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="active">
-                                    <a href="#" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name">Kyle HARPER</span>
-                                            <span class="myclient-status">last active at 4:30 PM</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name">Kyle HARPER</span>
-                                            <span class="myclient-status">last active at 4:30 PM</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name">Kyle HARPER</span>
-                                            <span class="myclient-status">last active at 4:30 PM</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="myclient-list dsktp_only">
+                            <div id="scrollbar6">
+                            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                <div class="viewport">
+                                     <div class="overview">
+                                        <ul id="searchuserlist">
+                                        <?php  foreach($userlists as $searchuserclient){?>
+                                            <li>
+                                                <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
+                                                    <div class="myclient-img">
+                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                                    </div>
+                                                    <div class="myclient-dtl">
+                                                        <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
+                                                        <span class="myclient-status">last active at <?php echo date ('d F Y',$searchuserclient['User']['updated']); ?></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="myclient-list tab_n_mob">
+                           
+                                        <ul id="searchuserlist">
+                                        <?php  foreach($userlist as $searchuserclient){?>
+                                            <li>
+                                                <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
+                                                    <div class="myclient-img">
+                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                                    </div>
+                                                    <div class="myclient-dtl">
+                                                        <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
+                                                        <span class="myclient-status">last active at <?php echo date ('d F Y',$searchuserclient['User']['updated']); ?></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
+
+                                        </ul>
+                                    </div>
                     </div>
                 </div>
                 
@@ -88,13 +120,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     <div class="twelve columns left mydesbrd-acc">
                                         <div class="mydesbrd-heading">Account Analytics</div>
                                         <div class="mydesbrd-acc-content">
-                                            <p><span>Clients:</span> 25 clients</p>
+                                            <p><span>Clients:</span> <?php if($usercount): echo $usercount; else:  echo "No"; endif; ?> clients</p>
                                             <p><span>Month to Date Sales:</span> $1000</p>
                                             <p><span>Average Monthly Sales:</span> $1500</p>
-                                            <a href="#" title="">See More Details</a>
+                                            <a href="<?php echo $this->request->webroot; ?>messages/feed" title="">See More Details</a>
                                         </div>
                                     </div>
-                                    <div class="twelve columns left mydesbrd-items">
+                                    <!-- <div class="twelve columns left mydesbrd-items">
                                         <div class="mydesbrd-heading">New Items</div>
                                         <div class="mydesbrd-items-content">
                                             <ul class="slider4">
@@ -105,7 +137,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                                 <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="right-pannel left">
@@ -129,7 +161,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
                 
                 
-                <div class="eleven columns container pad-none">
+                <!-- <div class="eleven columns container pad-none">
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
@@ -145,7 +177,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <li><a href="javascript:;">Profile</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
