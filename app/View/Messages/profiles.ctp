@@ -52,8 +52,6 @@
 
 
 </script>
-<div class="content-container">
-    <div class="twelve columns black">&nbsp;</div>
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
@@ -240,7 +238,6 @@
             </div>
         </div>
     </div>
-</div>
 
 
 <div class="address-overlay"></div>

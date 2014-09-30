@@ -36,7 +36,8 @@ class StylistsController extends AppController {
         $StylistBioData = $StylistBio->find('all',array('conditions'=>array('StylistBio.stylist_id'=>$id,)));
 
 
-        
+        $StylistPhotostream = ClassRegistry::init('StylistPhotostream');
+        $photostreampicsstylist = $StylistPhotostream->find('all',array('conditions'=>array('StylistPhotostream.stylist_id'=>$id,)));
         $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $Entity = ClassRegistry::init('Entity'); 
@@ -85,7 +86,7 @@ class StylistsController extends AppController {
             }
         
 
-        $this->set(compact('StylistBioData','stylistphoto','outfits','my_outfit','stylistoutfit','user','stylists'));
+        $this->set(compact('StylistBioData','stylistphoto','outfits','my_outfit','stylistoutfit','user','stylists','photostreampicsstylist'));
        
        //exit;
     }
@@ -273,8 +274,10 @@ class StylistsController extends AppController {
             if($this->request->is('post') || $this->request->is('put')){
 
                 $this->request->data['StylistPhotostream']['stylist_id'] =  $stylistId;
-                $is_profile = $this->request->data['StylistPhotostream']['is_profile'];
-                
+               
+                if (isset($this->request->data['StylistPhotostream']['is_profile'])) {
+                    $is_profile = $this->request->data['StylistPhotostream']['is_profile'];
+                }
                 if($imagename = $this->savePhotostream()){
                     $this->request->data['StylistPhotostream']['image'] = $imagename;
                 }else{
@@ -284,7 +287,7 @@ class StylistsController extends AppController {
                 if($StylistPhotostream->save($this->request->data)){
                     $this->Session->setFlash("StylistPhotostream Data Hasbeen Saved");
 
-                    if($is_profile == 'on'){
+                    if(isset($is_profile) == 'on'){
                         $User = ClassRegistry::init('User');
                         $user = $User->findById($stylistId);
                         $this->request->data['User']['profile_photo_url'] =  $imagename;

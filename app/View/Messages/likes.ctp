@@ -14,7 +14,7 @@ $(document).ready(function(){
             data = $.parseJSON(result);
             html = '';
             html = html + '<ul>';
-            html = html + '<li><div class="purchase-dtls-date heading left">Date</div><div class="purchase-dtls-items heading left">Item</div><div class="purchase-dtls-outfit heading left">Outfit</div><div class="purchase-dtls-price heading left">Price</div></li>';
+            html = html + '<li><div class="purchase-dtls-date heading left">Date</div><div class="purchase-dtls-items heading left">Item</div><div class="purchase-dtls-price heading left">Price</div></li>';
             $.each(data,  function (index){
                 html = html + '<li>';7
                 html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
@@ -22,13 +22,47 @@ $(document).ready(function(){
                 html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
                 html = html + '<div class="purchase-dtls-items-desc">'+this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
                 html = html + '</div>';
-                html = html + '<div class="purchase-dtls-outfit left">'+this.Outfit.outfitname +'</div>';        
                 html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
                 html = html + '</li>';        
                 
                 });
             html = html + '</ul>';
                 $("#ascsort").html(html);
+            }
+        });
+
+    });
+
+
+
+
+//pagination
+
+    $(".userlikes a").on('click',function(){
+        var totalProductCount = $('#limit').val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>messages/userLikesAsc/<?php echo $clientid; ?>",
+            data: {totalProductCount:totalProductCount},
+            cache: false,
+            success: function(result){
+                var e = 10;
+                $("#limit").val(parseInt(totalProductCount)+e);
+                data = $.parseJSON(result);
+            html = '';
+            $.each(data,  function (index){
+                html = html + '<li>';
+                html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
+                html = html + '<div class="purchase-dtls-items left">';
+                html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
+                html = html + '<div class="purchase-dtls-items-desc">'+this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
+                html = html + '</div>';
+                html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
+                html = html + '</li>';        
+                
+                });
+                $("#ascsort").append(html);
+            
             }
         });
 
@@ -151,12 +185,12 @@ $(document).ready(function(){
                                 <div class="client-img"><img src="<?php echo $img; ?>" alt=""/></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
-                                        <li><a href="javascript:;">Activity Feed</a></li>
-                                        <li><a href="javascript:;">Messages</a></li>
-                                        <li class="active"><a href="javascript:;">Outfits</a></li>
-                                        <li><a href="javascript:;">Purchases/Likes</a></li>
-                                        <li><a href="javascript:;">Notes &amp; Gallery</a></li>
-                                        <li><a href="javascript:;">Measurements</a></li>
+                                        <li><a href="#<?php echo $this->webroot; ?>messages/stylistuseractivityfeed/<?php echo $clientid; ?>">Activity Feed</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $clientid; ?>">Messages</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/outfits/<?php echo $clientid; ?>">Outfits</a></li>
+                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>">Purchases/Likes</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/notes/<?php echo $clientid; ?>">Notes &amp; Gallery</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/measurements/<?php echo $clientid; ?>">Measurements</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -172,8 +206,8 @@ $(document).ready(function(){
                                                 
                                             </select>
                                         </div>
-                                        <div class="tab-btns purchase "><a href="<?php echo $this->webroot; ?>messages/stylistuserpurchase/<?php echo $clientid; ?>" title="">Purchase</a></div>
-                                        <div class="tab-btns likes active"><a href="<?php echo $this->webroot; ?>messages/stylistuserlikes/<?php echo $clientid; ?>" title="">Likes</a></div>
+                                        <div class="tab-btns purchase "><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>" title="">Purchase</a></div>
+                                        <div class="tab-btns likes active"><a href="<?php echo $this->webroot; ?>messages/likes/<?php echo $clientid; ?>" title="">Likes</a></div>
                                         <div class="twelve columns purchase-container left pad-none">
                                             <div class="eleven columns container purchase-area pad-none">
                                                 <div class="twelve columns left purchase-dtls pad-none">
@@ -181,12 +215,14 @@ $(document).ready(function(){
                                                         <li>
                                                             <div class="purchase-dtls-date heading left">Date</div>
                                                             <div class="purchase-dtls-items heading left">Item</div>
-                                                            <div class="purchase-dtls-outfit heading left">Outfit</div>
+                                                            <!-- <div class="purchase-dtls-outfit heading left">Outfit</div> -->
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                       <?php  for($i = 0; $i < count($likeitems); $i++){
+                                                       <?php
+                                                        if($likeitems):
+                                                         for($i = 0; $i < count($likeitems); $i++){
                                                                 $likeitem = $likeitems[$i];
-                                                    ?>
+                                                        ?>
                                                        <li>
                                                             <div class="purchase-dtls-date left"><?php
                                                                 $php_timestamp = $likeitem['Wishlist']['created'];
@@ -197,22 +233,22 @@ $(document).ready(function(){
                                                                 <div class="purchase-dtls-items-desc"><?php echo $likeitem['Entity']['name']; ?><span><?php echo $likeitem['Brand']['name']; ?></span></div>
                                                            </div>
                                                             
-                                                            <div class="purchase-dtls-outfit left">
-                                                            <?php if($likeitem['Outfit']['outfitname']!=''){ 
-                                                            echo $likeitem['Outfit']['outfitname']; }else {  echo "outfit null "; } ?></div>
+                                                            
                                                        
                                                             <div class="purchase-dtls-price left">$<?php echo $likeitem['Entity']['price']; ?></div>
                                                        </li>
                                                        <?php } ?>
+                                                       <?php else: ?>
+                                                        <h1>There are no items</h1>
+                                                       <?php endif; ?>
                                                        
                                                     </ul>
-                                                    <div class="pagination stylistuserlikes">
-                    <?php
-                    echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                    echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                    echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
-                    ?>
-                </div>
+                                                    <div class="pagination userlikes">
+                                                    <?php if($likeitemscount): ?>
+                                                    <input type="hidden" id="limit" value="<?php echo $likeitemscount; ?>">
+                                                    <a href="#" id="<?php echo $likeitemscount; ?>">Load More</a>
+                                                <?php endif;?>
+                                                    </div>
                                                 </div>   
                                             </div>
                                         </div>

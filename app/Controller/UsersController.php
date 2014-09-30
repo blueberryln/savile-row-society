@@ -646,7 +646,7 @@ class UsersController extends AppController {
             if($this->User->saveAll($this->request->data))
             {
                 $this->Session->setFlash("User Data Hasbeen Saved");
-                $this->redirect('/messages/userprofiles/'.$id);
+                $this->redirect('/messages/profiles/'.$id);
             }
             else
             {

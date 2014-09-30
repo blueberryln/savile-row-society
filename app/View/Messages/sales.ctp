@@ -94,10 +94,11 @@
                     </div>
                     <div class="twelve columns left myaccount-sales-dtl">
                         <p>Total Number of Clients: <?php echo $userclient[0][0]['usercount']; ?></p>
-                        <p>Average Monthly Sales: $<?php echo  $avgsalepermonths =   round($totalSale[0][0]['finalamount']/12); ?></p>
-                        <p>Average Sale per Client: $<?php echo  $avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); ?></p>
+                        <p>Average Monthly Sales: <?php if(!empty($totalSale)): echo  '$'.$avgsalepermonths =   round($totalSale[0][0]['finalamount']/12); else: echo "No Average Monthly Sales"; endif; ?></p>
+                        <p>Average Sale per Client: <?php if(!empty($totalSale)): echo  '$'.$avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); else: echo "No Average Sale per Client"; endif; ?></p>
                     </div>
                     <div class="twelve columns left chart-table">
+                        <?php if(!empty($saleshistory)): ?>
                         <table class="highchart"  data-graph-container=".. .. .highchart-container" data-graph-datalabels-enabled="1" data-graph-type="line" >
                       
                           <thead>
@@ -107,7 +108,9 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($saleshistory as $sales):
+                            <?php 
+                            
+                            foreach ($saleshistory as $sales):
                             $date = strtotime($sales['orderdetailsuser']['OrderItem']['created']);
                             $datefinal = strtolower(date('M', $date));    
                             ?>
@@ -116,54 +119,15 @@
                               <td><?php echo $datefinal; ?></td>
                               <td ><?php echo $sales['orderdetailsuser']['Entity']['price']; ?></td>
                             </tr>
-                        <?php endforeach; ?>
-                            <!-- <tr>
-                              <td>Feb</td>
-                              <td>2500</td>
-                            </tr>
-                            <tr>
-                              <td>Mar</td>
-                              <td>6000</td>
-                            </tr>
-                            <tr>
-                              <td>Apr</td>
-                              <td>12000</td>
-                            </tr>
-                            <tr>
-                              <td>May</td>
-                              <td>6500</td>
-                            </tr>
-                            <tr>
-                              <td>Jun</td>
-                              <td>5000</td>
-                            </tr>
-                            <tr>
-                              <td>Jul</td>
-                              <td>7500</td>
-                            </tr>
-                            <tr>
-                              <td>Aug</td>
-                              <td>15000</td>
-                            </tr>
-                            <tr>
-                              <td>Sep</td>
-                              <td>8500</td>
-                            </tr>
-                            <tr>
-                              <td>Oct</td>
-                              <td>10000</td>
-                            </tr>
-                            <tr>
-                              <td>Nov</td>
-                              <td>16500</td>
-                            </tr>
-                            <tr>
-                              <td>Dec</td>
-                              <td>9000</td>
-                            </tr> -->
-                              
-                          </tbody>
+                        <?php
+                        endforeach; 
+                         
+                        ?>
+                           </tbody>
                         </table>
+                        <?php else:
+                        echo "<td>You Have No purchased items</td>";
+                        endif;  ?>
                     </div>
                     <div class="twelve columns left sales-snapshot">
                         <p>Sales Snapshot: All Clients</p>
@@ -172,19 +136,19 @@
                         <div class="twelve columns left ratio-analyize">
                             <ul>
                                 <li>
-                                    <div class="ratio-analyize-price">$<?php echo  $totalSale[0][0]['finalamount']; ?></div>
+                                    <div class="ratio-analyize-price"> <?php if(!empty($totalSale)): echo  '$'.$totalSale[0][0]['finalamount']; else: echo "No Toatal Earnings"; endif; ?></div>
                                     <span>Total earnings</span>
                                 </li>
                                 <li>
-                                    <div class="ratio-analyize-price">$<?php echo  $avgsalepermonths =   $totalSale[0][0]['finalamount']/12; ?></div>
-                                    <span>MOnthlyRevenue</span>
+                                    <div class="ratio-analyize-price"><?php if(!empty($totalSale)): echo  '$'.$avgsalepermonths =   $totalSale[0][0]['finalamount']/12; else: echo "No Monthly Monthly Revenue"; endif; ?></div>
+                                    <span>MonthlyRevenue</span>
                                 </li>
                                 <li>
                                     <div class="ratio-analyize-price"><?php echo $userclient[0][0]['usercount']; ?></div>
                                     <span>Total CUstomers</span>
                                 </li>
                                 <li>
-                                    <div class="ratio-analyize-price">$<?php echo  $avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); ?></div>
+                                    <div class="ratio-analyize-price"><?php if(!empty($totalSale)): echo  $avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); else: echo "No Average Sales Per Customers"; endif; ?></div>
                                     <span>AVg. Sales Per Custom</span>
                                 </li>
                             </ul>
@@ -203,7 +167,9 @@
                                     <div class="itm-sls-list-outfit">OUtfit</div>
                                     <div class="itm-sls-list-amt">Amount</div>
                                 </li>
-                                <?php foreach ($saleshistory as $saleshistory): //print_r($saleshistory); ?>
+                                <?php
+                                if(!empty($saleshistory)):
+                                foreach ($saleshistory as $saleshistory): //print_r($saleshistory); ?>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date"><?php
                                     echo $saleshistory['orderdetailsuser']['OrderItem']['created'];
@@ -215,42 +181,12 @@
                                     <div class="itm-sls-list-outfit">Beach day</div>
                                     <div class="itm-sls-list-amt">$<?php echo $saleshistory['orderdetailsuser']['Entity']['price']; ?></div>
                                 </li>
-                            <?php endforeach; ?>
-                                <!-- <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
-                                </li>
-                                <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
-                                </li>
-                                <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
-                                </li>
-                                <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
-                                </li>
-                                <li class="itm-sls-list-section">
-                                    <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
-                                    <div class="itm-sls-list-client">kyle harper</div>
-                                    <div class="itm-sls-list-outfit">Beach day</div>
-                                    <div class="itm-sls-list-amt">$130.00</div>
-                                </li> -->
+                            <?php endforeach;
+                                else:
+                                 echo "<li class='itm-sls-list-section'> No List purchased Item.</li>";
+                                 endif;   
+                             ?>
+                                
                             </ul>
                         </div>
                     </div>

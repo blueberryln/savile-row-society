@@ -128,6 +128,7 @@
                         var outfitData = this.outfit[0];
                         html = html + '<div class="twelve columns client-outfits left">';
                         html = html + '<div class="eleven columns container client-outfits-area pad-none">';
+                        var outfit_name = this.outfit[0].Outfit.outfit_name
                         html = html + '<h1>'+ this.outfit[0].Outfit.outfit_name +'</h1>';
                         html = html + '<div class="twelve columns client-outfits-img pad-none">';
                         html = html + '<ul>';

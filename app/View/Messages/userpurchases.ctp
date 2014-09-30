@@ -73,7 +73,7 @@ $(document).ready(function(){
                             <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
                             <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
                             <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
                         </ul>
                     </div>
                     <div class="twelve columns left inner-content pad-none">
@@ -85,7 +85,7 @@ $(document).ready(function(){
                                         <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
                                     </ul>
                                 </div>
                             </div>
