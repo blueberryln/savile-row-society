@@ -178,7 +178,10 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <ul class="slider1">
                     <?php foreach($topStylists as $topstylist): ?>
                     <li>
-                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />
+                       <?php if($topstylist['User']['profile_photo_url']): ?>
+                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      <?php else: ?>
+                        <img src="<?php echo $this->webroot; ?>images/default-user.jpg"  />                       
+                        <?php endif; ?>
                         <a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
                             <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
                             <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>

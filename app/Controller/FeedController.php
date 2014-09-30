@@ -10,10 +10,8 @@ class FeedController extends AppController {
             
             $Post = ClassRegistry::init('Post');
             $posts = $Post->getStylistPosts($user_id);
-
             
-
-            
+            $result['posts'] = $posts;
             $result['status'] = 'ok';
         }
         else{

@@ -517,22 +517,29 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                             </div>
                         </div>
                         <div class="myclient-list">
-                            <ul id="searchuserlist">
-                            <?php  foreach($userlist as $userlists){?>
-                                <li>
-                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlists['User']['id']; ?>" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlists['User']['profile_photo_url']; ?>" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name"><?php echo $userlists['User']['first_name'].'&nbsp;'.$userlists['User']['last_name']; ?></span>
-                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$userlists['User']['updated']); ?></span>
-                                        </div>
-                                    </a>
-                                </li>
-                            <?php } ?>
-                                
-                            </ul>
+                            <div id="scrollbar6">
+                            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                <div class="viewport">
+                                     <div class="overview">
+                                        <ul id="searchuserlist">
+                                        <?php  foreach($userlist as $userlists){?>
+                                            <li>
+                                                <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlists['User']['id']; ?>" title="">
+                                                    <div class="myclient-img">
+                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlists['User']['profile_photo_url']; ?>" alt=""/>
+                                                    </div>
+                                                    <div class="myclient-dtl">
+                                                        <span class="myclient-name"><?php echo $userlists['User']['first_name'].'&nbsp;'.$userlists['User']['last_name']; ?></span>
+                                                        <span class="myclient-status">last active at <?php echo date ('d F Y',$userlists['User']['updated']); ?></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -572,6 +579,10 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                                 </div>
                                                             </div>
                                                             <div class="myclient-list">
+                                                                <div id="scrollbar7">
+                                                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                                            <div class="viewport">
+                                                                 <div class="overview">
                                                             <ul id="searchuserlist">
                                                             <?php 
                                                             //$userlist = $searchforoutfit;
@@ -590,6 +601,9 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                             <?php endforeach; ?>
                                                                 
                                                             </ul>
+                                                            </div>
+                                                                </div>
+                                                                    </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -688,11 +702,13 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                     </div>
                 
                 </div>
-                
-            <!--outfit popup-->
-                <div id="outfitpopupdiv"></div>
-            <!--outfitpoup-->
+
             </div>
         </div>
     </div>
 </div>
+        </div>
+</div>
+</div>
+</div>
+
