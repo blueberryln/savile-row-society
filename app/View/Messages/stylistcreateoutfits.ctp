@@ -470,6 +470,119 @@ function dragAndDropOutfit(){
             });
         });
 
+
+    //search data filter closet
+
+    var myCheckboxescolour = new Array();
+        var mycolour;
+        var myCheckboxesbrand = new Array();
+        var mybrand;
+        var myCheckboxessubcategory = new Array();
+        var mysubcategory;
+        var myCheckboxescategory = new Array();
+        var mycategory;
+        $('.colorsearch').live("click",function() {
+                mycolour='';
+                mybrand='';
+                mysubcategory='';
+                mycategory= '';
+                if(jQuery(this).attr('title')=='colour')
+                {    
+                    if(this.checked==true)
+                    {
+                        myCheckboxescolour.push(jQuery(this).val());
+                    }
+                    else
+                    {   
+                        removindexitem =new Array(); 
+                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxescolour);// Uncheckbox here 
+                        myCheckboxescolour.splice(removindexitem ,1);
+                    
+                    }
+                }
+                else if(jQuery(this).attr('title')=='brand')
+                {    
+                    if(this.checked==true)
+                    {
+                        myCheckboxesbrand.push(jQuery(this).val());
+                    }
+                    else
+                    {   
+                        removindexitem =new Array(); 
+                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxesbrand);// Uncheckbox here 
+                        myCheckboxesbrand.splice(removindexitem ,1);
+                    
+                    }
+                }
+                else if(jQuery(this).attr('title')=='subcategory')
+                {    
+                    if(this.checked==true)
+                    {
+                        myCheckboxessubcategory.push(jQuery(this).val());
+                    }
+                    else
+                    {   
+                        removindexitem =new Array(); 
+                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxessubcategory);// Uncheckbox here 
+                        myCheckboxessubcategory.splice(removindexitem ,1);
+                    
+                    }
+                }
+                else if(jQuery(this).attr('title')=='category')
+                {    
+                    if(this.checked==true)
+                    {
+                        myCheckboxescategory.push(jQuery(this).val());
+                    }
+                    else
+                    {   
+                        removindexitem =new Array(); 
+                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxescategory);// Uncheckbox here 
+                        myCheckboxescategory.splice(removindexitem ,1);
+                    
+                    }
+                }
+                mycolour = myCheckboxescolour.join(",");
+                mybrand = myCheckboxesbrand.join(",");
+                mysubcategory = myCheckboxessubcategory.join(",");
+                mycategory = myCheckboxescategory.join(",");
+                //console.log(mybrand);
+                $.ajax({
+                        type:"POST",
+                        url:"<?php echo $this->webroot; ?>messages/closetAjaxColorProductSearchData",
+                        data:{colorid:mycolour,brandid:mybrand,subcategoryid:mysubcategory,categoryid:mycategory},
+                        cache: false,
+                        success: function(result){
+                            data = $.parseJSON(result);
+                            html = '';
+                            html = html + '<div id="product">';
+                            html = html + '<ul class="clear">';
+            
+                        $.each(data,  function (index){
+                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<a href="#">';
+                            var imgs = this.Image;
+                        $.each(imgs,  function (index1){
+                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ imgs[index1].name +'" alt="" /></div>';
+                        });
+                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        html = html + '<ul>';            
+                        html = html + '</div>';
+                        $(".otft-prdct-list").html(html);   
+                        dragAndDropOutfit();
+
+                    }
+                });
+            });
+
 });
 </script>
         
@@ -557,7 +670,72 @@ function dragAndDropOutfit(){
                                 <div class="eleven columns container">
                                     <div class="twelve columns left otft-rgt-nav">
                                         <ul>
-                                            <li class="active"><a href="#" title="" id="closetdata">The Closet</a></li>
+                                            <li class="active"><a href="#" title="" id="closetdata">The Closet</a>
+
+                                            <ul>
+                                                <div class="ctg-one">
+                                                    <div id="scrollbar3">
+                                                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                                            <div class="viewport">
+                                                                 <div class="overview">
+                                                                    <?php foreach ($categories as $category): ?>
+                                                                    <h3>
+                                                                        <input type="checkbox" name="" title="category" class="colorsearch" value="<?php echo $category['Category']['id']; ?>" id="ca<?php echo $category['Category']['id']; ?>" data-category_id="<?php echo $category['Category']['id']; ?>" />
+                                                                        <label for="ca<?php echo $category['Category']['id']; ?>" class=""><?php echo $category['Category']['name']; ?><span></span></label>
+                                                                    </h3>
+                                                                        <?php if ($category['children']) : ?>
+                                                                            <?php foreach ($category['children'] as $subcategory): ?>
+                                                                                <input type="checkbox" name="" title="subcategory" class="colorsearch" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
+                                                                                <label for="s<?php echo $subcategory['Category']['id']; ?>" class=""><?php echo $subcategory['Category']['name']; ?><span></span></label>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endif; ?>
+                                                                    <?php endforeach; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+
+                                                
+                                                    <div class="ctg-one third-block">
+                                                        <div id="scrollbar4">
+                                                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                                            <div class="viewport">
+                                                                 <div class="overview">
+                                                                    <h3>Brands</h3>
+                                                                    <?php if($brands) : ?>
+                                                                        <?php foreach($brands as $brand) : ?>
+                                                                            <input type="checkbox" name="" title="brand" class="colorsearch" value="<?php echo $brand['Brand']['id']; ?>" id="b<?php echo $brand['Brand']['id']; ?>" data-brand_id="<?php echo $brand['Brand']['id']; ?>" />
+                                                                            <label for="b<?php echo $brand['Brand']['id']; ?>" class=""><?php echo $brand['Brand']['name']; ?><span></span></label>
+                                                                        <?php endforeach; ?>
+                                                                    <?php endif; ?>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ctg-one forth-block">
+                                                        <div id="scrollbar5">
+                                                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                                            <div class="viewport">
+                                                                 <div class="overview">
+                                                                    <h3>Colors</h3>
+
+                                                                    <?php if($colors) : ?>
+                                                                        <?php foreach($colors as $color) :?>
+                                                                            <input type="checkbox" name="color[]" title="colour" class="colorsearch" data-color_id="<?php echo $color['Colorgroup']['id']; ?>" value="<?php echo $color['Colorgroup']['id']; ?>" id="c<?php echo $color['Colorgroup']['id']; ?>" />
+                                                                            <label for="c<?php echo $color['Colorgroup']['id']; ?>"  class=""><?php echo $color['Colorgroup']['name']; ?><span></span></label>
+                                                                        <?php endforeach; ?>
+                                                                    <?php endif; ?>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+
+                                            </li>
                                             <li>|</li>
                                             <li><a href="#" title="" id="clientlikes">Client Likes</a></li>
                                             <li>|</li>

@@ -2844,7 +2844,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
     //stylist create outfits
 
-    public function stylistCreateOutfits($clientid=null,$outfitid = null) {
+    public function stylistCreateOutfits($clientid=null,$outfitid = null,$category_slug=null) {
         $User = ClassRegistry::init('User');
         $client = $User->findById($clientid);
         $clientname = $client['User']['username'];
@@ -2870,6 +2870,19 @@ If interested, I would also be happy to meet with you in our New York City based
             }
 
         $Entity = ClassRegistry::init('Entity');
+
+        $categories = $Category->getAll();
+        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+        $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
+
+        $entities = array();
+
+        // if ($category_slug) {
+        //     $category_slug = trim($category_slug);
+        //     $entities = $this->categoryProducts($categories, $category_slug, $filter_brand, $filter_color, $filter_used);
+        // } else {
+        //     $entities = $this->closetProducts($user_id);
+        // }
 
             // get data
         $find_array2 = array(
@@ -2956,13 +2969,11 @@ If interested, I would also be happy to meet with you in our New York City based
             'order' => 'Category.category_id ASC'
         );
 
-    //$this->Paginator->settings = $find_array;
-    //$products = $this->Paginator->paginate($Entity);
-    //$pro = $Entity->find('all',$find_array);
+    
     $products = $Entity->find('all',$find_array);
     $ProductRowCount = count($products);
     //print_r($pro);
-    $this->set(compact('ProductRowCount','clientname','products','client_id','stylist_id','outfitid','entities','outfitname','messages'));
+    $this->set(compact('categories','brands','colors', 'ProductRowCount','clientname','products','client_id','stylist_id','outfitid','entities','outfitname','messages'));
     }   
 
     function postOutfit(){
@@ -3237,16 +3248,7 @@ If interested, I would also be happy to meet with you in our New York City based
             'Group' => 'Entity.id',
         );
 
-    // if($closettextsearch){
-    //             $closettextsearch_join = array('table' => 'products_entities',
-    //                 'alias' => 'Entity',
-    //                 'type' => 'INNER',
-    //                 'conditions' => array(
-    //                     'Entity.id' => $entities,
-    //                 )
-    //             );
-    //             $find_array['joins'][] = $closettextsearch_join;
-    //         }
+    
     $products = $Entity->find('all',$find_array);
 
     echo json_encode($products);
@@ -3258,7 +3260,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
 
 //closetAjaxColorProductSearchData
-    public function closetAjaxColorProductSearchData($colorid=null,$brandid=null,$subcategoryid=null){
+    public function closetAjaxColorProductSearchData($colorid=null,$brandid=null,$subcategoryid=null,$categoryid=null){
         $this->layout = 'ajax';
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
@@ -3315,6 +3317,22 @@ If interested, I would also be happy to meet with you in our New York City based
                     )
                 );
                 $find_array['joins'][] = $color_join;
+            }
+
+    // for category searching
+    
+    $categoryid = $this->request->data['categoryid'];
+    $categoryids = explode(',', $categoryid);
+    if($categoryid){
+                $categoryid_join = array('table' => 'products_categories',
+                    'alias' => 'Category1',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Category1.category_id' => $categoryids,
+                        'Category1.product_id = Entity.product_id'
+                    )
+                );
+                $find_array['joins'][] = $categoryid_join;
             }
     
 
@@ -3572,7 +3590,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $this->set(compact('entities', 'products','ProductRowCount', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
 
         if(!$category_slug){
-            $this->render('stylistcloset');     
+            $this->render('closet');     
         }
     }
 

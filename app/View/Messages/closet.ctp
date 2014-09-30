@@ -230,10 +230,13 @@
         var mybrand;
         var myCheckboxessubcategory = new Array();
         var mysubcategory;
+        var myCheckboxescategory = new Array();
+        var mycategory;
         $('.colorsearch').live("click",function() {
                 mycolour='';
                 mybrand='';
                 mysubcategory='';
+                mycategory= '';
                 if(jQuery(this).attr('title')=='colour')
                 {    
                     if(this.checked==true)
@@ -276,14 +279,29 @@
                     
                     }
                 }
+                else if(jQuery(this).attr('title')=='category')
+                {    
+                    if(this.checked==true)
+                    {
+                        myCheckboxescategory.push(jQuery(this).val());
+                    }
+                    else
+                    {   
+                        removindexitem =new Array(); 
+                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxescategory);// Uncheckbox here 
+                        myCheckboxescategory.splice(removindexitem ,1);
+                    
+                    }
+                }
                 mycolour = myCheckboxescolour.join(",");
                 mybrand = myCheckboxesbrand.join(",");
                 mysubcategory = myCheckboxessubcategory.join(",");
+                mycategory = myCheckboxescategory.join(",");
                 //console.log(mybrand);
                 $.ajax({
                         type:"POST",
                         url:"<?php echo $this->webroot; ?>messages/closetAjaxColorProductSearchData",
-                        data:{colorid:mycolour,brandid:mybrand,subcategoryid:mysubcategory},
+                        data:{colorid:mycolour,brandid:mybrand,subcategoryid:mysubcategory,categoryid:mycategory},
                         cache: false,
                         success: function(result){
                             data = $.parseJSON(result);
@@ -705,7 +723,10 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                             <div class="viewport">
                                                                  <div class="overview">
                                                                     <?php foreach ($categories as $category): ?>
-                                                                    <h3><?php echo $category['Category']['name']; ?></h3>
+                                                                    <h3>
+                                                                        <input type="checkbox" name="" title="category" class="colorsearch" value="<?php echo $category['Category']['id']; ?>" id="ca<?php echo $category['Category']['id']; ?>" data-category_id="<?php echo $category['Category']['id']; ?>" />
+                                                                        <label for="ca<?php echo $category['Category']['id']; ?>" class=""><?php echo $category['Category']['name']; ?><span></span></label>
+                                                                    </h3>
                                                                         <?php if ($category['children']) : ?>
                                                                             <?php foreach ($category['children'] as $subcategory): ?>
                                                                                 <input type="checkbox" name="" title="subcategory" class="colorsearch" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
