@@ -149,6 +149,7 @@ class ApiController extends AppController {
                     
                     // Get product Entity ID and Get the information for the entity
                     $entity_id = $this->request->data['product_id'];
+                    $outfit_id = isset($this->request->data['outfit_id']) ? $this->request->data['outfit_id'] : "";
                     $entity = $Entity->getById($entity_id, $user_id);
                     //print_r($entity);
                     //print_r($ret);
@@ -168,6 +169,7 @@ class ApiController extends AppController {
                     else{
                         $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
                         $data['CartItem']['quantity'] = $this->request->data['product_quantity'];
+                        $data['CartItem']['outfit_id'] = $outfit_id;
                         if(isset($this->request->data['product_size'])){
                             $data['CartItem']['size_id'] = $this->request->data['product_size'];
                         }
