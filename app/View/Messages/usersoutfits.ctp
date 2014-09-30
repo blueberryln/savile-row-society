@@ -199,12 +199,12 @@ $(document).ready(function(){
             productQuantity = productBlock.find("select.product-quantity").val(),
             productSize = productBlock.find(".product-size").val();
             var id = productBlock.find(".product-id").val();
+            var outfitid = productBlock.find(".outfit_id").val();
             var quantity = parseInt(productQuantity) + 1;
             var size = productSize;
-            alert(id);
             
         
-        $.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: 1, product_size: 23 },
+        $.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: 1, product_size: 23, outfit_id: outfitid },
             function(data) {
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
@@ -310,7 +310,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                                     
                                                                     <input type="hidden" id="product_id" class="product-id" value="<?php echo $enti['Entity']['id']; ?>">
                                                                     
-                                                                    <input type="hidden" id="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
+                                                                    <input type="hidden" id="outfit_id" class="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>"> 
                                                                    
                                                                    
                                                                 <a href="#" id="<?php echo $enti['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon <?php echo ($enti['Wishlist']['id']) ? 'like' : ''; ?>"></a>

@@ -678,13 +678,25 @@ class PaymentsController extends AppController {
             if($result){
                 $order_id = $result['Order']['id'];
                 $OrderItem = ClassRegistry::init('OrderItem');
+
+
+                $Post = ClassRegistry::init('Post');
                 
                 foreach($cart_items as $row){
+                    $post = array();
+                    $post['Post']['user_id'] = $user_id;
+                    $post['Post']['is_order'] = 1;
+                    $Post->create();
+                    $post = $Post->save($post);
+
+
                     $data['OrderItem'] = array();
                     $data['OrderItem']['order_id'] = $result['Order']['id'];
                     $data['OrderItem']['product_entity_id'] = $row['Entity']['id'];
                     $data['OrderItem']['quantity'] = $row['CartItem']['quantity'];
                     $data['OrderItem']['size_id'] = $row['CartItem']['size_id'];
+                    $data['OrderItem']['outfit_id'] = $row['CartItem']['outfit_id'];
+                    $data['OrderItem']['post_id'] = $post['Post']['id'];
                     $data['OrderItem']['price'] = $row['Entity']['price'];
                     
                     //Check if item is a gift item
