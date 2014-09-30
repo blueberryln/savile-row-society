@@ -563,12 +563,26 @@ class ApiController extends AppController {
         $this->layout = 'ajax';
         $this->autoRender = false;
         $BookmarkOutfit = ClassRegistry::init('BookmarkOutfit');
+
+
+        $ret = array();
+
         $outfit_id = $this->request->data['outfitId'];
         $stylist_id = $this->request->data['stylist_id'];
 
-        $this->request->data['user_id'] = $stylist_id;
-        $this->request->data['outfit_id'] = $outfit_id;
-        $BookmarkOutfit->create();
-        $BookmarkOutfit->save($this->request->data);
+        $checkbookmarkId = $BookmarkOutfit->find('all',array('conditions'=>array('BookmarkOutfit.outfit_id'=>$outfit_id,'BookmarkOutfit.user_id'=>$stylist_id,)));
+        //print_r($checkbookmarkId);
+        if($checkbookmarkId){
+            $ret['status'] = 'this outfit already liked';
+        }else{
+            $this->request->data['user_id'] = $stylist_id;
+            $this->request->data['outfit_id'] = $outfit_id;
+            $BookmarkOutfit->create();
+            $BookmarkOutfit->save($this->request->data);
+            $ret['status'] = 'this outfit is liked';
+        }
+
+        echo json_encode($ret);
+        
     }
 }
