@@ -562,6 +562,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $("#scrollbar4").tinyscrollbar({ axis: "y"});
                 $("#scrollbar5").tinyscrollbar({ axis: "y"});
                 $("#scrollbar6").tinyscrollbar({ axis: "y"});
+                $("#scrollbar7").tinyscrollbar({ axis: "y"});
             });
               
         
