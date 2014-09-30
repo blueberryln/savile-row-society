@@ -183,7 +183,7 @@
                 <div class="ten columns left admin-nav">
                     <ul>
                     <?php if ($is_stylist || $is_admin ) : ?>
-                        <li class="active"><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/closet">The CLoset</a></li>
