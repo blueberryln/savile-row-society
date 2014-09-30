@@ -3980,4 +3980,19 @@ If interested, I would also be happy to meet with you in our New York City based
     public function feed(){
         
     }
+
+
+    public function userfeed($id){
+
+        $User = ClassRegistry::init('User');
+        $user = $this->getLoggedUser();
+        $client_user = $User->findById($id);
+        if($client_user && $client_user['User']['stylist_id'] == $user['User']['id']){
+            $this->set(compact('client_user'));
+        }
+        else{
+            $this->redirect('feed');
+            exit;
+        }
+    }
 }
