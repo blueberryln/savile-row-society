@@ -370,8 +370,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                  <div class="overview">
                         <ul>
                         <?php foreach ($stylists as  $stylist): ?>
-                            <li><a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $stylist['User']['id']; ?>">
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylist['Stylistphotostream']['image'] ?>" width='31' height='31' alt="" /></div>
+                            <li><a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $stylist['User']['id']; ?>">
+                            <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
                                 <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
                             </li>
                             <?php endforeach; ?>
@@ -527,14 +527,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <h1 class="stylistbio-heading photostream"><?php echo $user['User']['first_name']; ?>’s Photostream</h1>
                                     <div class="photostream-section">
                                         <ul id="itemContainer">
-                                            
+                                            <?php
+                                            //print_r($photostreampicsstylist);
+                                             foreach($photostreampicsstylist as $photostreampicss ): ?>
                                             <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php //echo $stylistphoto['Stylistphotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php //echo $stylistphoto['Stylistphotostream']['caption']; ?>">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php //echo $stylistphoto['Stylistphotostream']['image']; ?>" alt="" />
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $photostreampicss['StylistPhotostream']['caption']; ?>">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" />
                                                 </a>
                                             </li>
-                                        
-                                            </li>
+                                        <?php endforeach; ?>
+                                            
                                             </ul>
                                         <div class="submit"><a href="#" id="block-file-upload-photo" class="link-btn black-btn">Upload</a></div>
 

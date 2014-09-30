@@ -224,7 +224,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
 <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
 <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
 <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-<li><a href="j<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
+<li><a href="j<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
 </ul>
 </div>
 <div class="twelve columns left inner-content pad-none">
@@ -236,7 +236,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
 <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
 <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
 <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-<li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
+<li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
 </ul>
 </div>
 </div>
@@ -244,7 +244,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
 <div class="twelve columns message-area product-area left pad-none">
 <div class="eleven columns container pad-none">
 <div class="twelve columns outfit-dtls left">
-<h1><?php echo $outfitname['Outfit']['outfitname']; ?></h1>
+<h1><?php echo $outfitname['Outfit']['outfit_name']; ?></h1>
 <div class="eleven columns container outfits-dtls-area pad-none">
 <div class="twelve columns left outfit-desc">
 <div class="outfit-dtls-date"><span>Date Created:</span> <?php echo $outfitname['Outfit']['created']; ?></div>

@@ -98,6 +98,7 @@
                         <p>Average Sale per Client: $<?php echo  $avgsalepercustomer =   round($totalSale[0][0]['finalamount']/$userclient[0][0]['usercount']); ?></p>
                     </div>
                     <div class="twelve columns left chart-table">
+                        <?php if($saleshistory): ?>
                         <table class="highchart"  data-graph-container=".. .. .highchart-container" data-graph-datalabels-enabled="1" data-graph-type="line" >
                       
                           <thead>
@@ -107,7 +108,9 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($saleshistory as $sales):
+                            <?php 
+                            
+                            foreach ($saleshistory as $sales):
                             $date = strtotime($sales['orderdetailsuser']['OrderItem']['created']);
                             $datefinal = strtolower(date('M', $date));    
                             ?>
@@ -116,54 +119,15 @@
                               <td><?php echo $datefinal; ?></td>
                               <td ><?php echo $sales['orderdetailsuser']['Entity']['price']; ?></td>
                             </tr>
-                        <?php endforeach; ?>
-                            <!-- <tr>
-                              <td>Feb</td>
-                              <td>2500</td>
-                            </tr>
-                            <tr>
-                              <td>Mar</td>
-                              <td>6000</td>
-                            </tr>
-                            <tr>
-                              <td>Apr</td>
-                              <td>12000</td>
-                            </tr>
-                            <tr>
-                              <td>May</td>
-                              <td>6500</td>
-                            </tr>
-                            <tr>
-                              <td>Jun</td>
-                              <td>5000</td>
-                            </tr>
-                            <tr>
-                              <td>Jul</td>
-                              <td>7500</td>
-                            </tr>
-                            <tr>
-                              <td>Aug</td>
-                              <td>15000</td>
-                            </tr>
-                            <tr>
-                              <td>Sep</td>
-                              <td>8500</td>
-                            </tr>
-                            <tr>
-                              <td>Oct</td>
-                              <td>10000</td>
-                            </tr>
-                            <tr>
-                              <td>Nov</td>
-                              <td>16500</td>
-                            </tr>
-                            <tr>
-                              <td>Dec</td>
-                              <td>9000</td>
-                            </tr> -->
-                              
-                          </tbody>
+                        <?php
+                        endforeach; 
+                         
+                        ?>
+                           </tbody>
                         </table>
+                        <?php else:
+                        echo "<td>You Have No purchased items</td>";
+                        endif;  ?>
                     </div>
                     <div class="twelve columns left sales-snapshot">
                         <p>Sales Snapshot: All Clients</p>
@@ -172,7 +136,7 @@
                         <div class="twelve columns left ratio-analyize">
                             <ul>
                                 <li>
-                                    <div class="ratio-analyize-price">$<?php echo  $totalSale[0][0]['finalamount']; ?></div>
+                                    <div class="ratio-analyize-price">$ <?php if(isset($totalSale[0][0]['finalamount'])); ?><?php echo  $totalSale[0][0]['finalamount']; ?></div>
                                     <span>Total earnings</span>
                                 </li>
                                 <li>

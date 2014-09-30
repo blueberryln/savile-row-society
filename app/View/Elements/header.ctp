@@ -26,7 +26,7 @@
 
         <!--Logo Section-->
         <div class="header-logo left">
-            <a href="/#one" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <a href="/" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
             <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
         </div>
         <!--Logo Section Ends-->
@@ -61,7 +61,7 @@
                         <li class="welcome-name"><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
                     <?php endif; ?> -->
                 <?php if(($has_stylist && !$is_admin) || $is_stylist) : ?>
-                <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
+                <!-- <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
                     <div class="submenu-container msg-notify-box <?php echo $is_stylist ? "stylist-notify-box" : ""; ?>">
                         <div class="submenu">
                             <div class="submenu-inner">
@@ -93,10 +93,10 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <?php endif; ?>
-                <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
-                <li>
+                <!-- <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li> -->
+                <!-- <li>
                     <a title="Account" id="myaccount-drop">My Account</a>
                     <div class="submenu-container">
                         <ul class="submenu">
@@ -109,16 +109,16 @@
                             
                             <li><a href="<?php echo $this->request->webroot; ?>cart">Cart (<span id="cart-items-count" class="headerMenu cart-items-count"><?php echo $cart_items; ?></span>) </a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>mycloset/liked" class="headerMenu">My Closet</a></li>
-                            <!-- <li><a href="<?php echo $this->request->webroot; ?>register/wardrobe" class="headerMenu">Profile</a></li> -->
+                            
                             <li>
                             <a href="<?php echo $this->request->webroot; ?>messages/userprofiles/<?php echo $user['User']['id']; ?>" class="headerMenu">Profile</a></li>
                         <li>    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="headerMenu">Style Profile</a></li>
-                            <!-- <a href="<?php echo $this->request->webroot; ?>auth/profile/<?php echo $user['User']['id']; ?>" class="headerMenu">Profile</a></li> -->
+                            
                             <li><a href="<?php echo $this->request->webroot; ?>refer-a-friend" class="headerMenu">Refer a friend</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
                 <?php
                 }
                 ?>
@@ -133,11 +133,11 @@
         <!--Menu Section-->
         <div class="menu right">            
             <ul> 
-                <li><a href="<?php echo $this->webroot; ?>#two" title="">About</a></li>
+                <!-- <li><a href="<?php echo $this->webroot; ?>#two" title="">About</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#three" title="">Stylists</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#four" title="">Outfits</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#five" title="">Style on your time</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#six" title="">Brands</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#six" title="">Brands</a></li> -->
                 <!--<li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
 
                 <?php if($is_logged && $has_stylist && !$is_stylist) : ?>
@@ -172,30 +172,41 @@
 </div>
 
 
-<?php if($is_stylist): ?>
+<?php //if($is_stylist): ?>
 <div class="content-container">
     <div class="twelve columns black">
         <div class="eleven columns container">
             <div class="twelve columns container left ">
                 <div class="ten columns left admin-nav">
                     <ul>
-                        <li class="active"><a href="#" title="">My Clients</a></li>
-                        <li><a href="#" title="">Dashboard</a></li>
+                    <?php if ($is_stylist || $is_admin ) : ?>
+                        <li class="active"><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/closet">The CLoset</a></li>
+                    <?php endif; ?>
                     </ul>
                 </div>
                 <div class="two columns right admin-top-right">
                     <ul>
                        <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
-                       <!--  <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>-->
                         <li> 
                             <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                             <div class="admin-top-right-dropdown">
                                 <ul>
+                                    <?php if ($is_admin) : ?>
+                                    <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
+                                    <?php endif; ?>
+                                    <?php if ($is_stylist) : ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>cart" title="">view my cart/checkout</a></li>
-                                    <li><a href="#" title="<?php echo $this->request->webroot; ?>">Stylist Biography</a></li>
+                                    <li><a href="<?php echo $this->request->webroot; ?>stylists/biography/<?php echo $user['User']['id']; ?>" title="">Stylist Biography</a></li>
                                     <li><a href="#" title="">refer a friend</a></li>
+                                    <?php endif; ?>
+                                     <?php if(!$is_stylist) : ?>
+                                    <li><a href="#" title="">refer a friend</a></li>
+                                    <li><a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Stylist Profile</a></li>
+                                    <li><a href="<?php echo $this->request->webroot; ?>messages/profiles/<?php echo $user['User']['id']; ?>">Profile</a></li>
+                                    <?php endif; ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>signout" title="">sign out</a></li>
                                 </ul>
                             </div>
@@ -207,4 +218,4 @@
         </div>
         
     </div>
-<?php endif; ?>
+<?php //endif; ?>

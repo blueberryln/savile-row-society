@@ -3,7 +3,8 @@
 #scrollbar3,
 #scrollbar4,
 #scrollbar5,
-#scrollbar6
+#scrollbar6,
+#scrollbar7
 
 {
     width:100%;
@@ -16,15 +17,17 @@
 #scrollbar3 .viewport,
 #scrollbar4 .viewport,
 #scrollbar5 .viewport,
-#scrollbar6 .viewport
+#scrollbar6 .viewport,
+#scrollbar7 .viewport
 {
     height: 800px;
     overflow:hidden;
     position:relative;
     }
 #scrollbar2 .viewport { height: 400px;}
-#scrollbar3 .viewport, #scrollbar4 .viewport, #scrollbar5 .viewport { height: 300px;}
-#scrollbar6 .viewport { height: 490px; padding-top: 5px;}
+#scrollbar7 .viewport { height: 280px;}
+#scrollbar3 .viewport, #scrollbar4 .viewport, #scrollbar5 .viewport  { height: 300px;}
+#scrollbar6 .viewport { height: 460px;}
 
 
 #scrollbar1 .overview,
@@ -32,7 +35,9 @@
 #scrollbar3 .overview,
 #scrollbar4 .overview,
 #scrollbar5 .overview,
-#scrollbar6 .overview
+#scrollbar6 .overview,
+#scrollbar7 .overview
+
 {
     list-style:none;
     position:absolute;
@@ -50,7 +55,9 @@
 #scrollbar3 .scrollbar,
 #scrollbar4 .scrollbar,
 #scrollbar5 .scrollbar,
-#scrollbar6 .scrollbar{
+#scrollbar6 .scrollbar,
+#scrollbar7 .scrollbar
+{
     background:transparent url(images/bg-scrollbar-track-y.png) no-repeat 0 0;
     position:absolute;
     background-position:0 0;
@@ -60,7 +67,7 @@
     z-index: 1;
 }
 #scrollbar3 .scrollbar, #scrollbar4 .scrollbar, #scrollbar5 .scrollbar {right: 0px;}
-#scrollbar6 .scrollbar { right: -4px;}
+#scrollbar6 .scrollbar, #scrollbar7 .scrollbar { right: -4px;}
 #scrollbar2 .scrollbar { display: none;}
 
 #scrollbar1 .track,
@@ -68,7 +75,8 @@
 #scrollbar3 .track,
 #scrollbar4 .track,
 #scrollbar5 .track,
-#scrollbar6 .track
+#scrollbar6 .track,
+#scrollbar7 .track
 {
     background:#f0f0ec;;
     height:100%;
@@ -85,7 +93,8 @@
 #scrollbar3 .thumb,
 #scrollbar4 .thumb,
 #scrollbar5 .thumb,
-#scrollbar6 .thumb
+#scrollbar6 .thumb,
+#scrollbar7 .thumb
 {
     background:#d9d9d5;
     height:20px;
@@ -105,7 +114,8 @@
 #scrollbar3 .thumb .end,
 #scrollbar4 .thumb .end,
 #scrollbar5 .thumb .end,
-#scrollbar6 .thumb .end
+#scrollbar6 .thumb .end,
+#scrollbar7 .thumb .end
 {
     background:#d9d9d5;
     overflow:hidden;
@@ -118,7 +128,8 @@
 #scrollbar3 .disable,
 #scrollbar4 .disable,
 #scrollbar5 .disable,
-#scrollbar6 .disable
+#scrollbar6 .disable,
+#scrollbar7 .disable
 {
     display:none;
 }
