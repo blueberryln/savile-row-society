@@ -83,11 +83,11 @@ class Message extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
-                        'dependent' => true
+            'dependent' => true
 		),
-		'UsersTo' => array(
+		'UserTo' => array(
 			'className' => 'User',
-			'foreignKey' => 'users_to_id',
+			'foreignKey' => 'user_to_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

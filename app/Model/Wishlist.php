@@ -151,4 +151,38 @@ class Wishlist extends AppModel {
         
         return $this->find('all', $find_array);
     }
+
+
+    function getLikedProductDetails($list){
+
+        $find_array = array(
+            'joins' => array(
+                array('table' => 'products_entities',
+                    'alias' => 'Entity',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Wishlist.product_entity_id = Entity.id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ), 
+            ), 
+            'conditions'    => array('Wishlist.post_id'  => $list),
+            'fields'        => array('Wishlist.*', 'Entity.*', 'Brand.name')
+            );
+
+        return $this->find('all', $find_array);
+    }
 }

@@ -130,5 +130,20 @@ ALTER TABLE `wishlists`
   ADD COLUMN `post_id` INT(11) NOT NULL AFTER `product_entity_id`;
 
 
-ALTER TABLE `orders`
-  ADD COLUMN `post_id` INT(11) NOT NULL AFTER `user_id`;
+ALTER TABLE `carts_items`
+  ADD COLUMN `outfit_id` INT(11) NOT NULL AFTER `cart_id`;
+
+
+ALTER TABLE `orders_items`
+  ADD COLUMN `post_id` INT(11) NOT NULL AFTER `order_id`,
+  ADD COLUMN `outfit_id` INT(11) NOT NULL AFTER `post_id`;
+
+
+CREATE TABLE IF NOT EXISTS `bookmark_outfits` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `outfit_id` int(11) UNSIGNED NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
