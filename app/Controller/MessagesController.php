@@ -2021,13 +2021,12 @@ If interested, I would also be happy to meet with you in our New York City based
             );
         $userclient = $User->find('all',$find_array2);
         $postvalues = $posts->find('all', array('conditions'=>array('Post.is_order'=>true)));
-        if(empty($postvalues)):
-           else:
-            $postvalues;
-            endif;
+        if(!empty($postvalues)):
+          
+            
         $saleshistory = array();
         foreach ($postvalues as  $postvalue) {
-            $post_id = isset($postvalue['Post']['id']);
+            $post_id = $postvalue['Post']['id'];
             
             
             $salesarray = array(
@@ -2044,7 +2043,7 @@ If interested, I would also be happy to meet with you in our New York City based
                   ),
                 ),
             );
-
+            
             //$orderlist = $OrderItem->find('all', array('conditions'=>array('OrderItem.post_id'=>$post_id)));
             $orderlist = $OrderItem->find('all',$salesarray);
             foreach ($orderlist as $orderlist) {
@@ -2072,6 +2071,9 @@ If interested, I would also be happy to meet with you in our New York City based
                
             );
         }
+        endif;
+         if(!empty($post_id) ||!empty($orderid) ):
+
         //$totalSale = $Order->find('all',array('conditions'=>array('Order.user_id'=>$orderuserid,'Order.post_id'=>$post_id,),'fields'=>array('sum(Order.final_price) as finalamount')));
         $totalSalearray =  array(
                 'fields' => array('sum(Order.final_price) as finalamount'),
@@ -2089,7 +2091,8 @@ If interested, I would also be happy to meet with you in our New York City based
                 ),
             );    
         
-        $totalSale = $Order->find('all',$totalSalearray); 
+        $totalSale = $Order->find('all',$totalSalearray);
+        endif; 
         $this->set(compact('saleshistory','userclient','totalSale','userlists','clientid'));
 
     }
