@@ -77,16 +77,15 @@ function dragAndDropOutfit(){
                     
                         // count total price
                         
-                        //$("ul#dataid li").each(function(){
-                            var allprice = $("ul#dataid li").data("price");
+                        $("ul#dataid li").each(function(){
+                            var allprice = $(this).data("price");
                             var sum = parseInt(allprice);
-                            var overall = $("#total").text();
-                            overall = sum + overall;
+                            overall+= sum;
                             alert(overall);
-                        //});
+                        });
                         
-                        $("#total").text(overall);
-                        $("#total").html(overall);
+                        //$("#total").text(overall);
+                        $("#total").html('Total Amount is $' +overall);
                 }
                 
                  var minusall = 0;

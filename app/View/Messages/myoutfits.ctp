@@ -698,7 +698,7 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                         <div class="client-comments-text left"><?php if(isset($entity_list['comments'][0]['Message']['body'])!=''){ echo $entity_list['comments'][0]['Message']['body'];}else{} ?></div>
                                                     </div>
                                                     <div class="bkmrk-outfit right" ><a href='#' id="outfitbook">Bookmark Outfit</a></div>
-                                                    <!-- <input type="hidden" id="outfitid" value=""> -->
+                                                    
                                                     <div class="share-outfit right">Share Outfit</div>
                                                 </div>
                                             </div>

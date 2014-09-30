@@ -2457,7 +2457,7 @@ If interested, I would also be happy to meet with you in our New York City based
                     $entity_list[] = $value['Orders']['product_entity_id'];
                     $last_item_id = $value['Orders']['order_id'];
                 }
-                print_r($entity_list);
+                //print_r($entity_list);
 
             $purchases = $Entity->getEntitiesByIdPurchaseDes($entity_list);
             //print_r($purchases);
@@ -3891,7 +3891,8 @@ If interested, I would also be happy to meet with you in our New York City based
         
         // sale details for months to date
 
-        
+        $Outfit = ClassRegistry::init('Outfit');
+        $outfitData =
 
         $this->set(compact('user','userlists','stylist_id','usercount'));
     }
