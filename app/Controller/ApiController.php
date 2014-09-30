@@ -557,4 +557,18 @@ class ApiController extends AppController {
         }
         exit;
     }
+
+    // book mark outfits
+    public function bookmarkedOutfit(){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $BookmarkOutfit = ClassRegistry::init('BookmarkOutfit');
+        $outfit_id = $this->request->data['outfitId'];
+        $stylist_id = $this->request->data['stylist_id'];
+
+        $this->request->data['user_id'] = $stylist_id;
+        $this->request->data['outfit_id'] = $outfit_id;
+        $BookmarkOutfit->create();
+        $BookmarkOutfit->save($this->request->data);
+    }
 }
