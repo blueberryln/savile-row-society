@@ -2034,7 +2034,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $stylist_id = $user['User']['stylist_id'];
             $this->request->data['Post']['user_id'] = $user_id;
             $this->request->data['Post']['stylist_id'] = $stylist_id;
-            $this->request->data['Post']['is_outfit_request'] = '1';
+            $this->request->data['Post']['is_request_outfit'] = '1';
             $posts->save($this->request->data);
             $post_id = $posts->getLastInsertID();
         if($this->request->is('post') || $this->request->is('put')){
