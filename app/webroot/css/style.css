@@ -1499,28 +1499,21 @@ a.sbmt-btn { width: 100%; display: block; padding: 18px 0 12px; background: #b6a
 .otft-right-top-srt select, .myclst-right-top-srt select { height: 25px; padding: 0px 10px;}
 .otft-right-top-srch span, .myclst-right-top-srch span { left: 10px; top: 4px; background: url("../images/srch-icn-gld.png") no-repeat;}
 .otft-prdct-list, .otft-prdct-list #product { position: relative;}
-.otft-prdct-list li{ width: 33%; float: left; border: 1px solid #9d9fa2; position: relative;  margin: 0px; text-align: center; height: 225px; overflow: hidden;}
+.otft-prdct-list li{ width: 33%; float: left; border: 1px solid #9d9fa2; position: relative; height: 235px; margin: -1px 0 0 -1px;  padding: 0; vertical-align: top; overflow: hidden;}
 
-.otft-prdct-list li:before {    /* create a full-height inline block pseudo=element */
-    content: ' ';
-    display: inline-block;
-    vertical-align: middle;  /* vertical alignment of the inline element */
-    height: 100%;
-}
+.otft-prdct-list li a {line-height:235px; text-align: center; display: inline-block; width: 100%;}
+.otft-prdct-list li .otft-prdt-img {display:inline-block; text-align: center; }
+.otft-prdct-list li img { width: 75%; vertical-align: middle;}
+.otft-prdct-list li .otft-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none; line-height: normal;}
+.otft-prdct-list li .otft-prdt-overlay h3 { font-size: 18px; line-height: 20px; padding: 0px 20px;}
+.otft-prdct-list li .otft-prdt-overlay p{margin-bottom: 0px; font-size: 14px;}
 
-.otft-prdct-list li .otft-prdt-img {
-    display: inline-block;
-    vertical-align: middle;  /* vertical alignment of the inline element */
-    font: 16px/1 Arial sans-serif;        /* <-- reset the font property */
-}
-
-.otft-prdct-list li a {}
-.otft-prdct-list li a img { }
-/*.otft-prdct-list li .otft-prdt-img { flaot:left; height: 100%; width: 100%; text-align: center;}*/
-.otft-prdct-list li .otft-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none;}
 .otft-prdct-list li:hover .otft-prdt-overlay { display: block;}
 .basket { position: relative; min-height: 250px; }
-.basket_list li { display: inline-block; width: 40%; margin: 10px 3%; position: relative; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; height: 130px; border:dashed 5px #ccc6a2;
+.basket_list li { display: inline-block; width: 40%; margin: 10px 3%; position: relative; text-align: center; border: 1px solid #e3e3e3; padding: 5px; 
+
+/*-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; height: 130px; 
+border:dashed 5px #ccc6a2;
 -moz-border-radius-topleft: 12px;
 -moz-border-radius-topright:8px;
 -moz-border-radius-bottomleft:7px;
@@ -1533,10 +1526,15 @@ border-top-left-radius:12px;
 border-top-right-radius:8px;
 border-bottom-left-radius:7px;
 border-bottom-right-radius:7px;
+*/
 }
+.basket_list li .bsket_img {height: 130px; width: 100%; display: inline-block; line-height: 130px; overflow: hidden;}
+.basket_list li img { width: 100%; vertical-align: middle;}
 .basket_list li strong { position: absolute; top: 0px; left: 0px; width: 100%; bottom: 0px; right: 0px; margin: auto; height: 35px; text-align: center; color: #af9a59;}
 
 button.delete { position: absolute; top: 10px; right: 10px;}
+.basket_list li select {margin-top: 10px; display: inline-block; width: 100%;}
+.basket_list li span.name, .basket_list li span.prc-img { display: none;}
 
 
 /************ Stylist Eleven Section *************/
@@ -1741,6 +1739,8 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 
 
 
+.myclient-list.tab_n_mob { display: none;}
+.myclient-list.dsktp_only {display: ;}
 /********Mobile CSS**********/
 
 @media screen and (min-width: 1367px) and (max-width: 3000px) {	
@@ -1750,6 +1750,9 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .myclient-list.tab_n_mob { display: inline-block;}
+    .myclient-list.dsktp_only {display: none;}
+    
     .header { padding-bottom: 50px;z-index: 1;}
     .content-container { margin-top: 103px; z-index: 0;}
     #menu-switcher { bottom: -65px;}
@@ -1769,7 +1772,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
     .works-heading { line-height: 30px;}
     .works-boxes .work-box, .shopping-boxes .shopping-box { width: 24%; margin: 0 4%; }
     .works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes { margin-top: 20px; padding-bottom: 30px;}
-    .featured-stylist ul li { width: 171px!important; height: 171px; line-height: 171px; overflow: hidden;}
+    .featured-stylist ul li { width: 175px!important; height: 171px; line-height: 171px; overflow: hidden; margin-right: 5px!important;}
     .featured-stylist .bx-wrapper { margin: 0 auto;}
     .featured-stylist a.bx-prev, .featured-stylist a.bx-next { top: 35px;}
     .featured-stylist a.bx-prev { left: -50px;}
@@ -1924,11 +1927,36 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
     .myclst-nav-section{ width: 100%!important;}
     .myclst-right-top-srch, .myclst-right-top-srt { width: 110px;}
     .otft-rgt-nav li ul, .myclst-rgt-nav li ul { width: 610px;}
+    .otft-rgt-nav li ul { width: 520px;}
     .bottom-section { padding:0 0 50px;}
     .stylistbio-user { font-size: 22px;}
     .stylistbion-arrow { height: 50px; padding-top: 45px; position: relative; width: 50px !important;}
     .stylistbion-arrow img { display: block;}
     .stylistbio-short-note {margin-top: 0px;}
+    .myclient-right {margin-top: 0px;}
+    .myclient-left {border: none; box-shadow: none; border-radius: 0px; border-bottom: 1px solid #e9e9e9;}
+    .myclient-flt-srch-area { width: 100%; float: left;}
+    .filter-myclient-area, .search-myclient-area { width: 40%; padding: 10px 5%; display: inline-block; float: left; border:none;}
+    .myclient-list { display: inline-block; width: 100%; overflow:auto; float: none; overflow-x: scroll; height: 70px; white-space: nowrap; margin: 0px; padding: 0px;   }
+    .myclient-list li { width: auto; display: inline-block; float: none; margin:0px 5px; padding-right: 15px; border-right: 1px solid #e9e9e9; border-bottom: none; }
+    .myclient-list li:last-child {border-right: none;}
+    .myclient-list li a { padding: 0px; width: 100%;}
+    .myclient-list li a .myclient-dtl { width: auto;}
+    
+    .otft-rgt-nav li ul .ctg-one, .myclst-rgt-nav li ul .ctg-one { width: 180px;}
+    .otft-rgt-nav li ul .ctg-one{ width: 150px;}
+    .otft-rgt-nav, .myclst-rgt-nav { font-size: 12px;}
+    .otft-rgt-nav li, .myclst-rgt-nav li {margin: 0px;}
+    .otft-rgt-nav li a, .myclst-rgt-nav li a{ padding: 5px 4px 3px;}
+    .otft-right-top-srch, .otft-right-top-srt, .myclst-right-top-srch, .myclst-right-top-srt {width: 40%; margin: 5px;}
+    .otft-right-top-srt { float: left;}
+    .basket_list li {margin: 5px 1%;}
+    .otft-stylst-cmnt-heading h1 { line-height: 20px; padding-top: 20px;}
+    #cnfrm-otft-popup .box-modal {width:550px;}
+    .cnfrm-otft-top span {padding-right: 10%;}
+    .otft-prdct-list li {height: 155px;}
+    .otft-prdct-list li a{line-height: 155px;}
+    .otft-prdct-list {margin-left:1px; }
     
     
     
@@ -2319,7 +2347,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
     .stylistbion-arrow img { display: none;}
     
 	.only-mob{display: /*block*/none;}
-	.only-desktop{display: none;}
+	.only-desktop, .jx_ui_Widget{display: none;}
 	}
 @media screen and (min-width: 240px) and (max-width: 568px) and (orientation : portrait) {
 	#sign-up-drop-down p { font-size: 22px; padding-top: 15px; margin-bottom: 10px;}
