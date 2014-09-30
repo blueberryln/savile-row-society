@@ -170,46 +170,13 @@
                                             </div>
                                         </div>
                                         
-                                        <!-- <div class="twelve columns left client-profile client-address pad-none">
-                                            <div class="eleven columns container pad-none">
-                                                <h1>Address Book</h1>
-                                                <div>Click to edit your default &amp; any additional addresses that you have previously used or saved with SRS. Click  the  “enter new address”  to enter new address details.</div>
-                                                <div class="twelve columns left pad-none">
-                                                    <div class="five columns address-dtls left pad-none">
-                                                        <h1>1. Default Address: </h1>
-                                                        <div class="address">
-                                                            <span>Kyle Harper</span>
-                                                            <span>617 Academy St. Apt 11D</span>
-                                                            <span>New York, NY 10034</span>
-                                                        </div>
-                                                        <a class="edit-address" href="javascript:;" title="">Edit</a>
-                                                    </div>
-                                                    <div class="five columns new-addess-bnt right pad-none">
-                                                        <a class="new-address" href="javascript:;" title="">Enter New Address</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
+                                        
                                         
                                         <div class="twelve columns left client-profile client-address client-card-dtls pad-none">
                                             <div class="eleven columns container pad-none">
-                                               <!--  <h1>Credit Cards</h1> -->
-                                                <!-- <div class="twelve columns left pad-none">
-                                                    <div class="card-dtls-heading twelve columns left pad-none">
-                                                        <div class="card-name">Name on card</div>
-                                                        <div class="card-number">Card number</div>
-                                                        <div class="card-expiry-date">Exp. Date</div>
-                                                    </div>
-                                                    <div class="card-dtls-desc twelve columns left pad-none">
-                                                        <div class="card-name">Kyle Harper</div>
-                                                        <div class="card-number">************4567</div>
-                                                        <div class="card-expiry-date">08/15</div>
-                                                    </div>
-                                                </div> -->
+                                               
                                                 <div class="twelve columns left pad-none">
-                                                    <!-- <div class="five columns add-cards left pad-none">
-                                                        <a class="add-new-card" href="javascript:;" title="">Add new Card</a>
-                                                    </div> -->
+                                                   
                                                     <div class="five columns update-changes right pad-none">
                                                         <a class="save-changes" href="#" id="save" >Save Changes</a>
                                                     </div>

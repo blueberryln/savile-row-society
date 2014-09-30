@@ -112,12 +112,12 @@
                                 <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client['User']['profile_photo_url']; ?>" alt="" /></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuseractivityfeed/<?php echo $clientid; ?>">Activity Feed</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/userfeed/<?php echo $clientid; ?>">Activity Feed</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $clientid; ?>">Messages</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuseroutfits/<?php echo $clientid; ?>">Outfits</a></li>
-                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/stylistuserpurchase/<?php echo $clientid; ?>">Purchases/Likes</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistusernotes/<?php echo $clientid; ?>">Notes &amp; Gallery</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistusermeasurements/<?php echo $clientid; ?>">Measurements</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/outfits/<?php echo $clientid; ?>">Outfits</a></li>
+                                        <li ><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>">Purchases/Likes</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/notes/<?php echo $clientid; ?>">Notes &amp; Gallery</a></li>
+                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/measurements/<?php echo $clientid; ?>">Measurements</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -134,17 +134,17 @@
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Jacket</label></div>
                                                         <div class=" six columns left msrmnt-input-area">
-                                                        <input type="text" name="" value="<?php echo $userprofile[0]['UserPreference']['jacket_size'] ?>"  /></div>
+                                                    <input type="text" name="" value="<?php if(!empty($userprofile[0])): echo $userprofile[0]['UserPreference']['jacket_size']; else: endif; ?>"  /></div>
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Pant Waist</label></div>
                                                         <div class=" six columns left msrmnt-input-area">
-                                                        <input type="text" name="" value="<?php echo $userprofile[0]['UserPreference']['pant_waist'] ?>" /></div>
+                                                        <input type="text" name="" value="<?php if(!empty($userprofile[0])): echo $userprofile[0]['UserPreference']['pant_waist']; else: endif; ?>" /></div>
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Pant Length</label></div>
                                                         <div class=" six columns left msrmnt-input-area">
-                                                        <input type="text" name="" value="<?php echo $userprofile[0]['UserPreference']['pant_length'] ?>" /></div>
+                                                        <input type="text" name="" value="<?php if(!empty($userprofile[0])): echo $userprofile[0]['UserPreference']['pant_length']; else: endif; ?>" /></div>
                                                     </div>
                                                 </div>
                                                 <div class="five columns right">

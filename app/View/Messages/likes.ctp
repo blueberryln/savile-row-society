@@ -138,11 +138,13 @@ $(document).ready(function(){
                         <div class="filter-myclient-area">
                             <div class="filter-myclient">
                                 <span class="downarw"></span>
-                                <select>
-                                    <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
-                                </select>
+                                <select id="selectfilter">
+                                <option value="">Filter Clients</option>
+                                <?php foreach($userlists as $clientout): ?>
+                                <option value="<?php echo $this->webroot; ?>messages/stylistcreateoutfits/<?php echo $clientout['User']['id']; ?>"><?php echo $clientout['User']['first_name'].'&nbsp;'.$clientout['User']['last_name']; ?></option>
+                                 <?php endforeach; ?>
+                                
+                            </select>
                             </div>
                         </div>
                         <div class="search-myclient-area">
@@ -185,7 +187,7 @@ $(document).ready(function(){
                                 <div class="client-img"><img src="<?php echo $img; ?>" alt=""/></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
-                                        <li><a href="#<?php echo $this->webroot; ?>messages/stylistuseractivityfeed/<?php echo $clientid; ?>">Activity Feed</a></li>
+                                        <li><a href="#<?php echo $this->webroot; ?>messages/userfeed/<?php echo $clientid; ?>">Activity Feed</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $clientid; ?>">Messages</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/outfits/<?php echo $clientid; ?>">Outfits</a></li>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>">Purchases/Likes</a></li>
