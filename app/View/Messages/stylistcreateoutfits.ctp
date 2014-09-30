@@ -62,7 +62,7 @@ function dragAndDropOutfit(){
                     //alert(src);
                     var src =move.find("img").attr('src');
                     var price =move.find("h4").html();
-                    //alert(price);
+                    alert(price);
                     //var itemsize =move.find("#size").val();
                 basket.find("ul").append('<li data-id="' + move.attr("data-id") + '" data-price="'+ move.attr("data-price") +'">'
 
@@ -75,8 +75,8 @@ function dragAndDropOutfit(){
                     var countli =  basket.find("ul li").length;
                     if(countli === 5 ){
                         //alert(countli);
-                        basket.find("ul").stop(true,true);
-                        //basket.find("ul").append('<li></li>').stop();
+                        //basket.find("ul").stop(true,true);
+                        basket.find("ul").append('<li>not</li>').stop();
                         //return false;
                     }
 
@@ -319,7 +319,7 @@ function dragAndDropOutfit(){
                 });
     
     // subfinaloutfit
-              $("#subfinaloutfit").live("click", function () {
+            $("#subfinaloutfit").live("click", function () {
                    
                     //var id = $(".basket ul li").attr("data-id");
                     var outfitname = $("#outfitname").val();
@@ -349,12 +349,128 @@ function dragAndDropOutfit(){
                     }
                 }); 
             });
-             
 
+// sort closet by date sortbydate
+
+    $("#sortbydate").change('live',function () {
+        var sorting =  this.value;
+        alert(sorting);
+                $.ajax({
+                        type:"POST",
+                        url:"<?php echo $this->webroot; ?>Messages/closetAjaxProductData/<?php echo $stylist_id; ?>",
+                        data:{sorting:sorting},
+                        cache: false,
+                        success: function(result){
+                            //alert(result);
+                        data = $.parseJSON(result);
+                            html = '';
+                            html = html + '<div id="product">';
+                            html = html + '<ul class="clear">';
+            
+                        $.each(data,  function (index){
+                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<a href="#">';
+                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
+                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        html = html + '<ul>';            
+                        html = html + '</div>';
+                        $(".otft-prdct-list").html(html);   
+                        dragAndDropOutfit();   
+                                
+                    }
+                });
+            });
+
+
+// closettextsearch
+
+    $(".otft-right-top-srch").on('keydown', function () {
+        var closettextsearch =  $("#closettextsearch").val();
+        //alert(closettextsearch);
+                $.ajax({
+                        type:"POST",
+                        url:"<?php echo $this->webroot; ?>Messages/closetAjaxProductData/<?php echo $stylist_id; ?>",
+                        data:{closettextsearch:closettextsearch},
+                        cache: false,
+                        success: function(result){
+                            //alert(result);
+                        data = $.parseJSON(result);
+                            html = '';
+                            html = html + '<div id="product">';
+                            html = html + '<ul class="clear">';
+            
+                        $.each(data,  function (index){
+                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<a href="#">';
+                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
+                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        html = html + '<ul>';            
+                        html = html + '</div>';
+                        $(".otft-prdct-list").html(html);   
+                        dragAndDropOutfit();  
+                                
+                    }
+                });
+            });
+
+
+
+    //pagination
+
+
+        $("#loadMoreProduct a").on('click', function(e){
+            e.preventDefault();
+            $this = $(this);
+            
+            var firstPageId = $("#limit").val();
+            //var id = $("p#loadMoreProduct a").attr('id');
+            //alert(firstPageId);
+            $.ajax({
+                url: '<?php echo $this->webroot; ?>messages/closetAjaxProductData',
+                cache: false,
+                type: 'POST',
+                data : {last_limit:firstPageId},
+                success: function(result){
+                    data = $.parseJSON(result);
+                            html = '';
+                            
+                        $.each(data,  function (index){
+                            html = html + '<li  data-id="'+ this.Entity.id +'">';
+                            html = html + '<a href="#">';
+                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
+                            html = html + '<div class="otft-prdt-overlay">';
+                            html = html + '<h3>'+ this.Entity.name +'</h3>';
+                            var desr = this.Entity.description;
+                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
+                            html = html + '</div>';
+                            html = html + '</a>';
+                            html = html + '</li>';
+
+                        });
+                        $(".clear").append(html);   
+                        dragAndDropOutfit();
+                    
+                }    
+            });
         });
 
-
-
+});
 </script>
         
 
@@ -455,14 +571,13 @@ function dragAndDropOutfit(){
                                     <div class="otft-right-top">
                                         <div class="otft-right-top-srch">
                                             <span></span>
-                                            <input type="text" name="" />
+                                            <input type="text" name="" id="closettextsearch" />
                                         </div>
                                         <div class="otft-right-top-srt">
-                                            <select>
-                                                <option>Sort By</option>
-                                                <option>Sort By</option>
-                                                <option>Sort By</option>
-                                                <option>Sort By</option>
+                                            <select id="sortbydate">
+                                                <option>Sort By Date</option>
+                                                <option value="DESC">Sort By Date DESC</option>
+                                                <option value="ASC"> Sort By Date ASC</option>
                                             </select>
                                         </div>
                                     </div>
@@ -490,13 +605,12 @@ function dragAndDropOutfit(){
                                         </li>
                                     <?php } ?>
                                     </ul>
-                                    <div class="pagination userlikes">
-                                        <?php
-                                        echo $this->Paginator->prev('>', array(), null, array('class' => 'prev disabled'));
-                                        echo $this->Paginator->numbers(array('separator' => '', 'class' => 'page-links'));
-                                        echo $this->Paginator->next('>', array(), null, array('class' => 'next disabled'));
-                                        ?>
-                                    </div>
+                                    <p id="loadMoreProduct">
+
+                                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                    <input type="hidden" id="limit" value="<?php echo $ProductRowCount; ?>">
+                                    <a href="" id="<?php echo $ProductRowCount; ?>">Load More Products</a>
+                                    </p>
                                 </div>
 
                             </div>

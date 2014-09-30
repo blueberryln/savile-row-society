@@ -181,8 +181,8 @@
                     <ul>
                         <li class="active"><a href="#" title="">My Clients</a></li>
                         <li><a href="#" title="">Dashboard</a></li>
-                        <li><a href="#" title="<?php echo $this->request->webroot; ?>messages/stylisttotaloutfits">My outfits</a></li>
-                        <li><a href="#" title="<?php echo $this->request->webroot; ?>messages/stylisttotaloutfits">The CLoset</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>messages/closet">The CLoset</a></li>
                     </ul>
                 </div>
                 <div class="two columns right admin-top-right">
