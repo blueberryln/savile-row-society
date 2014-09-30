@@ -14,7 +14,7 @@ $(document).ready(function(){
             data = $.parseJSON(result);
             html = '';
             html = html + '<ul>';
-            html = html + '<li><div class="purchase-dtls-date heading left">Date</div><div class="purchase-dtls-items heading left">Item</div><div class="purchase-dtls-outfit heading left">Outfit</div><div class="purchase-dtls-price heading left">Price</div></li>';
+            html = html + '<li><div class="purchase-dtls-date heading left">Date</div><div class="purchase-dtls-items heading left">Item</div><div class="purchase-dtls-price heading left">Price</div></li>';
             $.each(data,  function (index){
                 html = html + '<li>';7
                 html = html + '<div class="purchase-dtls-date left">'+this.Wishlist.created +'</div>';
@@ -22,7 +22,7 @@ $(document).ready(function(){
                 html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
                 html = html + '<div class="purchase-dtls-items-desc">'+this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
                 html = html + '</div>';
-                html = html + '<div class="purchase-dtls-outfit left">'+this.Outfit.outfitname +'</div>';        
+                       
                 html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
                 html = html + '</li>';        
                 
@@ -56,7 +56,7 @@ $(".userlikes a").on('click',function(){
                 html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name+'" alt=""  /></div>';
                 html = html + '<div class="purchase-dtls-items-desc">'+this.Entity.name +'<span>'+ this.Brand.name +'</span></div>';
                 html = html + '</div>';
-                html = html + '<div class="purchase-dtls-outfit left">'+this.Outfit.outfitname +'</div>';        
+                     
                 html = html + '<div class="purchase-dtls-price left">$'+ this.Entity.price +'</div>';
                 html = html + '</li>';        
                 
@@ -82,8 +82,7 @@ $(".userlikes a").on('click',function(){
             $img = $this->webroot . "img/dummy_image.jpg";    
         }
 ?>
-<div class="content-container">
-    <div class="twelve columns black">&nbsp;</div>
+
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
@@ -104,7 +103,7 @@ $(".userlikes a").on('click',function(){
                             <li><a href="?php echo $this->webroot; ?>messages/index">Messages</a></li>
                             <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
                             <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
                         </ul>
                     </div>
                     <div class="twelve columns left inner-content pad-none">
@@ -116,7 +115,7 @@ $(".userlikes a").on('click',function(){
                                         <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
                                         <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/userprofiles/<?php echo $user_id; ?>">Profile</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -163,9 +162,7 @@ $(".userlikes a").on('click',function(){
                                                                 <div class="purchase-dtls-items-desc"><?php echo $likeitem['Entity']['name']; ?><span><?php echo $likeitem['Brand']['name']; ?></span></div>
                                                            </div>
                                                             
-                                                            <!-- <div class="purchase-dtls-outfit left">
-                                                            <?php if($likeitem['Outfit']['outfitname']!=''){ 
-                                                            echo $likeitem['Outfit']['outfitname']; }else {  echo "outfit null "; } ?></div> -->
+                                                            
                                                        
                                                             <div class="purchase-dtls-price left">$<?php echo $likeitem['Entity']['price']; ?></div>
                                                        </li>
@@ -177,10 +174,10 @@ $(".userlikes a").on('click',function(){
                                                        
                                                     </ul>
                                                     <div class="pagination userlikes">
-                                                    <?php if($likeitemscount > 10): ?>
+                                                    
                                                     <input type="hidden" id="limit" value="<?php echo $likeitemscount; ?>">
                                                     <a href="#" id="<?php echo $likeitemscount; ?>">Load More</a>
-                                                <?php endif;?>
+                                                
                                                     </div>
                                                 </div>   
                                             </div>
@@ -209,4 +206,3 @@ $(".userlikes a").on('click',function(){
             </div>
         </div>
     </div>
-</div>
