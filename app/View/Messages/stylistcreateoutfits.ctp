@@ -38,8 +38,11 @@ function dragAndDropOutfit(){
                         var basket = $(this),
                                 move = ui.draggable,
                                 itemId = basket.find("ul li[data-id='" + move.attr("data-id") + "']");
-                                //itemsize = basket.find("#size").val();
-                                //alert(itemsize);
+                                itemsize = basket.find("ul li").length;
+                                if(itemsize >= 5){
+                                    basket.find("ul").append("<li><span>Sorry You Have reached the item limit.</span></li>");
+                                    return false;
+                                }
 
                         // To increase the value by +1 if the same item is already in the basket
                         if (itemId.html() != null) {
@@ -56,15 +59,14 @@ function dragAndDropOutfit(){
                 });
                 
                 // This function runs onc ean item is added to the basket
-                var cancel = false;
+                //var countli = 0;
                 function addBasket(basket, move) {
-                    //var src = $('img').attr('src');
-                    //alert(src);
+                    
                     var src =move.find("img").attr('src');
                     var price =move.find("h4").html();
-                    alert(price);
-                    //var itemsize =move.find("#size").val();
-                basket.find("ul").append('<li data-id="' + move.attr("data-id") + '" data-price="'+ move.attr("data-price") +'">'
+                    var countli =  basket.find(".basket ul li").length;
+                    
+                    basket.find("ul").append('<li data-id="' + move.attr("data-id") + '" data-price="'+ move.attr("data-price") +'">'
 
                             + '<span class="name">' + move.find("h3").html() + '</span>'
                             + '<span class="prc-img">' + move.find("h4").html() + '</span>'
@@ -72,34 +74,17 @@ function dragAndDropOutfit(){
                             + '<select id="size"><option value="25">25</option> <option value="26">26</option> <option value="27">27</option><option value="28">28</option><option value="29">29</option></select>'
                             + '<button class="delete">&#10005;</button>');
                     
-                    var countli =  basket.find("ul li").length;
-                    if(countli === 5 ){
-                        //alert(countli);
-                        //basket.find("ul").stop(true,true);
-                        basket.find("ul").append('<li>not</li>').stop();
-                        //return false;
-                    }
-
+                        // count total price
                         var overall = 0;
-                        $("ul#dataid li").each(function()
-                        {
+                        $("ul#dataid li").each(function(){
                             var allprice = $(this).data("price");
                             var sum = parseInt(allprice);
-
                             overall+= sum;
                         });
-                        
                         $("#total").html('Total Outfit Price ' + overall);
-                  
                 }
                 
                
-                    
-               
-                
-                    
-                //$("#total").text($overall);
-
                  // The function that is triggered once delete button is pressed
                 $(".basket ul li button.delete").live("click", function () {
                     $(this).closest("li").remove();
