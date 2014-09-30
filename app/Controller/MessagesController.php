@@ -3047,6 +3047,8 @@ If interested, I would also be happy to meet with you in our New York City based
                     $data['Message']['body'] = (isset($this->request->data['outfit_msg']) && $this->request->data['outfit_msg']) ? $this->request->data['outfit_msg'] : "outfit";
                     $data['Message']['is_outfit'] = 1;
                     $data['Message']['outfit_id'] = $outfit_id;
+                    $data['Message']['post_id'] = $post_id;
+
                     $Message->create();
                     if ($Message->validates()) {
                         $Message->save($data);
