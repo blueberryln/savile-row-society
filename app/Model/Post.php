@@ -12,30 +12,46 @@ App::uses('AppModel', 'Model');
  */
 class Post extends AppModel {
 
+    /**
+     * belongsTo associations
+     *
+     * @var array
+     */
+    public $belongsTo = array(
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'user_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
+
 	public function getStylistPosts($stylist_id){
-		$stylist_id = 741;
+		// $stylist_id = 741;
 		$User = ClassRegistry::init('User');
 
 		$client_list = $User->find('list', array(
-			'conditions'	=> array('stylist_id'	=> $stylist_id),
+			'conditions'	=> array('stylist_id'	=> $stylist_id, 'is_stylist !=' => '1'),
 			'fields'	=> array('id'),
 			));
 
 		$find_array = array(
+            'contain'   => ('User'),
 			'conditions'	=> array(
 				'OR'	=> array(
 					array('user_id'	=> $client_list),
 					array('user_id'	=> $stylist_id)	
 					)
 				),
-			'order'			=> array('id' => 'desc'),
+			'order'			=> array('Post.id' => 'desc'),
 			'limit'			=> '20'
 			);
 		$posts = $this->find('all', $find_array);
 
 		$result = $this->getPostDetails($posts);
 
-		return $posts;
+		return $result;
 	}
 
 	public function getPostDetails($posts){
@@ -58,11 +74,25 @@ class Post extends AppModel {
         $wishlist = $this->formatWishlist($likes_list);
         $message = $this->formatMessage($message_list);
 
-        
-        print_r($message);
-        exit;
+        $sorted_post = array();
+        foreach ($posts as $value) {
+            if($value['Post']['is_like'] == "1" && isset($wishlist[$value['Post']['id']])){
+                $value['Wishlist'] = $wishlist[$value['Post']['id']]['Wishlist'];
+                $value['Entity'] = $wishlist[$value['Post']['id']]['Entity'];
+                $value['Brand'] = $wishlist[$value['Post']['id']]['Brand'];
 
-        
+                $sorted_post[] = $value;
+            }
+            else if(($value['Post']['is_message'] || $value['Post']['is_request_outfit'] || $value['Post']['is_outfit']) && isset($message[$value['Post']['id']])){
+                $combined = $message[$value['Post']['id']];
+                $combined['Post'] = $value['Post'];
+                $combined['User'] = $value['User'];
+
+                $sorted_post[] = $combined;
+            }
+        }
+
+        return $sorted_post;
 	}
 
 	public function formatWishlist($likes_list){
@@ -90,11 +120,8 @@ class Post extends AppModel {
         $messages = $Message->find('all', array(
         	'contain' => array('UserFrom', 'UserTo'),
         	'conditions'	=> array('post_id'	=> $message_list),
-        	'fields'		=> array('user_to_id', 'user_from_id', 'body', 'image', 'is_outfit', 'is_request_outfit', 'outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name', 'UserFrom.profile_photo_url', 'UserTo.id', 'UserTo.first_name', 'UserTo.last_name', 'UserTo.profile_photo_url')
+        	'fields'		=> array('user_to_id', 'user_from_id', 'body', 'image', 'is_outfit', 'is_request_outfit', 'outfit_id', 'post_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name', 'UserFrom.profile_photo_url', 'UserTo.id', 'UserTo.first_name', 'UserTo.last_name', 'UserTo.profile_photo_url')
         ));
-
-        print_r($messages);
-        exit;
 
         $outfit_list = array();
         foreach($messages as $value){
@@ -103,13 +130,28 @@ class Post extends AppModel {
         	}
         }	
 
+        $outfits = array();
         if($outfit_list){
         	$outfits = $Outfit->getOutfitDetails($outfit_list);	
-
-	        print_r($outfits);
-	        exit;
         }
-        exit;
+
+        $sorted_outfits = array();
+        foreach($outfits as $value){
+            $sorted_outfits[$value['Outfit']['id']] = $value;
+        }
+
+
+        $sorted_messages = array();
+        foreach($messages as $value){
+            if($value['Message']['is_outfit'] && isset($sorted_outfits[$value['Message']['outfit_id']])){
+                $value['Outfit'] = $sorted_outfits[$value['Message']['outfit_id']]['Outfit'];
+                $value['OutfitItem'] = $sorted_outfits[$value['Message']['outfit_id']]['OutfitItem'];
+            }
+            
+            $sorted_messages[$value['Message']['post_id']] = $value;
+        }
+
+        return $sorted_messages;
 
 	}
 

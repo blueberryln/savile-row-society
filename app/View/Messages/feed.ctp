@@ -244,36 +244,31 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
 <script>
 
-    $(document).read(function(){
+    $(document).ready(function(){
         var isFirstLoad = true,
-            chatContainer = $('.chat-container'),
+            feedContainer = $('.activity-feed-section>ul'),
             callInAction = false,
             reqNewMsgDelay=6000,
             firstMsgId = 0;
         
-
+        loadFeed();
         function loadFeed(userId) {
             if(!userId){
                 userId = "";
             }
             $.ajax({
-                url: "<?php echo $this->webroot; ?>messages/loadFeed/",
+                url: "<?php echo $this->webroot; ?>feed/loadFeed/",
                 cache: false,
                 type: 'POST',
                 success: function(res) {
                     res = jQuery.parseJSON(res);
                     if (res['status']=='ok') {
-                        var arrMsg = res['Messages'];
-                        if(arrMsg.length){
-                            for(var i=0; i < arrMsg.length; i++){
-                                var html = showChatMsg(arrMsg[i]);
-                                chatContainer.append(html);
-                                firstMsgId = arrMsg[i]['Message']['id'];
+                        var arrPost = res['posts'];
+                        if(arrPost.length){
+                            for(var i=0; i < arrPost.length; i++){
+                                var html = showFeed(arrPost[i]);
+                                feedContainer.append(html);
                             }
-                            if(res['msg_remaining'] > 0){
-                                $("#loadOldMsgs").fadeIn(300);    
-                            }
-                            
                         }
                         else{  
                             
@@ -286,146 +281,142 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             });
         }
 
+        function showFeed(feed) {
+            console.log(feed);
+            var html = ''; 
+            if(feed['Post']['is_like'] == 1){
+                var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
+                var prodcut_url = '';
+                html =  '<li class="activity-wishlist">' + 
+                            '<div class="activity-content-area">' + 
+                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
+                                '<div class="activity-msg-area">' + 
+                                    '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> liked an item,</div>' + 
+                                    '<div class="activity-msg-dtl">' + 
+                                        '<span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>' + 
+                                        '<span class="activity-product-dtl">' + 
+                                            '<strong>' + feed['Entity']['name'] + '</strong><br>' + 
+                                            feed['Brand']['name'] + '<br>' + 
+                                            '$' + feed['Entity']['price'] + 
+                                        '</span>' + 
+                                    '</div>' +    
+                                '</div>' + 
+                                '<div class="activity-date-section">' + 
+                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
+                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
+                                '</div>' + 
+                            '</div>' + 
+                        '</li>';
+            }
+            else if(feed['Post']['is_request_outfit'] == 1){
+                var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
+                html = '<li class="activity-notification">' + 
+                            '<div class="activity-content-area">' + 
+                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
+                                '<div class="activity-msg-area">' + 
+                                    '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> requested an outfit.</div>' + 
+                                    '<div class="activity-msg-dtl">' + 
+                                        '<span class="activity-product-dtl">' + 
+                                            '“'+ feed['Message']['body'] +'”' + 
+                                        '</span>' + 
+                                    '</div>' +                     
+                                '</div>' + 
+                                '<div class="activity-date-section">' + 
+                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
+                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
+                                '</div>' + 
+                            '</div>' + 
+                        '</li>';
+            }     
+            else if(feed['Post']['is_message'] == 1){
+                var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
+                html = '<li class="activity-notification">' + 
+                            '<div class="activity-content-area">' + 
+                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
+                                '<div class="activity-msg-area">' + 
+                                    '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> sent you a message.</div>' + 
+                                    '<div class="activity-msg-dtl">' + 
+                                        '<span class="activity-product-dtl">' + 
+                                            '“'+ feed['Message']['body'] +'”' + 
+                                        '</span>' + 
+                                    '</div>' +                     
+                                '</div>' + 
+                                '<div class="activity-date-section">' + 
+                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
+                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
+                                '</div>' + 
+                            '</div>' + 
+                        '</li>';
+            }         
+            else if(feed['Post']['is_outfit'] == 1){
+                var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
+                var outfit_name = (feed['Outfit']['outfit_name'] ) ? '<h1>' + feed['Outfit']['outfit_name'] + '</h1>' : ''; 
+                var outfit_list = '';
+
+                for(var i = 0; i < feed['OutfitItem'].length; i++){
+                    if(typeof feed['OutfitItem'][i]['product']['Image'] != 'undefined' && feed['OutfitItem'][i]['product']['Image'].length){
+                        outfit_list += '<li><img src="<?php echo $this->webroot; ?>files/products/' + feed['OutfitItem'][i]['product']['Image'][0]['name'] + '" alt="" /></li>';
+                    }
+                }
+
+                console.log(outfit_list);
+
+                html = '<li class="activity-notification">' + 
+                            '<div class="activity-content-area">' +  
+                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
+                                '<div class="activity-msg-area">' + 
+                                    '<div class="activity-user-name"><strong>You created ' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + ' an outfit,</strong> “Beach Day”</div>' + 
+                                '</div>' + 
+                                '<div class="activity-date-section">' + 
+                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
+                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
+                                '</div>' + 
+                                '<div class="ten columns container">' + 
+                                    '<div class="twelve columns left client-outfits-area">' + 
+                                        outfit_name +
+                                        '<div class="twelve columns client-outfits-img pad-none">' + 
+                                            '<ul>' + 
+                                                outfit_list +
+                                            '</ul>' + 
+                                        '</div>' + 
+                                    '</div>' + 
+                                '</div>' + 
+                            '</div>' + 
+                        '</li>';
+            }       
+            else if(feed['Post']['is_order']){
+                html = '<li class="activity-purchase">' + 
+                            '<div class="activity-content-area">' + 
+                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>' + 
+                                '<div class="activity-msg-area">' + 
+                                    '<div class="activity-user-name"><strong>Kyle Harper</strong> purchased an item.</div>' + 
+                                    '<div class="activity-msg-dtl">' + 
+                                        '<span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>' + 
+                                        '<span class="activity-product-dtl">' + 
+                                            '<strong>Nice Loafers</strong><br>' + 
+                                            'Prada<br>' + 
+                                            '$650.00' + 
+                                        '</span>' + 
+                                    '</div>' + 
+                                '</div>' + 
+                                '<div class="activity-date-section">' + 
+                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
+                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
+                                '</div>' + 
+                            '</div>' + 
+                        '</li>';
+            }
+            return html;
+        }
+
+        String.prototype.capitalize = function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+
     });
-    
-        // var isFirstLoad = true,
-        //     chatContainer = $('.chat-container'),
-        //     callInAction = false,
-        //     reqNewMsgDelay=6000,
-        //     firstMsgId = 0;
-        
-        // function loadMessages(userId) {
-        //     if(!userId){
-        //         userId = "";
-        //     }
-        //     $.ajax({
-        //         url: "<?php echo $this->webroot; ?>messages/getMyConversation/" + userId,
-        //         cache: false,
-        //         type: 'POST',
-        //         success: function(res) {
-        //             res = jQuery.parseJSON(res);
-        //             if (res['status']=='ok') {
-        //                 var arrMsg = res['Messages'];
-        //                 if(arrMsg.length){
-        //                     for(var i=0; i < arrMsg.length; i++){
-        //                         var html = showChatMsg(arrMsg[i]);
-        //                         chatContainer.append(html);
-        //                         firstMsgId = arrMsg[i]['Message']['id'];
-        //                     }
-        //                     if(res['msg_remaining'] > 0){
-        //                         $("#loadOldMsgs").fadeIn(300);    
-        //                     }
-                            
-        //                 }
-        //                 else{  
-                            
-        //                 } 
-        //             }
-        //         },
-        //         error: function(res) {
-                    
-        //         }
-        //     });
-        // }
-        
-        // function loadNewMessages(){
-        //     callInAction = true;
-        //     $.ajax({
-        //         url: "<?php echo $this->webroot; ?>messages/getNewMessages/" + userId,
-        //         cache: false,
-        //         type: 'POST',
-        //         success: function(res) {
-        //             res = jQuery.parseJSON(res);
-        //             if (res['status']=='ok') {
-        //                 var arrMsg = res['Messages'];
-        //                 for(var i=0; i < arrMsg.length; i++){
-        //                     var html = showChatMsg(arrMsg[i]);
-        //                     chatContainer.append(html);
-        //                 }
-        //             }
-        //         },
-        //         error: function(res) {
-                    
-        //         }
-        //     }).done(function(res){
-        //         callInAction = false;
-        //     });    
-        // }
-        
-        // function showChatMsg(chatMsg) {
-        //     var html = ''; 
-        //     if(chatMsg['Message']['is_outfit'] == 1){
-        //         //html = html + '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
-        //         //html = html + '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' suggested new items to complete a style:</div>'; 
-        //         if(chatMsg['Message']['body'] != '' && chatMsg['Message']['body'] != 'outfit'){
-        //             //html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
-        //         }
-                
-        //         html = html +   '<div class="client-outfit">'+
-        //                             '<div class="client-msg-reply"><span>Beach Day</span></div>' + 
-        //                                 '<ul>';
-        //         ;
-        //         for(var i=0; i<chatMsg['Outfit'].length; i++){
-        //             var imgSrc = webroot + "img/image_not_available-small.png";
-        //             if(typeof(chatMsg['Outfit'][i]["Image"]) != "undefined" && chatMsg['Outfit'][i]["Image"].length > 0){
-        //                 imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
-        //             }
-                    
-        //             var likedClass = "";
-        //             var dislikedClass = "";
-        //             if(chatMsg['Outfit'][i]['Wishlist'] && chatMsg['Outfit'][i]['Wishlist']['id'] && chatMsg['Outfit'][i]['Wishlist']['id'] > 0){
-        //                 likedClass = "liked"    
-        //             }
-                    
-        //             if(chatMsg['Outfit'][i]['Dislike'] && chatMsg['Outfit'][i]['Dislike']['id'] && chatMsg['Outfit'][i]['Dislike']['id'] > 0){
-        //                 dislikedClass = "disliked"    
-        //             }
-                    
-                    
-        //             html = html + 
-                    
-        //                 '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
-        //                     '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
-        //                     '<li><img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" alt="" /></li>'; 
-        //         }
-
-        //             html = html +  '</ul>' +
-        //                             '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
-        //                             '</div>';
-        //     }
-        //     else if(chatMsg['Message']['image']){
-        //         html = '' + 
-        //                 '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-        //                     '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
-        //                     '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
-        //                     '<div class="message-date">' +
-        //                         '<small>' + chatMsg['Message']['created'] + '</small>' +
-        //                     '</div>' + 
-        //                 '</div>';
-        //     }
-        //     else{
-        //         if(chatMsg['UserFrom']['id'] == uid){
-                    
-        //             html = '' + 
-        //                 '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-        //                     '<div class="client-msg">' + 
-        //                     '<div class="client-msg-reply">' + chatMsg['Message']['body'] + '</div>' + 
-        //                         '<div class="msg-date">' + chatMsg['Message']['created'] + '</idv>' +
-        //                 '</div>';
-        //         }
-        //         else{
-                    
-        //             html = '' + 
-        //                 '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
-        //                     '<div class="user-msg">' + 
-        //                     '<div class="msg">' + chatMsg['Message']['body'] + '</div>' + 
-        //                         '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
-        //                     '</div>' + 
-        //                 '</div>';
-        //         }
-        //     }       
-        //     return html;
-        // }
-    
-
 </script>
