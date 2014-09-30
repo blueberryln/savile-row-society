@@ -323,7 +323,7 @@ $(document).on('keydown', '.myoutfit-srch' ,function(){
         
         var stylist_id = "<?php echo $user_id; ?>";
         var searchbyoutfit = $("#searchbyoutfit").val();
-        alert(searchbyoutfit);
+        //alert(searchbyoutfit);
         $.ajax({
                 type:"POST",
                 url:"<?php echo $this->webroot; ?>messages/myOutfitAjax/<?php echo $user_id; ?>",
@@ -344,6 +344,54 @@ $(document).on('keydown', '.myoutfit-srch' ,function(){
 
                             html = html + '<li>';
         html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
+                        });
+                       
+                            html = html + '</ul>';
+
+                            html = html + '<div class="outfit-quick-view"><a href="#" id="quickoutfit" ><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
+                            html = html + '</div>';
+                            html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
+                            html = html + '<div class="client-comments left">';
+                            html = html + '<h2>Stylist Comment</h2>';
+                            html = html + '<div class="client-comments-text left">hi</div>';
+                            html = html + '</div>';
+                            html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
+                            html = html + '<div class="share-outfit right">Share Outfit</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                            html = html + '</div>';
+                        });
+                        $("#outfitpaging").html(html);
+                    }   
+            });
+    });
+
+// book markout fit data 
+
+$(document).on('click', '#bookmarkoutfitAjax' ,function(){
+       
+        var stylist_id = "<?php echo $user_id; ?>";
+        
+        $.ajax({
+                type:"POST",
+                url:"<?php echo $this->webroot; ?>messages/bookMarkOutfitAjax/<?php echo $user_id; ?>",
+                data:{stylist_id:stylist_id},
+                cache: false,
+                    success: function(result){
+                        data = $.parseJSON(result);
+                                    html = '';
+                        $.each(data,  function (index){
+                                    html = html + '<div class="twelve columns client-outfits left" id="findOutfitId">';
+                                    html = html + '<div class="eleven columns container client-outfits-area pad-none">';
+                                    html = html + '<h1>'+ this.outfit.Outfit.outfit_name +'</h1>';
+                                    html = html + '<input type="hidden" id="outfitidquickview" data-id="'+ this.outfit.Outfit.id +'" value="'+ this.outfit.Outfit.id +'">';
+                                    html = html + '<div class="twelve columns client-outfits-img pad-none">';
+                                    html = html + '<ul>';
+                        var entitiesData = this.entities; 
+                        $.each(entitiesData, function(index1){
+
+                            html = html + '<li>';
+                            html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
                         });
                        
                             html = html + '</ul>';
@@ -496,7 +544,7 @@ $(document).on('keydown', '.myoutfit-srch' ,function(){
                                         <p>Outfit Filter</p>
                                         <ul>
                                             <li><a href="#" title="">All Outfits</a></li>
-                                            <li><a href="#" title="">Bookmarked Outfits</a></li>
+                                            <li><a href="#" title="" id="bookmarkoutfitAjax">Bookmarked Outfits</a></li>
                                         </ul>
                                     </div>
                                     <div class="outfit-srt">

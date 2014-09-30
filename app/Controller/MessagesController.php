@@ -1338,7 +1338,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
             //pagintion
             $find_array = array(
-                'limit'=>20,
+                //'limit'=>20,
                 'contain' => array('Image'),
                 'conditions' => array('Entity.id' => $entities),
                 'joins' => array(
@@ -2877,13 +2877,6 @@ If interested, I would also be happy to meet with you in our New York City based
 
         $entities = array();
 
-        // if ($category_slug) {
-        //     $category_slug = trim($category_slug);
-        //     $entities = $this->categoryProducts($categories, $category_slug, $filter_brand, $filter_color, $filter_used);
-        // } else {
-        //     $entities = $this->closetProducts($user_id);
-        // }
-
             // get data
         $find_array2 = array(
             'contain' => array('Image', 'Color', 'Detail'),
@@ -3029,13 +3022,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 if($result = $Outfit->save($data)){
                     $outfit_id = $result['Outfit']['id'];
                     $data['OutfitItem']['outfit_id'] = $outfit_id;
-                    // $data['Useroutfit']['user_id'] = $client_id;
-                    // $data['Useroutfit']['stylist_id'] = $user_id;
-                    // $data['Useroutfit']['outfit_id'] = $outfit_id;
-                    // //bhashit code
-                    //$data['Useroutfit']['post_id'] = $post_id;
-                    //bhashit code
-                    //$Useroutfit->create();  
+                     
                     
                     foreach($outfit_array as $key => $value)
                     {
@@ -3049,7 +3036,7 @@ If interested, I would also be happy to meet with you in our New York City based
                         }
                         $OutfitItem->create();
                         $OutfitItem->save($data);
-                        //$Useroutfit->save($data);    
+                          
                     }
 
                     
@@ -3089,6 +3076,77 @@ If interested, I would also be happy to meet with you in our New York City based
         exit;    
     }
 
+    // create outfit book mark outfit list Ajax
+
+    public function bookMarkOutfitAjax($stylist_id=null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        
+        $Message = ClassRegistry::init('Message');
+        $BookmarkOutfit = ClassRegistry::init('BookmarkOutfit');
+        $my_outfitss = array();
+        $bookoutfitdatas = $BookmarkOutfit->find('all',array(
+            'limit' => 5,
+            'conditions'=>array('BookmarkOutfit.user_id'=>$stylist_id,)));
+        
+        
+        foreach ($bookoutfitdatas as  $row) {
+            $stylist_booked_id = $row['BookmarkOutfit']['outfit_id'];
+            $Outfit = ClassRegistry::init('Outfit');
+            $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_booked_id)));
+            $messages = $Message->find('all',array('conditions'=>array('Message.outfit_id'=>$stylist_booked_id,),'fields'=>array('Message.body')));
+            $OutfitItem = ClassRegistry::init('OutfitItem');
+            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_booked_id)));
+            $entities = array();
+            foreach($outfit as $value){
+                    $entities[] = $value['OutfitItem']['product_entity_id'];
+                }
+            $Entity = ClassRegistry::init('Entity');
+            
+
+            //pagintion
+            $find_array = array(
+                //'limit'=>20,
+                'contain' => array('Image'),
+                'conditions' => array('Entity.id' => $entities),
+                'joins' => array(
+                    array('table' => 'products',
+                        'alias' => 'Product',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'brands',
+                        'alias' => 'Brand',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.brand_id = Brand.id',
+                        )
+                    ),        
+                ), 
+                
+                'fields' => array(
+                    'Entity.id','Entity.price','Brand.name',
+                ),
+
+            );
+            //$this->Paginator->settings = $find_array;
+            $items = $Entity->find('all',$find_array);
+            // //pagintion
+            $my_outfitss[] =  array(
+                                'outfit'    => $outfitnames,
+                                'comments' => $messages,
+                                'entities'  => $items
+                            );
+
+        }
+
+
+        echo json_encode($my_outfitss);
+
+
+    }
 
     //client likes ajax 
     public function getUserLikeAjax($clientid=null){
