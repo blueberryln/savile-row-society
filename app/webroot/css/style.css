@@ -535,6 +535,7 @@ div.apt-form div.apt-comment{margin-top:10px; margin-bottom:20px;}
 	/*****Pagination****/
 	.pagination { text-align: center; margin:30px 0; }
 	.pagination span { margin-left: 25px; display: inline-block; }
+    .pagination span.hide { display: none; }
 	.pagination span a { color: #AF9A59; font-weight: bold; text-decoration: none; display: inline-block; width: 100%; height: 100%; }
 	.pagination span.prev.disabled, .pagination span.next.disabled { cursor: pointer; }
 	.pagination span.prev { background: url('../img/arrow-left.png') no-repeat 0 center; width: 26px; height: 26px; vertical-align: middle; color: transparent; }
@@ -1732,7 +1733,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .itm-sls-list-content ul li .itm-sls-list-item.refer-frnd-dtd { width: 60%}
 .itm-sls-list-content ul li .itm-sls-list-client.refer-frnd-status { text-align: center;}
 #loadMoreProduct, .pagination { width: 100%; display: inline-block; text-align: center;}
-#loadMoreProduct a, .pagination a {background: #927e41; height: 40px; line-height: 40px; padding: 0 20px; display: inline-block; margin-top: 20px; color: #fff; font-size: 20px;text-align: center;}
+#loadMoreProduct a, .pagination a {background: #927e41; height: 40px; line-height: 40px !important; padding: 0 20px; display: inline-block; margin-top: 20px; color: #fff; font-size: 20px;text-align: center;}
 
 
 

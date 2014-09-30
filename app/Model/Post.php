@@ -27,14 +27,19 @@ class Post extends AppModel {
         )
     );
 
-	public function getStylistPosts($stylist_id){
+	public function getStylistPosts($stylist_id, $user_id = false){
 		// $stylist_id = 741;
 		$User = ClassRegistry::init('User');
 
-		$client_list = $User->find('list', array(
-			'conditions'	=> array('stylist_id'	=> $stylist_id, 'is_stylist !=' => '1'),
-			'fields'	=> array('id'),
-			));
+        if($user_id){
+            $client_list = $user_id;
+        }
+		else{
+            $client_list = $User->find('list', array(
+            'conditions'    => array('stylist_id'   => $stylist_id, 'is_stylist !=' => '1'),
+            'fields'    => array('id'),
+            ));
+        }
 
 		$find_array = array(
             'contain'   => ('User'),
@@ -53,6 +58,72 @@ class Post extends AppModel {
 
 		return $result;
 	}
+
+    public function getOldStylistPosts($stylist_id, $user_id = false, $last_post_id){
+        // $stylist_id = 741;
+        $User = ClassRegistry::init('User');
+
+        if($user_id){
+            $client_list = $user_id;
+        }
+        else{
+            $client_list = $User->find('list', array(
+            'conditions'    => array('stylist_id'   => $stylist_id, 'is_stylist !=' => '1'),
+            'fields'    => array('id'),
+            ));
+        }
+
+        $find_array = array(
+            'contain'   => ('User'),
+            'conditions'    => array(
+                'Post.id <' => $last_post_id,
+                'OR'    => array(
+                    array('user_id' => $client_list),
+                    array('user_id' => $stylist_id) 
+                    ),
+                ),
+            'order'         => array('Post.id' => 'desc'),
+            'limit'         => '20'
+            );
+        $posts = $this->find('all', $find_array);
+
+        $result = $this->getPostDetails($posts);
+
+        return $result;
+    }
+
+    public function getNewStylistPosts($stylist_id, $user_id = false, $first_post_id){
+        // $stylist_id = 741;
+        $User = ClassRegistry::init('User');
+
+        if($user_id){
+            $client_list = $user_id;
+        }
+        else{
+            $client_list = $User->find('list', array(
+            'conditions'    => array('stylist_id'   => $stylist_id, 'is_stylist !=' => '1'),
+            'fields'    => array('id'),
+            ));
+        }
+
+        $find_array = array(
+            'contain'   => ('User'),
+            'conditions'    => array(
+                'Post.id >' => $first_post_id,
+                'OR'    => array(
+                    array('user_id' => $client_list),
+                    array('user_id' => $stylist_id) 
+                    ),
+                ),
+            'order'         => array('Post.id' => 'asc'),
+            'limit'         => '20'
+            );
+        $posts = $this->find('all', $find_array);
+
+        $result = $this->getPostDetails($posts);
+
+        return $result;
+    }
 
 	public function getPostDetails($posts){
 		$likes_list = array();
