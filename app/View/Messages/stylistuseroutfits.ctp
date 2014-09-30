@@ -62,7 +62,7 @@
                         var outfitData = this.outfit[0];
                         html = html + '<div class="twelve columns client-outfits left">';
                         html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                        html = html + '<h1>'+ this.outfit[0].Outfit.outfitname +'</h1>';
+                        html = html + '<h1>'+ this.outfit[0].Outfit.outfit_name +'</h1>';
                         html = html + '<div class="twelve columns client-outfits-img pad-none">';
                         html = html + '<ul>';
                         var entitiesData = this.entities; 
@@ -128,7 +128,7 @@
                         var outfitData = this.outfit[0];
                         html = html + '<div class="twelve columns client-outfits left">';
                         html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                        html = html + '<h1>'+ this.outfit[0].Outfit.outfitname +'</h1>';
+                        html = html + '<h1>'+ this.outfit[0].Outfit.outfit_name +'</h1>';
                         html = html + '<div class="twelve columns client-outfits-img pad-none">';
                         html = html + '<ul>';
                         var entitiesData = this.entities; 
@@ -273,7 +273,7 @@
                                         <?php foreach ($my_outfits as $my_outfit): //print_r($my_outfit); ?>
                                         <div class="twelve columns client-outfits left">
                                             <div class="eleven columns container client-outfits-area pad-none">
-                                                <h1><?php echo $my_outfit['outfit'][0]['Outfit']['outfitname']; ?></h1>
+                                                <h1><?php echo $my_outfit['outfit'][0]['Outfit']['outfit_name']; ?></h1>
                                                 <div class="twelve columns client-outfits-img pad-none">
                                                     <ul>
                                                     <?php foreach ($my_outfit['entities'] as $key => $value) { ?>

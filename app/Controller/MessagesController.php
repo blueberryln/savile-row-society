@@ -1456,14 +1456,23 @@ If interested, I would also be happy to meet with you in our New York City based
         if(isset($this->request->data['last_limit'])){
             $last_product_id = $this->request->data['last_limit'];
         }else{
-            $last_product_id = '0';
+            $last_product_id = 0;
         }
         if(isset($this->request->data['sortname'])){
             $sortname = 'Outfit.outfit_name ASC';
+        }else if(isset($this->request->data['sortdate'])){
+            $sortname = 'Outfit.created ASC';
         }else{
             $sortname = 'Outfit.created DESC';
 
         }
+        if(isset($this->request->data['searchbyoutfit'])){
+            $searchbyoutfit = $this->request->data['searchbyoutfit'];
+            $searchvalueresult = array('Outfit.outfit_name LIKE' => '%' . $searchbyoutfit . '%');
+        }else{
+            $searchvalueresult = '';
+        }
+        //echo $sortname;die;
         $User = ClassRegistry::init('User');
         //Get user from session to derterminate if user is stylist
         $user = $this->getLoggedUser();
@@ -1472,13 +1481,13 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"];   
         $Message = ClassRegistry::init('Message');
         $Outfit = ClassRegistry::init('Outfit');
-        $last_product_id = $this->request->data['last_limit'];
+        //$last_product_id = $this->request->data['last_limit'];
         $my_outfitss = array();
         $stylistoutfit= $Outfit->find('all', array(
             'limit' => 5,
             'offset'=> $last_product_id,
             'order' => $sortname,
-            'conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfit_name','Outfit.id')));
+            'conditions'=>array('Outfit.stylist_id'=>$user_id,$searchvalueresult),'fields'=> array('Outfit.outfit_name','Outfit.id')));
         
         foreach($stylistoutfit as $row){
             $stylist_outfit_id = $row['Outfit']['id'];

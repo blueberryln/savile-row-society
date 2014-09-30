@@ -70,7 +70,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         <div class="twelve columns client-outfits left" >
 
                                             <div class="eleven columns container client-outfits-area pad-none" >
-                                                <h1><?php echo $my_outfit['outfit'][0]['Outfit']['outfitname']; ?></h1>
+                                                <h1><?php echo $my_outfit['outfit'][0]['Outfit']['outfit_name']; ?></h1>
                                                 <div class="twelve columns client-outfits-img pad-none">
                                                     <ul>
                                                     <?php if(isset($my_outfit['entities'][0])!=''){ ?>
