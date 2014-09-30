@@ -73,7 +73,11 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                             <li>
                                                 <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
                                                     <div class="myclient-img">
-                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                                        <?php if($searchuserclient['User']['profile_photo_url']): ?>
+                                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                                        <?php else: ?>
+                                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                        <?php endif; ?>
                                                     </div>
                                                     <div class="myclient-dtl">
                                                         <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
@@ -95,7 +99,11 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                             <li>
                                                 <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
                                                     <div class="myclient-img">
-                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                                        <?php if($searchuserclient['User']['profile_photo_url']): ?>
+                                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                                        <?php else: ?>
+                                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                        <?php endif; ?>
                                                     </div>
                                                     <div class="myclient-dtl">
                                                         <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
