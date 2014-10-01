@@ -63,6 +63,7 @@ class PagesController extends AppController {
             //Get Top Outfits
             $TopOutfit = ClassRegistry::init('TopOutfit');
             $topOutfits = $TopOutfit->getTopOutfits();
+            $title_for_layout = "Savile Row Society Home";
 
             $this->set(compact('user','topStylists','topOutfits'));
        
@@ -71,6 +72,9 @@ class PagesController extends AppController {
             $this->isLogged();
             $user = $this->getLoggedUser();
             $this->set(compact('user'));
+        }
+        else if ($page == 'contact') {
+            $title_for_layout = "Contact Us - Savile Row Society";
         }
         else if ($page == 'trainer') {
             $this->isLogged();
@@ -90,6 +94,12 @@ class PagesController extends AppController {
             $this->isLogged();
             $user = $this->getLoggedUser();
             $this->set(compact('user'));
+        }
+        else if ($page == 'company/brands') {
+            $title_for_layout = "Brands - Savile Row Society";
+        }
+        else if ($page == 'company/team') {
+            $title_for_layout = "Team - Savile Row Society";
         }
         
         $this->set(compact('page', 'subpage', 'title_for_layout'));

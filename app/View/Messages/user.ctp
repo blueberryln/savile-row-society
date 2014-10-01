@@ -23,7 +23,6 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 <!--new design and code start here-->
 
 <div class="content-container">
-    <div class="twelve columns black">&nbsp;</div>
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">

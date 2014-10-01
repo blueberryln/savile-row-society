@@ -4,9 +4,10 @@ if(isset($noindex)){
     echo $this->Html->meta(array('name' => 'robots', 'content' => 'noindex, nofollow'),null,array('inline'=>false));
 }
 
-$meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. We\'ll perfect your image from head to toe.';
+$meta_description = 'Savile Row Society is a men’s personal shopping platform that connects professional men with personal stylists.';
+$meta_keywords = 'Savile Row Society, Personal stylist, personal shopping';
 $img_src = "//www.savilerowsociety.com/img/SRS_600.png";
-$meta_keywords="mens personal shopping,professional fashion advice,mens shopping advice,mens personal styling,mens fashion consulting,mens clothing stylist,mens personal branding,mens personal outfits,mens professional stylist,made to measure suits,tailored suits,mens business suits,bespoke suits,custom suit,high quality suits,mens tailor nyc,suits in nyc,custom suiting,tailor in nyc,custom bespoke suits,tailor in new york city,trunk club,tailor in manhattan,suits in new york city,men made to measure suits,bombfell";
+
 $this->Html->meta("keywords", $meta_keywords, array("inline" => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Society', ),'',array('inline'=>false));
@@ -46,7 +47,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div>
         <div class="mega-banner-overlay">
             <span class="large-size">shop with your personal stylist</span>
-            <span class="small-size">Online &amp; In-person.</span>
+            <span class="small-size">Online &amp; In-person</span>
             <div class="overlay-bnts left">
                 <a class="tell-more gray-btns" href="#" title="">Tell Me More</a>
                 <a class="overlay-started brown-btns" href="#" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
@@ -73,7 +74,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step1.jpg" />
+                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step1.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Style Profile</span>
@@ -96,7 +97,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step2.jpg" />
+                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step2.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Start Shopping</span>
@@ -119,7 +120,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step3.jpg" />
+                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step3.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Free Delivery</span>
@@ -171,7 +172,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="twelve columns text-center page-heading">
             <h1>Featured Stylists</h1>
             <h3>Check out some of our featured Personal Stylists</h3>
-            <h3>below and <a href="#" title="">click here to see our full roster</a></h3>
+            <h3>below and <a href="/users/stylistbiography/741" title="">click here to see our full roster</a></h3>
         </div>
         <div class="eleven columns container stylist-boxes">
             <div class="featured-stylist ten columns container">
@@ -218,7 +219,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                                         </div>
                                         <div class="outfit-top-content left">
                                             <div class="outfit-month"><?php echo $outfit['Outfit']['outfit_name']; ?></div>                                    
-                                            <div class="outfit-brand">Styled by <span class="outfit-brand-name"><?php echo $outfit['Stylist']['first_name']; ?></span></div>
+                                            <div class="outfit-brand">Styled by <a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>"><span class="outfit-brand-name"><?php echo $outfit['Stylist']['first_name']; ?></span></a></div>
                                         </div>
                                     </div>
                                     <div class="shop-outfit-bottom">
@@ -232,7 +233,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                                             } 
                                             ?>
                                         </ul>
-                                        <a class="shop-outfit-bottom-link" href="javascript:;" title="">Shop Outfit</a>
+                                        <a class="shop-outfit-bottom-link" href="/users/register" title="">Shop Outfit</a>
                                     </div>
                                 </div>
                                 <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>" title="" class="outfilt-btns">Learn about <?php echo $outfit['Stylist']['first_name']; ?></a></div>
@@ -256,7 +257,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <ul>
                     <li>
                         <div class="style-time-img">
-                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_1.jpg">
+                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_1.jpg" alt="Savile Row Society Personal Stylists are available online or in person">
                             <div class="style-time-hover">
                                 <h1><a href="#" title="">Online</a></h1>                                
                                 <div class="style-time-hover-content">
@@ -271,7 +272,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                     </li>
                     <li>
                         <div class="style-time-img">
-                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_2.jpg">
+                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_2.jpg" alt="Savile Row Society Personal Stylists are available online or in person">
                             <div class="style-time-hover">
                                 <h1><a href="javascritp:;" title="">In person</a></h1>                                
                                 <div class="style-time-hover-content">
@@ -285,7 +286,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                     </li>
                     
                 </ul>
-                <a class="style-time-link" href="http://www.savilerowsociety.com/contact" title="">Come visit your stylist at our NYC showroom.</a>
+                <a class="style-time-link" href="http://www.savilerowsociety.com/contact" title="">Come visit your stylist at our NYC showroom</a>
             </div>
         </div>
     </div>

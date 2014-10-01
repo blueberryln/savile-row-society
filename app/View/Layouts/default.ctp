@@ -8,7 +8,7 @@
         <!-- Basic Page Needs
   ================================================== -->
         <meta charset="utf-8">
-        <title>Savile Row Society <?php echo $title_for_layout; ?></title>
+        <title><?php echo isset($title_for_layout) ? $title_for_layout : 'Savile Row Society'; ?></title>
         <!-- <meta name="description" content="Savile Row Society"> -->
         <?php echo $this->fetch('meta'); ?>
         <!-- Mobile Specific Metas
