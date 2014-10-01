@@ -1258,6 +1258,7 @@ span.client-nav-switcher img { width: 37px;}
 .admin-top-right ul li .admin-top-right-dropdown ul { margin: 0px; padding: 0px; width: 100%;}
 .admin-top-right ul li .admin-top-right-dropdown ul li {display: block; width: 100%; margin: 0 0 1px; font-family: 'ProximaNovaCond-Regular'; font-size: 13px; border-bottom: 1px solid #e1e1e1; height: auto;}
 .admin-top-right ul li .admin-top-right-dropdown ul li a { padding: 5px 5% 5px; color: #212125; text-align: center; width: 90%; text-transform: uppercase; display: block;}
+.admin-top-right-dropdown ul li.m-ver-dd-menu{display: none!important;}
 .admin-top-right ul li .admin-top-right-dropdown ul li:last-child { margin-bottom: 0px;}
 .admin-top-right ul li:hover .admin-top-right-dropdown { display: block;}
 .inner-myclient {width: 100%;}
@@ -2079,6 +2080,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 		img.cart-img{vertical-align: middle; width:25px;}
 		.card-menu{line-height: normal; position: absolute; top: 5px; right: 5px; z-index: 9999;}
 		span.call-us-at, span.welcome-name{display:none;}
+        span.welcome-name { display: block; width: 100%; padding: 0px; text-align: center; top: 10px;}
 		.header-logo{float: none !important; text-align: center;}
 		.header .menu .submenu{margin: 2px 0 0 0; }
         /*.header .menu .submenu{display: block; position: relative; background-color: transparent; border: none;}
@@ -2352,7 +2354,11 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
     .frnd-refer-user.fb-refer span { top: 0; height: 21px; background-position: 0px -99px;}
     a.send-referral { width: 100%; margin-bottom: 20px;}
     
+    .two.columns.right.admin-top-right { padding-left: 0px!important; padding-right: 0px!important;}
+    
     .stylistbion-arrow img.back-for-mobile { display: block; position: relative;}
+    .admin-top-right-dropdown ul li.m-ver-dd-menu {display: block!important;}
+    .admin-nav{display: none;}
     .stylistbion-arrow img { display: none;}
     
 	.only-mob{display: /*block*/none;}

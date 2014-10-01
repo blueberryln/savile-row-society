@@ -128,8 +128,9 @@
         <!--Log In Menu Ends-->
 
        
-        
-        <span id="menu-switcher"><!-- &#8801; --><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span>
+        <?php if(is_logged): ?>
+        <span id="menu-switcher"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span>
+        <?php endif; ?>
         <!--Menu Section-->
         <div class="menu right">            
             <ul> <?php if(!$user) : ?>
@@ -179,7 +180,7 @@
     <div class="twelve columns black">
         <div class="eleven columns container">
            
-            <div class="twelve columns container left ">
+            <div class="twelve columns container left pad-none">
                 <div class="ten columns left admin-nav">
                     <ul>
                     <?php if ($is_stylist || $is_admin ) : ?>
@@ -198,6 +199,12 @@
                             <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                             <div class="admin-top-right-dropdown">
                                 <ul>
+                                    <?php if ($is_stylist || $is_admin ) : ?>
+                                        <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
+                                        <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
+                                        <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
+                                        <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/closet">The CLoset</a></li>
+                                    <?php endif; ?>
                                     <?php if ($is_admin) : ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                                     <?php endif; ?>

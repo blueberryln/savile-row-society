@@ -256,27 +256,9 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 <!--        <script src="<?php echo $this->request->webroot; ?>js/jquery.cluetip.js" type="text/javascript"></script>-->
         
         <script type="text/javascript">
-//            $(window).load(function() {
-//              $('.slider1').flexslider({
-//                animation: "slide",
-//                animationLoop: false,
-//                itemWidth: 220,
-//                itemMargin: 10,
-//                minItems: 2,
-//                maxItems: 10
-//              });
-//            });
+
             $(document).ready(function(){
-//                $('.slider1').flexslider({
-//                animation: "slide",
-//                animationLoop: false,
-//                itemWidth: 220,
-//                itemMargin: 20,
-//                minItems: 2,
-//                maxItems: 10,
-//                move: 1,
-//              });
-                
+
                 $("#chkall").click(function(){
                 if($(this).is(':checked')){
                     $('.profile-stp2').find('select').val("I don’t know");
@@ -292,16 +274,13 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     directionNav: true
                 });
                 
-              
-              
-//                
                 $('.slider2').bxSlider({
                 slideWidth: 495,
                 minSlides: 1,
                 maxSlides: 2,
                 moveSlides: 1,
                 slideMargin: 20
-              });
+                });
                 
                   $('.slider1').bxSlider({
                 slideWidth: 220,
@@ -309,7 +288,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 maxSlides: 10,
                 moveSlides: 1,
                 slideMargin: 20
-              });
+                  });
                 
                 $('.slider3').bxSlider({
                 slideWidth: 202,
@@ -317,7 +296,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 maxSlides: 3,
                 moveSlides: 1,
                 slideMargin: 40
-              });
+                });
                 
                  $('.slider4').bxSlider({
                 slideWidth: 202,
@@ -326,9 +305,17 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 maxSlides: 3,
                 moveSlides: 1,
                 slideMargin: 1
-              });
+                });
                 
             $('table.highchart').highchartTable();
+            
+                if('.welcome-name') {
+                    $('#menu-switcher').hide();
+                }
+                else {
+                   $('#menu-switcher').show()
+                }
+                
                 
             $('#horizontalTab').responsiveTabs({
                 rotate: false,
