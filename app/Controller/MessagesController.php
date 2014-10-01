@@ -131,16 +131,16 @@ class MessagesController extends AppController {
                 $this->set(compact('new_clients'));
             } 
 
-
-            if($messages_for_user_id && $messages_for_user_id > 0){
-                $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'is_admin'));
-                $this->render("stylist");
-            }
-            else if($is_stylist){
-                $notification_data = $User->getStylistUserNotification($user_id);
-                $this->set(compact('clients', 'notification_data', 'is_admin'));
-                $this->render("clients");    
-            }
+            $this->redirect('/messages/feed');
+            // if($messages_for_user_id && $messages_for_user_id > 0){
+            //     $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'is_admin'));
+            //     $this->render("stylist");
+            // }
+            // else if($is_stylist){
+            //     $notification_data = $User->getStylistUserNotification($user_id);
+            //     $this->set(compact('clients', 'notification_data', 'is_admin'));
+            //     $this->render("clients");    
+            // }
         } 
         //User viewVars
         else {
@@ -2468,29 +2468,28 @@ If interested, I would also be happy to meet with you in our New York City based
 
 
     public function userPurchases($user_id = null){
-            $this->isLogged();
-            $User= ClassRegistry::init('User');
-            $user = $User->getById($user_id);
-            $current_user = $this->getLoggedUser();
+        $this->isLogged();
+        $User= ClassRegistry::init('User');
+        $user = $User->getById($user_id);
+        $current_user = $this->getLoggedUser();
 
-            if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
-                $this->redirect('/');
-                exit;
+        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
+        $OrderItem = ClassRegistry::init('OrderItem');
+        $Entity = ClassRegistry::init('Entity'); 
+        $total_purchases = $OrderItem->getTotalUserPurchaseCount($user_id);
+        
+        if($total_purchases > 0){
+            $order_item_list = $OrderItem->getUniqueUserItemPurchase($user_id);
+            $entity_list = array();
+            foreach($order_item_list as $value){
+                $entity_list[] = $value['Orders']['product_entity_id'];
+                $last_item_id = $value['Orders']['order_id'];
             }
-            $OrderItem = ClassRegistry::init('OrderItem');
-            $Entity = ClassRegistry::init('Entity'); 
-            $total_purchases = $OrderItem->getTotalUserPurchaseCount($user_id);
-            
-            if($total_purchases > 0){
-                $order_item_list = $OrderItem->getUniqueUserItemPurchase($user_id);
-                $entity_list = array();
-                foreach($order_item_list as $value){
-                    $entity_list[] = $value['Orders']['product_entity_id'];
-                    $last_item_id = $value['Orders']['order_id'];
-                }
 
             $purchases = $Entity->getEntitiesByIdPurchaseDes($entity_list);
-            
         }
         $find_array = array(
                 'fields' => array('User.*,User1.*'),

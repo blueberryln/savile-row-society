@@ -83,8 +83,10 @@ $(document).ready(function(){
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
-$meta_description = 'Savile Row Society partners with brands that have a strong foundation built with passion and have the integrity to produce quality products that our members can feel good about supporting and sporting.';
+$meta_description = 'Savile Row Society is a men’s personal shopping platform offers some of the hottest brands in menswear and fashion.';
+$meta_keywords = 'Savile Row Society, menswear, men’s fashion';
 $this->Html->meta('description', $meta_description, array('inline' => false));
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 ?>
 
 <div class="content-container">

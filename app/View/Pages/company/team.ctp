@@ -1,5 +1,6 @@
 <?php
-$meta_description = "As finance, technology, and marketing professionals, we know that it's possible for men to raise their standing—due in part to the way in which they style themselves.";
+$meta_description = "Meet the team at Savile Row Society";
+$meta_keywords = "Savile Row Society, management";
 $script='
     jQuery(function(){
         jQuery("div.team-member").on("click", function(){
@@ -22,6 +23,7 @@ $script='
 ';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 ?>
 <div class="content-container">
     <div class="eleven columns container content inner">

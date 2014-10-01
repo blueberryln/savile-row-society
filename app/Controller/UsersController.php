@@ -151,7 +151,7 @@ class UsersController extends AppController {
                         $this->redirect($retrun_url);
                         exit();
                     }
-                    $this->redirect($this->referer());
+                    $this->redirect('messages/index');
                     exit();
                 } else {
                     // login data is wrong, redirect to login page
@@ -411,7 +411,7 @@ class UsersController extends AppController {
 
     {
         
-        if($this->getLoggedUserID() || !$this->Session->check('referer')){
+        if($this->getLoggedUserID()){
             $this->redirect('/');
             exit();   
         }
@@ -498,7 +498,7 @@ class UsersController extends AppController {
                             $this->assignVipDiscount($results['User']['referred_by']);
                         }
 
-                        $this->redirect('/messages/index/');
+                        $this->redirect(array('controller' => 'messages'));
                     } else {
                         // redirect to home
                         $this->redirect($this->referer());
@@ -794,8 +794,8 @@ class UsersController extends AppController {
             ));
             
             
-        
-        $this->set(compact('find_array','my_outfit','stylistlist','stylistphoto','user_profile_photo','user_first_name','user_last_name'));
+        $title_for_layout = 'Meet The Savile Row Society Stylists'; 
+        $this->set(compact('find_array','my_outfit','stylistlist','stylistphoto','user_profile_photo','user_first_name','user_last_name', 'title_for_layout'));
     }
 
     

@@ -23,14 +23,23 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 <!--new design and code start here-->
 
 <div class="content-container">
-    <div class="twelve columns black">&nbsp;</div>
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
                 <div class="eleven columns container pad-none">
                     <div class="twelve columns message-box-heading pad-none">
                         <h1><?php echo $user['User']['first_name'].'&nbsp;'.$user['User']['last_name']; ?> | <span>Messages</span></h1>
-                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url'] ?>" alt="" data-name="Haspel" /></div>
+                        <div class="client-img-small">
+                            <?php
+                            if($user['User']['profile_photo_url']){
+                                echo '<img src="' . $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] . '" alt="" data-name="Haspel" />';
+                            }
+                            else{
+                                echo '<img src="' . $this->webroot . 'images/default-user.jpg" alt="" data-name="Haspel" />';    
+                            }
+                            ?>
+                            
+                        </div>
                     </div>
                     <div class="my-profile-img m-ver">
                         <h2><?php echo $client_user['User']['first_name'].'&nbsp;'.$client_user['User']['last_name']; ?>.<span>My Stylist</span></h2>

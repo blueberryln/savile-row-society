@@ -81,7 +81,6 @@ function dragAndDropOutfit(){
                             var allprice = $(this).data("price");
                             var sum = parseInt(allprice);
                             overall+= sum;
-                            alert(overall);
                         });
                         
                         //$("#total").text(overall);
@@ -95,12 +94,9 @@ function dragAndDropOutfit(){
                             var allprice1 = $(this).closest("li").data("price");
                             var sum1 = parseInt(allprice1);
                             var ter = $("#total").text();
-                            alert(ter);
-                            alert(sum1);
-                           var minusall = ter - sum1;
-                           alert(minusall);
+                            var minusall = ter - sum1;
                       
-                $("#total").html(minusall);
+                            $("#total").html(minusall);
                 });
                 $("#total").text(minusall);
                 

@@ -209,13 +209,13 @@
                                     <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
                                     <?php endif; ?>
                                     <?php if ($is_stylist) : ?>
-                                    <li><a href="<?php echo $this->request->webroot; ?>cart" title="">view my cart/checkout</a></li>
                                     <li><a href="<?php echo $this->request->webroot; ?>stylists/biography/<?php echo $user['User']['id']; ?>" title="">Stylist Biography</a></li>
                                     <li><a href="#" title="">refer a friend</a></li>
                                     <?php endif; ?>
                                      <?php if(!$is_stylist) : ?>
+                                    <li><a href="<?php echo $this->request->webroot; ?>cart" title="">view my cart/checkout</a></li>
                                     <li><a href="#" title="">refer a friend</a></li>
-                                    <li><a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Stylist Profile</a></li>
+                                    <li><a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Style Profile</a></li>
                                     <li><a href="<?php echo $this->request->webroot; ?>messages/profiles/<?php echo $user['User']['id']; ?>">Profile</a></li>
                                     <?php endif; ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>signout" title="">sign out</a></li>

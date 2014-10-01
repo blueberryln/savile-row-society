@@ -35,7 +35,10 @@ $(document).ready(function(){
 
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
-$meta_description = 'Contact us and we can help with any and all fashion obligations. Have a last minute invite to a gala and the suit you had laid out is not ready from the dry cleaners?';
+$meta_description = 'Contact us via email, give us a call or visit us in our showroom';
+$meta_keywords = 'Savile Row Society, showroom';
+
+$this->Html->meta("keywords", $meta_keywords, array("inline" => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="content-container">

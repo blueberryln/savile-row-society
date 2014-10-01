@@ -1,5 +1,7 @@
 <?php
-$meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. <br/> We\'ll perfect your image from head to toe.';
+$meta_description = 'Meet the premier personal stylists at Savile Row Society who will transform your wardrobe';
+$meta_keywords = 'Savile Row Society, Personal stylist, personal shopping';
+$this->Html->meta("keywords", $meta_keywords, array("inline" => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div class="content-container">
@@ -23,7 +25,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <ul>
                         <?php foreach ($stylistlist as  $stylist): ?>
                             <li><a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $stylist['User']['id']; ?>">
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
+                                <div class="left stylistbio-list-img">
+                                    <?php
+                                    if($stylist['User']['profile_photo_url']){
+                                        echo "<img src='" . $this->webroot . "files/users/" . $stylist['User']['profile_photo_url'] . "' alt='' />";
+                                    }
+                                    else{
+                                        echo "<img src='" . $this->webroot . "images/default-user.jpg' alt='' />";
+                                    }
+                                    ?>
+                                </div>
                                 <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
                             </li>
                             <?php endforeach; ?>
@@ -41,7 +52,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class="eleven columns container">
                     <div class="twelve columns">
                         <div class="stylistbio-profile left text-center">
-                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $user_profile_photo; ?>" alt="" /></div>
+                            <div class="profile-img">
+                                <?php
+                                if($user_profile_photo){
+                                    echo "<img src='" . $this->webroot . "files/users/" . $user_profile_photo ."' alt='' />";
+                                }
+                                else{
+                                    echo "<img src='" . $this->webroot . "images/default-user.jpg' alt='' />";
+                                }
+                                ?>
+                            </div>
                             <div class=" twelve columns social-networks">
                                 <ul>
                                 <?php  $social = json_decode(isset($find_array[0]['Stylistbio']['stylist_social_link']),true); 
@@ -69,9 +89,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
-                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio'])!='') {  echo $find_array[0]['Stylistbio']['hometown']; }else{} ?></span></div>
-                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio'])!='') {  echo $find_array[0]['Stylistbio']['funfect']; }else{} ?></span></div>
-                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio'])!='') {  echo $find_array[0]['Stylistbio']['fashiontip']; }else{} ?></span></div>
+                                    <div class="home-town"><span class="style-upper">Hometown:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio']['hometown'])!='') {  echo $find_array[0]['Stylistbio']['hometown']; }else{} ?></span></div>
+                                    <div class="fun-fact"><span class="style-upper">Fun Fact:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio']['funfect'])!='') {  echo $find_array[0]['Stylistbio']['funfect']; }else{} ?></span></div>
+                                    <div class="fashion-tips"><span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic"><?php if(isset($find_array[0]['Stylistbio']['fashiontip'])!='') {  echo $find_array[0]['Stylistbio']['fashiontip']; }else{} ?></span></div>
                                 </div>
                                 <div class="twelve columns left user-photostream">
                                     <h1 class="stylistbio-heading photostream"><?php echo $user_first_name; ?>’s Photostream</h1>
@@ -79,8 +99,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <ul id="itemContainer">
                                             <?php  foreach ($stylistphoto as $stylistphoto): ?>
                                             <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $stylistphoto['Stylistphotostream']['caption']; ?>">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" alt="" />
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $stylistphoto['Stylistphotostream']['caption']; ?>">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $stylistphoto['Stylistphotostream']['image']; ?>" alt="" />
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>
