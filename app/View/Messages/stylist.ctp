@@ -148,12 +148,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" /></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuseractivityfeed/<?php echo $client_id; ?>">Activity Feed</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/userfeed/<?php echo $client_id; ?>">Activity Feed</a></li>
                                         <li class="active"><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $client_id; ?>">Messages</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuseroutfits/<?php echo $client_id; ?>">Outfits</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistuserpurchase/<?php echo $client_id; ?>">Purchases/Likes</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/stylistusernotes/<?php echo $client_id; ?>">Notes &amp; Gallery</a></li>
-                                        <li><a href="javascript:;">Measurements</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/outfits/<?php echo $client_id; ?>">Outfits</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $client_id; ?>">Purchases/Likes</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/notes/<?php echo $client_id; ?>">Notes &amp; Gallery</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/measurements/<?php echo $client_id; ?>">Measurements</a></li>
                                     </ul>
                                 </div>
                             </div>

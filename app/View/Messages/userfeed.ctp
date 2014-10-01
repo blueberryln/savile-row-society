@@ -1,5 +1,4 @@
-<?php
-
+ <?php
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <script type="text/javascript">
@@ -36,8 +35,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }); 
         });
 });
-</script> 
-<div class="content-container">
+</script>    
+
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
@@ -73,11 +72,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                             <li>
                                                 <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
                                                     <div class="myclient-img">
-                                                        <?php if($searchuserclient['User']['profile_photo_url']): ?>
-                                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
-                                                        <?php else: ?>
-                                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
-                                                        <?php endif; ?>
+                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
                                                     </div>
                                                     <div class="myclient-dtl">
                                                         <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
@@ -99,11 +94,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                             <li>
                                                 <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
                                                     <div class="myclient-img">
-                                                        <?php if($searchuserclient['User']['profile_photo_url']): ?>
-                                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
-                                                        <?php else: ?>
-                                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
-                                                        <?php endif; ?>
+                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
                                                     </div>
                                                     <div class="myclient-dtl">
                                                         <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
@@ -115,51 +106,64 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
                                         </ul>
                                     </div>
+                                
+                        <!-- <div class="myclient-list">
+                            <ul id="searchuserlist">
+                            <?php  foreach($userlists as $searchuserclient): ?>
+                                <li>
+                                <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
+                                <div class="myclient-img">
+                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                </div>
+                                <div class="myclient-dtl">
+                                <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
+                                <span class="myclient-status">last active at <?php echo date ('d F Y',$searchuserclient['User']['updated']); ?></span>
+                                </div>
+                                </a>
+                                </li>
+                            <?php endforeach; ?>
+                            </ul>
+                        </div> -->
                     </div>
                 </div>
                 
                 
-                <div class="mydesbrd-right right">
-                    <div class="twelve columns left inner-content mydesbrd-inner pad-none">
-                         
+                <div class="myclient-right right">
+                    <div class="twelve columns left inner-content pad-none">
+                         <div class="twelve columns myclient-heading pad-none">
+                            <h1><?php echo ucWords($client_user['User']['full_name']); ?> | <span>Messages</span></h1>
+                            <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" /></div>
+                        </div>
                         <div class="inner-left inner-myclient left">
-                            <div class="left-pannel right">
-                                <div class="twelve columns left mydesbrd-right-area">
-                                    <div class="twelve columns left mydesbrd-acc">
-                                        <div class="mydesbrd-heading">Account Analytics</div>
-                                        <div class="mydesbrd-acc-content">
-                                            <p><span>Clients:</span> <?php if($usercount): echo $usercount; else:  echo "No"; endif; ?> clients</p>
-                                            <p><span>Month to Date Sales:</span> $1000</p>
-                                            <p><span>Average Monthly Sales:</span> $1500</p>
-                                            <a href="<?php echo $this->request->webroot; ?>messages/feed" title="">See More Details</a>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="twelve columns left mydesbrd-items">
-                                        <div class="mydesbrd-heading">New Items</div>
-                                        <div class="mydesbrd-items-content">
-                                            <ul class="slider4">
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                            </ul>
-                                        </div>
-                                    </div> -->
+<!--                            <div class="dashboard-pannel left">&nbsp;</div>-->
+                            <div class="left-pannel left">
+                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" /></div>
+                                <div class=" twelve columns left left-nav">
+                                    <ul>
+                                       <li><a href="<?php echo $this->webroot; ?>messages/userfeed/<?php echo $client_user['User']['id']; ?>">Activity Feed</a></li>
+                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $client_user['User']['id']; ?>">Messages</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/outfits/<?php echo $client_user['User']['id']; ?>">Outfits</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $client_user['User']['id']; ?>">Purchases/Likes</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/notes/<?php echo $client_user['User']['id']; ?>">Notes &amp; Gallery</a></li>
+                                        <li><a href="<?php echo $this->webroot; ?>messages/measurements/<?php echo $client_user['User']['id']; ?>">Measurements</a></li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="right-pannel left">
-                                <div class="twelve columns message-area mydesbrd-msgara left pad-none">
-                                    
+                            <div class="right-pannel right">
+                                <div class="twelve columns message-area left pad-none">
+                                    <div class="eleven columns container pad-none">
                                         <div class="twelve columns left activity-feed-section">
                                             <ul>
+                                               
+                                                
+                                                
                                             </ul>
                                             <p class="pagination loadOldFeed">
                                                 <span class="hide"><img src="/img/ajax-loader.gif" width="20"></span>
                                                 <a href="#">Load More Products</a>
                                             </p>
                                         </div>
-                                    
+                                    </div>
                                 </div>
                             </div>
                         
@@ -169,7 +173,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 </div>
                 
                 
-                <!-- <div class="eleven columns container pad-none">
+                <div class="eleven columns container pad-none">
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
@@ -185,11 +189,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <li><a href="javascript:;">Profile</a></li>
                         </ul>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
 
@@ -199,7 +204,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             callInAction = false,
             reqNewMsgDelay=6000,
             lastPostId = 0,
-            firstPostId = 0;
+            firstPostId = 0,
+            user_id = <?php echo $client_user['User']['id']; ?>;
         
         loadFeed();
 
@@ -208,12 +214,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             loadOldFeed();
 
         });
+
         function loadFeed(userId) {
             if(!userId){
                 userId = "";
             }
             $.ajax({
-                url: "<?php echo $this->webroot; ?>feed/loadFeed/",
+                url: "<?php echo $this->webroot; ?>feed/loadFeed/" + user_id,
                 cache: false,
                 type: 'POST',
                 success: function(res) {
@@ -228,13 +235,14 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 var html = showFeed(arrPost[i]);
                                 feedContainer.append(html);
                                 lastPostId = arrPost[i]['Post']['id'];
+                                
                             }
                         }
                         else{  
                             
                         } 
-                        setInterval(loadNewFeed, reqNewMsgDelay);
                     }
+                    setInterval(loadNewFeed, reqNewMsgDelay);
                 },
                 error: function(res) {
                     
@@ -242,12 +250,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             });
         }
 
+
         function loadNewFeed(userId) {
             if(!userId){
                 userId = "";
             }
             $.ajax({
-                url: "<?php echo $this->webroot; ?>feed/loadNewFeed/",
+                url: "<?php echo $this->webroot; ?>feed/loadNewFeed/" + user_id,
                 data: {'first_post_id': firstPostId},
                 cache: false,
                 type: 'POST',
@@ -277,7 +286,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             }
 
             $.ajax({
-                url: "<?php echo $this->webroot; ?>feed/loadOldFeed/",
+                url: "<?php echo $this->webroot; ?>feed/loadOldFeed/" + user_id,
                 data: {'last_post_id': lastPostId},
                 cache: false,
                 type: 'POST',
@@ -310,6 +319,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 var prodcut_url = '';
                 html =  '<li class="activity-wishlist" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
+                                '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> liked an item,</div>' + 
@@ -334,6 +344,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
                 html = '<li class="activity-notification" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
+                                '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> requested an outfit.</div>' + 
@@ -353,8 +364,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             }     
             else if(feed['Post']['is_message'] == 1){
                 var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
-                html = '<li class="activity-notification" data-post_id="' + feed['Post']['id'] + '">' + 
+                html = '<li class="activity-msg" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
+                                '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> sent you a message.</div>' + 
@@ -383,10 +395,10 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     }
                 }
 
-                console.log(outfit_list);
 
-                html = '<li class="activity-notification" data-post_id="' + feed['Post']['id'] + '">' + 
+                html = '<li class="activity-outfit" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' +  
+                                '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name"><strong>You created ' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + ' an outfit,</strong> “Beach Day”</div>' + 
@@ -412,6 +424,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             else if(feed['Post']['is_order']){
                 html = '<li class="activity-purchase" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
+                                '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name"><strong>Kyle Harper</strong> purchased an item.</div>' + 

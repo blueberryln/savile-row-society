@@ -70,8 +70,9 @@ productBlock.find("span.err-size-message").fadeOut(300);
 var id = $(this).data("product_id");
 var quantity = parseInt(productQuantity) + 1;
 var size = productSize;
+var outfitId = $("#outfit_id").val();
 
-$.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: quantity, product_size: size },
+$.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: quantity, product_size: size, outfit_id: outfitId },
 function(data) {
 var ret = $.parseJSON(data);
 if(ret["status"] == "ok"){
@@ -245,6 +246,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
 <div class="eleven columns container pad-none">
 <div class="twelve columns outfit-dtls left">
 <h1><?php echo $outfitname['Outfit']['outfit_name']; ?></h1>
+<input id="outfit_id" value="<?php echo $outfitname['Outfit']['id']; ?>" type="hidden">
 <div class="eleven columns container outfits-dtls-area pad-none">
 <div class="twelve columns left outfit-desc">
 <div class="outfit-dtls-date"><span>Date Created:</span> <?php echo $outfitname['Outfit']['created']; ?></div>

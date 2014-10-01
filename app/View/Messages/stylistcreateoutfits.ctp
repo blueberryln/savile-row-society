@@ -60,6 +60,7 @@ function dragAndDropOutfit(){
                 
                 // This function runs onc ean item is added to the basket
                 //var countli = 0;
+                var overall = 0;
                 function addBasket(basket, move) {
                     
                     var src =move.find("img").attr('src');
@@ -75,21 +76,36 @@ function dragAndDropOutfit(){
                             + '<button class="delete">&#10005;</button>');
                     
                         // count total price
-                        var overall = 0;
+                        
                         $("ul#dataid li").each(function(){
                             var allprice = $(this).data("price");
                             var sum = parseInt(allprice);
                             overall+= sum;
+                            alert(overall);
                         });
-                        $("#total").html('Total Outfit Price ' + overall);
+                        
+                        //$("#total").text(overall);
+                        $("#total").html('Total Amount is $' +overall);
                 }
                 
-               
+                 var minusall = 0;
                  // The function that is triggered once delete button is pressed
                 $(".basket ul li button.delete").live("click", function () {
                     $(this).closest("li").remove();
+                            var allprice1 = $(this).closest("li").data("price");
+                            var sum1 = parseInt(allprice1);
+                            var ter = $("#total").text();
+                            alert(ter);
+                            alert(sum1);
+                           var minusall = ter - sum1;
+                           alert(minusall);
+                      
+                $("#total").html(minusall);
                 });
-
+                $("#total").text(minusall);
+                
+                    
+                
 }
 
             $(function () {

@@ -132,12 +132,13 @@
         <span id="menu-switcher"><!-- &#8801; --><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span>
         <!--Menu Section-->
         <div class="menu right">            
-            <ul> 
-                <!-- <li><a href="<?php echo $this->webroot; ?>#two" title="">About</a></li>
+            <ul> <?php if(!$user) : ?>
+                <li><a href="<?php echo $this->webroot; ?>#two" title="">About</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#three" title="">Stylists</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#four" title="">Outfits</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#five" title="">Style on your time</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#six" title="">Brands</a></li> -->
+                <li><a href="<?php echo $this->webroot; ?>#six" title="">Brands</a></li>
+                <?php endif;  ?>
                 <!--<li><a  href="<?php echo $this->request->webroot; ?>closet" data-ref="closet"><span class="underline1">The Closet</span></a></li>
 
                 <?php if($is_logged && $has_stylist && !$is_stylist) : ?>
@@ -174,19 +175,22 @@
 
 <?php //if($is_stylist): ?>
 <div class="content-container">
+     <?php if($user) : ?>
     <div class="twelve columns black">
         <div class="eleven columns container">
+           
             <div class="twelve columns container left ">
                 <div class="ten columns left admin-nav">
                     <ul>
                     <?php if ($is_stylist || $is_admin ) : ?>
-                        <li class="active"><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/closet">The CLoset</a></li>
                     <?php endif; ?>
                     </ul>
                 </div>
+                
                 <div class="two columns right admin-top-right">
                     <ul>
                        <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
@@ -214,8 +218,9 @@
 
                     </ul>    
                 </div>
+           
             </div>
-        </div>
-        
+    </div>
+      <?php endif;?>   
     </div>
 <?php //endif; ?>

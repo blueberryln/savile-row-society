@@ -116,7 +116,7 @@ $(document).ready(function(){
                                                        </li>
                                                    
                                                        <?php 
-                                                       if($purchases):
+                                                       if(!empty($purchases)):
                                                        foreach ($purchases as $purchase):?>
                                                        <li>
                                                             <div class="purchase-dtls-date left"><?php echo $purchase['purchase_data']['created']; ?></div>
