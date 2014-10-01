@@ -309,10 +309,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 
             $('table.highchart').highchartTable();
             
-                if (!isLoggedIn()) {
-                    $('#menu-switcher').show();
-                }
-                else {
+                if (isLoggedIn()) {
                    $('#menu-switcher').hide()
                 }
                 
