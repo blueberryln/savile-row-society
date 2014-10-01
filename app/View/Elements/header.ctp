@@ -128,7 +128,7 @@
         <!--Log In Menu Ends-->
 
        
-        <?php if(is_logged): ?>
+        <?php if($is_logged): ?>
         <span id="menu-switcher"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span>
         <?php endif; ?>
         <!--Menu Section-->

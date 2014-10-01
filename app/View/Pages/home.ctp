@@ -51,7 +51,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <span class="small-size">Online &amp; In-person</span>
             <div class="overlay-bnts left">
                 <a class="tell-more gray-btns" href="#" title="">Tell Me More</a>
-                <a class="overlay-started brown-btns" href="#" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
+                <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
             </div>
         </div>
         
