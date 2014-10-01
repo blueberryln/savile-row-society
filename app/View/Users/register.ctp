@@ -228,6 +228,10 @@ color:#396; !important
                     </div>
                </div>
                <div class="three columns center-block profile-stp2"> 
+                    <div class="defalut-check">
+                   <input id="chkall" type="checkbox" name="">
+                    <label>I don't Know</label>
+                   </div>
                 <div class="input text required styled-select">
 <!--                    <label for="neckSize" class="text-center">NECK SIZE:</label>                            -->
                     <span class="arrow-icon">&nbsp;</span>

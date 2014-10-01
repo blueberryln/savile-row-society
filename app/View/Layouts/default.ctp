@@ -309,11 +309,11 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 
             $('table.highchart').highchartTable();
             
-                if('.welcome-name') {
-                    $('#menu-switcher').hide();
+                if (!isLoggedIn()) {
+                    $('#menu-switcher').show();
                 }
                 else {
-                   $('#menu-switcher').show()
+                   $('#menu-switcher').hide()
                 }
                 
                 

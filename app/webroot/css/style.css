@@ -1693,7 +1693,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .defalut-check { width: 50%; padding-bottom: 15px; margin: 0 auto;}
 .defalut-check label {font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #444;}
 .defalut-check input[type="checkbox"] { visibility: visible;}
-#chkall { width: 20px; float: left; height: 20px;border:none; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #c7c7c7 0px 1px 1px; -moz-box-shadow: #c7c7c7 0px 1px 1px; box-shadow: #c7c7c7 0px 1px 1px; outline:none; display: inline-block; -webkit-appearance:none; -moz-appearance:none; appearance:none; padding: 15px 10px 9px; cursor:pointer;
+#chkall { visibility: visible; width: 20px; float: left; height: 20px;border:none; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #c7c7c7 0px 1px 1px; -moz-box-shadow: #c7c7c7 0px 1px 1px; box-shadow: #c7c7c7 0px 1px 1px; outline:none; display: inline-block;  -moz-appearance:none; appearance:none; padding: 15px 10px 9px; cursor:pointer;
     background: #fefefe;
     background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fefefe), to(#f4f4f4));
     background: -webkit-linear-gradient(#fefefe, #f4f4f4);
@@ -2143,8 +2143,8 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
     .outfit-boxes, .stylist-boxes { padding-bottom: 35px!important;}
     .bx-wrapper .bx-pager { padding-top: 20px;}
      .outfit-stylist ul li { margin-bottom: 20px;}
-    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { max-width: 100%; display: block; float: none!important;}
-    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { float: none!important; width: auto; font-size: 20px; padding: 15px 0 0 20px;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { max-width: 100%; display: block; float: left;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { padding: 15px 0 0 20px;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-month { padding-bottom: 6px;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 18px; padding-bottom: 10px;}
     .outfit-stylist li .shop-outfit .shop-outfit-bottom.float { float: none !important;}
@@ -2353,6 +2353,13 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
     .frnd-refer-user.email-refer span { background-position: 0px -52px;}
     .frnd-refer-user.fb-refer span { top: 0; height: 21px; background-position: 0px -99px;}
     a.send-referral { width: 100%; margin-bottom: 20px;}
+    
+    .outfit-stylist li .shop-outfit .shop-outfit-top {height: 75px; float: left;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img {line-height: 75px;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 95px; float: left;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 16px;}
+    .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next { top: 45px;}
+    
     
     .two.columns.right.admin-top-right { padding-left: 0px!important; padding-right: 0px!important;}
     
