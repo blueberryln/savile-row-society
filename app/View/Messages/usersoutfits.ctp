@@ -284,7 +284,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         <div id="ascsort">
 
                                         <?php
-                                            if($my_outfits):
+                                            if(count($my_outfits)):
                                             foreach ($my_outfits as $my_outfit):
                                         ?>
                                             
@@ -339,7 +339,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                     <?php 
                                         endforeach;
                                         else :
-                                        echo "<h1>There Is no Outfits.</h1>";
+                                        echo "<h1>There are no outfits to display. Contact your stylist to get started..</h1>";
                                         endif;
                                     ?>
                                         

@@ -498,7 +498,7 @@ class UsersController extends AppController {
                             $this->assignVipDiscount($results['User']['referred_by']);
                         }
 
-                        $this->redirect('/messages/index/');
+                        $this->redirect(array('controller' => 'messages'));
                     } else {
                         // redirect to home
                         $this->redirect($this->referer());

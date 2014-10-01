@@ -131,16 +131,16 @@ class MessagesController extends AppController {
                 $this->set(compact('new_clients'));
             } 
 
-
-            if($messages_for_user_id && $messages_for_user_id > 0){
-                $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'is_admin'));
-                $this->render("stylist");
-            }
-            else if($is_stylist){
-                $notification_data = $User->getStylistUserNotification($user_id);
-                $this->set(compact('clients', 'notification_data', 'is_admin'));
-                $this->render("clients");    
-            }
+            $this->redirect('/messages/feed');
+            // if($messages_for_user_id && $messages_for_user_id > 0){
+            //     $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'is_admin'));
+            //     $this->render("stylist");
+            // }
+            // else if($is_stylist){
+            //     $notification_data = $User->getStylistUserNotification($user_id);
+            //     $this->set(compact('clients', 'notification_data', 'is_admin'));
+            //     $this->render("clients");    
+            // }
         } 
         //User viewVars
         else {
