@@ -50,7 +50,7 @@ $this->Html->script('cookie.js', array('inline' => false));
             <span class="large-size">shop with your personal stylist</span>
             <span class="small-size">Online &amp; In-person</span>
             <div class="overlay-bnts left">
-                <a class="tell-more gray-btns" href="#" title="">Tell Me More</a>
+                <a class="tell-more gray-btns" href="/#two" title="">Tell Me More</a>
                 <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
             </div>
         </div>
@@ -183,7 +183,8 @@ $this->Html->script('cookie.js', array('inline' => false));
                     <?php foreach($topStylists as $topstylist): ?>
                     <li>
                        <?php if($topstylist['User']['profile_photo_url']): ?>
-                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      <?php else: ?>
+                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
+                    <?php else: ?>
                         <img src="<?php echo $this->webroot; ?>images/default-user.jpg"  />                       
                         <?php endif; ?>
                         <a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">

@@ -191,7 +191,16 @@
                         <div class="inner-right right">
                             <div class="twelve columns text-center my-profile">
                                 <div class="my-profile-img">
-                                    <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User']['profile_photo_url']; ?>" alt="" height='132' width='151' /></a>
+                                    <a href="javascript:;" title="">
+                                        <?php
+                                            if($Userdata[0]['User']['profile_photo_url']){
+                                                echo '<img src="' . $this->webroot . 'files/users/' . $Userdata[0]['User']['profile_photo_url'] . '" alt="" height="132" width="151" />';        
+                                            }
+                                            else{
+                                                echo '<img src="' . $this->webroot . 'images/default-user.jpg" width="151">'; 
+                                            }
+                                        ?>
+                                    </a>
                                 </div>
                                 <div class="my-profile-detials">
                                     <?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?>

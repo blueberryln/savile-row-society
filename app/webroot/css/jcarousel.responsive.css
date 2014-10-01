@@ -39,9 +39,9 @@
 }
 
 .jcarousel img {
-    display: block;
     max-width: 100%;
     height: auto !important;
+    vertical-align: middle;
 }
 
 /** Carousel Controls **/
@@ -68,7 +68,8 @@
     box-shadow: 0 0 4px #F0EFE7;
     
     
-*/ position: absolute; top: 50px; background: url('../img/stylist_arrows.png') no-repeat; width: 33px; height: 106px; text-indent: -9999px; z-index: 50; outline:none;
+*/ position: absolute; top: 50%; background: url('../img/stylist_arrows.png') no-repeat; width: 33px; height: 106px; text-indent: -9999px; z-index: 50; outline:none;
+    margin-top: -53px;
 }
 
 .jcarousel-control-prev {

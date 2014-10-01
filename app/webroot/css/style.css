@@ -819,7 +819,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .featured-stylist ul, .outfit-stylist ul, .style-time ul, .brand-boxes ul { margin: 0; padding: 0; list-style: none;}
 .featured-stylist ul li, .outfit-stylist ul li, .style-time ul li, .brand-boxes ul li { display: inline-block; margin-bottom: 0px;}
 
-.featured-stylist ul li {position: relative; width:220px!important; height: 220px; overflow: hidden;margin: 0 8px;}
+.featured-stylist ul li {position: relative; overflow: hidden; padding: 0 8px; box-sizing: border-box; display: inline-block;}
 /*.featured-stylist .bx-wrapper { margin: 0 auto; overflow: hidden;}
 .featured-stylist ul li img { width: 96%; margin: 0px 10px; }
 */

@@ -151,7 +151,7 @@ class UsersController extends AppController {
                         $this->redirect($retrun_url);
                         exit();
                     }
-                    $this->redirect('messages/index');
+                    $this->redirect('/messages/index');
                     exit();
                 } else {
                     // login data is wrong, redirect to login page
@@ -645,12 +645,12 @@ class UsersController extends AppController {
             $this->request->data['UserPreference']['style_pref'] = implode(',', $this->request->data['UserPreference']['style_pref']);
             if($this->User->saveAll($this->request->data))
             {
-                $this->Session->setFlash("User Data Hasbeen Saved");
+                $this->Session->setFlash("User Data Hasbeen Saved", 'flash');
                 $this->redirect('/messages/profiles/'.$id);
             }
             else
             {
-                $this->Session->setFlash('The User could not be saved. Please, try again.');
+                $this->Session->setFlash('The User could not be saved. Please, try again.', 'flash');
             }
         }
         if (empty($this->request->data)) {
@@ -720,12 +720,12 @@ class UsersController extends AppController {
                 }
             if($this->Stylistbio->saveAll($this->request->data))
             {
-                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/stylistbio/'.$id);
             }
             else
             {
-                $this->Session->setFlash('The Stylistbio could not be saved. Please, try again.');
+                $this->Session->setFlash('The Stylistbio could not be saved. Please, try again.', 'flash');
             }
         }
     }
@@ -883,7 +883,7 @@ class UsersController extends AppController {
             $stylistbiographyid = $Stylistbio->findById($stylistbioid);
              $id = $stylistbiographyid['Stylistbio']['stylist_id'];
             if ($Stylistbio->save($this->request->data)) {
-                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$id);
             } else {
                 $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
@@ -904,7 +904,7 @@ class UsersController extends AppController {
             $stylistbiographyid = $Stylistbio->findById($stylistbioid);
             $id = $stylistbiographyid['Stylistbio']['stylist_id'];
             if ($Stylistbio->save($this->request->data)) {
-                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$id);
             } else {
                 $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
@@ -926,7 +926,7 @@ class UsersController extends AppController {
             $id = $stylistbiographyid['Stylistbio']['stylist_id'];
 
             if ($Stylistbio->save($this->request->data)) {
-                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$id);
             } else {
                 $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
@@ -948,7 +948,7 @@ class UsersController extends AppController {
             $id = $stylistbiographyid['Stylistbio']['stylist_id'];
 
             if ($Stylistbio->save($this->request->data)) {
-                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$id);
             } else {
                 $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
@@ -970,7 +970,7 @@ class UsersController extends AppController {
             $id = $stylistbiographyid['Stylistbio']['stylist_id'];
 
             if ($Stylistbio->save($this->request->data)) {
-                $this->Session->setFlash("Stylistbio Data Hasbeen Saved");
+                $this->Session->setFlash("Stylistbio Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$id);
             } else {
                 $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
@@ -1007,13 +1007,13 @@ class UsersController extends AppController {
                 //print_r($Stylistphotostream->save($this->request->data));
                 //exit;
                 
-                $this->Session->setFlash("Stylistphotostream Data Hasbeen Saved");
+                $this->Session->setFlash("Stylistphotostream Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$stylistid);
             } else {
                 $this->Session->setFlash(__('The Stylistphotostream could not be saved. Please, try again.'), 'flash');
             }
         }else{
-                $this->Session->setFlash('The Stylistphotostream could not be saved. Please, try again.');
+                $this->Session->setFlash('The Stylistphotostream could not be saved. Please, try again.', 'flash');
         }
     }
 
@@ -1053,7 +1053,7 @@ class UsersController extends AppController {
                     }
                     echo json_encode($my_outfit);
 
-                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved");
+                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$stylistid);
             } else {
                 $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
@@ -1101,7 +1101,7 @@ public function updateStylistBiographyoutfit2($stylistid = null){
                     }
                     echo json_encode($my_outfit);
 
-                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved");
+                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$stylistid);
             } else {
                 $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
@@ -1150,7 +1150,7 @@ public function updateStylistBiographyoutfit2($stylistid = null){
                     }
                     echo json_encode($my_outfit);
 
-                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved");
+                $this->Session->setFlash("StylistTopOutfit Data Hasbeen Saved", 'flash');
                 $this->redirect('/Auth/editbiography/'.$stylistid);
             } else {
                 $this->Session->setFlash(__('The Stylistbio could not be saved. Please, try again.'), 'flash');
@@ -1330,10 +1330,10 @@ public function updateStylistBiographyoutfit2($stylistid = null){
         }
         $this->request->onlyAllow('post', 'delete');
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('User deleted'));
+            $this->Session->setFlash(__('User deleted'), 'flash');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('User was not deleted'));
+        $this->Session->setFlash(__('User was not deleted'), 'flash');
         $this->redirect(array('action' => 'index'));
     }
 

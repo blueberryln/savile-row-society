@@ -70,7 +70,7 @@ window.registerProcess = true;
     $( "#tabs" ).tabs();
   });
   </script>
-<div class="content-container">
+<div>
     <div class="twelve columns container content inner register-about">	
         <div class="eight columns register-steps center-block">
            
@@ -244,6 +244,10 @@ color:#396; !important
                         </div>
                    </div>
                    <div class="three columns center-block profile-stp2"> 
+                        <div class="defalut-check">
+                            <input id="chkall" type="checkbox" name="">
+                            <label>I don't Know</label>
+                        </div>
                     <div class="input text required styled-select">
                         <span class="arrow-icon">&nbsp;</span>
 <!--                         <label for="neckSize" class="text-center">NECK SIZE:</label> -->

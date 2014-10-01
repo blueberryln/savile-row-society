@@ -1,16 +1,3 @@
-<?php
-// $script='
-//     jQuery(document).ready(function(){
-//         jQuery("#menu-switcher").on("click", function(){  
-//             jQuery(this).toggleClass("menu-anim");          
-//             var menu = jQuery(".header .menu");
-//             jQuery(menu).slideToggle();  
-//         });
-//     });
-// ';
-// $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
-?>
-
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery("#menu-switcher").on("click", function(){  
