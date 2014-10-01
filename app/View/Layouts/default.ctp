@@ -27,6 +27,7 @@
         echo $this->Html->css('jquery.fancybox');
         echo $this->Html->css('tinyscrollbar');
 //        echo $this->Html->css('jquery.cluetip');
+        echo $this->Html->css('jcarousel.responsive');
         echo $this->Html->css('style.css?v=1'); 
         echo $this->fetch('css');
        
@@ -42,6 +43,7 @@
         <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-114x114.png">
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+<!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-36935088-1']);
@@ -235,12 +237,17 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
+<!--        <script src="<?php echo $this->request->webroot; ?>js/jquery.bxsliderh.js" type="text/javascript"></script>-->
         <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/highcharts.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.highchartTable.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery-ui-1.9.0.custom.min.js" type="text/javascript"></script>
+        
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.jcarousel.min.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jcarousel.responsive.js" type="text/javascript"></script>
+        
         
         
        
@@ -286,18 +293,20 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 });
                 
               
-                $('.slider1').bxSlider({
-                slideWidth: 220,
-                minSlides: 1,
-                maxSlides: 10,
-                moveSlides: 1,
-                slideMargin: 20
-              });
+              
 //                
                 $('.slider2').bxSlider({
                 slideWidth: 495,
                 minSlides: 1,
                 maxSlides: 2,
+                moveSlides: 1,
+                slideMargin: 20
+              });
+                
+                  $('.slider1').bxSlider({
+                slideWidth: 220,
+                minSlides: 1,
+                maxSlides: 10,
                 moveSlides: 1,
                 slideMargin: 20
               });
@@ -440,7 +449,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     next: "Newer Photos",
                 });
 
-                $('.featured-stylist-hover').css('opacity', 0);  
+//                $('.featured-stylist-hover').css('opacity', 0);  
                 $('.featured-stylist ul li').hover(  
                    function(){  
                       $(this).find('.featured-stylist-hover').stop().fadeTo('slow', 1);  

@@ -87,13 +87,13 @@
 		onSliderResize: function() {}
 	}
 
-	$.fn.bxSlider = function(options){
+	$.fn.bxSliderh = function(options){
 
 		if(this.length == 0) return this;
 
 		// support mutltiple elements
 		if(this.length > 1){
-			this.each(function(){$(this).bxSlider(options)});
+			this.each(function(){$(this).bxSliderh(options)});
 			return this;
 		}
 
@@ -451,10 +451,9 @@
 			var pagerQty = 0;
 			// if moveSlides is specified by the user
 			if(slider.settings.moveSlides > 0){
-				if(slider.settings.infiniteLoop){
-                 //  alert(getMoveBy());
-                    pagerQty = Math.ceil(slider.children.length / getMoveBy());
-				}else{
+				//if(slider.settings.infiniteLoop){
+					//pagerQty = Math.ceil(slider.children.length / getMoveBy());
+				//}else{
 					// use a while loop to determine pages
 					var breakPoint = 0;
 					var counter = 0
@@ -464,7 +463,7 @@
 						breakPoint = counter + getNumberSlidesShowing();
 						counter += slider.settings.moveSlides <= getNumberSlidesShowing() ? slider.settings.moveSlides : getNumberSlidesShowing();
 					}
-				}
+				//}
 			// if moveSlides is 0 (auto) divide children length by sides showing, then round up
 			}else{
 				pagerQty = Math.ceil(slider.children.length / getNumberSlidesShowing());
@@ -593,7 +592,7 @@
             var linkContent = '';
 			var pagerQty = getPagerQty();
            // alert(pagerQty)
-            //var pagerQty = 3;
+            //var pagerQty = 6;
 			// loop through each pager item
 			for(var j=0; j < pagerQty; j++){
 

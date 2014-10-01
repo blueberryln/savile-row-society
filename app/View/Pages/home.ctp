@@ -1,3 +1,4 @@
+
 <?php
 
 if(isset($noindex)){
@@ -175,7 +176,9 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div>
         <div class="eleven columns container stylist-boxes">
             <div class="featured-stylist ten columns container">
-                <ul class="slider1">
+                <div class="jcarousel-wrapper">
+                    <div class="jcarousel">
+                <ul>
                     <?php foreach($topStylists as $topstylist): ?>
                     <li>
                        <?php if($topstylist['User']['profile_photo_url']): ?>
@@ -191,6 +194,12 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php endforeach; ?>
                     
                 </ul>
+                    </div>
+                    <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+                <p class="jcarousel-pagination"></p>
+                    </div>
             </div>
         </div>
     </div>
