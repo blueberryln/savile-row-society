@@ -347,7 +347,7 @@ $(document).ready(function(){
 $meta_description = 'As an SRS Man, great things are expected of you. But let us take care of the details. <br/> We\'ll perfect your image from head to toe.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-<div class="content-container">
+<div>
     <div class="eleven columns container content inner stylistbio">
         <div class="twelve columns container stylistbio-section left">
             <a class="open-left-pannel" href="#" title=""><img src="<?php echo $this->webroot; ?>images/arrow-next.png" alt="" /></a>
@@ -392,7 +392,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <div class="profile-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/profile-img.jpg" width='277' height='' alt="" /></div>
                             <div class=" twelve columns social-networks">
                                 <ul>
-                                <?php //$social = json_decode($find_array[0]['Stylistbio']['stylist_social_link'],true); ?>
+                                <?php //$social = json_decode($find_array[0]['StylistBio']['stylist_social_link'],true); ?>
                                     <li class="pintrest"><a href="<?php //echo $social['pinterest']; ?>" target="blank" title="">Printrest</a></li>
                                     <li class="twitter"><a href="<?php //echo $social['twiter']; ?>" target="blank" title="">Twitter</a></li>
                                     <li class="linkdin"><a href="<?php //echo $social['linkdin']; ?>" target="blank" title="">Linkdin</a></li>
@@ -405,7 +405,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <form class="stylistbio-heading-edit" method="post" name="edithometown">
                                             <label><?php echo $user['User']['first_name']; ?>’s Bio</label>
                                             <div class="edit-content">
-                                                <textarea name="data[Stylebio][stylist_bio]"  rows="10" cols="30"  id="StylebioStylistBio">
+                                                <textarea name="data[StyleBio][stylist_bio]"  rows="10" cols="30"  id="StylebioStylistBio">
                                                 <?php if($StylistBioData): 
                                                     echo $StylistBioData[0]['StylistBio']['stylist_bio'];
                                                     else:

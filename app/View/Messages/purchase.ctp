@@ -1,185 +1,36 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#sortdate").change(function(){
-        var valueSelected = this.value;
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $this->webroot; ?>messages/userPurchasesSorting/<?php echo $clientid; ?>",
-            data: {valueSelected:valueSelected},
-            cache: false,
-            success: function(result){
-                
-                data = $.parseJSON(result);
-                
-                html = '';
-                html = html + '<ul>';
-                html = html + '<li>';
-                html = html + '<div class="purchase-dtls-date heading left">Date</div>';
-                html = html + '<div class="purchase-dtls-items heading left">Item</div>';
-                html = html + '<div class="purchase-dtls-outfit heading left">Outfit</div>';
-                html = html + '<div class="purchase-dtls-price heading left">Price</div>';
-                html = html + '</li>';
-             $.each(data,  function (index){
-                html = html + '<li>';
-                html = html + '<div class="purchase-dtls-date left">'+ this.purchase_data_sort.created +'</div>';
-                html = html + '<div class="purchase-dtls-items left">';
-            html = html + '<div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.purchase_data_sort.imagename +'" alt=""/></div>';
-            html = html + '<div class="purchase-dtls-items-desc">'+ this.purchase_data_sort.name +'<span>'+ this.purchase_data_sort.brandname +'</span></div>';
-                html = html + '</div>';
-                html = html + '<div class="purchase-dtls-outfit left">'+ this.purchase_data_sort.outfitname +'</div>';
-                html = html + '<div class="purchase-dtls-price left">$'+ this.purchase_data_sort.price +'</div>';
-                html = html + '</li>'; 
-            });
-                html = html + '</ul>';
-            $("#sortbydate").html(html);
-            }
-        });
-
-    });
+        var sortOrder = $(this).val();
+        location = location.href.split('?')[0] + '?sort=' + sortOrder;
+   }); 
 
 });
 
 </script>
-<script type="text/javascript">
-    $(document).ready(function(){
-
-
-    $(".search-myclient").on('keydown',function(){
-         
-         //var r = $('input').focus();
-         var usersearch = $("#usersearch").val();
-         //alert(usersearch);
-          $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/stylistUserFilterList/<?php echo $clientid; ?>",
-                data:{usersearch:usersearch},
-                cache: false,
-                    success: function(result){
-                        data = $.parseJSON(result);
-
-            html = '';
-            html = html + '<ul>';
-            
-            $.each(data,  function (index){
-                html = html + '<li>';
-                html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
-                html = html + '<div class="myclient-img">';
-                html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
-                html = html + '</div>';
-                html = html + '<div class="myclient-dtl">';
-                html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
-                html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
-                html = html + '</div>';
-                html = html + '</a>';
-                html = html + '</li>';      
-                
-                });
-            html = html + '</ul>';
-                $("#searchuserlist").html(html);
-
-                    }
-
-             }); 
-
-
-    });
-});
-
-</script>
-<?php 
-
-    $img = "";
-        if(isset($client) && $client['User']['profile_photo_url'] && $client['User']['profile_photo_url'] != ""){
-            $img = $this->webroot . "files/users/" . $client['User']['profile_photo_url'];
-         }else{
-            $img = $this->webroot . "img/dummy_image.jpg";    
-        }
-?>
-
-
-        
     
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
                 
-                
-                <div class="myclient-left left">
-                    <div class="myclient-topsec"> 
-                        <div class="filter-myclient-area">
-                            <div class="filter-myclient">
-                                <span class="downarw"></span>
-                                <select onchange="location = this.options[this.selectedIndex].value;">
-                                    <option>Filter Clients</option>
-                                    <?php  foreach($userlists as $userlist ): ?>
-                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></option>
-                                     <?php endforeach; ?>
-                                    
-                                </select>
-                            </div>
-                        </div>
-                        <div class="search-myclient-area">
-                            <div class="search-myclient">
-                                <span class="srch"></span>
-                                 <input type="text" name="myclient-search" id="usersearch" />
-                            </div>
-                        </div>
-                        <div class="myclient-list">
-                            
-                            <ul id="searchuserlist">
-                                <?php  foreach($userlists as $userlist ): ?>
-                                <li <?php if($userlist['User']['id']==$clientid){ echo "class='active'"; } ?>>
-                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></span>
-                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$userlist['User']['updated']); ?></span>
-                                        </div>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
+                <?php echo $this->element('clientAside/userFilterBar'); ?>
                 
                 <div class="myclient-right right">
                     <div class="twelve columns left inner-content pad-none">
-                         <div class="twelve columns myclient-heading pad-none">
-                            <h1><?php echo $client['User']['first_name'].'&nbsp;'.$client['User']['last_name']; ?> | <span>Purchase Items</span></h1>
-                            <div class="client-img-small"><img src="<?php echo $img; ?>" alt="" /></div>
-                        </div>
-                        <div class="inner-left inner-myclient left">
-<!--                            <div class="dashboard-pannel left">&nbsp;</div>-->
-                            <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $img; ?>" alt=""/></div>
-                                <div class=" twelve columns left left-nav">
-                                    <ul>
-                                        <li><a href="javascript:;">Activity Feed</a></li>
-                                        <li><a href="javascript:;">Messages</a></li>
-                                        <li class="active"><a href="javascript:;">Outfits</a></li>
-                                        <li><a href="javascript:;">Purchases/Likes</a></li>
-                                        <li><a href="javascript:;">Notes &amp; Gallery</a></li>
-                                        <li><a href="javascript:;">Measurements</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <?php echo $this->element('clientAside/userLinksLeft'); ?>
+
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
                                         <div class="short-by-date">
                                             <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
                                             <select id="sortdate">
-                                                <option value="DESC">Sort By Date DESC</option>
-                                                <option value="ASC">Sort By Date ASC</option>
+                                                <option value="desc" <?php echo ($pageOrder == 'desc') ? 'selected' : ''; ?>>Sort By Date DESC</option>
+                                                <option value="asc" <?php echo ($pageOrder == 'asc') ? 'selected' : ''; ?>>Sort By Date ASC</option>
                                             </select>
                                         </div>
-                                        <div class="tab-btns purchase active"><a href="<?php echo $this->webroot; ?>messages/stylistuserpurchase/<?php echo $clientid; ?>" title="">Purchase</a></div>
-                                        <div class="tab-btns likes"><a href="<?php echo $this->webroot; ?>messages/stylistuserlikes/<?php echo $clientid; ?>" title="">Likes</a></div>
+                                        <div class="tab-btns purchase active"><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>" title="">Purchase</a></div>
+                                        <div class="tab-btns likes"><a href="<?php echo $this->webroot; ?>messages/likes/<?php echo $clientid; ?>" title="">Likes</a></div>
                                         <div class="twelve columns purchase-container left pad-none">
                                             <div class="eleven columns container purchase-area pad-none">
                                                 <div class="twelve columns left purchase-dtls pad-none">
@@ -190,17 +41,31 @@ $(document).ready(function(){
                                                             <div class="purchase-dtls-outfit heading left">Outfit</div>
                                                             <div class="purchase-dtls-price heading left">Price</div>
                                                        </li>
-                                                       <?php foreach ($purchases as $purchase): print_r($purchase); ?>
-                                                       <li>
-                                                            <div class="purchase-dtls-date left"><?php echo $purchase['purchase_data']['created']; ?></div>
-                                                            <div class="purchase-dtls-items left">
-                                                                <div class="purchase-dtls-items-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $purchase['purchase_data']['imagename']; ?>" alt=""/></div>
-                                                                <div class="purchase-dtls-items-desc"><?php echo $purchase['purchase_data']['name']; ?><span><?php echo $purchase['purchase_data']['brandname']; ?></span></div>
-                                                           </div>
-                                                            <div class="purchase-dtls-outfit left"><?php echo $purchase['purchase_data']['outfitname']; ?></div>
-                                                            <div class="purchase-dtls-price left">$<?php echo $purchase['purchase_data']['price']; ?></div>
-                                                       </li> 
-                                                       <?php endforeach; ?>
+                                                       <?php 
+                                                            if(count($purchases)):
+                                                               foreach ($purchases as $purchase): ?>
+                                                                   <li>
+                                                                        <div class="purchase-dtls-date left"><?php echo date('d/m/Y', strtotime($purchase['OrderItem']['created'])); ?></div>
+                                                                        <div class="purchase-dtls-items left">
+                                                                            <div class="purchase-dtls-items-img">
+                                                                                <?php if(count($purchase['Image'])): ?>
+                                                                                    <img src="<?php echo $this->webroot; ?>files/products/<?php echo $purchase['Image'][0]['name']; ?>" alt=""/>
+                                                                                <?php else: ?>
+                                                                                    <img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="">
+                                                                                <?php endif; ?>
+                                                                                
+                                                                            </div>
+                                                                            <div class="purchase-dtls-items-desc"><?php echo $purchase['Entity']['name']; ?><span><?php echo $purchase['Brand']['name']; ?></span></div>
+                                                                       </div>
+                                                                        <div class="purchase-dtls-outfit left"><?php echo ($purchase['Outfit']['outfit_name'] != '') ? $purchase['Outfit']['outfit_name'] : '&nbsp'; ?></div>
+                                                                        <div class="purchase-dtls-price left">$<?php echo $purchase['OrderItem']['price']; ?></div>
+                                                                   </li> 
+                                                               <?php
+                                                                endforeach;
+                                                            else:
+                                                                echo "<h1>There are no purchased items to display. Contact your stylist to get started..</h1>";
+                                                            endif; 
+                                                            ?>
                                                        
                                                     </ul>
                                                 </div>   

@@ -1,48 +1,6 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-
-    $(".search-myclient").on('keydown',function(){
-         
-         //var r = $('input').focus();
-         var usersearch = $("#usersearch").val();
-         //alert(usersearch);
-          $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/stylistUserFilterList/<?php echo $clientid; ?>",
-                data:{usersearch:usersearch},
-                cache: false,
-                    success: function(result){
-                        data = $.parseJSON(result);
-
-            html = '';
-            html = html + '<ul>';
-            
-            $.each(data,  function (index){
-                html = html + '<li>';
-                html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
-                html = html + '<div class="myclient-img">';
-                html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
-                html = html + '</div>';
-                html = html + '<div class="myclient-dtl">';
-                html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
-                html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
-                html = html + '</div>';
-                html = html + '</a>';
-                html = html + '</li>';      
-                
-                });
-            html = html + '</ul>';
-                $("#searchuserlist").html(html);
-
-                    }
-
-             }); 
-
-
-    });
-
-
     //sort function
 
     $("#sortdate").change(function(){
@@ -193,72 +151,14 @@
             <div class="twelve columns container left message-box">
                 
                 
-                <div class="myclient-left left">
-                    <div class="myclient-topsec">
-                        <div class="myclient-flt-srch-area">
-                        <div class="filter-myclient-area">
-                            <div class="filter-myclient">
-                                <span class="downarw"></span>
-                                <select onchange="location = this.options[this.selectedIndex].value;">
-                                    <option>Filter Clients</option>
-                                    <?php  foreach($userlists as $userlist ): ?>
-                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></option>
-                                     <?php endforeach; ?>
-                                    
-                                </select>
-                            </div>
-                        </div>
-                        <div class="search-myclient-area">
-                            <div class="search-myclient">
-                                <span class="srch"></span>
-                                <input type="text" name="myclient-search" id="usersearch" />
-                            </div>
-                        </div>
-                        </div>
-                        <div class="myclient-list">
-                            <ul id="searchuserlist">
-                            <?php  foreach($userlists as $userlist ): ?>
-                                <li <?php if($userlist['User']['id']==$clientid){ echo "class='active'"; } ?>>
-                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></span>
-                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$userlist['User']['updated']); ?></span>
-                                        </div>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="myclient-btmsec"> &nbsp;  </div>
-                </div>
+                <?php echo $this->element('clientAside/userFilterBar'); ?>
                 
                 
                 <div class="myclient-right right">
                     <div class="twelve columns left inner-content pad-none">
-                         <div class="twelve columns myclient-heading pad-none">
-                            <h1><?php echo $client['User']['first_name'].'&nbsp;'.$client['User']['last_name']; ?> | <span>Outfits</span></h1>
-                            <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client['User']['profile_photo_url']; ?>" alt="" /></div>
-                        </div>
-                        <div class="inner-left inner-myclient left">
-<!--                            <div class="dashboard-pannel left">&nbsp;</div>-->
-                            <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client['User']['profile_photo_url']; ?>" alt="" /></div>
-                                <div class=" twelve columns left left-nav">
-                                    <ul>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/userfeed/<?php echo $clientid; ?>">Activity Feed</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/index/<?php echo $clientid; ?>">Messages</a></li>
-                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/outfits/<?php echo $clientid; ?>">Outfits</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>">Purchases/Likes</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/notes/<?php echo $clientid; ?>">Notes &amp; Gallery</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/measurements/<?php echo $clientid; ?>">Measurements</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+
+                            <?php echo $this->element('clientAside/userLinksLeft'); ?>
+
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">

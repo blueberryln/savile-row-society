@@ -10,7 +10,6 @@ var webroot = "' . $this->webroot . '";';
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script('outfit.js', array('inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
-$this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <?php
     $img = "";

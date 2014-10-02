@@ -44,81 +44,20 @@
 });
 
 </script>
-<?php
-    $img = "";
-        if(isset($client) && $client['User']['profile_photo_url'] && $client['User']['profile_photo_url'] != ""){
-            $img = $this->webroot . "files/users/" . $client['User']['profile_photo_url'];
-         }else{
-            $img = $this->webroot . "img/dummy_image.jpg";    
-        }
-?>
 
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
                 
                 
-                <div class="myclient-left left">
-                    <div class="myclient-topsec"> 
-                        <div class="filter-myclient-area">
-                            <div class="filter-myclient">
-                                <span class="downarw"></span>
-                                <select>
-                                    <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
-                                    <option>Filter Clients</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="search-myclient-area">
-                            <div class="search-myclient">
-                                <span class="srch"></span>
-                                <input type="text" name="myclient-search" id="usersearch" />
-                            </div>
-                        </div>
-                        <div class="myclient-list">
-                            <ul id="searchuserlist">
-                            <?php  foreach($userlists as $userlist ): ?>
-                                <li <?php if($userlist['User']['id']==$clientid){ echo "class='active'"; } ?>>
-                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></span>
-                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$userlist['User']['updated']); ?></span>
-                                        </div>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php echo $this->element('clientAside/userFilterBar'); ?>
                 
                 
                 <div class="myclient-right right">
                     <div class="twelve columns left inner-content pad-none">
-                         <div class="twelve columns myclient-heading pad-none">
-                            <h1><?php echo $client['User']['first_name'].'&nbsp;'.$client['User']['last_name']; ?> | <span>NOTES</span></h1>
-                            <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client['User']['profile_photo_url']; ?>" alt="" /></div>
-                        </div>
-                        <div class="inner-left inner-myclient left">
-<!--                            <div class="dashboard-pannel left">&nbsp;</div>-->
-                            <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client['User']['profile_photo_url']; ?>" alt=""/></div>
-                                <div class=" twelve columns left left-nav">
-                                    <ul>
-                                        <li><a href="javascript:;">Activity Feed</a></li>
-                                        <li><a href="javascript:;">Messages</a></li>
-                                        <li><a href="javascript:;">Outfits</a></li>
-                                        <li class="active"><a href="javascript:;">Purchases/Likes</a></li>
-                                        <li><a href="javascript:;">Notes &amp; Gallery</a></li>
-                                        <li><a href="javascript:;">Measurements</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        
+                            <?php echo $this->element('clientAside/userLinksLeft'); ?>
+
                             <div class="right-pannel right note-gal-sec">
                                 <div class="twelve columns notes-area left pad-none">
                                     <div class="eleven columns container pad-none">
@@ -140,20 +79,20 @@
                                         <div class="notes-content-area">
                                             <ul>
                                             <?php foreach ($usernotes as $usernote): ?>
-                                                <li><div class="notes-date"><?php echo $usernote['Stylistnote']['created'] ?></div>
-                                                    <div class="notes-dtl"><?php echo $usernote['Stylistnote']['notes'] ?></div>
+                                                <li><div class="notes-date"><?php echo $usernote['StylistNote']['created'] ?></div>
+                                                    <div class="notes-dtl"><?php echo $usernote['StylistNote']['notes'] ?></div>
                                                     <div class="notes-btns">
                                                         <a href="#" title="">Edit</a>
-                                                        <a href="<?php echo $this->webroot; ?>messages/removestylistusernotes/<?php echo $usernote['Stylistnote']['id'] ?>">Delete</a>
+                                                        <a href="<?php echo $this->webroot; ?>messages/removestylistusernotes/<?php echo $usernote['StylistNote']['id'] ?>">Delete</a>
                                                     </div>
                                                 </li> 
                                              <?php endforeach; ?>  
                                                
                                             </ul>
-                                            <?php echo $this->Form->create('Stylistnote'); ?>
+                                            <?php echo $this->Form->create('StylistNote'); ?>
                                             <div class="twelve columns type-note left">
                                                 <div class="type-note-area">
-                                                <?php echo $this->Form->input('Stylistnote.notes',array('type'=>'text','label'=>false,)); ?>
+                                                <?php echo $this->Form->input('StylistNote.notes',array('type'=>'text','label'=>false,)); ?>
                                                 </div>
                                                 <div class="note-save">
                                                 <input type="submit" name="submit" class="savenotes">
