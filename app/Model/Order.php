@@ -116,7 +116,6 @@ class Order extends AppModel {
         $data['Order']['paid'] = 1;
         
         return $this->save($data);
-        //return $this->updateAll(array('Order.paid' => true), array('Order.id' => $order_id));
     }
 
     function markShipped($order_id){
@@ -129,14 +128,5 @@ class Order extends AppModel {
             'fields' => array('id','promo_code'),
         ));
     }
-    // for sales total user sale
-    // function getAllTotalPurchaseUser($user_id = null,$post_id){
-            
-    //     echo $sql = "Select *,SUM(orders.final_price) FROM  orders WHERE user_id IN ('".$user_id."') AND post_id IN ('".$post_id.")";
 
-    //     $result = $this->query($sql);
-        
-    //     return $result;
-      
-    // }
 }

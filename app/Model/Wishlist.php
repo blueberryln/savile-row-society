@@ -185,4 +185,14 @@ class Wishlist extends AppModel {
 
         return $this->find('all', $find_array);
     }
+
+    public function getUserLikeList($user_id, $pageOrder = 'desc'){
+
+        $find_array = array(
+            'conditions'    => array('user_id' => $user_id),
+            'order'     => array('id' => $pageOrder),
+            );
+
+        return $this->find('all', $find_array);
+    }
 }

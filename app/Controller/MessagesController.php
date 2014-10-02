@@ -25,6 +25,10 @@ class MessagesController extends AppController {
         $is_stylist = $user["User"]["is_stylist"];
         $is_admin = $user["User"]["is_admin"];
         $user = $User->findById($user_id);
+
+        $stylist = $User->findById($user['User']['stylist_id']);
+        $sideBarTab = 'message';
+
         
         /**
          * Check for different conditions and redirect as required:
@@ -131,16 +135,16 @@ class MessagesController extends AppController {
                 $this->set(compact('new_clients'));
             } 
 
-            $this->redirect('/messages/feed');
-            // if($messages_for_user_id && $messages_for_user_id > 0){
-            //     $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'is_admin'));
-            //     $this->render("stylist");
-            // }
-            // else if($is_stylist){
-            //     $notification_data = $User->getStylistUserNotification($user_id);
-            //     $this->set(compact('clients', 'notification_data', 'is_admin'));
-            //     $this->render("clients");    
-            // }
+            // $this->redirect('/messages/feed');
+            if($messages_for_user_id && $messages_for_user_id > 0){
+                $this->set(compact('clients', 'brands', 'colors', 'categories', 'client_user', 'client_id', 'is_admin'));
+                $this->render("stylist");
+            }
+            else if($is_stylist){
+                $notification_data = $User->getStylistUserNotification($user_id);
+                $this->set(compact('clients', 'notification_data', 'is_admin'));
+                $this->render("clients");    
+            }
         } 
         //User viewVars
         else {
@@ -150,7 +154,7 @@ class MessagesController extends AppController {
                 $stylist_id = $this->updateMissingStylist($user['User']['id']);
                 $client_user = $User->getByID($stylist_id);
             }
-            $this->set(compact('client_user'));
+            $this->set(compact('client_user', 'sideBarTab', 'stylist'));
             $this->render("user");
         }
     }
@@ -2259,104 +2263,7 @@ If interested, I would also be happy to meet with you in our New York City based
     }
 
 
-    public function userLikes($user_id = null){
-         $this->isLogged();
-         $User= ClassRegistry::init('User');
-         $user = $User->findById($user_id);
-
-         $stylist_id = $user['User']['stylist_id'];
-         
-        $current_user = $this->getLoggedUser();
-
-        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
-            $this->redirect('/');
-            exit;
-        }
-        $find_array = array(
-                'fields' => array('User.*,User1.*'),
-                'joins' => array(
-                array(
-                    'conditions' => array(
-                        'User.id = User1.stylist_id',
-                        'User1.id'=>$user_id,
-                    ),
-                    'table' => 'users',
-                    'alias' => 'User1',
-                    'type' => 'INNER',
-                ),
-                ),
-            );
-                
-
-        $Userdata=$User->find('all',$find_array);
-        $Wishlist = ClassRegistry::init('Wishlist');
-        $Entity = ClassRegistry::init('Entity'); 
-        $liked_list = $Wishlist->getUserLikeProduct($user_id);
-        
-                $entity_list = array();
-                foreach($liked_list as $value){
-                    $entity_list[] = $value['Wishlist']['product_entity_id'];
-                    $last_item_id = $value['Wishlist']['id'];
-                    
-                }
-
-        ///$likeitems = $Entity->getEntitiesByIdLikes($entity_list, $user_id);
-        
-        //pagination
-        $find_array = array(
-             'limit' => 10,
-            'contain' => array('Image'),
-            'conditions' => array(
-                'Entity.show' => true,
-                'Entity.id' => $entity_list
-            ),
-            'joins' => array(
-                array('table' => 'products',
-                    'alias' => 'Product',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Product.id = Entity.product_id'
-                    )
-                ),
-                array('table' => 'brands',
-                    'alias' => 'Brand',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Product.brand_id = Brand.id'
-                    )
-                ),
-
-              
-            ),
-            'fields' => array(
-                'Entity.*', 'Product.*', 'Brand.*',
-            ),
-            'order' => array('FROM_UNIXTIME(Wishlist.created) DESC'),
-
-           
-        );
-        
-       
-        if($user_id){
-            $find_array['joins'][] = array('table' => 'wishlists',
-                                        'alias' => 'Wishlist',
-                                        'type' => 'LEFT',
-                                        'conditions' => array(
-                                            'Wishlist.user_id' => $user_id,
-                                            'Wishlist.product_entity_id = Entity.id'
-                                        ),
-                                        
-                                        
-                                    );
-            $find_array['fields'][] = 'Wishlist.*';
-        }
-        //pagiantion
-
-        $likeitems = $Entity->find('all',$find_array);
-        $likeitemscount = count($likeitems);
-        $this->set(compact('likeitems','user_id','Userdata','likeitemscount'));
-        
-    }
+    
 
     
     public function userLikesAsc($user_id = null){
@@ -2467,50 +2374,7 @@ If interested, I would also be happy to meet with you in our New York City based
     }
 
 
-    public function userPurchases($user_id = null){
-        $this->isLogged();
-        $User= ClassRegistry::init('User');
-        $user = $User->getById($user_id);
-        $current_user = $this->getLoggedUser();
-
-        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
-            $this->redirect('/');
-            exit;
-        }
-        $OrderItem = ClassRegistry::init('OrderItem');
-        $Entity = ClassRegistry::init('Entity'); 
-        $total_purchases = $OrderItem->getTotalUserPurchaseCount($user_id);
-        
-        if($total_purchases > 0){
-            $order_item_list = $OrderItem->getUniqueUserItemPurchase($user_id);
-            $entity_list = array();
-            foreach($order_item_list as $value){
-                $entity_list[] = $value['Orders']['product_entity_id'];
-                $last_item_id = $value['Orders']['order_id'];
-            }
-
-            $purchases = $Entity->getEntitiesByIdPurchaseDes($entity_list);
-        }
-        $find_array = array(
-                'fields' => array('User.*,User1.*'),
-                'joins' => array(
-                array(
-                    'conditions' => array(
-                        'User.id = User1.stylist_id',
-                        'User1.id'=>$user_id,
-                    ),
-                    'table' => 'users',
-                    'alias' => 'User1',
-                    'type' => 'INNER',
-                ),
-                ),
-            );
-                
-        //print_r($purchases);
-        $Userdata=$User->find('all',$find_array);
-        $this->set(compact('purchases','user_id','Userdata'));
-        
-    }
+    
     //user purchase sorting
 
     public function userPurchasesSorting($user_id = null){
@@ -2701,49 +2565,6 @@ If interested, I would also be happy to meet with you in our New York City based
 
     }
     
-    // IN STYLIST SECTION USERS PROFILE PART 
-    
-    public function profiles($user_id = null) {
-        $this->isLogged();
-        $User = ClassRegistry::init('User');
-        $user = $User->findById($user_id);
-        $current_user = $this->getLoggedUser();
-        
-        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id'] || $user_id != $current_user['User']['id'] ){
-            $this->redirect('/');
-            exit;
-        }
-        $stylist_id = $user['User']['stylist_id'];
-        $find_array = array(
-                'fields' => array('User.*,User1.*'),
-                'joins' => array(
-                array(
-                    'conditions' => array(
-                        'User.id = User1.stylist_id',
-                        'User1.id'=>$user_id,
-                    ),
-                    'table' => 'users',
-                    'alias' => 'User1',
-                    'type' => 'INNER',
-                ),
-                ),
-            );
-    $Userdata= $User->find('all',$find_array);
-    $this->set(compact('Userdata'));
-
-    if($this->request->is('post') || $this->request->is('put')){
-        if($User->save($this->request->data)){
-                $this->Session->setFlash("User Data Hasbeen Saved");
-                $this->redirect('/messages/profiles/'.$user_id);
-            } else {
-                $this->Session->setFlash(__('The User could not be saved. Please, try again.'), 'flash');
-            }
-    } else {
-            $options = array('conditions' => array('User.' . $User->primaryKey => $user_id));
-            $this->request->data = $User->find('first', $options);
-        }
-
-    }
 
 
     //stylist create outfits
@@ -3912,5 +3733,129 @@ If interested, I would also be happy to meet with you in our New York City based
             $this->redirect('feed');
             exit;
         }
+    }
+
+
+    /****
+    fixed code
+    ***/
+    public function userPurchases(){
+        if(isset($this->request->query['sort'])){
+            $pageOrder = ($this->request->query['sort'] == "desc") ? 'desc' : 'asc';
+        }
+        else{
+            $pageOrder = 'asc';
+        }
+        $sideBarTab = 'purchase';
+
+        $user = $this->getLoggedUser();
+        $User= ClassRegistry::init('User');
+        $stylist = $User->findById($user['User']['stylist_id']);
+
+        $OrderItem = ClassRegistry::init('OrderItem');
+        $Entity = ClassRegistry::init('Entity'); 
+        
+        $purchases = $OrderItem->getUserItemList($user['User']['id'], $pageOrder);
+
+        if(count($purchases)){
+            $entity_list = array();
+            foreach($purchases as $value){
+                $entity_list[] = $value['OrderItem']['product_entity_id'];
+            }
+
+            $entities = $Entity->getEntities($entity_list, array('Image'));
+            $sorted_entities = array();
+            
+            foreach($entities as $value){
+                $sorted_entities[$value['Entity']['id']] = $value;
+            }
+
+            //sort purchases
+
+            foreach($purchases as &$value){
+                $value['Entity'] = $sorted_entities[$value['OrderItem']['product_entity_id']]['Entity'];
+                $value['Brand'] = $sorted_entities[$value['OrderItem']['product_entity_id']]['Brand'];
+                $value['Image'] = $sorted_entities[$value['OrderItem']['product_entity_id']]['Image'];
+            }    
+        }
+        else{
+            $purchases = [];
+        }
+        
+        $this->set(compact('purchases','user', 'pageOrder', 'stylist', 'sideBarTab'));
+        
+    }
+
+
+    public function userLikes(){
+
+        if(isset($this->request->query['sort'])){
+            $pageOrder = ($this->request->query['sort'] == "desc") ? 'desc' : 'asc';
+        }
+        else{
+            $pageOrder = 'asc';
+        }
+        $sideBarTab = 'like';
+
+        $user = $this->getLoggedUser();
+        $User= ClassRegistry::init('User');
+        $stylist = $User->findById($user['User']['stylist_id']);
+
+
+        $Wishlist = ClassRegistry::init('Wishlist');
+        $Entity = ClassRegistry::init('Entity'); 
+
+        $likeitems = $Wishlist->getUserLikeList($user['User']['id'], $pageOrder);
+
+        if(count($likeitems)){
+            $entity_list = array();
+            foreach($likeitems as $value){
+                $entity_list[] = $value['Wishlist']['product_entity_id'];
+            }
+
+            $entities = $Entity->getEntities($entity_list, array('Image'));
+            $sorted_entities = array();
+            
+            foreach($entities as $value){
+                $sorted_entities[$value['Entity']['id']] = $value;
+            }
+
+            //sort likeitems
+
+            foreach($likeitems as &$value){
+                $value['Entity'] = $sorted_entities[$value['Wishlist']['product_entity_id']]['Entity'];
+                $value['Brand'] = $sorted_entities[$value['Wishlist']['product_entity_id']]['Brand'];
+                $value['Image'] = $sorted_entities[$value['Wishlist']['product_entity_id']]['Image'];
+            }    
+        }
+        else{
+            $likeitems = [];
+        }
+        
+        $this->set(compact('likeitems','user', 'pageOrder', 'stylist', 'sideBarTab'));
+        
+    }
+
+    public function profiles() {
+        
+        $user = $this->getLoggedUser();
+        $User= ClassRegistry::init('User');
+        $stylist = $User->findById($user['User']['stylist_id']);
+        $sideBarTab = 'profile';
+        
+        $this->set(compact('user', 'stylist', 'sideBarTab'));
+
+        if($this->request->is('post') || $this->request->is('put')){
+            if($User->save($this->request->data)){
+                $this->Session->setFlash("User Data Hasbeen Saved", 'flash');
+                $this->redirect('/messages/profiles');
+            } else {
+                $this->Session->setFlash(__('The User could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+                $options = array('conditions' => array('User.' . $User->primaryKey => $user['User']['id']));
+                $this->request->data = $User->find('first', $options);
+        }
+
     }
 }

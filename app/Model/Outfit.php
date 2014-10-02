@@ -96,7 +96,7 @@ class Outfit extends AppModel {
             $Entity = ClassRegistry::init('Entity');
 
             $outfit_details = array('Image');
-            $entities = $Entity->getOutfitEntities($product_list, $outfit_details);
+            $entities = $Entity->getEntities($product_list, $outfit_details);
 
             $sorted_entities = array();
             foreach ($entities as $entity) {

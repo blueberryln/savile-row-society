@@ -918,7 +918,7 @@ class Entity extends AppModel {
      * 
      * @return array
      */
-    function getOutfitEntities($id, $contain = array(), $user_id=null,$outfit_id=null) {
+    function getEntities($id, $contain = array(), $user_id=null,$outfit_id=null) {
         $find_array = array(
             'conditions' => array('Entity.id' => $id),
             'joins' => array(

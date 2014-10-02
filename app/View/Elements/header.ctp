@@ -201,8 +201,7 @@
                                     <?php endif; ?>
                                      <?php if(!$is_stylist) : ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>cart" title="">view my cart/checkout</a></li>
-                                    <li><a href="#" title="">refer a friend</a></li>
-                                    <li><a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Style Profile</a></li>
+                                    <li><a href="/messages/index" title="">Messages</a></li>
                                     <li><a href="<?php echo $this->request->webroot; ?>messages/profiles/<?php echo $user['User']['id']; ?>">Profile</a></li>
                                     <?php endif; ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>signout" title="">sign out</a></li>

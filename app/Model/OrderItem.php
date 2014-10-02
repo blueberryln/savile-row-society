@@ -43,7 +43,14 @@ class OrderItem extends AppModel {
             'conditions' => '',
             'fields' => 'name',
             'order' => ''
-        )
+        ),
+        'Outfit' => array(
+            'className' => 'Outfit',
+            'foreignKey' => 'outfit_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
     );
 
     public function getByOrderId($order_id){
@@ -76,6 +83,29 @@ class OrderItem extends AppModel {
             'fields' => array('OrderItem.*', 'Entity.*'),
         ));
     }
+
+    public function getUserItemList($user_id, $pageOrder = 'desc'){
+
+        $find_array = array(
+            'joins' => array(
+                array('table' => 'orders',
+                    'alias' => 'Order',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Order.id = OrderItem.order_id',
+                        'Order.user_id' => $user_id,
+                        'Order.paid'    => 1
+                    )
+                )
+            ),
+            'contain'   => array('Outfit'),
+            'fields'    => array('OrderItem.*', 'Outfit.*'),
+            'order'     => array('OrderItem.id' => $pageOrder),
+            );
+
+        return $this->find('all', $find_array);
+    }
+
     
     //Function to get purchased items after last purchased id
     public function getUniqueUserItems($user_id, $last_purchased_id=0){

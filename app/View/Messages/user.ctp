@@ -22,55 +22,12 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <!--new design and code start here-->
 
-<div class="content-container">
+<div>
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
                 <div class="eleven columns container pad-none">
-                    <div class="twelve columns message-box-heading pad-none">
-                        <h1><?php echo $user['User']['first_name'].'&nbsp;'.$user['User']['last_name']; ?> | <span>Messages</span></h1>
-                        <div class="client-img-small">
-                            <?php
-                            if($user['User']['profile_photo_url']){
-                                echo '<img src="' . $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] . '" alt="" data-name="Haspel" />';
-                            }
-                            else{
-                                echo '<img src="' . $this->webroot . 'images/default-user.jpg" alt="" data-name="Haspel" />';    
-                            }
-                            ?>
-                            
-                        </div>
-                    </div>
-                    <div class="my-profile-img m-ver">
-                        <h2><?php echo $client_user['User']['first_name'].'&nbsp;'.$client_user['User']['last_name']; ?>.<span>My Stylist</span></h2>
-                        <div class="client-img-small right">
-                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $client_user['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image"  /></a>
-                        </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
-                    </div>
-                    <div class="dd-nav">
-                        <ul>
-                            <li class="active"><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
-                        </ul>
-                    </div>
-                    <div class="twelve columns left inner-content pad-none">
-                        <div class="inner-left left">
-                            <div class="left-pannel left">
-                                <div class="client-img">
-
-                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url'] ?>" alt=""  data-name="Haspel" /></div>
-                                <div class="twelve columns left left-nav">
-                                    <ul>
-                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <?php echo $this->element('userAside/leftSidebar'); ?>
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
@@ -108,23 +65,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             </div>
                         
                         </div>
-                        <div class="inner-right right">
-                            <div class="twelve columns text-center my-profile">
-                                <div class="my-profile-img">
-                                    <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $client_user['User']['id']; ?>" title="">
-
-                            
-                    <img src="<?php echo $img; ?>" id="user_image" height='134' width='151' /></a>
-                                </div>
-                                <div class="my-profile-detials">
-                                    <?php echo $client_user['User']['full_name']; ?>
-                                    <span>My Stylist</span>
-                                    <a class="view-profile" href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $client_user['User']['id']; ?>">View My Profile</a> 
-                                </div>
-                                
-                            
-                            </div>
-                        </div>
+                        
+                        <?php echo $this->element('userAside/rightSidebar'); ?>
                     </div>
                 </div>
             </div>
