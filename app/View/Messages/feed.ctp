@@ -4,40 +4,23 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".search-myclient").on('keydown',function(){
-            var usersearch = $("#usersearch").val();
-                $.ajax({
-                    type:"POST",
-                    url:"<?php echo $this->webroot; ?>messages/stylistFilterList/<?php echo $stylist_id; ?>",
-                    data:{usersearch:usersearch},
-                    cache: false,
-                    success: function(result){
-                        data = $.parseJSON(result);
-
-                        html = '';
-                        html = html + '<ul>';
-                    $.each(data,  function (index){
-                        html = html + '<li>';
-                        html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
-                        html = html + '<div class="myclient-img">';
-                        html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
-                        html = html + '</div>';
-                        html = html + '<div class="myclient-dtl">';
-                        html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
-                        html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
-                        html = html + '</div>';
-                        html = html + '</a>';
-                        html = html + '</li>';      
-                    });
-                        html = html + '</ul>';
-                        $("#searchuserlist").html(html);
-                    }
-
-                }); 
-        });
+        $(".search-myclient").on('keyup',function(){
+         var usersearch = $("#usersearch").val();
+         usersearch = usersearch.toLowerCase();
+            
+         //alert(usersearch);
+         $("#searchuserlist li .myclient-name").each(function(){
+            var stringuser = $(this).text().toLowerCase();
+            if(stringuser.indexOf(usersearch) > -1){
+                $(this).closest('li').show();
+            }else{
+                $(this).closest('li').hide();
+            }
+         });
+    });
 });
 </script> 
-<div class="content-container">
+<div>
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">

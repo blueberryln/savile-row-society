@@ -93,7 +93,7 @@ function dragAndDropOutfit(){
                     $(this).closest("li").remove();
                             var allprice1 = $(this).closest("li").data("price");
                             var sum1 = parseInt(allprice1);
-                            var ter = $("#total").text();
+                            var ter = parseInt($("#total").text().split('$')[1]);
                             var minusall = ter - sum1;
                       
                             $("#total").html(minusall);

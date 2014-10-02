@@ -32,6 +32,8 @@
  */
 Router::connect('/user/purchases', array('controller'=>'messages', 'action'=>'userpurchases'));
 Router::connect('/user/likes', array('controller'=>'messages', 'action'=>'userlikes'));
+Router::connect('/user/profile', array('controller'=>'messages', 'action'=>'profiles'));
+Router::connect('/user/outfits', array('controller'=>'messages', 'action'=>'usersoutfits'));
 
 
 

@@ -50,8 +50,11 @@ class MessagesController extends AppController {
         /**
          * Choose to show user/stylist or admin view
          */
-        if ($is_stylist || $is_admin) {
-
+        if ($is_stylist) {
+            if($messages_for_user_id == null){
+                $this->redirect('/messages/feed');
+                exit;
+            }
             /**
              * Check if client has been selected to chat with and client user exists.
              */
@@ -1128,90 +1131,7 @@ If interested, I would also be happy to meet with you in our New York City based
     //
 
     //perticular user outfit list sent by his stylist
-    public function usersoutfits($client_id = null) {
-        $this->isLogged();
-        $User = ClassRegistry::init('User');
-        
-        //Get user from session to derterminate if user is stylist
-        $user = $this->getLoggedUser();
-        $user_id = $user["User"]["id"]; 
-        $is_admin = $user["User"]["is_admin"];
-        $is_stylist = $user["User"]["is_stylist"];   
-        $user = $User->getById($client_id);
-        $current_user = $this->getLoggedUser();
-
-        if($client_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id'] || $client_id != $current_user['User']['id']){
-            $this->redirect('/');
-            exit;
-        }
-
-        $find_array = array(
-                'fields' => array('User.*,User1.*'),
-                'joins' => array(
-                array(
-                    'conditions' => array(
-                        'User.id = User1.stylist_id',
-                        'User1.id'=>$user_id,
-                    ),
-                    'table' => 'users',
-                    'alias' => 'User1',
-                    'type' => 'INNER',
-                ),
-                ),
-            );
-        
-        $Userdata=$User->find('all',$find_array);
-        $Message = ClassRegistry::init('Message');
-        
-        if($user){
-
-                    //pagination 
-
-                 
-                    $find_array = array(
-                                    'conditions' => array('Message.user_to_id' => $client_id, 'Message.is_outfit' => 1,),
-                                    'limit' => 2,
-                                    'fields' => array(
-                                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id',
-                                    ),
-                                    'order' =>  array('Message.created DESC'),
-                                );
-
-                    $my_conversation = $this->Message->find('all',$find_array);
-                    $my_conversation_count = count($my_conversation);
-
-                    //pagination
-
-
-                        //$my_conversation = $this->Message->getMyConversationWithStylist($client_id);
-                        $my_outfits = array();
-                        foreach($my_conversation as $row){
-                            if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                                $outfit_id = $row['Message']['outfit_id'];
-                                $comments = $row['Message']['body'];
-                                $Outfit = ClassRegistry::init('Outfit');
-                                $outfitnames = $Outfit->find('all', array('conditions'=> array('Outfit.id'=>$outfit_id)));
-                                $OutfitItem = ClassRegistry::init('OutfitItem');
-                                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id),));
-                                $entities = array();
-                                foreach($outfit as $value){
-                                     $entities[] = $value['OutfitItem']['product_entity_id'];
-                                }
-                                $Entity = ClassRegistry::init('Entity');
-                                $entity_list = $Entity->getMultipleByIdUser($entities,$user_id);
-                                $my_outfits[] = array(
-                                    'outfit'    => $outfitnames,
-                                    'comments' =>$comments,
-                                    'entities'  => $entity_list
-                                    );
-                                
-                            }
-                        }
-                    }
-                //print_r($my_outfits);
-        $this->set(compact('my_outfits','user_id','Userdata','my_conversation_count'));
-        
-    }
+    
    
 
    
@@ -3705,8 +3625,12 @@ If interested, I would also be happy to meet with you in our New York City based
     public function feed(){
         $User = ClassRegistry::init('User');
         $user = $this->getLoggedUser();
+        if($user['User']['is_stylist'] != 1){
+            $this->redirect('/');
+        }
+
         $stylist_id = $user['User']['stylist_id'];
-        $userlists = $User->find('all', array('conditions'=>array('User.stylist_id'=>$stylist_id,)));
+        $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $stylist_id)));
         $usercount  = count($userlists);
         
         // sale details for months to date
@@ -3857,5 +3781,60 @@ If interested, I would also be happy to meet with you in our New York City based
                 $this->request->data = $User->find('first', $options);
         }
 
+    }
+
+    public function usersoutfits($client_id = null) {
+        $user = $this->getLoggedUser();
+        $User= ClassRegistry::init('User');
+        $stylist = $User->findById($user['User']['stylist_id']);
+        $sideBarTab = 'outfit';  
+
+        $Message = ClassRegistry::init('Message');
+        
+        if($user){
+                 
+            $find_array = array(
+                            'conditions' => array('Message.user_to_id' => $client_id, 'Message.is_outfit' => 1,),
+                            'limit' => 2,
+                            'fields' => array(
+                                'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id',
+                            ),
+                            'order' =>  array('Message.created DESC'),
+                        );
+
+            $my_conversation = $this->Message->find('all',$find_array);
+            $my_conversation_count = count($my_conversation);
+
+            //pagination
+
+
+                //$my_conversation = $this->Message->getMyConversationWithStylist($client_id);
+                $my_outfits = array();
+                foreach($my_conversation as $row){
+                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                        $outfit_id = $row['Message']['outfit_id'];
+                        $comments = $row['Message']['body'];
+                        $Outfit = ClassRegistry::init('Outfit');
+                        $outfitnames = $Outfit->find('all', array('conditions'=> array('Outfit.id'=>$outfit_id)));
+                        $OutfitItem = ClassRegistry::init('OutfitItem');
+                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id),));
+                        $entities = array();
+                        foreach($outfit as $value){
+                             $entities[] = $value['OutfitItem']['product_entity_id'];
+                        }
+                        $Entity = ClassRegistry::init('Entity');
+                        $entity_list = $Entity->getMultipleByIdUser($entities,$user_id);
+                        $my_outfits[] = array(
+                            'outfit'    => $outfitnames,
+                            'comments' =>$comments,
+                            'entities'  => $entity_list
+                            );
+                        
+                    }
+                }
+            }
+
+        $this->set(compact('user', 'stylist', 'sideBarTab', 'my_outfits','user_id','my_conversation_count'));
+        
     }
 }

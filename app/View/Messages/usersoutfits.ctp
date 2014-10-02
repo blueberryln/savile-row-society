@@ -238,38 +238,8 @@ $this->Html->css('colorbox', null, array('inline' => false));
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
                 <div class="eleven columns container pad-none">
-                    <div class="twelve columns message-box-heading pad-none">
-                        <h1><?php echo $Userdata[0]['User1']['first_name'].'&nbsp;'.$Userdata[0]['User1']['last_name']; ?> | <span>Outfits</span></h1>
-                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>" alt="" /></div>
-                    </div>
-                    <div class="my-profile-img m-ver">
-                        <h2><?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?><span>My Stylist</span></h2>
-                        <div class="client-img-small right">
-                        <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image"  /></a>
-                        </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
-                    </div>
-                    <div class="dd-nav">
-                        <ul>
-                            <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-                            <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                            <li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
-                        </ul>
-                    </div>
-                    <div class="twelve columns left inner-content pad-none">
-                        <div class="inner-left left">
-                            <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>"  alt=""/></div>
-                                <div class="twelve columns left left-nav">
-                                    <ul>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-                                        <li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-                                        <li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <?php echo $this->element('userAside/leftSidebar'); ?>
+
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area useroutfit_area left pad-none">
                                     <div class="eleven columns container pad-none">
@@ -277,8 +247,8 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                             <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
                                             <select id="sortdate">
                                             <option value="">Sort By Date</option>
-                                                <option value="DESC">Sort By Date DESC</option>
-                                                <option value="ASC">Sort By Date ASC</option>
+                                                <option value="desc">Sort By Date DESC</option>
+                                                <option value="asc">Sort By Date ASC</option>
                                             </select>
                                         </div>
                                         <div id="ascsort">
@@ -357,20 +327,8 @@ $this->Html->css('colorbox', null, array('inline' => false));
 
                        
                         </div> 
-                        <div class="inner-right right">
-                            <div class="twelve columns text-center my-profile">
-                                <div class="my-profile-img">
-                                    <a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User']['profile_photo_url']; ?>" alt="" data-name="Haspel" /></a>
-                                </div>
-                                <div class="my-profile-detials">
-                                    <?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?>
-                                    <span>My Stylist</span>
-                                    <a class="view-profile" href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>">View My Profile</a> 
-                                </div>
-                                
-                            
-                            </div>
-                        </div>
+                        
+                        <?php echo $this->element('userAside/rightSidebar'); ?>
                     </div>
                 </div>
             </div>

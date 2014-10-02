@@ -23,59 +23,19 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
     $(document).ready(function(){
 
 
-    $(".search-myclient").on('keydown',function(){
+    $(".search-myclient").on('keyup',function(){
          var usersearch = $("#usersearch").val();
-         //var r = $('input').focus();
-         var usersearchlength = $("#usersearch").val().length;
-            //console.log(usersearchlength);
+         usersearch = usersearch.toLowerCase();
             
          //alert(usersearch);
-         $("#searchuserlist li span").each(function(){
-            var usersearch = $("#usersearch").val();
-            var stringuser = $("span.myclient-name").text();
-            //console.log(usersearch);
-            console.log(stringuser);
-            if(usersearch == stringuser){
-                //$("li#setsearchuser").css("display","block");
-            alert('if');
+         $("#searchuserlist li .myclient-name").each(function(){
+            var stringuser = $(this).text().toLowerCase();
+            if(stringuser.indexOf(usersearch) > -1){
+                $(this).closest('li').show();
             }else{
-                alert('else');
-                //$("li#setsearchuser").css("display","none");
+                $(this).closest('li').hide();
             }
          });
-         // $.ajax({
-         //        type:"POST",
-         //        url:"<?php echo $this->webroot; ?>messages/stylistUserFilterList/<?php echo $client_id; ?>",
-         //        data:{usersearch:usersearch},
-         //        cache: false,
-         //            success: function(result){
-         //                data = $.parseJSON(result);
-
-         //    html = '';
-         //    html = html + '<ul>';
-            
-         //    $.each(data,  function (index){
-         //        html = html + '<li>';
-         //        html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
-         //        html = html + '<div class="myclient-img">';
-         //        html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
-         //        html = html + '</div>';
-         //        html = html + '<div class="myclient-dtl">';
-         //        html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
-         //        html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
-         //        html = html + '</div>';
-         //        html = html + '</a>';
-         //        html = html + '</li>';      
-                
-         //        });
-         //    html = html + '</ul>';
-         //        $("#searchuserlist").html(html);
-
-         //            }
-
-         //     }); 
-
-
     });
 });
 
@@ -101,8 +61,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 <span class="downarw"></span>
                                 <select onchange="location = this.options[this.selectedIndex].value;">
                                     <option>Filter Clients</option>
-                                    <?php  foreach($userlists as $userlist ): ?>
-                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></option>
+                                    <?php  foreach($userlists as $filterclient ): ?>
+                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $filterclient['User']['id']; ?>"><?php echo $filterclient['User']['first_name'].'&nbsp;'.$filterclient['User']['last_name']; ?></option>
                                      <?php endforeach; ?>
                                     
                                 </select>
@@ -111,27 +71,61 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         <div class="search-myclient-area">
                             <div class="search-myclient">
                                 <span class="srch"></span>
-                               <input type="text" name="myclient-search" id="usersearch" />
+                                <input type="text" name="myclient-search" id="usersearch" />
                             </div>
                         </div>
-                        <div class="myclient-list">
-                            <ul id="searchuserlist">
-                            <?php  foreach($userlists as $userlist ): ?>
-                                <li id="setsearchuser" <?php if($userlist['User']['id']==$client_id){ echo "class='active'"; } ?>>
-                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
-                                        <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
-                                        </div>
-                                        <div class="myclient-dtl">
-                                            <span class="myclient-name"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></span>
-                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$userlist['User']['updated']); ?></span>
-                                        </div>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                                
-                            </ul>
+                        <div class="myclient-list dsktp_only">
+                            <div id="scrollbar6">
+                            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                <div class="viewport">
+                                     <div class="overview">
+                                        <ul id="searchuserlist">
+                                        <?php  foreach($userlists as $searchuserclient){?>
+                                            <li>
+                                                <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
+                                                    <div class="myclient-img">
+                                                        <?php if($searchuserclient['User']['profile_photo_url']): ?>
+                                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                                        <?php else: ?>
+                                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="myclient-dtl">
+                                                        <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
+                                                        <span class="myclient-status">last active at <?php echo date ('d F Y',$searchuserclient['User']['updated']); ?></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="myclient-list tab_n_mob">
+                           
+                                        <ul id="searchuserlist">
+                                        <?php  foreach($userlist as $searchuserclient){?>
+                                            <li>
+                                                <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
+                                                    <div class="myclient-img">
+                                                        <?php if($searchuserclient['User']['profile_photo_url']): ?>
+                                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                                        <?php else: ?>
+                                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="myclient-dtl">
+                                                        <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
+                                                        <span class="myclient-status">last active at <?php echo date ('d F Y',$searchuserclient['User']['updated']); ?></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
+
+                                        </ul>
+                                    </div>
                     </div>
                 </div>
                 
