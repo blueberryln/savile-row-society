@@ -3779,7 +3779,7 @@ If interested, I would also be happy to meet with you in our New York City based
             }    
         }
         else{
-            $purchases = [];
+            $purchases = array();
         }
         
         $this->set(compact('purchases','user', 'pageOrder', 'stylist', 'sideBarTab'));
@@ -3829,7 +3829,7 @@ If interested, I would also be happy to meet with you in our New York City based
             }    
         }
         else{
-            $likeitems = [];
+            $likeitems = array();
         }
         
         $this->set(compact('likeitems','user', 'pageOrder', 'stylist', 'sideBarTab'));
