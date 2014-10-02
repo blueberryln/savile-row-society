@@ -1,49 +1,3 @@
-<script type="text/javascript">
-    $(document).ready(function(){
-
-
-    $(".search-myclient").on('keydown',function(){
-         
-         //var r = $('input').focus();
-         var usersearch = $("#usersearch").val();
-         //alert(usersearch);
-          $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/stylistUserFilterList/<?php echo $clientid; ?>",
-                data:{usersearch:usersearch},
-                cache: false,
-                    success: function(result){
-                        data = $.parseJSON(result);
-
-            html = '';
-            html = html + '<ul>';
-            
-            $.each(data,  function (index){
-                html = html + '<li>';
-                html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
-                html = html + '<div class="myclient-img">';
-                html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
-                html = html + '</div>';
-                html = html + '<div class="myclient-dtl">';
-                html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
-                html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
-                html = html + '</div>';
-                html = html + '</a>';
-                html = html + '</li>';      
-                
-                });
-            html = html + '</ul>';
-                $("#searchuserlist").html(html);
-
-                }
-
-             }); 
-
-
-    });
-});
-
-</script>
 
     <div class="twelve columns container">
         <div class="eleven columns container message-box-area">
@@ -79,11 +33,11 @@
                                         <div class="notes-content-area">
                                             <ul>
                                             <?php foreach ($usernotes as $usernote): ?>
-                                                <li><div class="notes-date"><?php echo $usernote['StylistNote']['created'] ?></div>
+                                                <li><div class="notes-date"><?php echo date('d/m/Y', strtotime($usernote['StylistNote']['created'])); ?></div>
                                                     <div class="notes-dtl"><?php echo $usernote['StylistNote']['notes'] ?></div>
                                                     <div class="notes-btns">
-                                                        <a href="#" title="">Edit</a>
-                                                        <a href="<?php echo $this->webroot; ?>messages/removestylistusernotes/<?php echo $usernote['StylistNote']['id'] ?>">Delete</a>
+                                                        <!-- <a href="#" title="">Edit</a> -->
+                                                        <a href="<?php echo $this->webroot; ?>messages/removenotes/<?php echo $usernote['StylistNote']['id'] ?>">Delete</a>
                                                     </div>
                                                 </li> 
                                              <?php endforeach; ?>  
@@ -103,7 +57,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="twelve columns gal-area left pad-none">
+                                <!-- <div class="twelve columns gal-area left pad-none">
                                     <h1>Kyle's Gallery</h1>
                                     <div class="gallery-area">
                                         <div class="eleven columns container pad-none">
@@ -116,7 +70,7 @@
                                             </div>
                                             <div class="twelve columns left gal-btns"><a class="upload-gal-photos" href="#" title="">Upload Photos</a></div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     
                                 </div>
                             </div>

@@ -1437,36 +1437,6 @@ If interested, I would also be happy to meet with you in our New York City based
         $this->set(compact('my_outfit','userlist','user_id'));
     
     } 
-
-
-    // remove stylist user notes
-
-    public function removestylistusernotes($id = null){
-        $Stylistnote = ClassRegistry::init('Stylistnote');
-
-        echo $user = $this->getLoggedUser();
-       print_r($user);
-        exit;
-
-        if (!$id) {
-            $this->Session->setFlash('Invalid id for Stylistnote');
-            $this->redirect(array('action' => '/messages/stylistusernotes'));
-        }   
-
-        if ($this->Style->delete($id)) {
-            $this->Session->setFlash('Styles  deleted');
-        } else {
-            $this->Session->setFlash(__('Styles was not deleted', true));
-        }
-
-        $this->redirect(array('action' => 'index'));
-
-
-
-    }
-
-
-
     
 
 // stylist user activity feed perticuler user
@@ -3701,22 +3671,34 @@ If interested, I would also be happy to meet with you in our New York City based
     public function notes($clientid = null) {
         $sideBarTab = 'note';
 
+        $user = $this->getLoggedUser();
         $User = ClassRegistry::init('User');
         $StylistNote = ClassRegistry::init('StylistNote');
 
         $client_user = $User->findById($clientid);
+        if(!$client_user){
+            $this->redirect('/messages/index');
+            exit;
+        }
+
         $clientid = $client_user['User']['id'];
         $stylistid = $client_user['User']['stylist_id'];
+        if($user['User']['id'] != $stylistid){
+            $this->redirect('/messages/index');
+            exit;
+        }
+
         $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
        
         if($this->request->is('post')){
             $data=$this->request->data;
             $this->request->data['StylistNote']['user_id']=$clientid;
             $this->request->data['StylistNote']['stylist_id']=$stylistid;
+
             if($StylistNote->save($this->request->data))
             {
-                $this->Session->setFlash("User Data Hasbeen Saved");
-                $this->redirect('/messages/stylistusernotes/'.$clientid);
+                $this->Session->setFlash("User Data Hasbeen Saved", 'flash');
+                $this->redirect('/messages/notes/'.$clientid);
             }
         }
 
@@ -3729,6 +3711,41 @@ If interested, I would also be happy to meet with you in our New York City based
         $this->set(compact('clientid','client_user','usernotes','userlists', 'sideBarTab'));
 
     }
+
+
+    public function removenotes($id = null){
+        $StylistNote = ClassRegistry::init('StylistNote');
+        $note = $StylistNote->findById($id);
+
+        $user = $this->getLoggedUser();
+
+        if($note){
+            $User = ClassRegistry::init('User');
+            $client = $User->findById($note['StylistNote']['user_id']);
+
+            if($client['User']['stylist_id'] != $user['User']['id']){
+                $this->Session->setFlash('Note could not be deleted.', 'flash');
+                $this->redirect('/messages/notes/' . $client['User']['id']);
+                exit;
+            }
+        }
+        else{
+            $this->Session->setFlash('Note could not be deleted.', 'flash');
+            $this->redirect('/messages/notes' . $client['User']['id']);
+            exit;
+        }  
+
+        if ($StylistNote->delete($id)) {
+            $this->Session->setFlash('Note deleted', 'flash');
+        } else {
+            $this->Session->setFlash('Note could not be deleted.', 'flash');
+        }
+
+        $this->redirect('/messages/notes' . $client['User']['id']);
+        exit;
+
+    }
+
 
     public function measurements($clientid = null, $id = null) {
 
