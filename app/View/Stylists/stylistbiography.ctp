@@ -47,7 +47,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class="eleven columns container">
                     <div class="twelve columns">
                         <div class="stylistbio-profile left text-center">
-                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $users['User']['profile_photo_url']; ?>" alt="" /></div>
+                            <div class="profile-img">
+                                <?php if($users['User']['profile_photo_url']): ?>
+                                   <img src="<?php echo $this->webroot; ?>files/users/<?php echo $users['User']['profile_photo_url']; ?>" alt="" />
+                                <?php else: ?>
+                                    <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" />   
+                                <?php endif; ?>
+                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $users['User']['profile_photo_url']; ?>" alt="" />
+                            </div>
                             <div class=" twelve columns social-networks">
                                 <ul>
                                 <?php 

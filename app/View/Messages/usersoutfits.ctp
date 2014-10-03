@@ -179,10 +179,10 @@ $this->Html->css('colorbox', null, array('inline' => false));
 
                                     </div>
                                     
-                                    <div class="pagination useroutfit-pagination" id="useroutfit-pagination">
+                                    <!-- <div class="pagination useroutfit-pagination" id="useroutfit-pagination">
                                         <input type="hidden" id="pageNumber" value="<?php echo $page; ?>">
                                         <a href="" class="load-more">Load More</a>
-                                    </div> 
+                                    </div>  -->
                                 </div>
                             </div>
 
