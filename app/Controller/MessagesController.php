@@ -3510,7 +3510,7 @@ If interested, I would also be happy to meet with you in our New York City based
             exit;
         }
 
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylist_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
    
         $OrderItem = ClassRegistry::init('OrderItem');
         $Entity = ClassRegistry::init('Entity'); 
@@ -3569,7 +3569,7 @@ If interested, I would also be happy to meet with you in our New York City based
             exit;
         }
 
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylist_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
    
          $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity'); 
@@ -3618,7 +3618,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"];   
         $client_user = $User->getById($client_id);
         $clientid = $client_user['User']['id'];
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
         $Message = ClassRegistry::init('Message');
         if($user){
             $find_array =  array(
@@ -3688,7 +3688,7 @@ If interested, I would also be happy to meet with you in our New York City based
             exit;
         }
 
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
        
         if($this->request->is('post')){
             $data=$this->request->data;
@@ -3759,7 +3759,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
         $userprofile = $UserPreference->find('first',array('conditions'=>array('UserPreference.user_id'=>$clientid)));
 
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
         
 
         if($this->request->is('post') || $this->request->is('put')){
