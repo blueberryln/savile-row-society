@@ -162,12 +162,11 @@
 
 
 <?php //if($is_stylist): ?>
-<div class="content-container">
+<div class="content-container-header">
      <?php if($user) : ?>
     <div class="twelve columns black">
         <div class="eleven columns container">
-           
-            <div class="twelve columns container left pad-none">
+           <div class="twelve columns container left pad-none">
                 <div class="ten columns left admin-nav">
                     <ul>
                     <?php if ($is_stylist || $is_admin ) : ?>
@@ -216,4 +215,5 @@
     </div>
       <?php endif;?>   
     </div>
+</div>
 <?php //endif; ?>

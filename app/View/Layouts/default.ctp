@@ -359,7 +359,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     var homepagebanner = function () {
                     var overlay = $('.mega-banner-overlay'),
                         mbanner = $('.mega-banner'),
-                        overlay_height = overlay.height()+40,
+                        overlay_height = (!isLoggedIn()) ? (overlay.height()+40) : (overlay.height()+100),
                         mbanner_height = mbanner.height(),
                         top_offset = -(overlay_height)/2
                         $('.mega-banner-overlay').css({"margin-top":top_offset})
@@ -370,7 +370,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                     var homepagebanner = function () {
                     var overlay = $('.mega-banner-overlay'),
                         mbanner = $('.mega-banner'),
-                        overlay_height = overlay.height()+40,
+                        overlay_height = (!isLoggedIn()) ? (overlay.height()+40) : (overlay.height()+100),
                         mbanner_height = mbanner.height(),
                         top_offset = -(overlay_height)/2
                         $('.mega-banner-overlay').css({"margin-top":top_offset})
