@@ -408,12 +408,6 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 //                });
                 
                 $('ul#branding-ptners>li:nth-child(3n)').after('<div class="clear-fix"></div>');
-                $('ul#branding-ptners li').click(function(){
-                     $('.brand-details').slideDown('');
-                });
-                $('ul#branding-ptners li').dblclick(function(){
-                     $('.brand-details').slideUp('');
-                });
             
                 jQuery("#dd-nav-switcher").on("click", function(){  
                     jQuery(this).toggleClass("menu-anim");          

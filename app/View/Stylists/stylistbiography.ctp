@@ -24,7 +24,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <ul>
                         <?php foreach ($stylists as  $stylist): ?>
                             <li><a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $stylist['User']['id']; ?>">
-                                <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
+                                <div class="left stylistbio-list-img">
+                                <?php if($stylist['User']['profile_photo_url']): ?>
+                                    <img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
+                                <?php else: ?>
+                                    <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" /></div>    
+                                <?php endif; ?>
                                 <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
                             </li>
                             <?php endforeach; ?>
