@@ -79,20 +79,6 @@ class Entity extends AppModel {
             'finderQuery' => '',
             'counterQuery' => ''
         ),
-        
-        'Like' => array(
-            'className' => 'Like',
-            'foreignKey' => 'product_entity_id',
-            'dependent' => true,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        ),
         'OrderItem' => array(
             'className' => 'OrderItem',
             'foreignKey' => 'product_entity_id',

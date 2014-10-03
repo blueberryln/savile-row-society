@@ -245,40 +245,7 @@ class ApiController extends AppController {
                         $result = $CartGiftItem->save($data);     
                     }
                     
-                    
-                    
-                    $ret['count'] = $this->cartCount($cart_id);
-                    
-                    if($ret['count'] == 3){
-                        $user = $this->getLoggedUser();
-                        $cart_list = $CartItem->getByCartId($cart_id);
-    
-                        $entity_list = array();
-                        foreach($cart_list as $item){
-                            $entity_list[] = $item['CartItem']['product_entity_id'];
-                        }
-                        $entities = $Entity->getEntitiesById($entity_list, $user_id);
-            
-                        $cart_total = 0;
-                        foreach($cart_list as &$item){
-                            foreach($entities as $entity){
-                                if($entity['Entity']['id'] == $item['CartItem']['product_entity_id']){
-                                    $cart_total += $item['CartItem']['quantity'] * $entity['Entity']['price'];
-                                }
-                            }
-                        }
-                        
-                        $ret['cart_total'] = $cart_total;
-                        $ret['cart_message'] = "Dear " . ucwords($user['User']['first_name']) . ",<br>We would like to remind you that you currently have three items in your cart, totaling $" . number_format($cart_total, 2) . ".";
-                    }
-                    
-                    if($ret['status'] == "ok" && $ret['count'] != 3){
-                        $this->Session->write('add-cart', 1);   
-                    }
-                    else if($ret['status'] == "ok" && $ret['count'] == 3){
-                        $this->Session->write('cart-three-items', 1);    
-                        $this->Session->write('cart-three-items-msg', $ret['cart_message']);
-                    }
+                    $this->Session->setFlash(__('Item has been added to the cart.'), 'flash');
                     
                     echo json_encode($ret);
                    

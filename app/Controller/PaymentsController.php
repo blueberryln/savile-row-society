@@ -305,6 +305,7 @@ class PaymentsController extends AppController {
             if(!$error){
                 $transaction_result = $this->makePayment($transaction_data);
                 if($transaction_result['status']){
+
                     $Order = ClassRegistry::init('Order');
                     $ret = $Order->markPaid($order_id);
                     
@@ -564,12 +565,12 @@ class PaymentsController extends AppController {
         $order = $Order->find('first', $options);
         $order['Order']['confirmed'] = 1;
         if($Order->save($order)){
-            
+
             //Send confirmation email to the customer.
-            $Order->recursive = 3;
+            $Order->recursive = 2;
             $Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
-            $Order->User->unbindModel(array('belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
+            $Order->User->unbindModel(array('hasMany' => array('Post', 'Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $Order->primaryKey => $id));
             $shipped_order = $Order->find('first', $options);
 

@@ -79,21 +79,6 @@ class Category extends AppModel {
             'deleteQuery' => '',
             'insertQuery' => ''
         ),
-        'Post' => array(
-            'className' => 'Post',
-            'joinTable' => 'posts_categories',
-            'foreignKey' => 'category_id',
-            'associationForeignKey' => 'post_id',
-            'unique' => 'keepExisting',
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'finderQuery' => '',
-            'deleteQuery' => '',
-            'insertQuery' => ''
-        )
     );
 
     /**

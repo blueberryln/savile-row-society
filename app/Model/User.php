@@ -117,20 +117,6 @@ class User extends AppModel {
         )
     );
     
-    /**
-     * belongsTo associations
-     *
-     * @var array
-     */
-    public $belongsTo = array(
-        'UserType' => array(
-            'className' => 'UserType',
-            'foreignKey' => 'user_type_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        )
-    );
 
     /**
      * hasMany associations
@@ -138,19 +124,6 @@ class User extends AppModel {
      * @var array
      */
     public $hasMany = array(
-        'Comment' => array(
-            'className' => 'Comment',
-            'foreignKey' => 'user_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        ),
         'Post' => array(
             'className' => 'Post',
             'foreignKey' => 'user_id',
