@@ -240,7 +240,14 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
                                 '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" alt="" /></li>';  
                 }
 
-                    html = html +  '</ul>' +
+                    html = html +  
+                                    '<a id="quickoutfit" href="/messages/outfitdetails/' + chatMsg['Message']['outfit_id'] + '">' + 
+                                        '<span class="outfit-quick-view-icons">' +
+                                            '<img alt="" src="/images/search-icon.png">' +
+                                        '</span>' + 
+                                        'Outfit Quick View'
+                                    '</a>' + 
+                                    '</ul>' +
                                     '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
                                     '</div>';
             }
