@@ -31,7 +31,7 @@ $(document).ready(function(){
                                         <div class="twelve columns purchase-container left">
                                             <div class="eleven columns container purchase-area pad-none">
                                                 <div class="twelve columns left purchase-dtls">
-                                                   <div id="scrollbar2">
+                                                   <div id="scrollbar3">
                                                         <div class="scrollbar">
                                                             <div class="track">
                                                                 <div class="thumb">
