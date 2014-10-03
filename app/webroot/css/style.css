@@ -963,15 +963,16 @@ h1.stylistbio-heading { position: relative; font-size: 28px; color: #d19b03; mar
 .photostream-section, h1.stylistbio-heading.photostream { padding-left: 18px;}
 h1.top-outits-heading { border-bottom: 1px solid #ebebeb;}
 .photostream-section { padding-bottom: 10px;}
-.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 140px; line-height: 140px; }
-.photostream-section li img { width: 100%; margin-bottom: -2px; vertical-align: middle;}
+.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 140px; line-height: 140px; text-align: center;}
+.photostream-section li img { max-height: 140px; vertical-align: middle;}
 
-a.jp-previous, a.jp-next { position: absolute; right: 17px; font-size: 18px; bottom: 70px; text-transform: uppercase; text-align: right; text-indent: -9999px; cursor: pointer;}
+a.jp-previous, a.jp-next { position: absolute; right: 17px; font-size: 18px; bottom: -15px; text-transform: uppercase; text-align: right; text-indent: -9999px; cursor: pointer;}
 a.jp-previous.jp-disabled{ display: none;}
 a.jp-previous {    left: 0px; text-align: left; margin-right: 0px; /*display: none;*/}
 
 a.link-older-photos, a.link-newer-photos { margin-right: 25px; font-size: 18px; text-transform: uppercase; text-align: right;}
 .holder { position: relative; width: 98%; float: left; margin-top: 9px; z-index: 5;}
+.holder.edit-biogrpy a.jp-previous, .holder.edit-biogrpy a.jp-next {bottom: 60px;}
 a.link-newer-photos { text-align: left; margin-right: 0px; margin-left: 25px;}
 a.jp-previous { background: url("../images/newer-photos-bnt.png") no-repeat 0px 0px; width: 138px; height: 18px; left: 10px;}
 a.jp-next { background: url("../images/older-photos-btn.png") no-repeat 0px 0px; width: 133px; height: 18px; text-indent: -99999px; color: transparent;}

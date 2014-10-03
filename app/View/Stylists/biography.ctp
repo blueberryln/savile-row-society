@@ -521,7 +521,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     
                                     <!-- file upload-->
 
-                                        <div class="holder"></div>
+                                        <div class="holder edit-biogrpy"></div>
                                     </div>
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
