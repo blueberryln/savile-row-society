@@ -70,14 +70,21 @@ var brandsInfo = ' . json_encode($brands_info) . ';
 $(document).ready(function(){    
     
     $("ul#branding-ptners li").click(function(){
+
         var brandImage = $(this).find("img");
         var brandName = brandImage.data("name");
         var brandDesc = brandsInfo[brandName]["desc"];
         var brandTitle = brandsInfo[brandName]["title"];
         var brandID = brandsInfo[brandName]["id"];
-        $("div.brand-details h4 span").html(brandTitle);
-        $("div.brand-details p").html(brandDesc);
-        
+
+        if($(".brand-details").css("display") == "block" && $(".brand-details h4 span").attr("data-brand_name") == brandName){
+            $(".brand-details").slideUp(200);   
+        }
+        else{
+            $("div.brand-details h4 span").html(brandTitle).attr({"data-brand_name": brandName});
+            $("div.brand-details p").html(brandDesc);
+            $(".brand-details").slideDown(200);
+        }
     });
 });
 ';
