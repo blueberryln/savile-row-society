@@ -309,7 +309,7 @@ $img = $this->webroot . "img/image_not_available-small.png";
 
 <div class="product-dtl-links left">
 
-<a href="" class="link-btn gold-btn add-to-cart product-add-cart text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
+<a href="" class="gold-btn add-to-cart product-add-cart text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
 <input type="">
 
 <a class="product-my-likes"href="#" id="likes" data-product_id="<?php echo $entity['Entity']['id']; ?>"><?php echo ($entity['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
