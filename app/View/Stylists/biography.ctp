@@ -18,7 +18,7 @@ $(document).ready(function(){
         
         var id = $("#id").val();
         var Bio = $("#StylebioStylistBio").val();
-        //alert(Bio);
+        alert(Bio);
         var BioId = '<?php echo $stylistBioId; ?>';
         var stylist_id = '<?php echo $stylistid; ?>';
         $.ajax({
@@ -27,14 +27,9 @@ $(document).ready(function(){
             data: {stylist_bio:Bio,id:id,BioId:BioId,stylist_id:stylist_id},
             cache: false,
             success: function(result){
-                 data = $.parseJSON(result);
-                html = '';
-                $.each(data, function(index){
-                     html = html + '<p>'+ this.StylistBio.stylist_bio +'</p>'
-                
-                });
-                 $(".user-desc").text(html);    
-                }
+                 //var data = $.parseJSON(result);
+                 $(".user-desc").html(Bio);    
+            }
                 
             
         });
@@ -56,14 +51,9 @@ $(document).ready(function(){
             data: {stylist_inspiration:inspiration,id:id,BioId:BioId,stylist_id:stylist_id},
             cache: false,
             success: function(result){
-                 data = $.parseJSON(result);
-                html = '';
-                $.each(data, function(index){
-                    html = html + this.StylistBio.stylist_inspiration;
-                    
-                });
-                 $(".user-inspire-desc").text(html);    
-                }
+                
+                 $(".user-inspire-desc").text(inspiration);    
+            }
                 
             
         });
@@ -85,14 +75,9 @@ $(document).ready(function(){
             data: {hometown:hometown,id:id,BioId:BioId,stylist_id:stylist_id},
             cache: false,
             success: function(result){
-                 data = $.parseJSON(result);
-                html = '';
-                $.each(data, function(index){
-                    html = html + this.StylistBio.hometown;
-                    
-                });
-                 $("span#texthometown").text(html);    
-                }
+                 
+                 $("span#texthometown").text(hometown);    
+            }
                 
             
         });
@@ -114,14 +99,9 @@ $(document).ready(function(){
             data: {funfact:funfact,id:id,BioId:BioId,stylist_id:stylist_id},
             cache: false,
             success: function(result){
-                 data = $.parseJSON(result);
-                html = '';
-                $.each(data, function(index){
-                    html = html + this.StylistBio.funfact;
-                    
-                });
-                 $("span#textfunfact").text(html);    
-                }
+                 
+                 $("span#textfunfact").text(funfact);    
+            }
                 
             
         });
@@ -141,14 +121,8 @@ $(document).ready(function(){
             data: {fashion_tip:fashion_tip,id:id,BioId:BioId,stylist_id:stylist_id},
             cache: false,
             success: function(result){
-                data = $.parseJSON(result);
-                html = '';
-                $.each(data, function(index){
-                    html = html + this.StylistBio.fashion_tip;
-                    
-                });
-                 $("span#textfashiontip").text(html);    
-                }
+                 $("span#textfashiontip").text(fashion_tip);    
+            }
                 
             
         });
@@ -188,15 +162,18 @@ $(document).ready(function(){
     $(document).on('click', "#submit_outfit1", function(e){
         e.preventDefault();
         var outfit = $("#outfit").val();
+        if(outfit == ""){
+            return false;
+        }
         var stylist_id = '<?php echo $stylistid; ?>';
         var order_id =  '1';
-         //alert(outfit);
             $.ajax({
                 type: "POST",
                 url: "<?php echo $this->webroot; ?>stylists/saveOutfitFirst/<?php echo $stylistid; ?>",
                 data: {order_id:order_id,outfit_id:outfit},
                 cache: false,
                 success: function(data){
+                    location.reload();
                     data = $.parseJSON(data);
                     html = '';
 
@@ -241,6 +218,9 @@ $(document).ready(function(){
     $(document).on('click', "#submit_outfit2", function(e){
         e.preventDefault();
         var outfit2 = $("#outfit2").val();
+        if(outfit2 == ""){
+            return false;
+        }
         var order_id = '2';
         //alert(outfit);
         var stylist_id = '<?php echo $stylistid; ?>';
@@ -251,6 +231,7 @@ $(document).ready(function(){
                 data: {order_id:order_id,outfit_id:outfit2},
                 cache: false,
                 success: function(data){
+                    location.reload();
                     data = $.parseJSON(data);
                     html = '';
 
@@ -295,6 +276,9 @@ $(document).ready(function(){
     $(document).on('click', "#submit_outfit3", function(e){
         e.preventDefault();
         var outfit3 = $("#outfit3").val();
+        if(outfit3 == ""){
+            return false;
+        }
         var stylist_id = '<?php echo $stylistid; ?>';
         var order_id = '3';
             $.ajax({
@@ -303,6 +287,7 @@ $(document).ready(function(){
                 data: {order_id:order_id,outfit_id:outfit3},
                 cache: false,
                 success: function(data){
+                    location.reload();
                     data = $.parseJSON(data);
                     html = '';
 
@@ -350,46 +335,21 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 <div>
     <div class="eleven columns container content inner stylistbio">
         <div class="twelve columns container stylistbio-section left">
-            <a class="open-left-pannel" href="#" title=""><img src="<?php echo $this->webroot; ?>images/arrow-next.png" alt="" /></a>
-            <div class="stylistbio-section-left text-center">
-                <div class=" twelve columns stylistbion-arrow">
-                    <img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" />
-                    <img class="back-for-mobile" src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" />
-                </div>
-                <div class="twelve columns">
-                    <div class="eleven columns container stylistbio-short-note">
-                        <div class="short-note">Learn more about all the Savile Row Stylists by clicking through our list of current stylists. </div>
-                    </div>
-                </div>
-                 <div class="twelve columns">
-                    <div class="eleven columns container stylistbio-list">
-                        <h3>SRS Stylist List</h3>
-                        <div id="scrollbar1">
-                            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-            <div class="viewport">
-                 <div class="overview">
-                        <ul>
-                        <?php foreach ($stylists as  $stylist): ?>
-                            <li><a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $stylist['User']['id']; ?>">
-                            <div class="left stylistbio-list-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
-                                <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
-                            </li>
-                            <?php endforeach; ?>
-                            
-                        </ul>
-                     </div>
-                </div>
-                            </div>
-                       
-                    </div>
-                </div>
-                
-            </div>
+            
+            <?php echo $this->element('clientAside/userFilterBar'); ?>
+
             <div class="stylistbio-section-right">
                 <div class="eleven columns container">
                     <div class="twelve columns">
                         <div class="stylistbio-profile left text-center">
-                            <div class="profile-img"><img src="<?php echo $this->webroot; ?>images/stylistbio/profile-img.jpg" width='277' height='' alt="" /></div>
+                            <div class="profile-img">
+                                <?php if($user['User']['profile_photo_url']): ?>
+                                    <img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url']; ?>" height='' alt="" />
+                                <?php else: ?>
+                                    <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" />
+                                <?php endif; ?>
+                                
+                            </div>
                             <div class=" twelve columns social-networks">
                                 <ul>
                                 <?php //$social = json_decode($find_array[0]['StylistBio']['stylist_social_link'],true); ?>
@@ -406,11 +366,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             <label><?php echo $user['User']['first_name']; ?>’s Bio</label>
                                             <div class="edit-content">
                                                 <textarea name="data[StyleBio][stylist_bio]"  rows="10" cols="30"  id="StylebioStylistBio">
-                                                <?php if($StylistBioData): 
-                                                    echo $StylistBioData[0]['StylistBio']['stylist_bio'];
-                                                    else:
-                                                    endif;
-                                                ?>
+                                                <?php echo ($StylistBioData && $StylistBioData[0]['StylistBio']) ? $StylistBioData[0]['StylistBio']['stylist_bio'] : "" ?>
                                                 </textarea>
                                             </div>
                                             <p class="actions">
@@ -420,12 +376,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         </form>
                                 </div>
                             <div class="user-desc">
-                                <?php if($StylistBioData): 
-                                    echo $StylistBioData[0]['StylistBio']['stylist_bio'];
-                                    else:
-                                    endif;
-                                ?>
+                                <?php echo ($StylistBioData && $StylistBioData[0]['StylistBio']) ? $StylistBioData[0]['StylistBio']['stylist_bio'] : "" ?>
                             </div>
+
                             <div class="stylist-insp">
                                 <h1 class="stylistbio-heading"><?php echo $user['User']['first_name']; ?>’s Inspiration<span class="edit-section edit-section-stylist-insp"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span></h1>
                                 <form class="stylist-insp-edit" method="post" action="" name="edithometown">
@@ -457,7 +410,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div class="stylistbio-details right">
                             <div class="twelve columns left">
                                 <div class="stylistbio-user"><?php echo $user['User']['first_name'].'&nbsp;'.$user['User']['last_name']; ?> | Stylist</div>
-                                <div class="start-today"><a href="javascript:;">get started with <?php echo $user['User']['first_name']; ?> Today!</a></div>
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
@@ -469,9 +421,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             <label>Your Home Town</label>
                                             <div class="edit-content">
                                             <?php if($StylistBioData): ?>
-                                            <input type="text" id="hometown" value="<?php echo $StylistBioData[0]['StylistBio']['hometown']; ?>">
+                                            <input type="text" id="hometown" value="<?php echo $StylistBioData[0]['StylistBio']['hometown']; ?>" placeholder="Enter your Fun Fact">
                                             <?php else: ?>
-                                             <input type="text" id="hometown" value="Enter your Fun Fact">   
+                                             <input type="text" id="hometown" placeholder="Enter your Fun Fact">   
                                             <?php endif; ?>
                                        
                                             </div>
@@ -490,9 +442,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             <label>Your Fun Fact</label>
                                             <div class="edit-content">
                                             <?php if($StylistBioData): ?>
-                                                <input type="text" id="funfact" value="<?php echo $StylistBioData[0]['StylistBio']['funfact']; ?>">
+                                                <input type="text" id="funfact" value="<?php echo $StylistBioData[0]['StylistBio']['funfact']; ?>" placeholder="Enter Your Fun Fact">
                                             <?php else: ?>
-                                                <input type="text" id="funfact" value="Enter Your Fun Fact">   
+                                                <input type="text" id="funfact" placeholder="Enter Your Fun Fact">   
                                             <?php endif; ?>
                                             </div>
                                             <p class="actions">
@@ -510,9 +462,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             <label>Your Fashion Tip</label>
                                             <div class="edit-content">
                                             <?php if($StylistBioData): ?>
-                                                <input type="text" id="fashion_tip" value="<?php echo $StylistBioData[0]['StylistBio']['fashion_tip']; ?>">
+                                                <input type="text" id="fashion_tip" value="<?php echo $StylistBioData[0]['StylistBio']['fashion_tip']; ?>" placeholder="Enter Your Fun Fact">
                                             <?php else: ?>
-                                                <input type="text" id="fashion_tip" value="Enter Your Fun Fact">   
+                                                <input type="text" id="fashion_tip" placeholder="Enter Your Fun Fact">   
                                             <?php endif; ?>
 
                                             </div>
@@ -582,9 +534,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 <div class="edit-content">
                                                     <span class="edit-content-icon"></span>
                                                     <select id="outfit">
-                                                    <option>Pleasa Select Outfit</option>
+                                                    <option value="">Pleasa Select Outfit</option>
                                                     <?php foreach($outfits as  $outfit): ?>
-                                                    <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name'] ?></option>
+                                                        <?php if($outfit['Outfit']['outfit_name'] != ""): ?>
+                                                            <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name']; ?></option>
+                                                        <?php endif; ?>
                                                     <?php endforeach; ?>
                                                     </select>
                                                     
@@ -632,9 +586,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 <div class="edit-content">
                                                     <span class="edit-content-icon"></span>
                                                     <select id="outfit2">
-                                                    <option>Pleasa Select Outfit</option>
+                                                    <option value="">Pleasa Select Outfit</option>
                                                     <?php foreach($outfits as  $outfit): ?>
-                                                    <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name'] ?></option>
+                                                        <?php if($outfit['Outfit']['outfit_name'] != ""): ?>
+                                                            <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name']; ?></option>
+                                                        <?php endif; ?>
                                                     <?php endforeach; ?>
                                                     </select>
                                                     
@@ -679,9 +635,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 <div class="edit-content">
                                                     <span class="edit-content-icon"></span>
                                                     <select id="outfit3">
-                                                    <option>Pleasa Select Outfit</option>
+                                                    <option value="">Pleasa Select Outfit</option>
                                                     <?php foreach($outfits as  $outfit): ?>
-                                                    <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name'] ?></option>
+                                                        <?php if($outfit['Outfit']['outfit_name'] != ""): ?>
+                                                            <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name']; ?></option>
+                                                        <?php endif; ?>
                                                     <?php endforeach; ?>
                                                     </select>
                                                     
@@ -725,8 +683,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </div>
                             </div>
                             <div class="twelve columns left bottom-section">
-                                <div class="stylistbio-user">Like <?php echo $user['User']['first_name']; ?>’s Style?</div>
-                                <div class="start-today"><a href="javascript:;">get started with <?php echo $user['User']['first_name']; ?> Today!</a></div>
                             </div>
                         </div>
                     </div>

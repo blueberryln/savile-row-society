@@ -12,18 +12,23 @@ class StylistsController extends AppController {
 
     public function biography($id = null) {
         $this->isLogged();
+
         $User = ClassRegistry::init('User');
         $Outfit = ClassRegistry::init('Outfit');
         if (!$User->exists($id)) {
-                throw new NotFoundException(__('Invalid user'));
-            }
+            throw new NotFoundException(__('Invalid user'));
+        }
         
         $user = $User->findById($id);
         $current_user = $this->getLoggedUser();
-        if($id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+        
+        if($current_user['User']['id'] != $id || !$current_user['User']['is_stylist']){
             $this->redirect('/');
             exit;
         }
+
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$id),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+
         $stylists = $User->find('all',array('conditions'=>array('User.is_stylist'=>true)));
         $outfits = $Outfit->find('all',array('conditions'=>array('Outfit.stylist_id'=>$id,),'fields'=>'Outfit.outfit_name,Outfit.id'));
         $StylistBio = ClassRegistry::init('StylistBio');
@@ -33,7 +38,7 @@ class StylistsController extends AppController {
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $Entity = ClassRegistry::init('Entity');
 
-        $StylistBioData = $StylistBio->find('all',array('conditions'=>array('StylistBio.stylist_id'=>$id,)));
+        $StylistBioData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$id,)));
 
 
         $StylistPhotostream = ClassRegistry::init('StylistPhotostream');
@@ -86,9 +91,8 @@ class StylistsController extends AppController {
             }
         
 
-        $this->set(compact('StylistBioData','stylistphoto','outfits','my_outfit','stylistoutfit','user','stylists','photostreampicsstylist'));
+        $this->set(compact('StylistBioData','stylistphoto','outfits','my_outfit','stylistoutfit','user','stylists','photostreampicsstylist', 'userlists'));
        
-       //exit;
     }
 
     public function saveBiography($stylistId = null){
@@ -285,21 +289,17 @@ class StylistsController extends AppController {
                 }
 
                 if($StylistPhotostream->save($this->request->data)){
-                    $this->Session->setFlash("StylistPhotostream Data Hasbeen Saved");
-
-                    if(isset($is_profile) == 'on'){
+                    if(isset($is_profile)){
                         $User = ClassRegistry::init('User');
                         $user = $User->findById($stylistId);
                         $this->request->data['User']['profile_photo_url'] =  $imagename;
                         $this->request->data['User']['id'] = $stylistId;
-                        $User->save($this->request->data);
-                        
-                    }else{
-                        $this->Session->setFlash('The User Photo could not be saved. Please, try again.');
+                        $User->save($this->request->data);   
                     }
+                    $this->Session->setFlash('The photo has been saved to the photostream.', 'flash');
                     $this->redirect(array('action' => '/biography/'.$stylistId));    
                 }else{
-                    $this->Session->setFlash('The StylistPhotostream could not be saved. Please, try again.');
+                    $this->Session->setFlash('The StylistPhotostream could not be saved. Please, try again.', 'flash');
                 }
 
 
@@ -576,7 +576,10 @@ class StylistsController extends AppController {
                 $image_type = $this->request->data['StylistPhotostream']['image']['type'];
                 $image_size = $this->request->data['StylistPhotostream']['image']['size'];
                 $img_path = APP . 'webroot' . DS . 'files' . DS . 'photostream' . DS . $imagename;
+                $profile_path = APP . 'webroot' . DS . 'files' . DS . 'users' . DS . $imagename;
                 move_uploaded_file($this->request->data['StylistPhotostream']['image']['tmp_name'], $img_path);
+                copy($img_path, $profile_path);
+                
                 return $imagename;
             //print_r($imagename);
             }

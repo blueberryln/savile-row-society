@@ -502,18 +502,23 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             
             $('.home-edit-section').click(function(){
                 $('.home-edit').fadeIn();
+                $("#hometown").focus();
             });
             $('.fun-edit-section').click(function(){
                 $('.fun-edit').fadeIn();
+                $("#funfact").focus();
             });
             $('.tip-edit-section').click(function(){
                 $('.tip-edit').fadeIn();
+                $("#fashion_tip").focus();
             });
             $('.edit-section-stylistbio-heading').click(function(){
                 $('.stylistbio-heading-edit').fadeIn();
+                $("#StylebioStylistBio").focus();
             });
             $('.edit-section-stylist-insp').click(function(){
                 $('.stylist-insp-edit').fadeIn();
+                $("#inspiration").focus();
             });
             
             $('.beachday-content-update1').click(function(){
