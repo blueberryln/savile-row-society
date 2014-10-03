@@ -214,7 +214,7 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
                 
                 html = html +   '<div class="client-outfit">'+
                                     '<div class="client-msg-reply"><span>Beach Day</span></div>' + 
-                                        '<ul>';
+                                        '<ul class="client-outfit-img-lst">';
                 ;
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
                     var imgSrc = webroot + "img/image_not_available-small.png";
@@ -241,13 +241,14 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
                 }
 
                     html = html +  
-                                    '<a id="quickoutfit" href="/messages/outfitdetails/' + chatMsg['Message']['outfit_id'] + '">' + 
+                                    '<a id="quickoutfit" class="outfit-quick-view" href="/messages/outfitdetails/' + chatMsg['Message']['outfit_id'] + '">' + 
                                         '<span class="outfit-quick-view-icons">' +
                                             '<img alt="" src="/images/search-icon.png">' +
                                         '</span>' + 
                                         'Outfit Quick View'
                                     '</a>' + 
                                     '</ul>' +
+                                        
                                     '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
                                     '</div>';
             }

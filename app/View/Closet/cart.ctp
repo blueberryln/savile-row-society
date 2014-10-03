@@ -163,7 +163,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 <a href="" class="link-btn black-btn update-quantity">UPDATE QUANTITY</a>
                                 <a href="<?php echo $this->webroot; ?>checkout" class="link-btn gold-btn checkout">CHECKOUT</a>
                             <?php else : ?>
-                                <a href="<?php echo $this->webroot; ?>closet" class="link-btn black-btn continue-shopping">CONTINUE SHOPPING</a>
+                                <a href="<?php echo $this->webroot; ?>messages/index" class="link-btn black-btn continue-shopping">CONTINUE SHOPPING</a>
                             <?php endif; ?>
                         </div>
                         <div class="clear"></div> <br />

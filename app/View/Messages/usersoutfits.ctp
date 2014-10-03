@@ -171,7 +171,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         <?php 
                                         }
                                         }else{
-                                            echo "<h1>There are no outfits to display. Contact your stylist to get started..</h1>";
+                                            echo "<h1>There are no outfits to display. Contact your stylist to get started...</h1>";
                                         }
                                         ?>
                                         

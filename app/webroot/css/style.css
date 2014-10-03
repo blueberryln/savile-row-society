@@ -1025,8 +1025,8 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .msg-date, .message-date { font-size: 11px; color: #fff; text-align: right; font-style: italic;}
 .client-msg .msg-date, .client-outfit .msg-date, .message-image-area .message-date { color: #7f7f7f;}
 .client-msg-reply, .message-image-area .message-caption { color: #948954;}
-.client-msg, .client-outfit, .message-image-area { float: right; background: #ffffff;}
-.client-outfit ul { margin: 0; padding:0px; width: 100%; margin:  0 auto;}
+.client-msg, .client-outfit, .message-image-area { float: right; background: #ffffff; position: relative;}
+.client-outfit ul { margin: 0; padding:0px; width: 100%; margin:  0 auto; position: relative;}
 .client-outfit ul li { width: 19%; display:inline-block; height: 150px; line-height: 150px; text-align: center; margin: 0 1px;}
 .client-outfit ul li img { width: 90%; vertical-align: middle;}
 .client-outfit li{ width: 19%; display: inline-block; margin: 0;}
@@ -1170,8 +1170,8 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .client-prof .connect { margin-top: 0; margin-bottom: 10px;}
 .client-profile h1 { font-family: 'Proximanova'; font-size: 24px; line-height: 26px; color: #444444; text-transform: uppercase; padding: 18px 0 22px; margin-bottom: 0px;}
 .client-address h1 { padding-bottom: 5px;}
-.additional-comment { background: #fff; border: 2px solid #cccccc; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; font-size: 16px; line-height: 18px; color: #90908e; margin-bottom: 40px;}
-.additional-comment-text { padding-top:10px; padding-bottom: 8px;}
+.additional-comment { background: #fff;  margin-bottom: 40px; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
+.additional-comment textarea {border: 2px solid #cccccc; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; font-size: 16px; line-height: 18px; color: #90908e; min-height: 80px;}
 .additional-comment p { margin-bottom: 0px;}
 .additional-comment h4 { font-size: 16px; line-height: 18px; font-weight: normal; color: #bababb; margin: 0px; padding: 0px;}
 .address-dtls { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; line-height: 22px;}
@@ -1315,9 +1315,11 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 .myclient-list li a .myclient-dtl span.myclient-name {font-weight: bold; padding-bottom: 3px;}
 .client-outfits-img ul { position: relative; width: 100%; display: inline-block; text-align: center; margin: 0px; }
 .outfit-quick-view { position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; width: 150px; height: 60px; line-height: 60px; padding: 0 20px 0 78px; background: rgba(255, 255, 255, 0.57); display: none; margin: auto; cursor: pointer;}
-.client-outfits-img:hover .outfit-quick-view { display: block;}
+.client-outfits-img:hover .outfit-quick-view, .client-outfit ul:hover .outfit-quick-view{ display: block;}
 .outfit-quick-view span.outfit-quick-view-icons { position: absolute; top: 10px; left: 30px; width: 40px; height: 40xp;}
 .outfit-quick-view span.outfit-quick-view-icons img {width: 100%;}
+ul.client-outfit-img-lst {position: relative; display: inline-block; width: 100%;}
+ul.client-outfit-img-lst:hover .outfit-quick-view{ display: block!important;}
 /*
 .dashboard-container { margin-left: 0px;}
 .dashboard-area {width: 100%;}

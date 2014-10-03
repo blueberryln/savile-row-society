@@ -64,7 +64,7 @@ $(document).ready(function(){
                                                                <?php
                                                                 endforeach;
                                                             else:
-                                                                echo "<h1>There are no liked items to display. Contact your stylist to get started..</h1>";
+                                                                echo "<h1>There are no liked items to display.</h1>";
                                                             endif; 
                                                             ?>
                                                        

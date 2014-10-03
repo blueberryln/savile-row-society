@@ -92,10 +92,10 @@
                                                 <div class="five columns pref-time client-prof left">
                                                     <div class="pref-options">
                                                         <div class="input tel">
-                                                            <input name="data[User][phone]" id="phone" value="<?php echo $user['User']['phone']; ?>" type="tel">
+                                                            <input name="data[User][phone]" id="phone" value="<?php echo $user['User']['phone']; ?>" type="tel" placeholder="Phone number">
                                                         </div>
                                                         <div class="input text skype">
-                                                            <input name="data[User][skype]" id="skype" value="<?php echo $user['User']['skype']; ?>" type="text" >
+                                                            <input name="data[User][skype]" id="skype" value="<?php echo $user['User']['skype']; ?>" type="text" placeholder="Skype ID">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -107,29 +107,28 @@
                                                                 <input type="checkbox" id="squared"  <?php if($user['User']['is_phone']==true){ ?> checked <?php }else{} ?> name="data[User][is_phone]">
                                                                 <label for="squared"></label>
                                                             </div>
-                                                            <label>I 'd like to connected on the phone :</label>
+                                                            <label>I'd like to be connected on the phone:</label>
                                                         </div>
                                                         <div class="connect">
                                                             <div class="squared">
                                                                 <input type="checkbox"  id="squared_1" <?php if($user['User']['is_skype']==true){ ?> checked <?php }else{} ?>  name="data[User][is_skype]">
                                                                 <label for="squared_1"></label>
                                                             </div>
-                                                            <label>I 'd like to connected through Skype :</label>
+                                                            <label>I'd like to be connected through Skype:</label>
                                                         </div>
                                                         <div class="connect">
                                                              <div class="squared">
                                                                 <input type="checkbox"   <?php if($user['User']['is_srs_msg']==true){ ?> checked <?php }else{} ?> id="squared_2" name="data[User][is_srs_msg]">
                                                                 <label for="squared_2"></label>
                                                             </div>
-                                                            <label>I’d prefer to be contacted through SRS Messaging  System :</label>
+                                                            <label>I'd prefer to be contacted through the SRS Messaging System:</label>
                                                         </div>
                                 
                                                     </div>
                                                 </div>
                                                 <div class="ten columns left additional-comment pad-none">
-                                                    <div class="eleven columns container additional-comment-text pad-none">
-                                                        <h4>Additional comments.</h4>
-                                                         <textarea name="data[User][comments]" id="comments"><?php echo $user['User']['comments']; ?></textarea>
+                                                    <div class="twelve columns container additional-comment-text pad-none">
+                                                        <textarea name="data[User][comments]" id="comments" placeholder="Additional comments."><?php echo $user['User']['comments']; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
