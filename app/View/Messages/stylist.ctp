@@ -39,7 +39,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                         </p>
                                         <br />
                                         
-                                         <div class="chat-container">
+                                        <div class="chat-container">
                     
                                         </div>
                                     

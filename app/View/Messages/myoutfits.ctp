@@ -586,7 +586,7 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                                     <select id="selectfilter">
                                                                     <option value="">Filter Clients</option>
                                                                     <?php foreach($userlist as $clientout): ?>
-                                                                    <option value="<?php echo $this->webroot; ?>messages/stylistcreateoutfits/<?php echo $clientout['User']['id']; ?>"><?php echo $clientout['User']['first_name'].'&nbsp;'.$clientout['User']['last_name']; ?></option>
+                                                                    <option value="<?php echo $this->webroot; ?>outfits/create/<?php echo $clientout['User']['id']; ?>"><?php echo $clientout['User']['first_name'].'&nbsp;'.$clientout['User']['last_name']; ?></option>
                                                                      <?php endforeach; ?>
                                                                     
                                                                 </select>
@@ -608,7 +608,7 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                             //$userlist = $searchforoutfit;
                                                              foreach($userlist as $usersearchforoutfit):?>
                                                                 <li>
-                                                                    <a href="<?php echo $this->webroot; ?>messages/stylistcreateoutfits/<?php echo $usersearchforoutfit['User']['id']; ?>" title="">
+                                                                    <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="">
                                                                         <div class="myclient-img">
                                                                             <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
                                                                         </div>

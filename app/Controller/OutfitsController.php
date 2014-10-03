@@ -308,130 +308,190 @@ class OutfitsController extends AppController {
         $user_id = $this->getLoggedUserID();
         if($user_id){
             $Entity = ClassRegistry::init('Entity');
-            $outfit_array = array();
+            $Post = ClassRegistry::init('Post');
+            $User = ClassRegistry::init('User');
+
             $client_id = $this->request->data['user_id'];
-            //bhashit code
-            $posts = ClassRegistry::init('Post');
-            $this->request->data['Post']['user_id'] = $client_id;
-            $this->request->data['Post']['stylist_id'] = $user_id;
-            $this->request->data['Post']['is_outfit'] = '1';
-            $posts->save($this->request->data);
-            $post_id = $posts->getLastInsertID();
-            //bhashit code
+            $client = $User->findById($client_id);
+            $stylist_id = $this->request->data['stylist_id'];
 
-            if($this->request->data['outfit1'] != "" && $Entity->exists($this->request->data['outfit1'])) {
-                $outfit_array[] = $this->request->data['outfit1'];    
+            if($user_id != $stylist_id){
+                $ret['status'] = "error";
+                $ret['message'] = "Invalid Stylist";
+                echo json_encode($ret);
+                exit;   
             }
-            if($this->request->data['outfit2'] != "" && $Entity->exists($this->request->data['outfit2'])) {
-                $outfit_array[] = $this->request->data['outfit2'];    
+            else if(!$client){
+                $ret['status'] = "error";
+                $ret['message'] = "Invalid User";
+                echo json_encode($ret);
+                exit;      
             }
-            if($this->request->data['outfit3'] != "" && $Entity->exists($this->request->data['outfit3'])) {
-                $outfit_array[] = $this->request->data['outfit3'];    
+            else if($client['User']['stylist_id'] != $stylist_id){
+                $ret['status'] = "error";
+                $ret['message'] = "Invalid Stylist";
+                echo json_encode($ret);
+                exit;  
             }
-            if($this->request->data['outfit4'] != "" && $Entity->exists($this->request->data['outfit4'])) {
-                $outfit_array[] = $this->request->data['outfit4'];    
-            }
-            if($this->request->data['outfit5'] != "" && $Entity->exists($this->request->data['outfit5'])) {
-                $outfit_array[] = $this->request->data['outfit5'];    
-            }
-            $data['Outfit']['user_id'] = $client_id;
-            $data['Outfit']['stylist_id'] = $user_id;
-            //bhashit code
-            $data['Outfit']['post_id'] = $post_id;
-            //bhashit code
 
-            //bhashit code start
-            
-            $out_name = $this->request->data['out_name'];
-            $data['Outfit']['outfitname'] = $out_name;
-            $outsize_array = array();
-            
-            if($this->request->data['outsize1'] !=""){
-                $outsize_array[] = $this->request->data['outsize1'];
-            }
-            if($this->request->data['outsize2'] !=""){
-                $outsize_array[] = $this->request->data['outsize2'];
-            }
-            if($this->request->data['outsize3'] !=""){
-                $outsize_array[] = $this->request->data['outsize3'];
-            }
-            if($this->request->data['outsize4'] !=""){
-                $outsize_array[] = $this->request->data['outsize4'];
-            }
-            if($this->request->data['outsize5'] !=""){
-                $outsize_array[] = $this->request->data['outsize5'];
-            }
-            $outsize_array = array_unique($outsize_array);
-            //bhashit code end 
+            $outfit_items = $this->request->data['outfit_items'];
 
-            $outfit_array = array_unique($outfit_array);
-            
-            if(count($outfit_array) >= 1){
-                $Outfit = ClassRegistry::init('Outfit');
-                $OutfitItem = ClassRegistry::init('OutfitItem');
-                $Useroutfit = ClassRegistry::init('Useroutfit');
-                //bhashit code start
-                //$data['Outfit']['typeoutfit'] = $typeoutfit;
-                $data['Outfit']['outfitname'] = $out_name;
-
-
-                //bhashit code end
-                
-                $Outfit->create();
-                if($result = $Outfit->save($data)){
-                    $outfit_id = $result['Outfit']['id'];
-                    $data['OutfitItem']['outfit_id'] = $outfit_id;
-                    $data['Useroutfit']['user_id'] = $client_id;
-                    $data['Useroutfit']['stylist_id'] = $user_id;
-                    $data['Useroutfit']['outfit_id'] = $outfit_id;
-                    //bhashit code
-                    $data['Useroutfit']['post_id'] = $post_id;
-                    //bhashit code
-                    $Useroutfit->create();  
-                    
-                    foreach($outfit_array as $key => $value)
-                    {
-                        $data['OutfitItem']['product_entity_id'] = $value;
-                        //bhashit code
-                        $data['OutfitItem']['post_id'] = $post_id;
-                        //bhashit code
-                        if(isset($outsize_array[$key])){
-                            $data['OutfitItem']['size_id'] = $outsize_array[$key];
-                            
-                        }
-                        $OutfitItem->create();
-                        $OutfitItem->save($data);
-                        $Useroutfit->save($data);    
-                    }
-
-                    
-                    
-                    $Message = ClassRegistry::init('Message');
-                    $data['Message']['user_to_id'] = $client_id;
-                    $data['Message']['user_from_id'] = $user_id;
-                    $data['Message']['body'] = (isset($this->request->data['outfit_msg']) && $this->request->data['outfit_msg']) ? $this->request->data['outfit_msg'] : "outfit";
-                    $data['Message']['is_outfit'] = 1;
-                    $data['Message']['outfit_id'] = $outfit_id;
-                    $Message->create();
-                    if ($Message->validates()) {
-                        $Message->save($data);
-
-                        $User = ClassRegistry::init('User');
-                        $to_user = $User->getById($client_id);
-                        if($to_user['User']['stylist_notification']){
-                            $User->disableStylistNotification($client_id);
-                        }
-
-                        $this->sendOutfitNotification($outfit_id, $outfit_array, $client_id);
-                    }
-                    
-                    $ret['status'] = "ok";
-                }  
+            if(!count($outfit_items)){
+                $ret['status'] = "error";
+                $ret['message'] = "No product selected.";
+                echo json_encode($ret);
+                exit;     
             }
             else{
-                $ret['status'] = "error";
-                $ret['msg'] = "Select atleast one product to create an outfit.";    
+                $this->request->data['Post']['user_id'] = $stylist_id;
+                $this->request->data['Post']['is_outfit'] = '1';
+                $post = $Post->save($this->request->data);
+
+                $Outfit = ClassRegistry::init('Outfit');
+                $OutfitItem = ClassRegistry::init('OutfitItem');
+                $Message = ClassRegistry::init('Message');
+
+                $outfit = array();
+                $outfit['Outfit']['user_id'] = $client_id;
+                $outfit['Outfit']['stylist_id'] = $stylist_id;
+                $outfit['Outfit']['outfit_name'] = $this->request->data['outfit_name'];
+
+                $Outfit->create();
+                if($result = $Outfit->save($outfit)){
+                    $outfit_id = $result['Outfit']['id'];
+                    $data = array();
+                    
+                    foreach($outfit_items as $key => $value){
+                        $data['OutfitItem'] = array('outfit_id' => $outfit_id, 'product_entity_id' => $value['product_entity_id'], 'size_id' => $value['size_id']);
+
+                        $OutfitItem->create();
+                        $OutfitItem->save($data);
+                    }
+
+                    $data['Message']['user_to_id'] = $client_id;
+                    $data['Message']['user_from_id'] = $stylist_id;
+                    $data['Message']['body'] = (isset($this->request->data['comments']) && $this->request->data['comments']) ? $this->request->data['comments'] : "";
+                    $data['Message']['is_outfit'] = 1;
+                    $data['Message']['outfit_id'] = $outfit_id;
+                    $data['Message']['post_id'] = $post['Post']['id'];
+
+                    $Message->create();
+                    $Message->save($data);
+                }
+                
             }
+
+            $ret['status'] = 'ok';
+
+            // if($this->request->data['outfit1'] != "" && $Entity->exists($this->request->data['outfit1'])) {
+            //     $outfit_array[] = $this->request->data['outfit1'];    
+            // }
+            // if($this->request->data['outfit2'] != "" && $Entity->exists($this->request->data['outfit2'])) {
+            //     $outfit_array[] = $this->request->data['outfit2'];    
+            // }
+            // if($this->request->data['outfit3'] != "" && $Entity->exists($this->request->data['outfit3'])) {
+            //     $outfit_array[] = $this->request->data['outfit3'];    
+            // }
+            // if($this->request->data['outfit4'] != "" && $Entity->exists($this->request->data['outfit4'])) {
+            //     $outfit_array[] = $this->request->data['outfit4'];    
+            // }
+            // if($this->request->data['outfit5'] != "" && $Entity->exists($this->request->data['outfit5'])) {
+            //     $outfit_array[] = $this->request->data['outfit5'];    
+            // }
+            // $data['Outfit']['user_id'] = $client_id;
+            // $data['Outfit']['stylist_id'] = $user_id;
+            // $data['Outfit']['post_id'] = $post_id;
+
+            
+            // $out_name = $this->request->data['out_name'];
+            // $data['Outfit']['outfitname'] = $out_name;
+            // $outsize_array = array();
+            
+            // if($this->request->data['outsize1'] !=""){
+            //     $outsize_array[] = $this->request->data['outsize1'];
+            // }
+            // if($this->request->data['outsize2'] !=""){
+            //     $outsize_array[] = $this->request->data['outsize2'];
+            // }
+            // if($this->request->data['outsize3'] !=""){
+            //     $outsize_array[] = $this->request->data['outsize3'];
+            // }
+            // if($this->request->data['outsize4'] !=""){
+            //     $outsize_array[] = $this->request->data['outsize4'];
+            // }
+            // if($this->request->data['outsize5'] !=""){
+            //     $outsize_array[] = $this->request->data['outsize5'];
+            // }
+            // $outsize_array = array_unique($outsize_array);
+            // //bhashit code end 
+
+            // $outfit_array = array_unique($outfit_array);
+            
+            // if(count($outfit_array) >= 1){
+            //     $Outfit = ClassRegistry::init('Outfit');
+            //     $OutfitItem = ClassRegistry::init('OutfitItem');
+            //     $Useroutfit = ClassRegistry::init('Useroutfit');
+            //     //bhashit code start
+            //     //$data['Outfit']['typeoutfit'] = $typeoutfit;
+            //     $data['Outfit']['outfitname'] = $out_name;
+
+
+            //     //bhashit code end
+                
+            //     $Outfit->create();
+            //     if($result = $Outfit->save($data)){
+            //         $data['OutfitItem']['outfit_id'] = $outfit_id;
+            //         $data['Useroutfit']['user_id'] = $client_id;
+            //         $data['Useroutfit']['stylist_id'] = $user_id;
+            //         $data['Useroutfit']['outfit_id'] = $outfit_id;
+            //         //bhashit code
+            //         $data['Useroutfit']['post_id'] = $post_id;
+            //         //bhashit code
+            //         $Useroutfit->create();  
+                    
+            //         foreach($outfit_array as $key => $value)
+            //         {
+            //             $data['OutfitItem']['product_entity_id'] = $value;
+            //             //bhashit code
+            //             $data['OutfitItem']['post_id'] = $post_id;
+            //             //bhashit code
+            //             if(isset($outsize_array[$key])){
+            //                 $data['OutfitItem']['size_id'] = $outsize_array[$key];
+                            
+            //             }
+            //             $OutfitItem->create();
+            //             $OutfitItem->save($data);
+            //             $Useroutfit->save($data);    
+            //         }
+
+                    
+                    
+            //         $Message = ClassRegistry::init('Message');
+            //         $data['Message']['user_to_id'] = $client_id;
+            //         $data['Message']['user_from_id'] = $user_id;
+            //         $data['Message']['body'] = (isset($this->request->data['outfit_msg']) && $this->request->data['outfit_msg']) ? $this->request->data['outfit_msg'] : "outfit";
+            //         $data['Message']['is_outfit'] = 1;
+            //         $data['Message']['outfit_id'] = $outfit_id;
+            //         $Message->create();
+            //         if ($Message->validates()) {
+            //             $Message->save($data);
+
+            //             $User = ClassRegistry::init('User');
+            //             $to_user = $User->getById($client_id);
+            //             if($to_user['User']['stylist_notification']){
+            //                 $User->disableStylistNotification($client_id);
+            //             }
+
+            //             $this->sendOutfitNotification($outfit_id, $outfit_array, $client_id);
+            //         }
+                    
+            //         $ret['status'] = "ok";
+            //     }  
+            // }
+            // else{
+            //     $ret['status'] = "error";
+            //     $ret['msg'] = "Select atleast one product to create an outfit.";    
+            // }
         }
         else{
             $ret['status'] = "redirect";

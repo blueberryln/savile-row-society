@@ -224,40 +224,7 @@ function dragAndDropOutfit(){
                 });
             });
 
-//get final submission outfit data
-            
-    
-    // subfinaloutfit
-            $("#subfinaloutfit").live("click", function () {
-                   
-                    //var id = $(".basket ul li").attr("data-id");
-                    var outfitname = $("#outfitname").val();
-                    var stylist_id = $("#stylist_id").val();
-                    var user_id = $("#user_id").val();
-                    //var size = $("#size").val();
-                    var comments = $("#comments").val();
-                    //var id = ui.draggable.attr("data-id")
-                   var liIds = $('#dataid li').map(function(i,n) {
-                       return $(n).attr('data-id');
-                         }).get().join(',');
-                   var size = $('#dataid select').map(function(i,n) {
-                       return $(n).val();
-                         }).get().join(',');
 
-                    alert(size);
-
-                    $.ajax({
-                        type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/postOutfit",
-                        data:{outfitid:liIds,user_id:user_id,out_name:outfitname,size_id:size,outfit_msg:comments},
-                        cache: false,
-                        success: function(result){
-                            $(".cnfrm-otft-content").html("<h1>Your Outfit Has been Submitted Successfully.</h1>");
-                            location.reload();
-                
-                    }
-                }); 
-            });
 
 // sort closet by date sortbydate
 
@@ -503,11 +470,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
     $(".sbmt-btn").on("click", function () {
 
         var outfitData = '';
@@ -563,56 +525,51 @@ $(document).ready(function(){
 
         $("#cnfrm").html(html); 
         cnfrmoutFit();
+    });
 
+    $("#subfinaloutfit").live("click", function (e) {
+        e.preventDefault();     
+        var outfitname = $("#outfitname").val();
+        var stylist_id = $("#stylist_id").val();
+        var user_id = $("#user_id").val();
+        var comments = $("#comments").val();
+
+        var outfit_items = [];
+        $('.basket ul li').each(function(){
+            var product = {
+                'product_entity_id': $(this).data('id'),
+                'size_id': $(this).find('.outfit-size-list').val()
+            };
+            outfit_items.push(product);
+        });
         
-                             
-                    //     var outfitname = ;
-                    //     var stylist_id = $("#stylist_id").val();
-                    //     var user_id = $("#user_id").val();
-                    //     //var size = $("#size").val();
-                    //     var comments = $("#comments").val();
-                    //     //var id = ui.draggable.attr("data-id")
-                    //    var liIds = $('#dataid li').map(function(i,n) {
-                    //        return $(n).attr('data-id');
-                    //          }).get().join(',');
-                    //    var size = $('#dataid select').map(function(i,n) {
-                    //        return $(n).val();
-                    //          }).get().join(',');
+        var postData = {
+            'outfit_name': outfitname,
+            'stylist_id': stylist_id,
+            'user_id': user_id,
+            'comments': comments, 
+            'outfit_items': outfit_items
+        };
 
-                    //     //alert(size);
+        $.ajax({
+            type:"POST",
+            url:"<?php echo $this->webroot; ?>outfits/postOutfit",
+            data: postData,
+            cache: false,
+            success: function(result){
+                var ret = $.parseJSON(result);
 
-                    //     $.ajax({
-                    //         type:"POST",
-                    //         url:"<?php echo $this->webroot; ?>Messages/setFinalOutfitData",
-                    //         data:{outfitid:liIds,user_id:user_id,out_name:outfitname,size_id:size,outfit_msg:comments,src:src},
-                    //         cache: false,
-                    //         success: function(result){
-                    //         data = $.parseJSON(result);
-                    //         html = '';
-                    //         html = html + '<div id="cnfrm-otft-popup" style="display: none">';
-                    //         html = html + '<div class="box-modal">';
-                    //         html = html + '<div class="box-modal-inside">';
-                    //         html = html + '<a href="#" title="" class="otft-close"></a>';
-                    //         html = html + '<div class="twelve columns left cnfrm-otft-content">';
-                    //         html = html + '<div class="twelve columns left cnfrm-otft-top">';
-                    //         html = html + '<h1>'+ data[0].outfitname +'</h1>';
-                            
-                    //         html = html + '<span class="otft-prc right">outfit price: '+ outfitname +'</span>';
-                    //         html = html + '</div>';
-                    //         html = html + '<div class="twelve columns left cnfrm-otft-middle">';
-                    //         html = html + '<div class="eleven columns container">';
-                    //         html = html + '<div class="twelve columns left cnfrm-otft-itms">';
-                    //         html = html + '<div class="right shp-this-otft">shop this outfit &gt;</div>';
-                    //         html = html + '<ul>';
-                            
-                            
-                            
-                            
-                            
-                    //          cnfrmoutFit();
-                    //     }
-                    // }); 
-                });
+                if(ret['status'] == 'ok'){
+                    location = '/messages/index/' + user_id;    
+                }
+                else{
+                    location = '/messages/feed';
+                }
+                
+            }
+        }); 
+    });
+
 });
 
 </script>
