@@ -68,10 +68,8 @@ $this->Html->script('cookie.js', array('inline' => false));
         </div>
         <div class="eleven columns container works-boxes">
             <div class="work-box">
-                <?php if($is_logged && $has_stylist) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="over-img">
-                <?php elseif($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php if($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
@@ -81,20 +79,10 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <span class="works-heading">Style Profile</span>
                 <span class="works-desc">Fill out a quick style profile and you will be matched with your very own personal shopper.</span>
 
-
-                <?php if($is_logged && $has_stylist) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
-                <?php elseif($is_logged) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
-                <?php else : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
-                <?php endif; ?>
             </div> 
              <div class="work-box">
-                <?php if($is_logged && $has_stylist) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>messages/index/" class="over-img">
-                <?php elseif($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php if($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
@@ -104,20 +92,10 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <span class="works-heading">Start Shopping</span>
                 <span class="works-desc">Communicate on the website, on the phone or in-person. Buy what you want from your stylist’s recommendations.</span>
 
-
-                <?php if($is_logged && $has_stylist) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
-                <?php elseif($is_logged) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
-                <?php else : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
-                <?php endif; ?>
             </div> 
              <div class="work-box">
-                <?php if($is_logged && $has_stylist) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>lookbooks/" class="over-img">
-                <?php elseif($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>" class="over-img">
+                <?php if($is_logged) : ?>
+                    <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
                     <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
                 <?php endif; ?>
@@ -127,46 +105,10 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <span class="works-heading">Free Delivery</span>
                 <span class="works-desc">Have your purchases delivered for free. Verify that the fit is perfect. Dress for the life you want.</span>
 
-
-                <?php if($is_logged && $has_stylist) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
-                <?php elseif($is_logged) : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
-                <?php else : ?>
-                    <div class="wrok-btn-box only-mob"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
-                <?php endif; ?>
             </div> 
         </div>
     </div>             
-    <div class="eleven columns container works-boxes only-desktop">
-        <div class="work-box">
-            <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
-            <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Register</a></div>
-            <?php else : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Register</a></div>
-            <?php endif; ?>
-        </div> 
-         <div class="work-box">
-            <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>messages/index/">Talk & shop</a></div>
-            <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Talk & shop</a></div>
-            <?php else : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Talk & shop</a></div>
-            <?php endif; ?>
-        </div> 
-         <div class="work-box">
-            <?php if($is_logged && $has_stylist) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>lookbooks/">Look sharp</a></div>
-            <?php elseif($is_logged) : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="<?php echo $this->request->webroot; ?>users/profile/<?php echo $user['User']['id']; ?>">Look sharp</a></div>
-            <?php else : ?>
-                <div class="wrok-btn-box"><a class="works-btn" href="#" onclick="window.ref_url=''; signUp();">Look sharp</a></div>
-            <?php endif; ?>
-        </div> 
-    </div>
+    
     
     <div class="eleven columns container container-box" id="three"> 
         <div class="blank-space">&nbsp;</div>
