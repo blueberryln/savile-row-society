@@ -18,7 +18,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
 $this->Html->script('cookie.js', array('inline' => false));
 ?>
-<div class="content-container">
+<div class="content-container-home">
 
     <div class="twelve columns content inner homepage"> 
 
