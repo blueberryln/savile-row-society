@@ -90,7 +90,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div class="stylistbio-details right">
                             <div class="twelve columns left">
                                 <div class="stylistbio-user"><?php echo $users['User']['first_name'].'&nbsp;'.$users['User']['last_name']; ?> | Stylist</div>
-                                <div class="start-today"><a href="javascript:;">get started with <?php echo $users['User']['first_name']; ?> Today!</a></div>
+                                
+                                <?php if(!$is_logged): ?>
+                                    <div class="start-today"><a href="/users/register">get started with <?php echo $users['User']['first_name']; ?> Today!</a></div>
+                                <?php endif; ?>
                             </div>
                             <div class="twelve columns left detials-section">
                                 <div class="twelve columns details">
@@ -116,7 +119,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             </li>
                                         <?php endforeach; ?>
                                             </ul>
-                                        <div class="holder"></div>
+                                        <?php if(count($photostreampicsstylist)): ?>
+                                            <div class="holder"></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
@@ -149,7 +154,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                             <div class="twelve columns left bottom-section">
                                 <div class="stylistbio-user">Like <?php echo $users['User']['first_name']; ?>’s Style?</div>
-                                <div class="start-today"><a href="javascript:;">get started with <?php echo $users['User']['first_name']; ?> Today!</a></div>
+                                <?php if(!$is_logged): ?>
+                                    <div class="start-today"><a href="/users/register">get started with <?php echo $users['User']['first_name']; ?> Today!</a></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
