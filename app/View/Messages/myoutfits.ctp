@@ -690,7 +690,7 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                     <input type="hidden" id="totalpriceoutfit" value="<?php echo $totalpriceoutfit; ?>">
                                                     </ul>
 
-                                                    <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div
+                                                    <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
                                                 </div>
                                                 <div class="twelve columns left client-outfit-bottom pad-none">
                                                     <div class="client-comments left">
