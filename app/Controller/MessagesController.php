@@ -3426,58 +3426,60 @@ If interested, I would also be happy to meet with you in our New York City based
 
     }
 
-    public function usersoutfits($client_id = null) {
+    public function usersoutfits() {
+
+        if(isset($this->request->query['sort'])){
+            $pageOrder = ($this->request->query['sort'] == "desc") ? 'desc' : 'asc';
+        }
+        else{
+            $pageOrder = 'asc';
+        }
+
         $user = $this->getLoggedUser();
+        $user_id = $user['User']['id'];
         $User= ClassRegistry::init('User');
         $stylist = $User->findById($user['User']['stylist_id']);
         $sideBarTab = 'outfit';  
+        $Outfit = ClassRegistry::init('Outfit');
 
-        $Message = ClassRegistry::init('Message');
-        
+        $page = (isset($this->request->data['page']) && $this->request->data['page'] > 0) ? $this->request->data['page'] : 1; 
+
         if($user){
-                 
-            $find_array = array(
-                            'conditions' => array('Message.user_to_id' => $client_id, 'Message.is_outfit' => 1,),
-                            'limit' => 2,
-                            'fields' => array(
-                                'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id',
-                            ),
-                            'order' =>  array('Message.created DESC'),
-                        );
-
-            $my_conversation = $this->Message->find('all',$find_array);
-            $my_conversation_count = count($my_conversation);
-
-            //pagination
-
-
-                //$my_conversation = $this->Message->getMyConversationWithStylist($client_id);
-                $my_outfits = array();
-                foreach($my_conversation as $row){
-                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                        $outfit_id = $row['Message']['outfit_id'];
-                        $comments = $row['Message']['body'];
-                        $Outfit = ClassRegistry::init('Outfit');
-                        $outfitnames = $Outfit->find('all', array('conditions'=> array('Outfit.id'=>$outfit_id)));
-                        $OutfitItem = ClassRegistry::init('OutfitItem');
-                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id),));
-                        $entities = array();
-                        foreach($outfit as $value){
-                             $entities[] = $value['OutfitItem']['product_entity_id'];
-                        }
-                        $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getMultipleByIdUser($entities,$user_id);
-                        $my_outfits[] = array(
-                            'outfit'    => $outfitnames,
-                            'comments' =>$comments,
-                            'entities'  => $entity_list
-                            );
-                        
-                    }
-                }
+            $limit = 50;
+            $message_outfit_list = $Outfit->getOutfitList($user_id, $pageOrder, $limit, $page);
+            $outfit_list = array();
+            foreach($message_outfit_list as $value){
+                $outfit_list[] = $value['Message']['outfit_id'];
             }
 
-        $this->set(compact('user', 'stylist', 'sideBarTab', 'my_outfits','user_id','my_conversation_count'));
+            $outfits = $Outfit->getOutfitDetails($outfit_list, true);
+            $sorted_outfit = array();
+
+            foreach($outfits as $value){
+                $sorted_outfit[$value['Outfit']['id']] = $value;
+            }
+
+            $outfits = array();
+            foreach($message_outfit_list as $value){
+                $value['Outfit'] = $sorted_outfit[$value['Message']['outfit_id']]['Outfit'];
+                $value['Stylist'] = $sorted_outfit[$value['Message']['outfit_id']]['Stylist'];
+                $value['OutfitItem'] = $sorted_outfit[$value['Message']['outfit_id']]['OutfitItem'];
+
+                $outfits[] = $value;
+            }
+
+            if($page > 1){
+                echo json_encode($outfits);
+                exit;
+            }
+            $page++;
+
+            $this->set(compact('user', 'stylist', 'sideBarTab', 'outfits', 'user_id', 'page'));
+        }
+        else{
+            $this->redirect('/messages/index');
+            exit;
+        }
         
     }
 
@@ -3804,11 +3806,6 @@ If interested, I would also be happy to meet with you in our New York City based
         $stylist_id = $user['User']['stylist_id'];
         $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $stylist_id)));
         $usercount  = count($userlists);
-        
-        // sale details for months to date
-
-        $Outfit = ClassRegistry::init('Outfit');
-        $outfitData =
 
         $this->set(compact('user','userlists','stylist_id','usercount'));
     }
