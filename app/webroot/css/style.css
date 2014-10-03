@@ -1002,7 +1002,6 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .message-box-heading, .myclient-heading { font-family: 'ProximaNovaCond-Regular'; font-size: 36px; padding: 38px 0px 19px; border-bottom: 1px solid #e8e8e8;}
 .myclient-heading { padding-top: 0px; margin-bottom: 25px;}
 .message-box-heading h1, .myclient-heading h1{ color: #918f8f; margin: 0; padding: 0;}
-.client-img-small, .m-ver, .dd-nav{ display: none;}
 .message-box-heading h1 span{ color: #c8bf93;}
 .inner-content{padding: 37px 0 0px;}
 .inner-left{ width: 81%;}
@@ -1016,26 +1015,32 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .message-area { background: #dddddd; padding: 4% 0; min-height: 450px;}
 .useroutfit_area{ position: relative;}
 .useroutfit-pagination { position: absolute; bottom: 10px; left: 0; right: 0; margin:0 auto;}
-.user-msg, .client-msg, .client-outfit { width: 52%; float: left; background: #c2c2c2; display: inline-block; padding: 10px 15px 7px 15px; margin-bottom: 18px; }
-.user-req, .client-name, .msg, msg-date, .client-msg-reply { font-family: 'Proximanova'; font-size: 14px; line-height: 17px; color: #000;}
+.user-msg, .client-msg, .client-outfit, .message-image-area, .user-message-image-area { width: 52%; float: left; background: #c2c2c2; display: inline-block; padding: 10px 15px 7px 15px; margin-bottom: 18px; }
+.user-req, .client-name, .msg, msg-date, .client-msg-reply, .message-caption, .otft-request { font-family: 'Proximanova'; font-size: 14px; line-height: 17px; color: #000; padding-bottom: 5px;}
+.otft-request { color: #fff; font-size: 16px; font-style: italic;}
 .user-req { color: #fff; font-style: italic; font-size: 14px; line-height: 18px;}
-.msg-date { font-size: 11px; color: #fff; text-align: right; font-style: italic;}
-.client-msg .msg-date, .client-outfit .msg-date { color: #7f7f7f;}
-.client-msg-reply { color: #948954;}
-.client-msg, .client-outfit { float: right; background: #ffffff;}
+.msg-date, .message-date { font-size: 11px; color: #fff; text-align: right; font-style: italic;}
+.client-msg .msg-date, .client-outfit .msg-date, .message-image-area .message-date { color: #7f7f7f;}
+.client-msg-reply, .message-image-area .message-caption { color: #948954;}
+.client-msg, .client-outfit, .message-image-area { float: right; background: #ffffff;}
+.client-outfit ul { margin: 0; padding:0px; width: 100%; margin:  0 auto;}
+.client-outfit ul li { width: 19%; display:inline-block; height: 150px; line-height: 150px; text-align: center; margin: 0 1px;}
+.client-outfit ul li img { width: 90%; vertical-align: middle;}
 .client-outfit li{ width: 19%; display: inline-block; margin: 0;}
 .client-outfit li img { width: 100%;}
 .bottom-text { margin: 40px 0 20px;}
 .dummy-text { font-family: 'Proximanova'; font-size: 16px; line-height: 18px; color: #515151; display: block;}
 .inner-right{ width: 15%; border-top: 1px solid #e8e8e8;}
 .my-profile{ padding: 37px 0 10px;}
+.my-profile-img { width: 75%; height: 150px; display: inline-block; text-align: center; overflow: hidden; line-height: 150px;}
+.my-profile-img img { width: 80%; vertical-align: middle;}
 .my-profile-img img, .client-img img { border: 1px solid #dddddd;}
 .my-profile-detials { font-size: 26px; color: #212125; display: block; padding-top: 25px;}
 .my-profile-detials span { width: 100%; font-size: 14px; display: block; font-style: italic; padding: 5px 0 0;}
 .my-profile-detials a.view-profile { text-align: center; font-size: 18px; color: #ac985d; display: block; text-decoration: underline; margin: 15px 0 0;}
-.bottom-btns a.create-outfit, .bottom-btns a.upload, .bottom-btns a.send-btn { width: 27%; text-align: center; font-size: 20px; color: #fff; background: #b6a166; text-transform: uppercase; height: 52px; line-height: 56px; position: relative; display: inline-block;}
-.bottom-btns a.upload { margin: 0 8% 0 10%; width: 20%; padding: 0 2% 0 6%; text-align: left;}
-.bottom-btns a.upload span.cam-icon { position: absolute; top: 11px; right: 55px; width: 34px; height: 28px; }
+.bottom-btns a.create-outfit, .bottom-btns a.upload, .bottom-btns a.send-btn { width: 27%; text-align: center; font-size: 20px; color: #fff; background: #b6a166; text-transform: uppercase; height: 52px; line-height: 56px!important; position: relative; display: inline-block;}
+.bottom-btns a.upload { margin: 0 8% 0 10%; width: 15%; padding: 0 2% 0 8% !important; text-align: left; float: none!important;}
+.bottom-btns a.upload span.cam-icon { position: absolute; top: 6px; left: 60%; width: 34px; height: 28px; }
 
 /*******Message Two CSS********/
 .short-by-date { width: 200px; float: right; margin-bottom: 10px; position: relative;}
@@ -1747,6 +1752,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 
 .myclient-list.tab_n_mob { display: none;}
 .myclient-list.dsktp_only {display: ;}
+.client-img-small, .m-ver, .dd-nav{ display: none;}
 /********Mobile CSS**********/
 
 @media screen and (min-width: 1367px) and (max-width: 3000px) {	
@@ -2287,6 +2293,9 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
     .m-ver h2 span { font-size: 12px; font-style: italic;padding:  0 5px 0 0; margin-top: -5px; text-align: right; width: 96%; float: right;}
     .client-img-small { display: block; width: 15%; float: left; margin: 8px 4% 0 0;}
     .client-img-small.right { margin:8px 0 0 4%;}
+    .my-profile-img { height: auto; line-height: normal;}
+    .my-profile-img { width: 75%; height: 50px; display: inline-block; text-align: center; overflow: hidden; line-height: 50px;}
+    .my-profile-img img { width: 80%; vertical-align: middle;}
     .m-ver { width: 100%; display: block; position: relative;}
     .m-ver h1 { text-align: right;}
     .client-img, .inner-right { display: none;}
