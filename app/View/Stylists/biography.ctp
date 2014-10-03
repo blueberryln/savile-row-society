@@ -490,7 +490,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <?php endforeach; ?>
                                             
                                             </ul>
-                                        <div class="submit"><a href="#" id="block-file-upload-photo" class="link-btn black-btn">Upload</a></div>
+                                        <div class="submit"><a href="#" id="block-file-upload-photo" class="biography-upload-img left">Upload</a></div>
 
                                         <!--file upload-->
                                         <!--file upload -->
@@ -510,8 +510,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                             echo $this->Form->input('StylistPhotostream.caption');
                                                         ?>
                                                         <label>Make Me Profile Pic</label>
-                                                        <input type="checkbox" name="data[StylistPhotostream][is_profile]" style="visibility: visible;">    
-                                                        <?php echo $this->Form->end('submit');?>
+                                                        <input type="checkbox" name="data[StylistPhotostream][is_profile]" style="visibility: visible;"><br/>    
+                                                        <input class="biography-upload-img" type="submit" value="submit">
+                                                        </form>
                                                             
                                                 </div>
                                         </div>
@@ -544,7 +545,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                     
                                                 </div>
                                                 <p class="actions">
-                                                <a href="#" id="submit_outfit1">Submit</a>
+                                                <a href="#" id="submit_outfit1" class="primry-btn">Submit</a>
                                                 <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                                 </p>
                                             </form>
@@ -596,7 +597,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                     
                                                 </div>
                                                 <p class="actions">
-                                                <a href="#" id="submit_outfit2">Submit</a>
+                                                <a href="#" id="submit_outfit2" class="primry-btn">Submit</a>
                                                 <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                                 </p>
                                             </form>
@@ -645,7 +646,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                     
                                                 </div>
                                                 <p class="actions">
-                                                <a href="#" id="submit_outfit3">Submit</a>
+                                                <a href="#" id="submit_outfit3" class="primry-btn">Submit</a>
                                                 <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                                 </p>
                                             </form>

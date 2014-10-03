@@ -3,7 +3,7 @@ $meta_description = 'As an SRS Man, great things are expected of you. But let us
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 
-<div class="content-container">
+<div class="content-container stylist-biography-section">
     <div class="eleven columns container content inner stylistbio">
         <div class="twelve columns container stylistbio-section left">
             <a class="open-left-pannel" href="#" title=""><img src="<?php echo $this->webroot; ?>images/arrow-next.png" alt="" /></a>
