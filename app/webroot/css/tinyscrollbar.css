@@ -68,7 +68,7 @@
 }
 #scrollbar3 .scrollbar, #scrollbar4 .scrollbar, #scrollbar5 .scrollbar {right: 0px;}
 #scrollbar6 .scrollbar, #scrollbar7 .scrollbar { right: -4px;}
-#scrollbar2 .scrollbar { display: none;}
+#scrollbar2 .scrollbar, #scrollbar1 .scrollbar { display: none;}
 
 #scrollbar1 .track,
 #scrollbar2 .track,

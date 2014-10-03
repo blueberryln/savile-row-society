@@ -1,5 +1,5 @@
  <?php
-$this->Html->script('/js/date-format.js', array('inline' => false));
+$this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
 ?>
 
     <div class="twelve columns container">
@@ -198,8 +198,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     '</div>' +    
                                 '</div>' + 
                                 '<div class="activity-date-section">' + 
-                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
-                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 
+                                    $.format.date(feed['Post']['created'], "HH:mm p") + ' EST<br>' + 
                                     '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
                                 '</div>' + 
                             '</div>' + 
@@ -220,8 +220,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     '</div>' +                     
                                 '</div>' + 
                                 '<div class="activity-date-section">' + 
-                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
-                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 
+                                    $.format.date(feed['Post']['created'], "HH:mm p") + ' EST<br>' + 
                                     '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
                                 '</div>' + 
                             '</div>' + 
@@ -242,8 +242,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     '</div>' +                     
                                 '</div>' + 
                                 '<div class="activity-date-section">' + 
-                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
-                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 
+                                    $.format.date(feed['Post']['created'], "HH:mm p") + ' EST<br>' + 
                                     '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
                                 '</div>' + 
                             '</div>' + 
@@ -269,8 +269,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     '<div class="activity-user-name"><strong>You created ' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + ' an outfit,</strong> “Beach Day”</div>' + 
                                 '</div>' + 
                                 '<div class="activity-date-section">' + 
-                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
-                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 
+                                    $.format.date(feed['Post']['created'], "HH:mm p") + ' EST<br>' + 
                                     '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
                                 '</div>' + 
                                 '<div class="ten columns container">' + 
@@ -303,8 +303,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     '</div>' + 
                                 '</div>' + 
                                 '<div class="activity-date-section">' + 
-                                    dateFormat(feed['Post']['created'], "mmmm d,yyyy") + '<br>' + 
-                                    dateFormat(feed['Post']['created'], "HH:MM TT") + ' EST<br>' + 
+                                    $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 
+                                    $.format.date(feed['Post']['created'], "HH:mm p") + ' EST<br>' + 
                                     '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
                                 '</div>' + 
                             '</div>' + 

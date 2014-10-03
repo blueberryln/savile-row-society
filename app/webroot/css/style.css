@@ -923,16 +923,17 @@ a.setp-btn { background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-s
 .stylistbio-section-left{ width: 20%; float: left;}
 a.open-left-pannel { display: none;}
 .stylistbio-section-right{ width: 79.8%; float: left; border-left: 1px solid #d7d7d7; padding-top: 50px;}
-.stylistbion-arrow { padding-top: 50px; position: relative;}
+.stylistbion-arrow { padding-top: 50px; position: relative; display: none;}
 .stylistbion-arrow img.back-for-mobile { position: absolute; margin: 0 auto; left: 0px; right: 0px; display: none;}
 .stylistbion-arrow img { cursor: pointer;}
 .stylistbio-short-note, .stylistbio-list { width:180px!important;}
-.stylistbio-short-note { margin-top:148px; }
+.stylistbio-short-note { margin-top:50px; }
 .short-note {font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #ababac; width: 100%; display: inline-block; padding: 25px 0; width: 100%; border-bottom: 1px solid #ebebeb; border-top: 1px solid #ebebeb;}
 .stylistbio-list h3 { font-family: 'ProximaNovaCond-Regular'; color: #acacac; font-size: 26px; margin: 10px 0 15px;}
 .stylistbio-list li { width: 100%; display: inline-block; padding: 25px 0px 22px; margin-bottom: -6px; border-bottom: 1px solid #f2f2f2; background:#ffffff; cursor: pointer;}
-.stylistbio-list li .stylistbio-list-img { display: inline-block; padding: 0 10px 0 15px; height: 30px; width: 30px;}
-.stylistbio-list li .stylistbio-list-name { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #ccc; font-style: italic; width: 100px; text-decoration: underline; text-align: left; margin: 5px 0 0 10px;}
+.stylistbio-list li .stylistbio-list-img { border: 1px solid #000; float: left; max-height: 40px; overflow: hidden; position: relative; width: 40px;}
+.stylistbio-list li .stylistbio-list-img img { display: block; width: 100%;}
+.stylistbio-list li .stylistbio-list-name { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #ccc; font-style: italic; width: 100px; text-decoration: underline; text-align: left;float: left; padding: 5px 0 0 12px; width: 125px;}
 .stylistbio-list li:hover, .stylistbio-list li.active { background: #f2f2f2; border-bottom: 1px solid #e8e8e8;}
 
 .stylistbio-profile { width: 24%;}
@@ -961,10 +962,10 @@ h1.stylistbio-heading { position: relative; font-size: 28px; color: #d19b03; mar
 .photostream-section, h1.stylistbio-heading.photostream { padding-left: 18px;}
 h1.top-outits-heading { border-bottom: 1px solid #ebebeb;}
 .photostream-section { padding-bottom: 10px;}
-.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; }
-.photostream-section li img { width: 100%; margin-bottom: -2px;}
+.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 140px; line-height: 140px; }
+.photostream-section li img { width: 100%; margin-bottom: -2px; vertical-align: middle;}
 
-a.jp-previous, a.jp-next { position: absolute; right: 17px; font-size: 18px; text-transform: uppercase; text-align: right; text-indent: -9999px; cursor: pointer;}
+a.jp-previous, a.jp-next { position: absolute; right: 17px; font-size: 18px; bottom: 60px; text-transform: uppercase; text-align: right; text-indent: -9999px; cursor: pointer;}
 a.jp-previous.jp-disabled{ display: none;}
 a.jp-previous {    left: 0px; text-align: left; margin-right: 0px; /*display: none;*/}
 
@@ -977,10 +978,10 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .top-outfits h2 { text-align: center; color: #c3c3c2; font-size: 20px;}
 .user-top-outfit li { border-bottom: 1px solid #ebebeb; padding-bottom: 10px; margin-bottom: 0px;}
 .user-top-outfit li:last-child { border-bottom: none; padding-bottom: 0px;}
-.outfit-products ul { width: 100%; margin-left: 0px;}
-.outfit-products li { display: inline-block; margin:0 3px; width:18%; position: relative; border-bottom: none; padding-bottom: 0px; vertical-align: middle;}
-.outfit-products li img { width: 100%;}
-.outfit-products li .outfit-products-details { position: absolute; font-family: 'Proximanova'; margin: auto; top: 0px; left: 0px; right: 0px; bottom: 0px; width: 100%; height: 60%; background: rgba(255, 255, 255, 0.7); font-size: 14px; color: #d19b03; cursor: pointer;}
+.outfit-products ul { width: 100%; margin-left: 0px; text-align: center;}
+.outfit-products li { display: inline-block; margin:0 3px; width:18%; position: relative; border-bottom: none; padding-bottom: 0px; max-height: 235px; line-height: 235px;}
+.outfit-products li img { width: 100%; max-height: 235px; vertical-align: middle;}
+.outfit-products li .outfit-products-details { position: absolute; font-family: 'Proximanova'; margin: auto; top: 0px; left: 0px; right: 0px; bottom: 0px; width: 100%; height: 30px; background: rgba(255, 255, 255, 0.7); font-size: 14px; color: #d19b03; cursor: pointer; line-height: normal; padding: 10px 0 10px 0;}
 .bottom-section { padding: 40px 0px 100px;}
 .bottom-section .stylistbio-user { letter-spacing: 3px;}
 
@@ -1014,7 +1015,7 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .left-nav li a:hover, .left-nav li.active a { background: #dddddd;}
 .message-area { background: #dddddd; padding: 4% 0; min-height: 450px;}
 .useroutfit_area{ position: relative;}
-.useroutfit-pagination { position: absolute; bottom: 10px; left: 0; right: 0; margin:0 auto;}
+.useroutfit-pagination { position: relative; bottom: 10px; left: 0; right: 0; margin:0 auto;}
 .user-msg, .client-msg, .client-outfit, .message-image-area, .user-message-image-area { width: 52%; float: left; background: #c2c2c2; display: inline-block; padding: 10px 15px 7px 15px; margin-bottom: 18px; }
 .user-req, .client-name, .msg, msg-date, .client-msg-reply, .message-caption, .otft-request { font-family: 'Proximanova'; font-size: 14px; line-height: 17px; color: #000; padding-bottom: 5px;}
 .otft-request { color: #fff; font-size: 16px; font-style: italic;}
@@ -1235,10 +1236,11 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
 .edit-content { width: 100%; background: #fff; font-size: 16px; line-height: 18px; color: #212125;}
 
 .actions { margin: 10px 0px;}
-.primry-btn, .secondry-btn {background: #d19b03; height: 35px; line-height: 35px; padding: 0 15px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; color: #fff; text-transform: uppercase;}
+.primry-btn, .secondry-btn {background: #d19b03; height: 35px; line-height: 35px; padding: 0 15px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; color: #fff; text-transform: uppercase; display: inline-block; cursor: pointer;}
 .secondry-btn { background: #575757;}
 
 .stylistbio-heading, .stylistbio-profile, .stylist-insp { position: relative;}
+.profile-img {margin: 0 auto; max-height: 150px; overflow: hidden; text-align: center; width: 50%;}
 .home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3 { display: none;}
 .user-top-outfit li { position: relative;}
 .edit-beachday-section{ position: absolute; top: 10px; right: 10px; display: none;z-index: 10;}
@@ -1309,7 +1311,7 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 .myclient-list li a .myclient-dtl { width: 140px; float: left; padding: 0px 0 0 12px; font-size: 11px; line-height: 12px;}
 .myclient-list li a .myclient-dtl span { width: 100%; display: block;}
 .myclient-list li a .myclient-dtl span.myclient-name {font-weight: bold; padding-bottom: 3px;}
-.client-outfits-img ul { position: relative; width: 100%; display: block;}
+.client-outfits-img ul { position: relative; width: 100%; display: inline-block; text-align: center; margin: 0px; }
 .outfit-quick-view { position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; width: 150px; height: 60px; line-height: 60px; padding: 0 20px 0 78px; background: rgba(255, 255, 255, 0.57); display: none; margin: auto; cursor: pointer;}
 .client-outfits-img:hover .outfit-quick-view { display: block;}
 .outfit-quick-view span.outfit-quick-view-icons { position: absolute; top: 10px; left: 30px; width: 40px; height: 40xp;}
@@ -1354,7 +1356,7 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 /************ Stylist Five Section *************/
 
 .activity-feed-section {font-family: 'Proximanova'; font-size: 12px; color: #252525;}
-.activity-feed-section li {width: 100%; float: left; background: #fff; min-height: 125px;}
+.activity-feed-section li {width: 100%; float: left; background: #fff; height: auto; line-height: normal;}
 .activity-content-area{ width: 96%; padding: 0 2% 15px; float: left;}
 .activity-feed-section li .activity-icn {width: 43px; float: left; min-height: 78px; background: url("../images/activity-icons.png")no-repeat 0px 0px;}
 .activity-user-img { width: 55px; float: left; padding: 22px 20px 0 20px;}
@@ -1375,8 +1377,8 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 .activity-feed-section li.activity-msg .activity-icn {background-position: 0px -685px;}
 .activity-feed-section li.activity-outfit .activity-icn {background-position: 0px -830px;}
 .activity-feed-section li .client-outfits-area {padding-bottom: 20px;}
-.activity-feed-section li .client-outfits-area h1 { padding:0 0 0 20px; font-size: 17px; letter-spacing: 1px;}
-.activity-feed-section li .client-outfits-area .client-outfits-img ul li { width: 18%;}
+.activity-feed-section li .client-outfits-area h1 { padding:0 0 0 20px; font-size: 17px; letter-spacing: 1px; text-align: left;}
+.activity-feed-section li .client-outfits-area .client-outfits-img ul li { width: 18%; text-align: center; float: none;}
 
 
 /************ Stylist Six Section *************/

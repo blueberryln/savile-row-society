@@ -365,7 +365,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <form class="stylistbio-heading-edit" method="post" name="edithometown">
                                             <label><?php echo $user['User']['first_name']; ?>’s Bio</label>
                                             <div class="edit-content">
-                                                <textarea name="data[StyleBio][stylist_bio]"  rows="10" cols="30"  id="StylebioStylistBio">
+                                                <textarea name="data[StyleBio][stylist_bio]" rows="10" cols=""  id="StylebioStylistBio">
                                                 <?php echo ($StylistBioData && $StylistBioData['StylistBio']) ? $StylistBioData['StylistBio']['stylist_bio'] : "" ?>
                                                 </textarea>
                                             </div>
@@ -384,7 +384,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <form class="stylist-insp-edit" method="post" action="" name="edithometown">
                                     <label>Inspiration</label>
                                     <div class="edit-content">
-                                        <textarea  rows="10" cols="30"  id="inspiration">
+                                        <textarea  rows="10" cols=""  id="inspiration">
                                                 <?php if($StylistBioData): 
                                                     echo $StylistBioData['StylistBio']['stylist_inspiration'];
                                                     else:
@@ -561,7 +561,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                     $topoutfit1s = $my_outfit[0]['entities'];
                                                     foreach($topoutfit1s as $topoutfit1): 
                                                     ?>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit1['Image'][0]['name']; ?>" alt="" height="108" width="122" />
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit1['Image'][0]['name']; ?>" alt="" />
                                                 <div class="outfit-products-details"><?php echo $topoutfit1['Entity']['name']; ?>  $<?php echo $topoutfit1['Entity']['price']; ?></div></li>
                                                     <?php endforeach; ?>
                                                         <!-- <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $my_outfit[0]['entities'][1]['Image'][0]['name']; ?>" alt="" height="108" width="122" /><div class="outfit-products-details"><?php echo $my_outfit[0]['entities'][1]['Entity']['name']; ?>  $<?php echo $my_outfit[0]['entities'][1]['Entity']['price']; ?></div></li>
@@ -613,7 +613,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                         $topoutfit2s = $my_outfit[1]['entities'];
                                                         foreach($topoutfit2s as $topoutfit2): 
                                                     ?>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit2['Image'][0]['name']; ?>" alt="" height="108" width="122" />
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit2['Image'][0]['name']; ?>" alt="" />
                                                 <div class="outfit-products-details"><?php echo $topoutfit2['Entity']['name']; ?>  $<?php echo $topoutfit2['Entity']['price']; ?></div></li>
                                                     <?php endforeach; ?>
                                                             
@@ -663,7 +663,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                         $topoutfit3s = $my_outfit[2]['entities'];
                                                         foreach($topoutfit3s as $topoutfit3): 
                                                     ?>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit3['Image'][0]['name']; ?>" alt="" height="108" width="122" />
+                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit3['Image'][0]['name']; ?>" alt="" />
                                                 <div class="outfit-products-details"><?php echo $topoutfit3['Entity']['name']; ?>  $<?php echo $topoutfit3['Entity']['price']; ?></div></li>
                                                     <?php endforeach; ?>
                                                             
