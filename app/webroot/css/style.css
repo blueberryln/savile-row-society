@@ -157,6 +157,7 @@ input[type="submit"]{color: #fff;}
     .grey-btn-cmn { background: #7d7d7d; color: #fff;}
     .gld-btn-cmn {background: #b6a166; color: #fff;}
 
+
  /****************Header****************/
  .wrapper{position:relative; width: 91.6667%; height: 100%; margin:0 auto; padding: 0;}
  .header {background-color: rgba(255, 255, 255, 0.8); width: 100%; padding:25px 0px; position: fixed; top: 0px; z-index: 1000; height: 31px; }
@@ -1749,7 +1750,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 #loadMoreProduct a, .pagination a {background: #927e41; height: 40px; line-height: 40px !important; padding: 0 20px; display: inline-block; margin-top: 20px; color: #fff; font-size: 20px;text-align: center;}
 .error-outfit{color: #ff0000; text-align: center;}
 
-
+input#billingCopybilling { visibility: visible;}
 
 
 
