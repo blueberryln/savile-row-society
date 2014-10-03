@@ -173,7 +173,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="twelve columns text-center page-heading">
             <h1>Featured Stylists</h1>
             <h3>Check out some of our featured Personal Stylists</h3>
-            <h3>below and <a href="/users/stylistbiography/741" title="">click here to see our full roster</a></h3>
+            <h3>below and <a href="/stylists/stylistbiography/741" title="">click here to see our full roster</a></h3>
         </div>
         <div class="eleven columns container stylist-boxes">
             <div class="featured-stylist ten columns container">
@@ -187,7 +187,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                     <?php else: ?>
                         <img src="<?php echo $this->webroot; ?>images/default-user.jpg"  />                       
                         <?php endif; ?>
-                        <a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
+                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
                             <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
                             <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
                         </div>
@@ -229,7 +229,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                                         </div>
                                         <div class="outfit-top-content left">
                                             <div class="outfit-month"><?php echo $outfit['Outfit']['outfit_name']; ?></div>                                    
-                                            <div class="outfit-brand">Styled by <a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>"><span class="outfit-brand-name"><?php echo $outfit['Stylist']['first_name']; ?></span></a></div>
+                                            <div class="outfit-brand">Styled by <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>"><span class="outfit-brand-name"><?php echo $outfit['Stylist']['first_name']; ?></span></a></div>
                                         </div>
                                     </div>
                                     <div class="shop-outfit-bottom">
@@ -246,7 +246,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                                         <a class="shop-outfit-bottom-link" href="/users/register" title="">Shop Outfit</a>
                                     </div>
                                 </div>
-                                <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>" title="" class="outfilt-btns">Learn about <?php echo $outfit['Stylist']['first_name']; ?></a></div>
+                                <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>" title="" class="outfilt-btns">Learn about <?php echo $outfit['Stylist']['first_name']; ?></a></div>
                             </li>
                         <?php } ?>
                     <?php endif; ?>
