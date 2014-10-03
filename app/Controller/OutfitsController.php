@@ -466,5 +466,78 @@ class OutfitsController extends AppController {
             }
         }
     }
+
+
+
+    public function create($clientid=null) {
+        $this->isLogged();
+        
+        $User = ClassRegistry::init('User');
+        $user = $this->getLoggedUser();
+        $client = $User->findById($clientid);
+
+        if($client){
+            if($user['User']['id'] != $client['User']['stylist_id']){
+                $this->redirect('/messages/feed');
+                exit;
+            }
+        }
+        else{
+            $this->redirect('/messages/feed');
+            exit;
+        }
+
+        $Category = ClassRegistry::init('Category');
+        $Brand = ClassRegistry::init('Brand');
+        $Color = ClassRegistry::init('Color');
+        $Colorgroup = ClassRegistry::init('Colorgroup');
+        $Entity = ClassRegistry::init('Entity');
+        $Size = ClassRegistry::init('Size');
+
+        $categories = $Category->getAll();
+        $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
+        $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
+        $sizes = $Size->find('list');
+        
+        $find_array = array(
+            'limit' => 21,
+            'contain' => array('Image', 'Color','Detail'),
+            'conditions' => array(
+                'Entity.show' => true,
+            ),
+            'joins' => array(
+                array('table' => 'products_categories',
+                    'alias' => 'Category',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Category.product_id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id'
+                    )
+                ),
+            ),
+            'fields' => array(
+                'Entity.*', 'Category.category_id', 'Product.*', 'Brand.*',
+            ),
+            'order' => 'Entity.id desc'
+        );
+        $products = $Entity->find('all',$find_array);
+
+        $this->set(compact('categories','brands','colors', 'products', 'user', 'client', 'sizes'));
+    }   
+
+
 }
 

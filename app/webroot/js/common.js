@@ -57,6 +57,7 @@ function viewoutFit() {
 
 function cnfrmoutFit() {
     var blockTop = $(window).height()/2 - $("#cnfrm-otft-popup").height()/2;
+    $(window).scrollTop(0);
     $.blockUI({message: $('#cnfrm-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
     $('.blockOverlay').click($.unblockUI);
 }
@@ -192,10 +193,10 @@ jQuery(function(){
     });
     
     
-    $('#sbmt-cnfrmation').on('click', function(e){
-        e.preventDefault();
-        cnfrmoutFit();
-    });
+    // $('#sbmt-cnfrmation').on('click', function(e){
+    //     e.preventDefault();
+    //     cnfrmoutFit();
+    // });
     
 
     
@@ -308,7 +309,7 @@ jQuery(function(){
         $.unblockUI();
     });
 
-     $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup, #myclst-popup').on('click', '.otft-close', function(e){
+    $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup, #myclst-popup').on('click', '.otft-close', function(e){
         e.preventDefault();
         $.unblockUI();
     });

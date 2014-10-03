@@ -57,7 +57,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="twelve columns gal-area left pad-none">
+                                <div class="twelve columns gal-area left pad-none">
                                     <h1>Kyle's Gallery</h1>
                                     <div class="gallery-area">
                                         <div class="eleven columns container pad-none">
@@ -70,7 +70,7 @@
                                             </div>
                                             <div class="twelve columns left gal-btns"><a class="upload-gal-photos" href="#" title="">Upload Photos</a></div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     
                                 </div>
                             </div>
