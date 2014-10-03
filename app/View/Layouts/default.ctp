@@ -243,7 +243,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/highcharts.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.highchartTable.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery-ui-1.9.0.custom.min.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery-ui.min.js" type="text/javascript"></script>
         
         <script src="<?php echo $this->request->webroot; ?>js/jquery.jcarousel.min.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jcarousel.responsive.js" type="text/javascript"></script>
