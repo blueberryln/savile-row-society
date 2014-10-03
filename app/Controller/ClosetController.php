@@ -38,6 +38,9 @@ class ClosetController extends AppController {
     
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
+        $this->redirect('/messages/index');
+        exit;
+
         $user_id = $this->getLoggedUserID();
         // init
         $Category = ClassRegistry::init('Category');
@@ -95,6 +98,8 @@ class ClosetController extends AppController {
 
 
     public function closetProducts($user_id){
+        $this->redirect('/messages/index');
+        exit;
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
 
@@ -154,6 +159,9 @@ class ClosetController extends AppController {
 
 
     public function categoryProducts($user_id, $categories, $category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null){
+        $this->redirect('/messages/index');
+        exit;
+
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
 
@@ -373,6 +381,9 @@ class ClosetController extends AppController {
      * Product details
      */
     public function product($id = null, $slug = null) {
+        $this->redirect('/messages/index');
+        exit;
+
         $this->autoRender = false;
         $user_id = $this->getLoggedUserID();
         App::uses('Sanitize', 'Utility');
@@ -459,6 +470,9 @@ class ClosetController extends AppController {
      * @id : outfit id
      */
     public function userOutfit($id = null) {
+        $this->redirect('/messages/index');
+        exit;
+
         //$this->isLogged();
         $user_id = $this->getLoggedUserID();
         App::uses('Sanitize', 'Utility');
@@ -566,6 +580,9 @@ class ClosetController extends AppController {
     }
     
     public function checkout() {
+        $this->redirect('/messages/index');
+        exit;
+
         $this->response->disableCache();
 
         $this->isLogged();
@@ -657,6 +674,8 @@ class ClosetController extends AppController {
     }
     
     public function payment() {
+        $this->redirect('/messages/index');
+        exit;
 
         $this->response->disableCache();
         //TODO: beforerender for not displaying page again.
@@ -942,6 +961,9 @@ class ClosetController extends AppController {
     }
     
     public function sendConfirmationEmail($id = null){
+        $this->redirect('/messages/index');
+        exit;
+
         $Order = ClassRegistry::init('Order');
         if (!$Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
@@ -993,6 +1015,9 @@ class ClosetController extends AppController {
     }
 
     public function confirmation(){
+        $this->redirect('/messages/index');
+        exit;
+
         $this->response->disableCache();
         $transaction_data = false;
         if($this->Session->check('transaction_complete')){
@@ -1012,6 +1037,9 @@ class ClosetController extends AppController {
     }
     
     public function updateBillingAddress($data, $user_id){
+        $this->redirect('/messages/index');
+        exit;
+
         $BillingAddress = ClassRegistry::init('BillingAddress');
         $address = $BillingAddress->getByUserID($user_id);
         $data['BillingAddress']['user_id'] = $user_id;
@@ -1035,6 +1063,9 @@ class ClosetController extends AppController {
     }
     
     public function addOrder($cart_items, $total_price, $promo_code = false, $discount = false, $discounted_price = false){
+        $this->redirect('/messages/index');
+        exit;
+
         $user_id = $this->getLoggedUserID();
         $data = array();
         if($user_id){
@@ -1107,6 +1138,9 @@ class ClosetController extends AppController {
     }
     
     public function emptyCart($card_id, $cart_list){
+        $this->redirect('/messages/index');
+        exit;
+
         $Cart = ClassRegistry::init('Cart');
         $CartItem = ClassRegistry::init('CartItem');
         
@@ -1126,6 +1160,9 @@ class ClosetController extends AppController {
     }
     
     function makePayment($transaction_data){
+        $this->redirect('/messages/index');
+        exit;
+
         $user_id = $this->getLoggedUserID();
         if($user_id && $user_id == $transaction_data['user_id']){
             //Uses core.php config file for settings.
@@ -1203,6 +1240,9 @@ class ClosetController extends AppController {
     }
 
     function reduceStock($cart_list){
+        $this->redirect('/messages/index');
+        exit;
+
         $Detail = ClassRegistry::init('Detail');
 
         foreach($cart_list as $row){
@@ -1211,11 +1251,17 @@ class ClosetController extends AppController {
     }
 
     function removeLikes($entity_list, $user_id){
+        $this->redirect('/messages/index');
+        exit;
+
         $Wishlist = ClassRegistry::init('Wishlist');
         $Wishlist->remove($user_id, $entity_list);
     }
     
     public function checkOrderGiftCard($order_id){
+        $this->redirect('/messages/index');
+        exit;
+
         $this->autoLayout = false;
         $this->autoRender = false;
         
@@ -1385,6 +1431,8 @@ class ClosetController extends AppController {
      * Liked Items
      */
     public function liked($id = null) {
+        $this->redirect('/messages/index');
+        exit;
 
         $this->isLogged();
         if($id){
@@ -1457,6 +1505,9 @@ class ClosetController extends AppController {
      * Purchased Items
      */
     public function purchased($id = null) {
+        $this->redirect('/messages/index');
+        exit;
+
         $this->isLogged();
         
         if($id){
@@ -1541,9 +1592,4 @@ class ClosetController extends AppController {
         $this->set(compact('purchased_list', 'sizes', 'user_id'));
         
     }
-
-    // bhashit code start
-
-    
-    //bhashit code end
 }

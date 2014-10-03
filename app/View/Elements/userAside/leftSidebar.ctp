@@ -29,6 +29,9 @@ else if($sideBarTab == "message"){
 else if($sideBarTab == "outfit"){
     $page_title = 'Outfits';
 }
+else if($sideBarTab == "detail"){
+    $page_title = 'Outfit Detail';
+}
 ?>
 
 <div class="twelve columns message-box-heading pad-none">
@@ -45,7 +48,7 @@ else if($sideBarTab == "outfit"){
 <div class="dd-nav">
     <ul>
         <li <?php echo ($sideBarTab == 'message') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-        <li <?php echo ($sideBarTab == 'outfit') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/outfits">Outfits</a></li>
+        <li <?php echo ($sideBarTab == 'outfit' || $sideBarTab == 'detail') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/outfits">Outfits</a></li>
         <li <?php echo ($sideBarTab == 'purchase' || $sideBarTab == 'like') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/purchases">Purchases/Likes</a></li>
         <li <?php echo ($sideBarTab == 'profile') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/profile">Profile</a></li>
     </ul>
@@ -57,7 +60,7 @@ else if($sideBarTab == "outfit"){
             <div class=" twelve columns left left-nav">
                 <ul>
                     <li <?php echo ($sideBarTab == 'message') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-                    <li <?php echo ($sideBarTab == 'outfit') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/outfits">Outfits</a></li>
+                    <li <?php echo ($sideBarTab == 'outfit' || $sideBarTab == 'detail') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/outfits">Outfits</a></li>
                     <li <?php echo ($sideBarTab == 'purchase' || $sideBarTab == 'like') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/purchases">Purchases/Likes</a></li>
                     <li <?php echo ($sideBarTab == 'profile') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/profile">Profile</a></li>
                 </ul>

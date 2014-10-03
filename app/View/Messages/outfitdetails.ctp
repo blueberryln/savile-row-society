@@ -203,44 +203,14 @@ $this->Html->css('colorbox', null, array('inline' => false));
             $img = $this->webroot . "img/dummy_image.jpg";    
         }
 ?>
-<div class="content-container">
-<div class="twelve columns black">&nbsp;</div>
+<div>
 <div class="twelve columns container">
 <div class="eleven columns container message-box-area">
 <div class="twelve columns container left message-box">
 <div class="eleven columns container pad-none">
-<div class="twelve columns message-box-heading pad-none">
-<h1><?php echo $Userdata[0]['User1']['first_name'].'&nbsp;'.$Userdata[0]['User1']['last_name']; ?> | <span>Outfit Detail</span></h1>
-<div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url'] ?>" alt="" data-name="Haspel" /></div>
-</div>
-<div class="my-profile-img m-ver">
-<h2><?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?><span>My Stylist</span></h2>
-<div class="client-img-small right">
-<a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $img; ?>" id="user_image"  /></a>
-</div>
-<span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
-</div>
-<div class="dd-nav">
-<ul>
-<li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-<li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-<li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-<li><a href="j<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
-</ul>
-</div>
-<div class="twelve columns left inner-content pad-none">
-<div class="inner-left left">
-<div class="left-pannel left">
-<div class="client-img"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User1']['profile_photo_url']; ?>"  alt=""/></div>
-<div class=" twelve columns left left-nav">
-<ul>
-<li><a href="<?php echo $this->webroot; ?>messages/index">Messages</a></li>
-<li class="active"><a href="<?php echo $this->webroot; ?>messages/usersoutfits/<?php echo $user_id; ?>">Outfits</a></li>
-<li><a href="<?php echo $this->webroot; ?>messages/userpurchases/<?php echo $user_id; ?>">Purchases/Likes</a></li>
-<li><a href="<?php echo $this->webroot; ?>messages/profiles/<?php echo $user_id; ?>">Profile</a></li>
-</ul>
-</div>
-</div>
+
+<?php echo $this->element('userAside/leftSidebar'); ?>
+
 <div class="right-pannel product-detials right">
 <div class="twelve columns message-area product-area left pad-none">
 <div class="eleven columns container pad-none">
@@ -323,29 +293,9 @@ $img = $this->webroot . "img/image_not_available-small.png";
 </div>
 <div class="product-dtl-desc-bottom left">
 <div class="slect-options left">
-<div class="select-color select-style left">
-<span class="selct-arrow"></span>
-<select>
-<?php 
-$similar = isset($entity['Similar']) ? $entity['Similar'] : false;
-if($similar) : ?>
-<?php foreach($similar as $product) : ?>
-<?php if($product['Color'] && count($product['Color']) > 1) : ?>
-
-<option><?php echo $product['Color'][0]['name']; ?></option>
-<option><?php echo $product['Color'][1]['name']; ?></option>
-<?php elseif($product['Color'] && count($product['Color']) == 1) : ?>
-<option><?php echo $product['Color'][0]['name']; ?></option>
-<?php endif; ?>
-
-<?php endforeach; ?>
-<?php endif; ?>
-</select>
-</div>
 <div class="select-size select-style left">
-<span class="selct-arrow"></span>
 <select class="product-size">
-<option value="<?php echo $entity['OutfitItem']['size_id']; ?>"><?php echo $entity['OutfitItem']['size_id']; ?></option>
+<option value="<?php echo $entity['OutfitItem']['size_id']; ?>"><?php echo $sizes[$entity['OutfitItem']['size_id']]; ?></option>
 </select><br/>
 </div>
 <div class="select-quantity select-style left">
@@ -364,13 +314,7 @@ if($similar) : ?>
 
 <a class="product-my-likes"href="#" id="likes" data-product_id="<?php echo $entity['Entity']['id']; ?>"><?php echo ($entity['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
 
-<div class="product-social-likes">
-<ul>
-<li><a class="product-social-likes-pintrest" href="javascript:;" title="">Pintrest</a></li>
-<li><a class="product-social-likes-facebook"  href="javascript:;" title="">Faceboook</a></li>
-<li><a class="product-social-likes-twitter" href="javascript:;" title="">Twitter</a></li>
-</ul>
-</div>
+
 </div>
 </div>
 <?php endforeach; ?>
@@ -382,20 +326,9 @@ if($similar) : ?>
 </div>
 
 </div>
-<div class="inner-right right">
-<div class="twelve columns text-center my-profile">
-<div class="my-profile-img">
-<a href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>" title=""><img src="<?php echo $this->webroot; ?>files/users/<?php echo $Userdata[0]['User']['profile_photo_url']; ?>" alt="" data-name="Haspel" /></a>
-</div>
-<div class="my-profile-detials">
-<?php echo $Userdata[0]['User']['first_name'].'&nbsp;'.$Userdata[0]['User']['last_name']; ?>
-<span>My Stylist</span>
-<a class="view-profile" href="<?php echo $this->webroot; ?>Auth/stylistbiography/<?php echo $Userdata[0]['User']['id']; ?>">View My Profile</a> 
-</div>
 
+<?php echo $this->element('userAside/rightSidebar'); ?>
 
-</div>
-</div>
 </div>
 </div>
 </div>

@@ -2003,99 +2003,6 @@ If interested, I would also be happy to meet with you in our New York City based
         exit;
     }
 
-    public function outfitdetails($outfit_id = null) {
-        $this->isLogged();
-        $User = ClassRegistry::init('User');
-        $user = $this->getLoggedUser();
-        $user_id = $user["User"]["id"]; 
-        $user = $User->findById($user_id);
-        $is_admin = $user["User"]["is_admin"];
-        $is_stylist = $user["User"]["is_stylist"];
-        
-         $current_user = $this->getLoggedUser();
-        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
-            $this->redirect('/');
-            exit;
-        }
-        //Get user from session to derterminate if user is stylist
-        $find_array = array(
-                'fields' => array('User.*,User1.*'),
-                'joins' => array(
-                array(
-                    'conditions' => array(
-                        'User.id = User1.stylist_id',
-                        'User1.id'=>$user_id,
-                    ),
-                    'table' => 'users',
-                    'alias' => 'User1',
-                    'type' => 'INNER',
-                ),
-                ),
-            );
-                
-        //print_r($purchases);
-        $Userdata=$User->find('all',$find_array);
-        $Outfit = ClassRegistry::init('Outfit');
-        $outfitname = $Outfit->findById($outfit_id);
-        $OutfitItem = ClassRegistry::init('OutfitItem');
-        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-        $Message = ClassRegistry::init('Message');
-        $messages_outfit_comments = $Message->find('first',array('conditions'=>array('Message.outfit_id'=>$outfit_id,'Message.is_outfit'=>true,),'fields'=>array('Message.body as stylist_comments')));
-        $entity_list = array();
-            foreach($outfit as $value){
-                $entity_list[] = $value['OutfitItem']['product_entity_id'];
-                $size_list[] = $value['OutfitItem']['size_id'];
-            }
-
-            $Entity = ClassRegistry::init('Entity');
-
-            // get data
-            $entity = $Entity->getMultipleById($entity_list, $user_id,$outfit_id);
-            //print_r($entity);
-            $products_list = array();
-            foreach ($entity as $key => $value) {
-                $products_list[] = $value['Entity']['product_id'];
-            }
-            $similar_results = $Entity->getSimilarProducts($outfit_id, $products_list);
-            $similar = array();
-            foreach($similar_results as $row){
-                if($row['Color'] && count($row['Color']) > 0){
-                    $similar[$row['Entity']['product_id']][] = $row; 
-                }
-            }
-
-            $entities = array();
-
-            foreach ($entity as $key => $value) {
-                $entities[$value['Entity']['id']] = $value;
-                if(isset($similar[$value['Entity']['product_id']])){
-                    $entities[$value['Entity']['id']]['Similar'] = $similar[$value['Entity']['product_id']];
-                }
-            }
-
-            $Size = ClassRegistry::init('Size');
-            $size_list = $Size->find('list');
-            
-
-            $show_add_cart_popup = 0;
-            if($this->Session->read('add-cart')){
-                $show_add_cart_popup = 1;
-                $this->Session->delete('add-cart');
-            }
-
-            $popUpMsg = '';
-            $show_three_item_popup = 0;
-            if($this->Session->read('cart-three-items')){
-                $show_three_item_popup = 1;
-                $popUpMsg = $this->Session->read('cart-three-items-msg');
-                $this->Session->delete('cart-three-items');
-                $this->Session->delete('cart-three-items-msg');
-            }
-                //print_r($entities);
-            $this->set(compact('outfit_id','messages_outfit_comments', 'entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata'));
-           
-    }
-
 
     //stylist outfit details
 
@@ -3481,6 +3388,104 @@ If interested, I would also be happy to meet with you in our New York City based
             exit;
         }
         
+    }
+
+    public function outfitdetails($outfit_id = null) {
+
+        $sideBarTab = 'detail';  
+        $User = ClassRegistry::init('User');
+        $user = $this->getLoggedUser();
+        $stylist = $User->findById($user['User']['stylist_id']);
+        $user_id = $user["User"]["id"]; 
+        $user = $User->findById($user_id);
+        $is_admin = $user["User"]["is_admin"];
+        $is_stylist = $user["User"]["is_stylist"];
+        
+         $current_user = $this->getLoggedUser();
+        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
+        //Get user from session to derterminate if user is stylist
+        $find_array = array(
+                'fields' => array('User.*,User1.*'),
+                'joins' => array(
+                array(
+                    'conditions' => array(
+                        'User.id = User1.stylist_id',
+                        'User1.id'=>$user_id,
+                    ),
+                    'table' => 'users',
+                    'alias' => 'User1',
+                    'type' => 'INNER',
+                ),
+                ),
+            );
+                
+        //print_r($purchases);
+        $Userdata=$User->find('all',$find_array);
+        $Outfit = ClassRegistry::init('Outfit');
+        $outfitname = $Outfit->findById($outfit_id);
+        $OutfitItem = ClassRegistry::init('OutfitItem');
+        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+        $Message = ClassRegistry::init('Message');
+        $messages_outfit_comments = $Message->find('first',array('conditions'=>array('Message.outfit_id'=>$outfit_id,'Message.is_outfit'=>true,),'fields'=>array('Message.body as stylist_comments')));
+        $entity_list = array();
+        $Size = ClassRegistry::init('size');
+        $sizes = $Size->find('list');
+
+            foreach($outfit as $value){
+                $entity_list[] = $value['OutfitItem']['product_entity_id'];
+                $size_list[] = $value['OutfitItem']['size_id'];
+            }
+
+            $Entity = ClassRegistry::init('Entity');
+
+            // get data
+            $entity = $Entity->getMultipleById($entity_list, $user_id,$outfit_id);
+            //print_r($entity);
+            $products_list = array();
+            foreach ($entity as $key => $value) {
+                $products_list[] = $value['Entity']['product_id'];
+            }
+            $similar_results = $Entity->getSimilarProducts($outfit_id, $products_list);
+            $similar = array();
+            foreach($similar_results as $row){
+                if($row['Color'] && count($row['Color']) > 0){
+                    $similar[$row['Entity']['product_id']][] = $row; 
+                }
+            }
+
+            $entities = array();
+
+            foreach ($entity as $key => $value) {
+                $entities[$value['Entity']['id']] = $value;
+                if(isset($similar[$value['Entity']['product_id']])){
+                    $entities[$value['Entity']['id']]['Similar'] = $similar[$value['Entity']['product_id']];
+                }
+            }
+
+            $Size = ClassRegistry::init('Size');
+            $size_list = $Size->find('list');
+            
+
+            $show_add_cart_popup = 0;
+            if($this->Session->read('add-cart')){
+                $show_add_cart_popup = 1;
+                $this->Session->delete('add-cart');
+            }
+
+            $popUpMsg = '';
+            $show_three_item_popup = 0;
+            if($this->Session->read('cart-three-items')){
+                $show_three_item_popup = 1;
+                $popUpMsg = $this->Session->read('cart-three-items-msg');
+                $this->Session->delete('cart-three-items');
+                $this->Session->delete('cart-three-items-msg');
+            }
+                //print_r($entities);
+            $this->set(compact('outfit_id','messages_outfit_comments', 'entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata','sideBarTab', 'stylist', 'sizes'));
+           
     }
 
 
