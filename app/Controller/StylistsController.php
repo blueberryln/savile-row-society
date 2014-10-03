@@ -604,7 +604,9 @@ class StylistsController extends AppController {
         $StylistBio = ClassRegistry::init('StylistBio');
         //$StylistPhotostream = ClassRegistry::init('StylistPhotostream');
         $StylistBioData = $StylistBio->find('all',array('conditions'=>array('StylistBio.stylist_id'=>$id,)));
+        $StylistPhotostream = ClassRegistry::init('StylistPhotostream');
 
+        $photostreampicsstylist = $StylistPhotostream->find('all',array('conditions'=>array('StylistPhotostream.stylist_id'=>$id,)));
         // get Top outfit All data
         $OutfitTopData = $StylistTopOutfit->find('all',array('conditions'=>array('StylistTopOutfit.stylist_id'=>$id,)));
         
@@ -650,7 +652,7 @@ class StylistsController extends AppController {
             }
         
 
-        $this->set(compact('users','StylistBioData','stylistphoto','outfits','my_outfit','stylistoutfit','stylists'));
+        $this->set(compact('users','StylistBioData','stylistphoto','outfits','my_outfit','stylistoutfit','stylists','photostreampicsstylist'));
 
     }
      

@@ -94,14 +94,15 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <h1 class="stylistbio-heading photostream"><?php echo $users['User']['first_name']; ?>’s Photostream</h1>
                                     <div class="photostream-section">
                                         <ul id="itemContainer">
-                                            <?php  //foreach ($stylistphoto as $stylistphoto): ?>
+                                            <?php
+                                            //print_r($photostreampicsstylist);
+                                             foreach($photostreampicsstylist as $photostreampicss ): ?>
                                             <li>
-                                                <a class="fancybox" href="<?php echo $this->webroot; ?>images/stylistbio/<?php //echo $stylistphoto['Stylistphotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php //echo $stylistphoto['Stylistphotostream']['caption']; ?>">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>images/stylistbio/<?php //echo $stylistphoto['Stylistphotostream']['image']; ?>" alt="" />
+                                                <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $photostreampicss['StylistPhotostream']['caption']; ?>">
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" />
                                                 </a>
                                             </li>
-                                        <?php //endforeach; ?>
-                                            </li>
+                                        <?php endforeach; ?>
                                             </ul>
                                         <div class="holder"></div>
                                     </div>

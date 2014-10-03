@@ -1,7 +1,7 @@
 
 <?php
-if(isset($StylistBioData[0]['StylistBio']['id'])!=''){ 
-    $stylistBioId  = $StylistBioData[0]['StylistBio']['id'];
+if(isset($StylistBioData['StylistBio']['id'])!=''){ 
+    $stylistBioId  = $StylistBioData['StylistBio']['id'];
  }else{
     $stylistBioId = '';
  }
@@ -366,7 +366,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             <label><?php echo $user['User']['first_name']; ?>’s Bio</label>
                                             <div class="edit-content">
                                                 <textarea name="data[StyleBio][stylist_bio]"  rows="10" cols="30"  id="StylebioStylistBio">
-                                                <?php echo ($StylistBioData && $StylistBioData[0]['StylistBio']) ? $StylistBioData[0]['StylistBio']['stylist_bio'] : "" ?>
+                                                <?php echo ($StylistBioData && $StylistBioData['StylistBio']) ? $StylistBioData['StylistBio']['stylist_bio'] : "" ?>
                                                 </textarea>
                                             </div>
                                             <p class="actions">
@@ -376,7 +376,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         </form>
                                 </div>
                             <div class="user-desc">
-                                <?php echo ($StylistBioData && $StylistBioData[0]['StylistBio']) ? $StylistBioData[0]['StylistBio']['stylist_bio'] : "" ?>
+                                <?php echo ($StylistBioData && $StylistBioData['StylistBio']) ? $StylistBioData['StylistBio']['stylist_bio'] : "" ?>
                             </div>
 
                             <div class="stylist-insp">
@@ -386,7 +386,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <div class="edit-content">
                                         <textarea  rows="10" cols="30"  id="inspiration">
                                                 <?php if($StylistBioData): 
-                                                    echo $StylistBioData[0]['StylistBio']['stylist_inspiration'];
+                                                    echo $StylistBioData['StylistBio']['stylist_inspiration'];
                                                     else:
                                                     endif;
                                                 ?>
@@ -401,7 +401,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
                             <div class="user-inspire-desc">
                                 <?php if($StylistBioData): 
-                                    echo $StylistBioData[0]['StylistBio']['stylist_inspiration'];
+                                    echo $StylistBioData['StylistBio']['stylist_inspiration'];
                                     else:
                                     endif;
                                 ?>
@@ -415,13 +415,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <div class="twelve columns details">
                                     <div class="home-town">
                                         <span class="style-upper">Hometown:</span> <span class="style-italic" id="texthometown">
-                                        <?php if($StylistBioData): echo $StylistBioData[0]['StylistBio']['hometown']; else: endif; ?>
+                                        <?php if($StylistBioData): echo $StylistBioData['StylistBio']['hometown']; else: endif; ?>
                                         </span><span class="edit-section home-edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
                                         <form class="home-edit" method="post" action="" name="edithometown">
                                             <label>Your Home Town</label>
                                             <div class="edit-content">
                                             <?php if($StylistBioData): ?>
-                                            <input type="text" id="hometown" value="<?php echo $StylistBioData[0]['StylistBio']['hometown']; ?>" placeholder="Enter your Fun Fact">
+                                            <input type="text" id="hometown" value="<?php echo $StylistBioData['StylistBio']['hometown']; ?>" placeholder="Enter your Fun Fact">
                                             <?php else: ?>
                                              <input type="text" id="hometown" placeholder="Enter your Fun Fact">   
                                             <?php endif; ?>
@@ -435,14 +435,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     </div>
                                     <div class="fun-fact"><span class="style-upper">Fun Fact:</span> 
                                         <span class="style-italic" id="textfunfact">
-                                        <?php if($StylistBioData): echo $StylistBioData[0]['StylistBio']['funfact']; else: endif; ?>
+                                        <?php if($StylistBioData): echo $StylistBioData['StylistBio']['funfact']; else: endif; ?>
                                         </span>
                                         <span class="edit-section fun-edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
                                         <form class="fun-edit" method="post" action="" name="edithometown">
                                             <label>Your Fun Fact</label>
                                             <div class="edit-content">
                                             <?php if($StylistBioData): ?>
-                                                <input type="text" id="funfact" value="<?php echo $StylistBioData[0]['StylistBio']['funfact']; ?>" placeholder="Enter Your Fun Fact">
+                                                <input type="text" id="funfact" value="<?php echo $StylistBioData['StylistBio']['funfact']; ?>" placeholder="Enter Your Fun Fact">
                                             <?php else: ?>
                                                 <input type="text" id="funfact" placeholder="Enter Your Fun Fact">   
                                             <?php endif; ?>
@@ -455,14 +455,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     </div>
                                     <div class="fashion-tips">
                                         <span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic" id="textfashiontip">
-                                        <?php if($StylistBioData): echo $StylistBioData[0]['StylistBio']['fashion_tip']; else: endif; ?>
+                                        <?php if($StylistBioData): echo $StylistBioData['StylistBio']['fashion_tip']; else: endif; ?>
                                         </span>
                                         <span class="edit-section tip-edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
                                         <form class="tip-edit" method="post" action="" name="edithometown">
                                             <label>Your Fashion Tip</label>
                                             <div class="edit-content">
                                             <?php if($StylistBioData): ?>
-                                                <input type="text" id="fashion_tip" value="<?php echo $StylistBioData[0]['StylistBio']['fashion_tip']; ?>" placeholder="Enter Your Fun Fact">
+                                                <input type="text" id="fashion_tip" value="<?php echo $StylistBioData['StylistBio']['fashion_tip']; ?>" placeholder="Enter Your Fun Fact">
                                             <?php else: ?>
                                                 <input type="text" id="fashion_tip" placeholder="Enter Your Fun Fact">   
                                             <?php endif; ?>
