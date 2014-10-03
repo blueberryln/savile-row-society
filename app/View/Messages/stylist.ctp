@@ -29,6 +29,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <?php echo $this->element('clientAside/userLinksLeft'); ?>
 
                             <div class="right-pannel right">
+                                
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
                                         
@@ -51,14 +52,14 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     </div>
                                 </div>
                                 <div class=" twelve columns left bottom-btns">
-                                   <!--  <a class="create-outfit left" href="#" title="">Create Outfit</a>
-                                    <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
-                                    <a class="send-btn right" href="#" title="">Send</a> -->
+                                   <!--  <a class="link-btn gold-btn" href="#" title="">Create Outfit</a>
+                                    <a class=" link-btn black-btn" href="#" title="">Send Photo Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                    <a class="link-btn black-btn" href="#" title="">Send</a> -->
                                     <!-- <a class="create-outfit left" href="#" title="">Create Outfit</a> -->
-                                    <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
+                                    <a class=" create-outfit left"  id="createOutfit"  href="">Create New Outfit</a>
                                     <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
-                                    <a class="link-btn black-btn" href="" id="sendphoto">Send Photo</a>
-                                    <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a>
+                                    <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                    <a class="send-btn right"  id="sendMessages"  href="">Send Message</a>
                                 </div>
                             </div>
                         
@@ -192,10 +193,10 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     
                     
                     html = html + 
-                    
-                        '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
-                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
-                            '<li><img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" alt="" /></li>'; 
+                            '<li>' + 
+                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
+                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
+                                '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" alt="" /></li>'; 
                 }
 
                     html = html +  '</ul>' +
@@ -203,15 +204,50 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     '</div>';
             }
             else if(chatMsg['Message']['image']){
-                html = '' + 
+                if(chatMsg['UserFrom']['id'] == uid){
+                    
+                    html = '' + 
                         '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                            '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
-                            '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
-                            '<div class="message-date">' +
-                                '<small>' + chatMsg['Message']['created'] + '</small>' +
+                            '<div class="message-image-area">' +
+                                '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
+                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
+                            '</div>' +   
+                        '</div>';
+                }
+                else{
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
+                            '<div class="user-message-image-area">' +
+                                '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
+                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
                             '</div>' + 
                         '</div>';
+                }
             }
+            else if(chatMsg['Message']['is_request_outfit'] == 1){
+                if(chatMsg['UserFrom']['id'] == uid){
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="client-msg">' + 
+                            '<div class="client-msg-reply">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</idv>' +
+                        '</div>';
+                }
+                else{
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
+                            '<div class="user-msg">' + 
+                            '<div class="msg">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
+                            '</div>' + 
+                        '</div>';
+                }
+            } 
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
                     

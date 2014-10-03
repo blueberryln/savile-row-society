@@ -57,9 +57,20 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
                                 }
                                 </style>
                                 <div class=" twelve columns left bottom-btns">
+<!--
                                    <a class="link-btn black-btn" href="" id="requestanoutfit">Request an outfit</a>
-                                    <a class="link-btn black-btn" href="" id="sendphoto">Upload<!-- <span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span> --></a>
+                                    <a class="link-btn black-btn" href="" id="sendphoto">Upload <span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span> </a>
                                     <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a>
+-->
+                                    
+                                    
+                                    
+                                    
+                                     <a class=" create-outfit left"  id="requestanoutfit"  href="">Request an outfit</a>
+                                    <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
+                                    <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                    <a class="send-btn right"  id="sendMessages"  href="">Send Message</a>
+                                    
                                 </div>
                             </div>
                         
@@ -223,10 +234,10 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
                     
                     
                     html = html + 
-                    
-                        '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
-                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
-                            '<li><img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" alt="" /></li>'; 
+                            '<li>' + 
+                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
+                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
+                                '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" alt="" /></li>';  
                 }
 
                     html = html +  '</ul>' +
@@ -236,13 +247,51 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 
 
             else if(chatMsg['Message']['image']){
-                html = '' + 
-                        '<div class="client-outfit" cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                            '<div class="client-msg-reply"><span>You sent an image:</span></div>' + 
-                            '<img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" height="250px" />' +
-                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
+                if(chatMsg['UserFrom']['id'] == uid){
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="user-message-image-area">' +
+                                '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
+                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
+                            '</div>' +   
                         '</div>';
+                }
+                else{
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
+                            '<div class="message-image-area">' +
+                                '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
+                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
+                            '</div>' + 
+                        '</div>';
+                }
             }
+            else if(chatMsg['Message']['is_request_outfit'] == 1){
+                if(chatMsg['UserFrom']['id'] == uid){
+                    
+                     html = '' + 
+                        '<div class="chat-msg-box otft-rqst" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
+                            '<div class="user-msg">' + 
+                            '<div class="otft-request">Outfit Request</div>' +
+                            '<div class="msg">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
+                            '</div>' + 
+                        '</div>';
+                }
+                else{
+                    
+                     html = '' + 
+                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="client-msg">' + 
+                            '<div class="client-msg-reply">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</idv>' +
+                        '</div>';
+                }
+            } 
 
             else{
                 if(chatMsg['UserFrom']['id'] == uid){
