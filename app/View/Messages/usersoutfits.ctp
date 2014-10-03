@@ -49,19 +49,8 @@ $(document).ready(function(){
         var sortOrder = $(this).val();
         location = location.href.split('?')[0] + '?sort=' + sortOrder;
     });
-
     
-
-
-});
-</script>   
-
-
-<?php
-$script = '
-$(document).ready(function(){  
-    
-    $(document).on("click",".add-to-cart", function(e) {
+    $("#ascsort").on("click",".add-to-cart", function(e) {
         e.preventDefault();
         var productBlock = $(this).closest(".outfit-page-item"),
             productQuantity = productBlock.find("select.product-quantity").val(),
@@ -72,7 +61,7 @@ $(document).ready(function(){
             var size = productSize;
             
         
-        $.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: 1, product_size: 23, outfit_id: outfitid },
+        $.post("<?php echo $this->request->webroot; ?>api/cart/save", { product_id: id, product_quantity: 1, product_size: 23, outfit_id: outfitid },
             function(data) {
                 var ret = $.parseJSON(data);
                 if(ret["status"] == "ok"){
@@ -86,9 +75,15 @@ $(document).ready(function(){
         
         );
     });
-    
-    
+
+
 });
+</script>   
+
+
+<?php
+$script = '
+
 ';
 $this->Html->script("jquery.colorbox-min.js", array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
