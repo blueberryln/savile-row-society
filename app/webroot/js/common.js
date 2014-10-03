@@ -187,18 +187,15 @@ jQuery(function(){
         viewoutFit();
     });
     
+    
+    
+    
+    
+    
     $('.myclst-quick-view').on('click', function(e){
         e.preventDefault();
         myClst();
     });
-    
-    
-    // $('#sbmt-cnfrmation').on('click', function(e){
-    //     e.preventDefault();
-    //     cnfrmoutFit();
-    // });
-    
-
     
     
     $('#signup-popup, #signin-popup, #crt-new-otft').on('click', '.notification-close', function(e){
@@ -307,12 +304,39 @@ jQuery(function(){
     $('#signup-popup, #signin-popup').on('click', '.notification-close', function(e){
         e.preventDefault();
         $.unblockUI();
+        
+    });
+    $("#cnfrm").on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();   
+    });
+    
+    $("#cnfrm").on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();   
     });
 
     $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup, #myclst-popup').on('click', '.otft-close', function(e){
         e.preventDefault();
         $.unblockUI();
     });
+    
+    $("#cnfrm-otft-popup").on('click', '.cnfrm-otft-edit-sec', function(e){
+        e.preventDefault();
+        $.unblockUI();   
+    });
+    
+    
+    
+//    $('.cnfrm-otft-edit-sec').click(function(){
+//        $('#cnfrm-otft-popup').preventDefault();
+//        $.unblockUI();
+//    })
+//    $('#cnfrm-otft-popup').on('click', '.cnfrm-otft-edit-sec', function(e){
+//        e.preventDefault();
+//        $.unblockUI();
+//        return false; 
+//    });
    
     $("#block-vip-access,#block-vip-access-link").on("click", function(e){
         e.preventDefault();

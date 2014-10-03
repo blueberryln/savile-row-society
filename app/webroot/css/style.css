@@ -1514,7 +1514,7 @@ a.sbmt-btn { width: 100%; display: block; padding: 18px 0 12px; background: #b6a
 
 .otft-prdct-list li a {line-height:235px; text-align: center; display: inline-block; width: 100%;}
 .otft-prdct-list li .otft-prdt-img {display:inline-block; text-align: center; }
-.otft-prdct-list li img { width: 75%; vertical-align: middle;}
+.otft-prdct-list li img { vertical-align: middle; max-height: 235px;}
 .otft-prdct-list li .otft-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none; line-height: normal;}
 .otft-prdct-list li .otft-prdt-overlay h3 { font-size: 18px; line-height: 20px; padding: 0px 20px;}
 .otft-prdct-list li .otft-prdt-overlay p{margin-bottom: 0px; font-size: 14px;}
@@ -1744,7 +1744,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .itm-sls-list-content ul li .itm-sls-list-client.refer-frnd-status { text-align: center;}
 #loadMoreProduct, .pagination { width: 100%; display: inline-block; text-align: center;}
 #loadMoreProduct a, .pagination a {background: #927e41; height: 40px; line-height: 40px !important; padding: 0 20px; display: inline-block; margin-top: 20px; color: #fff; font-size: 20px;text-align: center;}
-
+.error-outfit{color: #ff0000; text-align: center;}
 
 
 

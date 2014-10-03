@@ -470,61 +470,67 @@ $(document).ready(function(){
 
 
 
-    $(".sbmt-btn").on("click", function () {
+    $(".sbmt-btn").on("click", function (e) {
+            
+        if(!$('.basket ul li').length || $("#outfitname").val() == "" || $("#comments").val() == ""){
+            $('.error-outfit').show();
+            return false;   
+        }
+        else{
+            $('.error-outfit').hide();
+            var outfitData = '';
+            $('.basket ul li').not('.basket-limit').each(function(){
+                outfitData = outfitData + '<li >';
+                outfitData = outfitData + '<img src="'+ $(this).find('img').attr('src') +'" alt="" />';
+                outfitData = outfitData + '<div class="cnfrm-otft-prdct-dtl">' + $(this).find('.name').text() + '<br />Whit &amp; co<br />' + $(this).find('.prc-img').text() + '</div>';
+                outfitData = outfitData + '</li>';
 
-        var outfitData = '';
-        $('.basket ul li').each(function(){
-            outfitData = outfitData + '<li >';
-            outfitData = outfitData + '<img src="'+ $(this).find('img').attr('src') +'" alt="" />';
-            outfitData = outfitData + '<div class="cnfrm-otft-prdct-dtl">' + $(this).find('.name').text() + '<br />Whit &amp; co<br />' + $(this).find('.prc-img').text() + '</div>';
-            outfitData = outfitData + '</li>';
-                              
-        });
+            });
 
 
-        var html = '';
-        html = html +   '<div id="cnfrm-otft-popup" style="display: none">'+
-                            '<div class="box-modal">'+
-                                '<div class="box-modal-inside">'+
-                                    '<a href="#" title="" class="otft-close"></a>'+
-                                        '<div class="twelve columns left cnfrm-otft-content">'+
-                                            '<div class="twelve columns left cnfrm-otft-top">'+
-                                                '<h1>'+ $("#outfitname").val() +'</h1>'+
-                                                '<span class="otft-prc right">Outfit price: $'+ $("#total").text() +'</span>'+
-                                            '</div>'+
-                                            '<div class="twelve columns left cnfrm-otft-middle">'+
-                                                '<div class="eleven columns container">'+
-                                                    '<div class="twelve columns left cnfrm-otft-itms">'+
-                                                        '<ul>' +
-                                                        outfitData +  
-                                                        '</ul>' + 
-                                                    '</div>' + 
-                                                '</div>' + 
-                                            '</div>' + 
-                                            '<div class="twelve columns left cnfrm-otft-bottom">' + 
-                                                '<div class="eleven columns container">' + 
-                                                    '<div class="twelve columns left otft-stylist-review">' + 
-                                                        $("#comments").val() + 
-                                                    '</div>' + 
-                                                '</div>' + 
-                                            '</div>' + 
-                                            '<div class="twelve columns left cnfrm-bottom-link">' + 
-                                                '<div class="eleven columns container">' + 
-                                                    '<div class="twelve columns left otft-btm-links">' + 
-                                                        '<div class="cnfrm-otft-edit left"><a href="#" title="">Edit</a></div>' + 
-                                                        '<div class="cnfrm-otft-social left">' + 
+            var html = '';
+            html = html +   '<div class="box-modal">'+
+                                    '<div class="box-modal-inside">'+
+                                        '<a href="#" title="" class="otft-close"></a>'+
+                                            '<div class="twelve columns left cnfrm-otft-content">'+
+                                                '<div class="twelve columns left cnfrm-otft-top">'+
+                                                    '<h1>'+ $("#outfitname").val() +'</h1>'+
+                                                    '<span class="otft-prc right">Outfit price: $'+ $("#total").text() +'</span>'+
+                                                '</div>'+
+                                                '<div class="twelve columns left cnfrm-otft-middle">'+
+                                                    '<div class="eleven columns container">'+
+                                                        '<div class="twelve columns left cnfrm-otft-itms">'+
+                                                            '<ul>' +
+                                                            outfitData +  
+                                                            '</ul>' + 
                                                         '</div>' + 
-                                                    '<div class="cnfrm-otft-send right"><a href="#" title="" id="subfinaloutfit">Send <span></span></a></div>' + 
+                                                    '</div>' + 
+                                                '</div>' + 
+                                                '<div class="twelve columns left cnfrm-otft-bottom">' + 
+                                                    '<div class="eleven columns container">' + 
+                                                        '<div class="twelve columns left otft-stylist-review">' + 
+                                                            $("#comments").val() + 
+                                                        '</div>' + 
+                                                    '</div>' + 
+                                                '</div>' + 
+                                                '<div class="twelve columns left cnfrm-bottom-link">' + 
+                                                    '<div class="eleven columns container">' + 
+                                                        '<div class="twelve columns left otft-btm-links">' + 
+                                                            '<div class="cnfrm-otft-edit left"><a class="cnfrm-otft-edit-sec" href="#" title="">Edit</a></div>' + 
+                                                            '<div class="cnfrm-otft-social left">' + 
+                                                            '</div>' + 
+                                                        '<div class="cnfrm-otft-send right"><a href="#" title="" id="subfinaloutfit">Send <span></span></a></div>' + 
+                                                    '</div>' + 
                                                 '</div>' + 
                                             '</div>' + 
                                         '</div>' + 
                                     '</div>' + 
-                                '</div>' + 
-                            '</div>' + 
-                        '</div>'; 
+                                '</div>'; 
 
-        $("#cnfrm").html(html); 
-        cnfrmoutFit();
+            $("#cnfrm-otft-popup").html(html); 
+            cnfrmoutFit();    
+        }
+        
     });
 
     $("#subfinaloutfit").live("click", function (e) {
@@ -622,11 +628,13 @@ $(document).ready(function(){
                                                 <textarea placeholder="Write a comment to your client before you send outfit" id="comments"></textarea>
                                                 <a id="sbmt-cnfrmation" class="sbmt-btn" href="#" title="">Submit Outfit</a>
                                             </div>
+                                            <p class="error-outfit hide">All fields are mandatory.</p>
                                         </div>
                                     </div>
 
                                     <!--popupsubmit-->
                                     <div id="cnfrm"></div>
+                                    <div id="cnfrm-otft-popup" style="display: none"></div>
                                      
                                     <!--popup submit-->
 
