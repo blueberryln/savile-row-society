@@ -650,7 +650,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .payment .page-heading .sub{margin: 15px auto;}
 .card-strip{margin-bottom: 15px;}
 .contact-container{margin-bottom: 8px;}
-#confirm-payment{padding-right: 40px; padding-left: 40px; margin-top: 30px; width: 205px;}
+#confirm-payment{padding-right: 40px; padding-left: 40px; margin-top: 30px; width: 205px; float: left; margin-bottom: 10px;}
 .payment small { color: #AF9A59; }
 .remove-pc{color: #FF0000 !important; font-size: 12px; text-transform: capitalize;}
 
@@ -1522,9 +1522,9 @@ a.sbmt-btn { width: 100%; display: block; padding: 18px 0 12px; background: #b6a
 .otft-prdct-list li a {line-height:235px; text-align: center; display: inline-block; width: 100%;}
 .otft-prdct-list li .otft-prdt-img {display:inline-block; text-align: center; }
 .otft-prdct-list li img { vertical-align: middle; max-height: 235px;}
-.otft-prdct-list li .otft-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none; line-height: normal;}
+.otft-prdct-list li .otft-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 80%; background: rgba(236, 235, 237, 0.8); padding: 10px 10% 8px; display: none; line-height: normal;}
 .otft-prdct-list li .otft-prdt-overlay h3 { font-size: 18px; line-height: 20px; padding: 0px 20px;}
-.otft-prdct-list li .otft-prdt-overlay p{margin-bottom: 0px; font-size: 14px;}
+.otft-prdct-list li .otft-prdt-overlay p{margin-bottom: 0px;line-height: 14px; font-size: 14px; font-style: italic;}
 
 .otft-prdct-list li:hover .otft-prdt-overlay { display: block;}
 .basket { position: relative; min-height: 250px; }
@@ -1684,7 +1684,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 
 .myclst-prdct-list li a { line-height:235px; text-align: center; display: inline-block; width: 100%;}
 .myclst-prdct-list li .myclst-prdt-img {display:inline-block; text-align: center;}
-.myclst-prdct-list li img { width: 75%; vertical-align: middle;}
+.myclst-prdct-list li img { max-height: 235px; vertical-align: middle;}
 /*.otft-prdct-list li .otft-prdt-img { flaot:left; height: 100%; width: 100%; text-align: center;}*/
 .myclst-prdct-list li .myclst-prdt-overlay{ position: absolute; bottom: 0px; left: 0px; width: 100%; background: rgba(236, 235, 237, 0.8); padding: 10px 0 8px; display: none; line-height: normal;}
 .myclst-prdct-list li .myclst-prdt-overlay h3 { font-size: 18px; line-height: 20px; padding: 0px 20px;}
