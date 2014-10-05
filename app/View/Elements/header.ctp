@@ -40,7 +40,7 @@
                <!-- <li><a href="#" onclick="window.ref_url=''; signUp();"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>-->
                 <?php 
                     echo ' <li><a class="login btn" href="#" onclick="window.ref_url=\'\'; signIn();">Login</a> </li> ';
-                    echo ' <li><a class="get-stated btn" href="#" onclick="window.ref_url=\'\'; signUp();">Get Started</a></li> ';
+                    echo ' <li><a class="get-stated btn" href="/users/register">Get Started</a></li> ';
                     
                 } else {
                 ?>

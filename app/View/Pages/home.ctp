@@ -269,7 +269,7 @@ $this->Html->script('cookie.js', array('inline' => false));
     </div>
                         
     <div class="eleven columns container bottom-btn"> 
-        <a class="bottom-get-started" href="#" title="">Get Started</a>
+        <a class="bottom-get-started" href="/users/register" title="">Get Started</a>
     </div>
         
 </div>

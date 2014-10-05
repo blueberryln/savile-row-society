@@ -411,18 +411,21 @@ color:#396; !important
                         <div class="five columns pref-time left">
                             <div class="pref-options">
                                 <?php
-                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'First Name'));
-                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'Email'));
-                                    echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode"));
+                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'First Name', 'tabindex' => 1));
+                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'Email', 'tabindex' => 3));
+                                    echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'Password', 'tabindex' => 5));
+                                    
                                 ?>
                             </div>
                         </div>
                          <div class="five columns pref-time right">
                             <div class="pref-options">      
                               <?php
-                                echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'Last Name'));
-                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'Password'));
-                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'Confirm Password'));
+                                echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'Last Name', 'tabindex' => 2));
+
+                                echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode", 'tabindex' => 4));
+
+                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'Confirm Password', 'tabindex' => 6));
                                 ?> 
                                 
                                 </div>
@@ -437,8 +440,8 @@ color:#396; !important
                         <div class="five columns pref-time left">
                             <div class="pref-options">
                                 <?php
-                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number"));
-                                    echo $this->Form->input('User.skype', array( 'label' => false, 'placeholder' => 'Skype Id'));
+                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number (Optional)"));
+                                    echo $this->Form->input('User.skype', array( 'label' => false, 'placeholder' => 'Skype Id (Optional)'));
                                 ?>
                             </div>
                         </div>
