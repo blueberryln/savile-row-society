@@ -162,6 +162,40 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </div>
                 </div>
             </div>
+            <div class="stylistbio-section-left text-center m-ver">
+                        <div class=" twelve columns stylistbion-arrow"><img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" /></div>
+                        <div class="twelve columns">
+                            <div class="eleven columns container stylistbio-short-note">
+                                <div class="short-note">Learn more about all the Savile Row Stylists by clicking through our list of current stylists. </div>
+                            </div>
+                        </div>
+                         <div class="twelve columns">
+                            <div class="eleven columns container stylistbio-list">
+                                <h3>SRS Stylist List</h3>
+                                <div id="scrollbar1">
+                                    <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                    <div class="viewport">
+                         <div class="overview">
+                                <ul>
+                                <?php foreach ($stylists as  $stylist): ?>
+                                    <li><a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $stylist['User']['id']; ?>">
+                                        <div class="left stylistbio-list-img">
+                                        <?php if($stylist['User']['profile_photo_url']): ?>
+                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
+                                        <?php else: ?>
+                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" /></div>    
+                                        <?php endif; ?>
+                                        <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
+                                    </li>
+                                    <?php endforeach; ?>
+
+                                </ul>
+                             </div>
+                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
             
             
         </div>

@@ -963,8 +963,9 @@ h1.stylistbio-heading { position: relative; font-size: 28px; color: #d19b03; mar
 .photostream-section, h1.stylistbio-heading.photostream { padding-left: 18px;}
 h1.top-outits-heading { border-bottom: 1px solid #ebebeb;}
 .photostream-section { padding-bottom: 10px;}
-.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 140px; line-height: 140px; text-align: center;}
-.photostream-section li img { max-height: 140px; vertical-align: middle;}
+.photostream-section li { display: inline-block; margin:1px; /*width: 23.6667%;*/ max-height: 170px; line-height: 170px; text-align: center; position: relative;}
+.photostream-section li a { }
+.photostream-section li img { max-height: 170px; vertical-align: middle;}
 
 a.jp-previous, a.jp-next { position: absolute; right: 17px; font-size: 18px; bottom: -15px; text-transform: uppercase; text-align: right; text-indent: -9999px; cursor: pointer;}
 a.jp-previous.jp-disabled{ display: none;}
@@ -1239,7 +1240,7 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
 .edit-content { width: 100%; background: #fff; font-size: 16px; line-height: 18px; color: #212125;}
 
 .actions { margin: 10px 0px;}
-.primry-btn, .secondry-btn {background: #d19b03; height: 35px; line-height: 35px; padding: 0 15px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; color: #fff; text-transform: uppercase; display: inline-block; cursor: pointer;}
+.primry-btn, .secondry-btn {background: #d19b03; height: 35px; line-height: 35px!important; padding: 0 15px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; color: #fff; text-transform: uppercase; display: inline-block; cursor: pointer;}
 .secondry-btn { background: #575757;}
 
 .stylistbio-heading, .stylistbio-profile, .stylist-insp { position: relative;}
@@ -1251,8 +1252,15 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
 .beachday-update1 label, .beachday-update2 label, .beachday-update3 label{ padding-bottom: 25px; padding-top: 25px;}
 .beachday-update1 .edit-content, .beachday-update2 .edit-content, .beachday-update3 .edit-content   { margin-bottom: 30px; position: relative;}
 .edit-content select { background: #fff; font-size: 16px; line-height: 18px; color: #212125; }
-.edit-content span.edit-content-icon { background: #ffffff url('../images/down-arrow.png') no-repeat center center; width: 30px; position: absolute; top: 1px; right: 1px; height: 96%; pointer-events: none;}
+.edit-content span.edit-content-icon { background: #ffffff url('../images/down-arrow.png') no-repeat center center; width: 30px; position: absolute; top: 1px; right: 1px; height: 94%; pointer-events: none;}
 .edit-content select option { padding: 4px 5px;}
+.photostream-edit-section { position: absolute; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.74); top: 0; left: 0; z-index: 1;}
+.tip-edit-photostream { position: absolute; top: 10px; left: 45%; line-height: normal;}
+.edit-caption-txt { width: 100%; display: block; line-height: normal; text-transform: uppercase; font-size: 14px; color: #707070; position: absolute; top: 35px; left: 0; cursor: pointer;}
+.delete-potostream-img { position: absolute; bottom: 10px; left: 0; text-decoration: none; color: #ab1b10; text-transform: uppercase; line-height: normal; width: 100%; background: none;}
+.edit-caption-area { width: 100%; left: 0px; top: 60px; position: absolute; display: none; line-height: normal;}
+.edit-caption-area textarea { width: 90%; margin: 0 5%; padding:5px; background: #fff;border: 1px solid #e8e8e8;  border-top: 1px solid #b4b4b4;  min-height: 20px; resize: none; font-size:14px; color: #707070;line-height: normal;}
+.edit-caption-area p.actions { line-height: normal; margin: 5px 0px;}
 
 /************ Stylist One Section *************/
 .admin-nav ul li { display: inline-block; margin-right: 1px; position: relative; margin-bottom: 0px;}

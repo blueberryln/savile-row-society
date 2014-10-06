@@ -485,7 +485,20 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $photostreampicss['StylistPhotostream']['caption']; ?>">
                                                 <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" />
+                                                
                                                 </a>
+                                                <div class="photostream-edit-section">
+                                                    <span class="edit-section tip-edit-photostream"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                                    <span class="edit-caption-txt">Edit Caption</span>
+                                                    <span class="edit-caption-area">
+                                                        <textarea name="" placeholder="I styled my friends wedding. I love the colors"></textarea>
+                                                        <p class="actions">
+                                                            <a class="edit-save-btn primry-btn" id="submit_stylist_fashion_tip">Submit</a>
+                                                            <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                                        </p>
+                                                    </span>
+                                                    <button class="delete-potostream-img">Delete Photo</button>
+                                                </div>
                                             </li>
                                         <?php endforeach; ?>
                                             
