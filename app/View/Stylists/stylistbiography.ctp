@@ -162,7 +162,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </div>
                 </div>
             </div>
-            <div class="stylistbio-section-left text-center m-ver">
+    
+    
+    <div class="stylistbio-section-left text-center m-ver">
                         <div class=" twelve columns stylistbion-arrow"><img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" /></div>
                         <div class="twelve columns">
                             <div class="eleven columns container stylistbio-short-note">
@@ -172,7 +174,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                          <div class="twelve columns">
                             <div class="eleven columns container stylistbio-list">
                                 <h3>SRS Stylist List</h3>
-                                <div id="scrollbar1">
+                                <div id="scrollbar8">
                                     <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                     <div class="viewport">
                          <div class="overview">
@@ -191,14 +193,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
                                 </ul>
                              </div>
-                        </div>
+                                </div>
                                     </div>
 
                             </div>
                         </div>
-            
-            
-        </div>
-        
+    
+    
+       </div>
     </div>
 </div>
