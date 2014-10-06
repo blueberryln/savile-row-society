@@ -4,7 +4,8 @@
 #scrollbar4,
 #scrollbar5,
 #scrollbar6,
-#scrollbar7
+#scrollbar7,
+#scrollbar8
 
 {
     width:100%;
@@ -18,7 +19,8 @@
 #scrollbar4 .viewport,
 #scrollbar5 .viewport,
 #scrollbar6 .viewport,
-#scrollbar7 .viewport
+#scrollbar7 .viewport,
+#scrollbar8 .viewport
 {
     height: 800px;
     overflow:hidden;
@@ -36,8 +38,8 @@
 #scrollbar4 .overview,
 #scrollbar5 .overview,
 #scrollbar6 .overview,
-#scrollbar7 .overview
-
+#scrollbar7 .overview,
+#scrollbar8 .overview
 {
     list-style:none;
     position:absolute;
@@ -56,7 +58,8 @@
 #scrollbar4 .scrollbar,
 #scrollbar5 .scrollbar,
 #scrollbar6 .scrollbar,
-#scrollbar7 .scrollbar
+#scrollbar7 .scrollbar,
+#scrollbar8 .scrollbar
 {
     background:transparent url(images/bg-scrollbar-track-y.png) no-repeat 0 0;
     position:absolute;
@@ -76,7 +79,8 @@
 #scrollbar4 .track,
 #scrollbar5 .track,
 #scrollbar6 .track,
-#scrollbar7 .track
+#scrollbar7 .track,
+#scrollbar8 .track
 {
     background:#f0f0ec;;
     height:100%;
@@ -94,7 +98,8 @@
 #scrollbar4 .thumb,
 #scrollbar5 .thumb,
 #scrollbar6 .thumb,
-#scrollbar7 .thumb
+#scrollbar7 .thumb,
+#scrollbar8 .thumb
 {
     background:#d9d9d5;
     height:20px;
@@ -115,7 +120,8 @@
 #scrollbar4 .thumb .end,
 #scrollbar5 .thumb .end,
 #scrollbar6 .thumb .end,
-#scrollbar7 .thumb .end
+#scrollbar7 .thumb .end,
+#scrollbar8 .thumb .end
 {
     background:#d9d9d5;
     overflow:hidden;
@@ -129,7 +135,8 @@
 #scrollbar4 .disable,
 #scrollbar5 .disable,
 #scrollbar6 .disable,
-#scrollbar7 .disable
+#scrollbar7 .disable,
+#scrollbar8 .disable
 {
     display:none;
 }

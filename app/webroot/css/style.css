@@ -149,7 +149,8 @@ input[type="submit"]{color: #fff;}
 
     .container{position: relative; width: 960px; margin: 0 auto; padding: 0;}
     .content-container, .content-container-home {height: 100%; position: relative; margin-top: 0px; z-index: 0;}
-    .content-container-home, .stylist-biography-section{ margin-top: 81px;}
+    .content-container-home{ margin-top: 81px;}+
+    .stylist-biography-section{ margin-top: 0px;}
     .container-box { background: #ffffff; /*margin-top: 130px;*/}
     /*.container .column, .container .columns{float: none;}*/
     .inner{margin-bottom: 0px;}
@@ -1765,7 +1766,7 @@ input#billingCopybilling { visibility: visible;}
 
 
 
-.myclient-list.tab_n_mob { display: none;}
+.myclient-list.tab_n_mob, .stylistbio-section-left.text-center.m-ver { display: none;}
 .myclient-list.dsktp_only {display: ;}
 .client-img-small, .m-ver, .dd-nav{ display: none;}
 /********Mobile CSS**********/
@@ -2256,7 +2257,8 @@ input#billingCopybilling { visibility: visible;}
     .stylistbio-section-left .twelve.columns, .stylistbio-section-left .eleven.columns, .stylistbio-section-right .eleven.columns, .stylistbio-section-right .twelve.columns, .stylistbio-section-right .container  { padding: 0px;}
     .social-networks { padding-top: 10px!important;}
     .stylistbio-user{text-align: center;}
-    .profile-img img { width: 70%;}
+    .profile-img{overflow: hidden; line-height: 150px;}
+    .profile-img img { overflow: hidden; vertical-align: middle;}
     .stylistbio-section-right { border-left: none;}
     .stylistbio { margin-top: 35px;}    
     .stylistbio-section { float: left !important;}    
@@ -2269,7 +2271,8 @@ input#billingCopybilling { visibility: visible;}
     .start-today a, .details { font-size: 16px; line-height: 18px;}
     .details .home-town, .details .fun-fact, .details .fashion-tips, .photostream-section, h1.stylistbio-heading.photostream { padding: 6px 10px 8px;}
     .photostream-section, h1.stylistbio-heading.photostream { font-size: 22px; text-align: center;}
-    .photostream-section li { width: 48%; margin: 2px 0;}
+    .photostream-section li { width: 48%; margin: 2px 0; height: 100px; line-height: 100px;}
+    .photostream-section li img {max-height: 100px;}
     .holder{ height: 55px;}
     a.jp-previous, a.jp-next{ width: 100%; background-position: center 0px;}
     a.jp-previous{ left: 0px;}
@@ -2405,6 +2408,8 @@ input#billingCopybilling { visibility: visible;}
 	.only-mob{display: /*block*/none;}
 	.only-desktop{display: none;}
     .zopim{display: none;}
+    .stylistbio-section-left.text-center {display: none;}
+    .stylistbio-section-left.text-center.m-ver { display: block;}
 	}
 @media screen and (min-width: 240px) and (max-width: 568px) and (orientation : portrait) {
 	#sign-up-drop-down p { font-size: 22px; padding-top: 15px; margin-bottom: 10px;}
