@@ -525,12 +525,20 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             $('.beachday-content-update3').click(function(){
                 $('.beachday-update3').fadeIn();
             });
+            $('.edit-caption-txt').click(function(){                
+                $('.edit-caption-area').fadeIn();
+            });
+            
             
             
             
             
             $('.edit-save-btn, .cancel-btn').click(function(){
-                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3').fadeOut();
+                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3, .edit-caption-area').fadeOut();
+            });
+            
+            $('.delete-potostream-img').click(function(){
+                $(this).parent().parent().remove();
             });
             
             $('.edit-outfit-section').click (function(){
