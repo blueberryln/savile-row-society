@@ -433,15 +433,18 @@ class UsersController extends AppController {
                 $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
                 $user['UserPreference']['style_pref'] = implode(',', $user['UserPreference']['style_pref']);
 
-                if($user['User']['is_phone']==true){
-                   $user['User']['is_phone']='1'; 
+                if(isset($user['User']['is_phone']) && $user['User']['is_phone']==true){
+                    $user['User']['is_phone']='1'; 
                 }
-                if($user['User']['is_skype']==true){
+                else{
+                    $user['User']['is_phone']='0';    
+                }
+                if(isset($user['User']['is_skype']) && $user['User']['is_skype']==true){
                    $user['User']['is_skype']='1'; 
                 }else{
                     $user['User']['is_skype']='0'; 
                 }
-                if($user['User']['is_srs_msg']==true){
+                if(isset($user['User']['is_srs_msg']) && $user['User']['is_srs_msg']==true){
                    $user['User']['is_srs_msg']=1; 
                 }
 

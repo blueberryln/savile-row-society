@@ -1575,7 +1575,7 @@ a.bkmrk-btn{ background: #927e41;}
 #create-otft-popup .box-modal, #reuse-otft-popup .box-modal, #view-otft-popup .box-modal { width: 550px;}
 #create-otft-popup .box-modal-inside, #reuse-otft-popup .box-modal-inside, #view-otft-popup .box-modal-inside, #cnfrm-otft-popup .box-modal-inside, #myclst-popup .box-modal-inside { display: inline-block;}
 .crt-new-otft-content, .view-otft-content  { width: 500px; margin: 0 auto;}
-.myclient-popup {}
+.myclient-popup {width: 90%;}
 .otft-pop-rgt-area { position: relative; height: 100%; text-align: center;}
 .five.columns.otft-pop-rgt, .five.columns.otft-pop-lft { width: 49%;}
 
