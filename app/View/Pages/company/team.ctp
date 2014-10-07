@@ -32,7 +32,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                 <div class="eleven columns container">
                     <div class="ten columns text-center page-heading">
                         <h1>Meet the crew</h1>
-                        <h3>Savile Row Society consists of a growing team of menswear specialists, lifestyle fashionistas, finance moguls, technology geeks, product junkies, and fitness fanatics to bring men all the goods to work smarter, play harder, and feel better – “take out finance moguls? And fitness fanatics”</h3>
+                        <h3>Savile Row Society consists of a growing team of menswear specialists, lifestyle fashionistas, technology geeks and product junkies to bring men all the goods to work smarter, play harder, and feel better</h3>
                     </div>
                     <div class="twelve columns team text-center">	           
                         <div class="team-member-container"> 
