@@ -2,7 +2,7 @@
 $meta_description = 'As people today are rarely defined by a single company or career track, clothes have become an absolute reflection of one’s values, personality, attitude, and lifestyle.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-<div class="content-container">
+<div class="content-container content-container-terms">
     <div class="eleven columns container content inner">
         <div class="twelve columns container left message-box">
             <div class="blank-space">&nbsp;</div>

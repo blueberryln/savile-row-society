@@ -41,7 +41,7 @@ $meta_keywords = 'Savile Row Society, showroom';
 $this->Html->meta("keywords", $meta_keywords, array("inline" => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
-<div class="content-container">
+<div class="content-container content-container-contact">
     <div class="eleven columns container content inner">
         <div class="twelve columns container left message-box">
             <div class="blank-space">&nbsp;</div>

@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-<div class="content-container">
+<div class="content-container content-container-faq">
     <div class="eleven columns container content inner">
         <div class="twelve columns container left message-box">
             <div class="blank-space">&nbsp;</div>

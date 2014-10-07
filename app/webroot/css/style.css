@@ -149,7 +149,7 @@ input[type="submit"]{color: #fff;}
 
     .container{position: relative; width: 960px; margin: 0 auto; padding: 0;}
     .content-container, .content-container-home {height: 100%; position: relative; margin-top: 0px; z-index: 0;}
-    .content-container-home, .stylist-biography-section{ margin-top: 81px;}
+    .content-container-home, .stylist-biography-section, .content-container-team, .content-container-privacy, .content-container-contact, .content-container-brands, .content-container-faq, .content-container-terms{ margin-top: 81px;}
     .container-box { background: #ffffff; /*margin-top: 130px;*/}
     /*.container .column, .container .columns{float: none;}*/
     .inner{margin-bottom: 0px;}
@@ -751,7 +751,8 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .ui-widget-content{ padding-top: 10px;}
 .homepage{padding-top: 0;}
 #my-stylist .link-btn, div.mgs-btn .link-btn{padding: 15px 30px;}
-.works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes{display: block; position: relative; margin: 60px auto 0; text-align: center; padding-bottom: 50px;}
+.works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes{display: block; position: relative; margin: 60px auto 35px; text-align: center; padding-bottom: 50px;}
+.btm-mrgn { margin-bottom: 0px;}
 .only-desktop{display: none;}
 .works-boxes .work-box, .stylist-boxes .stylist-box, .shopping-boxes .shopping-box{display: inline-block; position: relative; vertical-align: top; font-family: 'ProximaNovaCond-Regular'; }
 .works-boxes .work-box, .shopping-boxes .shopping-box{width: 18%; margin: 0 7%; text-align: center; }
@@ -1063,7 +1064,7 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 -pie-background: linear-gradient(#fdfdfd, #e8e8e8);
 }
 .short-by-date span.short-by-date-arrow { position: absolute; width: 27px; top: 1px; right: 1px;
-height: 24px; padding-top: 6px; text-align: center; pointer-events: none;
+height: 27px; padding-top: 6px; text-align: center; pointer-events: none;
 background: #fdfdfd;
 background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fdfdfd), to(#e8e8e8));
 background: -webkit-linear-gradient(#fdfdfd, #e8e8e8);

@@ -25,7 +25,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 ?>
-<div class="content-container">
+<div class="content-container content-container-team">
     <div class="eleven columns container content inner">
         <div class="twelve columns container left message-box">
             <div class="blank-space">&nbsp;</div>
