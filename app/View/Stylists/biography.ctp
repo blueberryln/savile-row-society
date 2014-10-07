@@ -348,16 +348,92 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <?php else: ?>
                                     <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" />
                                 <?php endif; ?>
+                                <div class="profile-img-edit">
+                                    <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                </div>
                                 
                             </div>
+                            <div id="file-box-photo" class="box-modal notification-box" style="display: none;">
+                                        <div class="box-modal-inside">
+                                            <a class="notification-close" href=""></a>
+                                                <div class="vip-content">
+                                                    <h5 class="sign">Profile Image</h5>    
+                                                    <input type="file" name="profile-img" accept="images">
+                                                       <input class="biography-upload-img" type="submit" value="submit">
+                                                        </form>
+                                                            
+                                                </div>
+                                        </div>
+                                   </div> 
                             <div class=" twelve columns social-networks">
                                 <ul>
                                 <?php //$social = json_decode($find_array[0]['StylistBio']['stylist_social_link'],true); ?>
-                                    <li class="pintrest"><a href="<?php //echo $social['pinterest']; ?>" target="blank" title="">Printrest</a></li>
-                                    <li class="twitter"><a href="<?php //echo $social['twiter']; ?>" target="blank" title="">Twitter</a></li>
-                                    <li class="linkdin"><a href="<?php //echo $social['linkdin']; ?>" target="blank" title="">Linkdin</a></li>
-                                    <li class="facebbok"><a href="<?php //echo $social['facebook']; ?>" target="blank" title="">facebook</a></li>
+                                    <li class="pintrest">
+                                        <a href="<?php //echo $social['pinterest']; ?>" target="blank" title="">Printrest</a>
+                                        <div class="social-ntwrk-edit social-ntwrk-edit-pintrst">
+                                            <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                        </div>
+                                        
+                                    </li>
+                                    <li class="twitter">
+                                        <a href="<?php //echo $social['twiter']; ?>" target="blank" title="">Twitter</a>
+                                        <div class="social-ntwrk-edit social-ntwrk-edit-twtr">
+                                            <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                        </div>
+                                    </li>
+                                    <li class="linkdin">
+                                        <a href="<?php //echo $social['linkdin']; ?>" target="blank" title="">Linkdin</a>
+                                        <div class="social-ntwrk-edit social-ntwrk-edit-linkin">
+                                            <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                        </div>
+                                    </li>
+                                    <li class="facebbok">
+                                        <a href="<?php //echo $social['facebook']; ?>" target="blank" title="">facebook</a>
+                                        <div class="social-ntwrk-edit social-ntwrk-edit-fb">
+                                            <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                        </div>
+                                    </li>
                                 </ul>
+                                <form class="sosl-link-edit sosl-link-edit-pintrst" method="post" action="" name="edithometown">
+                                    <label>Your Link Here</label>
+                                    <div class="edit-content">
+                                    <input type="text"  value="" placeholder="Enter your Fun Fact">
+                                   </div>
+                                    <p class="actions">
+                                    <a class="edit-save-btn primry-btn" id="submit_stylist_hometown">Submit</a>
+                                    <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                    </p>
+                                </form>
+                                <form class="sosl-link-edit sosl-link-edit-twtr" method="post" action="" name="edithometown">
+                                    <label>Your Link Here</label>
+                                    <div class="edit-content">
+                                    <input type="text"  value="" placeholder="Enter your Fun Fact">
+                                   </div>
+                                    <p class="actions">
+                                    <a class="edit-save-btn primry-btn" id="submit_stylist_hometown">Submit</a>
+                                    <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                    </p>
+                                </form>
+                                <form class="sosl-link-edit sosl-link-edit-linkin" method="post" action="" name="edithometown">
+                                    <label>Your Link Here</label>
+                                    <div class="edit-content">
+                                    <input type="text"  value="" placeholder="Enter your Fun Fact">
+                                   </div>
+                                    <p class="actions">
+                                    <a class="edit-save-btn primry-btn" id="submit_stylist_hometown">Submit</a>
+                                    <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                    </p>
+                                </form>
+                                <form class="sosl-link-edit sosl-link-edit-fb" method="post" action="" name="edithometown">
+                                    <label>Your Link Here</label>
+                                    <div class="edit-content">
+                                    <input type="text"  value="" placeholder="Enter your Fun Fact">
+                                   </div>
+                                    <p class="actions">
+                                    <a class="edit-save-btn primry-btn" id="submit_stylist_hometown">Submit</a>
+                                    <button class="cancel-btn secondry-btn" type="button">Cancel</button>
+                                    </p>
+                                </form>
                             </div>
                             <div class="stylistbio-heading-section">
                             <h1 class="stylistbio-heading"><?php echo $user['User']['first_name']; ?>’s Bio <span class="edit-section edit-section-stylistbio-heading"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span></h1>

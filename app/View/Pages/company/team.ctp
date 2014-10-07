@@ -83,7 +83,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                         <div class="team-member-container">    
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/Matt.jpg" data-member-name="Matt" class="fadein-image" />
+                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-12.jpg" data-member-name="Matt" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Matt “M-P” Markezin-Press</div>

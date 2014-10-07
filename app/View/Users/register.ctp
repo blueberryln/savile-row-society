@@ -144,6 +144,9 @@ color:#396; !important
                 <div class="twelve columns text-center page-heading">
                     <div class="hi-message">
                         <div class="twelve columns text-center page-heading">
+                        <div class="hi-message-text rd-clr">
+                           Our goal is to get to know you before we provide suggestions, so let’s get started!
+                        </div>
                         <p><img src="<?php echo $this->webroot; ?>images/register-setp-1.png" alt=""></p>
                         </div>
                         <div class="twelve columns text-center page-heading">

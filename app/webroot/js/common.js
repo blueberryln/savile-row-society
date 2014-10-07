@@ -358,6 +358,12 @@ $("#block-file-upload-photo").on("click", function(e){
         $.blockUI({message: $('#file-box-photo')});
         $('.blockOverlay').click($.unblockUI);
     });
+    
+$(".profile-img-edit").on("click", "img", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#file-box-photo')});
+        $('.blockOverlay').click($.unblockUI);
+    });
 
 //add new address
 $("#block-request-address").on("click", function(e){

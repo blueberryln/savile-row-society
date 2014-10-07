@@ -530,12 +530,28 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
                 $('.edit-caption-area').fadeIn();
             });
             
+            $('.social-ntwrk-edit-pintrst').click(function(){
+                $('.sosl-link-edit-pintrst').fadeIn();
+            });
+            
+            $('.social-ntwrk-edit-twtr').click(function(){
+                $('.sosl-link-edit-twtr').fadeIn();
+            });
+            
+            $('.social-ntwrk-edit-linkin').click(function(){
+                $('.sosl-link-edit-linkin').fadeIn();
+            });
+            
+            $('.social-ntwrk-edit-fb').click(function(){
+                $('.sosl-link-edit-fb').fadeIn();
+            });
+            
             
             
             
             
             $('.edit-save-btn, .cancel-btn').click(function(){
-                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3, .edit-caption-area').fadeOut();
+                $('.home-edit, .tip-edit, .fun-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3, .edit-caption-area, .sosl-link-edit-pintrst, .sosl-link-edit-twtr, .sosl-link-edit-linkin, .sosl-link-edit-fb').fadeOut();
             });
             
             $('.delete-potostream-img').click(function(){
