@@ -802,27 +802,23 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                 <div id="posts-list">
                                     <ul id="listdat">
 
-                                    <?php  for($i = 0; $i < count($products); $i++){
-                                                $product = $products[$i];
-                                                //print_r($product);
-                                                    ?>
-                                        <li >
-                                            <a class="myclst-quick-view" href="#">
-                                            <?php //foreach ($product['Image'] as $images):?>
-                                            
-                                                <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
-                                            <?php //endforeach; ?>
-                                               <div class="myclst-prdt-overlay">
-                                                    <input type="hidden" value="<?php echo $product['Entity']['id']; ?>" id="prid">
-                                                    <h3><?php echo $product['Entity']['name']; ?></h3>
-                                                    <p><?php echo substr($product['Entity']['description'],0,25); ?></p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
-
-                                       
-                                       
+                                        <?php  for($i = 0; $i < count($products); $i++){
+                                            $product = $products[$i];
+                                        ?>
+                                            <li >
+                                                <a class="myclst-quick-view" href="#">
+                                                <?php //foreach ($product['Image'] as $images):?>
+                                                
+                                                    <div class="myclst-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
+                                                <?php //endforeach; ?>
+                                                   <div class="myclst-prdt-overlay">
+                                                        <input type="hidden" value="<?php echo $product['Entity']['id']; ?>" id="prid">
+                                                        <h3><?php echo $product['Entity']['name']; ?></h3>
+                                                        <p><?php echo substr($product['Entity']['description'],0,25); ?></p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
 
                                     </ul>
                                 </div>

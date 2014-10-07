@@ -3809,7 +3809,7 @@ If interested, I would also be happy to meet with you in our New York City based
         }
 
         $stylist_id = $user['User']['stylist_id'];
-        $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $stylist_id)));
+        $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0)));
         $usercount  = count($userlists);
 
         $this->set(compact('user','userlists','stylist_id','usercount'));
@@ -3824,7 +3824,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $stylist_id = $client_user['User']['stylist_id'];
         if($client_user && $client_user['User']['stylist_id'] == $user['User']['id']){
 
-            $userlists = $User->find('all', array('conditions'=>array('User.stylist_id'=>$stylist_id,)));
+            $userlists = $User->find('all', array('conditions'=>array('User.stylist_id'=>$stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0)));
             $this->set(compact('client_user','userlists','stylist_id','sideBarTab'));
         }
         else{
