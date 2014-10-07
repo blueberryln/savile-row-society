@@ -1,6 +1,10 @@
 <script>
 
 var overall = 0;
+var userId = (<?php echo $user_id; ?> > 0) ? <?php echo $user_id; ?> : 0;
+var stylistId = (<?php echo $stylist_id; ?> > 0) ? <?php echo $stylist_id; ?> : 0;
+var sizes = <?php echo json_encode($sizes); ?>
+
 function dragAndDropOutfit(){
     // jQuery UI Draggable
     $("#product li").draggable({
@@ -90,7 +94,7 @@ function dragAndDropOutfit(){
     }
     
     // The function that is triggered once delete button is pressed
-    $(".basket ul li button.delete").live("click", function () {
+    $(".basket").unbind('click').on("click", 'ul li button.delete', function () {
         var targetLi = $(this).closest("li"),
             price = parseInt(targetLi.data('price'));
 
@@ -100,6 +104,9 @@ function dragAndDropOutfit(){
             $('.basket-limit').remove();
         }
 
+        console.log(overall);
+        console.log(price);
+
         overall = overall - price;
 
         $("#total").html(overall);
@@ -107,357 +114,7 @@ function dragAndDropOutfit(){
                 
 }
 
-            $(function () {
-
-               
-
-            //get client like data
-            $("#clientlikes").live("click", function () {
-                var user_id = $("#user_id").val();
-
-                $.ajax({
-                        type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/getUserLikeAjax/<?php echo $client['User']['id']; ?>",
-                        data:{user_id:user_id},
-                        cache: false,
-                        success: function(result){
-                            //alert(result);
-                        data = $.parseJSON(result);
-                            html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
-            
-                        $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
-                            html = html + '<a href="#">';
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
-                            html = html + '<div class="otft-prdt-overlay">';
-                            html = html + '<h3>'+ this.Entity.name +'</h3>';
-                            var desr = this.Entity.description;
-                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
-                            html = html + '</div>';
-                            html = html + '</a>';
-                            html = html + '</li>';
-
-                        });
-                        html = html + '<ul>';            
-                        html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();        
-                    }
-                });
-            });
-
-         //get stylist like data
-            $("#stylistlikes").live("click", function () {
-                var stylist_id = $("#stylist_id").val();
-
-                $.ajax({
-                        type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/getUserLikeAjax/<?php echo $user['User']['id']; ?>",
-                        data:{stylist_id:stylist_id},
-                        cache: false,
-                        success: function(result){
-                            //alert(result);
-                        data = $.parseJSON(result);
-                            html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
-            
-                        $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
-                            html = html + '<a href="#">';
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
-                            html = html + '<div class="otft-prdt-overlay">';
-                            html = html + '<h3>'+ this.Entity.name +'</h3>';
-                            var desr = this.Entity.description;
-                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
-                            html = html + '</div>';
-                            html = html + '</a>';
-                            html = html + '</li>';
-
-                        });
-                        html = html + '<ul>';            
-                        html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();        
-                    }
-                });
-            });
-
-        //get closet ajax data 
-            $("#closetdata").live("click", function () {
-                var user_id = $("#user_id").val();
-                $.ajax({
-                        type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/closetAjaxProductData/<?php echo $client['User']['id'] ?>",
-                        data:{user_id:user_id},
-                        cache: false,
-                        success: function(result){
-                            //alert(result);
-                        data = $.parseJSON(result);
-                            html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
-            
-                        $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
-                            html = html + '<a href="#">';
-                            var imgs = this.Image;
-                        $.each(imgs,  function (index1){
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ imgs[index1].name +'" alt="" /></div>';
-                        });
-                            html = html + '<div class="otft-prdt-overlay">';
-                            html = html + '<h3>'+ this.Entity.name +'</h3>';
-                            var desr = this.Entity.description;
-                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
-                            html = html + '</div>';
-                            html = html + '</a>';
-                            html = html + '</li>';
-
-                        });
-                        html = html + '<ul>';            
-                        html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();        
-                    }
-                });
-            });
-
-
-
-// sort closet by date sortbydate
-
-    $("#sortbydate").change('live',function () {
-        var sorting =  this.value;
-        alert(sorting);
-                $.ajax({
-                        type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/closetAjaxProductData/<?php echo $user['User']['id']; ?>",
-                        data:{sorting:sorting},
-                        cache: false,
-                        success: function(result){
-                            //alert(result);
-                        data = $.parseJSON(result);
-                            html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
-            
-                        $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
-                            html = html + '<a href="#">';
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
-                            html = html + '<div class="otft-prdt-overlay">';
-                            html = html + '<h3>'+ this.Entity.name +'</h3>';
-                            var desr = this.Entity.description;
-                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
-                            html = html + '</div>';
-                            html = html + '</a>';
-                            html = html + '</li>';
-
-                        });
-                        html = html + '<ul>';            
-                        html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();   
-                                
-                    }
-                });
-            });
-
-
-// closettextsearch
-
-    $(".otft-right-top-srch").on('keydown', function () {
-        var closettextsearch =  $("#closettextsearch").val();
-        //alert(closettextsearch);
-                $.ajax({
-                        type:"POST",
-                        url:"<?php echo $this->webroot; ?>Messages/closetAjaxProductData/<?php echo $user['User']['id']; ?>",
-                        data:{closettextsearch:closettextsearch},
-                        cache: false,
-                        success: function(result){
-                            //alert(result);
-                        data = $.parseJSON(result);
-                            html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
-            
-                        $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
-                            html = html + '<a href="#">';
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
-                            html = html + '<div class="otft-prdt-overlay">';
-                            html = html + '<h3>'+ this.Entity.name +'</h3>';
-                            var desr = this.Entity.description;
-                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
-                            html = html + '</div>';
-                            html = html + '</a>';
-                            html = html + '</li>';
-
-                        });
-                        html = html + '<ul>';            
-                        html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();  
-                                
-                    }
-                });
-            });
-
-
-
-    //pagination
-
-
-        $("#loadMoreProduct a").on('click', function(e){
-            e.preventDefault();
-            $this = $(this);
-            
-            var firstPageId = $("#limit").val();
-            //var id = $("p#loadMoreProduct a").attr('id');
-            //alert(firstPageId);
-            $.ajax({
-                url: '<?php echo $this->webroot; ?>messages/closetAjaxProductData',
-                cache: false,
-                type: 'POST',
-                data : {last_limit:firstPageId},
-                success: function(result){
-                    data = $.parseJSON(result);
-                            html = '';
-                            
-                        $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
-                            html = html + '<a href="#">';
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></div>';
-                            html = html + '<div class="otft-prdt-overlay">';
-                            html = html + '<h3>'+ this.Entity.name +'</h3>';
-                            var desr = this.Entity.description;
-                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
-                            html = html + '</div>';
-                            html = html + '</a>';
-                            html = html + '</li>';
-
-                        });
-                        $(".clear").append(html);   
-                        dragAndDropOutfit();
-                    
-                }    
-            });
-        });
-
-
-    //search data filter closet
-
-    var myCheckboxescolour = new Array();
-        var mycolour;
-        var myCheckboxesbrand = new Array();
-        var mybrand;
-        var myCheckboxessubcategory = new Array();
-        var mysubcategory;
-        var myCheckboxescategory = new Array();
-        var mycategory;
-        $('.colorsearch').live("click",function() {
-                mycolour='';
-                mybrand='';
-                mysubcategory='';
-                mycategory= '';
-                if(jQuery(this).attr('title')=='colour')
-                {    
-                    if(this.checked==true)
-                    {
-                        myCheckboxescolour.push(jQuery(this).val());
-                    }
-                    else
-                    {   
-                        removindexitem =new Array(); 
-                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxescolour);// Uncheckbox here 
-                        myCheckboxescolour.splice(removindexitem ,1);
-                    
-                    }
-                }
-                else if(jQuery(this).attr('title')=='brand')
-                {    
-                    if(this.checked==true)
-                    {
-                        myCheckboxesbrand.push(jQuery(this).val());
-                    }
-                    else
-                    {   
-                        removindexitem =new Array(); 
-                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxesbrand);// Uncheckbox here 
-                        myCheckboxesbrand.splice(removindexitem ,1);
-                    
-                    }
-                }
-                else if(jQuery(this).attr('title')=='subcategory')
-                {    
-                    if(this.checked==true)
-                    {
-                        myCheckboxessubcategory.push(jQuery(this).val());
-                    }
-                    else
-                    {   
-                        removindexitem =new Array(); 
-                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxessubcategory);// Uncheckbox here 
-                        myCheckboxessubcategory.splice(removindexitem ,1);
-                    
-                    }
-                }
-                else if(jQuery(this).attr('title')=='category')
-                {    
-                    if(this.checked==true)
-                    {
-                        myCheckboxescategory.push(jQuery(this).val());
-                    }
-                    else
-                    {   
-                        removindexitem =new Array(); 
-                        removindexitem= jQuery.inArray(jQuery(this).val(), myCheckboxescategory);// Uncheckbox here 
-                        myCheckboxescategory.splice(removindexitem ,1);
-                    
-                    }
-                }
-                mycolour = myCheckboxescolour.join(",");
-                mybrand = myCheckboxesbrand.join(",");
-                mysubcategory = myCheckboxessubcategory.join(",");
-                mycategory = myCheckboxescategory.join(",");
-                //console.log(mybrand);
-                $.ajax({
-                        type:"POST",
-                        url:"<?php echo $this->webroot; ?>messages/closetAjaxColorProductSearchData",
-                        data:{colorid:mycolour,brandid:mybrand,subcategoryid:mysubcategory,categoryid:mycategory},
-                        cache: false,
-                        success: function(result){
-                            data = $.parseJSON(result);
-                            html = '';
-                            html = html + '<div id="product">';
-                            html = html + '<ul class="clear">';
-            
-                        $.each(data,  function (index){
-                            html = html + '<li  data-id="'+ this.Entity.id +'">';
-                            html = html + '<a href="#">';
-                            var imgs = this.Image;
-                        $.each(imgs,  function (index1){
-                            html = html + '<div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/'+ imgs[index1].name +'" alt="" /></div>';
-                        });
-                            html = html + '<div class="otft-prdt-overlay">';
-                            html = html + '<h3>'+ this.Entity.name +'</h3>';
-                            var desr = this.Entity.description;
-                            html = html + '<p>'+ desr.substr(0,25) +'</p>';
-                            html = html + '</div>';
-                            html = html + '</a>';
-                            html = html + '</li>';
-
-                        });
-                        html = html + '<ul>';            
-                        html = html + '</div>';
-                        $(".otft-prdct-list").html(html);   
-                        dragAndDropOutfit();
-
-                    }
-                });
-            });
+$(function () {
 
 });
 
@@ -576,6 +233,509 @@ $(document).ready(function(){
         }); 
     });
 
+
+
+    $('.otft-rgt-nav .tab-nav>a').on('click', function(e){
+        e.preventDefault();
+        $('.otft-rgt-nav li').removeClass('active');
+        $(this).closest('li').addClass('active');
+        $('#listPage').val(1);
+
+        $('.colorsearch:checked').each(function(){
+            $(this).attr('checked', false);
+        });
+        $('.closet-tab label').removeClass('checked');
+
+        if($(this).closest('li').hasClass('closet-tab')){
+            loadProducts(true);
+        }
+        else if($(this).closest('li').hasClass('bookmark-tab')){
+            loadBookmark(true);
+        }
+        else if($(this).closest('li').hasClass('purchased-tab')){
+            loadPurchased(true);
+        }
+        else if($(this).closest('li').hasClass('likes-tab')){
+            loadLikes(true);
+        }
+    });
+
+    var currentRequest = false;
+
+    $('#load-more').on('click', function(e){
+        e.preventDefault();
+        var activeTab = $('.otft-rgt-nav li.active');
+
+        if(activeTab.hasClass('closet-tab')){
+            loadProducts();
+        }
+        else if(activeTab.hasClass('bookmark-tab')){
+            loadBookmark();
+        }
+        else if(activeTab.hasClass('purchased-tab')){
+            loadPurchased();
+        }
+        else if(activeTab.hasClass('likes-tab')){
+            loadLikes();
+        }
+    });
+
+    $('.colorsearch').on('click', function(){
+        if(!$('.closet-tab').hasClass('active')){
+            $('.otft-rgt-nav li').removeClass('active');
+            $('.closet-tab').addClass('active');
+        }
+        $('#listPage').val(1);
+        loadProducts(true);
+    });
+
+    $('#closettextsearch').on('input', function(){
+        $('#listPage').val(1);
+
+        var activeTab = $('.otft-rgt-nav li.active');
+
+        if(activeTab.hasClass('closet-tab')){
+            loadProducts(true);
+        }
+        else if(activeTab.hasClass('bookmark-tab')){
+            loadBookmark(true);
+        }
+        else if(activeTab.hasClass('purchased-tab')){
+            loadPurchased(true);
+        }
+        else if(activeTab.hasClass('likes-tab')){
+            loadLikes(true);
+        }
+    });
+
+    $('#sortbydate').on('change', function(){
+       $('#listPage').val(1);
+       var activeTab = $('.otft-rgt-nav li.active');
+
+        if(activeTab.hasClass('closet-tab')){
+            loadProducts(true);
+        }
+        else if(activeTab.hasClass('bookmark-tab')){
+            loadBookmark(true);
+        }
+        else if(activeTab.hasClass('purchased-tab')){
+            loadPurchased(true);
+        }
+        else if(activeTab.hasClass('likes-tab')){
+            loadLikes(true);
+        }
+    });
+
+    function loadProducts(reset){
+        if(currentRequest){
+            currentRequest.abort();
+        }
+
+        if(typeof reset == 'undefined'){
+            reset = false;
+        }
+
+        var productCont = $('#listdat'),
+            pageVal = parseInt($('#listPage').val()),
+            searchText = $('#closettextsearch').val(),
+            sortOrder = $('#sortbydate').val(),
+            strBrand = '',
+            strColor = '',
+            strCategory = '',
+            arrBrand = new Array(),
+            arrColor = new Array(),
+            arrCategory = new Array();
+
+        $(".colorsearch:checked").each(function(){
+            if($(this).hasClass('check-category')){
+                arrCategory.push($(this).val());
+            }
+            else if($(this).hasClass('check-brand')){
+                arrBrand.push($(this).val());
+            }
+            else if($(this).hasClass('check-color')){
+                arrColor.push($(this).val());
+            }
+        });
+
+        strColor = arrColor.join('-');
+        strCategory = arrCategory.join('-');
+        strBrand = arrBrand.join('-');
+            
+
+        currentRequest = $.ajax({
+            url: '/stylists/closet',
+            type: 'POST',
+            cache: false,
+            data: {
+                user_id: userId,
+                page: pageVal,
+                search_text: searchText,
+                sort: sortOrder,
+                str_brand: strBrand,
+                str_color: strColor,
+                str_category: strCategory
+            },
+            success: function(data){
+                var ret = $.parseJSON(data);
+
+                if(reset){
+                    productCont.html('');
+                    $('#load-more').show();
+                }
+                if(ret['status'] == 'ok'){
+                    $('#listPage').val(pageVal + 1);
+                    var entities = ret['entities'];
+                    for(var i = 0; i < entities.length; i++ ){
+                        var product = entities[i];
+                        var productImage = '';
+
+                        if(product['Image'].length > 0){
+                            productImage = '<div class="myclst-prdt-img">' + 
+                                                '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
+                                            '</div>';
+                        }
+                        else{
+                            productImage = '<div class="myclst-prdt-img">' + 
+                                                '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
+                                            '</div>';
+                        }
+
+                        var sizeOptions = '';
+                        for(var j=0; j<product['Detail'].length; j++){
+                            sizeOptions += '<option value="' + product['Detail'][j]['size_id'] + '">' + sizes[product['Detail'][j]['size_id']] + '</option>';
+                        }
+
+                        var html = '<li >' + 
+                                        '<a class="myclst-quick-view" href="#">' + 
+                                            productImage +
+                                            '<div class="myclst-prdt-overlay">' + 
+                                                '<input type="hidden" value="' + product['Entity']['id'] + '" id="prid">' + 
+                                                '<h3>' + product['Entity']['name'] + '</h3>' + 
+                                                '<p>' + product['Entity']['description'] + '</p>' + 
+                                            '</div>' +
+                                        '</a>' + 
+                                    '</li>';
+
+
+                        var html = '<li data-id="' + product['Entity']['id'] + '" data-price="' + product['Entity']['price'] + '" data-brand="' + product['Brand']['name'] + '" data-name="' + product['Entity']['name'] + '" class="ui-draggable ui-draggable-handle">' +
+                                        '<select class="hide product-size-list">' +
+                                                                                sizeOptions +         
+                                                                                '</select>' +
+                                            '<a href="" class="product-list-block">' +
+                                                '<div class="otft-prdt-img">' + productImage + '</div>' +
+                                                '<div class="otft-prdt-overlay">' +
+                                                    '<p>' + product['Entity']['name'] + '</p>' +
+                                                    '<p>' + product['Brand']['name'] + '</p>' +
+                                                    '<p>' + product['Entity']['price'] + '</p>' +
+                                                '</div>' + 
+                                            '</a>' +
+                                        '</li>';
+
+                        productCont.append(html);
+                    }
+                }
+                else if(ret['status'] == 'redirect'){
+                    location = '/messages/index';
+                }
+                else{
+                    $('#load-more').hide();
+                }
+
+                dragAndDropOutfit(); 
+            }
+
+        });
+
+    } 
+
+
+    function loadLikes(reset){
+        if(currentRequest){
+            currentRequest.abort();
+        }
+
+        if(typeof reset == 'undefined'){
+            reset = false;
+        }
+
+        var productCont = $('#listdat'),
+            pageVal = parseInt($('#listPage').val()),
+            searchText = $('#closettextsearch').val(),
+            sortOrder = $('#sortbydate').val();
+
+        currentRequest = $.ajax({
+            url: '/stylists/likes',
+            type: 'POST',
+            cache: false,
+            data: {
+                user_id: userId,
+                page: pageVal,
+                search_text: searchText,
+                sort: sortOrder
+            },
+            success: function(data){
+                var ret = $.parseJSON(data);
+
+                if(reset){
+                    productCont.html('');
+                    $('#load-more').show();
+                }
+                if(ret['status'] == 'ok'){
+                    $('#listPage').val(pageVal + 1);
+                    var entities = ret['entities'];
+                    for(var i = 0; i < entities.length; i++ ){
+                        var product = entities[i];
+                        var productImage = '';
+
+                        if(product['Image'].length > 0){
+                            productImage = '<div class="myclst-prdt-img">' + 
+                                                '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
+                                            '</div>';
+                        }
+                        else{
+                            productImage = '<div class="myclst-prdt-img">' + 
+                                                '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
+                                            '</div>';
+                        }
+
+                        var sizeOptions = '';
+                        for(var j=0; j<product['Detail'].length; j++){
+                            sizeOptions += '<option value="' + product['Detail'][j]['size_id'] + '">' + sizes[product['Detail'][j]['size_id']] + '</option>';
+                        }
+
+                        var html = '<li >' + 
+                                        '<a class="myclst-quick-view" href="#">' + 
+                                            productImage +
+                                            '<div class="myclst-prdt-overlay">' + 
+                                                '<input type="hidden" value="' + product['Entity']['id'] + '" id="prid">' + 
+                                                '<h3>' + product['Entity']['name'] + '</h3>' + 
+                                                '<p>' + product['Entity']['description'] + '</p>' + 
+                                            '</div>' +
+                                        '</a>' + 
+                                    '</li>';
+
+
+                        var html = '<li data-id="' + product['Entity']['id'] + '" data-price="' + product['Entity']['price'] + '" data-brand="' + product['Brand']['name'] + '" data-name="' + product['Entity']['name'] + '" class="ui-draggable ui-draggable-handle">' +
+                                        '<select class="hide product-size-list">' +
+                                                                                sizeOptions +         
+                                                                                '</select>' +
+                                            '<a href="" class="product-list-block">' +
+                                                '<div class="otft-prdt-img">' + productImage + '</div>' +
+                                                '<div class="otft-prdt-overlay">' +
+                                                    '<p>' + product['Entity']['name'] + '</p>' +
+                                                    '<p>' + product['Brand']['name'] + '</p>' +
+                                                    '<p>' + product['Entity']['price'] + '</p>' +
+                                                '</div>' + 
+                                            '</a>' +
+                                        '</li>';
+
+                        productCont.append(html);
+                    }
+                }
+                else{
+                    $('#load-more').hide();
+                }
+
+                dragAndDropOutfit(); 
+            }
+
+        });
+
+    } 
+
+
+    function loadBookmark(reset){
+        if(currentRequest){
+            currentRequest.abort();
+        }
+
+        if(typeof reset == 'undefined'){
+            reset = false;
+        }
+
+        var productCont = $('#listdat'),
+            pageVal = parseInt($('#listPage').val()),
+            searchText = $('#closettextsearch').val(),
+            sortOrder = $('#sortbydate').val();
+
+        currentRequest = $.ajax({
+            url: '/stylists/likes',
+            type: 'POST',
+            cache: false,
+            data: {
+                user_id: stylistId,
+                page: pageVal,
+                search_text: searchText,
+                sort: sortOrder
+            },
+            success: function(data){
+                var ret = $.parseJSON(data);
+
+                if(reset){
+                    productCont.html('');
+                    $('#load-more').show();
+                }
+                if(ret['status'] == 'ok'){
+                    $('#listPage').val(pageVal + 1);
+                    var entities = ret['entities'];
+                    for(var i = 0; i < entities.length; i++ ){
+                        var product = entities[i];
+                        var productImage = '';
+
+                        if(product['Image'].length > 0){
+                            productImage = '<div class="myclst-prdt-img">' + 
+                                                '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
+                                            '</div>';
+                        }
+                        else{
+                            productImage = '<div class="myclst-prdt-img">' + 
+                                                '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
+                                            '</div>';
+                        }
+
+                        var sizeOptions = '';
+                        for(var j=0; j<product['Detail'].length; j++){
+                            sizeOptions += '<option value="' + product['Detail'][j]['size_id'] + '">' + sizes[product['Detail'][j]['size_id']] + '</option>';
+                        }
+
+                        var html = '<li >' + 
+                                        '<a class="myclst-quick-view" href="#">' + 
+                                            productImage +
+                                            '<div class="myclst-prdt-overlay">' + 
+                                                '<input type="hidden" value="' + product['Entity']['id'] + '" id="prid">' + 
+                                                '<h3>' + product['Entity']['name'] + '</h3>' + 
+                                                '<p>' + product['Entity']['description'] + '</p>' + 
+                                            '</div>' +
+                                        '</a>' + 
+                                    '</li>';
+
+
+                        var html = '<li data-id="' + product['Entity']['id'] + '" data-price="' + product['Entity']['price'] + '" data-brand="' + product['Brand']['name'] + '" data-name="' + product['Entity']['name'] + '" class="ui-draggable ui-draggable-handle">' +
+                                        '<select class="hide product-size-list">' +
+                                                                                sizeOptions +         
+                                                                                '</select>' +
+                                            '<a href="" class="product-list-block">' +
+                                                '<div class="otft-prdt-img">' + productImage + '</div>' +
+                                                '<div class="otft-prdt-overlay">' +
+                                                    '<p>' + product['Entity']['name'] + '</p>' +
+                                                    '<p>' + product['Brand']['name'] + '</p>' +
+                                                    '<p>' + product['Entity']['price'] + '</p>' +
+                                                '</div>' + 
+                                            '</a>' +
+                                        '</li>';
+
+                        productCont.append(html);
+                    }
+                }
+                else{
+                    $('#load-more').hide();
+                }
+
+                dragAndDropOutfit(); 
+            }
+
+        });
+
+    } 
+
+
+    function loadPurchased(reset){
+        if(currentRequest){
+            currentRequest.abort();
+        }
+
+        if(typeof reset == 'undefined'){
+            reset = false;
+        }
+
+        var productCont = $('#listdat'),
+            pageVal = parseInt($('#listPage').val()),
+            searchText = $('#closettextsearch').val(),
+            sortOrder = $('#sortbydate').val();
+
+        currentRequest = $.ajax({
+            url: '/stylists/purchased',
+            type: 'POST',
+            cache: false,
+            data: {
+                user_id: userId,
+                page: pageVal,
+                search_text: searchText,
+                sort: sortOrder
+            },
+            success: function(data){
+                var ret = $.parseJSON(data);
+
+                if(reset){
+                    productCont.html('');
+                    $('#load-more').show();
+                }
+                if(ret['status'] == 'ok'){
+                    $('#listPage').val(pageVal + 1);
+                    var entities = ret['entities'];
+                    for(var i = 0; i < entities.length; i++ ){
+                        var product = entities[i];
+                        var productImage = '';
+
+                        if(product['Image'].length > 0){
+                            productImage = '<div class="myclst-prdt-img">' + 
+                                                '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
+                                            '</div>';
+                        }
+                        else{
+                            productImage = '<div class="myclst-prdt-img">' + 
+                                                '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
+                                            '</div>';
+                        }
+
+                        var sizeOptions = '';
+                        for(var j=0; j<product['Detail'].length; j++){
+                            sizeOptions += '<option value="' + product['Detail'][j]['size_id'] + '">' + sizes[product['Detail'][j]['size_id']] + '</option>';
+                        }
+
+                        var html = '<li >' + 
+                                        '<a class="myclst-quick-view" href="#">' + 
+                                            productImage +
+                                            '<div class="myclst-prdt-overlay">' + 
+                                                '<input type="hidden" value="' + product['Entity']['id'] + '" id="prid">' + 
+                                                '<h3>' + product['Entity']['name'] + '</h3>' + 
+                                                '<p>' + product['Entity']['description'] + '</p>' + 
+                                            '</div>' +
+                                        '</a>' + 
+                                    '</li>';
+
+
+                        var html = '<li data-id="' + product['Entity']['id'] + '" data-price="' + product['Entity']['price'] + '" data-brand="' + product['Brand']['name'] + '" data-name="' + product['Entity']['name'] + '" class="ui-draggable ui-draggable-handle">' +
+                                        '<select class="hide product-size-list">' +
+                                                                                sizeOptions +         
+                                                                                '</select>' +
+                                            '<a href="" class="product-list-block">' +
+                                                '<div class="otft-prdt-img">' + productImage + '</div>' +
+                                                '<div class="otft-prdt-overlay">' +
+                                                    '<p>' + product['Entity']['name'] + '</p>' +
+                                                    '<p>' + product['Brand']['name'] + '</p>' +
+                                                    '<p>' + product['Entity']['price'] + '</p>' +
+                                                '</div>' + 
+                                            '</a>' +
+                                        '</li>';
+
+                        productCont.append(html);
+                    }
+                }
+                else{
+                    $('#load-more').hide();
+                }
+
+                dragAndDropOutfit(); 
+            }
+
+        });
+
+    } 
+
+
+
 });
 
 </script>
@@ -599,7 +759,7 @@ $(document).ready(function(){
                                             <input type="text" name="" placeholder="" id="outfitname" />
                                             <input type="hidden" name="" placeholder="" id="user_id" value="<?php echo $client['User']['id']; ?>" />
                                             <input type="hidden" name="" placeholder="" id="stylist_id" value="<?php echo $user['User']['id']; ?>" />
-                                            <p>styled for  <?php echo ucwords($client['User']['first_name'] . ' ' . $client['User']['last_name']); ?> <span>(</span> <span class="otft-lft-txt">Change</span> <span>)</span></p>
+                                            <p>styled for  <?php echo ucwords($client['User']['first_name'] . ' ' . $client['User']['last_name']); ?> <!--<span>(</span> <span class="otft-lft-txt">Change</span> <span>)</span>--></p>
                                         </div>
                                     </div>
                                     <div class="eleven columns container">
@@ -646,7 +806,7 @@ $(document).ready(function(){
                                 <div class="eleven columns container">
                                     <div class="twelve columns left otft-rgt-nav">
                                         <ul>
-                                            <li class="active"><a href="#" title="" id="closetdata">The Closet</a>
+                                            <li class="active closet-tab tab-nav"><a href="#" title="" id="closetdata">The Closet</a>
 
                                             <ul>
                                                 <div class="ctg-one">
@@ -713,13 +873,12 @@ $(document).ready(function(){
 
                                             </li>
                                             <li>|</li>
-                                            <li><a href="#" title="" id="clientlikes">Client Likes</a></li>
+                                            <li class="likes-tab tab-nav"><a href="#" title="" id="clientlikes">Client Likes</a></li>
                                             <li>|</li>
-                                            <li><a href="#" title="">Purchased</a></li>
+                                            <li class="purchased-tab tab-nav"><a href="#" title="">Purchased</a></li>
                                             <li>|</li>
-                                            <li><a href="#" title="" id="stylistlikes">My Bookmarks</a></li>
+                                            <li class="bookmark-tab tab-nav"><a href="#" title="" id="stylistlikes">My Bookmarks</a></li>
                                             <li>|</li>
-                                            <li><a href="#" title="">Client’s Sizes</a></li>
                                         </ul>
                                     </div>
                                     <div class="otft-right-top">
@@ -729,9 +888,9 @@ $(document).ready(function(){
                                         </div>
                                         <div class="otft-right-top-srt">
                                             <select id="sortbydate">
-                                                <option>Sort By Date</option>
-                                                <option value="DESC">Sort By Date DESC</option>
-                                                <option value="ASC"> Sort By Date ASC</option>
+                                                <option>Sort</option>
+                                                <option value="pricedesc">Sort By Price DESC</option>
+                                                <option value="priceasc"> Sort By Price ASC</option>
                                             </select>
                                         </div>
                                     </div>
@@ -739,9 +898,9 @@ $(document).ready(function(){
                             </div>
                             <div class="twelve columns left otft-prdct-list">
                                 <div id="product">
-                                    <ul class="clear">
-                                    <?php  for($i = 0; $i < count($products); $i++){
-                                                $product = $products[$i];
+                                    <ul class="clear" id="listdat">
+                                    <?php  for($i = 0; $i < count($entities); $i++){
+                                                $product = $entities[$i];
                                     ?>
                                         <li  data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-name="<?php echo $product['Entity']['name']; ?>">
 
@@ -767,10 +926,10 @@ $(document).ready(function(){
                                     <?php } ?>
                                     </ul>
                                     <p id="loadMoreProduct">
-
-                                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                                    <!-- <input type="hidden" id="limit" value="<?php echo $ProductRowCount; ?>"> -->
-                                    <!-- <a href="" id="<?php echo $ProductRowCount; ?>">Load More Products</a> -->
+                            
+                                        <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                        <input type="hidden" id="listPage" value="<?php echo $page + 1; ?>">
+                                        <a href="" id="load-more">Load More Products</a>
                                     </p>
                                 </div>
 
