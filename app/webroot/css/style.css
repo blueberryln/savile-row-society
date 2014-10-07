@@ -318,7 +318,7 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
 	div#jeans-cut #selectable li:hover, div#shirt-cut #selectable li:hover{ background: #917A49; color: #FFFFFF;}
 	.hi-message h4 { color: #af9a59; font-family: 'ProximaNovaCond-Regular'; margin: 10px 0 20px 0; text-transform: uppercase; font-weight: bold !important; font-size: 48px; padding: 10px 0; }
     .hi-message-text { font-family: 'ProximaNovaCond-Regular'; font-size: 20px; color: #55585e; display: block; padding: 0 0 30px 0; background:  url("../img/steps-divider.png") no-repeat center bottom}
-    .hi-message-text.rd-clr {background: none; color: #ed4e4e; padding-bottom: 40px;}
+    .hi-message-text.rd-clr {background: none; color: #d19b03; padding-bottom: 40px;}
     .profile-stp2 { padding: 80px 0px;}
     .styled-select select { border:none; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #c7c7c7 0px 1px 1px; -moz-box-shadow: #c7c7c7 0px 1px 1px; box-shadow: #c7c7c7 0px 1px 1px; outline:none; display: inline-block; -webkit-appearance:none; -moz-appearance:none; appearance:none; padding: 15px 10px 9px; cursor:pointer;
     background: #fefefe;
