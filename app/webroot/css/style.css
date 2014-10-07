@@ -1560,6 +1560,7 @@ border-bottom-left-radius:7px;
 border-bottom-right-radius:7px;
 */
 }
+.basket_list li.basket-limit { height: auto; top: -80px;}
 .basket_list li .bsket_img {height: 130px; width: 100%; display: inline-block; line-height: 130px; overflow: hidden;}
 .basket_list li img { vertical-align: middle; max-height: 153px;}
 .basket_list li strong { position: absolute; top: 0px; left: 0px; width: 100%; bottom: 0px; right: 0px; margin: auto; height: 35px; text-align: center; color: #af9a59;}
