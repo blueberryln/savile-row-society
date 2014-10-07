@@ -42,7 +42,7 @@ class MessagesController extends AppController {
         else if($is_admin && is_null($messages_for_user_id)){
             $this->redirect('/admin/users');
         }    
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
          //print_r($userlists);
          // make user_id, user
         $this->set(compact('user_id', 'user', 'messages_for_user_id','userlists', 'sideBarTab'));
@@ -1697,7 +1697,7 @@ If interested, I would also be happy to meet with you in our New York City based
         
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
         $find_array2 = array(
                 'fields' => array('count(User.id) as usercount'),
                 'joins' => array(
@@ -1808,7 +1808,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $user_id = $user["User"]["id"]; 
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
         $client = $User->findById($clientid);
 
         $find_array2 = array(
@@ -2015,7 +2015,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $is_stylist = $user["User"]["is_stylist"];
         $Outfit = ClassRegistry::init('Outfit');
         $outfitname = $Outfit->findById($outfit_id);
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id,),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
         $entity_list = array();
