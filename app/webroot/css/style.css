@@ -1542,7 +1542,7 @@ a.sbmt-btn { width: 100%; display: block; padding: 18px 0 12px; background: #b6a
 
 .otft-prdct-list li:hover .otft-prdt-overlay { display: block;}
 .basket { position: relative; min-height: 250px; }
-.basket_list li { display: inline-block; width: 40%; margin: 10px 3%; position: relative; text-align: center; border: 1px solid #e3e3e3; padding: 5px; 
+.basket_list li { display: inline-block; width: 40%; margin: 10px 3%; position: relative; text-align: center; border: 1px solid #e3e3e3; padding: 5px; height: 200px; 
 
 /*-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; height: 130px; 
 border:dashed 5px #ccc6a2;
@@ -1561,7 +1561,7 @@ border-bottom-right-radius:7px;
 */
 }
 .basket_list li .bsket_img {height: 130px; width: 100%; display: inline-block; line-height: 130px; overflow: hidden;}
-.basket_list li img { width: 100%; vertical-align: middle;}
+.basket_list li img { vertical-align: middle; max-height: 153px;}
 .basket_list li strong { position: absolute; top: 0px; left: 0px; width: 100%; bottom: 0px; right: 0px; margin: auto; height: 35px; text-align: center; color: #af9a59;}
 
 button.delete { position: absolute; top: 10px; right: 10px;}
@@ -1619,7 +1619,8 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 .cnfrm-otft-top span {padding-right: 5%; font-size: 12px; font-style: italic; color:#fff;}
 #cnfrm-otft-popup a.otft-close { background: url("../images/close_btn_wht.png") no-repeat center center; background-size: cover;}
 .cnfrm-otft-middle { padding: 10px 0;}
-.cnfrm-otft-itms li { width: 33.33%; float: left; vertical-align: middle;}
+.cnfrm-otft-itms li { width: 33.33%; float: left; vertical-align: middle; height: 250px;}
+.cnfrm-otft-itms li img { max-height: 165px; vertical-align: middle;}
 .cnfrm-otft-itms li .cnfrm-otft-prdct-dtl { width: 50%; margin: 10px 25%; font-size: 12px; line-height: 14px; padding: 5px 0 0; color: #939598; border-top: 2px solid #e3e4e5;}
 .shp-this-otft { font-size: 12px; font-style: italic; color: #242424;}
 .cnfrm-otft-bottom { background: #939598; padding: 10px 0px;}
