@@ -518,7 +518,7 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                                     <span class="downarw"></span>
                                                                     <select id="selectfilter">
                                                                     <option value="">Filter Clients</option>
-                                                                    <?php foreach($userlist as $clientout): ?>
+                                                                    <?php foreach($userlists as $clientout): ?>
                                                                     <option value="<?php echo $this->webroot; ?>outfits/create/<?php echo $clientout['User']['id']; ?>"><?php echo $clientout['User']['first_name'].'&nbsp;'.$clientout['User']['last_name']; ?></option>
                                                                      <?php endforeach; ?>
                                                                     
@@ -539,7 +539,7 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                             <ul id="searchuserlist">
                                                             <?php 
                                                             //$userlist = $searchforoutfit;
-                                                             foreach($userlist as $usersearchforoutfit):?>
+                                                             foreach($userlists as $usersearchforoutfit):?>
                                                                 <li>
                                                                     <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="">
                                                                         <div class="myclient-img">

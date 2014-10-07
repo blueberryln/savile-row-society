@@ -599,8 +599,10 @@ If interested, I would also be happy to meet with you in our New York City based
      */
     public function getMyConversation($with_user_id = null) {
         // get converzation for logged in user.
+        $Outfit = ClassRegistry::init('Outfit');
 
         $result = array();
+        $Outfit = ClassRegistry::init('Outfit');
         if ($this->getLoggedUser()){
             $user_id = $this->getLoggedUserID();
             if($with_user_id){
@@ -615,6 +617,7 @@ If interested, I would also be happy to meet with you in our New York City based
                         if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                             $outfit_id = $row['Message']['outfit_id'];
                             
+                            $outfit_detail = $Outfit->findById($outfit_id);
                             $OutfitItem = ClassRegistry::init('OutfitItem');
                             $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
                             $entities = array();
@@ -624,6 +627,7 @@ If interested, I would also be happy to meet with you in our New York City based
                             $Entity = ClassRegistry::init('Entity');
                             $entity_list = $Entity->getProductDetails($entities);
                             $row['Outfit'] = $entity_list;
+                            $row['OutfitDetail'] = $outfit_detail;
                         }
                     }
                     $result['Messages'] = $my_conversation;
@@ -641,8 +645,9 @@ If interested, I would also be happy to meet with you in our New York City based
                     if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                         $outfit_id = $row['Message']['outfit_id'];
                         
+                        $outfit_detail = $Outfit->findById($outfit_id);
                         $OutfitItem = ClassRegistry::init('OutfitItem');
-                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
+                        $outfit = $OutfitItem->find('all', array('contain' => array('Outfit'),'conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
                         $entities = array();
                         foreach($outfit as $value){
                             $entities[] = $value['OutfitItem']['product_entity_id'];
@@ -650,6 +655,7 @@ If interested, I would also be happy to meet with you in our New York City based
                         $Entity = ClassRegistry::init('Entity');
                         $entity_list = $Entity->getProductDetails($entities);
                         $row['Outfit'] = $entity_list;
+                        $row['OutfitDetail'] = $outfit_detail['Outfit'];
                     }
                 }
                 $result['Messages'] = $my_conversation;
@@ -703,6 +709,8 @@ If interested, I would also be happy to meet with you in our New York City based
         }
         $result = array();
         $user_id = $this->getLoggedUserID();
+
+        $Outfit = ClassRegistry::init('Outfit');
         if ($user_id){
             if($with_user_id){
                 // if with user id is not null load data for stylist
@@ -717,6 +725,7 @@ If interested, I would also be happy to meet with you in our New York City based
                             if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                                 $outfit_id = $row['Message']['outfit_id'];
                                 
+                                $outfit_detail = $Outfit->findById($outfit_id);
                                 $OutfitItem = ClassRegistry::init('OutfitItem');
                                 $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
                                 $entities = array();
@@ -726,6 +735,7 @@ If interested, I would also be happy to meet with you in our New York City based
                                 $Entity = ClassRegistry::init('Entity');
                                 $entity_list = $Entity->getProductDetails($entities);
                                 $row['Outfit'] = $entity_list;
+                                $row['OutfitDetail'] = $outfit_detail['Outfit'];
                             }
                         }
                         $result['Messages'] = $my_conversation;
@@ -744,6 +754,7 @@ If interested, I would also be happy to meet with you in our New York City based
                     if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                         $outfit_id = $row['Message']['outfit_id'];
                         
+                        $outfit_detail = $Outfit->findById($outfit_id);
                         $OutfitItem = ClassRegistry::init('OutfitItem');
                         $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
                         $entities = array();
@@ -753,6 +764,7 @@ If interested, I would also be happy to meet with you in our New York City based
                         $Entity = ClassRegistry::init('Entity');
                         $entity_list = $Entity->getProductDetails($entities);
                         $row['Outfit'] = $entity_list;
+                        $row['OutfitDetail'] = $outfit_detail['Outfit'];
                     }
                 }
                 $result['Messages'] = $my_conversation;
@@ -793,6 +805,7 @@ If interested, I would also be happy to meet with you in our New York City based
      */
     public function getOldMessages($with_user_id = null){
         
+        $Outfit = ClassRegistry::init('Outfit');
         $result = array();
         $last_msg_id = $this->request->data['last_msg_id'];
         if ($last_msg_id >= 0 && $this->getLoggedUser()){
@@ -823,6 +836,7 @@ If interested, I would also be happy to meet with you in our New York City based
                         if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                             $outfit_id = $row['Message']['outfit_id'];
                             
+                            $outfit_detail = $Outfit->findById($outfit_id);
                             $OutfitItem = ClassRegistry::init('OutfitItem');
                             $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
                             $entities = array();
@@ -832,6 +846,7 @@ If interested, I would also be happy to meet with you in our New York City based
                             $Entity = ClassRegistry::init('Entity');
                             $entity_list = $Entity->getProductDetails($entities);
                             $row['Outfit'] = $entity_list;
+                            $row['OutfitDetail'] = $outfit_detail['Outfit'];
                         }
                     }
                     $result['Messages'] = $my_conversation;
@@ -859,6 +874,7 @@ If interested, I would also be happy to meet with you in our New York City based
                         if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
                             $outfit_id = $row['Message']['outfit_id'];
                             
+                            $outfit_detail = $Outfit->findById($outfit_id);
                             $OutfitItem = ClassRegistry::init('OutfitItem');
                             $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
                             $entities = array();
@@ -868,6 +884,8 @@ If interested, I would also be happy to meet with you in our New York City based
                             $Entity = ClassRegistry::init('Entity');
                             $entity_list = $Entity->getProductDetails($entities);
                             $row['Outfit'] = $entity_list;
+
+                            $row['OutfitDetail'] = $outfit_detail['Outfit'];
                         }
                     }
                     $result['Messages'] = $my_conversation;
@@ -1157,7 +1175,7 @@ If interested, I would also be happy to meet with you in our New York City based
         $Outfit = ClassRegistry::init('Outfit');
         $posts = ClassRegistry::init('Post');
         
-        $userlist = $User->find('all', array('conditions'=>array('User.stylist_id'=>$user_id,)));
+        $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0)));
 
         //$my_outfitss = array();
         //$stylistoutfit= $Outfit->find('all', array('conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfit_name','Outfit.id'),));
@@ -1222,7 +1240,7 @@ If interested, I would also be happy to meet with you in our New York City based
 
         }
         
-        $this->set(compact('my_outfitss','userlist','user_id','outfitcount'));
+        $this->set(compact('my_outfitss','userlists','user_id','outfitcount'));
     
     } 
 
@@ -3483,7 +3501,7 @@ If interested, I would also be happy to meet with you in our New York City based
                 $this->Session->delete('cart-three-items');
                 $this->Session->delete('cart-three-items-msg');
             }
-                //print_r($entities);
+
             $this->set(compact('outfit_id','messages_outfit_comments', 'entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata','sideBarTab', 'stylist', 'sizes'));
            
     }

@@ -44,28 +44,9 @@ $(".fade").mosaic();
 
 $(".add-to-cart").click(function(e) {
 e.preventDefault();
-var productBlock = $(this).closest(".outfit-page-item"),
+var productBlock = $(this).closest(".product-dtl-area"),
 productQuantity = productBlock.find("select.product-quantity").val(),
 productSize = productBlock.find("select.product-size").val();
-
-if(productQuantity == "")
-{
-productBlock.find("span.err-message").fadeIn(300);
-return false;
-} 
-else
-{
-productBlock.find("span.err-message").fadeOut(300);
-}
-if(productSize == "")
-{
-productBlock.find("span.err-size-message").fadeIn(300);
-return false;
-} 
-else
-{
-productBlock.find("span.err-size-message").fadeOut(300);
-}
 
 var id = $(this).data("product_id");
 var quantity = parseInt(productQuantity) + 1;
@@ -294,9 +275,22 @@ $img = $this->webroot . "img/image_not_available-small.png";
 <div class="product-dtl-desc-bottom left">
 <div class="slect-options left">
 <div class="select-size select-style left">
-<select class="product-size">
-<option value="<?php echo $entity['OutfitItem']['size_id']; ?>"><?php echo $sizes[$entity['OutfitItem']['size_id']]; ?></option>
-</select><br/>
+<?php if($entity['OutfitItem']['size_id']){
+    echo '<select class="product-size">';
+    echo '<option value="' . $entity['OutfitItem']['size_id'] . '">' . $sizes[$entity['OutfitItem']['size_id']] . '</option>';
+    echo '</select>';
+}
+else{
+    if(count($entity['Detail'])){
+        echo '<select class="product-size">';
+        foreach($entity['Detail'] as $detail){
+            echo '<option value="' . $detail['size_id'] . '">' . $sizes[$detail['size_id']] . '</option>';
+        }  
+        echo '</select>';  
+    }
+}
+?>
+<br/>
 </div>
 <div class="select-quantity select-style left">
 

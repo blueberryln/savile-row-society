@@ -28,7 +28,7 @@
         echo $this->Html->css('tinyscrollbar');
 //        echo $this->Html->css('jquery.cluetip');
         echo $this->Html->css('jcarousel.responsive');
-        echo $this->Html->css('style.css?v=1'); 
+        echo $this->Html->css('style.css?v=5'); 
         echo $this->fetch('css');
        
         ?>

@@ -191,7 +191,7 @@ class Entity extends AppModel {
     function getMultipleById($id, $user_id=null,$outfit_id=null) {
         $find_array = array(
             'contain' => array('Image', 'Color', 'Detail'),
-            'conditions' => array('Entity.id' => $id),
+            'conditions' => array('Entity.id' => $id, 'Entity.show' => true),
             'joins' => array(
                 array('table' => 'products',
                     'alias' => 'Product',
