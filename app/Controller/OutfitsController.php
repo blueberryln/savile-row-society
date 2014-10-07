@@ -536,6 +536,9 @@ class OutfitsController extends AppController {
         $user = $this->getLoggedUser();
         $client = $User->findById($clientid);
 
+        $user_id = $user['User']['id'];
+        $stylist_id = $client['User']['id'];
+
         if($client){
             if($user['User']['id'] != $client['User']['stylist_id']){
                 $this->redirect('/messages/feed');
@@ -547,10 +550,12 @@ class OutfitsController extends AppController {
             exit;
         }
 
+        // init
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');
         $Color = ClassRegistry::init('Color');
         $Colorgroup = ClassRegistry::init('Colorgroup');
+        $User = ClassRegistry::init('User');
         $Entity = ClassRegistry::init('Entity');
         $Size = ClassRegistry::init('Size');
 
@@ -558,44 +563,161 @@ class OutfitsController extends AppController {
         $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
         $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
         $sizes = $Size->find('list');
-        
-        $find_array = array(
-            'limit' => 21,
-            'contain' => array('Image', 'Color','Detail'),
-            'conditions' => array(
-                'Entity.show' => true,
-            ),
-            'joins' => array(
-                array('table' => 'products_categories',
-                    'alias' => 'Category',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Category.product_id = Entity.product_id'
-                    )
-                ),
-                array('table' => 'products',
-                    'alias' => 'Product',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Product.id = Entity.product_id'
-                    )
-                ),
-                array('table' => 'brands',
-                    'alias' => 'Brand',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Product.brand_id = Brand.id'
-                    )
-                ),
-            ),
-            'fields' => array(
-                'Entity.*', 'Category.category_id', 'Product.*', 'Brand.*',
-            ),
-            'order' => 'Entity.id desc'
-        );
-        $products = $Entity->find('all',$find_array);
 
-        $this->set(compact('categories','brands','colors', 'products', 'user', 'client', 'sizes'));
+        $entities = array();
+        
+        $limit = 21;
+        $filter_brand = isset($this->request->data['str_brand']) ? $this->request->data['str_brand']: '';
+        $filter_color = isset($this->request->data['str_color']) ? $this->request->data['str_color']: '';
+        $filter_category = isset($this->request->data['str_category']) ? $this->request->data['str_category']: '';
+        $search_text = isset($this->request->data['search_text']) ? strtolower($this->request->data['search_text']): '';
+        $page = isset($this->request->data['page']) ? $this->request->data['page']: 1;
+        $sort = isset($this->request->data['sort']) ? $this->request->data['sort'] : 'id';
+        $client_id = isset($this->request->data['user_id']) ? $this->request->data['user_id'] : 0;
+
+        if($client_id > 0){
+            $user_stylist = $User->findById($client_id);
+
+            if($user_stylist && ($user_id == $client_id || $user_stylist['User']['stylist_id'] == $user_id)){
+                //user is corrct.
+            }
+            else{
+                if($this->request->is('ajax')){
+                    $ret['status'] = 'redirect';
+                    echo json_encode($ret);
+                    exit;
+                }    
+            }
+        }
+
+        $brand_list = array();
+        if($filter_brand && $filter_brand != "none"){
+            $brand_list = explode('-', $filter_brand);
+            $brand_list = array_values(array_unique($brand_list));
+        }
+
+        $color_list = array();
+        if($filter_color){
+            $color_list = explode('-', $filter_color);
+            $color_list = array_values(array_unique($color_list));
+        }
+
+        $category_list = array();
+        if($filter_category){
+            $category_list = explode('-', $filter_category);
+            $category_list = array_values(array_unique($category_list));
+            $category_list = $Category->getAllCategories($category_list);
+        }
+
+        $find_array = array(
+                'limit' => $limit,
+                'page'  => $page,
+                'contain' => array('Image', 'Color', 'Detail'),
+                'conditions' => array(
+                    'Entity.show' => true
+                ),
+                'group' => array('Entity.id'),
+                'joins' => array(
+                    array('table' => 'products_categories',
+                        'alias' => 'Category',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Category.product_id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'products',
+                        'alias' => 'Product',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.id = Entity.product_id'
+                        )
+                    ),
+                    array('table' => 'brands',
+                        'alias' => 'Brand',
+                        'type' => 'INNER',
+                        'conditions' => array(
+                            'Product.brand_id = Brand.id'
+                        )
+                    ),
+                ),
+                'fields' => array(
+                    'Entity.*','Product.*', 'Brand.*'
+                ),
+            );
+        if($sort == 'pricedesc'){
+            $find_array['order'] = array('Entity.price' => 'desc');
+        }
+        else if($sort == 'priceasc'){
+            $find_array['order'] = array('Entity.price' => 'asc');
+        }
+        else{
+            $find_array['order'] = array('Entity.id' => 'desc');   
+        }
+        
+        //Category filter
+        if($category_list && count($category_list) > 0){
+
+            $find_array['conditions']['Category.category_id'] = $category_list;    
+        }
+        
+        // Color filter
+        if($color_list && count($color_list) > 0){
+            
+            $color_data = $Colorgroup->getColors($color_list);
+            if($color_data){
+                foreach($color_data as $color_item){
+                    $color_ids[] = $color_item['ColorItems']['color_id'];
+                }
+            }
+            
+            if(isset($color_ids) && $color_ids && count($color_ids) > 0){
+                $color_join = array('table' => 'colors_entities',
+                    'alias' => 'Color1',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Color1.color_id' => $color_ids,
+                        'Color1.product_entity_id = Entity.id'
+                    )
+                );
+                $find_array['joins'][] = $color_join;
+            }
+        }
+
+        // Brand Filter
+        if($brand_list && count($brand_list) > 0){
+            $find_array['conditions']['Product.brand_id'] = $brand_list;
+        }
+
+        // Search Filter
+        if($search_text != ''){
+            $find_array['conditions']['OR'] = array(
+                array('LOWER(Brand.name) LIKE' => '%' . $search_text . '%'),
+                array('LOWER(Entity.name) LIKE' => '%' . $search_text . '%'),
+                );
+        }
+
+        
+        $entities = $Entity->find('all', $find_array);
+
+        $this->set(compact('categories','brands','colors', 'entities', 'user', 'client', 'sizes', 'user_id', 'stylist_id', 'page'));
+    
+        if($this->request->is('ajax')){
+            $this->layout = false;
+            $this->render = false;
+            $ret = array();
+
+            if(count($entities)){
+                $ret['status'] = 'ok';
+                $ret['entities'] = $entities;
+            }
+            else{
+                $ret['status'] = 'error';
+                $ret['entities'] = array();
+            }
+
+            echo json_encode($ret);
+            exit;
+        }
     }   
 
 
