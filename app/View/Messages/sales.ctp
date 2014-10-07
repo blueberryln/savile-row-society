@@ -54,7 +54,7 @@
                                <select onchange="location = this.options[this.selectedIndex].value;">
                                     <option>Filter Clients</option>
                                     <?php  foreach($userlists as $userlist ): ?>
-                                    <option value="<?php echo $this->webroot; ?>messages/stylisteachusersales/<?php echo $userlist['User']['id']; ?>"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></option>
+                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></option>
                                      <?php endforeach; ?>
                                     
                                 </select>
@@ -70,7 +70,7 @@
                             <ul id="searchuserlist">
                             <?php  foreach($userlists as $userlist ): ?>
                                 <li <?php if($userlist['User']['id']==$clientid){ echo "class='active'"; } ?>>
-                                    <a href="<?php echo $this->webroot; ?>messages/stylisteachusersales/<?php echo $userlist['User']['id']; ?>" title="">
+                                    <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlist['User']['id']; ?>" title="">
                                         <div class="myclient-img">
                                             <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
                                         </div>
