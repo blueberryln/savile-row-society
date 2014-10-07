@@ -173,7 +173,7 @@
                         <li><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>messages/closet">The CLoset</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>stylists/closet">The CLoset</a></li>
                     <?php endif; ?>
                     </ul>
                 </div>
@@ -189,7 +189,7 @@
                                         <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
                                         <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
                                         <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
-                                        <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/closet">The CLoset</a></li>
+                                        <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>stylists/closet">The CLoset</a></li>
                                     <?php endif; ?>
                                     <?php if ($is_admin) : ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>

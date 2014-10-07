@@ -495,74 +495,7 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
         <div class="eleven columns container message-box-area">
             <div class="twelve columns container left message-box">
                 
-                
-                <div class="myclient-left left">
-                    <div class="myclient-topsec"> 
-                        <div class="filter-myclient-area">
-                            <div class="filter-myclient">
-                                <span class="downarw"></span>
-                                <select onchange="location = this.options[this.selectedIndex].value;">
-                                    <option>Filter Clients</option>
-                                    <?php  foreach($userlist as $filterclient ): ?>
-                                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $filterclient['User']['id']; ?>"><?php echo $filterclient['User']['first_name'].'&nbsp;'.$filterclient['User']['last_name']; ?></option>
-                                     <?php endforeach; ?>
-                                    
-                                </select>
-                            </div>
-                        </div>
-                        <div class="search-myclient-area">
-                            <div class="search-myclient">
-                                <span class="srch"></span>
-                                 <input type="text" name="myclient-search" id="usersearch" />
-                            </div>
-                        </div>
-                        <div class="myclient-list dsktp_only">
-                            <div id="scrollbar6">
-                            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-                                <div class="viewport">
-                                     <div class="overview">
-                                        <ul id="searchuserlist">
-                                        <?php  foreach($userlist as $userlists){?>
-                                            <li>
-                                                <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlists['User']['id']; ?>" title="">
-                                                    <div class="myclient-img">
-                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlists['User']['profile_photo_url']; ?>" alt=""/>
-                                                    </div>
-                                                    <div class="myclient-dtl">
-                                                        <span class="myclient-name"><?php echo $userlists['User']['first_name'].'&nbsp;'.$userlists['User']['last_name']; ?></span>
-                                                        <span class="myclient-status">last active at <?php echo date ('d F Y',$userlists['User']['updated']); ?></span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        <?php } ?>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="myclient-list tab_n_mob">
-                           
-                                        <ul id="searchuserlist">
-                                        <?php  foreach($userlist as $userlists){?>
-                                            <li>
-                                                <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $userlists['User']['id']; ?>" title="">
-                                                    <div class="myclient-img">
-                                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlists['User']['profile_photo_url']; ?>" alt=""/>
-                                                    </div>
-                                                    <div class="myclient-dtl">
-                                                        <span class="myclient-name"><?php echo $userlists['User']['first_name'].'&nbsp;'.$userlists['User']['last_name']; ?></span>
-                                                        <span class="myclient-status">last active at <?php echo date ('d F Y',$userlists['User']['updated']); ?></span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        <?php } ?>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            
-                            </div>
+                <?php echo $this->element('clientAside/userFilterBar'); ?>
                 
                 
                 <div class="myoutfit-right right">
