@@ -301,6 +301,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             
                 if (isLoggedIn()) {
                    $('#menu-switcher').hide()
+                   $('.stylist-biography-section').css('margin-top', '0')
                 }
                 
                 
