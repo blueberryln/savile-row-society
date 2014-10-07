@@ -62,7 +62,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
             <h1>How Savile Row Society Works</h1>
-            <h3>Complete your Style Profile, start shopping with your Personal Stylists, and </h3>
+            <h3>Complete your style profile, start shopping with your personal stylists, and </h3>
             <h3>have your new wardrobe delivered to your doorstep free of charge</h3>
             
         </div>
@@ -77,7 +77,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 </a>
 
                 <span class="works-heading">Style Profile</span>
-                <span class="works-desc">Fill out a quick Style Profile to be matched with your very own Personal Stylist</span>
+                <span class="works-desc">Fill out a quick style profile to be matched with your very own personal stylist</span>
 
             </div> 
              <div class="work-box">
@@ -90,7 +90,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 </a>
 
                 <span class="works-heading">Start Shopping</span>
-                <span class="works-desc">Communicate on the website, on the phone or in-person. Buy what you want from your stylist’s recommendations.</span>
+                <span class="works-desc">Communicate on the website, on the phone or in-person.<br/> Buy what you want from your stylist’s recommendations.</span>
 
             </div> 
              <div class="work-box">
@@ -103,7 +103,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 </a>
 
                 <span class="works-heading">Free Delivery</span>
-                <span class="works-desc">Have your purchases delivered for free. Verify that the fit is perfect. Dress for the life you want.</span>
+                <span class="works-desc">Have your purchases delivered for free.<br/>Verify that the fit is perfect. <br/>Dress for the life you want.</span>
 
             </div> 
         </div>
@@ -153,7 +153,7 @@ $this->Html->script('cookie.js', array('inline' => false));
         <div class="twelve columns text-center page-heading">
             <h1>Top Outfits</h1>
             <h3>Check out the top outfits recently recommended by</h3>
-            <h3>our premier Personal Stylists</h3>
+            <h3>our premier personal stylists</h3>
              
 
         </div>
