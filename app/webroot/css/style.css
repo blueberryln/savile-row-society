@@ -1155,6 +1155,7 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .tab-btns.active, .purchase-container { background: #fff;}
 .purchase-area{}
 .purchase-dtls{ padding: 50px 0 100px;}
+.purchase-dtls h1 { border: 5px dashed #c8bf93; display: inline-block; padding: 8px 1%; width: 96%; font-size: 35px; line-height: 42px;}
 .purchase-dtls li { float:left; width: 100%; margin-bottom: 15px; border-bottom: 1px solid #f1f1f1; padding-bottom: 10px;}
 .purchase-dtls .heading { font-size: 18px; text-transform: uppercase; color: #040404; text-align: center; font-weight: 700;}
 .purchase-dtls-date, .purchase-dtls-items, .purchase-dtls-outfit, .purchase-dtls-price { display: inline-block; font-size: 14px; color: #303030; line-height: 16px; }
