@@ -96,7 +96,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 ?>
 
-<div class="content-container">
+<div class="content-container content-container-brands">
     <div class="eleven columns container container-box">
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading brand-heading">
