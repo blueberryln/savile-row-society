@@ -348,12 +348,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <?php else: ?>
                                     <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" />
                                 <?php endif; ?>
-                                <div class="profile-img-edit">
+                                <!-- <div class="profile-img-edit">
                                     <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
-                                </div>
+                                </div> -->
                                 
                             </div>
-                            <div id="file-box-photo" class="box-modal notification-box" style="display: none;">
+                            <!-- <div id="file-box-photo" class="box-modal notification-box" style="display: none;">
                                         <div class="box-modal-inside">
                                             <a class="notification-close" href=""></a>
                                                 <div class="vip-content">
@@ -364,31 +364,31 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                             
                                                 </div>
                                         </div>
-                                   </div> 
+                                   </div> --> 
                             <div class=" twelve columns social-networks">
                                 <ul>
-                                <?php //$social = json_decode($find_array[0]['StylistBio']['stylist_social_link'],true); ?>
+                                <?php $social = json_decode($StylistBioData['StylistBio']['stylist_social_link'],true); ?>
                                     <li class="pintrest">
-                                        <a href="<?php //echo $social['pinterest']; ?>" target="blank" title="">Printrest</a>
+                                        <a href="<?php echo isset($social['pinterest']) ? $social['pinterest'] : '#'; ?>" target="blank" title="">Printrest</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-pintrst">
                                             <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
                                         </div>
                                         
                                     </li>
                                     <li class="twitter">
-                                        <a href="<?php //echo $social['twiter']; ?>" target="blank" title="">Twitter</a>
+                                        <a href="<?php echo isset($social['twiter']) ? $social['twiter'] : '#'; ?>" target="blank" title="">Twitter</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-twtr">
                                             <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
                                         </div>
                                     </li>
                                     <li class="linkdin">
-                                        <a href="<?php //echo $social['linkdin']; ?>" target="blank" title="">Linkdin</a>
+                                        <a href="<?php echo isset($social['linkdin']) ? $social['linkdin'] : '#'; ?>" target="blank" title="">Linkdin</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-linkin">
                                             <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
                                         </div>
                                     </li>
                                     <li class="facebbok">
-                                        <a href="<?php //echo $social['facebook']; ?>" target="blank" title="">facebook</a>
+                                        <a href="<?php echo isset($social['facebook']) ? $social['facebook'] : '#'; ?>" target="blank" title="">facebook</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-fb">
                                             <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
                                         </div>
@@ -564,7 +564,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 
                                                 </a>
                                                 <div class="photostream-edit-section">
-                                                    <span class="edit-section tip-edit-photostream"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                                    <!-- <span class="edit-section tip-edit-photostream"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
                                                     <span class="edit-caption-txt">Edit Caption</span>
                                                     <span class="edit-caption-area">
                                                         <textarea name="" placeholder="I styled my friends wedding. I love the colors"></textarea>
@@ -572,7 +572,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                             <a class="edit-save-btn primry-btn" id="submit_stylist_fashion_tip">Submit</a>
                                                             <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                                         </p>
-                                                    </span>
+                                                    </span> -->
                                                     <button class="delete-potostream-img">Delete Photo</button>
                                                 </div>
                                             </li>

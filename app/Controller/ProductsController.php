@@ -926,55 +926,179 @@ class ProductsController extends AppController {
         $this->set('outfitall',$outfitall);
     }
 
+
+    public function admin_topoutfit(){
+        $this->layout = 'admin';
+        $this->isAdmin();
+       
+        $TopOutfit = ClassRegistry::init('TopOutfit');
+        if($this->request->is('post')){
+            $data = $this->request->data;
+            $outfit = $TopOutfit->getByUserId($data['TopOutfit']['outfit_id']);
+
+            if($outfit){
+                $this->Session->setFlash(__('Outfit already exists.'), 'flash');
+                $this->redirect(array('action' => 'topoutfit'));
+                exit;
+            }
+            else if ($outfit = $TopOutfit->save($data)){
+                $TopOutfit->updateAll(
+                    array('order_id' => 'order_id + 1'),
+                    array('order_id >= ' => $data['TopOutfit']['order_id'], 'TopOutfit.id !=' => $outfit['TopOutfit']['id'])
+                );
+
+                $this->Session->setFlash(__('The outfit has been added.'), 'flash');
+                $this->redirect(array('action' => 'topoutfit'));
+                exit;
+            }
+            else{
+                $this->Session->setFlash(__('The outfit could not be saved. Please, try again.'), 'flash');
+                $this->redirect(array('action' => 'topoutfit'));
+                exit;
+            }
+        }
+
+        $Outfit = ClassRegistry::init('Outfit');
+        $outfits = $Outfit->find('all', array('conditions'=>array('outfit_name !=' => '')));
+        
+        $topoutfits = $TopOutfit->getTopOutfits();
+
+        $this->set(compact('outfits', 'topoutfits'));
+    }
+
+
+    public function admin_edit_topoutfit($id){
+        $this->layout = 'admin';
+        $this->isAdmin();
+       
+        $TopOutfit = ClassRegistry::init('TopOutfit');
+
+        if (!$TopOutfit->exists($id)) {
+            throw new NotFoundException(__('Invalid Outfit'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            
+            $data = $TopOutfit->findById($id);
+            $old_order_id = $data['TopOutfit']['order_id'];
+            if($this->request->data['TopOutfit']['order_id'] > 0){
+                $data['TopOutfit']['order_id'] = $this->request->data['TopOutfit']['order_id'];
+            }
+
+            if ($TopOutfit->save($data)) {
+                if($old_order_id < $data['TopOutfit']['order_id']){
+                    $TopOutfit->updateAll(
+                        array('order_id' => 'order_id - 1'),
+                        array('order_id > ' => $old_order_id, 'order_id <=' => $data['TopOutfit']['order_id'],'TopOutfit.id !=' => $data['TopOutfit']['id'])
+                    );  
+                }
+                else if($old_order_id > $data['TopOutfit']['order_id']){
+                    $TopOutfit->updateAll(
+                        array('order_id' => 'order_id + 1'),
+                        array('order_id < ' => $old_order_id, 'order_id >=' => $data['TopOutfit']['order_id'],'TopOutfit.id !=' => $data['TopOutfit']['id'])
+                    );  
+                }
+
+
+                $this->Session->setFlash(__('The outfit has been saved.'), 'flash');
+                $this->redirect(array('action' => 'topoutfit'));
+                exit;
+            } else {
+                $this->Session->setFlash(__('The outfit could not be saved. Please, try again.'), 'flash');
+                $this->redirect(array('action' => 'topoutfit'));
+                exit;
+            }
+        } else {
+            $this->request->data = $TopOutfit->findById($id);
+            $Outfit = ClassRegistry::init('Outfit');
+            $outfit = $Outfit->findById($this->request->data['TopOutfit']['outfit_id']);
+
+            $this->set(compact('outfit'));
+        }
+    }
+
+
+    public function admin_delete_topoutfit($id){
+        $this->layout = 'admin';
+        $this->isAdmin();
+       
+        $TopOutfit = ClassRegistry::init('TopOutfit');
+
+        if (!$TopOutfit->exists($id)) {
+            throw new NotFoundException(__('Invalid Outfit'));
+        }
+            
+        $data = $TopOutfit->findById($id);
+
+        if ($data) {
+            $TopOutfit->id = $id;
+            $TopOutfit->delete();
+
+            $TopOutfit->updateAll(
+                array('order_id' => 'order_id - 1'),
+                array('order_id > ' => $data['TopOutfit']['order_id'])
+                );
+
+            $this->Session->setFlash(__('The outfit has been removed.'), 'flash');
+            $this->redirect(array('action' => 'topoutfit'));
+            exit;
+        } else {
+            $this->Session->setFlash(__('The outgit could not be deleted. Please, try again.'), 'flash');
+            $this->redirect(array('action' => 'topoutfit'));
+            exit;
+        }
+
+    }
+
+
     //highlighted outfits
     public function admin_highlightoutfit(){
         $Outfit = ClassRegistry::init('Outfit');
-        $Highlightoutfit = ClassRegistry::init('Highlightoutfit');
+        $TopOutfit = ClassRegistry::init('TopOutfit');
         if($this->request->is('post')){
                     
-            if($this->request->data['Highlightoutfit']['outfit_id2'] == null){
-                 $this->request->data['Highlightoutfit']['outfit_id'] = $this->request->data['Highlightoutfit']['outfit_id'];
+            if($this->request->data['TopOutfit']['outfit_id2'] == null){
+                 $this->request->data['TopOutfit']['outfit_id'] = $this->request->data['TopOutfit']['outfit_id'];
 
-            } elseif ($this->request->data['Highlightoutfit']['outfit_id']=='Please Select') {
-                $this->request->data['Highlightoutfit']['outfit_id'] = $this->request->data['Highlightoutfit']['outfit_id2'];
+            } elseif ($this->request->data['TopOutfit']['outfit_id']=='Please Select') {
+                $this->request->data['TopOutfit']['outfit_id'] = $this->request->data['TopOutfit']['outfit_id2'];
             }
-            $highlightoutfit = $this->request->data;
+            $TopOutfit = $this->request->data;
             
-            if ($Highlightoutfit->validates()) {
-                $checkhighlight = $Highlightoutfit->find('count', array('conditions' => array('Highlightoutfit.order_id' => $highlightoutfit['Highlightoutfit']['order_id'])));
-                $checkoutfit = $Outfit->find('count',array('conditions'=>array('Outfit.id'=>$this->request->data['Highlightoutfit']['outfit_id'])));
+            if ($TopOutfit->validates()) {
+                $checkhighlight = $TopOutfit->find('count', array('conditions' => array('TopOutfit.order_id' => $TopOutfit['TopOutfit']['order_id'])));
+                $checkoutfit = $Outfit->find('count',array('conditions'=>array('Outfit.id'=>$this->request->data['TopOutfit']['outfit_id'])));
                 
                 if($checkhighlight){
                     $this->Session->setFlash(__('This order number is already added. Please Used anthor.'), 'flash');
-                    $this->redirect(array('action' => 'highlightoutfit'));
+                    $this->redirect(array('action' => 'TopOutfit'));
                     exit;    
                 }
                 if($checkoutfit == null){
                     $this->Session->setFlash(__('This outfit Id is wrong. Please Used anthor. Or Please choose atleast one field.'), 'flash');
-                    $this->redirect(array('action' => 'highlightoutfit'));
+                    $this->redirect(array('action' => 'TopOutfit'));
                     exit;    
                 }                
                 
             }
             
-             if($Highlightoutfit->save($this->request->data)){
-                $this->Session->setFlash(__('The Highlightoutfit has been saved'), 'flash');
-                $this->redirect(array('action' => 'highlightoutfit'));
+             if($TopOutfit->save($this->request->data)){
+                $this->Session->setFlash(__('The TopOutfit has been saved'), 'flash');
+                $this->redirect(array('action' => 'TopOutfit'));
             } else {
-                $this->Session->setFlash(__('The Highlightoutfit could not be saved. Please, try again.'), 'flash');
+                $this->Session->setFlash(__('The TopOutfit could not be saved. Please, try again.'), 'flash');
             }
         
         }
         $option  =  array(
-                            'fields' => array('Outfit.*,Highlightoutfit.*'),
+                            'fields' => array('Outfit.*,TopOutfit.*'),
                             'joins' => array(
 
                             array(
                                 'conditions' => array(
-                                    'Outfit.id = Highlightoutfit.outfit_id',
+                                    'Outfit.id = TopOutfit.outfit_id',
                                 ),
-                                'table' => 'highlightoutfits',
-                                'alias' => 'Highlightoutfit',
+                                'table' => 'top_outfits',
+                                'alias' => 'TopOutfit',
                                 'type' => 'INNER',
                             ),
                             ),

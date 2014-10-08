@@ -69,7 +69,7 @@
                                                         <input name="data[User][first_name]" id="First_name"  required="required" value="<?php echo $user['User']['first_name']; ?>" type="text" placeholder="First Name">
                                                         </div>
                                                         <div class="input email required">
-                                                            <input name="data[User][email]" id="email" required="required" value="<?php echo $user['User']['email']; ?>" type="email" placeholder="Email">
+                                                            <input id="email" required="required" value="<?php echo $user['User']['email']; ?>" type="email" placeholder="Email" readonly >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -79,7 +79,7 @@
                                                              <input name="data[User][last_name]" id="last_name" required="required" value="<?php echo $user['User']['last_name']; ?>" type="text" placeholder="Last Name">
                                                         </div>
                                                         <div class="input password required">
-                                                            <input name="Password" style=" -webkit-text-security: disc;"  value='<?php echo $user['User']['password']; ?>' type="password" placeholder="Password">
+                                                            <input name="data[User][password]" style=" -webkit-text-security: disc;"  value='' type="password" placeholder="Password">
                                                         </div>
                                                     </div>
                                                 </div>

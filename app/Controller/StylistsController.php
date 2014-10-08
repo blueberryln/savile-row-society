@@ -100,6 +100,12 @@ class StylistsController extends AppController {
         $this->autoRender = false;
         $StylistBio = ClassRegistry::init('StylistBio');
 
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
         $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
         
         $StylistBioId = $BiographyData['StylistBio']['id'];
@@ -132,6 +138,12 @@ class StylistsController extends AppController {
         $this->layout = 'ajax';
         $this->autoRender = false;
         $StylistBio = ClassRegistry::init('StylistBio');
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
 
         $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
         
@@ -167,6 +179,18 @@ class StylistsController extends AppController {
         $this->layout = 'ajax';
         $this->autoRender = false;
         $StylistBio = ClassRegistry::init('StylistBio');
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
 
         $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
         
@@ -207,6 +231,12 @@ class StylistsController extends AppController {
         $this->autoRender = false;
         $StylistBio = ClassRegistry::init('StylistBio');
 
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
         $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
         
         $StylistBioId = $BiographyData['StylistBio']['id'];
@@ -242,6 +272,12 @@ class StylistsController extends AppController {
         $this->autoRender = false;
         $StylistBio = ClassRegistry::init('StylistBio');
 
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
         $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
         
         $StylistBioId = $BiographyData['StylistBio']['id'];
@@ -274,6 +310,12 @@ class StylistsController extends AppController {
     public function savePhoto($stylistId = null){
         $this->layout = 'ajax';
         $this->autoRender = false;
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
         $StylistPhotostream = ClassRegistry::init('StylistPhotostream');
             if($this->request->is('post') || $this->request->is('put')){
 
@@ -311,6 +353,45 @@ class StylistsController extends AppController {
 
     }
 
+
+    public function savePinterest($stylistId = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $StylistBio = ClassRegistry::init('StylistBio');
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
+        $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
+        
+        $StylistBioId = $BiographyData['StylistBio']['id'];
+        if($BiographyData){
+            $stylist_bio = $this->request->data['stylist_bio'];
+            $stylist_id = $this->request->data['stylist_id'];
+            $this->request->data['StylistBio']['stylist_bio'] =  $stylist_bio;
+            $this->request->data['StylistBio']['stylist_id'] =  $stylist_id;
+            $this->request->data['StylistBio']['id'] =  $StylistBioId;
+            $StylistBio->save($this->request->data);
+            
+        }else{
+
+            $stylist_bio = $this->request->data['stylist_bio'];
+            $stylist_id = $this->request->data['stylist_id'];
+            $this->request->data['StylistBio']['stylist_bio'] =  $stylist_bio;
+            $this->request->data['StylistBio']['stylist_id'] =  $stylist_id;
+            $StylistBio->save($this->request->data);
+            
+        }
+        
+        $BioData = $StylistBio->find('all',array('conditions'=>array('StylistBio.stylist_id'=>$stylist_id,)));
+        echo json_encode($BioData);
+        exit;
+
+    }
+
     // stylist  saveOutfitFirst
 
     public function saveOutfitFirst($stylistId = null){
@@ -320,6 +401,12 @@ class StylistsController extends AppController {
         $Entity = ClassRegistry::init('Entity');    
         $this->layout = 'ajax';
         $this->autoRender = false;
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
         $OutfitData = $StylistTopOutfit->find('first',array('conditions'=>array('StylistTopOutfit.stylist_id'=>$stylistId,'StylistTopOutfit.order_id = 1')));
         if(isset($OutfitData['StylistTopOutfit']['id'])){
             $OutfitDataId = $OutfitData['StylistTopOutfit']['id'];
@@ -400,6 +487,12 @@ class StylistsController extends AppController {
         $Entity = ClassRegistry::init('Entity');    
         $this->layout = 'ajax';
         $this->autoRender = false;
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
         $OutfitData = $StylistTopOutfit->find('first',array('conditions'=>array('StylistTopOutfit.stylist_id'=>$stylistId,'StylistTopOutfit.order_id = 2')));
         if(isset($OutfitData['StylistTopOutfit']['id'])){
             $OutfitDataId = $OutfitData['StylistTopOutfit']['id'];
@@ -481,6 +574,12 @@ class StylistsController extends AppController {
         $Entity = ClassRegistry::init('Entity');    
         $this->layout = 'ajax';
         $this->autoRender = false;
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
         $OutfitData = $StylistTopOutfit->find('first',array('conditions'=>array('StylistTopOutfit.stylist_id'=>$stylistId,'StylistTopOutfit.order_id = 3')));
         if(isset($OutfitData['StylistTopOutfit']['id'])){
             $OutfitDataId = $OutfitData['StylistTopOutfit']['id'];
@@ -560,6 +659,12 @@ class StylistsController extends AppController {
         // get edditing in user
 
         // file upload
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
 
         if ($this->request->data['StylistPhotostream']['image'] && $this->request->data['StylistPhotostream']['image']['size'] > 0) {
 
@@ -789,9 +894,15 @@ class StylistsController extends AppController {
 
 
     public function closet() {
+        $this->isLogged();
         $user = $this->getLoggedUser();
         $user_id = $user['User']['id'];
         
+        if(!$user['User']['is_stylist']){
+            $this->redirect('/');
+            exit;
+        }
+
         // init
         $Category = ClassRegistry::init('Category');
         $Brand = ClassRegistry::init('Brand');

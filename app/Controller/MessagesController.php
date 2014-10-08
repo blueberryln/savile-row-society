@@ -3338,9 +3338,31 @@ If interested, I would also be happy to meet with you in our New York City based
         $this->set(compact('user', 'stylist', 'sideBarTab'));
 
         if($this->request->is('post') || $this->request->is('put')){
+            if($this->request->data['User']['password'] != ''){
+                $this->request->data['User']['password'] = Security::hash($this->request->data['User']['password']);
+            }
+            else{
+                unset($this->request->data['User']['password']);   
+            }
+
+            if(isset($this->request->data['User']['is_phone']) && $this->request->data['User']['is_phone']==true){
+                $this->request->data['User']['is_phone']='1'; 
+            }
+            else{
+                $this->request->data['User']['is_phone']='0';    
+            }
+            if(isset($this->request->data['User']['is_skype']) && $this->request->data['User']['is_skype']==true){
+               $this->request->data['User']['is_skype']='1'; 
+            }else{
+                $this->request->data['User']['is_skype']='0'; 
+            }
+            if(isset($this->request->data['User']['is_srs_msg']) && $this->request->data['User']['is_srs_msg']==true){
+               $this->request->data['User']['is_srs_msg']=1; 
+            }
+
             if($User->save($this->request->data)){
                 $this->Session->setFlash("User Data Hasbeen Saved", 'flash');
-                $this->redirect('/messages/profiles');
+                $this->redirect('/user/profile');
             } else {
                 $this->Session->setFlash(__('The User could not be saved. Please, try again.'), 'flash');
             }

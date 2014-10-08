@@ -49,9 +49,35 @@ class TopOutfit extends AppModel {
     		$Outfit = ClassRegistry::init('Outfit');
     		$outfits = $Outfit->getOutfitDetails($outfit_list, true);	
     	}
+
+        $top_outfits = $this->find('all');
+
+        $sorted_outfit = array();
+        foreach($top_outfits as $value){
+            $sorted_outfit[$value['TopOutfit']['outfit_id']] = $value; 
+        }
+
+        foreach($outfits as &$outfit){
+            $outfit['TopOutfit'] = $sorted_outfit[$outfit['Outfit']['id']]['TopOutfit'];
+        }
     	
 
     	return $outfits;
+    }
+
+    /**
+     * Get by user_id
+     * 
+     * @return array
+     */
+    public function getByUserId($outfit_id){
+
+        $user = $this->find('first', array(
+            'conditions'   => array('outfit_id'  => $outfit_id)
+            ));
+
+        return $user;
+
     }
 
 }
