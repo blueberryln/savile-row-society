@@ -274,6 +274,29 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                             
                             <div class="team-member">
                                 <div>
+                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-21.jpg" data-member-name="Whitney Baumann" class="fadein-image" />
+                                </div>
+                                <div>
+                                    <div class="name">Whitney Baumann</div>
+                                    <span class="title">Mobikasa – Web Design</span> 
+                                    <div class="desc">
+                                        <p>Whitney is a graphic designer at the Mobikasa New York office. She hails from California, where she graduated from San Diego State University before coming out to New York City to join Shillington's School of Design.</p>
+                                        <p>Prior to joining the Mobikasa team, Whitney was a freelance graphic designer and illustrator. Her work with small business and non-profit clients consisted of primarily print design- from brand/identity development to product package design.</p>
+                                        <p>Her focus has shifted since she started at Mobikasa. Working with clients like Savile Row Society allowed her to realize the importance, and relevance, of user centered design. To her, design should not just look good- it must be, above all, functional.</p>
+                                        <p>Now she spends her days happily designing web/app interfaces, and painting with pixels.</p>
+                                    </div>
+                                    <div class="text-center info-btn">
+                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="team-member-container">    
+                            <div class="team-member">
+                                <div>
                                     <img src="<?php echo $this->request->webroot; ?>img/team-member-21.jpg" data-member-name="Saurabh Sharma" class="fadein-image" />
                                 </div>
                                 <div>

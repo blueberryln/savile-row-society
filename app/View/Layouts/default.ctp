@@ -301,7 +301,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             
                 if (isLoggedIn()) {
                    $('#menu-switcher').hide()
-                   $('.stylist-biography-section').css('margin-top', '0')
+                   $('.stylist-biography-section, .content-container-team, .content-container-privacy, .content-container-contact, .content-container-brands, .content-container-faq, .content-container-terms').css('margin-top', '0')
                 }
                 
                 
