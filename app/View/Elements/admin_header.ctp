@@ -34,7 +34,7 @@
                         <li><a href="<?php echo $this->request->webroot; ?>admin/products/add">Add New Product</a></li>
                         <!--bhashit code-->
                         <li><a href="<?php echo $this->request->webroot; ?>admin/products/outfitlist">Outfits</a></li>
-                        <li><a href="<?php echo $this->request->webroot; ?>admin/products/highlightoutfit">Highlighted Outfits</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>admin/products/topoutfit">Highlighted Outfits</a></li>
                         <!--bhashit code end-->
                         <li><a href="<?php echo $this->request->webroot; ?>admin/lifestyles">LifeStyles</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>admin/products/export">Export</a></li>

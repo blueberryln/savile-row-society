@@ -575,6 +575,7 @@ class ClosetController extends AppController {
                     }
                 }
             }
+            
             $this->set(compact('cart_list'));
         }
     }

@@ -122,7 +122,7 @@ ALTER TABLE `users`
 
 
 ALTER TABLE `messages`
-  ADD COLUMN `is_request_outfit` TINYINT(1) NOT NULL DEFAULT '0' AFTER `outfit_id`
+  ADD COLUMN `is_request_outfit` TINYINT(1) NOT NULL DEFAULT '0' AFTER `outfit_id`,
   ADD COLUMN `post_id` INT(11) NOT NULL AFTER `is_request_outfit`;
 
 
