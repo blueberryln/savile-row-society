@@ -2003,6 +2003,8 @@ input#billingCopybilling { visibility: visible;}
     .otft-prdct-list li a{line-height: 155px;}
     .otft-prdct-list {margin-left:1px; }
     
+    a#sendphoto.upload { padding: 0 0 0 0!important;}
+    
     
     
 }
