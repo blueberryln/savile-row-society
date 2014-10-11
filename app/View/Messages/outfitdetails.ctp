@@ -208,10 +208,15 @@ $this->Html->css('colorbox', null, array('inline' => false));
 </div>
 <div class="outfit-dtls-brnads"><span>Brands in Outfit:</span></div>
 <div class="outfit-dtls-brand-name">
-<?php foreach ($entities as $entity) : ?>
-<?php echo str_replace(' ', ',', $entity['Brand']['name']); ?>
-<?php endforeach; ?>
+<?php
+$brand_list = ''; 
+foreach ($entities as $entity) :
+$brand_list = $brand_list . $entity['Brand']['name'] . ", "; 
+endforeach;
 
+$brand_list = substr($brand_list, 0, strlen($brand_list) -2);
+echo $brand_list;
+?>
 </div>
 <div class="outfit-stylst-comment"><span>Stylist Comment:</span></div>
 <div class="outfit-stylst-comment-dtl"><?php if($messages_outfit_comments['Message']['stylist_comments']){ echo $messages_outfit_comments['Message']['stylist_comments']; }else{} ?></div>

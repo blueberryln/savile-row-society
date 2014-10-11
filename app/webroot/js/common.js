@@ -39,7 +39,7 @@ function signIn() {
 /* function to show create outfit popup*/
 function outFit() {
     var blockTop = $(window).height()/2 - $("#create-otft-popup").height()/2;
-    $.blockUI({message: $('#create-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $.blockUI({message: $('#create-otft-popup'), css: {position: "fixed", top: (blockTop > 0) ? blockTop : "0px"}});
     $('.blockOverlay').click($.unblockUI);
 }
 
