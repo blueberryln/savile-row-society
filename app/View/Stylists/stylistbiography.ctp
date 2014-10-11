@@ -92,7 +92,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <div class="stylistbio-user"><?php echo $users['User']['first_name'].'&nbsp;'.$users['User']['last_name']; ?> | Stylist</div>
                                 
                                 <?php if(!$is_logged): ?>
-                                    <div class="start-today"><a href="/users/register">get started with <?php echo $users['User']['first_name']; ?> Today!</a></div>
+                                    <div class="start-today"><a href="/users/register?refer=<?php echo $users['User']['id']; ?>">get started with <?php echo $users['User']['first_name']; ?> Today!</a></div>
                                 <?php endif; ?>
                             </div>
                             <div class="twelve columns left detials-section">
@@ -155,7 +155,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <div class="twelve columns left bottom-section">
                                 <div class="stylistbio-user">Like <?php echo $users['User']['first_name']; ?>’s Style?</div>
                                 <?php if(!$is_logged): ?>
-                                    <div class="start-today"><a href="/users/register">get started with <?php echo $users['User']['first_name']; ?> Today!</a></div>
+                                    <div class="start-today"><a href="/users/register?refer=<?php echo $users['User']['id']; ?>">get started with <?php echo $users['User']['first_name']; ?> Today!</a></div>
                                 <?php endif; ?>
                             </div>
                         </div>

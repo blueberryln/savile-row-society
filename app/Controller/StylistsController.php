@@ -696,6 +696,10 @@ class StylistsController extends AppController {
 
     public function stylistbiography($id= null){
 
+        if(isset($this->request->query['refer'])){
+            $this->Session->write('stylist_refer', $this->request->query['refer']);   
+        }
+
         $User = ClassRegistry::init('User');
         $StylistBio = ClassRegistry::init('StylistBio');
         $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');

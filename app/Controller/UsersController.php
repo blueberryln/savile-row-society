@@ -410,7 +410,10 @@ class UsersController extends AppController {
     public function register()
 
     {
-        
+        if(isset($this->request->query['refer'])){
+            $this->Session->write('stylist_refer', $this->request->query['refer']);   
+        }
+
         if($this->getLoggedUserID()){
             $this->redirect('/');
             exit();   
@@ -532,8 +535,21 @@ class UsersController extends AppController {
                      
  public function assign_refer_stylist($user_id){
         $user = $this->User->findById($user_id);
-        $default_stylist = $this->User->findByEmail("contactus@savilerowsociety.com");
         $new_stylist = array();
+
+        if($this->Session->check('stylist_refer')){
+            $stylist_refer = $this->Session->read('stylist_refer');
+            $refered_stylist = $this->User->getByID($stylist_refer);
+
+            if(!$refered_stylist){
+                $stylist_refer = false;
+            }
+        }
+        else{
+            $stylist_refer = false;    
+        }
+
+
         if($user['User']['referred_by']){
             $referer = $this->User->getByID($user['User']['referred_by']);
             if($referer && $referer['User']['is_stylist']){
@@ -544,28 +560,24 @@ class UsersController extends AppController {
                 $user['User']['stylist_id'] = $referer['User']['stylist_id'];    
                 $new_stylist = $user_stylist;
             }
-            else if($default_stylist){
-                $user['User']['stylist_id'] = $default_stylist['User']['id']; 
-                $new_stylist = $default_stylist;   
-            }
             else{
-                $casey = $this->User->findByEmail("casey@savilerowsociety.com"); 
-                if($casey){
-                    $user['User']['stylist_id'] = $casey['User']['id']; 
-                    $new_stylist = $casey;         
+                $stylist = $this->User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true))); 
+                if($stylist){
+                    $user['User']['stylist_id'] = $stylist['User']['id']; 
+                    $new_stylist = $stylist;         
                 }   
             }
         }
         else{
-            if($default_stylist){
-                $user['User']['stylist_id'] = $default_stylist['User']['id']; 
-                $new_stylist = $default_stylist;    
+            if($stylist_refer){
+                $user['User']['stylist_id'] = $refered_stylist['User']['id']; 
+                $new_stylist = $refered_stylist;    
             }
             else{
-                $casey = $this->User->findByEmail("casey@savilerowsociety.com"); 
-                if($casey){
-                    $user['User']['stylist_id'] = $casey['User']['id'];  
-                    $new_stylist = $casey;   
+                $stylist = $this->User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true))); 
+                if($stylist){
+                    $user['User']['stylist_id'] = $stylist['User']['id']; 
+                    $new_stylist = $stylist;         
                 }   
             }    
         }
