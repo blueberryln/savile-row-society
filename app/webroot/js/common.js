@@ -361,7 +361,7 @@ $("#block-file-upload-photo").on("click", function(e){
     
 $(".profile-img-edit").on("click", "img", function(e){
         e.preventDefault();
-        $.blockUI({message: $('#file-box-photo')});
+        $.blockUI({message: $('#file-box-profile')});
         $('.blockOverlay').click($.unblockUI);
     });
 

@@ -53,20 +53,21 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <?php else: ?>
                                     <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" />   
                                 <?php endif; ?>
-                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $users['User']['profile_photo_url']; ?>" alt="" />
                             </div>
                             <div class=" twelve columns social-networks">
                                 <ul>
                                 <?php 
-
-                                 //$social = json_decode(isset($find_array[0]['Stylistbio']['stylist_social_link']),true); 
-                                //print_r($social);
-                                
+                                if(isset($StylistBioData[0]['StylistBio'])){
+                                    $social = json_decode($StylistBioData[0]['StylistBio']['stylist_social_link'],true);     
+                                }
+                                else{
+                                    $social = array();
+                                }
                                 ?>
-                                    <li class="pintrest"><a href="<?php //echo $social['pintrest']; ?>" target="blank" title="">Printrest</a></li>
-                                    <li class="twitter"><a href="<?php //echo $social['twiter']; ?>" target="blank" title="">Twitter</a></li>
-                                    <li class="linkdin"><a href="<?php //echo $social['linkdin']; ?>" target="blank" title="">Linkdin</a></li>
-                                    <li class="facebbok"><a href="<?php //echo $social['facebook']; ?>" target="blank" title="">facebook</a></li>
+                                    <li class="pintrest"><a href="<?php echo isset($social['pinterest']) ? $social['pinterest'] : '#'; ?>" target="blank" title="">Printrest</a></li>
+                                    <li class="twitter"><a href="<?php echo isset($social['twitter']) ? $social['twitter'] : '#'; ?>" target="blank" title="">Twitter</a></li>
+                                    <li class="linkdin"><a href="<?php echo isset($social['linkdin']) ? $social['linkdin'] : '#'; ?>" target="blank" title="">Linkdin</a></li>
+                                    <li class="facebbok"><a href="<?php echo isset($social['facebook']) ? $social['facebook'] : '#'; ?>" target="blank" title="">facebook</a></li>
                                 <?php  //} ?>
                                 </ul>
                             </div>
@@ -114,7 +115,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                              foreach($photostreampicsstylist as $photostreampicss ): ?>
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $photostreampicss['StylistPhotostream']['caption']; ?>">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" />
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" data-photoid = "<?php echo $photostreampicss['StylistPhotostream']['id']; ?>" />
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>

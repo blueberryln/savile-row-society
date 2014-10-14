@@ -59,6 +59,8 @@ $(document).ready(function(){
         });
     });
 
+
+
  // stylist homw town submit_stylist_hometown   
 
     $(document).on('click', '.actions a#submit_stylist_hometown', function(e){
@@ -109,8 +111,113 @@ $(document).ready(function(){
 
    // submit_stylist_fashion_tip
 
+    $('.delete-potostream-img').on('click', function(e){
+        e.preventDefault();
+
+        var id = $("#id").val();
+        var photoId = $(this).closest('li').find('img').data('photoid');
+        var stylist_id = '<?php echo $stylistid; ?>';
+        $(this).closest('li').remove();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>stylists/removePhoto/<?php echo $stylistid; ?>",
+            data: {stylist_id:stylist_id, photo_id:photoId},
+            cache: false,
+            success: function(result){
+                    
+            }
+        });
+    });
+
+
     $(document).on('click', '.sosl-link-edit-pintrst .edit-save-btn', function(e){
         e.preventDefault();
+
+        var id = $("#id").val();
+        var pinterest = $("#stylist-pinterest-url").val();
+        //alert(Bio);
+        var BioId = '<?php echo $stylistBioId; ?>';
+        var stylist_id = '<?php echo $stylistid; ?>';
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>stylists/savePinterest/<?php echo $stylistid; ?>",
+            data: {pinterest:pinterest,id:id,BioId:BioId,stylist_id:stylist_id},
+            cache: false,
+            success: function(result){
+                 
+            }
+                
+            
+        });
+        
+    });
+
+
+    $(document).on('click', '.sosl-link-edit-twtr .edit-save-btn', function(e){
+        e.preventDefault();
+
+        var id = $("#id").val();
+        var twitter = $("#stylist-twitter-url").val();
+        //alert(Bio);
+        var BioId = '<?php echo $stylistBioId; ?>';
+        var stylist_id = '<?php echo $stylistid; ?>';
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>stylists/saveTwitter/<?php echo $stylistid; ?>",
+            data: {twitter:twitter,id:id,BioId:BioId,stylist_id:stylist_id},
+            cache: false,
+            success: function(result){
+                 
+            }
+                
+            
+        });
+        
+    });
+
+
+    $(document).on('click', '.sosl-link-edit-linkin .edit-save-btn', function(e){
+        e.preventDefault();
+
+        var id = $("#id").val();
+        var linkdin = $("#stylist-linkedin-url").val();
+        //alert(Bio);
+        var BioId = '<?php echo $stylistBioId; ?>';
+        var stylist_id = '<?php echo $stylistid; ?>';
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>stylists/saveLinkedin/<?php echo $stylistid; ?>",
+            data: {linkdin:linkdin,id:id,BioId:BioId,stylist_id:stylist_id},
+            cache: false,
+            success: function(result){
+                 
+            }
+                
+            
+        });
+        
+    });
+
+
+    $(document).on('click', '.sosl-link-edit-fb .edit-save-btn', function(e){
+        e.preventDefault();
+
+        var id = $("#id").val();
+        var facebook = $("#stylist-facebook-url").val();
+        //alert(Bio);
+        var BioId = '<?php echo $stylistBioId; ?>';
+        var stylist_id = '<?php echo $stylistid; ?>';
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $this->webroot; ?>stylists/saveFacebook/<?php echo $stylistid; ?>",
+            data: {facebook:facebook,id:id,BioId:BioId,stylist_id:stylist_id},
+            cache: false,
+            success: function(result){
+                 
+            }
+                
+            
+        });
         
     });
 
@@ -357,26 +464,36 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <?php else: ?>
                                     <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" />
                                 <?php endif; ?>
-                                <!-- <div class="profile-img-edit">
+                                <div class="profile-img-edit">
                                     <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
-                                </div> -->
+                                </div>
                                 
                             </div>
-                            <!-- <div id="file-box-photo" class="box-modal notification-box" style="display: none;">
-                                        <div class="box-modal-inside">
-                                            <a class="notification-close" href=""></a>
-                                                <div class="vip-content">
-                                                    <h5 class="sign">Profile Image</h5>    
-                                                    <input type="file" name="profile-img" accept="images">
-                                                       <input class="biography-upload-img" type="submit" value="submit">
-                                                        </form>
-                                                            
-                                                </div>
+                            <div id="file-box-profile" class="box-modal notification-box" style="display: none;">
+                                <div class="box-modal-inside">
+                                    <a class="notification-close" href=""></a>
+                                        <div class="vip-content">
+                                            <h5 class="sign">Profile Image</h5>  
+                                            <?php
+                                                echo $this->Form->create('Stylists', array('type'=>'file','url'=>'saveProfilePhoto/'.$stylistid)); 
+                                                    echo $this->Form->input('User.profile_photo_url', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
+                                                ?>  
+                                               <input class="biography-upload-img" type="submit" value="submit">
+                                                </form>
+                                                    
                                         </div>
-                                   </div> --> 
+                                </div>
+                           </div> 
                             <div class=" twelve columns social-networks">
                                 <ul>
-                                <?php $social = json_decode($StylistBioData['StylistBio']['stylist_social_link'],true); ?>
+                                <?php 
+                                if(isset($StylistBioData['StylistBio'])){
+                                    $social = json_decode($StylistBioData['StylistBio']['stylist_social_link'],true);     
+                                }
+                                else{
+                                    $social = array();
+                                }
+                                ?>
                                     <li class="pintrest">
                                         <a href="<?php echo isset($social['pinterest']) ? $social['pinterest'] : '#'; ?>" target="_blank" title="">Printrest</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-pintrst">
@@ -406,40 +523,40 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 <form class="sosl-link-edit sosl-link-edit-pintrst" method="post" action="" name="edithometown">
                                     <label>Your Link Here</label>
                                     <div class="edit-content">
-                                    <input type="text"  value="<?php echo isset($social['pinterest']) ? $social['pinterest'] : ''; ?>" placeholder="Enter your Fun Fact">
+                                    <input type="text"  value="<?php echo isset($social['pinterest']) ? $social['pinterest'] : ''; ?>" placeholder="Pinterest link" id="stylist-pinterest-url">
                                    </div>
                                     <p class="actions">
-                                    <a class="edit-save-btn primry-btn" id="submit_stylist_hometown">Submit</a>
+                                    <a class="edit-save-btn primry-btn">Submit</a>
                                     <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                     </p>
                                 </form>
                                 <form class="sosl-link-edit sosl-link-edit-twtr" method="post" action="" name="edithometown">
                                     <label>Your Link Here</label>
                                     <div class="edit-content">
-                                    <input type="text"  value="<?php echo isset($social['twiter']) ? $social['twiter'] : ''; ?>" placeholder="Enter your Fun Fact">
+                                    <input type="text"  value="<?php echo isset($social['twiter']) ? $social['twiter'] : ''; ?>" placeholder="Twitter Link" id="stylist-twitter-url">
                                    </div>
                                     <p class="actions">
-                                    <a class="edit-save-btn primry-btn" id="submit_stylist_hometown">Submit</a>
+                                    <a class="edit-save-btn primry-btn">Submit</a>
                                     <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                     </p>
                                 </form>
                                 <form class="sosl-link-edit sosl-link-edit-linkin" method="post" action="" name="edithometown">
                                     <label>Your Link Here</label>
                                     <div class="edit-content">
-                                    <input type="text"  value="<?php echo isset($social['linkdin']) ? $social['linkdin'] : ''; ?>" placeholder="Enter your Fun Fact">
+                                    <input type="text"  value="<?php echo isset($social['linkdin']) ? $social['linkdin'] : ''; ?>" placeholder="Linkedin Link" id="stylist-linkedin-url">
                                    </div>
                                     <p class="actions">
-                                    <a class="edit-save-btn primry-btn" id="submit_stylist_hometown">Submit</a>
+                                    <a class="edit-save-btn primry-btn">Submit</a>
                                     <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                     </p>
                                 </form>
                                 <form class="sosl-link-edit sosl-link-edit-fb" method="post" action="" name="edithometown">
                                     <label>Your Link Here</label>
                                     <div class="edit-content">
-                                    <input type="text"  value="<?php echo isset($social['facebook']) ? $social['facebook'] : ''; ?>" placeholder="Enter your Fun Fact">
+                                    <input type="text"  value="<?php echo isset($social['facebook']) ? $social['facebook'] : ''; ?>" placeholder="Facebook Link" id="stylist-facebook-url">
                                    </div>
                                     <p class="actions">
-                                    <a class="edit-save-btn primry-btn" id="submit_stylist_hometown">Submit</a>
+                                    <a class="edit-save-btn primry-btn">Submit</a>
                                     <button class="cancel-btn secondry-btn" type="button">Cancel</button>
                                     </p>
                                 </form>
@@ -569,7 +686,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                              foreach($photostreampicsstylist as $photostreampicss ): ?>
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $photostreampicss['StylistPhotostream']['caption']; ?>">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" />
+                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" data-photoid = "<?php echo $photostreampicss['StylistPhotostream']['id']; ?>" />
                                                 
                                                 </a>
                                                 <div class="photostream-edit-section">

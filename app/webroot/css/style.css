@@ -1251,7 +1251,7 @@ a.send-referral {height: 47px; float: right; width: 15%; text-align: center; bac
 .stylistbio-heading, .stylistbio-profile, .stylist-insp { position: relative;}
 .profile-img {margin: 0 auto; max-height: 150px; overflow: hidden; text-align: center; width: 50%; position: relative;}
 .profile-img-edit {background-color: rgba(255, 255, 255, 0.6); display: block; height: 100%; left: 0; position: absolute; text-align: center; top: 0; width: 100%;}
-.profile-img-edit span { margin-top: 75px;}
+.profile-img-edit span { margin-top: 10px;}
 .home-edit, .fun-edit, .tip-edit, .stylistbio-heading-edit, .stylist-insp-edit, .beachday-update1, .beachday-update2, .beachday-update3, .sosl-link-edit { display: none;}
 .sosl-link-edit { top: 46px;}
 .user-top-outfit li { position: relative;}

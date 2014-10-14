@@ -41,7 +41,7 @@
         
         <tr>
             <td style="padding: 5px 0;">
-                <p style="font-size: 11px; text-align: center; font-family: arial;"><span style="color: #A0A0A0;">If you have any question, please email us at </span><a href="mailto:contactus@savilerowsocitety.com" style="color: #444;">contactus@savilerowsocitety.com</a></p>
+                <p style="font-size: 11px; text-align: center; font-family: arial;"><span style="color: #A0A0A0;">If you have any question, please email us at </span><a href="mailto:contactus@savilerowsociety.com" style="color: #444;">contactus@savilerowsociety.com</a></p>
             </td>
         </tr>
             

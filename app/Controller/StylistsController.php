@@ -354,6 +354,174 @@ class StylistsController extends AppController {
     }
 
 
+    public function saveProfilePhoto($stylistId = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            $this->redirect('/');
+        }
+        if($this->request->is('post') || $this->request->is('put')){
+           
+            $imagename = false;
+            $image_type = '';
+            $image_size = '';
+
+
+            if ($this->request->data['User']['profile_photo_url'] && $this->request->data['User']['profile_photo_url']['size'] > 0) {
+                $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+
+                if (!in_array($this->request->data['User']['profile_photo_url']['type'], $allowed)) {
+                    $this->Session->setFlash(__('You have to upload an image.'), 'flash');
+                } else if ($this->request->data['User']['profile_photo_url']['size'] > 5242880) {
+                    $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
+                    // $this->redirect(array('action' => '/biography/'.$stylistId));
+                    exit;
+                } else {
+                    $imagename = time() .  '_' . $this->request->data['User']['profile_photo_url']['name'];
+                    $image_type = $this->request->data['User']['profile_photo_url']['type'];
+                    $image_size = $this->request->data['User']['profile_photo_url']['size'];
+                    $profile_path = APP . 'webroot' . DS . 'files' . DS . 'users' . DS . $imagename;
+                    move_uploaded_file($this->request->data['User']['profile_photo_url']['tmp_name'], $profile_path);
+                    
+                }
+            }
+
+            if($imagename){
+                $User = ClassRegistry::init('User');
+                $user = $User->findById($stylistId);
+                $this->request->data['User']['profile_photo_url'] =  $imagename;
+                $this->request->data['User']['id'] = $stylistId;
+                $User->save($this->request->data);   
+                $this->redirect(array('action' => '/biography/'.$stylistId));    
+            }else{
+                $this->Session->setFlash('The image could not be uploaded. Please, try again.', 'flash');
+            }
+
+
+        }
+
+        // $this->redirect(array('action' => '/biography/'.$stylistId));    
+
+    }
+
+
+    public function saveTwitter($stylistId = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $StylistBio = ClassRegistry::init('StylistBio');
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
+        $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
+        
+        $StylistBioId = $BiographyData['StylistBio']['id'];
+        if($BiographyData){
+            $social_links = json_decode($BiographyData['StylistBio']['stylist_social_link'], true);
+            $social_links['twitter'] = $this->request->data['twitter'];
+
+            $BiographyData['StylistBio']['stylist_social_link'] = json_encode($social_links);
+
+            print_r($BiographyData);
+            $StylistBio->save($BiographyData);
+            
+        }
+        else{
+            $social_links['twitter'] = $this->request->data['twitter'];
+            $stylist_id = $this->request->data['stylist_id'];
+            $this->request->data['StylistBio']['stylist_id'] =  $stylist_id;
+            $this->request->data['StylistBio']['stylist_social_link'] = json_encode($social_links);
+            $StylistBio->save($this->request->data);
+            
+        }
+        echo "success";
+        exit;
+
+    }
+
+
+    public function saveLinkedin($stylistId = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $StylistBio = ClassRegistry::init('StylistBio');
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
+        $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
+        
+        $StylistBioId = $BiographyData['StylistBio']['id'];
+        if($BiographyData){
+            $social_links = json_decode($BiographyData['StylistBio']['stylist_social_link'], true);
+            $social_links['linkdin'] = $this->request->data['linkdin'];
+
+            $BiographyData['StylistBio']['stylist_social_link'] = json_encode($social_links);
+
+            print_r($BiographyData);
+            $StylistBio->save($BiographyData);
+            
+        }
+        else{
+            $social_links['linkdin'] = $this->request->data['linkdin'];
+            $stylist_id = $this->request->data['stylist_id'];
+            $this->request->data['StylistBio']['stylist_id'] =  $stylist_id;
+            $this->request->data['StylistBio']['stylist_social_link'] = json_encode($social_links);
+            $StylistBio->save($this->request->data);
+            
+        }
+        echo "success";
+        exit;
+
+    }
+
+
+    public function saveFacebook($stylistId = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $StylistBio = ClassRegistry::init('StylistBio');
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
+        $BiographyData = $StylistBio->find('first',array('conditions'=>array('StylistBio.stylist_id'=>$stylistId,)));
+        
+        $StylistBioId = $BiographyData['StylistBio']['id'];
+        if($BiographyData){
+            $social_links = json_decode($BiographyData['StylistBio']['stylist_social_link'], true);
+            $social_links['facebook'] = $this->request->data['facebook'];
+
+            $BiographyData['StylistBio']['stylist_social_link'] = json_encode($social_links);
+
+            print_r($BiographyData);
+            $StylistBio->save($BiographyData);
+            
+        }
+        else{
+            $social_links['facebook'] = $this->request->data['facebook'];
+            $stylist_id = $this->request->data['stylist_id'];
+            $this->request->data['StylistBio']['stylist_id'] =  $stylist_id;
+            $this->request->data['StylistBio']['stylist_social_link'] = json_encode($social_links);
+            $StylistBio->save($this->request->data);
+            
+        }
+        echo "success";
+        exit;
+
+    }
+
+
     public function savePinterest($stylistId = null){
         $this->layout = 'ajax';
         $this->autoRender = false;
@@ -369,27 +537,56 @@ class StylistsController extends AppController {
         
         $StylistBioId = $BiographyData['StylistBio']['id'];
         if($BiographyData){
-            $stylist_bio = $this->request->data['stylist_bio'];
-            $stylist_id = $this->request->data['stylist_id'];
-            $this->request->data['StylistBio']['stylist_bio'] =  $stylist_bio;
-            $this->request->data['StylistBio']['stylist_id'] =  $stylist_id;
-            $this->request->data['StylistBio']['id'] =  $StylistBioId;
-            $StylistBio->save($this->request->data);
-            
-        }else{
+            $social_links = json_decode($BiographyData['StylistBio']['stylist_social_link'], true);
+            $social_links['pinterest'] = $this->request->data['pinterest'];
 
-            $stylist_bio = $this->request->data['stylist_bio'];
+            $BiographyData['StylistBio']['stylist_social_link'] = json_encode($social_links);
+
+            print_r($BiographyData);
+            $StylistBio->save($BiographyData);
+            
+        }
+        else{
+            $social_links['pinterest'] = $this->request->data['pinterest'];
             $stylist_id = $this->request->data['stylist_id'];
-            $this->request->data['StylistBio']['stylist_bio'] =  $stylist_bio;
             $this->request->data['StylistBio']['stylist_id'] =  $stylist_id;
+            $this->request->data['StylistBio']['stylist_social_link'] = json_encode($social_links);
             $StylistBio->save($this->request->data);
             
         }
-        
-        $BioData = $StylistBio->find('all',array('conditions'=>array('StylistBio.stylist_id'=>$stylist_id,)));
-        echo json_encode($BioData);
+        echo "success";
         exit;
 
+    }
+
+
+    public function removePhoto($stylistId = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $StylistPhotostream = ClassRegistry::init('StylistPhotostream');
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            exit;
+        }
+
+        $photo_id = $this->request->data['photo_id'];
+
+        $photo = $StylistPhotostream->find('first',array('conditions'=>array('id'=>$photo_id)));
+        
+        if($photo){
+            $StylistPhotostream->delete($photo_id);
+            try{
+                $photo_path = APP . 'webroot' . DS . 'files' . DS . 'users' . DS . $photo['StylistPhotostream']['image'];
+                unlink($photo_path);        
+            }
+            catch(Exception $e){
+
+            }  
+        }
+        echo "success";
+        exit;
     }
 
     // stylist  saveOutfitFirst
@@ -662,10 +859,6 @@ class StylistsController extends AppController {
 
         $user = $this->getLoggedUser();
 
-        if($user['User']['id'] != $stylistId){
-            exit;
-        }
-
         if ($this->request->data['StylistPhotostream']['image'] && $this->request->data['StylistPhotostream']['image']['size'] > 0) {
 
             $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
@@ -760,7 +953,8 @@ class StylistsController extends AppController {
                 );
             }
         
-
+            // print_r($StylistBioData);
+            // exit;
         $this->set(compact('users','StylistBioData','stylistphoto','outfits','my_outfit','stylistoutfit','stylists','photostreampicsstylist'));
 
     }
