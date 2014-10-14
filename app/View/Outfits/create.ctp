@@ -347,6 +347,7 @@ $(document).ready(function(){
             arrCategory = new Array();
 
         $(".colorsearch:checked").each(function(){
+            console.log($(this).val());
             if($(this).hasClass('check-category')){
                 arrCategory.push($(this).val());
             }
@@ -816,12 +817,12 @@ $(document).ready(function(){
                                                                  <div class="overview">
                                                                     <?php foreach ($categories as $category): ?>
                                                                     <h3>
-                                                                        <input type="checkbox" name="" title="category" class="colorsearch" value="<?php echo $category['Category']['id']; ?>" id="ca<?php echo $category['Category']['id']; ?>" data-category_id="<?php echo $category['Category']['id']; ?>" />
+                                                                        <input type="checkbox" name="" title="category" class="colorsearch check-category" value="<?php echo $category['Category']['id']; ?>" id="ca<?php echo $category['Category']['id']; ?>" data-category_id="<?php echo $category['Category']['id']; ?>" />
                                                                         <label for="ca<?php echo $category['Category']['id']; ?>" class=""><?php echo $category['Category']['name']; ?><span></span></label>
                                                                     </h3>
                                                                         <?php if ($category['children']) : ?>
                                                                             <?php foreach ($category['children'] as $subcategory): ?>
-                                                                                <input type="checkbox" name="" title="subcategory" class="colorsearch" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
+                                                                                <input type="checkbox" name="" title="subcategory" class="colorsearch check-category" value="<?php echo $subcategory['Category']['id']; ?>" id="s<?php echo $subcategory['Category']['id']; ?>" data-category_id="<?php echo $subcategory['Category']['id']; ?>" />
                                                                                 <label for="s<?php echo $subcategory['Category']['id']; ?>" class=""><?php echo $subcategory['Category']['name']; ?><span></span></label>
                                                                             <?php endforeach; ?>
                                                                         <?php endif; ?>
@@ -841,7 +842,7 @@ $(document).ready(function(){
                                                                     <h3>Brands</h3>
                                                                     <?php if($brands) : ?>
                                                                         <?php foreach($brands as $brand) : ?>
-                                                                            <input type="checkbox" name="" title="brand" class="colorsearch" value="<?php echo $brand['Brand']['id']; ?>" id="b<?php echo $brand['Brand']['id']; ?>" data-brand_id="<?php echo $brand['Brand']['id']; ?>" />
+                                                                            <input type="checkbox" name="" title="brand" class="colorsearch check-brand" value="<?php echo $brand['Brand']['id']; ?>" id="b<?php echo $brand['Brand']['id']; ?>" data-brand_id="<?php echo $brand['Brand']['id']; ?>" />
                                                                             <label for="b<?php echo $brand['Brand']['id']; ?>" class=""><?php echo $brand['Brand']['name']; ?><span></span></label>
                                                                         <?php endforeach; ?>
                                                                     <?php endif; ?>
@@ -860,7 +861,7 @@ $(document).ready(function(){
 
                                                                     <?php if($colors) : ?>
                                                                         <?php foreach($colors as $color) :?>
-                                                                            <input type="checkbox" name="color[]" title="colour" class="colorsearch" data-color_id="<?php echo $color['Colorgroup']['id']; ?>" value="<?php echo $color['Colorgroup']['id']; ?>" id="c<?php echo $color['Colorgroup']['id']; ?>" />
+                                                                            <input type="checkbox" name="color[]" title="colour" class="colorsearch check-color" data-color_id="<?php echo $color['Colorgroup']['id']; ?>" value="<?php echo $color['Colorgroup']['id']; ?>" id="c<?php echo $color['Colorgroup']['id']; ?>" />
                                                                             <label for="c<?php echo $color['Colorgroup']['id']; ?>"  class=""><?php echo $color['Colorgroup']['name']; ?><span></span></label>
                                                                         <?php endforeach; ?>
                                                                     <?php endif; ?>
@@ -897,42 +898,48 @@ $(document).ready(function(){
                                 </div>
                             </div>
                             <div class="twelve columns left otft-prdct-list">
-                                <div id="product">
-                                    <ul class="clear" id="listdat">
-                                    <?php  for($i = 0; $i < count($entities); $i++){
-                                                $product = $entities[$i];
-                                    ?>
-                                        <li  data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-name="<?php echo $product['Entity']['name']; ?>">
+                                <div id="scrollbar1">
+                                    <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                    <div class="viewport">
+                                        <div class="overview">
+                                        <div id="product">
+                                            <ul class="clear" id="listdat">
+                                            <?php  for($i = 0; $i < count($entities); $i++){
+                                                        $product = $entities[$i];
+                                            ?>
+                                                <li  data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-name="<?php echo $product['Entity']['name']; ?>">
 
-                                        <select class="hide product-size-list">
-                                        <?php 
-                                            foreach ($product['Detail'] as $key => $details) 
-                                        { ?>
-                                                <option value="<?php echo $details['size_id']; ?>"><?php echo $sizes[$details['size_id']]; ?></option>
-                                        <?php 
-                                            } 
-                                        ?>
-                                        </select>
-                                        
-                                            <a href="" class="product-list-block">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
-                                               <div class="otft-prdt-overlay">
-                                                    <p><?php echo $product['Entity']['name']; ?></p>
-                                                    <p><?php echo $product['Brand']['name']; ?></p>
-                                                    <p><?php echo $product['Entity']['price']; ?></p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
-                                    </ul>
-                                    <p id="loadMoreProduct">
-                            
-                                        <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                                        <input type="hidden" id="listPage" value="<?php echo $page + 1; ?>">
-                                        <a href="" id="load-more">Load More Products</a>
-                                    </p>
+                                                <select class="hide product-size-list">
+                                                <?php 
+                                                    foreach ($product['Detail'] as $key => $details) 
+                                                { ?>
+                                                        <option value="<?php echo $details['size_id']; ?>"><?php echo $sizes[$details['size_id']]; ?></option>
+                                                <?php 
+                                                    } 
+                                                ?>
+                                                </select>
+                                                
+                                                    <a href="" class="product-list-block">
+                                                        <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
+                                                       <div class="otft-prdt-overlay">
+                                                            <p><?php echo $product['Entity']['name']; ?></p>
+                                                            <p><?php echo $product['Brand']['name']; ?></p>
+                                                            <p><?php echo $product['Entity']['price']; ?></p>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
+                                            </ul>
+                                            
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
-
+                                <p id="loadMoreProduct">
+                                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                    <input type="hidden" id="listPage" value="<?php echo $page + 1; ?>">
+                                    <a href="" id="load-more">Load More Products</a>
+                                </p>
                             </div>
                         </div>
                     </div>

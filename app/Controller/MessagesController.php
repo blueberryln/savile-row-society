@@ -1908,13 +1908,30 @@ If interested, I would also be happy to meet with you in our New York City based
             $Message->data['Message']['post_id'] =  $post_id;
 
             if($Message->save($this->request->data)){
-                $this->Session->setFlash("Request Outfit Data Hasbeen Send");
+                try{
+                    $client = $user;
+                    $stylist = $User->findById($user['User']['stylist_id']);
+
+                    $email = new CakeEmail('default');
+                    $email->to($stylist['User']['email']);
+                    $email->template('request_outfit');
+                    $email->emailFormat('html');
+                    
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->subject('Client Request Outfit');
+                    
+                    $email->viewVars(compact('client','stylist'));
+                    
+                    $email->send();
+                }
+                catch(Exception $e){
+                    
+                } 
                 $this->redirect('/messages/index');
             }
-            //print_r($this->request->data);
-            //exit;
-
         }    
+
+
     }
     
     

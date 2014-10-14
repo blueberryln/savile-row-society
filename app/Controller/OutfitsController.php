@@ -515,7 +515,7 @@ class OutfitsController extends AppController {
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->replyTo(array($stylist['User']['email'] => 'Savile Row Society'));
                 $email->to($client['User']['email']);
-                $email->subject('Your Stylist Has Created A New Outfit For You!');
+                $email->subject('Stylist Recommended Outfit');
                 $email->template('new_outfit');
                 $email->emailFormat('html');
                 $email->viewVars(compact('entities', 'client', 'outfit_id', 'stylist'));

@@ -132,7 +132,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <li>
                                             <div class="twelve columns top-outfits">
                                                 <div class="eleven columns container">
-                                                    <h2><?php if($my_outfit['outfit']): $my_outfit['outfit'][0]['Outfit']['outfit_name']; else: endif;
+                                                    <h2><?php if($my_outfit['outfit']): echo ucfirst($my_outfit['outfit'][0]['Outfit']['outfit_name']); else: endif;
                                                     ?></h2>
                                                     <div class="outfit-products">
                                                         <ul>

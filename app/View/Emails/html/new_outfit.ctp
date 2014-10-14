@@ -14,28 +14,13 @@
                 <p style="padding-top: 15px;">Hi <?php echo ucfirst($client['User']['first_name']); ?>,</p>
 
                 <div style=" padding: 5px 0;">
-                    <p >Your personal stylist, <?php echo ucfirst($stylist['User']['first_name']); ?>, has created a new outfit for you:</p>
-                    <p><a href="<?php echo Configure::read('Social.callback_url'); ?>user-outfit/<?php echo $outfit_id; ?>" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">VIEW MY OUTFIT</a></p>
+                    <p >Your personal stylist <?php echo ucfirst($stylist['User']['first_name']); ?> has recommended a new outfit for you!</p>
+                    <p>Click the link below to check out your new outfit, and communicate with <?php echo ucfirst($stylist['User']['first_name']); ?>.</p><br>
+                    <p><a href="<?php echo Configure::read('Social.callback_url'); ?>user-outfit/<?php echo $outfit_id; ?>" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">LINK TO OUTFIT</a></p>
                     <br>
-                    <table cellspacing="0" cellpadding="0" border="1" width="100%">
-                        <tr>
-                            <?php foreach($entities as $item) : ?>
-                                <?php
-                                    if($item['Image']){
-                                        $img_src = Router::url('/', true) . 'products/resize/' . $item['Image'][0]['name'] . '/158/211'; 
-                                    }
-                                    else{
-                                        $img_src = Router::url('/', true) . "img/image_not_available-small.png";
-                                    } 
-                                    $url = Router::url('/', true) . 'product/' . $item['Entity']['id'] . '/' . $item['Entity']['slug'];
-                                ?>
-                                <td valign="middle" align="center"><img src="<?php echo $img_src; ?>" /></td>
-                            <?php endforeach; ?>
-                        </tr>
-                    </table>
                 </div>
 
-                <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
+                <p style="margin-bottom: 10px; margin-top: 15px;">Sincerely,<br>
                 The Savile Row Society Team</p>
             
             </td>        

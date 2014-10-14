@@ -750,7 +750,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 <div class="edit-content">
                                                     <span class="edit-content-icon"></span>
                                                     <select id="outfit">
-                                                    <option value="">Pleasa Select Outfit</option>
+                                                    <option value="">Please select an outfit</option>
                                                     <?php foreach($outfits as  $outfit): ?>
                                                         <?php if($outfit['Outfit']['outfit_name'] != ""): ?>
                                                             <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name']; ?></option>
@@ -802,7 +802,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 <div class="edit-content">
                                                     <span class="edit-content-icon"></span>
                                                     <select id="outfit2">
-                                                    <option value="">Pleasa Select Outfit</option>
+                                                    <option value="">Please select an outfit</option>
                                                     <?php foreach($outfits as  $outfit): ?>
                                                         <?php if($outfit['Outfit']['outfit_name'] != ""): ?>
                                                             <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name']; ?></option>
@@ -851,7 +851,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 <div class="edit-content">
                                                     <span class="edit-content-icon"></span>
                                                     <select id="outfit3">
-                                                    <option value="">Pleasa Select Outfit</option>
+                                                    <option value="">Please select an outfit</option>
                                                     <?php foreach($outfits as  $outfit): ?>
                                                         <?php if($outfit['Outfit']['outfit_name'] != ""): ?>
                                                             <option value="<?php echo $outfit['Outfit']['id'] ?>"><?php echo $outfit['Outfit']['outfit_name']; ?></option>

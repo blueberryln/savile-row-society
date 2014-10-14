@@ -9,15 +9,15 @@
                     <tr>
                         <td valign="top"> 
                             <br />
-                            Hi <?php echo $shipped_order['User']['full_name']; ?>,
+                            Hi <?php echo $shipped_order['User']['first_name']; ?>,
                             <br/>
-                            <p style="text-align: justify;">Thank you for shopping with Savile Row Society and supporting our partnering brands. We are committed to bringing you only the best product made by the most passionate people in the industry. Never hesitate to reach out to your personal stylist, where we make our virtual <a href="<?php echo Configure::read('Social.callback_url'); ?>closet">CLOSET</a> your reality. We appreciate your patronage and continued support. Thank You.</p>
+                            <p style="text-align: justify;">Thank you for your purchase. We have received your order and will be processing it right away. You should be receiving a shipping confirmation email shortly. Please do not hesitate to reach out to your stylist if you have any questions or concerns.</p>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <br /><br />
-                            Thanks,
+                            Sincerely,
                             <br/>
                             <a href="http://www.savilerowsociety.com">Savile Row Society</a>
                             <br /><br /><br />
