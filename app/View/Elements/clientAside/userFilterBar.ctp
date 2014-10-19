@@ -1,7 +1,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-        $(".search-myclient").on('keyup',function(){
+        $(".left-user-search").on('keyup',function(){
              var usersearch = $("#usersearch").val();
              usersearch = usersearch.toLowerCase();
                 
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="search-myclient-area">
-            <div class="search-myclient">
+            <div class="search-myclient left-user-search">
                 <span class="srch"></span>
                 <input type="text" name="myclient-search" id="usersearch" />
             </div>

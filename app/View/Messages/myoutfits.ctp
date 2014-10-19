@@ -2,45 +2,7 @@
     $(document).ready(function(){
 
 
-    $(".search-myclient").on('keydown',function(){
-         
-         //var r = $('input').focus();
-         var usersearch = $("#usersearch").val();
-         //alert(usersearch);
-          $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/stylistFilterList/<?php echo $user_id; ?>",
-                data:{usersearch:usersearch},
-                cache: false,
-                    success: function(result){
-                        data = $.parseJSON(result);
-
-            html = '';
-            html = html + '<ul>';
-            
-            $.each(data,  function (index){
-                html = html + '<li>';
-                html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
-                html = html + '<div class="myclient-img">';
-                html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
-                html = html + '</div>';
-                html = html + '<div class="myclient-dtl">';
-                html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
-                html = html + '<span class="myclient-status">last active at '+ this.User.updated +'</span>';
-                html = html + '</div>';
-                html = html + '</a>';
-                html = html + '</li>';      
-                
-                });
-            html = html + '</ul>';
-                $("#searchuserlist").html(html);
-
-                    }
-
-             }); 
-
-
-    });
+    
     $("#createoutfitbitton").on('click',function(){
         var selectvalue = $("#selectfilter option:selected" ).val();
         window.location = selectvalue;
@@ -485,9 +447,25 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
             });
     });
 
+    
+    $(".modal-user-search").on('keyup',function(){
+         var usersearch = $("#modalusersearch").val();
+         usersearch = usersearch.toLowerCase();
+            
+        $(".myclient-popup #searchuserlist li .myclient-name").each(function(){
+            var stringuser = $(this).text().toLowerCase();
+            if(stringuser.indexOf(usersearch) > -1){
+                $(this).closest('li').show();
+            }else{
+                $(this).closest('li').hide();
+            }
+        });
+    });
 
 
 });
+
+
 
 </script>
 
@@ -526,9 +504,9 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                                 </div>
                                                             </div>
                                                             <div class="search-myclient-area">
-                                                                <div class="search-myclient">
+                                                                <div class="search-myclient modal-user-search">
                                                                     <span class="srch"></span>
-                                                                    <input type="text" name="myclient-search" id="usersearch" />
+                                                                    <input type="text" name="myclient-search" id="modalusersearch" />
                                                                 </div>
                                                             </div>
                                                             <div class="myclient-list">
