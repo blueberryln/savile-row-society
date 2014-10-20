@@ -408,6 +408,32 @@ class StylistsController extends AppController {
     }
 
 
+    public function removeOutfit($stylistId = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $StylistBio = ClassRegistry::init('StylistBio');
+
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $stylistId){
+            echo "error";
+            exit;
+        }
+
+        $outfit_id = $this->request->data['outfit_id'];
+
+        $StylistTopOutfit = ClassRegistry::init('StylistTopOutfit');
+
+        $outfit = $StylistTopOutfit->findByOutfitId($outfit_id);
+
+        $StylistTopOutfit->delete($outfit['StylistTopOutfit']['id']);
+
+        echo "success";
+        exit;
+
+    }
+
+
     public function saveTwitter($stylistId = null){
         $this->layout = 'ajax';
         $this->autoRender = false;

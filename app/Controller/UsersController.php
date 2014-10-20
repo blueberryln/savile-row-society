@@ -156,14 +156,14 @@ class UsersController extends AppController {
                 } else {
                     // login data is wrong, redirect to login page
                     $this->request->data = null;
-                    $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'flash');
+                    $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'forgot_flash');
                     $this->redirect($this->referer());
                     exit();
                 }
             }
             else{
                 $this->request->data = null;
-                $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'flash');
+                $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'forgot_flash');
                 $this->redirect($this->referer());
                 exit;
             }

@@ -297,6 +297,9 @@ jQuery(function(){
     if($('#flash-box').length){
         $.blockUI({message: $('#flash-box'), timeout: 5000});
     }
+    if($('#forgot-flash-box').length){
+        $.blockUI({message: $('#forgot-flash-box')});
+    }
     $('.blockOverlay, .notification-close, .otft-close').on('click', function(e){
         e.preventDefault();
         $.unblockUI();
