@@ -521,7 +521,11 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                                 <li>
                                                                     <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="">
                                                                         <div class="myclient-img">
-                                                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
+                                                                            <?php if($usersearchforoutfit['User']['profile_photo_url']): ?>
+                                                                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
+                                                                            <?php else: ?>
+                                                                                <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                                            <?php endif; ?>
                                                                         </div>
                                                                         <div class="myclient-dtl">
                                                                             <span class="myclient-name"><?php echo $usersearchforoutfit['User']['first_name'].'&nbsp;'.$usersearchforoutfit['User']['last_name']; ?></span>

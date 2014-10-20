@@ -3,7 +3,7 @@
 var overall = 0;
 var userId = (<?php echo $user_id; ?> > 0) ? <?php echo $user_id; ?> : 0;
 var stylistId = (<?php echo $stylist_id; ?> > 0) ? <?php echo $stylist_id; ?> : 0;
-var sizes = <?php echo json_encode($sizes); ?>
+var sizes = <?php echo json_encode($sizes); ?>;
 
 function dragAndDropOutfit(){
     // jQuery UI Draggable
@@ -43,7 +43,7 @@ function dragAndDropOutfit(){
             move = ui.draggable,
             itemId = basket.find("ul li[data-id='" + move.attr("data-id") + "']");
             itemsize = basket.find("ul li").not('.basket-limit').length;
-            if(itemsize >= 5){
+            if(itemsize >= 12){
                 if(!$('.basket-limit').length){
                     basket.find("ul").append("<li class='basket-limit'><span>Sorry You Have reached the item limit.</span></li>");
                     
@@ -752,7 +752,7 @@ $(document).ready(function(){
                                 <div class="twelve columns left">
                                     <div class="twelve columns left otft-lft-top">
                                         <h3>Create a New Outfit</h3>
-                                        <p>Drag &amp; Drop up to 5 items from <br />the closet to the box below</p>
+                                        <p>Drag &amp; Drop up to 12 items from <br />the closet to the box below</p>
                                     </div>
                                     <div class="eleven columns container">
                                         <div class="twelve columns left otft-lft-title">
@@ -919,7 +919,7 @@ $(document).ready(function(){
                                                 ?>
                                                 </select>
                                                 
-                                                    <a href="" class="product-list-block">
+                                                    <a href="#" class="product-list-block">
                                                         <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
                                                        <div class="otft-prdt-overlay">
                                                             <p><?php echo $product['Entity']['name']; ?></p>

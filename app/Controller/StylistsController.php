@@ -1108,11 +1108,13 @@ class StylistsController extends AppController {
         $Colorgroup = ClassRegistry::init('Colorgroup');
         $User = ClassRegistry::init('User');
         $Entity = ClassRegistry::init('Entity');
+        $Size = ClassRegistry::init('Size');
         
         // get data
         $categories = $Category->getAll();
         $brands = $Brand->find('all', array('order' => "Brand.name ASC"));
         $colors = $Colorgroup->find('all', array('order' => "Colorgroup.name ASC"));
+        $sizes = $Size->find('list');
 
         $entities = array();
 
@@ -1195,6 +1197,16 @@ class StylistsController extends AppController {
                 ),
             );
 
+        $find_array['joins'][] = array('table' => 'wishlists',
+                'alias' => 'Wishlist',
+                'type' => 'LEFT',
+                'conditions' => array(
+                    'Wishlist.user_id' => $user_id,
+                    'Wishlist.product_entity_id = Entity.id'
+                )
+            );
+        $find_array['fields'][] = 'Wishlist.*'; 
+
         if($sort == 'pricedesc'){
             $find_array['order'] = array('Entity.price' => 'desc');
         }
@@ -1250,7 +1262,7 @@ class StylistsController extends AppController {
         
         $entities = $Entity->find('all', $find_array);
 
-        $this->set(compact('entities', 'products', 'categories', 'brands', 'colors', 'user', 'user_id', 'page'));
+        $this->set(compact('entities', 'products', 'categories', 'brands', 'colors', 'user', 'user_id', 'page', 'sizes'));
 
         if($this->request->is('ajax')){
             $this->layout = false;

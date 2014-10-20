@@ -1,4 +1,5 @@
 <script type="text/javascript">
+var sizes = <?php echo json_encode($sizes); ?>;
 $(document).ready(function(){
     var userId = (<?php echo $user_id; ?> > 0) ? <?php echo $user_id; ?> : 0;
 
@@ -160,7 +161,25 @@ $(document).ready(function(){
                                             '</div>';
                         }
 
-                        var html = '<li >' + 
+                        var sizeOptions = '';
+                        for(var j=0; j<product['Detail'].length; j++){
+                            sizeOptions += '<option value="' + product['Detail'][j]['size_id'] + '">' + sizes[product['Detail'][j]['size_id']] + '</option>';
+                        }
+
+                        var wishlist = (product['Wishlist']['product_entity_id'] == product['Entity']['id']) ? 1 : 0;
+
+                        var html = '<li ' +  
+                                        'data-name="' + product['Entity']['name'] + '" ' + 
+                                        'data-desc="' + product['Entity']['description'] + '" ' +
+                                        'data-image="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-id="' + product['Entity']['id'] + '" ' + 
+                                        'data-price="' + product['Entity']['price'] + '" ' + 
+                                        'data-brand="' + product['Brand']['name'] + '" ' +
+                                        'data-wishlist="' + wishlist + '"' + 
+                                        '>' + 
+                                        '<select class="hide product-size-list">' +
+                                            sizeOptions +         
+                                        '</select>' +
                                         '<a class="myclst-quick-view" href="#">' + 
                                             productImage +
                                             '<div class="myclst-prdt-overlay">' + 
@@ -236,7 +255,14 @@ $(document).ready(function(){
                                             '</div>';
                         }
 
-                        var html = '<li >' + 
+                        var html = '<li ' + 
+                                        'data-name="' + product['Entity']['name'] + '" ' + 
+                                        'data-desc="' + product['Entity']['description'] + '" ' +
+                                        'data-image="<?php echo $this->webroot; ?>/files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-id="' + product['Entity']['id'] + '" ' + 
+                                        'data-price="' + product['Entity']['price'] + '" ' + 
+                                        'data-brand="' + product['Brand']['name'] + '" ' +
+                                        '>' + 
                                         '<a class="myclst-quick-view" href="#">' + 
                                             productImage +
                                             '<div class="myclst-prdt-overlay">' + 
@@ -331,6 +357,129 @@ $(document).ready(function(){
         });
 
     } 
+
+    $('#listdat').on('click', '.myclst-quick-view', function(e){
+        e.preventDefault();
+        var productBlock = $(this).closest('li');
+
+        var image = productBlock.data('image'),
+            name = productBlock.data('name'),
+            desc = productBlock.data('desc'),
+            brand = productBlock.data('brand'),
+            price = productBlock.data('price'),
+            productid = productBlock.data('id'),
+            wishlist = productBlock.data('wishlist'),
+            sizes = productBlock.find('.product-size-list').html();
+
+            if(wishlist){
+                var addLikes = '<a class="product-my-likes liked" href="javascript:;" title="" data-product_id="' + productid + '">Liked</a>';
+            }
+            else{
+                var addLikes = '<a class="product-my-likes" href="javascript:;" title="" data-product_id="' + productid + '">Add to My Likes</a>';
+            }
+
+        var html = '<div class="twelve columns left product-dtl-area pad-none">' + 
+                        '<div class="product-dtl-img left"><img src="' + image + '" alt=""/></div>' + 
+                        '<div class="product-dtl-desc left">' + 
+                            '<h3>Item Quickview</h3>' + 
+                            '<div class="product-dtl-desc-top left">' + 
+                                '<div class="desc-top-brand">' + brand + '</div>' +
+                                '<div class="desc-top-brand-price">$' + price + '</div>' +
+                            '</div>' +
+                            '<div class="product-dtl-desc-middle left"><ul><li>' +
+                            desc +
+                            '</li></ul></div>' +
+                            '<div class="product-dtl-desc-bottom left" style="width: 100%">' +
+                                '<div class="slect-options left">' +
+                                    '<div class="select-size select-style left">' +
+                                        '<span class="selct-arrow"></span>' +
+                                        '<select>' +
+                                        sizes +     
+                                        '</select>' +
+                                    '</div>' +
+                                    '<div class="select-quantity select-style left">' +
+                                        '<span class="selct-arrow"></span>' +
+                                        '<select>' +
+                                            '<option>1</option>' +
+                                            '<option>2</option>' +
+                                            '<option>3</option>' +
+                                            '<option>4</option>' +
+                                            '<option>5</option>' +
+                                        '</select>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="product-dtl-links left">' +
+                            '<a class="product-add-cart" href="javascript:;" title="" data-product_id="' + productid + '">Add to Cart</a>' +
+                            addLikes +
+                        '</div>' +
+                    '</div>';
+
+        $("#myclst-popup .myclst-popup-content").html(html);
+
+        var blockTop = $(window).height()/2 - $("#myclst-popup").height()/2;
+        $.blockUI({message: $('#myclst-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
+
+
+    $("#myclst-popup").on('click', '.product-my-likes', function(e) {
+        e.preventDefault();
+            $this = $(this);
+            var productId = $this.data("product_id");
+
+            if($this.hasClass('liked')){
+                $.post("/api/wishlist/remove", { product_id: productId},
+                    function(data) {
+                        var ret = $.parseJSON(data);
+                        if(ret["status"] == "ok"){
+                            $this.removeClass("liked");
+                            $this.closest(".product-my-likes").text("Add to My Likes");
+                        }
+                    }
+                );
+            }
+            else{
+                $.post("/api/wishlist/save", { product_id: productId},
+                    function(data) {
+                        var ret = $.parseJSON(data);
+                        if(ret["status"] == "ok"){
+                            $this.addClass("liked");
+                            $this.closest(".product-my-likes").text("Liked");
+                        }
+                    }
+                );
+            }
+    });
+
+
+    $("#myclst-popup").on('click', '.product-add-cart', function(e) {
+        e.preventDefault();
+        $this = $(this);
+        var productBlock = $(this).closest("li"),
+        productQuantity = productBlock.find("select.select-quantity").val(),
+        productSize = productBlock.find("select.select-size").val();
+
+        var id = $this.data("product_id");
+        var quantity = parseInt(productQuantity) + 1;
+        var size = productSize;
+        var outfitId = 0;
+
+        $.post("/api/cart/save", { product_id: id, product_quantity: quantity, product_size: size, outfit_id: outfitId },
+            function(data) {
+                var ret = $.parseJSON(data);
+                if(ret["status"] == "ok"){
+                    $(".cart-items-count").html(ret["count"]);
+                    location.reload();
+                }
+                else if(ret["status"] == "login"){
+                    signUp();       
+                }
+            }
+        );
+    });
     
     
 
@@ -443,8 +592,19 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                     <ul id="listdat">
                                         <?php  for($i = 0; $i < count($entities); $i++){
                                             $product = $entities[$i];
+                                            $wishlist = ($product['Wishlist']['product_entity_id'] == $product['Entity']['id']) ? 1 : 0;
                                         ?>
-                                            <li >
+                                            <li data-name="<?php echo $product['Entity']['name']; ?>" data-desc="<?php echo $product['Entity']['description']; ?>" data-image="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-wishlist="<?php echo $wishlist; ?>">
+
+                                                <select class="hide product-size-list">
+                                                <?php 
+                                                    foreach ($product['Detail'] as $key => $details) 
+                                                { ?>
+                                                        <option value="<?php echo $details['size_id']; ?>"><?php echo $sizes[$details['size_id']]; ?></option>
+                                                <?php 
+                                                    } 
+                                                ?>
+                                                </select>
                                                 <a class="myclst-quick-view" href="#">
                                                 <?php //foreach ($product['Image'] as $images):?>
                                                 
@@ -478,7 +638,16 @@ $this->Html->css('colorbox', null, array('inline' => false));
                 
                 <!--pop up quick view-->
 
-                <div id="productquickview"></div>
+                <div id="myclst-popup" style="display: none">
+                    <div class="box-modal">
+                        <div class="box-modal-inside">
+                            <a href="#" title="" class="otft-close"></a>
+                            <div class="myclst-popup-content">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!--popup quick view-->
                 

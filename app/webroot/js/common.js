@@ -192,10 +192,10 @@ jQuery(function(){
     
     
     
-    $('.myclst-quick-view').on('click', function(e){
-        e.preventDefault();
-        myClst();
-    });
+    // $('.myclst-quick-view').on('click', function(e){
+    //     e.preventDefault();
+    //     myClst();
+    // });
     
     
     $('#signup-popup, #signin-popup, #crt-new-otft').on('click', '.notification-close', function(e){
