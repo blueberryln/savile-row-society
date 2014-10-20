@@ -14,9 +14,8 @@
                 <p style="padding-top: 15px;">Hi <?php echo ucfirst($client['User']['first_name']); ?>,</p>
 
                 <div style=" padding: 5px 0;">
-                    <p >Your personal stylist <?php echo ucfirst($stylist['User']['first_name']); ?> has recommended a new outfit for you!</p>
-                    <p>Click the link below to check out your new outfit, and communicate with <?php echo ucfirst($stylist['User']['first_name']); ?>.</p><br>
-                    <p><a href="<?php echo Configure::read('Social.callback_url'); ?>user-outfit/<?php echo $outfit_id; ?>" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">LINK TO OUTFIT</a></p>
+                    <p >Your personal stylist <?php echo ucfirst($stylist['User']['first_name']); ?> has recommended a new outfit for you! Click the link below to check out your new outfit, and communicate with <?php echo ucfirst($stylist['User']['first_name']); ?>.</p><br>
+                    <p><a href="<?php echo Configure::read('Social.callback_url'); ?>messages/outfitdetails/<?php echo $outfit_id; ?>" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">LINK TO OUTFIT</a></p>
                     <br>
                 </div>
 

@@ -377,6 +377,9 @@ class OutfitsController extends AppController {
 
                     $Message->create();
                     $Message->save($data);
+
+                    $this->sendOutfitNotification($outfit_id, $client_id);
+
                 }
                 
             }
@@ -501,11 +504,10 @@ class OutfitsController extends AppController {
         exit;    
     }
     
-    public function sendOutfitNotification($outfit_id, $entity_list, $client_id){
+    public function sendOutfitNotification($outfit_id, $client_id){
         
         $User = ClassRegistry::init('User');
         $Entity = ClassRegistry::init('Entity');
-        $entities = $Entity->getProductDetails($entity_list);
         $client = $User->getByID($client_id);
         $stylist = $User->getByID($client['User']['stylist_id']);
         
@@ -518,7 +520,7 @@ class OutfitsController extends AppController {
                 $email->subject('Stylist Recommended Outfit');
                 $email->template('new_outfit');
                 $email->emailFormat('html');
-                $email->viewVars(compact('entities', 'client', 'outfit_id', 'stylist'));
+                $email->viewVars(compact('client', 'outfit_id', 'stylist'));
                 $email->send();
             }
             catch(Exception $e){

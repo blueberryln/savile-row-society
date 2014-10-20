@@ -293,10 +293,24 @@ class MessagesController extends AppController {
             $stylist = $User->getById($stylist_id);
             $body = "Hi " . ucwords($user['User']['first_name']) . ",
 
-                    Thank you for registering with Savile Row Society. My name is " . ucwords($stylist['User']['first_name']) . " and I will be your personal stylist. Feel free to ask me any questions about our services and products, and I will get back to you shortly. In the meantime, you can browse the samples from our collection that we are currently featuring in The Closet. 
-If interested, I would also be happy to meet with you in our New York City based showroom.
+                    Your personal stylist, " . ucwords($stylist['User']['first_name']) . " , has sent you a new message:
+
+                    Thank you for registering with Savile Row Society. My name is " . ucwords($stylist['User']['first_name']) . " and I will be your personal stylist. Feel free to check out my profile and ask me any style questions you may have.  I would also like to get to know you better; please tell me more about your wardrobe goals. I will get back to you shortly.
                     
+                    If interested, I would also be happy to meet with you in our New York City based showroom, schedule a phone call, or just chat through the SRS platform. 
+
+                    Welcome to Savile Row Society!
+
+                    Sincerely, 
+                    " . ucwords($stylist['User']['first_name']) . " and The Savile Row Society Team
+                    ";
+
+            $stylist_message = "Thank you for registering with Savile Row Society. My name is " . ucwords($stylist['User']['first_name']) . " and I will be your personal stylist. Feel free to check out my profile and ask me any style questions you may have.  I would also like to get to know you better; please tell me more about your wardrobe goals. I will get back to you shortly.
+                    
+                    If interested, I would also be happy to meet with you in our New York City based showroom, schedule a phone call, or just chat through the SRS platform. 
+
                     Welcome to Savile Row Society!";
+
 
             $this->Message->data['Message']['user_from_id'] = $stylist_id;
             $this->Message->data['Message']['user_to_id'] = $user_id;
@@ -306,10 +320,26 @@ If interested, I would also be happy to meet with you in our New York City based
                 // store in db
                 $res = $this->Message->save($this->Message->data);
 
+                try{
+                    $email = new CakeEmail('default');
+                    $email->to($stylist['User']['email']);
+                    $email->template('stylist_notification');
+                    $email->emailFormat('html');
+                    
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->subject('New Client');
+                    $email->viewVars(compact('stylist', 'user'));
+                    $email->send();
+                }
+                catch(Exception $e){
+
+                }
+
+
                 // Prepare data for email notification
                 $notification['is_photo'] = false;
                 $notification['to_stylist'] = false;
-                $notification['message'] = $res['Message']['body'];
+                $notification['message'] = $stylist_message;
                 $notification['to_name'] = $user['User']['first_name'];
                 $notification['from_name'] = $stylist['User']['first_name']; 
                 $notification['to_email'] = $user['User']['email'];

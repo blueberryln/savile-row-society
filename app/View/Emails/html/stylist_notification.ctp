@@ -11,13 +11,15 @@
         <tr>
             <td style="border-top: 1px solid #CFCFCF; border-bottom: 1px solid #CFCFCF; padding: 0px 15px; color: #595959">
             
-                <p style="padding-top: 15px;">Hi <?php echo ucfirst($stylist_name); ?>,</p>
+                <p style="padding-top: 15px;">Hi <?php echo ucfirst($stylist['User']['first_name']); ?>,</p>
 
                 <div style=" padding: 5px 0;">
-                    <p >You have been assigned a new client. Please follow up with him shortly.</p>
+                    <p >You have a new client, <?php echo ucfirst($user['User']['first_name']); ?>. Please introduce yourself to the client as soon as is possible, and get started on building a relationship. Remember to see if the client would like to visit our showroom or if there is something specific he is looking for.</p>
+
+                    <p><a href="<?php echo Configure::read('Social.callback_url'); ?>messages/index/<?php echo $user['User']['id']; ?>" style="color: #fff; padding: 5px 10px; display: inline-block; background-color: #af9a59;">LINK TO MESSAGES</a></p>
                 </div>
 
-                <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
+                <p style="margin-bottom: 10px; margin-top: 15px;">Sincerely,<br>
                 The Savile Row Society Team</p>
             
             </td>        
