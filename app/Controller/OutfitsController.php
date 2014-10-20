@@ -646,6 +646,17 @@ class OutfitsController extends AppController {
                     'Entity.*','Product.*', 'Brand.*'
                 ),
             );
+
+        $find_array['joins'][] = array('table' => 'wishlists',
+                'alias' => 'Wishlist',
+                'type' => 'LEFT',
+                'conditions' => array(
+                    'Wishlist.user_id' => $user_id,
+                    'Wishlist.product_entity_id = Entity.id'
+                )
+            );
+        $find_array['fields'][] = 'Wishlist.*'; 
+
         if($sort == 'pricedesc'){
             $find_array['order'] = array('Entity.price' => 'desc');
         }

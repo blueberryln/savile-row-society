@@ -255,14 +255,25 @@ $(document).ready(function(){
                                             '</div>';
                         }
 
+                        var sizeOptions = '';
+                        for(var j=0; j<product['Detail'].length; j++){
+                            sizeOptions += '<option value="' + product['Detail'][j]['size_id'] + '">' + sizes[product['Detail'][j]['size_id']] + '</option>';
+                        }
+
+                        var wishlist = (product['Wishlist']['product_entity_id'] == product['Entity']['id']) ? 1 : 0;
+
                         var html = '<li ' + 
                                         'data-name="' + product['Entity']['name'] + '" ' + 
                                         'data-desc="' + product['Entity']['description'] + '" ' +
-                                        'data-image="<?php echo $this->webroot; ?>/files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-image="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" ' + 
                                         'data-id="' + product['Entity']['id'] + '" ' + 
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
+                                        'data-wishlist="' + wishlist + '"' + 
                                         '>' + 
+                                        '<select class="hide product-size-list">' +
+                                            sizeOptions +         
+                                        '</select>' +
                                         '<a class="myclst-quick-view" href="#">' + 
                                             productImage +
                                             '<div class="myclst-prdt-overlay">' + 
@@ -335,7 +346,25 @@ $(document).ready(function(){
                                             '</div>';
                         }
 
-                        var html = '<li >' + 
+                        var sizeOptions = '';
+                        for(var j=0; j<product['Detail'].length; j++){
+                            sizeOptions += '<option value="' + product['Detail'][j]['size_id'] + '">' + sizes[product['Detail'][j]['size_id']] + '</option>';
+                        }
+
+                        var wishlist = (product['Wishlist']['product_entity_id'] == product['Entity']['id']) ? 1 : 0;
+
+                        var html = '<li ' + 
+                                        'data-name="' + product['Entity']['name'] + '" ' + 
+                                        'data-desc="' + product['Entity']['description'] + '" ' +
+                                        'data-image="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-id="' + product['Entity']['id'] + '" ' + 
+                                        'data-price="' + product['Entity']['price'] + '" ' + 
+                                        'data-brand="' + product['Brand']['name'] + '" ' +
+                                        'data-wishlist="' + wishlist + '"' + 
+                                        '>' + 
+                                        '<select class="hide product-size-list">' +
+                                            sizeOptions +         
+                                        '</select>' +
                                         '<a class="myclst-quick-view" href="#">' + 
                                             productImage +
                                             '<div class="myclst-prdt-overlay">' + 
@@ -378,6 +407,18 @@ $(document).ready(function(){
                 var addLikes = '<a class="product-my-likes" href="javascript:;" title="" data-product_id="' + productid + '">Add to My Likes</a>';
             }
 
+            if(sizes != ""){
+                sizeBox = '<div class="select-size select-style left">' +
+                    '<span class="selct-arrow"></span>' +
+                    '<select>' +
+                    sizes +     
+                    '</select>' +
+                '</div>';
+            }
+            else{
+                sizeBox = "";
+            }
+
         var html = '<div class="twelve columns left product-dtl-area pad-none">' + 
                         '<div class="product-dtl-img left"><img src="' + image + '" alt=""/></div>' + 
                         '<div class="product-dtl-desc left">' + 
@@ -391,12 +432,7 @@ $(document).ready(function(){
                             '</li></ul></div>' +
                             '<div class="product-dtl-desc-bottom left" style="width: 100%">' +
                                 '<div class="slect-options left">' +
-                                    '<div class="select-size select-style left">' +
-                                        '<span class="selct-arrow"></span>' +
-                                        '<select>' +
-                                        sizes +     
-                                        '</select>' +
-                                    '</div>' +
+                                    sizeBox + 
                                     '<div class="select-quantity select-style left">' +
                                         '<span class="selct-arrow"></span>' +
                                         '<select>' +
@@ -458,12 +494,12 @@ $(document).ready(function(){
     $("#myclst-popup").on('click', '.product-add-cart', function(e) {
         e.preventDefault();
         $this = $(this);
-        var productBlock = $(this).closest("li"),
-        productQuantity = productBlock.find("select.select-quantity").val(),
-        productSize = productBlock.find("select.select-size").val();
+        var productBlock = $(this).closest(".myclst-popup-content"),
+        productQuantity = productBlock.find(".select-quantity select").val(),
+        productSize = productBlock.find(".select-size select").val();
 
         var id = $this.data("product_id");
-        var quantity = parseInt(productQuantity) + 1;
+        var quantity = parseInt(productQuantity);
         var size = productSize;
         var outfitId = 0;
 
