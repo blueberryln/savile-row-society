@@ -164,10 +164,10 @@ jQuery(function(){
     /* attach to sign up event on signin popup form.
      * on click open sign-up popup form
      * */
-    $('#signin-popup').on('click', '#show-signup-popup', function(e){
-        e.preventDefault();
-        signUp();
-    });
+    // $('#signin-popup').on('click', '#show-signup-popup', function(e){
+    //     e.preventDefault();
+    //     signUp();
+    // });
     
     /* attach to create-outft event on create outfit.
      * on click open create-outft popup form

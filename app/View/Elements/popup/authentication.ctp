@@ -17,7 +17,7 @@
                 ?>                  
                 
                 <div class="text-left signin-options"> 
-                    <span class="already-member">New User? <a href="" id="show-signup-popup">JOIN</a></span>                                       
+                    <span class="already-member">New User? <a href="/users/register" id="show-signup-popup">JOIN</a></span>                                       
                     <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
                 </div>
                 <input type="submit" class="link-btn black-btn signin-btn" value="SIGN IN" /> 
