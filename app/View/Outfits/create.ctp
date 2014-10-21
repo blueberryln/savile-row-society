@@ -257,7 +257,7 @@ $(document).ready(function(){
         }
         else if($(this).closest('li').hasClass('likes-tab')){
             loadLikes(true);
-        }
+        }casey
     });
 
     var currentRequest = false;
@@ -1021,16 +1021,17 @@ $(document).ready(function(){
                                 </div>
                             </div>
                             <div class="twelve columns left otft-prdct-list">
-                                <div id="scrollbar1">
+                                <!-- <div id="scrollbar1">
                                     <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                                     <div class="viewport">
-                                        <div class="overview">
+                                        <div class="overview"> -->
                                         <div id="product">
                                             <ul class="clear" id="listdat">
                                             <?php  for($i = 0; $i < count($entities); $i++){
                                                         $product = $entities[$i];
+                                                        $wishlist = ($product['Wishlist']['product_entity_id'] == $product['Entity']['id']) ? 1 : 0;
                                             ?>
-                                                <li  data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-name="<?php echo $product['Entity']['name']; ?>">
+                                                <li  data-name="<?php echo $product['Entity']['name']; ?>" data-desc="<?php echo $product['Entity']['description']; ?>" data-image="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-wishlist="<?php echo $wishlist; ?>">
 
                                                 <select class="hide product-size-list">
                                                 <?php 
@@ -1042,7 +1043,7 @@ $(document).ready(function(){
                                                 ?>
                                                 </select>
                                                 
-                                                    <a href="#" class="product-list-block">
+                                                    <a href="#" class="product-list-block myclst-quick-view">
                                                         <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
                                                        <div class="otft-prdt-overlay">
                                                             <p><?php echo $product['Entity']['name']; ?></p>
@@ -1055,9 +1056,9 @@ $(document).ready(function(){
                                             </ul>
                                             
                                         </div>
-                                        </div>
+                                        <!-- </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <p id="loadMoreProduct">
                                     <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
                                     <input type="hidden" id="listPage" value="<?php echo $page + 1; ?>">
