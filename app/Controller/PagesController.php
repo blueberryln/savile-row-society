@@ -92,8 +92,13 @@ class PagesController extends AppController {
         }
         else if ($page == 'refer-a-friend') {
             $this->isLogged();
+            $sideBarTab = 'refer';
+
             $user = $this->getLoggedUser();
-            $this->set(compact('user'));
+            $User= ClassRegistry::init('User');
+            $stylist = $User->findById($user['User']['stylist_id']);
+
+            $this->set(compact('user', 'sideBarTab', 'stylist'));
         }
         else if ($page == 'company/brands') {
             $title_for_layout = "Brands - Savile Row Society";
