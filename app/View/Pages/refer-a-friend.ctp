@@ -58,7 +58,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <?php echo $this->element('userAside/leftSidebar'); ?>
 
 
-                            <div class="right-pannel right">
+                            <div class="right-pannel right rfr-a-frnd">
                                 <!-- <div class="twelve columns message-area left pad-none">
                                     <div class="eight columns page-content refer-options">
                                         <div class="refer-way one">
