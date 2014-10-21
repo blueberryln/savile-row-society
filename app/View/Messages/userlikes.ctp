@@ -24,7 +24,7 @@ $(document).ready(function(){
                                                 <option value="asc" <?php echo ($pageOrder == 'asc') ? 'selected' : ''; ?>>Sort By Date ASC</option>
                                             </select>
                                         </div>
-                                        <div class="tab-btns purchase"><a href="<?php echo $this->webroot; ?>user/purchases" title="">Purchase</a>
+                                        <div class="tab-btns purchase"><a href="<?php echo $this->webroot; ?>user/purchases" title="">Purchases</a>
                                             
                                         </div>
                                         <div class="tab-btns likes active"><a href="<?php echo $this->webroot; ?>user/likes" title="">Likes</a></div>

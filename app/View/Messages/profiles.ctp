@@ -121,7 +121,7 @@
                                                                 <input type="checkbox"   <?php if($user['User']['is_srs_msg']==true){ ?> checked <?php }else{} ?> id="squared_2" name="data[User][is_srs_msg]">
                                                                 <label for="squared_2"></label>
                                                             </div>
-                                                            <label>I'd prefer to be contacted through the SRS Messaging System:</label>
+                                                            <label>I'd prefer to be contacted through SRS Messaging Platform:</label>
                                                         </div>
                                 
                                                     </div>

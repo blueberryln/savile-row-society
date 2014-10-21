@@ -24,7 +24,7 @@ $(document).ready(function(){
                                                 <option value="asc" <?php echo ($pageOrder == 'asc') ? 'selected' : ''; ?>>Sort By Date ASC</option>
                                             </select>
                                         </div>
-                                        <div class="tab-btns purchase active"><a href="<?php echo $this->webroot; ?>user/purchases" title="">Purchase</a>
+                                        <div class="tab-btns purchase active"><a href="<?php echo $this->webroot; ?>user/purchases" title="">Purchases</a>
                                             
                                         </div>
                                         <div class="tab-btns likes"><a href="<?php echo $this->webroot; ?>user/likes" title="">Likes</a></div>
@@ -74,7 +74,7 @@ $(document).ready(function(){
                                                                        <?php
                                                                         endforeach;
                                                                     else:
-                                                                        echo "<h1>There are no purchased items to display. Contact your stylist to get started..</h1>";
+                                                                        echo "<h1>There are no purchased items to display. Contact your stylist to get started.</h1>";
                                                                     endif; 
                                                                     ?>
                                                                    

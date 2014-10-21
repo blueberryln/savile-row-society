@@ -1746,6 +1746,18 @@ class MessagesController extends AppController {
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
         $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        
+        if(count($userlists)){
+            $first_user = $userlists[0]['User'];
+
+            $this->redirect('/messages/index/' . $first_user['id']);
+            exit;
+        }
+        else{
+            $this->redirect('/messages/feed');
+            exit;
+        }
+
         $find_array2 = array(
                 'fields' => array('count(User.id) as usercount'),
                 'joins' => array(

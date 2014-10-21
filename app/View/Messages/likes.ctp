@@ -30,7 +30,7 @@ $(document).ready(function(){
                                                 <option value="asc" <?php echo ($pageOrder == 'asc') ? 'selected' : ''; ?>>Sort By Date ASC</option>
                                             </select>
                                         </div>
-                                        <div class="tab-btns purchase "><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>" title="">Purchase</a></div>
+                                        <div class="tab-btns purchase "><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>" title="">Purchases</a></div>
                                         <div class="tab-btns likes active"><a href="<?php echo $this->webroot; ?>messages/likes/<?php echo $clientid; ?>" title="">Likes</a></div>
                                         <div class="twelve columns purchase-container left pad-none">
                                             <div class="eleven columns container purchase-area pad-none">

@@ -29,7 +29,7 @@ $(document).ready(function(){
                                                 <option value="asc" <?php echo ($pageOrder == 'asc') ? 'selected' : ''; ?>>Sort By Date ASC</option>
                                             </select>
                                         </div>
-                                        <div class="tab-btns purchase active"><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>" title="">Purchase</a></div>
+                                        <div class="tab-btns purchase active"><a href="<?php echo $this->webroot; ?>messages/purchase/<?php echo $clientid; ?>" title="">Purchases</a></div>
                                         <div class="tab-btns likes"><a href="<?php echo $this->webroot; ?>messages/likes/<?php echo $clientid; ?>" title="">Likes</a></div>
                                         <div class="twelve columns purchase-container left pad-none">
                                             <div class="eleven columns container purchase-area pad-none">
@@ -63,7 +63,7 @@ $(document).ready(function(){
                                                                <?php
                                                                 endforeach;
                                                             else:
-                                                                echo "<h1>There are no purchased items to display. Contact your stylist to get started..</h1>";
+                                                                echo "<h1>There are no purchased items to display. Contact your stylist to get started.</h1>";
                                                             endif; 
                                                             ?>
                                                        

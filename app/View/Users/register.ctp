@@ -455,21 +455,21 @@ color:#396; !important
                                         <input type="checkbox" id="squared" name="data[User][is_phone]">
                                         <label for="squared"></label>
                                     </div>
-                                    <label>I 'd like to connected on the phone :</label>
+                                    <label>I'd like to be connected on the phone:</label>
                                 </div>
                                 <div class="connect">
                                     <div class="squared">
                                         <input type="checkbox" id="squared_1" name="data[User][is_skype]">
                                         <label for="squared_1"></label>
                                     </div>
-                                    <label>I 'd like to connected through Skype :</label>
+                                    <label>I'd like to be connected through Skype:</label>
                                 </div>
                                 <div class="connect">
                                      <div class="squared">
                                         <input type="checkbox" id="squared_2" name="data[User][is_srs_msg]">
                                         <label for="squared_2"></label>
                                     </div>
-                                    <label>I’d prefer to be contacted through SRS Messaging  System :</label>
+                                    <label>I’d prefer to be contacted through SRS Messaging Platform:</label>
                                 </div>
                                 
                                 </div>
