@@ -58,14 +58,16 @@
                                     </div>
                                 </div>
                                 <div class="twelve columns gal-area left pad-none">
-                                    <h1>Kyle's Gallery</h1>
-                                    <div class="gallery-area">
+                                    <h1><?php echo ucwords($user['User']['first_name']); ?> Gallery</h1>
+                                    <div class="gallery-area" style="width:100%">
                                         <div class="eleven columns container pad-none">
                                             <div class="twelve columns myclient-gallery left pad-none">
                                                 <ul class="slider3">
-                                                    <li><img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" /></li>
-                                                    <li><img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" /></li>
-                                                    <li><img src="<?php echo $this->webroot; ?>images/how-it-works/fs_img_2.jpg" /></li>
+                                                    <?php
+                                                    foreach($imagenotes as $value){
+                                                        echo '<li><img src="/files/attachments/' . $value['StylistNote']['image'] . '"></li>';    
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </div>
                                             <div class="twelve columns left gal-btns"><a class="upload-gal-photos" href="#" title="">Upload Photos</a></div>
@@ -102,3 +104,29 @@
         </div>
     </div>
 </div>
+
+<div id="file-box-profile" class="box-modal notification-box" style="display: none;">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+            <div class="vip-content">
+                <h5 class="sign">Upload Image</h5>  
+                <?php
+                    echo $this->Form->create('Messages', array('type'=>'file','url'=>'saveNotesPhoto/'.$clientid)); 
+                        echo $this->Form->input('note_url', array('type' => 'file', 'id'=>'uploader-btn', 'label' => false));
+                    ?>  
+                   <input class="biography-upload-img" type="submit" value="submit">
+                    </form>   
+            </div>
+    </div>
+</div> 
+
+<script>
+    $(document).ready(function(){
+
+        $(".upload-gal-photos").on("click", function(e){
+            e.preventDefault();
+            $.blockUI({message: $('#file-box-profile')});
+            $('.blockOverlay').click($.unblockUI);
+        });
+    });
+</script>

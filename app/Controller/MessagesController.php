@@ -3803,18 +3803,20 @@ class MessagesController extends AppController {
 
             if($StylistNote->save($this->request->data))
             {
-                $this->Session->setFlash("User Data Hasbeen Saved", 'flash');
+                $this->Session->setFlash("User data has been saved", 'flash');
                 $this->redirect('/messages/notes/'.$clientid);
             }
         }
 
         // get notes data
 
-        $usernotes = $StylistNote->find('all', array('conditions'=>array('StylistNote.stylist_id'=>$stylistid,'StylistNote.user_id'=>$clientid)));
+        $usernotes = $StylistNote->find('all', array('conditions'=>array('StylistNote.stylist_id'=>$stylistid,'StylistNote.user_id'=>$clientid, 'is_image' => 0)));
+
+        $imagenotes = $StylistNote->find('all', array('conditions'=>array('StylistNote.stylist_id'=>$stylistid,'StylistNote.user_id'=>$clientid, 'is_image' => 1)));
 
 
 
-        $this->set(compact('clientid','client_user','usernotes','userlists', 'sideBarTab'));
+        $this->set(compact('clientid','client_user','usernotes','userlists', 'sideBarTab', 'imagenotes'));
 
     }
 
@@ -3837,7 +3839,7 @@ class MessagesController extends AppController {
         }
         else{
             $this->Session->setFlash('Note could not be deleted.', 'flash');
-            $this->redirect('/messages/notes' . $client['User']['id']);
+            $this->redirect('/messages/notes/' . $client['User']['id']);
             exit;
         }  
 
@@ -3847,8 +3849,64 @@ class MessagesController extends AppController {
             $this->Session->setFlash('Note could not be deleted.', 'flash');
         }
 
-        $this->redirect('/messages/notes' . $client['User']['id']);
+        $this->redirect('/messages/notes/' . $client['User']['id']);
         exit;
+
+    }
+
+
+    public function saveNotesPhoto($client_id = null){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $User = ClassRegistry::init('User');
+
+        $client = $User->findById($client_id);
+        $user = $this->getLoggedUser();
+
+        if($user['User']['id'] != $client['User']['stylist_id']){
+            $this->redirect('/');
+        }
+        if($this->request->is('post') || $this->request->is('put')){
+            $imagename = false;
+            $image_type = '';
+            $image_size = '';
+
+
+            if ($this->request->data['Messages']['note_url'] && $this->request->data['Messages']['note_url']['size'] > 0) {
+                $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+
+                if (!in_array($this->request->data['Messages']['note_url']['type'], $allowed)) {
+                    $this->Session->setFlash(__('You have to upload an image.'), 'flash');
+                } else if ($this->request->data['Messages']['note_url']['size'] > 5242880) {
+                    $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
+                    exit;
+                } else {
+                    $imagename = time() .  '_' . $this->request->data['Messages']['note_url']['name'];
+                    $image_type = $this->request->data['Messages']['note_url']['type'];
+                    $image_size = $this->request->data['Messages']['note_url']['size'];
+                    $profile_path = APP . 'webroot' . DS . 'files' . DS . 'attachments' . DS . $imagename;
+                    move_uploaded_file($this->request->data['Messages']['note_url']['tmp_name'], $profile_path);
+                    
+                }
+            }
+
+            if($imagename){
+                $StylistNote = ClassRegistry::init('StylistNote');
+                $data['user_id'] = $client_id;
+                $data['stylist_id'] = $user['User']['id'];
+                $data['image'] = $imagename;
+                $data['is_image'] = 1;
+
+                $StylistNote->create();
+                $StylistNote->save($data);
+                
+                $this->redirect(array('action' => '/notes/'.$client_id));    
+            }else{
+                $this->Session->setFlash('The image could not be uploaded. Please, try again.', 'flash');
+            }
+
+
+        }  
 
     }
 
