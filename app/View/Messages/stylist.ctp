@@ -171,7 +171,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     //html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
                 }
 
-                var outfitName = (chatMsg['OutfitDetail']['name']) ? chatMsg['OutfitDetail']['name'] : ''; 
+                var outfitName = (chatMsg['OutfitDetail']['Outfit']['outfit_name']) ? chatMsg['OutfitDetail']['Outfit']['outfit_name'] : ''; 
                 
                 html = html +   '<div class="client-outfit">'+
                                     '<div class="client-msg-reply"><span>' + outfitName + '</span></div>' + 

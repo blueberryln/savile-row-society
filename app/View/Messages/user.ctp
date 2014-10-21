@@ -211,7 +211,7 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
                 if(chatMsg['Message']['body'] != '' && chatMsg['Message']['body'] != 'outfit'){
                     //html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
                 }
-                var outfitName = (chatMsg['OutfitDetail']['name']) ? chatMsg['OutfitDetail']['name'] : ''; 
+                var outfitName = (chatMsg['OutfitDetail']['Outfit']['outfit_name']) ? chatMsg['OutfitDetail']['Outfit']['outfit_name'] : ''; 
 
                 html = html +   '<div class="client-outfit">'+
                                     '<div class="client-msg-reply"><span>' + outfitName + '</span></div>' + 
