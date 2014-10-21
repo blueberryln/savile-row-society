@@ -32,6 +32,9 @@ else if($sideBarTab == "outfit"){
 else if($sideBarTab == "detail"){
     $page_title = 'Outfit Detail';
 }
+else if($sideBarTab == "refer"){
+    $page_title = 'Refer A Friend';
+}
 ?>
 
 <div class="twelve columns message-box-heading pad-none">
@@ -51,6 +54,7 @@ else if($sideBarTab == "detail"){
         <li <?php echo ($sideBarTab == 'outfit' || $sideBarTab == 'detail') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/outfits">Outfits</a></li>
         <li <?php echo ($sideBarTab == 'purchase' || $sideBarTab == 'like') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/purchases">Purchases/Likes</a></li>
         <li <?php echo ($sideBarTab == 'profile') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/profile">Profile</a></li>
+        <li <?php echo ($sideBarTab == 'refer') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/refer">Refer A Friend</a></li>
     </ul>
 </div>
 <div class="twelve columns left inner-content pad-none">
@@ -63,6 +67,7 @@ else if($sideBarTab == "detail"){
                     <li <?php echo ($sideBarTab == 'outfit' || $sideBarTab == 'detail') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/outfits">Outfits</a></li>
                     <li <?php echo ($sideBarTab == 'purchase' || $sideBarTab == 'like') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/purchases">Purchases/Likes</a></li>
                     <li <?php echo ($sideBarTab == 'profile') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/profile">Profile</a></li>
+                    <li <?php echo ($sideBarTab == 'refer') ? "class='active'" : '';  ?>><a href="<?php echo $this->webroot; ?>user/refer">Refer A Friend</a></li>
                 </ul>
             </div>
         </div>

@@ -1,80 +1,80 @@
 <script type="text/javascript">
 $(document).ready(function(){
     
-    $(document).on("click", ".thumb-icon", function(e) {
-        e.preventDefault();
-        $this = $(this);
-        var productBlock = $this.closest(".bottm-links");
-        var productId = productBlock.find("#product_id").val();
-        var outfit_id = productBlock.find("#outfit_id").val();
-            $.ajax({
-                type:"POST",
-                url : "<?php echo $this->request->webroot; ?>api/wishlist/save",
-                data:{product_id: productId,outfit_id:outfit_id},
-                cache: false,
-                success: function(result){
-                    $this.addClass('like');
-                $this.closest(".bottm-links").find(".thumbs-icon").addClass('like');
-                //$this.closest(".bottm-links").find(".thumbs-icon").replaceWith(".thumbs-icon-like");
+    // $(document).on("click", ".thumb-icon", function(e) {
+    //     e.preventDefault();
+    //     $this = $(this);
+    //     var productBlock = $this.closest(".bottm-links");
+    //     var productId = productBlock.find("#product_id").val();
+    //     var outfit_id = productBlock.find("#outfit_id").val();
+    //         $.ajax({
+    //             type:"POST",
+    //             url : "<?php echo $this->request->webroot; ?>api/wishlist/save",
+    //             data:{product_id: productId,outfit_id:outfit_id},
+    //             cache: false,
+    //             success: function(result){
+    //                 $this.addClass('like');
+    //             $this.closest(".bottm-links").find(".thumbs-icon").addClass('like');
+    //             //$this.closest(".bottm-links").find(".thumbs-icon").replaceWith(".thumbs-icon-like");
 
-               }
-            });
+    //            }
+    //         });
                        
         
-    });
+    // });
 
-    $(document).on("click", ".like", function(e) {
-        e.preventDefault();
-        $this = $(this);
-        var productBlock = $this.closest(".bottm-links");
-        var productId = productBlock.find("#product_id").val();
-        var outfit_id = productBlock.find("#outfit_id").val();
+    // $(document).on("click", ".like", function(e) {
+    //     e.preventDefault();
+    //     $this = $(this);
+    //     var productBlock = $this.closest(".bottm-links");
+    //     var productId = productBlock.find("#product_id").val();
+    //     var outfit_id = productBlock.find("#outfit_id").val();
 
-        $.ajax({
-            type:"POST",
-            url : "<?php echo $this->request->webroot; ?>api/wishlist/remove",
-            data:{product_id: productId,outfit_id:outfit_id},
-            cache: false,
-            success: function(result){
-                $this.removeClass('like');
-            $this.closest(".bottm-links").find(".like").removeClass( "like" );
-            //$this.closest(".bottm-links").find(".thumbs-icon").replaceWith(".thumbs-icon-like");
+    //     $.ajax({
+    //         type:"POST",
+    //         url : "<?php echo $this->request->webroot; ?>api/wishlist/remove",
+    //         data:{product_id: productId,outfit_id:outfit_id},
+    //         cache: false,
+    //         success: function(result){
+    //             $this.removeClass('like');
+    //         $this.closest(".bottm-links").find(".like").removeClass( "like" );
+    //         //$this.closest(".bottm-links").find(".thumbs-icon").replaceWith(".thumbs-icon-like");
 
-           }
-        });
+    //        }
+    //     });
         
-    });
+    // });
 
     $("#sortdate").change(function(){
         var sortOrder = $(this).val();
         location = location.href.split('?')[0] + '?sort=' + sortOrder;
     });
     
-    $("#ascsort").on("click",".add-to-cart", function(e) {
-        e.preventDefault();
-        var productBlock = $(this).closest(".outfit-page-item"),
-            productQuantity = productBlock.find("select.product-quantity").val(),
-            productSize = productBlock.find(".product-size").val();
-            var id = productBlock.find(".product-id").val();
-            var outfitid = productBlock.find(".outfit_id").val();
-            var quantity = parseInt(productQuantity) + 1;
-            var size = productSize;
+    // $("#ascsort").on("click",".add-to-cart", function(e) {
+    //     e.preventDefault();
+    //     var productBlock = $(this).closest(".outfit-page-item"),
+    //         productQuantity = productBlock.find("select.product-quantity").val(),
+    //         productSize = productBlock.find(".product-size").val();
+    //         var id = productBlock.find(".product-id").val();
+    //         var outfitid = productBlock.find(".outfit_id").val();
+    //         var quantity = parseInt(productQuantity) + 1;
+    //         var size = productSize;
             
         
-        $.post("<?php echo $this->request->webroot; ?>api/cart/save", { product_id: id, product_quantity: 1, product_size: 23, outfit_id: outfitid },
-            function(data) {
-                var ret = $.parseJSON(data);
-                if(ret["status"] == "ok"){
-                    $(".cart-items-count").html(ret["count"]);
-                    location.reload();
-                }
-                else if(ret["status"] == "login"){
-                    signUp();       
-                }
-            }
+    //     $.post("<?php echo $this->request->webroot; ?>api/cart/save", { product_id: id, product_quantity: 1, product_size: 23, outfit_id: outfitid },
+    //         function(data) {
+    //             var ret = $.parseJSON(data);
+    //             if(ret["status"] == "ok"){
+    //                 $(".cart-items-count").html(ret["count"]);
+    //                 location.reload();
+    //             }
+    //             else if(ret["status"] == "login"){
+    //                 signUp();       
+    //             }
+    //         }
         
-        );
-    });
+    //     );
+    // });
 
 
 });
@@ -118,7 +118,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                             <div class="twelve columns client-outfits left" >
                                                 <div class="eleven columns container client-outfits-area pad-none" >
                                                     <?php if($outfit['Outfit']['outfit_name']){ 
-                                                            echo  "<h1>" . ucfirst($outfit['Outfit']['outfit_name']) . "</h1>";    
+                                                            echo  "<h1><a href='/messages/outfitdetails/" . $outfit['Outfit']['id'] . "'>" . ucfirst($outfit['Outfit']['outfit_name']) . "</a></h1>";    
                                                         }
                                                         else{
                                                             echo "<h1></h1>";
@@ -147,11 +147,11 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                                     <span class="product-price">$<?php echo $entity['product']['Entity']['price']; ?></span>
                                                                     <span class="product-dtls"><a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" title="">Details</a></span>
                                                                     <span class="bottm-links outfit-page-item">
-                                                                        <a class="add-to-cart" data-product_id="<?php echo $entity['product']['Entity']['id']; ?>" href="" title="">Add to Cart +</a>
+                                                                        <!-- <a class="add-to-cart" data-product_id="<?php echo $entity['product']['Entity']['id']; ?>" href="" title="">Add to Cart +</a> -->
                                                                         <input type="hidden" id="product_id" class="product-id" value="<?php echo $entity['product']['Entity']['id']; ?>">
                                                                         <input type="hidden" id="outfit_id" class="outfit_id" value="<?php echo $outfit['Outfit']['id']; ?>"> 
                                                                        
-                                                                        <a href="#" id="<?php echo $entity['product']['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon"></a>
+                                                                        <!-- <a href="#" id="<?php echo $entity['product']['Entity']['id'].'-'.$user_id; ?>" class="thumb-icon"></a> -->
                                                                       
                                                                     </span>
                                                                 </div>
@@ -163,7 +163,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                     <div class="twelve columns left client-outfit-bottom pad-none">
                                                         <div class="client-comments left">
                                                             <h2>Stylist Comment</h2>
-                                                            <div class="client-comments-text left"><b><?php echo ucfirst($outfit['Stylist']['first_name']); ?></b> - <?php echo $outfit['Message']['body']; ?></div>
+                                                            <div class="client-comments-text left"><b><?php echo ucfirst($outfit['Stylist']['first_name']); ?></b> - <?php echo substr($outfit['Message']['body'], 0, 70); ?> <a href="/messages/index">Read More</a></div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -429,7 +429,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                             '<div class="activity-content-area">' +  
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
-                                    '<div class="activity-user-name"><strong>You created ' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + ' an outfit,</strong> “Beach Day”</div>' + 
+                                    '<div class="activity-user-name"><strong>You created ' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + ' an outfit,</strong> “' + feed['Outfit']['outfit_name'].toUpperCase() + '”</div>' + 
                                 '</div>' + 
                                 '<div class="activity-date-section">' + 
                                     $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 

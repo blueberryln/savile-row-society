@@ -196,12 +196,12 @@
                                     <?php endif; ?>
                                     <?php if ($is_stylist) : ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>stylists/biography/<?php echo $user['User']['id']; ?>" title="">Stylist Biography</a></li>
-                                    <li><a href="#" title="">refer a friend</a></li>
                                     <?php endif; ?>
                                      <?php if(!$is_stylist) : ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>cart" title="">view my cart/checkout</a></li>
                                     <li><a href="/messages/index" title="">Messages</a></li>
                                     <li><a href="<?php echo $this->request->webroot; ?>messages/profiles/<?php echo $user['User']['id']; ?>">Profile</a></li>
+                                    <li><a href="/refer-a-friend" title="">refer a friend</a></li>
                                     <?php endif; ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>signout" title="">sign out</a></li>
                                 </ul>
