@@ -71,7 +71,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged) : ?>
                     <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
-                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+                    <a href="#" onclick="window.ref_url=''; multiAction();" class="over-img">
                 <?php endif; ?>
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step1.jpg" alt="How Savile Row Society Works" />
                 </a>
@@ -84,7 +84,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged) : ?>
                     <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
-                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+                    <a href="#" onclick="window.ref_url=''; multiAction();" class="over-img">
                 <?php endif; ?>
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step2.jpg" alt="How Savile Row Society Works" />
                 </a>
@@ -97,7 +97,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged) : ?>
                     <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
-                    <a href="#" onclick="window.ref_url=''; signUp();" class="over-img">
+                    <a href="#" onclick="window.ref_url=''; multiAction();" class="over-img">
                 <?php endif; ?>
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step3.jpg" alt="How Savile Row Society Works" />
                 </a>
@@ -113,7 +113,7 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="eleven columns container container-box" id="three"> 
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
-            <h1>Featured Stylists</h1>
+            <h1>Featured Stylists</h1>multiAction
             <h3>Check out some of our featured Personal Stylists</h3>
             <h3>below and <a href="/stylists/stylistbiography/741?refer=741" title="">click here to see our full roster</a></h3>
         </div>

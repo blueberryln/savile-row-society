@@ -84,3 +84,22 @@
 	    </div>
 	</div>
 </div>
+
+
+<!-- inside this element open signin view -->
+<div id="multi-popup" style="display: none">
+	<div id="signin-box" class="box-modal notification-box">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="signin-content text-left"> 
+            <h5 class="sign"><img class="logo" src="/img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society"></h5>            
+            
+            <p>Not a member yet? <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"></span></a></p>
+             
+            <p>Already a member?  <a class="tell-more gray-btns" href="#" onclick="signIn();" title="">Login</a></p>
+
+            <p><a href="" id="multi-vip-access">Have been refered? Click Here!</a></p>
+        </div> 
+    </div>
+</div>
+</div>

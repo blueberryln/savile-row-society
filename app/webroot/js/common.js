@@ -36,6 +36,13 @@ function signIn() {
     $('.blockOverlay').click($.unblockUI);
 }
 
+function multiAction() {
+    var blockTop = $(window).height()/2 - $("#multi-popup").height()/2;
+    $.blockUI({message: $('#multi-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+
 /* function to show create outfit popup*/
 function outFit() {
     var blockTop = $(window).height()/2 - $("#create-otft-popup").height()/2;
@@ -341,7 +348,7 @@ jQuery(function(){
 //        return false; 
 //    });
    
-    $("#block-vip-access,#block-vip-access-link").on("click", function(e){
+    $("#block-vip-access,#block-vip-access-link, #multi-vip-access").on("click", function(e){
         e.preventDefault();
         $.blockUI({message: $('#vip-box')});
         $('.blockOverlay').click($.unblockUI);
