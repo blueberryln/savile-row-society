@@ -1114,7 +1114,8 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .product-dtls { background: #fff; padding: 25px 0px;}
 .eleven.columns.product-view { width: 96%;}
 .product-dtl-area { padding: 20px 0; background: url('../images/product-dtl-divider.png') repeat-x left bottom;}
-.product-dtl-img { width: 25%; text-align: center;}
+.product-dtl-img { width: 22%; text-align: center;}
+.myclst-popup-content .product-dtl-img img {max-height:135px;}
 .product-dtl-desc { width: 45%; font-family: 'ProximaNovaCond-Regular';margin-left: 2%;}
 .product-dtl-desc-top { font-size: 18px; color: #918f8f; padding-right: 10%; width: auto; max-width: 90%; background: url('../images/product-dtl-divider.png') repeat-x left bottom; padding-bottom: 10px;}
 .desc-top-brand, .desc-top-brand-price, .product-dtl-desc-middle, .slect-options, .product-dtl-specifiation { width: 100%;}
@@ -1535,6 +1536,7 @@ a.sbmt-btn { width: 100%; display: block; padding: 18px 0 12px; background: #b6a
 .otft-right-top-srch span, .myclst-right-top-srch span { left: 10px; top: 4px; background: url("../images/srch-icn-gld.png") no-repeat;}
 .otft-prdct-list, .otft-prdct-list #product { position: relative;}
 .otft-prdct-list li{ width: 33%; float: left; border: 1px solid #9d9fa2; position: relative; height: 235px; margin: -1px 0 0 -1px;  padding: 0; vertical-align: top; overflow: hidden;}
+.otft-prdct-list .overview #product {margin: 1px 0 0 1px;}
 
 .otft-prdct-list li a {line-height:235px; text-align: center; display: inline-block; width: 100%;}
 .otft-prdct-list li .otft-prdt-img {display:inline-block; text-align: center; }
@@ -1712,7 +1714,7 @@ a.setp-btn.popup-cont-btn {padding: 18px 0px 12px; width: 90%; display: block; m
 
 #myclst-popup .box-modal { width: 650px;}
 .myclst-popup-content {width: 600px; margin: 0 auto; text-align: left;}
-#myclst-popup .box-modal-inside { padding: 10px 0 0;}
+#myclst-popup .box-modal-inside { padding: 15px 0 0;}
 #myclst-popup .product-dtl-area { padding: 0px; background: none;}
 #myclst-popup .product-dtl-desc h3 { font-size: 16px; line-height: normal; color: #212125; font-weight: normal; padding: 0px 0 5px; margin: -5px 0 0;}
 #myclst-popup .product-dtl-desc-top{ padding-bottom: 5px; font-size: 12px; line-height: 12px;}
