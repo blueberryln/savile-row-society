@@ -72,17 +72,10 @@ Router::connect('/home', array('controller' => 'pages', 'action' => 'display', '
 
 Router::connect('/company', array('controller' => 'pages', 'action' => 'display', 'company'));
 Router::connect('/company/team', array('controller' => 'pages', 'action' => 'display', 'company/team'));
-Router::connect('/company/bloggers', array('controller' => 'pages', 'action' => 'display', 'company/bloggers'));
 Router::connect('/company/privacy', array('controller' => 'pages', 'action' => 'display', 'company/privacy'));
 Router::connect('/company/terms', array('controller' => 'pages', 'action' => 'display', 'company/terms'));
 Router::connect('/company/brands', array('controller' => 'pages', 'action' => 'display', 'company/brands'));
-Router::connect('/company/retailers', array('controller' => 'pages', 'action' => 'display', 'company/retailers'));
-Router::connect('/membership', array('controller' => 'pages', 'action' => 'display', 'membership'));
 Router::connect('/contact', array('controller' => 'pages', 'action' => 'display', 'contact'));
-Router::connect('/new', array('controller' => 'pages', 'action' => 'display', 'new'));
-Router::connect('/how-it-works', array('controller' => 'pages', 'action' => 'display', 'how-it-works'));
-Router::connect('/tailor', array('controller' => 'pages', 'action' => 'display', 'tailor'));
-Router::connect('/stylist', array('controller' => 'pages', 'action' => 'display', 'stylist'));
 Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 Router::connect('/faq', array('controller' => 'pages', 'action' => 'display', 'faq'));
 

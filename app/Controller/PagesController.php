@@ -70,27 +70,8 @@ class PagesController extends AppController {
             $this->set(compact('user','topStylists','topOutfits', 'firstStylist'));
        
         }
-        else if ($page == 'tailor') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            $this->set(compact('user'));
-        }
         else if ($page == 'contact') {
             $title_for_layout = "Contact Us - Savile Row Society";
-        }
-        else if ($page == 'trainer') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            $this->set(compact('user'));
-        }
-        else if ($page == 'stylist') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            if(!$user['User']['preferences']){
-                $this->Session->write('completeProfile', true);
-                $this->redirect(array('controller' => 'profile', 'action' => 'about'));   
-            }
-            $this->set(compact('user'));
         }
         else if ($page == 'refer-a-friend') {
             $this->isLogged();
