@@ -89,6 +89,7 @@ $(document).ready(function() {
         if($(".style-check:checked").length){
             $("p.style-error").slideUp(300);
             $("a[href='#tabs-2']#t2").trigger("click");    
+            $(document).scrollTop(0);
         }
         else{
             $("p.style-error").slideDown(300);
@@ -99,6 +100,7 @@ $(document).ready(function() {
         if($("#neckSize").val() && $("#jacketSize").val() && $("#pantWaist").val() && $("#pantLength").val() && $("#shoeSize").val()){
             $("p.size-error").slideUp(300);
             $("a[href='#tabs-3']#t3").trigger("click");   
+            $(document).scrollTop(0);
         }
         else{
             $("p.size-error").slideDown(300);
@@ -108,6 +110,7 @@ $(document).ready(function() {
     $(".about-submit input[type=submit]").on('click', function(e){
         if($("#first-name").val() && $("#last-name").val() && $("#register-password").val() && $("#register-email").val() && $("#confirm-register-password")){
             $("p.about-error").slideUp(300);
+            $(document).scrollTop(0);
         }
         else {
             e.preventDefault();

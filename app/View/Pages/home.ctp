@@ -15,29 +15,10 @@ $this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Societ
 $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
-$this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", array('safe' => true, 'inline' => false));
-$this->Html->script('cookie.js', array('inline' => false));
 ?>
 <div class="content-container-home">
 
     <div class="twelve columns content inner homepage"> 
-
-    <?php if (!$is_logged) { ?>
-    <div id="sign-up-drop-down">
-        <div class="close"><a href="#"> &#215;</a></div>
-        <p><span>Tailor</span> Your <span>Life</span></p>
-        <div class="initial-module container">
-            <div class="fourteen columns offset-by-one">
-                <?php
-                    echo '<input type="button"  value="Join Now" class = "join_button" onclick="window.ref_url=\'\'; signUp();" >';
-                    echo '<p class="show-login-form">Savile Row Society is not going to be free forever.<br>Sign-up now, and get FREE MEMBERSHIP for life.</p>';
-        
-                ?>
-            </div>
-        </div>
-
-    </div>
-    <?php } ?>
     
     <div class="mega-banner" id="one">
         <div class="flexslider">
@@ -71,7 +52,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged) : ?>
                     <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
-                    <a href="#" onclick="window.ref_url=''; multiAction();" class="over-img">
+                    <a href="#" class="over-img multi-action">
                 <?php endif; ?>
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step1.jpg" alt="How Savile Row Society Works" />
                 </a>
@@ -84,7 +65,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged) : ?>
                     <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
-                    <a href="#" onclick="window.ref_url=''; multiAction();" class="over-img">
+                    <a href="#" class="over-img multi-action">
                 <?php endif; ?>
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step2.jpg" alt="How Savile Row Society Works" />
                 </a>
@@ -97,7 +78,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                 <?php if($is_logged) : ?>
                     <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
                 <?php else : ?>
-                    <a href="#" onclick="window.ref_url=''; multiAction();" class="over-img">
+                    <a href="#" class="over-img multi-action">
                 <?php endif; ?>
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step3.jpg" alt="How Savile Row Society Works" />
                 </a>
@@ -113,9 +94,11 @@ $this->Html->script('cookie.js', array('inline' => false));
     <div class="eleven columns container container-box" id="three"> 
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
-            <h1>Featured Stylists</h1>multiAction
+            <h1>Featured Stylists</h1>
             <h3>Check out some of our featured Personal Stylists</h3>
-            <h3>below and <a href="/stylists/stylistbiography/741?refer=741" title="">click here to see our full roster</a></h3>
+            <?php if($firstStylist) : ?>
+                <h3>below and <a href="/stylists/stylistbiography/<?php echo $firstStylist['User']['id']; ?>?refer=<?php echo $firstStylist['User']['id']; ?>" title="">click here to see our full roster</a></h3>
+            <?php endif; ?>
         </div>
         <div class="eleven columns container stylist-boxes">
             <div class="featured-stylist ten columns container">
@@ -238,7 +221,7 @@ $this->Html->script('cookie.js', array('inline' => false));
                     </li>
                     
                 </ul>
-                <a class="style-time-link" href="http://www.savilerowsociety.com/contact" title="">Meet with your stylist in our NYC-based showroom</a>
+                <a class="style-time-link" href="/contact" title="">Meet with your stylist in our NYC-based showroom</a>
             </div>
         </div>
     </div>

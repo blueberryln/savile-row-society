@@ -59,13 +59,15 @@ class PagesController extends AppController {
             //Get Top Stylists
             $TopStylist = ClassRegistry::init('TopStylist');
             $topStylists = $TopStylist->getTopStylists();
+
+            $firstStylist = count($topStylists) ? $topStylists[0] : false;
             
             //Get Top Outfits
             $TopOutfit = ClassRegistry::init('TopOutfit');
             $topOutfits = $TopOutfit->getTopOutfits();
             $title_for_layout = "Savile Row Society Home";
 
-            $this->set(compact('user','topStylists','topOutfits'));
+            $this->set(compact('user','topStylists','topOutfits', 'firstStylist'));
        
         }
         else if ($page == 'tailor') {

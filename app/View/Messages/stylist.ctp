@@ -31,6 +31,10 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <div class="right-pannel right">
                                 
                                 <div class="twelve columns message-area left pad-none">
+                                    <div id="scrollbar2">
+                                            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                            <div class="viewport">
+                                                <div class="overview">
                                     <div class="eleven columns container pad-none">
                                         
                                         
@@ -40,11 +44,17 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                         </p>
                                         <br />
                                         
-                                        <div class="chat-container">
-                    
-                                        </div>
+                                        
+                                                    <div class="chat-container">
+                                
+                                                    </div>
+
+                                                 
                                     
                                     </div>
+                                    </div>
+                                            </div>
+                                        </div>
                                 </div>
                                 <div class="twelve columns left">
                                     <div class="bottom-text">
@@ -130,6 +140,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         else{  
                             
                         } 
+                        $("#scrollbar2").trigger('resize');
                     }
                 },
                 error: function(res) {

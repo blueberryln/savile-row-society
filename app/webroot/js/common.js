@@ -32,13 +32,8 @@ function signUp(e) {
 /* function to show signup popup*/
 function signIn() {
     var blockTop = $(window).height()/2 - $("#signin-popup").height()/2;
-    $.blockUI({message: $('#signin-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
-    $('.blockOverlay').click($.unblockUI);
-}
-
-function multiAction() {
-    var blockTop = $(window).height()/2 - $("#multi-popup").height()/2;
-    $.blockUI({message: $('#multi-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    var blockLeft = $(window).width()/2 - $("#signin-popup").width()/2;
+    $.blockUI({message: $('#signin-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px", left: (blockLeft >0) ? blockLeft : 0}});
     $('.blockOverlay').click($.unblockUI);
 }
 
@@ -293,6 +288,14 @@ jQuery(function(){
             $("#register-form").submit();
         } 
            
+    });
+
+    
+    $('.multi-action').on('click', function(e){
+        e.preventDefault();
+        var blockTop = $(window).height()/2 - $("#multi-popup").height()/2;
+        $.blockUI({message: $('#multi-popup'), css: {top: (blockTop > 0) ? blockTop : "0px"}});
+        $('.blockOverlay').click($.unblockUI);
     });
 
 

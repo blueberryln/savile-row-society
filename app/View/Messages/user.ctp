@@ -53,7 +53,7 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
                                 <style type="text/css">
                                 a#sendphoto{
                                     float: none;
-                                    padding: 6px 17px;
+                                    /*padding: 6px 17px;*/
                                 }
                                 </style>
                                 <div class=" twelve columns left bottom-btns">
