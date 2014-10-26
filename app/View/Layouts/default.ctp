@@ -85,7 +85,7 @@
 
 
         <script src="<?php echo $this->request->webroot; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>      
+        <!--<script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>-->      
         <script src="<?php echo $this->request->webroot; ?>js/block.ui.js" type="text/javascript"></script>
         <script type="text/javascript">
             /*
@@ -142,7 +142,6 @@
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
-<!--        <script src="<?php echo $this->request->webroot; ?>js/jquery.bxsliderh.js" type="text/javascript"></script>-->
         <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>

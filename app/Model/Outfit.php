@@ -132,7 +132,7 @@ class Outfit extends AppModel {
                 $formatted_outfits[$value['Outfit']['id']] = $value;
             }
 
-            if($formatted_outfits){
+            if($sorted_by_list){
                 $sorted_outfits = array();
                 
                 foreach($outfit_list as $value){

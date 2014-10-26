@@ -93,23 +93,9 @@ class Message extends AppModel {
 			'order' => ''
 		)
 	);
-        
-        public $hasMany = array(
-            'Attached' => array(
-            'className' => 'Attached',
-            'foreignKey' => 'model_id',
-            'dependent' => false,
-            'conditions' => array('Attached.model' => 'Message'),
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-            )
-        );
-        /**
+
+
+    /**
      * Get those messages for user witch he is not already read
      * 
      * @param type $id
@@ -122,7 +108,6 @@ class Message extends AppModel {
                         'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image',
                         'UserFrom.id', 'UserFrom.user_type_id', 'UserFrom.email', 'UserFrom.password', 'UserFrom.first_name', 'UserFrom.last_name', 'UserFrom.username', 
 'UserFrom.profile_photo_url', 'UserFrom.phone', 'UserFrom.social_network',
-                        'Attached.attachment_id'
                       ),
         ));
     }

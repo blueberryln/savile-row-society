@@ -78,6 +78,12 @@ class PagesController extends AppController {
             $sideBarTab = 'refer';
 
             $user = $this->getLoggedUser();
+
+            if($user['User']['is_stylist']){
+                $this->redirect('/messages/feed');
+                exit;
+            }
+
             $User= ClassRegistry::init('User');
             $stylist = $User->findById($user['User']['stylist_id']);
 

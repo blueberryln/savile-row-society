@@ -628,7 +628,7 @@ class MessagesController extends AppController {
      * Get initial message list
      */
     public function getMyConversation($with_user_id = null) {
-        // get converzation for logged in user.
+        // get conversation for logged in user.
         $Outfit = ClassRegistry::init('Outfit');
 
         $result = array();
@@ -643,23 +643,23 @@ class MessagesController extends AppController {
                 if($user){
                     $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
                     $my_conversation = $this->Message->getMyConversationWith($with_user_id);
-                    foreach($my_conversation as &$row){
+                    $outfit_list = array();
+                    foreach($my_conversation as $row){
                         if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                            $outfit_id = $row['Message']['outfit_id'];
-                            
-                            $outfit_detail = $Outfit->findById($outfit_id);
-                            $OutfitItem = ClassRegistry::init('OutfitItem');
-                            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                            $entities = array();
-                            foreach($outfit as $value){
-                                $entities[] = $value['OutfitItem']['product_entity_id'];
-                            }
-                            $Entity = ClassRegistry::init('Entity');
-                            $entity_list = $Entity->getProductDetails($entities);
-                            $row['Outfit'] = $entity_list;
-                            $row['OutfitDetail'] = $outfit_detail;
+                            $outfit_list[] = $row['Message']['outfit_id'];
                         }
                     }
+
+                    $outfits = $Outfit->getOutfitDetails($outfit_list);
+
+                    foreach($my_conversation as &$row){
+                        if(isset($outfits[$row['Message']['outfit_id']])){
+                            $outfit = $outfits[$row['Message']['outfit_id']];
+                            $row['Outfit'] = $outfit['OutfitItem'];
+                            $row['OutfitDetail'] = $outfit['Outfit'];    
+                        }
+                    }
+
                     $result['Messages'] = $my_conversation;
                 }
                 else{
@@ -671,23 +671,23 @@ class MessagesController extends AppController {
             else{
                 // load data for user
                 $my_conversation = $this->Message->getMyConversation($user_id);
-                foreach($my_conversation as &$row){
+                $outfit_list = array();
+                foreach($my_conversation as $row){
                     if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                        $outfit_id = $row['Message']['outfit_id'];
-                        
-                        $outfit_detail = $Outfit->findById($outfit_id);
-                        $OutfitItem = ClassRegistry::init('OutfitItem');
-                        $outfit = $OutfitItem->find('all', array('contain' => array('Outfit'),'conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                        $entities = array();
-                        foreach($outfit as $value){
-                            $entities[] = $value['OutfitItem']['product_entity_id'];
-                        }
-                        $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getProductDetails($entities);
-                        $row['Outfit'] = $entity_list;
-                        $row['OutfitDetail'] = $outfit_detail['Outfit'];
+                        $outfit_list[] = $row['Message']['outfit_id'];
                     }
                 }
+
+                $outfits = $Outfit->getOutfitDetails($outfit_list);
+
+                foreach($my_conversation as &$row){
+                    if(isset($outfits[$row['Message']['outfit_id']])){
+                        $outfit = $outfits[$row['Message']['outfit_id']];
+                        $row['Outfit'] = $outfit['OutfitItem'];
+                        $row['OutfitDetail'] = $outfit['Outfit'];    
+                    }
+                }
+
                 $result['Messages'] = $my_conversation;
             }
             
@@ -750,26 +750,24 @@ class MessagesController extends AppController {
                 if($user){
                     $result['User'] = array('full_name' => $user['User']['full_name'], 'profile_photo_url'=>$user['User']['profile_photo_url']);
                     $my_conversation = $this->Message->getUnreadMessagesWith($with_user_id);
-                    if($my_conversation){
-                        foreach($my_conversation as &$row){
-                            if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                                $outfit_id = $row['Message']['outfit_id'];
-                                
-                                $outfit_detail = $Outfit->findById($outfit_id);
-                                $OutfitItem = ClassRegistry::init('OutfitItem');
-                                $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                                $entities = array();
-                                foreach($outfit as $value){
-                                    $entities[] = $value['OutfitItem']['product_entity_id'];
-                                }
-                                $Entity = ClassRegistry::init('Entity');
-                                $entity_list = $Entity->getProductDetails($entities);
-                                $row['Outfit'] = $entity_list;
-                                $row['OutfitDetail'] = $outfit_detail['Outfit'];
-                            }
+                    $outfit_list = array();
+                    foreach($my_conversation as $row){
+                        if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                            $outfit_list[] = $row['Message']['outfit_id'];
                         }
-                        $result['Messages'] = $my_conversation;
                     }
+
+                    $outfits = $Outfit->getOutfitDetails($outfit_list);
+
+                    foreach($my_conversation as &$row){
+                        if(isset($outfits[$row['Message']['outfit_id']])){
+                            $outfit = $outfits[$row['Message']['outfit_id']];
+                            $row['Outfit'] = $outfit['OutfitItem'];
+                            $row['OutfitDetail'] = $outfit['Outfit'];    
+                        }
+                    }
+
+                    $result['Messages'] = $my_conversation;
                 }
                 else{
                     $result['status'] = 'error';    
@@ -780,23 +778,23 @@ class MessagesController extends AppController {
             else{
                 // load data for user
                 $my_conversation = $this->Message->getUnreadMessages($user_id);
-                foreach($my_conversation as &$row){
+                $outfit_list = array();
+                foreach($my_conversation as $row){
                     if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                        $outfit_id = $row['Message']['outfit_id'];
-                        
-                        $outfit_detail = $Outfit->findById($outfit_id);
-                        $OutfitItem = ClassRegistry::init('OutfitItem');
-                        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                        $entities = array();
-                        foreach($outfit as $value){
-                            $entities[] = $value['OutfitItem']['product_entity_id'];
-                        }
-                        $Entity = ClassRegistry::init('Entity');
-                        $entity_list = $Entity->getProductDetails($entities);
-                        $row['Outfit'] = $entity_list;
-                        $row['OutfitDetail'] = $outfit_detail['Outfit'];
+                        $outfit_list[] = $row['Message']['outfit_id'];
                     }
                 }
+
+                $outfits = $Outfit->getOutfitDetails($outfit_list);
+
+                foreach($my_conversation as &$row){
+                    if(isset($outfits[$row['Message']['outfit_id']])){
+                        $outfit = $outfits[$row['Message']['outfit_id']];
+                        $row['Outfit'] = $outfit['OutfitItem'];
+                        $row['OutfitDetail'] = $outfit['Outfit'];    
+                    }
+                }
+
                 $result['Messages'] = $my_conversation;
             }
             
@@ -862,23 +860,23 @@ class MessagesController extends AppController {
                     $my_conversation = $this->Message->getOldMessagesWith($last_msg_id, $with_user_id);
                     $msg_count = count($my_conversation);
                     $result['msg_count'] = $msg_count;
-                    foreach($my_conversation as &$row){
+                    $outfit_list = array();
+                    foreach($my_conversation as $row){
                         if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                            $outfit_id = $row['Message']['outfit_id'];
-                            
-                            $outfit_detail = $Outfit->findById($outfit_id);
-                            $OutfitItem = ClassRegistry::init('OutfitItem');
-                            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                            $entities = array();
-                            foreach($outfit as $value){
-                                $entities[] = $value['OutfitItem']['product_entity_id'];
-                            }
-                            $Entity = ClassRegistry::init('Entity');
-                            $entity_list = $Entity->getProductDetails($entities);
-                            $row['Outfit'] = $entity_list;
-                            $row['OutfitDetail'] = $outfit_detail['Outfit'];
+                            $outfit_list[] = $row['Message']['outfit_id'];
                         }
                     }
+
+                    $outfits = $Outfit->getOutfitDetails($outfit_list);
+
+                    foreach($my_conversation as &$row){
+                        if(isset($outfits[$row['Message']['outfit_id']])){
+                            $outfit = $outfits[$row['Message']['outfit_id']];
+                            $row['Outfit'] = $outfit['OutfitItem'];
+                            $row['OutfitDetail'] = $outfit['Outfit'];    
+                        }
+                    }
+
                     $result['Messages'] = $my_conversation;
                 }
                 else{
@@ -899,27 +897,24 @@ class MessagesController extends AppController {
                 $my_conversation = $this->Message->getOldMessages($last_msg_id, $user_id);
                 $msg_count = count($my_conversation);
                 $result['msg_count'] = $msg_count;
-                if($msg_count > 0){
-                    foreach($my_conversation as &$row){
-                        if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
-                            $outfit_id = $row['Message']['outfit_id'];
-                            
-                            $outfit_detail = $Outfit->findById($outfit_id);
-                            $OutfitItem = ClassRegistry::init('OutfitItem');
-                            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-                            $entities = array();
-                            foreach($outfit as $value){
-                                $entities[] = $value['OutfitItem']['product_entity_id'];
-                            }
-                            $Entity = ClassRegistry::init('Entity');
-                            $entity_list = $Entity->getProductDetails($entities);
-                            $row['Outfit'] = $entity_list;
-
-                            $row['OutfitDetail'] = $outfit_detail['Outfit'];
-                        }
+                $outfit_list = array();
+                foreach($my_conversation as $row){
+                    if($row['Message']['is_outfit'] == 1 && $row['Message']['outfit_id'] > 0){
+                        $outfit_list[] = $row['Message']['outfit_id'];
                     }
-                    $result['Messages'] = $my_conversation;
                 }
+
+                $outfits = $Outfit->getOutfitDetails($outfit_list);
+
+                foreach($my_conversation as &$row){
+                    if(isset($outfits[$row['Message']['outfit_id']])){
+                        $outfit = $outfits[$row['Message']['outfit_id']];
+                        $row['Outfit'] = $outfit['OutfitItem'];
+                        $row['OutfitDetail'] = $outfit['Outfit'];    
+                    }
+                }
+
+                $result['Messages'] = $my_conversation;
             }
             
             $mark_read_list = array();
@@ -3302,6 +3297,11 @@ class MessagesController extends AppController {
         $user = $this->getLoggedUser();
         $User= ClassRegistry::init('User');
         $stylist = $User->findById($user['User']['stylist_id']);
+        
+        if($user['User']['is_stylist']){
+            $this->redirect('/messages/feed');
+            exit;
+        }
 
         $OrderItem = ClassRegistry::init('OrderItem');
         $Entity = ClassRegistry::init('Entity'); 
@@ -3351,6 +3351,11 @@ class MessagesController extends AppController {
         $user = $this->getLoggedUser();
         $User= ClassRegistry::init('User');
         $stylist = $User->findById($user['User']['stylist_id']);
+        
+        if($user['User']['is_stylist']){
+            $this->redirect('/messages/feed');
+            exit;
+        }
 
 
         $Wishlist = ClassRegistry::init('Wishlist');
@@ -3393,6 +3398,11 @@ class MessagesController extends AppController {
         $User= ClassRegistry::init('User');
         $stylist = $User->findById($user['User']['stylist_id']);
         $sideBarTab = 'profile';
+        
+        if($user['User']['is_stylist']){
+            $this->redirect('/messages/feed');
+            exit;
+        }
         
         $this->set(compact('user', 'stylist', 'sideBarTab'));
 
@@ -3447,6 +3457,11 @@ class MessagesController extends AppController {
         $stylist = $User->findById($user['User']['stylist_id']);
         $sideBarTab = 'outfit';  
         $Outfit = ClassRegistry::init('Outfit');
+        
+        if($user['User']['is_stylist']){
+            $this->redirect('/messages/feed');
+            exit;
+        }
 
         $page = (isset($this->request->data['page']) && $this->request->data['page'] > 0) ? $this->request->data['page'] : 1; 
 

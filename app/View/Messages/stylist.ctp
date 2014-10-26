@@ -31,10 +31,10 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <div class="right-pannel right">
                                 
                                 <div class="twelve columns message-area left pad-none">
-                                    <div id="scrollbar2">
+                                    <!-- <div id="scrollbar2">
                                             <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                                             <div class="viewport">
-                                                <div class="overview">
+                                                <div class="overview"> -->
                                     <div class="eleven columns container pad-none">
                                         
                                         
@@ -51,9 +51,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
 
                                                  
                                     
+                                    <!-- </div>
                                     </div>
-                                    </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                 </div>
                                 <div class="twelve columns left">
@@ -176,13 +176,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showChatMsg(chatMsg) {
             var html = ''; 
             if(chatMsg['Message']['is_outfit'] == 1){
-                //html = html + '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
-                //html = html + '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' suggested new items to complete a style:</div>'; 
-                if(chatMsg['Message']['body'] != '' && chatMsg['Message']['body'] != 'outfit'){
-                    //html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
-                }
+                
 
-                var outfitName = (chatMsg['OutfitDetail']['Outfit']['outfit_name']) ? chatMsg['OutfitDetail']['Outfit']['outfit_name'] : ''; 
+                var outfitName = (chatMsg['OutfitDetail']['outfit_name']) ? chatMsg['OutfitDetail']['outfit_name'] : ''; 
                 
                 html = html +   '<div class="client-outfit">'+
                                     '<div class="client-msg-reply"><span>' + outfitName + '</span></div>' + 
@@ -190,26 +186,16 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 ;
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
                     var imgSrc = webroot + "img/image_not_available-small.png";
-                    if(typeof(chatMsg['Outfit'][i]["Image"]) != "undefined" && chatMsg['Outfit'][i]["Image"].length > 0){
-                        imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
-                    }
-                    
-                    var likedClass = "";
-                    var dislikedClass = "";
-                    if(chatMsg['Outfit'][i]['Wishlist'] && chatMsg['Outfit'][i]['Wishlist']['id'] && chatMsg['Outfit'][i]['Wishlist']['id'] > 0){
-                        likedClass = "liked"    
-                    }
-                    
-                    if(chatMsg['Outfit'][i]['Dislike'] && chatMsg['Outfit'][i]['Dislike']['id'] && chatMsg['Outfit'][i]['Dislike']['id'] > 0){
-                        dislikedClass = "disliked"    
+                    if(typeof(chatMsg['Outfit'][i]['product']["Image"]) != "undefined" && chatMsg['Outfit'][i]['product']["Image"].length > 0){
+                        imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]['product']["Image"][0]["name"] + "/98/135";
                     }
                     
                     
                     html = html + 
                             '<li>' + 
-                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
-                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
-                                '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" alt="" /></li>'; 
+                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['product']['Entity']['slug'] + '" class="product-slug">' + 
+                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['product']['Entity']['id'] + '" class="product-id">' + 
+                                '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['product']['Entity']['name'] + '" alt="" /></li>'; 
                 }
 
                     html = html +  '</ul>' +
