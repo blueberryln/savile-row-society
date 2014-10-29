@@ -56,6 +56,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                 <br />
 
                                 <br />  <br />
+                                <img src="https://shareasale.com/sale.cfm?amount=<?php echo $transaction_data['Transaction']['amount']; ?>&tracking=<?php echo $transaction_data['Transaction']['order_id']; ?>&transtype=sale&merchantID=55349" width="1" height="1"> 
                             <?php endif; ?>
                         </div>
                         <div class="twelve columns center-block text-center">

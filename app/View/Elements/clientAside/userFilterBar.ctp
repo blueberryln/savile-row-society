@@ -70,7 +70,7 @@
         <div class="myclient-list tab_n_mob">
            
                         <ul id="searchuserlist">
-                        <?php  foreach($userlist as $searchuserclient){?>
+                        <?php  foreach($userlists as $searchuserclient){?>
                             <li>
                                 <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
                                     <div class="myclient-img">

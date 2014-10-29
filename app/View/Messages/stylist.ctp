@@ -31,14 +31,15 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             <div class="right-pannel right">
                                 
                                 <div class="twelve columns message-area left pad-none">
+                                    
                                     <!-- <div id="scrollbar2">
-                                            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                            <div class="scrollbar" style="display:block; right: 4px;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                                             <div class="viewport">
                                                 <div class="overview"> -->
                                     <div class="eleven columns container pad-none">
                                         
                                         
-                                        <p id="loadOldMsgs" class="hide">
+                                        <p id="loadOldMsgs">
                                             <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
                                             <a href="">Load Old Messages</a>
                                         </p>
@@ -66,7 +67,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     <a class=" link-btn black-btn" href="#" title="">Send Photo Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
                                     <a class="link-btn black-btn" href="#" title="">Send</a> -->
                                     <!-- <a class="create-outfit left" href="#" title="">Create Outfit</a> -->
-                                    <a class=" create-outfit left"  id="createOutfit"  href="">Create New Outfit</a>
+                                    <a class=" create-outfit left"  id=""  href="/outfits/create/<?php echo $client_id; ?>">Create New Outfit</a>
                                     <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
                                     <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
                                     <a class="send-btn right"  id="sendMessages"  href="">Send Message</a>
@@ -140,7 +141,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         else{  
                             
                         } 
-                        $("#scrollbar2").trigger('resize');
+                        // $("#scrollbar2").trigger('resize');
                     }
                 },
                 error: function(res) {
@@ -164,6 +165,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             chatContainer.append(html);
                         }
                     }
+                    // $("#scrollbar2").trigger('resize');
                 },
                 error: function(res) {
                     
@@ -345,7 +347,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         
         $("#sendMessages").click(function(e) {
             e.preventDefault();
-            if(!$("#messageToSend").hasClass("sending") && $("#messageToSend").val() != '') {
+            //if(!$("#messageToSend").hasClass("sending") && $("#messageToSend").val() != '') {
+            if($("#messageToSend").val() != '') {
                 $("#messageToSend").addClass("sending");
                 var message = $("#messageToSend").val();
                 var _data = {
@@ -354,7 +357,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
 
                 var html = showSentMessage(message, uid);
+                console.log(html);
                 chatContainer.append(html);
+                // $("#scrollbar2").trigger('resize');
                 $("#messageToSend").val("");
 
                 $.ajax({
@@ -414,6 +419,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     else{
                         $("#loadOldMsgs").fadeOut(300);     
                     } 
+
+
+                    // $("#scrollbar2").trigger('resize');
                 }    
             });
         });

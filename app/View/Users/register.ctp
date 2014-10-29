@@ -484,7 +484,7 @@ color:#396; !important
                     <div class="eleven columns center-block step3-text-aera">
                         <div class="five columns pref-time left">
                             <div class="pref-options">
-                                </label><textarea name="data[User][comments]">Please add any additional comments you’d like your stylist to know.</textarea>
+                                </label><textarea name="data[User][comments]" placeholder="Please add any additional comments you’d like your stylist to know."></textarea>
                             </div>
                         </div>
                          <div class="five columns pref-time right">

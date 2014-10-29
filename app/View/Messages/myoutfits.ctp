@@ -176,7 +176,6 @@
                         html = html + '</div>';
                         html = html + '</div>';
                         html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                        html = html + '<div class="share-outfit right">Share Outfit</div>';
                         html = html + '</div>';
                         html = html + '</div>';
                         html = html + '</div>';
@@ -229,7 +228,6 @@
                             html = html + '<div class="client-comments-text left">hi</div>';
                             html = html + '</div>';
                             html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '<div class="share-outfit right">Share Outfit</div>';
                             html = html + '</div>';
                             html = html + '</div>';
                             html = html + '</div>';
@@ -281,7 +279,6 @@
                             html = html + '<div class="client-comments-text left">hi</div>';
                             html = html + '</div>';
                             html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '<div class="share-outfit right">Share Outfit</div>';
                             html = html + '</div>';
                             html = html + '</div>';
                             html = html + '</div>';
@@ -334,7 +331,6 @@ $(document).on('keydown', '.myoutfit-srch' ,function(){
                             html = html + '<div class="client-comments-text left">hi</div>';
                             html = html + '</div>';
                             html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '<div class="share-outfit right">Share Outfit</div>';
                             html = html + '</div>';
                             html = html + '</div>';
                             html = html + '</div>';
@@ -386,7 +382,6 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                             html = html + '<div class="client-comments-text left">hi</div>';
                             html = html + '</div>';
                             html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '<div class="share-outfit right">Share Outfit</div>';
                             html = html + '</div>';
                             html = html + '</div>';
                             html = html + '</div>';
@@ -437,7 +432,6 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                             html = html + '<div class="client-comments-text left">hi</div>';
                             html = html + '</div>';
                             html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '<div class="share-outfit right">Share Outfit</div>';
                             html = html + '</div>';
                             html = html + '</div>';
                             html = html + '</div>';
@@ -608,13 +602,8 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                                     <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
                                                 </div>
                                                 <div class="twelve columns left client-outfit-bottom pad-none">
-                                                    <div class="client-comments left">
-                                                        <h2>Stylist Comment</h2>
-                                                        <div class="client-comments-text left"><?php if(isset($entity_list['comments'][0]['Message']['body'])!=''){ echo $entity_list['comments'][0]['Message']['body'];}else{} ?></div>
-                                                    </div>
                                                     <div class="bkmrk-outfit right" ><a href='#' id="outfitbook">Bookmark Outfit</a></div>
                                                     
-                                                    <div class="share-outfit right">Share Outfit</div>
                                                 </div>
                                             </div>
                                         </div>

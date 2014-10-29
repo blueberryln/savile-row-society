@@ -136,7 +136,7 @@
             }
 
             $(document).ready(function() { 
-                startMessageNotifier();
+                // startMessageNotifier();
             });
         </script>
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
@@ -508,8 +508,8 @@
         </script>
         
         <?php 
-            // echo $this->element('scripts/zoopim');
-            // echo $this->element('scripts/remarketing'); 
+            echo $this->element('scripts/zoopim');
+            echo $this->element('scripts/remarketing'); 
         ?>
         
         <?php echo $this->fetch('script'); ?>
