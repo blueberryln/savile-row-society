@@ -2553,8 +2553,8 @@ input#billingCopybilling { visibility: visible;}
     .start-today a, .details { font-size: 16px; line-height: 18px;}
     .details .home-town, .details .fun-fact, .details .fashion-tips, .photostream-section, h1.stylistbio-heading.photostream { padding: 6px 10px 8px;}
     .photostream-section, h1.stylistbio-heading.photostream { font-size: 22px; text-align: center;}
-    .photostream-section li { width: 48%; margin: 2px 0; height: 100px; line-height: 100px;}
-    .photostream-section li img {max-height: 100px;}
+    .photostream-section li { width: 48%; margin: 2px 0; height: 100px; line-height: 100px; overflow: hidden;}
+    .photostream-section li img {}
     .holder{ height: 55px;}
     a.jp-previous, a.jp-next{ width: 100%; background-position: center 0px;}
     a.jp-previous{ left: 0px;}
