@@ -59,42 +59,31 @@ class PagesController extends AppController {
             //Get Top Stylists
             $TopStylist = ClassRegistry::init('TopStylist');
             $topStylists = $TopStylist->getTopStylists();
+
+            $firstStylist = count($topStylists) ? $topStylists[0] : false;
             
             //Get Top Outfits
             $TopOutfit = ClassRegistry::init('TopOutfit');
             $topOutfits = $TopOutfit->getTopOutfits();
             $title_for_layout = "Savile Row Society Home";
 
-            $this->set(compact('user','topStylists','topOutfits'));
+            $this->set(compact('user','topStylists','topOutfits', 'firstStylist'));
        
-        }
-        else if ($page == 'tailor') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            $this->set(compact('user'));
         }
         else if ($page == 'contact') {
             $title_for_layout = "Contact Us - Savile Row Society";
-        }
-        else if ($page == 'trainer') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            $this->set(compact('user'));
-        }
-        else if ($page == 'stylist') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            if(!$user['User']['preferences']){
-                $this->Session->write('completeProfile', true);
-                $this->redirect(array('controller' => 'profile', 'action' => 'about'));   
-            }
-            $this->set(compact('user'));
         }
         else if ($page == 'refer-a-friend') {
             $this->isLogged();
             $sideBarTab = 'refer';
 
             $user = $this->getLoggedUser();
+
+            if($user['User']['is_stylist']){
+                $this->redirect('/messages/feed');
+                exit;
+            }
+
             $User= ClassRegistry::init('User');
             $stylist = $User->findById($user['User']['stylist_id']);
 

@@ -40,9 +40,6 @@ $(document).ready(function(){
     });           
 });
 ';
-$this->Html->css('ui/jquery-ui', null, array('inline' => false));
-$this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
-$this->Html->script('//code.jquery.com/ui/1.10.3/jquery-ui.min.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
 
@@ -59,47 +56,6 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
 
                             <div class="right-pannel right rfr-a-frnd">
-                                <!-- <div class="twelve columns message-area left pad-none">
-                                    <div class="eight columns page-content refer-options">
-                                        <div class="refer-way one">
-                                            <div class="icon">
-                                                <img class="" src="<?php echo $this->request->webroot; ?>img/ic_srs.png" /> 
-                                            </div>
-                                            <div class="rw-content nine columns">
-                                                <h3>Your personal refer link:</h3>
-                                                <div class="rw-field">
-                                                    <input class="eleven columns" type="text" readonly value="http://www.savilerowsociety.com/users/refer/<?php echo $user['User']['id']; ?>">                        
-                                                </div>                    
-                                            </div>
-                                        </div>
-                                        <div class="refer-way two">
-                                            <div class="icon">
-                                                <img class="" src="<?php echo $this->request->webroot; ?>img/mail@2x.png" /> 
-                                            </div>
-                                            <div class="rw-content nine columns">
-                                                <h3>Mail it</h3>
-                                                <span>To</span>
-                                                <div class="rw-field">
-                                                    <input class="ten columns" type="text" placeholder="Email address (comma seperated)" id="emailList" > 
-                                                    <a href="" class="link-btn gold-btn" id="inviteFriendsEmail">Send</a>                       
-                                                </div>
-                                                <div class="rw-field">
-                                                    <span class="gold referStatus"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="refer-way three">
-                                            <div class="icon">
-                                                <img class="" src="<?php echo $this->request->webroot; ?>img/fb@2x.png" /> 
-                                            </div>
-                                            <div class="rw-content nine columns">
-                                                <h3><a href="" id="inviteFriendsFB">Share it on Facebook</a></h3>                    
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-
-                                </div> -->
                                 <div class="twelve columns left">
                                     <div class="eleven columns left refer-frnd-area pad-none">
                                         <div class="frnd-refer-user prsnl-refer"><span>&nbsp;</span>SRS Personal Reference link</div>

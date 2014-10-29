@@ -17,7 +17,6 @@
 
         <!-- CSS
   ================================================== -->
-        <link href='//fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
         <?php        
         echo $this->Html->css('base');
         echo $this->Html->css('lightbox');
@@ -26,70 +25,30 @@
         echo $this->Html->css('flexslider');
         echo $this->Html->css('jquery.fancybox');
         echo $this->Html->css('tinyscrollbar');
-//        echo $this->Html->css('jquery.cluetip');
         echo $this->Html->css('jcarousel.responsive');
-        echo $this->Html->css('style.css?v=5'); 
+        echo $this->Html->css('style'); 
         echo $this->fetch('css');
        
         ?>
         <!-- Favicons
         ================================================== -->
-        <!--[if lte IE 9]>
-        	<link rel="stylesheet" type="text/css" href="<?php echo $this->webroot;?>css/ie.css" />
-        <![endif]-->
         <link rel="shortcut icon" href="<?php echo $this->request->webroot; ?>img/favicon.ico">
         <link rel="apple-touch-icon" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-114x114.png">
+        <!-- Favicons end -->
         
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-<!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
-<!--        <script src="<?php echo $this->request->webroot; ?>js/jquery-1.9.1.min.js"></script>-->
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-36935088-1']);
-            _gaq.push(['_trackPageview']);
-            
-            (function() {
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
+        <!--[if lt IE 9]>
+            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+
+        <?php echo $this->element('scripts/ga'); ?>
     </head>
     <body>
-    
-    <!-- Facebook javascript API
-    ================================ -->
-        <div id="fb-root"></div>
-        <script>
-    	  window.fbAsyncInit = function() {
-    	    // init the FB JS SDK
-    	    FB.init({
-    	      appId      : '507420839292016', // App ID from the App Dashboard
-    	      frictionlessRequests : true,
-    	      status     : true, // check the login status upon init?
-    	      cookie     : true, // set sessions cookies to allow your server to access the session?
-    	      xfbml      : true,  // parse XFBML tags on this page?
-    	      oauth		 : true    	    });
-    	  };
-    
-    	  // Load the SDK's source Asynchronously
-    	  (function(d, s, id, debug){
-    	     var js, fjs = d.getElementsByTagName(s)[0];
-    	     if (d.getElementById(id)) {return;}
-    	     js = d.createElement(s); js.id = id;
-    	     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
-    	     fjs.parentNode.insertBefore(js, fjs);
-    	    }(document, 'script', 'facebook-jssdk', false));
-    	</script>
-    <!-- Facebook javascript API ends
-    ================================ -->
+        <?php echo $this->element('scripts/fb'); ?>
+        
     
         <!-- Header
         ================================================== -->
@@ -101,51 +60,9 @@
         <?php echo $this->Session->flash(); ?>
         <?php echo $this->fetch('content'); ?>
         
-
-        <div class="bottom footer-bar twelve columns">
-            <div class="footer">
-                <!-- footer -->
-                <div class="eleven columns container">
-                    <div class="sixteen columns copyright left footer-buttons">
-                        <ul>
-                        <?php if(!$is_logged) : ?>
-                            <li><a class="vip-link footer-bnt" href="" id="block-vip-access" >VIP Access</a></li>
-                        <?php endif; ?>
-                            <li><a class="blog-link footer-bnt" href="http://www.savilerowsociety.com/blog" title="">Blog</a></li>
-                        </ul>
-                        
-                    </div>
-                    <div class="menu right four columns">
-                        <ul>
-                            <li><a href="<?php echo $this->webroot; ?>#two">About us</a></li>
-                            <!-- <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li> -->
-                            <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>company/privacy">Privacy</a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>contact">Contact</a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>
-                            <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
-                            <!-- <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li> -->
-                            <!-- <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li> -->
-                            <li><a href="<?php echo $this->request->webroot; ?>company/terms">Terms</a></li>
-                        </ul>
-                        <div class="footer-copyright">(c) Savile Row Society 2014</div>
-                    </div>
-                    
-            </div>
-            </div><!-- container -->
-        </div>
         
-        <!--Start of Zopim Live Chat Script-->
+        <?php echo $this->element('footer'); ?>
 
-<script type="text/javascript">
-window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-$.src='//v2.zopim.com/?2EyWSdOlvawNOnH4NsrFdHDbmRHMk5Pq';z.t=+new Date;$.
-type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-
-<!--End of Zopim Live Chat Script-->
 
         <!-- Popup Script
         ================================================== -->
@@ -166,11 +83,9 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         <!-- End Document
         ================================================== -->
 
-        <!--[if lt IE 9]>
-        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+
         <script src="<?php echo $this->request->webroot; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>      
+        <!--<script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>-->      
         <script src="<?php echo $this->request->webroot; ?>js/block.ui.js" type="text/javascript"></script>
         <script type="text/javascript">
             /*
@@ -221,13 +136,12 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
             }
 
             $(document).ready(function() { 
-                startMessageNotifier();
+                // startMessageNotifier();
             });
         </script>
         <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
-<!--        <script src="<?php echo $this->request->webroot; ?>js/jquery.bxsliderh.js" type="text/javascript"></script>-->
         <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
@@ -243,7 +157,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
        
         
         
-<!--        <script src="<?php echo $this->request->webroot; ?>js/jquery.cluetip.js" type="text/javascript"></script>-->
+
         
         <script type="text/javascript">
 
@@ -593,23 +507,10 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         
         </script>
         
-        
-               
-        <!-- Google Code for Remarketing Tag -->
-        <script type="text/javascript">
-        /* <![CDATA[ */
-        var google_conversion_id = 979436043;
-        var google_custom_params = window.google_tag_params;
-        var google_remarketing_only = true;
-        /* ]]> */
-        </script>
-        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-        </script>
-        <noscript>
-        <div style="display:inline;">
-        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/979436043/?value=0&amp;guid=ON&amp;script=0"/>
-        </div>
-        </noscript>
+        <?php 
+            echo $this->element('scripts/zoopim');
+            echo $this->element('scripts/remarketing'); 
+        ?>
         
         <?php echo $this->fetch('script'); ?>
 

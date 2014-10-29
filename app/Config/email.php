@@ -44,20 +44,20 @@
  */
 class EmailConfig {
 
-    public $default = array(
-        'host' => 'ssl://smtp.gmail.com',
-        'port' => 465,
-        'username' => 'admin@savilerowsociety.com',
-        'password' => 'srsus1234',
-        'transport' => 'Smtp'
-    );
-
     // public $default = array(
-    //     'host' => 'email-smtp.us-east-1.amazonaws.com',
+    //     'host' => 'ssl://smtp.gmail.com',
     //     'port' => 465,
-    //     'username' => 'AKIAJUMR6TXA3YBNFURA',
-    //     'password' => 'AlkTL2SIDvdimLMXH00+TtnXMq8qrVYSJCcNaeigkXmO',
+    //     'username' => 'admin@savilerowsociety.com',
+    //     'password' => 'srsus1234',
     //     'transport' => 'Smtp'
     // );
+
+    public $default = array(
+        'host' => 'email-smtp.us-east-1.amazonaws.com',
+        'port' => 465,
+        'username' => 'AKIAJUMR6TXA3YBNFURA',
+        'password' => 'AlkTL2SIDvdimLMXH00+TtnXMq8qrVYSJCcNaeigkXmO',
+        'transport' => 'Smtp'
+    );
 
 }

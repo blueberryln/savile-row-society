@@ -25,34 +25,34 @@
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Jacket</label></div>
                                                         <div class=" six columns left msrmnt-input-area">
-                                                    <input type="text" name="" value="<?php if(!isset($userprofile['UserPreference'])): echo $userprofile['UserPreference']['jacket_size']; else: endif; ?>"  /></div>
+                                                    <input type="text" readonly name="" value="<?php echo (isset($userprofile['UserPreference']) && isset($userprofile['UserPreference']['jacket_size'])) ? $userprofile['UserPreference']['jacket_size'] : '-'; ?>"  /></div>
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Pant Waist</label></div>
                                                         <div class=" six columns left msrmnt-input-area">
-                                                        <input type="text" name="" value="<?php if(!empty($userprofile)): echo $userprofile['UserPreference']['pant_waist']; else: endif; ?>" /></div>
+                                                        <input type="text" readonly name="" value="<?php echo (isset($userprofile['UserPreference']) && isset($userprofile['UserPreference']['pant_waist'])) ? $userprofile['UserPreference']['pant_waist'] : '-'; ?>" /></div>
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Pant Length</label></div>
                                                         <div class=" six columns left msrmnt-input-area">
-                                                        <input type="text" name="" value="<?php if(!empty($userprofile)): echo $userprofile['UserPreference']['pant_length']; else: endif; ?>" /></div>
+                                                        <input type="text" readonly name="" value="<?php echo (isset($userprofile['UserPreference']) && isset($userprofile['UserPreference']['pant_length'])) ? $userprofile['UserPreference']['pant_length'] : '-'; ?>" /></div>
                                                     </div>
                                                 </div>
                                                 <div class="five columns right">
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Neck</label></div>
                                                         <div class=" six columns left msrmnt-input-area">
-                                                        <input type="text" name="" value="<?php echo $userprofile['UserPreference']['neck_size'] ?>" /></div>
+                                                        <input type="text" readonly name="" value="<?php echo (isset($userprofile['UserPreference']) && isset($userprofile['UserPreference']['neck_size'])) ? $userprofile['UserPreference']['neck_size'] : '-'; ?>" /></div>
                                                     </div>
                                                     <div class="twelve columns left">
                                                         <div class="six columns left msrmnt-label"><label>Shoe</label></div>
                                                         <div class=" six columns left msrmnt-input-area">
-                                                        <input type="text" name="" value="<?php echo $userprofile['UserPreference']['shoe_size'] ?>" /></div>
+                                                        <input type="text" readonly name="" value="<?php echo (isset($userprofile['UserPreference']) && isset($userprofile['UserPreference']['shoe_size'])) ? $userprofile['UserPreference']['shoe_size'] : '-'; ?>" /></div>
                                                     </div>
                                                 </div>
                                                 <div class="twelve columns left">
                                                     <div class="three columns left msrmnt-label"><label>Style Profile Comments</label></div>
-                                                    <div class="nine columns left msrmnt-input-area"><textarea name="comment"> <?php echo $client['User']['comments']; ?> </textarea></div>
+                                                    <div class="nine columns left msrmnt-input-area"><textarea readonly name="comment"> <?php echo $client_user['User']['comments']; ?> </textarea></div>
                                                 </div>
                                                 <?php echo $this->Form->create('UserSizeInformation');?>
                                                 <div class="twelve columns left cstm-msrmnt">
@@ -62,17 +62,17 @@
                                                 </div>
                                                 <?php
                                                 //print_r($customdata);
-                                                if(isset($customdata[0]['UserSizeInformation'])){
+                                                if(isset($customdata['UserSizeInformation'])){
 
 
-                                                $customdatashirt = json_decode($customdata[0]['UserSizeInformation']['custom_shirt_measurement'],true);
-                                                $customdatajacket = json_decode($customdata[0]['UserSizeInformation']['custom_jacket_measurement'],true);
-                                                $customdatatrouser = json_decode($customdata[0]['UserSizeInformation']['custom_trouser_measurement'],true);
-                                                $customdatavest = json_decode($customdata[0]['UserSizeInformation']['custom_vest_measurement'],true);
+                                                $customdatashirt = json_decode($customdata['UserSizeInformation']['custom_shirt_measurement'],true);
+                                                $customdatajacket = json_decode($customdata['UserSizeInformation']['custom_jacket_measurement'],true);
+                                                $customdatatrouser = json_decode($customdata['UserSizeInformation']['custom_trouser_measurement'],true);
+                                                $customdatavest = json_decode($customdata['UserSizeInformation']['custom_vest_measurement'],true);
                                                     //print_r($customdatas);
                                             }
                                                  ?>
-                                        <input type="hidden" name="data[UserSizeInformation][id]"   value="<?php echo $customdata[0]['UserSizeInformation']['id']; ?>">
+                                        <input type="hidden" name="data[UserSizeInformation][id]" value="<?php echo (isset($customdata['UserSizeInformation'])) ? $customdata['UserSizeInformation']['id'] : ''; ?>">
                                                 <div class="twelve columns left cstm-msrmnt-content">
                                                     <div id="horizontalTab">
                                                         <ul>
@@ -156,7 +156,7 @@
                                                             </div>
                                                             <div class="twelve columns left">
                                                                 <div class="three columns left msrmnt-label"><label>Custom  Measurement Comments</label></div>
-                                                                <div class="nine columns left msrmnt-input-area"><textarea name="data[UserSizeInformation][custom_measurement_comments]"> <?php  if(isset($customdata[0]['UserSizeInformation']['custom_measurement_comments'])!=''){  echo $customdata[0]['UserSizeInformation']['custom_measurement_comments'];  }else{   } ?>  </textarea></div>
+                                                                <div class="nine columns left msrmnt-input-area"><textarea name="data[UserSizeInformation][custom_measurement_comments]"> <?php  if(isset($customdata['UserSizeInformation']['custom_measurement_comments'])!=''){  echo $customdata['UserSizeInformation']['custom_measurement_comments'];  }else{   } ?>  </textarea></div>
                                                             </div>
                                                         </div>
                                                             
