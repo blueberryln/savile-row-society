@@ -453,7 +453,7 @@ color:#396; !important
                         </div>
                          <div class="five columns pref-time right">
                             <div class="pref-options">
-                                <div class="connect">
+                                <div class="connect first">
                                     <div class="squared">
                                         <input type="checkbox" id="squared" name="data[User][is_phone]">
                                         <label for="squared"></label>

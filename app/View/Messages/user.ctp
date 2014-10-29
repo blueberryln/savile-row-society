@@ -397,9 +397,15 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         });
 
         $("#requestanoutfit").on('click', function(e){
+            var blockTop = $(window).height()/2 - $("#chatrequest-box").height()/2;
+            var blockLeft = $(window).width()/2 - $("#chatrequest-box").width()/2;
+          console.log ($(window).width() +':'+ $("#chatrequest-box").width());
             e.preventDefault();
-            $.blockUI({message: $("#chatrequest-box")});   
+            $.blockUI({message: $("#chatrequest-box"), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px", left: (blockLeft >0) ? blockLeft : "0px"}});
+            $('.blockOverlay').click($.unblockUI);
         });
+        
+        
         
         $("#loadOldMsgs a").on('click', function(e){
             e.preventDefault();

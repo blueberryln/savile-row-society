@@ -44,7 +44,7 @@ else if($sideBarTab == "refer"){
 <div class="my-profile-img m-ver">
     <h2><?php echo ucwords($stylist['User']['first_name'].' '.$stylist['User']['last_name']); ?><span>My Stylist</span></h2>
     <div class="client-img-small right">
-    <a href="<?php echo $this->webroot; ?>users/stylistbiography/<?php echo $stylist['User']['id']; ?>" title=""><img src="<?php echo $stylist_image_src; ?>" id="user_image"  /></a>
+    <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $stylist['User']['id']; ?>" title=""><img src="<?php echo $stylist_image_src; ?>" id="user_image"  /></a>
     </div>
     <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
 </div>

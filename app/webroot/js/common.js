@@ -25,7 +25,8 @@ function footerFix(){
 /* function to show signin popup*/
 function signUp(e) {
     var blockTop = $(window).height()/2 - $("#signup-popup").height()/2;
-    $.blockUI({message: $('#signup-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    var blockLeft = $(window).width()/2 - $("#signin-popup").width()/2;
+    $.blockUI({message: $('#signup-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px", left: (blockLeft >0) ? blockLeft : 0}});
     $('.blockOverlay').click($.unblockUI);
 }
 

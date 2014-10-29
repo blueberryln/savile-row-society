@@ -354,7 +354,8 @@ input[type="checkbox"], input[type="radio"] {visibility: hidden;}
 .profile-stp3 { padding-bottom: 30px; background:  url("../img/steps-divider.png") no-repeat center bottom; margin-bottom: 15px;}
 .profile-stp3 h1 { font-size: 24px; line-height: 26px; color: #444444; text-transform: uppercase; padding: 15px 0 12px; margin-bottom: 0px;}
 .profile-stp3 h3 {font-size: 14px; color: #000; font-weight: normal; line-height: 18px; margin-bottom: 0px; padding: 8px 0px 20px;}
-.pref-time .connect { float: left; width: 100%; text-align: left; margin-top: 10px;}
+.pref-time .connect { float: left; width: 100%; text-align: left; margin-top: 55px;}
+.pref-time .connect.first { margin-top: 21px;}
 
 .squared { width: 20px;	margin:4px 0 0; position: relative; height: 20px; padding: 2px; float: left;}
 .squared label { cursor: pointer; position: absolute; width: 20px; height: 20px; top: 0; border-radius: 4px; background: #7d7676;}
@@ -972,7 +973,7 @@ h1.stylistbio-heading { position: relative; font-size: 28px; color: #d19b03; mar
 .photostream-section, h1.stylistbio-heading.photostream { padding-left: 18px;}
 h1.top-outits-heading { border-bottom: 1px solid #ebebeb;}
 .photostream-section { padding-bottom: 10px;}
-.photostream-section li { display: inline-block; margin:1px; /*width: 23.6667%;*/ max-height: 170px; line-height: 170px; text-align: center; position: relative;}
+.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 170px; line-height: 170px; text-align: center; position: relative;}
 .photostream-section li a { }
 .photostream-section li img { max-height: 170px; vertical-align: middle;}
 
@@ -1030,7 +1031,7 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .message-area { background: #dddddd; padding: 4% 0; min-height: 450px;}
 .useroutfit_area{ position: relative;}
 .useroutfit-pagination { position: relative; bottom: 10px; left: 0; right: 0; margin:0 auto;}
-.user-msg, .client-msg, .client-outfit, .message-image-area, .user-message-image-area { width: 52%; float: left; background: #c2c2c2; display: inline-block; padding: 10px 15px 7px 15px; margin-bottom: 18px; }
+.user-msg, .client-msg, .client-outfit, .message-image-area, .user-message-image-area { width: 52%; float: left; background: #c2c2c2; display: inline-block; padding: 10px 15px 7px 15px; margin-bottom: 18px; word-wrap: break-word; }
 .user-req, .client-name, .msg, msg-date, .client-msg-reply, .message-caption, .otft-request { font-family: 'Proximanova'; font-size: 14px; line-height: 17px; color: #000; padding-bottom: 5px;}
 .otft-request { color: #fff; font-size: 16px; font-style: italic;}
 .user-req { color: #fff; font-style: italic; font-size: 14px; line-height: 18px;}
@@ -1389,7 +1390,7 @@ a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; 
 .activity-content-area{ width: 96%; padding: 0 2% 15px; float: left;}
 .activity-feed-section li .activity-icn {width: 43px; float: left; min-height: 78px; background: url("../images/activity-icons.png")no-repeat 0px 0px;}
 .activity-user-img { width: 55px; float: left; padding: 22px 20px 0 20px;}
-.activity-msg-area { float:left; display: block; padding-top: 19px; width: 34em; max-width: 65%;}
+.activity-msg-area { float:left; display: block; padding-top: 19px; width: 60em; max-width: 65%;}
 .activity-user-name { display: block;font-size: 16px; padding-bottom: 10px;}
 .activity-msg-dtl { float: left; width: 100%;}
 .activity-msg-dtl span.activity-prdct-img { width: 100px; max-height: 100px; float: left; margin-right: 30px;}
@@ -2497,7 +2498,7 @@ input#billingCopybilling { visibility: visible;}
 	#my-stylist, div.mgs-btn{bottom: 17%;}
 	#my-stylist .link-btn, div.mgs-btn .link-btn {padding: 5px 12px; font-size: 14px;}
 	div.mem-table{margin: 0 !important; padding: 0 !important; width: 97% !important; margin-left: 10px !important;}
-	.box-modal , .contact-options input[type="text"]{ width: 100%; }
+	.box-modal , .contact-options input[type="text"]{ width: 250px!important; }
 	.bubble-wrap{background: #f5f5f5 !important; border-radius: 4px !important; padding: 0 !important;}
 	.bubble-wrap p{padding: 10px !important;}
 	div.mg-vid{height: auto !important;}
@@ -2559,7 +2560,7 @@ input#billingCopybilling { visibility: visible;}
     a.jp-previous, a.jp-next{ width: 100%; background-position: center 0px;}
     a.jp-previous{ left: 0px;}
     a.jp-next{ right: -5px; top: 30px;}
-    .photostream-section li img { width: 100%;}
+    .photostream-section li img { width: auto!important; height: auto !important;}
     a.link-older-photos { display: block; text-align: center; float: none!important; margin-right: 0; margin-bottom: 10px;}
     .outfit-products li { width: 30%;}
     .outfit-products li .outfit-products-details { font-size: 11px; line-height: 12px; height: 80%; text-align: center;}
@@ -2587,7 +2588,7 @@ input#billingCopybilling { visibility: visible;}
     .twelve.columns.text-center.page-heading.brand-heading h3{font-size: 12px; line-height: 20px;}
     
     .eleven.columns.message-box-area, .twelve.columns.message-box, .pad-none{ padding-left: 0!important; padding-right: 0!important;}
-    .message-box-heading h1, .m-ver h2, .m-ver h2 span { font-size: 20px; line-height: 22px; padding: 18px 0 13px; width: 80%; display: inline-block}
+    .message-box-heading h1, .m-ver h2, .m-ver h2 span { font-size: 20px; line-height: 22px; padding: 18px 0 13px; width: 75%; display: inline-block}
     
     .m-ver h2{ padding:11px 0 0; font-family: 18px; line-height: 20px; text-align: right;}
     .m-ver h2 span { font-size: 12px; font-style: italic;padding:  0 5px 0 0; margin-top: -5px; text-align: right; width: 96%; float: right;}
@@ -2616,7 +2617,7 @@ input#billingCopybilling { visibility: visible;}
     .bottom-text { margin-top: 20px;}
     .dummy-text { font-size: 12px; line-height: 14px;}
     .bottom-btns a.create-outfit, .bottom-btns a.upload, .bottom-btns a.send-btn { width: 100%; margin-bottom: 20px;}
-    .bottom-btns a.upload { margin: 0 0 20px; width: 70%; float: left!important; text-align: center;}
+    .bottom-btns a.upload { margin: 0 0 20px;  float: left!important; text-align: center;}
 /*    .bottom-btns a.upload span.cam-icon { top: 2px; left: 62%;}*/
     
     .client-outfits { padding: 0px !important;}
@@ -2676,8 +2677,8 @@ input#billingCopybilling { visibility: visible;}
     
     .outfit-stylist li .shop-outfit .shop-outfit-top {height: 75px; float: left;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img {line-height: 75px;}
-    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 95px; float: left;}
-    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 16px;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 95px!important; float: left;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 12px; line-height: 14px;}
     .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next { top: 45px;}
     
     
@@ -2693,6 +2694,7 @@ input#billingCopybilling { visibility: visible;}
     .zopim{display: none;}
     .stylistbio-section-left.text-center {display: none;}
     .stylistbio-section-left.text-center.m-ver { display: block;}
+    .pref-time .connect.first, .pref-time .connect { margin-top:10px; }
 	}
 @media screen and (min-width: 240px) and (max-width: 568px) and (orientation : portrait) {
 	#sign-up-drop-down p { font-size: 22px; padding-top: 15px; margin-bottom: 10px;}
@@ -2715,7 +2717,7 @@ input#billingCopybilling { visibility: visible;}
     .client-img-small { width: 11%;}
     .message-box-heading h1, .m-ver h2, .m-ver h2 span { width: 85%;}
     .bottom-btns a.upload span.cam-icon { position: relative; padding-left: 6px; display: inline-block;}
-    .bottom-btns a.upload { width: 30%; padding: 0px 35%;}
+    .bottom-btns a.upload {  padding: 0px 35%;}
     
     .client-outfit-bottom { padding-bottom: 20px!important;}
     .client-comments { width: 65%;}
@@ -2725,6 +2727,8 @@ input#billingCopybilling { visibility: visible;}
     .jcarousel { width: 90%;}
     
     .hi-message h4 { margin: 0px; font-size: 25px!important;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 185px!important; float: left;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 16px; line-height: 18px;}
 }
 
 /******about us flexslider*****/

@@ -326,24 +326,24 @@ class StylistsController extends AppController {
                 }
                 if($imagename = $this->savePhotostream()){
                     $this->request->data['StylistPhotostream']['image'] = $imagename;
-                }else{
-                    $this->request->data['StylistPhotostream']['image'] = null;
-                }
-
-                if($StylistPhotostream->save($this->request->data)){
-                    if(isset($is_profile)){
-                        $User = ClassRegistry::init('User');
-                        $user = $User->findById($stylistId);
-                        $this->request->data['User']['profile_photo_url'] =  $imagename;
-                        $this->request->data['User']['id'] = $stylistId;
-                        $User->save($this->request->data);   
+                    if($StylistPhotostream->save($this->request->data)){
+                        if(isset($is_profile)){
+                            $User = ClassRegistry::init('User');
+                            $user = $User->findById($stylistId);
+                            $this->request->data['User']['profile_photo_url'] =  $imagename;
+                            $this->request->data['User']['id'] = $stylistId;
+                            $User->save($this->request->data);   
+                        }
+                        $this->Session->setFlash('The photo has been saved to the photostream.', 'flash');
+                        $this->redirect(array('action' => '/biography/'.$stylistId));    
+                    }else{
+                        $this->Session->setFlash('The StylistPhotostream could not be saved. Please, try again.', 'flash');
+                        $this->redirect(array('action' => '/biography/'.$stylistId)); 
                     }
-                    $this->Session->setFlash('The photo has been saved to the photostream.', 'flash');
-                    $this->redirect(array('action' => '/biography/'.$stylistId));    
                 }else{
                     $this->Session->setFlash('The StylistPhotostream could not be saved. Please, try again.', 'flash');
+                    $this->redirect(array('action' => '/biography/'.$stylistId)); 
                 }
-
 
             }
 
@@ -884,9 +884,8 @@ class StylistsController extends AppController {
         // file upload
 
         $user = $this->getLoggedUser();
-
+        
         if ($this->request->data['StylistPhotostream']['image'] && $this->request->data['StylistPhotostream']['image']['size'] > 0) {
-
             $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
 
             if (!in_array($this->request->data['StylistPhotostream']['image']['type'], $allowed)) {
