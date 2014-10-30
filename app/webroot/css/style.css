@@ -2677,7 +2677,7 @@ input#billingCopybilling { visibility: visible;}
     
     .outfit-stylist li .shop-outfit .shop-outfit-top {height: 75px; float: left;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img {line-height: 75px;}
-    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 95px!important; float: left;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 75px!important; float: left;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 12px; line-height: 14px;}
     .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next { top: 45px;}
     
