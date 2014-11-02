@@ -425,7 +425,7 @@ class Entity extends AppModel {
             'joins' => array(
                 array('table' => 'products_categories',
                     'alias' => 'Category',
-                    'type' => 'INNER',
+                    'type' => 'LEFT',
                     'conditions' => array(
                         'Category.product_id = Entity.product_id'
                     )

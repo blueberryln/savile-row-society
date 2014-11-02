@@ -56,7 +56,7 @@ $(document).ready(function(){
                                                                    if(count($likeitems)):
                                                                        foreach ($likeitems as $value): ?>
                                                                            <li>
-                                                                                <div class="purchase-dtls-date left"><?php echo date('d/m/Y', strtotime($value['Wishlist']['created'])); ?></div>
+                                                                                <div class="purchase-dtls-date left"><?php echo date('d/m/Y', $value['Wishlist']['created']); ?></div>
                                                                                 <div class="purchase-dtls-items left">
                                                                                     <div class="purchase-dtls-items-img">
                                                                                         <?php if(count($value['Image'])): ?>

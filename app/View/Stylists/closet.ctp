@@ -149,16 +149,21 @@ $(document).ready(function(){
                     for(var i = 0; i < entities.length; i++ ){
                         var product = entities[i];
                         var productImage = '';
+                        var productImageUrl = '';
 
                         if(product['Image'].length > 0){
                             productImage = '<div class="myclst-prdt-img">' + 
                                                 '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
                                             '</div>';
+
+                            productImageUrl = '<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'];
                         }
                         else{
                             productImage = '<div class="myclst-prdt-img">' + 
                                                 '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
                                             '</div>';
+
+                            productImageUrl = '<?php echo $this->webroot; ?>images/image_not_available.png';
                         }
 
                         var sizeOptions = '';
@@ -171,7 +176,7 @@ $(document).ready(function(){
                         var html = '<li ' +  
                                         'data-name="' + product['Entity']['name'] + '" ' + 
                                         'data-desc="' + product['Entity']['description'] + '" ' +
-                                        'data-image="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-image="' + productImageUrl + '" ' + 
                                         'data-id="' + product['Entity']['id'] + '" ' + 
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
