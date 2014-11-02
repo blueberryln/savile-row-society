@@ -503,6 +503,8 @@ class UsersController extends AppController {
                             $this->assignVipDiscount($results['User']['referred_by']);
                         }
 
+                        $this->Session->write('new_user', 'new_user');
+
                         $this->redirect(array('controller' => 'messages'));
                     } else {
                         // redirect to home

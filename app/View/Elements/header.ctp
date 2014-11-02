@@ -26,7 +26,7 @@
                     echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();">Join</a></li> ';
                     echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();">Sign In</a> </li> ';
                 } else {
-                    echo ' <li><a href="' . $this->request->webroot . 'cart' . '" id="basket-link">Basket</a>
+                    echo ' <li><a href="' . $this->request->webroot . 'cart' . '" id="basket-link">Basket</a
                                 <div id="basket">
                     
                                 </div>
@@ -196,6 +196,7 @@
                                     <?php endif; ?>
                                     <?php if ($is_stylist) : ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>stylists/biography/<?php echo $user['User']['id']; ?>" title="">Stylist Biography</a></li>
+                                    <li><a href="/refer" title="">refer a friend</a></li>
                                     <?php endif; ?>
                                      <?php if(!$is_stylist) : ?>
                                     <li><a href="<?php echo $this->request->webroot; ?>cart" title="">view my cart/checkout</a></li>

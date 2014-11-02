@@ -89,6 +89,25 @@ class PagesController extends AppController {
 
             $this->set(compact('user', 'sideBarTab', 'stylist'));
         }
+        else if ($page == 'refer') {
+            $this->isLogged();
+            $sideBarTab = 'refer';
+
+            $User= ClassRegistry::init('User');
+            $user = $this->getLoggedUser();
+
+            $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $user['User']['id'], 'User.is_stylist' => 0, 'User.is_admin' => 0)));
+            $this->set(compact('user', 'sideBarTab', 'stylist', 'userlists'));
+            
+            if(!$user['User']['is_stylist']){
+                $this->redirect('/messages/index');
+                exit;
+            }
+            
+
+            $this->set(compact('user', 'sideBarTab', 'userlists'));
+
+        }
         else if ($page == 'company/brands') {
             $title_for_layout = "Brands - Savile Row Society";
         }

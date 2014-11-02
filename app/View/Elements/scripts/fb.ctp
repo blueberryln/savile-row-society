@@ -1,5 +1,5 @@
 <?php 
-$pass = (isset($this->request->params) && isset($this->request->params['pass'][0]) && $this->request->params['pass'][0] == 'refer-a-friend') ? true : false;
+$pass = (isset($this->request->params) && isset($this->request->params['pass'][0]) && ($this->request->params['pass'][0] == 'refer-a-friend' || $this->request->params['pass'][0] == 'refer')) ? true : false;
 
 if($pass) : ?>
 <!-- Facebook javascript API

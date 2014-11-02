@@ -29,6 +29,11 @@ class MessagesController extends AppController {
         $stylist = $User->findById($user['User']['stylist_id']);
         $sideBarTab = 'message';
 
+        $new_user = false;
+        if($this->Session->check('new_user')){
+            $new_user = true;
+            $this->Session->delete('new_user');
+        }
         
         /**
          * Check for different conditions and redirect as required:
@@ -45,7 +50,7 @@ class MessagesController extends AppController {
         $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
          //print_r($userlists);
          // make user_id, user
-        $this->set(compact('user_id', 'user', 'messages_for_user_id','userlists', 'sideBarTab'));
+        $this->set(compact('user_id', 'user', 'messages_for_user_id','userlists', 'sideBarTab', 'new_user'));
         //print_r($user);
         /**
          * Choose to show user/stylist or admin view
@@ -1666,33 +1671,6 @@ class MessagesController extends AppController {
         
         
     }
-
-    // public function copyoutfituser($user_id = null){
-    //     $User =  ClassRegistry::init('User');
-    //     $posts = ClassRegistry::init('Post');
-    //     $Useroutfit = ClassRegistry::init('Useroutfit');
-    //     $user = $this->getLoggedUser();
-    //     $user_id = $user["User"]["id"]; 
-    //     $is_admin = $user["User"]["is_admin"];
-    //     $is_stylist = $user["User"]["is_stylist"]; 
-    //     if($this->request->is('post')){
-    //                 $outfitid = $this->request->data['OutfitItem']['outfit_id'];
-    //                 $clientid = $this->request->data['Useroutfit']['user_id'];
-    //                 $this->request->data['Post']['user_id'] = $clientid;
-    //                 $this->request->data['Post']['stylist_id'] = $user_id;
-    //                 $this->request->data['Post']['is_outfit'] = '1';
-    //                 $posts->save($this->request->data);
-    //                 $post_id = $posts->getLastInsertID();
-    //                 $Useroutfit->data['Useroutfit']['outfit_id'] = $outfitid;
-    //                 $Useroutfit->data['Useroutfit']['user_id'] = $clientid;
-    //                 $Useroutfit->data['Useroutfit']['stylist_id'] = $user_id;
-    //                 $Useroutfit->data['Useroutfit']['post_id'] = $post_id;
-    //         if($Useroutfit->save($this->request->data)){
-    //                 $this->Session->setFlash("User Data Hasbeen Saved");
-    //                 $this->redirect('/messages/getstylistoutfit/'.$user_id);
-    //         }
-    //     }
-    // }
 
     public function reuseOutfit($user_id = null){
         $User =  ClassRegistry::init('User');
