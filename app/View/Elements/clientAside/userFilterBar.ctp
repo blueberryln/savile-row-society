@@ -26,7 +26,7 @@
                 <select onchange="location = this.options[this.selectedIndex].value;">
                     <option>Filter Clients</option>
                     <?php  foreach($userlists as $filterclient ): ?>
-                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $filterclient['User']['id']; ?>"><?php echo $filterclient['User']['first_name'].'&nbsp;'.$filterclient['User']['last_name']; ?></option>
+                    <option value="<?php echo $this->webroot; ?>messages/index/<?php echo $filterclient['User']['id']; ?>"><?php echo ucfirst($filterclient['User']['first_name']) . '&nbsp;' . ucfirst($filterclient['User']['last_name']); ?></option>
                      <?php endforeach; ?>
                     
                 </select>
@@ -55,7 +55,7 @@
                                         <?php endif; ?>
                                     </div>
                                     <div class="myclient-dtl">
-                                        <span class="myclient-name"><?php echo $searchuserclient['User']['first_name'].'&nbsp;'.$searchuserclient['User']['last_name']; ?></span>
+                                        <span class="myclient-name"><?php echo ucfirst($searchuserclient['User']['first_name']) . '&nbsp;' . ucfirst($searchuserclient['User']['last_name']); ?></span>
                                         <span class="myclient-status">last active at <?php echo date ('d F Y',$searchuserclient['User']['updated']); ?></span>
                                     </div>
                                 </a>

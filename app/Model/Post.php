@@ -43,15 +43,38 @@ class Post extends AppModel {
 
 		$find_array = array(
             'contain'   => ('User'),
-			'conditions'	=> array(
-				'OR'	=> array(
-					array('user_id'	=> $client_list),
-					array('user_id'	=> $stylist_id)	
-					)
-				),
 			'order'			=> array('Post.id' => 'desc'),
 			'limit'			=> '20'
 			);
+
+        if($user_id){
+            $find_array['joins'] = array(
+                array('table' => 'messages',
+                    'alias' => 'Message',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Post.id = Message.post_id'
+                    )
+                ),
+            ); 
+
+            $find_array['conditions'] = array(
+                    'OR'    => array(
+                        array('user_id' => $user_id),
+                        array('Post.is_like' => false, 'Post.is_order' => false, 'Message.user_from_id' => $stylist_id, 'Message.user_to_id' => $user_id) 
+                    ),
+                ); 
+        }
+        else{
+            $find_array['conditions'] = array(
+                    'OR'    => array(
+                        array('user_id' => $client_list),
+                        array('user_id' => $stylist_id) 
+                    )
+                );
+        }
+
+
 		$posts = $this->find('all', $find_array);
 
 		$result = $this->getPostDetails($posts);
@@ -75,16 +98,40 @@ class Post extends AppModel {
 
         $find_array = array(
             'contain'   => ('User'),
-            'conditions'    => array(
-                'Post.id <' => $last_post_id,
-                'OR'    => array(
-                    array('user_id' => $client_list),
-                    array('user_id' => $stylist_id) 
-                    ),
-                ),
             'order'         => array('Post.id' => 'desc'),
             'limit'         => '20'
             );
+
+        if($user_id){
+            $find_array['joins'] = array(
+                array('table' => 'messages',
+                    'alias' => 'Message',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Post.id = Message.post_id'
+                    )
+                ),
+            ); 
+
+            $find_array['conditions'] = array(
+                    'Post.id <' => $last_post_id,
+                    'OR'    => array(
+                        array('user_id' => $user_id),
+                        array('Post.is_like' => false, 'Post.is_order' => false, 'Message.user_from_id' => $stylist_id, 'Message.user_to_id' => $user_id) 
+                    ),
+                ); 
+        }
+        else{
+            $find_array['conditions'] = array(
+                    'Post.id <' => $last_post_id,
+                    'OR'    => array(
+                        array('user_id' => $client_list),
+                        array('user_id' => $stylist_id) 
+                    )
+                );
+        }
+
+
         $posts = $this->find('all', $find_array);
 
         $result = $this->getPostDetails($posts);
@@ -118,6 +165,36 @@ class Post extends AppModel {
             'order'         => array('Post.id' => 'asc'),
             'limit'         => '20'
             );
+
+        if($user_id){
+            $find_array['joins'] = array(
+                array('table' => 'messages',
+                    'alias' => 'Message',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Post.id = Message.post_id'
+                    )
+                ),
+            ); 
+
+            $find_array['conditions'] = array(
+                    'Post.id >' => $first_post_id,
+                    'OR'    => array(
+                        array('user_id' => $user_id),
+                        array('Post.is_like' => false, 'Post.is_order' => false, 'Message.user_from_id' => $stylist_id, 'Message.user_to_id' => $user_id) 
+                    ),
+                ); 
+        }
+        else{
+            $find_array['conditions'] = array(
+                    'Post.id >' => $first_post_id,
+                    'OR'    => array(
+                        array('user_id' => $client_list),
+                        array('user_id' => $stylist_id) 
+                    )
+                );
+        }
+
         $posts = $this->find('all', $find_array);
 
         $result = $this->getPostDetails($posts);
@@ -144,6 +221,7 @@ class Post extends AppModel {
 
         $wishlist = $this->formatWishlist($likes_list);
         $message = $this->formatMessage($message_list);
+        $orders = $this->formatOrders($order_list);
 
         $sorted_post = array();
         foreach ($posts as $value) {
@@ -226,5 +304,10 @@ class Post extends AppModel {
 
 	}
 
+
+    public function formatOrders($order_list){
+        
+        
+    }
 
 }

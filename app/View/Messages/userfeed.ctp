@@ -187,7 +187,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                                 '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
-                                    '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> liked an item,</div>' + 
+                                    '<div class="activity-user-name"><strong>' + feed['User']['first_name'].capitalize() + ' ' + feed['User']['last_name'].capitalize() + '</strong> liked an item,</div>' + 
                                     '<div class="activity-msg-dtl">' + 
                                         '<span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>' + 
                                         '<span class="activity-product-dtl">' + 
@@ -212,7 +212,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                                 '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
                                 '<div class="activity-msg-area">' + 
-                                    '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> requested an outfit.</div>' + 
+                                    '<div class="activity-user-name"><strong>' + feed['UserFrom']['first_name'].capitalize() + ' ' + feed['UserFrom']['last_name'].capitalize() + '</strong> requested an outfit.</div>' + 
                                     '<div class="activity-msg-dtl">' + 
                                         '<span class="activity-product-dtl">' + 
                                             '“'+ feed['Message']['body'] +'”' + 
@@ -229,12 +229,21 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
             }     
             else if(feed['Post']['is_message'] == 1){
                 var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
+
+                var activity_title = '';
+                if(user_id == feed['UserFrom']['id']){
+                    activity_title = '<strong>' + feed['UserFrom']['first_name'].capitalize() + ' ' + feed['UserFrom']['last_name'].capitalize() + '</strong> sent you a message.';
+                }
+                else{
+                    activity_title = 'You sent a message to ' + '<strong>' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + '.';
+                }
+
                 html = '<li class="activity-msg" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
                                 '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
                                 '<div class="activity-msg-area">' + 
-                                    '<div class="activity-user-name"><strong>' + feed['User']['full_name'] + '</strong> sent you a message.</div>' + 
+                                    '<div class="activity-user-name">' + activity_title + '</div>' + 
                                     '<div class="activity-msg-dtl">' + 
                                         '<span class="activity-product-dtl">' + 
                                             '“'+ feed['Message']['body'] +'”' + 
@@ -266,7 +275,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                                 '<div class="activity-icn"></div>' +
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
-                                    '<div class="activity-user-name"><strong>You created ' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + ' an outfit,</strong> “Beach Day”</div>' + 
+                                    '<div class="activity-user-name">You created <strong>' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + '</strong> an outfit, <strong>"' + feed['Outfit']['outfit_name'].capitalize() + '"</strong></div>' + 
                                 '</div>' + 
                                 '<div class="activity-date-section">' + 
                                     $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 
