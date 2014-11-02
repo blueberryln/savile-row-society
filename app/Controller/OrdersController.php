@@ -257,19 +257,22 @@ class OrdersController extends AppController {
         $value = $id;
         $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
         $order = $this->Order->find('first', $options);
-        if($this->Order->save($order)){
+        if($order){
 
             //Send confirmation email to the customer.
             $this->Order->recursive = 3;
-            $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-            $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
-            $this->Order->User->unbindModel(array('belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+            $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order', 'Outfit')));
+            $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
+            $this->Order->User->unbindModel(array('hasMany' => array('Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
             $shipped_order = $this->Order->find('first', $options);
         }
         $Size = ClassRegistry::init('Size');
         $sizes = $Size->find('list');
 
+
+        // print_r($shipped_order);
+        // exit;
 
         $this->set(compact('value','shipped_order', 'sizes'));
     }

@@ -32,7 +32,11 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <span class="small-size">Online &amp; In-person</span>
             <div class="overlay-bnts left">
                 <a class="tell-more gray-btns" href="/#two" title="">Tell Me More</a>
-                <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
+                <?php if($is_logged): ?>
+                    <a class="overlay-started brown-btns" href="/messages/index" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
+                <?php else: ?>
+                    <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
+                <?php endif; ?>
             </div>
         </div>
         
@@ -194,7 +198,12 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <div class="style-time-img">
                             <img src="<?php echo $this->webroot; ?>images/outfits/st_img_1.jpg" alt="Savile Row Society Personal Stylists are available online or in person">
                             <div class="style-time-hover">
-                                <h1><a href="#" title="">Online</a></h1>                                
+                                <?php if($is_logged): ?>
+                                    <h1><a href="/messages/index" title="">Online</a></h1>
+                                <?php else: ?>
+                                    <h1><a href="#" title="" class="multi-action">Online</a></h1>
+                                <?php endif; ?>
+
                                 <div class="style-time-hover-content">
                                     Talk to your stylist.<br />
                                     See your outfit suggestions.<br />
@@ -209,7 +218,11 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <div class="style-time-img">
                             <img src="<?php echo $this->webroot; ?>images/outfits/st_img_2.jpg" alt="Savile Row Society Personal Stylists are available online or in person">
                             <div class="style-time-hover">
-                                <h1><a href="javascritp:;" title="">In-person</a></h1>                                
+                                <?php if($is_logged): ?>
+                                    <h1><a href="/contact" title="">In-person</a></h1>
+                                <?php else: ?>
+                                    <h1><a href="#" title="" class="multi-action">In-person</a></h1>
+                                <?php endif; ?>                                
                                 <div class="style-time-hover-content">
                                     Meet with your stylist.<br />
                                     Try on our samples.<br />

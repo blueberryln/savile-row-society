@@ -938,6 +938,7 @@ a.open-left-pannel { display: none;}
 .stylistbio-short-note, .stylistbio-list { width:180px!important;}
 .stylistbio-short-note { margin-top:50px; }
 .short-note {font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #ababac; width: 100%; display: inline-block; padding: 25px 0; width: 100%; border-bottom: 1px solid #ebebeb; border-top: 1px solid #ebebeb;}
+.stylistbio-list #scrollbar1 .scrollbar{display:block;}
 .stylistbio-list h3 { font-family: 'ProximaNovaCond-Regular'; color: #acacac; font-size: 26px; margin: 10px 0 15px;}
 .stylistbio-list li { width: 100%; display: inline-block; padding: 25px 0px 22px; margin-bottom: -6px; border-bottom: 1px solid #f2f2f2; background:#ffffff; cursor: pointer;}
 .stylistbio-list li .stylistbio-list-img { border: 1px solid #000; float: left; max-height: 40px; overflow: hidden; position: relative; width: 40px;}

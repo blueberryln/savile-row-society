@@ -114,12 +114,6 @@
         </tfoot>
         
     </table>
-    
-    <div class="thank-you-note" style="page-break-before: always;">
-        <center>
-            <img src="<?php echo $this->webroot; ?>img/thank_you-note.jpg" style="max-width: 100%;" />
-        </center>
-    </div>
 </div>
 <script>
     window.onload = function() { window.print(); }
