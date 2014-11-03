@@ -1190,86 +1190,7 @@ class MessagesController extends AppController {
         echo json_encode($my_outfits);
         exit;
     }
-// get stylist outfit
 
-    // public function myoutfits(){
-
-    //     $User = ClassRegistry::init('User');
-        
-    //     //Get user from session to derterminate if user is stylist
-    //     $user = $this->getLoggedUser();
-    //     $user_id = $user["User"]["id"]; 
-    //     $is_admin = $user["User"]["is_admin"];
-    //     $is_stylist = $user["User"]["is_stylist"];   
-    //     $Message = ClassRegistry::init('Message');
-    //     $Outfit = ClassRegistry::init('Outfit');
-    //     $posts = ClassRegistry::init('Post');
-        
-    //     $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0)));
-
-    //     $my_outfitss = array();
-    //     $stylistoutfit= $Outfit->find('all', array(
-    //         'limit' => 5,
-    //         'order' => 'Outfit.created DESC',
-    //         'conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfit_name','Outfit.id'),));
-        
-    //     $outfitcount = count($stylistoutfit);
-
-    //     foreach($stylistoutfit as $row){
-    //         $stylist_outfit_id = $row['Outfit']['id'];
-    //         $Outfit = ClassRegistry::init('Outfit');
-    //         $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
-    //         $messages = $Message->find('all',array('conditions'=>array('Message.outfit_id'=>$stylist_outfit_id,),'fields'=>array('Message.body')));
-    //         $OutfitItem = ClassRegistry::init('OutfitItem');
-    //         $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
-    //         $entities = array();
-    //         foreach($outfit as $value){
-    //                 $entities[] = $value['OutfitItem']['product_entity_id'];
-    //             }
-    //         $Entity = ClassRegistry::init('Entity');
-            
-
-    //         //pagintion
-    //         $find_array = array(
-    //             //'limit'=>20,
-    //             'contain' => array('Image'),
-    //             'conditions' => array('Entity.id' => $entities),
-    //             'joins' => array(
-    //                 array('table' => 'products',
-    //                     'alias' => 'Product',
-    //                     'type' => 'INNER',
-    //                     'conditions' => array(
-    //                         'Product.id = Entity.product_id'
-    //                     )
-    //                 ),
-    //                 array('table' => 'brands',
-    //                     'alias' => 'Brand',
-    //                     'type' => 'INNER',
-    //                     'conditions' => array(
-    //                         'Product.brand_id = Brand.id',
-    //                     )
-    //                 ),        
-    //             ), 
-                
-    //             'fields' => array(
-    //                 'Entity.id','Entity.price','Brand.name',
-    //             ),
-
-    //         );
-    //         //$this->Paginator->settings = $find_array;
-    //         $items = $Entity->find('all',$find_array);
-    //         // //pagintion
-    //         $my_outfitss[] =  array(
-    //                             'outfit'    => $outfitnames,
-    //                             'comments' => $messages,
-    //                             'entities'  => $items
-    //                         );
-
-    //     }
-        
-    //     $this->set(compact('my_outfitss','userlists','user_id','outfitcount'));
-    
-    // } 
 
 
     //outfit details ajax for pop up on stylist total outfit page
@@ -4011,67 +3932,58 @@ class MessagesController extends AppController {
         $Outfit = ClassRegistry::init('Outfit');
         $posts = ClassRegistry::init('Post');
 
-        $my_outfitss = array();
-        $stylistoutfit= $Outfit->find('all', array(
-            'limit' => 5,
-            'order' => 'Outfit.created DESC',
-            'conditions'=>array('Outfit.stylist_id'=>$user_id,),'fields'=> array('Outfit.outfit_name','Outfit.id'),));
-        
-        $outfitcount = count($stylistoutfit);
 
-        foreach($stylistoutfit as $row){
-            $stylist_outfit_id = $row['Outfit']['id'];
-            $Outfit = ClassRegistry::init('Outfit');
-            $outfitnames = $Outfit->find('first', array('conditions'=> array('Outfit.id'=>$stylist_outfit_id)));
-            $messages = $Message->find('all',array('conditions'=>array('Message.outfit_id'=>$stylist_outfit_id,),'fields'=>array('Message.body')));
-            $OutfitItem = ClassRegistry::init('OutfitItem');
-            $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $stylist_outfit_id)));
-            $entities = array();
-            foreach($outfit as $value){
-                    $entities[] = $value['OutfitItem']['product_entity_id'];
-                }
-            $Entity = ClassRegistry::init('Entity');
-            
+        $page = (isset($this->request->data['page']) && $this->request->data['page'] > 0) ? $this->request->data['page'] : 1; 
 
-            //pagintion
-            $find_array = array(
-                //'limit'=>20,
-                'contain' => array('Image'),
-                'conditions' => array('Entity.id' => $entities),
-                'joins' => array(
-                    array('table' => 'products',
-                        'alias' => 'Product',
-                        'type' => 'INNER',
-                        'conditions' => array(
-                            'Product.id = Entity.product_id'
-                        )
-                    ),
-                    array('table' => 'brands',
-                        'alias' => 'Brand',
-                        'type' => 'INNER',
-                        'conditions' => array(
-                            'Product.brand_id = Brand.id',
-                        )
-                    ),        
-                ), 
-                
-                'fields' => array(
-                    'Entity.id','Entity.price','Brand.name',
-                ),
+        $limit = 5;
+        $sort = 'desc';
+        $message_outfit_list = $Outfit->find('all', array(
+            'conditions'  => array('stylist_id' => $user_id),
+            'order' => array('id' => $sort),
+            'limit' => $limit,
+            'page'  => $page
+        ));
 
-            );
-            //$this->Paginator->settings = $find_array;
-            $items = $Entity->find('all',$find_array);
-            // //pagintion
-            $my_outfitss[] =  array(
-                                'outfit'    => $outfitnames,
-                                'comments' => $messages,
-                                'entities'  => $items
-                            );
-
+        $outfit_list = array();
+        foreach($message_outfit_list as $value){
+            $outfit_list[] = $value['Outfit']['id'];
         }
+
+        $outfits = $Outfit->getOutfitDetails($outfit_list, true, true);
+        $sorted_outfit = array();
+
+        foreach($outfits as $value){
+            $sorted_outfit[$value['Outfit']['id']] = $value;
+        }
+
+
+        $messages = $Message->find('all', array(
+            'conditions'    => array('Message.outfit_id' => $outfit_list),
+            'contain'       => array('UserTo'),
+            'fields'        => array('Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserTo.id', 'UserTo.first_name', 'UserTo.last_name'),
+            'order'         => array('Message.id' => 'desc'),
+            ));
+
+        $sorted_messages = array();
+        foreach($messages as $value){
+            $sorted_messages[$value['Message']['outfit_id']][] = $value;
+        }
+
+        $outfits = array();
+        foreach($message_outfit_list as $value){
+            $value['Outfit'] = $sorted_outfit[$value['Outfit']['id']]['Outfit'];
+            $value['Message'] = $sorted_messages[$value['Outfit']['id']];
+            $value['Stylist'] = $sorted_outfit[$value['Outfit']['id']]['Stylist'];
+            $value['OutfitItem'] = $sorted_outfit[$value['Outfit']['id']]['OutfitItem'];
+
+            $outfits[] = $value;
+        }
+
+        $page++;
+
+        $outfitcount = count($outfits);
         
-        $this->set(compact('my_outfitss','userlists','user_id','outfitcount'));
+        $this->set(compact('outfits','userlists','user_id','outfitcount'));
     
     }
 }

@@ -314,6 +314,7 @@ class OutfitsController extends AppController {
             $client_id = $this->request->data['user_id'];
             $client = $User->findById($client_id);
             $stylist_id = $this->request->data['stylist_id'];
+            $reuse_outfit_id = (isset($this->request->data['outfit_id']) && $this->request->data['outfit_id'] != "") ? $this->request->data['outfit_id'] : false;
 
             if($user_id != $stylist_id){
                 $ret['status'] = "error";
@@ -351,23 +352,8 @@ class OutfitsController extends AppController {
                 $OutfitItem = ClassRegistry::init('OutfitItem');
                 $Message = ClassRegistry::init('Message');
 
-                $outfit = array();
-                $outfit['Outfit']['user_id'] = $client_id;
-                $outfit['Outfit']['stylist_id'] = $stylist_id;
-                $outfit['Outfit']['outfit_name'] = $this->request->data['outfit_name'];
-
-                $Outfit->create();
-                if($result = $Outfit->save($outfit)){
-                    $outfit_id = $result['Outfit']['id'];
-                    $data = array();
-                    
-                    foreach($outfit_items as $key => $value){
-                        $data['OutfitItem'] = array('outfit_id' => $outfit_id, 'product_entity_id' => $value['product_entity_id'], 'size_id' => $value['size_id']);
-
-                        $OutfitItem->create();
-                        $OutfitItem->save($data);
-                    }
-
+                if($reuse_outfit_id){
+                    $outfit_id = $reuse_outfit_id;
                     $data['Message']['user_to_id'] = $client_id;
                     $data['Message']['user_from_id'] = $stylist_id;
                     $data['Message']['body'] = (isset($this->request->data['comments']) && $this->request->data['comments']) ? $this->request->data['comments'] : "";
@@ -379,8 +365,40 @@ class OutfitsController extends AppController {
                     $Message->save($data);
 
                     $this->sendOutfitNotification($outfit_id, $client_id);
-
                 }
+                else{
+                    $outfit = array();
+                    $outfit['Outfit']['user_id'] = $client_id;
+                    $outfit['Outfit']['stylist_id'] = $stylist_id;
+                    $outfit['Outfit']['outfit_name'] = $this->request->data['outfit_name'];
+
+                    $Outfit->create();
+                    if($result = $Outfit->save($outfit)){
+                        $outfit_id = $result['Outfit']['id'];
+                        $data = array();
+                        
+                        foreach($outfit_items as $key => $value){
+                            $data['OutfitItem'] = array('outfit_id' => $outfit_id, 'product_entity_id' => $value['product_entity_id'], 'size_id' => $value['size_id']);
+
+                            $OutfitItem->create();
+                            $OutfitItem->save($data);
+                        }
+
+                        $data['Message']['user_to_id'] = $client_id;
+                        $data['Message']['user_from_id'] = $stylist_id;
+                        $data['Message']['body'] = (isset($this->request->data['comments']) && $this->request->data['comments']) ? $this->request->data['comments'] : "";
+                        $data['Message']['is_outfit'] = 1;
+                        $data['Message']['outfit_id'] = $outfit_id;
+                        $data['Message']['post_id'] = $post['Post']['id'];
+
+                        $Message->create();
+                        $Message->save($data);
+
+                        $this->sendOutfitNotification($outfit_id, $client_id);
+
+                    }   
+                }
+                
                 
             }
 
@@ -511,7 +529,7 @@ class OutfitsController extends AppController {
         $client = $User->getByID($client_id);
         $stylist = $User->getByID($client['User']['stylist_id']);
         
-        if($entities && $client){
+        if($client){
             try{
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -550,6 +568,23 @@ class OutfitsController extends AppController {
         else{
             $this->redirect('/messages/feed');
             exit;
+        }
+
+        if(isset($this->request->query['reuse'])){
+            $outfit_id = $this->request->query['reuse'];
+            $Outfit = ClassRegistry::init('Outfit');
+
+            $outfit = $Outfit->getOutfitDetails($outfit_id);
+
+            if($outfit && $outfit[$outfit_id]['Outfit']['stylist_id'] == $user_id){
+                $outfit = $outfit[$outfit_id];
+
+                $this->set(compact('outfit'));
+            }
+            else{
+                $this->redirect('/outfits/create/' . $clientid);
+                exit;
+            }
         }
 
         // init

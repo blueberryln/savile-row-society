@@ -85,7 +85,7 @@ function dragAndDropOutfit(){
                     + '<span class="prc-img">' + price + '</span>'
                     + '<img src="' + src + '" />'
                     + '<select class="outfit-size-list">' + productList + '</select>'
-                    + '<button class="delete">&#10005;</button>';
+                    + '<button class="delete">&#10005;</button></li>';
 
         basket.find("ul").append(html);
         
@@ -122,7 +122,7 @@ $(document).ready(function(){
     $('.product-list-block').on('click', function(e){
         e.preventDefault();
     });
-    $("#total").text(overall);
+    // $("#total").text(overall);
     dragAndDropOutfit();
 
 
@@ -196,6 +196,7 @@ $(document).ready(function(){
         var stylist_id = $("#stylist_id").val();
         var user_id = $("#user_id").val();
         var comments = $("#comments").val();
+        var outfit_id = $("#outfit_id").val();
 
         var outfit_items = [];
         $('.basket ul li').each(function(){
@@ -211,7 +212,8 @@ $(document).ready(function(){
             'stylist_id': stylist_id,
             'user_id': user_id,
             'comments': comments, 
-            'outfit_items': outfit_items
+            'outfit_items': outfit_items,
+            'outfit_id': outfit_id
         };
 
         $.ajax({
@@ -395,11 +397,15 @@ $(document).ready(function(){
                             productImage = '<div class="myclst-prdt-img">' + 
                                                 '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
                                             '</div>';
+
+                            productImageUrl = '<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'];
                         }
                         else{
                             productImage = '<div class="myclst-prdt-img">' + 
                                                 '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
                                             '</div>';
+
+                            productImageUrl = '<?php echo $this->webroot; ?>images/image_not_available.png';
                         }
 
                         var sizeOptions = '';
@@ -412,7 +418,7 @@ $(document).ready(function(){
                         var html = '<li ' +  
                                         'data-name="' + product['Entity']['name'] + '" ' + 
                                         'data-desc="' + product['Entity']['description'] + '" ' +
-                                        'data-image="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-image="' + productImageUrl + '" ' + 
                                         'data-id="' + product['Entity']['id'] + '" ' + 
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
@@ -491,11 +497,15 @@ $(document).ready(function(){
                             productImage = '<div class="myclst-prdt-img">' + 
                                                 '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
                                             '</div>';
+
+                            productImageUrl = '<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'];
                         }
                         else{
                             productImage = '<div class="myclst-prdt-img">' + 
                                                 '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
                                             '</div>';
+
+                            productImageUrl = '<?php echo $this->webroot; ?>images/image_not_available.png';
                         }
 
                         var sizeOptions = '';
@@ -508,7 +518,7 @@ $(document).ready(function(){
                         var html = '<li ' + 
                                         'data-name="' + product['Entity']['name'] + '" ' + 
                                         'data-desc="' + product['Entity']['description'] + '" ' +
-                                        'data-image="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-image="' + productImageUrl + '" ' +  
                                         'data-id="' + product['Entity']['id'] + '" ' + 
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
@@ -584,11 +594,15 @@ $(document).ready(function(){
                             productImage = '<div class="myclst-prdt-img">' + 
                                                 '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
                                             '</div>';
+
+                            productImageUrl = '<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'];
                         }
                         else{
                             productImage = '<div class="myclst-prdt-img">' + 
                                                 '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
                                             '</div>';
+
+                            productImageUrl = '<?php echo $this->webroot; ?>images/image_not_available.png';
                         }
 
                         var sizeOptions = '';
@@ -601,7 +615,7 @@ $(document).ready(function(){
                         var html = '<li ' + 
                                         'data-name="' + product['Entity']['name'] + '" ' + 
                                         'data-desc="' + product['Entity']['description'] + '" ' +
-                                        'data-image="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-image="' + productImageUrl + '" ' + 
                                         'data-id="' + product['Entity']['id'] + '" ' + 
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
@@ -694,7 +708,7 @@ $(document).ready(function(){
                         var html = '<li ' + 
                                         'data-name="' + product['Entity']['name'] + '" ' + 
                                         'data-desc="' + product['Entity']['description'] + '" ' +
-                                        'data-image="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" ' + 
+                                        'data-image="' + productImageUrl + '" ' + 
                                         'data-id="' + product['Entity']['id'] + '" ' + 
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
@@ -880,7 +894,8 @@ $(document).ready(function(){
                                     <div class="eleven columns container">
                                         <div class="twelve columns left otft-lft-title">
                                             <h1>Outfit Title</h1>
-                                            <input type="text" name="" placeholder="" id="outfitname" />
+                                            <input type="text" name="" placeholder="" id="outfitname" value="<?php echo isset($outfit) ? $outfit['Outfit']['outfit_name'] : '';?>" />
+                                            <input type="hidden" name="" placeholder="" id="outfit_id" value="<?php echo isset($outfit) ? $outfit['Outfit']['id'] : '';?>" />
                                             <input type="hidden" name="" placeholder="" id="user_id" value="<?php echo $client['User']['id']; ?>" />
                                             <input type="hidden" name="" placeholder="" id="stylist_id" value="<?php echo $user['User']['id']; ?>" />
                                             <p>styled for  <?php echo ucwords($client['User']['first_name'] . ' ' . $client['User']['last_name']); ?> <!--<span>(</span> <span class="otft-lft-txt">Change</span> <span>)</span>--></p>
@@ -893,12 +908,33 @@ $(document).ready(function(){
                                                     <div class="basket">
                                                         <div class="basket_list">
                                                             <ul id="dataid">
-                                                                
+                                                            <?php 
+                                                            $total_price = 0;
+                                                            if(isset($outfit)): 
+                                                                foreach($outfit['OutfitItem'] as $value):
+                                                                    $total_price += $value['product']['Entity']['price'];
+                                                                    if(count($value['product']['Image'])){
+                                                                        $productImageUrl = $this->webroot . 'files/products/' . $value['product']['Image'][0]['name'];
+                                                                    }
+                                                                    else{
+                                                                        $productImageUrl = $this->webroot . 'images/image_not_available.png';
+                                                                    }
+                                                            ?>
+                                                                <li data-id="<?php echo $value['product_entity_id']; ?>" data-price="<?php echo $value['product']['Entity']['price']; ?>">
+                                                                <span class="name"><?php echo $value['product']['Entity']['name']; ?></span>
+                                                                <span class="prc-img"><?php echo $value['product']['Entity']['price']; ?></span>
+                                                                <img src="<?php echo $productImageUrl; ?>" />
+                                                                <select class="outfit-size-list"></select>
+                                                                <button class="delete">&#10005;</button></li>
+                                                            <?php 
+                                                                endforeach;
+                                                            endif; 
+                                                            ?>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div class="twelve columns left otft-drp-ttl">
-                                                        Total Amount is $<span id="total">0</span>
+                                                        Total Amount is $<span id="total"><?php echo $total_price; ?></span>
                                                     </div>
                                                 </div>
                                             </div>

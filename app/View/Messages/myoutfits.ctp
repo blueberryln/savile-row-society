@@ -579,45 +579,44 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                             <div class="right-pannel right">
                                 <div class="twelve columns message-area left pad-none" id="listdat">
                                     <div class="eleven columns container pad-none" id="outfitpaging">
-                                       <?php foreach ($my_outfitss as  $entity_list) : ?>  
+                                        <?php foreach ($outfits as  $outfit) : ?>  
                                         
-                                        <div class="twelve columns client-outfits left" id="findOutfitId">
-                                            <div class="eleven columns container client-outfits-area pad-none" >
-                                                <h1><?php echo $entity_list['outfit']['Outfit']['outfit_name']; ?></h1>
-                                                <input type="hidden" id="outfitidquickview" data-id="<?php echo $entity_list['outfit']['Outfit']['id']; ?>" value="<?php echo $entity_list['outfit']['Outfit']['id']; ?>">
-                                                <div class="twelve columns client-outfits-img pad-none">
-                                                   
-                                                    <ul>
+                                            <div class="twelve columns client-outfits left" id="findOutfitId">
+                                                <div class="eleven columns container client-outfits-area pad-none" >
+                                                    <h1><?php echo ucfirst($outfit['Outfit']['outfit_name']); ?></h1>
+                                                    <input type="hidden" id="outfitidquickview" data-id="<?php echo $outfit['Outfit']['id']; ?>" value="<?php echo $outfit['Outfit']['id']; ?>">
+                                                    <div class="twelve columns client-outfits-img pad-none">
+                                                       
+                                                        <ul>
 
-                                                    <?php
-                                                    $totalpriceoutfit = 0;
-                                                     foreach ($entity_list['entities'] as $key => $value) : ?>
-                                                       <?php  $totalpriceoutfit += $value['Entity']['price']; ?>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $value['Image'][0]['name']; ?>" alt="" /></li>
+                                                        <?php
+                                                        $totalpriceoutfit = 0;
+                                                         foreach ($outfit['OutfitItem'] as $value) : ?>
+                                                           <?php  $totalpriceoutfit += $value['product']['Entity']['price']; ?>
+                                                            <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $value['product']['Image'][0]['name']; ?>" alt="" /></li>
 
-                                                    <?php endforeach; //echo $totalpriceoutfit;?>
-                                                    <input type="hidden" id="totalpriceoutfit" value="<?php echo $totalpriceoutfit; ?>">
-                                                    </ul>
+                                                        <?php endforeach; ?>
+                                                        <input type="hidden" id="totalpriceoutfit" value="<?php echo $totalpriceoutfit; ?>">
+                                                        </ul>
 
-                                                    <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
+                                                        <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
+                                                    </div>
+                                                    <div class="twelve columns left client-outfit-bottom pad-none">
+                                                        <div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left"><?php echo $outfit['Message'][0]['Message']['body']; ?></div></div>
+                                                        <div class="bkmrk-outfit right" ><a href='#' id="outfitbook">Bookmark Outfit</a></div>
+                                                        
+                                                    </div>
                                                 </div>
-                                                <div class="twelve columns left client-outfit-bottom pad-none">
-                                                    <div class="bkmrk-outfit right" ><a href='#' id="outfitbook">Bookmark Outfit</a></div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
+                                            </div>   
 
-                                        
-
-                                     <?php endforeach; ?>
-                                       <p id="loadMoreProduct">
-                                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                                    <input type="hidden" id="limit" value="<?php echo $outfitcount; ?>">
-                                    <a href="#" id="<?php echo $outfitcount; ?>">Load More Products</a>
-                                    </p> 
+                                        <?php endforeach; ?> 
                                     
                                     </div>
+                                    <p id="loadMoreProduct">
+                                        <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                        <input type="hidden" id="limit" value="<?php echo $outfitcount; ?>">
+                                        <a href="#" id="<?php echo $outfitcount; ?>">Load More Products</a>
+                                    </p>
                                     
                                 </div>
                             </div>

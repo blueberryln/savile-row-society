@@ -90,6 +90,21 @@ class Outfit extends AppModel {
     }
 
 
+    public function getStylistOutfitList($user_id, $sort, $limit, $page){
+
+        $Message = ClassRegistry::init('Message');
+        $outfit_list = $Message->find('all', array(
+            'conditions'  => array('user_from_id' => $user_id, 'is_outfit' => 1),
+            'order' => array('id' => $sort),
+            'fields' => array('id', 'user_to_id', 'user_from_id', 'body', 'is_outfit', 'outfit_id'),
+            'limit' => $limit,
+            'page'  => $page
+        ));
+
+        return $outfit_list;
+    }
+
+
     public function getOutfitDetails($outfit_list, $sorted_by_list = false){
 
         $outfits = $this->find('all', array(
