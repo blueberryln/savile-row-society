@@ -60,13 +60,13 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <div class="eleven columns left refer-frnd-area pad-none">
                                         <div class="frnd-refer-user prsnl-refer"><span>&nbsp;</span>SRS Personal Reference link</div>
                                         <div class="input text required">
-                                             <input name="referral" required="required"  type="text" value="http://www.savilerowsociety.com/users/refer/<?php echo $user['User']['id']; ?>" readonly>
+                                             <input name="referral" required="required"  type="text" value="http://www.savilerowsociety.com/users/refer/<?php echo $user['User']['id']; ?>"/>
                                         </div>
                                     </div>
                                     <div class="eleven columns left refer-frnd-area pad-none">
                                         <div class="frnd-refer-user email-refer"><span>&nbsp;</span>Email Referral</div>
                                         <div class="input text required">
-                                            <input name="email" required="required" placeholder="enter email address" type="text" id="emailList">
+                                            <input name="email" required="required" Value="Enter Email Address" type="text" id="emailList">
                                             <p class="referStatus"></p>
                                         </div>
                                         <a class="send-referral" href="#" title="" id="inviteFriendsEmail">Send</a>
