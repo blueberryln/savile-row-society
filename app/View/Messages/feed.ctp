@@ -1,5 +1,8 @@
 <?php
 
+$script = 'var uid = ' . $user['User']['id'];
+
+$this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
 ?>
 <div id="view-otft-popup" style="display: none">
@@ -300,6 +303,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
             }     
             else if(feed['Post']['is_message'] == 1){
                 var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
+                var user_to_id = feed['Message']['user_to_id'] == uid ? feed['Message']['user_from_id'] : feed['Message']['user_to_id'];
                 html = '<li class="activity-notification" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
@@ -314,7 +318,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                                 '<div class="activity-date-section">' + 
                                     $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 
                                     $.format.date(feed['Post']['created'], "HH:mm p") + ' EST<br>' +   
-                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
+                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + user_to_id + '" title="">Send a Message</a>' +                                                                                                             
                                 '</div>' + 
                             '</div>' + 
                         '</li>';
@@ -330,8 +334,6 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                     }
                 }
 
-                console.log(outfit_list);
-
                 html = '<li class="activity-notification" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' +  
                                 '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
@@ -341,7 +343,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                                 '<div class="activity-date-section">' + 
                                     $.format.date(feed['Post']['created'], "MMMM d, yyyy") + '<br>' + 
                                     $.format.date(feed['Post']['created'], "HH:mm p") + ' EST<br>' +    
-                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['User']['id'] + '" title="">Send a Message</a>' +                                                                                                             
+                                    '<a href="<?php echo $this->webroot; ?>messages/index/' + feed['Message']['user_to_id'] + '" title="">Send a Message</a>' +                                                                                                             
                                 '</div>' + 
                                 '<div class="ten columns container">' + 
                                     '<div class="twelve columns left client-outfits-area">' + 
