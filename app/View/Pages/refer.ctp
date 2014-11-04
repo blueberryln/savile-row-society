@@ -72,7 +72,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <div class="nine columns left refer-frnd-area pad-none">
                                 <div class="frnd-refer-user email-refer"><span>&nbsp;</span>Email Referral</div>
                                 <div class="input text required">
-                                    <input name="email" required="required" placeholder="enter email address" type="text" id="emailList">
+                                    <input name="email" required="required" value="Enter Email Address" type="text" id="emailList">
+                                   
                                     <p class="referStatus"></p>
                                 </div>
                                 <a class="send-referral" href="#" title="" id="inviteFriendsEmail">Send</a>

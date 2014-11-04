@@ -152,6 +152,7 @@
         
         <script src="<?php echo $this->request->webroot; ?>js/jquery.jcarousel.min.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jcarousel.responsive.js" type="text/javascript"></script>
+        <script src="<?php echo $this->request->webroot; ?>js/jquery.validate.js" type="text/javascript"></script>
         
         
         
@@ -489,6 +490,29 @@
             
             
             
+            
+//            // validate User Registeration form
+//		$("#UserRegisterForm").validate({
+//			rules: {
+//				register-password: {
+//					required: true,
+//					minlength: 8
+//				},
+//				confirm-register-password: {
+//					equalTo: "#register-password"
+//				}
+//			},
+//			messages: {
+//				register-password: {
+//					required: "Please provide a password",
+//					minlength: "Your password must be at least 5 characters long"
+//				},
+//				confirm-register-password: {
+//					required: "Please provide a password",
+//					equalTo: "Please enter the same password as above"
+//				}
+//			}
+//		});
             
             
         </script>

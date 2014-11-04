@@ -42,8 +42,10 @@ $(document).ready(function(){
             }
         }
         
-        
-        
+       
+
+		
+
         
 });
 ';
@@ -236,8 +238,9 @@ color:#396; !important
                <div class="three columns center-block profile-stp2"> 
                     <div class="defalut-check">
                    <input id="chkall" type="checkbox" name="">
-                    <label>I don't Know</label>
+                    <label for="chkall">I don't Know</label>
                    </div>
+                   <div class="stl-select-area">
                 <div class="input text required styled-select">
 <!--                    <label for="neckSize" class="text-center">NECK SIZE:</label>                            -->
                     <span class="arrow-icon">&nbsp;</span>
@@ -380,6 +383,7 @@ color:#396; !important
                         <span class="tt-arrow"></span>
                     </div>
                 </div>
+          </div>
 
                 <div class="clear-fix"></div>
                 <br>
@@ -713,6 +717,32 @@ color:#396; !important
         
     }
 </style>
+<script type="text/javascript">
+    $(document).ready( function(){
+            // validate User Registeration form
+		$("#UserRegisterForm").validate({
+			rules: {
+				register-password: {
+					required: true,
+					minlength: 8
+				},
+				confirm-register-password: {
+					equalTo: "#register-password"
+				}
+			},
+			messages: {
+				register-password: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 5 characters long"
+				},
+				confirm-register-password: {
+					required: "Please provide a password",
+					equalTo: "Please enter the same password as above"
+				}
+			}
+		});
+    });
+</script>
 <script>
     window.onload=function(){
         $("#upload-img").click(function(e){
