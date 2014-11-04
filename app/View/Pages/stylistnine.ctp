@@ -275,63 +275,7 @@
                                             </div>
                                         </div> 
                                         
-                                        <div id="view-otft-popup" style="display: none">
-                                            <div class="box-modal">
-                                                <div class="box-modal-inside">
-                                                    <a href="#" title="" class="otft-close"></a>
-                                                    <div class="view-otft-content">
-                                                        <h1>Outfit Quickview</h1>
-                                                        <div class="three columns left">
-                                                            <div class="twelve columns left">
-                                                                <div class="view-otft-list">
-                                                                    <ul>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
-                                                                        <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="eight columns right">
-                                                            <div class="twelve columns left">
-                                                                <div class="view-otft-dtl">
-                                                                    <div class="view-otft-dtl-top">
-                                                                        <p>Outfit Name: Beach Day</p>
-                                                                        <p>Total Cost: $1300.00</p>
-                                                                    </div>
-                                                                    <div class="otft-overview-box">
-                                                                        <span class="otft-overview-box-head">Overview</span>
-                                                                        <div class="otft-overview-box-recmnd">
-                                                                            <p>Recommended To:</p>
-                                                                            <ul>
-                                                                                <li>Vincent Bourzelx</li>
-                                                                                <li>Jacques Chirac</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="otft-overview-box-brnds">
-                                                                            <p>Brands:</p>
-                                                                            <ul>
-                                                                                <li>Lacoste</li>
-                                                                                <li>Solld and Stripes</li>
-                                                                                <li>Southern Proper</li>
-                                                                                <li>Hudson Sutler</li>
-                                                                                <li>Austen Heller</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="twelve columns left otft-overview-links ">
-                                                                        <a class="left" href="#" title="">Resuse Outfit</a>
-                                                                        <a class="right" href="#" title="">See Full Outfit Details</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         
                                     </div>
                                 </div>

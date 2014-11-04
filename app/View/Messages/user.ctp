@@ -112,7 +112,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 <!--new code end here -->
 
 <?php if($new_user): ?>
-    <img src="https://shareasale.com/sale.cfm?amount=0.00&tracking=<?php echo $user['User']['email']; ?>&transtype=lead&merchantID=55349" width="1" height="1"> 
+    <img src="https://shareasale.com/sale.cfm?amount=0.00&tracking=<?php echo $user['User']['id']; ?>&transtype=lead&merchantID=55349" width="1" height="1"> 
 <?php endif; ?>
 
 

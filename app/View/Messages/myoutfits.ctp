@@ -8,96 +8,6 @@
         window.location = selectvalue;
     });
 
-
-    $(document).on('click',".outfit-quick-view a#quickoutfit", function(){
-        $this = $(this);
-        var productBlock = $this.closest("#findOutfitId");
-        var outfitId = productBlock.find("#outfitidquickview").val();
-        var stylist_id = '<?php echo $user_id; ?>';
-        var totalpriceoutfit = productBlock.find("#totalpriceoutfit").val();
-        
-        $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/outfitPopupQuickView/<?php echo $user_id; ?>/",
-                data:{outfitId:outfitId,stylist_id:stylist_id,totalpriceoutfit:totalpriceoutfit},
-                cache: false,
-                    success: function(result){
-                        data = $.parseJSON(result);
-                        html = '';
-                        
-                        $.each(data,  function (index){
-                        html = html + '<div id="view-otft-popup" style="display: none">';
-                        html = html + '<div class="box-modal">';
-                        html = html + '<div class="box-modal-inside">';
-                        html = html + '<a href="#" title="" class="otft-close"></a>';
-                        html = html + '<div class="view-otft-content">';
-                        html = html + '<h1>Outfit Quickview</h1>';
-                        html = html + '<div class="three columns left">';
-                        html = html + '<div class="twelve columns left">';
-                        html = html + '<div class="view-otft-list">';
-                        html = html + '<ul>';
-                        var entitiesimages = this.product;
-                        $.each(entitiesimages,  function (index1){
-                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ this.Image[0].name +'" alt="" /></li>';
-                        
-                        });
-                        html = html + '</ul>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '<div class="eight columns right">';
-                        html = html + '<div class="twelve columns left">';
-                        html = html + '<div class="view-otft-dtl">';
-                        html = html + '<div class="view-otft-dtl-top">';
-                        html = html + '<p>Outfit Name: '+ this.outfitname.Outfit.outfit_name +'</p>';
-                        html = html + '<p>Total Cost: $'+ this.totalpriceoutfit +'</p>';
-                        html = html + '</div>';
-                        html = html + '<div class="otft-overview-box">';
-                        html = html + '<span class="otft-overview-box-head">Overview</span>';
-                        html = html + '<div class="otft-overview-box-recmnd">';
-                        html = html + '<p>Recommended To:</p>';
-                        html = html + '<ul>';
-                        var userrecommendedlist = this.recomndeduser; 
-                        $.each(userrecommendedlist, function(index2){
-                            html = html + '<li>'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</li>';
-                        });
-                        
-                        
-                        html = html + '</ul>';
-                        html = html + '</div>';
-                        html = html + '<div class="otft-overview-box-brnds">';
-                        html = html + '<p>Brands:</p>';
-                        
-                       html = html + '<ul>';
-                         $.each(entitiesimages, function(index3){
-                            html = html + '<li>'+ this.Brand.name +'</li>';
-                        });
-                        
-                        html = html + '</ul>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '<div class="twelve columns left otft-overview-links ">';
-                        html = html + '<a class="left" href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/<?php echo $user_id; ?>/'+ this.outfitname.Outfit.id +'" title="">Resuse Outfit</a>';
-                        html = html + '<a class="right" href="<?php echo $this->webroot; ?>messages/stylistoutfitsdetails/<?php echo $user_id; ?>/'+ this.outfitname.Outfit.id +'" title="">See Full Outfit Details</a>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-
-                        });
-
-                        $("#outfitpopupdiv").html(html);
-
-                    }
-
-             }); 
-
-    });
-
     // book mark outfit
 
     $(document).on('click',"#outfitbook", function(){
@@ -118,329 +28,25 @@
 
     });
 
-     //pagination
+    $('.my-outfit-filters a').on('click', function(e){
+        e.preventDefault();
+        $('.active').removeClass('active');
+        $(this).addClass('active');
+        var pageAction = $(this).data('filter');
+
+        loadOutfits(pageAction, true);
+    });
 
 
-        $("p#loadMoreProduct a").on('click', function(e){
-            e.preventDefault();
-            $this = $(this);
-            
-            var firstPageId = $("#limit").val();
-            //var id = $("p#loadMoreProduct a").attr('id');
-            //alert(firstPageId);
-            $.ajax({
-                url: '<?php echo $this->webroot; ?>messages/myOutfitAjax',
-                cache: false,
-                type: 'POST',
-                data : {last_limit:firstPageId},
-                success: function(result){
-                    var e = 5;
-                        $("#limit").val(parseInt(firstPageId)+e);
-                    data = $.parseJSON(result);
-                            html = '';
-                            
-                        $.each(data,  function (index){
-                        html = html + '<div class="twelve columns client-outfits left" id="findOutfitId">';
-                        html = html + '<div class="eleven columns container client-outfits-area pad-none" >';
-                        var outfitname = this.outfit.Outfit.outfit_name;
-                                    if(outfitname!==null){
-                                       html = html + '<h1>'+ outfitname +'</h1>';
-                                    }
-                                    html = html + '<h1></h1>';
-                        html = html + '<input type="hidden" id="outfitidquickview" data-id="'+ this.outfit.Outfit.id +'" value="'+ this.outfit.Outfit.id +'">';
-                        html = html + '<div class="twelve columns client-outfits-img pad-none">';
-
-                        html = html + '<ul>';
-
-                        
-                        var totalpriceoutfit = 0;
-                        var entity_list = this.entities;
-                        $.each(entity_list, function(index1){
-                           //var totalpriceoutfit += entity_list[index1].Entity.price;
-                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ entity_list[index1].Image[0].name +'" alt="" /></li>';
-                        });
-                        //var totalpriceoutfit = totalpriceoutfit;
-                        html = html + '<input type="hidden" id="totalpriceoutfit" value="'+ totalpriceoutfit +'">';
-                        html = html + '</ul>';
-
-                        html = html + '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
-                        html = html + '</div>';
-                        html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-                        html = html + '<div class="client-comments left">';
-                        html = html + '<h2>Stylist Comment</h2>';
-                        html = html + '<div class="client-comments-text left">';
-                        var entitiescomments = this.comments;
-                        $.each(entitiescomments, function(index2){
-                            html = html + ''+ entitiescomments[index2].Message.body +'';
-                        });
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-                        html = html + '</div>';
-
-                        });
-                        $("#outfitpaging").append(html);   
-                        //dragAndDropOutfit();
-                    
-                }    
-            });
-        });
+    //Load more pagination
+    $("#loadMoreProduct a").on('click', function(e){
+        e.preventDefault();
+        $this = $(this);
+        var pageAction = $('.active').data('filter');
     
-    //sort by outfit name stylistFilterOutfitListName
-    $(document).on('click', '#sortbyname' ,function(){
-        var stylist_id = "<?php echo $user_id; ?>";
-        var sortname = 'ASC';
-        $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/myOutfitAjax/<?php echo $user_id; ?>",
-                data:{sortname:sortname,stylist_id:stylist_id},
-                cache: false,
-                    success: function(result){
-                            data = $.parseJSON(result);
-                                    html = '';
-                            $.each(data,  function (index){
-                                    html = html + '<div class="twelve columns client-outfits left" id="findOutfitId">';
-                                    html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                                    var outfitname = this.outfit.Outfit.outfit_name;
-                                    if(outfitname!==null){
-                                       html = html + '<h1>'+ outfitname +'</h1>';
-                                    }
-                                    html = html + '<h1></h1>';
-                                    html = html + '<input type="hidden" id="outfitidquickview" data-id="'+ this.outfit.Outfit.id +'" value="'+ this.outfit.Outfit.id +'">';
-                                    html = html + '<div class="twelve columns client-outfits-img pad-none">';
-                                    html = html + '<ul>';
-                                var entitiesData = this.entities; 
-                        $.each(entitiesData, function(index1){
-
-                            html = html + '<li>';
-        html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
-                        });
-                       
-                            html = html + '</ul>';
-
-                            html = html + '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
-                            html = html + '</div>';
-                            html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-                            html = html + '<div class="client-comments left">';
-                            html = html + '<h2>Stylist Comment</h2>';
-                            html = html + '<div class="client-comments-text left">hi</div>';
-                            html = html + '</div>';
-                            html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                        });
-                            $("#outfitpaging").html(html);
-                    }   
-            });
-    });
-
-    // sortbydate
-
-    $(document).on('click', '#sortbydate' ,function(){
-        //alert('hi');
-        var stylist_id = "<?php echo $user_id; ?>";
-        var sortdate = 'DESC';
-        $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/myOutfitAjax/<?php echo $user_id; ?>",
-                data:{sortdate:sortdate,stylist_id:stylist_id},
-                cache: false,
-                    success: function(result){
-                            data = $.parseJSON(result);
-                                    html = '';
-                            $.each(data,  function (index){
-                                    html = html + '<div class="twelve columns client-outfits left" id="findOutfitId">';
-                                    html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                                    var outfitname = this.outfit.Outfit.outfit_name;
-                                    if(outfitname!==null){
-                                       html = html + '<h1>'+ outfitname +'</h1>';
-                                    }
-                                    html = html + '<h1></h1>';
-                                    html = html + '<input type="hidden" id="outfitidquickview" data-id="'+ this.outfit.Outfit.id +'" value="'+ this.outfit.Outfit.id +'">';
-                                    html = html + '<div class="twelve columns client-outfits-img pad-none">';
-                                    html = html + '<ul>';
-                                var entitiesData = this.entities; 
-                        $.each(entitiesData, function(index1){
-
-                            html = html + '<li>';
-        html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
-                        });
-                       
-                            html = html + '</ul>';
-
-                            html = html + '<div class="outfit-quick-view"><a href="#" id="quickoutfit" ><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
-                            html = html + '</div>';
-                            html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-                            html = html + '<div class="client-comments left">';
-                            html = html + '<h2>Stylist Comment</h2>';
-                            html = html + '<div class="client-comments-text left">hi</div>';
-                            html = html + '</div>';
-                            html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                        });
-                        $("#outfitpaging").html(html);
-                    }   
-            });
-    });
-
-//  searchbyoutfit
-
-$(document).on('keydown', '.myoutfit-srch' ,function(){
+        loadOutfits(pageAction, false);
         
-        var stylist_id = "<?php echo $user_id; ?>";
-        var searchbyoutfit = $("#searchbyoutfit").val();
-        //alert(searchbyoutfit);
-        $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/myOutfitAjax/<?php echo $user_id; ?>",
-                data:{searchbyoutfit:searchbyoutfit,stylist_id:stylist_id},
-                cache: false,
-                    success: function(result){
-                            data = $.parseJSON(result);
-                                    html = '';
-                            $.each(data,  function (index){
-                                    html = html + '<div class="twelve columns client-outfits left" id="findOutfitId">';
-                                    html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                                    var outfitname = this.outfit.Outfit.outfit_name;
-                                    if(outfitname!==null){
-                                       html = html + '<h1>'+ outfitname +'</h1>';
-                                    }
-                                    html = html + '<h1></h1>';
-                                    html = html + '<input type="hidden" id="outfitidquickview" data-id="'+ this.outfit.Outfit.id +'" value="'+ this.outfit.Outfit.id +'">';
-                                    html = html + '<div class="twelve columns client-outfits-img pad-none">';
-                                    html = html + '<ul>';
-                                var entitiesData = this.entities; 
-                        $.each(entitiesData, function(index1){
-
-                            html = html + '<li>';
-        html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
-                        });
-                       
-                            html = html + '</ul>';
-
-                            html = html + '<div class="outfit-quick-view"><a href="#" id="quickoutfit" ><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
-                            html = html + '</div>';
-                            html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-                            html = html + '<div class="client-comments left">';
-                            html = html + '<h2>Stylist Comment</h2>';
-                            html = html + '<div class="client-comments-text left">hi</div>';
-                            html = html + '</div>';
-                            html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                        });
-                        $("#outfitpaging").html(html);
-                    }   
-            });
     });
-
-// book markout fit data 
-
-$(document).on('click', '#bookmarkoutfitAjax' ,function(){
-       
-        var stylist_id = "<?php echo $user_id; ?>";
-        
-        $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/bookMarkOutfitAjax/<?php echo $user_id; ?>",
-                data:{stylist_id:stylist_id},
-                cache: false,
-                    success: function(result){
-                        data = $.parseJSON(result);
-                                    html = '';
-                        $.each(data,  function (index){
-                                    html = html + '<div class="twelve columns client-outfits left" id="findOutfitId">';
-                                    html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                                    var outfitname = this.outfit.Outfit.outfit_name;
-                                    if(outfitname!==null){
-                                       html = html + '<h1>'+ outfitname +'</h1>';
-                                    }
-                                    html = html + '<h1></h1>';
-                                    html = html + '<input type="hidden" id="outfitidquickview" data-id="'+ this.outfit.Outfit.id +'" value="'+ this.outfit.Outfit.id +'">';
-                                    html = html + '<div class="twelve columns client-outfits-img pad-none">';
-                                    html = html + '<ul>';
-                        var entitiesData = this.entities; 
-                        $.each(entitiesData, function(index1){
-
-                            html = html + '<li>';
-                            html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
-                        });
-                       
-                            html = html + '</ul>';
-
-                            html = html + '<div class="outfit-quick-view"><a href="#" id="quickoutfit" ><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
-                            html = html + '</div>';
-                            html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-                            html = html + '<div class="client-comments left">';
-                            html = html + '<h2>Stylist Comment</h2>';
-                            html = html + '<div class="client-comments-text left">hi</div>';
-                            html = html + '</div>';
-                            html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                        });
-                        $("#outfitpaging").html(html);
-                    }   
-            });
-    });
-
-
-     //sort by All outfit
-    $(document).on('click', '#alloutfit' ,function(){
-        var stylist_id = "<?php echo $user_id; ?>";
-        var sortname = 'DESC';
-        $.ajax({
-                type:"POST",
-                url:"<?php echo $this->webroot; ?>messages/myOutfitAjax/<?php echo $user_id; ?>",
-                data:{sortname:sortname,stylist_id:stylist_id},
-                cache: false,
-                    success: function(result){
-                            data = $.parseJSON(result);
-                                    html = '';
-                            $.each(data,  function (index){
-                                    html = html + '<div class="twelve columns client-outfits left" id="findOutfitId">';
-                                    html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                                    var outfitname = this.outfit.Outfit.outfit_name;
-                                    if(outfitname!==null){
-                                       html = html + '<h1>'+ outfitname +'</h1>';
-                                    }
-                                    html = html + '<h1></h1>';
-                                    html = html + '<input type="hidden" id="outfitidquickview" data-id="'+ this.outfit.Outfit.id +'" value="'+ this.outfit.Outfit.id +'">';
-                                    html = html + '<div class="twelve columns client-outfits-img pad-none">';
-                                    html = html + '<ul>';
-                                var entitiesData = this.entities; 
-                        $.each(entitiesData, function(index1){
-
-                            html = html + '<li>';
-        html = html + '<img src="<?php echo $this->webroot; ?>files/products/'+ entitiesData[index1].Image[0].name +'" alt="" />';
-                        });
-                       
-                            html = html + '</ul>';
-
-                            html = html + '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>';
-                            html = html + '</div>';
-                            html = html + '<div class="twelve columns left client-outfit-bottom pad-none">';
-                            html = html + '<div class="client-comments left">';
-                            html = html + '<h2>Stylist Comment</h2>';
-                            html = html + '<div class="client-comments-text left">hi</div>';
-                            html = html + '</div>';
-                            html = html + '<div class="bkmrk-outfit right"><a href="#" id="outfitbook">Bookmark Outfit</a></div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                            html = html + '</div>';
-                        });
-                            $("#outfitpaging").html(html);
-                    }   
-            });
-    });
-
     
     $(".modal-user-search").on('keyup',function(){
          var usersearch = $("#modalusersearch").val();
@@ -455,6 +61,99 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
             }
         });
     });
+
+    var currentRequest = false;
+
+    function loadOutfits(pageAction, reset){
+        if(typeof reset == 'undefined'){
+            reset = false;
+        }
+
+        var outfitCont = $('#outfitpaging'),
+            pageVal = parseInt($('#listPage').val());
+
+        if(reset){
+            pageVal = 1;
+            $('#listPage').val(2);
+        }
+
+        var postData = {
+            page: pageVal,
+            pageAction: pageAction,
+            search_text: $('#searchbyoutfit').val(),
+        };
+
+        currentRequest = $.ajax({
+            url: '/messages/myoutfits',
+            type: 'POST',
+            cache: false,
+            data: postData,
+            success: function(data){
+                var ret = $.parseJSON(data);
+
+                if(reset){
+                    outfitCont.html('');
+                    $('#load-more').show();
+                }
+                if(ret['status'] == 'ok'){
+                    $('#listPage').val(pageVal + 1);
+                    var outfits = ret['outfits'];
+                    var html = '';
+                    for(i=0; i < outfits.length; i++){
+                        var outfit = outfits[i],
+                            itemHtml = '',
+                            outfitPrice = 0,
+                            outfitName = outfit['Outfit']['outfit_name'] ? outfit['Outfit']['outfit_name'] : '',
+                            imagePath = '';
+
+                        for(j=0; j < outfit['OutfitItem'].length; j++){
+                            if(outfit['OutfitItem'][j]['product']['Image'].length){
+                                imagePath = outfit['OutfitItem'][j]['product']['Image'][0]['name'];
+                            }
+                            else{
+                                imagePath = 'images/image_not_available.png';
+                            }
+
+                            outfitPrice += parseInt(outfit['OutfitItem'][j]['product']['Entity']['price']);
+
+                            itemHtml += '<li><img src="<?php echo $this->webroot; ?>files/products/' + imagePath +'" alt="" /></li>';
+                        }   
+
+                        html += '<div class="twelve columns client-outfits left" id="findOutfitId">' + 
+                                    '<div class="eleven columns container client-outfits-area pad-none" >' + 
+                                        '<h1>' + outfitName + '</h1>' + 
+                                        '<input type="hidden" id="outfitidquickview" data-id="' + outfit['Outfit']['id'] + '" value="' + outfit['Outfit']['id'] + '">' + 
+                                        '<div class="twelve columns client-outfits-img pad-none">' + 
+                                            '<ul>' + 
+                                            itemHtml + 
+                                            '</ul>' + 
+                                            '<input type="hidden" id="totalpriceoutfit" value="' + outfitPrice + '">' + 
+                                            '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' + 
+                                        '</div>' + 
+                                        '<div class="twelve columns left client-outfit-bottom pad-none">' + 
+                                            '<div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left">' + outfit['Message'][0]['Message']['body'] + '</div></div>' + 
+                                            '<div class="bkmrk-outfit right" ><a href="#"" id="outfitbook">Bookmark Outfit</a></div>' +
+                                        '</div>' + 
+                                    '</div>' + 
+                                '</div>';
+                    }
+
+                    outfitCont.append(html);
+
+
+                    
+                }
+                else if(ret['status'] == 'redirect'){
+                    location = '/messages/index';
+                }
+                else{
+                    $('#load-more').hide();
+                }
+            }
+
+        });
+
+    } 
 
 
 });
@@ -557,15 +256,15 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                     <div class="outfit-fltr">
                                         <p>Outfit Filter</p>
                                         <ul>
-                                            <li><a href="#" title="" id="alloutfit">All Outfits</a></li>
-                                            <li><a href="#" title="" id="bookmarkoutfitAjax">Bookmarked Outfits</a></li>
+                                            <li><a href="" data-filter="all" class="active">All Outfits</a></li>
+                                            <li><a href="" data-filter="bookmark">Bookmarked Outfits</a></li>
                                         </ul>
                                     </div>
                                     <div class="outfit-srt">
                                         <p>Sort By</p>
                                         <ul>
-                                            <li><a href="#" title="" id="sortbyname">Name A-Z</a></li>
-                                            <li><a href="#" title="" id="sortbydate">Date</a></li>
+                                            <li><a href="" data-filter="atoz">Name A-Z</a></li>
+                                            <li><a href="" data-filter="date">Date</a></li>
                                         </ul>
                                     </div>
                                     <div class="myoutfit-srch">
@@ -591,10 +290,10 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
 
                                                         <?php
                                                         $totalpriceoutfit = 0;
-                                                         foreach ($outfit['OutfitItem'] as $value) : ?>
-                                                           <?php  $totalpriceoutfit += $value['product']['Entity']['price']; ?>
+                                                        foreach ($outfit['OutfitItem'] as $value) : ?>
+                                                            <?php  $totalpriceoutfit += $value['product']['Entity']['price']; ?>
                                                             <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $value['product']['Image'][0]['name']; ?>" alt="" /></li>
-
+                                                            
                                                         <?php endforeach; ?>
                                                         <input type="hidden" id="totalpriceoutfit" value="<?php echo $totalpriceoutfit; ?>">
                                                         </ul>
@@ -614,8 +313,8 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
                                     </div>
                                     <p id="loadMoreProduct">
                                         <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                                        <input type="hidden" id="limit" value="<?php echo $outfitcount; ?>">
-                                        <a href="#" id="<?php echo $outfitcount; ?>">Load More Products</a>
+                                        <input type="hidden" id="listPage" value="<?php echo $page; ?>">
+                                        <a href="#" id="load-more">Load More Products</a>
                                     </p>
                                     
                                 </div>
@@ -633,5 +332,53 @@ $(document).on('click', '#bookmarkoutfitAjax' ,function(){
         </div>
 </div>
 </div>
+</div>
+
+<div id="view-otft-popup" style="display: none">
+    <div class="box-modal">
+        <div class="box-modal-inside">
+            <a href="#" title="" class="otft-close"></a>
+            <div class="view-otft-content">
+                <h1>Outfit Quickview</h1>
+                <div class="three columns left">
+                    <div class="twelve columns left">
+                        <div class="view-otft-list">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="eight columns right">
+                    <div class="twelve columns left">
+                        <div class="view-otft-dtl">
+                            <div class="view-otft-dtl-top">
+                                <p>Outfit Name: <span class="pop-outfit-name">Beach Day</span></p>
+                                <p>Total Cost: $<span class="pop-outfit-price">1300.00</span></p>
+                            </div>
+                            <div class="otft-overview-box">
+                                <span class="otft-overview-box-head">Overview</span>
+                                <div class="otft-overview-box-recmnd">
+                                    <p>Recommended To:</p>
+                                    <ul>
+                                        
+                                    </ul>
+                                </div>
+                                <div class="otft-overview-box-brnds">
+                                    <p>Brands:</p>
+                                    <ul>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="twelve columns left otft-overview-links ">
+                                <a class="left" href="" title="" class="pop-outfit-reuse">Resuse Outfit</a>
+                                <a class="right" href="" title="" class="pop-outfit-details">See Full Outfit Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 

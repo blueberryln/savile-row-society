@@ -3935,7 +3935,7 @@ class MessagesController extends AppController {
 
         $page = (isset($this->request->data['page']) && $this->request->data['page'] > 0) ? $this->request->data['page'] : 1; 
 
-        $limit = 5;
+        $limit = 10;
         $sort = 'desc';
         $message_outfit_list = $Outfit->find('all', array(
             'conditions'  => array('stylist_id' => $user_id),
@@ -3983,7 +3983,26 @@ class MessagesController extends AppController {
 
         $outfitcount = count($outfits);
         
-        $this->set(compact('outfits','userlists','user_id','outfitcount'));
+        if($this->request->is('ajax')){
+            $this->layout = false;
+            $this->render = false;
+            $ret = array();
+
+            if(count($outfits)){
+                $ret['status'] = 'ok';
+                $ret['outfits'] = $outfits;
+            }
+            else{
+                $ret['status'] = 'error';
+                $ret['outfits'] = array();
+            }
+
+            echo json_encode($ret);
+            exit;
+        }
+
+
+        $this->set(compact('outfits','userlists','user_id','outfitcount', 'page'));
     
     }
 }
