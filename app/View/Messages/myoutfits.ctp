@@ -1,6 +1,48 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
+    $('.message-area').on('click', '.outfit-quick-view', function(e){
+        e.preventDefault();
+        
+        var clientOutfit = $(this).closest('.client-outfits'),
+            outfitName = clientOutfit.find('.outfit-name').text(),
+            outfitId = clientOutfit.find('.outfit-id').val(),
+            outfitPrice = clientOutfit.find('.outfit-price').val(),
+            brandList = clientOutfit.find('.outfit-brands').val().split(","),
+            userList = clientOutfit.find('.outfit-users').val().split(",");
+        
+        $('.pop-outfit-name').text(outfitName);
+        $('.pop-outfit-id').val(outfitId);
+        $('.pop-outfit-price').text(outfitPrice);
+
+        var brandListHtml = $('.otft-overview-box-brnds ul');
+        brandListHtml.html('');
+        for(var i=0; i<brandList.length; i++){
+            brandListHtml.append('<li>' + brandList[i] + '</li>');
+        }
+
+        var userListHtml = $('.otft-overview-box-recmnd');
+        userListHtml.html('');
+        for(var i=0; i<userList.length; i++){
+            userListHtml.append('<li>' + userList[i] + '</li>');
+        }
+
+        var imgListHtml = $('.view-otft-list'),
+            curImgPath = '';
+        imgListHtml.html('');
+
+        clientOutfit.find('.client-outfits-img li img').each(function(){
+            curImgPath = $(this).attr('src');
+            imgListHtml.append('<li><img src="' + curImgPath + '"></li>');
+        });
+        
+
+
+        var blockTop = $(window).height()/2 - $("#view-otft-popup").height()/2 + $(window).scrollTop();
+        $.blockUI({message: $('#view-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
 
     
     $("#createoutfitbitton").on('click',function(){
@@ -28,9 +70,18 @@
 
     });
 
+    $('#searchbyoutfit').on('input', function(){
+        $('.active').removeClass('active');
+        $(this).addClass('active');
+        var pageAction = "search";
+
+        loadOutfits(pageAction, true);
+    });
+
     $('.my-outfit-filters a').on('click', function(e){
         e.preventDefault();
         $('.active').removeClass('active');
+        $('#searchbyoutfit').val('');
         $(this).addClass('active');
         var pageAction = $(this).data('filter');
 
@@ -121,7 +172,7 @@
 
                         html += '<div class="twelve columns client-outfits left" id="findOutfitId">' + 
                                     '<div class="eleven columns container client-outfits-area pad-none" >' + 
-                                        '<h1>' + outfitName + '</h1>' + 
+                                        '<h1 class="outfit-name">' + outfitName + '</h1>' + 
                                         '<input type="hidden" id="outfitidquickview" data-id="' + outfit['Outfit']['id'] + '" value="' + outfit['Outfit']['id'] + '">' + 
                                         '<div class="twelve columns client-outfits-img pad-none">' + 
                                             '<ul>' + 
@@ -269,7 +320,7 @@
                                     </div>
                                     <div class="myoutfit-srch">
                                         <span></span>
-                                        <input type="text" name="" id="searchbyoutfit" placeholder="Search Outfits" />
+                                        <input type="text" name="" id="searchbyoutfit" placeholder="Search Outfits" data-filter="search" />
                                     </div>
                                 </div>
                                 
@@ -282,21 +333,36 @@
                                         
                                             <div class="twelve columns client-outfits left" id="findOutfitId">
                                                 <div class="eleven columns container client-outfits-area pad-none" >
-                                                    <h1><?php echo ucfirst($outfit['Outfit']['outfit_name']); ?></h1>
-                                                    <input type="hidden" id="outfitidquickview" data-id="<?php echo $outfit['Outfit']['id']; ?>" value="<?php echo $outfit['Outfit']['id']; ?>">
+                                                    <h1 class="outfit-name"><?php echo ucfirst($outfit['Outfit']['outfit_name']); ?></h1>
+                                                    <input type="hidden" data-id="<?php echo $outfit['Outfit']['id']; ?>" value="<?php echo $outfit['Outfit']['id']; ?>" class="outfit-id">
                                                     <div class="twelve columns client-outfits-img pad-none">
                                                        
                                                         <ul>
 
                                                         <?php
                                                         $totalpriceoutfit = 0;
+                                                        $brand_list = [];
+                                                        $user_list = [];
                                                         foreach ($outfit['OutfitItem'] as $value) : ?>
-                                                            <?php  $totalpriceoutfit += $value['product']['Entity']['price']; ?>
+                                                            <?php  
+                                                                $totalpriceoutfit += $value['product']['Entity']['price']; 
+                                                                $brand_list[] = trim($value['product']['Brand']['name']);
+                                                            ?>
                                                             <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $value['product']['Image'][0]['name']; ?>" alt="" /></li>
                                                             
-                                                        <?php endforeach; ?>
-                                                        <input type="hidden" id="totalpriceoutfit" value="<?php echo $totalpriceoutfit; ?>">
+                                                        <?php endforeach;
+
+                                                        foreach($outfit['Message'] as $value){
+                                                            $user_list[] = ucwords($value['UserTo']['first_name'] . ' ' . $value['UserTo']['last_name']);
+                                                        } 
+                                                            $brand_list = array_values(array_unique($brand_list));
+                                                            $brand_list = implode(',', $brand_list);
+                                                            $user_list = implode(',', $user_list);
+                                                        ?>
                                                         </ul>
+                                                        <input type="hidden" class="outfit-price" value="<?php echo $totalpriceoutfit; ?>">
+                                                        <input type="hidden" class="outfit-brands" value="<?php echo $brand_list; ?>">
+                                                        <input type="hidden" class="outfit-users" value="<?php echo $user_list; ?>">
 
                                                         <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
                                                     </div>
@@ -338,6 +404,7 @@
     <div class="box-modal">
         <div class="box-modal-inside">
             <a href="#" title="" class="otft-close"></a>
+            <input type="hidden" id="pop-outfit-id" value="">
             <div class="view-otft-content">
                 <h1>Outfit Quickview</h1>
                 <div class="three columns left">
@@ -352,8 +419,8 @@
                     <div class="twelve columns left">
                         <div class="view-otft-dtl">
                             <div class="view-otft-dtl-top">
-                                <p>Outfit Name: <span class="pop-outfit-name">Beach Day</span></p>
-                                <p>Total Cost: $<span class="pop-outfit-price">1300.00</span></p>
+                                <p>Outfit Name: <span class="pop-outfit-name"></span></p>
+                                <p>Total Cost: $<span class="pop-outfit-price"></span></p>
                             </div>
                             <div class="otft-overview-box">
                                 <span class="otft-overview-box-head">Overview</span>
@@ -370,9 +437,9 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="twelve columns left otft-overview-links ">
-                                <a class="left" href="" title="" class="pop-outfit-reuse">Resuse Outfit</a>
-                                <a class="right" href="" title="" class="pop-outfit-details">See Full Outfit Details</a>
+                            <div class="twelve columns left otft-overview-links">
+                                <a class="left pop-outfit-reuse" href="" title="">Resuse Outfit</a>
+                                <a class="right pop-outfit-details" href="" title="">See Full Outfit Details</a>
                             </div>
                         </div>
                     </div>
