@@ -179,11 +179,11 @@ jQuery(function(){
     /* attach to create-outft event on create outfit.
      * on click open create-outft popup form
      * */
-     $('#crt-new-otft').on('click', function(e){
-        e.preventDefault();
-        $("#reuse-outfit-id").val('');
-        outFit();
-    });
+    //  $('#crt-new-otft').on('click', function(e){
+    //     e.preventDefault();
+    //     $("#reuse-outfit-id").val('');
+    //     outFit();
+    // });
     
     $('#reuse-otft').on('click', function(e){
         e.preventDefault();

@@ -15,6 +15,18 @@ String.prototype.capitalize = function() {
 }
 
 $(document).ready(function(){
+    var $scrollbar  = $('#scrollbar3');
+    $scrollbar.tinyscrollbar({ axis: "y"});
+    var scrollbarData = $scrollbar.data("plugin_tinyscrollbar");
+
+
+    $('#crt-new-otft').on('click', function(e){
+        e.preventDefault();
+        $("#reuse-outfit-id").val('');
+        outFit();
+        scrollbarData.update();
+    });
+
 
     $('.message-area').on('click', '.outfit-quick-view', function(e){
         e.preventDefault();
@@ -310,35 +322,41 @@ $(document).ready(function(){
                                                                 </div>
                                                             </div>
                                                             <div class="myclient-list">
-                                                                <div id="scrollbar7">
-                                                        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-                                                            <div class="viewport">
-                                                                 <div class="overview">
-                                                            <ul id="searchuserlist">
-                                                            <?php 
-                                                            //$userlist = $searchforoutfit;
-                                                             foreach($userlists as $usersearchforoutfit):?>
-                                                                <li>
-                                                                    <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="" class="create-outfit-user-row">
-                                                                        <div class="myclient-img">
-                                                                            <?php if($usersearchforoutfit['User']['profile_photo_url']): ?>
-                                                                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
-                                                                            <?php else: ?>
-                                                                                <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
-                                                                            <?php endif; ?>
+                                                                <div id="scrollbar3">
+                                                                    <div class="scrollbar">
+                                                                        <div class="track">
+                                                                            <div class="thumb">
+                                                                                <div class="end"></div>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="myclient-dtl">
-                                                                            <span class="myclient-name"><?php echo $usersearchforoutfit['User']['first_name'].'&nbsp;'.$usersearchforoutfit['User']['last_name']; ?></span>
-                                                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$usersearchforoutfit['User']['updated']); ?></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                            <?php endforeach; ?>
-                                                                
-                                                            </ul>
-                                                            </div>
-                                                                </div>
                                                                     </div>
+                                                                    <div class="viewport">
+                                                                        <div class="overview">
+                                                                            <ul id="searchuserlist">
+                                                                            <?php 
+                                                                            //$userlist = $searchforoutfit;
+                                                                             foreach($userlists as $usersearchforoutfit):?>
+                                                                                <li>
+                                                                                    <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="" class="create-outfit-user-row">
+                                                                                        <div class="myclient-img">
+                                                                                            <?php if($usersearchforoutfit['User']['profile_photo_url']): ?>
+                                                                                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
+                                                                                            <?php else: ?>
+                                                                                                <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                                                            <?php endif; ?>
+                                                                                        </div>
+                                                                                        <div class="myclient-dtl">
+                                                                                            <span class="myclient-name"><?php echo $usersearchforoutfit['User']['first_name'].'&nbsp;'.$usersearchforoutfit['User']['last_name']; ?></span>
+                                                                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$usersearchforoutfit['User']['updated']); ?></span>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </li>
+                                                                            <?php endforeach; ?>
+                                                                                
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
