@@ -27,6 +27,7 @@ $(document).ready(function(){
                 } 
                 $this.text("Send");
                 $("#emailList").val("");
+                $this.removeClass("activeRefer");
             });
         }
     });
@@ -72,7 +73,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <div class="nine columns left refer-frnd-area pad-none">
                                 <div class="frnd-refer-user email-refer"><span>&nbsp;</span>Email Referral</div>
                                 <div class="input text required">
-                                    <input name="email" required="required" value="Enter Email Address" type="text" id="emailList">
+                                    <input name="email" required="required" placeholder="Enter Email Address" type="text" id="emailList">
                                    
                                     <p class="referStatus"></p>
                                 </div>

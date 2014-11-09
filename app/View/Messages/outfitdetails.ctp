@@ -24,21 +24,7 @@ $logged_script = '
 ';
 }
 $script = '
-var threeItemPopup = ' . $show_three_item_popup. ';
-var addCartPopup = ' . $show_add_cart_popup. ';
 $(document).ready(function(){  
-
-if(isLoggedIn() && threeItemPopup == 1){
-var notificationDetails = new Array();
-notificationDetails["msg"] = "' . $popUpMsg . '";
-notificationDetails["button"] = "<a href=\"' . $this->webroot . 'cart\" class=\"link-btn gold-btn\">Checkout</a>";
-showNotification(notificationDetails);  
-}  
-else if(isLoggedIn() && addCartPopup == 1){
-var notificationDetails = new Array();
-notificationDetails["msg"] = "Item has been added to the cart.";
-showNotification(notificationDetails);        
-}  
 
 $(".fade").mosaic();
 
@@ -176,147 +162,144 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->css('colorbox', null, array('inline' => false));
 
 ?>
-<?php
-    $img = "";
-        if(isset($Userdata) && $Userdata[0]['User']['profile_photo_url'] && $Userdata[0]['User']['profile_photo_url'] != ""){
-            $img = $this->webroot . "files/users/" . $Userdata[0]['User']['profile_photo_url'];
-         }else{
-            $img = $this->webroot . "img/dummy_image.jpg";    
-        }
-?>
 <div>
-<div class="twelve columns container">
-<div class="eleven columns container message-box-area">
-<div class="twelve columns container left message-box">
-<div class="eleven columns container pad-none">
+    <div class="twelve columns container">
+        <div class="eleven columns container message-box-area">
+            <div class="twelve columns container left message-box">
+                <div class="eleven columns container pad-none">
 
-<?php echo $this->element('userAside/leftSidebar'); ?>
+                    <?php echo $this->element('userAside/leftSidebar'); ?>
 
-<div class="right-pannel product-detials right">
-<div class="twelve columns message-area product-area left pad-none">
-<div class="eleven columns container pad-none">
-<div class="twelve columns outfit-dtls left">
-<h1><?php echo $outfitname['Outfit']['outfit_name']; ?></h1>
-<input id="outfit_id" value="<?php echo $outfitname['Outfit']['id']; ?>" type="hidden">
-<div class="eleven columns container outfits-dtls-area pad-none">
-<div class="twelve columns left outfit-desc">
-<div class="outfit-dtls-date"><span>Date Created:</span> <?php echo $outfitname['Outfit']['created']; ?></div>
-<div class="outfit-dtls-price"><span>Outfit Price:</span>
-<?php $sum = 0; foreach ($entities as $entity) : ?>
-<?php $sum += $entity['Entity']['price'];  ?>
-<?php endforeach; echo '$'.$sum; ?>
-</div>
-<div class="outfit-dtls-brnads"><span>Brands in Outfit:</span></div>
-<div class="outfit-dtls-brand-name">
-<?php
-$brand_list = ''; 
-foreach ($entities as $entity) :
-$brand_list = $brand_list . $entity['Brand']['name'] . ", "; 
-endforeach;
+                    <div class="right-pannel product-detials right">
+                        <div class="twelve columns message-area product-area left pad-none">
+                            <div class="eleven columns container pad-none">
+                                <div class="twelve columns outfit-dtls left">
+                                    <h1><?php echo ucfirst($outfit['Outfit']['outfit_name']); ?></h1>
+                                    <input id="outfit_id" value="<?php echo $outfit['Outfit']['id']; ?>" type="hidden">
+                                    <div class="eleven columns container outfits-dtls-area pad-none">
+                                        <div class="twelve columns left outfit-desc">
+                                            <div class="outfit-dtls-date">
+                                                <span>Date Created:</span> <?php echo $outfit['Outfit']['created']; ?>
+                                            </div>
+                                            <div class="outfit-dtls-price"><span>Outfit Price:</span>
+                                                <?php
+                                                    $sum = 0;
+                                                    $brand_list = [];
+                                                    foreach($outfit['OutfitItem'] as $value){
+                                                        $sum += $value['product']['Entity']['price'];
+                                                        $brand_list[] = $value['product']['Brand']['name'];
+                                                    }
+                                                    $brand_list = implode(',', array_unique($brand_list));
+                                                    echo '$'.$sum; 
+                                                ?>
+                                            </div>
+                                            <div class="outfit-dtls-brnads"><span>Brands in Outfit:</span></div>
+                                            <div class="outfit-dtls-brand-name">
+                                                <?php echo $brand_list; ?>
+                                            </div>
+                                            <div class="outfit-stylst-comment"><span>Stylist Comment:</span></div>
+                                            <div class="outfit-stylst-comment-dtl">
+                                                <?php 
+                                                    echo $message['Message']['body'];
+                                                ?>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                                <div class="twelve columns left outfit-dtls-img">
+                                    <div class="eleven columns container outfit-dtls-img-list pad-none">
+                                        <ul>
+                                            <?php 
+                                            foreach ($outfit['OutfitItem'] as $entity){
+                                                if(count($entity['product']['Image']) >= 1){
+                                                    $img = $this->webroot . "products/resize/" . $entity['product']["Image"][0]["name"] . "/92/143";   
+                                                }
+                                                else{
+                                                    $img = $this->webroot . "img/image_not_available-small.png";       
+                                                }            
+                                            ?>
 
-$brand_list = substr($brand_list, 0, strlen($brand_list) -2);
-echo $brand_list;
-?>
-</div>
-<div class="outfit-stylst-comment"><span>Stylist Comment:</span></div>
-<div class="outfit-stylst-comment-dtl"><?php if($messages_outfit_comments['Message']['stylist_comments']){ echo $messages_outfit_comments['Message']['stylist_comments']; }else{} ?></div>
-</div>   
-</div>
-</div>
-<div class="twelve columns left outfit-dtls-img">
-<div class="eleven columns container outfit-dtls-img-list pad-none">
-<ul>
-<?php foreach ($entities as $entity) : //print_r($entities); ?>
-<?php 
-if(count($entity['Image']) >= 1){
-$img = $this->webroot . "products/resize/" . $entity["Image"][0]["name"] . "/92/143";   
-}
-else{
-$img = $this->webroot . "img/image_not_available-small.png";       
-}
-?>
+                                            <li><img src="<?php echo $img; ?>" alt="<?php echo $entity['product']['Entity']['name']; ?>" class="product-image fadein-image" style="opacity: 1;"> </li>
+                                            <input type="hidden" value="<?php echo $entity['product']['Entity']['id']; ?>" class="product-id">  
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="twelve columns left product-dtls">
+                                    <div class="eleven columns container product-view outfit-page-item">
+                                    <?php foreach ($outfit['OutfitItem'] as $entity) : ?>
+                                        <input type="hidden" value="<?php echo $entity['product']['Entity']['id']; ?>" class="product-id">  
+                                        <input type="hidden" value="<?php echo $entity['product']['Entity']['slug']; ?>" class="product-slug">  
+                                        <input type="hidden" value="<?php echo Configure::read('Social.callback_url') . "product/" . $entity['product']['Entity']['id'] . "/" . $entity['product']['Entity']['slug'] . "/"; ?>" class="product-url"> 
 
-<li><img src="<?php echo $img; ?>" alt="<?php echo $entity['Entity']['name']; ?>" class="product-image fadein-image" style="opacity: 1;"> </li>
-<input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">  
-<?php endforeach; ?>
+                                        <div class="twelve columns left product-dtl-area">
+                                            <div class="product-dtl-img left"> 
+                                            <?php if(count($entity['product']['Image']) > 0) : ?>
+                                                <a href="<?php echo $this->webroot . 'files/products/' . $entity['product']['Image'][0]['name']; ?>" data-lightbox="product-images" class="group1" rel="group<?php echo $entity['product']['Entity']['id']; ?>">
 
-</ul>
-</div>
-</div>
-<div class="twelve columns left product-dtls">
-<div class="eleven columns container product-view outfit-page-item">
-<?php foreach ($entities as $entity) : ?>
-<input type="hidden" value="<?php echo $entity['Entity']['id']; ?>" class="product-id">  
-<input type="hidden" value="<?php echo $entity['Entity']['slug']; ?>" class="product-slug">  
-<input type="hidden" value="<?php echo Configure::read('Social.callback_url') . "product/" . $entity['Entity']['id'] . "/" . $entity['Entity']['slug'] . "/"; ?>" class="product-url"> 
+                                                    <img class="zoom_01" src="<?php echo $this->webroot . 'files/products/' . $entity['product']['Image'][0]['name']; ?>" class="fadein-image" data-zoom-image="<?php echo $this->webroot . 'files/products/' . $entity['product']['Image'][0]['name']; ?>" />
 
-<div class="twelve columns left product-dtl-area">
-<div class="product-dtl-img left"> 
-<?php if(count($entity['Image']) > 0) : ?>
-<a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images" class="group1" rel="group<?php echo $entity['Entity']['id']; ?>">
+                                                </a>
+                                            <?php else : ?>
+                                                <img src="<?php echo $this->webroot; ?>img/image_not_available.png" class="fadein-image" />                    
+                                            <?php endif; ?>
+                                        </div>
 
-<img class="zoom_01" src="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" data-zoom-image="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" />
+                                        <div class="product-dtl-desc left">
+                                            <div class="product-dtl-desc-top left">
+                                                <div class="desc-top-brand">
+                                                    <?php echo $entity['product']['Entity']['name']; ?> | <?php echo $entity['product']['Brand']['name']; ?>
+                                                </div>
+                                                <div class="desc-top-brand-price">
+                                                    $ <?php echo $entity['product']['Entity']['price']; ?>
+                                                </div>
+                                            </div>
+                                            <div class="product-dtl-desc-middle left">
+                                                <ul>
+                                                    <li><span>&ndash;</span><?php echo nl2br($entity['product']['Entity']['description']); ?></li>
+                                                </ul>
 
-</a>
-<?php else : ?>
-<img src="<?php echo $this->webroot; ?>img/image_not_available.png" class="fadein-image" />                    
-<?php endif; ?>
-<!-- <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/> -->
-</div>
+                                            </div>
+                                        <div class="product-dtl-desc-bottom left">
+                                        <div class="slect-options left">
+                                        <div class="select-size select-style left">
+                                        <?php if($entity['size_id']){
+                                            echo '<select class="product-size">';
+                                            echo '<option value="' . $entity['size_id'] . '">' . $sizes[$entity['size_id']] . '</option>';
+                                            echo '</select>';
+                                        }
+                                        else{
+                                            if(count($entity['product']['Detail'])){
+                                                echo '<select class="product-size">';
+                                                foreach($entity['product']['Detail'] as $detail){
+                                                    echo '<option value="' . $detail['size_id'] . '">' . $sizes[$detail['size_id']] . '</option>';
+                                                }  
+                                                echo '</select>';  
+                                            }
+                                        }
+                                        ?>
+                                        <br/>
+                                        </div>
+                                        <div class="select-quantity select-style left">
 
+                                        <?php echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range(1,10) , 'label' => false, 'div' => false, 'style' => "")); ?>
+                                        </div>
+                                        </div>
+                                        <div class="product-dtl-specifiation left">Specifications preselected from Stylist  Recommendations</div>
+                                        </div>
+                                        </div>
 
-<div class="product-dtl-desc left">
-<div class="product-dtl-desc-top left">
-<div class="desc-top-brand"><?php echo $entity['Entity']['name']; ?> | <?php echo $entity['Brand']['name']; ?></div>
-<div class="desc-top-brand-price">$ <?php echo $entity['Entity']['price']; ?></div>
+                                        <div class="product-dtl-links left">
 
-</div>
-<div class="product-dtl-desc-middle left">
-<ul>
-<li><span>&ndash;</span><?php echo nl2br($entity['Entity']['description']); ?></li>
-</ul>
+                                        <a href="" class="gold-btn add-to-cart product-add-cart text-center" data-product_id="<?php echo $entity['product']['Entity']['id']; ?>">ADD TO CART</a>
+                                        <input type="">
 
-</div>
-<div class="product-dtl-desc-bottom left">
-<div class="slect-options left">
-<div class="select-size select-style left">
-<?php if($entity['OutfitItem']['size_id']){
-    echo '<select class="product-size">';
-    echo '<option value="' . $entity['OutfitItem']['size_id'] . '">' . $sizes[$entity['OutfitItem']['size_id']] . '</option>';
-    echo '</select>';
-}
-else{
-    if(count($entity['Detail'])){
-        echo '<select class="product-size">';
-        foreach($entity['Detail'] as $detail){
-            echo '<option value="' . $detail['size_id'] . '">' . $sizes[$detail['size_id']] . '</option>';
-        }  
-        echo '</select>';  
-    }
-}
-?>
-<br/>
-</div>
-<div class="select-quantity select-style left">
-
-<?php echo $this->Form->input('product-quantity', array('class'=>'product-quantity', 'options' => range(1,10) , 'label' => false, 'div' => false, 'style' => "")); ?>
-</div>
-</div>
-<div class="product-dtl-specifiation left">Specifications preselected from Stylist  Recommendations</div>
-</div>
-</div>
-
-<div class="product-dtl-links left">
-
-<a href="" class="gold-btn add-to-cart product-add-cart text-center" data-product_id="<?php echo $entity['Entity']['id']; ?>">ADD TO CART</a>
-<input type="">
-
-<a class="product-my-likes"href="#" id="likes" data-product_id="<?php echo $entity['Entity']['id']; ?>"><?php echo ($entity['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
+                                        <a class="product-my-likes"href="#" id="likes" data-product_id="<?php echo $entity['product']['Entity']['id']; ?>"><?php echo ($entity['product']['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
 
 
-</div>
-</div>
-<?php endforeach; ?>
+                                        </div>
+                                        </div>
+                                        <?php endforeach; ?>
 
 </div>
 </div>

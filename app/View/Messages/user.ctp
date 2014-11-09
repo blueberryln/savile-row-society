@@ -33,11 +33,17 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                             <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
                                             <a href="">Load Old Messages</a>
                                         </p>
+                                        <div id="scrollbar1">
+                                            <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                            <div class="viewport">
+                                                <div class="overview">
+                                                    <div class="chat-container">
                                     
-                                    <div class="chat-container">
-                    
-                                    </div>
-                                    <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                        <br>
                                         
                                     </div>
                                 </div>
@@ -125,6 +131,12 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
             callInAction = false,
             reqNewMsgDelay=6000,
             firstMsgId = 0;
+
+        var calculatedHeight = $(window).height()- $('.header').height() - $('.message-box-heading').height() - $("#loadOldMsgs").height() - 100;
+        var $scrollbar  = $('#scrollbar1');
+        $scrollbar.tinyscrollbar({ axis: "y", trackSize: calculatedHeight});
+        var scrollbarData = $scrollbar.data("plugin_tinyscrollbar");
+        $scrollbar.find('.viewport').height(calculatedHeight);
         
         /**
          * To load the initial conversation
@@ -149,6 +161,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                             if(res['msg_remaining'] > 0){
                                 $("#loadOldMsgs").fadeIn(300);    
                             }
+
+                            scrollbarData.update("bottom");
                             
                         }
                         else{  
@@ -178,6 +192,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         for(var i=0; i < arrMsg.length; i++){
                             var html = showChatMsg(arrMsg[i]);
                             chatContainer.append(html);
+                            scrollbarData.update("bottom");
                         }
                     }
                     callInAction = false;   
@@ -367,6 +382,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
                 var html = showSentMessage(message, uid);
                 chatContainer.append(html);
+                scrollbarData.update("bottom");
+
                 $("#messageToSend").val("");
                 
                 $("#messageToSend").removeClass("sending");
@@ -444,6 +461,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     else{
                         $("#loadOldMsgs").fadeOut(300);    
                     }   
+
+                    scrollbarData.update("relative");
                 }    
             });
         });

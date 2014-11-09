@@ -105,7 +105,7 @@ class Outfit extends AppModel {
     }
 
 
-    public function getOutfitDetails($outfit_list, $sorted_by_list = false){
+    public function getOutfitDetails($outfit_list, $sorted_by_list = false, $user_id = false){
 
         $outfits = $this->find('all', array(
             'contain'       => array('OutfitItem', 'Stylist'),
@@ -125,8 +125,14 @@ class Outfit extends AppModel {
             }
             $Entity = ClassRegistry::init('Entity');
 
-            $outfit_details = array('Image');
-            $entities = $Entity->getEntities($product_list, $outfit_details);
+            $outfit_details = array('Image', 'Detail');
+
+            if($user_id){
+                $entities = $Entity->getEntities($product_list, $outfit_details, $user_id);
+            }
+            else{
+                $entities = $Entity->getEntities($product_list, $outfit_details);
+            }
 
             $sorted_entities = array();
             foreach ($entities as $entity) {

@@ -942,7 +942,9 @@ class Entity extends AppModel {
                         'Wishlist.product_entity_id = Entity.id'
                     )
                 );
-            $find_array['joins'][] = array('table' => 'outfits_items',
+
+            if($outfit_id){
+                $find_array['joins'][] = array('table' => 'outfits_items',
                     'alias' => 'OutfitItem',
                     'type' => 'INNER',
                     'conditions' => array(
@@ -950,8 +952,10 @@ class Entity extends AppModel {
                         'OutfitItem.outfit_id' => $outfit_id
                     )
                 );
-            
-            $find_array['fields'][] = 'OutfitItem.*';
+                
+                $find_array['fields'][] = 'OutfitItem.*';
+            }
+
             $find_array['fields'][] = 'Wishlist.*'; 
         }
         

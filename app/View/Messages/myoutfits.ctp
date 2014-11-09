@@ -1,5 +1,20 @@
 <script type="text/javascript">
-    $(document).ready(function(){
+    
+Array.prototype.unique = function() {
+    var unique = [];
+    for (var i = 0; i < this.length; i++) {
+        if (unique.indexOf(this[i]) == -1) {
+            unique.push(this[i]);
+        }
+    }
+    return unique;
+};
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+$(document).ready(function(){
 
     $('.message-area').on('click', '.outfit-quick-view', function(e){
         e.preventDefault();
@@ -12,7 +27,7 @@
             userList = clientOutfit.find('.outfit-users').val().split(",");
         
         $('.pop-outfit-name').text(outfitName);
-        $('.pop-outfit-id').val(outfitId);
+        $('#pop-outfit-id').val(outfitId);
         $('.pop-outfit-price').text(outfitPrice);
 
         var brandListHtml = $('.otft-overview-box-brnds ul');
@@ -47,7 +62,27 @@
     
     $("#createoutfitbitton").on('click',function(){
         var selectvalue = $("#selectfilter option:selected" ).val();
-        window.location = selectvalue;
+
+        var reuseOutfitId = $("#reuse-outfit-id").val(),
+            reuseQueryString = "";
+
+        if(reuseOutfitId != ""){
+            reuseQueryString = "?reuse=" + reuseOutfitId;
+        }
+        window.location = selectvalue + reuseQueryString;
+    });
+
+    $(".create-outfit-user-row").on('click', function(e){
+        e.preventDefault();
+
+        var reuseOutfitId = $("#reuse-outfit-id").val(),
+            userOutfitUrl = $(this).attr('href'),
+            reuseQueryString = "";
+
+        if(reuseOutfitId != ""){
+            reuseQueryString = "?reuse=" + reuseOutfitId;
+        }
+        window.location = userOutfitUrl + reuseQueryString; 
     });
 
     // book mark outfit
@@ -113,6 +148,13 @@
         });
     });
 
+    $(".pop-outfit-reuse").on('click', function(e){
+        e.preventDefault();
+
+        $("#reuse-outfit-id").val($('#pop-outfit-id').val());
+        outFit();
+    })
+
     var currentRequest = false;
 
     function loadOutfits(pageAction, reset){
@@ -155,7 +197,9 @@
                             itemHtml = '',
                             outfitPrice = 0,
                             outfitName = outfit['Outfit']['outfit_name'] ? outfit['Outfit']['outfit_name'] : '',
-                            imagePath = '';
+                            imagePath = '',
+                            userList = [],
+                            brandList = [];
 
                         for(j=0; j < outfit['OutfitItem'].length; j++){
                             if(outfit['OutfitItem'][j]['product']['Image'].length){
@@ -164,11 +208,20 @@
                             else{
                                 imagePath = 'images/image_not_available.png';
                             }
-
+                            brandList.push(outfit['OutfitItem'][j]['product']['Brand']['name']);
                             outfitPrice += parseInt(outfit['OutfitItem'][j]['product']['Entity']['price']);
 
                             itemHtml += '<li><img src="<?php echo $this->webroot; ?>files/products/' + imagePath +'" alt="" /></li>';
                         }   
+
+                        for(var j = 0; j < outfit['Message'].length; j++){
+                            userList.push(outfit['Message'][j]['UserTo']['first_name'].capitalize() + ' ' + outfit['Message'][j]['UserTo']['last_name'].capitalize());
+                        }
+
+                        brandList = brandList.unique();
+                        userList = userList.unique();
+                        brandList = brandList.join(',');
+                        userList = userList.join(',');
 
                         html += '<div class="twelve columns client-outfits left" id="findOutfitId">' + 
                                     '<div class="eleven columns container client-outfits-area pad-none" >' + 
@@ -179,6 +232,8 @@
                                             itemHtml + 
                                             '</ul>' + 
                                             '<input type="hidden" id="totalpriceoutfit" value="' + outfitPrice + '">' + 
+                                            '<input type="hidden" class="outfit-brands" value="' + brandList + '">' + 
+                                            '<input type="hidden" class="outfit-users" value="' + userList + '">' + 
                                             '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' + 
                                         '</div>' + 
                                         '<div class="twelve columns left client-outfit-bottom pad-none">' + 
@@ -235,6 +290,7 @@
                                                 <div class="five columns left otft-pop-lft">
                                                     <div class="myclient-popup left">
                                                         <div class="myclient-topsec"> 
+                                                            <input type="hidden" id="reuse-outfit-id" value="">
                                                             <div class="filter-myclient-area">
                                                                 <div class="filter-myclient" >
                                                                     <span class="downarw"></span>
@@ -263,7 +319,7 @@
                                                             //$userlist = $searchforoutfit;
                                                              foreach($userlists as $usersearchforoutfit):?>
                                                                 <li>
-                                                                    <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="">
+                                                                    <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="" class="create-outfit-user-row">
                                                                         <div class="myclient-img">
                                                                             <?php if($usersearchforoutfit['User']['profile_photo_url']): ?>
                                                                                 <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
@@ -357,6 +413,7 @@
                                                         } 
                                                             $brand_list = array_values(array_unique($brand_list));
                                                             $brand_list = implode(',', $brand_list);
+                                                            $user_list = array_values(array_unique($user_list));
                                                             $user_list = implode(',', $user_list);
                                                         ?>
                                                         </ul>

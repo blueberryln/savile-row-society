@@ -44,11 +44,7 @@ function signIn() {
 
 
 /* function to show create outfit popup*/
-function outFit(reuse) {
-
-    if(reuse){
-
-    }
+function outFit() {
     var blockTop = $(window).height()/2 - $("#create-otft-popup").height()/2;
     $.blockUI({message: $('#create-otft-popup'), css: {position: "fixed", top: (blockTop > 0) ? blockTop : "0px"}});
     $('.blockOverlay').click($.unblockUI);
@@ -185,7 +181,8 @@ jQuery(function(){
      * */
      $('#crt-new-otft').on('click', function(e){
         e.preventDefault();
-        outFit(false);
+        $("#reuse-outfit-id").val('');
+        outFit();
     });
     
     $('#reuse-otft').on('click', function(e){

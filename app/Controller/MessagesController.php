@@ -47,7 +47,7 @@ class MessagesController extends AppController {
         else if($is_admin && is_null($messages_for_user_id)){
             $this->redirect('/admin/users');
         }    
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($user_id);
          //print_r($userlists);
          // make user_id, user
         $this->set(compact('user_id', 'user', 'messages_for_user_id','userlists', 'sideBarTab', 'new_user'));
@@ -993,7 +993,7 @@ class MessagesController extends AppController {
         
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($user_id);
         
         if(count($userlists)){
             $first_user = $userlists[0]['User'];
@@ -1116,7 +1116,7 @@ class MessagesController extends AppController {
         $user_id = $user["User"]["id"]; 
         $is_admin = $user["User"]["is_admin"];
         $is_stylist = $user["User"]["is_stylist"];
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($user_id);
         $client = $User->findById($clientid);
 
         $find_array2 = array(
@@ -1187,7 +1187,7 @@ class MessagesController extends AppController {
         $is_stylist = $user["User"]["is_stylist"];
         $Outfit = ClassRegistry::init('Outfit');
         $outfitname = $Outfit->findById($outfit_id);
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($user_id);
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
         $entity_list = array();
@@ -1470,99 +1470,60 @@ class MessagesController extends AppController {
 
     public function outfitdetails($outfit_id = null) {
 
-        $sideBarTab = 'detail';  
         $User = ClassRegistry::init('User');
+        $Outfit = ClassRegistry::init('Outfit');
+        $Size = ClassRegistry::init('Size');
+        $this->autoRender = false;
+
         $user = $this->getLoggedUser();
-        $stylist = $User->findById($user['User']['stylist_id']);
         $user_id = $user["User"]["id"]; 
-        $user = $User->findById($user_id);
-        $is_admin = $user["User"]["is_admin"];
-        $is_stylist = $user["User"]["is_stylist"];
-        
-        $current_user = $this->getLoggedUser();
-        if($user_id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
-            $this->redirect('/');
+
+        if($user['User']['is_stylist'] == 1){
+            $sideBarTab = 'detail';
+
+            $sizes = $Size->find('list');
+            $outfit = $Outfit->getOutfitDetails($outfit_id, false, $user_id);
+            if($outfit){
+                $outfit = $outfit[$outfit_id];
+
+                $message = $this->Message->find('first', array(
+                    'conditions' => array('user_to_id' => $user_id, 'outfit_id' => $outfit_id),
+                    'order' => array('id' => 'desc'),
+                    ));
+
+                $userlists = $User->getStylistClients($user_id);
+                
+                $this->set(compact('outfit', 'outfit_id', 'message', 'user_id', 'user', 'sideBarTab', 'sizes', 'userlists'));
+                $this->render('stylistoutfit');
+            }
+            else{
+                $this->redirect('/messages/index');
+            }
+        }
+        else if($user['User']['is_admin'] == 1){
+            $this->redirect('/messages/index');
             exit;
         }
-        //Get user from session to derterminate if user is stylist
-        $find_array = array(
-                'fields' => array('User.*,User1.*'),
-                'joins' => array(
-                array(
-                    'conditions' => array(
-                        'User.id = User1.stylist_id',
-                        'User1.id'=>$user_id,
-                    ),
-                    'table' => 'users',
-                    'alias' => 'User1',
-                    'type' => 'INNER',
-                ),
-                ),
-            );
-                
-        //print_r($purchases);
-        $Userdata=$User->find('all',$find_array);
-        $Outfit = ClassRegistry::init('Outfit');
-        $outfitname = $Outfit->findById($outfit_id);
-        $OutfitItem = ClassRegistry::init('OutfitItem');
-        $outfit = $OutfitItem->find('all', array('conditions'=>array('OutfitItem.outfit_id' => $outfit_id)));
-        $Message = ClassRegistry::init('Message');
-        $messages_outfit_comments = $Message->find('first',array('conditions'=>array('Message.outfit_id'=>$outfit_id,'Message.is_outfit'=>true,),'fields'=>array('Message.body as stylist_comments')));
-        $entity_list = array();
-        $Size = ClassRegistry::init('size');
-        $sizes = $Size->find('list');
+        else{
+            $sideBarTab = 'detail';
+            $stylist = $User->findById($user['User']['stylist_id']);
 
-            foreach($outfit as $value){
-                $entity_list[] = $value['OutfitItem']['product_entity_id'];
-                $size_list[] = $value['OutfitItem']['size_id'];
+            $sizes = $Size->find('list');
+            $outfit = $Outfit->getOutfitDetails($outfit_id, false, $user_id);
+            if($outfit){
+                $outfit = $outfit[$outfit_id];
+
+                $message = $this->Message->find('first', array(
+                    'conditions' => array('user_to_id' => $user_id, 'outfit_id' => $outfit_id),
+                    'order' => array('id' => 'desc'),
+                    ));
+                $this->set(compact('outfit', 'outfit_id', 'message', 'user_id', 'user', 'stylist', 'sideBarTab', 'sizes'));
+                $this->render('outfitdetails');
             }
-
-            $Entity = ClassRegistry::init('Entity');
-
-            // get data
-            $entity = $Entity->getMultipleById($entity_list, $user_id,$outfit_id);
-            //print_r($entity);
-            $products_list = array();
-            foreach ($entity as $key => $value) {
-                $products_list[] = $value['Entity']['product_id'];
+            else{
+                $this->redirect('/messages/index');
             }
-            $similar_results = $Entity->getSimilarProducts($outfit_id, $products_list);
-            $similar = array();
-            foreach($similar_results as $row){
-                if($row['Color'] && count($row['Color']) > 0){
-                    $similar[$row['Entity']['product_id']][] = $row; 
-                }
-            }
-
-            $entities = array();
-
-            foreach ($entity as $key => $value) {
-                $entities[$value['Entity']['id']] = $value;
-                if(isset($similar[$value['Entity']['product_id']])){
-                    $entities[$value['Entity']['id']]['Similar'] = $similar[$value['Entity']['product_id']];
-                }
-            }
-
-            $Size = ClassRegistry::init('Size');
-            $size_list = $Size->find('list');
-            
-
-            $show_add_cart_popup = 0;
-            if($this->Session->read('add-cart')){
-                $show_add_cart_popup = 1;
-                $this->Session->delete('add-cart');
-            }
-
-            $popUpMsg = '';
-            $show_three_item_popup = 0;
-            if($this->Session->read('cart-three-items')){
-                $show_three_item_popup = 1;
-                $popUpMsg = $this->Session->read('cart-three-items-msg');
-                $this->Session->delete('cart-three-items');
-                $this->Session->delete('cart-three-items-msg');
-            }
-
-            $this->set(compact('outfit_id','messages_outfit_comments', 'entities','outfitname', 'size_list', 'user_id', 'msg', 'second_user', 'second_user_id', 'is_admin', 'is_stylist', 'show_add_cart_popup','show_three_item_popup', 'popUpMsg','Userdata','sideBarTab', 'stylist', 'sizes'));
+        }
            
     }
 
@@ -1595,7 +1556,7 @@ class MessagesController extends AppController {
             exit;
         }
 
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($stylist_id);
    
         $OrderItem = ClassRegistry::init('OrderItem');
         $Entity = ClassRegistry::init('Entity'); 
@@ -1654,7 +1615,7 @@ class MessagesController extends AppController {
             exit;
         }
 
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($stylist_id);
    
          $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity'); 
@@ -1703,7 +1664,7 @@ class MessagesController extends AppController {
         $is_stylist = $user["User"]["is_stylist"];   
         $client_user = $User->getById($client_id);
         $clientid = $client_user['User']['id'];
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($user_id);
         $Message = ClassRegistry::init('Message');
         if($user){
             $find_array =  array(
@@ -1773,7 +1734,7 @@ class MessagesController extends AppController {
             exit;
         }
 
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($stylistid);
        
         if($this->request->is('post')){
             $data=$this->request->data;
@@ -1913,7 +1874,7 @@ class MessagesController extends AppController {
         }
 
 
-        $userlists = $User->find('all',array('conditions'=>array('User.stylist_id'=>$stylistid, 'User.is_stylist' => 0, 'User.is_admin' => 0),'fields'=>array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')));
+        $userlists = $User->getStylistClients($stylistid);
 
         $userprofile = $UserPreference->find('first',array('conditions'=>array('UserPreference.user_id'=>$clientid)));
         
@@ -1957,7 +1918,7 @@ class MessagesController extends AppController {
         }
 
         $stylist_id = $user['User']['stylist_id'];
-        $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0)));
+        $userlists = $User->getStylistClients($stylist_id);
         $usercount  = count($userlists);
 
         $this->set(compact('user','userlists','stylist_id','usercount'));
@@ -1972,7 +1933,7 @@ class MessagesController extends AppController {
         $stylist_id = $client_user['User']['stylist_id'];
         if($client_user && $client_user['User']['stylist_id'] == $user['User']['id']){
 
-            $userlists = $User->find('all', array('conditions'=>array('User.stylist_id'=>$stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0)));
+            $userlists = $User->getStylistClients($stylist_id);
             $this->set(compact('client_user','userlists','stylist_id','sideBarTab'));
         }
         else{
@@ -1994,7 +1955,7 @@ class MessagesController extends AppController {
             $this->redirect('/');
         }
 
-        $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $user_id, 'User.is_stylist' => 0, 'User.is_admin' => 0)));
+        $userlists = $User->getStylistClients($user_id);
 
         $Message = ClassRegistry::init('Message');
         $Outfit = ClassRegistry::init('Outfit');
@@ -2017,7 +1978,7 @@ class MessagesController extends AppController {
             $outfit_list[] = $value['Outfit']['id'];
         }
 
-        $outfits = $Outfit->getOutfitDetails($outfit_list, true, true);
+        $outfits = $Outfit->getOutfitDetails($outfit_list, true);
         $sorted_outfit = array();
 
         foreach($outfits as $value){

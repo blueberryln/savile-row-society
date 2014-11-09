@@ -119,6 +119,12 @@ $(function () {
 });
 
 $(document).ready(function(){
+    var calculatedHeight = $(window).height()-$('.header').height() - 50;
+    var $scrollbar  = $('#scrollbar1');
+    $scrollbar.tinyscrollbar({ axis: "y", trackSize: calculatedHeight});
+    var scrollbarData = $scrollbar.data("plugin_tinyscrollbar");
+    $scrollbar.find('.viewport').height(calculatedHeight);
+
     $('.product-list-block').on('click', function(e){
         e.preventDefault();
     });
@@ -438,6 +444,7 @@ $(document).ready(function(){
                                     '</li>';
 
                         productCont.append(html);
+                        scrollbarData.update("relative");
                     }
                 }
                 else if(ret['status'] == 'redirect'){
@@ -448,6 +455,8 @@ $(document).ready(function(){
                 }
 
                 dragAndDropOutfit(); 
+
+
             }
 
         });
@@ -538,6 +547,7 @@ $(document).ready(function(){
                                     '</li>';
 
                         productCont.append(html);
+                        scrollbarData.update("relative");
                     }
                 }
                 else{
@@ -635,6 +645,7 @@ $(document).ready(function(){
                                     '</li>';
 
                         productCont.append(html);
+                        scrollbarData.update("relative");
                     }
                 }
                 else{
@@ -728,6 +739,7 @@ $(document).ready(function(){
                                     '</li>';
 
                         productCont.append(html);
+                        scrollbarData.update("relative");
                     }
                 }
                 else{
@@ -1057,10 +1069,10 @@ $(document).ready(function(){
                                 </div>
                             </div>
                             <div class="twelve columns left otft-prdct-list">
-                                <!-- <div id="scrollbar1">
+                                <div id="scrollbar1">
                                     <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                                     <div class="viewport">
-                                        <div class="overview"> -->
+                                        <div class="overview">
                                         <div id="product">
                                             <ul class="clear" id="listdat">
                                             <?php  for($i = 0; $i < count($entities); $i++){
@@ -1092,9 +1104,9 @@ $(document).ready(function(){
                                             </ul>
                                             
                                         </div>
-                                        <!-- </div>
+                                        </div>
                                     </div>
-                                </div> -->
+                                </div>
                                 <p id="loadMoreProduct">
                                     <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
                                     <input type="hidden" id="listPage" value="<?php echo $page + 1; ?>">

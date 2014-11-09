@@ -20,7 +20,8 @@
                         var outfitData = this.outfit[0];
                         html = html + '<div class="twelve columns client-outfits left">';
                         html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                        html = html + '<h1>'+ this.outfit[0].Outfit.outfit_name +'</h1>';
+                        var outfit_name = (this.outfit[0].Outfit.outfit_name) ? this.outfit[0].Outfit.outfit_name : '';
+                        html = html + '<h1>'+ outfit_name +'</h1>';
                         html = html + '<div class="twelve columns client-outfits-img pad-none">';
                         html = html + '<ul>';
                         var entitiesData = this.entities; 
@@ -70,7 +71,7 @@
 
     $(document).on("click", "#useroutfit-pagination a",function(){
          var FirstPageCount = $("#limit").val();
-         alert(FirstPageCount);
+         // alert(FirstPageCount);
                 //var sorting = this.value;
                 $.ajax({
                     type:"POST",
@@ -86,8 +87,8 @@
                         var outfitData = this.outfit[0];
                         html = html + '<div class="twelve columns client-outfits left">';
                         html = html + '<div class="eleven columns container client-outfits-area pad-none">';
-                        var outfit_name = this.outfit[0].Outfit.outfit_name
-                        html = html + '<h1>'+ this.outfit[0].Outfit.outfit_name +'</h1>';
+                        var outfit_name = (this.outfit[0].Outfit.outfit_name) ? this.outfit[0].Outfit.outfit_name : '';
+                        html = html + '<h1>'+ outfit_name +'</h1>';
                         html = html + '<div class="twelve columns client-outfits-img pad-none">';
                         html = html + '<ul>';
                         var entitiesData = this.entities; 

@@ -46,31 +46,35 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                         <br />
                                         
                                         
+                                        <div id="scrollbar1">
+                                            <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                            <div class="viewport">
+                                                <div class="overview">
                                                     <div class="chat-container">
-                                
-                                                    </div>
-
-                                                 
                                     
-                                    <!-- </div>
-                                    </div>
-                                            </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                </div>
-                                <div class="twelve columns left">
-                                    <div class="bottom-text">
-                                        <div class="dummy-text"><textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea></div>
+
                                     </div>
                                 </div>
-                                <div class=" twelve columns left bottom-btns">
-                                   <!--  <a class="link-btn gold-btn" href="#" title="">Create Outfit</a>
-                                    <a class=" link-btn black-btn" href="#" title="">Send Photo Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
-                                    <a class="link-btn black-btn" href="#" title="">Send</a> -->
-                                    <!-- <a class="create-outfit left" href="#" title="">Create Outfit</a> -->
-                                    <a class=" create-outfit left"  id=""  href="/outfits/create/<?php echo $client_id; ?>">Create New Outfit</a>
-                                    <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
-                                    <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
-                                    <a class="send-btn right"  id="sendMessages"  href="">Send Message</a>
+                                <div class="message-pane-bottom clear-fix" style="overflow: hidden;">
+                                    <div class="twelve columns left">
+                                        <div class="bottom-text">
+                                            <div class="dummy-text"><textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea></div>
+                                        </div>
+                                    </div>
+                                    <div class=" twelve columns left bottom-btns">
+                                       <!--  <a class="link-btn gold-btn" href="#" title="">Create Outfit</a>
+                                        <a class=" link-btn black-btn" href="#" title="">Send Photo Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                        <a class="link-btn black-btn" href="#" title="">Send</a> -->
+                                        <!-- <a class="create-outfit left" href="#" title="">Create Outfit</a> -->
+                                        <a class=" create-outfit left"  id=""  href="/outfits/create/<?php echo $client_id; ?>">Create New Outfit</a>
+                                        <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
+                                        <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                        <a class="send-btn right"  id="sendMessages"  href="">Send Message</a>
+                                    </div>
                                 </div>
                             </div>
                         
@@ -114,6 +118,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             callInAction = false,
             reqNewMsgDelay=6000,
             firstMsgId = 0;
+
+        var calculatedHeight = $(window).height()- $('.header').height() - $('.message-pane-bottom').height() - 100;
+        console.log(calculatedHeight);
+        var $scrollbar  = $('#scrollbar1');
+        $scrollbar.tinyscrollbar({ axis: "y", trackSize: calculatedHeight});
+        var scrollbarData = $scrollbar.data("plugin_tinyscrollbar");
+        $scrollbar.find('.viewport').height(calculatedHeight);
         
         function loadMessages(userId) {
             if(!userId){
@@ -141,7 +152,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         else{  
                             
                         } 
-                        // $("#scrollbar2").trigger('resize');
+
+                        scrollbarData.update("bottom");
                     }
                 },
                 error: function(res) {
@@ -163,9 +175,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         for(var i=0; i < arrMsg.length; i++){
                             var html = showChatMsg(arrMsg[i]);
                             chatContainer.append(html);
+                            scrollbarData.update("bottom");
                         }
                     }
-                    // $("#scrollbar2").trigger('resize');
                 },
                 error: function(res) {
                     
@@ -357,9 +369,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
 
                 var html = showSentMessage(message, uid);
-                console.log(html);
                 chatContainer.append(html);
-                // $("#scrollbar2").trigger('resize');
+                scrollbarData.update("bottom");
+
                 $("#messageToSend").val("");
 
                 $.ajax({
@@ -411,6 +423,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             if(res['msg_remaining'] == 0){
                                 $("#loadOldMsgs").fadeOut(300);    
                             }
+
+                            scrollbarData.update();
                         }
                         else{
                             $("#loadOldMsgs").fadeOut(300);    

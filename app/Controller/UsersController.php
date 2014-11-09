@@ -414,7 +414,7 @@ class UsersController extends AppController {
         }
 
         if($this->getLoggedUserID()){
-            $this->redirect('/');
+            $this->redirect('/messages/index');
             exit();   
         }
 

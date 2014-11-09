@@ -357,4 +357,14 @@ class User extends AppModel {
             array('User.id' => $user_id)
         );
     }
+
+
+    public function getStylistClients($stylist_id){
+        $users = $this->find('all',array(
+            'conditions' => array('User.stylist_id'=>$stylist_id, 'User.is_stylist' => 0, 'User.is_admin' => 0),
+            'fields' => array('User.id,User.updated','User.first_name','User.last_name','User.stylist_id','User.profile_photo_url')
+        ));
+
+        return $users;
+    }
 }
