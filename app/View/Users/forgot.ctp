@@ -20,7 +20,9 @@ window.registerProcess = true;
                     </div>
                     <div class="clearfix"></div>
                     <div class="text-center">
-                        <input type="submit" value="Reset" class="black-btn link-btn">
+                        <div class="submit">
+                            <input type="submit" value="Reset" class="black-btn link-btn">
+                        </div>
                     </div>
                 </form>
             </div>

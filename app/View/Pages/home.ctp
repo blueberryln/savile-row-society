@@ -156,7 +156,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                         
                                         <img src="<?php echo $this->webroot; ?>files/users/<?php echo $outfit['Stylist']['profile_photo_url']; ?>"  />
                                         </div>
-                                        <div class="outfit-top-content left" style="width:55%">
+                                        <div class="outfit-top-content left">
                                             <div class="outfit-month" style="line-height: initial;"><?php echo $outfit['Outfit']['outfit_name']; ?></div>                                    
                                             <div class="outfit-brand">Styled by <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>"><span class="outfit-brand-name"><?php echo $outfit['Stylist']['first_name']; ?></span></a></div>
                                         </div>

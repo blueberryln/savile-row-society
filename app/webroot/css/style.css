@@ -374,7 +374,8 @@ input[type="checkbox"], input[type="radio"] {visibility: hidden;}
 
 /*.pref-time .connect input[type="checkbox"]{ float: left; display: block; width: 10%;}*/
 
-.about-submit .submit input[type="submit"] {background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-size: 25px; color: #fff; padding: 18px 120px 12px; text-transform: uppercase;}
+.submit input[type="submit"], .about-submit .submit input[type="submit"] { background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-size: 25px; color: #fff; padding: 18px 60px 12px; text-transform: uppercase;}
+.about-submit .submit input[type="submit"] { padding: 18px 120px 12px; }
 
 
 	/*Size Section*/
