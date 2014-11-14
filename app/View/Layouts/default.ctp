@@ -42,10 +42,10 @@
             <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>-->
-        <script src="/js/jquery-1.9.1.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+        <!--<script src="/js/jquery-1.9.1.min.js"></script>-->
 
-        <?php //echo $this->element('scripts/ga'); ?>
+        <?php echo $this->element('scripts/ga'); ?>
     </head>
     <body>
         <?php echo $this->element('scripts/fb'); ?>
@@ -533,8 +533,8 @@
         </script>
         
         <?php 
-            // echo $this->element('scripts/zoopim');
-            // echo $this->element('scripts/remarketing'); 
+             echo $this->element('scripts/zoopim');
+             echo $this->element('scripts/remarketing'); 
         ?>
         
         <?php echo $this->fetch('script'); ?>

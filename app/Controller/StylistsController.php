@@ -1281,6 +1281,7 @@ class StylistsController extends AppController {
             $find_array['conditions']['OR'] = array(
                 array('LOWER(Brand.name) LIKE' => '%' . $search_text . '%'),
                 array('LOWER(Entity.name) LIKE' => '%' . $search_text . '%'),
+                array('LOWER(Entity.description) LIKE' => '%' . $search_text . '%'),
                 );
         }
 
@@ -1425,6 +1426,7 @@ class StylistsController extends AppController {
             $find_array['conditions']['OR'] = array(
                 array('LOWER(Brand.name) LIKE' => '%' . $search_text . '%'),
                 array('LOWER(Entity.name) LIKE' => '%' . $search_text . '%'),
+                array('LOWER(Entity.description) LIKE' => '%' . $search_text . '%'),
                 );
         }
 
@@ -1555,6 +1557,7 @@ class StylistsController extends AppController {
             $find_array['conditions']['OR'] = array(
                 array('LOWER(Brand.name) LIKE' => '%' . $search_text . '%'),
                 array('LOWER(Entity.name) LIKE' => '%' . $search_text . '%'),
+                array('LOWER(Entity.description) LIKE' => '%' . $search_text . '%'),
                 );
         }
 
