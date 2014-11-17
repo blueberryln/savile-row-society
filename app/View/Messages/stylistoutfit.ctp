@@ -27,30 +27,29 @@ $script = '
 $(document).ready(function(){  
 
 
-$(".add-to-cart").click(function(e) {
-e.preventDefault();
-var productBlock = $(this).closest(".product-dtl-area"),
-productQuantity = productBlock.find("select.product-quantity").val(),
-productSize = productBlock.find("select.product-size").val();
+    $(".add-to-cart").click(function(e) {
+        e.preventDefault();
+        var productBlock = $(this).closest(".product-dtl-area"),
+        productQuantity = productBlock.find("select.product-quantity").val(),
+        productSize = productBlock.find("select.product-size").val();
 
-var id = $(this).data("product_id");
-var quantity = parseInt(productQuantity) + 1;
-var size = productSize;
-var outfitId = $("#outfit_id").val();
+        var id = $(this).data("product_id");
+        var quantity = parseInt(productQuantity) + 1;
+        var size = productSize;
+        var outfitId = $("#outfit_id").val();
 
-$.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: quantity, product_size: size, outfit_id: outfitId },
-function(data) {
-var ret = $.parseJSON(data);
-if(ret["status"] == "ok"){
-$(".cart-items-count").html(ret["count"]);
-location.reload();
-}
-else if(ret["status"] == "login"){
-signUp();       
-}
-}
-);
-});
+        $.post("' . $this->request->webroot . 'api/cart/save", { product_id: id, product_quantity: quantity, product_size: size, outfit_id: outfitId },
+            function(data) {
+                var ret = $.parseJSON(data);
+                if(ret["status"] == "ok"){
+                    $(".cart-items-count").html(ret["count"]);
+                location.reload();
+                }
+                else if(ret["status"] == "login"){
+                    signUp();       
+                }
+            });
+    });
 
 $(".btn-request-price").click(function(e) {
 e.preventDefault();
@@ -181,7 +180,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         <div class="outfit-dtls-price"><span>Outfit Price:</span>
                                             <?php
                                                 $sum = 0;
-                                                $brand_list = [];
+                                                $brand_list = array();
                                                 foreach($outfit['OutfitItem'] as $value){
                                                     $sum += $value['product']['Entity']['price'];
                                                     $brand_list[] = $value['product']['Brand']['name'];
@@ -309,7 +308,68 @@ $this->Html->css('colorbox', null, array('inline' => false));
         <div class="box-modal-inside">
             <a href="#" title="" class="otft-close"></a>
             <div class="crt-new-otft-content">
-               
+                <div class="five columns left otft-pop-lft">
+                    <div class="myclient-popup left">
+                        <div class="myclient-topsec"> 
+                            <input type="hidden" id="reuse-outfit-id" value="<?php echo $outfit_id; ?>">
+                            <div class="filter-myclient-area">
+                                <div class="filter-myclient" >
+                                    <span class="downarw"></span>
+                                    <select id="selectfilter">
+                                    <option value="">Filter Clients</option>
+                                    <?php foreach($userlists as $clientout): ?>
+                                    <option value="<?php echo $this->webroot; ?>outfits/create/<?php echo $clientout['User']['id']; ?>"><?php echo $clientout['User']['first_name'].'&nbsp;'.$clientout['User']['last_name']; ?></option>
+                                     <?php endforeach; ?>
+                                    
+                                </select>
+                                </div>
+                            </div>
+                            <div class="search-myclient-area">
+                                <div class="search-myclient modal-user-search">
+                                    <span class="srch"></span>
+                                    <input type="text" name="myclient-search" id="modalusersearch" />
+                                </div>
+                            </div>
+                            <div class="myclient-list">
+                                <div id="scrollbar3">
+                                    <div class="scrollbar">
+                                        <div class="track">
+                                            <div class="thumb">
+                                                <div class="end"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="viewport">
+                                        <div class="overview">
+                                            <ul id="searchuserlist">
+                                            <?php 
+                                            //$userlist = $searchforoutfit;
+                                             foreach($userlists as $usersearchforoutfit):?>
+                                                <li>
+                                                    <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="" class="create-outfit-user-row">
+                                                        <div class="myclient-img">
+                                                            <?php if($usersearchforoutfit['User']['profile_photo_url']): ?>
+                                                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
+                                                            <?php else: ?>
+                                                                <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <div class="myclient-dtl">
+                                                            <span class="myclient-name"><?php echo $usersearchforoutfit['User']['first_name'].'&nbsp;'.$usersearchforoutfit['User']['last_name']; ?></span>
+                                                            <span class="myclient-status">last active at <?php echo date ('d F Y',$usersearchforoutfit['User']['updated']); ?></span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="five columns right otft-pop-rgt">
                     <div class="eleven columns container">
                         <div class="twelve columns left otft-pop-rgt-area">
@@ -326,9 +386,14 @@ $this->Html->css('colorbox', null, array('inline' => false));
     </div>
 </div>
 
+
+
 <script type="text/javascript">
 $(document).ready(function(){
-
+    var $scrollbar  = $('#scrollbar3');
+    $scrollbar.tinyscrollbar({ axis: "y"});
+    var scrollbarData = $scrollbar.data("plugin_tinyscrollbar");
+    
     $("#createoutfitbitton").on('click',function(){
         var selectvalue = $("#selectfilter option:selected" ).val();
 
@@ -356,10 +421,8 @@ $(document).ready(function(){
 
     $("#reuse-otft").on('click', function(e){
         e.preventDefault();
-
-        var blockTop = $(window).height()/2 - $("#create-otft-popup").height()/2;
-        $.blockUI({message: $('#create-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
-        $('.blockOverlay').click($.unblockUI);
-    })
+        outFit();
+        scrollbarData.update();
+    });
 });  
 </script>

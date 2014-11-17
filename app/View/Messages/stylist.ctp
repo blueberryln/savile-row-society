@@ -49,7 +49,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                         <div id="scrollbar1">
                                             <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                                             <div class="viewport">
-                                                <div class="overview">
+                                                <div class="overview" style="width: 100%;">
                                                     <div class="chat-container">
                                     
                                                     </div>
@@ -106,6 +106,55 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 <br /><br />
             </form> 
         </div> 
+    </div>
+</div>
+
+<div id="view-otft-popup" style="display: none">
+    <div class="box-modal">
+        <div class="box-modal-inside">
+            <a href="#" title="" class="otft-close"></a>
+            <input type="hidden" id="pop-outfit-id" value="">
+            <div class="view-otft-content">
+                <h1>Outfit Quickview</h1>
+                <div class="three columns left">
+                    <div class="twelve columns left">
+                        <div class="view-otft-list">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="eight columns right">
+                    <div class="twelve columns left">
+                        <div class="view-otft-dtl">
+                            <div class="view-otft-dtl-top">
+                                <p>Outfit Name: <span class="pop-outfit-name"></span></p>
+                                <p>Total Cost: $<span class="pop-outfit-price"></span></p>
+                            </div>
+                            <div class="otft-overview-box">
+                                <span class="otft-overview-box-head">Overview</span>
+                                <div class="otft-overview-box-recmnd">
+                                    <p>Recommended To:</p>
+                                    <ul>
+                                        
+                                    </ul>
+                                </div>
+                                <div class="otft-overview-box-brnds">
+                                    <p>Brands:</p>
+                                    <ul>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="twelve columns left otft-overview-links">
+                                <a class="left pop-outfit-reuse" href="" title="">Resuse Outfit</a>
+                                <a class="right pop-outfit-details" href="" title="">See Full Outfit Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -193,9 +242,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 
 
                 var outfitName = (chatMsg['OutfitDetail']['outfit_name']) ? chatMsg['OutfitDetail']['outfit_name'] : ''; 
+                var userList = [],
+                    outfitPrice = 0,
+                    brandList = [];
                 
                 html = html +   '<div class="client-outfit">'+
-                                    '<div class="client-msg-reply"><span>' + outfitName + '</span></div>' + 
+                                    '<div class="client-msg-reply"><span class="outfit-name">' + outfitName + '</span></div>' + 
+                                    '<input type="hidden" id="outfitidquickview" data-id="' + chatMsg['OutfitDetail']['id'] + '" value="' + chatMsg['OutfitDetail']['id'] + '">' + 
                                         '<ul>';
                 ;
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
@@ -203,16 +256,27 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     if(typeof(chatMsg['Outfit'][i]['product']["Image"]) != "undefined" && chatMsg['Outfit'][i]['product']["Image"].length > 0){
                         imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]['product']["Image"][0]["name"] + "/98/135";
                     }
-                    
+                    else{
+                        imgSrc = webroot + "images/image_not_available.png";    
+                    }
                     
                     html = html + 
                             '<li>' + 
-                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['product']['Entity']['slug'] + '" class="product-slug">' + 
-                                '<input type="hidden" value="' + chatMsg['Outfit'][i]['product']['Entity']['id'] + '" class="product-id">' + 
                                 '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['product']['Entity']['name'] + '" alt="" /></li>'; 
+
+                    brandList.push(chatMsg['Outfit'][i]['product']['Brand']['name']);
+                    outfitPrice += parseInt(chatMsg['Outfit'][i]['product']['Entity']['price']);
+                }
+
+                for(var j = 0; j < chatMsg['AllMessage'].length; j++){
+                    userList.push(chatMsg['AllMessage'][j]['UserTo']['first_name'].capitalize() + ' ' + chatMsg['AllMessage'][j]['UserTo']['last_name'].capitalize());
                 }
 
                     html = html +  '</ul>' +
+                                    '<input type="hidden" id="totalpriceoutfit" value="' + outfitPrice + '">' + 
+                                    '<input type="hidden" class="outfit-brands" value="' + brandList + '">' + 
+                                    '<input type="hidden" class="outfit-users" value="' + userList + '">' + 
+                                    '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' +
                                     '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
                                     '</div>';
             }
@@ -450,6 +514,51 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             e.preventDefault();
             var productBlock = $(this).closest(".product-block");
             window.location = productBlock.find(".btn-buy").attr("href");
+        });
+
+
+        $('.chat-container').on('click', '.outfit-quick-view', function(e){
+            e.preventDefault();
+            
+            var clientOutfit = $(this).closest('.client-outfit'),
+                outfitName = clientOutfit.find('.outfit-name').text(),
+                outfitId = clientOutfit.find('.outfit-id').val(),
+                outfitPrice = clientOutfit.find('.outfit-price').val(),
+                brandList = clientOutfit.find('.outfit-brands').val().split(","),
+                userList = clientOutfit.find('.outfit-users').val().split(",");
+            
+            $('.pop-outfit-name').text(outfitName);
+            $('#pop-outfit-id').val(outfitId);
+            $('.pop-outfit-price').text(outfitPrice);
+
+            var brandListHtml = $('.otft-overview-box-brnds ul');
+            brandListHtml.html('');
+            for(var i=0; i<brandList.length; i++){
+                brandListHtml.append('<li>' + brandList[i] + '</li>');
+            }
+
+            var userListHtml = $('.otft-overview-box-recmnd');
+            userListHtml.html('');
+            for(var i=0; i<userList.length; i++){
+                userListHtml.append('<li>' + userList[i] + '</li>');
+            }
+
+            var imgListHtml = $('.view-otft-list'),
+                curImgPath = '';
+            imgListHtml.html('');
+
+            clientOutfit.find('.client-outfits-img li img').each(function(){
+                curImgPath = $(this).attr('src');
+                imgListHtml.append('<li><img src="' + curImgPath + '"></li>');
+            });
+
+            $('.pop-outfit-details').attr('href', '/messages/outfitdetails/' + outfitId);
+            
+
+
+            var blockTop = $(window).height()/2 - $("#view-otft-popup").height()/2 + $(window).scrollTop();
+            $.blockUI({message: $('#view-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+            $('.blockOverlay').click($.unblockUI);
         });
     }
     

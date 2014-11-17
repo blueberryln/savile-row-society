@@ -36,7 +36,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                         <div id="scrollbar1">
                                             <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                                             <div class="viewport">
-                                                <div class="overview">
+                                                <div class="overview" style="width: 100%;">
                                                     <div class="chat-container">
                                     
                                                     </div>

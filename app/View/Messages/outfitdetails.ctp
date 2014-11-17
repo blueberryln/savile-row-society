@@ -184,7 +184,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                             <div class="outfit-dtls-price"><span>Outfit Price:</span>
                                                 <?php
                                                     $sum = 0;
-                                                    $brand_list = [];
+                                                    $brand_list = array();
                                                     foreach($outfit['OutfitItem'] as $value){
                                                         $sum += $value['product']['Entity']['price'];
                                                         $brand_list[] = $value['product']['Brand']['name'];

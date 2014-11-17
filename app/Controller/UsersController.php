@@ -661,7 +661,7 @@ class UsersController extends AppController {
             $this->request->data['UserPreference']['style_pref'] = implode(',', $this->request->data['UserPreference']['style_pref']);
             if($this->User->saveAll($this->request->data))
             {
-                $this->Session->setFlash("User Data Hasbeen Saved", 'flash');
+                $this->Session->setFlash("User data has been Saved", 'flash');
                 $this->redirect('/messages/profiles/'.$id);
             }
             else

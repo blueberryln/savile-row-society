@@ -185,10 +185,10 @@ jQuery(function(){
     //     outFit();
     // });
     
-    $('#reuse-otft').on('click', function(e){
-        e.preventDefault();
-        reuseoutFit();
-    });
+    // $('#reuse-otft').on('click', function(e){
+    //     e.preventDefault();
+    //     reuseoutFit();
+    // });
     
     // $('.outfit-quick-view').on('click', function(e){
     //     e.preventDefault();

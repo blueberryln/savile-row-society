@@ -123,7 +123,7 @@ class Message extends AppModel {
                     'fields' => array('Message.id', 
                         'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
-                    'limit' => "20",
+                    'limit' => "10",
         ));
     }
     
@@ -139,7 +139,7 @@ class Message extends AppModel {
                     'fields' => array('Message.id', 
                         'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
-                    'limit' => "20",
+                    'limit' => "10",
         ));
     }
     
@@ -174,7 +174,7 @@ class Message extends AppModel {
                     'fields' => array(
                         'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
-                    'limit' => 20
+                    'limit' => 10
         ));
     }
     
@@ -191,7 +191,7 @@ class Message extends AppModel {
                     'fields' => array(
                         'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
-                    'limit' => 20
+                    'limit' => 10
         ));
     }
 

@@ -557,11 +557,24 @@ class MessagesController extends AppController {
 
                     $outfits = $Outfit->getOutfitDetails($outfit_list);
 
+                    $messages = $this->Message->find('all', array(
+                        'conditions'    => array('Message.outfit_id' => $outfit_list),
+                        'contain'       => array('UserTo'),
+                        'fields'        => array('Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserTo.id', 'UserTo.first_name', 'UserTo.last_name'),
+                        'order'         => array('Message.id' => 'desc'),
+                        ));
+
+                    $sorted_messages = array();
+                    foreach($messages as $value){
+                        $sorted_messages[$value['Message']['outfit_id']][] = $value;
+                    }
+
                     foreach($my_conversation as &$row){
                         if(isset($outfits[$row['Message']['outfit_id']])){
                             $outfit = $outfits[$row['Message']['outfit_id']];
                             $row['Outfit'] = $outfit['OutfitItem'];
-                            $row['OutfitDetail'] = $outfit['Outfit'];    
+                            $row['OutfitDetail'] = $outfit['Outfit'];   
+                            $row['AllMessage'] = $sorted_messages[$row['Message']['outfit_id']];
                         }
                     }
 
@@ -584,12 +597,24 @@ class MessagesController extends AppController {
                 }
 
                 $outfits = $Outfit->getOutfitDetails($outfit_list);
+                $messages = $this->Message->find('all', array(
+                    'conditions'    => array('Message.outfit_id' => $outfit_list),
+                    'contain'       => array('UserTo'),
+                    'fields'        => array('Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserTo.id', 'UserTo.first_name', 'UserTo.last_name'),
+                    'order'         => array('Message.id' => 'desc'),
+                    ));
+
+                $sorted_messages = array();
+                foreach($messages as $value){
+                    $sorted_messages[$value['Message']['outfit_id']][] = $value;
+                }
 
                 foreach($my_conversation as &$row){
                     if(isset($outfits[$row['Message']['outfit_id']])){
                         $outfit = $outfits[$row['Message']['outfit_id']];
                         $row['Outfit'] = $outfit['OutfitItem'];
                         $row['OutfitDetail'] = $outfit['Outfit'];    
+                        $row['AllMessage'] = $sorted_messages[$row['Message']['outfit_id']];
                     }
                 }
 
@@ -1673,7 +1698,7 @@ class MessagesController extends AppController {
                         'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id)
                     )
                 ),
-                'limit'=>2,
+                'limit'=>10,
                 'contain' => array('UserFrom'),
                 'fields' => array(
                     'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',

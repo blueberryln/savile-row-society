@@ -1,4 +1,4 @@
-<script type="text/javascript">
+    <script type="text/javascript">
     
 Array.prototype.unique = function() {
     var unique = [];
@@ -62,6 +62,8 @@ $(document).ready(function(){
             curImgPath = $(this).attr('src');
             imgListHtml.append('<li><img src="' + curImgPath + '"></li>');
         });
+
+        $('.pop-outfit-details').attr('href', '/messages/outfitdetails/' + outfitId);
         
 
 
@@ -415,8 +417,8 @@ $(document).ready(function(){
 
                                                         <?php
                                                         $totalpriceoutfit = 0;
-                                                        $brand_list = [];
-                                                        $user_list = [];
+                                                        $brand_list = array();
+                                                        $user_list = array();
                                                         foreach ($outfit['OutfitItem'] as $value) : ?>
                                                             <?php  
                                                                 $totalpriceoutfit += $value['product']['Entity']['price']; 

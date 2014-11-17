@@ -99,27 +99,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                         
                         
                         <div class="team-member-container"> 
-                            <div class="team-member">
-                                <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-13.jpg" data-member-name="Shawn Koid" class="fadein-image" />
-                                </div>
-                                <div>
-                                    <div class="name">Shawn Koid</div>
-                                    <!-- <span class="tm-email">(lisa@savilerowsociety.com)</span> -->
-                                    <span class="title">Marketing</span>
-                                    <!-- <div class="sub-title">(Formerly worked in corporate finance, MBA at...</div> -->
-                                    <div class="desc">     
-                                        <p>Shawn has always had an enduring love for the fashion world. While she started by designing and sewing outfits, she explored other areas of the fashion industry through her work experiences as a brand manager at Randa Accessories, and public relations intern at Edelman PR and Fluorescent PR, Ltd. She also participated in the L’Oréal USA Brandstorm Competition 2014.</p>
-
-                                        <p>Through her experiences, Shawn realized that she enjoys combining both her creative passions and her business skills, especially within an industry she holds close to her heart. As a Fashion Marketing and Customer Acquisition Strategist, Shawn is responsible for content creation for SRS’s social media and digital marketing, organizing events, and connecting clients with the SRS platform.</p>
-
-                                        <p>Shawn graduated from Babson College, where she earned a B.A. in Business Management, with a concentration in marketing and communications.</p>
-                                    </div>                    
-                                    <div class="text-center info-btn">
-                                        <a class="more-info-text" href="#" title="Show more">More Info</a>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             
                             <div class="team-member">
                                 <div>
@@ -155,9 +135,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                 </div>
                             </div>
 
-                        </div>
-                        
-                        <div class="team-member-container"> 
+                            
                             <div class="team-member">
                                 <div>
                                     <img src="<?php echo $this->request->webroot; ?>img/team-member-16.jpg" data-member-name="James Vinson" class="fadein-image" />
@@ -177,25 +155,11 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                        
+                        <div class="team-member-container"> 
                             
-                            <div class="team-member">
-                                <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-17.jpg" data-member-name="Conor Murphy" class="fadein-image" />
-                                </div>
-                                <div>
-                                    <div class="name">Conor Murphy</div>
-                                    <span class="title">Stylist Apprentice</span> 
-                                    <div class="desc">
-                                        <p>Conor Murphy is a Stylist Apprentice at Savile Row Society, as well as a weekly content contributor. Conor has been in love with fashion all his life. Born in Newburyport, Massachusetts, Conor attended the University of Massachusetts, Amherst, where he majored in Communication and minored in Mandarin Chinese, after observing the direction the industry was moving in.</p>
-                                        <p>At SRS, Conor works with Fashion Manager, Andrea Luongo in sourcing from brands to assisting stylists with measurements and making sure clients needs are fully met. In addition to his work with stylists, Conor works on weekly blog content and consults on social media for the brand.</p>                        
-                                    </div>
-                                    <div class="text-center info-btn">
-                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
                             <div class="team-member">
                                 <div>
                                     <img src="<?php echo $this->request->webroot; ?>img/team-member-18.jpg" data-member-name="Bella Klycheva" class="fadein-image" />
@@ -212,9 +176,6 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                 </div>
                             </div>
 
-                        </div>
-                        
-                        <div class="team-member-container"> 
                             <div class="team-member">
                                 <div>
                                     <img src="<?php echo $this->request->webroot; ?>img/team-member-19.jpg" data-member-name="Alex Regensburg" class="fadein-image" />
@@ -232,8 +193,8 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        
                         
 
                         <div class="team-member-container">    

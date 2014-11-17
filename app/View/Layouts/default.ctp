@@ -45,9 +45,9 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
         <!--<script src="/js/jquery-1.9.1.min.js"></script>-->
 
-        <?php echo $this->element('scripts/ga'); ?>
     </head>
     <body>
+
         <?php echo $this->element('scripts/fb'); ?>
         
     
@@ -532,13 +532,9 @@
         
         </script>
         
-        <?php 
-             echo $this->element('scripts/zoopim');
-             echo $this->element('scripts/remarketing'); 
-        ?>
-        
         <?php echo $this->fetch('script'); ?>
 
+        <?php echo $this->element('scripts/srs_scripts'); ?>
         <?php echo $this->element('sql_dump'); ?>
     </body>
 </html>

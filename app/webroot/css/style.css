@@ -1346,7 +1346,7 @@ background: linear-gradient(#fdfdfd, #f0f0f2);
 .myclient-list li a .myclient-dtl span.myclient-name {font-weight: bold; padding-bottom: 3px;}
 .client-outfits-img ul { position: relative; width: 100%; display: inline-block; text-align: center; margin: 0px; }
 .outfit-quick-view { position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; width: 150px; height: 60px; line-height: 60px; padding: 0 20px 0 78px; background: rgba(255, 255, 255, 0.57); display: none; margin: auto; cursor: pointer;}
-.client-outfits-img:hover .outfit-quick-view, .client-outfit ul:hover .outfit-quick-view{ display: block;}
+.client-outfits-img:hover .outfit-quick-view, .client-outfit ul:hover .outfit-quick-view, .client-outfit:hover .outfit-quick-view{ display: block;}
 .outfit-quick-view span.outfit-quick-view-icons { position: absolute; top: 10px; left: 30px; width: 40px; height: 40xp;}
 .outfit-quick-view span.outfit-quick-view-icons img {width: 100%;}
 ul.client-outfit-img-lst {position: relative; display: inline-block; width: 100%;}
