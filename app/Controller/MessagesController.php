@@ -1943,7 +1943,7 @@ class MessagesController extends AppController {
         }
 
         $stylist_id = $user['User']['stylist_id'];
-        $userlists = $User->getStylistClients($stylist_id);
+        $userlists = $User->getStylistClients($user['User']['id']);
         $usercount  = count($userlists);
 
         $this->set(compact('user','userlists','stylist_id','usercount'));

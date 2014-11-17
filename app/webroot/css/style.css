@@ -374,7 +374,8 @@ input[type="checkbox"], input[type="radio"] {visibility: hidden;}
 
 /*.pref-time .connect input[type="checkbox"]{ float: left; display: block; width: 10%;}*/
 
-.about-submit .submit input[type="submit"] {background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-size: 25px; color: #fff; padding: 18px 120px 12px; text-transform: uppercase;}
+.submit input[type="submit"], .about-submit .submit input[type="submit"] { background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-size: 25px; color: #fff; padding: 18px 60px 12px; text-transform: uppercase;}
+.about-submit .submit input[type="submit"] { padding: 18px 120px 12px; }
 
 
 	/*Size Section*/
@@ -938,15 +939,15 @@ a.open-left-pannel { display: none;}
 .stylistbion-arrow { padding-top: 50px; position: relative; display: none;}
 .stylistbion-arrow img.back-for-mobile { position: absolute; margin: 0 auto; left: 0px; right: 0px; display: none;}
 .stylistbion-arrow img { cursor: pointer;}
-.stylistbio-short-note, .stylistbio-list { width:180px!important;}
+.stylistbio-short-note, .stylistbio-list { width:250px!important;}
 .stylistbio-short-note { margin-top:50px; }
 .short-note {font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #ababac; width: 100%; display: inline-block; padding: 25px 0; width: 100%; border-bottom: 1px solid #ebebeb; border-top: 1px solid #ebebeb;}
 .stylistbio-list #scrollbar1 .scrollbar{display:block;}
 .stylistbio-list h3 { font-family: 'ProximaNovaCond-Regular'; color: #acacac; font-size: 26px; margin: 10px 0 15px;}
-.stylistbio-list li { width: 100%; display: inline-block; padding: 25px 0px 22px; margin-bottom: -6px; border-bottom: 1px solid #f2f2f2; background:#ffffff; cursor: pointer;}
+.stylistbio-list li { width: 96%; display: inline-block; padding: 15px 2% 12px; margin-bottom: -6px; border-bottom: 1px solid #f2f2f2; background:#ffffff; cursor: pointer;}
 .stylistbio-list li .stylistbio-list-img { border: 1px solid #000; float: left; max-height: 40px; overflow: hidden; position: relative; width: 40px;}
 .stylistbio-list li .stylistbio-list-img img { display: block; width: 100%;}
-.stylistbio-list li .stylistbio-list-name { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #ccc; font-style: italic; width: 100px; text-decoration: underline; text-align: left;float: left; padding: 5px 0 0 12px; width: 125px;}
+.stylistbio-list li .stylistbio-list-name { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #a4a696; font-style: italic; width: 100px; text-decoration: underline; text-align: left;float: left; padding: 5px 0 0 12px; width: 180px;}
 .stylistbio-list li:hover, .stylistbio-list li.active { background: #f2f2f2; border-bottom: 1px solid #e8e8e8;}
 
 .stylistbio-profile { width: 24%;}
@@ -977,7 +978,7 @@ h1.stylistbio-heading { position: relative; font-size: 28px; color: #d19b03; mar
 .photostream-section, h1.stylistbio-heading.photostream { padding-left: 18px;}
 h1.top-outits-heading { border-bottom: 1px solid #ebebeb;}
 .photostream-section { padding-bottom: 10px;}
-.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 170px; line-height: 170px; text-align: center; position: relative;}
+.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 170px; line-height: 170px; text-align: center; position: relative; float: left/9;}
 .photostream-section li a { }
 .photostream-section li img { max-height: 170px; vertical-align: middle;}
 

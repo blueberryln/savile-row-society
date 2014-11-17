@@ -24,6 +24,7 @@
     position:relative;
     }
 
+#scrollbar1 .viewport { height: 570px;}
 #scrollbar2 .viewport { height: 400px;}
 #scrollbar7 .viewport { height: 280px;}
 #scrollbar3 .viewport, #scrollbar4 .viewport, #scrollbar5 .viewport  { height: 300px;}
@@ -107,6 +108,8 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+
+#scrollbar1 .track { background: #fff; border:1px dotted #d9d9d5;}
 
 #scrollbar1 .thumb .end,
 #scrollbar2 .thumb .end,
