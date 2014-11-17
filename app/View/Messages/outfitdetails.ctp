@@ -25,7 +25,9 @@ $logged_script = '
 }
 $script = '
 $(document).ready(function(){  
-
+$(".disabled-cart").on("click", function(e){
+    e.preventDefault();
+});
 $(".fade").mosaic();
 
 $(".add-to-cart").click(function(e) {
@@ -290,9 +292,12 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         </div>
 
                                         <div class="product-dtl-links left">
-
+                                        
+                                        <?php if($entity['product']['Entity']['show']) : ?>
                                         <a href="" class="gold-btn add-to-cart product-add-cart text-center" data-product_id="<?php echo $entity['product']['Entity']['id']; ?>">ADD TO CART</a>
-                                        <input type="">
+                                        <?php else: ?>
+                                        <a href="" class="product-my-likes text-center disabled-cart">Not Available</a>
+                                        <?php endif; ?>
 
                                         <a class="product-my-likes"href="#" id="likes" data-product_id="<?php echo $entity['product']['Entity']['id']; ?>"><?php echo ($entity['product']['Wishlist']['id']) ? 'liked' : 'Add to My Likes'; ?></a>
 

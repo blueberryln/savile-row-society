@@ -248,7 +248,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 
                 html = html +   '<div class="client-outfit">'+
                                     '<div class="client-msg-reply"><span class="outfit-name">' + outfitName + '</span></div>' + 
-                                    '<input type="hidden" id="outfitidquickview" data-id="' + chatMsg['OutfitDetail']['id'] + '" value="' + chatMsg['OutfitDetail']['id'] + '">' + 
+                                    '<input type="hidden" id="outfitidquickview" class="outfit-id" data-id="' + chatMsg['OutfitDetail']['id'] + '" value="' + chatMsg['OutfitDetail']['id'] + '">' + 
                                         '<ul>';
                 ;
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
@@ -272,8 +272,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     userList.push(chatMsg['AllMessage'][j]['UserTo']['first_name'].capitalize() + ' ' + chatMsg['AllMessage'][j]['UserTo']['last_name'].capitalize());
                 }
 
+                brandList = brandList.unique();
+                userList = userList.unique();
+                brandList = brandList.join(',');
+                userList = userList.join(',');
+
                     html = html +  '</ul>' +
-                                    '<input type="hidden" id="totalpriceoutfit" value="' + outfitPrice + '">' + 
+                                    '<input type="hidden" id="totalpriceoutfit" class="outfit-price" value="' + outfitPrice + '">' + 
                                     '<input type="hidden" class="outfit-brands" value="' + brandList + '">' + 
                                     '<input type="hidden" class="outfit-users" value="' + userList + '">' + 
                                     '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' +
@@ -547,12 +552,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 curImgPath = '';
             imgListHtml.html('');
 
-            clientOutfit.find('.client-outfits-img li img').each(function(){
+            clientOutfit.find('ul li img').each(function(){
                 curImgPath = $(this).attr('src');
                 imgListHtml.append('<li><img src="' + curImgPath + '"></li>');
             });
 
             $('.pop-outfit-details').attr('href', '/messages/outfitdetails/' + outfitId);
+            $('.pop-outfit-reuse').attr('href', '/messages/outfitdetails/' + outfitId);
             
 
 

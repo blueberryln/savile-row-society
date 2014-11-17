@@ -48,7 +48,7 @@ $(document).ready(function(){
             brandListHtml.append('<li>' + brandList[i] + '</li>');
         }
 
-        var userListHtml = $('.otft-overview-box-recmnd');
+        var userListHtml = $('.otft-overview-box-recmnd ul');
         userListHtml.html('');
         for(var i=0; i<userList.length; i++){
             userListHtml.append('<li>' + userList[i] + '</li>');
