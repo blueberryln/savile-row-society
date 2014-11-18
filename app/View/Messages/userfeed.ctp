@@ -322,5 +322,9 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
             return html;
         }
 
+        String.prototype.capitalize = function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+
     });
 </script>

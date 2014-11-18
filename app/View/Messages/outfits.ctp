@@ -50,7 +50,6 @@
                         html = html + '<h2>Stylist Comment</h2>';
                         html = html + '<div class="client-comments-text left">'+ this.comments +'<a href="javascript:;" title="">Read More</a></div>';
                         html = html + '</div>';
-                        html = html + '<div class="share-outfit right">Share Outfit</div>';
                         html = html + '</div>';
                         html = html + '</div>';
                         html = html + '</div>';
@@ -117,7 +116,6 @@
                         html = html + '<h2>Stylist Comment</h2>';
                         html = html + '<div class="client-comments-text left">'+ this.comments +'<a href="javascript:;" title="">Read More</a></div>';
                         html = html + '</div>';
-                        html = html + '<div class="share-outfit right">Share Outfit</div>';
                         html = html + '</div>';
                         html = html + '</div>';
                         html = html + '</div>';
@@ -191,8 +189,6 @@
                                                         <h2>Stylist Comment</h2>
                                                         <div class="client-comments-text left"> <?php echo $my_outfit['comments']; ?> <a class="client-comments-text-rm" href="javascript:;" title="">Read More</a></div>
                                                     </div>
-                                                    
-                                                    <div class="share-outfit right">Share Outfit</div>
                                                 </div>
                                             </div>
                                         </div>
