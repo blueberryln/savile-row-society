@@ -188,7 +188,7 @@ color:#396; !important
 
                      <?php foreach ($styles as $style): ?> 
                               <input class="hide style-check" type="checkbox" name="data[UserPreference][style_pref][]"   value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
-                              <li class="ui-state-default" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" onclick="yes();"  data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
+                              <li class="ui-state-default" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
 
                      <?php endforeach; ?>
 
@@ -719,27 +719,27 @@ color:#396; !important
 <script type="text/javascript">
     $(document).ready( function(){
             // validate User Registeration form
-		$("#UserRegisterForm").validate({
-			rules: {
-				register-password: {
-					required: true,
-					minlength: 8
-				},
-				confirm-register-password: {
-					equalTo: "#register-password"
-				}
-			},
-			messages: {
-				register-password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
-				},
-				confirm-register-password: {
-					required: "Please provide a password",
-					equalTo: "Please enter the same password as above"
-				}
-			}
-		});
+		// $("#UserRegisterForm").validate({
+		// 	rules: {
+		// 		register-password: {
+		// 			required: true,
+		// 			minlength: 8
+		// 		},
+		// 		confirm-register-password: {
+		// 			equalTo: "#register-password"
+		// 		}
+		// 	},
+		// 	messages: {
+		// 		register-password: {
+		// 			required: "Please provide a password",
+		// 			minlength: "Your password must be at least 5 characters long"
+		// 		},
+		// 		confirm-register-password: {
+		// 			required: "Please provide a password",
+		// 			equalTo: "Please enter the same password as above"
+		// 		}
+		// 	}
+		// });
     });
 </script>
 <script>

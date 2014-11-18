@@ -857,7 +857,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block; width: 35%; line-height: 173px;  }
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img img {vertical-align: middle}
-.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content { padding:50px 15px 0 25px; font-family: 'ProximaNovaCond-Regular'; font-size: 27px; text-align: left;}
+.outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content { padding:12px 15px 0 25px; font-family: 'ProximaNovaCond-Regular'; font-size: 27px; text-align: left; width: 55%;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-month { color: #d19b03; display: block; padding-bottom: 15px; text-transform: uppercase;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { color: #55585e; font-size: 25px; display: block; font-style: italic;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand span.outfit-brand-name { text-decoration: underline;}
@@ -1108,7 +1108,7 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .client-outfit-bottom { position: relative; padding:10px 0 20px; }
 .client-comments { width: 60%;}
 .client-comments h2 { font-size: 18px; line-height: 20px; padding: 5px 0 3px; margin: 0; color: #b9a979; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
-.client-comments-text { font-size: 12px; line-height: 14px; height: 13px; overflow: hidden; position: relative; }
+.client-comments-text { font-size: 12px; line-height: 14px; height: 13px; position: relative; }
 .client-comments-text  a{ padding-left: 10px;  font-style: italic; text-decoration: underline; color: #af9a59;}
 .share-outfit, .bkmrk-outfit{ font-size: 14px; color: #c2c2c2; text-transform: uppercase; padding:10px 0 10px   30px; background: url('../images/share-icon.png') no-repeat left center; position: absolute; bottom: 14px; right: 26px;}
 .bkmrk-outfit { bottom: 38px; right: 0px; background: url('../images/bkmrk-icon.png') no-repeat left center;}
@@ -2470,8 +2470,8 @@ input#billingCopybilling { visibility: visible;}
     .outfit-stylist li .shop-outfit .shop-outfit-bottom li { min-height: 50px;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { max-width: 80px; display: block; float: left;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { padding: 15px 0 0 20px;}
-    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-month { padding-bottom: 6px;}
-    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 18px; padding-bottom: 10px;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-month { padding-bottom: 6px; font-size: 13px;}
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 18px; padding-bottom: 10px; display: none;}
     .outfit-stylist li .shop-outfit .shop-outfit-bottom.float { float: none !important;}
     .outfit-stylist li .shop-outfit .shop-outfit-bottom { padding: 0 10px 0;display: inline-block;}
     .outfit-stylist li .shop-outfit .shop-outfit-bottom a.shop-outfit-bottom-link {right: 33%;}
