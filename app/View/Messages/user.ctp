@@ -218,7 +218,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 var outfitName = (chatMsg['OutfitDetail']['outfit_name']) ? chatMsg['OutfitDetail']['outfit_name'] : ''; 
 
                 html = html +   '<div class="client-outfit">'+
-                                    '<div class="client-msg-reply"><span>' + outfitName + '</span></div>' + 
+                                    '<div class="client-msg-reply"><span><a href="/messages/outfitdetails/' + chatMsg['OutfitDetail']['id'] + '">' + outfitName + '</a></span></div>' + 
                                         '<ul class="client-outfit-img-lst">';
                 ;
                 for(var i=0; i<chatMsg['Outfit'].length; i++){

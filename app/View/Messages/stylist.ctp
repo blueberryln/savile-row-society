@@ -241,13 +241,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             if(chatMsg['Message']['is_outfit'] == 1){
                 
 
-                var outfitName = (chatMsg['OutfitDetail']['outfit_name']) ? chatMsg['OutfitDetail']['outfit_name'] : ''; 
+                var outfitName = (chatMsg['OutfitDetail']['outfit_name']) ? chatMsg['OutfitDetail']['outfit_name'].capitalize() : ''; 
                 var userList = [],
                     outfitPrice = 0,
                     brandList = [];
                 
                 html = html +   '<div class="client-outfit">'+
-                                    '<div class="client-msg-reply"><span class="outfit-name">' + outfitName + '</span></div>' + 
+                                    '<div class="client-msg-reply"><span class="outfit-name"><a href="/messages/outfitdetails/' + chatMsg['OutfitDetail']['id'] + '">' + outfitName + '</a></span></div>' + 
                                     '<input type="hidden" id="outfitidquickview" class="outfit-id" data-id="' + chatMsg['OutfitDetail']['id'] + '" value="' + chatMsg['OutfitDetail']['id'] + '">' + 
                                         '<ul>';
                 ;

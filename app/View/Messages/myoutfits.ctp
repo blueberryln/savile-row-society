@@ -239,7 +239,7 @@ $(document).ready(function(){
 
                         html += '<div class="twelve columns client-outfits left" id="findOutfitId">' + 
                                     '<div class="eleven columns container client-outfits-area pad-none" >' + 
-                                        '<h1 class="outfit-name">' + outfitName + '</h1>' + 
+                                        '<h1 class="outfit-name"><a href="/messages/outfitdetails/' + outfit['Outfit']['id'] + '">' + outfitName + '</a></h1>' + 
                                         '<input type="hidden" id="outfitidquickview" data-id="' + outfit['Outfit']['id'] + '" value="' + outfit['Outfit']['id'] + '">' + 
                                         '<div class="twelve columns client-outfits-img pad-none">' + 
                                             '<ul>' + 
@@ -409,7 +409,7 @@ $(document).ready(function(){
                                         
                                             <div class="twelve columns client-outfits left" id="findOutfitId">
                                                 <div class="eleven columns container client-outfits-area pad-none" >
-                                                    <h1 class="outfit-name"><?php echo ucfirst($outfit['Outfit']['outfit_name']); ?></h1>
+                                                    <h1 class="outfit-name"><a href="/messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>"><?php echo ucfirst($outfit['Outfit']['outfit_name']); ?></a></h1>
                                                     <input type="hidden" data-id="<?php echo $outfit['Outfit']['id']; ?>" value="<?php echo $outfit['Outfit']['id']; ?>" class="outfit-id">
                                                     <div class="twelve columns client-outfits-img pad-none">
                                                        
