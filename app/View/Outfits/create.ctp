@@ -66,6 +66,7 @@ function dragAndDropOutfit(){
                 // Updating the quantity by +1" rather than adding it to the basket
                 move.find("input").val(parseInt(move.find("input").val()) + 1);
             }
+            $("#outfit_id").val('');
         }
     });
                 
@@ -104,12 +105,9 @@ function dragAndDropOutfit(){
             $('.basket-limit').remove();
         }
 
-        console.log(overall);
-        console.log(price);
-
         overall = overall - price;
-
         $("#total").html(overall);
+        $("#outfit_id").val('');
     });                      
                 
 }
@@ -131,7 +129,9 @@ $(document).ready(function(){
     // $("#total").text(overall);
     dragAndDropOutfit();
 
-
+    $("#outfitname").on('input', function(e){
+        $("#outfit_id").val('');
+    });
 
     $(".sbmt-btn").on("click", function (e) {
             
