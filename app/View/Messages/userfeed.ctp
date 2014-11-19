@@ -1,4 +1,4 @@
- <?php
+<?php
 $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
 ?>
 
