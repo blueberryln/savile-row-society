@@ -14,14 +14,21 @@ function dragAndDropOutfit(){
         // once the dragging starts, we decrease the opactiy of other items
         // Appending a class as we do that with CSS
         drag:function () {
+            var clonedUi = $('body li').last();
+            clonedUi.find('img').height(200);
+            clonedUi.find('.otft-prdt-overlay').hide();
             $(this).addClass("active");
             $(this).closest("#product").addClass("active");
         },
+    });
 
-        // removing the CSS classes once dragging is over.
-        stop:function () {
-            $(this).removeClass("active").closest("#product").removeClass("active");
-        }
+
+    var opts = {
+        helper: 'clone',
+        appendTo: 'body'
+    };
+    $('.custom-drag').each(function () {
+        $(this).draggable(opts);
     });
 
                 
@@ -429,6 +436,7 @@ $(document).ready(function(){
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
                                         'data-wishlist="' + wishlist + '"' + 
+                                        'class="custom-drag"' +
                                         '>' + 
                                         '<select class="hide product-size-list">' +
                                             sizeOptions +         
@@ -532,6 +540,7 @@ $(document).ready(function(){
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
                                         'data-wishlist="' + wishlist + '"' + 
+                                        'class="custom-drag"' +
                                         '>' + 
                                         '<select class="hide product-size-list">' +
                                             sizeOptions +         
@@ -630,6 +639,7 @@ $(document).ready(function(){
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
                                         'data-wishlist="' + wishlist + '"' + 
+                                        'class="custom-drag"' +
                                         '>' + 
                                         '<select class="hide product-size-list">' +
                                             sizeOptions +         
@@ -724,6 +734,7 @@ $(document).ready(function(){
                                         'data-price="' + product['Entity']['price'] + '" ' + 
                                         'data-brand="' + product['Brand']['name'] + '" ' +
                                         'data-wishlist="' + wishlist + '"' + 
+                                        'class="custom-drag"' +
                                         '>' + 
                                         '<select class="hide product-size-list">' +
                                             sizeOptions +         
@@ -1079,7 +1090,7 @@ $(document).ready(function(){
                                                         $product = $entities[$i];
                                                         $wishlist = ($product['Wishlist']['product_entity_id'] == $product['Entity']['id']) ? 1 : 0;
                                             ?>
-                                                <li  data-name="<?php echo $product['Entity']['name']; ?>" data-desc="<?php echo $product['Entity']['description']; ?>" data-image="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-wishlist="<?php echo $wishlist; ?>">
+                                                <li  data-name="<?php echo $product['Entity']['name']; ?>" data-desc="<?php echo $product['Entity']['description']; ?>" data-image="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-wishlist="<?php echo $wishlist; ?>" class="custom-drag">
 
                                                 <select class="hide product-size-list">
                                                 <?php 
