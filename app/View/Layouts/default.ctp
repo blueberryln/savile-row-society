@@ -724,7 +724,7 @@
         
         <?php echo $this->fetch('script'); ?>
 
-        <?php //echo $this->element('scripts/srs_scripts'); ?>
+        <?php echo $this->element('scripts/srs_scripts'); ?>
         <?php echo $this->element('sql_dump'); ?>
     </body>
 </html>

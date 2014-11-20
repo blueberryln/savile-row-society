@@ -61,6 +61,55 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
 </div>
 
 
+<div id="view-otft-popup" style="display: none">
+    <div class="box-modal">
+        <div class="box-modal-inside">
+            <a href="#" title="" class="otft-close"></a>
+            <input type="hidden" id="pop-outfit-id" value="">
+            <div class="view-otft-content">
+                <h1>Outfit Quickview</h1>
+                <div class="three columns left">
+                    <div class="twelve columns left">
+                        <div class="view-otft-list">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="eight columns right">
+                    <div class="twelve columns left">
+                        <div class="view-otft-dtl">
+                            <div class="view-otft-dtl-top">
+                                <p>Outfit Name: <span class="pop-outfit-name"></span></p>
+                                <p>Total Cost: $<span class="pop-outfit-price"></span></p>
+                            </div>
+                            <div class="otft-overview-box">
+                                <span class="otft-overview-box-head">Overview</span>
+                                <div class="otft-overview-box-recmnd">
+                                    <p>Recommended To:</p>
+                                    <ul>
+                                        
+                                    </ul>
+                                </div>
+                                <div class="otft-overview-box-brnds">
+                                    <p>Brands:</p>
+                                    <ul>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="twelve columns left otft-overview-links">
+                                <a class="left pop-outfit-reuse" href="" title="">Resuse Outfit</a>
+                                <a class="right pop-outfit-details" href="" title="">See Full Outfit Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
     $(document).ready(function(){
@@ -260,14 +309,30 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
             }         
             else if(feed['Post']['is_outfit'] == 1){
                 var profile_url = (feed['User']['profile_photo_url']) ? 'files/users/' + feed['User']['profile_photo_url'] : 'images/default-user.jpg';
-                var outfit_name = (feed['Outfit']['outfit_name'] ) ? '<h1>' + feed['Outfit']['outfit_name'] + '</h1>' : ''; 
+                var outfit_name = (feed['Outfit']['outfit_name'] ) ? '<h1><a href="/messages/outfitdetails/' + feed['Outfit']['id'] + '" class="outfit-name">' + feed['Outfit']['outfit_name'].capitalize() + '</a></h1>' : ''; 
+                var outfit_name_val = (feed['Outfit']['outfit_name'] ) ? feed['Outfit']['outfit_name'].toUpperCase() : ''; 
                 var outfit_list = '';
+                var userList = [],
+                    outfitPrice = 0,
+                    brandList = [];
 
                 for(var i = 0; i < feed['OutfitItem'].length; i++){
                     if(typeof feed['OutfitItem'][i]['product']['Image'] != 'undefined' && feed['OutfitItem'][i]['product']['Image'].length){
                         outfit_list += '<li><img src="<?php echo $this->webroot; ?>files/products/' + feed['OutfitItem'][i]['product']['Image'][0]['name'] + '" alt="" /></li>';
                     }
+                    if(feed['OutfitItem'][i]['product']['Brand']['name'])
+                        brandList.push(feed['OutfitItem'][i]['product']['Brand']['name']);
+                    outfitPrice += parseInt(feed['OutfitItem'][i]['product']['Entity']['price']);
                 }
+
+                for(var j = 0; j < feed['AllMessages'].length; j++){
+                    userList.push(feed['AllMessages'][j]['UserTo']['first_name'].capitalize() + ' ' + feed['AllMessages'][j]['UserTo']['last_name'].capitalize());
+                }
+
+                brandList = brandList.unique();
+                userList = userList.unique();
+                brandList = brandList.join(',');
+                userList = userList.join(',');
 
 
                 html = '<li class="activity-outfit" data-post_id="' + feed['Post']['id'] + '">' + 
@@ -285,10 +350,15 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                                 '<div class="ten columns container">' + 
                                     '<div class="twelve columns left client-outfits-area">' + 
                                         outfit_name +
+                                        '<input type="hidden" id="outfitidquickview" class="outfit-id" data-id="' + feed['Outfit']['id'] + '" value="' + feed['Outfit']['id'] + '">' + 
                                         '<div class="twelve columns client-outfits-img pad-none">' + 
                                             '<ul>' + 
                                                 outfit_list +
-                                            '</ul>' + 
+                                                '<a href="#" class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="/images/search-icon.png" alt=""></span>Outfit Quick View</a>' +
+                                            '</ul>' +
+                                            '<input type="hidden" id="totalpriceoutfit" class="outfit-price" value="' + outfitPrice + '">' + 
+                                            '<input type="hidden" class="outfit-brands" value="' + brandList + '">' + 
+                                            '<input type="hidden" class="outfit-users" value="' + userList + '">' +  
                                         '</div>' + 
                                     '</div>' + 
                                 '</div>' + 
@@ -321,6 +391,51 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
             }
             return html;
         }
+
+        $('.activity-feed-section').on('click', '.outfit-quick-view', function(e){
+            e.preventDefault();
+            
+            var clientOutfit = $(this).closest('.activity-outfit'),
+                outfitName = clientOutfit.find('.outfit-name').text(),
+                outfitId = clientOutfit.find('.outfit-id').val(),
+                outfitPrice = clientOutfit.find('.outfit-price').val(),
+                brandList = clientOutfit.find('.outfit-brands').val().split(","),
+                userList = clientOutfit.find('.outfit-users').val().split(",");
+            
+            $('.pop-outfit-name').text(outfitName);
+            $('#pop-outfit-id').val(outfitId);
+            $('.pop-outfit-price').text(outfitPrice);
+
+            var brandListHtml = $('.otft-overview-box-brnds ul');
+            brandListHtml.html('');
+            for(var i=0; i<brandList.length; i++){
+                brandListHtml.append('<li>' + brandList[i] + '</li>');
+            }
+
+            var userListHtml = $('.otft-overview-box-recmnd');
+            userListHtml.html('');
+            for(var i=0; i<userList.length; i++){
+                userListHtml.append('<li>' + userList[i] + '</li>');
+            }
+
+            var imgListHtml = $('.view-otft-list'),
+                curImgPath = '';
+            imgListHtml.html('');
+
+            clientOutfit.find('ul li img').each(function(){
+                curImgPath = $(this).attr('src');
+                imgListHtml.append('<li><img src="' + curImgPath + '"></li>');
+            });
+
+            $('.pop-outfit-details').attr('href', '/messages/outfitdetails/' + outfitId);
+            $('.pop-outfit-reuse').attr('href', '/messages/outfitdetails/' + outfitId);
+            
+
+
+            var blockTop = $(window).height()/2 - $("#view-otft-popup").height()/2 + $(window).scrollTop();
+            $.blockUI({message: $('#view-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+            $('.blockOverlay').click($.unblockUI);
+        });
 
         String.prototype.capitalize = function() {
             return this.charAt(0).toUpperCase() + this.slice(1);

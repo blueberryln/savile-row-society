@@ -282,6 +282,18 @@ class Post extends AppModel {
         $outfits = array();
         if($outfit_list){
         	$outfits = $Outfit->getOutfitDetails($outfit_list);	
+
+            $all_messages = $Message->find('all', array(
+                'conditions'    => array('Message.outfit_id' => $outfit_list),
+                'contain'       => array('UserTo'),
+                'fields'        => array('Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserTo.id', 'UserTo.first_name', 'UserTo.last_name'),
+                'order'         => array('Message.id' => 'desc'),
+                ));
+
+            $all_sorted_messages = array();
+            foreach($all_messages as $value){
+                $all_sorted_messages[$value['Message']['outfit_id']][] = $value;
+            }
         }
 
         $sorted_outfits = array();
@@ -295,6 +307,7 @@ class Post extends AppModel {
             if($value['Message']['is_outfit'] && isset($sorted_outfits[$value['Message']['outfit_id']])){
                 $value['Outfit'] = $sorted_outfits[$value['Message']['outfit_id']]['Outfit'];
                 $value['OutfitItem'] = $sorted_outfits[$value['Message']['outfit_id']]['OutfitItem'];
+                $value['AllMessages'] = $all_sorted_messages[$value['Message']['outfit_id']];
             }
             
             $sorted_messages[$value['Message']['post_id']] = $value;
