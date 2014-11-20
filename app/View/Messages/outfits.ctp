@@ -206,7 +206,7 @@ $(document).ready(function(){
                                             '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' + 
                                         '</div>' + 
                                         '<div class="twelve columns left client-outfit-bottom pad-none">' + 
-                                            '<div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left">' + outfit['Message'][0]['Message']['body'] + '</div></div>' + 
+                                            '<div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left">' + outfit['Message'][0]['Message']['body'].substr(0,50) + '... <a href="/messages/index/' + outfit['Message'][0]['Message']['user_to_id'] + '">Read More</a></div></div>' + 
                                         '</div>' + 
                                     '</div>' + 
                                 '</div>';
@@ -304,7 +304,7 @@ $(document).ready(function(){
                                                         <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
                                                     </div>
                                                     <div class="twelve columns left client-outfit-bottom pad-none">
-                                                        <div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left"><?php echo $outfit['Message'][0]['Message']['body']; ?></div></div>
+                                                        <div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left"><?php echo substr($outfit['Message'][0]['Message']['body'],0,50); ?>... <a href="/messages/index/<?php echo $outfit['Message'][0]['Message']['user_to_id']; ?>">Read More</a></div></div>
                                                         <!-- <div class="bkmrk-outfit right" ><a href='#' id="outfitbook">Bookmark Outfit</a></div> -->
                                                         
                                                     </div>

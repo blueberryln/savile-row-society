@@ -23,12 +23,12 @@
                          <li><a href="#faq-link6">What is The Closet?</a></li>
                          <li><a href="#faq-link7">Do I have to have a stylist to transact in The Closet?</a></li>
                          <li><a href="#faq-link8">Is shipping free?</a></li>
-                         <li><a href="#faq-link9">Can I return an item after I purchase it?</a></li>
                          <li><a href="#faq-link10">Do you offer made to measure?</a></li>
                          <li><a href="#faq-link11">How do I purchase a custom suit or shirt?</a></li>
                          <li><a href="#faq-link12">Where do your fabrics come from?</a></li>
                          <li><a href="#faq-link13">Where is your made to measure manufactured?</a></li>
-                         <li><a href="#faq-link14">How much does a custom suit cost?</a></li>                            
+                         <li><a href="#faq-link14">How much does a custom suit cost?</a></li>      
+                         <li><a href="#faq-link9">Can I return an item after I purchase it?</a></li>                      
                     </ul><br /><br /> 
                      
                     <h4 class="faq-title">General</h4>
@@ -69,10 +69,6 @@
                         <div>Shipping domestically is free, however, for those outside of the US, there will be a small charge. </div>
                     </p>
                     <p>
-                        <strong id="faq-link9">Can I return an item after I purchase it? - <a href="#topmost" class="right">Top</a></strong>
-                        <div>Of course – we understand that returns are, at times, inevitable. </div>
-                    </p>
-                    <p>
                         <strong id="faq-link10">Do you offer made to measure? - <a href="#topmost" class="right">Top</a> </strong>
                         <div>Absolutely. As part of our &quot;one stop&quot; shopping destination, we offer made-to-measure suiting and shirting.</div>
                     </p>
@@ -97,6 +93,10 @@
                     <p>
                         <strong id="faq-link14">How much does a custom suit cost? - <a href="#topmost" class="right">Top</a></strong>
                         <div>Our custom suit prices vary based on the fabric from $1095 to 3995$. </div>
+                    </p>
+                    <p>
+                        <strong id="faq-link9">Can I return an item after I purchase it? - <a href="#topmost" class="right">Top</a></strong>
+                        <div>Of course – we understand that returns are, at times, inevitable. </div>
                     </p>
 
                  </div>
