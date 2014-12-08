@@ -134,6 +134,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 <div class="eleven columns container">
                                                     <h2><?php if($my_outfit['outfit']): echo ucfirst($my_outfit['outfit'][0]['Outfit']['outfit_name']); else: endif;
                                                     ?></h2>
+                                                    <input type="hidden" class="outfit_id" value="<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>">
                                                     <div class="outfit-products">
                                                         <ul>
                                                             <?php foreach($my_outfit['entities'] as $entities): ?>
@@ -204,3 +205,15 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
        </div>
     </div>
 </div>
+
+<script>
+    $(function(){
+        $(".outfit-products").on('click', function(e){
+            e.preventDefault();
+            var outfitBlock = $(this).closest('.top-outfits');
+            var outfitId = outfitBlock.find('.outfit_id').val();
+
+            location = '/guest/outfitdetails/' + outfitId;
+        });
+    });
+</script>
