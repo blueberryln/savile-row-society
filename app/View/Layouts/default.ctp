@@ -109,6 +109,7 @@
              */
             var messageInterval = null;
             var showRegisterPopup = <?php echo isset($showRegisterPopup) ? 1 : 0; ?>;
+            var showAffiliatePopup = <?php echo isset($showAffiliatePopup) ? 1 : 0; ?>;
             function startMessageNotifier(){
                 <?php if($this->request->params['action'] != "checkout") : ?>
                 if(isLoggedIn()){

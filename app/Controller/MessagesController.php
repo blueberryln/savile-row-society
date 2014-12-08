@@ -14,6 +14,12 @@ class MessagesController extends AppController {
 
     public function beforeFilter(){
         $this->isLogged();
+
+        $user = $this->getLoggedUser();
+
+        if(is_null($user['User']['stylist_id'])){
+            $this->redirect('/users/profile/' . $user['User']['id']);
+        }
     }
 
     public function index($messages_for_user_id = null) {
@@ -1645,7 +1651,7 @@ class MessagesController extends AppController {
          $Wishlist = ClassRegistry::init('Wishlist');
         $Entity = ClassRegistry::init('Entity'); 
 
-        $likeitems = $Wishlist->getUserLikeList($user['User']['id'], $pageOrder);
+        $likeitems = $Wishlist->getUserLikeList($clientid, $pageOrder);
 
         if(count($likeitems)){
             $entity_list = array();
@@ -2019,15 +2025,65 @@ class MessagesController extends AppController {
 
 
         $page = (isset($this->request->data['page']) && $this->request->data['page'] > 0) ? $this->request->data['page'] : 1; 
+        $page_action = (isset($this->request->data['pageAction']) && $this->request->data['pageAction'] != '') ? $this->request->data['pageAction'] : 'all';
+        $search_text = (isset($this->request->data['search_text']) && $this->request->data['search_text'] != '') ? $this->request->data['search_text'] : '';
+        
 
         $limit = 10;
         $sort = 'desc';
-        $message_outfit_list = $Outfit->find('all', array(
-            'conditions'  => array('stylist_id' => $user_id),
-            'order' => array('id' => $sort),
-            'limit' => $limit,
-            'page'  => $page
-        ));
+
+        if($page_action == 'all'){
+            $message_outfit_list = $Outfit->find('all', array(
+                'conditions'  => array('stylist_id' => $user_id),
+                'order' => array('id' => $sort),
+                'limit' => $limit,
+                'page'  => $page
+            ));
+        }
+        else if($page_action == 'atoz'){
+            $message_outfit_list = $Outfit->find('all', array(
+                'conditions'  => array('stylist_id' => $user_id),
+                'order' => array("outfit_name" => 'IS NULL ASC', 'Outfit.outfit_name' => 'asc'),
+                'limit' => $limit,
+                'page'  => $page
+            ));   
+        }
+        else if($page_action == 'date'){
+            $message_outfit_list = $Outfit->find('all', array(
+                'conditions'  => array('stylist_id' => $user_id),
+                'order' => array('id' => 'asc'),
+                'limit' => $limit,
+                'page'  => $page
+            ));
+        }
+        else if($page_action == 'bookmark'){
+            $BookmarkOutfit = ClassRegistry::init('BookmarkOutfit');
+            $outfit_list = $BookmarkOutfit->find('list', array('condition' => array('user_id' => $user_id), 'fields' => 'outfit_id'));
+            
+            $message_outfit_list = $Outfit->find('all', array(
+                'conditions'  => array('stylist_id' => $user_id, 'id' => $outfit_list),
+                'order' => array('id' => 'desc'),
+                'limit' => $limit,
+                'page'  => $page
+            ));
+        }
+        else if($page_action == 'search'){
+            $message_outfit_list = $Outfit->find('all', array(
+                'conditions'  => array('stylist_id' => $user_id, 'outfit_name LIKE' => '%' . $search_text . '%'),
+                'order' => array('id' => 'desc'),
+                'limit' => $limit,
+                'page'  => $page
+            ));
+        }
+        else{
+            $message_outfit_list = $Outfit->find('all', array(
+                'conditions'  => array('stylist_id' => $user_id),
+                'order' => array('id' => $sort),
+                'limit' => $limit,
+                'page'  => $page
+            ));
+        }
+
 
         $outfit_list = array();
         foreach($message_outfit_list as $value){

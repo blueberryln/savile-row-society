@@ -163,7 +163,7 @@
 
 <?php //if($is_stylist): ?>
 <div class="content-container-header">
-     <?php if($user) : ?>
+    <?php if($user) : ?>
     <div class="twelve columns black">
         <div class="eleven columns container">
            <div class="twelve columns container left pad-none">
@@ -214,7 +214,19 @@
            
             </div>
     </div>
-      <?php endif;?>   
+    <?php else: ?>
+    <div class="twelve columns black">
+        <div class="eleven columns container">
+           <div class="twelve columns container left pad-none">
+                <div class="two columns right admin-top-right">
+                    <ul>
+                        <li><a href="<?php echo $this->request->webroot; ?>guest/cart"><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                    </ul>    
+                </div>
+           
+            </div>
+    </div>
+    <?php endif;?>   
+    
     </div>
 </div>
-<?php //endif; ?>

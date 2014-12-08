@@ -172,7 +172,11 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                             } 
                                             ?>
                                         </ul>
-                                        <a class="shop-outfit-bottom-link" href="/users/register?refer=<?php echo $outfit['Stylist']['id']; ?>" title="">Shop Outfit</a>
+                                        <?php if($user): ?>
+                                            <a class="shop-outfit-bottom-link" href="/user/outfits" title="">Shop Outfit</a>
+                                        <?php else: ?>
+                                            <a class="shop-outfit-bottom-link" href="/guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" title="">Shop Outfit</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>" title="" class="outfilt-btns">Meet <?php echo $outfit['Stylist']['first_name']; ?></a></div>

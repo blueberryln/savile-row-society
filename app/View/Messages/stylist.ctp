@@ -147,7 +147,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                 </div>
                             </div>
                             <div class="twelve columns left otft-overview-links">
-                                <a class="left pop-outfit-reuse" href="" title="">Resuse Outfit</a>
+                                <a class="left pop-outfit-reuse" href="" title="">Reuse Outfit</a>
                                 <a class="right pop-outfit-details" href="" title="">See Full Outfit Details</a>
                             </div>
                         </div>

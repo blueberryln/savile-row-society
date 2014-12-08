@@ -76,9 +76,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                         <tr class="last">
                                             <td colspan="3" rowspan="3">
                                                 <!-- Enable only when total is equal or more than $120 -->
-                                                <?php if($cart_total >= 250 && $vip_flag) : ?>
-
-                                                <?php elseif($cart_total >= 120) : ?> 
+                                                <?php if($cart_total >= 120 && !$vip_flag && !$landing_flag) : ?> 
                                                     <div class= "promo-code-cont">
                                                         <div class="srs-form columns four left" style="margin-left:10px;">
                                                             <div class="form">
@@ -100,7 +98,17 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                     </div>
                                                 <?php endif; ?>
                                             </td>
-                                            <?php if($cart_total >= 250 && $vip_flag) : 
+                                            <?php
+                                                if ($landing_flag):
+                                                $cart_total = $cart_total - $user_offer['UserOffer']['discount'];
+                                            ?> 
+                                                <td colspan="2" class="text-right bold">(-) Discount:</td>
+                                                <td class="text-right cart-discount">
+                                                    <?php echo $this->Number->currency($user_offer['UserOffer']['discount']); ?>
+                                                    <input type="hidden" name="offer-discount" value="<?php echo $user_offer['UserOffer']['discount']; ?>" />
+                                                </td>
+                                            <?php
+                                                elseif($cart_total >= 250 && $vip_flag) : 
                                                 $cart_total = $cart_total - 50;
                                             ?>
                                                 <td colspan="2" class="text-right bold">(-) Discount:</td>

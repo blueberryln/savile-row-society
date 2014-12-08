@@ -15,7 +15,7 @@ class AppController extends Controller {
             if($this->request->params['controller'] != "payments"){
                 $this->redirect('http://' . env('SERVER_NAME') . $this->here);
             }
-        }     
+        }   
     }
 
 
@@ -37,6 +37,13 @@ class AppController extends Controller {
             $showRegisterPopup = 1;
             $this->Session->delete('showRegisterPopup');
             $this->set(compact('showRegisterPopup'));
+        }
+        else if($this->Session->check('showAffiliatePopup')){
+            $showAffiliatePopup = 1;
+            $landing_offer = $this->Session->read('landing_offer');
+            $landing_text = $this->Session->read('landing_text');
+            $this->Session->delete('showAffiliatePopup');
+            $this->set(compact('showAffiliatePopup', 'landing_offer', 'landing_text'));
         }
 
         $has_stylist = false;
@@ -204,6 +211,14 @@ class AppController extends Controller {
             }
             else{
                 $cart_items_count = 0;
+            }
+        }
+        else{
+            $cart_items_count = 0;
+
+            if($this->Session->check('guest_items')){
+                $cart_items = $this->Session->read('guest_items');
+                $cart_items_count = (is_array($cart_items)) ? count($cart_items) : 0;
             }
         }
         $this->Session->write('cart_items', $cart_items_count);

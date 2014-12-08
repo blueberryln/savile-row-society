@@ -462,11 +462,26 @@ class UsersController extends AppController {
                     $user['User']['vip_discount_flag'] = 1; 
                 }
 
+
                 if ($this->User->saveAll($user)) {
                     if($this->Session->check('referer')){
                         $this->Session->delete('referer');
                         $this->Session->delete('showRegisterPopup'); 
                         $this->Session->delete('referer_type');
+                    }
+
+                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+
+                    if($this->Session->check('landing_offer')){
+                        $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->delete('landing_offer');
+                        $this->Session->delete('landing_text');
+                        
+                        $user_offer['UserOffer']['user_id'] = $results['User']['id'];
+
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $UserOffer->create();
+                        $UserOffer->save($user_offer);
                     }
 
                     try{
@@ -488,7 +503,6 @@ class UsersController extends AppController {
                     }
                     // signin newly registered user
                     // check submitted email and password 
-                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
 
                     if ($results) {
                         $stylist_id = $this->assign_refer_stylist($results['User']['id']);
@@ -521,6 +535,117 @@ class UsersController extends AppController {
         $styles = $this->Style->find('all');
         $this->set('styles', $styles);  
     }
+
+
+    public function quickregister()
+
+    {
+        if(isset($this->request->query['refer'])){
+            $this->Session->write('stylist_refer', $this->request->query['refer']);   
+        }
+
+        if($this->getLoggedUserID()){
+            $this->redirect('/messages/index');
+            exit();   
+        }
+        else if($this->request->is('post') ){
+            $user = $this->request->data;
+
+            $cart_list = false;
+            if($this->Session->check('guest_items')){
+                $cart_list = $this->Session->read('guest_items');
+            }
+
+            if ($this->User->validates()) {
+                $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
+                if($registered){
+                    $this->Session->setFlash(__('You are already registered. Please sign in.'), 'flash');
+                    $this->redirect('/guest/cart');
+                    exit;    
+                }
+
+                $user['User']['password'] = Security::hash($user['User']['password']);
+
+                if($this->Session->check('referer')){
+                    $user['User']['referred_by'] = $this->Session->read('referer');  
+                    $user['User']['vip_discount_flag'] = 1; 
+                }
+
+
+                if ($this->User->saveAll($user)) {
+                    if($this->Session->check('referer')){
+                        $this->Session->delete('referer');
+                        $this->Session->delete('showRegisterPopup'); 
+                        $this->Session->delete('referer_type');
+                    }
+
+
+                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+
+                    if($cart_list){
+                        $Cart = ClassRegistry::init('Cart');
+                        $CartItem = ClassRegistry::init('CartItem');
+
+                        $data = array();
+                        $data['Cart']['user_id'] = $results['User']['id'];
+                        $Cart->create();
+                        $result = $Cart->save($data);
+
+                        $cart_id = $result['Cart']['id'];
+                        foreach($cart_list as $item){
+                            $item['CartItem']['user_id'] = $results['User']['id'];
+                            $item['CartItem']['cart_id'] = $cart_id;
+                            $CartItem->create();
+                            $result = $CartItem->save($item);
+                        }
+                    }
+
+
+
+                    try{
+                      $bcc = Configure::read('Email.contact');
+                      $email = new CakeEmail('default');
+
+
+                      $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                      $email->to($user['User']['email']);
+                      $email->subject('Welcome To Savile Row Society');
+                      $email->bcc($bcc);
+                      $email->template('registration');
+                      $email->emailFormat('html');
+                      $email->send();
+                    }
+                    catch(Exception $e){
+                            
+                    }
+                   
+
+                    if ($results) {
+                        $this->Session->write('user', $results);
+
+                        if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
+                            $this->assignVipDiscount($results['User']['referred_by']);
+                        }
+
+                        $this->redirect('/cart');
+                    } else {
+
+                        // redirect to home
+                        $this->redirect($this->referer());
+                        exit;
+
+                    }
+                } else {
+                    $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
+                    $this->redirect($this->referer());
+                }
+            }   
+        }
+
+        $styles = $this->Style->find('all');
+        $this->set('styles', $styles);  
+    }
+
        
          /**
      * Assign VIP dicsount
@@ -636,6 +761,11 @@ class UsersController extends AppController {
             $this->redirect('/');
             exit;
         }
+        if($user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;   
+        }
+
         if($this->request->is('post') || $this->request->is('put')){
             if(!empty($this->request->data['User']['is_phone'])){
                 $this->request->data['User']['is_phone']='1'; 
@@ -658,11 +788,25 @@ class UsersController extends AppController {
             else{
                 unset($this->request->data['User']['profile_photo_url']);
             }
+
+            unset($this->request->data['User']['email']);
+            unset($this->request->data['User']['password']);
+
+
             $this->request->data['UserPreference']['style_pref'] = implode(',', $this->request->data['UserPreference']['style_pref']);
             if($this->User->saveAll($this->request->data))
             {
+                $stylist_id = $this->assign_refer_stylist($user['User']['id']);
+                App::import('Controller', 'Messages');
+                $Messages = new MessagesController;
+                $Messages->send_welcome_message($user['User']['id'], $stylist_id);
+
+                $user = $this->User->findById($id);
+
+                $this->Session->write('user', $user);
+
                 $this->Session->setFlash("User data has been Saved", 'flash');
-                $this->redirect('/messages/profiles/'.$id);
+                $this->redirect('/');
             }
             else
             {

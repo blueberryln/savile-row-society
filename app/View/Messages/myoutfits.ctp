@@ -207,6 +207,8 @@ $(document).ready(function(){
                     var outfits = ret['outfits'];
                     var html = '';
                     for(i=0; i < outfits.length; i++){
+                        if(!outfits[i]['Message'])
+                            continue;
                         var outfit = outfits[i],
                             itemHtml = '',
                             outfitPrice = 0,
@@ -515,7 +517,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                             <div class="twelve columns left otft-overview-links">
-                                <a class="left pop-outfit-reuse" href="" title="">Resuse Outfit</a>
+                                <a class="left pop-outfit-reuse" href="" title="">Reuse Outfit</a>
                                 <a class="right pop-outfit-details" href="" title="">See Full Outfit Details</a>
                             </div>
                         </div>

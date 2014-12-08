@@ -96,7 +96,11 @@
                     </p>
                     <p>
                         <strong id="faq-link9">Can I return an item after I purchase it? - <a href="#topmost" class="right">Top</a></strong>
-                        <div>Of course – we understand that returns are, at times, inevitable. </div>
+                        <div>
+                        <p>Savile Row Society will provide a full refund for goods returned within 10-days of receiving the product. For items returned after 10-days but within 30-days, customers will receive store credit for unworn clothing. Our clients are deemed to have received clothing when leaving the showroom with their goods or when our shipping or messenger partners notify us that the package containing items has been received. Please note there are no returns on made-to-measure items, but we guarantee satisfaction and will provide the required alterations.</p>
+                        <p>Savile Row Society will not accept the return of items 30-days after a client has received a product. In order to make sure that we can solve any issues with your purchases, please identify the issue to your stylist immediately and we will fix it for you. While we understand some items from a client may not fit perfectly after trying them on, we cannot accept nor provide a refund items that are visibly worn. We hope you understand.</p>
+
+                        <p>Please email us at <a href="mailto:contactus@savilerowsociety.com">contactus@savilerowsociety.com</a> notifying us of a return and we will send you a return slip as soon as possible.</p></div>
                     </p>
 
                  </div>

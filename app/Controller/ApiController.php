@@ -6,6 +6,8 @@ App::uses('Validation', 'Utility');
 
 class ApiController extends AppController {
 
+    var $components = array('Session');
+
     var $uses = null;
 
     function beforeFilter() {
@@ -119,6 +121,125 @@ class ApiController extends AppController {
     }
 
     
+    /**
+     * Cart
+     */
+    public function guest($param = null) {
+
+        //Configure::write('debug', 0);
+        $this->autolayout = false;
+        $this->autoRender = false;
+        
+        $ret = array();
+
+        // init
+        $Entity = ClassRegistry::init('Entity');
+
+        if ($param && $param == 'save') {
+
+            if ($this->request->is('ajax')) {
+                $cart_items = array();
+                if($this->Session->check('guest_items')){
+                    $cart_items = (is_array($this->Session->read('guest_items')) && count($this->Session->read('guest_items'))) ? $this->Session->read('guest_items') : array();
+                }
+
+                // Get product Entity ID and Get the information for the entity
+                $entity_id = $this->request->data['product_id'];
+                $outfit_id = isset($this->request->data['outfit_id']) ? $this->request->data['outfit_id'] : "";
+                $entity = $Entity->getById($entity_id);
+
+                $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];
+                $data['CartItem']['quantity'] = $this->request->data['product_quantity'];
+                $data['CartItem']['outfit_id'] = $outfit_id;
+                if(isset($this->request->data['product_size'])){
+                    $data['CartItem']['size_id'] = $this->request->data['product_size'];
+                }
+                else{
+                    $data['CartItem']['size_id'] = 1;
+                }    
+
+                if(count($cart_items)){
+
+                    $update_quantity = false;
+                    foreach($cart_items as &$item){
+                        if($item['CartItem']['size_id'] == $data['CartItem']['size_id'] && $item['CartItem']['product_entity_id'] == $data['CartItem']['product_entity_id']){
+                            $item['CartItem']['quantity'] = $item['CartItem']['quantity'] + $data['CartItem']['quantity'];
+                            $update_quantity = true;
+                            break;
+                        }       
+                    }
+
+                    if(!$update_quantity){
+                        $cart_items[] = $data;    
+                    }
+                    $this->Session->write('guest_items', $cart_items);
+                    $ret['guest_items'] = $cart_items;
+                    $ret['status'] = 'ok';
+                }
+                else{
+                    $ret['status'] = 'ok';
+                    $cart_items[] = $data;
+                    $this->Session->write('guest_items', $cart_items);
+                    $ret['cart_items'] = $cart_items;
+                }
+                
+                $this->Session->setFlash(__('Item has been added to the cart.'), 'flash');
+                
+                echo json_encode($ret);
+               
+                exit;
+            }
+        } 
+        else if($param && $param == 'update') {
+            $item_list = $this->request->data['items'];
+
+            if($this->Session->check('guest_items')){
+                $cart_items = (is_array($this->Session->read('guest_items')) && count($this->Session->read('guest_items'))) ? $this->Session->read('guest_items') : array();
+
+                foreach($item_list as $item){
+                    $cart_items[$item['item-id']]['CartItem']['quantity'] = $item['quantity'];
+                }  
+
+                $this->Session->write('guest_items', $cart_items);
+            }
+       
+        }
+        elseif ($param && $param == 'remove') {
+
+            if ($this->request->is('ajax')) {
+                // get posted product id
+                $item_id = $this->request->data['cart_item_id'];
+                
+                if($this->Session->check('guest_items')){
+                    $cart_items = (is_array($this->Session->read('guest_items')) && count($this->Session->read('guest_items'))) ? $this->Session->read('guest_items') : array();
+                    unset($cart_items[$item_id]);
+                    $cart_items = array_values($cart_items); 
+                    $this->Session->write('guest_items', $cart_items);
+                    $ret['status'] = 'ok';
+
+                    $this->getCartCount();
+                    $ret['count'] = $this->Session->read('cart_items');
+                }
+                
+                
+                echo json_encode($ret);
+                exit;
+                
+            }
+        } elseif ($user_id && $param && $param == 'count') {
+
+            if ($this->request->is('ajax')) {
+                $cart_items_count = 0;
+                $cart_storage = $this->Session->read('cart_storage');
+                if ($cart_storage && is_array($cart_storage)) {
+                    $cart_items_count = count($cart_storage);
+                }
+                echo json_encode(array('count' => $cart_items_count));
+            }
+        }
+    }
+
+
 
     /**
      * Cart
@@ -147,9 +268,7 @@ class ApiController extends AppController {
                     $entity_id = $this->request->data['product_id'];
                     $outfit_id = isset($this->request->data['outfit_id']) ? $this->request->data['outfit_id'] : "";
                     $entity = $Entity->getById($entity_id, $user_id);
-                    //print_r($entity);
-                    //print_r($ret);
-                    //exit;   
+
                     //Prepare data array for adding cart information
                     if($entity['Entity']['is_gift']){
                         $data['CartItem']['product_entity_id'] = $entity['Entity']['id'];

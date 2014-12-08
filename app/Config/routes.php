@@ -36,7 +36,6 @@ Router::connect('/user/profile', array('controller'=>'messages', 'action'=>'prof
 Router::connect('/user/outfits', array('controller'=>'messages', 'action'=>'usersoutfits'));
 
 
-
 Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 Router::connect('/refer-a-friend', array('controller' => 'pages', 'action' => 'display', 'refer-a-friend'));
 Router::connect('/refer', array('controller' => 'pages', 'action' => 'display', 'refer'));

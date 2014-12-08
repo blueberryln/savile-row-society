@@ -88,6 +88,7 @@ class PaymentsController extends AppController {
             $CartItem = ClassRegistry::init('CartItem');
             $Entity = ClassRegistry::init('Entity');
             $BillingAddress = ClassRegistry::init('BillingAddress');
+            $UserOffer = ClassRegistry::init('UserOffer');
 
 
             //Get current user cart details. Redirect to closet if cart doesnt exist.
@@ -164,15 +165,23 @@ class PaymentsController extends AppController {
             }
             $this->request->data = $data;
 
+            $user_offer = $UserOffer->findByUserId($user['User']['id']);
+
             //Check if user needs to be awarded the vip discount
             $discount_total = $cart_total;
             $vip_flag = false;
-            if($cart_total >= 250 && $user['User']['vip_discount_flag'] && !$user['User']['vip_discount']){
+            $landing_flag = false;
+
+            if($user_offer && !$user_offer['UserOffer']['is_used'] && $cart_total >= $user_offer['UserOffer']['minimum']){
+                $discount_total = $cart_total - $user_offer['UserOffer']['discount'];
+                $landing_flag = true;
+            }
+            else if($cart_total >= 250 && $user['User']['vip_discount_flag'] && !$user['User']['vip_discount']){
                 $discount_total = $cart_total - 50; 
                 $vip_flag = true;
             }
                        
-            $this->set(compact('cart_list', 'cart_id', 'country_list', 'user', 'cart_total', 'discount_total', 'vip_flag'));
+            $this->set(compact('cart_list', 'cart_id', 'country_list', 'user', 'cart_total', 'discount_total', 'vip_flag', 'landing_flag', 'user_offer'));
         }
     }
     
@@ -188,6 +197,7 @@ class PaymentsController extends AppController {
             $CartItem = ClassRegistry::init('CartItem');
             $Entity = ClassRegistry::init('Entity');
             $ShippingAddress = ClassRegistry::init('ShippingAddress');  
+            $UserOffer = ClassRegistry::init('UserOffer');
 
             //Get current user cart details. Redirect to closet if cart doesnt exist.
             $cart = $Cart->getExistingUserCart($user_id);
@@ -324,7 +334,14 @@ class PaymentsController extends AppController {
                     $this->Session->write('transaction_data', $transaction_result);
 
                     //Write VIP discount data
-                    if(isset($this->request->data['vip-discount'])){
+                    if(isset($this->request->data['offer-discount'])){
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $user_offer = $UserOffer->findByUserId($user_id);
+                        $user_offer['UserOffer']['is_used'] = 1;
+
+                        $UserOffer->save($user_offer); 
+                    }
+                    else if(isset($this->request->data['vip-discount'])){
                         $User = ClassRegistry::init('User'); 
                         $user = $User->findById($user_id);
                         $user['User']['vip_discount_flag']  = 0;
@@ -397,6 +414,11 @@ class PaymentsController extends AppController {
         $data['Cart']['id'] = $request_data['checkout-cart-id'];
         $data['Cart']['total'] = $this->request->data['checkout-total-price'];
         $data['Cart']['tax'] = $this->request->data['checkout-tax'];
+
+        if(isset($this->request->data['offer-discount'])){
+            $data['Cart']['offerDiscountSet'] = true;
+            $data['Cart']['offerDiscountAmount'] = $this->request->data['offer-discount'];
+        }
         if(isset($this->request->data['vip-discount'])){
             $data['Cart']['vipDiscountSet'] = true;
         }
@@ -476,7 +498,12 @@ class PaymentsController extends AppController {
         }
 
         //Check for applied discount
-        if($data['Cart']['vipDiscountSet']){
+        if($data['Cart']['offerDiscountSet']){
+            $promo_code = ""; 
+            $discount = $data['Cart']['offerDiscountAmount'];
+            $discounted_price = $cart_total - $discount;
+        }
+        else if($data['Cart']['vipDiscountSet']){
             $promo_code = ""; 
             $discount = 50;
             $discounted_price = $cart_total - $discount;
