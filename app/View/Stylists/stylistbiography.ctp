@@ -143,6 +143,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                             <div class="outfit-products-details"><?php if(isset($entities['Entity'])!=''){ echo $entities['Entity']['name']; }else{} ?>  $<?php if(isset($entities['Entity'])!=''){ echo $entities['Entity']['price']; }else{} ?></div>
                                                         </li>
                                                             <?php endforeach; ?>
+                                                            <br>
+                                                            <?php if($user): ?>
+                                                                <div class="text-right"><em><a class="shop-outfit-bottom-link" href="/user/outfits" title="">SHOP OUTFIT</a></em></div>
+                                                            <?php else: ?>
+                                                                <div class="text-right"><em><a class="shop-outfit-bottom-link" href="/guest/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">SHOP OUTFIT</a></em></div>
+                                                            <?php endif; ?>
                                                         </ul>
                                                     </div>
                                                 </div>

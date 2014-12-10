@@ -861,7 +861,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-month { color: #d19b03; display: block; padding-bottom: 15px; text-transform: uppercase;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { color: #55585e; font-size: 25px; display: block; font-style: italic;}
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand span.outfit-brand-name { text-decoration: underline;}
-.outfit-stylist li .shop-outfit .shop-outfit-bottom { display: block; padding: 5px 0px 12px 0px; position: relative;}
+.outfit-stylist li .shop-outfit .shop-outfit-bottom { display: block; padding: 5px 0px 12px 0px; position: relative; cursor: pointer;}
 .outfit-stylist li .shop-outfit .shop-outfit-bottom ul {width: 100%; text-align: center; display: inline-block; height: 120px;}
 .outfit-stylist li .shop-outfit .shop-outfit-bottom li { display: inline-block; width: 18%; text-align: center; vertical-align: middle;}
 .outfit-stylist li .shop-outfit .shop-outfit-bottom li img {max-height: 120px; width: auto}

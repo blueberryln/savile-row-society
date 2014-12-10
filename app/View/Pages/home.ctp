@@ -153,8 +153,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                 <div class="shop-outfit left">
                                     <div class="shop-outfit-top">
                                         <div class="outfit-main-img left">
-                                        
+                                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>">
                                         <img src="<?php echo $this->webroot; ?>files/users/<?php echo $outfit['Stylist']['profile_photo_url']; ?>"  />
+                                        </a>
                                         </div>
                                         <div class="outfit-top-content left">
                                             <div class="outfit-month" style="line-height: initial;"><?php echo $outfit['Outfit']['outfit_name']; ?></div>                                    
@@ -273,3 +274,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     </div>
         
 </div>
+<script>
+    $(function(){
+        $(".shop-outfit-bottom").on('click', function(){
+            location = $(this).find('a.shop-outfit-bottom-link').attr('href');
+        });
+    });
+</script>
