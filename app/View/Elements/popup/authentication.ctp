@@ -143,7 +143,7 @@
 	                    <span class="already-member">Already a Member? <a href="" id="show-signin-popup">SIGN IN</a></span> 
 	                </div>
 	                
-	                <input type="submit" class="link-btn black-btn signup-btn" value="SIGN UP" /> 
+	                <input type="submit" class="link-btn black-btn signup-btn" value="CONTINUE AS GUEST" /> 
 	                
 	            </form>
 	        </div> 
