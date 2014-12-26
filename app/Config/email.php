@@ -54,7 +54,7 @@ class EmailConfig {
 
     public $default = array(
         'host' => 'email-smtp.us-east-1.amazonaws.com',
-        'port' => 465,
+        'port' => 25,
         'username' => 'AKIAJHMNIZSNQGJERYHA',
         'password' => 'ApSS50SNw1OeCE5+WmaoTpX4iGhHNndsSPsADfLLArWp',
         'transport' => 'Smtp'
