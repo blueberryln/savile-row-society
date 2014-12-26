@@ -409,6 +409,8 @@ class UsersController extends AppController {
     public function register()
 
     {
+        $title_for_layout = "Sign up for Savile Row Society - Featured Personal Stylists";
+
         if(isset($this->request->query['refer'])){
             $this->Session->write('stylist_refer', $this->request->query['refer']);   
         }
@@ -533,7 +535,7 @@ class UsersController extends AppController {
         }
 
         $styles = $this->Style->find('all');
-        $this->set('styles', $styles);  
+        $this->set(compact('styles', 'title_for_layout'));  
     }
 
 

@@ -5,8 +5,8 @@ if(isset($noindex)){
     echo $this->Html->meta(array('name' => 'robots', 'content' => 'noindex, nofollow'),null,array('inline'=>false));
 }
 
-$meta_description = 'Savile Row Society is a men’s personal shopping platform that connects professional men with personal stylists.';
-$meta_keywords = 'Savile Row Society, Personal stylist, personal shopping';
+$meta_description = "Savile Row Society is a men's personal shopping platform that connects professional men with personal stylists. Buy Men's fashion clothing Online at USA favourite online shopping store - savilerowsociety.com";
+$meta_keywords = "Savile Row Society, Personal stylist, personal shopping, Menswear online shopping, Men's fashion clothing Online, Buy Mens Clothing Online, personal online shopping";
 $img_src = "//www.savilerowsociety.com/img/SRS_600.png";
 
 $this->Html->meta("keywords", $meta_keywords, array("inline" => false));
@@ -164,8 +164,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                     </div>
                                     <div class="shop-outfit-bottom">
                                         <ul>
-                                            <?php foreach($outfit['OutfitItem'] as $item) {
-                                                if(count($item['product']['Image'])){
+                                            <?php 
+                                            $count = 1;
+                                            foreach($outfit['OutfitItem'] as $item) {
+                                                if(count($item['product']['Image']) && $count++ <= 5){
                                             ?>
                                                 <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></li>
                                             <?php 

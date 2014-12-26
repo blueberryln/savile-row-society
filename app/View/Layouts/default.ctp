@@ -36,6 +36,15 @@
         <link rel="apple-touch-icon" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-114x114.png">
+
+        
+        <?php
+            if(!isset($canonical_url)){
+                $canonical_url = Router::url($this->request->here, true);   
+            } 
+
+            echo '<link rel="canonical" href="'. $canonical_url .'">'; 
+        ?>
         <!-- Favicons end -->
         
         <!--[if lt IE 9]>

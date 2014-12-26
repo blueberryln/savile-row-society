@@ -17,7 +17,7 @@ class MessagesController extends AppController {
 
         $user = $this->getLoggedUser();
 
-        if(is_null($user['User']['stylist_id'])){
+        if(!$user['User']['is_stylist'] && !$user['User']['is_admin'] && is_null($user['User']['stylist_id'])){
             $this->redirect('/users/profile/' . $user['User']['id']);
         }
     }

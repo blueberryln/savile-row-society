@@ -178,22 +178,42 @@ $(function(){
                             discount = discount.toFixed(2);
                             
                             total = parseFloat(total-discount).toFixed(2);
-                            $(".cart-discount").text("$" + discount);     
-                            $(".cart-total").text("$" + total);  
-                            $("#checkout-total-price").val(total);
+                            if(total > 0){
+                                $(".cart-discount").text("$" + discount);     
+                                $(".cart-total").text("$" + total);  
+                                $("#checkout-total-price").val(total); 
+                            }
+                            
                         }
                         else{
                             total = parseFloat(total-discount).toFixed(2);
-                            $(".cart-discount").text("$" + discount);     
-                            $(".cart-total").text("$" + total);  
-                            $("#checkout-total-price").val(total);
+                            if(total > 0){
+                                $(".cart-discount").text("$" + discount);     
+                                $(".cart-total").text("$" + total);  
+                                $("#checkout-total-price").val(total);  
+                            }  
+                        }
+
+                        if(total > 0){
+                            $("#promocode").attr({"readonly":"readonly"});     
+                            var notificationDetails = new Array();
+                            notificationDetails["msg"] = "Promo Code has been applied successfully.";
+                            showNotification(notificationDetails, true); 
+                            $(".remove-pc").fadeIn().removeClass("hide");   
+                        }
+                        else{
+                            $(".cart-discount").text("$0.00");  
+                            var total = $("#checkout-initial-price").val();
+                            total = parseFloat(total).toFixed(2);
+                            $(".cart-total").text("$" + total);
+                            $("#checkout-total-price").val(total);   
+                            
+                            var notificationDetails = new Array();
+                            notificationDetails["msg"] = "Promo code cannot be applied.";
+                            showNotification(notificationDetails, true); 
                         }
                         
-                        $("#promocode").attr({"readonly":"readonly"});     
-                        var notificationDetails = new Array();
-                        notificationDetails["msg"] = "Promo Code has been applied successfully.";
-                        showNotification(notificationDetails, true); 
-                        $(".remove-pc").fadeIn().removeClass("hide");
+                        
                     }
                     else if(ret["status"] == "error"){ 
                         $(".cart-discount").text("$0.00");  

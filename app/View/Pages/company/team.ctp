@@ -1,6 +1,6 @@
 <?php
-$meta_description = "Meet the team at Savile Row Society";
-$meta_keywords = "Savile Row Society, management";
+$meta_description = "When a new User signup the Savile Row Society website, We also understand that our user want to develop a unique personal brand or develop a relationship online at his convenience.";
+$meta_keywords = "Savile Row Society, designer Menswear specialists, lifestyle fashionistas";
 $script='
     jQuery(function(){
         jQuery("div.team-member").on("click", function(){

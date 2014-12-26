@@ -61,14 +61,3 @@ window._fbq.push(['track', '6020758863713', {'value':'0.00','currency':'USD'}]);
 </script>
 <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6020758863713&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
 <!--End Facebook Conversion Code-->
-
-<!--LEGACY COMMUNICATION SCRIPT
-Start of Zopim Live Chat Script
-<script type="text/javascript">
-window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-$.src='//v2.zopim.com/?2EyWSdOlvawNOnH4NsrFdHDbmRHMk5Pq';z.t=+new Date;$.
-type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-End of Zopim Live Chat Script-->
