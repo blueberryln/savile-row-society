@@ -131,8 +131,8 @@
 	        	<img src="<?php echo $this->request->webroot; ?>img/signin-text.png" alt="" class="checkout-text">
 	            <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate', 'url' => '/signin', 'class' => 'checkout-sigin-from')); ?> 
 	                <?php
-	                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'placeholder' => 'EMAIL', 'label' => 'Email'));
-	                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => 'Password', 'placeholder' => 'PASSWORD'));
+	                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'label' => 'Email'));
+	                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => 'Password'));
 	                    echo $this->Form->input('refer_url', array('type' => 'hidden', 'id' => 'referUrlLogIn'));
 	                ?>                  
 	                
