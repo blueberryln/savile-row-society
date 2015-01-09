@@ -101,7 +101,7 @@ $(document).ready(function(){
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
 $meta_description = "Savile Row Society providing a paramount, personalized styling and personal shopping plateform for professional men. Buy clothes online shopping for Men at best price in savilerowsocity.com .SRS offers more than 60 best luxury brands including Barbour, Lacoste, Allen Edmonds and Daniel Wellington.";
-$meta_keywords = "Personal Brand, Personal stylish Online, Men's Personal Shopping Platform, Buy Mens Clothing Online";
+$meta_keywords = "Personal Brand, Personal stylish Online, Men's Personal Shopping Platform, Buy Mens Clothing Online, Mens Fashion, Mens clothes Online";
 $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 ?>

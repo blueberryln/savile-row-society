@@ -65,13 +65,13 @@ class PagesController extends AppController {
             //Get Top Outfits
             $TopOutfit = ClassRegistry::init('TopOutfit');
             $topOutfits = $TopOutfit->getTopOutfits();
-            $title_for_layout = "Buy Men's Fashion Clothing Online - Personal Stylist Menswear Online Shopping - Savile Row Society";
+            $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
 
             $this->set(compact('user','topStylists','topOutfits', 'firstStylist'));
        
         }
         else if ($page == 'contact') {
-            $title_for_layout = "Contact Us - Savile Row Society";
+            $title_for_layout = "Savile Row Society - Contact Us | Online Fashion Shopping Website";
         }
         else if ($page == 'refer-a-friend') {
             $this->isLogged();
@@ -109,7 +109,7 @@ class PagesController extends AppController {
 
         }
         else if ($page == 'company/brands') {
-            $title_for_layout = "Personal Brand Online - Men's Personal Shopping Platform - Buy Mens Clothing Online";
+            $title_for_layout = "Mens Fashion - Mens Fashion Clothing Online - Personal Online Shopping Stylist";
         }
         else if ($page == 'company/team') {
             $title_for_layout = "Savile Row Society Team Management - Designer Menswear Specialists - Lifestyle Fashionistas";

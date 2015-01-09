@@ -265,7 +265,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         <div class="product-dtl-desc-bottom left">
                                         <div class="slect-options left">
                                         <div class="select-size select-style left">
-                                        <?php if($entity['size_id']){
+                                        <?php if($entity['size_id'] && $outfit['Outfit']['stylist_id'] == $user['User']['stylist_id']){
                                             echo '<select class="product-size">';
                                             echo '<option value="' . $entity['size_id'] . '">' . $sizes[$entity['size_id']] . '</option>';
                                             echo '</select>';

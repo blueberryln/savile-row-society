@@ -15,6 +15,10 @@ class ContactsController extends AppController {
         if($user_id){
             $this->set(compact('user'));
         }
+
+        $title_for_layout = "Savile Row Society - Contact Us | Online Fashion Shopping Website";
+        $this->set(compact('title_for_layout'));
+
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Contact->validates()) {
                 $this->Contact->create();

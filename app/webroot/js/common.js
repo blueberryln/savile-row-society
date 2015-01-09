@@ -378,7 +378,7 @@ jQuery(function(){
 
 
     if($('#flash-box').length){
-        $.blockUI({message: $('#flash-box'), timeout: 5000});
+        $.blockUI({message: $('#flash-box'), timeout: 1700});
     }
     if($('#forgot-flash-box').length){
         $.blockUI({message: $('#forgot-flash-box')});

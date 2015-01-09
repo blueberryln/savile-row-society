@@ -54,6 +54,7 @@ Router::connect('/closet/*', array('controller' => 'closet', 'action' => 'index'
 Router::connect('/lookbooks', array('controller' => 'lifestyles'));
 Router::connect('/lookbooks/:action/*', array('controller' => 'lifestyles'));
 Router::connect('/cart', array('controller' => 'closet', 'action' => 'cart'));
+Router::connect('/guest/checkout', array('controller' => 'payments', 'action' => 'guestcheckout'));
 Router::connect('/checkout', array('controller' => 'payments', 'action' => 'checkout'));
 Router::connect('/payment', array('controller' => 'payments', 'action' => 'payment'));
 Router::connect('/confirmation', array('controller' => 'payments', 'action' => 'confirmation'));

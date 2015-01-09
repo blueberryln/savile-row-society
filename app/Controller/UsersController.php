@@ -122,6 +122,29 @@ class UsersController extends AppController {
                         $this->Session->delete('referer_type');
                     }   
 
+                    if($this->Session->check('guest_items')){
+                        $cart_list = $this->Session->read('guest_items');
+
+                        $Cart = ClassRegistry::init('Cart');
+                        $CartItem = ClassRegistry::init('CartItem');
+
+                        $data = array();
+                        $data['Cart']['user_id'] = $results['User']['id'];
+                        $Cart->create();
+                        $result = $Cart->save($data);
+
+                        $cart_id = $result['Cart']['id'];
+                        foreach($cart_list as $item){
+                            $item['CartItem']['user_id'] = $results['User']['id'];
+                            $item['CartItem']['cart_id'] = $cart_id;
+                            $CartItem->create();
+                            $result = $CartItem->save($item);
+                        }
+
+
+                        $this->Session->delete('guest_items');
+                    }
+
                     
                     //Set complete style profile popup if style profile not complete
                     if (!$results['User']['preferences']) {
@@ -486,6 +509,31 @@ class UsersController extends AppController {
                         $UserOffer->save($user_offer);
                     }
 
+
+                    if($this->Session->check('guest_items')){
+                        $cart_list = $this->Session->read('guest_items');
+
+                        $Cart = ClassRegistry::init('Cart');
+                        $CartItem = ClassRegistry::init('CartItem');
+
+                        $data = array();
+                        $data['Cart']['user_id'] = $results['User']['id'];
+                        $Cart->create();
+                        $result = $Cart->save($data);
+
+                        $cart_id = $result['Cart']['id'];
+                        foreach($cart_list as $item){
+                            $item['CartItem']['user_id'] = $results['User']['id'];
+                            $item['CartItem']['cart_id'] = $cart_id;
+                            $CartItem->create();
+                            $result = $CartItem->save($item);
+                        }
+
+
+                        $this->Session->delete('guest_items');
+                    }
+
+
                     try{
                       $bcc = Configure::read('Email.contact');
                       $email = new CakeEmail('default');
@@ -600,6 +648,9 @@ class UsersController extends AppController {
                             $CartItem->create();
                             $result = $CartItem->save($item);
                         }
+
+
+                        $this->Session->delete('guest_items');
                     }
 
 

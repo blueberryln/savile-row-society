@@ -5,8 +5,8 @@ if(isset($noindex)){
     echo $this->Html->meta(array('name' => 'robots', 'content' => 'noindex, nofollow'),null,array('inline'=>false));
 }
 
-$meta_description = "Savile Row Society is a men's personal shopping platform that connects professional men with personal stylists. Buy Men's fashion clothing Online at USA favourite online shopping store - savilerowsociety.com";
-$meta_keywords = "Savile Row Society, Personal stylist, personal shopping, Menswear online shopping, Men's fashion clothing Online, Buy Mens Clothing Online, personal online shopping";
+$meta_description = "Savile Row Society is a mens personal shopping platform that connects professional men with personal stylists. Buy Mens designer fashion clothing Online at USA favourite online fashion shopping website - savilerowsociety.com";
+$meta_keywords = "Savile Row Society, Personal stylist, personal shopping, Menswear online shopping, Men's fashion clothing Online, Buy Mens Clothing Online, personal online shopping, online fashion website, Online shopping website, online fashion shopping";
 $img_src = "//www.savilerowsociety.com/img/SRS_600.png";
 
 $this->Html->meta("keywords", $meta_keywords, array("inline" => false));
@@ -176,7 +176,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                             ?>
                                         </ul>
                                         <?php if($user): ?>
-                                            <a class="shop-outfit-bottom-link" href="/user/outfits" title="">Shop Outfit</a>
+                                            <a class="shop-outfit-bottom-link" href="/messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" title="">Shop Outfit</a>
                                         <?php else: ?>
                                             <a class="shop-outfit-bottom-link" href="/guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" title="">Shop Outfit</a>
                                         <?php endif; ?>

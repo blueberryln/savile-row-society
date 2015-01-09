@@ -8,8 +8,8 @@ App::uses('CakeEmail', 'Network/Email');
  */
 class PaymentsController extends AppController {
 
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS25', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG25', 'FULLTHROTTLE20', 'BLOGGER20', 'SUITES20', 'EQUITY20', 'TIDE25', 'BADWIN25', 'BOBBY25', 'NISH25', 'ROGER25', 'STUART25', 'ALBERT25', 'F&F25', 'ANDREI25','SRSWAIT100', 'SRS30STYLIST', '9157STAR', 'EVENTSY150');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS25' => 25, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'FULLTHROTTLE20' => 20, 'BLOGGER20' => 20, 'SUITES20' => 20, 'CYBER30' => 30, 'JOEYG25' => 25, 'EQUITY20' => 20, 'TIDE25' => 25, 'BADWIN25' => 25, 'BOBBY25' => 25, 'NISH25' => 25, 'ROGER25' => 25, 'STUART25' => 25, 'ALBERT25' => 25, 'F&F25' => 25, 'ANDREI25' => 25, 'SRSWAIT100' => 100, 'SRS30STYLIST' => 30, '9157STAR' => '50');
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS25', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG25', 'FULLTHROTTLE20', 'BLOGGER20', 'SUITES20', 'EQUITY20', 'TIDE25', 'BADWIN25', 'BOBBY25', 'NISH25', 'ROGER25', 'STUART25', 'ALBERT25', 'F&F25', 'ANDREI25','SRSWAIT100', 'SRS30STYLIST', '9157STAR', 'NEUE50', 'EVENTSY120', '3DAYRULE120', '11JAMES120');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS25' => 25, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'FULLTHROTTLE20' => 20, 'BLOGGER20' => 20, 'SUITES20' => 20, 'CYBER30' => 30, 'JOEYG25' => 25, 'EQUITY20' => 20, 'TIDE25' => 25, 'BADWIN25' => 25, 'BOBBY25' => 25, 'NISH25' => 25, 'ROGER25' => 25, 'STUART25' => 25, 'ALBERT25' => 25, 'F&F25' => 25, 'ANDREI25' => 25, 'SRSWAIT100' => 100, 'SRS30STYLIST' => 30, '9157STAR' => 50, 'NEUE50' => 50, 'EVENTSY120' => 119, '3DAYRULE120' => 119, '11JAMES120' => 119);
     public $percentCodes = array('CYBER30', 'SRS30STYLIST', '9157STAR');
 
     function beforeFilter() {
@@ -184,14 +184,125 @@ class PaymentsController extends AppController {
             $this->set(compact('cart_list', 'cart_id', 'country_list', 'user', 'cart_total', 'discount_total', 'vip_flag', 'landing_flag', 'user_offer'));
         }
     }
+
+    public function guestcheckout() {
+        $this->response->disableCache();
+
+        //Register Classes for fetching data
+        $User = ClassRegistry::init('User');
+        $Entity = ClassRegistry::init('Entity');
+        $Size = ClassRegistry::init('Size');
+        $sizes = $Size->find('list');
+
+        
+        //Get Cart items and redirect to cart page if no item exists.
+        $cart_total = 0;
+        if($this->Session->check('guest_items')){
+            $cart_list = $this->Session->read('guest_items');
+
+            $entity_list = array();
+            foreach($cart_list as $item){
+                $entity_list[] = $item['CartItem']['product_entity_id'];
+            }
+            $entities = $Entity->getEntitiesById($entity_list);
+
+            foreach($cart_list as &$item){
+                foreach($entities as $entity){
+                    if($entity['Entity']['id'] == $item['CartItem']['product_entity_id']){
+                        $item['Entity'] = $entity['Entity'];
+                        $item['Image'] = $entity['Image'];
+                        $item['Color'] = $entity['Color'];
+                        $item['Size'] = array('id' => $item['CartItem']['size_id'], 'name' => $sizes[$item['CartItem']['size_id']]);
+                        $cart_total = $cart_total + $item['Entity']['price'] * $item['CartItem']['quantity'];
+                    }
+                }
+            }
+        }
+        else{
+            $this->redirect('/');
+        }
+
+        $country_list = array('USA' => 'USA', 'Canada' => 'Canada');
+
+        //Prepare data for prefilling the user billing data.
+        $data = array();
+        $data['billing']['billfirst_name'] = '';
+        $data['billing']['billlast_name'] = '';
+        $data['billing']['billemail'] = '';
+        $data['billing']['billphone'] = '';
+        
+        $data['billing']['billstate'] = "";
+        $data['billing']['billcity'] = "";
+        $data['billing']['billcompany'] = "";
+        $data['billing']['billaddress'] = "";
+        $data['billing']['billzip'] = "";
+        $data['billing']['billcountry'] = "";
+        
+        
+        $this->request->data = $data;
+
+        //Check if user needs to be awarded the vip discount
+        $discount_total = $cart_total;
+        $vip_flag = false;
+        $landing_flag = false;
+                   
+        $this->set(compact('cart_list', 'cart_id', 'country_list', 'user', 'cart_total', 'discount_total'));
+        
+    }
     
     public function payment() {
 
         $this->response->disableCache();
-        $this->isLogged();
         $user_id = $this->getLoggedUserID();
-        if($user_id){
+        $user = $this->getLoggedUser();
+        $User = ClassRegistry::init('User');
 
+        //Get the prepared data for the payment.
+        $data = $this->preparePaymentData($this->request->data);
+        if(!$user){
+            $user = $User->getByEmail($data['User']['email']);
+
+            if(!$user){
+                $user['User']['email'] = $data['User']['email'];
+                $user['User']['first_name'] = $data['User']['first_name'];
+                $user['User']['last_name'] = $data['User']['last_name'];
+                $user['User']['password'] = Security::hash('123456');
+
+                $User->create();
+                if($User->save($user)){
+                    $user = $User->find('first', array('conditions' => array('email' => $data['User']['email'])));
+                }
+                else{
+                    $this->redirect('/');
+                }
+                
+            }
+
+            if($this->Session->check('guest_items')){
+                $cart_list = $this->Session->read('guest_items');
+
+                $Cart = ClassRegistry::init('Cart');
+                $CartItem = ClassRegistry::init('CartItem');
+
+                $data['Cart']['user_id'] = $user['User']['id'];
+                $Cart->create();
+                $result = $Cart->save($data);
+
+                $cart_id = $result['Cart']['id'];
+                foreach($cart_list as $item){
+                    $item['CartItem']['user_id'] = $user['User']['id'];
+                    $item['CartItem']['cart_id'] = $cart_id;
+                    $CartItem->create();
+                    $result = $CartItem->save($item);
+                }
+                $data['Cart']['id'] = $cart_id;
+
+                $this->Session->delete('guest_items');
+            }
+        }
+
+        if($user){
+            $user_id = $user['User']['id'];
             //Initialize classes
             $Cart = ClassRegistry::init('Cart');
             $CartItem = ClassRegistry::init('CartItem');
@@ -237,12 +348,9 @@ class PaymentsController extends AppController {
                 }
             }
             
-            $user = $this->getLoggedUser();
             $error_cart = false;
             $error = false;
 
-            //Get the prepared data for the payment.
-            $data = $this->preparePaymentData($this->request->data);
             
             //Validate Transaction Details
             $error_transaction = $this->validatePaymentDetails($data['Transaction']);
@@ -279,10 +387,10 @@ class PaymentsController extends AppController {
 
             //Add order
             if($data['Order']['discount']){
-                $order_id = $this->addOrder($cart_list, $data['Order']['final_price'], $data['Order']['tax'], $data['Order']['taxAmount'], $data['Order']['promocode'], $data['Order']['discount'], $data['Order']['final_price']);
+                $order_id = $this->addOrder($user_id, $cart_list, $data['Order']['final_price'], $data['Order']['tax'], $data['Order']['taxAmount'], $data['Order']['promocode'], $data['Order']['discount'], $data['Order']['final_price']);
             }
             else{
-                $order_id = $this->addOrder($cart_list, $data['Order']['final_price'], $data['Order']['tax'], $data['Order']['taxAmount']);
+                $order_id = $this->addOrder($user_id, $cart_list, $data['Order']['final_price'], $data['Order']['tax'], $data['Order']['taxAmount']);
             }
             
             //Add shipping address
@@ -313,7 +421,8 @@ class PaymentsController extends AppController {
             $transaction_data['email'] = $user['User']['email'];
             
             if(!$error){
-                $transaction_result = $this->makePayment($transaction_data);
+                $transaction_result = $this->makePayment($transaction_data, $user_id);
+
                 if($transaction_result['status']){
 
                     $Order = ClassRegistry::init('Order');
@@ -322,7 +431,7 @@ class PaymentsController extends AppController {
                     $this->sendConfirmationEmail($order_id);
                     
                     //Check if order had gift card and send gift card email to the user
-                    $this->checkOrderGiftCard($order_id);
+                    // $this->checkOrderGiftCard($order_id);
                     
                     //Reduce the item stock
                     $this->reduceStock($cart_list);
@@ -357,6 +466,7 @@ class PaymentsController extends AppController {
                     // $this->Session->setFlash(__('Fail'), 'flash');
                 }
             }
+
             $this->redirect('/confirmation');
             exit;            
         }
@@ -373,6 +483,7 @@ class PaymentsController extends AppController {
         // Prepare the billing data
         $data['User']['first_name'] = $billing_data['billfirst_name'];
         $data['User']['last_name'] = $billing_data['billlast_name'];
+        $data['User']['email'] = $billing_data['billemail'];
         $data['BillingAddress']['company'] = $billing_data['billcompany'];
         $data['BillingAddress']['address'] = $billing_data['billaddress'];
         $data['BillingAddress']['city'] = $billing_data['billcity'];
@@ -498,7 +609,7 @@ class PaymentsController extends AppController {
         }
 
         //Check for applied discount
-        if($data['Cart']['offerDiscountSet']){
+        if(isset($data['Cart']['offerDiscountSet'])){
             $promo_code = ""; 
             $discount = $data['Cart']['offerDiscountAmount'];
             $discounted_price = $cart_total - $discount;
@@ -666,8 +777,8 @@ class PaymentsController extends AppController {
         
     }
     
-    public function addOrder($cart_items, $total_price, $tax, $tax_amount, $promo_code = false, $discount = false, $discounted_price = false){
-        $user_id = $this->getLoggedUserID();
+    public function addOrder($user_id, $cart_items, $total_price, $tax, $tax_amount, $promo_code = false, $discount = false, $discounted_price = false){
+        
         //bhashit
                 $posts = ClassRegistry::init('Post');
                 $this->request->data['Post']['user_id'] = $user_id;
@@ -782,8 +893,8 @@ class PaymentsController extends AppController {
         $Cart->remove($card_id);
     }
     
-    function makePayment($transaction_data){
-        $user_id = $this->getLoggedUserID();
+    function makePayment($transaction_data, $user_id){
+        
         if($user_id && $user_id == $transaction_data['user_id']){
             //Uses core.php config file for settings.
             //Sandbox mode is triggered for development mode only.
@@ -930,9 +1041,8 @@ class PaymentsController extends AppController {
         $ret = array();
         $this->autolayout = false;
         $this->autoRender = false;
-        $user_id = $this->getLoggedUserID();
         $ret = array();
-        if($user_id && ($this->request->is('ajax') || $this->request->is('post'))){
+        if($this->request->is('ajax') || $this->request->is('post')){
             // Arrange transaction data
             $user_transaction_detail = array();
             $user_transaction_detail['CreditCard']['cardnumber'] = $this->request->data['cardNumber'];
@@ -968,21 +1078,23 @@ class PaymentsController extends AppController {
         $user_id = $this->getLoggedUserID();
         $code = strtoupper($code);
         $ret = array();
-        if($user_id && $code != null){
+        if($code != null){
             if(in_array($code, $this->promoCodes)){
-                $Order = ClassRegistry::init('Order');
-                $is_used = false;
-                $used_promo = $Order->usedUserPromo($user_id);
-                if($used_promo){
-                    foreach($used_promo as $promo){
-                        if(strtoupper($promo) == $code){
-                            $is_used = true;
-                            break;
-                        }    
-                    }
+                if($user_id){
+                    $Order = ClassRegistry::init('Order');
+                    $is_used = false;
+                    $used_promo = $Order->usedUserPromo($user_id);
+                    if($used_promo){
+                        foreach($used_promo as $promo){
+                            if(strtoupper($promo) == $code){
+                                $is_used = true;
+                                break;
+                            }    
+                        }
+                    }    
                 }
                 
-                if($is_used){
+                if($user_id && $is_used){
                     $ret['status'] = "error";
                     $ret['info'] = "used";    
                 }

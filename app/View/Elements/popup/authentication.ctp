@@ -125,28 +125,33 @@
 
 
 <div id="quick-signup-popup" style="display: none">
-	<div id="register-box" class="box-modal notification-box">
+	<div id="register-box" class="box-modal notification-box guest-checkout-box">
 	    <div class="box-modal-inside">
-	        <a class="notification-close" href=""></a>
-	        <div class="signup-content">
-	            <h5 class="sign">SIGN UP</h5>  
-	                                  
-	            <?php echo $this->Form->create('User', array('url' => '/users/quickregister', 'id' => 'register-form', 'novalidate')); ?> 
+	        <div class="guest-signin-box"> 
+	        	<img src="<?php echo $this->request->webroot; ?>img/signin-text.png" alt="" class="checkout-text">
+	            <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate', 'url' => '/signin', 'class' => 'checkout-sigin-from')); ?> 
 	                <?php
-	                	echo $this->Form->input('first_name', array('id' => 'first-name', 'label' => 'First Name:', 'placeholder' => 'FIRST NAME'));
-	                    echo $this->Form->input('last_name', array('id' => 'last-name', 'label' => 'Last Name:', 'placeholder' => 'LAST NAME'));
-	                    echo $this->Form->input('email', array('id' => 'register-email', 'label' => 'Email:', 'placeholder' => 'EMAIL'));
-	                    echo $this->Form->input('password', array('id' => 'register-password', 'label' => 'Password:', 'placeholder' => 'PASSWORD'));
+	                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'placeholder' => 'EMAIL', 'label' => 'Email'));
+	                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => 'Password', 'placeholder' => 'PASSWORD'));
+	                    echo $this->Form->input('refer_url', array('type' => 'hidden', 'id' => 'referUrlLogIn'));
 	                ?>                  
 	                
-	                <div class="text-left signup-options">                                       
-	                    <span class="already-member">Already a Member? <a href="" id="show-signin-popup">SIGN IN</a></span> 
+	                <div class="text-left signin-options">                                        
+	                    <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
 	                </div>
-	                
-	                <input type="submit" class="link-btn black-btn signup-btn" value="CONTINUE AS GUEST" /> 
-	                
-	            </form>
+	                <input type="submit" class="link-btn signin-btn" value="SIGN IN" /> 
+	            </form> 
 	        </div> 
+	        <div class="guest-register-box">
+				<img src="<?php echo $this->request->webroot; ?>img/register-text.png" alt="" class="checkout-text">
+	            <img src="<?php echo $this->request->webroot; ?>img/guest-checkout-create.png" alt="" class="checkout-create-text">
+
+	            <input type="submit" class="link-btn signin-btn" value="CREATE AN ACCOUNT" onclick="location = '/users/register';" />
+	            <span class="checkout-option">OR</span>
+	            <input type="submit" class="link-btn signin-btn guest-checkout-btn" value="GUEST CHECKOUT" onclick="location = '/guest/checkout';" />
+	        </div>
+
+	        <div class="clear-fix"></div>
 	    </div>
 	</div>
 </div>

@@ -145,7 +145,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                             <?php endforeach; ?>
                                                             <br>
                                                             <?php if($user): ?>
-                                                                <div class="text-right"><em><a class="shop-outfit-bottom-link" href="/user/outfits" title="">SHOP OUTFIT</a></em></div>
+                                                                <div class="text-right"><em><a class="shop-outfit-bottom-link" href="/messages/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">SHOP OUTFIT</a></em></div>
                                                             <?php else: ?>
                                                                 <div class="text-right"><em><a class="shop-outfit-bottom-link" href="/guest/outfitdetails/<?php echo $my_outfit['outfit'][0]['Outfit']['id']; ?>" title="">SHOP OUTFIT</a></em></div>
                                                             <?php endif; ?>
@@ -219,7 +219,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             var outfitBlock = $(this).closest('.top-outfits');
             var outfitId = outfitBlock.find('.outfit_id').val();
 
-            location = '/guest/outfitdetails/' + outfitId;
+            if(isLoggedIn()){
+                location = '/messages/outfitdetails/' + outfitId;
+            }
+            else{
+                location = '/guest/outfitdetails/' + outfitId;
+            }
         });
     });
 </script>
