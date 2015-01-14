@@ -269,7 +269,7 @@ class AppController extends Controller {
 
     function getOfferDetails($offer){
 
-        $current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218302', '1218310', '1218311', 'saurabh');
+        $current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218302', '1218310', '1218311', 'mundo');
         $offer_details = array(
             'giveaway50' => array('discount' => 50, 'minimum' => 250), 
             'giveaway100' => array('discount' => 100, 'minimum' => 250), 
@@ -279,7 +279,7 @@ class AppController extends Controller {
             '1218302' => array('discount' => 50, 'minimum' => 250),
             '1218310' => array('discount' => 100, 'minimum' => 250),
             '1218311' => array('discount' => 100, 'minimum' => 100),
-            'saurabh' => array('discount' => 100, 'minimum' => 100),
+            'mundo' => array('discount' => 100, 'minimum' => 100),
         ); 
 
         $text = '';
@@ -349,7 +349,7 @@ class AppController extends Controller {
                     of $100 or More.</p>
                     <p>Welcome to the new you!</p>";
         }
-        else if($offer == 'saurabh'){
+        else if($offer == 'mundo'){
             $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
                     <span class='landing_border'></span>
                     <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
