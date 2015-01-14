@@ -163,6 +163,11 @@
         <script src="<?php echo $this->request->webroot; ?>js/jquery.jcarousel.min.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jcarousel.responsive.js" type="text/javascript"></script>
         <script src="<?php echo $this->request->webroot; ?>js/jquery.validate.js" type="text/javascript"></script>
+        <?php
+        if(isset($pixel)){
+            echo $pixel;
+        }
+        ?>
         
         
         

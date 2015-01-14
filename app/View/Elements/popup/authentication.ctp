@@ -108,15 +108,29 @@
 <?php if(isset($landing_text)) { ?>
 <!-- inside this element open signin view (start signup wizard) -->
 <div id="affiliate-popup" style="display: none">
-	<div id="register-box" class="box-modal notification-box">
+	<div id="register-box" class="box-modal notification-box landing-offer-box">
 	    <div class="box-modal-inside">
-	        <a class="notification-close" href=""></a>
-	        <div class="signup-content">
-	            <h5 class="sign"><img src="<?php echo $this->webroot; ?>img/srs_logo_black.png" alt="" style="width: 250px"></h5> 
+	        <div>
                 <?php echo $landing_text; ?>
-	            <div class="text-center">
-	            	<a href="<?php echo $this->webroot; ?>users/register" class="link-btn black-btn signin-btn">Start</a>
-	            </div>       
+	            <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate', 'url' => '/landing')); ?>
+	            	<div class="landing-form">
+	                <?php
+	                	echo $this->Form->input('first_name', array('id' => 'first-name', 'label' => 'First Name', 'div' => array('class' => 'offer_first_name')));
+	                    echo $this->Form->input('last_name', array('id' => 'last-name', 'label' => 'Last Name', 'div' => array('class' => 'offer_last_name')));
+	                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'label' => 'Email'));
+	                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => 'Password'));
+	                ?>      
+	                </div>
+					<div class="landing-buttons">
+		                <input type="submit" class="link-btn btn-started" value="SIGN IN" /> 
+		                <span>OR</span>
+		               	<input type="button" class="link-btn btn-outfits" value="SHOP TOP OUTFITS" />
+	               	</div>
+
+	            </form>  
+	            <div class="text-center signup-options">                                       
+                    <span class="already-member">already a member? <a href="" id="show-signin-popup">Sign in Here.</a></span> 
+                </div>   
 	        </div> 
 	    </div>
 	</div>

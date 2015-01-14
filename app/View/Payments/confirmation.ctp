@@ -107,42 +107,8 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
         </div>
     </div>
 </div>
-
-
-<script type="text/javascript">
-    //function post_on_wall()
-//    {
-//        FB.login(function(response)
-//        {
-//            if (response.authResponse)
-//            {
-//                // Post message to your wall
-//     
-//                var opts = {
-//                    message : document.getElementById('fb_message').value,
-//                    name : 'Post Title',
-//                    link : 'www.postlink.com',
-//                    description : 'post description',
-//                    picture : 'http://2.gravatar.com/avatar/8a13ef9d2ad87de23c6962b216f8e9f4?s=128&amp;d=mm&amp;r=G'
-//                };
-//     
-//                FB.api('/me/feed', 'post', opts, function(response)
-//                {
-//                    if (!response || response.error)
-//                    {
-//                        alert('Posting error occured');
-//                    }
-//                    else
-//                    {
-//                        alert('Success - Post ID: ' + response.id);
-//                    }
-//                });
-//            }
-//            else
-//            {
-//                alert('Not logged in');
-//            }
-//        }, { scope : 'publish_stream' });
-//    }
-</script>
-
+<?php
+if(isset($sale_pixel)){
+    echo $sale_pixel;
+}
+?>

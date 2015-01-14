@@ -467,6 +467,9 @@ class PaymentsController extends AppController {
                 }
             }
 
+            if(isset($this->request->data['offer-discount'])){
+                $this->Session->write('user_offer', $user_offer);
+            }
             $this->redirect('/confirmation');
             exit;            
         }
@@ -736,7 +739,7 @@ class PaymentsController extends AppController {
     }
 
     public function confirmation(){
-        $this->response->disableCache();
+        // $this->response->disableCache();
         $transaction_data = false;
         if($this->Session->check('transaction_complete')){
             $transaction_complete = $this->Session->read('transaction_complete');
@@ -744,6 +747,17 @@ class PaymentsController extends AppController {
             
             if($transaction_complete == "success"){
                 $transaction_data = $this->Session->read('transaction_data');
+
+                $user_offer = $this->Session->read('user_offer');
+                $this->Session->delete('user_offer');
+                $offer = $user_offer['UserOffer']['offer'];
+                $offer_details = $this->getOfferDetails($offer);
+
+                if($offer_details){
+                    $sale_pixel = $offer_details['sale_pixel'];
+
+                    $this->set(compact('sale_pixel'));
+                }
             }
         }
         else{

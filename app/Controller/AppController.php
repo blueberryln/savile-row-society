@@ -60,6 +60,19 @@ class AppController extends Controller {
                 $user = $User->getById($user['User']['id']);
                 $this->Session->write('user', $user);
             }
+
+            if($this->Session->check('landing_offer')){
+                $user_offer = $this->Session->read('landing_offer');
+                $this->Session->delete('landing_offer');
+                $offer = $user_offer['UserOffer']['offer'];
+
+                $offer_details = $this->getOfferDetails($offer);
+                if($offer_details){
+                    $pixel = $offer_details['login_pixel'];
+
+                    $this->set(compact('pixel'));
+                }
+            }
         }
         else{
             if($this->Session->check('referer')){
@@ -252,4 +265,112 @@ class AppController extends Controller {
         }
         return false;
     } 
+
+
+    function getOfferDetails($offer){
+
+        $current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218302', '1218310', '1218311', 'saurabh');
+        $offer_details = array(
+            'giveaway50' => array('discount' => 50, 'minimum' => 250), 
+            'giveaway100' => array('discount' => 100, 'minimum' => 250), 
+            'cybermonday' => array('discount' => 100, 'minimum' => 100), 
+            'holiday-offer' => array('discount' => 100, 'minimum' => 250),
+            '1218301' => array('discount' => 50, 'minimum' => 250),
+            '1218302' => array('discount' => 50, 'minimum' => 250),
+            '1218310' => array('discount' => 100, 'minimum' => 250),
+            '1218311' => array('discount' => 100, 'minimum' => 100),
+            'saurabh' => array('discount' => 100, 'minimum' => 100),
+        ); 
+
+        $text = '';
+        $login_pixel = '';
+        $sale_pixel = '';
+        if($offer == 'giveaway50'){
+            $text = "<p>Welcome to Savile Row Society.</p>  
+                    <p>In addition to Zero Membership Fees,<br>
+                    Please enjoy this exclusive offer of<br>
+                    $50 Off Your First Order <br>
+                    of $250 or More.</p>
+                    <p>Welcome to the new you!</p>";
+        }
+        else if($offer == 'giveaway100'){
+            $text = "<p>Welcome to Savile Row Society.</p>  
+                    <p>In addition to Zero Membership Fees,<br>
+                    Please enjoy this exclusive offer of<br>
+                    $100 Off Your First Order <br>
+                    of $250 or More.</p>
+                    <p>Welcome to the new you!</p>";
+        }
+        else if($offer == 'cybermonday'){
+            $text = "<p>Welcome to Savile Row Society.</p>  
+                    <p>In addition to Zero Membership Fees,<br>
+                    Please enjoy this exclusive offer of<br>
+                    $100 Off Your First Order <br>
+                    of $100 or More.</p>
+                    <p>Welcome to the new you!</p>";
+        }
+        else if($offer == 'holiday-offer'){
+            $text = "<p>Welcome to Savile Row Society.</p>  
+                    <p>Please enjoy this exclusive Holiday offer of<br>
+                    $100 Off Your Order<br>
+                    of $250 or More.</p>
+                    <p>Happy Holidays from all of us at SRS!</p>
+                    <p>Welcome to the new you!</p>";
+        }
+        else if($offer == '1218301'){
+            $text = "<p>Welcome to Savile Row Society.</p>  
+                    <p>In addition to Zero Membership Fees,<br>
+                    Please enjoy this exclusive offer of<br>
+                    $50 Off Your First Order <br>
+                    of $250 or More.</p>
+                    <p>Welcome to the new you!</p>";
+        }
+        else if($offer == '1218302'){
+            $text = "<p>Welcome to Savile Row Society.</p>  
+                    <p>In addition to Zero Membership Fees,<br>
+                    Please enjoy this exclusive offer of<br>
+                    $50 Off Your First Order <br>
+                    of $250 or More.</p>
+                    <p>Welcome to the new you!</p>";
+        }
+        else if($offer == '1218310'){
+            $text = "<p>Welcome to Savile Row Society.</p>  
+                    <p>In addition to Zero Membership Fees,<br>
+                    Please enjoy this exclusive offer of<br>
+                    $100 Off Your First Order <br>
+                    of $250 or More.</p>
+                    <p>Welcome to the new you!</p>";
+        }
+        else if($offer == '1218311'){
+            $text = "<p>Welcome to Savile Row Society.</p>  
+                    <p>In addition to Zero Membership Fees,<br>
+                    Please enjoy this exclusive offer of<br>
+                    $100 Off Your First Order <br>
+                    of $100 or More.</p>
+                    <p>Welcome to the new you!</p>";
+        }
+        else if($offer == 'saurabh'){
+            $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
+                    <span class='landing_border'></span>
+                    <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
+                    Please enjoy this exclusive offer of <br><span class='landing_desc_emp'>$100 Off Your First Order of $100 or More.</span></p>";
+
+            $login_pixel = "<script type='text/javascript' src='http://www.mlinktracker.com/third/e2c4x294b4t2v2/OPTIONAL_INFORMATION'></script>";
+            $sale_pixel = "<script type='text/javascript' src='http://www.mlinktracker.com/third/e2c4x294b4t2w2/OPTIONAL_INFORMATION'></script>";
+        }
+
+        if(in_array($offer, $current_offers)){
+            $selected_offer = $offer_details[$offer];
+            $selected_offer['text'] = $text;
+            $selected_offer['login_pixel'] = $login_pixel;
+            $selected_offer['sale_pixel'] = $sale_pixel;
+            
+            return $selected_offer;
+        }
+
+        return false;
+    }
+
+
+
 }

@@ -10,93 +10,17 @@ class OffersController extends AppController {
 
 	public function register($offer){
 
-		$current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218302', '1218310', '1218311');
-		$offer_details = array(
-			'giveaway50' => array('discount' => 50, 'minimum' => 250), 
-			'giveaway100' => array('discount' => 100, 'minimum' => 250), 
-			'cybermonday' => array('discount' => 100, 'minimum' => 100), 
-			'holiday-offer' => array('discount' => 100, 'minimum' => 250),
-			'1218301' => array('discount' => 50, 'minimum' => 250),
-			'1218302' => array('discount' => 50, 'minimum' => 250),
-			'1218310' => array('discount' => 100, 'minimum' => 250),
-			'1218311' => array('discount' => 100, 'minimum' => 100),
-		); 
-
-		$text = '';
-		if($offer == 'giveaway50'){
-			$text = "<p>Welcome to Savile Row Society.</p>  
-					<p>In addition to Zero Membership Fees,<br>
-					Please enjoy this exclusive offer of<br>
-					$50 Off Your First Order <br>
-					of $250 or More.</p>
-					<p>Welcome to the new you!</p>";
-		}
-		else if($offer == 'giveaway100'){
-			$text = "<p>Welcome to Savile Row Society.</p>  
-					<p>In addition to Zero Membership Fees,<br>
-					Please enjoy this exclusive offer of<br>
-					$100 Off Your First Order <br>
-					of $250 or More.</p>
-					<p>Welcome to the new you!</p>";
-		}
-		else if($offer == 'cybermonday'){
-			$text = "<p>Welcome to Savile Row Society.</p>  
-					<p>In addition to Zero Membership Fees,<br>
-					Please enjoy this exclusive offer of<br>
-					$100 Off Your First Order <br>
-					of $100 or More.</p>
-					<p>Welcome to the new you!</p>";
-		}
-		else if($offer == 'holiday-offer'){
-			$text = "<p>Welcome to Savile Row Society.</p>  
-					<p>Please enjoy this exclusive Holiday offer of<br>
-					$100 Off Your Order<br>
-					of $250 or More.</p>
-					<p>Happy Holidays from all of us at SRS!</p>
-					<p>Welcome to the new you!</p>";
-		}
-		else if($offer == '1218301'){
-			$text = "<p>Welcome to Savile Row Society.</p>  
-					<p>In addition to Zero Membership Fees,<br>
-					Please enjoy this exclusive offer of<br>
-					$50 Off Your First Order <br>
-					of $250 or More.</p>
-					<p>Welcome to the new you!</p>";
-		}
-		else if($offer == '1218302'){
-			$text = "<p>Welcome to Savile Row Society.</p>  
-					<p>In addition to Zero Membership Fees,<br>
-					Please enjoy this exclusive offer of<br>
-					$50 Off Your First Order <br>
-					of $250 or More.</p>
-					<p>Welcome to the new you!</p>";
-		}
-		else if($offer == '1218310'){
-			$text = "<p>Welcome to Savile Row Society.</p>  
-					<p>In addition to Zero Membership Fees,<br>
-					Please enjoy this exclusive offer of<br>
-					$100 Off Your First Order <br>
-					of $250 or More.</p>
-					<p>Welcome to the new you!</p>";
-		}
-		else if($offer == '1218311'){
-			$text = "<p>Welcome to Savile Row Society.</p>  
-					<p>In addition to Zero Membership Fees,<br>
-					Please enjoy this exclusive offer of<br>
-					$100 Off Your First Order <br>
-					of $100 or More.</p>
-					<p>Welcome to the new you!</p>";
-		}
+		$offer_details = $this->getOfferDetails($offer);
 
 		$user = $this->getLoggedUser();
-        if(!$user && in_array($offer, $current_offers)){
+        if(!$user && $offer_details){
             
             $landing_offer = array();
             $landing_offer['UserOffer']['offer'] = $offer;
-            $landing_offer['UserOffer']['discount'] = $offer_details[$offer]['discount'];
-            $landing_offer['UserOffer']['minimum'] = $offer_details[$offer]['minimum'];
+            $landing_offer['UserOffer']['discount'] = $offer_details['discount'];
+            $landing_offer['UserOffer']['minimum'] = $offer_details['minimum'];
 
-            $this->Session->write('landing_text', $text);
+            $this->Session->write('landing_text', $offer_details['text']);
             $this->Session->write('landing_offer', $landing_offer);
             $this->Session->write('showAffiliatePopup', true);
 
@@ -107,6 +31,19 @@ class OffersController extends AppController {
             $this->redirect('/');
             exit;
         }
+
+        //Get Top Stylists
+        $TopStylist = ClassRegistry::init('TopStylist');
+        $topStylists = $TopStylist->getTopStylists();
+
+        $firstStylist = count($topStylists) ? $topStylists[0] : false;
+        
+        //Get Top Outfits
+        $TopOutfit = ClassRegistry::init('TopOutfit');
+        $topOutfits = $TopOutfit->getTopOutfits();
+        $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
+
+        $this->set(compact('topStylists','topOutfits', 'firstStylist'));
 
         $this->render('/Pages/home');
 

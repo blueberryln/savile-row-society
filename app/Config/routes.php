@@ -41,6 +41,7 @@ Router::connect('/refer-a-friend', array('controller' => 'pages', 'action' => 'd
 Router::connect('/refer', array('controller' => 'pages', 'action' => 'display', 'refer'));
 Router::connect('/fitting-room', array('controller' => 'booking'));
 Router::connect('/signin', array('controller' => 'users', 'action' => 'signin'));
+Router::connect('/landing', array('controller' => 'users', 'action' => 'landing'));
 Router::connect('/register/*', array('controller' => 'users', 'action' => 'register'));
 Router::connect('/signout', array('controller' => 'users', 'action' => 'signout'));
 Router::connect('/forgot', array('controller' => 'users', 'action' => 'forgot'));

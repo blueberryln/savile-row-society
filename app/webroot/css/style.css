@@ -120,6 +120,13 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
     font-style: normal;
 	}
 
+@font-face {
+    font-family: 'ACaslonPro-Italic';
+    src: url('fonts/ACaslonPro-Italic.eot');
+    src: local('☺'), url('fonts/ACaslonPro-Italic.woff') format('woff'), url('fonts/ACaslonPro-Italic.ttf') format('truetype'), url('fonts/ACaslonPro-Italic.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 
@@ -2926,9 +2933,30 @@ input#billingCopybilling { visibility: visible;}
 .checkout-option { display: block; margin-top: 10px;}
 .guest-checkout-btn{margin-top: 10px;}
 
+.landing-offer-box{width: 500px; box-sizing: border-box; padding: 15px;}
+.landing-offer-box .box-modal-inside{ border: 1px solid black;}
+.landing-offer-box .landing_title{font-family: 'ACaslonPro-Italic'; font-size: 45px; line-height: 1.1; margin-bottom: 10px;}
+.landing-offer-box .landing_border{ display: block; margin: auto; width: 100px; border-top: 1px solid #b6a166; margin-bottom: 15px;}
+.landing-offer-box .landing_desc{font-size: 13px;}
+.landing-offer-box .landing_desc_top{font-size: 14px;}
+.landing-offer-box .landing_desc_emp{font-weight: bold;}
+#affiliate-popup label{display: block; text-align: left; text-transform: none; color: #000;}
+.landing-offer-box .landing-form {width: 300px; margin: auto;}
+.landing-offer-box .offer_first_name{width: 49%; float: left;}
+.landing-offer-box .offer_last_name{width: 49%; float: right;}
+.landing-offer-box .signup-options{font-family: 'ACaslonPro-Italic'; font-size: 13px; margin-top: 7px;}
+.landing-offer-box .signup-options a{ color: #b6a166; border-bottom: 1px solid #b6a166; font-size: 14px;}
+.landing-offer-box .landing-buttons {margin-top: 15px;}
+.landing-offer-box .landing-buttons input{margin: 0; padding: 10px 0; font-size: 15px;}
+.landing-offer-box .landing-buttons span{font-family: 'ACaslonPro-Italic'; font-size: 15px; border-bottom: 1px solid #444; margin: 0 5px;}
+.landing-offer-box .btn-outfits{width: 40%; background-color: #fff; border: 1px solid #444; color: #444; font-weight: bold;}
+.landing-offer-box .btn-started{width: 40%; background-color: #fff; border: 1px solid #b6a166; color: #b6a166; font-weight: bold;}
+
 @media screen and (max-width: 1000px) {
     .guest-checkout-box{width: 500px;}
     .guest-checkout-box .box-modal-inside{ background: none;}
     .guest-signin-box{ float: none; width: 90%; padding-bottom: 25px; margin: auto;}
     .guest-register-box{ float: none; width: 90%; padding-bottom: 15px; margin: auto;}
+
+    .landing-offer-box .landing_title{font-family: 'ACaslonPro-Italic'; font-size: 36px;}
 }

@@ -122,6 +122,21 @@ class UsersController extends AppController {
                         $this->Session->delete('referer_type');
                     }   
 
+                    if($this->Session->check('landing_offer')){
+                        $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->delete('landing_offer');
+                        $this->Session->delete('landing_text');
+                        
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $existing_offer = $UserOffer->findByUserId($results['User']['id']);
+                        if(!$existing_offer){
+                            $user_offer['UserOffer']['user_id'] = $results['User']['id'];    
+                            $UserOffer->create();
+                            $UserOffer->save($user_offer);
+                        }
+                    }
+
+
                     if($this->Session->check('guest_items')){
                         $cart_list = $this->Session->read('guest_items');
 
@@ -442,9 +457,7 @@ class UsersController extends AppController {
             $this->redirect('/messages/index');
             exit();   
         }
-
-        else
-         if($this->request->is('post') ){
+        else if($this->request->is('post') ){
             $user = $this->request->data;
 
             if ($this->User->validates()) {
@@ -499,7 +512,6 @@ class UsersController extends AppController {
 
                     if($this->Session->check('landing_offer')){
                         $user_offer = $this->Session->read('landing_offer');
-                        $this->Session->delete('landing_offer');
                         $this->Session->delete('landing_text');
                         
                         $user_offer['UserOffer']['user_id'] = $results['User']['id'];
@@ -581,9 +593,27 @@ class UsersController extends AppController {
                 }
             }   
         }
+        else{
+
+            if($this->Session->check('new_user')){
+                $new_user = $this->Session->read('new_user');
+                $this->Session->delete('new_user');
+                $this->request->data['User'] = $new_user['User'];
+            }
+        }
 
         $styles = $this->Style->find('all');
         $this->set(compact('styles', 'title_for_layout'));  
+    }
+
+
+    public function landing()
+    {
+        $user = $this->request->data;
+        $user['User']['confirm_password'] = $user['User']['password'];
+        $this->Session->write('new_user', $user);
+        $this->redirect('/users/register');
+        exit; 
     }
 
 
@@ -631,6 +661,18 @@ class UsersController extends AppController {
 
 
                     $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+
+                    if($this->Session->check('landing_offer')){
+                        $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->delete('landing_offer');
+                        $this->Session->delete('landing_text');
+                        
+                        $user_offer['UserOffer']['user_id'] = $results['User']['id'];
+
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $UserOffer->create();
+                        $UserOffer->save($user_offer);
+                    }
 
                     if($cart_list){
                         $Cart = ClassRegistry::init('Cart');
