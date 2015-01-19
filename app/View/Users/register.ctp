@@ -423,6 +423,7 @@ color:#396; !important
                         <div class="five columns pref-time left">
                             <div class="pref-options">
                                 <?php
+                                    echo $this->Form->input('User.lead',array('type'=>'hidden'));
                                     echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'First Name', 'tabindex' => 1));
                                     echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'Last Name', 'tabindex' => 2));
                                     echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'Email', 'tabindex' => 3));

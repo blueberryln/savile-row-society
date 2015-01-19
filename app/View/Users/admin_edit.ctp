@@ -25,6 +25,7 @@
                 echo $this->Form->input('is_stylist');
                 echo $this->Form->input('is_admin');
                 echo $this->Form->input('is_event');
+                echo $this->Form->input('lead');
                 echo $this->Form->input('active');
                 ?>
             </fieldset>

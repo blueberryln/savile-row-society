@@ -459,7 +459,7 @@ class UsersController extends AppController {
         }
         else if($this->request->is('post') ){
             $user = $this->request->data;
-
+            
             if ($this->User->validates()) {
                 $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
                 if($registered){
@@ -610,6 +610,7 @@ class UsersController extends AppController {
     public function landing()
     {
         $user = $this->request->data;
+        $user['User']['lead'] = 1;
         $user['User']['confirm_password'] = $user['User']['password'];
         $this->Session->write('new_user', $user);
         $this->redirect('/users/register');
