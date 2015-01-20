@@ -859,7 +859,7 @@ div.mgs-btn a:hover{background-color: #8F7948; opacity: 1;}*/
 
 .outfit-stylist li { width: 47%;}
 .outfit-stylist .bx-wrapper { margin:  0 auto;}
-.outfit-stylist li .shop-outfit{ border: 8px solid #e6e5e1; background: #fff;}
+.outfit-stylist li .shop-outfit{ background: none repeat scroll 0 0 #fff; border: 8px solid #e6e5e1; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .outfit-stylist li .shop-outfit .shop-outfit-top { width: 100%; height: 173px; display:inline-block; border-bottom: 1px solid #e6e5e1; overflow: hidden;}
 
 .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { display: inline-block; width: 35%; line-height: 173px;  }
@@ -1809,7 +1809,7 @@ input#billingCopybilling { visibility: visible;}
 	}
 
 @media screen and (min-width: 1025px) and (max-width: 1280px) {
-    .outfit-stylist ul li { width: 476px!important;}
+    /*.outfit-stylist ul li { width: 476px!important;}*/
     .outfit-stylist li .shop-outfit .shop-outfit-bottom li { width: 18% !important;}
 }
 @media screen and (max-width: 800px) {
