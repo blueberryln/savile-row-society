@@ -143,7 +143,7 @@
 
         <!-- top_rightSection -->
         <div class="top_rightSection">
-            <a href="Javascript:;" class="login">LOG IN</a>
+            <a href="#" onclick="window.ref_url=''; signUp();" class="login">LOG IN</a>
             <a href="Javascript:;" class="getStarted">Get Started</a>
             <a href="Javascript:;" class="cart_link">(0)</a>
         </div>

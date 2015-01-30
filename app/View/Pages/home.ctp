@@ -62,32 +62,40 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                     <div class="shop-outfit-top">
                                         <div class="outfit-main-img left">
                                         <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>">
-                                        <!-- <img src="<?php echo $this->webroot; ?>files/users/<?php echo $outfit['Stylist']['profile_photo_url']; ?>"  /> -->
-                                        <img src="<?php echo $this->webroot; ?>images/profile_new.png"  />  
+                                        <?php if($outfit['Stylist']['profile_photo_url']): ?>
+                                              <img src="<?php echo $this->webroot; ?>files/users/<?php echo $outfit['Stylist']['profile_photo_url']; ?>"  />                      
+                                        <?php else: ?>
+                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg"  />                       
+                                        <?php endif; ?>
+                                        <!-- <img src="<?php echo $this->webroot; ?>images/profile_new.png"  />   -->
                                         </a>
                                         </div>
                                         <div class="outfit-top-content right">
-                                            <div class="outfit-month" style="line-height: initial;"><?php //echo $outfit['Outfit']['outfit_name']; ?>The Essentials</div>                                    
+                                            <div class="outfit-month" style="line-height: initial;"><?php echo $outfit['Outfit']['outfit_name']; ?><!--The Essentials--></div>                                    
                                             <!-- <div class="outfit-brand">Styled by <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>"><span class="outfit-brand-name"><?php echo $outfit['Stylist']['first_name']; ?></span></a></div> -->
                                             <p class="content_peragraph">Essentials never go out of style. selected products in this outfit make a man's wardrobe.</p>
-                                            <p class="author_name">Whitney Baumann, Stylist</p>
+                                            <p class="author_name"><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']; ?>, Stylist</p>
                                         </div>
                                     </div>
                                     <div class="shop-outfit-bottom">
-                                        <!-- <ul>
+                                         <ul>
                                             <?php 
                                             $count = 1;
                                             foreach($outfit['OutfitItem'] as $item) {
-                                                if(count($item['product']['Image']) && $count++ <= 5){
+                                                if(count($item['product']['Image']) && $count++ <= 6){
                                             ?>
-                                                <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></li>
+                                                <li><a href="<?php echo $this->webroot;if($user) {echo 'messages/';}
+                                                    else {echo 'guest/';}
+
+                                                     echo 'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></a></li>
+                                                    }
                                             <?php 
                                                 }
                                             } 
                                             ?>
-                                        </ul> -->
+                                        </ul>
 
-                                        <ul>
+                                        <!--ul>
                                             <li><a href="#"><img src="<?php echo $this->webroot; ?>images/bag.jpg"/></a>  </li>
                                             <li><a href="#"><img src="<?php echo $this->webroot; ?>images/coat.jpg"/></a> </li>
                                             <li><a href="#"><img src="<?php echo $this->webroot; ?>images/shoe.jpg"/></a> </li>
@@ -96,12 +104,16 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                             <li><a href="#"><img src="<?php echo $this->webroot; ?>images/watch.jpg"/></a> </li>
                                             <li><a href="#"><img src="<?php echo $this->webroot; ?>images/paint.jpg"/></a> </li>
                                             <li><a href="#"><img src="<?php echo $this->webroot; ?>images/shirt.jpg"/></a> </li>
-                                        </ul>                                        
+                                        </ul-->                                        
 
                                         <!-- bottom_buttons -->
                                         <div class="bottom_buttons">
-                                        <a href="Javascript:;" class="meet_whitney">Meet Whitney</a>
-                                        <a href="Javascript:;" class="meet_shop_thisLook">Shop This Look</a>
+                                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>" class="meet_whitney">Meet <?php echo $outfit['Stylist']['first_name'];?></a>
+                                        <?php if($user): ?>
+                                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="meet_shop_thisLook">Shop This Look</a>
+                                        <?php else: ?>
+                                            <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="meet_shop_thisLook">Shop This Look</a>
+                                        <?php endif; ?>    
                                         </div>
                                         <!-- /bottom_buttons -->
 
@@ -144,28 +156,29 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <div class="jcarousel-wrapper">
                     <div class="jcarousel">
                 <ul>
-                    <!-- <?php foreach($topStylists as $topstylist): ?>
+                    <?php foreach($topStylists as $topstylist): ?>
                     <li>
+                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>"><!-- <div class="featured-stylist-hover">
+                            <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
+                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
+                        </div> -->
                        <?php if($topstylist['User']['profile_photo_url']): ?>
                         <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
                     <?php else: ?>
                         <img src="<?php echo $this->webroot; ?>images/default-user.jpg"  />                       
                         <?php endif; ?>
-                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
-                            <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
-                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
-                        </div>
+                         
                         </a>
                     </li>
-                <?php endforeach; ?> -->
-                    <li><img src="<?php echo $this->webroot; ?>images/stylists_img1.jpg"/></li>
+                <?php endforeach; ?>
+                <!--     <li><img src="<?php echo $this->webroot; ?>images/stylists_img1.jpg"/></li>
                     <li><img src="<?php echo $this->webroot; ?>images/stylists_img2.jpg"/></li>
                     <li><img src="<?php echo $this->webroot; ?>images/stylists_img3.jpg"/></li>
                     <li><img src="<?php echo $this->webroot; ?>images/stylists_img4.jpg"/></li>
                     <li><a href="Javascript:;" class="stylists_see_all">See All Stylists</a></li>
                     <li><img src="<?php echo $this->webroot; ?>images/stylists_img4.jpg"/></li>
                     <li><img src="<?php echo $this->webroot; ?>images/stylists_img3.jpg"/></li>
-                    <li><a href="Javascript:;" class="stylists_see_all">See All Stylists</a></li>
+                    <li><a href="Javascript:;" class="stylists_see_all">See All Stylists</a></li> -->
                 </ul>
                     </div>
                     <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
