@@ -134,7 +134,7 @@ class PaymentsController extends AppController {
                     }
                 }
             }
-
+			$grand_total = $cart_total;		//shubham added
             //Get user details and prepare a country list.
             $user = $User->findById($user_id);
             $country_list = array('USA' => 'USA', 'Canada' => 'Canada');
@@ -181,7 +181,7 @@ class PaymentsController extends AppController {
                 $vip_flag = true;
             }
                        
-            $this->set(compact('cart_list', 'cart_id', 'country_list', 'user', 'cart_total', 'discount_total', 'vip_flag', 'landing_flag', 'user_offer'));
+            $this->set(compact('cart_list', 'cart_id', 'country_list', 'user', 'cart_total', 'discount_total', 'vip_flag', 'landing_flag', 'user_offer','grand_total'));
         }
     }
 

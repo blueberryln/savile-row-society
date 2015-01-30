@@ -76,7 +76,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                         <tr class="last">
                                             <td colspan="3" rowspan="3">
                                                 <!-- Enable only when total is equal or more than $120 -->
-                                                <?php if($cart_total >= 120 && !$vip_flag && !$landing_flag) : ?> 
+                                                <?php //if($cart_total >= 120 && !$vip_flag && !$landing_flag) :	//before changes ?> 
+                                                <?php if($cart_total >= 120 && (!$vip_flag || !$landing_flag)) : //after changes --shubham ?>
                                                     <div class= "promo-code-cont">
                                                         <div class="srs-form columns four left" style="margin-left:10px;">
                                                             <div class="form">
@@ -134,7 +135,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 </table>
                                 <input type="hidden" name="checkout-cart-id" value="<?php echo $cart_id; ?>" />
                                 <input type="hidden" name="checkout-tax" id="checkout-tax"  value="0" />
-                                <input type="hidden" name="checkout-initial-price" id="checkout-initial-price"  value="<?php echo $cart_total; ?>" />
+                                <input type="hidden" name="checkout-initial-price" id="checkout-initial-price"  value="<?php echo $grand_total;  // $cart_total was the variable used initially --shubham ?>" />
                                 <input type="hidden" name="checkout-total-price" id="checkout-total-price"  value="<?php echo $cart_total; ?>" />
                             <?php endif; ?>
                             <div class="clear-fix"></div>
