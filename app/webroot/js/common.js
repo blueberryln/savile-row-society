@@ -174,14 +174,14 @@ jQuery(function(){
                         .find('.long-desc')
                         .slideUp(800);
         });
-    $(window).resize(function(){
-        footerFix();        
-        if ($("#menu-switcher").css("display") == "none") {
-           $(".header .menu").css("display","block");
-        }else{
-            $(".header .menu").css("display","none");
-        }
-    });
+    // $(window).resize(function(){
+    //     footerFix();        
+    //     if ($("#menu-switcher").css("display") == "none") {
+    //        $(".header .menu").css("display","block");
+    //     }else{
+    //         $(".header .menu").css("display","none");
+    //     }
+    // });
 
 
     $("#show-signup").click(function(e) {
