@@ -776,12 +776,20 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 /***** New Home Page By Rahul *****/
 .bgColor{ background: #fbfafa; }
 .top_wrapper{ width: 75%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; text-align: right; } 
-.top_mainNav{ display: inline-block; vertical-align: top; margin: 0px 2% 0px 0px; padding: 0px; width: 49%; border-right:2px solid #999; min-height: 25px; }
+.top_mainNav{ display: inline-block; vertical-align: top; margin: 0px 2% 0px 0px; padding: 0px; width: 60%; border-right:2px solid #999; min-height: 25px; }
 .top_mainNav ul{ margin: 3px 0px 0px 42px; padding: 0px; }
-.top_mainNav ul li { list-style-type: none; display: inline-block; vertical-align: top; margin: 0px 5%; padding: 0px; line-height: 22px; font-size: 17px; font-family: 'Proximanova'; text-transform: uppercase; } 
+.top_mainNav ul li { list-style-type: none; display: inline-block; vertical-align: top; margin: 0px 3%; padding: 0px; line-height: 22px; font-size: 17px; font-family: 'Proximanova'; text-transform: uppercase; } 
 .top_mainNav ul li a{ text-decoration: none; color: #090909; } 
 .top_mainNav ul li a:hover{ text-decoration: none; color: #090909; } 
-.top_rightSection{ display: inline-block; vertical-align: top; margin: 0 0px 0px 0px; padding: 0px; width: 22%; text-align: left; }
+.top_rightSection{
+display: inline-block;
+vertical-align: top;
+margin: 0 0px 0px 0px;
+padding: 0px;
+width: 33%;
+text-align: left;
+float: right;
+}
 .top_rightSection a.login{ font-size: 17px; color: #b6a166; font-family: 'Proximanova'; text-transform: uppercase; margin: 0px 5% 0px 0px; padding: 4px 0px 3px 0px; display: inline-block; vertical-align: top; }
 .top_rightSection a.getStarted{ background: #b6a166; border: 1px solid #ab9350; font-size: 16px; color: #fff; font-family: 'Proximanova'; text-transform: uppercase; display: inline-block; vertical-align: top; padding: 0 15px; height: 23px; margin: 0px 4% 0px 0px; line-height: 26px; }
 .top_rightSection a.cart_link{ display: inline-block; vertical-align: top; margin: 1px 0px 0px 0px; padding: 0px 0px 0px 25px; background: url('../img/icon_cart.jpg') no-repeat left 3px; font-style: 15px; font-family: 'Proximanova'; }
@@ -2093,11 +2101,25 @@ input#billingCopybilling { visibility: visible;}
     a#sendphoto.upload {}
     
     /*** CSS BY RAHUL ***/
-    .top_mainNav ul li{ font-size: 14px; margin: 0px 2%; }
-    .top_mainNav{ width: 55%; }
+    /*.top_mainNav ul li{ font-size: 14px; margin: 0px 2%; }*/
+    /*.top_mainNav{ width: 55%; }*/
     .content-container, .content-container-home{ margin-top:0px; }
     .press_wrapper .press_companies{ width: 100%; }
+    /*.top_rightSection{ width: 39%; }*/
     
+    .top_wrapper { position: absolute; top: 0px; right: 0; width: 100%; z-index: 200; }
+    .top_mainNav{ display: none; }
+    .top_rightSection{ width: 100%; text-align: right; }
+    .top_rightSection a.login{ display: none; }
+    .top_rightSection a.getStarted{ display: none; }
+    .mobile_menu{ position: absolute; width: 100%; background: #000; top: 58px; left: 0; } 
+    #menu-switcher1{ display: block; cursor: pointer; width: 35px; right: 0; }
+    .mega-banner ul li{ height: auto; }
+    .flexslider{ height: auto; }
+    .mega-banner{ height: auto; }
+    .top_rightSection a.cart_link{ margin: 6px 40px 0px 0px; }
+    #client_signUp_section{ height: auto; padding: 30px 0px 10px; }
+
     
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
@@ -2523,7 +2545,7 @@ input#billingCopybilling { visibility: visible;}
     .top_rightSection{ width: 100%; text-align: right; }
     .top_rightSection a.login{ display: none; }
     .top_rightSection a.getStarted{ display: none; }
-    .mobile_menu{ position: absolute; width: 100%; background: #000; top: 58px; left: 0; } 
+    .mobile_menu{ position: absolute; width: 100%; background: #000; top: 58px; left: 0; text-align: left; } 
     #menu-switcher1{ display: block; cursor: pointer; width: 35px; right: 0; }
     .mega-banner ul li{ height: auto; }
     .flexslider{ height: auto; }
@@ -2563,7 +2585,7 @@ input#billingCopybilling { visibility: visible;}
     .outfit-stylist, .style-time, .style-time-boxes { padding: 0px !important;}
     .outfit-boxes, .stylist-boxes { padding-bottom: 35px!important;}
     .bx-wrapper .bx-pager { padding-top: 20px;}
-    .outfit-stylist li .shop-outfit .shop-outfit-bottom ul {height: 50px; padding: 5px 0;}
+    .outfit-stylist li .shop-outfit .shop-outfit-bottom ul {min-height: inherit; padding: 5px 0;}
      .outfit-stylist ul li { margin-bottom: 0px; min-height: 267px;}
     .outfit-stylist li .shop-outfit .shop-outfit-bottom li { min-height: 50px;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img { max-width: 80px; display: inline-block; float: none !important; text-align: center !important; }
@@ -2798,7 +2820,7 @@ input#billingCopybilling { visibility: visible;}
     .frnd-refer-user.fb-refer span { top: 0; height: 21px; background-position: 0px -99px;}
     a.send-referral { width: 100%; margin-bottom: 20px;}
     
-    .outfit-stylist li .shop-outfit .shop-outfit-top { height: 75px; text-align: center;  float: none;  width: 100%; display: inline-block; }
+    .outfit-stylist li .shop-outfit .shop-outfit-top { min-height: 225px; text-align: center;  float: none;  width: 100%; display: inline-block; }
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img {line-height: 75px;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 75px!important; float: left;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 12px; line-height: 14px;}
@@ -2820,6 +2842,10 @@ input#billingCopybilling { visibility: visible;}
 	}
 @media screen and (min-width: 240px) and (max-width: 568px) and (orientation : portrait) {
 	#sign-up-drop-down p { font-size: 22px; padding-top: 15px; margin-bottom: 10px;}
+    .outfit-stylist .bx-viewport{ height: 400px !important; min-height: 440px; }
+    .container-box{ padding-bottom: 0; }
+    .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content{ width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; padding: 10px 0 20px; text-align: center; display: inline-block; }
+    .content p.content_peragraph{ width: 100%; text-align: center; }
 }
 
 @media screen and (min-width: 240px) and (max-width: 568px) and (orientation : landscape) {
@@ -2851,8 +2877,22 @@ input#billingCopybilling { visibility: visible;}
     .hi-message h4 { margin: 0px; font-size: 25px!important;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 185px!important; float: left;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 16px; line-height: 18px;}
+   
+    .outfit-stylist .bx-viewport{ height: 351px !important; }
+    .mega-banner-overlay .overlay-bnts{ text-align: center; }
+    .outfit-stylist li .shop-outfit .shop-outfit-top{ height: auto; }
 }
 
+@media screen and (min-width: 800px) and (max-width: 1024px) and (orientation : landscape) {
+    .content-container-home .outfit-stylist a.bx-next{ right: 39.5%; }
+    .content-container-home .outfit-stylist a.bx-prev{ left: 41%; }
+    .content-container-home .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next{ top: inherit; }
+    .content-container-home .jcarousel-control-prev{ left: 35%; }
+    .content-container-home .jcarousel-control-next{ right: 36%; }
+    .bottom.footer-bar .menu.right.three.columns{ width: 100%; }
+
+
+}
 /******about us flexslider*****/
 .flex-control-nav{ display: none !important}
 .custom-flex-cont{
