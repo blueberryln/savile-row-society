@@ -775,7 +775,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 
 /***** New Home Page By Rahul *****/
 .bgColor{ background: #fbfafa; }
-.top_wrapper{ width: 75%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; text-align: right; } 
+.top_wrapper{ width: 75%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; text-align: right; float: right; } 
 .top_mainNav{ display: inline-block; vertical-align: top; margin: 0px 2% 0px 0px; padding: 0px; width: 60%; border-right:2px solid #999; min-height: 25px; }
 .top_mainNav ul{ margin: 3px 0px 0px 42px; padding: 0px; }
 .top_mainNav ul li { list-style-type: none; display: inline-block; vertical-align: top; margin: 0px 3%; padding: 0px; line-height: 22px; font-size: 17px; font-family: 'Proximanova'; text-transform: uppercase; } 
@@ -786,7 +786,7 @@ display: inline-block;
 vertical-align: top;
 margin: 0 0px 0px 0px;
 padding: 0px;
-width: 33%;
+width: 21%;
 text-align: left;
 float: right;
 }
