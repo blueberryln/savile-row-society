@@ -109,6 +109,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 </div>
 <?php
 if(isset($sale_pixel)){
+    if(strpos($sale_pixel, 'TransactionIDHere')){
+        $sale_pixel = str_replace('TransactionIDHere', $transaction_data['Transaction']['transaction_id'], $sale_pixel);
+    }
     echo $sale_pixel;
 }
 ?>

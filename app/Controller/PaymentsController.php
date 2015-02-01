@@ -8,8 +8,8 @@ App::uses('CakeEmail', 'Network/Email');
  */
 class PaymentsController extends AppController {
 
-    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS25', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG25', 'FULLTHROTTLE20', 'BLOGGER20', 'SUITES20', 'EQUITY20', 'TIDE25', 'BADWIN25', 'BOBBY25', 'NISH25', 'ROGER25', 'STUART25', 'ALBERT25', 'F&F25', 'ANDREI25','SRSWAIT100', 'SRS30STYLIST', '9157STAR', 'NEUE50', 'EVENTSY120', '3DAYRULE120', '11JAMES120');
-    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS25' => 25, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'FULLTHROTTLE20' => 20, 'BLOGGER20' => 20, 'SUITES20' => 20, 'CYBER30' => 30, 'JOEYG25' => 25, 'EQUITY20' => 20, 'TIDE25' => 25, 'BADWIN25' => 25, 'BOBBY25' => 25, 'NISH25' => 25, 'ROGER25' => 25, 'STUART25' => 25, 'ALBERT25' => 25, 'F&F25' => 25, 'ANDREI25' => 25, 'SRSWAIT100' => 100, 'SRS30STYLIST' => 30, '9157STAR' => 50, 'NEUE50' => 50, 'EVENTSY120' => 119, '3DAYRULE120' => 119, '11JAMES120' => 119);
+    public $promoCodes = array('CBS20', 'SRS20', 'JOHNALLANS25', 'LMC20', 'PERKLA20', 'SRSBRANDS20', 'CYBER30', 'JOEYG25', 'FULLTHROTTLE20', 'BLOGGER20', 'SUITES20', 'EQUITY20', 'TIDE25', 'BADWIN25', 'BOBBY25', 'NISH25', 'ROGER25', 'STUART25', 'ALBERT25', 'F&F25', 'ANDREI25','SRSWAIT100', 'SRS30STYLIST', '9157STAR', 'NEUE50', 'EVENTSY120', '3DAYRULE120', '11JAMES120', 'BDO110', 'EFLIRT110', 'MI110', 'ENGIESTYLE100');
+    public $promoCodesAmount = array('CBS20' => 20, 'SRS20' => 20, 'JOHNALLANS25' => 25, 'LMC20' => 20, 'PERKLA20' => 20, 'SRSBRANDS20' => 20, 'FULLTHROTTLE20' => 20, 'BLOGGER20' => 20, 'SUITES20' => 20, 'CYBER30' => 30, 'JOEYG25' => 25, 'EQUITY20' => 20, 'TIDE25' => 25, 'BADWIN25' => 25, 'BOBBY25' => 25, 'NISH25' => 25, 'ROGER25' => 25, 'STUART25' => 25, 'ALBERT25' => 25, 'F&F25' => 25, 'ANDREI25' => 25, 'SRSWAIT100' => 100, 'SRS30STYLIST' => 30, '9157STAR' => 50, 'NEUE50' => 50, 'EVENTSY120' => 119, '3DAYRULE120' => 119, '11JAMES120' => 119, 'BDO110' => 110, 'EFLIRT110' => 110, 'MI110' => 110, 'ENGIESTYLE100' => 100);
     public $percentCodes = array('CYBER30', 'SRS30STYLIST', '9157STAR');
 
     function beforeFilter() {
@@ -1092,6 +1092,7 @@ class PaymentsController extends AppController {
         $user_id = $this->getLoggedUserID();
         $code = strtoupper($code);
         $ret = array();
+        $ret['code'] = $code;
         if($code != null){
             if(in_array($code, $this->promoCodes)){
                 if($user_id){
