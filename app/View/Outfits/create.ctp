@@ -210,7 +210,7 @@ $(document).ready(function(){
         var user_id = $("#user_id").val();
         var comments = $("#comments").val();
         var outfit_id = $("#outfit_id").val();
-
+        $(this).removeAttr('id');   // to avoid multiple outfit submission - shubham 
         var outfit_items = [];
         $('.basket ul li').each(function(){
             var product = {

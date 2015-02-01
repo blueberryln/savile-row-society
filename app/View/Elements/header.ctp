@@ -1,8 +1,9 @@
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery("#menu-switcher").on("click", function(){  
-            jQuery(this).toggleClass("menu-anim");          
-            var menu = jQuery(".header .menu");
+        jQuery("#menu-switcher1").on("click", function(){  
+            console.log("dfbghjdfghjdfd");
+            // jQuery(this).toggleClass("mobile_menu");          
+            var menu = jQuery(".header .mobile_menu");
             jQuery(menu).slideToggle();  
         });
     });
@@ -114,9 +115,46 @@
         </div>
         <!--Log In Menu Ends-->
 
+        <!-- top_wrapper -->
+        <div class="top_wrapper">
+        <div id="menu-switcher1"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></div>
+        <!-- mobile_menu -->
+        <div class="mobile_menu">
+            <ul>
+                <li><a href="Javascript:;" class="active">Get Started</a></li>
+                <li><a href="Javascript:;">Sign In</a></li>
+                <li><a href="Javascript:;">Top Looks</a></li>
+                <li><a href="Javascript:;">Stylists</a></li>
+                <li><a href="Javascript:;">How It Works</a></li>
+            </ul>
+        </div>
+        <!-- /mobile_menu -->
+
+        <!-- top_mainNav -->
+        <div class="top_mainNav">
+            <ul>
+                <li><a href="Javascript:;">LOOKS</a></li>
+                <li><a href="Javascript:;">STYLISTS</a></li>
+                <li><a href="Javascript:;">HOW IT WORKS</a></li>
+                <li><a href="Javascript:;">BRANDS</a></li>
+            </ul>
+        </div>
+        <!-- /top_mainNav -->
+
+        <!-- top_rightSection -->
+        <div class="top_rightSection">
+            <a href="#" onclick="window.ref_url=''; signUp();" class="login">LOG IN</a>
+            <a href="Javascript:;" class="getStarted">Get Started</a>
+            <a href="Javascript:;" class="cart_link">(0)</a>
+        </div>
+        <!-- /top_rightSection -->
+
+        </div>
+        <!-- /top_wrapper -->
+        
        
         
-        <span id="menu-switcher"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span>
+        <!-- <span id="menu-switcher"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span> -->
         
         <!--Menu Section-->
         <div class="menu right">            
@@ -153,7 +191,7 @@
         <!--Menu Section Ends-->
         <!--<span class="call-us-at"><!-- <img src="<?php echo $this->webroot; ?>img/call-us.png" /> --><!--Call us at +1 347 878 7280</span>-->
          <?php if($user) : ?>
-                        <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span>
+                        <!-- <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span> -->
                 <?php endif; ?>
         
 
