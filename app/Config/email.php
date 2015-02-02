@@ -44,20 +44,36 @@
  */
 class EmailConfig {
 
+    public $default = array(
+        'host' => 'ssl://smtp.gmail.com',
+        'port' => 465,
+        'username' => 'admin@savilerowsociety.com',
+        'password' => 'srsus1234',
+        'transport' => 'Smtp'
+    );
+
     // public $default = array(
     //     'host' => 'ssl://smtp.gmail.com',
     //     'port' => 465,
-    //     'username' => 'admin@savilerowsociety.com',
-    //     'password' => 'srsus1234',
+    //     'username' => 'saurabh1327@gmail.com',
+    //     'password' => 'Sserver27',
     //     'transport' => 'Smtp'
     // );
 
-    public $default = array(
-        'host' => 'email-smtp.us-east-1.amazonaws.com',
-        'port' => 25,
-        'username' => 'AKIAJHMNIZSNQGJERYHA',
-        'password' => 'ApSS50SNw1OeCE5+WmaoTpX4iGhHNndsSPsADfLLArWp',
-        'transport' => 'Smtp'
-    );
+    // public $default = array(
+    //     'host' => 'email-smtp.us-east-1.amazonaws.com',
+    //     'port' => 25,
+    //     'username' => 'AKIAJHMNIZSNQGJERYHA',
+    //     'password' => 'ApSS50SNw1OeCE5+WmaoTpX4iGhHNndsSPsADfLLArWp',
+    //     'transport' => 'Smtp'
+    // );
+
+    // public $default = array(
+    //     'host' => 'email-smtp.us-east-1.amazonaws.com',
+    //     'port' => 25,
+    //     'username' => 'AKIAJHMNIZSNQGJERYHA',
+    //     'password' => 'ApSS50SNw1OeCE5+WmaoTpX4iGhHNndsSPsADfLLArWp',
+    //     'transport' => 'Smtp'
+    // );
 
 }
