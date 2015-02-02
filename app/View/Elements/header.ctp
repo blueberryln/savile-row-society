@@ -7,6 +7,13 @@
             jQuery(menu).slideToggle();  
         });
     });
+
+    $(document).on('click','.welcome-name',function(){  
+        $('.hoverNav').toggle();
+  });
+  $('html').click(function() {
+$('.hoverNav').fadeOut(10);
+});
  </script> 
 
 <div class="header">
@@ -46,9 +53,31 @@
                 } else {
                 ?>
                     <?php if($user) : ?>
-                        <li class="welcome-name"><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
+                        <li class="welcome-name"><a href="Javascript:;">Hi <?php echo $user['User']['first_name']; ?></a></li>
+                        <div class="hoverNav">
+                            <ul>
+                                  
+                                    <?php if ($is_admin) : ?>
+                                    <li><a href="<?php echo $this->request->webroot; ?>admin">Administration</a></li>
+                                    <?php endif; ?>
+                                    <?php if ($is_stylist) : ?>
+                                    <li><a href="<?php echo $this->request->webroot; ?>stylists/biography/<?php echo $user['User']['id']; ?>" title="">Stylist Biography</a></li>
+                                    <li><a href="/refer" title="">refer a friend</a></li>
+                                    <?php endif; ?>
+                                     <?php if(!$is_stylist) : ?>
+                                    <li><a href="<?php echo $this->request->webroot; ?>cart" title="">view my cart/checkout</a></li>
+                                    <li><a href="/messages/index" title="">Messages</a></li>
+                                    <li><a href="<?php echo $this->request->webroot; ?>messages/profiles/<?php echo $user['User']['id']; ?>">Profile</a></li>
+                                    <li><a href="/refer-a-friend" title="">refer a friend</a></li>
+                                    <?php endif; ?>
+                                    <li><a href="<?php echo $this->request->webroot; ?>signout" title="">sign out</a></li>
+                            </ul>
+                        </div>
                     <?php endif; ?>
                 <?php if(($has_stylist && !$is_admin) || $is_stylist) : ?>
+               
+
+
                 <!-- <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
                     <div class="submenu-container msg-notify-box <?php echo $is_stylist ? "stylist-notify-box" : ""; ?>">
                         <div class="submenu">
@@ -199,9 +228,9 @@
         </div>
         <!--Menu Section Ends-->
         <!--<span class="call-us-at"><!-- <img src="<?php echo $this->webroot; ?>img/call-us.png" /> --><!--Call us at +1 347 878 7280</span>-->
-         <?php if($user) : ?>
+         <!--<?php if($user) : ?>
                          <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span> 
-                <?php endif; ?>
+                <?php endif; ?>-->
         
 
     </div>   
