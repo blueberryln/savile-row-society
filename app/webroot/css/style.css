@@ -1094,7 +1094,12 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 
 /*******Message One CSS********/
 .black { background: #212125; min-height:37px; margin-top: 81px; display: none; }
-.message-box { background: #fff; font-family: 'ProximaNovaCond-Regular'; min-height: 500px;}
+.message-box {
+background: #fff;
+font-family: 'ProximaNovaCond-Regular';
+min-height: 823px;
+top: 80px;
+}
 .message-box-heading, .myclient-heading { font-family: 'ProximaNovaCond-Regular'; font-size: 36px; padding: 38px 0px 19px; border-bottom: 1px solid #e8e8e8;}
 .myclient-heading { padding-top: 0px; margin-bottom: 25px;}
 .message-box-heading h1, .myclient-heading h1{ color: #918f8f; margin: 0; padding: 0; word-wrap: break-word;}
