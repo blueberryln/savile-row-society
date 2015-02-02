@@ -133,7 +133,7 @@
         <!-- /mobile_menu -->
 
         <!-- top_mainNav -->
-        <div class="top_mainNav">
+        <div class="top_mainNav second-screen">
             <ul>
                 <li><a href="Javascript:;">LOOKS</a></li>
                 <li><a href="Javascript:;">STYLISTS</a></li>
