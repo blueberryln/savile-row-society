@@ -158,10 +158,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <ul>
                     <?php foreach($topStylists as $topstylist): ?>
                     <li>
-                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>"><!-- <div class="featured-stylist-hover">
+                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
                             <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
                             <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
-                        </div> -->
+                        </div>
                        <?php if($topstylist['User']['profile_photo_url']): ?>
                         <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
                     <?php else: ?>

@@ -1,4 +1,4 @@
-<script type="text/javascript">
+	<script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery("#menu-switcher1").on("click", function(){  
             console.log("dfbghjdfghjdfd");
@@ -119,9 +119,10 @@
         <div class="top_wrapper">
         <div id="menu-switcher1"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></div>
         <!-- mobile_menu -->
+        <?php if(!$user) : ?>
         <div class="mobile_menu">
             <ul>
-                <li><a href="Javascript:;" class="active">Get Started</a></li>
+                <li><a href="<?php echo $this->webroot; ?>users/register" class="active">Get Started</a></li>
                 <li><a href="Javascript:;">Sign In</a></li>
                 <li><a href="Javascript:;">Top Looks</a></li>
                 <li><a href="Javascript:;">Stylists</a></li>
@@ -143,12 +144,12 @@
 
         <!-- top_rightSection -->
         <div class="top_rightSection">
-            <a href="#" onclick="window.ref_url=''; signUp();" class="login">LOG IN</a>
-            <a href="Javascript:;" class="getStarted">Get Started</a>
-            <a href="Javascript:;" class="cart_link">(0)</a>
+            <a href="#" onclick="window.ref_url=''; signIn();" class="login">LOG IN</a>
+            <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
+            <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a>
         </div>
         <!-- /top_rightSection -->
-
+        <?php endif; ?>
         </div>
         <!-- /top_wrapper -->
         
