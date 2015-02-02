@@ -45,9 +45,9 @@
                     
                 } else {
                 ?>
-                    <!-- <?php if($user) : ?>
+                    <?php if($user) : ?>
                         <li class="welcome-name"><a>Welcome <?php echo $user['User']['first_name']; ?></a></li>
-                    <?php endif; ?> -->
+                    <?php endif; ?>
                 <?php if(($has_stylist && !$is_admin) || $is_stylist) : ?>
                 <!-- <li style="position: relative;"><a id="msg-notifications"><img src="<?php echo $this->webroot; ?>img/icon_alert.png" style="vertical-align: middle;" /> (<span id="total-notifications"><?php echo $message_notification['total']; ?></span>)</a>
                     <div class="submenu-container msg-notify-box <?php echo $is_stylist ? "stylist-notify-box" : ""; ?>">
@@ -129,6 +129,7 @@
                 <li><a href="Javascript:;">How It Works</a></li>
             </ul>
         </div>
+    <?php endif; ?>
         <!-- /mobile_menu -->
 
         <!-- top_mainNav -->
@@ -136,20 +137,27 @@
             <ul>
                 <li><a href="Javascript:;">LOOKS</a></li>
                 <li><a href="Javascript:;">STYLISTS</a></li>
+                <?php if(!$user):?>
                 <li><a href="Javascript:;">HOW IT WORKS</a></li>
                 <li><a href="Javascript:;">BRANDS</a></li>
+                <?php else: ?>
+                <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a>
+                <?php endif;?>
+
             </ul>
         </div>
         <!-- /top_mainNav -->
 
         <!-- top_rightSection -->
         <div class="top_rightSection">
+        <?php if(!$user):?>
             <a href="#" onclick="window.ref_url=''; signIn();" class="login">LOG IN</a>
             <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
+        <?php endif;?>
             <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a>
         </div>
         <!-- /top_rightSection -->
-        <?php endif; ?>
+        
         </div>
         <!-- /top_wrapper -->
         
@@ -192,7 +200,7 @@
         <!--Menu Section Ends-->
         <!--<span class="call-us-at"><!-- <img src="<?php echo $this->webroot; ?>img/call-us.png" /> --><!--Call us at +1 347 878 7280</span>-->
          <?php if($user) : ?>
-                        <!-- <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span> -->
+                         <span class="welcome-name">Welcome <?php echo $user['User']['first_name']; ?></span> 
                 <?php endif; ?>
         
 
