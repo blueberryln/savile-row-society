@@ -164,11 +164,11 @@ $('.hoverNav').fadeOut(10);
         <!-- top_mainNav -->
         <div class="top_mainNav second-screen">
             <ul>
-                <li><a href="Javascript:;">LOOKS</a></li>
-                <li><a href="Javascript:;">STYLISTS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#four">LOOKS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three">STYLISTS</a></li>
                 <?php if(!$user):?>
-                <li><a href="Javascript:;">HOW IT WORKS</a></li>
-                <li><a href="Javascript:;">BRANDS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two">HOW IT WORKS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#six">BRANDS</a></li>
                 <?php else: ?>
                 <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a>
                 <?php endif;?>
