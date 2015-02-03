@@ -75,7 +75,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                             <div class="eleven columns container outfits-dtls-area pad-none">
                                                 <div class="twelve columns left outfit-desc">
                                                     <div class="outfit-dtls-date">
-                                                        <span>Date Created:</span> <?php echo $outfit['Outfit']['created']; ?>
+                                                        <span>Date Created:</span> <?php echo date('m/d/Y', strtotime($outfit['Outfit']['created'])); ?>
                                                     </div>
                                                     <div class="outfit-dtls-price"><span>Outfit Price:</span>
                                                         <?php

@@ -47,7 +47,7 @@ class StylistsController extends AppController {
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $Entity = ClassRegistry::init('Entity'); 
         // get Top outfit All data
-        $OutfitTopData = $StylistTopOutfit->find('all',array('conditions'=>array('StylistTopOutfit.stylist_id'=>$id,)));
+        $OutfitTopData = $StylistTopOutfit->find('all',array('conditions'=>array('StylistTopOutfit.stylist_id'=>$id), 'orderBy' => ['StylistTopOutfit.order_id' => 'asc']));
         
         $my_outfit = array();
         foreach($OutfitTopData as $row){
@@ -84,11 +84,11 @@ class StylistsController extends AppController {
                 ),
             );
             $entity_list = $Entity->find('all',$find_array);
-            $my_outfit[] =  array(
+            $my_outfit[$row['StylistTopOutfit']['order_id']] =  array(
                 'outfit'    => $outfitnames,
                 'entities'  => $entity_list
                 );
-            }
+        }
         
 
         $this->set(compact('StylistBioData','stylistphoto','outfits','my_outfit','stylistoutfit','user','stylists','photostreampicsstylist', 'userlists'));

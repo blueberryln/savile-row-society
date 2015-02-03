@@ -181,9 +181,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                     <div class="eleven columns container outfits-dtls-area pad-none">
                                         <div class="twelve columns left outfit-desc">
                                             <div class="outfit-dtls-date">
-                                                <span>Date Created:</span> <?php $date = strchr($outfit['Outfit']['created'],' ',true); 
-                                                $exp_date = explode('-',$date);
-                                                echo $exp_date[1].'/'.$exp_date[2].'/'.$exp_date[0]?>
+                                                <span>Date Created:</span> <?php echo date('m/d/Y', strtotime($outfit['Outfit']['created'])); ?>
                                             </div>
                                             <div class="outfit-dtls-price"><span>Outfit Price:</span>
                                                 <?php

@@ -763,7 +763,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
                                     <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $user['User']['first_name']; ?>’s Top Outfits <!-- <span class="edit-section edit-outfit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span> --></h1>
-
+    
                                     <ul>
                                         <li id="OutfitFirst">
                                             <span class="edit-section edit-beachday-section right beachday-content-update1" style="display:block;"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
@@ -788,31 +788,31 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 </p>
                                             </form>
                                             <div class="twelve columns top-outfits">
-                                                <?php if(isset($my_outfit[0])): ?>
-                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[0]['outfit'][0]['Outfit']['id']; ?>">
-                                                    <h2>
-                                                    <?php if($my_outfit[0]['outfit']): echo ucfirst($my_outfit[0]['outfit'][0]['Outfit']['outfit_name']); else: endif;
-                                                    ?>
-                                                    </h2>
-                                                    <div class="outfit-products">
-                                                        <ul>
-                                                    <?php
-                                                    $topoutfit1s = $my_outfit[0]['entities'];
-                                                    foreach($topoutfit1s as $topoutfit1): 
-                                                    ?>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit1['Image'][0]['name']; ?>" alt="" />
-                                                <div class="outfit-products-details"><?php echo $topoutfit1['Entity']['name']; ?>  $<?php echo $topoutfit1['Entity']['price']; ?></div></li>
-                                                    <?php endforeach; ?>
-                                                        
-                                                        </ul>
+                                                <?php if(isset($my_outfit[1])): ?>
+                                                    <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[1]['outfit'][0]['Outfit']['id']; ?>">
+                                                        <h2>
+                                                        <?php if($my_outfit[1]['outfit']): echo ucfirst($my_outfit[1]['outfit'][0]['Outfit']['outfit_name']); else: endif;
+                                                        ?>
+                                                        </h2>
+                                                        <div class="outfit-products">
+                                                            <ul>
+                                                        <?php
+                                                        $topoutfit1s = $my_outfit[1]['entities'];
+                                                        foreach($topoutfit1s as $topoutfit1): 
+                                                        ?>
+                                                            <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit1['Image'][0]['name']; ?>" alt="" />
+                                                    <div class="outfit-products-details"><?php echo $topoutfit1['Entity']['name']; ?>  $<?php echo $topoutfit1['Entity']['price']; ?></div></li>
+                                                        <?php endforeach; ?>
+                                                            
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php else: ?>
-                                            <div class="eleven columns container outfit-container">
-                                            <h2>Please select first outfit</h2>
-                                            </div>
+                                                <?php else: ?>
+                                                    <div class="eleven columns container outfit-container">
+                                                    <h2>Please select first outfit</h2>
+                                                    </div>
 
-                                            <?php endif; ?>
+                                                <?php endif; ?>
                                             </div>
                                         </li>
                                         <li id="OutfitSecond">
@@ -838,16 +838,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 </p>
                                             </form>
                                             <div class="twelve columns top-outfits">
-                                                <?php if(isset($my_outfit[1])): ?>
-                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[1]['outfit'][0]['Outfit']['id']; ?>">
+                                                <?php if(isset($my_outfit[2])): ?>
+                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[2]['outfit'][0]['Outfit']['id']; ?>">
                                                     <h2>
-                                                    <?php if($my_outfit[1]['outfit']): echo ucfirst($my_outfit[1]['outfit'][0]['Outfit']['outfit_name']); else: endif;
+                                                    <?php if($my_outfit[2]['outfit']): echo ucfirst($my_outfit[2]['outfit'][0]['Outfit']['outfit_name']); else: endif;
                                                     ?>
                                                     </h2>
                                                     <div class="outfit-products">
                                                         <ul>
                                                     <?php
-                                                        $topoutfit2s = $my_outfit[1]['entities'];
+                                                        $topoutfit2s = $my_outfit[2]['entities'];
                                                         foreach($topoutfit2s as $topoutfit2): 
                                                     ?>
                                                         <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit2['Image'][0]['name']; ?>" alt="" />
@@ -888,16 +888,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 </p>
                                             </form>
                                             <div class="twelve columns top-outfits">
-                                                <?php if(isset($my_outfit[2])): ?>
-                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[2]['outfit'][0]['Outfit']['id']; ?>">
+                                                <?php if(isset($my_outfit[3])): ?>
+                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[3]['outfit'][0]['Outfit']['id']; ?>">
                                                     <h2>
-                                                    <?php if($my_outfit[2]['outfit']): echo ucfirst($my_outfit[2]['outfit'][0]['Outfit']['outfit_name']); else: endif;
+                                                    <?php if($my_outfit[3]['outfit']): echo ucfirst($my_outfit[3]['outfit'][0]['Outfit']['outfit_name']); else: endif;
                                                     ?>
                                                     </h2>
                                                     <div class="outfit-products">
                                                         <ul>
                                                         <?php
-                                                            $topoutfit3s = $my_outfit[2]['entities'];
+                                                            $topoutfit3s = $my_outfit[3]['entities'];
                                                             foreach($topoutfit3s as $topoutfit3): 
                                                         ?>
                                                             <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit3['Image'][0]['name']; ?>" alt="" />
