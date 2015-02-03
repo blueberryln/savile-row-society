@@ -214,9 +214,9 @@ input[type="submit"]{color: #fff;}
 	.header-logo a, .header .menu, .card-menu {
 display: inline-block;
 position: relative;
-width: 320px;
+/*width: 320px;*/
 }
-	.header .logo {width: 191px;vertical-align: middle;}
+	.header .logo {width: 240px;vertical-align: middle;}
 	.header .menu{ display: none; background-color: transparent; padding: 6px 0px 4px;}
 	.header .menu ul {margin: 0 auto; padding: 0; display: table; margin: auto; }
 	.header .menu li { display: inline-block; margin: 0; padding: 0 15px; text-transform: uppercase; border:none;}
@@ -785,7 +785,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .top_mainNav ul li { list-style-type: none; display: inline-block; vertical-align: top; margin: 0px 3%; padding: 0px; line-height: 22px; font-size: 17px; font-family: 'Proximanova'; text-transform: uppercase; } 
 .top_mainNav ul li a{ text-decoration: none; color: #090909; } 
 .top_mainNav ul li a:hover{ text-decoration: none; color: #090909; } 
-.top_rightSection{ display: inline-block; vertical-align: top; margin: 0 0px 0px 0px; padding: 0px; width: 28%; text-align: left; float: right; }
+.top_rightSection{ display: inline-block; vertical-align: top; margin: 0 0px 0px 0px; padding: 0px; width: auto; text-align: left; min-width: 20%; /* float: right; */ }
 .top_rightSection a.login{ font-size: 17px; color: #b6a166; font-family: 'Proximanova'; text-transform: uppercase; margin: 0px 5% 0px 0px; padding: 4px 0px 3px 0px; display: inline-block; vertical-align: top; }
 .top_rightSection a.getStarted{ background: #b6a166; border: 1px solid #ab9350; font-size: 16px; color: #fff; font-family: 'Proximanova'; text-transform: uppercase; display: inline-block; vertical-align: top; padding: 0 15px; height: 23px; margin: 0px 4% 0px 0px; line-height: 26px; }
 .top_rightSection a.cart_link{ display: inline-block; vertical-align: top; margin: 1px 0px 0px 0px; padding: 0px 0px 0px 25px; background: url('../img/icon_cart.jpg') no-repeat left 3px; font-style: 15px; font-family: 'Proximanova'; }
@@ -814,13 +814,14 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .mobile_menu ul li a:hover{ color: #b8a060; }
 a.shop-top-looks{ background: #b6a166; border: 1px solid #ab9350; font-size: 16px; color: #fff; font-family: 'Proximanova'; text-transform: uppercase; display: inline-block; vertical-align: top; padding: 0 15px; height: 23px; margin: 0px 4% 0px 0px; line-height: 26px; }
 .second-screen{ border: none; margin: 0px; }
-.hoverNav{ display: none; width: 160px; min-height: 100px; background: #fff; position: absolute; top: 30px; border: 1px solid #E4E4E4; left: -35px; box-shadow: #EFEFEF 0 3px 0px; }
-li.welcome-name { position: absolute; left: 0; top: 4px; line-height: 16px; cursor: default; font-size: 15px; font-weight: normal; font-style: italic; margin: 0; padding: 0px 5px; display: inline-block; text-decoration: none; text-transform: capitalize; }
+.hoverNav{ display: none; width: 160px; min-height: 100px; background: #fff; position: absolute; top: 40px; border: 1px solid #E4E4E4; right: 0px; box-shadow: #EFEFEF 0 3px 0px;  }
+li.welcome-name {/* position: absolute; left: 0; top: 4px;*/ line-height: 16px; cursor: default; font-size: 15px; font-weight: normal; font-style: italic; margin: 3px 0 0 0; padding: 0px 5px; display: inline-block; text-decoration: none; text-transform: capitalize; }
 li.welcome-name a{ background: url(../img/dropDown_arrow.jpg) no-repeat; text-decoration: underline; background-position: right 5px; padding-right: 21px; font-family: 'Times New Roman'; } 
 .hoverNav ul{ width: 100%; }  
 .hoverNav ul li{ font-size: 13px; color: #212125; display: inline-block; text-align: center; /* text-align: left; */ padding: 10px; width: 100%; border-bottom: 1px solid #ccc; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; /* text-transform: capitalize; */ font-family: 'ProximaNovaCond-Regular'; float: left; } 
 .hoverNav ul li a{ color: #212125; } 
-
+.top_rightSection.login_rightSection{ min-width: inherit; margin: 2px 0 0 -20px; }
+.container.content > .container{ position: relative; top: 80px; }
 
 /*******New Home Page*******/
 .ui-widget-content{ padding-top: 10px;}
