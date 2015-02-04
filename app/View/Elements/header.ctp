@@ -31,17 +31,17 @@ $('.hoverNav').fadeOut(10);
         <div class="top_wrapper">
         <div id="menu-switcher1"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></div>
         <!-- mobile_menu -->
-        <?php if(!$user) : ?>
         <div class="mobile_menu">
             <ul>
-                <li><a href="<?php echo $this->webroot; ?>users/register" class="active">Get Started</a></li>
-                <li><a href="Javascript:;">Sign In</a></li>
-                <li><a href="Javascript:;">Top Looks</a></li>
-                <li><a href="Javascript:;">Stylists</a></li>
-                <li><a href="Javascript:;">How It Works</a></li>
+            <?php if(!$user) : ?>
+                <li><a href="<?php echo $this->webroot; ?>users/register" >Get Started</a></li>
+                <li><a href="#" onclick="window.ref_url=''; signIn();">Sign In</a></li>
+            <?php endif; ?>
+                <li><a href="<?php echo $this->webroot; ?>#four">Looks</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three">Stylists</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two">How It Works</a></li>
             </ul>
         </div>
-    <?php endif; ?>
         <!-- /mobile_menu -->
 
         <!-- top_mainNav -->
@@ -53,7 +53,7 @@ $('.hoverNav').fadeOut(10);
                 <li><a href="<?php echo $this->webroot; ?>#two">HOW IT WORKS</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#six">BRANDS</a></li>
                 <?php else: ?>
-                <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a>
+                
                 <?php endif;?>
 
             </ul>
@@ -66,7 +66,8 @@ $('.hoverNav').fadeOut(10);
             <a href="#" onclick="window.ref_url=''; signIn();" class="login">LOG IN</a>
             <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
         <?php endif;?>
-            <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a>
+
+
         <!--Log In Menu-->
         <div class="card-menu right">
             <ul>
@@ -184,6 +185,10 @@ $('.hoverNav').fadeOut(10);
             </ul>
         </div>
         <!--Log In Menu Ends-->
+
+
+
+        <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a>
 
         
         
