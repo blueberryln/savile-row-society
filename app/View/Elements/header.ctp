@@ -1,4 +1,4 @@
-	<script type="text/javascript">
+<script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery("#menu-switcher1").on("click", function(){  
             console.log("dfbghjdfghjdfd");
@@ -47,11 +47,11 @@ $('.hoverNav').fadeOut(10);
         <!-- top_mainNav -->
         <div class="top_mainNav second-screen">
             <ul>
-                <li><a href="Javascript:;">LOOKS</a></li>
-                <li><a href="Javascript:;">STYLISTS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#four">LOOKS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three">STYLISTS</a></li>
                 <?php if(!$user):?>
-                <li><a href="Javascript:;">HOW IT WORKS</a></li>
-                <li><a href="Javascript:;">BRANDS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two">HOW IT WORKS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#six">BRANDS</a></li>
                 <?php else: ?>
                 <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a>
                 <?php endif;?>
@@ -184,57 +184,8 @@ $('.hoverNav').fadeOut(10);
             </ul>
         </div>
         <!--Log In Menu Ends-->
-<<<<<<< HEAD
 
-        <!-- top_wrapper -->
-        <div class="top_wrapper">
-        <div id="menu-switcher1"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></div>
-        <!-- mobile_menu -->
-        <?php if(!$user) : ?>
-        <div class="mobile_menu">
-            <ul>
-                <li><a href="<?php echo $this->webroot; ?>users/register" class="active">Get Started</a></li>
-                <li><a href="Javascript:;">Sign In</a></li>
-                <li><a href="Javascript:;">Top Looks</a></li>
-                <li><a href="Javascript:;">Stylists</a></li>
-                <li><a href="Javascript:;">How It Works</a></li>
-            </ul>
-        </div>
-    <?php endif; ?>
-        <!-- /mobile_menu -->
-
-        <!-- top_mainNav -->
-        <div class="top_mainNav second-screen">
-            <ul>
-                <li><a href="<?php echo $this->webroot; ?>#four">LOOKS</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#three">STYLISTS</a></li>
-                <?php if(!$user):?>
-                <li><a href="<?php echo $this->webroot; ?>#two">HOW IT WORKS</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#six">BRANDS</a></li>
-                <?php else: ?>
-                <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a>
-                <?php endif;?>
-
-            </ul>
-        </div>
-        <!-- /top_mainNav -->
-
-        <!-- top_rightSection -->
-        <div class="top_rightSection">
-        <?php if(!$user):?>
-            <a href="#" onclick="window.ref_url=''; signIn();" class="login">LOG IN</a>
-            <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
-        <?php endif;?>
-            <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a>
-=======
->>>>>>> e01ecdd531af4d7df18713a444eb69152bfd25a0
-        </div>
-        <!-- /top_rightSection -->
         
-
-
-        </div>
-        <!-- /top_wrapper -->
         
        
         
@@ -352,3 +303,4 @@ $('.hoverNav').fadeOut(10);
     
     </div>
 </div>
+</div></div></div>
