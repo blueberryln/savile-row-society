@@ -209,8 +209,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step1.jpg" alt="How Savile Row Society Works" />
                 </a>
 
-                <span class="works-heading">Style Profile</span>
-                <span class="works-desc">Fill out a quick style profile to be matched with your very own personal stylist</span>
+                <span class="works-heading">Get Started with your Stylist</span>
+                <span class="works-desc">Sign Up, fill out your style profile & Connect With Your Stylist.</span>
 
             </div> 
              <div class="work-box">
@@ -222,8 +222,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step2.jpg" alt="How Savile Row Society Works" />
                 </a>
 
-                <span class="works-heading">Start Shopping</span>
-                <span class="works-desc">Communicate on the website, on the phone or in-person. Buy what you want from your stylist’s recommendations.</span>
+                <span class="works-heading">Get Your Hand Selected Looks</span>
+                <span class="works-desc">Your stylist handpicks items individualized to your style, taste and needs</span>
 
             </div> 
              <div class="work-box">
@@ -235,8 +235,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <img src="<?php echo $this->webroot; ?>images/how-it-works/Step3.jpg" alt="How Savile Row Society Works" />
                 </a>
 
-                <span class="works-heading">Free Delivery</span>
-                <span class="works-desc">Have your purchases delivered for free.<br/>Verify that the fit is perfect. <br/>Dress for the life you want.</span>
+                <span class="works-heading">Your Looks, to Your Doorstep</span>
+                <span class="works-desc">Order only the items you want and get them delivered to your doorstep</span>
 
             </div> 
         </div>
