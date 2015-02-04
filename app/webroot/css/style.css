@@ -823,7 +823,7 @@ font-family: 'Proximanova';
 .mobile_menu ul li a:hover{ color: #b8a060; }
 a.shop-top-looks{ background: #b6a166; border: 1px solid #ab9350; font-size: 16px; color: #fff; font-family: 'Proximanova'; text-transform: uppercase; display: inline-block; vertical-align: top; padding: 0 15px; height: 23px; margin: 0px 4% 0px 0px; line-height: 26px; }
 .second-screen{ margin: 0px 1% 0px 0px; }
-.hoverNav{ display: none; width: 160px; min-height: 100px; background: #fff; position: absolute; top: 40px; border: 1px solid #E4E4E4; right: 0px; box-shadow: #EFEFEF 0 3px 0px;  }
+.hoverNav{ display: none; width: 160px; min-height: 100px; background: #fff; position: absolute; top: 40px; border: 1px solid #E4E4E4; right: 0px; }
 li.welcome-name {/* position: absolute; left: 0; top: 4px;*/ line-height: 16px; cursor: default; font-size: 15px; font-weight: normal; font-style: italic; margin: 3px 0 0 0px; padding: 0px 5px; display: inline-block; text-decoration: none; text-transform: capitalize; }
 li.welcome-name a {
 background: url(../img/dropDown_arrow.jpg) no-repeat;

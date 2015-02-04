@@ -55,7 +55,8 @@ $('.hoverNav').fadeOut(10);
                 <li><a href="<?php echo $this->webroot; ?>#two">HOW IT WORKS</a></li>
                 <li><a href="<?php echo $this->webroot; ?>#six">BRANDS</a></li>
                 <?php else: ?>
-                <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a>
+                
+                <!-- <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a> -->
                 <?php endif;?>
 
             </ul>
@@ -68,27 +69,15 @@ $('.hoverNav').fadeOut(10);
             <a href="#" onclick="window.ref_url=''; signIn();" class="login">LOG IN</a>
             <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
         <?php endif;?>
-            <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a>
+            <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count">
+            <?php echo $cart_items; ?></span> )</a>
         <!--Log In Menu-->
         <div class="card-menu right">
             <ul>
-               <!-- <?php
-                if (!$is_logged) {
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signUp();">Join</a></li> ';
-                    echo ' <li><a href="#" onclick="window.ref_url=\'\'; signIn();">Sign In</a> </li> ';
-                } else {
-                    echo ' <li><a href="' . $this->request->webroot . 'cart' . '" id="basket-link">Basket</a
-                                <div id="basket">
-                    
-                                </div>
-                                </li> ';
-                }
-                ?> -->
 
                  <?php
                 if (!$is_logged) {
                 ?>
-               <!-- <li><a href="#" onclick="window.ref_url=''; signUp();"><img class="cart-img" src="<?php echo $this->webroot; ?>img/cart-new.png" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>-->
                 <?php 
                     echo ' <li><a class="login btn" href="#" onclick="window.ref_url=\'\'; signIn();">Login</a> </li> ';
                     echo ' <li><a class="get-stated btn" href="/users/register">Get Started</a></li> ';
@@ -117,8 +106,8 @@ $('.hoverNav').fadeOut(10);
                             </ul>
                         </div>
                     <?php endif; ?>
-                <?php if(($has_stylist && !$is_admin) || $is_stylist) : ?>
-               
+                <?php //if(($has_stylist && !$is_admin) || $is_stylist) : ?>
+               <?php } ?>
 
 
             </ul>
