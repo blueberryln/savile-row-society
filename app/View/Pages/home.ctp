@@ -1,4 +1,3 @@
-
 <?php
 
 if(isset($noindex)){
@@ -353,6 +352,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         
 </div>
 <script>
+
     $(function(){
         $(".shop-outfit-bottom").on('click', function(){
             location = $(this).find('a.shop-outfit-bottom-link').attr('href');
