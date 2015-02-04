@@ -31,17 +31,19 @@ $('.hoverNav').fadeOut(10);
         <div class="top_wrapper">
         <div id="menu-switcher1"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></div>
         <!-- mobile_menu -->
-        <?php if(!$user) : ?>
+        
         <div class="mobile_menu">
             <ul>
-                <li><a href="<?php echo $this->webroot; ?>users/register" class="active">Get Started</a></li>
-                <li><a href="Javascript:;">Sign In</a></li>
-                <li><a href="Javascript:;">Top Looks</a></li>
-                <li><a href="Javascript:;">Stylists</a></li>
-                <li><a href="Javascript:;">How It Works</a></li>
+            <?php if(!$user) : ?>
+                <li><a href="<?php echo $this->webroot; ?>users/register" >Get Started</a></li>
+                <li><a href="#" onclick="window.ref_url=''; signIn();">Sign In</a></li>
+            <?php endif; ?>
+                <li><a href="<?php echo $this->webroot; ?>#four">Looks</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three">Stylists</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two">How It Works</a></li>
             </ul>
         </div>
-    <?php endif; ?>
+    
         <!-- /mobile_menu -->
 
         <!-- top_mainNav -->

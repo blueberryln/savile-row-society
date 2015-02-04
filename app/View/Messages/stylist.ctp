@@ -224,7 +224,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         for(var i=0; i < arrMsg.length; i++){
                             var html = showChatMsg(arrMsg[i]);
                             chatContainer.append(html);
-                            scrollbarData.update("bottom");
+                            scrollbarData.update("relative");
                         }
                     }
                 },

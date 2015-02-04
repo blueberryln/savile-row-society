@@ -192,7 +192,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         for(var i=0; i < arrMsg.length; i++){
                             var html = showChatMsg(arrMsg[i]);
                             chatContainer.append(html);
-                            scrollbarData.update("bottom");
+                            scrollbarData.update("relative");
                         }
                     }
                     callInAction = false;   
