@@ -3119,7 +3119,7 @@ input#billingCopybilling { visibility: visible;}
     .jcarousel-control-next{ right: 39.5%; }
     /*.works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes{ padding-bottom: 30px; }*/
     .menu.right.three.columns{ width: 34%; }
-    .top_rightSection{ width: 32%; }
+    .top_rightSection{ width: auto; }
     .top_wrapper{ position: absolute; right: 0; width: 90%; }
 
 
