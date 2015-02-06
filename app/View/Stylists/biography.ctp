@@ -18,7 +18,7 @@ $(document).ready(function(){
         
         var id = $("#id").val();
         var Bio = $("#StylebioStylistBio").val();
-        alert(Bio);
+        //alert(Bio);
         var BioId = '<?php echo $stylistBioId; ?>';
         var stylist_id = '<?php echo $stylistid; ?>';
         $.ajax({

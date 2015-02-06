@@ -68,9 +68,12 @@ $('.hoverNav').fadeOut(10);
         <?php if(!$user):?>
             <a href="#" onclick="window.ref_url=''; signIn();" class="login">LOG IN</a>
             <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
-        <?php endif;?>
             <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count">
             <?php echo $cart_items; ?></span> )</a>
+        <?php else:?>
+            <a href="<?php echo $this->request->webroot; ?>cart" class="cart_link">(<span class="cart-items-count">
+            <?php echo $cart_items; ?></span> )</a>
+        <?php endif;?>
         <!--Log In Menu-->
         <div class="card-menu right">
             <ul>
