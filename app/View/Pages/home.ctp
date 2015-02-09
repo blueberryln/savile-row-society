@@ -28,7 +28,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         </div>
         <div class="mega-banner-overlay">
             <span class="large-size">shop now with your personal stylist</span>
-            <span class="small-size">all at NO COST.<br> take it to the next level. </span>
+            <span class="small-size">Your personal stylist will select the clothes you want, <br>tailored to your style and needs at - NO cost.</span>
             <div class="overlay-bnts left">
                 <a class="tell-more gray-btns" href="/#two" title="">Tell Me More</a>
                 <?php if($is_logged): ?>
@@ -87,7 +87,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     else {echo 'guest/';}
 
                                                      echo 'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></a>
-                                                     <span class="hover_overlay">Hello</span>
+                                                     <span class="hover_overlay">$225.00</span>
                                                      </li>
                                                     }
                                             <?php 

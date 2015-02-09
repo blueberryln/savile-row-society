@@ -918,8 +918,15 @@ img.cart-img{vertical-align: middle; width:30px;}
 .mega-banner-overlay .overlay-bnts{ width:100%; margin-top: 80px; font-family: 'Proximanova'; }
 .mega-banner-overlay .overlay-bnts a.overlay-started { text-decoration: none; padding: 12px 35px 10px; margin: 0px 36px; position: relative;}
 .mega-banner-overlay .overlay-bnts a.overlay-started .get-started-icon { display: none; position: absolute; top: 12px; right: 24px;}
-.mega-banner-overlay .overlay-bnts a.overlay-started.brown-btns { padding-right: 48px; border: 1px solid #e4d3a4; background: none; color: #e4d3a4 !important; font-size: 20px; } 
-.mega-banner-overlay .overlay-bnts a.tell-more{ text-decoration: none; padding: 12px 30px 10px; margin: 0px 36px; border: 1px solid #ffffff; background: none; font-weight: normal; font-size: 20px; }
+.mega-banner-overlay .overlay-bnts a.overlay-started.brown-btns {
+border: 1px solid #b6a166;
+background: none;
+padding: 15px 35px 15px;
+color: #fff !important;
+background: #b6a166;
+font-size: 20px;
+}
+.mega-banner-overlay .overlay-bnts a.tell-more{ text-decoration: none; padding: 15px 35px 15px; margin: 0px 36px; border: 1px solid #ffffff; background: none; font-weight: normal; font-size: 20px; }
 
 /*.mg-big, .mg-vid, .mg-small{width: 50%;}
 .mg-small div{width:49%; display: inline-block; position: relative;}
