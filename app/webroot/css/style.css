@@ -178,7 +178,7 @@ input[type="submit"]{color: #fff;}
 
  /****************Header****************/
  .wrapper{position:relative; width: 91.6667%; height: 100%; margin:0 auto; padding: 0;}
- .header {background-color: #fff; width: 100%; padding:15px 0px 35px 0px; position: fixed; top: 0px; z-index: 1000; height: 31px; }
+ .header {background-color: #fff; width: 100%; padding:25px 0px; position: fixed; top: 0px; z-index: 1000; height: 31px; }
  
  	/******Right Card Menu****/
 	 .card-menu {color:white; padding: 0 !important; margin:0px !important;}
@@ -217,7 +217,7 @@ position: relative;
 /*width: 320px;*/
 float: left !important;
 }
-	.header .logo {width: 240px;vertical-align: middle;}
+	.header .logo {width: 180px;vertical-align: middle;}
 	.header .menu{ display: none; background-color: transparent; padding: 6px 0px 4px;}
 	.header .menu ul {margin: 0 auto; padding: 0; display: table; margin: auto; }
 	.header .menu li { display: inline-block; margin: 0; padding: 0 15px; text-transform: uppercase; border:none;}
@@ -780,7 +780,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 
 /***** New Home Page By Rahul *****/
 .bgColor{ background: #fbfafa; }
-.top_wrapper{ width: 75%; display: inline-block; vertical-align: top; margin: 15px 0px 0px 0px; padding: 0px; text-align: right; float: right; } 
+.top_wrapper{ width: 75%; display: inline-block; vertical-align: top; margin: 0px 0px 0px 0px; padding: 0px; text-align: right; float: right; } 
 .top_mainNav{ display: inline-block; vertical-align: top; margin: 0px 2% 0px 0px; padding: 0px; width: 60%; border-right:2px solid #999; min-height: 25px; }
 .top_mainNav ul{ margin: 3px 0px 0px 42px; padding: 0px; }
 .top_mainNav ul li { list-style-type: none; display: inline-block; vertical-align: top; margin: 0px 3%; padding: 0px; line-height: 22px; font-size: 17px; font-family: 'Proximanova'; text-transform: uppercase; } 
