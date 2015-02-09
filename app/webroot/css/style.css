@@ -178,7 +178,7 @@ input[type="submit"]{color: #fff;}
 
  /****************Header****************/
  .wrapper{position:relative; width: 91.6667%; height: 100%; margin:0 auto; padding: 0;}
- .header {background-color: #fff; width: 100%; padding:25px 0px; position: fixed; top: 0px; z-index: 1000; height: 31px; }
+ .header {background-color: #fff; width: 100%; padding:15px 0px 35px 0px; position: fixed; top: 0px; z-index: 1000; height: 31px; }
  
  	/******Right Card Menu****/
 	 .card-menu {color:white; padding: 0 !important; margin:0px !important;}
@@ -780,7 +780,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 
 /***** New Home Page By Rahul *****/
 .bgColor{ background: #fbfafa; }
-.top_wrapper{ width: 75%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; text-align: right; float: right; } 
+.top_wrapper{ width: 75%; display: inline-block; vertical-align: top; margin: 15px 0px 0px 0px; padding: 0px; text-align: right; float: right; } 
 .top_mainNav{ display: inline-block; vertical-align: top; margin: 0px 2% 0px 0px; padding: 0px; width: 60%; border-right:2px solid #999; min-height: 25px; }
 .top_mainNav ul{ margin: 3px 0px 0px 42px; padding: 0px; }
 .top_mainNav ul li { list-style-type: none; display: inline-block; vertical-align: top; margin: 0px 3%; padding: 0px; line-height: 22px; font-size: 17px; font-family: 'Proximanova'; text-transform: uppercase; } 
@@ -789,15 +789,7 @@ table.cart-checkout tbody tr td:last-of-type { color:#B29957; font-weight: bold;
 .top_rightSection{ display: inline-block; vertical-align: top; margin: 0 0px 0px 0px; padding: 0px; width: auto; text-align: left; min-width: 24%; /* float: right; */ }
 .top_rightSection a.login{ font-size: 17px; color: #b6a166; font-family: 'Proximanova'; text-transform: uppercase; margin: 0px 5% 0px 0px; padding: 4px 0px 3px 0px; display: inline-block; vertical-align: top; }
 .top_rightSection a.getStarted{ background: #b6a166; border: 1px solid #ab9350; font-size: 16px; color: #fff; font-family: 'Proximanova'; text-transform: uppercase; display: inline-block; vertical-align: top; padding: 0 15px; height: 23px; margin: 0px 4% 0px 0px; line-height: 26px; }
-.top_rightSection a.cart_link{
-display: inline-block;
-vertical-align: top;
-margin: 0px 0px 0px 1%;
-padding: 0px 0px 0px 25px;
-background: url('../img/icon_cart.jpg') no-repeat left 2px;
-font-size: 13px;
-font-family: 'Proximanova';
-}
+.top_rightSection a.cart_link{ display: inline-block; vertical-align: top; margin: 0px 0px 0px 1%; padding: 0px 0px 0px 25px; background: url('../img/icon_cart.jpg') no-repeat left 2px; font-size: 13px; font-family: 'Proximanova'; }
 .content .page-heading h1, .content .block-heading h1, h1.pop-heading, .page-heading.topLooks_wrapper h1 { font-family: 'Adobe Caslon Pro'; font-size: 30px; margin: 0 0 20px; line-height: normal; padding-bottom: 5px; border-bottom: 1px solid #000; display: inline-block; }
 .page-heading.topLooks_wrapper h3{ font-family: 'ProximaNovaCond-Regular'; color: #000; font-size: 22px; line-height: 24px; margin: 0; font-weight: normal; } 
 .content p.content_peragraph { font-size: 16px; line-height: 20px; font-family: 'Adobe Caslon Pro'; display: inline-block; float: right; text-align: left; margin: 0px 0 5px 0; width: 82%; padding: 0px; vertical-align: top; }
@@ -825,15 +817,7 @@ a.shop-top-looks{ background: #b6a166; border: 1px solid #ab9350; font-size: 16p
 .second-screen{ margin: 0px 1% 0px 0px; }
 .hoverNav{ display: none; width: 160px; min-height: 100px; background: #fff; position: absolute; top: 40px; border: 1px solid #E4E4E4; right: 0px; }
 li.welcome-name {/* position: absolute; left: 0; top: 4px;*/ line-height: 16px; cursor: default; font-size: 15px; font-weight: normal; font-style: italic; margin: 3px 0 0 0px; padding: 0px 5px; display: inline-block; text-decoration: none; text-transform: capitalize; }
-li.welcome-name a {
-background: url(../img/dropDown_arrow.jpg) no-repeat;
-background-position: right 4px;
-padding-right: 19px;
-font-style: normal;
-text-transform: capitalize;
-font-family: sweetsans-regular;
-display: inline-block;
-}
+li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; background-position: right 4px; padding-right: 19px; font-style: normal; text-transform: capitalize; font-family: sweetsans-regular; display: inline-block; } 
 .hoverNav ul{ width: 100%; }  
 .hoverNav ul li{ font-size: 13px; color: #212125; display: inline-block; text-align: center; /* text-align: left; */ padding: 10px; width: 100%; border-bottom: 1px solid #ccc; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; /* text-transform: capitalize; */ font-family: 'ProximaNovaCond-Regular'; float: left; } 
 .hoverNav ul li a{ color: #212125; } 
@@ -841,6 +825,21 @@ display: inline-block;
 .top_rightSection.login_rightSection .card-menu{ margin-right: 0% !important; }
 .top_rightSection.login_rightSection a.cart_link {  margin: 0;  }
 .container.content > .container{ position: relative; top: 50px; }
+.hover_overlay{
+position: absolute;
+width: 100%;
+height: 135px;
+background: rgba(0, 0, 0, 0.5);
+z-index: 2;
+display: none; 
+vertical-align: top;
+color: #fff;
+font-size: 18px;
+line-height: 135px;
+left: 0px;
+top: 0px;
+}
+
 
 /*******New Home Page*******/
 .ui-widget-content{ padding-top: 10px;}
@@ -978,7 +977,7 @@ ul#branding-ptners .clear-fix{ display: none; }
 .outfit-stylist li .shop-outfit .shop-outfit-bottom ul { width: 100%; text-align: center; display: inline-block; font-size: 0; height: auto; min-height: 320px; }
 .outfit-stylist li .shop-outfit .shop-outfit-bottom li { display: inline-block; width: 140px; text-align: center; vertical-align: top; margin: 0; padding: 0; height: 100%; position: relative; }
 .outfit-stylist li .shop-outfit .shop-outfit-bottom li a{ position: relative; display: inline-block; z-index: 1; width: 100%; }
-.outfit-stylist li .shop-outfit .shop-outfit-bottom li img { max-height: 165px; width: 100%; } 
+.outfit-stylist li .shop-outfit .shop-outfit-bottom li img { height: 135px; width: 100%; } 
 .outfit-stylist li .shop-outfit .shop-outfit-bottom li span.overlay{ background: rgba(0,0,0,0.5); position: absolute; top: 0px; left: 0px; width: 100%; display: inline-block; height: 135px; line-height: 135px; font-size: 15px; vertical-align: top; z-index: 2000; color: #fff; } 
 .bottom_buttons{ display: inline-block; vertical-align: top; width: 100%; margin: 20px 0px 0px; padding: 0px; }
 .bottom_buttons a{ border-radius: 2px; display: inline-block; vertical-align: top; padding: 7px 15px 6px; margin: 0px 8px; font-size: 15px; text-transform: uppercase; text-align: center; }
@@ -2290,7 +2289,12 @@ input#billingCopybilling { visibility: visible;}
         div.card-menu ul li img.sign-up{vertical-align: middle; width:75px; height:20px;}
 		div.card-menu ul li img.sign-in{vertical-align: middle; width:55px; height:20px;}
 		img.cart-img{vertical-align: middle; width:25px;}
-		.card-menu{line-height: normal; position: absolute; top: 5px; right: 5px; z-index: 9999;}
+		.card-menu/*{line-height: normal; position: absolute; top: 5px; right: 5px; z-index: 9999;}*/
+        {
+line-height: 71px;
+margin: 0px 5px 0 0 !important;
+display: inline-block;
+}
 		span.call-us-at, span.welcome-name{display:none;}
         span.welcome-name { display: block; width: 100%; padding: 0px; text-align: center; top: 10px;}
 		.header-logo{float: none !important; text-align: center; position: relative; z-index: 2; }

@@ -86,7 +86,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                 <li><a href="<?php echo $this->webroot;if($user) {echo 'messages/';}
                                                     else {echo 'guest/';}
 
-                                                     echo 'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></a></li>
+                                                     echo 'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></a>
+                                                     <span class="hover_overlay">Hello</span>
+                                                     </li>
                                                     }
                                             <?php 
                                                 }
