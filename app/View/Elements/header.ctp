@@ -211,14 +211,16 @@ $('.hoverNav').fadeOut(10);
                 </div>
            
             </div>
-    </div>
-    <?php endif;?>   
-    
+        </div>
+    <?php endif;?>
     </div>
 </div>
-</div></div></div>
+</div></div>
+</div>
 
 <script>
+<?php if(!$user) { ?>
+
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -299,4 +301,6 @@ $('.hoverNav').fadeOut(10);
         'Thanks for logging in, ' + response.name + '!';
     });
   }
+
+<?php } ?>
 </script>
