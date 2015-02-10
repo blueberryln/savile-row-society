@@ -87,7 +87,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     else {echo 'guest/';}
 
                                                      echo 'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></a>
-                                                     <span class="hover_overlay">$225.00</span>
+                                                     <?php //if($item['product']['Entity']['price']) { ?>
+                                                     <span class="hover_overlay"><?php echo "$".$item['product']['Entity']['price']; ?></span>
+                                                     <?php //} ?>
                                                      </li>
                                                     }
                                             <?php 
