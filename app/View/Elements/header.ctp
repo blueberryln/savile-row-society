@@ -253,7 +253,7 @@ $('.hoverNav').fadeOut(10);
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '507420839292016',
+    appId      : '395602070536997',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -292,7 +292,7 @@ $('.hoverNav').fadeOut(10);
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      alert(JSON.stringify(response)); 
+     // alert(JSON.stringify(response)); 
       location.href = '/connect/facebook';
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
