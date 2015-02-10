@@ -21,6 +21,8 @@
                     <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
                 </div>
                 <input type="submit" class="link-btn black-btn signin-btn" value="SIGN IN" /> 
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK
+				</fb:login-button>
             </form> 
         </div> 
     </div>
@@ -130,7 +132,9 @@
 	            </form>  
 	            <div class="text-center signup-options">                                       
                     <span class="already-member">already a member? <a href="" id="show-signin-popup">Sign in Here.</a></span> 
-                </div>   
+                </div>  
+                 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK 
+				</fb:login-button>
 	        </div> 
 	    </div>
 	</div>
@@ -154,6 +158,8 @@
 	                    <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
 	                </div>
 	                <input type="submit" class="link-btn signin-btn" value="SIGN IN" /> 
+	                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK
+					</fb:login-button>
 	            </form> 
 	        </div> 
 	        <div class="guest-register-box">
@@ -169,3 +175,4 @@
 	    </div>
 	</div>
 </div>
+
