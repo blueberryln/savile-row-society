@@ -609,12 +609,118 @@ class UsersController extends AppController {
 
     public function landing()
     {
-        $user = $this->request->data;
-        $user['User']['lead'] = 1;
-        $user['User']['confirm_password'] = $user['User']['password'];
-        $this->Session->write('new_user', $user);
-        $this->redirect('/users/register');
-        exit; 
+        if($this->getLoggedUserID()){
+            $this->redirect('/messages/index');
+            exit();   
+        }
+        else if($this->request->is('post') ){
+            $user = $this->request->data;
+            
+            if ($this->User->validates()) {
+                $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
+                if($registered){
+                    $this->Session->setFlash(__('You are already registered. Please sign in.'), 'flash');
+                    $this->redirect('/');
+                    exit;    
+                }
+                $user['User']['lead'] = 1;
+                $user['User']['confirm_password'] = $user['User']['password'];
+                $user['User']['password'] = Security::hash($user['User']['password']);
+                $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
+                $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
+                //$user['UserPreference']['style_pref'] = implode(',', $user['UserPreference']['style_pref']);
+                
+                $user['User']['is_phone']='0';    
+                
+                $user['User']['is_skype']='0'; 
+              
+                $user['User']['profile_photo_url'] = null;    
+                
+
+                if ($this->User->saveAll($user)) {
+                   
+                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+
+                    if($this->Session->check('landing_offer')){
+                        $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->delete('landing_text');
+                        
+                        $user_offer['UserOffer']['user_id'] = $results['User']['id'];
+
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $UserOffer->create();
+                        $UserOffer->save($user_offer);
+                    }
+
+
+                    if($this->Session->check('guest_items')){
+                        $cart_list = $this->Session->read('guest_items');
+
+                        $Cart = ClassRegistry::init('Cart');
+                        $CartItem = ClassRegistry::init('CartItem');
+
+                        $data = array();
+                        $data['Cart']['user_id'] = $results['User']['id'];
+                        $Cart->create();
+                        $result = $Cart->save($data);
+
+                        $cart_id = $result['Cart']['id'];
+                        foreach($cart_list as $item){
+                            $item['CartItem']['user_id'] = $results['User']['id'];
+                            $item['CartItem']['cart_id'] = $cart_id;
+                            $CartItem->create();
+                            $result = $CartItem->save($item);
+                        }
+
+
+                        $this->Session->delete('guest_items');
+                    }
+
+
+                    try{
+                      $bcc = Configure::read('Email.contact');
+                      $email = new CakeEmail('default');
+
+
+                      $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                      $email->to($user['User']['email']);
+                      $email->subject('Welcome To Savile Row Society');
+                      $email->bcc($bcc);
+                      $email->template('registration');
+                      $email->emailFormat('html');
+                      $email->viewVars(array('name' => $user['User']['first_name']));
+                      $email->send();
+                    }
+                    catch(Exception $e){
+                            
+                    }
+
+                    if ($results) {
+                        $stylist_id = $this->assign_refer_stylist($results['User']['id']);
+                        App::import('Controller', 'Messages');
+                        $Messages = new MessagesController;
+                        $Messages->send_welcome_message($results['User']['id'], $stylist_id);
+
+                        
+                        $this->Session->write('user', $results);
+
+                        if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
+                            $this->assignVipDiscount($results['User']['referred_by']);
+                        }
+
+                        //$this->Session->write('new_user', 'new_user');
+
+                        $this->redirect(array('controller' => 'messages'));
+                    } else {
+                        $this->redirect($this->referer());
+                        exit;
+                    }
+                } else {
+                    $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
+                    $this->redirect($this->referer());
+                }
+            }   
+        }
     }
 
 
