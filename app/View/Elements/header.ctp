@@ -219,7 +219,13 @@ $('.hoverNav').fadeOut(10);
 </div>
 
 <script>
-<?php if(!$user) { ?>
+var if_clik =0;
+
+$(document).on('click','.checkfblogin',function(){
+var if_clik =1;
+//alert(if_clik);
+});
+<?php //if(!$user) { ?>
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -253,7 +259,7 @@ $('.hoverNav').fadeOut(10);
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '395602070536997',  //1537568826493647
+    appId      : '1537568826493647',  //395602070536997
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -293,13 +299,15 @@ $('.hoverNav').fadeOut(10);
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
      // alert(JSON.stringify(response)); 
+     if(if_clik==1) {
       location.href = '/connect/facebook';
       console.log('Successful login for: ' + response.name);
+    }
       //document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
     });
   }
 
-<?php } ?>
+<?php //} ?>
 function fb_login(){
     FB.login(function(response) {
 

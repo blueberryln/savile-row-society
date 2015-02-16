@@ -308,22 +308,10 @@ class UsersController extends AppController {
     function signout() {
         $this->autoRender = false;
         $this->autoLayout = false;
-        App::import('Vendor', 'Facebook/facebook');
-        // destroy all sessions
-        $facebook_app_id = Configure::read('Facebook.app_id');
-        $facebook_app_secret = Configure::read('Facebook.app_secret');
 
+        // destroy all sessions
         $this->Session->delete('user');
         $this->Session->destroy();
-
-        //instantiate the Facebook library
-        $facebook = new Facebook(array(
-            'appId' => $facebook_app_id,
-            'secret' => $facebook_app_secret,
-            'cookie' => true
-        ));
-        $facebook->destroySession();
-        //echo $facebook->getUser();die;
 
         //$this->Session->setFlash(__('We hope that you\'ll come back'), 'modal', array('class' => 'info', 'title' => 'Good bye :('));
         $this->redirect($this->referer());
