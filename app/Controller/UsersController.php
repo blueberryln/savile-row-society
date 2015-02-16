@@ -322,15 +322,9 @@ class UsersController extends AppController {
             'secret' => $facebook_app_secret,
             'cookie' => true
         ));
-        $token = $facebook->getAccessToken();
-        if($token)
-        {
-            $url = 'https://www.facebook.com/logout.php?next=' . 'http://srs.com/' .
-                '&access_token='.$token;
-                //echo $token;die;
-                session_destroy();
-                header('Location: '.$url);
-        }
+        $facebook->destroySession();
+        //echo $facebook->getUser();die;
+
         //$this->Session->setFlash(__('We hope that you\'ll come back'), 'modal', array('class' => 'info', 'title' => 'Good bye :('));
         $this->redirect($this->referer());
         exit();
