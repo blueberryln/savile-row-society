@@ -259,7 +259,7 @@ var if_clik =1;
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '1537568826493647',  //395602070536997
+    appId      : '395602070536997',  //1537568826493647
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
