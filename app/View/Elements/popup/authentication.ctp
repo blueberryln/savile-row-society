@@ -23,7 +23,7 @@
                 <input type="submit" class="link-btn black-btn signin-btn" value="SIGN IN" /> 
                 <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK
 				</fb:login-button> -->
-				<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo $this->request->webroot; ?>img/guest-checkout-create.png" alt="" class="checkout-create-text"></a>
+				<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo $this->request->webroot; ?>img/btn-facebook.jpg" alt="" class="checkout-create-text"></a>
             </form> 
         </div> 
     </div>
@@ -136,7 +136,7 @@
                 </div>  
                  <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK 
 				</fb:login-button> -->
-				<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo $this->request->webroot; ?>img/guest-checkout-create.png" alt="" class="checkout-create-text"></a>
+				<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo $this->request->webroot; ?>img/btn-facebook.jpg" alt="" class="checkout-create-text"></a>
 
 	        </div> 
 	    </div>
@@ -163,7 +163,7 @@
 	                <input type="submit" class="link-btn signin-btn" value="SIGN IN" /> 
 	                <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK
 					</fb:login-button> -->
-					<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo $this->request->webroot; ?>img/guest-checkout-create.png" alt="" class="checkout-create-text"></a>
+					<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo $this->request->webroot; ?>img/btn-facebook.jpg" alt="" class="checkout-create-text"></a>
 
 	            </form> 
 	        </div> 
