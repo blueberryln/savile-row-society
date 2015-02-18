@@ -80,17 +80,24 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                          <ul>
                                             <?php 
                                             $count = 1;
+                                            if($user) {
+                                                $path = 'messages/'; 
+                                            }
+                                            else {
+                                                $path = 'guest/';
+                                            }
                                             foreach($outfit['OutfitItem'] as $item) {
                                                 if(count($item['product']['Image']) && $count++ <= 6){
                                             ?>
-                                                <li><a href="<?php echo $this->webroot;if($user) {echo 'messages/';}
-                                                    else {echo 'guest/';}
-
-                                                     echo 'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></a>
+                                                <a href="<?php echo $this->webroot;
+                                                     echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>">
+                                                <li>
+                                                    <img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" />
                                                      <?php //if($item['product']['Entity']['price']) { ?>
                                                      <span class="hover_overlay"><?php echo "$".$item['product']['Entity']['price']; ?></span>
                                                      <?php //} ?>
-                                                     </li>
+                                                </li>
+                                                </a>
                                                     }
                                             <?php 
                                                 }
