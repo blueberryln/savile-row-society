@@ -475,7 +475,7 @@ color:#396; !important
                                 
                                 <!-- <input type="text"  id="phone1" name="mobile" maxlength="10" minlength="10" /> -->
                                 <?php
-                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number (Optional)", "maxlength"=>"10", "minlength"=>"10", "onkeypress"=> "return checkForNumber();", 'required', "id"=> "phone" ));
+                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number (Optional)", "maxlength"=> "10", "minlength"=> "10", "onkeypress"=> "return checkForNumber();", 'required', "id"=> "phone", "pattern"=> ".{10,10}", "title"=> "10 digits required" ));
                                     echo $this->Form->input('User.skype', array( 'label' => false, 'placeholder' => 'Skype Id (Optional)'));
                                 ?>
                             </div>
