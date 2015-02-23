@@ -38,10 +38,10 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                 </td>
                                                 <?php 
                                                     if($item['Image']){
-                                                        $img_src = $this->request->webroot . "files/products/" . $item['Image'][0]['name'];
+                                                        $img_src = HTTP_ROOT . "files/products/" . $item['Image'][0]['name'];
                                                     }
                                                     else{
-                                                        $img_src = $this->request->webroot . "img/photo_not_available.png";
+                                                        $img_src = HTTP_ROOT . "img/photo_not_available.png";
                                                     }
                                                 ?>
                                                 <td class="product-thumb"><div class="cart-thumbnail"><a href="<?php echo $this->webroot; ?>product/<?php echo $item['Entity']['id'] . '/' . $item['Entity']['slug'];?>"><img src="<?php echo $img_src; ?>" /></a></div></td>
@@ -144,7 +144,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                     <div class="profile text-center continue-block">
                         <br>
                         <a class="link-btn black-btn" id="continue-1" tabindex="25" href="">Continue</a>
-                        <p class="loader hide"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p>
+                        <p class="loader hide"><img src="<?php echo HTTP_ROOT; ?>img/loader.gif"></p>
                     </div>
 
 
@@ -298,7 +298,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                         <div class="profile text-center continue-block">
                             <br>
                             <a class="link-btn black-btn" id="continue-2" tabindex="25" href="">Continue</a>
-                            <p class="loader hide"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p>
+                            <p class="loader hide"><img src="<?php echo HTTP_ROOT; ?>img/loader.gif"></p>
                         </div>
                     </div>
 
@@ -313,7 +313,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
 
                         <div class="ten columns center-block">
                             <div class="card-strip text-center">
-                                <img src="app/webroot/img/credit-card-strip.jpg"/>                   
+                                <img src="<?php echo HTTP_ROOT; ?>img/credit-card-strip.jpg"/>                   
                             </div>
                         </div>
 
@@ -361,7 +361,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                             <div class="profile text-center" >
                                 <a class="link-btn black-btn" id="confirm-payment" tabindex="25" href="">Make Payment</a>
                                 <br>
-                                <p class="loader hide clear-fix"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p><br>
+                                <p class="loader hide clear-fix"><img src="<?php echo HTTP_ROOT; ?>img/loader.gif"></p><br>
                             </div>
                         </div>
                     </div>

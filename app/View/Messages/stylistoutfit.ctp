@@ -210,10 +210,10 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         <?php 
                                         foreach ($outfit['OutfitItem'] as $entity){
                                             if(count($entity['product']['Image']) >= 1){
-                                                $img = $this->webroot . "products/resize/" . $entity['product']["Image"][0]["name"] . "/92/143";   
+                                                $img = HTTP_ROOT . "products/resize/" . $entity['product']["Image"][0]["name"] . "/92/143";   
                                             }
                                             else{
-                                                $img = $this->webroot . "img/image_not_available-small.png";       
+                                                $img = HTTP_ROOT . "img/image_not_available-small.png";       
                                             }            
                                         ?>
 
@@ -236,11 +236,11 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                         <?php if(count($entity['product']['Image']) > 0) : ?>
                                             <a href="<?php echo $this->webroot . 'files/products/' . $entity['product']['Image'][0]['name']; ?>" data-lightbox="product-images" class="group1" rel="group<?php echo $entity['product']['Entity']['id']; ?>">
 
-                                                <img class="zoom_01" src="<?php echo $this->webroot . 'files/products/' . $entity['product']['Image'][0]['name']; ?>" class="fadein-image" data-zoom-image="<?php echo $this->webroot . 'files/products/' . $entity['product']['Image'][0]['name']; ?>" />
+                                                <img class="zoom_01" src="<?php echo HTTP_ROOT . 'files/products/' . $entity['product']['Image'][0]['name']; ?>" class="fadein-image" data-zoom-image="<?php echo HTTP_ROOT . 'files/products/' . $entity['product']['Image'][0]['name']; ?>" />
 
                                             </a>
                                         <?php else : ?>
-                                            <img src="<?php echo $this->webroot; ?>img/image_not_available.png" class="fadein-image" />                    
+                                            <img src="<?php echo HTTP_ROOT; ?>img/image_not_available.png" class="fadein-image" />                    
                                         <?php endif; ?>
                                         </div>
 
@@ -357,9 +357,9 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                     <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="" class="create-outfit-user-row">
                                                         <div class="myclient-img">
                                                             <?php if($usersearchforoutfit['User']['profile_photo_url']): ?>
-                                                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
+                                                                <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
                                                             <?php else: ?>
-                                                                <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                                <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg" alt=""/>    
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="myclient-dtl">

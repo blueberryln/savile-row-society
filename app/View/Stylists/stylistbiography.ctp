@@ -6,9 +6,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 <div class="content-container stylist-biography-section">
     <div class="eleven columns container content inner stylistbio">
         <div class="twelve columns container stylistbio-section left">
-            <a class="open-left-pannel" href="#" title=""><img src="<?php echo $this->webroot; ?>images/arrow-next.png" alt="" /></a>
+            <a class="open-left-pannel" href="#" title=""><img src="<?php echo HTTP_ROOT; ?>images/arrow-next.png" alt="" /></a>
             <div class="stylistbio-section-left text-center">
-                <div class=" twelve columns stylistbion-arrow"><img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" /></div>
+                <div class=" twelve columns stylistbion-arrow"><img src="<?php echo HTTP_ROOT; ?>images/back-arrow.png" alt="" /></div>
                 <div class="twelve columns">
                     <div class="eleven columns container stylistbio-short-note">
                         <div class="short-note">Learn more about all the Savile Row Stylists by scrolling through our list of current stylists</div>
@@ -26,9 +26,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <li><a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $stylist['User']['id']; ?>">
                                 <div class="left stylistbio-list-img">
                                 <?php if($stylist['User']['profile_photo_url']): ?>
-                                    <img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
+                                    <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
                                 <?php else: ?>
-                                    <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" /></div>    
+                                    <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg" alt="" /></div>    
                                 <?php endif; ?>
                                 <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
                             </li>
@@ -49,9 +49,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div class="stylistbio-profile left text-center">
                             <div class="profile-img">
                                 <?php if($users['User']['profile_photo_url']): ?>
-                                   <img src="<?php echo $this->webroot; ?>files/users/<?php echo $users['User']['profile_photo_url']; ?>" alt="" />
+                                   <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $users['User']['profile_photo_url']; ?>" alt="" />
                                 <?php else: ?>
-                                    <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" />   
+                                    <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg" alt="" />   
                                 <?php endif; ?>
                             </div>
                             <div class=" twelve columns social-networks">
@@ -115,7 +115,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                              foreach($photostreampicsstylist as $photostreampicss ): ?>
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $photostreampicss['StylistPhotostream']['caption']; ?>">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" data-photoid = "<?php echo $photostreampicss['StylistPhotostream']['id']; ?>" />
+                                                <img class='img-gal' src="<?php echo HTTP_ROOT; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" data-photoid = "<?php echo $photostreampicss['StylistPhotostream']['id']; ?>" />
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>
@@ -139,7 +139,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                         <ul>
                                                             <?php foreach($my_outfit['entities'] as $entities): ?>
                                                                 <li>
-                                                            <img src="<?php echo $this->webroot; ?>files/products/<?php if(isset($entities['Image'][0])!='') {  echo $entities['Image'][0]['name']; }else{} ?>" />
+                                                            <img src="<?php echo HTTP_ROOT; ?>files/products/<?php if(isset($entities['Image'][0])!='') {  echo $entities['Image'][0]['name']; }else{} ?>" />
                                                             <div class="outfit-products-details"><?php if(isset($entities['Entity'])!=''){ echo $entities['Entity']['name']; }else{} ?>  $<?php if(isset($entities['Entity'])!=''){ echo $entities['Entity']['price']; }else{} ?></div>
                                                         </li>
                                                             <?php endforeach; ?>
@@ -173,7 +173,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     
     
     <div class="stylistbio-section-left text-center m-ver">
-                        <div class=" twelve columns stylistbion-arrow"><img src="<?php echo $this->webroot; ?>images/back-arrow.png" alt="" /></div>
+                        <div class=" twelve columns stylistbion-arrow"><img src="<?php echo HTTP_ROOT; ?>images/back-arrow.png" alt="" /></div>
                         <div class="twelve columns">
                             <div class="eleven columns container stylistbio-short-note">
                                 <div class="short-note">Learn more about all the Savile Row Stylists by clicking through our list of current stylists. </div>
@@ -191,9 +191,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <li><a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $stylist['User']['id']; ?>">
                                         <div class="left stylistbio-list-img">
                                         <?php if($stylist['User']['profile_photo_url']): ?>
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
+                                            <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $stylist['User']['profile_photo_url'] ?>" alt="" /></div>
                                         <?php else: ?>
-                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" /></div>    
+                                            <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg" alt="" /></div>    
                                         <?php endif; ?>
                                         <div class="left stylistbio-list-name"><?php echo $stylist['User']['first_name'].'&nbsp;'.$stylist['User']['last_name'] ?></div></a>
                                     </li>

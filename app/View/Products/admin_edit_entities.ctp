@@ -114,7 +114,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 <?php if ($images) : ?>
                     <?php foreach ($images as $file) : ?>
                         <div class="three columns attachment">
-                            <img src="<?php echo $this->request->webroot . 'products/resize/' . $file['Image']['name'] . '/160/160'; ?>" class="product-image" />
+                            <img src="<?php echo HTTP_ROOT . 'products/resize/' . $file['Image']['name'] . '/160/160'; ?>" class="product-image" />
                             <a href="#" class="remove-image" data-image_id="<?php echo $file['Image']['id']; ?>">Remove</a>
                         </div>
                     <?php endforeach; ?>

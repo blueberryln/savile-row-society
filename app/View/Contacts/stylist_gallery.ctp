@@ -28,16 +28,16 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
     <?php if ($submissions) : ?>
         <div class="photo isotope-item">
             <a href="<?php echo $this->request->webroot; ?>personal-stylist/ask">
-                <img src="<?php echo $this->request->webroot; ?>img/stylist-ask.jpg" />
+                <img src="<?php echo HTTP_ROOT; ?>img/stylist-ask.jpg" />
             </a>
         </div>
         <?php foreach ($submissions as $submission) : ?>
             <div class="photo isotope-item">
                 <a href="<?php echo $this->request->webroot; ?>personal-stylist/submissions#<?php echo $submission['Contact']['id']; ?>">
                     <?php if (isset($submission['Attached'][0]['Attachment']['name'])) : ?>
-                        <img src="<?php echo $this->request->webroot; ?>files/stylist/<?php echo $submission['Attached'][0]['Attachment']['name']; ?>" />
+                        <img src="<?php echo HTTP_ROOT; ?>files/stylist/<?php echo $submission['Attached'][0]['Attachment']['name']; ?>" />
                     <?php else : ?>
-                        <img src="<?php echo $this->request->webroot; ?>img/personal-shopper-default.jpg" />
+                        <img src="<?php echo HTTP_ROOT; ?>img/personal-shopper-default.jpg" />
                     <?php endif; ?>
                 </a>
             </div>

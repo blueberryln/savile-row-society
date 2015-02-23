@@ -24,7 +24,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                                                 
                                             </ul>
                                             <p class="pagination loadOldFeed">
-                                                <span class="hide"><img src="/img/ajax-loader.gif" width="20"></span>
+                                                <span class="hide"><img src="<?= HTTP_ROOT; ?>img/ajax-loader.gif" width="20"></span>
                                                 <a href="#">Load More Products</a>
                                             </p>
                                         </div>
@@ -42,9 +42,9 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
                         </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                        <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>
@@ -234,11 +234,11 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                 html =  '<li class="activity-wishlist" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
                                 '<div class="activity-icn"></div>' +
-                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
+                                '<div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>' + profile_url + '" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name"><strong>' + feed['User']['first_name'].capitalize() + ' ' + feed['User']['last_name'].capitalize() + '</strong> liked an item,</div>' + 
                                     '<div class="activity-msg-dtl">' + 
-                                        '<span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>' + 
+                                        '<span class="activity-prdct-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>' + 
                                         '<span class="activity-product-dtl">' + 
                                             '<strong>' + feed['Entity']['name'] + '</strong><br>' + 
                                             feed['Brand']['name'] + '<br>' + 
@@ -259,7 +259,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                 html = '<li class="activity-notification" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
                                 '<div class="activity-icn"></div>' +
-                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
+                                '<div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>' + profile_url + '" alt=""/></div>' +  
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name"><strong>' + feed['UserFrom']['first_name'].capitalize() + ' ' + feed['UserFrom']['last_name'].capitalize() + '</strong> requested an outfit.</div>' + 
                                     '<div class="activity-msg-dtl">' + 
@@ -290,7 +290,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                 html = '<li class="activity-msg" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
                                 '<div class="activity-icn"></div>' +
-                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' +  
+                                '<div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>' + profile_url + '" alt=""/></div>' +  
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name">' + activity_title + '</div>' + 
                                     '<div class="activity-msg-dtl">' + 
@@ -318,7 +318,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
 
                 for(var i = 0; i < feed['OutfitItem'].length; i++){
                     if(typeof feed['OutfitItem'][i]['product']['Image'] != 'undefined' && feed['OutfitItem'][i]['product']['Image'].length){
-                        outfit_list += '<li><img src="<?php echo $this->webroot; ?>files/products/' + feed['OutfitItem'][i]['product']['Image'][0]['name'] + '" alt="" /></li>';
+                        outfit_list += '<li><img src="<?php echo HTTP_ROOT; ?>files/products/' + feed['OutfitItem'][i]['product']['Image'][0]['name'] + '" alt="" /></li>';
                     }
                     if(feed['OutfitItem'][i]['product']['Brand']['name'])
                         brandList.push(feed['OutfitItem'][i]['product']['Brand']['name']);
@@ -338,7 +338,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                 html = '<li class="activity-outfit" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' +  
                                 '<div class="activity-icn"></div>' +
-                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>' + profile_url + '" alt=""/></div>' + 
+                                '<div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>' + profile_url + '" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name">You created <strong>' + feed['UserTo']['first_name'].capitalize() + ' ' + feed['UserTo']['last_name'].capitalize() + '</strong> an outfit, <strong>"' + feed['Outfit']['outfit_name'].capitalize() + '"</strong></div>' + 
                                 '</div>' + 
@@ -354,7 +354,7 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                                         '<div class="twelve columns client-outfits-img pad-none">' + 
                                             '<ul>' + 
                                                 outfit_list +
-                                                '<a href="#" class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="/images/search-icon.png" alt=""></span>Outfit Quick View</a>' +
+                                                '<a href="#" class="outfit-quick-view"><span class="outfit-quick-view-icons"><img src="<?= HTTP_ROOT; ?>images/search-icon.png" alt=""></span>Outfit Quick View</a>' +
                                             '</ul>' +
                                             '<input type="hidden" id="totalpriceoutfit" class="outfit-price" value="' + outfitPrice + '">' + 
                                             '<input type="hidden" class="outfit-brands" value="' + brandList + '">' + 
@@ -369,11 +369,11 @@ $this->Html->script('/js/jquery-dateFormat.min.js', array('inline' => false));
                 html = '<li class="activity-purchase" data-post_id="' + feed['Post']['id'] + '">' + 
                             '<div class="activity-content-area">' + 
                                 '<div class="activity-icn"></div>' +
-                                '<div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>' + 
+                                '<div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>' + 
                                 '<div class="activity-msg-area">' + 
                                     '<div class="activity-user-name"><strong>Kyle Harper</strong> purchased an item.</div>' + 
                                     '<div class="activity-msg-dtl">' + 
-                                        '<span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>' + 
+                                        '<span class="activity-prdct-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>' + 
                                         '<span class="activity-product-dtl">' + 
                                             '<strong>Nice Loafers</strong><br>' + 
                                             'Prada<br>' + 

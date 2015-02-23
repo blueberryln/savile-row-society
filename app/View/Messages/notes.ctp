@@ -65,7 +65,7 @@
                                                 <ul class="slider3">
                                                     <?php
                                                     foreach($imagenotes as $value){
-                                                        echo '<li><img src="/files/attachments/' . $value['StylistNote']['image'] . '"></li>';    
+                                                        echo '<li><img src="<?= HTTP_ROOT; ?>files/attachments/' . $value['StylistNote']['image'] . '"></li>';    
                                                     }
                                                     ?>
                                                 </ul>
@@ -87,9 +87,9 @@
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
                         </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                        <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>

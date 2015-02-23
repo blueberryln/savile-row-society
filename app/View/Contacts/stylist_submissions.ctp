@@ -17,7 +17,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class="title"><?php echo $submission['Contact']['full_name']; ?></div>
                 <p>
                     <?php if (isset($submission['Attached'][0]['Attachment']['name'])) : ?>
-                        <img class="six columns alpha" src="<?php echo $this->request->webroot; ?>files/stylist/<?php echo $submission['Attached'][0]['Attachment']['name']; ?>" />
+                        <img class="six columns alpha" src="<?php echo HTTP_ROOT; ?>files/stylist/<?php echo $submission['Attached'][0]['Attachment']['name']; ?>" />
                     <?php endif; ?>
                     <?php echo $submission['Contact']['message']; ?>
                 </p>

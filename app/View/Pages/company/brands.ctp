@@ -130,57 +130,57 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                  <div class="overview">
 -->
                 <ul id="branding-ptners">
-                    <li data-id="hook"><img src="<?php echo $this->webroot; ?>images/branding-partners/Hook+Albert_new.png" alt="Hook and Albert" data-name="hook" /><span class="brand-divider"></span></li>
-                    <li data-id="bensherman"><img src="<?php echo $this->webroot; ?>images/branding-partners/ben-sherman_new.jpg" alt="Ben Sherman" data-name="bensherman" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/paulevans_new.png" alt="Paulevans" data-name="paulevans" /></li>
+                    <li data-id="hook"><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/Hook+Albert_new.png" alt="Hook and Albert" data-name="hook" /><span class="brand-divider"></span></li>
+                    <li data-id="bensherman"><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/ben-sherman_new.jpg" alt="Ben Sherman" data-name="bensherman" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/paulevans_new.png" alt="Paulevans" data-name="paulevans" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/smathersAndBranson_new.png" alt="Smathers amp; Branson" data-name="smathers" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/7diamonds_new.png" alt="" data-name="7diamonds" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/lacoste_new.png" alt="" data-name="lacoste" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/smathersAndBranson_new.png" alt="Smathers amp; Branson" data-name="smathers" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/7diamonds_new.png" alt="" data-name="7diamonds" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/lacoste_new.png" alt="" data-name="lacoste" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Solid-&-Striped_new.png" alt="" data-name="Solid" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/tateossian_new.png" alt="" data-name="tateossian" /><span class="brand-divider"></span></li>                    
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/edward-armah.jpg" alt="" data-name="edwardamrah" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/Solid-&-Striped_new.png" alt="" data-name="Solid" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/tateossian_new.png" alt="" data-name="tateossian" /><span class="brand-divider"></span></li>                    
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/edward-armah.jpg" alt="" data-name="edwardamrah" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/gents.jpg" alt="" data-name="gents" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/margo-petitti.jpg" alt="" data-name="margopetite" /><span class="brand-divider"></span></li>                    
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/haspel.jpg" alt="" data-name="Haspel" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/gents.jpg" alt="" data-name="gents" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/margo-petitti.jpg" alt="" data-name="margopetite" /><span class="brand-divider"></span></li>                    
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/haspel.jpg" alt="" data-name="Haspel" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/daniel-wellington.jpg" alt="" data-name="dw" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/saxx.jpg" alt="" data-name="saxx" /><span class="brand-divider"></span></li>                    
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/souther-proper.jpg" alt="" data-name="pepper" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/daniel-wellington.jpg" alt="" data-name="dw" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/saxx.jpg" alt="" data-name="saxx" /><span class="brand-divider"></span></li>                    
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/souther-proper.jpg" alt="" data-name="pepper" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/spivey.jpg" alt="" data-name="spivey" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/tommy-hilfiger.jpg" alt="" data-name="Tommy" /><span class="brand-divider"></span></li>                    
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/alan_paine.jpg" alt="" data-name="alan-paine" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/spivey.jpg" alt="" data-name="spivey" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/tommy-hilfiger.jpg" alt="" data-name="Tommy" /><span class="brand-divider"></span></li>                    
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/alan_paine.jpg" alt="" data-name="alan-paine" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/allen-edmonds.jpg" alt="" data-name="allen-edmonds" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/bills-khakis.jpg" alt="" data-name="bills-khakis" /><span class="brand-divider"></span></li>                    
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/camper.jpg" alt="" data-name="camper" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/allen-edmonds.jpg" alt="" data-name="allen-edmonds" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/bills-khakis.jpg" alt="" data-name="bills-khakis" /><span class="brand-divider"></span></li>                    
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/camper.jpg" alt="" data-name="camper" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/citizens-of-humanity.jpg" alt="" data-name="humanity" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Cole_Haan_new.jpg" alt="Cole Haan" data-name="colehaan" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/fred-perry.jpg" alt="Fred Perry" data-name="fredperry" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/citizens-of-humanity.jpg" alt="" data-name="humanity" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/Cole_Haan_new.jpg" alt="Cole Haan" data-name="colehaan" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/fred-perry.jpg" alt="Fred Perry" data-name="fredperry" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/hickies.png" alt="HICKIES" data-name="hickies" /><span class="brand-divider"></span></li>                    
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/hudson.jpg" alt="Hudson Jeans" data-name="hudson" /><span class="brand-divider"></span></li>                    
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/lna.png" alt="LNA" data-name="lna" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/hickies.png" alt="HICKIES" data-name="hickies" /><span class="brand-divider"></span></li>                    
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/hudson.jpg" alt="Hudson Jeans" data-name="hudson" /><span class="brand-divider"></span></li>                    
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/lna.png" alt="LNA" data-name="lna" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/sanyo.png" alt="Sanyo" data-name="sanyo" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/calida.jpg" alt="Calida" data-name="calida" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/calvin-klein.jpg" alt="Calvin Klein" data-name="ck" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/sanyo.png" alt="Sanyo" data-name="sanyo" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/calida.jpg" alt="Calida" data-name="calida" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/calvin-klein.jpg" alt="Calvin Klein" data-name="ck" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/hudson-sutler.png" alt="Hudson Sutler" data-name="Hudson-sutler" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/michael-kors.png" alt="Michael Kors" data-name="Michael" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/nigel-knox.jpg" alt="NIGEL KNOX" data-name="Nigel" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/hudson-sutler.png" alt="Hudson Sutler" data-name="Hudson-sutler" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/michael-kors.png" alt="Michael Kors" data-name="Michael" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/nigel-knox.jpg" alt="NIGEL KNOX" data-name="Nigel" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/pantherella.jpg" alt="Pantherella" data-name="pantherella" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/perry-ellis.gif" alt="Perry Ellis's" data-name="Perry" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/robert-talbott.jpg" alt="Robert Talbott" data-name="Robert" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/pantherella.jpg" alt="Pantherella" data-name="pantherella" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/perry-ellis.gif" alt="Perry Ellis's" data-name="Perry" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/robert-talbott.jpg" alt="Robert Talbott" data-name="Robert" /></li>
                     
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/rvr.png" alt="RVR" data-name="RVR" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/trafalgar.jpg" alt="Trafalagar" data-name="Trafalagar" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/zimmerli.png" alt="Zimmerli" data-name="zimmerli" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/rvr.png" alt="RVR" data-name="RVR" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/trafalgar.jpg" alt="Trafalagar" data-name="Trafalagar" /><span class="brand-divider"></span></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/zimmerli.png" alt="Zimmerli" data-name="zimmerli" /></li>
                     
                 </ul>
 <!--

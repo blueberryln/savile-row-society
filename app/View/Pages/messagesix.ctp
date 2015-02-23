@@ -6,14 +6,14 @@
                 <div class="eleven columns container pad-none">
                     <div class="twelve columns message-box-heading pad-none">
                         <h1>Kyle Harper | <span>Refer A friend</span></h1>
-                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" /></div>
+                        <div class="client-img-small"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt="" /></div>
                     </div>
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
                         </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                        <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>
@@ -26,7 +26,7 @@
                     <div class="twelve columns left inner-content pad-none">
                         <div class="inner-left left">
                             <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                <div class="client-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
                                         <li><a href="javascript:;">Messages</a></li>
@@ -73,7 +73,7 @@
                         <div class="inner-right right">
                             <div class="twelve columns text-center my-profile">
                                 <div class="my-profile-img">
-                                    <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" data-name="Haspel" /></a>
+                                    <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" data-name="Haspel" /></a>
                                 </div>
                                 <div class="my-profile-detials">
                                     LISA D.

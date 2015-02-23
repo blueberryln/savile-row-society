@@ -51,7 +51,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     <p class="text-justify">Thank you for shopping with Savile Row Society and supporting our partnering brands. We are committed to bringing you only the best product made by the most passionate people in the industry. Never hesitate to reach out to your personal stylist, where we make our virtual <a href="<?php echo $this->webroot; ?>closet">CLOSET</a> your reality. We appreciate your patronage and continued support. Thank You.</p>
                     <br />
                     <div class="thank-you-note" style="page-break-before: always;">
-                        <img src="<?php echo $this->webroot; ?>img/thank_you-note.jpg" style="max-width: 100%;" />
+                        <img src="<?php echo HTTP_ROOT; ?>img/thank_you-note.jpg" style="max-width: 100%;" />
                     </div>
                     
                     <br />  <br />

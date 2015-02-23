@@ -12,9 +12,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 <?php
     $img = "";
         if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
-            $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
+            $img = HTTP_ROOT . "files/users/" . $client_user['User']['profile_photo_url'];
          }else{
-            $img = $this->webroot . "img/dummy_image.jpg";    
+            $img = HTTP_ROOT . "img/dummy_image.jpg";    
         }
 ?>
 <!--new design and code start here-->
@@ -30,7 +30,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                     <div class="eleven columns container pad-none">
                                     
                                         <p id="loadOldMsgs" class="hide">
-                                            <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                            <span class="hide"><img src="<?php echo HTTP_ROOT; ?>img/ajax-loader.gif" width="20" /></span>
                                             <a href="">Load Old Messages</a>
                                         </p>
                                         <div id="scrollbar1">
@@ -64,7 +64,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                     
                                      <a class=" create-outfit left"  id="requestanoutfit"  href="">Request an outfit</a>
                                     
-                                    <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                    <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo HTTP_ROOT; ?>images/cam-icon.png" alt="" /></span></a>
                                     <a class="send-btn right"  id="sendMessages"  href="">Send Message</a>
                                     
                                 </div>
@@ -238,7 +238,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                     html = html +  
                                     '<a id="quickoutfit" class="outfit-quick-view" href="/messages/outfitdetails/' + chatMsg['Message']['outfit_id'] + '">' + 
                                         '<span class="outfit-quick-view-icons">' +
-                                            '<img alt="" src="/images/search-icon.png">' +
+                                            '<img alt="" src="<?= HTTP_ROOT; ?>images/search-icon.png">' +
                                         '</span>' + 
                                         'Outfit Quick View'
                                     '</a>' + 
@@ -256,7 +256,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="user-message-image-area">' +
                                 '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
-                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-image"><img src="<?php echo HTTP_ROOT; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
                                 '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
                             '</div>' +   
                         '</div>';
@@ -267,7 +267,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
                             '<div class="message-image-area">' +
                                 '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
-                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-image"><img src="<?php echo HTTP_ROOT; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
                                 '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
                             '</div>' + 
                         '</div>';

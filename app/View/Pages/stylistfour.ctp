@@ -12,9 +12,9 @@
                 </div>
                 <div class="two columns right admin-top-right">
                     <ul>
-                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
+                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo HTTP_ROOT; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
                         <li>
-                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
+                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                             <div class="admin-top-right-dropdown">
                                 <ul>
                                     <li><a href="#" title="">view my cart/checkout</a></li>
@@ -58,7 +58,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -69,7 +69,7 @@
                                 <li class="active">
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -80,7 +80,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -91,7 +91,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -109,12 +109,12 @@
                     <div class="twelve columns left inner-content pad-none">
                          <div class="twelve columns myclient-heading pad-none">
                             <h1>Kyle Harper | <span>Messages</span></h1>
-                            <div class="client-img-small"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" /></div>
+                            <div class="client-img-small"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt="" /></div>
                         </div>
                         <div class="inner-left inner-myclient left">
 <!--                            <div class="dashboard-pannel left">&nbsp;</div>-->
                             <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                <div class="client-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
                                         <li><a href="javascript:;">Activity Feed</a></li>
@@ -146,11 +146,11 @@
                                         <div class="client-outfit">
                                             <div class="client-msg-reply"><span>Beach Day</span></div>
                                             <ul>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_1.jpg" alt="" /></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_2.jpg" alt="" /></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_3.jpg" alt="" /></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_4.jpg" alt="" /></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_5.jpg" alt="" /></li>
                                             </ul>
                                             <div class="msg-date">8/10/14, 8:30 AM</div>
                                         </div>
@@ -175,7 +175,7 @@
                                 </div>
                                 <div class=" twelve columns left bottom-btns">
                                     <a class="create-outfit left" href="#" title="">Create Outfit</a>
-                                    <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                    <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo HTTP_ROOT; ?>images/cam-icon.png" alt="" /></span></a>
                                     <a class="send-btn right" href="#" title="">Send</a>
                                 </div>
                             </div>
@@ -190,9 +190,9 @@
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
                         </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                        <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>

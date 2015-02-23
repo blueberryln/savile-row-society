@@ -223,9 +223,9 @@ $this->Html->css('colorbox', null, array('inline' => false));
                 <div class="six columns left">
                     <div class="product-default-image">
                         <?php if(count($entity['Image']) > 0) : ?>
-                            <a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images" class="group1" rel="group<?php echo $entity['Entity']['id']; ?>"><img class="zoom_01" src="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" data-zoom-image="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" /></a>
+                            <a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images" class="group1" rel="group<?php echo $entity['Entity']['id']; ?>"><img class="zoom_01" src="<?php echo HTTP_ROOT . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" data-zoom-image="<?php echo HTTP_ROOT . 'files/products/' . $entity['Image'][0]['name']; ?>" /></a>
                         <?php else : ?>
-                            <img src="<?php echo $this->webroot; ?>img/image_not_available.png" class="fadein-image" />                    
+                            <img src="<?php echo HTTP_ROOT; ?>img/image_not_available.png" class="fadein-image" />                    
                         <?php endif; ?>
                     </div>
                     
@@ -234,9 +234,9 @@ $this->Html->css('colorbox', null, array('inline' => false));
                             <ul>
                                 <?php for($i=1; $i < count($entity['Image']); $i++) : ?> 
                                     <?php if($i != 4) : ?>
-                                        <li><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images1" class="group1" rel="group<?php echo $entity['Entity']['id']; ?>"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
+                                        <li><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images1" class="group1" rel="group<?php echo $entity['Entity']['id']; ?>"><img src="<?php echo HTTP_ROOT . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
                                     <?php else : ?>
-                                        <li class="last"><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images" class="group1"rel="group<?php echo $entity['Entity']['id']; ?>"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
+                                        <li class="last"><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images" class="group1"rel="group<?php echo $entity['Entity']['id']; ?>"><img src="<?php echo HTTP_ROOT . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
                                     <?php endif; ?>
                                 <?php endfor; ?>
                             </ul>

@@ -22,8 +22,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     <div class="mega-banner" id="one">
         <div class="flexslider">
             <ul class="slides">
-                <li><img src="<?php echo $this->request->webroot; ?>images/h_banner_1.jpg"/></li>
-                <li><img src="<?php echo $this->request->webroot; ?>images/h_banner_2.jpg"/></li>
+                <li><img src="<?php echo HTTP_ROOT; ?>images/h_banner_1.jpg"/></li>
+                <li><img src="<?php echo HTTP_ROOT; ?>images/h_banner_2.jpg"/></li>
             </ul>
         </div>
         <div class="mega-banner-overlay">
@@ -32,9 +32,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <div class="overlay-bnts left">
                 <a class="tell-more gray-btns" href="/#two" title="">Tell Me More</a>
                 <?php if($is_logged): ?>
-                    <a class="overlay-started brown-btns" href="/messages/index" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
+                    <a class="overlay-started brown-btns" href="/messages/index" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo HTTP_ROOT; ?>images/btn-arrow.png"</span></a>
                 <?php else: ?>
-                    <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
+                    <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo HTTP_ROOT; ?>images/btn-arrow.png"</span></a>
                 <?php endif; ?>
             </div>
         </div>
@@ -62,9 +62,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                         <div class="outfit-main-img left">
                                         <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>">
                                         <?php if($outfit['Stylist']['profile_photo_url']): ?>
-                                              <img src="<?php echo $this->webroot; ?>files/users/<?php echo $outfit['Stylist']['profile_photo_url']; ?>"  />                      
+                                              <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $outfit['Stylist']['profile_photo_url']; ?>"  />                      
                                         <?php else: ?>
-                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg"  />                       
+                                            <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg"  />                       
                                         <?php endif; ?>
                                         <!-- <img src="<?php echo $this->webroot; ?>images/profile_new.png"  />   -->
                                         </a>
@@ -91,8 +91,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                             ?>
                                                 <a href="<?php echo $this->webroot;
                                                      echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>">
-                                                <li>
-                                                    <img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" />
+                                                <li><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" />
                                                      <?php //if($item['product']['Entity']['price']) { ?>
                                                      <span class="hover_overlay"><?php echo "$".$item['product']['Entity']['price']; ?></span>
                                                      <?php //} ?>
@@ -170,12 +169,12 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <li>
                         <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
                             <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
-                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
+                            <span class="featured-stylist-hover-img"><img src="<?php echo HTTP_ROOT; ?>images/how-it-works/featured-hover.png" /></span>
                         </div>
                        <?php if($topstylist['User']['profile_photo_url']): ?>
-                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
+                        <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
                     <?php else: ?>
-                        <img src="<?php echo $this->webroot; ?>images/default-user.jpg"  />                       
+                        <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg"  />                       
                         <?php endif; ?>
                          
                         </a>
@@ -216,7 +215,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <?php else : ?>
                     <a href="#" class="over-img multi-action">
                 <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step1.jpg" alt="How Savile Row Society Works" />
+                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step1.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Get Started with your Stylist</span>
@@ -229,7 +228,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <?php else : ?>
                     <a href="#" class="over-img multi-action">
                 <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step2.jpg" alt="How Savile Row Society Works" />
+                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step2.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Get Your Hand Selected Looks</span>
@@ -242,7 +241,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <?php else : ?>
                     <a href="#" class="over-img multi-action">
                 <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step3.jpg" alt="How Savile Row Society Works" />
+                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step3.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Your Looks, to Your Doorstep</span>
@@ -317,17 +316,17 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <div class="eleven columns container brand-boxes">
             <div class="nine columns container">
                 <ul id="branding-ptners">
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Hook+Albert_new.png" alt="" /></li>
-                    <li class="no-mrgn"><img src="<?php echo $this->webroot; ?>images/branding-partners/smathersAndBranson_new.png" alt="" /></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Cole_Haan_new.jpg" alt="" /></li><br>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/paulevans_new.png" alt="" /></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Ben-Sherman_new.jpg" alt="" /></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/lacoste_new.png" alt="" /></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Solid-&-Striped_new.png" alt="" /></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/tateossian_new.png" alt="" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/Hook+Albert_new.png" alt="" /></li>
+                    <li class="no-mrgn"><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/smathersAndBranson_new.png" alt="" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/Cole_Haan_new.jpg" alt="" /></li><br>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/paulevans_new.png" alt="" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/ben-sherman_new.jpg" alt="" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/lacoste_new.png" alt="" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/Solid-&-Striped_new.png" alt="" /></li>
+                    <li><img src="<?php echo HTTP_ROOT; ?>images/branding-partners/tateossian_new.png" alt="" /></li>
                 </ul>
             </div>
-            <!-- <a class="brands-link" href="<?php echo $this->webroot; ?>company/brands" title="">See &amp; Learn More about Our Brands</a> -->
+            <!-- <a class="brands-link" href="<?php echo HTTP_ROOT; ?>company/brands" title="">See &amp; Learn More about Our Brands</a> -->
         </div>
     </div>
                         
@@ -341,15 +340,15 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         </div>
         <div class="nine columns container press_wrapper">
             <div class="press_companies">
-                <img src="<?php echo $this->webroot; ?>images/press_logo1.jpg" alt="" class="first" />
+                <img src="<?php echo HTTP_ROOT; ?>images/press_logo1.jpg" alt="" class="first" />
                 <p>"Let your personal stylist find your new kick ass wardrobe <br/> at Savile Row Society. Savile Row Society is a men's <br/>personal styling platform and our mission <br/> is to enhance the way men shop"<br><br></p>
             </div> 
             <div class="press_companies">
-                <img src="<?php echo $this->webroot; ?>images/press_logo2.jpg" alt="" />
+                <img src="<?php echo HTTP_ROOT; ?>images/press_logo2.jpg" alt="" />
                 <p>The idea: Bring a top-notch selection of clothing <br> --suits, wingtips high-quality dress-shirts-- <br> straight to guys, with a spectrum of buying options <br> depending on how involved in the process <br> of stocking their closet they want to be.</p>
             </div> 
             <div class="press_companies">
-                <img src="<?php echo $this->webroot; ?>images/press_logo3.jpg" alt="" class="last" />
+                <img src="<?php echo HTTP_ROOT; ?>images/press_logo3.jpg" alt="" class="last" />
                 <p>The platform provides clients with personal stylists <br> after initial consultations and strikes partnerships <br> with brands to add  o its own bespoke line. <br> Tiered pricing and a variety of entry points makes <br> SRS potentially attractive to many affluent  emographics.</p>
             </div> 
         </div>

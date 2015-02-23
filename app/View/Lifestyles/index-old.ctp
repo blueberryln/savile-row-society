@@ -122,8 +122,8 @@ $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.e
                         <?php foreach ($categories as $category): ?>
                             <li <?php echo ($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') ? 'class="highlighted-cat"' : '';?>>
                             <?php if($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') : ?>
-                                <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
-                                <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
+                                <span class="cuff-left"><img src="<?php echo HTTP_ROOT; ?>img/icon_left.png" /></span>
+                                <span class="cuff-right"><img src="<?php echo HTTP_ROOT; ?>img/icon_right.png" /></span>
                             <?php endif; ?>
                             
                             <?php if($category['Category']['slug'] == "lookbooks") : ?>
@@ -182,7 +182,7 @@ $this->Html->script("//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.e
                             <div class="product-list-image">
                                 <a href="<?php echo $this->request->webroot . 'lookbooks/detail/' . $lifestyle['Lifestyle']['id'] . '/' . $lifestyle['Lifestyle']['slug']; ?>">
                                 <div>
-                                    <img src="<?php echo $this->webroot. "lookbooks/resize/" . $lifestyle['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT. "lookbooks/resize/" . $lifestyle['Lifestyle']['image']; ?>/158/216" alt="Lifestyle" class="product-image fadein-image" />
                                 </div>
                                 </a>
                             </div>

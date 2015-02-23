@@ -1,16 +1,16 @@
 <?php
 if($user['User']['profile_photo_url']){
-    $user_image_src = $this->webroot . 'files/users/' . $user['User']['profile_photo_url'];
+    $user_image_src = HTTP_ROOT . 'files/users/' . $user['User']['profile_photo_url'];
 }
 else{
-    $user_image_src = $this->webroot . 'images/default-user.jpg';
+    $user_image_src = HTTP_ROOT . 'images/default-user.jpg';
 }
 
 if($stylist['User']['profile_photo_url']){
-    $stylist_image_src = $this->webroot . 'files/users/' . $stylist['User']['profile_photo_url'];
+    $stylist_image_src = HTTP_ROOT . 'files/users/' . $stylist['User']['profile_photo_url'];
 }
 else{
-    $stylist_image_src = $this->webroot . 'images/default-user.jpg';
+    $stylist_image_src = HTTP_ROOT . 'images/default-user.jpg';
 }
 
 $page_title = '';
@@ -46,7 +46,7 @@ else if($sideBarTab == "refer"){
     <div class="client-img-small right">
     <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $stylist['User']['id']; ?>" title=""><img src="<?php echo $stylist_image_src; ?>" id="user_image"  /></a>
     </div>
-    <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+    <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
 </div>
 <div class="dd-nav">
     <ul>

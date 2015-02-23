@@ -38,7 +38,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                         <div class="team-member-container"> 
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-01.jpg" data-member-name="Lisa Dolan" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-01.jpg" data-member-name="Lisa Dolan" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Lisa Dolan</div>
@@ -60,7 +60,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                             
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-12.jpg" data-member-name="Matt" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-12.jpg" data-member-name="Matt" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Matt “M-P” Markezin-Press</div>
@@ -79,7 +79,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/AndreaLuongo.jpg" data-member-name="Andrea Luongo" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/AndreaLuongo.jpg" data-member-name="Andrea Luongo" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Andrea Luongo</div>
@@ -103,7 +103,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                             
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-14.jpg" data-member-name="Leslie Gilbert-Morales" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-14.jpg" data-member-name="Leslie Gilbert-Morales" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Leslie Gilbert-Morales</div>
@@ -121,7 +121,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-15.jpg" data-member-name="Mitch Wertheimer" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-15.jpg" data-member-name="Mitch Wertheimer" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Mitch Wertheimer</div>
@@ -138,7 +138,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                             
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-16.jpg" data-member-name="James Vinson" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-16.jpg" data-member-name="James Vinson" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">James Vinson</div>
@@ -162,7 +162,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                             
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-18.jpg" data-member-name="Bella Klycheva" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-18.jpg" data-member-name="Bella Klycheva" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Bella Klycheva</div>
@@ -178,7 +178,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-19.jpg" data-member-name="Alex Regensburg" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-19.jpg" data-member-name="Alex Regensburg" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Alex Regensburg</div>
@@ -201,7 +201,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                             
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-20.jpg" data-member-name="Pallavi Singhal" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-20.jpg" data-member-name="Pallavi Singhal" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Pallavi Singhal</div>
@@ -217,7 +217,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                             
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-10.jpg" data-member-name="Prateek Sachdev" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-10.jpg" data-member-name="Prateek Sachdev" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Prateek Sachdev</div>
@@ -235,7 +235,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                             
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-21.jpg" data-member-name="Whitney Baumann" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-21.jpg" data-member-name="Whitney Baumann" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Whitney Baumann</div>
@@ -258,7 +258,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                         <div class="team-member-container">    
                             <div class="team-member">
                                 <div>
-                                    <img src="<?php echo $this->request->webroot; ?>img/team-member-21.jpg" data-member-name="Saurabh Sharma" class="fadein-image" />
+                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-21.jpg" data-member-name="Saurabh Sharma" class="fadein-image" />
                                 </div>
                                 <div>
                                     <div class="name">Saurabh Sharma</div>

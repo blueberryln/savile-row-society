@@ -30,7 +30,7 @@ $('.hoverNav').fadeOut(10);
 
         <!--LogoSection-->
         <div class="header-logo left">
-            <a href="/" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_new.jpg" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <a href="/" ><img class="logo" src="<?php echo HTTP_ROOT; ?>img/srs_logo_new.jpg" alt="Savile Row Society" title="Savile Row Society" /></a>
             <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
         </div>
         <!--LogoSection Ends-->
@@ -38,7 +38,7 @@ $('.hoverNav').fadeOut(10);
 
         <!-- top_wrapper -->
         <div class="top_wrapper">
-        <div id="menu-switcher1"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></div>
+        <div id="menu-switcher1"><img src="<?php echo HTTP_ROOT; ?>img/menu-switcher-icon.png" /></div>
         <!-- mobile_menu -->
         
         <div class="mobile_menu">
@@ -130,7 +130,7 @@ $('.hoverNav').fadeOut(10);
         
        
         
-        <!-- <span id="menu-switcher"><img src="<?php echo $this->webroot; ?>img/menu-switcher-icon.png" /></span> -->
+        <!-- <span id="menu-switcher"><img src="<?php echo HTTP_ROOT; ?>img/menu-switcher-icon.png" /></span> -->
         
         <!--Menu Section-->
         <div class="menu right">            
@@ -166,9 +166,9 @@ $('.hoverNav').fadeOut(10);
                 
                 <div class="two columns right admin-top-right">
                     <ul>
-                       <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                       <li><a href="<?php echo $this->request->webroot; ?>cart"><img class="cart-icons" src="<?php echo HTTP_ROOT; ?>images/cart-icon.png" alt="" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                         <li> 
-                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
+                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                             <div class="admin-top-right-dropdown">
                                 <ul>
                                     <?php if ($is_stylist || $is_admin ) : ?>
@@ -206,7 +206,7 @@ $('.hoverNav').fadeOut(10);
            <div class="twelve columns container left pad-none">
                 <div class="two columns right admin-top-right">
                     <ul>
-                        <li><a href="<?php echo $this->request->webroot; ?>guest/cart"><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>guest/cart"><img class="cart-icons" src="<?php echo HTTP_ROOT; ?>images/cart-icon.png" alt="" /> (<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a></li>
                     </ul>    
                 </div>
            

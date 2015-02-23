@@ -12,9 +12,9 @@
                 </div>
                 <div class="two columns right admin-top-right">
                     <ul>
-                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
+                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo HTTP_ROOT; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
                         <li>
-                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
+                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                             <div class="admin-top-right-dropdown">
                                 <ul>
                                     <li><a href="#" title="">view my cart/checkout</a></li>
@@ -58,7 +58,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -69,7 +69,7 @@
                                 <li class="active">
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -80,7 +80,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -91,7 +91,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -214,42 +214,42 @@
                                 </li>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
+                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
                                     <div class="itm-sls-list-client">kyle harper</div>
                                     <div class="itm-sls-list-outfit">Beach day</div>
                                     <div class="itm-sls-list-amt">$130.00</div>
                                 </li>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
+                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
                                     <div class="itm-sls-list-client">kyle harper</div>
                                     <div class="itm-sls-list-outfit">Beach day</div>
                                     <div class="itm-sls-list-amt">$130.00</div>
                                 </li>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
+                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
                                     <div class="itm-sls-list-client">kyle harper</div>
                                     <div class="itm-sls-list-outfit">Beach day</div>
                                     <div class="itm-sls-list-amt">$130.00</div>
                                 </li>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
+                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
                                     <div class="itm-sls-list-client">kyle harper</div>
                                     <div class="itm-sls-list-outfit">Beach day</div>
                                     <div class="itm-sls-list-amt">$130.00</div>
                                 </li>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
+                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
                                     <div class="itm-sls-list-client">kyle harper</div>
                                     <div class="itm-sls-list-outfit">Beach day</div>
                                     <div class="itm-sls-list-amt">$130.00</div>
                                 </li>
                                 <li class="itm-sls-list-section">
                                     <div class="itm-sls-list-date">7/27/2014</div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
+                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>Solid Cali, Solid &amp; STripes </div>
                                     <div class="itm-sls-list-client">kyle harper</div>
                                     <div class="itm-sls-list-outfit">Beach day</div>
                                     <div class="itm-sls-list-amt">$130.00</div>
@@ -265,9 +265,9 @@
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
                         </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                        <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>

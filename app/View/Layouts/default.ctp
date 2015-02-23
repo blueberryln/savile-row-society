@@ -32,10 +32,10 @@
         ?>
         <!-- Favicons
         ================================================== -->
-        <link rel="shortcut icon" href="<?php echo $this->request->webroot; ?>img/favicon.ico">
-        <link rel="apple-touch-icon" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-114x114.png">
+        <link rel="shortcut icon" href="<?php echo HTTP_ROOT; ?>img/favicon.ico">
+        <link rel="apple-touch-icon" href="<?php echo HTTP_ROOT; ?>img/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo HTTP_ROOT; ?>img/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo HTTP_ROOT; ?>img/apple-touch-icon-114x114.png">
 
         
         <?php
@@ -94,9 +94,9 @@
         ================================================== -->
 
 
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
         <!--<script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>-->      
-        <script src="<?php echo $this->request->webroot; ?>js/block.ui.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/block.ui.js" type="text/javascript"></script>
         <script type="text/javascript">
             /*
              * check if user is logged in
@@ -150,19 +150,19 @@
                 // startMessageNotifier();
             });
         </script>
-        <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/highcharts.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.highchartTable.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/common.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.bxslider.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jPages.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/highcharts.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.highchartTable.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery-ui.min.js" type="text/javascript"></script>
         
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.jcarousel.min.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jcarousel.responsive.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.validate.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.jcarousel.min.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jcarousel.responsive.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.validate.js" type="text/javascript"></script>
         <?php
         if(isset($pixel)){
             echo $pixel;
@@ -534,7 +534,7 @@
             
             
         </script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
         <script type="text/javascript">
            jQuery(window).load(function (){
                 $("#scrollbar1").tinyscrollbar({ axis: "y"});

@@ -24,7 +24,7 @@ $(document).ready(function(){
                                 <div class="twelve columns message-area left pad-none">
                                     <div class="eleven columns container pad-none">
                                         <div class="short-by-date">
-                                            <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
+                                            <span class="short-by-date-arrow"><img src="<?php echo HTTP_ROOT; ?>images/down-arrow.png" alt=""/></span>
                                             <select id="sortdate">
                                                 <option value="desc" <?php echo ($pageOrder == 'desc') ? 'selected' : ''; ?>>Sort By Date DESC</option>
                                                 <option value="asc" <?php echo ($pageOrder == 'asc') ? 'selected' : ''; ?>>Sort By Date ASC</option>
@@ -50,9 +50,9 @@ $(document).ready(function(){
                                                                         <div class="purchase-dtls-items left">
                                                                             <div class="purchase-dtls-items-img">
                                                                                 <?php if(count($value['Image'])): ?>
-                                                                                    <img src="<?php echo $this->webroot; ?>files/products/<?php echo $value['Image'][0]['name']; ?>" alt=""/>
+                                                                                    <img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $value['Image'][0]['name']; ?>" alt=""/>
                                                                                 <?php else: ?>
-                                                                                    <img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="">
+                                                                                    <img src="<?php echo HTTP_ROOT; ?>images/image_not_available.png" alt="">
                                                                                 <?php endif; ?>
                                                                                 
                                                                             </div>

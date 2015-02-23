@@ -5,7 +5,7 @@
         <div class="sixteen columns text-center">
 
             <!--            <div class="banner"></div> -->
-            <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
+            <a href="<?php echo $this->request->webroot; ?>" style="display: inline-block;"><img class="logo" src="<?php echo HTTP_ROOT; ?>img/srs_logo_white.png" alt="Savile Row Society" title="Savile Row Society" /></a>
             <span class="tagline" style="visibility: visible">Meet Your Personal Stylist Now!</span>
         </div>
         <div class="sixteen columns alpha omega menu">
@@ -81,7 +81,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" title="Account"><img src="<?php echo $this->request->webroot; ?>img/profile-icon.png" alt="Account" /></a>
+                    <a href="#" title="Account"><img src="<?php echo HTTP_ROOT ?>img/profile-icon.png" alt="Account" /></a>
                     <ul class="submenu">
                         <li><a href="<?php echo $this->request->webroot; ?>">View website</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
