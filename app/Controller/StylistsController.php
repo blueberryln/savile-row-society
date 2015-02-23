@@ -47,7 +47,7 @@ class StylistsController extends AppController {
         $OutfitItem = ClassRegistry::init('OutfitItem');
         $Entity = ClassRegistry::init('Entity'); 
         // get Top outfit All data
-        $OutfitTopData = $StylistTopOutfit->find('all',array('conditions'=>array('StylistTopOutfit.stylist_id'=>$id), 'orderBy' => ['StylistTopOutfit.order_id' => 'asc']));
+        $OutfitTopData = $StylistTopOutfit->find('all',array('conditions'=>array('StylistTopOutfit.stylist_id'=>$id), 'orderBy' => ('StylistTopOutfit.order_id' => 'asc')));
         
         $my_outfit = array();
         foreach($OutfitTopData as $row){
