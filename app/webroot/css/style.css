@@ -824,21 +824,12 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 .top_rightSection.login_rightSection{ min-width: 12%; margin: 2px 0 0 0; text-align: right; }
 .top_rightSection.login_rightSection .card-menu{ margin-right: 0% !important; }
 .top_rightSection.login_rightSection a.cart_link {  margin: 0;  }
-.container.content > .container{ position: relative; top: 50px; }
-.hover_overlay{
-position: absolute;
-width: 100%;
-height: 135px;
-background: rgba(0, 0, 0, 0.5);
-z-index: 2;
-display: none; 
-vertical-align: top;
-color: #fff;
-font-size: 18px;
-line-height: 135px;
-left: 0px;
-top: 0px;
-}
+.container.content > .container{ position: relative; top: 81px; margin-bottom: 81px; }
+.hover_overlay{ position: absolute; width: 100%; height: 135px; background: rgba(0, 0, 0, 0.5); z-index: 2; display: none;  vertical-align: top; color: #fff; font-size: 18px; line-height: 135px; left: 0px; top: 0px; }
+.bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; } 
+
+
+
 
 
 /*******New Home Page*******/
@@ -996,9 +987,9 @@ ul#branding-ptners .clear-fix{ display: none; }
 .outfit-stylist li .outfit-link-btn { width: auto; margin: 20px auto 0; text-align: center; display: inline-block;}
 .outfit-stylist li .outfit-link-btn a.outfilt-btns { display: block; text-decoration: none; color: #fff; font-family: 'ProximaNovaCond-Regular'; text-transform: uppercase; background: #d19b03; padding: 13px 25px 10px; font-size: 22px; font-weight: normal;}
 
-.outfit-stylist a.bx-prev, .outfit-stylist a.bx-next{ position: absolute; bottom: 3px; background: url('../img/stylist_arrows.jpg') no-repeat; width: 16px; height: 25px; text-indent: -9999px; z-index: 50; outline: 0;}
-.outfit-stylist a.bx-prev { background-position: left top; left: 44%;}
-.outfit-stylist a.bx-next { background-position: right top; right: 44%;}
+.outfit-stylist a.bx-prev, .outfit-stylist a.bx-next{ position: absolute; background: url('../img/stylist_arrows.jpg') no-repeat; width: 16px; height: 25px; text-indent: -9999px; z-index: 50; outline: 0;}
+.outfit-stylist a.bx-prev { background-position: left top; left: 0 !important;}
+.outfit-stylist a.bx-next { background-position: right top; right: 0 !important;}
 
 .style-time ul { padding-bottom: 70px; background: url('../img/bottom-line.png') no-repeat center bottom;} 
 .style-time li { margin: 0 5px;}
@@ -1976,7 +1967,7 @@ input#billingCopybilling { visibility: visible;}
     .outfit-stylist .bx-wrapper { margin-left: 50px!important; margin-right: 40px!important;}
     .outfit-stylist a.bx-prev{ left: 35%;}
     .outfit-stylist a.bx-next { right: 35%;}
-    .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next{ top: 560px; }
+    /*.outfit-stylist a.bx-prev, .outfit-stylist a.bx-next{ top: 560px; }*/
     .bx-wrapper .bx-pager { padding-top: 25px;}
     .style-time ul li { margin-bottom: 20px;}
     .style-time ul { padding-bottom: 25px;}
@@ -2178,7 +2169,14 @@ input#billingCopybilling { visibility: visible;}
     .top_rightSection a.cart_link{ margin: 6px 40px 0px 0px; }
     #client_signUp_section{ height: auto; padding: 30px 0px 10px; }
 
-    
+
+    /* Stylist Bio Media CSS --> By Rahul */
+    .stylistbio-section-left{ width: 32%; }
+    .stylistbio-section-right{ width: 100%; }
+    .stylistbio-profile{ width: 100%; }
+    .stylistbio-details{ width: 100%; }
+
+   
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
 	.membership-flow{padding: 0 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
@@ -2298,9 +2296,9 @@ input#billingCopybilling { visibility: visible;}
 		img.cart-img{vertical-align: middle; width:25px;}
 		.card-menu/*{line-height: normal; position: absolute; top: 5px; right: 5px; z-index: 9999;}*/
         {
-line-height: 71px;
-margin: 0px 5px 0 0 !important;
-display: inline-block;
+margin-right: 0% !important;
+float: right;
+line-height: normal;
 }
 		span.call-us-at, span.welcome-name{display:none;}
         span.welcome-name { display: block; width: 100%; padding: 0px; text-align: center; top: 10px;}
@@ -2441,7 +2439,7 @@ display: inline-block;
 	.h-f{position: relative !important;}
 	.outfit-page-item .add-to-cart{margin-bottom: 35px;}
 	#sign-up-drop-down .close{right:5px; font-size: 20px;}
-	#sign-up-drop-down p { font-size: 25px; padding-top: 15px}
+	#sign-up-drop-down p { font-size: 25px; padding-top: 15px; }
 	.initial-module .show-login-form{font-size: 13px !important; margin-top: 15px;}
     /*STYLISTBIO*/
     .stylistbio-section-left, .stylistbio-short-note, .stylistbio-list, .stylistbio-section-right, .stylistbio-profile, .stylistbio-section-right .eleven.columns, .stylistbio-details, .stylistbio-user { width: 100%!important;}
@@ -2586,7 +2584,7 @@ display: inline-block;
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img {line-height: 75px;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 95px; float: left;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 16px;}
-    .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next { top: inherit; bottom: 5px; }
+    /*.outfit-stylist a.bx-prev, .outfit-stylist a.bx-next { top: inherit; bottom: 5px; }*/
     
     
     .two.columns.right.admin-top-right { padding-left: 0px!important; padding-right: 0px!important;}
@@ -2605,15 +2603,15 @@ display: inline-block;
     /*** CSS BY RAHUL ***/
     .top_wrapper { position: absolute; top: 11px; right: 0; width: 100%; z-index: 200; }
     .top_mainNav{ display: none; }
-    .top_rightSection{ width: 100%; text-align: right; }
+    .top_rightSection.login_rightSection{ width: 29%; margin: 7px 10px 0 0; text-align: right; float: right; }
     .top_rightSection a.login{ display: none; }
     .top_rightSection a.getStarted{ display: none; }
     .mobile_menu{ position: absolute; width: 100%; background: #000; top: 58px; left: 0; text-align: left; } 
-    #menu-switcher1{ display: block; cursor: pointer; width: 35px; right: 0; }
+    #menu-switcher1{ display: block; cursor: pointer;  width: 35px;   right: 0;  float: right; position: relative; }
     .mega-banner ul li{ height: auto; }
     .flexslider{ height: auto; }
     .mega-banner{ height: auto; }
-    .top_rightSection a.cart_link{ margin: 6px 40px 0px 0px; }
+    .top_rightSection a.cart_link{ float: left; }
     #client_signUp_section{ height: auto; padding: 30px 0px 10px; }
 
 
@@ -2741,7 +2739,7 @@ display: inline-block;
 	#sign-up-drop-down p { font-size: 25px; padding-top: 15px}
 	.initial-module .show-login-form{font-size: 13px !important; margin-top: 15px;}
     /*STYLISTBIO*/
-    .stylistbio-section-left, .stylistbio-short-note, .stylistbio-list, .stylistbio-section-right, .stylistbio-profile, .stylistbio-section-right .eleven.columns, .stylistbio-details, .stylistbio-user { width: 100%!important;}
+    .stylistbio-section-left, .stylistbio-short-note, .stylistbio-list, .stylistbio-section-right, .stylistbio-profile, .stylistbio-section-right .eleven.columns, .stylistbio-details, .stylistbio-user { width: 100%!important; text-align: center; }
     .stylistbio-section-left .twelve.columns, .stylistbio-section-left .eleven.columns, .stylistbio-section-right .eleven.columns, .stylistbio-section-right .twelve.columns, .stylistbio-section-right .container  { padding: 0px;}
     .social-networks { padding-top: 10px!important;}
     .stylistbio-user{text-align: center;}
@@ -2887,7 +2885,7 @@ display: inline-block;
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-main-img {line-height: 75px;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content.left { width: 75px!important; float: left;}
     .outfit-stylist li .shop-outfit .shop-outfit-top .outfit-top-content .outfit-brand { font-size: 12px; line-height: 14px;}
-    .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next { bottom: 0; top: inherit; }
+    /*.outfit-stylist a.bx-prev, .outfit-stylist a.bx-next { bottom: 0; top: inherit; }*/
     
     .two.columns.right.admin-top-right { padding-left: 0px!important; padding-right: 0px!important;}
     
@@ -2949,7 +2947,7 @@ display: inline-block;
 @media screen and (min-width: 800px) and (max-width: 1024px) and (orientation : landscape) {
     .content-container-home .outfit-stylist a.bx-next{ right: 39.5%; }
     .content-container-home .outfit-stylist a.bx-prev{ left: 41%; }
-    .content-container-home .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next{ top: inherit; }
+    /*.content-container-home .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next{ top: inherit; }*/
     .content-container-home .jcarousel-control-prev{ left: 35%; }
     .content-container-home .jcarousel-control-next{ right: 36%; }
     .bottom.footer-bar .menu.right.three.columns{ width: 100%; }
@@ -3167,8 +3165,8 @@ display: inline-block;
 
 
 @media (max-width: 1600px) and (min-width: 770px){
-    .outfit-stylist a.bx-prev{ left: 42%; }
-    .outfit-stylist a.bx-next{ right: 42%; }
+    /*.outfit-stylist a.bx-prev{ left: 42%; }
+    .outfit-stylist a.bx-next{ right: 42%; }*/
     .jcarousel-control-prev, .jcarousel-control-next{bottom: -50px; top: inherit;}
     .jcarousel-control-prev{ left: 39%; }
     .jcarousel-control-next{ right: 39.5%; }

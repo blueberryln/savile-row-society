@@ -445,9 +445,9 @@ color:#396; !important
                             <div class="pref-options">
                                 <?php
                                     echo $this->Form->input('User.lead',array('type'=>'hidden'));
-                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'First Name', 'tabindex' => 1));
-                                    echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'Last Name', 'tabindex' => 2));
-                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'Email', 'tabindex' => 3));
+                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'First Name*', 'tabindex' => 1));
+                                    echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'Last Name*', 'tabindex' => 2));
+                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'Email*', 'tabindex' => 3));
                                     
                                 ?>
                             </div>
@@ -456,9 +456,9 @@ color:#396; !important
                             <div class="pref-options">      
                               <?php
                                 
-                                echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode", 'tabindex' => 4));
-                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'Password', 'tabindex' => 5));
-                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'Confirm Password', 'tabindex' => 6));
+                                echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode*", 'tabindex' => 4));
+                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'Password*', 'tabindex' => 5));
+                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'Confirm Password*', 'tabindex' => 6));
                                 ?> 
                                 
                                 </div>
@@ -475,7 +475,7 @@ color:#396; !important
                                 
                                 <!-- <input type="text"  id="phone1" name="mobile" maxlength="10" minlength="10" /> -->
                                 <?php
-                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number", "maxlength"=> "10", "minlength"=> "10", "onkeypress"=> "return checkForNumber();", 'required', "id"=> "phone", "pattern"=> ".{10,10}", "title"=> "10 digits required" ));
+                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number*", "maxlength"=> "10", "minlength"=> "10", "onkeypress"=> "return checkForNumber();", 'required', "id"=> "phone", "pattern"=> ".{10,10}", "title"=> "10 digits required" ));
                                     echo $this->Form->input('User.skype', array( 'label' => false, 'placeholder' => 'Skype Id (Optional)'));
                                 ?>
                             </div>
