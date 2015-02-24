@@ -42,8 +42,11 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <div class="clear-fix"></div> 
     </div>
    
-    <div class="eleven columns container container-box" id="four"> 
-        <div class="blank-space2">&nbsp;</div>
+
+
+
+    <div class="eleven columns container container-box" id="one_topLooks"> 
+        <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading topLooks_wrapper">
             <h1>Top Looks</h1>
             <h3>Curated by Savile Row Stylists.</h3>
@@ -151,8 +154,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     <!-- /client_signUp_section -->
 
 
-    <div class="eleven columns container container-box" id="three"> 
-        <div class="blank-space2">&nbsp;</div>
+    <div class="eleven columns container container-box" id="two"> 
+        <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
             <h1>Featured Stylists</h1>
             <!-- <h3>Check out some of our featured Personal Stylists</h3>
@@ -200,7 +203,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     </div>
 
 
-    <div class="eleven columns container container-box howItWork_wrapper bgColor" id="two">
+    <div class="eleven columns container container-box howItWork_wrapper bgColor" id="three">
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
             <h1>How IT Works</h1>
@@ -306,8 +309,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         </div>
     </div> -->
         
-    <div class="eleven columns container container-box" id="six">
-        <div class="blank-space2">&nbsp;</div>
+    <div class="eleven columns container container-box" id="four">
+        <div class="blank-space">&nbsp;</div>
         <div class="six columns text-center page-heading">
             <h1>Our brands</h1>
             <h3>Savile Row Society selects the best of the best.</h3>
@@ -333,7 +336,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
 
 
-    <div class="eleven columns container container-box press_wrapper bgColor" id="two">
+    <div class="eleven columns container container-box press_wrapper bgColor">
         <div class="blank-space2">&nbsp;</div>
         <div class="eleven columns text-center page-heading">
             <h1>Press</h1>
@@ -362,7 +365,6 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         
 </div>
 <script>
-
     $(function(){
         $(".shop-outfit-bottom").on('click', function(){
             location = $(this).find('a.shop-outfit-bottom-link').attr('href');

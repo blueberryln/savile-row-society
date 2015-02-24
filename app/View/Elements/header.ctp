@@ -58,11 +58,11 @@ $('.hoverNav').fadeOut(10);
         <!-- top_mainNav -->
         <div class="top_mainNav second-screen">
             <ul>
-                <li><a href="<?php echo $this->webroot; ?>#four">LOOKS</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#three">STYLISTS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#one_topLooks">LOOKS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two">STYLISTS</a></li>
                 <?php if(!$user):?>
-                <li><a href="<?php echo $this->webroot; ?>#two">HOW IT WORKS</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#six">BRANDS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three">HOW IT WORKS</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#four">BRANDS</a></li>
                 <?php else: ?>
                 
                 <!-- <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a> -->
@@ -135,11 +135,11 @@ $('.hoverNav').fadeOut(10);
         <!--Menu Section-->
         <div class="menu right">            
             <ul> <?php if(!$user) : ?>
-                <li><a href="<?php echo $this->webroot; ?>#two" title="">About</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#three" title="">Stylists</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#four" title="">Outfits</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#five" title="">Style on your time</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#six" title="">Brands</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#one_topLooks" title="">About</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two" title="">Stylists</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#three" title="">Outfits</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#four" title="">Style on your time</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#five" title="">Brands</a></li>
                 <?php endif;  ?>
             </ul>
         </div>
