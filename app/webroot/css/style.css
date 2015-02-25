@@ -165,9 +165,10 @@ input[type="submit"]{color: #fff;}
     .twelve.columns		{ width: 100%; }
     .nine-five.columns{width: 95%;}
 
-    .container{position: relative; width: 960px; margin: 0 auto; padding: 0;}
+    .container{position: relative; width: 960px; margin: 0 auto; padding: 0 0 10px 0;}
     .content-container, .content-container-home {height: 100%; position: relative; margin-top: 0px; z-index: 0;}
     .content-container-home, .stylist-biography-section, .content-container-team, .content-container-privacy, .content-container-contact, .content-container-brands, .content-container-faq, .content-container-terms{ margin-top: 163px;}
+    .content-container-home#topmost, .stylist-biography-section, .content-container-team, .content-container-privacy, .content-container-contact, .content-container-brands, .content-container-faq, .content-container-terms{ margin-top: 30px;}
     .container-box { background: #ffffff; /*margin-top: 130px;*/}
     /*.container .column, .container .columns{float: none;}*/
     .inner{margin-bottom: 0px;}
@@ -824,10 +825,21 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 .top_rightSection.login_rightSection{ min-width: 12%; margin: 2px 0 0 0; text-align: right; }
 .top_rightSection.login_rightSection .card-menu{ margin-right: 0% !important; }
 .top_rightSection.login_rightSection a.cart_link {  margin: 0;  }
-.container.content > .container{ position: relative; top: 81px; margin-bottom: 81px; }
+.container.content > .container{ position: relative; top: 0; margin-bottom: 81px; }
 .hover_overlay{ position: absolute; width: 100%; height: 135px; background: rgba(0, 0, 0, 0.5); z-index: 2; display: none;  vertical-align: top; color: #fff; font-size: 18px; line-height: 135px; left: 0px; top: 0px; }
-.bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; } 
-
+.bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; z-index: 1; } 
+.jcarousel-control-wrapper{
+display: inline-block;
+height: 25px;
+width: 220px;
+position: absolute;
+left: 0;
+bottom: -46px;
+text-align: center;
+right: 0;
+z-index: 1;
+margin: 0px auto 9px;
+}
 
 
 
@@ -836,7 +848,7 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 .ui-widget-content{ padding-top: 10px;}
 .homepage{padding-top: 0;}
 #my-stylist .link-btn, div.mgs-btn .link-btn{padding: 15px 30px;}
-.works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes{display: block; position: relative; margin: 60px auto 35px; text-align: center; padding-bottom: 50px;}
+.works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes{display: block; position: relative; margin: 60px auto 35px; text-align: center; /*padding-bottom: 50px;*/ min-height: 320px;  }
 .works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .outfit-boxes{ margin: 60px auto 0px; }
 .works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .stylist-boxes{ margin: 0px auto 0px; }
 .btm-mrgn { margin-bottom: 0px;}
@@ -951,7 +963,7 @@ ul#branding-ptners .clear-fix{ display: none; }
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-text { position: absolute; top:20%; left: 15%; font-family: 'Proximanova'; font-weight: 600; color: #fff; text-transform: uppercase; font-size: 16px; width: 40%; display: block; line-height: 22px;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-img { position: absolute; bottom: 20%; left: 10%; width: 34px; height: 34px;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-img img { width: 100%; height: auto;}
-.bx-wrapper .bx-pager { text-align: center; font-size: .85em; padding-top: 25px;}
+.bx-wrapper .bx-pager { text-align: center; font-size: .85em; padding-top: 25px; position: relative; z-index: 2; }
 .bx-pager-item { display: inline-block;}
 .bx-wrapper .bx-pager.bx-default-pager a { border: 1px solid #e6deca; background: #e6deca; text-indent: -9999px; display: block; width: 10px; height: 10px; margin: 0 5px; outline: 0; -moz-border-radius: 100%; -webkit-border-radius: 100%; border-radius: 100%;}
 .bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active { background: #d19b03;}
@@ -1080,7 +1092,7 @@ a.open-left-pannel { display: none;}
 .social-ntwrk-edit { position: absolute; top: 0px; left: 5px; width: 32px; height: 32px; background-color: rgba(255, 255, 255, 0.6); display: block; text-align: center;}
 .social-ntwrk-edit .edit-section { margin-top: 8px;}
 .stylistbio-heading-section{ position: relative;}
-h1.stylistbio-heading { position: relative; font-size: 28px; color: #d19b03; margin: 0; padding: 16px 0 10px; text-transform: uppercase; font-weight: normal;}
+h1.stylistbio-heading { position: relative; font-size: 22px; color: #d19b03; margin: 0; padding: 16px 0 10px; text-transform: uppercase; font-weight: normal;}
 .user-desc { font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:20px 0 15px 10px; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; margin-bottom: 15px; margin-top:15px;}
 .user-inspire-desc {font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:10px 0 15px 10px;}
 .stylistbio-user { float: left; color: #7f7f7f; font-size: 30px; text-transform: uppercase; padding-top: 11px;}
@@ -1096,7 +1108,7 @@ h1.stylistbio-heading { position: relative; font-size: 28px; color: #d19b03; mar
 .photostream-section, h1.stylistbio-heading.photostream { padding-left: 18px;}
 h1.top-outits-heading { border-bottom: 1px solid #ebebeb;}
 .photostream-section { padding-bottom: 10px;}
-.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 170px; line-height: 170px; text-align: center; position: relative; float: left/9;}
+.photostream-section li { display: inline-block; margin:1px; width: 23.6667%; max-height: 173px; line-height: 172px; text-align: center; position: relative; float: left/9;}
 .photostream-section li a { }
 .photostream-section li img { max-height: 170px; vertical-align: middle;}
 
@@ -1140,7 +1152,8 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 background: #fff;
 font-family: 'ProximaNovaCond-Regular';
 min-height: 823px;
-top: 80px;
+/*top: 80px;*/
+margin: 80px 0 0px;
 }
 .message-box-heading, .myclient-heading { font-family: 'ProximaNovaCond-Regular'; font-size: 36px; padding: 38px 0px 19px; border-bottom: 1px solid #e8e8e8;}
 .myclient-heading { padding-top: 0px; margin-bottom: 25px;}
@@ -1961,9 +1974,9 @@ input#billingCopybilling { visibility: visible;}
     .featured-stylist ul li { width: 169px!important; height: 171px; overflow: hidden; margin: 0 6px;}
     .featured-stylist a.bx-prev { left: -50px;}
     .featured-stylist a.bx-next { right: -40px;}
-    .jcarousel-control-prev{ left: 34%;} 
+    /*.jcarousel-control-prev{ left: 34%;} 
     .jcarousel-control-next{ right: 35%;}
-    .jcarousel-control-prev, .jcarousel-control-next{ bottom: -48px; top: inherit; }
+    .jcarousel-control-prev, .jcarousel-control-next{ bottom: -48px; top: inherit; }*/
     .outfit-stylist .bx-wrapper { margin-left: 50px!important; margin-right: 40px!important;}
     .outfit-stylist a.bx-prev{ left: 35%;}
     .outfit-stylist a.bx-next { right: 35%;}
@@ -2176,6 +2189,9 @@ input#billingCopybilling { visibility: visible;}
     .stylistbio-profile{ width: 100%; }
     .stylistbio-details{ width: 100%; }
 
+.jcarousel {
+width: 70%;
+}
    
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
@@ -2186,11 +2202,13 @@ input#billingCopybilling { visibility: visible;}
 
 
 
+
     
     
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) { 
+
     .mega-banner-overlay { bottom: 110px!important;}
     .card-menu li a.login { margin: 0 15px;}
     .header .menu li {0px 10px!important;}
@@ -2373,9 +2391,9 @@ line-height: normal;
     .featured-stylist ul li { /*width: 175px!important;*/ height: 171px; overflow: hidden;}
     .outfit-stylist a.bx-next { right: 32%; }
     .outfit-stylist a.bx-prev { left: 32%;}
-    .jcarousel-control-prev { left: 176px;}
+    /*.jcarousel-control-prev { left: 176px;}
     .jcarousel-control-next { right: 180px;}
-    .jcarousel-control-prev, .jcarousel-control-next{ top: inherit; bottom: -50px; }
+    .jcarousel-control-prev, .jcarousel-control-next{ top: inherit; bottom: -50px; }*/
     .press_wrapper .press_companies{ width: 100%; }
     .left {}
     .featured-stylist a.bx-prev, .featured-stylist a.bx-next { top: 45px;}
@@ -2663,10 +2681,10 @@ line-height: normal;
     .featured-stylist ul li { /*width: 175px!important;*/ height: 171px; overflow: hidden;}
     .outfit-stylist a.bx-next { right: 0px;}
     .outfit-stylist a.bx-prev { left: 0px;}
-    .jcarousel-control-prev { left: 20px;}
+    /*.jcarousel-control-prev { left: 20px;}
     .jcarousel-control-next { right: 20px;}
     .jcarousel-control-prev, .jcarousel-control-next{ top: 179px; }
-    .jcarousel-pagination{bottom: -55px; right: -122px; left: inherit; width: 100%; }
+    .jcarousel-pagination{bottom: -55px; right: -122px; left: inherit; width: 100%; }*/
     .featured-stylist ul li a.stylists_see_all { width: 100%; height: 90%; line-height: 150px; }
     .featured-stylist ul li, .outfit-stylist ul li, .style-time ul li, .brand-boxes ul li{ margin: 0px; }
     .left { text-align: left; display: inline-block; }
@@ -2948,8 +2966,8 @@ line-height: normal;
     .content-container-home .outfit-stylist a.bx-next{ right: 39.5%; }
     .content-container-home .outfit-stylist a.bx-prev{ left: 41%; }
     /*.content-container-home .outfit-stylist a.bx-prev, .outfit-stylist a.bx-next{ top: inherit; }*/
-    .content-container-home .jcarousel-control-prev{ left: 35%; }
-    .content-container-home .jcarousel-control-next{ right: 36%; }
+    /*.content-container-home .jcarousel-control-prev{ left: 35%; }
+    .content-container-home .jcarousel-control-next{ right: 36%; }*/
     .bottom.footer-bar .menu.right.three.columns{ width: 100%; }
 
 
@@ -3167,9 +3185,9 @@ line-height: normal;
 @media (max-width: 1600px) and (min-width: 770px){
     /*.outfit-stylist a.bx-prev{ left: 42%; }
     .outfit-stylist a.bx-next{ right: 42%; }*/
-    .jcarousel-control-prev, .jcarousel-control-next{bottom: -50px; top: inherit;}
+    /*.jcarousel-control-prev, .jcarousel-control-next{bottom: -50px; top: inherit;}
     .jcarousel-control-prev{ left: 39%; }
-    .jcarousel-control-next{ right: 39.5%; }
+    .jcarousel-control-next{ right: 39.5%; }*/
     /*.works-boxes, .stylist-boxes, .outfit-boxes, .style-time-boxes, .brand-boxes{ padding-bottom: 30px; }*/
     .menu.right.three.columns{ width: 34%; }
     .top_rightSection{ width: auto; min-width: 24%; }
