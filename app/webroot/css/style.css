@@ -826,7 +826,7 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 .top_rightSection.login_rightSection a.cart_link {  margin: 0;  }
 .container.content > .container{ position: relative; top: 81px; margin-bottom: 81px; }
 .hover_overlay{ position: absolute; width: 100%; height: 135px; background: rgba(0, 0, 0, 0.5); z-index: 2; display: none;  vertical-align: top; color: #fff; font-size: 18px; line-height: 135px; left: 0px; top: 0px; }
-.bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; } 
+.bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; z-index: 1; } 
 
 
 
@@ -951,7 +951,7 @@ ul#branding-ptners .clear-fix{ display: none; }
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-text { position: absolute; top:20%; left: 15%; font-family: 'Proximanova'; font-weight: 600; color: #fff; text-transform: uppercase; font-size: 16px; width: 40%; display: block; line-height: 22px;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-img { position: absolute; bottom: 20%; left: 10%; width: 34px; height: 34px;}
 .featured-stylist ul li .featured-stylist-hover .featured-stylist-hover-img img { width: 100%; height: auto;}
-.bx-wrapper .bx-pager { text-align: center; font-size: .85em; padding-top: 25px;}
+.bx-wrapper .bx-pager { text-align: center; font-size: .85em; padding-top: 25px; position: relative; z-index: 2; }
 .bx-pager-item { display: inline-block;}
 .bx-wrapper .bx-pager.bx-default-pager a { border: 1px solid #e6deca; background: #e6deca; text-indent: -9999px; display: block; width: 10px; height: 10px; margin: 0 5px; outline: 0; -moz-border-radius: 100%; -webkit-border-radius: 100%; border-radius: 100%;}
 .bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active { background: #d19b03;}
