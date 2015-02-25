@@ -825,7 +825,7 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 .top_rightSection.login_rightSection{ min-width: 12%; margin: 2px 0 0 0; text-align: right; }
 .top_rightSection.login_rightSection .card-menu{ margin-right: 0% !important; }
 .top_rightSection.login_rightSection a.cart_link {  margin: 0;  }
-.container.content > .container{ position: relative; top: 0; margin-bottom: 81px; }
+.container.content > .container{ position: relative; margin: 81px 0 20px; }
 .hover_overlay{ position: absolute; width: 100%; height: 135px; background: rgba(0, 0, 0, 0.5); z-index: 2; display: none;  vertical-align: top; color: #fff; font-size: 18px; line-height: 135px; left: 0px; top: 0px; }
 .bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; z-index: 1; } 
 .jcarousel-control-wrapper{
