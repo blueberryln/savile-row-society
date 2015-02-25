@@ -20,8 +20,9 @@ class StylistsController extends AppController {
         }
         
         $user = $User->findById($id);
-        $current_user = $this->getLoggedUser();
         $this->Session->write('user', $user);
+        $current_user = $this->getLoggedUser();
+        
         if($current_user['User']['id'] != $id || !$current_user['User']['is_stylist']){
             $this->redirect('/');
             exit;
@@ -394,7 +395,7 @@ class StylistsController extends AppController {
                 $user = $User->findById($stylistId);
                 $this->request->data['User']['profile_photo_url'] =  $imagename;
                 $this->request->data['User']['id'] = $stylistId;
-                $User->save($this->request->data);
+                $User->save($this->request->data);   
                 $this->redirect(array('action' => '/biography/'.$stylistId));    
             }else{
                 $this->Session->setFlash('The image could not be uploaded. Please, try again.', 'flash');
