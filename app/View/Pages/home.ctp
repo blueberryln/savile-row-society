@@ -193,11 +193,15 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <li><a href="Javascript:;" class="stylists_see_all">See All Stylists</a></li> -->
                 </ul>
                     </div>
-                    <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
-
-                <p class="jcarousel-pagination"></p>
+                    
+                    <div class="jcarousel-control-wrapper">
+                        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+                        <p class="jcarousel-pagination"></p>
                     </div>
+
+                
+                </div>
             </div>
         </div>
     </div>
