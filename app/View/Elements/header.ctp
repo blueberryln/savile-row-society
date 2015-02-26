@@ -27,14 +27,7 @@ $('.hoverNav').fadeOut(10);
 
 
 
-        <!--LogoSection-->
-        <div class="header-logo left">
-            <a href="/" ><img class="logo" src="<?php echo HTTP_ROOT; ?>img/srs_logo_new.jpg" alt="Savil.Me" title="Savil.Me" /></a>
-            <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
-        </div>
-        <!--LogoSection Ends-->
-
-
+        
 <!-- Header-Wrapper -->
 <div class="header_wrapper">
 
