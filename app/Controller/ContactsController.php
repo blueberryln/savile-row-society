@@ -16,7 +16,7 @@ class ContactsController extends AppController {
             $this->set(compact('user'));
         }
 
-        $title_for_layout = "Savile Row Society - Contact Us | Online Fashion Shopping Website";
+        $title_for_layout = "Savil.Me - Contact Us | Online Fashion Shopping Website";
         $this->set(compact('title_for_layout'));
 
         if ($this->request->is('post') || $this->request->is('put')) {
@@ -27,7 +27,7 @@ class ContactsController extends AppController {
                     try{
                         //send personal stylist mail
                         $email = new CakeEmail('default');
-                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                         $email->to('contactus@savilerowsociety.com');
                         $email->subject('Contact Request: ' . $this->request->data['Contact']['first_name'] . ' ' . $this->request->data['Contact']['last_name']);
                         $email->template('stylist');
@@ -38,7 +38,7 @@ class ContactsController extends AppController {
                         //Send user a confirmation email
                         $bcc = Configure::read('Email.contact');
                         $user_email = new CakeEmail('default');
-                        $user_email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        $user_email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                         $user_email->to($this->request->data['Contact']['email']);
                         $user_email->subject('Thank You For Your Message!');
                         $email->bcc($bcc);
@@ -74,7 +74,7 @@ class ContactsController extends AppController {
 
                     // send personal stylist mail
                     $email = new CakeEmail('default');
-                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                     $email->to('casey@savilerowsociety.com');
                     $email->cc('contactus@savilerowsociety.com');
                     $email->cc('admin@savilerowsociety.com');

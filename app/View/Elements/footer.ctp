@@ -13,7 +13,7 @@
                     <li><a class="vip-link footer-bnt" href="" id="block-vip-access" >VIP Access</a></li>
                     <li><a class="blog-link footer-bnt" href="http://www.savilerowsociety.com/blog" title="">Blog</a></li>
                 </ul>
-                <div class="footer-copyright">(c) Savile Row Society 2015</div>
+                <div class="footer-copyright">(c) Savil.Me 2015</div>
 
             </div>
             <div class="menu right three columns">

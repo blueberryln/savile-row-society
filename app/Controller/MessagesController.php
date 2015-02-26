@@ -206,21 +206,21 @@ class MessagesController extends AppController {
 
                     Your personal stylist, " . ucwords($stylist['User']['first_name']) . " , has sent you a new message:
 
-                    Thank you for registering with Savile Row Society. My name is " . ucwords($stylist['User']['first_name']) . " and I will be your personal stylist. Feel free to check out my profile and ask me any style questions you may have.  I would also like to get to know you better; please tell me more about your wardrobe goals. I will get back to you shortly.
+                    Thank you for registering with Savil.Me. My name is " . ucwords($stylist['User']['first_name']) . " and I will be your personal stylist. Feel free to check out my profile and ask me any style questions you may have.  I would also like to get to know you better; please tell me more about your wardrobe goals. I will get back to you shortly.
                     
                     If interested, I would also be happy to meet with you in our New York City based showroom, schedule a phone call, or just chat through the SRS platform. 
 
-                    Welcome to Savile Row Society!
+                    Welcome to Savil.Me!
 
                     Sincerely, 
-                    " . ucwords($stylist['User']['first_name']) . " and The Savile Row Society Team
+                    " . ucwords($stylist['User']['first_name']) . " and The Savil.Me Team
                     ";
 
-            $stylist_message = "Thank you for registering with Savile Row Society. My name is " . ucwords($stylist['User']['first_name']) . " and I will be your personal stylist. Feel free to check out my profile and ask me any style questions you may have.  I would also like to get to know you better; please tell me more about your wardrobe goals. I will get back to you shortly.
+            $stylist_message = "Thank you for registering with Savil.Me. My name is " . ucwords($stylist['User']['first_name']) . " and I will be your personal stylist. Feel free to check out my profile and ask me any style questions you may have.  I would also like to get to know you better; please tell me more about your wardrobe goals. I will get back to you shortly.
                     
                     If interested, I would also be happy to meet with you in our New York City based showroom, schedule a phone call, or just chat through the SRS platform. 
 
-                    Welcome to Savile Row Society!";
+                    Welcome to Savil.Me!";
 
 
             $this->Message->data['Message']['user_from_id'] = $stylist_id;
@@ -237,7 +237,7 @@ class MessagesController extends AppController {
                     $email->template('stylist_notification');
                     $email->emailFormat('html');
                     
-                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                     $email->subject('New Client');
                     $email->viewVars(compact('stylist', 'user'));
                     $email->send();
@@ -896,7 +896,7 @@ class MessagesController extends AppController {
             $email->emailFormat('html');
             
             if($to_stylist){
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                 $email->subject('You Have A New Message!');
                 if($is_photo){
                     $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo', 'client_id'));
@@ -906,8 +906,8 @@ class MessagesController extends AppController {
                 } 
             }  
             else{
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                $email->replyTo(array($from_email => 'Savile Row Society'));
+                $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
+                $email->replyTo(array($from_email => 'Savil.Me'));
                 $email->subject('You Have A New Message!');
                 if($is_photo){
                     $email->viewVars(compact('to_name','from_name','photo_url','to_stylist','is_photo'));

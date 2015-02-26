@@ -11,7 +11,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                 <div class=" twelve columns stylistbion-arrow"><img src="<?php echo HTTP_ROOT; ?>images/back-arrow.png" alt="" /></div>
                 <div class="twelve columns">
                     <div class="eleven columns container stylistbio-short-note">
-                        <div class="short-note">Learn more about all the Savile Row Stylists by scrolling through our list of current stylists</div>
+                        <div class="short-note">Learn more about all the Savil.Me Stylists by scrolling through our list of current stylists</div>
                     </div>
                 </div>
                  <div class="twelve columns">
@@ -176,7 +176,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div class=" twelve columns stylistbion-arrow"><img src="<?php echo HTTP_ROOT; ?>images/back-arrow.png" alt="" /></div>
                         <div class="twelve columns">
                             <div class="eleven columns container stylistbio-short-note">
-                                <div class="short-note">Learn more about all the Savile Row Stylists by clicking through our list of current stylists. </div>
+                                <div class="short-note">Learn more about all the Savil.Me Stylists by clicking through our list of current stylists. </div>
                             </div>
                         </div>
                          <div class="twelve columns">

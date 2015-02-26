@@ -13,21 +13,21 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <div class="twelve columns page-content aboutus-content">
 
                         <ul class="table-of-content">
-                            <li><a href="#privacy-link1">What information does Savile Row Society collect?</a></li>
-                            <li><a href="#privacy-link2">How does Savile Row Society use personally identifiable and other information?</a></li>
-                            <li><a href="#privacy-link3">Does Savile Row Society share personally identifiable information?</a></li>
+                            <li><a href="#privacy-link1">What information does Savil.Me collect?</a></li>
+                            <li><a href="#privacy-link2">How does Savil.Me use personally identifiable and other information?</a></li>
+                            <li><a href="#privacy-link3">Does Savil.Me share personally identifiable information?</a></li>
                             <li><a href="#privacy-link4">How secure is information about me?</a></li>
                             <li><a href="#privacy-link5">What about links to other Web sites?</a></li>
                             <li><a href="#privacy-link6">Which information can I access?</a></li>
                             <li><a href="#privacy-link7">What choices do I have?</a></li>
                             <li><a href="#privacy-link8">What are Cookies?</a></li>
-                            <li><a href="#privacy-link9">Are children allowed to use Savile Row Society and Savilerowsociety.com?</a></li>
+                            <li><a href="#privacy-link9">Are children allowed to use Savil.Me and Savilerowsociety.com?</a></li>
                             <li><a href="#privacy-link10">Integrating Social Networking Services</a></li>
                             <li><a href="#privacy-link11">Integrating Social Networking Services</a></li>
                         </ul><br /><br /> 
-                        <p>Welcome to the Web site (the “Site”) of Savile Row Society, Inc. (collectively with its affiliates, <strong>“Savile Row Society”</strong>, “SRS”, “we”, “us” and/or “our”). This Site is operated by Savile Row Society and has been created to provide information about our company and its services (together with the Site, the “Service(s)”) to our Service visitors (“you”, “your”). This notice describes our policy with respect personally identifiable and other information that is collected from visitors to the Site and Services. By visiting the Site or interacting with the Services, you are accepting the practices described in this Privacy Notice.
+                        <p>Welcome to the Web site (the “Site”) of Savil.Me, Inc. (collectively with its affiliates, <strong>“Savil.Me”</strong>, “SRS”, “we”, “us” and/or “our”). This Site is operated by Savil.Me and has been created to provide information about our company and its services (together with the Site, the “Service(s)”) to our Service visitors (“you”, “your”). This notice describes our policy with respect personally identifiable and other information that is collected from visitors to the Site and Services. By visiting the Site or interacting with the Services, you are accepting the practices described in this Privacy Notice.
                         </p>
-                        <h3 id="privacy-link1">What information does Savile Row Society collect? - <a href="#topmost" class="right">Top</a></h3>
+                        <h3 id="privacy-link1">What information does Savil.Me collect? - <a href="#topmost" class="right">Top</a></h3>
 
                         <p>
                             When you interact with us through the Services, we may collect personally identifiable information and other information from you, as further described below:
@@ -49,26 +49,26 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
                         <p><strong>Email Communications:</strong></p>
                         <p>
-                            We may receive confirmation when you open email from Savile Row Society if your computer supports such capabilities. If you do not want to receive email or other mail from us, please contact us at 
+                            We may receive confirmation when you open email from Savil.Me if your computer supports such capabilities. If you do not want to receive email or other mail from us, please contact us at 
                             <strong>admin@savilerowsociety.com</strong> and we will promptly remove you from our mailing lists.
                         </p>
 
-                        <h3 id="privacy-link2">How does Savile Row Society use personally identifiable and other information? - <a href="#topmost" class="right">Top</a></h3>
+                        <h3 id="privacy-link2">How does Savil.Me use personally identifiable and other information? - <a href="#topmost" class="right">Top</a></h3>
                         <p>
-                            Savile Row Society uses the personally identifiable information you provide in a manner that is consistent with this Privacy Policy. If you provide personally identifiable information for a certain reason, we may use it in connection with the reason for which it was provided. 
+                            Savil.Me uses the personally identifiable information you provide in a manner that is consistent with this Privacy Policy. If you provide personally identifiable information for a certain reason, we may use it in connection with the reason for which it was provided. 
                             <br>
                             For instance, if you contact us by email, we will use the personally identifiable information you provide to answer your question or resolve your problem. Also, if you provide personally identifiable information in order to obtain access to the Services, we will use your personally identifiable information to provide you with access to such Services and to monitor your use of such Services. 
                             <br>
                             We may also use your personally identifiable information and other information collected through the Services to help us improve the content and functionality of the Services, to customize your shopping experience, to better understand our customers and to improve the Services. 
                             <br>
-                            Savile Row Society and its affiliates may use this information to contact you in the future to tell you about services we believe will be of interest to you. If we do so, each communication we send you will contain instructions permitting you to “opt-out” of receiving future communications.
+                            Savil.Me and its affiliates may use this information to contact you in the future to tell you about services we believe will be of interest to you. If we do so, each communication we send you will contain instructions permitting you to “opt-out” of receiving future communications.
                             <br>
                             In addition, if at any time you wish not to receive any future communications or you wish to have your name deleted from our mailing lists, please contact us as indicated above.
                             <br>
-                            If Savile Row Society intends on using any personally identifiable information in any manner that is not consistent with this Privacy Policy, you will be informed of such anticipated use prior to or at the time at which the personally identifiable information is collected.
+                            If Savil.Me intends on using any personally identifiable information in any manner that is not consistent with this Privacy Policy, you will be informed of such anticipated use prior to or at the time at which the personally identifiable information is collected.
                         </p>
 
-                        <h3 id="privacy-link3">Does Savile Row Society share personally identifiable information? - <a href="#topmost" class="right">Top</a></h3>
+                        <h3 id="privacy-link3">Does Savil.Me share personally identifiable information? - <a href="#topmost" class="right">Top</a></h3>
                         <p>
                             We do not share personally identifiable information about our customers, except in the specific cases described here:
                         </p>
@@ -80,12 +80,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
                         <p><strong>Business Transfers:</strong></p>
                         <p>
-                            As we continue to develop our business, we might sell or buy stores, subsidiaries, or business units. In such transactions, personally identifiable customer information generally is one of the transferred business assets but remains subject to the promises made in any pre-existing Privacy Notice (unless the customer consents otherwise). In the event that Savile Row Society or substantially all of its assets are acquired, personally identifiable customer information will be one of the transferred assets.
+                            As we continue to develop our business, we might sell or buy stores, subsidiaries, or business units. In such transactions, personally identifiable customer information generally is one of the transferred business assets but remains subject to the promises made in any pre-existing Privacy Notice (unless the customer consents otherwise). In the event that Savil.Me or substantially all of its assets are acquired, personally identifiable customer information will be one of the transferred assets.
                         </p>
 
-                        <p><strong>Protection of Savile Row Society and Others:</strong></p>
+                        <p><strong>Protection of Savil.Me and Others:</strong></p>
                         <p>
-                            We release account and other personally identifiable information when we believe release is appropriate to comply with the law, or protect the rights, property, or safety of Savile Row Society employees, our users, or others. This includes exchanging personally identifiable information with other companies and organizations for fraud protection and credit risk reduction.
+                            We release account and other personally identifiable information when we believe release is appropriate to comply with the law, or protect the rights, property, or safety of Savil.Me employees, our users, or others. This includes exchanging personally identifiable information with other companies and organizations for fraud protection and credit risk reduction.
                             <br>
                             This does not include selling, renting, sharing, or otherwise disclosing personally identifiable information from customers for commercial purposes in violation of the commitments set forth in this Privacy Notice.
                         </p>
@@ -104,7 +104,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 
                         <h3 id="privacy-link5">What about links to other Web sites? - <a href="#topmost" class="right">Top</a></h3>
                         <p>
-                            Our Site might include links to third-party Web sites. The policies and procedures we described here do not apply to the third-party sites. The links from the Services do not imply that Savile Row Society endorses or has reviewed the third-party sites. We suggest contacting those sites directly for information on their privacy policies.
+                            Our Site might include links to third-party Web sites. The policies and procedures we described here do not apply to the third-party sites. The links from the Services do not imply that Savil.Me endorses or has reviewed the third-party sites. We suggest contacting those sites directly for information on their privacy policies.
                         </p>
 
                         <h3 id="privacy-link6">Which information can I access? - <a href="#topmost" class="right">Top</a></h3>
@@ -124,9 +124,9 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             Additionally, you can disable or delete similar data used by browser add-ons, such as Flash cookies, by changing add-on settings or visiting the Web site of its manufacturer.
                         </p>
 
-                        <h3 id="privacy-link9">Are children allowed to use Savile Row Society and Savilerowsociety.com? - <a href="#topmost" class="right">Top</a></h3>
+                        <h3 id="privacy-link9">Are children allowed to use Savil.Me and Savilerowsociety.com? - <a href="#topmost" class="right">Top</a></h3>
                         <p>
-                            Savile Row Society does not sell products for purchase by children. If you are under 18, you may use Savile Row Society and <strong> Savilerowsociety.com</strong> only with the involvement of a parent or guardian.
+                            Savil.Me does not sell products for purchase by children. If you are under 18, you may use Savil.Me and <strong> Savilerowsociety.com</strong> only with the involvement of a parent or guardian.
                         </p>
 
                         <h3 id="privacy-link10">Integrating Social Networking Services - <a href="#topmost" class="right">Top</a></h3>
@@ -137,12 +137,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <br>
                             However, please remember that the manner in which Social Networking Services use, store and disclose your information is governed by the policies of such third parties, and Company shall have no liability or responsibility for the privacy practices or other actions of any Social Networking Services that may be enabled within the Service.
                             <br>
-                            You may also have the option of posting your Savile Row Society activities to Social Networking Services; you acknowledge that if you choose to use this feature, your friends, followers and subscribers on any Social Networking Services you have enabled will be able to view such activity.
+                            You may also have the option of posting your Savil.Me activities to Social Networking Services; you acknowledge that if you choose to use this feature, your friends, followers and subscribers on any Social Networking Services you have enabled will be able to view such activity.
                         </p>
 
                         <h3 id="privacy-link11">Conditions of Use, Notices, and Revisions - <a href="#topmost" class="right">Top</a></h3>
                         <p>
-                            If you choose to visit Savile Row Society, your visit and any dispute over privacy is subject to this Notice including limitations on damages, disputes, and choice of law. If you have any concern about privacy at Savile Row Society, please email <strong>admin@savilerowsociety.com</strong> and we will work to address it.
+                            If you choose to visit Savil.Me, your visit and any dispute over privacy is subject to this Notice including limitations on damages, disputes, and choice of law. If you have any concern about privacy at Savil.Me, please email <strong>admin@savilerowsociety.com</strong> and we will work to address it.
                             Our business changes constantly, and our Privacy Notice will change also.
                             <br>
                             You should check our Site frequently to see recent changes. Unless stated otherwise, our current Privacy Notice applies to all information that we have about you and your account. We will never materially change our policies and practices to make them less protective of customer information collected in the past without the consent of affected customers.

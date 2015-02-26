@@ -488,7 +488,7 @@ class ApiController extends AppController {
                     // $user_email = new CakeEmail('default');
                     // $user_email->from(array($data['PriceRequest']['request_email'] => $request_name));
                     // $user_email->to('admin@savilerowsociety.com');
-                    // $user_email->subject('Savile Row Society: Product Price Request');
+                    // $user_email->subject('Savil.Me: Product Price Request');
                     // $user_email->template('price_request');
                     // $user_email->emailFormat('html');
                     // $user_email->viewVars(array('entity' => $entity, 'data' => $data, 'user' => $user));
@@ -618,10 +618,10 @@ class ApiController extends AppController {
                     //send personal stylist mail
                     $bcc = Configure::read('Email.contact');
                     $email = new CakeEmail('default');
-                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                     $email->to($email_array[$i]);
                     $email->bcc($bcc);
-                    $email->subject("Discover Savile Row Society");
+                    $email->subject("Discover Savil.Me");
                     $email->template('refer');
                     $email->emailFormat('html');
                     $email->viewVars(compact('user'));

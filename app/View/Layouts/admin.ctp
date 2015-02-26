@@ -8,8 +8,8 @@
         <!-- Basic Page Needs
   ================================================== -->
         <?php echo $this->Html->charset(); ?>
-        <title>Savile Row Society <?php echo $title_for_layout; ?></title>
-        <meta name="description" content="Savile Row Society">
+        <title>Savil.Me <?php echo $title_for_layout; ?></title>
+        <meta name="description" content="Savil.Me">
         <meta name="author" content="30 Hills">
         <meta name="google-site-verification" content="Mexh7IdYEzy4A8dWzHtFHjmhf0UMxyWez8SJn1HU6T0" />
 
@@ -49,7 +49,7 @@
         <div class="container content">
             <!-- footer -->
             <div class="sixteen columns footer">
-                &copy <?php echo date('Y'); ?> Savile Row Society, inc. All Rights reserved.
+                &copy <?php echo date('Y'); ?> Savil.Me, inc. All Rights reserved.
             </div>
         </div><!-- container -->
 

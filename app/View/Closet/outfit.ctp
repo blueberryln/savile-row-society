@@ -244,7 +244,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                     <?php endif; ?>
                     <div class="clear-fix"></div>
                     <div class="product-actions">
-                        <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI would like to recommend this product to you. Check out <?php echo Router::url( $this->here, true ); ?>." id="lnk-email"></a></div>
+                        <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:?subject=Welcome to Savil.Me&body=Hello, %0D%0A%0D%0AI would like to recommend this product to you. Check out <?php echo Router::url( $this->here, true ); ?>." id="lnk-email"></a></div>
                         <?php if(isset($entity['Wishlist'])) : ?>
                         <div class="product-thumbs">
                             <a href="#" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>

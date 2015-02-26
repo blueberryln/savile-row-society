@@ -15,9 +15,9 @@
                 </div>
                  <div class="twelve columns page-content aboutus-content">
                      <ul class="table-of-content">
-                         <li><a href="#faq-link1">What is Savile Row Society?</a></li>
+                         <li><a href="#faq-link1">What is Savil.Me?</a></li>
                          <li><a href="#faq-link2">How am I paired with a stylist?</a></li>
-                         <li><a href="#faq-link3">Who are the stylists on Savile Row Society?</a></li>
+                         <li><a href="#faq-link3">Who are the stylists on Savil.Me?</a></li>
                          <li><a href="#faq-link4">What happens when I get a Stylist?</a></li>
                          <li><a href="#faq-link5">Can I meet my stylist in-person?</a></li>
                          <li><a href="#faq-link6">What is The Closet?</a></li>
@@ -33,9 +33,9 @@
                      
                     <h4 class="faq-title">General</h4>
                      <p>
-                        <strong id="faq-link1">What is Savile Row Society? - <a href="#topmost" class="right">Top</a></strong>
+                        <strong id="faq-link1">What is Savil.Me? - <a href="#topmost" class="right">Top</a></strong>
                         <div>
-                            By joining Savile Row Society, men no longer have to take the time or make the effort to shop. Instead, our stylists will create outfits and suggest products that they feel best fit their client's lifestyle and needs.
+                            By joining Savil.Me, men no longer have to take the time or make the effort to shop. Instead, our stylists will create outfits and suggest products that they feel best fit their client's lifestyle and needs.
                         </div>
                      </p>
                      <p>
@@ -45,7 +45,7 @@
                         </div>
                      </p>
                     <p>
-                        <strong id="faq-link3">Who are the stylists on Savile Row Society? - <a href="#topmost" class="right">Top</a> </strong>
+                        <strong id="faq-link3">Who are the stylists on Savil.Me? - <a href="#topmost" class="right">Top</a> </strong>
                         <div>Our Stylists are fit experts that have experience in fashion, retail and styling. They follow a thorough training once they join SRS for you to have the best user experience.</div>
                     </p>
                     <p>
@@ -82,7 +82,7 @@
                     </p>
                     <p>
                         <strong id="faq-link12">Where do your fabrics come from? - <a href="#topmost" class="right">Top</a></strong>
-                        <div>Savile Row Society has partnered with the top fabric mills in the fashion industry. Our selection consists of 300+ shirting fabrics, and 200+ suiting fabrics. We are proud to say that we carry fabrics from Holland &amp; Sherry, among other exceptional cloth manufacturers. </div>
+                        <div>Savil.Me has partnered with the top fabric mills in the fashion industry. Our selection consists of 300+ shirting fabrics, and 200+ suiting fabrics. We are proud to say that we carry fabrics from Holland &amp; Sherry, among other exceptional cloth manufacturers. </div>
                     </p>
                     <p>
                         <strong id="faq-link13">Where is your made to measure manufactured? - <a href="#topmost" class="right">Top</a></strong>
@@ -97,8 +97,8 @@
                     <p>
                         <strong id="faq-link9">Can I return an item after I purchase it? - <a href="#topmost" class="right">Top</a></strong>
                         <div>
-                        <p>Savile Row Society will provide a full refund for goods returned within 10-days of receiving the product. For items returned after 10-days but within 30-days, customers will receive store credit for unworn clothing. Our clients are deemed to have received clothing when leaving the showroom with their goods or when our shipping or messenger partners notify us that the package containing items has been received. Please note there are no returns on made-to-measure items, but we guarantee satisfaction and will provide the required alterations.</p>
-                        <p>Savile Row Society will not accept the return of items 30-days after a client has received a product. In order to make sure that we can solve any issues with your purchases, please identify the issue to your stylist immediately and we will fix it for you. While we understand some items from a client may not fit perfectly after trying them on, we cannot accept nor provide a refund items that are visibly worn. We hope you understand.</p>
+                        <p>Savil.Me will provide a full refund for goods returned within 10-days of receiving the product. For items returned after 10-days but within 30-days, customers will receive store credit for unworn clothing. Our clients are deemed to have received clothing when leaving the showroom with their goods or when our shipping or messenger partners notify us that the package containing items has been received. Please note there are no returns on made-to-measure items, but we guarantee satisfaction and will provide the required alterations.</p>
+                        <p>Savil.Me will not accept the return of items 30-days after a client has received a product. In order to make sure that we can solve any issues with your purchases, please identify the issue to your stylist immediately and we will fix it for you. While we understand some items from a client may not fit perfectly after trying them on, we cannot accept nor provide a refund items that are visibly worn. We hope you understand.</p>
 
                         <p>Please email us at <a href="mailto:contactus@savilerowsociety.com">contactus@savilerowsociety.com</a> notifying us of a return and we will send you a return slip as soon as possible.</p></div>
                     </p>
