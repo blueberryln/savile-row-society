@@ -1,9 +1,9 @@
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery("#menu-switcher1").on("click", function(){  
+        jQuery("#menu-trigger").on("click", function(){  
             console.log("dfbghjdfghjdfd");
             // jQuery(this).toggleClass("mobile_menu");          
-            var menu = jQuery(".header .mobile_menu");
+            var menu = jQuery(".header_wrapper .mobile_nav");
             jQuery(menu).slideToggle();  
         });
     });
@@ -25,64 +25,51 @@ $('.hoverNav').fadeOut(10);
 
  </script> 
 
-<div class="header">
-    <div class="wrapper">
-
-        <!--LogoSection-->
-        <div class="header-logo left">
-            <a href="/" ><img class="logo" src="<?php echo HTTP_ROOT; ?>img/srs_logo_new.jpg" alt="Savile Row Society" title="Savile Row Society" /></a>
-            <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
-        </div>
-        <!--LogoSection Ends-->
 
 
-        <!-- top_wrapper -->
-        <div class="top_wrapper">
-        <div id="menu-switcher1"><img src="<?php echo HTTP_ROOT; ?>img/menu-switcher-icon.png" /></div>
-        <!-- mobile_menu -->
-        
-        <div class="mobile_menu">
-            <ul>
-            <?php if(!$user) : ?>
-                <li><a href="<?php echo $this->webroot; ?>users/register" >Get Started</a></li>
-                <li><a href="#" onclick="window.ref_url=''; signIn();">Sign In</a></li>
-            <?php endif; ?>
-                <li><a href="<?php echo $this->webroot; ?>#four">Looks</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#three">Stylists</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#two">How It Works</a></li>
-            </ul>
-        </div>
+<!-- Header-Wrapper -->
+<div class="header_wrapper">
+
+  <!-- row_center -->
+  <div class="row_center">
     
-        <!-- /mobile_menu -->
+    <!-- leftSection -->
+    <div class="leftSection">
+      <a href="/" ><img class="logo" src="<?php echo HTTP_ROOT; ?>img/srs_logo_new.jpg" alt="Savile Row Society" title="Savile Row Society" /></a>
+    </div>
+    <!-- /leftSection -->
 
-        <!-- top_mainNav -->
-        <div class="top_mainNav second-screen">
-            <ul>
-                <li><a href="<?php echo $this->webroot; ?>#one_topLooks">LOOKS</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#two">STYLISTS</a></li>
-                <?php if(!$user):?>
-                <li><a href="<?php echo $this->webroot; ?>#three">HOW IT WORKS</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#four">BRANDS</a></li>
-                <?php else: ?>
-                
-                <!-- <a class="shop-top-looks" href="Javascript:;">SHOP TOP LOOKS</a> -->
-                <?php endif;?>
+    <!-- rightSection -->
+    <div class="rightSection">
 
-            </ul>
-        </div>
-        <!-- /top_mainNav -->
+      <!-- column2 -->
+      <div class="column2 <?php if($user){echo 'login_rightSection';}?>">
 
-        <!-- top_rightSection -->
-        <div class="top_rightSection <?php if($user){echo 'login_rightSection';}?>">
         <?php if(!$user):?>
-            <a href="#" onclick="window.ref_url=''; signIn();" class="login">LOG IN</a>
-            <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
-            <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_link">(<span class="cart-items-count">
-            <?php echo $cart_items; ?></span> )</a>
+
+        <!-- login -->
+        <a href="#" onclick="window.ref_url=''; signIn();" class="login_btn">Log in</a>
+        <!-- /login -->
+
+        <!-- getStarted -->
+        <a href="<?php echo $this->webroot; ?>users/register" class="getStarted_btn">Get Started</a>
+        <!-- /getStarted -->
+
+        <!-- cartItemsCount -->
+        <a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart_item_section">(<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a>
+        <!-- /cartItemsCount -->
+
         <?php else:?>
-            <a href="<?php echo $this->request->webroot; ?>cart" class="cart_link">(<span class="cart-items-count">
-            <?php echo $cart_items; ?></span> )</a>
+
+        <!-- cartItemsCount2 -->
+        <a href="<?php echo $this->request->webroot; ?>cart" class="cart_item_section">(<span class="cart-items-count"><?php echo $cart_items; ?></span>)</a>
+        <!-- /cartItemsCount2 -->
+
         <?php endif;?>
+
+      </div>
+      <!-- /column2 -->
+
         <!--Log In Menu-->
         <div class="card-menu right">
             <ul>
@@ -126,25 +113,64 @@ $('.hoverNav').fadeOut(10);
         </div>
         <!--Log In Menu Ends-->
 
-        
-        
-       
-        
-        <!-- <span id="menu-switcher"><img src="<?php echo HTTP_ROOT; ?>img/menu-switcher-icon.png" /></span> -->
-        
-        <!--Menu Section-->
-        <div class="menu right">            
-            <ul> <?php if(!$user) : ?>
-                <li><a href="<?php echo $this->webroot; ?>#one_topLooks" title="">About</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#two" title="">Stylists</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#three" title="">Outfits</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#four" title="">Style on your time</a></li>
-                <li><a href="<?php echo $this->webroot; ?>#five" title="">Brands</a></li>
-                <?php endif;  ?>
+      
+
+       <!-- Navigation -->
+        <nav>
+          <ul>
+            <li><a href="<?php echo $this->webroot; ?>#one_topLooks">LOOKS</a></li>
+            <li><a href="<?php echo $this->webroot; ?>#two">STYLISTS</a></li>
+            <?php if(!$user):?>
+            <li><a href="<?php echo $this->webroot; ?>#three">HOW IT WORKS</a></li>
+            <li><a href="<?php echo $this->webroot; ?>#four">BRANDS</a></li>
+            <?php else: ?>
+            <?php endif;?>
             </ul>
-        </div>
-    </div>   
+        </nav>
+        <!-- /Navigation -->
+
+
+
+
+      <!-- MobileScreen -->
+      <div class="mobileScreen">
+        <div id="menu-trigger"><img src="<?php echo HTTP_ROOT; ?>img/menu-switcher-icon.png" /></div>
+      </div>
+      <!-- /MobileScreen -->
+
+
+
+
+
+
+
+    </div>
+    <!-- /rightSection -->
+
+      <div class="mobile_nav">
+          <ul>
+          <?php if(!$user) : ?>
+              <li><a href="<?php echo $this->webroot; ?>users/register" >Get Started</a></li>
+              <li><a href="#" onclick="window.ref_url=''; signIn();">Sign In</a></li>
+          <?php endif; ?>
+              <li><a href="<?php echo $this->webroot; ?>#four">Looks</a></li>
+              <li><a href="<?php echo $this->webroot; ?>#three">Stylists</a></li>
+              <li><a href="<?php echo $this->webroot; ?>#two">How It Works</a></li>
+          </ul>
+      </div>
+
+
+
+  </div>
+  <!-- /row_center -->
+
 </div>
+<!-- /Header-Wrapper -->
+
+
+
+
+
 
 
 <?php //if($is_stylist): ?>
