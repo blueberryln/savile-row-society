@@ -4,7 +4,7 @@ $(document).ready(function(){
     $("#lnk-fb-share").on("click", function(e){
         e.preventDefault(); 
         window.open(
-          "https://www.facebook.com/sharer/sharer.php?s=100&p[title]=" + encodeURIComponent("Savile Row Society") + "&p[summary]=" + encodeURIComponent("I just added a new item to my Closet from www.SavileRowSociety.com! Check out their website, register to chat with one of their premier personal stylists, and make their virtual Closet, your reality.") + "&p[url]=" + encodeURIComponent("http://www.savilerowsociety.com") + "&p[images][0]=" + encodeURIComponent("http://www.savilerowsociety.com/img/SRS_600.png"), 
+          "https://www.facebook.com/sharer/sharer.php?s=100&p[title]=" + encodeURIComponent("Savil.Me") + "&p[summary]=" + encodeURIComponent("I just added a new item to my Closet from www.SavileRowSociety.com! Check out their website, register to chat with one of their premier personal stylists, and make their virtual Closet, your reality.") + "&p[url]=" + encodeURIComponent("http://www.savilerowsociety.com") + "&p[images][0]=" + encodeURIComponent("http://www.savilerowsociety.com/img/SRS_600.png"), 
           "facebook-share-dialog", 
           "width=626,height=436"); 
     });    
@@ -52,7 +52,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                         <br />  <br />
                         <div class="twelve columns text-center transact-confirmation center-block">
                             <?php if($transaction_complete == "success") : ?>
-                                <p class="text-justify">Thank you for shopping with Savile Row Society and supporting our partnering brands. We are committed to bringing you only the best product made by the most passionate people in the industry. Never hesitate to reach out to your personal stylist and feel free to ask us any questions at <a href="mailto:contactus@savilerowsociety.com">contactus@savilerowsociety.com</a>. We appreciate your patronage and continued support. Thank You.</p>
+                                <p class="text-justify">Thank you for shopping with Savil.Me and supporting our partnering brands. We are committed to bringing you only the best product made by the most passionate people in the industry. Never hesitate to reach out to your personal stylist and feel free to ask us any questions at <a href="mailto:contactus@savilerowsociety.com">contactus@savilerowsociety.com</a>. We appreciate your patronage and continued support. Thank You.</p>
                                 <br />
 
                                 <br />  <br />

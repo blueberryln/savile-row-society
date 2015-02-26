@@ -56,7 +56,7 @@ $(document).ready(function(){
 //$this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
-$meta_description = 'Sign up for Savile Row Society, a groundbreaking online, personalized fashion service.';
+$meta_description = 'Sign up for Savil.Me, a groundbreaking online, personalized fashion service.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 
 // call this line to exclude lyout from rendering. 

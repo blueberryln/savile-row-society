@@ -59,9 +59,9 @@ class UsersController extends AppController {
             $ret = array();
 			if ($toemail && Validation::email($toemail) && !$this->User->findByEmail($toemail)) {
                 $email = new CakeEmail('default');
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                 $email->to($toemail);
-                $email->cc(array('contact@savilerowsociety.com' => 'Savile Row Society'));
+                $email->cc(array('contact@savilerowsociety.com' => 'Savil.Me'));
                 $email->subject('Thank you!');
                 $email->template('requestinvite');
                 $email->emailFormat('html');
@@ -259,9 +259,9 @@ class UsersController extends AppController {
                   $email = new CakeEmail('default');
 
 
-                  $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                  $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                   $email->to($user['User']['email']);
-                  $email->subject('Welcome To Savile Row Society');
+                  $email->subject('Welcome To Savil.Me');
                   $email->bcc($bcc);
                   $email->template('registration');
                   $email->emailFormat('html');
@@ -332,7 +332,7 @@ class UsersController extends AppController {
             if ($user) {
                 //$email = new CakeEmail(array('log' => true));
                 $email = new CakeEmail('default');
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                 $email->to($user['User']['email']);
                 $email->subject('Forgotten Password');
                 $email->template('forgot');
@@ -381,7 +381,7 @@ class UsersController extends AppController {
                 if ($this->User->save($user)) {
 
                     $email = new CakeEmail('default');
-                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                     $email->to($user['User']['email']);
                     $email->subject('New Password!');
                     $email->template('password_new');
@@ -447,7 +447,7 @@ class UsersController extends AppController {
     public function register()
 
     {
-        $title_for_layout = "Sign up for Savile Row Society - Featured Personal Stylists";
+        $title_for_layout = "Sign up for Savil.Me - Featured Personal Stylists";
 
         if(isset($this->request->query['refer'])){
             $this->Session->write('stylist_refer', $this->request->query['refer']);   
@@ -551,9 +551,9 @@ class UsersController extends AppController {
                       $email = new CakeEmail('default');
 
 
-                      $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                      $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                       $email->to($user['User']['email']);
-                      $email->subject('Welcome To Savile Row Society');
+                      $email->subject('Welcome To Savil.Me');
                       $email->bcc($bcc);
                       $email->template('registration');
                       $email->emailFormat('html');
@@ -682,9 +682,9 @@ class UsersController extends AppController {
                       $email = new CakeEmail('default');
 
 
-                      $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                      $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                       $email->to($user['User']['email']);
-                      $email->subject('Welcome To Savile Row Society');
+                      $email->subject('Welcome To Savil.Me');
                       $email->bcc($bcc);
                       $email->template('registration');
                       $email->emailFormat('html');
@@ -809,9 +809,9 @@ class UsersController extends AppController {
                       $email = new CakeEmail('default');
 
 
-                      $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                      $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                       $email->to($user['User']['email']);
-                      $email->subject('Welcome To Savile Row Society');
+                      $email->subject('Welcome To Savil.Me');
                       $email->bcc($bcc);
                       $email->template('registration');
                       $email->emailFormat('html');

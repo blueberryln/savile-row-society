@@ -58,7 +58,7 @@ class BookingController extends AppController {
                     $data['Booking']['booking_type_id'] = explode(',', $data['Booking']['booking_type_id']);
 
                     $email = new CakeEmail('default');
-                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                     $email->to($stylist['User']['email']);
                     $email->subject('NEW showroom appointment!');
                     $email->template('tailor');
@@ -68,7 +68,7 @@ class BookingController extends AppController {
                     
                     //Send a confirmation
                     $user_email = new CakeEmail('default');
-                    $user_email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $user_email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
                     $user_email->to($user['User']['email']);
                     $user_email->subject('Your Showroom Appointment!');
                     $user_email->template('confirmation_tailor');

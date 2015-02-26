@@ -511,7 +511,7 @@ $("#block-step-access").on("click", function(e){
                     }
                     else if(res['status']=='member'){
                         var notificationDetails = new Array();
-                        notificationDetails["msg"] = "You are already a member of Savile Row Society.";
+                        notificationDetails["msg"] = "You are already a member of Savil.Me.";
                         showNotification(notificationDetails, true); 
                     }
                     else {

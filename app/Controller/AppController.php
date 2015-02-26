@@ -292,7 +292,7 @@ class AppController extends Controller {
         $login_pixel = '';
         $sale_pixel = '';
         if($offer == 'giveaway50'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $50 Off Your First Order <br>
@@ -300,7 +300,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == 'giveaway100'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $100 Off Your First Order <br>
@@ -308,7 +308,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == 'cybermonday'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $100 Off Your First Order <br>
@@ -316,7 +316,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == 'holiday-offer'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>Please enjoy this exclusive Holiday offer of<br>
                     $100 Off Your Order<br>
                     of $250 or More.</p>
@@ -324,7 +324,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == '1218310'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $100 Off Your First Order <br>
@@ -332,7 +332,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == '1218311'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $100 Off Your First Order <br>
@@ -340,7 +340,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == '1218301'){
-            $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
+            $text = "<p class='landing_title'>Welcome to Savil.Me.</p>  
                     <span class='landing_border'></span>
                     <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
                     Please enjoy this exclusive offer of<br><span class='landing_desc_emp'>
@@ -351,7 +351,7 @@ class AppController extends Controller {
             $sale_pixel = "<script type='text/javascript' src='http://www.mlinktracker.com/third/e2c4x294b4t2w2/OPTIONAL_INFORMATION'></script>";
         }
         else if($offer == '1218302'){
-            $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
+            $text = "<p class='landing_title'>Welcome to Savil.Me.</p>  
                     <span class='landing_border'></span>
                     <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
                     Please enjoy this exclusive offer of<br><span class='landing_desc_emp'>
@@ -362,7 +362,7 @@ class AppController extends Controller {
             $sale_pixel = "<iframe src='http://eng.trkcnv.com/pixel?cid=11374&refid=TransactionIDHere' width='1' height='1'></iframe>";
         }
         else if($offer == '1218303'){
-            $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
+            $text = "<p class='landing_title'>Welcome to Savil.Me.</p>  
                     <span class='landing_border'></span>
                     <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
                     Please enjoy this exclusive offer of<br><span class='landing_desc_emp'>
@@ -370,17 +370,17 @@ class AppController extends Controller {
                     of $250 or More.</span></p>";
         }
         else if($offer == 'tmi'){
-            $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
+            $text = "<p class='landing_title'>Welcome to Savil.Me.</p>  
                     <span class='landing_border'></span>
-                    <p class='landing_desc'>As someone referred by <b>TMI</b> we are glad to have you join us at Savile Row Society, please fill in the information below to get started!</p>";
+                    <p class='landing_desc'>As someone referred by <b>TMI</b> we are glad to have you join us at Savil.Me, please fill in the information below to get started!</p>";
         }
         else if($offer == 'concierge_service'){
-            $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
+            $text = "<p class='landing_title'>Welcome to Savil.Me.</p>  
                     <span class='landing_border'></span>
-                    <p class='landing_desc'>As someone referred by <b>Joshua Labonte Concierge</b> we are glad to have you join us at Savile Row Society, please fill in the information below to get started!</p>";
+                    <p class='landing_desc'>As someone referred by <b>Joshua Labonte Concierge</b> we are glad to have you join us at Savil.Me, please fill in the information below to get started!</p>";
         }
         else if($offer == 'tdr'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $25 Off Your First Order <br>
@@ -388,7 +388,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == 'ivylife'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $25 Off Your First Order <br>
@@ -396,7 +396,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == 'engiestyle'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $100 Off Your First Order <br>
@@ -404,7 +404,7 @@ class AppController extends Controller {
                     <p>Welcome to the new you!</p>";
         }
         else if($offer == '1218340'){
-            $text = "<p>Welcome to Savile Row Society.</p>  
+            $text = "<p>Welcome to Savil.Me.</p>  
                     <p>In addition to Zero Membership Fees,<br>
                     Please enjoy this exclusive offer of<br>
                     $110 Off Your First Order <br>
