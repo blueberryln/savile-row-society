@@ -1069,7 +1069,7 @@ a.open-left-pannel { display: none;}
 .stylistbion-arrow { padding-top: 50px; position: relative; display: none;}
 .stylistbion-arrow img.back-for-mobile { position: absolute; margin: 0 auto; left: 0px; right: 0px; display: none;}
 .stylistbion-arrow img { cursor: pointer;}
-.stylistbio-short-note, .stylistbio-list { width:250px!important;}
+/*.stylistbio-short-note, .stylistbio-list { width:250px!important;}*/  --commented by shubham
 .stylistbio-short-note { margin-top:50px; }
 .short-note {font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #ababac; width: 100%; display: inline-block; padding: 25px 0; width: 100%; border-bottom: 1px solid #ebebeb; border-top: 1px solid #ebebeb;}
 .stylistbio-list #scrollbar1 .scrollbar{display:block;}
@@ -1077,7 +1077,7 @@ a.open-left-pannel { display: none;}
 .stylistbio-list li { width: 96%; display: inline-block; padding: 15px 2% 12px; margin-bottom: -6px; border-bottom: 1px solid #f2f2f2; background:#ffffff; cursor: pointer;}
 .stylistbio-list li .stylistbio-list-img { border: 1px solid #000; float: left; max-height: 40px; overflow: hidden; position: relative; width: 40px;}
 .stylistbio-list li .stylistbio-list-img img { display: block; width: 100%;}
-.stylistbio-list li .stylistbio-list-name { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #a4a696; font-style: italic; width: 100px; text-decoration: underline; text-align: left;float: left; padding: 5px 0 0 12px; width: 180px;}
+.stylistbio-list li .stylistbio-list-name { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; color: #a4a696; font-style: italic; width: 100px; text-decoration: underline; text-align: left;float: left; padding: 5px 0 0 12px; /*width: 180px;*/}  --commented by shubham
 .stylistbio-list li:hover, .stylistbio-list li.active { background: #f2f2f2; border-bottom: 1px solid #e8e8e8;}
 
 .stylistbio-profile { width: 24%;}
@@ -1093,7 +1093,7 @@ a.open-left-pannel { display: none;}
 .social-ntwrk-edit .edit-section { margin-top: 8px;}
 .stylistbio-heading-section{ position: relative;}
 h1.stylistbio-heading { position: relative; font-size: 22px; color: #d19b03; margin: 0; padding: 16px 0 10px; text-transform: uppercase; font-weight: normal;}
-.user-desc { font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:20px 0 15px 10px; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; margin-bottom: 15px; margin-top:15px;}
+.user-desc { font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:20px 0 15px 10px; /*border-top: 1px solid #e6e6e6;*/ border-bottom: 1px solid #e6e6e6; margin-bottom: 15px; /*margin-top:15px;*/}
 .user-inspire-desc {font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:10px 0 15px 10px;}
 .stylistbio-user { float: left; color: #7f7f7f; font-size: 30px; text-transform: uppercase; padding-top: 11px;}
 .start-today { float: right; margin-right: -2px;}
