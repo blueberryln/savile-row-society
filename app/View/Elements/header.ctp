@@ -36,7 +36,7 @@ $('.hoverNav').fadeOut(10);
     
     <!-- leftSection -->
     <div class="leftSection">
-      <a href="/" ><img class="logo" src="<?php echo HTTP_ROOT; ?>img/srs_logo_new.jpg" alt="Savile Row Society" title="Savile Row Society" /></a>
+      <a href="/" ><img class="logo" src="<?php echo HTTP_ROOT; ?>img/srs_logo_new.jpg" alt="Savil.Me" title="Savil.Me" /></a>
     </div>
     <!-- /leftSection -->
 
