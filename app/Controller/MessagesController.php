@@ -13,12 +13,13 @@ class MessagesController extends AppController {
     public $helpers = array('Paginator');
 
     public function beforeFilter(){
-        $this->isLogged();
+        //$this->isLogged();
 
         $user = $this->getLoggedUser();
 
         if(!$user['User']['is_stylist'] && !$user['User']['is_admin'] && is_null($user['User']['stylist_id'])){
-            $this->redirect('/users/profile/' . $user['User']['id']);
+           // $this->redirect('/users/profile/' . $user['User']['id']);
+        	  $this->redirect('/');
         }
     }
 
