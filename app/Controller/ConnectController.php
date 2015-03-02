@@ -134,9 +134,9 @@ class ConnectController extends AppController {
                     // send welcome mail
                     $bcc = Configure::read('Email.contact');
                     $email = new CakeEmail('default');
-                    $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($profile['emailAddress']);
-                    $email->subject('Welcome To Savil.Me');
+                    $email->subject('Welcome To Savile Row Society');
                     $email->bcc($bcc);
                     $email->template('registration');
                     $email->emailFormat('html');
@@ -293,9 +293,9 @@ class ConnectController extends AppController {
 
                         // send welcome mail
                         $email = new CakeEmail('default');
-                        $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
+                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                         $email->to($profile['email']);
-                        $email->subject('Welcome To Savil.Me');
+                        $email->subject('Welcome To Savile Row Society');
                         $email->bcc($bcc);
                         $email->template('registration');
                         $email->emailFormat('html');
@@ -449,9 +449,9 @@ class ConnectController extends AppController {
 //
 //                        // send welcome mail
 //                        $email = new CakeEmail('default');
-//                        $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
+//                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
 //                        $email->to($profile['email']);
-//                        $email->subject('Welcome to Savil.Me!');
+//                        $email->subject('Welcome to Savile Row Society!');
 //                        $email->template('registration');
 //                        $email->emailFormat('html');
 //                        $email->viewVars(array('name' => $profile['given_name']));

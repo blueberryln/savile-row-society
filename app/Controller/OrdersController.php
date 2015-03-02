@@ -80,7 +80,7 @@ class OrdersController extends AppController {
                 
                 // if($shipped_order['User']['email']){
                 //     $email = new CakeEmail('default');
-                //     $email->from(array('admin@savilerowsociety.com' => 'Savil.Me'));
+                //     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 //     $email->to($shipped_order['User']['email']);
                 //     $email->subject('Your order has been shipped.');
                 //     $email->template('order_shipped');

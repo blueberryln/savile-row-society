@@ -8,8 +8,8 @@
         <!-- Basic Page Needs
   ================================================== -->
         <meta charset="utf-8">
-        <title><?php echo isset($title_for_layout) ? $title_for_layout : 'Savil.Me'; ?></title>
-        <!-- <meta name="description" content="Savil.Me"> -->
+        <title><?php echo isset($title_for_layout) ? $title_for_layout : 'Savile Row Society'; ?></title>
+        <!-- <meta name="description" content="Savile Row Society"> -->
         <?php echo $this->fetch('meta'); ?>
         <!-- Mobile Specific Metas
   ================================================== -->

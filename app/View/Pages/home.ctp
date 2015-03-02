@@ -4,13 +4,13 @@ if(isset($noindex)){
     echo $this->Html->meta(array('name' => 'robots', 'content' => 'noindex, nofollow'),null,array('inline'=>false));
 }
 
-$meta_description = "Savil.Me is a mens personal shopping platform that connects professional men with personal stylists. Buy Mens designer fashion clothing Online at USA favourite online fashion shopping website - savilerowsociety.com";
-$meta_keywords = "Savil.Me, Personal stylist, personal shopping, Menswear online shopping, Men's fashion clothing Online, Buy Mens Clothing Online, personal online shopping, online fashion website, Online shopping website, online fashion shopping";
+$meta_description = "Savile Row Society is a mens personal shopping platform that connects professional men with personal stylists. Buy Mens designer fashion clothing Online at USA favourite online fashion shopping website - savilerowsociety.com";
+$meta_keywords = "Savile Row Society, Personal stylist, personal shopping, Menswear online shopping, Men's fashion clothing Online, Buy Mens Clothing Online, personal online shopping, online fashion website, Online shopping website, online fashion shopping";
 $img_src = "//www.savilerowsociety.com/img/SRS_600.png";
 
 $this->Html->meta("keywords", $meta_keywords, array("inline" => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));
-$this->Html->meta(array('property'=> 'og:title', 'content' => 'Savil.Me', ),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Society', ),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
@@ -49,7 +49,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading topLooks_wrapper">
             <h1>Top Looks</h1>
-            <h3>Curated by Savil.Me Stylists.</h3>
+            <h3>Curated by Savile Row Stylists.</h3>
             <!-- <h3>our premier personal stylists</h3> -->
              
 
@@ -222,7 +222,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <?php else : ?>
                     <a href="#" class="over-img multi-action">
                 <?php endif; ?>
-                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step1.jpg" alt="How Savil.Me Works" />
+                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step1.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Get Started with your Stylist</span>
@@ -235,7 +235,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <?php else : ?>
                     <a href="#" class="over-img multi-action">
                 <?php endif; ?>
-                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step2.jpg" alt="How Savil.Me Works" />
+                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step2.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Get Your Hand Selected Looks</span>
@@ -248,7 +248,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <?php else : ?>
                     <a href="#" class="over-img multi-action">
                 <?php endif; ?>
-                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step3.jpg" alt="How Savil.Me Works" />
+                    <img src="<?php echo HTTP_ROOT; ?>images/how-it-works/Step3.jpg" alt="How Savile Row Society Works" />
                 </a>
 
                 <span class="works-heading">Your Looks, to Your Doorstep</span>
@@ -262,7 +262,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading">
             <h1>Style, On Your Time</h1>
-            <h3>Savil.Me provides a shopping experience that is tailored to fit your individual lifestyle.</h3>
+            <h3>Savile Row Society provides a shopping experience that is tailored to fit your individual lifestyle.</h3>
             <h3>Stylists are available online, and in person-all at no charge.</h3>
         </div>
         <div class="eleven columns container style-time-boxes">
@@ -270,7 +270,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <ul>
                     <li>
                         <div class="style-time-img">
-                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_1.jpg" alt="Savil.Me Personal Stylists are available online or in person">
+                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_1.jpg" alt="Savile Row Society Personal Stylists are available online or in person">
                             <div class="style-time-hover">
                                 <?php if($is_logged): ?>
                                     <h1><a href="/messages/index" title="">Online</a></h1>
@@ -290,7 +290,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     </li>
                     <li>
                         <div class="style-time-img">
-                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_2.jpg" alt="Savil.Me Personal Stylists are available online or in person">
+                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_2.jpg" alt="Savile Row Society Personal Stylists are available online or in person">
                             <div class="style-time-hover">
                                 <?php if($is_logged): ?>
                                     <h1><a href="/contact" title="">In-person</a></h1>
@@ -317,7 +317,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <div class="blank-space">&nbsp;</div>
         <div class="six columns text-center page-heading">
             <h1>Our brands</h1>
-            <h3>Savil.Me selects the best of the best.</h3>
+            <h3>Savile Row Society selects the best of the best.</h3>
             <h3>From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category.</h3>
         </div>
         <div class="eleven columns container brand-boxes">
@@ -348,7 +348,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <div class="nine columns container press_wrapper">
             <div class="press_companies">
                 <img src="<?php echo HTTP_ROOT; ?>images/press_logo1.jpg" alt="" class="first" />
-                <p>"Let your personal stylist find your new kick ass wardrobe <br/> at Savil.Me. Savil.Me is a men's <br/>personal styling platform and our mission <br/> is to enhance the way men shop"<br><br></p>
+                <p>"Let your personal stylist find your new kick ass wardrobe <br/> at Savile Row Society. Savile Row Society is a men's <br/>personal styling platform and our mission <br/> is to enhance the way men shop"<br><br></p>
             </div> 
             <div class="press_companies">
                 <img src="<?php echo HTTP_ROOT; ?>images/press_logo2.jpg" alt="" />

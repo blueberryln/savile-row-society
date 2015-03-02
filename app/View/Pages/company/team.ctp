@@ -1,6 +1,6 @@
 <?php
-$meta_description = "When a new User signup the Savil.Me website, We also understand that our user want to develop a unique personal brand or develop a relationship online at his convenience.";
-$meta_keywords = "Savil.Me, designer Menswear specialists, lifestyle fashionistas";
+$meta_description = "When a new User signup the Savile Row Society website, We also understand that our user want to develop a unique personal brand or develop a relationship online at his convenience.";
+$meta_keywords = "Savile Row Society, designer Menswear specialists, lifestyle fashionistas";
 $script='
     jQuery(function(){
         jQuery("div.team-member").on("click", function(){
@@ -32,7 +32,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                 <div class="eleven columns container">
                     <div class="ten columns text-center page-heading">
                         <h1>Meet the crew</h1>
-                        <h3>Savil.Me consists of a growing team of menswear specialists, lifestyle fashionistas, technology geeks and product junkies to bring men all the goods to work smarter, play harder, and feel better</h3>
+                        <h3>Savile Row Society consists of a growing team of menswear specialists, lifestyle fashionistas, technology geeks and product junkies to bring men all the goods to work smarter, play harder, and feel better</h3>
                     </div>
                     <div class="twelve columns team text-center">	           
                         <div class="team-member-container"> 
@@ -46,9 +46,9 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     <span class="title">Chief Executive Officer</span>
                                     <!-- <div class="sub-title">(Formerly worked in corporate finance, MBA at...</div> -->
                                     <div class="desc">     
-                                        <p>Prior to founding Savil.Me, Lisa worked in the financial services industry.  Her previous position was as an associate at a premier investment bank where she covered consumer and retail companies.  Lisa has also worked at two other financial firms in diverse services. In these positions, Lisa observed that many professional men do not have the time, energy, or desire to shop by going store-to-store or to browse thru hundreds of product images online.</p>
+                                        <p>Prior to founding Savile Row Society, Lisa worked in the financial services industry.  Her previous position was as an associate at a premier investment bank where she covered consumer and retail companies.  Lisa has also worked at two other financial firms in diverse services. In these positions, Lisa observed that many professional men do not have the time, energy, or desire to shop by going store-to-store or to browse thru hundreds of product images online.</p>
 
-                                        <p>Having studied the consumer on-the-job, Lisa recognized the opportunity for customizing a man's image by selecting the correct clothing and accessories using proprietary products as well as the well-known best in class brands. This observation is what gave her the inspiration and drive to found an inventory-less, digital personal shopping platform, named Savil.Me (SRS).  Through SRS, Lisa hopes to transform men's shopping through a seamless, omni-channel personalized style service. </p>
+                                        <p>Having studied the consumer on-the-job, Lisa recognized the opportunity for customizing a man's image by selecting the correct clothing and accessories using proprietary products as well as the well-known best in class brands. This observation is what gave her the inspiration and drive to found an inventory-less, digital personal shopping platform, named Savile Row Society (SRS).  Through SRS, Lisa hopes to transform men's shopping through a seamless, omni-channel personalized style service. </p>
 
                                         <p>Lisa holds a BA in International Studies and a minor in both Entrepreneurship &amp; Management and French from Johns Hopkins University;  She is a member of the Columbia Business School Class of 2014 but has taken a leave of absence to pursue SRS full time.</p>
                                     </div>                    
@@ -86,7 +86,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     <span class="title">Fashion Manager</span>
                                     <div class="desc">
                                         <p>Throughout the last four years, Andrea has gained experience in the retail world, working at the London-based Fashion R Ltd. Showroom, and as a sales associate and personal stylist for the family-owned-and-run designer swimwear and resortwear company, Shirley and Co. It was at Shirley and Co. that Andrea realized her passion for personal shopping and styling.</p>
-                                        <p>As Fashion Manager, Andrea is responsible for establishing and sustaining the relationships of Savil.Me's partnering brands. She also works directly in The Closet, maintaining SRS's curated collection of products.</p>
+                                        <p>As Fashion Manager, Andrea is responsible for establishing and sustaining the relationships of Savile Row Society's partnering brands. She also works directly in The Closet, maintaining SRS's curated collection of products.</p>
                                         <p>Andrea graduated from Rollins College in 2013, earning a B.A. in Critical Media and Critical Cultural Studies with a minor in English. She also held leadership positions in her sorority Alpha Omicron Pi, and was initiated into the national honor society Phi Eta Sigma.</p>
                                     </div>
                                     <div class="text-center info-btn">
@@ -168,7 +168,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     <div class="name">Bella Klycheva</div>
                                     <span class="title">Fashion &amp; Social Media </span>
                                     <div class="desc">
-                                        <p>Bella Klycheva is currently studying Advertising and Marketing Communications at FIT. For more than 2 years, Bella has gained experience while working at fashion shows and fashion shoots. Since she started working at Savil.Me, Bella has discovered a lot about men's fashion. She researches, works with social media, and updates the closet on the website. She loves her work at SRS because she has chance to work with smart and inspiring people.</p>
+                                        <p>Bella Klycheva is currently studying Advertising and Marketing Communications at FIT. For more than 2 years, Bella has gained experience while working at fashion shows and fashion shoots. Since she started working at Savile Row Society, Bella has discovered a lot about men's fashion. She researches, works with social media, and updates the closet on the website. She loves her work at SRS because she has chance to work with smart and inspiring people.</p>
                                     </div>
                                     <div class="text-center info-btn">
                                         <a class="more-info-text" href="#" title="More Info">More Info</a>
@@ -224,7 +224,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     <span class="title">Website Manager</span> 
                                     <div class="desc">
                                         <p>Before leading the development of SRS website, Prateek spent 4 years working for Versace USA at different positions on the retail operations department. He then founded Mobikasa, a development company with operations in India and in the US. </p>
-                                        <p>As website manager, Prateek is responsible of the ground-braking online personal shopping platform that is Savil.Me. His expertise on design and technology shaped a website that renew men’s shopping experience.  </p>
+                                        <p>As website manager, Prateek is responsible of the ground-braking online personal shopping platform that is Savile Row Society. His expertise on design and technology shaped a website that renew men’s shopping experience.  </p>
                                         <p>Prateek holds a BBA in Design and Management from Parsons School of Design.</p>                        
                                     </div>
                                     <div class="text-center info-btn">
@@ -243,7 +243,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     <div class="desc">
                                         <p>Whitney is a graphic designer at the Mobikasa New York office. She hails from California, where she graduated from San Diego State University before coming out to New York City to join Shillington's School of Design.</p>
                                         <p>Prior to joining the Mobikasa team, Whitney was a freelance graphic designer and illustrator. Her work with small business and non-profit clients consisted of primarily print design- from brand/identity development to product package design.</p>
-                                        <p>Her focus has shifted since she started at Mobikasa. Working with clients like Savil.Me allowed her to realize the importance, and relevance, of user centered design. To her, design should not just look good- it must be, above all, functional.</p>
+                                        <p>Her focus has shifted since she started at Mobikasa. Working with clients like Savile Row Society allowed her to realize the importance, and relevance, of user centered design. To her, design should not just look good- it must be, above all, functional.</p>
                                         <p>Now she spends her days happily designing web/app interfaces, and painting with pixels.</p>
                                     </div>
                                     <div class="text-center info-btn">

@@ -57,8 +57,8 @@ $(document).ready(function(){
 //$this->Html->css('ui/jquery.ui.theme', null, array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
-$meta_description = "Sign up for Savil.Me, a groundbreaking online, personalized fashion service.";
-$meta_keywords = "Savil.Me, Personal stylist, personal shopping";
+$meta_description = "Sign up for Savile Row Society, a groundbreaking online, personalized fashion service.";
+$meta_keywords = "Savile Row Society, Personal stylist, personal shopping";
 $this->Html->meta("keywords", $meta_keywords, array("inline" => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));
 

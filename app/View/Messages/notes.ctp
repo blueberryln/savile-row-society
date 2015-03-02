@@ -65,7 +65,7 @@
                                                 <ul class="slider3">
                                                     <?php
                                                     foreach($imagenotes as $value){
-                                                        echo '<li><img src="<?= HTTP_ROOT; ?>files/attachments/' . $value['StylistNote']['image'] . '"></li>';    
+                                                        echo '<li><img src="'.HTTP_ROOT.'files/attachments/' . $value['StylistNote']['image'] . '"></li>';    
                                                     }
                                                     ?>
                                                 </ul>

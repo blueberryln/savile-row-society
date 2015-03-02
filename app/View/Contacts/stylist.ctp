@@ -3,7 +3,7 @@ $this->append('header');
 echo $this->element('header');
 $this->end();
 
-$meta_description = 'Savil.Me, Inc. is designed to enhance the personal branding of professional males and transform men’s shopping through a groundbreaking online, personalized fashion service.';
+$meta_description = 'Savile Row Society, Inc. is designed to enhance the personal branding of professional males and transform men’s shopping through a groundbreaking online, personalized fashion service.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 

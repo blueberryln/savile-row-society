@@ -3,7 +3,7 @@ $this->append('header');
 echo $this->element('header');
 $this->end();
 
-$meta_description = 'We pride ourselves in our high quality, our personalization, and handmade clothing; we take great pride in fulfilling our brand name: Savil.Me.';
+$meta_description = 'We pride ourselves in our high quality, our personalization, and handmade clothing; we take great pride in fulfilling our brand name: Savile Row Society.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 

@@ -71,7 +71,7 @@ class PagesController extends AppController {
        
         }
         else if ($page == 'contact') {
-            $title_for_layout = "Savil.Me - Contact Us | Online Fashion Shopping Website";
+            $title_for_layout = "Savile Row Society - Contact Us | Online Fashion Shopping Website";
         }
         else if ($page == 'refer-a-friend') {
             $this->isLogged();
@@ -112,7 +112,7 @@ class PagesController extends AppController {
             $title_for_layout = "Mens Fashion - Mens Fashion Clothing Online - Personal Online Shopping Stylist";
         }
         else if ($page == 'company/team') {
-            $title_for_layout = "Savil.Me Team Management - Designer Menswear Specialists - Lifestyle Fashionistas";
+            $title_for_layout = "Savile Row Society Team Management - Designer Menswear Specialists - Lifestyle Fashionistas";
         }
         
         $this->set(compact('page', 'subpage', 'title_for_layout'));

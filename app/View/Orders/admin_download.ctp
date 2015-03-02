@@ -14,7 +14,7 @@
                 <p style="padding-top: 15px;">Hi <?php echo ucwords($shipped_order['User']['full_name']); ?>,</p>
 
                 <div style=" padding: 5px 0;">
-                    <p >Thank you for shopping with Savil.Me.</p>
+                    <p >Thank you for shopping with Savile Row Society.</p>
                     <p>Your order has been received and we are working towards fulfilling it. You will receive an email when your order is on the way. </p>
                     <p>Below is your order summary</p>
 
@@ -88,7 +88,7 @@
                 </div>
 
                 <p style="margin-bottom: 5px; padding-bottom: 0">Best,</p> 
-                <p style="padding-bottom: 15px;">The Savil.Me Team</p>
+                <p style="padding-bottom: 15px;">The Savile Row Society Team</p>
             
             </td>        
         </tr>
@@ -105,7 +105,7 @@
             
             <tr>
                 <td style="padding-top: 10px;">
-                    <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">Savil.Me, Inc. </p>
+                    <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">Savile Row Society, Inc. </p>
                     
                     <p style="font-size: 11px; text-align: center; margin: 0px; color: #A0A0A0;">1115 Broadway | New York, NY, 10010</p>
                 </td>

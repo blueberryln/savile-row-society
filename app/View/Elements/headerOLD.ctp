@@ -21,7 +21,7 @@ $('.hoverNav').fadeOut(10);
 
         <!--LogoSection-->
         <div class="header-logo left">
-            <a href="/" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savil.Me" title="Savil.Me" /></a>
+            <a href="/" ><img class="logo" src="<?php echo $this->request->webroot; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society" /></a>
             <!-- <span class="tagline" <?php echo (isset($page) && $page == "home") ? "style='visibility: visible'" : ""; ?> >Meet Your Personal Stylist Now!</span> -->
         </div>
         <!--LogoSection Ends-->

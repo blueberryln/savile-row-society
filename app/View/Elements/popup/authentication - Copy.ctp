@@ -39,9 +39,9 @@
 	                <?php if($referer_type == 'event') : ?>
 	                    <p>Thank you for attending our <?php echo ucwords($referer['User']['full_name']); ?> event. To thank you for your support and patronage, please enjoy $50 off of your first purchase of $250 or more.</p>
 	                <?php elseif($referer_type == 'stylist') : ?>
-	                    <p>We hear you’re a friend of our premier personal stylist <?php echo ucwords($referer['User']['first_name']); ?>. To welcome you to Savil.Me, please enjoy $50 off of your first purchase of $250 or more.</p>
+	                    <p>We hear you’re a friend of our premier personal stylist <?php echo ucwords($referer['User']['first_name']); ?>. To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more.</p>
 	                <?php else : ?>
-	                    <p>Any friend of <?php echo ucwords($referer['User']['first_name']); ?> is a friend of ours! To welcome you to Savil.Me, please enjoy $50 off of your first purchase of $250 or more. </p>
+	                    <p>Any friend of <?php echo ucwords($referer['User']['first_name']); ?> is a friend of ours! To welcome you to Savile Row Society, please enjoy $50 off of your first purchase of $250 or more. </p>
 	                <?php endif; ?> 
 		            <div class="text-center">
 		            	<a href="<?php echo $this->webroot; ?>users/register" class="link-btn black-btn signin-btn">Start</a>
@@ -94,7 +94,7 @@
     <div class="box-modal-inside">
         <a class="notification-close" href=""></a>
         <div class="signin-content text-left"> 
-            <h5 class="sign"><img class="logo" src="/img/srs_logo_black.png" alt="Savil.Me" title="Savil.Me"></h5>            
+            <h5 class="sign"><img class="logo" src="/img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society"></h5>            
             
             <p>Not a member yet? <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"></span></a></p>
              

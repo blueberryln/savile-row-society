@@ -35,8 +35,8 @@ $(document).ready(function(){
 
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 
-$meta_description = 'Contact us via email, give us a call(347-878-7280) or visit us in our showroom. Savil.Me is New York based online shopping website online.';
-$meta_keywords = 'Savil.Me, online fashion website, Online shopping website, online fashion shopping';
+$meta_description = 'Contact us via email, give us a call(347-878-7280) or visit us in our showroom. Savile Row Society is New York based online shopping website online.';
+$meta_keywords = 'Savile Row Society, online fashion website, Online shopping website, online fashion shopping';
 
 $this->Html->meta("keywords", $meta_keywords, array("inline" => false));
 $this->Html->meta('description', $meta_description, array('inline' => false));

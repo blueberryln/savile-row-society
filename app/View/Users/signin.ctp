@@ -1,7 +1,7 @@
 <?php
 
 
-$meta_description = 'Sign in to Savil.Me, a groundbreaking online, personalized fashion service.';
+$meta_description = 'Sign in to Savile Row Society, a groundbreaking online, personalized fashion service.';
 $this->Html->meta('description', $meta_description, array('inline' => false));
 // call this line to exclude lyout from rendering. 
 // this is necesary because this view is opening as popup, and don't need to have header, footer etc as rest of the pages.
