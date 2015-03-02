@@ -1575,9 +1575,9 @@ ul.client-outfit-img-lst:hover .outfit-quick-view{ display: block!important;}
 .notes-txt-area {background: #d7d7d7; padding-bottom: 40px;}
 .notes-heading { font-weight: bold;}
 .notes-heading li, .notes-content-area li { display: inline-block; margin-bottom: 0px; width: 100%;}
-.notes-heading li .notes-date, .notes-content-area li .notes-date { width:10%; float: left;}
-.notes-heading li .notes-dtl, .notes-content-area li .notes-dtl { width: 65%; float: left;}
-.notes-heading li .notes-btns, .notes-content-area li .notes-btns { width: 25%; float: left; text-align: center;}
+.notes-heading li .notes-date, .notes-content-area li .notes-date { width:18%; float: left;}
+.notes-heading li .notes-dtl, .notes-content-area li .notes-dtl { width: 55%; float: left;}
+.notes-heading li .notes-btns, .notes-content-area li .notes-btns { width: 21%; float: left; text-align: right;}
 .notes-content-area li { padding: 15px 0 60px 0; margin-bottom: 1px; border-bottom: 1px solid #d9d9d9}
 
 .notes-content-area li .notes-btns a { display: inline-block; padding: 0px 15px; background: #ffffff; border: 1px solid #ccc; height: 28px; line-height: 30px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; margin: 0 5px 0; font-weight: bold;}
