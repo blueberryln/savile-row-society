@@ -252,7 +252,7 @@ $(document).on('click','.checkfblogin',function(){
 var if_clik =1;
 //alert(if_clik);
 });
-<?php //if(!$user) { ?>
+<?php if(!$user) { ?>
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -334,7 +334,7 @@ var if_clik =1;
     });
   }
 
-<?php //} ?>
+<?php } ?>
 function fb_login(){
     FB.login(function(response) {
 
