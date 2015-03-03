@@ -820,7 +820,7 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 .top_rightSection.login_rightSection{ min-width: 12%; margin: 2px 0 0 0; text-align: right; }
 .top_rightSection.login_rightSection .card-menu{ margin-right: 0% !important; }
 .top_rightSection.login_rightSection a.cart_link {  margin: 0;  }
-.container.content > .container{ position: relative; margin: 81px 0 20px; }
+.container.content > .container{ position: relative; margin: 81px auto 20px; }
 .hover_overlay{ position: absolute; width: 100%; height: 135px; background: rgba(0, 0, 0, 0.5); z-index: 2; display: none;  vertical-align: top; color: #fff; font-size: 18px; line-height: 135px; left: 0px; top: 0px; }
 .bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; z-index: 1; } 
 .jcarousel-control-wrapper{ display: inline-block; height: 25px; width: 220px; position: absolute; left: 0; bottom: -46px; text-align: center; right: 0; z-index: 1; margin: 0px auto 9px; }
@@ -908,10 +908,23 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 
 @media screen and (min-width: 940px) and (max-width: 1024px) {
     .leftSection{ width: 120px; margin: 12px 0 0 0; }
-    .rightSection{ width: 88%; }
+    .rightSection{ width: 81%; }
+    .rightSection nav ul li{ margin: 0px 10px; }
+    .row_center{ width: 98%; }
 }
 
+@media screen and (min-width: 1025px) and (max-width: 1366px) {
+    .rightSection{ width: 81%; }
+    .rightSection nav ul li{ margin: 0px 10px; }
+    .row_center{ width: 98%; }
+    .style-preference, .register-style, .register-about, .register-brands, .register-last-step, .register-finish{ width: 100%; }
+}
 
+@media screen and (min-width: 1025px) and (max-width: 1625px) {
+    .stylistbio-user{ width: 100%; text-align: center; }
+    .start-today{ width: 100%; text-align: center; margin: 15px 0 10px; }
+    .bottom-section{ padding: 0px 0px 100px; }
+}
 
 
 /* Media Home Page */
@@ -1170,9 +1183,9 @@ a.open-left-pannel { display: none;}
 h1.stylistbio-heading { position: relative; font-size: 22px; color: #d19b03; margin: 0; padding: 16px 0 10px; text-transform: uppercase; font-weight: normal;}
 .user-desc { font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:20px 0 15px 10px; /*border-top: 1px solid #e6e6e6;*/ border-bottom: 1px solid #e6e6e6; margin-bottom: 15px; /*margin-top:15px;*/}
 .user-inspire-desc {font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:10px 0 15px 10px;}
-.stylistbio-user { float: left; color: #7f7f7f; font-size: 30px; text-transform: uppercase; padding-top: 11px;}
+.stylistbio-user { float: left; color: #7f7f7f; font-size: 25px; text-transform: uppercase; padding-top: 11px;}
 .start-today { float: right; margin-right: -2px;}
-.start-today a { background: #d19b03; display: block; padding: 10px 15px 6px; color: #fff; text-transform: uppercase; font-size: 20px;}
+.start-today a{ background: #d19b03; display: block; padding: 6px 15px 6px; color: #fff; text-transform: uppercase; margin-top: 5px; font-size: 18px; }
 .detials-section { border:1px solid #ebebeb; margin: 8px 0 20px;}
 .details { border-bottom: 1px solid #ebebeb; font-size:20px; line-height: 22px; color: #a4a696; font-family: 'ProximaNovaCond-Regular'; font-weight: 400;}
 .details .home-town, .details .fun-fact, .details .fashion-tips { padding-bottom: 25px; padding-left: 18px; position: relative;}
