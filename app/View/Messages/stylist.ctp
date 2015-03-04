@@ -358,7 +358,7 @@ $this->Html->script('date-format.js', array('inline' => false));
             e.preventDefault();
             userId =  $("#UserUserToId").val();
             window.location = webroot + "messages/index/" + userId;
-        })
+        });
         
         var userId = null;
         
