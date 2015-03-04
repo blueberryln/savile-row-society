@@ -125,7 +125,9 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 <!--bhashit code-->
 
  <script>
-    window.onload = function() {
+   // window.onload = function() {
+    loadMessages(); //shubham added
+    loadNewMessages(); //shubham added
         var isFirstLoad = true,
             chatContainer = $('.chat-container'),
             callInAction = false,
@@ -466,6 +468,6 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                 }    
             });
         });
-    }
+   // }
 
 </script>
