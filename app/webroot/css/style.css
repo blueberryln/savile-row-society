@@ -859,6 +859,39 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 
 
 
+.myclient-gallery .bx-controls.bx-has-pager.bx-has-controls-direction{ margin-top: 30px; width: 100%; text-align: center; display: inline-block; } 
+
+.myclient-gallery .bx-wrapper .bx-pager{
+display: inline-grid;
+height: 31px;
+width: 180px;
+vertical-align: top;
+position: relative;
+float: none;
+margin: 0 auto;
+top: 0;
+z-index: inherit;
+padding: 0;
+text-align: center;
+font-size: inherit;
+}
+
+
+.myclient-gallery .bx-controls-direction{
+text-align: center;
+position: relative;
+display: inline-block;
+z-index: 200;
+margin: 0 auto;
+top: -23px;
+width: 180px;
+height: auto;
+}
+
+
+
+
+
 /* Media Home Page */
 
 @media screen and (min-width: 320px) and (max-width: 420px) {
@@ -1415,8 +1448,28 @@ background: linear-gradient(#fdfdfd, #e8e8e8);
 .client-prof .connect { margin-top: 0; margin-bottom: 10px;}
 .client-profile h1 { font-family: 'Proximanova'; font-size: 24px; line-height: 26px; color: #444444; text-transform: uppercase; padding: 18px 0 22px; margin-bottom: 0px;}
 .client-address h1 { padding-bottom: 5px;}
-.additional-comment { background: #fff;  margin-bottom: 40px; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;}
-.additional-comment textarea {border: 2px solid #cccccc; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; font-size: 16px; line-height: 18px; color: #90908e; min-height: 80px;}
+.additional-comment {
+background: #fff;
+margin-bottom: 40px;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+height: 80px;
+border-radius: 8px;
+}
+.additional-comment textarea{
+border: 2px solid #cccccc;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+font-size: 12px;
+line-height: normal;
+font-family: 'Open sans';
+color: #90908e;
+min-height: 80px;
+padding-left: 24px;
+}
+
+
 .additional-comment p { margin-bottom: 0px;}
 .additional-comment h4 { font-size: 16px; line-height: 18px; font-weight: normal; color: #bababb; margin: 0px; padding: 0px;}
 .address-dtls { font-family: 'ProximaNovaCond-Regular'; font-size: 18px; line-height: 22px;}
@@ -1608,8 +1661,8 @@ ul.client-outfit-img-lst:hover .outfit-quick-view{ display: block!important;}
 .myclient-gallery .bx-wrapper { margin: 0 auto; position: relative;}
 .myclient-gallery .bx-wrapper .bx-viewport { height: 180px!important;}
 .myclient-gallery .bx-wrapper a.bx-prev, .myclient-gallery .bx-wrapper a.bx-next { position: absolute; bottom: 0px; background: url("../images/gal-arrow.png") no-repeat; text-indent: -9999px; width: 16px; height: 31px; outline: none;}
-.myclient-gallery .bx-wrapper a.bx-prev { background-position: 0px 0px; left: 35%;}
-.myclient-gallery .bx-wrapper a.bx-next { background-position: -16px 0px; right: 35%;}
+.myclient-gallery .bx-wrapper a.bx-prev { background-position: 0px 0px; left: 0;}
+.myclient-gallery .bx-wrapper a.bx-next { background-position: -16px 0px; right: 0;}
 .gal-btns {text-align: center; padding: 30px 0 0px;}
 a.upload-gal-photos {font-family: 'Open sans'; height: 53px; line-height: 55px; background: #927e41; display: inline-block; padding: 0px 20px; text-transform: uppercase; color: #fff;}
 
