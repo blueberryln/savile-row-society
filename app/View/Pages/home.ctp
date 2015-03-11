@@ -135,6 +135,14 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                             <a class="shop-outfit-bottom-link" href="/guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" title="">Shop Outfit</a>
                                         <?php endif; ?> -->
                                     </div>
+                                    <div>
+                                        <form action = '/comments/add_comment' method="POST" class="comment_form">
+                                            <input type = "hidden" name="outfit_id" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
+                                            <input type = "hidden" name="outfit_name" value = "<?php echo $outfit['Outfit']['outfit_name']; ?>"/>
+                                            <input type="text" name="comment" class="comment_box"/>
+                                            <input class="submit_comment" type="button" value="Post">
+                                        </form>
+                                    </div>
                                 </div>
                                 <!-- <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>" title="" class="outfilt-btns">Meet <?php echo $outfit['Stylist']['first_name']; ?></a></div> -->
                             </li>
@@ -379,4 +387,25 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             location = $(this).find('a.shop-outfit-bottom-link').attr('href');
         });
     });
+</script>
+<script>
+    $('.submit_comment').click(function(e){
+        //e.preventDefault();
+        var cmnt = $(this).prev('.comment_box').val().trim();
+        var data = $(this).parent('form').serialize();
+        if(cmnt){
+            $.ajax({
+                url : '/comments/add_comment',
+                type: 'POST',
+                data : data,
+                success: function(res){
+                    if(res=='success'){
+
+                    }
+                }
+            });
+            $(this).prev('.comment_box').val('');
+        }
+    });
+
 </script>
