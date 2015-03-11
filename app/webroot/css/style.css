@@ -823,7 +823,22 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 .container.content > .container{ position: relative; margin: 81px auto 20px; }
 .hover_overlay{ position: absolute; width: 100%; height: 135px; background: rgba(0, 0, 0, 0.5); z-index: 2; display: none;  vertical-align: top; color: #fff; font-size: 18px; line-height: 135px; left: 0px; top: 0px; }
 .bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; z-index: 1; } 
-.jcarousel-control-wrapper{ display: inline-block; height: 25px; width: 220px; position: absolute; left: 0; bottom: -46px; text-align: center; right: 0; z-index: 1; margin: 0px auto 9px; }
+.jcarousel-control-wrapper{ display: inline-block; height: 25px; position: absolute; left: 0; text-align: center; right: 0; z-index: 1; margin: 0px auto 9px; top: 40%; } 
+.last_static_slide{
+display: inline-block;
+position: absolute;
+font-family: 'Adobe Caslon Pro';
+background: #FFF;
+width: 266px;
+line-height: 262px;
+top: 0;
+color: #b5a069;
+right: 1px;
+font-size: 20px;
+height: 262px;
+border: 2px solid #a8a18f;
+}
+.last_static_slide a{ color: #b5a069; text-decoration: underline; }
 
 
 .header_wrapper{ left: 0px; width: 100%; background: #FFF; display: inline-block; vertical-align: top; min-height: 82px; position: fixed; top: 0px; text-align: center; font-size: 0px; z-index: 200; }

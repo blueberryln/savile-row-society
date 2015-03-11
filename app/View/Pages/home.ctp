@@ -183,6 +183,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         </a>
                     </li>
                 <?php endforeach; ?>
+
                 <!--     <li><img src="<?php echo $this->webroot; ?>images/stylists_img1.jpg"/></li>
                     <li><img src="<?php echo $this->webroot; ?>images/stylists_img2.jpg"/></li>
                     <li><img src="<?php echo $this->webroot; ?>images/stylists_img3.jpg"/></li>
@@ -192,6 +193,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <li><img src="<?php echo $this->webroot; ?>images/stylists_img3.jpg"/></li>
                     <li><a href="Javascript:;" class="stylists_see_all">See All Stylists</a></li> -->
                 </ul>
+                <div class="last_static_slide">
+                    <a href="Javascript:;">See all Stylists</a>
+                </div>
+
                     </div>
                     
                     <div class="jcarousel-control-wrapper">
