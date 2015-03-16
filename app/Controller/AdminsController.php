@@ -99,7 +99,7 @@ class AdminsController extends AppController {
 
 	function edit_blogpost($id=null){
 		$this->loadModel('Blog');
-		$id = convert_uudecode(base64_decode($id));
+		//$id = convert_uudecode(base64_decode($id));
 		$conditions = array('conditions'=>array('Blog.id'=>$id));
 		$posts = $this->Blog->get_posts('first',$conditions);
 		$this->set(compact('posts'));

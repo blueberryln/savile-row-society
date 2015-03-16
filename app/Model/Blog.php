@@ -16,7 +16,7 @@ class Blog extends AppModel{
 			$newImgName = time().'_'.rand(1000,10000000);
 			$fileType = explode('/',$data['Blog']['image']['type']);
 			$newImgName = $newImgName.'.'.$fileType[1];
-			$destination = realpath('../webroot/files/blog'). '/'.$newImgName;
+			$destination = realpath('../../app/webroot/files/blog'). '/';
 			if(move_uploaded_file($data['Blog']['image']['tmp_name'], $destination.$newImgName)){
 				$data['Blog']['image'] = $newImgName;
 			}
@@ -41,11 +41,10 @@ class Blog extends AppModel{
 			$newImgName = time().'_'.rand(1000,10000000);
 			$fileType = explode('/',$data['Blog']['image']['type']);
 			$newImgName = $newImgName.'.'.$fileType[1];
-			$destination = realpath('../webroot/files/blog'). '/';
+			$destination = realpath('../../app/webroot/files/blog'). '/';
 			unlink($destination.$oldImg);
 			if(move_uploaded_file($data['Blog']['image']['tmp_name'], $destination.$newImgName)){
 				$data['Blog']['image'] = $newImgName;
-				
 			}
 			else{
 				return 'file not uploaded';
