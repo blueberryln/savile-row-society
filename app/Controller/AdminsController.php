@@ -17,9 +17,11 @@ class AdminsController extends AppController {
 	function outfit_comments(){		//fetch recent 20 comments.
 		$limit = 20;
 		$conditions = array('order'=>'OutfitComment.id desc','limit'=>$limit,'recursive'=>1);
-		$comments = $this->OutfitComment->get_comments('all',$conditions);
+		$data = $this->OutfitComment->get_comments('all');
+		$this->paginate = $conditions;
+		$comments = $this->paginate('OutfitComment');
 		$this->set(compact('comments'));
-		pr($comments);die;
+		//pr($comments);die;
 	}
 
 	function add_comments(){
@@ -56,7 +58,7 @@ class AdminsController extends AppController {
 		$updatestatus = array('0'=>1,'1'=>0);
 		$this->$model->id = $id;
 		$this->$model->saveField('disabled',$updatestatus[$status]);
-		pr($updatestatus[$status]);
+		//pr($updatestatus[$status]);
 		die;
 	}
 
@@ -77,10 +79,12 @@ class AdminsController extends AppController {
 		$this->loadModel('Blog');
 		$limit = 20;
 		$conditions = array('order'=>'Blog.id desc','limit'=>$limit,);
-		$posts = $this->Blog->get_posts('all',$conditions);
+		$data = $this->Blog->get_posts('all');
+		$this->paginate = $conditions;
+		$posts = $this->paginate('Blog');
 		$this->set(compact('posts'));
-		pr($posts);
-		die;
+		//pr($posts);
+		//die;
 	}
 
 	function add_blogpost(){
