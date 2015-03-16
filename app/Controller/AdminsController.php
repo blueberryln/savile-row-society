@@ -17,7 +17,7 @@ class AdminsController extends AppController {
 	function outfit_comments(){		//fetch recent 20 comments.
 		$limit = 20;
 		$conditions = array('order'=>'OutfitComment.id desc','limit'=>$limit,'recursive'=>1);
-		$data = $this->OutfitComment->get_comments('all');
+		//	$data = $this->OutfitComment->get_comments('all');
 		$this->paginate = $conditions;
 		$comments = $this->paginate('OutfitComment');
 		$this->set(compact('comments'));
@@ -79,7 +79,7 @@ class AdminsController extends AppController {
 		$this->loadModel('Blog');
 		$limit = 20;
 		$conditions = array('order'=>'Blog.id desc','limit'=>$limit,);
-		$data = $this->Blog->get_posts('all');
+		//$data = $this->Blog->get_posts('all');
 		$this->paginate = $conditions;
 		$posts = $this->paginate('Blog');
 		$this->set(compact('posts'));
