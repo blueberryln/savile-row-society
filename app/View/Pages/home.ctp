@@ -136,10 +136,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                         <?php endif; ?> -->
                                     </div>
                                     <div>
-                                        <form action = '/comments/add_comment' method="POST" class="comment_form">
-                                            <input type = "hidden" name="outfit_id" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
-                                            <input type = "hidden" name="outfit_name" value = "<?php echo $outfit['Outfit']['outfit_name']; ?>"/>
-                                            <input type="text" name="comment" class="comment_box"/>
+                                        <form method="POST" class="comment_form">
+                                            <input type = "hidden" name="data[OutfitComment][outfit_id]" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
+                                            <input type="text" name="data[OutfitComment][comment]" class="comment_box"/>
                                             <input class="submit_comment" type="button" value="Post">
                                         </form>
                                     </div>
@@ -389,6 +388,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
     });
 </script>
 <script>
+    $('.comment_form').submit(function(e){
+        e.preventDefault();
+    });
     $('.submit_comment').click(function(e){
         //e.preventDefault();
         var cmnt = $(this).prev('.comment_box').val().trim();

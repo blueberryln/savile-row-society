@@ -168,7 +168,6 @@ class AppController extends Controller {
         } else {
             $is_admin = false;
         }
-
         $this->set('is_admin', $is_admin);
     }
     
