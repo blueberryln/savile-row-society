@@ -144,9 +144,6 @@
 </div>
 <?php } ?>
 
-
-
-
 <div id="quick-signup-popup" style="display: none">
 	<div id="register-box" class="box-modal notification-box guest-checkout-box">
 	    <div class="box-modal-inside">

@@ -51,6 +51,11 @@ class OffersController extends AppController {
 
      //shubham code thankyou
     public function thankyou(){
+
+        if(!$this->Session->read('user')){
+            $this->redirect('/');
+            exit;
+        }
         $TopStylist = ClassRegistry::init('TopStylist');
         $topStylists = $TopStylist->getTopStylists();
 
@@ -62,6 +67,7 @@ class OffersController extends AppController {
         $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
 
         $thankyou = $this->Session->read('thankyou');
+        //$this->Session->delete('thankyou');
         $this->set(compact('topStylists','topOutfits', 'firstStylist','thankyou','title_for_layout'));
         
         $this->render('/Pages/home');

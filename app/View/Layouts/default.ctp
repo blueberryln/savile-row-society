@@ -82,6 +82,9 @@
                 echo $this->element('popup/authentication'); 
                 echo $this->element('popup/vip_access');     
             }
+            if(!empty($thankyou)){
+                echo $this->element('popup/thankyou');     
+            }
             ?>
 
         <!--Modal Notifications-->
