@@ -710,7 +710,7 @@ class UsersController extends AppController {
 
                         //$this->Session->write('new_user', 'new_user');
 
-                        $this->redirect(array('controller' => 'messages'));
+                        //$this->redirect(array('controller' => 'messages'));
                     } else {
                         $this->redirect($this->referer());
                         exit;

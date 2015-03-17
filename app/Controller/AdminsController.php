@@ -36,6 +36,9 @@ class AdminsController extends AppController {
 				$result = $this->OutfitComment->save_comment($data);
 				echo $result;
 			}
+			else{
+				echo 'All Fields are mandatory.';
+			}
 		}
 	}
 
@@ -49,6 +52,7 @@ class AdminsController extends AppController {
 			$result = $this->OutfitComment->save_comment($data);
 			echo $result;
 		}
+
 		die;
 	}
 
@@ -96,7 +100,9 @@ class AdminsController extends AppController {
 				$result = $this->Blog->add_new_blogpost($data);
 				echo $result;
 			}
-
+			else{
+				echo 'All Fields are mandatory.';
+			}
 		}
 		die;
 	}
@@ -108,15 +114,19 @@ class AdminsController extends AppController {
 		$posts = $this->Blog->get_posts('first',$conditions);
 		$this->set(compact('posts'));
 		$data = $this->data;
-		if($data['Blog']['link'] && $data['Blog']['title']){
-			$data['Blog']['id'] = $id;
-			$data['Blog']['time'] = time();
-			$result = $this->Blog->update_blogpost($data,$posts['Blog']['image']);
-			echo $result;
+		if(!empty($data)){
+			if($data['Blog']['link'] && $data['Blog']['title']){
+				$data['Blog']['id'] = $id;
+				$data['Blog']['time'] = time();
+				$result = $this->Blog->update_blogpost($data,$posts['Blog']['image']);
+				echo $result;
+			}
+			else{
+				echo 'All Fields are mandatory.';
+			}
 		}
 		die;
 	}
-	
 }
 
 
