@@ -149,7 +149,13 @@
 	<div id="register-box" class="box-modal notification-box landing-offer-box">
 	    <div class="box-modal-inside">
 	        <div>
-                <?php echo 'hi'; ?>
+                <?php // echo 'hi'; ?>
+                <p class="landing_title">Let's Get Started!</p>
+                <span class="landing_border"></span>
+                <p class="landing_desc">Your $50 discount has been <br> applied to you account</p>
+                <div class="landing-buttons">
+	                <input type="submit" class="link-btn btn-started" value="Contunue Shopping"> 
+               	</div>
 	        </div> 
 	    </div>
 	</div>
