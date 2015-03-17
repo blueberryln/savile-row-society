@@ -49,4 +49,23 @@ class OffersController extends AppController {
 
 	}
 
+     //shubham code thankyou
+    public function thankyou(){
+        $TopStylist = ClassRegistry::init('TopStylist');
+        $topStylists = $TopStylist->getTopStylists();
+
+        $firstStylist = count($topStylists) ? $topStylists[0] : false;
+        
+        //Get Top Outfits
+        $TopOutfit = ClassRegistry::init('TopOutfit');
+        $topOutfits = $TopOutfit->getTopOutfits();
+        $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
+
+        $thankyou = $this->Session->read('thankyou');
+        $this->set(compact('topStylists','topOutfits', 'firstStylist','thankyou','title_for_layout'));
+        
+        $this->render('/Pages/home');
+    }
+
+
 }

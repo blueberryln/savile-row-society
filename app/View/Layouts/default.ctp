@@ -734,7 +734,7 @@
 		} catch (err) {}
 	}
 
-    confirmationPopup();
+    
 
 }(this, document, jQuery));
   </script>

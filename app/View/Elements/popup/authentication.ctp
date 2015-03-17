@@ -145,16 +145,6 @@
 <?php } ?>
 
 
-<div id="confirmation-popup" style="display: none">
-	<div id="register-box" class="box-modal notification-box landing-offer-box">
-	    <div class="box-modal-inside">
-	        <div>
-                <?php echo 'hi'; ?>
-	        </div> 
-	    </div>
-	</div>
-</div>
-
 
 
 <div id="quick-signup-popup" style="display: none">

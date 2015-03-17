@@ -643,6 +643,7 @@ class UsersController extends AppController {
 
                     if($this->Session->check('landing_offer')){
                         $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->write('thankyou',$this->Session->read('landing_offer'));
                         $this->Session->delete('landing_text');
                         
                         $user_offer['UserOffer']['user_id'] = $results['User']['id'];
@@ -710,7 +711,7 @@ class UsersController extends AppController {
 
                         //$this->Session->write('new_user', 'new_user');
 
-                        //$this->redirect(array('controller' => 'messages'));
+                        $this->redirect(array('controller' => 'messages'));
                     } else {
                         $this->redirect($this->referer());
                         exit;
