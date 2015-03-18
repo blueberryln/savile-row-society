@@ -11,12 +11,12 @@ class Blog extends AppModel{
 		$Blog = ClassRegistry::init('Blog');
 		//pr($data);
 		$allowedImgTypes = array('image/gif','image/jpeg','image/png');
-		$destination = realpath('../webroot/files/blog');
+		$destination = realpath('../webroot/images/blog');
 		if(in_array($data['Blog']['image']['type'],$allowedImgTypes)){
 			$newImgName = time().'_'.rand(1000,10000000);
 			$fileType = explode('/',$data['Blog']['image']['type']);
 			$newImgName = $newImgName.'.'.$fileType[1];
-			$destination = realpath('../../app/webroot/files/blog'). '/';
+			$destination = realpath('../../app/webroot/images/blog'). '/';
 			if(move_uploaded_file($data['Blog']['image']['tmp_name'], $destination.$newImgName)){
 				$data['Blog']['image'] = $newImgName;
 			}
@@ -36,12 +36,12 @@ class Blog extends AppModel{
 		$Blog = ClassRegistry::init('Blog');
 		//pr($posts);die;
 		$allowedImgTypes = array('image/gif','image/jpeg','image/png');
-		$destination = realpath('../webroot/files/blog');
+		$destination = realpath('../webroot/images/blog');
 		if(in_array($data['Blog']['image']['type'],$allowedImgTypes)){
 			$newImgName = time().'_'.rand(1000,10000000);
 			$fileType = explode('/',$data['Blog']['image']['type']);
 			$newImgName = $newImgName.'.'.$fileType[1];
-			$destination = realpath('../../app/webroot/files/blog'). '/';
+			$destination = realpath('../../app/webroot/images/blog'). '/';
 			unlink($destination.$oldImg);
 			if(move_uploaded_file($data['Blog']['image']['tmp_name'], $destination.$newImgName)){
 				$data['Blog']['image'] = $newImgName;

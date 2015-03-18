@@ -724,7 +724,7 @@ class UsersController extends AppController {
         }
     }
 
-
+   
     public function quickregister()
 
     {

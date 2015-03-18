@@ -62,7 +62,7 @@ Router::connect('/confirmation', array('controller' => 'payments', 'action' => '
 Router::connect('/product/*', array('controller' => 'closet', 'action' => 'product'));
 Router::connect('/user-outfit/*', array('controller' => 'closet', 'action' => 'userOutfit'));
 Router::connect('/profile/*', array('controller' => 'users', 'action' => 'register'));
-Router::connect('/thankyou', array('controller' => 'offers', 'action' => 'thankyou'));
+Router::connect('/thankyou/*', array('controller' => 'offers', 'action' => 'thankyou'));
 
 /* Admin */
 Router::connect('/admin', array('controller' => 'products', 'action' => 'index', 'admin' => true));
