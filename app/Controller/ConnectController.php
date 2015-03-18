@@ -347,7 +347,8 @@ class ConnectController extends AppController {
 
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
-                        $this->redirect('/register/wardrobe');
+                        //$this->redirect('/register/wardrobe');    
+                        $this->redirect('/thankyou');  //changed by shubham
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
