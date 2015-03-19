@@ -84,6 +84,7 @@
                     <a href="#" title="Account"><img src="<?php echo HTTP_ROOT ?>img/profile-icon.png" alt="Account" /></a>
                     <ul class="submenu">
                         <li><a href="<?php echo $this->request->webroot; ?>">View website</a></li>
+                        <li><a href="/admins/blog">Home Page</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>signout">Sign out</a></li>
                     </ul>
                 </li>

@@ -16,6 +16,7 @@ class AdminsController extends AppController {
 
 	function outfit_comments(){		//fetch recent 20 comments.
 		$limit = 20;
+		$this->layout = 'adminlte';
 		$conditions = array('order'=>'OutfitComment.id desc','limit'=>$limit,'recursive'=>1);
 		//	$data = $this->OutfitComment->get_comments('all');
 		$this->paginate = $conditions;
@@ -23,37 +24,63 @@ class AdminsController extends AppController {
 		$this->set(compact('comments'));
 		//pr($comments);die;
 	}
-
+	function select_outfit($stylist_id = null){
+		$this->loadModel('Outfit');
+		$this->layout = '';
+		$outfits = $this->Outfit->find('all',array('conditions'=>array('Outfit.stylist_id'=>$stylist_id,'Outfit.outfit_name !='=>NULL),'fields'=>array('id','outfit_name')));
+		if(!empty($outfits)){
+			$list .= '<option value="" >--Select--</option>';
+			foreach($outfits as $outfit){
+				$list .= '<option value = '.$outfit['Outfit']['id'].'>'.$outfit['Outfit']['outfit_name'].'</option>';
+			}
+		} else{
+			$list .= '<option value="" >No Outfits added by the stylist.</option>';
+		}	
+		echo $list;die;
+	}
 	function add_comments(){
+		$this->loadModel('User');
+		$stylists = $this->User->find('all',array('conditions'=>array('User.is_stylist'=>1),'fields'=>array('id','full_name')));
 		$user = $this->Session->read('user');
+		$this->layout = 'adminlte';
 		$data = $this->data;
+		$this->set(compact('data','stylists'));
 		if(!empty($data)){
 			$data['OutfitComment']['user_id'] = $user['User']['id'];
 			$data['OutfitComment']['comment'] = trim($data['OutfitComment']['comment']);
-			$data['OutfitComment']['disabled'] = PRE_MOD;
 			$data['OutfitComment']['time'] = time();
-			if($data['OutfitComment']['comment'] && $data['OutfitComment']['OutfitComment_id']){
+			if($data['OutfitComment']['comment'] && $data['OutfitComment']['outfit_id']){
 				$result = $this->OutfitComment->save_comment($data);
-				echo $result;
+				if($result == 'success'){
+					$this->redirect(array('controller'=>'admins','action'=>'outfit_comments'));
+				}
 			}
 			else{
-				echo 'All Fields are mandatory.';
+				$this->redirect($this->referer());
 			}
 		}
 	}
 
 	function edit_comments($id=null){
+		$this->layout = 'adminlte';
+		$this->loadModel('User');
+		$stylists = $this->User->find('all',array('conditions'=>array('User.is_stylist'=>1),'fields'=>array('id','full_name')));
 		$OutfitComment_id = convert_uudecode(base64_decode($id));
 		$conditions = array('conditions'=>array('OutfitComment.id'=>$OutfitComment_id),'recursive'=>1);
 		$comments = $this->OutfitComment->get_comments('first',$conditions);
-		$this->set(compact('comments'));
+		$this->set(compact('comments','stylists'));
 		$data = $this->data;
 		if(!empty($data)){
+			$data['OutfitComment']['id'] = $OutfitComment_id;
 			$result = $this->OutfitComment->save_comment($data);
-			echo $result;
+			if($result == 'success'){
+					$this->redirect(array('controller'=>'admins','action'=>'outfit_comments'));
+				}
+			else{
+			$this->redirect($this->referer());
+			}
 		}
-
-		die;
+			
 	}
 
 	function status($model=null,$id=null,$status=null){
@@ -69,8 +96,14 @@ class AdminsController extends AppController {
 	function delete($model=null,$id=null){
 		$this->loadModel($model);
 		$id = convert_uudecode(base64_decode($id));
+		if($model == 'Blog'){
+			$image = $this->Blog->findById($id);
+			$oldImg = $image['Blog']['image'];
+			$destination = realpath('../../app/webroot/images/blog'). '/';
+			unlink($destination.$oldImg);
+		}
 		if($this->$model->delete($id)){
-			echo 'success';
+			echo $id;
 		}
 		else{
 			echo 'fail';
@@ -81,6 +114,7 @@ class AdminsController extends AppController {
 
 	function blog(){	//fetch recent 20 blog posts.
 		$this->loadModel('Blog');
+		$this->layout = 'adminlte';
 		$limit = 20;
 		$conditions = array('order'=>'Blog.id desc','limit'=>$limit,);
 		//$data = $this->Blog->get_posts('all');
@@ -93,22 +127,23 @@ class AdminsController extends AppController {
 
 	function add_blogpost(){
 		$this->loadModel('Blog');
+		$this->layout = 'adminlte';
 		$data = $this->data;
+		$this->set(compact('data'));
 		if(!empty($data)){
 			$data['Blog']['time'] = time();
-			if($data['Blog']['link'] && $data['Blog']['image']){
+			if($data['Blog']['link'] && $data['Blog']['file']){
 				$result = $this->Blog->add_new_blogpost($data);
-				echo $result;
-			}
-			else{
-				echo 'All Fields are mandatory.';
+				if($result == 'success'){
+					$this->redirect(array('controller'=>'admins','action'=>'blog'));
+				}
 			}
 		}
-		die;
 	}
 
 	function edit_blogpost($id=null){
 		$this->loadModel('Blog');
+		$this->layout = 'adminlte';
 		$id = convert_uudecode(base64_decode($id));
 		$conditions = array('conditions'=>array('Blog.id'=>$id));
 		$posts = $this->Blog->get_posts('first',$conditions);
@@ -119,13 +154,14 @@ class AdminsController extends AppController {
 				$data['Blog']['id'] = $id;
 				$data['Blog']['time'] = time();
 				$result = $this->Blog->update_blogpost($data,$posts['Blog']['image']);
-				echo $result;
+				if($result == 'success'){
+					$this->redirect(array('controller'=>'admins','action'=>'blog'));
+				}
 			}
 			else{
 				echo 'All Fields are mandatory.';
 			}
 		}
-		die;
 	}
 }
 
