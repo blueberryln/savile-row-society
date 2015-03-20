@@ -12,6 +12,7 @@
           <th>Blog Title</th>
           <th>Image</th>
           <th>Link</th>
+          <th>Status</th>
           <th>Action</th>
         </tr>
         <?php $i=1; foreach($posts as $post){ ?>
@@ -25,7 +26,14 @@
           	<img src= "<?= ADMIN_LTE ?>imgres.jpg" />
           	<?php }?>
           </td>
-          <td><a target= "_blank" href="<?= $post['Blog']['link']; ?>"><?= substr($post['Blog']['link'],0,35).'...'; ?></a></td>
+          <td><a target= "_blank" href="<?= $post['Blog']['link']; ?>"><?= substr($post['Blog']['link'],0,30).'...'; ?></a></td>
+          <td>
+                      <?php if($post['Blog']['disabled'] == 0) {?>
+                        <span class="label label-success">Enabled</span>
+                      <?php } else{ ?>
+                        <span class="label label-warning">Disabled</span>
+                        <?php }?>
+                      </td>
           <td>
           	<a title="Edit" href="/admins/edit_blogpost/<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-edit"></a> 
           	<a title="Delete" href="Javascript:void(0);" rel="<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-trash-o delete_blogpost"></a> 

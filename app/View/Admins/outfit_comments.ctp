@@ -39,9 +39,9 @@
                       <!-- <td><?= $outfit_comment['OutfitComment']['time']; ?></td> -->
                       <td>
                       <?php if($outfit_comment['OutfitComment']['disabled'] == 0) {?>
-                      	<span class="label label-success">Approved</span>
+                      	<span class="label label-success">Enabled</span>
                       <?php } else{ ?>
-                      	<span class="label label-warning">Pending</span>
+                      	<span class="label label-warning">Disabled</span>
                       	<?php }?>
                       </td>
                       <td>
