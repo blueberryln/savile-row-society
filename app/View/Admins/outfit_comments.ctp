@@ -1,4 +1,8 @@
-
+<style>
+  td{
+    word-break: break-all;
+  }
+</style>
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -41,8 +45,8 @@
                       	<?php }?>
                       </td>
                       <td>
-                      	<a href="/admins/edit_comments/<?= base64_encode(convert_uuencode($outfit_comment['OutfitComment']['id']));?>" class="fa fa-fw fa-edit"></a> 
-                      	<a href="Javascript:void(0);" rel="<?= base64_encode(convert_uuencode($outfit_comment['OutfitComment']['id']));?>" class="fa fa-fw fa-trash-o delete_comment"></a> 
+                      	<a title="Edit" href="/admins/edit_comments/<?= base64_encode(convert_uuencode($outfit_comment['OutfitComment']['id']));?>" class="fa fa-fw fa-edit"></a> 
+                      	<a title="Delete" href="Javascript:void(0);" rel="<?= base64_encode(convert_uuencode($outfit_comment['OutfitComment']['id']));?>" class="fa fa-fw fa-trash-o delete_comment"></a> 
                       </td>
                     </tr>
                     <?php $i++; }?>

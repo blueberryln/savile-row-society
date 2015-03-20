@@ -25,10 +25,10 @@
           	<img src= "<?= ADMIN_LTE ?>imgres.jpg" />
           	<?php }?>
           </td>
-          <td><a href="Javascript:;"></a><?= $post['Blog']['link']; ?></td>
+          <td><a target= "_blank" href="<?= $post['Blog']['link']; ?>"><?= substr($post['Blog']['link'],0,35).'...'; ?></a></td>
           <td>
-          	<a href="/admins/edit_blogpost/<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-edit"></a> 
-          	<a href="Javascript:void(0);" rel="<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-trash-o delete_blogpost"></a> 
+          	<a title="Edit" href="/admins/edit_blogpost/<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-edit"></a> 
+          	<a title="Delete" href="Javascript:void(0);" rel="<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-trash-o delete_blogpost"></a> 
           </td>
         </tr>
         <?php $i++; } ?>

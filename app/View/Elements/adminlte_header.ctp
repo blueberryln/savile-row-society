@@ -5,6 +5,7 @@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
               <!-- Sidebar toggle button-->
+              <?php /* ?>
               <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
               </a>
@@ -239,6 +240,7 @@
                 </ul>
               </div>
             </nav>
+           <?php */ ?> 
           </header>
           <!-- Left side column. contains the logo and sidebar -->
           <aside class="main-sidebar">

@@ -49,4 +49,4 @@ $(document).on('change','.select_stylist',function(){
 		});
 	}
 
-})
+});
