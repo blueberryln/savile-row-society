@@ -84,12 +84,22 @@ class AdminsController extends AppController {
 	}
 
 	function status($model=null,$id=null,$status=null){
-		$this->loadModel($model);
-		$id = convert_uudecode(base64_decode($id));
-		$updatestatus = array('0'=>1,'1'=>0);
-		$this->$model->id = $id;
-		$this->$model->saveField('disabled',$updatestatus[$status]);
-		//pr($updatestatus[$status]);
+		if ($this->request->is('ajax')) {
+			$this->loadModel($model);
+			//$id = convert_uudecode(base64_decode($id));
+			$updatestatus = array('0'=>1,'1'=>0);
+			$this->$model->id = $id;
+			if($this->$model->saveField('disabled',$updatestatus[$status])){
+				echo $updatestatus[$status];
+			}
+			else {
+				echo 'fail';
+			}
+			//pr($updatestatus[$status]);
+		}
+		else{
+			$this->redirect('/');
+		}	
 		die;
 	}
 

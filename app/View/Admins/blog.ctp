@@ -1,3 +1,11 @@
+<style>
+  td{
+    word-break: break-all;
+  }
+  .blog_status{
+    cursor: pointer;
+  }
+</style>
 <div class="col-md-12">
   <div class="box">
     <div class="box-header">
@@ -27,13 +35,13 @@
           	<?php }?>
           </td>
           <td><a target= "_blank" href="<?= $post['Blog']['link']; ?>"><?= substr($post['Blog']['link'],0,30).'...'; ?></a></td>
-          <td>
+          <td class = "bs<?= $post['Blog']['id']; ?>">
                       <?php if($post['Blog']['disabled'] == 0) {?>
-                        <span class="label label-success">Enabled</span>
+                        <button title="Click to change status" rel ="<?= $post['Blog']['id']; ?>" class="label label-success blog_status">Enabled</button>
                       <?php } else{ ?>
-                        <span class="label label-warning">Disabled</span>
-                        <?php }?>
-                      </td>
+                        <button title="Click to change status" rel ="<?= $post['Blog']['id']; ?>" class="label label-warning blog_status">Disabled</button>
+                      <?php }?>
+          </td>
           <td>
           	<a title="Edit" href="/admins/edit_blogpost/<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-edit"></a> 
           	<a title="Delete" href="Javascript:void(0);" rel="<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-trash-o delete_blogpost"></a> 

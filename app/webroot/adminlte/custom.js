@@ -34,7 +34,6 @@ $(document).on('click','.delete_blogpost',function(){
 			}
 		});
 	}
-
 });
 //selecct outfit 
 $(document).on('change','.select_stylist',function(){
@@ -48,5 +47,63 @@ $(document).on('change','.select_stylist',function(){
 			}
 		});
 	}
+});
 
+// change the status of outfit comments
+$(document).on('click','.comment_status',function(){
+	var id = $(this).attr('rel');
+	var model = 'OutfitComment';
+	var status ='';
+	$(this).attr('disabled',true);
+	$(this).text('Loading...');
+	if($(this).hasClass('label-success')){
+		var status = '0';
+	}
+	else if($(this).hasClass('label-warning')){
+		var status = '1';
+	}
+	if(id){
+		$.ajax({
+			url : '/admins/status/'+model+'/'+id+'/'+status,
+			success : function(response){
+				if(response == '0'){
+					var new_status = '<button title="Click to change status" rel ="'+id+'" class="label label-success comment_status">Enabled</button>';
+				}
+				else if(response == '1'){
+					var new_status = '<button title="Click to change status" rel ="'+id+'" class="label label-warning comment_status">Disabled</button>';
+				}
+				$('.os'+id).html(new_status);
+			}
+		});
+	}
+});
+
+
+// change the status of blog posts
+$(document).on('click','.blog_status',function(){
+	var id = $(this).attr('rel');
+	var model = 'Blog';
+	var status ='';
+	$(this).attr('disabled',true);
+	$(this).text('Loading...');
+	if($(this).hasClass('label-success')){
+		var status = '0';
+	}
+	else if($(this).hasClass('label-warning')){
+		var status = '1';
+	}
+	if(id){
+		$.ajax({
+			url : '/admins/status/'+model+'/'+id+'/'+status,
+			success : function(response){
+				if(response == '0'){
+					var new_status = '<button title="Click to change status" rel ="'+id+'" class="label label-success blog_status">Enabled</button>';
+				}
+				else if(response == '1'){
+					var new_status = '<button title="Click to change status" rel ="'+id+'" class="label label-warning blog_status">Disabled</button>';
+				}
+				$('.bs'+id).html(new_status);
+			}
+		});
+	}
 });

@@ -37,12 +37,12 @@
                       </td>
                       <td><?= $outfit_comment['OutfitComment']['comment']; ?></td>
                       <!-- <td><?= $outfit_comment['OutfitComment']['time']; ?></td> -->
-                      <td>
+                      <td class = "os<?= $outfit_comment['OutfitComment']['id']; ?>">
                       <?php if($outfit_comment['OutfitComment']['disabled'] == 0) {?>
-                      	<span class="label label-success">Enabled</span>
+                      	<button title="Click to change status" rel ="<?= $outfit_comment['OutfitComment']['id'];?>" class="label label-success comment_status">Enabled</button>
                       <?php } else{ ?>
-                      	<span class="label label-warning">Disabled</span>
-                      	<?php }?>
+                      	<button title="Click to change status" rel ="<?= $outfit_comment['OutfitComment']['id'];?>" class="label label-warning comment_status">Disabled</button>
+                      <?php }?>
                       </td>
                       <td>
                       	<a title="Edit" href="/admins/edit_comments/<?= base64_encode(convert_uuencode($outfit_comment['OutfitComment']['id']));?>" class="fa fa-fw fa-edit"></a> 
