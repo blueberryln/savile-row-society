@@ -39,9 +39,9 @@
                       <!-- <td><?= $outfit_comment['OutfitComment']['time']; ?></td> -->
                       <td class = "os<?= $outfit_comment['OutfitComment']['id']; ?>">
                       <?php if($outfit_comment['OutfitComment']['disabled'] == 0) {?>
-                      	<button title="Click to change status" rel ="<?= $outfit_comment['OutfitComment']['id'];?>" class="label label-success comment_status">Enabled</button>
+                      	<button title="Click to Disable" rel ="<?= $outfit_comment['OutfitComment']['id'];?>" class="label label-success comment_status">Enabled</button>
                       <?php } else{ ?>
-                      	<button title="Click to change status" rel ="<?= $outfit_comment['OutfitComment']['id'];?>" class="label label-warning comment_status">Disabled</button>
+                      	<button title="Click to Enable" rel ="<?= $outfit_comment['OutfitComment']['id'];?>" class="label label-warning comment_status">Disabled</button>
                       <?php }?>
                       </td>
                       <td>

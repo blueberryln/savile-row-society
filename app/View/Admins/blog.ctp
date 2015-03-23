@@ -37,9 +37,9 @@
           <td><a target= "_blank" href="<?= $post['Blog']['link']; ?>"><?= substr($post['Blog']['link'],0,30).'...'; ?></a></td>
           <td class = "bs<?= $post['Blog']['id']; ?>">
                       <?php if($post['Blog']['disabled'] == 0) {?>
-                        <button title="Click to change status" rel ="<?= $post['Blog']['id']; ?>" class="label label-success blog_status">Enabled</button>
+                        <button title="Click to Disable" rel ="<?= $post['Blog']['id']; ?>" class="label label-success blog_status">Enabled</button>
                       <?php } else{ ?>
-                        <button title="Click to change status" rel ="<?= $post['Blog']['id']; ?>" class="label label-warning blog_status">Disabled</button>
+                        <button title="Click to Enable" rel ="<?= $post['Blog']['id']; ?>" class="label label-warning blog_status">Disabled</button>
                       <?php }?>
           </td>
           <td>

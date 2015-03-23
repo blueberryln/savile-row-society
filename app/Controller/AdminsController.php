@@ -82,7 +82,7 @@ class AdminsController extends AppController {
 		}
 			
 	}
-
+	/* Ajax functions begins */
 	function status($model=null,$id=null,$status=null){
 		if ($this->request->is('ajax')) {
 			$this->loadModel($model);
@@ -95,33 +95,38 @@ class AdminsController extends AppController {
 			else {
 				echo 'fail';
 			}
-			//pr($updatestatus[$status]);
 		}
 		else{
-			$this->redirect('/');
+			$this->redirect('/admins/blog');
 		}	
 		die;
 	}
 
 	function delete($model=null,$id=null){
-		$this->loadModel($model);
-		$id = convert_uudecode(base64_decode($id));
-		if($model == 'Blog'){
-			$image = $this->Blog->findById($id);
-			$oldImg = $image['Blog']['image'];
-			$destination = realpath('../../app/webroot/images/blog'). '/';
-			unlink($destination.$oldImg);
-		}
-		if($this->$model->delete($id)){
-			echo $id;
+		if ($this->request->is('ajax')) {
+			$this->loadModel($model);
+			$id = convert_uudecode(base64_decode($id));
+			if($model == 'Blog'){
+				$image = $this->Blog->findById($id);
+				$oldImg = $image['Blog']['image'];
+				$destination = realpath('../../app/webroot/images/blog'). '/';
+				unlink($destination.$oldImg);
+			}
+			if($this->$model->delete($id)){
+				echo $id;
+			}
+			else{
+				echo 'fail';
+			}
 		}
 		else{
-			echo 'fail';
-		}
+			$this->redirect('/admins/blog');
+		}	
 		die;
 
 	}
-
+	/* Ajax functions ends */
+	
 	function blog(){	//fetch recent 20 blog posts.
 		$this->loadModel('Blog');
 		$this->layout = 'adminlte';

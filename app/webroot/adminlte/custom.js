@@ -67,10 +67,10 @@ $(document).on('click','.comment_status',function(){
 			url : '/admins/status/'+model+'/'+id+'/'+status,
 			success : function(response){
 				if(response == '0'){
-					var new_status = '<button title="Click to change status" rel ="'+id+'" class="label label-success comment_status">Enabled</button>';
+					var new_status = '<button title="Click to Disable" rel ="'+id+'" class="label label-success comment_status">Enabled</button>';
 				}
 				else if(response == '1'){
-					var new_status = '<button title="Click to change status" rel ="'+id+'" class="label label-warning comment_status">Disabled</button>';
+					var new_status = '<button title="Click to Enable" rel ="'+id+'" class="label label-warning comment_status">Disabled</button>';
 				}
 				$('.os'+id).html(new_status);
 			}
@@ -97,10 +97,10 @@ $(document).on('click','.blog_status',function(){
 			url : '/admins/status/'+model+'/'+id+'/'+status,
 			success : function(response){
 				if(response == '0'){
-					var new_status = '<button title="Click to change status" rel ="'+id+'" class="label label-success blog_status">Enabled</button>';
+					var new_status = '<button title="Click to Disable" rel ="'+id+'" class="label label-success blog_status">Enabled</button>';
 				}
 				else if(response == '1'){
-					var new_status = '<button title="Click to change status" rel ="'+id+'" class="label label-warning blog_status">Disabled</button>';
+					var new_status = '<button title="Click to Enable" rel ="'+id+'" class="label label-warning blog_status">Disabled</button>';
 				}
 				$('.bs'+id).html(new_status);
 			}
