@@ -109,7 +109,7 @@ class AdminsController extends AppController {
 			if($model == 'Blog'){
 				$image = $this->Blog->findById($id);
 				$oldImg = $image['Blog']['image'];
-				$destination = realpath('../../app/webroot/images/blog'). '/';
+				$destination = realpath('../../app/webroot/files/blog'). '/';
 				unlink($destination.$oldImg);
 			}
 			if($this->$model->delete($id)){

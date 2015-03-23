@@ -29,7 +29,7 @@
           <input type="file" name="data[Blog][file]" id="exampleInputFile">
         </div>
         <?php if($posts['Blog']['image']) {?>
-          <img src = "<?= HTTP_ROOT.'images/blog/'.$posts['Blog']['image'] ?>" />
+          <img src = "<?= HTTP_ROOT.'files/blog/'.$posts['Blog']['image'] ?>" />
           <?php } ?>
       </div><!-- /.box-body -->
 

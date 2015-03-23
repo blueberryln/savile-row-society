@@ -29,7 +29,7 @@
           <td class="blog-heading"><?= $post['Blog']['title']; ?></td>
           <td class="blog_img">
           <?php if($post['Blog']['image']){ ?>
-          	<img src="<?= HTTP_ROOT ?>images/blog/<?= $post['Blog']['image'] ?>"/>
+          	<img src="<?= HTTP_ROOT ?>files/blog/<?= $post['Blog']['image'] ?>"/>
           <?php } else{ ?>
           	<img src= "<?= ADMIN_LTE ?>imgres.jpg" />
           	<?php }?>
