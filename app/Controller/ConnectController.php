@@ -305,7 +305,7 @@ class ConnectController extends AppController {
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
-                        $this->redirect('/register/wardrobe');
+                        $this->redirect('/thankyou');
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
@@ -347,7 +347,8 @@ class ConnectController extends AppController {
 
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
-                        $this->redirect('/register/wardrobe');
+                        //$this->redirect('/register/wardrobe');    
+                        $this->redirect('/');  //changed by shubham
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');

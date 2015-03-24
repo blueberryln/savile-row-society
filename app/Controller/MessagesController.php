@@ -19,7 +19,12 @@ class MessagesController extends AppController {
 
         if(!$user['User']['is_stylist'] && !$user['User']['is_admin'] && is_null($user['User']['stylist_id'])){
            // $this->redirect('/users/profile/' . $user['User']['id']);
-        	  $this->redirect('/thankyou');
+			$offer = $this->Session->read('thankyou');
+            if(!empty($offer)){
+        	   $this->redirect('/thankyou/'.$offer['UserOffer']['offer']);
+            } else{
+                $this->redirect('/thankyou');
+            }
         }
     }
 

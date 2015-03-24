@@ -450,7 +450,7 @@ class UsersController extends AppController {
         $title_for_layout = "Sign up for Savile Row Society - Featured Personal Stylists";
 
         if(isset($this->request->query['refer'])){
-            $this->Session->write('stylist_refer', $this->request->query['refer']);   
+            $this->Session->write('stylist_refer', $this->request->query['refer']);
         }
 
         if($this->getLoggedUserID()){
@@ -724,7 +724,7 @@ class UsersController extends AppController {
         }
     }
 
-
+   
     public function quickregister()
 
     {
