@@ -270,13 +270,13 @@
               <!-- sidebar menu: : style can be found in sidebar.less -->
               <ul class="sidebar-menu">
 
-                <li class="treeview <?php echo @$this->params['action']=='blog' || @$this->params['action']=='outfit_comments' ?'active':''?>">
+                <li class="treeview <?php echo @$this->params['action']=='blog' || @$this->params['action']=='outfit_comments' || @$this->params['action']=='add_blogpost' || @$this->params['action']=='edit_blogpost' || @$this->params['action']=='add_comments' || @$this->params['action']=='edit_comments'  ?'active':''?>">
                   <a href="#">
                     <i class="fa fa-fw fa-home"></i> <span>Home Page</span> <i class="fa fa-angle-left pull-right"></i>
                   </a>
                   <ul class="treeview-menu">
-                    <li class="<?php echo @$this->params['action']=='blog' ?'active':''?>"><a href="/admins/blog"><i class="fa fa-circle-o"></i> Blog</a></li>
-                    <li class="<?php echo @$this->params['action']=='outfit_comments' ?'active':''?>"><a href="/admins/outfit_comments"><i class="fa fa-circle-o"></i> Outfits Comments</a></li>
+                    <li class="<?php echo @$this->params['action']=='blog' || @$this->params['action']=='add_blogpost' || @$this->params['action']=='edit_blogpost' ? 'active':''?>"><a href="/admins/blog"><i class="fa fa-circle-o"></i> Blog</a></li>
+                    <li class="<?php echo @$this->params['action']=='outfit_comments' || @$this->params['action']=='add_comments' || @$this->params['action']=='edit_comments'  ?'active':''?>"><a href="/admins/outfit_comments"><i class="fa fa-circle-o"></i> Outfits Comments</a></li>
                   </ul>
                 </li>
 
