@@ -27,7 +27,7 @@
 
   <script type="text/javascript">
     $(function(){
-      SyntaxHighlighter.all();     
+      //SyntaxHighlighter.all();     
     });
     $(window).load(function(){
       $('.flexslider').flexslider({

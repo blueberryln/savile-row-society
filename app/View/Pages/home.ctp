@@ -1,34 +1,4 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Welcome To | Savilerowsociety</title>
-  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-
-  <!-- Start Default -->
-  <link rel="stylesheet" type="text/css" href="<?php echo CSS_ROOT ?>css/new-style.css" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>  
-  <!-- End Default -->
-
-    <link rel="stylesheet" type="text/css" href="<?php echo JS_ROOT ?>js/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo JS_ROOT ?>js/slick/slick-theme.css"/>
-    <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/slick.js"></script>
-    <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/prism.js"></script>
-    <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/scripts.js"></script>
-
-  <!-- Start Flexslider -->
-  <script src="<?php echo JS_ROOT ?>js/flexslider/modernizr.js"></script>
-  <script defer src="<?php echo JS_ROOT ?>js/flexslider/jquery.flexslider.js"></script>
-  <link rel="stylesheet" href="<?php echo JS_ROOT ?>js/flexslider/flexslider.css" type="text/css" media="screen" />
-  <!-- End Flexslider -->
-
-
-
-</head>
-
-<body>
 
     <!-- Wrapper -->
     <div class="container">
@@ -408,6 +378,3 @@
 
     </div>
     <!-- /Wrapper -->
-</body>
-
-</html>
