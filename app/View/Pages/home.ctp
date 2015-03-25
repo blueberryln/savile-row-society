@@ -1,5 +1,3 @@
-
-
     <!-- Wrapper -->
     <div class="container">
 
@@ -298,7 +296,11 @@
         }
     });
 
+<<<<<<< HEAD
     /*-----Outfit comment submit end-------*/
 
 
 </script>
+=======
+</script>
+>>>>>>> 52b69c2996af71446ad48391aba08f60e9db2c4c
