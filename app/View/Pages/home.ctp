@@ -115,7 +115,12 @@
                                 if($num >= 3){break;}
                                 ?>
                             <div class="section">
-                                <span class="name"><?= $outfit_comments['User']['full_name'] ?></span>
+                                <span class="name"><?php if($outfit_comments['user_id']){
+                                   echo $outfit_comments['User']['full_name'];
+                                    } 
+                                    else{
+                                        echo 'Guest';
+                                        } ?></span>
                                 <span class="comment"><?= $outfit_comments['comment'] ?></span>
                                 <span class="recently_time">2d</span>
                             </div>
@@ -295,12 +300,7 @@
             $(this).prev('.comment_box').val('');
         }
     });
-
-<<<<<<< HEAD
     /*-----Outfit comment submit end-------*/
 
 
 </script>
-=======
-</script>
->>>>>>> 52b69c2996af71446ad48391aba08f60e9db2c4c
