@@ -17,7 +17,7 @@
                 <!-- column -->
                 <div class="column">
                     <div class="section-two">
-                        <button class="btn-vip_access">VIP ACCESS</button>
+                        <button class="btn-vip_access" id="block-vip-access">VIP ACCESS</button>
                         <ul>
                             <li><a href="#" class="blogList">Blog</a></li>
                             <li><a href="#">Facebook</a></li>
@@ -33,13 +33,13 @@
                 <div class="column">
                     <div class="section-three">
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Our Team</a></li>
-                            <li><a href="#">Our Brands</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Terms</a></li>
+                            <li><a href="<?php echo $this->webroot; ?>#two">About Us</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/team">Our Team</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our Brands</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>contact">Contact Us</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/privacy">Privacy</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/terms">Terms</a></li>
                         </ul>
                     </div>
                 </div>

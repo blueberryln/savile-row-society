@@ -259,7 +259,7 @@
                         <a href="">
                             <img src="<?php echo HTTP_ROOT.'files/blog/'.$post['Blog']['image']; ?>" alt="" />
                         </a>
-                        <span><?php echo String::truncate($post['Blog']['title'],30,array('ellipsis' => '  ...  ','exact' => false  ));?></span>
+                        <span><?php echo String::truncate($post['Blog']['title'],35,array('ellipsis' => '  ...  ','exact' => false  ));?></span>
                     </div>
                 <?php } ?>
                 </div>
