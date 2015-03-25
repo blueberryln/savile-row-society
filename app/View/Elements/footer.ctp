@@ -19,7 +19,7 @@
                     <div class="section-two">
                         <button class="btn-vip_access" id="block-vip-access">VIP ACCESS</button>
                         <ul>
-                            <li><a href="#" class="blogList">Blog</a></li>
+                            <li><a href="http://www.savilerowsociety.com/blog" class="blogList">Blog</a></li>
                             <li><a href="#">Facebook</a></li>
                             <li><a href="#">Instagaram</a></li>
                             <li><a href="#">Twitter</a></li>
