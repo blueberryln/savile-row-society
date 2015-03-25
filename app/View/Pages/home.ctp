@@ -14,7 +14,7 @@
                                 <p>This is the content of your post. The more your write <br>more you have to read. Read on...</p>
                                 <p class="cutOff">(This should be a link to blog post on header, we can still keep the <br>two call for action below)</p>
                                 <a href="Javascript:;">Tell Me More</a>
-                                <a href="Javascript:;" class="getStarted">Get Started</a>
+                                <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
                             </span>
                         </li>
                         <li>
@@ -24,7 +24,7 @@
                                 <p>This is the content of your post. The more your write <br>more you have to read. Read on...</p>
                                 <p class="cutOff">(This should be a link to blog post on header, we can still keep the <br>two call for action below)</p>
                                 <a href="Javascript:;">Tell Me More</a>
-                                <a href="Javascript:;" class="getStarted">Get Started</a>
+                                <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
                             </span>
                         </li>
                     </ul>
@@ -59,169 +59,87 @@
                 <!-- /Section_Main_Heading -->
 
                 <!-- column -->
+            <?php if($topOutfits): ?>
+                <?php $outfit_count = 1; foreach ($topOutfits as $outfit) {
+                    if($outfit_count >= 4)
+                        {break;}
+                  ?>
                 <div class="column">
                     
                     <!-- heading -->
                     <div class="heading_wrapper">
-                        <span>Fall Layering / Date Night</span>
+                        <span><?= $outfit['Outfit']['outfit_name']; ?></span>
                     </div>
                     <!-- /heading -->
 
                     <!-- product_placeholder -->
                     <div class="product_placeholder">
                         <ul>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/jacket.jpg" alt="Jacket" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/shirt.jpg" alt="Shirt" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/shoe_tie.jpg" alt="Shoe + Tie" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/jeans.jpg" alt="Jeans" /></a></li>
+                        <?php 
+                            $count = 1;
+                            if($user) {
+                                $path = 'messages/'; 
+                            }
+                            else {
+                                $path = 'guest/';
+                            }
+                            foreach($outfit['OutfitItem'] as $item) {
+                                if(count($item['product']['Image']) && $count++ <= 4){
+                        ?>
+                            <li><a href="<?php echo $this->webroot;echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>"/></a></li>
+                            <?php }
+                            } ?>
                         </ul>
                     </div>
                     <!-- /product_placeholder -->
 
                     <div class="row">
-                        <div class="author_name"> Styled by <span>Geaoge Alvin</span> </div>
-                        <a href="#" class="btn_shop_this_outfits">Shop This Outfits</a>
+                        <div class="author_name"> Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> </div>
+                        <?php if($user): ?>
+                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfits</a>
+                        <?php else: ?>
+                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfits</a>
+                         <?php endif; ?>    
                     </div>
 
                     <div class="row message_icon_wrapper">
                         <a href="#" class="icon_message"><img src="<?php echo HTTP_ROOT ?>img/home/icon_message.png" alt="message" /></a>
-                        <span>4</span>
+                        <span><?= count($outfit['OutfitComment']); ?></span>
                     </div>
 
                     <div class="row recent_comments_wrapper">
+                        <?php $num = 1; 
+                        $comment_count = count($outfit['OutfitComment']);
+                        foreach($outfit['OutfitComment'] as $outfit_comments) { 
+                            if($num >= 3){break;}
+                            ?>
                         <div class="section">
-                            <span class="name">Emmanuel Garcia</span>
-                            <span class="comment">Could I wear peacoat with this?</span>
+                            <span class="name"><?= $outfit_comments['User']['full_name'] ?></span>
+                            <span class="comment"><?= $outfit_comments['comment'] ?></span>
                             <span class="recently_time">2d</span>
                         </div>
-                        <div class="section">
-                            <span class="name">Emmanuel Garcia</span>
-                            <span class="comment">Could I wear peacoat with this?</span>
-                            <span class="recently_time">23m</span>
-                        </div>
+                        <?php $num++; } ?>
 
+                        <?php if($comment_count >= 3){?>
                         <div class="view_all_comments">
                             <a href="#">view all comments</a>
                         </div>
-
-                        <form class="send_comment">
-                            <input type="text" placeholder="Google, I have on!" />
-                            <button>Post</button>
+                        <?php } ?>
+                        
+                        <form method="POST" class="comment_form send_comment">
+                            <input type = "hidden" name="data[OutfitComment][outfit_id]" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
+                            <input type="text" name="data[OutfitComment][comment]" class="comment_box" placeholder = "Write your comment here."/>
+                            <button class="submit_comment">Post</button>
                         </form>
 
                     </div>
                 </div>
+                <?php ++$outfit_count; }
+                endif;
+                ?>
                 <!-- /column -->
 
-                <!-- column -->
-                <div class="column">
-                    
-                    <!-- heading -->
-                    <div class="heading_wrapper">
-                        <span>Autumm Walk</span>
-                    </div>
-                    <!-- /heading -->
-
-                    <!-- product_placeholder -->
-                    <div class="product_placeholder">
-                        <ul>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/jacket.jpg" alt="Jacket" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/shirt.jpg" alt="Shirt" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/shoe_tie.jpg" alt="Shoe + Tie" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/jeans.jpg" alt="Jeans" /></a></li>
-                        </ul>
-                    </div>
-                    <!-- /product_placeholder -->
-
-                    <div class="row">
-                        <div class="author_name"> Styled by <span>Geaoge Alvin</span> </div>
-                        <a href="#" class="btn_shop_this_outfits">Shop This Outfits</a>
-                    </div>
-
-                    <div class="row message_icon_wrapper">
-                        <a href="#" class="icon_message"><img src="<?php echo HTTP_ROOT ?>img/home/icon_message.png" alt="message" /></a>
-                        <span>4</span>
-                    </div>
-
-                    <div class="row recent_comments_wrapper">
-                        <div class="section">
-                            <span class="name">Emmanuel Garcia</span>
-                            <span class="comment">Could I wear peacoat with this?</span>
-                            <span class="recently_time">2d</span>
-                        </div>
-                        <div class="section">
-                            <span class="name">Emmanuel Garcia</span>
-                            <span class="comment">Could I wear peacoat with this?</span>
-                            <span class="recently_time">23m</span>
-                        </div>
-
-                        <div class="view_all_comments">
-                            <a href="#">view all comments</a>
-                        </div>
-
-                        <form class="send_comment">
-                            <input type="text" placeholder="Google, I have on!" />
-                            <button>Post</button>
-                        </form>
-
-                    </div>
-                </div>
-                <!-- /column -->
-
-                <!-- column -->
-                <div class="column last">
-                    
-                    <!-- heading -->
-                    <div class="heading_wrapper">
-                        <span>Stay Warm</span>
-                    </div>
-                    <!-- /heading -->
-
-                    <!-- product_placeholder -->
-                    <div class="product_placeholder">
-                        <ul>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/jacket.jpg" alt="Jacket" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/shirt.jpg" alt="Shirt" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/shoe_tie.jpg" alt="Shoe + Tie" /></a></li>
-                            <li><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/topOutfits/jeans.jpg" alt="Jeans" /></a></li>
-                        </ul>
-                    </div>
-                    <!-- /product_placeholder -->
-
-                    <div class="row">
-                        <div class="author_name"> Styled by <span>Geaoge Alvin</span> </div>
-                        <a href="#" class="btn_shop_this_outfits">Shop This Outfits</a>
-                    </div>
-
-                    <div class="row message_icon_wrapper">
-                        <a href="#" class="icon_message"><img src="<?php echo HTTP_ROOT ?>img/home/icon_message.png" alt="message" /></a>
-                        <span>4</span>
-                    </div>
-
-                    <div class="row recent_comments_wrapper">
-                        <div class="section">
-                            <span class="name">Emmanuel Garcia</span>
-                            <span class="comment">Could I wear peacoat with this?</span>
-                            <span class="recently_time">2d</span>
-                        </div>
-                        <div class="section">
-                            <span class="name">Emmanuel Garcia</span>
-                            <span class="comment">Could I wear peacoat with this?</span>
-                            <span class="recently_time">23m</span>
-                        </div>
-
-                        <div class="view_all_comments">
-                            <a href="#">view all comments</a>
-                        </div>
-
-                        <form class="send_comment">
-                            <input type="text" placeholder="Google, I have on!" />
-                            <button>Post</button>
-                        </form>
-
-                    </div>
-                </div>
-                <!-- /column -->
+               
 
                 <!-- viewAll -->
                 <div class="viewAll">
@@ -237,8 +155,8 @@
         <!-- SignUp_Wrapper -->
         <div id="SignUp_Wrapper">
             <div class="center_row">
-                <span>Want personalized looks minus the bassle and cost?</span>
-                <a href="#" class="btn_signUp">Sign Up</a>
+                <span>Want personalized looks minus the hassle and cost?</span>
+                <a href="<?php echo $this->webroot; ?>users/register" class="btn_signUp">Sign Up</a>
             </div>
         </div>
         <!-- /SignUp_Wrapper -->
@@ -253,12 +171,21 @@
                 <!-- /Section_Main_Heading -->
                 <div class="for_mobile_device">
                     <div class="slider multiple-items" style="max-width:765px;">
-                        <div><h3><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/user1.jpg" /></a></h3></div>
-                        <div><h3><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/user2.jpg" /></a></h3></div>
-                        <div><h3><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/user3.jpg" /></a></h3></div>
-                        <div><h3><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/user4.jpg" /></a></h3></div>
-                        <div><h3><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/user1.jpg" /></a></h3></div>
-                        <div><h3><a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/user2.jpg" /></a></h3></div>
+                    <?php foreach($topStylists as $topstylist): ?>
+                        <div>
+                            <h3>
+                                <a title = "<?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?>" href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>">
+                                
+                                <?php if($topstylist['User']['profile_photo_url']): ?>
+                                <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
+                                <?php else: ?>
+                                <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg"  />                       
+                                <?php endif; ?>
+
+                                </a>
+                            </h3>
+                        </div>
+                    <?php endforeach; ?>    
                     </div>
                 </div>
                 <div class="last_slide">
@@ -325,48 +252,14 @@
 
                 <!-- row -->
                 <div class="row">
+                <?php foreach($posts as $post) {?>
                     <div class="column">
                         <a href="">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/blog1.jpg" alt="" />
+                            <img src="<?php echo HTTP_ROOT.'files/blog/'.$post['Blog']['image']; ?>" alt="" />
                         </a>
-                        <span>this should be a title.</span>
+                        <span><?php echo String::truncate($post['Blog']['title'],35,array('ellipsis' => '  ...  ','exact' => false  ));?></span>
                     </div>
-                    <div class="column">
-                        <a href="">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/blog2.jpg" alt="" />
-                        </a>
-                        <span>this should be a title.</span>
-                    </div>
-                    <div class="column">
-                        <a href="">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/blog3.jpg" alt="" />
-                        </a>
-                        <span>this should be a title.</span>
-                    </div>
-                </div>
-                <!-- /row -->
-
-
-                <!-- row -->
-                <div class="row">
-                    <div class="column">
-                        <a href="">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/blog2.jpg" alt="" />
-                        </a>
-                        <span>this should be a title.</span>
-                    </div>
-                    <div class="column">
-                        <a href="">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/blog3.jpg" alt="" />
-                        </a>
-                        <span>this should be a title.</span>
-                    </div>
-                    <div class="column">
-                        <a href="">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/blog1.jpg" alt="" />
-                        </a>
-                        <span>this should be a title.</span>
-                    </div>
+                <?php } ?>
                 </div>
                 <!-- /row -->
             </div>
@@ -376,3 +269,28 @@
 
     </div>
     <!-- /Wrapper -->
+
+    <script>
+    $('.comment_form').submit(function(e){
+        e.preventDefault();
+    });
+    $('.submit_comment').click(function(e){
+        //e.preventDefault();
+        var cmnt = $(this).prev('.comment_box').val().trim();
+        var data = $(this).parent('form').serialize();
+        if(cmnt){
+            $.ajax({
+                url : '/comments/add_comment',
+                type: 'POST',
+                data : data,
+                success: function(res){
+                    if(res=='success'){
+
+                    }
+                }
+            });
+            $(this).prev('.comment_box').val('');
+        }
+    });
+
+</script>

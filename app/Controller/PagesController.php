@@ -66,8 +66,11 @@ class PagesController extends AppController {
             $TopOutfit = ClassRegistry::init('TopOutfit');
             $topOutfits = $TopOutfit->getTopOutfits();
             $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
-
-            $this->set(compact('user','topStylists','topOutfits', 'firstStylist'));
+            $this->loadModel('Blog');
+            $limit = 6;
+            $conditions = array('order'=>'Blog.id desc','limit'=>$limit,'conditions'=>array('Blog.disabled'=>0));
+            $posts = $this->Blog->get_posts('all',$conditions);
+            $this->set(compact('user','topStylists','topOutfits', 'firstStylist','posts'));
        
         }
         else if ($page == 'contact') {
