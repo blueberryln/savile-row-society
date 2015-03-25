@@ -157,7 +157,7 @@
         <!-- SignUp_Wrapper -->
         <div id="SignUp_Wrapper">
             <div class="center_row">
-                <span>Want personalized looks minus the bassle and cost?</span>
+                <span>Want personalized looks minus the hassle and cost?</span>
                 <a href="<?php echo $this->webroot; ?>users/register" class="btn_signUp">Sign Up</a>
             </div>
         </div>
