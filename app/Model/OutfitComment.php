@@ -6,14 +6,14 @@ class OutfitComment extends AppModel{
 				            'className' => 'Outfit',
 				            'foreignKey' => 'outfit_id',
 				            'fields'=>array(
-				            	'outfit_name'
+				            	'id','outfit_name'
 				            )
 				        ),
 						'User' => array(
 				            'className' => 'User',
 				            'foreignKey' => 'user_id',
 				            'fields'=>array(
-				            	'first_name','full_name'
+				            	'id','first_name','full_name'
 				            )
 				        )
 	);

@@ -27,7 +27,7 @@
 
   <script type="text/javascript">
     $(function(){
-      //SyntaxHighlighter.all();     
+      SyntaxHighlighter.all();     
     });
     $(window).load(function(){
       $('.flexslider').flexslider({
@@ -64,9 +64,14 @@
                         <li><a href="#" class="twitter">twitter</a></li>
                     </ul>
                     <ul class="last">
+                        
+                        <?php if(!$user):?>
+                        <li><a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart">cart</a></li>
+                        <?php else:?>
                         <li><a href="#" class="notifications">notifications</a></li>
-                        <li><a href="#" class="cart">cart</a></li>
-                        <li><a href="#" class="my-account">My Account</a></li>
+                        <li><a href="<?php echo $this->request->webroot; ?>cart" class="cart">cart</a></li>
+                        <?php endif;?>
+                        <li><a href="#" onclick="window.ref_url=''; signIn();" class="my-account">My Account</a></li>
                     </ul>
                 </div>
                 <!-- /top_icons -->
@@ -82,9 +87,3 @@
             </div>
         </header>
         <!-- /header -->
-
-
-
-
-
-
