@@ -1,5 +1,3 @@
-
-
     <!-- Wrapper -->
     <div class="container">
 
