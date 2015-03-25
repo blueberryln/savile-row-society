@@ -108,23 +108,29 @@
                     </div>
 
                     <div class="row recent_comments_wrapper">
-                        <?php $num = 1; 
-                        $comment_count = count($outfit['OutfitComment']);
-                        foreach($outfit['OutfitComment'] as $outfit_comments) { 
-                            if($num >= 3){break;}
-                            ?>
-                        <div class="section">
-                            <span class="name"><?= $outfit_comments['User']['full_name'] ?></span>
-                            <span class="comment"><?= $outfit_comments['comment'] ?></span>
-                            <span class="recently_time">2d</span>
+                        <div>
+                            <?php $num = 1; 
+                            $comment_count = count($outfit['OutfitComment']);
+                            foreach($outfit['OutfitComment'] as $outfit_comments) { 
+                                if($num >= 3){break;}
+                                ?>
+                            <div class="section">
+                                <span class="name"><?php if($outfit_comments['user_id']){
+                                   echo $outfit_comments['User']['full_name'];
+                                    } 
+                                    else{
+                                        echo 'Guest';
+                                        } ?></span>
+                                <span class="comment"><?= $outfit_comments['comment'] ?></span>
+                                <span class="recently_time">2d</span>
+                            </div>
+                            <?php $num++; } ?>
                         </div>
-                        <?php $num++; } ?>
-
-                        <?php if($comment_count >= 3){?>
-                        <div class="view_all_comments">
-                            <a href="#">view all comments</a>
-                        </div>
-                        <?php } ?>
+                            <?php if($comment_count >= 3){?>
+                            <div class="view_all_comments">
+                                <a href="#">view all comments</a>
+                            </div>
+                            <?php } ?>
                         
                         <form method="POST" class="comment_form send_comment">
                             <input type = "hidden" name="data[OutfitComment][outfit_id]" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
@@ -271,6 +277,8 @@
     <!-- /Wrapper -->
 
     <script>
+    /*-----Outfit comment submit start-------*/
+    
     $('.comment_form').submit(function(e){
         e.preventDefault();
     });
@@ -292,5 +300,7 @@
             $(this).prev('.comment_box').val('');
         }
     });
+    /*-----Outfit comment submit end-------*/
+
 
 </script>

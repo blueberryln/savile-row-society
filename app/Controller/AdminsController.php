@@ -24,20 +24,8 @@ class AdminsController extends AppController {
 		$this->set(compact('comments'));
 		//pr($comments);die;
 	}
-	function select_outfit($stylist_id = null){
-		$this->loadModel('Outfit');
-		$this->layout = '';
-		$outfits = $this->Outfit->find('all',array('conditions'=>array('Outfit.stylist_id'=>$stylist_id,'Outfit.outfit_name !='=>NULL),'fields'=>array('id','outfit_name')));
-		if(!empty($outfits)){
-			$list .= '<option value="" >--Select--</option>';
-			foreach($outfits as $outfit){
-				$list .= '<option value = '.$outfit['Outfit']['id'].'>'.$outfit['Outfit']['outfit_name'].'</option>';
-			}
-		} else{
-			$list .= '<option value="" >No Outfits added by the stylist.</option>';
-		}	
-		echo $list;die;
-	}
+	
+
 	function add_comments(){
 		$this->loadModel('User');
 		$stylists = $this->User->find('all',array('conditions'=>array('User.is_stylist'=>1),'fields'=>array('id','full_name')));
@@ -125,6 +113,22 @@ class AdminsController extends AppController {
 		die;
 
 	}
+	// function to fetch outfits listed by stylist_id
+	function select_outfit($stylist_id = null){
+		$this->loadModel('Outfit');
+		$this->layout = '';
+		$outfits = $this->Outfit->find('all',array('conditions'=>array('Outfit.stylist_id'=>$stylist_id,'Outfit.outfit_name !='=>NULL),'fields'=>array('id','outfit_name')));
+		if(!empty($outfits)){
+			$list .= '<option value="" >--Select--</option>';
+			foreach($outfits as $outfit){
+				$list .= '<option value = '.$outfit['Outfit']['id'].'>'.$outfit['Outfit']['outfit_name'].'</option>';
+			}
+		} else{
+			$list .= '<option value="" >No Outfits added by the stylist.</option>';
+		}	
+		echo $list;die;
+	}
+
 	/* Ajax functions ends */
 	
 	function blog(){	//fetch recent 20 blog posts.
