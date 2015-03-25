@@ -69,14 +69,14 @@ body{ margin: 0px; padding: 0px; font-family: "Proximanova"; font-size: 14px; co
 .rightImages .row a.img_hover img{ height: 100%; width: 100%; }
 
 #top_outfits_wrapper{ width: 100%; margin: 0px; padding: 0px; }
-#top_outfits_wrapper .column{ border: 5px solid #fcfcfc; background: #fff; width: 32%; display: inline-block; vertical-align: top; margin: 0px 0.5% 0 0; padding: 0px; font-size: 15px; text-align: center; }
+#top_outfits_wrapper .column{ border: 5px solid #fcfcfc; background: #fff; width: 31%; display: inline-block; vertical-align: top; margin: 0px 0.5% 0 0; padding: 0px; font-size: 15px; text-align: center; }
 #top_outfits_wrapper .column .heading_wrapper{ border-top: 2px solid #6e6e6e; position: relative; display: inline-block; vertical-align: top; margin: 30px 0px; padding: 0px; width: 100%; text-align: center; }
 #top_outfits_wrapper .column .heading_wrapper span{ border: 2px solid #b3b3b3; background: #fff; padding: 4px 12%; position: relative; top: -9px; width: auto; margin: 0 auto; text-align: center; } 
 #top_outfits_wrapper .column.last{ margin: 0px; }
 
 .product_placeholder{ display: inline-block; vertical-align: top; margin: 0px 0px 10px; padding: 0px; }
 .product_placeholder ul{ margin: 0px; padding: 0px; }
-.product_placeholder ul li{ list-style-type: none; display: inline-block; vertical-align: top; width: 160px; height: 148px; margin: 0px 0px 10px; padding: 0px; }
+.product_placeholder ul li{ list-style-type: none; display: inline-block; vertical-align: top; width: 45%; height: 128px; margin: 0px 0px 10px; padding: 0px; }
 .product_placeholder ul li a{ width: 100%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; height: 100%; }
 .product_placeholder ul li a img{ background: #000; border: none; margin: 0px; padding: 0px; display: inline-block; vertical-align: top; width: 100%; height: 100%; }
 
@@ -160,10 +160,11 @@ body{ margin: 0px; padding: 0px; font-family: "Proximanova"; font-size: 14px; co
 .footer_wrapper .column .section-four input.btn-sign_up{ display: inline-block; vertical-align: top; margin: 0px; padding: 5px 20px; cursor: pointer; background: #000; font-size: 13px; text-transform: uppercase; width: auto; color: #fff; }
 
 #header_wrapper.header_bar{ height: 60px; padding-top: 15px; }
+#signin-popup{ position: fixed; background: #fff; }
+
+
 
 /* ===== Mobile Menu ===== */
-
-
 .mobile_menu_wrapper { display: inline-block; width: 260px; margin: -20px 0 0 0; background: #5f5d5e; vertical-align: top; text-align: left; padding: 20px 20px 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .menu_switcher{ width: 35px; margin: 0px 0 0 5px; }
 .menu_switcher img{ width: 100%; }
