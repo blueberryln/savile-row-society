@@ -17,16 +17,16 @@ class ClosetController extends AppController {
      * Index
      */
 
-    function beforeFilter() {
-        $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
+    // function beforeFilter() {
+    //     $secureActions = array('checkout', 'validatecard', 'payment', 'validate_promo_code');
         
-        // if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
-        //     $this->forceSSL();
-        // }  
-        // else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
-        //     $this->unForceSSL();  
-        // }
-    }
+    //     // if (in_array($this->request->params['action'], $secureActions) && !$this->request->is('ssl')) {
+    //     //     $this->forceSSL();
+    //     // }  
+    //     // else if($this->request->is('ssl') && !in_array($this->request->params['action'], $secureActions)){
+    //     //     $this->unForceSSL();  
+    //     // }
+    // }
 
 
     public function forceSSL() {
@@ -38,6 +38,9 @@ class ClosetController extends AppController {
     
     
     public function index($category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null) {
+        $this->redirect('/messages/index');
+        exit;
+
         $user_id = $this->getLoggedUserID();
         // init
         $Category = ClassRegistry::init('Category');
@@ -60,6 +63,13 @@ class ClosetController extends AppController {
             $entities = $this->closetProducts($user_id);
         }
         
+        
+        $show_add_cart_popup = 0;
+        if($this->Session->read('add-cart')){
+            $show_add_cart_popup = 1;
+            $this->Session->delete('add-cart');
+        }
+
         $popUpMsg = '';
         $show_three_item_popup = 0;
         if($this->Session->read('cart-three-items')){
@@ -78,7 +88,7 @@ class ClosetController extends AppController {
         }
         
         // send data to view
-        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg'));
+        $this->set(compact('entities', 'categories', 'category_slug', 'brands', 'colors', 'user_id','show_closet_popup','show_three_item_popup', 'popUpMsg', 'show_add_cart_popup'));
 
         if(!$category_slug){
             $this->render('closet_landing');     
@@ -88,12 +98,22 @@ class ClosetController extends AppController {
 
 
     public function closetProducts($user_id){
+        $this->redirect('/messages/index');
+        exit;
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
 
-        //$parent_categories = $Category->getParentCategories();
-        //$random_list = $Entity->getCloset($parent_categories);
-        $random_list = $Entity->getClosestItems();
+        $user = $this->getLoggedUser();
+
+        //Get the list of random product list for the closet
+        if($user['User']['is_stylist'] || $user['User']['is_admin']){
+            $random_list = $Entity->getTeamClosestItems();
+        }
+        else{
+            $random_list = $Entity->getClientClosestItems();    
+        }
+
+        
         $entity_list = array();
         $entity_list_cat = array();
         
@@ -139,12 +159,18 @@ class ClosetController extends AppController {
 
 
     public function categoryProducts($user_id, $categories, $category_slug = null, $filter_brand=null, $filter_color=null, $filter_used = null){
+        $this->redirect('/messages/index');
+        exit;
+
         $Entity = ClassRegistry::init('Entity');
         $Category = ClassRegistry::init('Category');
+
+        $user = $this->getLoggedUser();
             
         if($filter_used != "color" && $filter_used != "brand"){
             $filter_used = "error";
         }
+
         // Get the parent id
         $parent_id = false;
         if($category_slug != "all"){
@@ -228,13 +254,13 @@ class ClosetController extends AppController {
                     )
                 ),
                 
-                //array('table' => 'products_details',
-//                    'alias' => 'Detail',
-//                    'type' => 'INNER',
-//                    'conditions' => array(
-//                        'Detail.product_entity_id = Entity.id',
-//                    )
-//                ),
+               //  array('table' => 'products_details',
+               //     'alias' => 'Detail',
+               //     'type' => 'INNER',
+               //     'conditions' => array(
+               //         'Detail.product_entity_id = Entity.id',
+               //     )
+               // ),
             ),
             'order' => array('Entity.order' => 'ASC'),
             'fields' => array(
@@ -246,10 +272,15 @@ class ClosetController extends AppController {
         if($category_slug != 'all'){
             $find_array['conditions']['Category.category_id'] = $category_ids;
         }
+
+        //Hide products restricted for website user (hide_from_client)
+        if(!$user['User']['is_stylist'] && !$user['User']['is_admin']){
+            $find_array['conditions']['Entity.hide_from_client'] = false; 
+        }
         
         //Query additions for a logged in user
         if($user_id){
-            //Join Like and Dislike tables
+            //Join Like
             $find_array['joins'][] = array('table' => 'wishlists',
                                         'alias' => 'Wishlist',
                                         'type' => 'LEFT',
@@ -258,19 +289,10 @@ class ClosetController extends AppController {
                                             'Wishlist.user_id' => $user_id
                                         )
                                     );
-            $find_array['joins'][] = array('table' => 'dislikes',
-                                        'alias' => 'Dislike',
-                                        'type' => 'LEFT',
-                                        'conditions' => array(
-                                            'Dislike.product_entity_id = Entity.id',
-                                            'Dislike.user_id' => $user_id,
-                                            'Dislike.show' => true
-                                        )
-                                    );   
+            
                      
-            //Fields for likes and dislikes               
+            //Fields for likes              
             $find_array['fields'][] = 'Wishlist.*';
-            $find_array['fields'][] = 'Dislike.*';
         }
         
         // Color filter
@@ -359,6 +381,9 @@ class ClosetController extends AppController {
      * Product details
      */
     public function product($id = null, $slug = null) {
+        $this->redirect('/messages/index');
+        exit;
+
         $this->autoRender = false;
         $user_id = $this->getLoggedUserID();
         App::uses('Sanitize', 'Utility');
@@ -445,6 +470,9 @@ class ClosetController extends AppController {
      * @id : outfit id
      */
     public function userOutfit($id = null) {
+        $this->redirect('/messages/index');
+        exit;
+
         //$this->isLogged();
         $user_id = $this->getLoggedUserID();
         App::uses('Sanitize', 'Utility');
@@ -547,11 +575,15 @@ class ClosetController extends AppController {
                     }
                 }
             }
+            
             $this->set(compact('cart_list'));
         }
     }
     
     public function checkout() {
+        $this->redirect('/messages/index');
+        exit;
+
         $this->response->disableCache();
 
         $this->isLogged();
@@ -643,6 +675,8 @@ class ClosetController extends AppController {
     }
     
     public function payment() {
+        $this->redirect('/messages/index');
+        exit;
 
         $this->response->disableCache();
         //TODO: beforerender for not displaying page again.
@@ -928,6 +962,9 @@ class ClosetController extends AppController {
     }
     
     public function sendConfirmationEmail($id = null){
+        $this->redirect('/messages/index');
+        exit;
+
         $Order = ClassRegistry::init('Order');
         if (!$Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
@@ -941,7 +978,7 @@ class ClosetController extends AppController {
             //Send confirmation email to the customer.
             $Order->recursive = 3;
             $Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
+            $Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
             $Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $Order->primaryKey => $id));
             $shipped_order = $Order->find('first', $options);
@@ -979,6 +1016,9 @@ class ClosetController extends AppController {
     }
 
     public function confirmation(){
+        $this->redirect('/messages/index');
+        exit;
+
         $this->response->disableCache();
         $transaction_data = false;
         if($this->Session->check('transaction_complete')){
@@ -998,6 +1038,9 @@ class ClosetController extends AppController {
     }
     
     public function updateBillingAddress($data, $user_id){
+        $this->redirect('/messages/index');
+        exit;
+
         $BillingAddress = ClassRegistry::init('BillingAddress');
         $address = $BillingAddress->getByUserID($user_id);
         $data['BillingAddress']['user_id'] = $user_id;
@@ -1021,6 +1064,9 @@ class ClosetController extends AppController {
     }
     
     public function addOrder($cart_items, $total_price, $promo_code = false, $discount = false, $discounted_price = false){
+        $this->redirect('/messages/index');
+        exit;
+
         $user_id = $this->getLoggedUserID();
         $data = array();
         if($user_id){
@@ -1093,6 +1139,9 @@ class ClosetController extends AppController {
     }
     
     public function emptyCart($card_id, $cart_list){
+        $this->redirect('/messages/index');
+        exit;
+
         $Cart = ClassRegistry::init('Cart');
         $CartItem = ClassRegistry::init('CartItem');
         
@@ -1112,6 +1161,9 @@ class ClosetController extends AppController {
     }
     
     function makePayment($transaction_data){
+        $this->redirect('/messages/index');
+        exit;
+
         $user_id = $this->getLoggedUserID();
         if($user_id && $user_id == $transaction_data['user_id']){
             //Uses core.php config file for settings.
@@ -1189,6 +1241,9 @@ class ClosetController extends AppController {
     }
 
     function reduceStock($cart_list){
+        $this->redirect('/messages/index');
+        exit;
+
         $Detail = ClassRegistry::init('Detail');
 
         foreach($cart_list as $row){
@@ -1197,11 +1252,17 @@ class ClosetController extends AppController {
     }
 
     function removeLikes($entity_list, $user_id){
+        $this->redirect('/messages/index');
+        exit;
+
         $Wishlist = ClassRegistry::init('Wishlist');
         $Wishlist->remove($user_id, $entity_list);
     }
     
     public function checkOrderGiftCard($order_id){
+        $this->redirect('/messages/index');
+        exit;
+
         $this->autoLayout = false;
         $this->autoRender = false;
         
@@ -1371,6 +1432,8 @@ class ClosetController extends AppController {
      * Liked Items
      */
     public function liked($id = null) {
+        $this->redirect('/messages/index');
+        exit;
 
         $this->isLogged();
         if($id){
@@ -1443,6 +1506,9 @@ class ClosetController extends AppController {
      * Purchased Items
      */
     public function purchased($id = null) {
+        $this->redirect('/messages/index');
+        exit;
+
         $this->isLogged();
         
         if($id){

@@ -40,7 +40,7 @@ $this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false
         <!--<div class="notification-msg">To be able to match you with one of our premier personal stylists, please complete this quick style profile.</div>-->
         <div class="notification-msg">Fill out your style profile so we can serve you best. It's fun, quick, and we hook you up as we'll give you a promo code at completion! Get Started Now!</div>                   
         <div class="notification-buttons">
-            <a class="link-btn black-btn complete-style-btn" href="<?php echo $this->request->webroot; ?>profile/about">COMPLETE MY STYLE PROFILE</a>
+            <a class="link-btn black-btn complete-style-btn" href="<?php echo $this->request->webroot; ?>register/wardrobe">COMPLETE MY STYLE PROFILE</a>
         </div>
         <h6 class="popup-or">OR</h6>
         <p>Check out our curated collection in <a href="<?php echo $this->request->webroot; ?>closet">The Closet</a> or book an appointment with our <a href="<?php echo $this->request->webroot; ?>booking">tailor</a>.</p>   

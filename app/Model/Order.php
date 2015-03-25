@@ -85,6 +85,13 @@ class Order extends AppModel {
             'conditions' => '',
             'fields' => '',
         ),
+        'Transactions' => array(
+            'className' => 'Transactions',
+            'foreignKey' => 'order_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+        ),
     );
 
     public $hasMany = array(
@@ -109,7 +116,6 @@ class Order extends AppModel {
         $data['Order']['paid'] = 1;
         
         return $this->save($data);
-        //return $this->updateAll(array('Order.paid' => true), array('Order.id' => $order_id));
     }
 
     function markShipped($order_id){
@@ -122,4 +128,5 @@ class Order extends AppModel {
             'fields' => array('id','promo_code'),
         ));
     }
+
 }

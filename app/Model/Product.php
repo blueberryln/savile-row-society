@@ -19,7 +19,7 @@ class Product extends AppModel {
      *
      * @var string
      */
-    public $displayField = 'name';
+    //public $displayField = 'name';
 
     /**
      * Validation rules

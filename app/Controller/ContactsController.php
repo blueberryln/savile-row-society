@@ -15,6 +15,10 @@ class ContactsController extends AppController {
         if($user_id){
             $this->set(compact('user'));
         }
+
+        $title_for_layout = "Savile Row Society - Contact Us | Online Fashion Shopping Website";
+        $this->set(compact('title_for_layout'));
+
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Contact->validates()) {
                 $this->Contact->create();
@@ -24,9 +28,7 @@ class ContactsController extends AppController {
                         //send personal stylist mail
                         $email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                        $email->to('casey@savilerowsociety.com');
-                        $email->cc('contactus@savilerowsociety.com');
-                        $email->cc('admin@savilerowsociety.com');
+                        $email->to('contactus@savilerowsociety.com');
                         $email->subject('Contact Request: ' . $this->request->data['Contact']['first_name'] . ' ' . $this->request->data['Contact']['last_name']);
                         $email->template('stylist');
                         $email->emailFormat('html');
@@ -34,17 +36,20 @@ class ContactsController extends AppController {
                         $email->send();
                         
                         //Send user a confirmation email
+                        $bcc = Configure::read('Email.contact');
                         $user_email = new CakeEmail('default');
                         $user_email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                         $user_email->to($this->request->data['Contact']['email']);
-                        $user_email->subject('Savile Row Society: Contact Request Confirmation');
+                        $user_email->subject('Thank You For Your Message!');
+                        $email->bcc($bcc);
                         $user_email->template('contact_confirmation');
                         $user_email->emailFormat('html');
                         $user_email->viewVars(array('contact' => $this->request->data['Contact']));
                         $user_email->send();
                     }
                     catch(Exception $e){
-                        
+                        var_dump($e);
+                        exit;    
                     }                   
 
                     $this->Session->setFlash(__('Your message is sent!'), 'flash', array('title' => 'Great!'));

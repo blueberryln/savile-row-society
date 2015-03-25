@@ -122,4 +122,77 @@ class Wishlist extends AppModel {
         return $this->find('all', $find_array);
     }
 
+    function getUserLikeProduct($user_id){
+        $find_array = array(
+            'conditions' => array('Wishlist.user_id' => $user_id),
+            'fields' => array('Wishlist.product_entity_id', 'Wishlist.id'),
+            'order' => array('FROM_UNIXTIME(Wishlist.created) DESC'),
+            
+        );
+        
+        //if($last_liked_id > 0){
+            //$find_array['conditions'][] = 'Wishlist.id < ' . $last_liked_id; 
+        //}
+        
+        return $this->find('all', $find_array);
+    }
+
+    function getUserLikeProductAsc($user_id){
+        $find_array = array(
+            'conditions' => array('Wishlist.user_id' => $user_id),
+            'fields' => array('Wishlist.product_entity_id', 'Wishlist.id'),
+            'order' => array('FROM_UNIXTIME(Wishlist.created) Asc'),
+            
+        );
+        
+        //if($last_liked_id > 0){
+            //$find_array['conditions'][] = 'Wishlist.id < ' . $last_liked_id; 
+        //}
+        
+        return $this->find('all', $find_array);
+    }
+
+
+    function getLikedProductDetails($list){
+
+        $find_array = array(
+            'joins' => array(
+                array('table' => 'products_entities',
+                    'alias' => 'Entity',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Wishlist.product_entity_id = Entity.id'
+                    )
+                ),
+                array('table' => 'products',
+                    'alias' => 'Product',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.id = Entity.product_id'
+                    )
+                ),
+                array('table' => 'brands',
+                    'alias' => 'Brand',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Product.brand_id = Brand.id',
+                    )
+                ), 
+            ), 
+            'conditions'    => array('Wishlist.post_id'  => $list),
+            'fields'        => array('Wishlist.*', 'Entity.*', 'Brand.name')
+            );
+
+        return $this->find('all', $find_array);
+    }
+
+    public function getUserLikeList($user_id, $pageOrder = 'desc'){
+
+        $find_array = array(
+            'conditions'    => array('user_id' => $user_id),
+            'order'     => array('id' => $pageOrder),
+            );
+
+        return $this->find('all', $find_array);
+    }
 }

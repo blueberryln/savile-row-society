@@ -83,33 +83,19 @@ class Message extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
-                        'dependent' => true
+            'dependent' => true
 		),
-		'UsersTo' => array(
+		'UserTo' => array(
 			'className' => 'User',
-			'foreignKey' => 'users_to_id',
+			'foreignKey' => 'user_to_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		)
 	);
-        
-        public $hasMany = array(
-            'Attached' => array(
-            'className' => 'Attached',
-            'foreignKey' => 'model_id',
-            'dependent' => false,
-            'conditions' => array('Attached.model' => 'Message'),
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-            )
-        );
-        /**
+
+
+    /**
      * Get those messages for user witch he is not already read
      * 
      * @param type $id
@@ -122,7 +108,6 @@ class Message extends AppModel {
                         'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image',
                         'UserFrom.id', 'UserFrom.user_type_id', 'UserFrom.email', 'UserFrom.password', 'UserFrom.first_name', 'UserFrom.last_name', 'UserFrom.username', 
 'UserFrom.profile_photo_url', 'UserFrom.phone', 'UserFrom.social_network',
-                        'Attached.attachment_id'
                       ),
         ));
     }
@@ -136,9 +121,9 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.id DESC",
                     'fields' => array('Message.id', 
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
-                    'limit' => "20",
+                    'limit' => "10",
         ));
     }
     
@@ -152,9 +137,9 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.id DESC",
                     'fields' => array('Message.id', 
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
-                    'limit' => "20",
+                    'limit' => "10",
         ));
     }
     
@@ -165,7 +150,7 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.created ASC",
                     'fields' => array('Message.id', 
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
         ));
     }
@@ -176,7 +161,7 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.created ASC",
                     'fields' => array('Message.id', 
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
         ));
     }
@@ -187,9 +172,9 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.created DESC",
                     'fields' => array(
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
-                    'limit' => 20
+                    'limit' => 10
         ));
     }
     
@@ -204,9 +189,37 @@ class Message extends AppModel {
                     'contain' => array('UserFrom'),
                     'order' => "Message.created DESC",
                     'fields' => array(
-                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
                     ),
-                    'limit' => 20
+                    'limit' => 10
+        ));
+    }
+
+
+    public function getMyConversationWithStylist($user_id_with){
+        return $this->find('all', array(
+                    'conditions' => array('AND' =>
+                        array(
+                            'OR' => array('Message.user_to_id' => $user_id_with, 'Message.user_from_id' => $user_id_with)
+                        )
+                    ),
+            
+                    'contain' => array('UserFrom'),
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                    ),
+        ));
+    }
+
+
+    //bhashit for outfit sorting
+    public function getMyConversationWithStylistSorting($user_id_with,$sorting){
+         return $this->find('all', array(
+                    'conditions' => array('Message.user_to_id' => $user_id_with, 'Message.is_outfit' => 1,),
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id',
+                    ),
+                    'order' =>  array('Message.created' => $sorting,),
         ));
     }
     
@@ -257,7 +270,29 @@ class Message extends AppModel {
                     )
         ));
     }
-    
+    //bhashit code
+    function getusertoid($client_id){
+        // return $this->find('all',array('conditions'=>array('Message.user_to_id'=>$client_id,'Message.is_outfit'=>true,)
+
+        //     )
+
+        // );
+        $this->find('all', array(
+                    'conditions' => array('AND' =>
+                        array(
+                            'OR' => array('Message.user_to_id' => $client_id, 'Message.user_from_id' => $client_id)
+                        )
+                    ),
+            
+                    'contain' => array('UserFrom'),
+                    'order' => "Message.created DESC",
+                    'fields' => array(
+                        'Message.id', 'Message.body', 'Message.created', 'Message.is_read','Message.user_from_id', 'Message.user_to_id', 'Message.image', 'Message.is_request_outfit', 'Message.is_outfit', 'Message.outfit_id', 'UserFrom.id', 'UserFrom.first_name', 'UserFrom.last_name',
+                    ),
+                    
+        ));
+    }
+    //bhashit code end
     function getLastUserMessage($user_id){
         return $this->find('first', array(
             'conditions' => array(

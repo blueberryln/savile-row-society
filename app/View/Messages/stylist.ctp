@@ -15,328 +15,148 @@ $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
 $this->Html->script('/js/date-format.js', array('inline' => false));
 ?>
 <?php echo $this->Form->create('User', array('url' => '/messages/send_to_user', 'type' => 'file')); ?>
-<div class="content-container">
-    <div class="container content inner timeline">	
-        <div>
-            <div class="user-container">
-                <div class="img-container">
-                    <div class="profile-img text-center">
-                    <?php
-                        $img = "";
-                        if(isset($client_user) && $client_user['User']['profile_photo_url'] && $client_user['User']['profile_photo_url'] != ""){
-                            $img = $this->webroot . "files/users/" . $client_user['User']['profile_photo_url'];
-                        }
-                        else{
-                            $img = $this->webroot . "img/dummy_image.jpg";    
-                        }
-                    ?>
-                        <img src="<?php echo $img; ?>" id="user_image" />
-                    </div>
-                </div>
-                <div class="info-container">
-                    <?php if($client_id) : ?>
-                        <div id="user-name"><?php echo $client_user['User']['full_name']; ?></div>
-                            <div class="last-user-purchase">
-                                <?php if(isset($last_purchase['Order'])) : ?>
-                                    Last Purchase: <span>$<?php echo $last_purchase['Order']['total_price']; ?></span> <br />
-                                    on <?php echo date('l:jS F Y, h:ia', strtotime($last_purchase['Order']['created'])); ?>
-                                <?php else : ?>
-                                    Last Purchase: <span>No purchases yet.</span>
-                                <?php endif; ?>
-                            </div>
-                            <div class="recent-activity">
-                                Recent Activity (30 Days): <br />
-                                -Amount Spent: <span>$<?php echo $recent_purchase; ?></span><br />
-                                -Messages Sent: <span><?php echo $recent_messages; ?></span>
-                            </div><br />
-                    <?php endif; ?>
-                </div>
-                <?php if(!$is_admin) : ?>
-                    <br />
-                    <h5 class="new-clients-head">New Clients</h5>
-                    <div class="new-clients">
-                    <?php if(isset($new_clients) && count($new_clients) > 0) {
-                        foreach($new_clients as $new_cl){
-                            echo '<div class="client-row">' . 
-                                '<a href="' . $this->webroot . 'messages/index/' . $new_cl['User']['id'] . '">' . $new_cl['User']['first_name'] . '</a> has been assigned to you.' . 
-                            '</div>';    
-                        }    
-                    }
-                    ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-            <div class="stylist-talk">
-                <?php if($client_id) : ?>
-                    <ul id="stylist-options">
-                        <li><a href="<?php echo $this->webroot; ?>profile/about/<?php echo $client_id; ?>" target="_blank">user profile</a></li>
-                        <li><a href="<?php echo $this->webroot; ?>mycloset/liked/<?php echo $client_id; ?>" target="_blank">user closet</a></li>
-                        <!--<li><a href="">conversation</a></li>-->                
-                    </ul>
-                <?php endif; ?>
-                <h4 class='talk-to bold'>TALK WITH YOUR CLIENT</h4>
-                    <?php if(!$is_admin) : ?>
-                    <?php
-                    echo $this->Form->input('user_to_id', array('label' => '', 'type' => 'select', 'options' => $clients, 'name' => 'data[Message][user_to_id]', 'empty' => "Select Client", 'class' => 'select_client', 'style' => 'max-width: 68%;'));
-                    ?> 
-                    <?php endif; ?>  
-                    
-                    <a class="link-btn gold-btn"  id="createOutfit"  href="">Create New Outfit</a>
-                    <textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea>
-                    <a class="link-btn black-btn"  id="sendMessages"  href="">Send Message</a>
-                    <div class="clear-fix"></div>
-                
-                <div class="chat-container">
-                    
-                </div>
-                
-                <p id="loadOldMsgs" class="hide">
-                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
-                    <a href="">Load Old Messages</a>
-                </p>
-                <br />
-            </div>   
-            <div class="clear-fix"></div>         
-        </div>
 
+
+    <div class="twelve columns container">
+        <div class="eleven columns container message-box-area">
+            <div class="twelve columns container left message-box">
+                
+                <?php echo $this->element('clientAside/userFilterBar'); ?>
+                
+                <div class="myclient-right right">
+                    <div class="twelve columns left inner-content pad-none">
+                        
+                            <?php echo $this->element('clientAside/userLinksLeft'); ?>
+
+                            <div class="right-pannel right">
+                                
+                                <div class="twelve columns message-area left pad-none">
+                                    
+                                    <!-- <div id="scrollbar2">
+                                            <div class="scrollbar" style="display:block; right: 4px;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                            <div class="viewport">
+                                                <div class="overview"> -->
+                                    <div class="eleven columns container pad-none">
+                                        
+                                        
+                                        <p id="loadOldMsgs">
+                                            <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                            <a href="">Load Old Messages</a>
+                                        </p>
+                                        <br />
+                                        
+                                        
+                                        <div id="scrollbar1">
+                                            <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                                            <div class="viewport">
+                                                <div class="overview" style="width: 100%;">
+                                                    <div class="chat-container">
+                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="message-pane-bottom clear-fix" style="overflow: hidden;">
+                                    <div class="twelve columns left">
+                                        <div class="bottom-text">
+                                            <div class="dummy-text"><textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea></div>
+                                        </div>
+                                    </div>
+                                    <div class=" twelve columns left bottom-btns">
+                                       <!--  <a class="link-btn gold-btn" href="#" title="">Create Outfit</a>
+                                        <a class=" link-btn black-btn" href="#" title="">Send Photo Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                        <a class="link-btn black-btn" href="#" title="">Send</a> -->
+                                        <!-- <a class="create-outfit left" href="#" title="">Create Outfit</a> -->
+                                        <a class=" create-outfit left"  id=""  href="/outfits/create/<?php echo $client_id; ?>">Create New Outfit</a>
+                                        <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
+                                        <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                        <a class="send-btn right"  id="sendMessages"  href="">Send Message</a>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                
+                </div>
+                
+                
+                
+            </div>
+        </div>
     </div>
 </div>
+
 <?php echo $this->Form->end(); ?>
 
-
-<!-- Create outfit popup-->
-<div id="outfit-box" class="hide outfit-modal container content">
-    <div class="create-outfit-cont">
-        <a class="outfit-close" href=""></a>
-        <div class="text-center">
-            <h1 class="pop-heading">Create a new outfit</h1>
-        </div>
-        <div class="eleven columns center-block product-listing">            
-            <div class="outfit-item" id="outfit1">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-                    
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-                </div>
-            </div>
+<div id="chatimage-box" class="box-modal notification-box hide">
+    <div class="box-modal-inside">
+        <a class="notification-close" href=""></a>
+        <div class="signin-content">
+            <h5 class="sign">Send Photo</h5>  
             
-            <div class="outfit-item" id="outfit2">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="outfit-item" id="outfit3">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="outfit-item" id="outfit4">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="outfit-item" id="outfit5">
-                <div class="product-block">
-                    <input type="hidden" value="" class="product-slug">
-                    <input type="hidden" value="" class="product-id">
-                    <div class="product-list-image mosaic-block fade">
-
-                    </div>
-                    <div class="product-list-links">
-                        <a href="" class="btn-user-closet btn-outfit">User Closet</a>
-                        <a href="" class="btn-srs-closet  btn-outfit">SRS Closet</a>
-                        <div class="clear-fix"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="clear-fix"></div>            
-            <div class="form outfit-form">
-                <div class="four columns text-center">
-                    <label>Location (East Coast or West Coast)</label>
-                    <select name="outfit-location" id="outfit-location">
-                        <option value="East Coast">East Coast</option>
-                        <option value="West Coast">West Coast</option>
-                    </select>
-                </div>
-                <div class="four columns text-center">
-                    <label>Type of the outfit</label>
-                    <select name="outfit-location" id="outfit-style">
-                        <option>Casual</option>
-                        <option>Formal</option>
-                        <option>PartyWear</option>
-                    </select>
-                </div>
-                <div class="clear-fix"></div>
-                <div class="eight columns text-center">
-                    <label>Message:</label>
-                    <textarea id='outfitMessageToSend'></textarea>        
-                </div>
-            </div>
-            <div class="clear-fix"></div>
-            <div class="text-center">
-                <a href="" id="add-outfit" class="link-btn black-btn">Suggest the Outfit</a>
-                <div class="hide suggest-outfit-loader"><img src="<?php echo $this->webroot; ?>img/loader.gif"></div>
-            </div>
-        </div>
-            <div class="clear-fix"></div>
-    </div>
-    <div class="user-closet-cont hide">
-        <a class="user-closet-close" href=""></a>
-        <div class="sixteen columns text-center">
-            <h1>User Closet</h1>
-        </div>
-        <div class="sixteen columns product-listing">
-            <div class="mycloset-tabs text-center">
-                <a href="" class="link-btn black-btn like-cont-link">Liked Items</a>
-                <a href="" class="link-btn gray-btn purchased-cont-link">Purchased Items</a>
-            </div>
-            <div class="user-closet-list-cont nine-five columns center-block text-left">
-                <div class="purchased-list-cont hide">
-                    <div class="product-listing-box">
-
-                    </div>
-                    
-                    <div class="clear-fix"></div>
-                    <div class="btn-outfit-cont text-right">
-                        <a href="" class="link-btn black-btn load-more-purchased">Load More</a>
-                        <a href="" class="link-btn black-btn add-purchased-outfit">Add to outfit</a>
-                    </div>
-                </div>
-                
-                <div class="liked-list-cont">
-                    <div class="product-listing-box">
-
-                    </div>
-                    
-                    <div class="clear-fix"></div>
-                    <div class="btn-outfit-cont text-right">
-                        <a href="" class="link-btn black-btn load-more-liked">Load More</a>
-                        <a href="" class="link-btn black-btn add-liked-outfit">Add to outfit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="srs-closet-cont hide">
-        <a class="srs-closet-close" href=""></a>
-        <div class="sixteen columns text-center">
-            <h1>SRS Closet</h1>
-        </div>
-        
-        <div class="nine-five columns omega center-block">
-            <div class="two columns alpha left">
-                <div class="product-filter-menu">
-                    <ul class="text-left">
-                        <li class="toggle-tab selected open-filter" style="height: 140px;overflow-y: auto;"><span>Categories</span>
-                            <ul class="toggle-body product-categories">
-                            <?php foreach ($categories as $category): ?>
-                                <li data-category_id="<?php echo $category['Category']['slug']; ?>">
-                                    <a><?php echo $category['Category']['name']; ?></a>
-                                    <ul class="product-subcategories">
-                                        <?php foreach ($category['children'] as $subcategory): ?>
-                                            <li data-category_id="<?php echo $subcategory['Category']['slug']; ?>">
-                                                <a><?php echo $subcategory['Category']['name']; ?></a>
-                                                <?php if ($subcategory['children']) : ?>
-                                                    <ul class="product-subcategories product-subsubcategories">
-                                                        <?php foreach ($subcategory['children'] as $subsubcategory): ?> 
-                                                            <li data-category_id="<?php echo $subsubcategory['Category']['slug']; ?>">
-                                                                <a><?php echo $subsubcategory['Category']['name']; ?></a>
-                                                            </li>    
-                                                        <?php endforeach; ?>
-                                                    </ul>       
-                                                <?php endif; ?>     
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </li>
-                            <?php endforeach; ?>
-                            </ul>
-                        </li>
-                        <li class="toggle-tab" style="height: 140px;overflow-y: auto;"><span>Brand</span>
-                            <ul class="toggle-body brand-filter">
-                            <?php if($brands) : ?>
-                                <?php foreach($brands as $brand) : ?>
-                                    <li data-brand_id="<?php echo $brand['Brand']['id']; ?>"><?php echo $brand['Brand']['name']; ?></li>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                            </ul>
-                        </li>
-                        <li class="toggle-tab" style="height: 140px;overflow-y: auto;"><span>Color</span>
-                            <ul class="toggle-body color-filter">
-                            <?php if($colors) : ?>
-                                <?php foreach($colors as $color) : ?>
-                                        <li data-color_id="<?php echo $color['Colorgroup']['id']; ?>"><?php echo $color['Colorgroup']['name']; ?></li>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="nine columns product-listing right text-left">
-                <div class="product-top-offset text-center">
-                    <span class="text-center">Click on a product to select it.</span>
-                </div>
-
-                <div class="srs-closet-items"></div>
-                <div class="clear-fix"></div>
-                <div class="btn-outfit-cont text-right">
-                    <img src="<?php echo $this->webroot; ?>img/loading.gif" width="28" class="hide closet-load-icon" style="position: relative; top: 8px;" /> &nbsp;
-                    <a href="" class="link-btn black-btn load-more-closet">Load More</a>
-                    <a href="" class="link-btn black-btn add-closet-outfit">Add to outfit</a>
-                </div>
-                    
-            </div>
-            <div class="clear-fix"></div>
-            
-        </div>
-        
-        
-        
-        
-    </div>
+            <?php echo $this->Form->create('Message', array('type' => 'file', 'url' => '/messages/sendPhotoToUser/' . $client_id)); ?> 
+                <?php
+                    echo $this->Form->input('Image', array('type' => 'file', 'label' => false, 'class' => 'style-photo'));
+                ?>
+                <input type="submit" class="link-btn black-btn signin-btn" value="Upload Photo" /> 
+                <br /><br />
+            </form> 
+        </div> 
     </div>
 </div>
 
-
+<div id="view-otft-popup" style="display: none">
+    <div class="box-modal">
+        <div class="box-modal-inside">
+            <a href="#" title="" class="otft-close"></a>
+            <input type="hidden" id="pop-outfit-id" value="">
+            <div class="view-otft-content">
+                <h1>Outfit Quickview</h1>
+                <div class="three columns left">
+                    <div class="twelve columns left">
+                        <div class="view-otft-list">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="eight columns right">
+                    <div class="twelve columns left">
+                        <div class="view-otft-dtl">
+                            <div class="view-otft-dtl-top">
+                                <p>Outfit Name: <span class="pop-outfit-name"></span></p>
+                                <p>Total Cost: $<span class="pop-outfit-price"></span></p>
+                            </div>
+                            <div class="otft-overview-box">
+                                <span class="otft-overview-box-head">Overview</span>
+                                <div class="otft-overview-box-recmnd">
+                                    <p>Recommended To:</p>
+                                    <ul>
+                                        
+                                    </ul>
+                                </div>
+                                <div class="otft-overview-box-brnds">
+                                    <p>Brands:</p>
+                                    <ul>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="twelve columns left otft-overview-links">
+                                <a class="left pop-outfit-reuse" href="" title="">Reuse Outfit</a>
+                                <a class="right pop-outfit-details" href="" title="">See Full Outfit Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     window.onload = function() {
@@ -347,6 +167,13 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             callInAction = false,
             reqNewMsgDelay=6000,
             firstMsgId = 0;
+
+        var calculatedHeight = $(window).height()- $('.header').height() - $('.message-pane-bottom').height() - 100;
+        console.log(calculatedHeight);
+        var $scrollbar  = $('#scrollbar1');
+        $scrollbar.tinyscrollbar({ axis: "y", trackSize: calculatedHeight});
+        var scrollbarData = $scrollbar.data("plugin_tinyscrollbar");
+        $scrollbar.find('.viewport').height(calculatedHeight);
         
         function loadMessages(userId) {
             if(!userId){
@@ -363,7 +190,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         if(arrMsg.length){
                             for(var i=0; i < arrMsg.length; i++){
                                 var html = showChatMsg(arrMsg[i]);
-                                chatContainer.append(html);
+                                chatContainer.prepend(html);
                                 firstMsgId = arrMsg[i]['Message']['id'];
                             }
                             if(res['msg_remaining'] > 0){
@@ -374,6 +201,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         else{  
                             
                         } 
+
+                        scrollbarData.update("bottom");
                     }
                 },
                 error: function(res) {
@@ -394,7 +223,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         var arrMsg = res['Messages'];
                         for(var i=0; i < arrMsg.length; i++){
                             var html = showChatMsg(arrMsg[i]);
-                            chatContainer.prepend(html);
+                            chatContainer.append(html);
+                            scrollbarData.update("bottom");
                         }
                     }
                 },
@@ -409,74 +239,114 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
         function showChatMsg(chatMsg) {
             var html = ''; 
             if(chatMsg['Message']['is_outfit'] == 1){
-                html = html + '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">';  
-                html = html + '<div class="message-caption">You suggested new items to complete a style:</div>'; 
-                if(chatMsg['Message']['body'] != '' && chatMsg['Message']['body'] != 'outfit'){
-                    html = html + '<div class="message-body">' + chatMsg['Message']['body'] + '</div><br>';
-                }
                 
-                html = html + '<div class="chat-outfit-box">';
+
+                var outfitName = (chatMsg['OutfitDetail']['outfit_name']) ? chatMsg['OutfitDetail']['outfit_name'].capitalize() : ''; 
+                var userList = [],
+                    outfitPrice = 0,
+                    brandList = [];
+                
+                html = html +   '<div class="client-outfit">'+
+                                    '<div class="client-msg-reply"><span class="outfit-name"><a href="/messages/outfitdetails/' + chatMsg['OutfitDetail']['id'] + '">' + outfitName + '</a></span></div>' + 
+                                    '<input type="hidden" id="outfitidquickview" class="outfit-id" data-id="' + chatMsg['OutfitDetail']['id'] + '" value="' + chatMsg['OutfitDetail']['id'] + '">' + 
+                                        '<ul>';
+                ;
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
                     var imgSrc = webroot + "img/image_not_available-small.png";
-                    if(typeof(chatMsg['Outfit'][i]["Image"]) != "undefined" && chatMsg['Outfit'][i]["Image"].length > 0){
-                        imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]["Image"][0]["name"] + "/98/135";
+                    if(typeof(chatMsg['Outfit'][i]['product']["Image"]) != "undefined" && chatMsg['Outfit'][i]['product']["Image"].length > 0){
+                        imgSrc = webroot + "files/products/" + chatMsg['Outfit'][i]['product']["Image"][0]["name"];
                     }
+                    else{
+                        imgSrc = webroot + "images/image_not_available.png";    
+                    }
+                    
                     html = html + 
-                    '<div class="chat-product-box">' +
-                        '<div class="product-block">' + 
-                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['slug'] + '" class="product-slug">' + 
-                            '<input type="hidden" value="' + chatMsg['Outfit'][i]['Entity']['id'] + '" class="product-id">' + 
-                            '<div class="product-list-image mosaic-block fade">' + 
-                                '<div class="mosaic-overlay" style="display: block;">' + 
-                    				'<div class="mini-product-details">' + 
-                					   '<span>$' + chatMsg['Outfit'][i]['Entity']['price'] + '</span>' + 
-                					   '<span>' + chatMsg['Outfit'][i]['Entity']['name'] + '</span>' + 
-                    				'</div>' + 
-                    			'</div>' + 
-                            '<div class="mosaic-backdrop" style="display: block;">' + 
-                                    '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['Entity']['name'] + '" class="product-image fadein-image" style="opacity: 1;">' + 
-                                '</div>' + 
-                            '</div>' + 
-                            '<div class="product-list-links">' +
-                                '<a href="' + webroot + 'user-outfit/' + chatMsg['Message']['outfit_id'] + '/" class="btn-buy">Buy</a>' +                             
-                            '</div>' + 
-                        '</div>' + 
-                    '</div>';        
-                } 
-                html = html + '</div>' + 
-                    '<div class="message-date">' +
-                        '<small>' + chatMsg['Message']['created'] + '</small>' +
-                    '</div>' + 
-                    '</div>';
+                            '<li>' + 
+                                '<img src="' + imgSrc + '" alt="' + chatMsg['Outfit'][i]['product']['Entity']['name'] + '" alt="" /></li>'; 
+
+                    brandList.push(chatMsg['Outfit'][i]['product']['Brand']['name']);
+                    outfitPrice += parseInt(chatMsg['Outfit'][i]['product']['Entity']['price']);
+                }
+
+                for(var j = 0; j < chatMsg['AllMessage'].length; j++){
+                    userList.push(chatMsg['AllMessage'][j]['UserTo']['first_name'].capitalize() + ' ' + chatMsg['AllMessage'][j]['UserTo']['last_name'].capitalize());
+                }
+
+                brandList = brandList.unique();
+                userList = userList.unique();
+                brandList = brandList.join(',');
+                userList = userList.join(',');
+
+                    html = html +  '</ul>' +
+                                    '<input type="hidden" id="totalpriceoutfit" class="outfit-price" value="' + outfitPrice + '">' + 
+                                    '<input type="hidden" class="outfit-brands" value="' + brandList + '">' + 
+                                    '<input type="hidden" class="outfit-users" value="' + userList + '">' + 
+                                    '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' +
+                                    '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
+                                    '</div>';
             }
             else if(chatMsg['Message']['image']){
-                html = '' + 
-                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                            '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
-                            '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
-                            '<div class="message-date">' +
-                                '<small>' + chatMsg['Message']['created'] + '</small>' +
-                            '</div>' + 
-                        '</div>';
-            }
-            else{
                 if(chatMsg['UserFrom']['id'] == uid){
+                    
                     html = '' + 
-                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                            '<div class="message-caption">You Said:</div>' + 
-                            '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
-                            '<div class="message-date">' +
-                                '<small>' + chatMsg['Message']['created'] + '</small>' +
-                            '</div>' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="message-image-area">' +
+                                '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
+                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
+                            '</div>' +   
                         '</div>';
                 }
                 else{
+                    
                     html = '' + 
-                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
-                            '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' Said:</div>' + 
-                            '<div class="message-body">' + chatMsg['Message']['body'] + '</div>' + 
-                            '<div class="message-date">' +
-                                '<small>' + chatMsg['Message']['created'] + '</small>' +
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
+                            '<div class="user-message-image-area">' +
+                                '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
+                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
+                            '</div>' + 
+                        '</div>';
+                }
+            }
+            else if(chatMsg['Message']['is_request_outfit'] == 1){
+                if(chatMsg['UserFrom']['id'] == uid){
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="client-msg">' + 
+                            '<div class="client-msg-reply">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</idv>' +
+                        '</div>';
+                }
+                else{
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
+                            '<div class="user-msg">' + 
+                            '<div class="msg">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
+                            '</div>' + 
+                        '</div>';
+                }
+            } 
+            else{
+                if(chatMsg['UserFrom']['id'] == uid){
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box cur-user-msg" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
+                            '<div class="client-msg">' + 
+                            '<div class="client-msg-reply">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</idv>' +
+                        '</div>';
+                }
+                else{
+                    
+                    html = '' + 
+                        '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
+                            '<div class="user-msg">' + 
+                            '<div class="msg">' + chatMsg['Message']['body'] + '</div>' + 
+                                '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
                             '</div>' + 
                         '</div>';
                 }
@@ -549,18 +419,17 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             var curDate = new Date().format("yyyy-MM-dd h:mm:ss")
             var html = '' + 
                         '<div class="chat-msg-box cur-user-msg" data-user-id="' + uid + '" data-msg-id="">' + 
-                            '<div class="message-caption">You Said:</div>' + 
-                            '<div class="message-body">' + nl2br(message) + '</div>' + 
-                            '<div class="message-date">' +
-                                '<small>' + curDate + '</small>' +
-                            '</div>' + 
+                            '<div class="client-msg">' + 
+                            '<div class="client-msg-reply">' + nl2br(message) + '</div>' + 
+                            '<div class="msg-date">' + curDate + '</div>' + 
                         '</div>'; 
             return html;   
         }
         
         $("#sendMessages").click(function(e) {
             e.preventDefault();
-            if(!$("#messageToSend").hasClass("sending") && $("#messageToSend").val() != '') {
+            //if(!$("#messageToSend").hasClass("sending") && $("#messageToSend").val() != '') {
+            if($("#messageToSend").val() != '') {
                 $("#messageToSend").addClass("sending");
                 var message = $("#messageToSend").val();
                 var _data = {
@@ -569,7 +438,9 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 }
 
                 var html = showSentMessage(message, uid);
-                chatContainer.prepend(html);
+                chatContainer.append(html);
+                scrollbarData.update("bottom");
+
                 $("#messageToSend").val("");
 
                 $.ajax({
@@ -580,8 +451,8 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     success: function(res) {
                         res = jQuery.parseJSON(res);
                         if(res['status'] == 'ok'){
-                            // var html = showChatMsg(res);
-                            // chatContainer.prepend(html);
+                             //var html = showChatMsg(res);
+                             //chatContainer.append(html);
                         }
                     },
                     error: function(res) {
@@ -614,13 +485,15 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                             var arrMsg = res['Messages'];
                             for(var i=0; i < arrMsg.length; i++){
                                 var html = showChatMsg(arrMsg[i]);
-                                chatContainer.append(html);
+                                chatContainer.prepend(html);
                                 
                                 firstMsgId = arrMsg[i]['Message']['id'];
                             }
                             if(res['msg_remaining'] == 0){
                                 $("#loadOldMsgs").fadeOut(300);    
                             }
+
+                            scrollbarData.update();
                         }
                         else{
                             $("#loadOldMsgs").fadeOut(300);    
@@ -629,8 +502,17 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                     else{
                         $("#loadOldMsgs").fadeOut(300);     
                     } 
+
+
+                    // $("#scrollbar2").trigger('resize');
                 }    
             });
+        });
+
+
+        $("#sendphoto").on('click', function(e){
+            e.preventDefault();
+            $.blockUI({message: $("#chatimage-box")});   
         });
 
         $(".chat-container").on("click", ".mosaic-overlay", function(e){
@@ -638,9 +520,53 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             var productBlock = $(this).closest(".product-block");
             window.location = productBlock.find(".btn-buy").attr("href");
         });
+
+
+        $('.chat-container').on('click', '.outfit-quick-view', function(e){
+            e.preventDefault();
+            
+            var clientOutfit = $(this).closest('.client-outfit'),
+                outfitName = clientOutfit.find('.outfit-name').text(),
+                outfitId = clientOutfit.find('.outfit-id').val(),
+                outfitPrice = clientOutfit.find('.outfit-price').val(),
+                brandList = clientOutfit.find('.outfit-brands').val().split(","),
+                userList = clientOutfit.find('.outfit-users').val().split(",");
+            
+            $('.pop-outfit-name').text(outfitName);
+            $('#pop-outfit-id').val(outfitId);
+            $('.pop-outfit-price').text(outfitPrice);
+
+            var brandListHtml = $('.otft-overview-box-brnds ul');
+            brandListHtml.html('');
+            for(var i=0; i<brandList.length; i++){
+                brandListHtml.append('<li>' + brandList[i] + '</li>');
+            }
+
+            var userListHtml = $('.otft-overview-box-recmnd');
+            userListHtml.html('');
+            for(var i=0; i<userList.length; i++){
+                userListHtml.append('<li>' + userList[i] + '</li>');
+            }
+
+            var imgListHtml = $('.view-otft-list'),
+                curImgPath = '';
+            imgListHtml.html('');
+
+            clientOutfit.find('ul li img').each(function(){
+                curImgPath = $(this).attr('src');
+                imgListHtml.append('<li><img src="' + curImgPath + '"></li>');
+            });
+
+            $('.pop-outfit-details').attr('href', '/messages/outfitdetails/' + outfitId);
+            $('.pop-outfit-reuse').attr('href', '/messages/outfitdetails/' + outfitId);
+            
+
+
+            var blockTop = $(window).height()/2 - $("#view-otft-popup").height()/2 + $(window).scrollTop();
+            $.blockUI({message: $('#view-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+            $('.blockOverlay').click($.unblockUI);
+        });
     }
     
 
 </script>
-
-

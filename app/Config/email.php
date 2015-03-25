@@ -44,12 +44,36 @@
  */
 class EmailConfig {
 
+    // public $default = array(
+    //     'host' => 'ssl://smtp.gmail.com',
+    //     'port' => 465,
+    //     'username' => 'admin@savilerowsociety.com',
+    //     'password' => 'srsus1234',
+    //     'transport' => 'Smtp'
+    // );
+
+    // public $default = array(
+    //     'host' => 'ssl://smtp.gmail.com',
+    //     'port' => 465,
+    //     'username' => 'dareshareapp@gmail.com',
+    //     'password' => 'Jukepach3',
+    //     'transport' => 'Smtp'
+    // );
+
     public $default = array(
-        'host' => 'ssl://smtp.gmail.com',
+        'host' => 'ssl://email-smtp.us-east-1.amazonaws.com',
         'port' => 465,
-        'username' => 'admin@savilerowsociety.com',
-        'password' => 'nycFashion7*64',
+        'username' => 'AKIAJHMNIZSNQGJERYHA',
+        'password' => 'ApSS50SNw1OeCE5+WmaoTpX4iGhHNndsSPsADfLLArWp',
         'transport' => 'Smtp'
     );
+
+    // public $default = array(
+    //     'host' => 'email-smtp.us-east-1.amazonaws.com',
+    //     'port' => 25,
+    //     'username' => 'AKIAJHMNIZSNQGJERYHA',
+    //     'password' => 'ApSS50SNw1OeCE5+WmaoTpX4iGhHNndsSPsADfLLArWp',
+    //     'transport' => 'Smtp'
+    // );
 
 }

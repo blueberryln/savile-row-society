@@ -26,10 +26,22 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
+
+/**
+ * User section routes
+ */
+Router::connect('/user/purchases', array('controller'=>'messages', 'action'=>'userpurchases'));
+Router::connect('/user/likes', array('controller'=>'messages', 'action'=>'userlikes'));
+Router::connect('/user/profile', array('controller'=>'messages', 'action'=>'profiles'));
+Router::connect('/user/outfits', array('controller'=>'messages', 'action'=>'usersoutfits'));
+
+
 Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 Router::connect('/refer-a-friend', array('controller' => 'pages', 'action' => 'display', 'refer-a-friend'));
+Router::connect('/refer', array('controller' => 'pages', 'action' => 'display', 'refer'));
 Router::connect('/fitting-room', array('controller' => 'booking'));
 Router::connect('/signin', array('controller' => 'users', 'action' => 'signin'));
+Router::connect('/landing', array('controller' => 'users', 'action' => 'landing'));
 Router::connect('/register/*', array('controller' => 'users', 'action' => 'register'));
 Router::connect('/signout', array('controller' => 'users', 'action' => 'signout'));
 Router::connect('/forgot', array('controller' => 'users', 'action' => 'forgot'));
@@ -38,17 +50,19 @@ Router::connect('/myprofile/*', array('controller' => 'users', 'action' => 'edit
 Router::connect('/mycloset/liked/*', array('controller' => 'closet', 'action' => 'liked'));
 Router::connect('/mycloset/purchased/*', array('controller' => 'closet', 'action' => 'purchased'));
 Router::connect('/closet/validatecard/*', array('controller' => 'closet', 'action' => 'validatecard'));
-Router::connect('/closet/validate_promo_code/*', array('controller' => 'closet', 'action' => 'validate_promo_code'));
+Router::connect('/payments/validate_promo_code/*', array('controller' => 'payments', 'action' => 'validate_promo_code'));
 Router::connect('/closet/*', array('controller' => 'closet', 'action' => 'index'));
 Router::connect('/lookbooks', array('controller' => 'lifestyles'));
 Router::connect('/lookbooks/:action/*', array('controller' => 'lifestyles'));
 Router::connect('/cart', array('controller' => 'closet', 'action' => 'cart'));
-Router::connect('/checkout', array('controller' => 'closet', 'action' => 'checkout'));
-Router::connect('/payment', array('controller' => 'closet', 'action' => 'payment'));
-Router::connect('/confirmation', array('controller' => 'closet', 'action' => 'confirmation'));
+Router::connect('/guest/checkout', array('controller' => 'payments', 'action' => 'guestcheckout'));
+Router::connect('/checkout', array('controller' => 'payments', 'action' => 'checkout'));
+Router::connect('/payment', array('controller' => 'payments', 'action' => 'payment'));
+Router::connect('/confirmation', array('controller' => 'payments', 'action' => 'confirmation'));
 Router::connect('/product/*', array('controller' => 'closet', 'action' => 'product'));
 Router::connect('/user-outfit/*', array('controller' => 'closet', 'action' => 'userOutfit'));
 Router::connect('/profile/*', array('controller' => 'users', 'action' => 'register'));
+Router::connect('/thankyou/*', array('controller' => 'offers', 'action' => 'thankyou'));
 
 /* Admin */
 Router::connect('/admin', array('controller' => 'products', 'action' => 'index', 'admin' => true));
@@ -61,16 +75,10 @@ Router::connect('/home', array('controller' => 'pages', 'action' => 'display', '
 
 Router::connect('/company', array('controller' => 'pages', 'action' => 'display', 'company'));
 Router::connect('/company/team', array('controller' => 'pages', 'action' => 'display', 'company/team'));
-Router::connect('/company/bloggers', array('controller' => 'pages', 'action' => 'display', 'company/bloggers'));
-
+Router::connect('/company/privacy', array('controller' => 'pages', 'action' => 'display', 'company/privacy'));
+Router::connect('/company/terms', array('controller' => 'pages', 'action' => 'display', 'company/terms'));
 Router::connect('/company/brands', array('controller' => 'pages', 'action' => 'display', 'company/brands'));
-Router::connect('/company/retailers', array('controller' => 'pages', 'action' => 'display', 'company/retailers'));
-Router::connect('/membership', array('controller' => 'pages', 'action' => 'display', 'membership'));
 Router::connect('/contact', array('controller' => 'pages', 'action' => 'display', 'contact'));
-Router::connect('/new', array('controller' => 'pages', 'action' => 'display', 'new'));
-Router::connect('/how-it-works', array('controller' => 'pages', 'action' => 'display', 'how-it-works'));
-Router::connect('/tailor', array('controller' => 'pages', 'action' => 'display', 'tailor'));
-Router::connect('/stylist', array('controller' => 'pages', 'action' => 'display', 'stylist'));
 Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 Router::connect('/faq', array('controller' => 'pages', 'action' => 'display', 'faq'));
 

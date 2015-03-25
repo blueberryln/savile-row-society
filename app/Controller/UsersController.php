@@ -3,6 +3,7 @@
 App::uses('AppController', 'Controller');
 App::uses('Security', 'Utility');
 App::uses('CakeEmail', 'Network/Email');
+App::uses('Validation', 'Utility');
 
 /**
  * Users Controller
@@ -12,88 +13,9 @@ App::uses('CakeEmail', 'Network/Email');
 class UsersController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
-    
-    //Industry options
-    public $industry_options = array(
-        'Agriculture'=>'Agriculture',
-        'Accounting'=>'Accounting',
-        'Advertising'=>'Advertising',
-        'Aerospace'=>'Aerospace',
-        'Aircraft'=>'Aircraft',
-        'Airline'=>'Airline',
-        'Apparel & Accessories'=>'Apparel & Accessories',
-        'Automotive'=>'Automotive',
-        'Banking'=>'Banking',
-        'Broadcasting'=>'Broadcasting',
-        'Brokerage'=>'Brokerage',
-        'Biotechnology'=>'Biotechnology',
-        'Call Centers'=>'Call Centers',
-        'Cargo Handling'=>'Cargo Handling',
-        'Chemical'=>'Chemical',
-        'Computer'=>'Computer',
-        'Consulting'=>'Consulting',
-        'Consumer Products'=>'Consumer Products',
-        'Cosmetics'=>'Cosmetics',
-        'Defense'=>'Defense',
-        'Department Stores'=>'Department Stores',
-        'Education'=>'Education',
-        'Electronics'=>'Electronics',
-        'Energy'=>'Energy',
-        'Entertainment & Leisure'=>'Entertainment & Leisure',
-        'Executive Search'=>'Executive Search',
-        'Financial Services'=>'Financial Services',
-        'Food, Beverage & Tobacco'=>'Food, Beverage & Tobacco',
-        'Grocery'=>'Grocery',
-        'Health Care'=>'Health Care',
-        'Internet Publishing'=>'Internet Publishing',
-        'Investment Banking'=>'Investment Banking',
-        'Legal'=>'Legal',
-        'Manufacturing'=>'Manufacturing',
-        'Motion Picture & Video'=>'Motion Picture & Video',
-        'Music'=>'Music',
-        'Newspaper Publishers'=>'Newspaper Publishers',
-        'Online Auctions'=>'Online Auctions',
-        'Pension Funds'=>'Pension Funds',
-        'Pharmaceuticals'=>'Pharmaceuticals',
-        'Private Equity'=>'Private Equity',
-        'Publishing'=>'Publishing',
-        'Real Estate'=>'Real Estate',
-        'Retail & Wholesale'=>'Retail & Wholesale',
-        'Securities & Commodity Exchanges'=>'Securities & Commodity Exchanges',
-        'Service'=>'Service',
-        'Soap & Detergent'=>'Soap & Detergent',
-        'Software'=>'Software',
-        'Sports'=>'Sports',
-        'Technology'=>'Technology',
-        'Telecommunications'=>'Telecommunications',
-        'Television'=>'Television',
-        'Transportation'=>'Transportation',
-        'Venture Capital'=>'Venture Capital',
-    );
+    var $uses = array('User','UserPreference','Style','InvitedUser','Userhighlighted');
 
-    public function savefbimage(){
-        Configure::write('debug', 2);
-        $fullpath = APP . DS . 'webroot' . DS . 'files' . DS . 'users' . DS . "saurabh.jpg";
-
-        $my_img = "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/t1.0-1/c25.0.81.81/s80x80/252231_1002029915278_1941483569_s.jpg";
-
-        $ch = curl_init ($my_img);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
-        curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
-        $rawdata=curl_exec($ch);
-        curl_close ($ch);
-        if(file_exists($fullpath)){
-            unlink($fullpath);
-        }
-        $fp = fopen($fullpath,'x');
-        fwrite($fp, $rawdata);
-        fclose($fp);
-
-        exit;
-    }
-
+   
     /**
      * User Referral
      */
@@ -117,13 +39,50 @@ class UsersController extends AppController {
 
             $noindex = 1;
             $this->set(compact('noindex'));
-            //$this->redirect('/');
         }
         else{
             $this->redirect('/');
             exit;
         }
         $this->render('/Pages/home');
+    }
+
+
+    public function requestinvite(){
+        if ($this->request->is('ajax')) {
+        	$toemail = $this->request->data['invite-email'];
+
+	        $this->InvitedUser->create();
+	       	$this->InvitedUser->data['InvitedUser']['email'] = $this->request->data['invite-email'];
+	        $this->InvitedUser->save($this->InvitedUser->data['InvitedUser']['email']);
+            
+            $ret = array();
+			if ($toemail && Validation::email($toemail) && !$this->User->findByEmail($toemail)) {
+                $email = new CakeEmail('default');
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->to($toemail);
+                $email->cc(array('contact@savilerowsociety.com' => 'Savile Row Society'));
+                $email->subject('Thank you!');
+                $email->template('requestinvite');
+                $email->emailFormat('html');
+                $email->viewVars(compact($toemail));
+
+                if ($email->send()) {
+                    $ret['status'] = 'ok';
+                } else {
+                    $ret['status'] = 'error';
+                }
+            } 
+            else if ($toemail && Validation::email($toemail) && $this->User->findByEmail($toemail)){
+                $ret['status'] = 'member';
+            }
+            else {
+                $ret['status'] = 'invalid-email';
+            }
+        }
+
+        echo json_encode($ret);
+        exit;
     }
 
     
@@ -163,6 +122,44 @@ class UsersController extends AppController {
                         $this->Session->delete('referer_type');
                     }   
 
+                    if($this->Session->check('landing_offer')){
+                        $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->delete('landing_offer');
+                        $this->Session->delete('landing_text');
+                        
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $existing_offer = $UserOffer->findByUserId($results['User']['id']);
+                        if(!$existing_offer){
+                            $user_offer['UserOffer']['user_id'] = $results['User']['id'];    
+                            $UserOffer->create();
+                            $UserOffer->save($user_offer);
+                        }
+                    }
+
+
+                    if($this->Session->check('guest_items')){
+                        $cart_list = $this->Session->read('guest_items');
+
+                        $Cart = ClassRegistry::init('Cart');
+                        $CartItem = ClassRegistry::init('CartItem');
+
+                        $data = array();
+                        $data['Cart']['user_id'] = $results['User']['id'];
+                        $Cart->create();
+                        $result = $Cart->save($data);
+
+                        $cart_id = $result['Cart']['id'];
+                        foreach($cart_list as $item){
+                            $item['CartItem']['user_id'] = $results['User']['id'];
+                            $item['CartItem']['cart_id'] = $cart_id;
+                            $CartItem->create();
+                            $result = $CartItem->save($item);
+                        }
+
+
+                        $this->Session->delete('guest_items');
+                    }
+
                     
                     //Set complete style profile popup if style profile not complete
                     if (!$results['User']['preferences']) {
@@ -191,19 +188,19 @@ class UsersController extends AppController {
                         $this->redirect($retrun_url);
                         exit();
                     }
-                    $this->redirect($this->referer());
+                    $this->redirect('/messages/index');
                     exit();
                 } else {
                     // login data is wrong, redirect to login page
                     $this->request->data = null;
-                    $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'flash');
+                    $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'forgot_flash');
                     $this->redirect($this->referer());
                     exit();
                 }
             }
             else{
                 $this->request->data = null;
-                $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'flash');
+                $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'forgot_flash');
                 $this->redirect($this->referer());
                 exit;
             }
@@ -214,388 +211,8 @@ class UsersController extends AppController {
         }
     }
 
-    /*
-     * save contacts page profile..
-     * */
-
-    public function saveAbout() {
-        // get edditing in user
-        $user = $this->getEditingUser();
-        $id = $this->getLoggedUserID();
-        
-        $user["User"]["industry"] = $this->request->data["User"]["industry"];
-        $user["User"]["zip"] = $this->request->data["User"]["zip"];
-        if(checkdate($this->request->data["User"]["month"],$this->request->data["User"]["day"], $this->request->data["User"]["year"])){
-            $user["User"]["birthdate"] = date('Y-m-d', strtotime($this->request->data["User"]["year"] . "-" . $this->request->data["User"]["month"] . "-" . $this->request->data["User"]["day"]));
-        }
-
-        if ($this->User->save($user)) {
-            $result = $this->User->getByID($id);
-            $this->Session->write('user', $result); 
-            $this->redirect('register/wardrobe/' . $user['User']['id']);
-        } else {
-            // TODO: implement error handling
-        }
-    }
-
-    /*
-     * save style page profile, and open register-size page
-     * */
-
-    public function saveWardrobe() {
-        // get edditing in user
-        $user = $this->getEditingUser();
-        $id = $this->getLoggedUserID();
-        // extract preferences
-        $preferences = NULL;
-        if ($user && $user['User']['preferences']) {
-            $preferences = unserialize($user['User']['preferences']);
-        }
-        // get data from request
-        $data = $this->request->data;
-        if(isset($data['UserPreference']['Style']) || isset($data['UserPreference']['made_to_measure'])){
-            if(isset($data['UserPreference']['Style'])){
-                $data_arr = $data['UserPreference']['Style'];  
-                $preferences["UserPreference"]["Style"] = $data_arr;  
-            }
-            if(isset($data['UserPreference']['made_to_measure'])){
-                $made_to_mesaure = $data['UserPreference']['made_to_measure'];
-                $preferences["UserPreference"]["made_to_measure"] = $made_to_mesaure;        
-            }
-            
-            $serialized_preferences = serialize($preferences);
-            $user['User']['preferences'] = $serialized_preferences;
-            if ($this->User->save($user)) {
-                $result = $this->User->getByID($id);
-                $this->Session->write('user', $result); 
-            } else {
-                // TODO: implement error handling
-            }
-            
-        }
-        $this->redirect('register/style/' . $user['User']['id']);
-    }
-
-    /*
-     * save style page profile, and open register-size page
-     * */
-
-    public function saveStyle() {
-        // get edditing in user
-        $user = $this->getEditingUser();
-        $id = $this->getLoggedUserID();
-        // extract preferences
-        $preferences = NULL;
-        if ($user && $user['User']['preferences']) {
-            $preferences = unserialize($user['User']['preferences']);
-        }
-        // get data from request
-        $data = $this->request->data;
-
-        if(isset($data['UserPreference']['StyleSize'])){
-            $data_arr = $data['UserPreference']['StyleSize'];
-            $preferences["UserPreference"]["StyleSize"] = $data_arr;
-            $serialized_preferences = serialize($preferences);
-            $user['User']['preferences'] = $serialized_preferences;
-        }
-
-        // save image
-        if($image = $this->saveImage()){
-            $user['User']['profile_photo_url'] = $image;
-        }
-        
-        if ($this->User->save($user)) {
-            $result = $this->User->getByID($id);
-            $this->Session->write('user', $result);
-            $this->redirect('register/size/' . $user['User']['id']);
-        } 
-    }
-
-    /*
-     * save size page profile, and open register-brands page
-     * */
-
-    public function saveSize() {
-        // get edditing in user
-        $user = $this->getEditingUser();
-        $id = $this->getLoggedUserID();
-        // extract preferences
-        $preferences = NULL;
-        if ($user && $user['User']['preferences']) {
-            $preferences = unserialize($user['User']['preferences']);
-        }
-        // get data from request
-        $data = $this->request->data;
-        
-        // get actual array or string from request
-        $data_arr = $data['UserPreference']['Size'];
-        $preferences["UserPreference"]["Size"] = $data_arr;
-        $serialized_preferences = serialize($preferences);
-        $user['User']['preferences'] = $serialized_preferences;
-        if ($this->User->save($user)) {
-            $result = $this->User->getByID($id);
-            $this->Session->write('user', $result); 
-            $this->redirect('register/brands/' . $user['User']['id']);
-        } else {
-            // TODO: implement error handling
-        }
-    }
-
-    /*
-     * save size page profile, and open register-brands page
-     * */
-
-    public function saveBrands() {
-        // get edditing in user
-        $user = $this->getEditingUser();
-        $id = $this->getLoggedUserID();
-        // extract preferences
-        $preferences = NULL;
-        if ($user && $user['User']['preferences']) {
-            $preferences = unserialize($user['User']['preferences']);
-        }
-        // get data from request
-        $data = $this->request->data;
-        // get actual array or string from request
-        $data_arr = $data['UserPreference']['Brands'];
-        $preferences["UserPreference"]["Brands"] = $data_arr;
-        $serialized_preferences = serialize($preferences);
-        $user['User']['preferences'] = $serialized_preferences;
-        if ($this->User->save($user)) {
-            $result = $this->User->getByID($id);
-            $this->Session->write('user', $result); 
-            $this->redirect('register/last-step/' . $user['User']['id']);
-        } else {
-            // TODO: implement error handling
-        }
-    }
-
-    
-    
-    
-    
-    /*
-     * Save and send immidiate user request to SRS admin
-     * */
-    public function saveFinish() {
-        // get edditing in user
-        $user = $this->getEditingUser();
-        $msg = $this->request->data;
-        if($msg['Message']['body'] != ""){
-            $msg['Message']['user_from_id'] = $user['User']['id'];
-            $admin_user = $this->User->getAdminUser();
-            $msg['Message']['user_to_id'] = $admin_user['User']['id'];
-            
-            $Message = ClassRegistry::init('Message');
-            $Message->create();
-            $Message->save($msg);
-        }
-        $this->Session->setFlash(__('Your request has been sent to our team.'), 'flash');
-        $this->redirect('/closet');
-    }
-
-
-
-    /*
-     * save 
-     * */
-
-    public function saveContact() {
-        if ($this->request->is('post')) {
-            // get edditing in user
-            $user = $this->getEditingUser();
-            $id = $this->getLoggedUserID();
-            // extract preferences
-            $preferences = NULL;
-            if ($user && $user['User']['preferences']) {
-                $preferences = unserialize($user['User']['preferences']);
-            }
-            // get data from request
-            $data = $this->request->data;
-
-            $user['User']['phone'] = $data['User']['phone'];
-            $user['User']['skype'] = $data['User']['skype'];
-
-            // get actual array or string from request
-            $data_arr = $data['UserPreference']['Contact'];
-            $preferences["UserPreference"]["Contact"] = $data_arr;
-            $preferences['UserPreference']['is_complete'] = 1;
-            $serialized_preferences = serialize($preferences);
-            $user['User']['preferences'] = $serialized_preferences;
-            
-            if ($this->User->save($user)) {
-                $result = $this->User->getByID($id);
-
-                //Assign Stylist
-                if(!$result['User']['stylist_id']){
-                    $stylist_id = $this->assign_refer_stylist($id);
-
-                    App::import('Controller', 'Messages');
-                    $Messages = new MessagesController;
-                    $Messages->send_welcome_message($id, $stylist_id);
-                }
-
-                $this->Session->write('user', $result);
-
-                $this->redirect('/messages');
-            } 
-        }
-    }
-
-    public function saveImage() {
-        $image = null;
-        $image_type = '';
-        $image_size = '';
-        // get edditing in user
-        $user = $this->getEditingUser();
-        $id = $this->getLoggedUserID();
-
-        // file upload
-        if ($this->request->data['User']['ProfileImage'] && $this->request->data['User']['ProfileImage']['size'] > 0) {
-
-            $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
-
-            if (!in_array($this->request->data['User']['ProfileImage']['type'], $allowed)) {
-                $this->Session->setFlash(__('You have to upload an image.'), 'flash');
-            } else if ($this->request->data['User']['ProfileImage']['size'] > 5242880) {
-                $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
-                $this->redirect('register/style/' . $id);
-                exit;
-            } else {
-                $image = $user['User']['email'] . '_' . $this->request->data['User']['ProfileImage']['name'];
-                $image_type = $this->request->data['User']['ProfileImage']['type'];
-                $image_size = $this->request->data['User']['ProfileImage']['size'];
-                $img_path = APP . DS . 'webroot' . DS . 'files' . DS . 'users' . DS . $image;
-                move_uploaded_file($this->request->data['User']['ProfileImage']['tmp_name'], $img_path);
-                return $image;
-            }
-        }
-    }
-
-    /**
-     * Sign up
-     */
-    public function register($step = null, $user_id = null) {
-        $this->set(compact('user_id'));
-        $user = null;
-        $register_cases = array('saveStyle', 'saveContact', 'saveSize', 'saveBrands', 'saveAbout', 'style', 'size', 'brands', 'about', 'last-step', 'wardrobe', 'saveWardrobe');
-        if(in_array($step, $register_cases)){
-            if($user_id){
-                $user = $this->getEditingUser($user_id);
-            }
-            else{
-                $user = $this->getEditingUser();
-            }
-        }
-        
-        // extract preferences
-        $preferences = NULL;
-        if ($user && $user['User']['preferences']) {
-            $preferences = unserialize($user['User']['preferences']);
-        }
-
-        switch ($step) {
-            case 'saveStyle':
-                $this->saveStyle();
-                break;
-            case 'saveWardrobe':
-                $this->saveWardrobe();
-                break;
-            case 'saveContact':
-                $this->saveContact();
-                break;
-            case 'saveSize':
-                $this->saveSize();
-                break;
-            case 'saveBrands':
-                $this->saveBrands();
-                break;
-            case 'basic':
-                $this->shortRegistration();
-                break;
-            case 'saveAbout':
-                $this->saveAbout();
-                break;
-            case 'saveFinish':
-                $this->saveFinish();
-                break;
-            case 'wardrobe':
-                $style = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Style'])) ? $preferences['UserPreference']['Style'] : "";  
-                $made_to_measure = ($preferences['UserPreference'] && isset($preferences['UserPreference']['made_to_measure'])) ? $preferences['UserPreference']['made_to_measure'] : "";                             
-                // debug($style);   
-                $this->set(compact('style', 'made_to_measure'));
-                // title
-                $title_for_layout = 'Sign up';
-                $this->render('register-wardrobe');
-                break;
-            case 'style':
-                $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
-                $image_url = ($user['User']['profile_photo_url']) ? $this->webroot . 'files/users/' . $user['User']['profile_photo_url'] : $this->webroot . "img/dummy_image.jpg";                             
-                $size = ($preferences['UserPreference'] && isset($preferences['UserPreference']['StyleSize'])) ? $preferences['UserPreference']['StyleSize'] : null; 
-                $this->set(compact('size'));
-                $this->set(compact('image_url', 'full_name'));
-                // title
-                $title_for_layout = 'Sign up';
-                $this->render('register-style');
-                break;
-            case 'size':
-                // title
-                $title_for_layout = 'Sign up';         
-                $size = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Size'])) ? $preferences['UserPreference']['Size'] : null; 
-                // debug($size);   
-                $this->set(compact('size'));
-                $this->render('register-size');
-                break;
-            case 'brands':
-                // title
-                $title_for_layout = 'Sign up';
-                $brands = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Brands'])) ? $preferences['UserPreference']['Brands'] : null;
-                // debug($brands);   
-                $this->set(compact('brands'));
-                $this->render('register-brands');
-                break;
-            case 'about':
-                $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
-                if($user['User']['birthdate']){
-                    $user['User']['day'] = date('d', strtotime($user['User']['birthdate']));
-                    $user['User']['month'] = date('m', strtotime($user['User']['birthdate']));
-                    $user['User']['year'] = date('Y', strtotime($user['User']['birthdate']));
-                }
-                $this->data = $user;
-                $industry = $this->industry_options;
-                $this->set(compact('full_name','industry'));
-                $this->render('register-about');
-                // debug($user);
-                break;
-            case 'last-step': // not in use
-                $title_for_layout = 'Sign up';
-                $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
-                $contact = ($preferences['UserPreference'] && isset($preferences['UserPreference']['Contact'])) ? $preferences['UserPreference']['Contact'] : null; 
-                $this->set(compact('full_name', 'contact', 'user'));
-                
-                $this->render('register-last-step');
-                break;
-
-            case 'finish':
-                $this->isLogged();
-                $user_id = $this->getLoggedUserID();
-                $user = $this->User->getByID($user_id);
-                $this->Session->write('user', $user);
-                $this->render('register-finish');
-                break;
-            default:
-                if($this->Session->check('referer')){
-                    $User = ClassRegistry::init('User');
-                    $referer_id = $this->Session->read('referer'); 
-                    $referer_type = $this->Session->read('referer_type');
-                    $referer = $User->findById($referer_id);
-                    $this->set(compact('referer_type', 'referer'));
-                }    
-            break;
-        }
-        $this->set(compact('title_for_layout'));
-    }
-
+   
+   
     /*
      * Temporary in use for user registration.
      * Should be replaced with new sign in process
@@ -638,13 +255,14 @@ class UsersController extends AppController {
                 // send welcome mail
                 /* uncoment this to deploy code */
                 try{
+                  $bcc = Configure::read('Email.contact');
                   $email = new CakeEmail('default');
 
 
                   $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                   $email->to($user['User']['email']);
-                  $email->subject('Welcome to Savile Row Society!');
-                  $email->bcc(array('lisa@savilerowsociety.com', 'andrea@savilerowsociety.com', 'saurabh@mobikasa.com', 'admin@savilerowsociety.com'));
+                  $email->subject('Welcome To Savile Row Society');
+                  $email->bcc($bcc);
                   $email->template('registration');
                   $email->emailFormat('html');
                   $email->viewVars(array('name' => $user['User']['first_name']));
@@ -666,7 +284,7 @@ class UsersController extends AppController {
                         $this->assignVipDiscount($results['User']['referred_by']);
                     }
 
-                    $this->redirect('/profile/about');
+                    $this->redirect('/register/wardrobe');
                     exit;
                 } else {
                     // redirect to home
@@ -683,17 +301,7 @@ class UsersController extends AppController {
         }
     }
 
-    /**
-     * Assign VIP dicsount
-     */
-    public function assignVipDiscount($referer_id){
-        $referer = $this->User->findById($referer_id);  
-        if(!$referer['User']['vip_discount']){
-            $referer['User']['vip_discount_flag'] = 1;
-            $this->User->save($referer);    
-        }
-    }
-
+   
     /**
      * Sign out
      */
@@ -710,53 +318,7 @@ class UsersController extends AppController {
         exit();
     }
 
-    /**
-     * Settings
-     */
-    public function edit($action = null) {
-        $this->isLogged();
-        // title
-        $title_for_layout = 'Edit your account';
-    
-        $id = $this->getLoggedUserID();
-
-        if (!$this->User->exists($id)) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-        
-        if (($this->request->is('post') || $this->request->is('put')) && $action == "edit") {
-            // hash password
-            if (!empty($this->request->data['User']['password_new'])) {
-                $this->request->data['User']['password'] = Security::hash($this->request->data['User']['password_new']);
-            }
-            
-            unset($this->request->data['User']['email']);
-
-            if ($this->User->save($this->request->data)) {
-                $result = $this->User->getByID($id);
-                $this->Session->write('user', $result);
-                $this->Session->setFlash(__('Settings are saved!'), 'flash', array('title' => 'Hey!'));
-                $this->redirect('/myprofile');
-            } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-            }
-        } else {
-            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-            $this->request->data = $this->User->find('first', $options);
-        }
-        
-        $industry = $this->industry_options;
-        
-        $this->set(compact('title_for_layout', 'heard_from_options','industry'));
-        
-        if($action == "edit"){
-            $this->render('edit');    
-        }
-        else{
-            $this->render('view');
-        }
-    }
-
+   
     /**
      * Forgot password 
      */
@@ -772,7 +334,7 @@ class UsersController extends AppController {
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->to($user['User']['email']);
-                $email->subject('Welcome to Savile Row Society!');
+                $email->subject('Forgotten Password');
                 $email->template('forgot');
                 $email->emailFormat('html');
                 $email->viewVars(array('user' => $user));
@@ -818,11 +380,10 @@ class UsersController extends AppController {
 
                 if ($this->User->save($user)) {
 
-                    //$email = new CakeEmail(array('log' => true));
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($user['User']['email']);
-                    $email->subject('Welcome to Savile Row Society!');
+                    $email->subject('New Password!');
                     $email->template('password_new');
                     $email->emailFormat('html');
                     $email->viewVars(array('user' => $user));
@@ -836,6 +397,10 @@ class UsersController extends AppController {
                 } else {
                     $this->Session->setFlash(__('We cannot reset your password at the moment'), 'flash');
                 }
+            }
+            else{
+                $this->redirect('/');
+                exit();    
             }
         } else {
             $this->redirect('/');
@@ -876,10 +441,447 @@ class UsersController extends AppController {
         }
     }
 
-    public function assign_refer_stylist($user_id){
+    //bhashit code shift from auth controll 25/9/14 2:58 AM
+
+    //function register start
+    public function register()
+
+    {
+        $title_for_layout = "Sign up for Savile Row Society - Featured Personal Stylists";
+
+        if(isset($this->request->query['refer'])){
+            $this->Session->write('stylist_refer', $this->request->query['refer']);   
+        }
+
+        if($this->getLoggedUserID()){
+            $this->redirect('/messages/index');
+            exit();   
+        }
+        else if($this->request->is('post') ){
+            $user = $this->request->data;
+            
+            if ($this->User->validates()) {
+                $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
+                if($registered){
+                    $this->Session->setFlash(__('You are already registered. Please sign in.'), 'flash');
+                    $this->redirect('/');
+                    exit;    
+                }
+
+                $user['User']['password'] = Security::hash($user['User']['password']);
+                $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
+                $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
+                $user['UserPreference']['style_pref'] = implode(',', $user['UserPreference']['style_pref']);
+
+                if(isset($user['User']['is_phone']) && $user['User']['is_phone']==true){
+                    $user['User']['is_phone']='1'; 
+                }
+                else{
+                    $user['User']['is_phone']='0';    
+                }
+                if(isset($user['User']['is_skype']) && $user['User']['is_skype']==true){
+                   $user['User']['is_skype']='1'; 
+                }else{
+                    $user['User']['is_skype']='0'; 
+                }
+                if(isset($user['User']['is_srs_msg']) && $user['User']['is_srs_msg']==true){
+                   $user['User']['is_srs_msg']=1; 
+                }
+
+                if($image = $this->saveImage()){
+                    $user['User']['profile_photo_url'] = $image;
+                }
+                else{
+                    $user['User']['profile_photo_url'] = null;    
+                }
+
+                if($this->Session->check('referer')){
+                    $user['User']['referred_by'] = $this->Session->read('referer');  
+                    $user['User']['vip_discount_flag'] = 1; 
+                }
+
+
+                if ($this->User->saveAll($user)) {
+                    if($this->Session->check('referer')){
+                        $this->Session->delete('referer');
+                        $this->Session->delete('showRegisterPopup'); 
+                        $this->Session->delete('referer_type');
+                    }
+
+                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+
+                    if($this->Session->check('landing_offer')){
+                        $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->delete('landing_text');
+                        
+                        $user_offer['UserOffer']['user_id'] = $results['User']['id'];
+
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $UserOffer->create();
+                        $UserOffer->save($user_offer);
+                    }
+
+
+                    if($this->Session->check('guest_items')){
+                        $cart_list = $this->Session->read('guest_items');
+
+                        $Cart = ClassRegistry::init('Cart');
+                        $CartItem = ClassRegistry::init('CartItem');
+
+                        $data = array();
+                        $data['Cart']['user_id'] = $results['User']['id'];
+                        $Cart->create();
+                        $result = $Cart->save($data);
+
+                        $cart_id = $result['Cart']['id'];
+                        foreach($cart_list as $item){
+                            $item['CartItem']['user_id'] = $results['User']['id'];
+                            $item['CartItem']['cart_id'] = $cart_id;
+                            $CartItem->create();
+                            $result = $CartItem->save($item);
+                        }
+
+
+                        $this->Session->delete('guest_items');
+                    }
+
+
+                    try{
+                      $bcc = Configure::read('Email.contact');
+                      $email = new CakeEmail('default');
+
+
+                      $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                      $email->to($user['User']['email']);
+                      $email->subject('Welcome To Savile Row Society');
+                      $email->bcc($bcc);
+                      $email->template('registration');
+                      $email->emailFormat('html');
+                      $email->viewVars(array('name' => $user['User']['first_name']));
+                      $email->send();
+                    }
+                    catch(Exception $e){
+                            
+                    }
+                    // signin newly registered user
+                    // check submitted email and password 
+
+                    if ($results) {
+                        $stylist_id = $this->assign_refer_stylist($results['User']['id']);
+                        App::import('Controller', 'Messages');
+                        $Messages = new MessagesController;
+                        $Messages->send_welcome_message($results['User']['id'], $stylist_id);
+
+                        // set "user" session
+                        $this->Session->write('user', $results);
+
+                        if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
+                            $this->assignVipDiscount($results['User']['referred_by']);
+                        }
+
+                        $this->Session->write('new_user', 'new_user');
+
+                        $this->redirect(array('controller' => 'messages'));
+                    } else {
+                        // redirect to home
+                        $this->redirect($this->referer());
+                        exit;
+                    }
+                } else {
+                    $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
+                    $this->redirect($this->referer());
+                }
+            }   
+        }
+        else{
+
+            if($this->Session->check('new_user')){
+                $new_user = $this->Session->read('new_user');
+                $this->Session->delete('new_user');
+                $this->request->data['User'] = $new_user['User'];
+            }
+        }
+
+        $styles = $this->Style->find('all');
+        $this->set(compact('styles', 'title_for_layout'));  
+    }
+
+
+    public function landing()
+    {
+
+        if($this->getLoggedUserID()){
+            $this->redirect('/messages/index');
+            exit();   
+        }
+        else if($this->request->is('post') ){
+            $user = $this->request->data;
+            
+            if ($this->User->validates()) {
+                $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
+                if($registered){
+                    $this->Session->setFlash(__('You are already registered. Please sign in.'), 'flash');
+                    $this->redirect('/');
+                    exit;    
+                }
+                $user['User']['lead'] = 1;
+                $user['User']['confirm_password'] = $user['User']['password'];
+                $user['User']['password'] = Security::hash($user['User']['password']);
+                $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
+                $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
+                //$user['UserPreference']['style_pref'] = implode(',', $user['UserPreference']['style_pref']);
+                
+                $user['User']['is_phone']='0';    
+                
+                $user['User']['is_skype']='0'; 
+              
+                $user['User']['profile_photo_url'] = null;    
+                
+
+                if ($this->User->saveAll($user)) {
+                   
+                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+
+                    if($this->Session->check('landing_offer')){
+                        $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->write('thankyou',$this->Session->read('landing_offer'));
+                        $this->Session->delete('landing_text');
+                        
+                        $user_offer['UserOffer']['user_id'] = $results['User']['id'];
+
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $UserOffer->create();
+                        $UserOffer->save($user_offer);
+
+                        $this->Session->write('login_lead', 1);
+                    }
+
+
+                    if($this->Session->check('guest_items')){
+                        $cart_list = $this->Session->read('guest_items');
+
+                        $Cart = ClassRegistry::init('Cart');
+                        $CartItem = ClassRegistry::init('CartItem');
+
+                        $data = array();
+                        $data['Cart']['user_id'] = $results['User']['id'];
+                        $Cart->create();
+                        $result = $Cart->save($data);
+
+                        $cart_id = $result['Cart']['id'];
+                        foreach($cart_list as $item){
+                            $item['CartItem']['user_id'] = $results['User']['id'];
+                            $item['CartItem']['cart_id'] = $cart_id;
+                            $CartItem->create();
+                            $result = $CartItem->save($item);
+                        }
+
+
+                        $this->Session->delete('guest_items');
+                    }
+
+
+                    try{
+                      $bcc = Configure::read('Email.contact');
+                      $email = new CakeEmail('default');
+
+
+                      $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                      $email->to($user['User']['email']);
+                      $email->subject('Welcome To Savile Row Society');
+                      $email->bcc($bcc);
+                      $email->template('registration');
+                      $email->emailFormat('html');
+                      $email->viewVars(array('name' => $user['User']['first_name']));
+                      $email->send();
+                    }
+                    catch(Exception $e){
+                            
+                    }
+
+                    if ($results) {
+                        $stylist_id = $this->assign_refer_stylist($results['User']['id']);
+                        App::import('Controller', 'Messages');
+                        $Messages = new MessagesController;
+                        $Messages->send_welcome_message($results['User']['id'], $stylist_id);
+
+                        
+                        $this->Session->write('user', $results);
+
+                        if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
+                            $this->assignVipDiscount($results['User']['referred_by']);
+                        }
+
+                        //$this->Session->write('new_user', 'new_user');
+
+                        $this->redirect(array('controller' => 'messages'));
+                    } else {
+                        $this->redirect($this->referer());
+                        exit;
+                    }
+                } else {
+                    $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
+                    $this->redirect($this->referer());
+                }
+            }   
+        }
+    }
+
+
+    public function quickregister()
+
+    {
+        if(isset($this->request->query['refer'])){
+            $this->Session->write('stylist_refer', $this->request->query['refer']);   
+        }
+
+        if($this->getLoggedUserID()){
+            $this->redirect('/messages/index');
+            exit();   
+        }
+        else if($this->request->is('post') ){
+            $user = $this->request->data;
+
+            $cart_list = false;
+            if($this->Session->check('guest_items')){
+                $cart_list = $this->Session->read('guest_items');
+            }
+
+            if ($this->User->validates()) {
+                $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
+                if($registered){
+                    $this->Session->setFlash(__('You are already registered. Please sign in.'), 'flash');
+                    $this->redirect('/guest/cart');
+                    exit;    
+                }
+
+                $user['User']['password'] = Security::hash($user['User']['password']);
+
+                if($this->Session->check('referer')){
+                    $user['User']['referred_by'] = $this->Session->read('referer');  
+                    $user['User']['vip_discount_flag'] = 1; 
+                }
+
+
+                if ($this->User->saveAll($user)) {
+                    if($this->Session->check('referer')){
+                        $this->Session->delete('referer');
+                        $this->Session->delete('showRegisterPopup'); 
+                        $this->Session->delete('referer_type');
+                    }
+
+
+                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+
+                    if($this->Session->check('landing_offer')){
+                        $user_offer = $this->Session->read('landing_offer');
+                        $this->Session->delete('landing_offer');
+                        $this->Session->delete('landing_text');
+                        
+                        $user_offer['UserOffer']['user_id'] = $results['User']['id'];
+
+                        $UserOffer = ClassRegistry::init('UserOffer');
+                        $UserOffer->create();
+                        $UserOffer->save($user_offer);
+                    }
+
+                    if($cart_list){
+                        $Cart = ClassRegistry::init('Cart');
+                        $CartItem = ClassRegistry::init('CartItem');
+
+                        $data = array();
+                        $data['Cart']['user_id'] = $results['User']['id'];
+                        $Cart->create();
+                        $result = $Cart->save($data);
+
+                        $cart_id = $result['Cart']['id'];
+                        foreach($cart_list as $item){
+                            $item['CartItem']['user_id'] = $results['User']['id'];
+                            $item['CartItem']['cart_id'] = $cart_id;
+                            $CartItem->create();
+                            $result = $CartItem->save($item);
+                        }
+
+
+                        $this->Session->delete('guest_items');
+                    }
+
+
+
+                    try{
+                      $bcc = Configure::read('Email.contact');
+                      $email = new CakeEmail('default');
+
+
+                      $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                      $email->to($user['User']['email']);
+                      $email->subject('Welcome To Savile Row Society');
+                      $email->bcc($bcc);
+                      $email->template('registration');
+                      $email->emailFormat('html');
+                      $email->send();
+                    }
+                    catch(Exception $e){
+                            
+                    }
+                   
+
+                    if ($results) {
+                        $this->Session->write('user', $results);
+
+                        if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
+                            $this->assignVipDiscount($results['User']['referred_by']);
+                        }
+
+                        $this->redirect('/cart');
+                    } else {
+
+                        // redirect to home
+                        $this->redirect($this->referer());
+                        exit;
+
+                    }
+                } else {
+                    $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
+                    $this->redirect($this->referer());
+                }
+            }   
+        }
+
+        $styles = $this->Style->find('all');
+        $this->set('styles', $styles);  
+    }
+
+       
+         /**
+     * Assign VIP dicsount
+     */
+    public function assignVipDiscount($referer_id){
+        $referer = $this->User->findById($referer_id);  
+        if(!$referer['User']['vip_discount']){
+            $referer['User']['vip_discount_flag'] = 1;
+            $this->User->save($referer);    
+        }
+    }
+
+                     
+ public function assign_refer_stylist($user_id){
         $user = $this->User->findById($user_id);
-        $default_stylist = $this->User->findByEmail("contactus@savilerowsociety.com");
         $new_stylist = array();
+
+        if($this->Session->check('stylist_refer')){
+            $stylist_refer = $this->Session->read('stylist_refer');
+            $refered_stylist = $this->User->getByID($stylist_refer);
+
+            if(!$refered_stylist){
+                $stylist_refer = false;
+            }
+        }
+        else{
+            $stylist_refer = false;    
+        }
+
+
         if($user['User']['referred_by']){
             $referer = $this->User->getByID($user['User']['referred_by']);
             if($referer && $referer['User']['is_stylist']){
@@ -890,28 +892,24 @@ class UsersController extends AppController {
                 $user['User']['stylist_id'] = $referer['User']['stylist_id'];    
                 $new_stylist = $user_stylist;
             }
-            else if($default_stylist){
-                $user['User']['stylist_id'] = $default_stylist['User']['id']; 
-                $new_stylist = $default_stylist;   
-            }
             else{
-                $casey = $this->User->findByEmail("casey@savilerowsociety.com"); 
-                if($casey){
-                    $user['User']['stylist_id'] = $casey['User']['id']; 
-                    $new_stylist = $casey;         
+                $stylist = $this->User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true))); 
+                if($stylist){
+                    $user['User']['stylist_id'] = $stylist['User']['id']; 
+                    $new_stylist = $stylist;         
                 }   
             }
         }
         else{
-            if($default_stylist){
-                $user['User']['stylist_id'] = $default_stylist['User']['id']; 
-                $new_stylist = $default_stylist;    
+            if($stylist_refer){
+                $user['User']['stylist_id'] = $refered_stylist['User']['id']; 
+                $new_stylist = $refered_stylist;    
             }
             else{
-                $casey = $this->User->findByEmail("casey@savilerowsociety.com"); 
-                if($casey){
-                    $user['User']['stylist_id'] = $casey['User']['id'];  
-                    $new_stylist = $casey;   
+                $stylist = $this->User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true))); 
+                if($stylist){
+                    $user['User']['stylist_id'] = $stylist['User']['id']; 
+                    $new_stylist = $stylist;         
                 }   
             }    
         }
@@ -920,34 +918,121 @@ class UsersController extends AppController {
         $stylist_email = $new_stylist['User']['email'];
         $stylist_name = $new_stylist['User']['first_name'];
         
-        //Get user data
-        $name = $user['User']['first_name'];
-
-        try{
-            $email = new CakeEmail('default');
-            $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-            $email->to($user['User']['email']);
-            $email->subject('Savile Row Stylist: Your stylist!');
-            $email->template('user_stylist');
-            $email->emailFormat('html');
-            $email->viewVars(compact('name', 'stylist_name'));
-            $email->send();
-
-            $email = new CakeEmail('default');
-            $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-            $email->to($stylist_email);
-            $email->subject('Savile Row Stylist: Your stylist!');
-            $email->template('stylist_notification');
-            $email->emailFormat('html');
-            $email->viewVars(compact('name', 'stylist_name'));
-            $email->send();
-        }
-        catch(Exception $e){
-            
-        }
+       
 
         return $new_stylist['User']['id'];
     }
+
+    public function saveImage() {
+        $image = null;
+        $image_type = '';
+        $image_size = '';
+        // get edditing in user
+
+        // file upload
+
+        if ($this->request->data['User']['profile_photo_url'] && $this->request->data['User']['profile_photo_url']['size'] > 0) {
+
+            $allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/x-png', 'image/x-citrix-png', 'image/x-citrix-jpeg', 'image/pjpeg');
+
+            if (!in_array($this->request->data['User']['profile_photo_url']['type'], $allowed)) {
+                $this->Session->setFlash(__('You have to upload an image.'), 'flash');
+            } else if ($this->request->data['User']['profile_photo_url']['size'] > 5242880) {
+                $this->Session->setFlash(__('Attached image must be up to 5 MB in size.'), 'flash');
+                $this->redirect('register/style/' . $id);
+                exit;
+            } else {
+                $image = time() .  '_' . $this->request->data['User']['profile_photo_url']['name'];
+                $image_type = $this->request->data['User']['profile_photo_url']['type'];
+                $image_size = $this->request->data['User']['profile_photo_url']['size'];
+                $img_path = APP . 'webroot' . DS . 'files' . DS . 'users' . DS . $image;
+                move_uploaded_file($this->request->data['User']['profile_photo_url']['tmp_name'], $img_path);
+                return $image;
+            }
+        }
+    }
+
+
+
+
+    public function profile($id= null){
+        $this->isLogged();
+        if (!$this->User->exists($id)) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        $user = $this->User->findById($id);
+        $current_user = $this->getLoggedUser();
+
+        if($id != $current_user['User']['id'] && !$current_user['User']['is_admin'] && $current_user['User']['id'] != $user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;
+        }
+        if($user['User']['stylist_id']){
+            $this->redirect('/');
+            exit;   
+        }
+
+        if($this->request->is('post') || $this->request->is('put')){
+            if(!empty($this->request->data['User']['is_phone'])){
+                $this->request->data['User']['is_phone']='1'; 
+            }else{
+                $this->request->data['User']['is_phone']='0';
+            }
+            if(!empty($this->request->data['User']['is_skype'])){
+                $this->request->data['User']['is_skype']='1'; 
+            }else{
+                $this->request->data['User']['is_skype']='0';
+            }
+            if(!empty($this->request->data['User']['is_srs_msg'])){
+                $this->request->data['User']['is_srs_msg']='1'; 
+            }else{
+                $this->request->data['User']['is_srs_msg']='0';
+            }
+            if($image = $this->saveImage()){
+                $this->request->data['User']['profile_photo_url'] = $image;
+            }
+            else{
+                unset($this->request->data['User']['profile_photo_url']);
+            }
+
+            unset($this->request->data['User']['email']);
+            unset($this->request->data['User']['password']);
+
+
+            $this->request->data['UserPreference']['style_pref'] = implode(',', $this->request->data['UserPreference']['style_pref']);
+            if($this->User->saveAll($this->request->data))
+            {
+                $stylist_id = $this->assign_refer_stylist($user['User']['id']);
+                App::import('Controller', 'Messages');
+                $Messages = new MessagesController;
+                $Messages->send_welcome_message($user['User']['id'], $stylist_id);
+
+                $user = $this->User->findById($id);
+
+                $this->Session->write('user', $user);
+
+                $this->Session->setFlash("User data has been Saved", 'flash');
+                $this->redirect('/');
+            }
+            else
+            {
+                $this->Session->setFlash('The User could not be saved. Please, try again.', 'flash');
+            }
+        }
+        if (empty($this->request->data)) {
+                $this->request->data = $this->User->find('first',
+                        array(
+                            'contain' => array('UserPreference'),
+                            'conditions' => array('User.id' => $id  ),
+                        )
+                    );
+        }
+        $styles = $this->Style->find('all');
+        $this->set('styles', $styles);  
+    }
+    
+
+    
 
     /**
      * Actions for the admin below.
@@ -961,125 +1046,80 @@ class UsersController extends AppController {
      *
      * @return void
      */
+    //bhashit code
     public function admin_index() {
         $this->layout = 'admin';
         $this->isAdmin();
-        // $this->Paginator->settings = array(
-        //         'fields' => array('User.*'),
-        //         'joins' => array(
-        //             array('table' => 'messages',
-        //                 'alias' => 'Message',
-        //                 'type' => 'LEFT',
-        //                 'conditions' => array(
-        //                     'User.id = Message.user_from_id'
-        //                 )
-        //             ),
-
-        //         ),
-        //         'limit' => 20,
-        //         'group' => array('User.id'),
-        //         'order' => array('Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
-        // );
         $this->Paginator->settings = array(
-                'fields' => array('User.*'),
-                'limit' => 20,
-                'order' => array('User.id' => 'DESC', ),
-        );
+                 'fields' => array('User.*', 'UserPreference.*'),
+                 'joins' => array(
+                     array('table' => 'messages',
+                         'alias' => 'Message',
+                         'type' => 'LEFT',
+                         'conditions' => array(
+                             'User.id = Message.user_from_id'
+                         )
+                     ),
+                     array('table' => 'users_preferences',
+                         'alias' => 'UserPreference',
+                         'type' => 'LEFT',
+                         'conditions' => array(
+                             'User.id = UserPreference.user_id'
+                         )
+                     ),
 
+                 ),
+                 'limit' => 20,
+                 'group' => array('User.id'),
+                 'order' => array('User.id' => 'DESC', 'Message.unread' => 'DESC', 'Message.message_date' => 'desc'),
+        );
         $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
-        $users = $this->Paginator->paginate();
+        
+        $users = $this->Paginator->paginate(); 
         $this->set(compact('stylists','users'));
+        $styles = $this->Style->find('all');
+        $this->set('styles', $styles);
+
+
     }
     
     /**
-     * admin_newusers method
+     * admin_stylist method
      *
      * @return void
      */
-    public function admin_newusers() {
-        // Default order: Users to be listed ranked by uresers with uread messages first and date of last message sent.
+    //bhashit code
+    public function admin_stylist(){
+         
         $this->layout = 'admin';
         $this->isAdmin();
-        $this->Paginator->settings = array(
-                'fields' => array('User.*'),
-                'limit' => 20,
-                'conditions' => array(
-                    'OR' => array('User.stylist_id IS NULL', 'User.stylist_id' => '')
+        $this->Paginator->settings= array(
+                'fields' => array('User.*,count(User.id) as usercount'),
+                'joins' => array(
+
+                array(
+                    'conditions' => array(
+                        'User.is_stylist' => true,
+                        'User1.stylist_id = User.id',
+                    ),
+                    'table' => 'users',
+                    'alias' => 'User1',
+                    'type' => 'INNER',
                 ),
-                'order' => array('User.created' => 'desc'),
-        );
-        
-        $this->set('users', $this->Paginator->paginate());
-    }
-    
-
-     /**
-     * admin_assignstylist method
-     *
-     * @throws NotFoundException
-     * @param string $id
-     * @return void
-     */
-    public function admin_assign_stylist($id = null) {
-        $this->layout = 'admin';
-        $this->isAdmin();
-
-        if (!$this->User->exists($id)) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-        if ($this->request->is('post') || $this->request->is('put')) {
-            if($this->request->data['User']['stylist_id'] == ""){
-                unset($this->request->data['User']['stylist_id']);
-            }
-            if ($this->User->save($this->request->data)) {
-                if(isset($this->request->data['User']['stylist_id']) && $this->request->data['User']['stylist_id'] > 0){
-                    //Get stylist data
-                    $options = array('conditions' => array('User.' . $this->User->primaryKey =>$this->request->data['User']['stylist_id']));
-                    $stylist_data = $this->User->find('first', $options);
-                    $stylist_email = $stylist_data['User']['email'];
-                    $stylist_name = $stylist_data['User']['first_name'];
-                    
-                    //Get user data
-                    $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-                    $user_data = $this->User->find('first', $options);  
-                    $name = $user_data['User']['first_name'];
-                    
-                    try{
-                        $email = new CakeEmail('default');
-                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                        $email->to($user_data['User']['email']);
-                        $email->subject('Savile Row Stylist: Your stylist!');
-                        $email->template('user_stylist');
-                        $email->emailFormat('html');
-                        $email->viewVars(compact('name', 'stylist_name'));
-                        $email->send();
-
-                        $email = new CakeEmail('default');
-                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                        $email->to($stylist_email);
-                        $email->subject('Savile Row Stylist: Your stylist!');
-                        $email->template('stylist_notification');
-                        $email->emailFormat('html');
-                        $email->viewVars(compact('name', 'stylist_name'));
-                        $email->send();
-                    }
-                    catch(Exception $e){
-                        
-                    }
-                }
-                $this->Session->setFlash(__('Stylist assigned successfully.'), 'flash');
-                $this->redirect(array('action' => 'newusers'));
+                ),
+                'group' => array(
+                'User.id',
+                ),
+                'limit'=> 20,
+                'order' => array('User.id'=>'DESC'),
                 
-            } else {
-                $this->Session->setFlash(__('Stylist could not be assigned. Please, try again.'), 'flash');
-            }
-        } else {
-            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-            $this->request->data = $this->User->find('first', $options);
-        }
-        $stylists = $this->User->find('list', array('conditions'=>array('is_stylist' => true,)));
+                );
+        //$Stylsts = $this->User->find('all',$options);
+        $Stylsts=$this->Paginator->paginate();
+        $this->set(compact('Stylsts',$Stylsts));
+        //print_r($Stylsts);
         
-        $this->set(compact('id', 'stylists'));
+        
     }
     
 
@@ -1090,6 +1130,7 @@ class UsersController extends AppController {
      * @param string $id
      * @return void
      */
+    //bhashit code
     public function admin_edit($id = null) {
 
         $this->layout = 'admin';
@@ -1099,11 +1140,17 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
+            $user_data = $this->User->findById($id);
             if($this->request->data['User']['stylist_id'] == ""){
                 $this->request->data['User']['stylist_id'] = null;
             }
 
-            $this->request->data['User']['password'] = Security::hash($this->request->data['User']['password']);
+            if($user_data['User']['password'] != $this->request->data['User']['password']) {
+                $this->request->data['User']['password'] = Security::hash($this->request->data['User']['password']);
+            }
+            else{
+                unset($this->request->data['User']['password']);
+            }
 
             
             if ($this->User->save($this->request->data)) {
@@ -1141,10 +1188,10 @@ class UsersController extends AppController {
         }
         $this->request->onlyAllow('post', 'delete');
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('User deleted'));
+            $this->Session->setFlash(__('User deleted'), 'flash');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('User was not deleted'));
+        $this->Session->setFlash(__('User was not deleted'), 'flash');
         $this->redirect(array('action' => 'index'));
     }
 
@@ -1210,6 +1257,89 @@ class UsersController extends AppController {
         $email = is_null($email) || $email == 'null'  ? '' : $email;
         $this->set(compact('users', 'user_id', 'user_name', 'email'));
     }
+
+
+    //bhashit code
+    public function admin_topstylist(){
+        $this->layout = 'admin';
+        $this->isAdmin();
+       
+        if($this->request->is('post')){
+
+            $userhighlights = $this->request->data;
+             if ($this->Userhighlighted->validates()) {
+                $checkhighlight = $this->Userhighlighted->find('count', array('conditions' => array('Userhighlighted.order_id' => $userhighlights['Userhighlighted']['order_id'])));
+                if($checkhighlight){
+                    $this->Session->setFlash(__('This order number is already added. Please Used anthor.'), 'flash');
+                    $this->redirect(array('action' => 'highlightedstylist'));
+                    exit;    
+                }
+            }
+
+
+            if($this->Userhighlighted->save($this->request->data)){
+                $this->Session->setFlash(__('The Userhighlighted has been saved'), 'flash');
+                $this->redirect(array('action' => 'highlightedstylist'));
+            } else {
+                $this->Session->setFlash(__('The Userhighlighted could not be saved. Please, try again.'), 'flash');
+            }
+        
+        }
+
+        $stylists = $this->User->find('all', array('conditions'=>array('is_stylist' => true,)));
+        
+        // $topStylists = getTopStylists
+
+        $this->set(compact('stylists'));
+        $this->set('Userhighlight',$Userhighlight);
+
+    }
+
+    public function admin_highlightedstylistedit($highlighted_id = null) {
+        $this->layout = 'admin';
+        $this->isAdmin();
+
+        if (!$this->Userhighlighted->exists($highlighted_id)) {
+            throw new NotFoundException(__('Invalid Userhighlighted'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            //print_r($this->request->data);exit;
+            $user_data = $this->Userhighlighted->findById($highlighted_id);
+            if ($this->Userhighlighted->save($this->request->data)) {
+                $this->Session->setFlash(__('The Userhighlighted has been saved'), 'flash');
+                $this->redirect(array('action' => 'highlightedstylist'));
+            } else {
+                $this->Session->setFlash(__('The Userhighlighted could not be saved. Please, try again.'), 'flash');
+            }
+        } else {
+            $options = array('conditions' => array('Userhighlighted.' . $this->Userhighlighted->primaryKey => $highlighted_id));
+            $this->request->data = $this->Userhighlighted->find('first', $options);
+            //print_r($this->request->data);exit;
+        }
+        
+        $higtlited_condition = $this->Paginator->settings = array(
+                'fields' => array('User.*,Userhighlighted.*'),
+                'joins' => array(
+
+                array(
+                    'conditions' => array(
+                        'User.is_stylist' => true,
+                        'Userhighlighted.user_id = User.id',
+                        'Userhighlighted.id' => $highlighted_id
+                    ),
+                    'table' => 'userhighlighteds',
+                    'alias' => 'Userhighlighted',
+                    'type' => 'INNER',
+                ),
+                ),
+                );
+
+        $highlight = $this->User->find('all', $higtlited_condition);
+        $this->set('highlight',$highlight);
+        
+
+    }
+
 
 }
 

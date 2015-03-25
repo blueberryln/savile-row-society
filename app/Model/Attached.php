@@ -77,20 +77,6 @@ class Attached extends AppModel {
             'fields' => '',
             'order' => ''
         ),
-        'Post' => array(
-            'className' => 'Post',
-            'foreignKey' => 'model_id',
-            'conditions' => array('Attached.model' => 'Post'),
-            'fields' => '',
-            'order' => ''
-        ),
-        'Message' => array(
-            'className' => 'Message',
-            'foreignKey' => 'model_id',
-            'conditions' => array('Attached.model' => 'Message'),
-            'fields' => '',
-            'order' => ''
-        )
     );
 
     /**

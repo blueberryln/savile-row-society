@@ -207,7 +207,112 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </div>
                 </div>
             </div>
+            
+            
+            
+<!--
+                            <div class="team-member">
+                                <div>
+                                    <img src="<?php echo $this->request->webroot; ?>img/Vincent.jpg" data-member-name="Vincent Bourzeix" class="fadein-image" />
+                                </div>
+                                <div>
+                                    <div class="name">Vincent Bourzeix</div>
+                                    <span class="title">Chief Operating Officer</span>
+                                    <div class="desc">
+                                        <p>After an experience in Investment banking and in the New York start-up world, Vincent joined SRS in the early days. With family in the Fashion industry and a passion for men's style, he loved the concept and believes in the mission of helping men looking better easier.</p>
+                                        <p>As COO, Vincent plays a key role in the organization of SRS, overseeing customer acquisition, leading innovation of the web platform and managing the optimization of the company's operations. He also oversees the shoe collection, because he is crazy about shoes.</p>
+                                        <p>Vincent Holds an MSc in Mobile communication from Télécom ParisTech and an MSc in Management Science &amp; Engineering from Columbia University.</p>
+                                    </div>
+                                    <div class="text-center info-btn">
+                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
+                                    </div>
+                                </div>
+                            </div>
+-->
+            
              
         </div>
+        <div class="team-member-container">
+
+
+<!--
+                            <div class="team-member">
+                                <div>
+                                    <img src="<?php echo $this->request->webroot; ?>img/Leslie GILBERT.png" data-member-name="Leslie Gilbert-Morales" class="fadein-image" />
+                                </div>
+                                <div>
+                                    <div class="name">Leslie Gilbert-Morales </div>
+                                    <span class="title">Head of Personal Styling</span> 
+                                    <div class="desc">
+                                        <p>
+                                        Leslie began her career over ten years ago as a merchandiser and buyer. Leslie quickly embraced the path she created as a freelance stylist and working with high-profile executive leaders. She is the founder of Enhance Your Style, a full-service image enhancing company.
+                                        </p>
+                                        <p>
+                                        As Head of Personal Styling, Leslie oversees the training and support our team of personal shoppers. She brings her styling expertise and personal shopper experience to help create the best personal shopping platform for stylists and members.  
+                                        </p>
+                                        <p>
+                                        Leslie earned a technical degree in Merchandise Marketing from the Fashion Institute of Design and Merchandising in Los Angeles as well as a B.S. degree in Economics from CUNY. She pursued her styling training Fashion Institute of Technology
+                                        </p>                 
+                                    </div>
+                                    <div class="text-center info-btn">
+                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
+                                    </div>
+                                </div>
+                            </div>
+-->
+
+
+<!--
+                            <div class="team-member">
+                                <div>
+                                    <img src="<?php echo $this->request->webroot; ?>img/Jon CLINE.png" data-member-name="Jon Cline" class="fadein-image" />
+                                </div>
+                                <div>
+                                    <div class="name">Jon Cline </div>
+                                    <span class="title">Head of Made to Measure</span>
+
+                                    <div class="desc">
+                                        <p>
+                                            Jon Cline is a familiar name in the men’s fashion industry. Jon, previously a fourth generation owner of the infamous H. Herzfeld on 57th Street, has dedicated his life to dressing the best people, in the best products. His knowledge of menswear is unquestionable, as is his contribution to the men’s fashion industry.
+                                        </p>
+                                        <p>
+
+                                            As Chief Fashion Officer, Jon provides Savile Row Society with his expertise and experience as a consultant, VIP Stylist, and a practiced tailor for SRS’s private label custom wear collection.His wisdom and experience bring that je ne sais quoi that brings the best out of all the team. 
+
+                                        </p>
+
+                                    </div>
+                                    <div class="text-center info-btn">
+                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
+                                    </div>
+                                </div>
+                            </div>
+-->
+
+
+
+
+
+<!--
+                            <div class="team-member">
+                                <div>
+                                    <img src="<?php echo $this->request->webroot; ?>img/blogger-05.1.jpg" data-member-name="Casey Golden" class="fadein-image" />
+                                </div>
+                                <div>
+                                    <div class="name">Casey Golden</div>
+                                    <span class="title">Head of Ready to wear</span>
+                                    <div class="desc">
+                                        <p>From West Coast to East Coast, Casey has dressed some of the most amazing people and worked with some of the best personal shopper's in the industry. Since, she has been the catalyst behind the brand creation of both Apparel Manufacturers and Specialty Retailers introducing new creative strategies or building them from the ground up.</p>
+                                        <p>With Savile Row Society, she applies her extensive knowledge of the industry as our Fashion Director to ensure our members have the best product, the best fit and the best shopping experience with our stylist team.</p>
+                                        <p>Casey studied international Business in Paris, France at The American University of Paris and came back to the states to spend 2 years in Apparel Design.</p>    
+                                    </div>
+                                    <div class="text-center info-btn">
+                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
+                                    </div>
+                                </div>
+                            </div>
+-->
+
+                        </div>
     </div>
 </div>

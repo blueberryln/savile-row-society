@@ -53,32 +53,66 @@ class PagesController extends AppController {
         }
 
         if($page == 'home'){
+
             $user = $this->getLoggedUser();
-            $this->set(compact('user'));
+            
+            //Get Top Stylists
+            $TopStylist = ClassRegistry::init('TopStylist');
+            $topStylists = $TopStylist->getTopStylists();
+
+            $firstStylist = count($topStylists) ? $topStylists[0] : false;
+            
+            //Get Top Outfits
+            $TopOutfit = ClassRegistry::init('TopOutfit');
+            $topOutfits = $TopOutfit->getTopOutfits();
+            $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
+
+            $this->set(compact('user','topStylists','topOutfits', 'firstStylist'));
+       
         }
-        else if ($page == 'tailor') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            $this->set(compact('user'));
-        }
-        else if ($page == 'trainer') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            $this->set(compact('user'));
-        }
-        else if ($page == 'stylist') {
-            $this->isLogged();
-            $user = $this->getLoggedUser();
-            if(!$user['User']['preferences']){
-                $this->Session->write('completeProfile', true);
-                $this->redirect(array('controller' => 'profile', 'action' => 'about'));   
-            }
-            $this->set(compact('user'));
+        else if ($page == 'contact') {
+            $title_for_layout = "Savile Row Society - Contact Us | Online Fashion Shopping Website";
         }
         else if ($page == 'refer-a-friend') {
             $this->isLogged();
+            $sideBarTab = 'refer';
+
             $user = $this->getLoggedUser();
-            $this->set(compact('user'));
+
+            if($user['User']['is_stylist']){
+                $this->redirect('/messages/feed');
+                exit;
+            }
+
+            $User= ClassRegistry::init('User');
+            $stylist = $User->findById($user['User']['stylist_id']);
+
+            $this->set(compact('user', 'sideBarTab', 'stylist'));
+        }
+        else if ($page == 'refer') {
+            $this->isLogged();
+            $sideBarTab = 'refer';
+
+            $User= ClassRegistry::init('User');
+            $user = $this->getLoggedUser();
+
+            $userlists = $User->find('all', array('conditions'=>array('User.stylist_id' => $user['User']['id'], 'User.is_stylist' => 0, 'User.is_admin' => 0)));
+            $this->set(compact('user', 'sideBarTab', 'stylist', 'userlists'));
+            
+            if(!$user['User']['is_stylist']){
+                $this->redirect('/messages/index');
+                exit;
+            }
+            
+
+            $this->set(compact('user', 'sideBarTab', 'userlists'));
+
+        }
+        else if ($page == 'company/brands') {
+            $title_for_layout = "Mens Fashion - Mens Fashion Clothing Online - Personal Online Shopping Stylist";
+        }
+        else if ($page == 'company/team') {
+            $title_for_layout = "Savile Row Society Team Management - Designer Menswear Specialists - Lifestyle Fashionistas";
         }
         
         $this->set(compact('page', 'subpage', 'title_for_layout'));

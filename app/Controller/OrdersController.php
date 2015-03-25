@@ -68,27 +68,27 @@ class OrdersController extends AppController {
             $order['Order']['shipped'] = 1;
             if($this->Order->save($order)){
                 
-                //Send confirmation email to the customer.
-                $this->Order->recursive = 3;
-                $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-                $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
-                $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
-                $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
-                $shipped_order = $this->Order->find('first', $options);
-                $Size = ClassRegistry::init('Size');
-                $sizes = $Size->find('list');
+                // //Send confirmation email to the customer.
+                // $this->Order->recursive = 3;
+                // $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
+                // $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
+                // $this->Order->User->unbindModel(array('belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+                // $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+                // $shipped_order = $this->Order->find('first', $options);
+                // $Size = ClassRegistry::init('Size');
+                // $sizes = $Size->find('list');
                 
-                if($shipped_order['User']['email']){
-                    $email = new CakeEmail('default');
-                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                    $email->to($shipped_order['User']['email']);
-                    $email->subject('Your order has been shipped.');
-                    $email->template('order_shipped');
-                    $email->emailFormat('html');
-                    $email->viewVars(compact('shipped_order','sizes'));
-                    $email->send();
-                }
-                $this->Session->setFlash(__('The customer has been notified by email and the order has been maked shipped.'), 'flash');
+                // if($shipped_order['User']['email']){
+                //     $email = new CakeEmail('default');
+                //     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                //     $email->to($shipped_order['User']['email']);
+                //     $email->subject('Your order has been shipped.');
+                //     $email->template('order_shipped');
+                //     $email->emailFormat('html');
+                //     $email->viewVars(compact('shipped_order','sizes'));
+                //     $email->send();
+                // }
+                $this->Session->setFlash(__('The order has been maked shipped.'), 'flash');
             }     
             else{
                 $this->Session->setFlash(__('The order could not be marked shipped. Please try again later'), 'flash');    
@@ -257,13 +257,13 @@ class OrdersController extends AppController {
         $value = $id;
         $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
         $order = $this->Order->find('first', $options);
-        if($this->Order->save($order)){
+        if($order){
 
             //Send confirmation email to the customer.
             $this->Order->recursive = 3;
-            $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order')));
-            $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'Dislike', 'Like', 'OrderItem', 'CartItem'), 'hasAndBelongsToMany' => array('Color'), 'belongsTo' => array('Product')));
-            $this->Order->User->unbindModel(array('hasOne' => array('BillingAddress'), 'belongsTo' => array('UserType'), 'hasMany' => array('Comment', 'Post', 'Wishlist', 'Message', 'Order')));
+            $this->Order->OrderItem->unbindModel(array('belongsTo' => array('Order', 'Outfit')));
+            $this->Order->OrderItem->Entity->unbindModel(array('hasMany' => array('Detail', 'Wishlist', 'OrderItem', 'CartItem'), 'belongsTo' => array('Product')));
+            $this->Order->User->unbindModel(array('hasMany' => array('Wishlist', 'Message', 'Order')));
             $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
             $shipped_order = $this->Order->find('first', $options);
         }
@@ -271,12 +271,10 @@ class OrdersController extends AppController {
         $sizes = $Size->find('list');
 
 
+        // print_r($shipped_order);
+        // exit;
+
         $this->set(compact('value','shipped_order', 'sizes'));
     }
-
-
-
-
-
 
 }

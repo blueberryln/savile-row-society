@@ -79,13 +79,6 @@ class Comment extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'Post' => array(
-            'className' => 'Post',
-            'foreignKey' => 'model_id',
-            'conditions' => array('Comment.model' => 'Post'),
-            'fields' => '',
-            'order' => ''
         )
     );
 

@@ -45,6 +45,14 @@ class Image extends AppModel {
                     )
         ));
     }
+    function getByhighlightProductID($product_id) {
+        return $this->find('all', array(
+                    'conditions' => array(
+                        'Image.product_entity_id' => $product_id,
+                    ),
+                    'group' => 'Image.product_entity_id',
+        ));
+    }
     
     /**
      * Get by ID

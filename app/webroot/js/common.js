@@ -1,3 +1,17 @@
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+Array.prototype.unique = function() {
+    var unique = [];
+    for (var i = 0; i < this.length; i++) {
+        if (unique.indexOf(this[i]) == -1) {
+            unique.push(this[i]);
+        }
+    }
+    return unique;
+};
+
 // For Fade in images
 function fadeInImages(){
     $(".fadein-image").each(function() {
@@ -19,20 +33,85 @@ function footerFix(){
     var headerH = $("div.header").height();
     var footerH = $("div.footer").height();
     var contentMinH = winH - (headerH + footerH); 
-    $("div.content-container").css({"min-height":contentMinH});        
+    //$("div.content-container").css({"min-height":contentMinH});        
 }
 
 /* function to show signin popup*/
 function signUp(e) {
     var blockTop = $(window).height()/2 - $("#signup-popup").height()/2;
-    $.blockUI({message: $('#signup-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    var blockLeft = $(window).width()/2 - $("#signin-popup").width()/2;
+    $.blockUI({message: $('#signup-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px", left: (blockLeft >0) ? blockLeft : 0}});
     $('.blockOverlay').click($.unblockUI);
 }
 
 /* function to show signup popup*/
 function signIn() {
     var blockTop = $(window).height()/2 - $("#signin-popup").height()/2;
-    $.blockUI({message: $('#signin-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    var blockLeft = $(window).width()/2 - $("#signin-popup").width()/2;
+    $.blockUI({message: $('#signin-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px", left: (blockLeft >0) ? blockLeft : 0}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+function quickSignUp() {
+    var blockTop = $(window).height()/2 - $("#quick-signup-popup").height()/2;
+    var blockLeft = $(window).width()/2 - $("#quick-signup-popup").width()/2;
+    $.blockUI({message: $('#quick-signup-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px", left: (blockLeft >0) ? blockLeft : 0}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+function affiliatePopup(e) {
+    var blockTop = $(window).height()/2 - $("#affiliate-popup").height()/2;
+    var blockLeft = $(window).width()/2 - $("#affiliate-popup").width()/2;
+    $.blockUI({message: $('#affiliate-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px", left: (blockLeft >0) ? blockLeft : 0}});
+    $('.blockOverlay').click(function(){
+        return false;
+    });
+}
+
+function confirmationPopup(e) {
+    var blockTop = $(window).height()/2 - $("#confirmation-popup").height()/2;
+    var blockLeft = $(window).width()/2 - $("#confirmation-popup").width()/2;
+    $.blockUI({message: $('#confirmation-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px", left: (blockLeft >0) ? blockLeft : 0}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+
+/* function to show create outfit popup*/
+function outFit() {
+    var blockTop = $(window).height()/2 - $("#create-otft-popup").height()/2;
+    $.blockUI({message: $('#create-otft-popup'), css: {position: "fixed", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+function reuseoutFit() {
+    var blockTop = $(window).height()/2 - $("#reuse-otft-popup").height()/2;
+    $.blockUI({message: $('#reuse-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+function viewoutFit() {
+    var blockTop = $(window).height()/2 - $("#view-otft-popup").height()/2;
+    $.blockUI({message: $('#view-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+function cnfrmoutFit() {
+    var blockTop = $(window).height()/2 - $("#cnfrm-otft-popup").height()/2;
+    $(window).scrollTop(0);
+    $.blockUI({message: $('#cnfrm-otft-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+function myClst() {
+    var blockTop = $(window).height()/2 - $("#myclst-popup").height()/2;
+    $.blockUI({message: $('#myclst-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
+    $('.blockOverlay').click($.unblockUI);
+}
+
+
+function newAddress() {
+    var blockTop = $(window).height()/2 - $("#newaddess-popup").height()/2;
+    $.blockUI({message: $('#newaddress-popup'), css: {position: "absolute", top: (blockTop > 0) ? blockTop : "0px"}});
     $('.blockOverlay').click($.unblockUI);
 }
 
@@ -57,6 +136,8 @@ function showNotification(notificationDetails, isFade){
     else{
         $.blockUI({message: $('#notification-box')});
     }   
+
+    $('.blockOverlay').click($.unblockUI);
 }
 
 // function addReferrerToSignUp(){
@@ -80,6 +161,9 @@ jQuery(function(){
 
     if(showRegisterPopup){
         signUp();    
+    }
+    else if(showAffiliatePopup){
+        affiliatePopup();
     }
 
     fadeInImages();
@@ -119,22 +203,61 @@ jQuery(function(){
         e.preventDefault();
         signIn();
     });
+    $('#quick-signup-popup').on('click', '#show-signin-popup', function(e){
+        e.preventDefault();
+        signIn();
+    });
     
     /* attach to sign up event on signin popup form.
      * on click open sign-up popup form
      * */
-    $('#signin-popup').on('click', '#show-signup-popup', function(e){
-        e.preventDefault();
-        signUp();
-    });
+    // $('#signin-popup').on('click', '#show-signup-popup', function(e){
+    //     e.preventDefault();
+    //     signUp();
+    // });
     
-
-    $('#signup-popup, #signin-popup').on('click', '.notification-close', function(e){
+    /* attach to create-outft event on create outfit.
+     * on click open create-outft popup form
+     * */
+    //  $('#crt-new-otft').on('click', function(e){
+    //     e.preventDefault();
+    //     $("#reuse-outfit-id").val('');
+    //     outFit();
+    // });
+    
+    // $('#reuse-otft').on('click', function(e){
+    //     e.preventDefault();
+    //     reuseoutFit();
+    // });
+    
+    // $('.outfit-quick-view').on('click', function(e){
+    //     e.preventDefault();
+    //     viewoutFit();
+    // });
+    
+    
+    
+    
+    
+    
+    // $('.myclst-quick-view').on('click', function(e){
+    //     e.preventDefault();
+    //     myClst();
+    // });
+    
+    
+    $('#signup-popup, #signin-popup, #crt-new-otft').on('click', '.notification-close', function(e){
         e.preventDefault();
         $.unblockUI();
     });
+    
+    $('#crt-new-otft').on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();
+    });
+    
 
-    $('#signin-popup').on('click', '.signin-btn', function(e){ 
+    $('#quick-signup-popup').on('click', '.signup-btn', function(e){ 
         e.preventDefault();
         var error = false;
         if($("#signin-email").val() == "")
@@ -154,6 +277,8 @@ jQuery(function(){
             $("#signin-password").removeClass("err-msg");
         }
         
+        console.log(error);
+        return false;
         if(error){
             var authElement = $(".err-msg");
             if(authElement.length){
@@ -214,27 +339,138 @@ jQuery(function(){
     });
 
 
+    $('#quick-signup-popup').on('click', '.signup-btn', function(e){
+        e.preventDefault();
+        var error = false;
+        
+        if($("#register-email").val() == "")
+        {              
+            $("#register-email").addClass("err-msg");
+            error = true;                   
+        }
+        else{
+            $("#register-email").removeClass("err-msg");
+        }
+        if($("#register-password").val() == "")
+        {              
+            $("#register-password").addClass("err-msg"); 
+            error = true;                 
+        }
+        else{
+            $("#register-password").removeClass("err-msg");
+        }
+        
+        if(error){
+            var authElement = $(".err-msg");
+            if(authElement.length){
+                authElement.first().focus(); 
+            }     
+            return false;    
+        }   else{            
+            $("#register-form").submit();
+        } 
+           
+    });
+
+    
+    $('.multi-action').on('click', function(e){
+        e.preventDefault();
+        var blockTop = $(window).height()/2 - $("#multi-popup").height()/2;
+        $.blockUI({message: $('#multi-popup'), css: {top: (blockTop > 0) ? blockTop : "0px"}});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
+
     $(window).resize(function(){
        $(".blockMsg").css({'left' : $(window).width() / 2 - $(".blockMsg ").width()/2});
     });
 
 
     if($('#flash-box').length){
-        $.blockUI({message: $('#flash-box'), timeout: 5000});
+        $.blockUI({message: $('#flash-box'), timeout: 1700});
     }
-    $('.blockOverlay, .notification-close').on('click', function(e){
-        e.preventDefault();
-        $.unblockUI();
-    });
+    if($('#forgot-flash-box').length){
+        $.blockUI({message: $('#forgot-flash-box')});
+    }
+    // $('.blockOverlay, .notification-close, .otft-close').on('click', function(e){
+    //     e.preventDefault();
+    //     $.unblockUI();
+    // });
     $('#signup-popup, #signin-popup').on('click', '.notification-close', function(e){
         e.preventDefault();
         $.unblockUI();
+        
+    });
+    $("#cnfrm").on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();   
+    });
+    
+    $("#cnfrm").on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();   
+    });
+
+    $('#create-otft-popup,  #reuse-otft-popup, #view-otft-popup, #cnfrm-otft-popup, #myclst-popup').on('click', '.otft-close', function(e){
+        e.preventDefault();
+        $.unblockUI();
+    });
+    
+    $("#cnfrm-otft-popup").on('click', '.cnfrm-otft-edit-sec', function(e){
+        e.preventDefault();
+        $.unblockUI();   
+    });
+    
+    
+    
+//    $('.cnfrm-otft-edit-sec').click(function(){
+//        $('#cnfrm-otft-popup').preventDefault();
+//        $.unblockUI();
+//    })
+//    $('#cnfrm-otft-popup').on('click', '.cnfrm-otft-edit-sec', function(e){
+//        e.preventDefault();
+//        $.unblockUI();
+//        return false; 
+//    });
+   
+    $("#block-vip-access,#block-vip-access-link, #multi-vip-access").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#vip-box')});
+        $('.blockOverlay').click($.unblockUI);
     });
 
 
-    $("#block-vip-access").on("click", function(e){
+
+$("#block-request-access").on("click", function(e){
         e.preventDefault();
-        $.blockUI({message: $('#vip-box')});
+        $.blockUI({message: $('#request-box')});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
+//upload file 
+$("#block-file-upload-photo").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#file-box-photo')});
+        $('.blockOverlay').click($.unblockUI);
+    });
+    
+$(".profile-img-edit").on("click", "img", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#file-box-profile')});
+        $('.blockOverlay').click($.unblockUI);
+    });
+
+//add new address
+$("#block-request-address").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#requestaddress-box')});
+        $('.blockOverlay').click($.unblockUI);
+    });  
+    
+    
+$("#block-step-access").on("click", function(e){
+        e.preventDefault();
+        $.blockUI({message: $('#step-box')});
         $('.blockOverlay').click($.unblockUI);
     });
 
@@ -263,4 +499,45 @@ jQuery(function(){
             container.hide();
         }    
     });
+
+
+    $(".btn-request-invite").on('click', function(e){
+        e.preventDefault();
+        var inviteEmail = $("#invite-email").val();
+        if(inviteEmail){
+            $.ajax({
+                url: "/users/requestinvite",
+                data : {
+                    'invite-email' : inviteEmail,
+                },
+                cache: false,
+                type: 'POST',
+                success: function(res) {
+                    var res = jQuery.parseJSON(res);
+                    if (res['status']=='ok') {
+                        $("#request-invite-block").hide();
+                        $("#request-invite-status").show();
+                    }
+                    else if(res['status']=='member'){
+                        var notificationDetails = new Array();
+                        notificationDetails["msg"] = "You are already a member of Savile Row Society.";
+                        showNotification(notificationDetails, true); 
+                    }
+                    else {
+                        var notificationDetails = new Array();
+                        notificationDetails["msg"] = "The request could not be completed right now. Please try after some time.";
+                        showNotification(notificationDetails, true); 
+                    }
+                },
+                error: function(res) {
+                    
+                }
+            }).done(function(res){
+                callInAction = false;
+            });
+        } 
+    });
 });
+
+
+confirmationPopup();

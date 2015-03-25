@@ -79,21 +79,6 @@ class Category extends AppModel {
             'deleteQuery' => '',
             'insertQuery' => ''
         ),
-        'Post' => array(
-            'className' => 'Post',
-            'joinTable' => 'posts_categories',
-            'foreignKey' => 'category_id',
-            'associationForeignKey' => 'post_id',
-            'unique' => 'keepExisting',
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'finderQuery' => '',
-            'deleteQuery' => '',
-            'insertQuery' => ''
-        )
     );
 
     /**
@@ -204,6 +189,41 @@ class Category extends AppModel {
             return 0;
         }
     }
+
+
+    /**
+     * Get All Categoris by multiple slug
+     * @param type $slug
+     * @param type $model
+     * @return type
+     */
+    function getAllCategories($list) {
+
+        // get id by slug
+        $category = $this->find('first', array(
+            'conditions' => array(
+                'Category.id' => $list,
+            )
+        ));
+
+        // get all by parent category
+        if ($category) {
+
+            $category_ids = array();
+            foreach($category as $value){
+                $cat_children = $this->children($category['Category']['id']);
+                array_push($category_ids, $category['Category']['id']);
+                foreach($cat_children as $child){
+                    array_push($category_ids, $child['Category']['id']);    
+                }
+            }
+            
+            return $category_ids;
+        } else {
+            return 0;
+        }
+    }
+
 
     /**
      * Get Category by model
