@@ -424,11 +424,11 @@ class AppController extends Controller {
         return false;
     }
 
-
+    // new user registration mail to sales team
     function mailto_sales_team($user = null,$stylist_id = null){
          try{
                 $bcc = Configure::read('Email.contact');
-                $sales_team = Configure::read('SALES_EMAIL');   //this is defined in config/custom_config.php
+                $sales_team = array('Tyler@savilerowsociety.com','Mitch@savilerowsociety.com','Lisa@savilerowsociety.com','matt@savilerowsociety.com');
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->to($sales_team);
