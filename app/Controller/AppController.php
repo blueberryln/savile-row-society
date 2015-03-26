@@ -490,7 +490,7 @@ class AppController extends Controller {
                 $email->bcc($bcc);
                 $email->template('sales_team');
                 $email->emailFormat('html');
-                $email->viewVars(array('f_name' => $user['User']['first_name'],'l_name' => $user['User']['last_name'],'stylist_id'=>$stylist_id, 'stylist_first_name' => $stylist['User']['first_name'], 'stylist_last_name' => $stylist['User']['last_name'], 'e_mail'=>$user['User']['email'],'mobile'=>$user['User']['phone']));
+                $email->viewVars(array('f_name' => $user['User']['first_name'],'l_name' => $user['User']['last_name'],'stylist_id'=>$stylist_id,'stylist_first_name' => $stylist['User']['first_name'],'stylist_last_name' => $stylist['User']['last_name'], 'e_mail'=>$user['User']['email'],'mobile'=>$user['User']['phone']));
                 $email->send();
             }
             catch(Exception $e){
