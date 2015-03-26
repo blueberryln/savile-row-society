@@ -121,7 +121,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
             </div>
         </div>
         <div class="twelve columns brand-box-area">
-        <div class="eleven columns container brand-boxes">
+        <div class="twelve columns container brand-boxes">
             <div class="brands eleven columns container">
 <!--
                 <div id="scrollbar2">

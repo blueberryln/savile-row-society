@@ -1,7 +1,9 @@
+ <!-- Start Default -->
+  <link rel="stylesheet" type="text/css" href="<?php echo CSS_ROOT ?>css/new-style.css" />
+  <!-- End Default -->
+
     <!-- Wrapper -->
     <div class="container">
-
-
         <!-- banner -->
         <section id="banner_wrapper">
             <section class="slider">

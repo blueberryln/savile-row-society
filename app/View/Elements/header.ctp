@@ -4,20 +4,8 @@
       $(".wrapper_mobile").toggleClass('show');    
     });  
   });
- </script> 
+ 
 
-  <script type="text/javascript">
-    $(function(){
-      SyntaxHighlighter.all();     
-    });
-    $(window).load(function(){
-      $('.flexslider').flexslider({
-        animation: "slide",
-        start: function(slider){
-          $('body').removeClass('loading');
-        }
-      });
-    });
 
     $(document).ready(function(){
       $(window).scroll(function () {
@@ -33,8 +21,24 @@
           $('#header_wrapper').addClass('header_bar');
         }
       });
-        
     });
+
+
+
+
+    jQuery(document).ready(function(){
+        jQuery("#menu-trigger").on("click", function(){
+            console.log("dfbghjdfghjdfd");
+            // jQuery(this).toggleClass("mobile_menu");          
+            var menu = jQuery(".header_wrapper .mobile_nav");
+            jQuery(menu).slideToggle();  
+        });
+    });
+
+
+
+
+
 
 
   </script>

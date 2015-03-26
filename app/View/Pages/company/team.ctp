@@ -26,8 +26,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
 $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 ?>
 <div class="content-container content-container-team">
-    <div class="eleven columns container content inner">
-        <div class="twelve columns container left message-box">
+    <div class="twelve columns container content inner">
+        <div class="eleven columns container left message-box">
             <div class="blank-space">&nbsp;</div>
                 <div class="eleven columns container">
                     <div class="ten columns text-center page-heading">

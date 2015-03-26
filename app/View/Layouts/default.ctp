@@ -55,27 +55,23 @@
         <!--<script src="/js/jquery-1.9.1.min.js"></script>-->
 
 
-<!-- New HomePage start -->
 
- <!-- Start Default -->
-  <link rel="stylesheet" type="text/css" href="<?php echo CSS_ROOT ?>css/new-style.css" />
-  <!-- End Default -->
+<!-- Start Default -->
+<link rel="stylesheet" type="text/css" href="<?php echo CSS_ROOT ?>css/new-style.css" />
+<!-- End Default -->
 
-    <link rel="stylesheet" type="text/css" href="<?php echo JS_ROOT ?>js/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo JS_ROOT ?>js/slick/slick-theme.css"/>
-    <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/slick.js"></script>
-    <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/prism.js"></script>
-    <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/scripts.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo JS_ROOT ?>js/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo JS_ROOT ?>js/slick/slick-theme.css"/>
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/slick.js"></script>
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/prism.js"></script>
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/scripts.js"></script>
 
-  <!-- Start Flexslider -->
-  <script src="<?php echo JS_ROOT ?>js/flexslider/modernizr.js"></script>
-  <script defer src="<?php echo JS_ROOT ?>js/flexslider/jquery.flexslider.js"></script>
-  <link rel="stylesheet" href="<?php echo JS_ROOT ?>js/flexslider/flexslider.css" type="text/css" media="screen" />
-  <!-- End Flexslider -->
-
-
-<!-- New HomePage end -->
+<!-- Start Flexslider -->
+<script src="<?php echo JS_ROOT ?>js/flexslider/modernizr.js"></script>
+<script defer src="<?php echo JS_ROOT ?>js/flexslider/jquery.flexslider.js"></script>
+<link rel="stylesheet" href="<?php echo JS_ROOT ?>js/flexslider/flexslider.css" type="text/css" media="screen" />
+<!-- End Flexslider -->
 
     </head>
     <body>
@@ -173,7 +169,7 @@
             }
 
             $(document).ready(function() { 
-                // startMessageNotifier();
+                startMessageNotifier();
             });
         </script>
         <script src="<?php echo JS_ROOT; ?>js/common.js" type="text/javascript"></script>

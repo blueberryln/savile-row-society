@@ -142,7 +142,7 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
 
 /***Form Fields***/
 label, div.finalizing h5,.new-clients-head{ display:block; font-family: 'sweetsans-regular',sans-serif; margin: 0 0 3px 0; color: #AF9A59; font-size: 13px; text-transform: uppercase;}
-input[type="text"], input[type="file"], input[type="email"], input[type="password"], input[type="tel"], textarea, select{ border: 1px solid #D9D9D9; padding: 8px 5px; color: #444444; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box; width: 100%;  resize:none;}
+input[type="text"], input[type="file"], input[type="email"], input[type="password"], input[type="tel"], textarea, select{ font-size: 13px; border: 1px solid #D9D9D9; padding: 8px 5px; color: #444444; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;  -o-box-sizing:border-box;  box-sizing:border-box; width: 100%;  resize:none;}
 input[type="submit"]{color: #fff;}
 
 /******Skeleton******/
@@ -340,7 +340,7 @@ div.sub-blogger .title{font-family: 'sweetsans-regular',sans-serif; font-size: 1
     .hi-message-text { font-family: 'ProximaNovaCond-Regular'; font-size: 20px; color: #55585e; display: block; padding: 0 0 30px 0; background:  url("../img/steps-divider.png") no-repeat center bottom}
     .hi-message-text.rd-clr {background: none; color: #d19b03; padding-bottom: 40px;}
     .profile-stp2 { padding: 80px 0px;}
-    .styled-select select { border:none; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #c7c7c7 0px 1px 1px; -moz-box-shadow: #c7c7c7 0px 1px 1px; box-shadow: #c7c7c7 0px 1px 1px; outline:none; display: inline-block; -webkit-appearance:none; -moz-appearance:none; appearance:none; padding: 15px 10px 9px; cursor:pointer;
+    .styled-select select { border:none; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: #c7c7c7 0px 1px 1px; -moz-box-shadow: #c7c7c7 0px 1px 1px; box-shadow: #c7c7c7 0px 1px 1px; outline:none; display: inline-block; -webkit-appearance:none; -moz-appearance:none; appearance:none; padding: 15px 10px 13px; cursor:pointer;
     background: #fefefe;
     background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fefefe), to(#f4f4f4));
     background: -webkit-linear-gradient(#fefefe, #f4f4f4);
@@ -820,7 +820,7 @@ li.welcome-name a { background: url(../img/dropDown_arrow.jpg) no-repeat; backgr
 .top_rightSection.login_rightSection{ min-width: 12%; margin: 2px 0 0 0; text-align: right; }
 .top_rightSection.login_rightSection .card-menu{ margin-right: 0% !important; }
 .top_rightSection.login_rightSection a.cart_link {  margin: 0;  }
-.container.content > .container{ position: relative; margin: 81px auto 20px; }
+.container.content > .container{ margin: 98px auto 0px; padding-bottom: 20px; position: relative; }
 .hover_overlay{ position: absolute; width: 100%; height: 135px; background: rgba(0, 0, 0, 0.5); z-index: 2; display: none;  vertical-align: top; color: #fff; font-size: 18px; line-height: 135px; left: 0px; top: 0px; }
 .bx-controls-direction{ display: inline-block; height: 25px; width: 170px; position: relative; top: -29px; z-index: 1; } 
 .jcarousel-control-wrapper{ display: inline-block; height: 25px; position: absolute; left: 0; text-align: center; right: 0; z-index: 1; margin: 0px auto 9px; top: 40%; } 
@@ -837,6 +837,20 @@ right: 1px;
 font-size: 20px;
 height: 98%;
 border: 2px solid #a8a18f;
+}
+.content-container-privacy .message-box{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 40px;
+}
+.content-container-terms .message-box{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 40px;
 }
 .last_static_slide a{ color: #b5a069; text-decoration: underline; }
 
@@ -1193,7 +1207,8 @@ div.refer-a-friend span.gold{color:#af9a59;}
 div.rw-content h3{font-family: 'sweetsans-regular',sans-serif; font-size: 22px; font-weight: bold; margin-bottom: 5px; color: #333;} 
 div.rw-field a{padding: 8px 12px; margin: 0; vertical-align: top; }
 /*****STYLE PROFILE STEP 1********/
-.srs-form { margin: 20px 0 0;}
+.srs-form { margin: 20px 0 33px;}
+.text-center.about-submit{ display: inline-block; margin: 0; padding: 0; position: relative; text-align: center; vertical-align: top; width: 100%; }
 ol#selectable { margin-left: 0px!important;}
 a.setp-btn { background: #b6a166; font-family: 'ProximaNovaCond-Regular'; font-size: 25px; color: #fff; padding: 18px 120px 12px; text-transform: uppercase;}
 /*****STYLISTBIO*****/
@@ -1279,8 +1294,11 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .brand-content h4{ font-size: 18px; color: #444; font-weight: normal;}
 .brand-content h4 span{ border-bottom: 1px solid #dadada;}
 .brand-box-area .brands { background: none;}
-.brand-box-area .brand-boxes, .brand-box-area .brands { padding-bottom: 0px!important;}
+.brand-box-area .brand-boxes, .brand-box-area .brands{ float: none !important; padding-bottom: 0 !important; text-align: center; margin: 0 auto; }
 .brand-content p { margin-bottom: 0px;}
+.table-of-content li a{ font-size: 14px; }
+.content-container-faq .wrapper_faq { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; font-size: 14px; padding: 0 60px; } 
+.content-container-faq .wrapper_faq p, div{ font-size: 14px; }
 
 /*******Message One CSS********/
 .black { background: #212125; min-height:37px; margin-top: 81px; display: none; }
@@ -1290,7 +1308,9 @@ font-family: 'ProximaNovaCond-Regular';
 min-height: 823px;
 /*top: 80px;*/
 margin: 80px 0 0px;
+float: none !important;
 }
+.content-container-brands > .container.container-box{ float: none !important; margin: 0 auto; }
 .message-box-heading, .myclient-heading { font-family: 'ProximaNovaCond-Regular'; font-size: 36px; padding: 38px 0px 19px; border-bottom: 1px solid #e8e8e8;}
 .myclient-heading { padding-top: 0px; margin-bottom: 25px;}
 .message-box-heading h1, .myclient-heading h1{ color: #918f8f; margin: 0; padding: 0; word-wrap: break-word;}

@@ -155,7 +155,7 @@ color:#396; !important
 	}
 </style>
 <div class="eleven columns container container-box register-box-main">
-    <div class="eleven columns container stylist-boxes btm-mrgn">
+    <div class="twelve columns container stylist-boxes btm-mrgn">
     <div id="tabs">
       <ul style="list-style: disc" class="hide">
         <li style="float:left; margin-left:232px;"><br /><div style="margin-left:-30px;"><a href="#tabs-1" id="t1" class="register-tabs">Style</a></div></li>
