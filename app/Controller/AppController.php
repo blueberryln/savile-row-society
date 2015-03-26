@@ -491,7 +491,7 @@ class AppController extends Controller {
                 $email->send();
             }
             catch(Exception $e){
-
+                $this->redirect('/company/brands');
             }
     }
 
