@@ -21,8 +21,8 @@ body{ margin: 0px; padding: 0px; font-family: "Proximanova"; font-size: 14px; co
          url('fonts/OpenSans/OpenSans_webfont.svg#Open sans') format('svg');
     font-weight: normal;
     font-style: normal;
-    }
-
+}
+a{ border: none; }
 
 .TextReplaceByImage{ border: none; text-indent: -9999px; }
 .container{ width: 100%; margin: 0px; padding: 0px; font-size: 0; }
@@ -165,10 +165,10 @@ body{ margin: 0px; padding: 0px; font-family: "Proximanova"; font-size: 14px; co
 
 
 /* ===== Mobile Menu ===== */
-.mobile_menu_wrapper { display: inline-block; width: 260px; margin: -20px 0 0 0; background: #5f5d5e; vertical-align: top; text-align: left; padding: 20px 20px 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
+.mobile_menu_wrapper { display: inline-block; width: 210px; margin: -20px 0 0 0; background: #5f5d5e; vertical-align: top; text-align: left; padding: 20px 20px 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .menu_switcher{ width: 35px; margin: 0px 0 0 5px; }
 .menu_switcher img{ width: 100%; }
-.wrapper_mobile{ display: none; position: absolute; left: -260px; -webkit-transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; transition: all 0.3s linear; }
+.wrapper_mobile{ display: none; position: absolute; left: -210px; -webkit-transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; transition: all 0.3s linear; }
 .show{ left:0; display: inline-block; }
 .mobile_menu_wrapper ul{ margin: 0px; padding: 0px; }
 .mobile_menu_wrapper ul li{ font-size: 16px; color: #fff; line-height: 30px; margin: 0; padding: 0; width: 100%; }
@@ -181,7 +181,7 @@ body{ margin: 0px; padding: 0px; font-family: "Proximanova"; font-size: 14px; co
     .logo_details{ width: 50%; }
     .logo_details a{ width: 100%; display: inline-block; }
     .logo_details a img{ width: 60%; display: inline-block; }
-    .top_icons{ float: none; margin: 0; text-align: right; position: absolute; right: 0px; top: 0px; }
+    .top_icons{ float: none; margin: 0; text-align: right; position: absolute; right: 0px; top: -6px; }
     .top_icons ul{ display: none; }
     .top_icons ul.last{ float: none; display: block; }
     .top_icons ul li a.notifications{ display: none; } 
@@ -225,13 +225,10 @@ body{ margin: 0px; padding: 0px; font-family: "Proximanova"; font-size: 14px; co
     #banner_wrapper .flexslider{ height: 200px; }
     .rightImages .row a.img_hover img{ height: 100%; }
     .rightImages .row a{ height: 100%; }
-
-
-
-    /*.mobile_menu_wrapper{ display: inline-block; }*/
-    .menu_switcher{ display: inline-block; }
+    .menu_switcher{ display: inline-block; width: 21px; }
     .wrapper_mobile{ display: inline-block; }
-
+    .slick-track .slick-slide{ height: 104px; }
+    .mobile_menu_wrapper ul li{ font-size: 14px; }
 }
 
 @media screen and (max-width: 800px) and (min-width: 569px) {
