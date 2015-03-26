@@ -425,5 +425,25 @@ class AppController extends Controller {
     }
 
 
+    function mailto_sales_team($user = null,$stylist_id = null){
+         try{
+                $bcc = Configure::read('Email.contact');
+                $sales_team = Configure::read('SALES_EMAIL');   //this is defined in config/custom_config.php
+                $email = new CakeEmail('default');
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->to($sales_team);
+                $email->subject('New User Registration.');
+                $email->bcc($bcc);
+                $email->template('sales_team');
+                $email->emailFormat('html');
+                $email->viewVars(array('f_name' => $user['User']['first_name'],'l_name' => $user['User']['last_name'],'stylist_id'=>$stylist_id,'e_mail'=>$user['User']['email'],'mobile'=>$user['User']['phone']));
+                $email->send();
+            }
+            catch(Exception $e){
+
+            }
+    }
+
+
 
 }
