@@ -424,7 +424,7 @@ class AppController extends Controller {
         return false;
     }
 
-
+    // new user registration mail to sales team
     function mailto_sales_team($user = null,$stylist_id = null){
          try{
                 $bcc = Configure::read('Email.contact');
