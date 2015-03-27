@@ -117,7 +117,7 @@ class Outfit extends AppModel {
 
         $outfits = $this->find('all', array(
             'contain'       => array('OutfitItem', 'Stylist','OutfitComment'=>array('User')),
-            'conditions'     => array('Outfit.id' => $outfit_list),
+            'conditions'     => array('Outfit.id' => $outfit_list,'Outfit.outfit_name !='=>NULL),
             ));
 
         $Size = ClassRegistry::init('Size');
