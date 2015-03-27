@@ -1,7 +1,3 @@
- <!-- Start Default -->
-  <link rel="stylesheet" type="text/css" href="<?php echo CSS_ROOT ?>css/new-style.css" />
-  <!-- End Default -->
-
     <!-- Wrapper -->
     <div class="container">
         <!-- banner -->
@@ -12,9 +8,8 @@
                         <li>
                             <img src="<?php echo HTTP_ROOT ?>img/home/slide1.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                             <span>
-                                <h2>Blog Title</h2>
-                                <p>This is the content of your post. The more your write <br>more you have to read. Read on...</p>
-                                <p class="cutOff">(This should be a link to blog post on header, we can still keep the <br>two call for action below)</p>
+                                <div class="heading">SHOP WITH YOUR <br>PERSONAL STYLIST</div>
+                                <p>Online & In-Person</p>
                                 <a href="Javascript:;">Tell Me More</a>
                                 <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
                             </span>
@@ -22,9 +17,8 @@
                         <li>
                             <img src="<?php echo HTTP_ROOT ?>img/home/slide1.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                             <span>
-                                <h2>Blog Title</h2>
-                                <p>This is the content of your post. The more your write <br>more you have to read. Read on...</p>
-                                <p class="cutOff">(This should be a link to blog post on header, we can still keep the <br>two call for action below)</p>
+                                <div class="heading">SHOP WITH YOUR <br>PERSONAL STYLIST</div>
+                                <p>Online & In-Person</p>
                                 <a href="Javascript:;">Tell Me More</a>
                                 <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
                             </span>
@@ -38,13 +32,11 @@
         <!-- rightImages -->
         <div class="rightImages">
             <div class="row">
-                <a href="#" class="img_hover"><img src="<?php echo HTTP_ROOT ?>img/home/img1.jpg" alt="" /></a>
-            </div>
-            <div class="row">
-                <a href="#" class="img_hover"><img src="<?php echo HTTP_ROOT ?>img/home/img2.jpg" alt="" /></a>
-            </div>
-            <div class="row">
-                <a href="#" class="img_hover"><img src="<?php echo HTTP_ROOT ?>img/home/img3.jpg" alt="" /></a>
+                <ul>
+                    <li><a href="#" class="looksByOccasion">looks by occasion</a></li>
+                    <li><a href="#" class="shopByItems">shop by items</a></li>
+                    <li><a href="#" class="shopMen">shop men’s</a></li>
+                </ul>
             </div>
         </div>
         <!-- /rightImages -->
@@ -96,18 +88,14 @@
                     <!-- /product_placeholder -->
 
                     <div class="row">
-                        <div class="author_name"> Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> </div>
-                        <?php if($user): ?>
-                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfits</a>
-                        <?php else: ?>
-                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfits</a>
-                         <?php endif; ?>    
+                        <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/designer_profile_icon.png" alt="" /></a> <div class="designer_name"> By George Alvin</div> </div>
+                       
                     </div>
 
-                    <div class="row message_icon_wrapper">
+                    <!-- <div class="row message_icon_wrapper">
                         <a href="#" class="icon_message"><img src="<?php echo HTTP_ROOT ?>img/home/icon_message.png" alt="message" /></a>
                         <span><?= count($outfit['OutfitComment']); ?></span>
-                    </div>
+                    </div> -->
 
                     <div class="row recent_comments_wrapper">
                         <div>
@@ -138,6 +126,11 @@
                             <input type = "hidden" name="data[OutfitComment][outfit_id]" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
                             <input type="text" name="data[OutfitComment][comment]" class="comment_box" placeholder = "Write your comment here."/>
                             <button class="submit_comment">Post</button>
+                             <?php if($user): ?>
+                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfits</a>
+                        <?php else: ?>
+                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfits</a>
+                         <?php endif; ?>    
                         </form>
 
                     </div>
