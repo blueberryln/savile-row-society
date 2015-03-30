@@ -104,7 +104,7 @@
                             foreach($outfit['OutfitItem'] as $item) {
                                 if(count($item['product']['Image']) && $count++ <= 4){
                         ?>
-                            <li><a href="<?php echo $this->webroot;echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>"/><span class="hover_part">$240.00</span></a></li>
+                            <li><a href="<?php echo $this->webroot;echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>"/><span class="hover_part">$<?php echo $item['product']['Entity']['price']; ?></span></a></li>
                             <?php }
                             } ?>
                         </ul>
@@ -214,7 +214,7 @@
                                 <?php endif; ?>
                                 <span class="hover_part">
                                     <!-- <a href="#">Get Started</a> -->
-                                    With Lisa Dolan
+                                    With <?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?>
                                 </span>
                                 </a>
                             </h3>
@@ -288,7 +288,7 @@
                 <div class="row">
                 <?php foreach($posts as $post) {?>
                     <div class="column">
-                        <a href="">
+                        <a href="<?= $post['Blog']['link'] ?>">
                             <img src="<?php echo HTTP_ROOT.'files/blog/'.$post['Blog']['image']; ?>" alt="" />
                         </a>
                         <span><?php echo String::truncate($post['Blog']['title'],35,array('ellipsis' => '  ...  ','exact' => false  ));?></span>

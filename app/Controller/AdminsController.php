@@ -14,8 +14,8 @@ class AdminsController extends AppController {
         }
 	}
 
-	function outfit_comments(){		//fetch recent 20 comments.
-		$limit = 20;
+	function outfit_comments(){		//fetch recent 15 comments.
+		$limit = 10;
 		$this->layout = 'adminlte';
 		$conditions = array('order'=>'OutfitComment.id desc','limit'=>$limit,'recursive'=>1);
 		//	$data = $this->OutfitComment->get_comments('all');
@@ -131,10 +131,10 @@ class AdminsController extends AppController {
 
 	/* Ajax functions ends */
 	
-	function blog(){	//fetch recent 20 blog posts.
+	function blog(){	//fetch recent 15 blog posts.
 		$this->loadModel('Blog');
 		$this->layout = 'adminlte';
-		$limit = 20;
+		$limit = 15;
 		$conditions = array('order'=>'Blog.id desc','limit'=>$limit,);
 		//$data = $this->Blog->get_posts('all');
 		$this->paginate = $conditions;

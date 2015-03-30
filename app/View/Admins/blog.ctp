@@ -58,9 +58,9 @@
 	      <ul class="pagination pagination-sm no-margin pull-right">
 	        <!-- <li><a href="#">&laquo;</a></li> -->
 	        <?php 
-	        echo @$this->Paginator->prev('« ',array('tag'=>'li','title'=>'Previous Page'),null,array('class' => 'disabled'));
-	        echo @$this->Paginator->numbers(array('tag'=>'li','separator'=>''));
-	        echo @$this->Paginator->next(' »',array('tag'=>'li','title'=>'Next Page'),null,array('class' => 'disabled'));
+	        /*echo @$this->Paginator->prev('« ',array('tag'=>'li','title'=>'Previous Page'),null,array('class' => 'disabled'));*/
+	        echo @$this->Paginator->numbers();
+	       /* echo @$this->Paginator->next(' »',array('tag'=>'li','title'=>'Next Page'),null,array('class' => 'disabled'));*/
 	        ?>
 	        <!-- <li><a href="#">&raquo;</a></li> -->
 	      </ul>
