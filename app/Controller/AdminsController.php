@@ -15,7 +15,7 @@ class AdminsController extends AppController {
 	}
 
 	function outfit_comments(){		//fetch recent 15 comments.
-		$limit = 10;
+		$limit = 15;
 		$this->layout = 'adminlte';
 		$conditions = array('order'=>'OutfitComment.id desc','limit'=>$limit,'recursive'=>1);
 		//	$data = $this->OutfitComment->get_comments('all');

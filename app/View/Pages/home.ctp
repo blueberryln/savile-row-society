@@ -40,7 +40,16 @@ $('.container a[href*=#]:not([href=#])').click(function() {
     }
 });
 
-
+$(document).on('click','.view_all_comments',function(){
+    var outfit_id = $(this).attr('rel');
+    $.ajax({
+        url: '/Pages/get_comment/'+outfit_id,
+        success: function(response){
+            $('.comment_append'+outfit_id).html(response);
+        }
+    });
+    $(this).remove();
+});
 
 
 </script>
@@ -160,7 +169,7 @@ $('.container a[href*=#]:not([href=#])').click(function() {
                     </div> -->
 
                     <div class="row recent_comments_wrapper">
-                        <div>
+                        <div class = "comment_append<?= $outfit['Outfit']['id']; ?>">
                             <?php $num = 1; 
                             $comment_count = count($outfit['OutfitComment']);
                             foreach($outfit['OutfitComment'] as $outfit_comments) { 
@@ -179,8 +188,8 @@ $('.container a[href*=#]:not([href=#])').click(function() {
                             <?php $num++; } ?>
                         </div>
                             <?php if($comment_count >= 3){?>
-                            <div class="view_all_comments">
-                                <a href="#">view all comments</a>
+                            <div class="view_all_comments" rel="<?= $outfit['Outfit']['id']; ?>">
+                                <a href="javascript:void(0)">view all comments</a>
                             </div>
                             <?php } ?>
                         
