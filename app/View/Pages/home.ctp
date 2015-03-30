@@ -112,7 +112,13 @@
                     <!-- /product_placeholder -->
 
                     <div class="row">
-                        <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/designer_profile_icon.png" alt="" /></a> <div class="designer_name"> By George Alvin</div> </div>
+                        <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="#">
+                        <?php if(!empty($outfit['Stylist']['profile_photo_url']))  {?>
+                            <img src="<?php echo HTTP_ROOT.'files/users/'.$outfit['Stylist']['profile_photo_url'] ?>" alt="" />
+                        <?php } else{ ?>
+                            <img src="<?php echo HTTP_ROOT.'images/default-user.jpg'; ?>" alt="" />
+                        <?php } ?>
+                        </a> <div class="designer_name"> By <?= $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']; ?></div> </div>
                        
                     </div>
 
