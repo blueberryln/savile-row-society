@@ -10,7 +10,39 @@
             $('.hover_part').hide();
             $('.hover_part',this).show();
         });
-    });    
+    });   
+
+
+$('.nav_wrapper a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+     target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+});
+
+$('.container a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+     target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+         //console.log(target.offset().top());
+      if (target.length) {                         
+        $('html,body').animate({
+          scrollTop: target.offset().top - 105
+        }, 1000);
+        return false;
+      }
+    }
+});
+
+
+
+
 </script>
     <!-- Wrapper -->
     <div class="container">
@@ -64,7 +96,7 @@
             </div>
         </div>
         <!-- /rightImages -->
-
+        <div id="two" style="margin-top:0px;"></div>
         <!-- Top Outfits -->
         <section id="top_outfits_wrapper">
             <div class="center_row">
@@ -191,7 +223,7 @@
             </div>
         </div>
         <!-- /SignUp_Wrapper -->
-
+        <div id="three"></div>
         <!-- featuredStylists-Wrapper -->
         <div class="featuredStylists-Wrapper">
             <div class="center_row">
@@ -274,7 +306,7 @@
             </div>
         </div>
         <!-- /three_steps_wrapper -->
-
+        <div id="four"></div>
         <!-- blog_wrapper -->
         <div class="blog_wrapper">
             <div class="center_row">
