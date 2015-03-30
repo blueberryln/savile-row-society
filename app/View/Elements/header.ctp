@@ -116,9 +116,9 @@
                 <!-- nav -->
                 <div class="nav_wrapper">
                     <ul>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Stylists</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="/#two">Shop</a></li>
+                        <li><a href="/#three">Stylists</a></li>
+                        <li><a href="/#four">Blog</a></li>
                     </ul>
                 </div>
                 <!-- /nav -->
