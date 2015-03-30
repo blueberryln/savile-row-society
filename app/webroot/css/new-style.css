@@ -55,8 +55,18 @@ a{ border: none; }
 .top_icons ul li a.my-account{ background-position: 0 -144px; height: 30px; width: 28px; }
 .top_icons ul li a:hover{ text-decoration: none; }
 
-
-
+.flexslider .slides > li.slide_second > span{ text-align: left; }
+.flexslider .slides > li.slide_second > span > .heading{ text-transform: uppercase; }
+.flexslider .slides > li.GetSocial > span > .heading{ text-transform: uppercase; }
+.flexslider .slides > li.GetSocial > span ul{ margin: 0px; padding: 0px; }
+.flexslider .slides > li.GetSocial > span ul li{ margin: 20px 10px 0; padding: 0px; display: inline-block; vertical-align: top; } 
+.flexslider .slides > li.GetSocial > span ul li a{ display: inline-block; vertical-align: top; background: url(../img/home/social_sprit_icons.png) no-repeat; padding: 0; margin: 0; width: 130px; height: 66px; text-indent: -9999px; }
+.flexslider .slides > li.GetSocial > span ul li a.instagram{}
+.flexslider .slides > li.GetSocial > span ul li a.facebook{ background-position: -165px 0; }
+.flexslider .slides > li.GetSocial > span ul li a.twitter{ background-position: -329px 0; }
+.flexslider .slides > li.GetSocial > span ul li a:hover{ background-position: -2px -68px; }
+.flexslider .slides > li.GetSocial > span ul li a.facebook:hover{ background-position: -167px -68px; }
+.flexslider .slides > li.GetSocial > span ul li a.twitter:hover{ background-position: -331px -68px; }
 
 
 
@@ -96,8 +106,12 @@ padding: 0px;
 .product_placeholder{ display: inline-block; vertical-align: top; margin: 0px 0px 10px; padding: 0px; }
 .product_placeholder ul{ margin: 0px; padding: 0px; }
 .product_placeholder ul li{ list-style-type: none; display: inline-block; vertical-align: top; width: 45%; height: 128px; margin: 0px 0px 10px; padding: 0px; }
-.product_placeholder ul li a{ width: 100%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; height: 100%; }
+.product_placeholder ul li a{ width: 100%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; height: 100%; position: relative; }
 .product_placeholder ul li a img{ background: #000; border: none; margin: 0px; padding: 0px; display: inline-block; vertical-align: top; height: 100%; }
+.product_placeholder ul li a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; color: #fff; width: 100%; text-align: center; height: 100%; line-height: 128px; }
+.slick-slide h3 a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; top: 0; color: #fff; width: 100%; text-align: center; height: 100%; line-height: 186px; font-size: 18px; }
+.slick-slide h3 a .hover_part a{ width: 96%; border: 1px solid #fff; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; }
+
 
 
 .author_name{
@@ -404,18 +418,28 @@ vertical-align: top;
     .featuredStylists-Wrapper{ text-align: center; }
     #SignUp_Wrapper a{ margin: 30px 0px 0 50px; float: none; }
     .footer_wrapper .column a{ width: 80%; }
-    #banner_wrapper .flexslider{ height: 266px; }
-    #banner_wrapper .flexslider .slides > li{ height: 266px; }
+    /*#banner_wrapper .flexslider{ height: 266px; }*/
+    /*#banner_wrapper .flexslider .slides > li{ height: 266px; }*/
     .rightImages .row{ height: 88px; }
     .flexslider .slides > li > span p{ font-size: 15px; line-height: 19px; margin: 5px 0 0px; }
-    .center_row{ padding: 0 15px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
+    .center_row{ padding: 0 15px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; width: 100%; }
     #top_outfits_wrapper{ text-align: center; }
     .flexslider .slides > li > span p.cutOff{ margin: 15px 0px 20px; }
     #top_outfits_wrapper .column{ width: 31%; }
+    .flex-control-nav{ position: relative !important; bottom: 25px !important; }
+    #banner_wrapper .flexslider .slides > li > span{ left: 12%; }
+    #banner_wrapper{ width: 66.7%; }
+    .rightImages{ width: 33.2%; }
+}
+
+
+@media screen and (max-width: 1366px) and (min-width: 1001px) {
+    #banner_wrapper{ width: 66.7%; }
+    .rightImages{ width: 33.2%; }
+    #banner_wrapper .flexslider .slides > li > span{ left: 21%; }
 
 
 }
-
 
 
 

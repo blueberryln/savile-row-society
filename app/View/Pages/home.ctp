@@ -1,3 +1,17 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.product_placeholder ul li a').hover(function(){
+            $('.hover_part').hide();
+            $('.hover_part',this).show();
+        });
+    });
+    $(document).ready(function(){
+        $('.slick-slide h3 a').hover(function(){
+            $('.hover_part').hide();
+            $('.hover_part',this).show();
+        });
+    });    
+</script>
     <!-- Wrapper -->
     <div class="container">
         <!-- banner -->
@@ -14,13 +28,23 @@
                                 <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
                             </span>
                         </li>
-                        <li>
-                            <img src="<?php echo HTTP_ROOT ?>img/home/slide1.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                        <li class="slide_second">
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide3.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                             <span>
-                                <div class="heading">SHOP WITH YOUR <br>PERSONAL STYLIST</div>
-                                <p>Online & In-Person</p>
-                                <a href="Javascript:;">Tell Me More</a>
-                                <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
+                                <div class="heading">blog title</div>
+                                <p>This is the content of your post. The more your write <br>more you have to read. <br><br>Read on...</p>
+                            </span>
+                        </li>
+                        <li class="GetSocial">
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide2.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                            <span>
+                                <div class="heading">get social</div>
+                                <p>Aenean sollicitudin, lorem quis bibendum auctor...</p>
+                                <ul>
+                                    <li><a href="#" class="instagram">@savilerowsociety</a></li>
+                                    <li><a href="#" class="facebook">SavileRowSociety</a></li>
+                                    <li><a href="#" class="twitter">@SRSocietydotcom</a></li>
+                                </ul>
                             </span>
                         </li>
                     </ul>
@@ -47,7 +71,7 @@
                 
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
-                    <h1>Top Outfits</h1>
+                    <h1>Top Looks</h1>
                     <h3>Select outfits styled by our Top Stylists.</h3>
                 </div>
                 <!-- /Section_Main_Heading -->
@@ -80,7 +104,7 @@
                             foreach($outfit['OutfitItem'] as $item) {
                                 if(count($item['product']['Image']) && $count++ <= 4){
                         ?>
-                            <li><a href="<?php echo $this->webroot;echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>"/></a></li>
+                            <li><a href="<?php echo $this->webroot;echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>"/><span class="hover_part">$240.00</span></a></li>
                             <?php }
                             } ?>
                         </ul>
@@ -182,7 +206,10 @@
                                 <?php else: ?>
                                 <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg"  />                       
                                 <?php endif; ?>
-
+                                <span class="hover_part">
+                                    <!-- <a href="#">Get Started</a> -->
+                                    With Lisa Dolan
+                                </span>
                                 </a>
                             </h3>
                         </div>
