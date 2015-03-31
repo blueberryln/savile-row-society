@@ -4,8 +4,6 @@
       $(".wrapper_mobile").toggleClass('show');    
     });  
   });
- 
-
 
     $(document).ready(function(){
       $(window).scroll(function () {
@@ -23,9 +21,6 @@
       });
     });
 
-
-
-
     jQuery(document).ready(function(){
         jQuery("#menu-trigger").on("click", function(){
             console.log("dfbghjdfghjdfd");
@@ -34,13 +29,6 @@
             jQuery(menu).slideToggle();  
         });
     });
-
-
-
-
-
-
-
   </script>
 
         

@@ -50,11 +50,29 @@ $(document).on('click','.view_all_comments',function(){
     });
     $(this).remove();
 });
-
-
 </script>
+    
+
+<?php
+
+if(isset($noindex)){
+    echo $this->Html->meta(array('name' => 'robots', 'content' => 'noindex, nofollow'),null,array('inline'=>false));
+}
+
+$meta_description = "Savile Row Society is a mens personal shopping platform that connects professional men with personal stylists. Buy Mens designer fashion clothing Online at USA favourite online fashion shopping website - savilerowsociety.com";
+$meta_keywords = "Savile Row Society, Personal stylist, personal shopping, Menswear online shopping, Men's fashion clothing Online, Buy Mens Clothing Online, personal online shopping, online fashion website, Online shopping website, online fashion shopping";
+$img_src = "//www.savilerowsociety.com/img/SRS_600.png";
+
+$this->Html->meta("keywords", $meta_keywords, array("inline" => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+$this->Html->meta(array('property'=> 'og:title', 'content' => 'Savile Row Society', ),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:description', 'content' => $meta_description),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
+$this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
+?>
+
     <!-- Wrapper -->
-    <div class="container">
+    <div class="container_wrapper">
         <!-- banner -->
         <section id="banner_wrapper">
             <section class="slider">

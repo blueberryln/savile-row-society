@@ -1,31 +1,11 @@
 
-body{ margin: 0px; padding: 0px; font-family: "Proximanova"; font-size: 14px; color: #000; background: #fff; }
+body{ margin: 0px; padding: 0px; font-size: 14px; color: #000; }
 
-@font-face {
-    font-family: "Proximanova";
-    src: url('fonts/ProximaNova/proximanova_regular.eot');
-    src: url('fonts/ProximaNova/proximanova_regular.eot?#iefix') format('embedded-opentype'),
-         url('fonts/ProximaNova/proximanova_regular.woff') format('woff'),
-         url('fonts/ProximaNova/proximanova_regular.ttf') format('truetype'),
-         url('fonts/ProximaNova/proximanova_regular.svg#Proximanova') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: "Open Sans";
-    src: url('fonts/OpenSans/OpenSans_webfont.eot');
-    src: url('fonts/OpenSans/OpenSans_webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/OpenSans/OpenSans_webfont.woff') format('woff'),
-         url('fonts/OpenSans/OpenSans_webfont.ttf') format('truetype'),
-         url('fonts/OpenSans/OpenSans_webfont.svg#Open sans') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
 a{ border: none; }
 
 .TextReplaceByImage{ border: none; text-indent: -9999px; }
-.container{ width: 100%; margin: 0px; padding: 0px; font-size: 0; }
+.container_wrapper{ width: 100%; margin: 0px; padding: 0px; font-size: 0; background: #fff; }
 .center_row{ width: 1024px; margin: 0px auto; }
 
 #header_wrapper{ width: 100%; margin: 0px auto 10px; padding: 0px; border-bottom: 2px solid #E8E8E8; position: fixed; z-index: 2000; background: #fff; top: 0; } 
@@ -33,13 +13,13 @@ a{ border: none; }
 .top_outfits_wrapper{ width: 100%; margin: 0px auto; padding: 0px; }
 
 /* ==== Header ==== */
-.promotionalBar{ width: 100%; margin: 0px 0px 10px; padding: 0px; display: inline-block; vertical-align: top; height: 33px; background: #5f5d5e; color: #fff; font-size: 16px; text-align: center; line-height: 36px; }
+.promotionalBar{ font-family: 'ProximaNovaCond-Regular'; width: 100%; margin: 0px 0px 10px; padding: 0px; display: inline-block; vertical-align: top; height: 33px; background: #5f5d5e; color: #fff; font-size: 18px; text-align: center; line-height: 33px; }
 .promotionalBar span{ color: #d4737a; padding: 0 0 0 10px; }
 .logo_details{ width: 200px; display: inline-block; vertical-align: top; }
 
 .nav_wrapper{ display: inline-block; vertical-align: top; margin: 15px 30px 0px 0px; padding: 0px; float: right; }
 .nav_wrapper ul{ margin: 0px; padding: 0px; }
-.nav_wrapper ul li{ list-style-type: none; display: inline-block; vertical-align: top; margin: 0px; padding: 0px 10px; font-size: 16px; text-transform: uppercase; color: #333; }
+.nav_wrapper ul li{ font-family: 'ProximaNovaCond-Regular'; list-style-type: none; display: inline-block; vertical-align: top; margin: 0px; padding: 0px 10px; font-size: 18px; text-transform: uppercase; color: #333; }
 .nav_wrapper ul li a{ text-decoration: none; color: #333; }
 .nav_wrapper ul li a:hover{ text-decoration: none; color: #333; }
 
