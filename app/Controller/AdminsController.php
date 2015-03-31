@@ -151,6 +151,13 @@ class AdminsController extends AppController {
 		$this->set(compact('data'));
 		if(!empty($data)){
 			$data['Blog']['time'] = time();
+			$link = strstr($data['Blog']['link'],'://');
+			if($link){
+				$data['Blog']['link'] = '//' . ltrim($link,'://');
+			}
+			else{
+				$data['Blog']['link'] = '//' . ltrim($data['Blog']['link'],'//');
+			}
 			if($data['Blog']['link'] && $data['Blog']['file']){
 				$result = $this->Blog->add_new_blogpost($data);
 				if($result == 'success'){
@@ -169,6 +176,13 @@ class AdminsController extends AppController {
 		$this->set(compact('posts'));
 		$data = $this->data;
 		if(!empty($data)){
+			$link = strstr($data['Blog']['link'],'://');
+			if($link){
+				$data['Blog']['link'] = '//' . ltrim($link,'://');
+			}
+			else{
+				$data['Blog']['link'] = '//' . ltrim($data['Blog']['link'],'//');
+			}
 			if($data['Blog']['link'] && $data['Blog']['title']){
 				$data['Blog']['id'] = $id;
 				$data['Blog']['time'] = time();
