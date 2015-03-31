@@ -124,22 +124,25 @@ class PagesController extends AppController {
 
     function get_comment($outfit_id = null){
         $this->loadModel('OutfitComment');
+        $html_data = '';
         if ($this->request->is('ajax')) {
             $conditions = array('conditions'=>array('OutfitComment.outfit_id'=>$outfit_id,'OutfitComment.disabled'=>0),'order'=>'OutfitComment.id desc','contain'=>array('User'));
             $comments = $this->OutfitComment->get_comments('all',$conditions);
             $html_data .= '';
             //pr($comments);die;
             foreach($comments as $comment){
+                $ago = $this->ago($comment['OutfitComment']['time'],'');
                  if($comment['OutfitComment']['user_id']){
                    $name =  $comment['User']['full_name'];
                 } 
                 else{
                    $name = 'Guest';
                 }
-                $html_data .= '<div class="section"><span class="name">'.$name.'</span><span class="comment">'.$comment['OutfitComment']['comment'].'</span><span class="recently_time">2d</span></div>';
+                $html_data .= '<div class="section"><span class="name">'.$name.'</span><span class="comment">'.$comment['OutfitComment']['comment'].'</span><span class="recently_time">'.$ago.'</span></div>';
             }
             echo $html_data;
         }
         die;
     }
+
 }
