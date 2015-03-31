@@ -17,7 +17,7 @@
                       <th>Outfits</th>
                       <th>User's Name</th>
                       <th>Comments</th>
-                     <!--  <th>Time</th> -->
+                      <th>Date</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -36,7 +36,7 @@
                       ?>
                       </td>
                       <td><?= $outfit_comment['OutfitComment']['comment']; ?></td>
-                      <!-- <td><?= $outfit_comment['OutfitComment']['time']; ?></td> -->
+                      <td><?= date('m/d/Y',$outfit_comment['OutfitComment']['time']); ?></td>
                       <td class = "os<?= $outfit_comment['OutfitComment']['id']; ?>">
                       <?php if($outfit_comment['OutfitComment']['disabled'] == 0) {?>
                       	<button title="Click to Disable" rel ="<?= $outfit_comment['OutfitComment']['id'];?>" class="label label-success comment_status">Enabled</button>
