@@ -153,7 +153,7 @@ html[xmlns] .flexslider .slides {
   zoom: 1;
 }
 .flexslider .slides img {
-  height: 100%;
+  height: auto;
 }
 .flex-viewport {
   max-height: 2000px;
