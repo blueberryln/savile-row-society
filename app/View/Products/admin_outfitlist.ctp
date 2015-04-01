@@ -62,18 +62,10 @@ $(document).ready(function(){
         <div class="users index">
             <table cellpadding="0" cellspacing="0">
                 <tr>
-                <!-- commented by shubham -->
-                    <!-- <th><?php /*echo $this->Paginator->sort('id'); ?></th>
+                    <th><?php echo $this->Paginator->sort('id'); ?></th>
                     <th><?php echo $this->Paginator->sort('outfit_name'); ?></th>
-                    <th><?php echo $this->Paginator->sort('stylist_id');*/ ?></th>
-                    <th class="actions"><?php echo __('Actions'); ?></th> -->
-                <!-- commented by shubham -->
-                <!-- added by shubham -->
-                    <th><a href ="javascript:void(0)">Id</a></th>
-                    <th><a href ="javascript:void(0)">Outfitname</a></th>
-                    <th><a href ="javascript:void(0)">Stylist</a></th>
-                    <th class="actions"><a href ="javascript:void(0)">Actions</a></th>
-                <!-- added by shubham -->
+                    <th><?php echo $this->Paginator->sort('stylist_id'); ?></th>
+                    <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
 
                 <?php foreach ($outfitall as  $outfitcomplete ): ?>
