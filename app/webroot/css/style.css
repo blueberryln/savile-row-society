@@ -2826,16 +2826,19 @@ line-height: normal;
 
 }
 
+
+
+
 @media screen and (min-width: 240px) and (max-width: 568px) {
     .header .menu { top: 73px; padding: 0px;}
     .header .menu ul { background: #fcfcfb;}
     .container-box { margin-top: 25px;}
-    .flex-direction-nav a { top: 48%;}
+/*    .flex-direction-nav a { top: 48%;}
     .flexslider:hover .flex-next{right: 0px;}
     .flexslider:hover .flex-prev{left: 0px;}
     .blank-space { padding-top: 10px;}
     .mega-banner { margin-top: 80px;}
-    .slides img{max-height: 200px !important; height: 200px !important; }
+    .slides img{max-height: 200px !important; height: 200px !important; }*/
     .mega-banner ul.slides li img { max-height:auto!important;}
     /*.mega-banner-overlay{ bottom: 12px; width: 65%; padding: 10px 20px 0px; height: 106px; margin-top: 0 !important; top: 30px; }*/
     .mega-banner-overlay span.large-size { font-size: 15px; line-height: 18px;}
@@ -3164,7 +3167,7 @@ line-height: normal;
 
 }
 /******about us flexslider*****/
-.flex-control-nav{ display: none !important}
+/*.flex-control-nav{ display: none !important}*/
 .custom-flex-cont{
    position: relative; 
    margin-bottom: 5px;
@@ -3176,18 +3179,18 @@ line-height: normal;
     background-color: #00a4e4;
     z-index: 10;
 }
-.flex-control-nav{
+/*.flex-control-nav{
     position: relative !important;
     bottom: 0 !important;
     position: relative;
     width: 100%;
     border-top: 1px solid #666;
     margin-bottom: 10px !important;
-}
-.flex-control-nav li, .flex-active-bar{
+}*/
+/*.flex-control-nav li, .flex-active-bar{
     margin: 0 !important;
-    /*width: 24.5%;*/
 }
+*/
 .flex-control-nav li a{
     text-decoration: none;
     padding-top: 8px;

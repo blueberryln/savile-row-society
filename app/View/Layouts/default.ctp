@@ -22,7 +22,7 @@
         echo $this->Html->css('lightbox');
         echo $this->Html->css('mosaic');
         echo $this->Html->css('temp');
-        echo $this->Html->css('flexslider');
+        // echo $this->Html->css('flexslider');
         echo $this->Html->css('jquery.fancybox');
         echo $this->Html->css('tinyscrollbar');
         echo $this->Html->css('jcarousel.responsive');
@@ -65,8 +65,17 @@
 <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/slick.js"></script>
 <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/prism.js"></script>
-<script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/scripts.js"></script>
-
+<script type="text/javascript">
+$(window).load(function() {
+    $('.multiple-items').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1
+    }).removeClass('after-load');    
+});    
+</script>
 <!-- Start Flexslider -->
 <script src="<?php echo JS_ROOT ?>js/flexslider/modernizr.js"></script>
 <script defer src="<?php echo JS_ROOT ?>js/flexslider/jquery.flexslider.js"></script>
@@ -173,7 +182,7 @@
             });
         </script>
         <script src="<?php echo JS_ROOT; ?>js/common.js" type="text/javascript"></script>
-        <script src="<?php echo JS_ROOT; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
+        
         <script src="<?php echo JS_ROOT; ?>js/jquery.bxslider.js" type="text/javascript"></script>
         <script src="<?php echo JS_ROOT; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="<?php echo JS_ROOT; ?>js/jPages.js" type="text/javascript"></script>

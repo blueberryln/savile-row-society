@@ -5,12 +5,20 @@
             $('.hover_part',this).show();
         });
     });
-    $(document).ready(function(){
+    $(window).load(function(){
         $('.slick-slide h3 a').hover(function(){
             $('.hover_part').hide();
             $('.hover_part',this).show();
         });
     });   
+
+
+    $(document).ready(function(){
+        $('.rightImages a').hover(function(){
+            $('.hover_section').hide();
+            $('.hover_section',this).show();
+        });
+    });       
 
 
 $('.nav_wrapper a[href*=#]:not([href=#])').click(function() {
@@ -50,6 +58,7 @@ $(document).on('click','.view_all_comments',function(){
     });
     $(this).remove();
 });
+
 </script>
     
 
@@ -106,6 +115,12 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                 </ul>
                             </span>
                         </li>
+                        <!-- <li>
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide1.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                        </li>
+                        <li>
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide3.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                        </li> -->
                     </ul>
                 </div>
             </section>
@@ -114,13 +129,15 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
         <!-- rightImages -->
         <div class="rightImages">
-            <div class="row">
-                <ul>
-                    <li><a href="#" class="looksByOccasion">looks by occasion</a></li>
-                    <li><a href="#" class="shopByItems">shop by items</a></li>
-                    <li><a href="#" class="shopMen">shop men’s</a></li>
-                </ul>
-            </div>
+            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/img1.jpg" alt="looks by occasion" />
+                <span class="hover_section"><img src="<?php echo HTTP_ROOT ?>img/home/img1-hover.jpg" alt="looks by occasion" /></span>
+            </a>
+            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/img2.jpg" alt="shop by items" />
+                <span class="hover_section"><img src="<?php echo HTTP_ROOT ?>img/home/img2-hover.jpg" alt="shop by items" /></span>
+            </a>
+            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/img3.jpg" alt="shop men's" />
+                <span class="hover_section"><img src="<?php echo HTTP_ROOT ?>img/home/img3-hover.jpg" alt="shop men's" /></span>
+            </a>
         </div>
         <!-- /rightImages -->
         <div id="two" style="margin-top:0px;"></div>
@@ -276,7 +293,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 </div>
                 <!-- /Section_Main_Heading -->
                 <div class="for_mobile_device">
-                    <div class="slider multiple-items" style="max-width:765px;">
+                    <div class="multiple-items slider after-load" style="max-width:765px;">
                     <?php foreach($topStylists as $topstylist): ?>
                         <div>
                             <h3>

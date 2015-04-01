@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(window).load(function() {
     $('.multiple-items').slick({
         dots: true,
         infinite: true,
@@ -6,4 +6,5 @@ $(document).ready(function() {
         slidesToShow: 4,
         slidesToScroll: 1
     });
+    
 });

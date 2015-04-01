@@ -151,7 +151,7 @@ function showNotification(notificationDetails, isFade){
 // }
 
 jQuery(function(){
-
+jQuery(window).on('resize', flexRes);
     $(".card-menu ul li:last-child").click(function(){
         $(this).next(".submenu-container").show();
     });
@@ -536,6 +536,13 @@ $("#block-step-access").on("click", function(e){
         } 
     });
 });
-
-
+jQuery(window).on('load', function(){
+    flexRes();
+    jQuery('.flexslider').animate({'opacity':1})
+});
+function flexRes(){
+    var x = jQuery('.rightImages').height(); 
+       console.log("FLEXRES :: " + x)
+    jQuery('#banner_wrapper').height(x);
+}
 confirmationPopup();
