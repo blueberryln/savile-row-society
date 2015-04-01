@@ -448,10 +448,10 @@ class AppController extends Controller {
     function ago($tm,$rcs = 0) {
         $cur_tm = time(); 
         $dif = $cur_tm-$tm;
-        $pds = array('s','min','h','d','w','mon','y','dec');
+        $pds = array('s','m','h','d','w','m','y','dec');
         $lngh = array(1,60,3600,86400,604800,2630880,31570560,315705600);
 
-        for($v = sizeof($lngh)-1; ($v >= 0)&&(($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
+        for($v = sizeof($lngh)-1; (($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
             $no = floor($no);
             /*if($no <> 1)
                 $pds[$v] .='s';*/

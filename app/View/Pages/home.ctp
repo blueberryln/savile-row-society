@@ -223,10 +223,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                     $rcs = 0;
                                     $cur_tm = time(); 
                                     $dif = $cur_tm-$tm;
-                                    $pds = array('s','min','h','d','w','mon','y','dec');
+                                    $pds = array('s','m','h','d','w','m','y','dec');
                                     $lngh = array(1,60,3600,86400,604800,2630880,31570560,315705600);
 
-                                    for($v = sizeof($lngh)-1; ($v >= 0)&&(($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
+                                    for($v = sizeof($lngh)-1; (($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
                                         $no = floor($no);
                                         /*if($no <> 1)
                                             $pds[$v] .='s';*/
@@ -245,7 +245,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             <?php } ?>
                         
                         <form method="POST" class="comment_form send_comment">
-                            <input type = "hidden" name="data[OutfitComment][outfit_id]" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
+                            <input type = "hidden" name="data[OutfitComment][outfit_id]" class="outfit_id" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
                             <input type="text" name="data[OutfitComment][comment]" class="comment_box" placeholder = "Write your comment here."/>
                             <button class="submit_comment">Post</button>
                              <?php if($user): ?>
@@ -406,6 +406,13 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         //e.preventDefault();
         var cmnt = $(this).prev('.comment_box').val().trim();
         var data = $(this).parent('form').serialize();
+        var user = '<?php echo $user['User']['full_name']; ?>';
+        var outfit_id = $(this).parent().children('.outfit_id').val();
+        var pre_mod = '<?= PRE_MOD ?>';
+        if(user == ''){
+            user = 'Guest';
+        }
+        var apnd = '<div class="section"><span class="name">'+user+'</span><span class="comment">'+cmnt+'</span><span class="recently_time">now</span></div>';
         if(cmnt){
             $.ajax({
                 url : '/comments/add_comment',
@@ -413,6 +420,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 data : data,
                 success: function(res){
                     if(res=='success'){
+                        if(pre_mod != 1){
+                            $('.comment_append'+outfit_id).prepend(apnd);
+                        }
 
                     }
                 }

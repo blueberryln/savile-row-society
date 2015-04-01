@@ -62,9 +62,9 @@
                         <form action="http://savilerowsociety.us8.list-manage2.com/subscribe/post" method="POST">
                                 <input type="hidden" name="u" value="88bda5a8e85fc9df8f8b8f5b2">
                                 <input type="hidden" name="id" value="6c6fbf69c3">
+                                <input type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="" placeholder ="Your email address">
                                 <input type="hidden" name="MERGE1" id="MERGE1" size="25" value="null">
                                 <input type="hidden" name="MERGE2" id="MERGE2" size="25" value="null">
-                                <input type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="">
                                 <div class="hidden-from-view"><input type="text" name="b_88bda5a8e85fc9df8f8b8f5b2_6c6fbf69c3" tabindex="-1" value=""></div>
                                 <input type="submit" class="btn-sign_up" name="submit" value="Sign Up">
                         </form>
