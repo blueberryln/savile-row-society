@@ -62,17 +62,25 @@ $(document).ready(function(){
         <div class="users index">
             <table cellpadding="0" cellspacing="0">
                 <tr>
-                    <th><?php echo $this->Paginator->sort('id'); ?></th>
-                    <th><?php echo $this->Paginator->sort('outfitname'); ?></th>
-                    <th><?php echo $this->Paginator->sort('stylist_id'); ?></th>
-                    <th class="actions"><?php echo __('Actions'); ?></th>
+                <!-- commented by shubham -->
+                    <!-- <th><?php /*echo $this->Paginator->sort('id'); ?></th>
+                    <th><?php echo $this->Paginator->sort('outfit_name'); ?></th>
+                    <th><?php echo $this->Paginator->sort('stylist_id');*/ ?></th>
+                    <th class="actions"><?php echo __('Actions'); ?></th> -->
+                <!-- commented by shubham -->
+                <!-- added by shubham -->
+                    <th><a href ="javascript:void(0)">Id</a></th>
+                    <th><a href ="javascript:void(0)">Outfitname</a></th>
+                    <th><a href ="javascript:void(0)">Stylist</a></th>
+                    <th class="actions"><a href ="javascript:void(0)">Actions</a></th>
+                <!-- added by shubham -->
                 </tr>
 
                 <?php foreach ($outfitall as  $outfitcomplete ): ?>
                  
                     <tr class="user-row">
                         <td><?php echo $outfitcomplete['Outfit']['id']; ?>&nbsp;</td>
-                        <td><?php echo $outfitcomplete['Outfit']['outfitname']; ?>&nbsp;</td>
+                        <td><?php echo $outfitcomplete['Outfit']['outfit_name']; ?>&nbsp;</td>
                         <td><?php echo $outfitcomplete['User1']['stylistname']; ?>&nbsp;</td>
                        
                         
@@ -119,15 +127,15 @@ $(document).ready(function(){
     <div class="sixteen columns text-center">
         <p>
             <?php
-            // echo $this->Paginator->counter(array(
-            //     'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-            // ));
+             echo $this->Paginator->counter(array(
+                 'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+             ));
             ?>  </p>
         <div class="paging">
             <?php
-           // echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-           // echo $this->Paginator->numbers(array('separator' => ''));
-           // echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+            echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+            echo $this->Paginator->numbers(array('separator' => ''));
+            echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
             ?>
         </div>
     </div>
