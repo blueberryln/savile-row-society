@@ -200,13 +200,6 @@ $(window).load(function() {
         }
         ?>
         
-        
-        
-       
-        
-        
-
-        
         <script type="text/javascript">
 
             $(document).ready(function(){
