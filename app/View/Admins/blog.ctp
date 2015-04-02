@@ -2,6 +2,9 @@
   td{
     word-break: break-all;
   }
+  th > a{
+    color:#333;
+  }
   .blog_status{
     cursor: pointer;
   }
@@ -16,17 +19,17 @@
     <?php if(!empty($posts)) { ?>
       <table class="table table-bordered blog-table">
         <tr>
-          <th>S.No</th>
-          <th>Blog Title</th>
+          <th><?php echo $this->Paginator->sort('id'); ?></th>
+          <th><?php echo $this->Paginator->sort('title','Blog Title'); ?></th>
           <th>Image</th>
-          <th>Link</th>
-          <th>Date</th>
-          <th>Status</th>
+          <th><?php echo $this->Paginator->sort('link'); ?></th>
+          <th><?php echo $this->Paginator->sort('time','Date'); ?></th>
+          <th><?php echo $this->Paginator->sort('disabled','Status'); ?></th>
           <th>Action</th>
         </tr>
-        <?php $i=1; foreach($posts as $post){ ?>
+        <?php foreach($posts as $post){ ?>
         <tr class = "tr<?= $post['Blog']['id']; ?>">
-          <td>#<?= $i; ?></td>
+          <td>#<?= $post['Blog']['id']; ?></td>
           <td class="blog-heading"><?= $post['Blog']['title']; ?></td>
           <td class="blog_img">
           <?php if($post['Blog']['image']){ ?>
@@ -49,7 +52,7 @@
           	<a title="Delete" href="Javascript:void(0);" rel="<?= base64_encode(convert_uuencode($post['Blog']['id']));?>" class="fa fa-fw fa-trash-o delete_blogpost"></a> 
           </td>
         </tr>
-        <?php $i++; } ?>
+        <?php } ?>
       </table>
       <?php } else{?>
       <span>No records</span>
