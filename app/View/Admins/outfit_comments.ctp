@@ -2,6 +2,9 @@
   td{
     word-break: break-all;
   }
+  th > a{
+    color:#333;
+  }
 </style>
             <div class="col-md-12">
               <div class="box">
@@ -13,17 +16,17 @@
                 <?php if(!empty($comments)) {?>
                   <table class="table table-bordered blog-table">
                     <tr>
-                      <th>S.No</th>
-                      <th>Outfits</th>
-                      <th>User's Name</th>
-                      <th>Comments</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th><?php echo $this->Paginator->sort('id'); ?></th>
+                      <th><?php echo $this->Paginator->sort('Outfit.outfit_name', 'Outfits'); ?></th>
+                      <th><?php echo $this->Paginator->sort('User.full_name', "User's Name"); ?></th>
+                      <th><?php echo $this->Paginator->sort('comment'); ?></th>
+                      <th><?php echo $this->Paginator->sort('time','Date'); ?></th>
+                      <th><?php echo $this->Paginator->sort('disabled','Status'); ?></th>
+                      <th><?php echo __('Action');?></th>
                     </tr>
-                    <?php $i=1; foreach($comments as $outfit_comment) { ?>
+                    <?php foreach($comments as $outfit_comment) { ?>
                     <tr class="tr<?= $outfit_comment['OutfitComment']['id']; ?>">
-                      <td>#<?= $i; ?></td>
+                      <td>#<?= $outfit_comment['OutfitComment']['id']; ?></td>
                       <td><?= $outfit_comment['Outfit']['outfit_name']; ?></td>
                       <td>
                       	<?php if(!$outfit_comment['User']['full_name']) { 
@@ -49,7 +52,7 @@
                       	<a title="Delete" href="Javascript:void(0);" rel="<?= base64_encode(convert_uuencode($outfit_comment['OutfitComment']['id']));?>" class="fa fa-fw fa-trash-o delete_comment"></a> 
                       </td>
                     </tr>
-                    <?php $i++; }?>
+                    <?php } ?>
                   </table>
                   <?php } else{?>
                   <span>No records</span>

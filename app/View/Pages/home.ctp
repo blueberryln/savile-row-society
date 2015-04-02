@@ -379,12 +379,12 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <!-- row -->
                 <div class="row">
                 <?php foreach($posts as $post) {?>
-                    <div class="column">
-                        <a href="<?= $post['Blog']['link'] ?>">
+                    <a href="<?= $post['Blog']['link'] ?>">    
+                        <div class="column">
                             <img src="<?php echo HTTP_ROOT.'files/blog/'.$post['Blog']['image']; ?>" alt="" />
-                        </a>
                         <span><?php echo String::truncate($post['Blog']['title'],35,array('ellipsis' => '  ...  ','exact' => false  ));?></span>
-                    </div>
+                        </div>
+                    </a>
                 <?php } ?>
                 </div>
                 <!-- /row -->
