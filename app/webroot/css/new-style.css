@@ -239,19 +239,9 @@ color: #b8a060;
 letter-spacing: 2px;
 font-family: 'ACaslonPro-Regular';
 }
-#SignUp_Wrapper a{
-float: right;
-background: #b4a166;
-font-size: 20px;
-text-transform: uppercase;
-color: #fff;
-text-decoration: none;
-margin: 0px 0px 0px;
-padding: 10px 80px;
-display: inline-block;
-vertical-align: top;
-}
+#SignUp_Wrapper a{ float: right; background: #b4a166; font-size: 20px; text-transform: uppercase; color: #fff; text-decoration: none; margin: 0px 0px 0px; padding: 10px 80px; display: inline-block; vertical-align: top; }
 
+.blockUI.blockMsg.blockPage{ margin-top: 100px !important; }
 
 .featuredStylists-Wrapper{ width: 100%; margin: 0px 0px 30px; padding: 0px; display: inline-block; vertical-align: top; }
 .featuredStylists-Wrapper .center_row .Section_Main_Heading{ margin: 0px 0px 20px; }

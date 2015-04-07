@@ -23,8 +23,6 @@
 
     jQuery(document).ready(function(){
         jQuery("#menu-trigger").on("click", function(){
-            console.log("dfbghjdfghjdfd");
-            // jQuery(this).toggleClass("mobile_menu");          
             var menu = jQuery(".header_wrapper .mobile_nav");
             jQuery(menu).slideToggle();  
         });
