@@ -17,10 +17,10 @@
                 </div>
 
                 <div style=" padding: 5px 0;">
-					<p>First Name : <?= $f_name; ?></p>
-					<p>Last Name : <?= $l_name; ?></p>
-					<p>Email : <?= $e_mail; ?></p>
-					<p>Phone : <?php if($mobile) {echo $mobile;} else{echo "--";} ; ?></p>
+					<p>First Name : <?= $user['User']['first_name']; ?></p>
+					<p>Last Name : <?= $user['User']['last_name']; ?></p>
+					<p>Email : <?= $user['User']['email']; ?></p>
+					<p>Phone : <?php if($user['User']['phone']) {echo $user['User']['phone'];} else{echo "--";} ; ?></p>
 					<p>Stylist : <?= $stylist_id; ?></p>
 				</div>
 

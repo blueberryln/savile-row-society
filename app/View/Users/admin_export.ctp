@@ -18,6 +18,7 @@ $class = ' style="font-family:Arial;font-size:11px;border:1px solid #CCCCCC;colo
         <th<?php echo $class_th; ?>>Personal Shopper</th>
         <th<?php echo $class_th; ?>>Shopper Email</th>
         <th<?php echo $class_th; ?>>Refer Medium</th>
+        <th<?php echo $class_th; ?>>Landing Offer</th>
         <th<?php echo $class_th; ?>>Created date</th>
         <th<?php echo $class_th; ?>>Updated date</th>
     </tr>
@@ -37,6 +38,7 @@ $class = ' style="font-family:Arial;font-size:11px;border:1px solid #CCCCCC;colo
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['personal_shopper']) ? h($user['User']['personal_shopper']) : 'N/A'; ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['shopper_email']) ? h($user['User']['shopper_email']) : 'N/A'; ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['refer_medium']) ? h($user['User']['refer_medium']) : 'N/A'; ?></td>
+            <td valign="top"<?php echo $class; ?>><?php echo ($user['User']['landing_offer']) ? h($user['User']['landing_offer']) : 'unavailable'; ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo $this->Time->format('F jS, Y H:i', $user['User']['created']); ?></td>
             <td valign="top"<?php echo $class; ?>><?php echo $this->Time->format('F jS, Y H:i', $user['User']['updated']); ?></td>
         </tr>
