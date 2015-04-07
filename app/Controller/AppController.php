@@ -426,23 +426,26 @@ class AppController extends Controller {
 
     // new user registration mail to sales team
     function mailto_sales_team($user = null,$stylist_id = null){
-         try{
-                $bcc = Configure::read('Email.contact');
-                //$sales_team = array('Tyler@savilerowsociety.com','Mitch@savilerowsociety.com','Lisa@savilerowsociety.com','matt@savilerowsociety.com');
-                $sales_team = array('shubham0091@gmail.com');
-                $email = new CakeEmail('default');
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                $email->to($sales_team);
-                $email->subject('New User Registration.');
-                $email->bcc($bcc);
-                $email->template('sales_team');
-                $email->emailFormat('html');
-                $email->viewVars(array('user' => $user,'stylist_id'=>$stylist_id));
-                $email->send();
-            }
-            catch(Exception $e){
+        if(!DEV_MODE){  // the 'DEV_MODE' is defined in core.php
+        
+             try{
+                    $bcc = Configure::read('Email.contact');
+                    //$sales_team = array('Tyler@savilerowsociety.com','Mitch@savilerowsociety.com','Lisa@savilerowsociety.com','matt@savilerowsociety.com');
+                    $sales_team = array('shubham0091@gmail.com');
+                    $email = new CakeEmail('default');
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->to($sales_team);
+                    $email->subject('New User Registration.');
+                    $email->bcc($bcc);
+                    $email->template('sales_team');
+                    $email->emailFormat('html');
+                    $email->viewVars(array('user' => $user,'stylist_id'=>$stylist_id));
+                    $email->send();
+                }
+                catch(Exception $e){
 
-            }
+                }
+        }
     }
 
     function ago($tm,$rcs = 0) {
