@@ -927,7 +927,7 @@ class StylistsController extends AppController {
         $Entity = ClassRegistry::init('Entity');
         $users = $User->findById($id);
         //print_r($user);
-        $stylists = $User->find('all',array('conditions'=>array('User.is_stylist'=>true)));
+        $stylists = $User->find('all',array('conditions'=>array('User.is_stylist'=>true,'User.view_stylist'=>true)));
         $outfits = $Outfit->find('all',array('conditions'=>array('Outfit.stylist_id'=>$id,),'fields'=>'Outfit.outfit_name,Outfit.id'));
         $StylistBio = ClassRegistry::init('StylistBio');
         //$StylistPhotostream = ClassRegistry::init('StylistPhotostream');

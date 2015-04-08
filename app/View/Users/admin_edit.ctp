@@ -23,6 +23,8 @@
                 echo $this->Form->input('stylist_id', array('empty' => 'Select Stylist'));
                 echo $this->Form->input('is_editor');
                 echo $this->Form->input('is_stylist');
+                echo $this->Form->input('view_stylist');
+                echo $this->Form->input('random_stylist');
                 echo $this->Form->input('is_admin');
                 echo $this->Form->input('is_event');
                 echo $this->Form->input('lead');
