@@ -266,22 +266,30 @@
 
                       <!-- Heading -->
                       <div class="heading_section">
-                        My Account <a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                       <?php if(!$user) {?>
+                        My Account 
+                      <?php } else{
+                        echo 'Hello '.$user['User']['first_name'].'!';
+                        } ?><a href="#" class="icon_cross TextReplaceByImage">X</a> 
                       </div>
                       <!-- /Heading -->
 
                       <!-- content_section -->
                       <div class="content_section">
                         <a href="#">My Orders</a>
-                        <a href="#">Account Details</a>
-                        <a href="#">Refer A Friend</a>
+                        <a href="/user/profile">Account Details</a>
+                        <a href="/refer-a-friend">Refer A Friend</a>
                       </div>
                       <!-- /content_section -->
 
                       <!-- bottom_section -->
                       <div class="bottom_section">
-                        <a href="#">Sign In</a>
-                        <a href="#">Sign Out</a>
+                        <?php if(!$user):?>
+                          <a href="javascript:void(0)" onclick="window.ref_url=''; signIn();">Sign In</a>
+                          <a href="/users/register">Get Started</a>
+                        <?php else:?>
+                          <a href="/signout">Sign Out</a>
+                        <?php endif;?>
                       </div>
                       <!-- /bottom_section -->
                     </div>
@@ -290,13 +298,13 @@
 
 
                     <ul class="last">
+                        <li><a href="#" class="notifications">notifications</a></li>
                         <?php if(!$user):?>
                         <li><a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart">cart</a></li>
                         <?php else:?>
-                        <li><a href="#" class="notifications">notifications</a></li>
                         <li><a href="<?php echo $this->request->webroot; ?>cart" class="cart">cart</a></li>
                         <?php endif;?>
-                        <li><a href="#" onclick="window.ref_url=''; signIn();" class="my-account">My Account</a></li>
+                        <li><a href="javascript:void(0)" class="my-account">My Account</a></li>
                     </ul>
                 </div>
                 <!-- /top_icons -->
