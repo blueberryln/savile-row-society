@@ -151,6 +151,16 @@ function showNotification(notificationDetails, isFade){
 // }
 
 jQuery(function(){
+    var doit;
+function resizedw(){
+    _fContentCenter();
+}
+window.onresize = function() {
+    clearTimeout(doit);
+    doit = setTimeout(function() {
+        resizedw();
+    }, 100);
+};
 jQuery(window).on('resize', flexRes);
     $(".card-menu ul li:last-child").click(function(){
         $(this).next(".submenu-container").show();
@@ -538,7 +548,8 @@ $("#block-step-access").on("click", function(e){
 });
 jQuery(window).on('load resize', function(){
     flexRes();
-    jQuery('.flexslider').animate({'opacity':1})
+    jQuery('.flexslider').animate({'opacity':1});    
+    _fContentCenter();
 });
 function flexRes(){
     var _toBeHeight = jQuery('#banner_wrapper').width()/(841/380);
@@ -550,5 +561,13 @@ function flexRes(){
     jQuery('.rightImages').height(x);
     jQuery('.rightImages > a').height(x/3 - 1).css("line-height", x/3 + 'px');
     jQuery('.rightImages > a:last-child').height(x/3);
+}
+function _fContentCenter(){
+    jQuery("#banner_wrapper ul li").each(function(){
+        var a = jQuery(this).height();
+        var b = jQuery(this).find('span').outerHeight();
+        var _bTop = (a - b)/2;
+        jQuery(this).find('span').css('top', _bTop);        
+    });
 }
 confirmationPopup();

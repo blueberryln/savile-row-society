@@ -96,7 +96,7 @@
 
 .slick-next
 {
-    right: -200px;
+    right: -10px;
     background: url(../../img/home/slick-next.jpg) no-repeat !important;
 
 }
@@ -118,17 +118,17 @@
 .slick-slider
 {
     margin-bottom: 30px;
-    display: inline-block;
+    /*display: inline-block;*/
     vertical-align: top;
 }
 
 .slick-dots{
     position: absolute;
-    bottom: -46px;
+    bottom: 0;
     display: block;
     width: 100%;
     padding: 0;
-    left: 93px;
+    /*left: 93px;*/
     list-style: none;
     text-align: center;
 }

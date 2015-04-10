@@ -73,7 +73,30 @@ $(window).load(function() {
         infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+          ]
     }).removeClass('after-load');    
 });    
 </script>
@@ -217,9 +240,23 @@ $(window).load(function() {
                 $('.flexslider').flexslider({
                     animation: "slide",
                     controlNav: true,
-                    directionNav: true
+                    directionNav: true,
+                    start: function(){
+                        _contentCenter();
+                    },
+                    after : function(){
+                        _contentCenter();
+                    }                   
                 });
-                
+                function _contentCenter(){
+                    /***Slider content vertically centered**/
+                    jQuery("#banner_wrapper ul li").each(function(){
+                        var a = jQuery(this).height();
+                        var b = jQuery(this).find('span').outerHeight();
+                        var _bTop = (a - b)/2;
+                        jQuery(this).find('span').css('top', _bTop);                            
+                    });
+                }
                 $('.slider2').bxSlider({
                 slideWidth: 495,
                 minSlides: 1,

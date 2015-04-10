@@ -13,7 +13,7 @@
            $('.promotionalBar').show();
            $('#header_wrapper').removeClass('header_bar');
         }
-        getElementsByTagName
+        else
         {
           $('.promotionalBar').hide();
           $('#header_wrapper').addClass('header_bar');
@@ -44,7 +44,7 @@
       jQuery("a.my-account").on("hover", function(){
         jQuery(".myAccount_dropdown").show().siblings('.dropdown_wrapper').hide();
       });
-      jQuery(".icon_cross").on("click", function(){
+      jQuery(".icon_cross, body").on("click", function(){
         jQuery(".myAccount_dropdown").hide();
       });      
     });

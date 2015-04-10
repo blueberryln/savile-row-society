@@ -299,7 +299,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 </div>
                 <!-- /Section_Main_Heading -->
                 <div class="for_mobile_device">
-                    <div class="multiple-items slider after-load" style="max-width:765px;">
+                    <div class="multiple-items slider after-load">
                     <?php foreach($topStylists as $topstylist): ?>
                         <div>
                             <h3>
