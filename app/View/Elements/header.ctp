@@ -13,7 +13,7 @@
            $('.promotionalBar').show();
            $('#header_wrapper').removeClass('header_bar');
         }
-        else
+        getElementsByTagName
         {
           $('.promotionalBar').hide();
           $('#header_wrapper').addClass('header_bar');
@@ -27,6 +27,40 @@
             jQuery(menu).slideToggle();  
         });
     });
+
+    jQuery(document).ready(function(){
+      jQuery("a.notifications").on("hover", function(){
+        jQuery(".notification_dropdown").show().siblings('.dropdown_wrapper').hide();
+      });
+      jQuery(".icon_cross, body").on("click", function(){
+        jQuery(".notification_dropdown").hide();
+      });
+      jQuery("a.cart").on("hover", function(){
+        jQuery(".cart_dropdown").show().siblings('.dropdown_wrapper').hide();
+      });
+      jQuery(".icon_cross").on("click", function(){
+        jQuery(".cart_dropdown").hide();
+      });    
+      jQuery("a.my-account").on("hover", function(){
+        jQuery(".myAccount_dropdown").show().siblings('.dropdown_wrapper').hide();
+      });
+      jQuery(".icon_cross").on("click", function(){
+        jQuery(".myAccount_dropdown").hide();
+      });      
+    });
+
+
+    $(document).ready(function(){
+      $('.latest_news').carouFredSel({
+        direction: 'up',
+        prev: '#prev_item',
+        next: '#next_item',
+        auto: false,
+        scroll: 3,
+        items: 3
+      });
+    });
+
   </script>
 
         
@@ -82,13 +116,180 @@
 
                 <!-- top_icons -->
                 <div class="top_icons">
-                    <ul>
+                    <ul class="social_icon_list">
                         <li><a href="#" class="instagram">instagram</a></li>
                         <li><a href="#" class="facebook">facebook</a></li>
                         <li><a href="#" class="twitter">twitter</a></li>
                     </ul>
+
+                    <!-- notification_dropdown -->
+                    <div class="notification_dropdown dropdown_wrapper">
+
+                      <!-- pointer -->
+                      <div class="pointer">
+                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.jpg" alt="^" />
+                      </div>
+                      <!-- /pointer -->
+
+                      <!-- Heading -->
+                      <div class="heading_section">
+                        Looking for style? <a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                      </div>
+                      <!-- /Heading -->
+
+                      <!-- content_section -->
+                      <div class="content_section">
+                        Our Personal Stylists are here to help. <br />
+                        Chat with a stylists now!.
+                        <a href="#" class="stylist_profile_icon"><img src="<?php echo HTTP_ROOT ?>img/home/stylist_profile_icon.png" alt="Stylists" /></a>
+                        <a href="#" class="btn_chat_now">Chat Now</a> <br /><br />
+                        Call Us <span>+1 347 878 7280</span>
+                      </div>
+                      <!-- /content_section -->
+
+                      <!-- bottom_section -->
+                      <div class="bottom_section">
+                      Don't have an account? <a href="#">Sign up for Free</a>
+                      </div>
+                      <!-- /bottom_section -->
+                    </div>
+                    <!-- /notification_dropdown -->
+
+                    <!-- cart_dropdown -->
+                    <div class="cart_dropdown dropdown_wrapper">
+                      <!-- pointer -->
+                      <div class="pointer">
+                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.jpg" alt="^" />
+                      </div>
+                      <!-- /pointer -->
+                      <!-- Heading -->
+                      <div class="heading_section">
+                        0 Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                      </div>
+                      <!-- /Heading -->
+                      <!-- content_section -->
+                      <div class="content_section">
+                        <!-- <br />
+                        Your shopping cart <br />
+                        is empty... <br /> <br /> -->
+
+                        <ul class="latest_news">
+                          <li>
+                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shoe_img.jpg" alt="Shoe" /></a>
+                            <span>
+                              GRENSON: Stanley Leather Winhtip Brogue <br /><br />
+                              Qty: 1<br />
+                              Size: US 11<br /><br />
+                              $405
+                            </span>
+                          </li>
+                          <li>
+                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shirt_img.jpg" alt="Shirt" /></a>
+                            <span>
+                              J.CREW: <br />
+                              Cotton-Chambray Shirt<br /><br />
+                              Qty: 1<br />
+                              Size: US 11<br /><br />
+                              $405
+                            </span>
+                          </li>
+                          <li>
+                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shoe_img.jpg" alt="Shoe" /></a>
+                            <span>
+                              GRENSON: Stanley Leather Winhtip Brogue <br /><br />
+                              Qty: 1<br />
+                              Size: US 11<br /><br />
+                              $405
+                            </span>
+                          </li>
+                          <li>
+                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shirt_img.jpg" alt="Shirt" /></a>
+                            <span>
+                              J.CREW: <br />
+                              Cotton-Chambray Shirt<br /><br />
+                              Qty: 1<br />
+                              Size: US 11<br /><br />
+                              $405
+                            </span>
+                          </li>
+                          <li>
+                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shoe_img.jpg" alt="Shoe" /></a>
+                            <span>
+                              GRENSON: Stanley Leather Winhtip Brogue <br /><br />
+                              Qty: 1<br />
+                              Size: US 11<br /><br />
+                              $405
+                            </span>
+                          </li>
+                          <li>
+                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shirt_img.jpg" alt="Shirt" /></a>
+                            <span>
+                              J.CREW: <br />
+                              Cotton-Chambray Shirt<br /><br />
+                              Qty: 1<br />
+                              Size: US 11<br /><br />
+                              $405
+                            </span>
+                          </li>
+                        </ul>
+
+                        <a href="#" title="Next" id="next_item">Next</a>
+                        <a href="#" title="Previous" id="prev_item">Previous</a>
+
+                        <!-- bottom_buttons_area -->
+                        <div class="bottom_buttons_area">
+                          <a href="#" class="viewCart">View Cart</a>
+                          <a href="#" class="proceeToPurchase">Proceed To Purchase</a>
+                        </div>
+                        <!-- /bottom_buttons_area -->
+
+
+                      </div>
+                      <!-- /content_section -->
+                      <!-- bottom_section -->
+                      <div class="bottom_section">
+                      Free Delivery & Returns on ALL Orders| Call Us <span>+1 347 878 7280</span>
+                      </div>
+                      <!-- /bottom_section -->
+                    </div>
+                    <!-- /cart_dropdown -->
+
+
+                    <!-- myAccount_dropdown -->
+                    <div class="myAccount_dropdown dropdown_wrapper">
+
+                      <!-- pointer -->
+                      <div class="pointer">
+                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.jpg" alt="^" />
+                      </div>
+                      <!-- /pointer -->
+
+                      <!-- Heading -->
+                      <div class="heading_section">
+                        My Account <a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                      </div>
+                      <!-- /Heading -->
+
+                      <!-- content_section -->
+                      <div class="content_section">
+                        <a href="#">My Orders</a>
+                        <a href="#">Account Details</a>
+                        <a href="#">Refer A Friend</a>
+                      </div>
+                      <!-- /content_section -->
+
+                      <!-- bottom_section -->
+                      <div class="bottom_section">
+                        <a href="#">Sign In</a>
+                        <a href="#">Sign Out</a>
+                      </div>
+                      <!-- /bottom_section -->
+                    </div>
+                    <!-- /myAccount_dropdown -->
+
+
+
                     <ul class="last">
-                        
                         <?php if(!$user):?>
                         <li><a href="<?php echo $this->request->webroot; ?>guest/cart" class="cart">cart</a></li>
                         <?php else:?>

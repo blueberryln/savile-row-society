@@ -129,15 +129,21 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
         <!-- rightImages -->
         <div class="rightImages">
-            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/img1.jpg" alt="looks by occasion" />
-                <span class="hover_section"><img src="<?php echo HTTP_ROOT ?>img/home/img1-hover.jpg" alt="looks by occasion" /></span>
+            <!-- <a href="#"><img src="<?php //echo HTTP_ROOT ?>img/home/img1.jpg" alt="looks by occasion" />
+                <span class="hover_section"><img src="<?php //echo HTTP_ROOT ?>img/home/img1-hover.jpg" alt="looks by occasion" /></span>
             </a>
-            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/img2.jpg" alt="shop by items" />
-                <span class="hover_section"><img src="<?php echo HTTP_ROOT ?>img/home/img2-hover.jpg" alt="shop by items" /></span>
+            <a href="#"><img src="<?php //echo HTTP_ROOT ?>img/home/img2.jpg" alt="shop by items" />
+                <span class="hover_section"><img src="<?php //echo HTTP_ROOT ?>img/home/img2-hover.jpg" alt="shop by items" /></span>
             </a>
-            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/img3.jpg" alt="shop men's" />
-                <span class="hover_section"><img src="<?php echo HTTP_ROOT ?>img/home/img3-hover.jpg" alt="shop men's" /></span>
-            </a>
+            <a href="#"><img src="<?php //echo HTTP_ROOT ?>img/home/img3.jpg" alt="shop men's" />
+                <span class="hover_section"><img src="<?php //echo HTTP_ROOT ?>img/home/img3-hover.jpg" alt="shop men's" /></span>
+            </a> -->
+
+            <a href="#" class="looksByOccasion"><span><span class="col-text">looks by occasion</span></span></a>
+            <a href="#" class="shopByItems"><span><span class="col-text">shop by items</span></span></a>
+            <a href="#" class="shopMen"><span><span class="col-text">shop men's</span></span></a>
+
+
         </div>
         <!-- /rightImages -->
         <div id="two" style="margin-top:0px;"></div>

@@ -536,13 +536,19 @@ $("#block-step-access").on("click", function(e){
         } 
     });
 });
-jQuery(window).on('load', function(){
+jQuery(window).on('load resize', function(){
     flexRes();
     jQuery('.flexslider').animate({'opacity':1})
 });
 function flexRes(){
-    var x = jQuery('.rightImages').height(); 
-       console.log("FLEXRES :: " + x)
-    jQuery('#banner_wrapper').height(x);
+    var _toBeHeight = jQuery('#banner_wrapper').width()/(841/380);
+    // console.log(Math.round(_toBeHeight));
+    // var x = jQuery('#banner_wrapper').height(); 
+    var x = _toBeHeight;
+    // var x = 558; 
+       // console.log("FLEXRES :: " + x)
+    jQuery('.rightImages').height(x);
+    jQuery('.rightImages > a').height(x/3 - 1).css("line-height", x/3 + 'px');
+    jQuery('.rightImages > a:last-child').height(x/3);
 }
 confirmationPopup();

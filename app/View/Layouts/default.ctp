@@ -55,6 +55,7 @@
         <!--<script src="/js/jquery-1.9.1.min.js"></script>-->
 
 
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/jquery.carouFredSel.js"></script>
 
 <!-- Start Default -->
 <link rel="stylesheet" type="text/css" href="<?php echo CSS_ROOT ?>css/new-style.css" />
