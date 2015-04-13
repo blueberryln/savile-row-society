@@ -1,9 +1,27 @@
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.menu_switcher').on('click', function(){    
-      $(".wrapper_mobile").toggleClass('show');    
-    });  
+    $('.menu_switcher').on('click', function(){
+      $(this).addClass('opened');    
+      $('body').toggleClass('of-toggle');
+      $(".wrapper_mobile").toggleClass('show'); 
+      $('.container_wrapper,#header_wrapper .center_row .logo_details').toggleClass('menu-show'); 
+      $('#header_wrapper .center_row .top_icons').toggleClass('cart-right');
+    });
+    $(window).on('resize load', function(){
+      if($(window).width() >= 752){
+        $('.menu_switcher').removeClass('opened');
+        $('body').removeClass('of-toggle');
+        $(".wrapper_mobile").removeClass('show');
+        $('.container_wrapper,#header_wrapper .center_row .logo_details').removeClass('menu-show'); 
+        $('#header_wrapper .center_row .top_icons').removeClass('cart-right');
+        slickDim();
+      }
+    });
   });
+  function slickDim(){
+    var x = jQuery('.slick-slide').width();
+    jQuery('.slick-slide').height(x);
+  }
 
     $(document).ready(function(){
       $(window).scroll(function () {
@@ -12,11 +30,13 @@
         {
            $('.promotionalBar').show();
            $('#header_wrapper').removeClass('header_bar');
+           $('.menu_switcher').removeClass('scrolled');
         }
         else
         {
           $('.promotionalBar').hide();
           $('#header_wrapper').addClass('header_bar');
+          $('.menu_switcher').addClass('scrolled');
         }
       });
     });
@@ -63,7 +83,37 @@
 
   </script>
 
-        
+        <!--Mobile menu wrapper-->
+        <div class="wrapper_mobile">
+            <!-- mobile_menu_wrapper -->
+            <div class="mobile_menu_wrapper">
+              <ul>
+                <li><a href="#">My Account</a></li>
+                <span>&nbsp;</span>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Stylist</a></li>
+                <li><a href="#">Blog</a></li>
+                <span>&nbsp;</span>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Intagaram</a></li>
+                <span>&nbsp;</span>
+                <li><a href="#">Vip Access</a></li>
+                <span>&nbsp;</span>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Team</a></li>
+                <li><a href="#">Our Brands</a></li>
+                <span>&nbsp;</span>
+                <li><a href="#">Sign Up For Savil.Me News</a></li>
+              </ul>
+            </div>
+            <!-- /mobile_menu_wrapper -->
+
+            <!-- menu_switcher -->
+            <a href="#" class="menu_switcher"><img src="<?php echo HTTP_ROOT ?>img/home/icon_menu_switcher.jpg" alt="Menu" /></a>
+            <!-- /menu_switcher -->
+
+        </div>
         <!-- header -->
         <header id="header_wrapper">
             
@@ -79,40 +129,6 @@
                     <a href="/"><img src="<?php echo HTTP_ROOT ?>img/home/logo.jpg" alt="Savil.Me" /></a>
                 </div>
                 <!-- /logo_details -->  
-                
-                <div class="wrapper_mobile">
-                    <!-- mobile_menu_wrapper -->
-                    <div class="mobile_menu_wrapper">
-                      <ul>
-                        <li><a href="#">My Account</a></li>
-                        <span>&nbsp;</span>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Stylist</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <span>&nbsp;</span>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Intagaram</a></li>
-                        <span>&nbsp;</span>
-                        <li><a href="#">Vip Access</a></li>
-                        <span>&nbsp;</span>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Our Brands</a></li>
-                        <span>&nbsp;</span>
-                        <li><a href="#">Sign Up For Savil.Me News</a></li>
-                      </ul>
-                    </div>
-                    <!-- /mobile_menu_wrapper -->
-
-                    <!-- menu_switcher -->
-                    <a href="#" class="menu_switcher"><img src="<?php echo HTTP_ROOT ?>img/home/icon_menu_switcher.jpg" alt="Menu" /></a>
-                    <!-- /menu_switcher -->
-
-                </div>
-
-
-
 
                 <!-- top_icons -->
                 <div class="top_icons">

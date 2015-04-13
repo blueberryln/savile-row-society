@@ -67,7 +67,7 @@
 <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/slick.js"></script>
 <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/prism.js"></script>
 <script type="text/javascript">
-$(window).load(function() {
+$(document).ready(function() {
     $('.multiple-items').slick({
         dots: true,
         infinite: true,
@@ -78,7 +78,7 @@ $(window).load(function() {
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 3
+                slidesToShow: 2
               }
             },
             {

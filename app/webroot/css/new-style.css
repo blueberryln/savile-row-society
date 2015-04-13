@@ -5,7 +5,7 @@ body{ margin: 0px; padding: 0px; font-size: 14px; color: #000; }
 a{ border: none; }
 
 .TextReplaceByImage{ border: none; text-indent: -9999px; }
-.container_wrapper{ width: 100%; margin: 0px; padding: 0px; font-size: 0; background: #fff; }
+.container_wrapper{ width: 100%; margin: 0px; padding: 0px; font-size: 0; background: #fff; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -ms-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear;}
 .center_row{ width: 1024px; margin: 0px auto; }
 
 #header_wrapper{ width: 100%; margin: 0px auto 10px; padding: 0px; border-bottom: 2px solid #E8E8E8; position: fixed; z-index: 2000; background: #fff; top: 0; } 
@@ -15,7 +15,7 @@ a{ border: none; }
 /* ==== Header ==== */
 .promotionalBar{ font-family: 'ProximaNovaCond-Regular'; width: 100%; margin: 0px 0px 10px; padding: 0px; display: inline-block; vertical-align: top; height: 33px; background: #5f5d5e; color: #fff; font-size: 18px; text-align: center; line-height: 33px; }
 .promotionalBar span{ color: #d4737a; padding: 0 0 0 10px; }
-.logo_details{ width: 200px; display: inline-block; vertical-align: top; }
+.logo_details{ width: 200px; display: inline-block; vertical-align: top; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -ms-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear;}
 
 .nav_wrapper{ display: inline-block; vertical-align: top; margin: 15px 30px 0px 0px; padding: 0px; float: right; }
 .nav_wrapper ul{ margin: 0px; padding: 0px; }
@@ -23,7 +23,7 @@ a{ border: none; }
 .nav_wrapper ul li a{ text-decoration: none; color: #333; }
 .nav_wrapper ul li a:hover{ text-decoration: none; color: #333; }
 
-.top_icons{ margin: 12px 0px 0px; padding: 0px; display: inline-block; vertical-align: top; float: right; position: relative; }
+.top_icons{ margin: 12px 0px 0px; padding: 0px; display: inline-block; vertical-align: top; float: right; position: relative; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -ms-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear; }
 .top_icons ul{ margin: 0px 30px 0px 0px; padding: 0px; display: inline-block; vertical-align: top; }
 .top_icons ul.last{ margin: 0px; }
 .top_icons ul li{ list-style-type: none; display: inline-block; vertical-align: top; margin: 0px; padding: 0px 7px; }
@@ -95,7 +95,7 @@ a{ border: none; }
 .product_placeholder ul li a{ width: 100%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; height: 100%; position: relative; }
 .product_placeholder ul li a img{ background: #000; border: none; margin: 0px; padding: 0px; display: inline-block; vertical-align: top; height: 100%; }
 .product_placeholder ul li a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; color: #fff; width: 100%; text-align: center; height: 100%; line-height: 128px; }
-.slick-slide h3 a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; top: 0; color: #fff; width: 96%; text-align: center; height: 100%; line-height: 186px; font-size: 18px; }
+.slick-slide h3 a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; top: 0; color: #fff; width: 100%; text-align: center; height: 100%; line-height: 186px; font-size: 18px; }
 .slick-slide h3 a .hover_part a{ width: 96%; border: 1px solid #fff; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; }
 
 
@@ -225,15 +225,15 @@ a{ border: none; }
 
 
 /* ===== Mobile Menu ===== */
-.mobile_menu_wrapper { display: inline-block; width: 185px; margin: -20px 0 0 0; background: #5f5d5e; vertical-align: top; text-align: left; padding: 20px 20px 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
+.mobile_menu_wrapper {display: inline-block; width: 185px; height: 100%; margin: 0px 10px 0 0; background: #5f5d5e; vertical-align: top; text-align: left; padding: 20px 20px 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .menu_switcher{ width: 35px; margin: 0px 0 0 5px; }
 .menu_switcher img{ width: 100%; }
-.wrapper_mobile{ display: none; position: absolute; left: -185px; -webkit-transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; transition: all 0.3s linear; }
-.show{ left: 0; display: inline-block; }
+.wrapper_mobile{z-index: 9999; display: none; position: fixed; height: 100%; left: -185px; top:0px; -webkit-transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; transition: all 0.3s linear; }
 .mobile_menu_wrapper ul{ margin: 0px; padding: 0px; }
 .mobile_menu_wrapper ul li{ font-size: 16px; color: #fff; line-height: 30px; margin: 0; padding: 0; width: 100%; }
 .mobile_menu_wrapper ul li a{ color: #fff; }
 .mobile_menu_wrapper ul span{ border-top: 1px solid #777676; width: 100%; display: inline-block; margin: 10px 0; padding: 0; height: 1px; } 
+
 
 
 
@@ -257,6 +257,11 @@ a{ border: none; }
 
 }
 
+@media screen and (max-width: 480px) {
+    .wrapper_mobile .menu_switcher{ margin: 63px 0 0 0; }
+    #header_wrapper .top_icons{ top: -2px; }
+    .wrapper_mobile .menu_switcher img { width: 90%; }
+}
 
 @media screen and (max-width: 568px) {
     .container_wrapper .rightImages a{ width: 100%; }
@@ -265,10 +270,15 @@ a{ border: none; }
     .container_wrapper .slider .flexslider .slides > li.GetSocial > span{ padding: 10px 0px 25px; }
     /*.container_wrapper .slick-list{ height: 113px; }
     .container_wrapper .slick-slide h3 a .hover_part{ line-height: 113px; height: 113px; font-size: 12px; }*/
+
 }
 
 
 @media screen and (min-width: 240px) and (max-width: 768px) {
+	.show{ left: 0; display: inline-block; }
+	.menu-show{margin-left: 185px !important;;}
+	.cart-right{right:-185px !important;}
+	.of-toggle{overflow: hidden;}
     .logo_details{ width: 50%; }
     .logo_details a{ width: 100%; display: inline-block; }
     .logo_details a img{ width: 60%; display: inline-block; }
@@ -303,7 +313,8 @@ a{ border: none; }
 	.slider .flexslider .slides > li > span{ top: 15%; width: 70%; }
     .rightImages .row a.img_hover img{ height: 100%; }
     .rightImages .row a{ height: 100%; }
-    .menu_switcher{ display: inline-block; width: 30px; margin: 0px 0 0 0; border: none; }
+    .menu_switcher{ display: inline-block; width: 30px; margin: 50px 0 0 0; border: none; }
+    .menu_switcher.scrolled{margin-top: 20px;}
     .wrapper_mobile{ display: inline-block; }
     .mobile_menu_wrapper ul li{ font-size: 14px; }
 

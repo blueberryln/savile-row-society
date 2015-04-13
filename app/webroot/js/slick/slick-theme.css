@@ -96,7 +96,7 @@
 
 .slick-next
 {
-    right: -10px;
+    right: -2px;
     background: url(../../img/home/slick-next.jpg) no-repeat !important;
 
 }
@@ -124,7 +124,7 @@
 
 .slick-dots{
     position: absolute;
-    bottom: 0;
+    bottom: -30px;
     display: block;
     width: 100%;
     padding: 0;
