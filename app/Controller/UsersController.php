@@ -895,7 +895,7 @@ class UsersController extends AppController {
                 $new_stylist = $user_stylist;
             }
             else{
-                $stylist = $this->User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true))); 
+                $stylist = $this->User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
                 if($stylist){
                     $user['User']['stylist_id'] = $stylist['User']['id']; 
                     $new_stylist = $stylist;         
@@ -908,7 +908,7 @@ class UsersController extends AppController {
                 $new_stylist = $refered_stylist;    
             }
             else{
-                $stylist = $this->User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true))); 
+                $stylist = $this->User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
                 if($stylist){
                     $user['User']['stylist_id'] = $stylist['User']['id']; 
                     $new_stylist = $stylist;         
