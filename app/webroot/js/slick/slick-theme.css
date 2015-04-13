@@ -193,7 +193,9 @@
     opacity: .75;
     color: black;
 }
-.last_slide{ display: inline-block; vertical-align: top; margin: 0px; padding: 0px; }
+.last_slide{ display: inline-block; vertical-align: top; margin: 0px; padding: 0px; padding: 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
+.last_slide a{display: block;}
+.last_slide a img{width: 100%;}
 
 @media screen and (min-width: 240px) and (max-width: 320px) {
     .for_mobile_device .slick-dots{ position: relative; bottom: -6px; display: block; width: 19%; padding: 0; left: 22px; list-style: none; text-align: center; }

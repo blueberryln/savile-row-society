@@ -91,13 +91,14 @@ a{ border: none; }
 
 .product_placeholder{ display: inline-block; vertical-align: top; margin: 0px 0px 10px; padding: 0px; }
 .product_placeholder ul{ margin: 0px; padding: 0px; }
-.product_placeholder ul li{ list-style-type: none; display: inline-block; vertical-align: top; width: 45%; height: 128px; margin: 0px 0px 10px; padding: 0px; }
+.product_placeholder ul li{ list-style-type: none; display: inline-block; vertical-align: top; width: 45%; height: 128px; margin: 0px 0px 10px; padding: 0px; position: relative; }
 .product_placeholder ul li a{ width: 100%; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; height: 100%; position: relative; }
 .product_placeholder ul li a img{ background: #000; border: none; margin: 0px; padding: 0px; display: inline-block; vertical-align: top; height: 100%; }
-.product_placeholder ul li a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; color: #fff; width: 100%; text-align: center; height: 100%; line-height: 128px; }
-.slick-slide h3 a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; top: 0; color: #fff; width: 100%; text-align: center; height: 100%; line-height: 186px; font-size: 18px; }
+.product_placeholder ul li a span.hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; color: #fff; width: 100%; text-align: center; height: 100%; line-height: 128px; top: 0; }
+.product_placeholder ul li a:hover span.hover_part{ display: table; }
+.product_placeholder ul li a:hover span.hover_part span{ display: table-cell; vertical-align: middle; line-height: normal; }
+.slick-slide h3 a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; top: 0; color: #fff; width: 100%; text-align: center; height: 100%; font-size: 18px; }
 .slick-slide h3 a .hover_part a{ width: 96%; border: 1px solid #fff; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; }
-
 
 
 .author_name{ float: left; font-size: 14px; color: #000; width: 100%; margin: 7px 10px 0 0; padding: 0px; vertical-align: top; display: inline-block; font-weight: bold; text-align: center; }
@@ -361,7 +362,7 @@ a{ border: none; }
 @media screen and (max-width: 800px) and (min-width: 320px) {
 	.last_slide{ width: 100%; }
 	.last_slide a img{ display: none; }
-	.btn_seeAllStylists{ display: inline-block; }
+	.btn_seeAllStylists{ display: inline-block; margin: 30px 0; }
 }
 
 @media screen and (max-width: 800px) and (min-width: 768px) {

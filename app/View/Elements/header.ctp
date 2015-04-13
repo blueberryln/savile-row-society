@@ -19,8 +19,12 @@
     });
   });
   function slickDim(){
-    var x = jQuery('.slick-slide').width();
+    var xCont = jQuery('.slick-slide');
+    var x = xCont.width();
     jQuery('.slick-slide').height(x);
+    var y = jQuery('.slick-slide').outerWidth();
+    var z = jQuery('.slick-slide').outerHeight()
+    jQuery('.last_slide').css({'width':y, 'height':z});
   }
 
     $(document).ready(function(){

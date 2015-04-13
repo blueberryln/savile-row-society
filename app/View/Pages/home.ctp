@@ -1,25 +1,16 @@
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.product_placeholder ul li a').hover(function(){
-            $('.hover_part').hide();
-            $('.hover_part',this).show();
-        });
-    });
-    $(window).load(function(){
+    // $(document).ready(function(){
+    //     $('.product_placeholder ul li a').hover(function(){
+    //         $('.hover_part').hide();
+    //         $('.hover_part',this).show();
+    //     });
+    // });
+    /*$(window).load(function(){
         $('.slick-slide h3 a').hover(function(){
             $('.hover_part').hide();
             $('.hover_part',this).show();
         });
-    });   
-
-
-    $(document).ready(function(){
-        $('.rightImages a').hover(function(){
-            $('.hover_section').hide();
-            $('.hover_section',this).show();
-        });
-    });       
-
+    });*/   
 
 $('.nav_wrapper a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -186,7 +177,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             foreach($outfit['OutfitItem'] as $item) {
                                 if(count($item['product']['Image']) && $count++ <= 4){
                         ?>
-                            <li><a href="<?php echo $this->webroot;echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>"/><span class="hover_part">$<?php echo $item['product']['Entity']['price']; ?></span></a></li>
+                            <li><a href="<?php echo $this->webroot;echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>"/><span class="hover_part"><span>$<?php echo $item['product']['Entity']['price']; ?></span></span></a></li>
                             <?php }
                             } ?>
                         </ul>
@@ -312,7 +303,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                 <?php endif; ?>
                                 <span class="hover_part">
                                     <!-- <a href="#">Get Started</a> -->
-                                    With <?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?>
+                                    <span>With <?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?></span>
                                 </span>
                                 </a>
                             </h3>

@@ -88,7 +88,13 @@
     float: right;
 }
 .slick-slide h3{
-    padding: 1%;
+    /*padding: 1%;*/
+    display: table !important;
+    
+}
+.slick-slide a{
+    display: table-cell !important;
+    vertical-align: middle;
 }
 .slick-slide h3,.slick-slide a{
     display: block;
@@ -98,10 +104,14 @@
 .slick-slide a img
 {
     display: block;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 182px;
+    max-height: 182px;
     margin:0 auto;
 }
+.slick-slide h3 a:hover .hover_part{
+    display: table;
+}
+.slick-slide h3 a:hover .hover_part span{ display: table-cell; vertical-align: middle; line-height: normal; }
 /*.slick-slide a img
 {
     display: block;
