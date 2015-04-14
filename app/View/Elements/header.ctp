@@ -123,11 +123,11 @@
             
             <!-- promotionalBar -->
             <div class="promotionalBar">
-                Free Delivery & Returns On ALL Orders | Call Us <span>+1 347 878 7280</span> 
+                Free Delivery & Returns On ALL Orders | Call Us <a href="tel:+13478787280">+1 347 878 7280</a>
             </div>
             <!-- /promotionalBar -->
 
-            <div class="center_row">
+            <div class="header_center_row">
                 <!-- logo_details -->   
                 <div class="logo_details">
                     <a href="/"><img src="<?php echo HTTP_ROOT ?>img/home/logo.jpg" alt="Savil.Me" /></a>
@@ -200,6 +200,7 @@
                         <?php if(!empty($cart_user) && !empty($user) && $count) { ?>
                           <?php foreach($cart_user as $cart_list) { ?>
                           <li>
+
                               <a href="/messages/outfitdetails/<?php echo $cart_list['CartItem']['outfit_id'] ?>"><img src="<?php echo HTTP_ROOT.'files/products/'.$cart_list['Entity']['Image']['0']['name']; ?>" alt="<?php echo $cart_list['Product']['name'] ?>" /></a>
                               <span>
                                 <?php echo $cart_list['Entity']['Product']['Brand']['name'].' : '.$cart_list['Entity']['name']; ?> <br /><br />
