@@ -185,7 +185,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <!-- /product_placeholder -->
 
                     <div class="row">
-                        <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="#">
+                        <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="/stylists/stylistbiography/<?= $outfit['Stylist']['id']; ?>">
                         <?php if(!empty($outfit['Stylist']['profile_photo_url']))  {?>
                             <img src="<?php echo HTTP_ROOT.'files/users/'.$outfit['Stylist']['profile_photo_url'] ?>" alt="" />
                         <?php } else{ ?>
@@ -262,11 +262,11 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                
 
                 <!-- viewAll -->
-                <div class="viewAll">
+                <!-- <div class="viewAll">
                     <a href="#">
                         See More Outfits
                     </a>
-                </div>
+                </div> -->
                 <!-- /viewAll -->
             </div>
         </section>
@@ -312,7 +312,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     </div>
                 </div>
                 <div class="last_slide">
-                    <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Stylists</span></a>
+                    <a href="/stylists/stylistbiography/772?refer=772"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Stylists</span></a>
                 </div>
             </div>
         </div>

@@ -184,82 +184,54 @@
                       <!-- /pointer -->
                       <!-- Heading -->
                       <div class="heading_section">
-                        <?php echo $count = count($cart_user) > count($cart_guest) ? count($cart_user) : count($cart_guest)  ?> Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                        <?php
+                        $count =0;
+                         echo $count = count($cart_user) > count($cart_guest) ? count($cart_user) : count($cart_guest)  ?> Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
                       </div>
                       <!-- /Heading -->
                       <!-- content_section -->
                       <div class="content_section">
-                        <!-- <br />
-                        Your shopping cart <br />
-                        is empty... <br /> <br /> -->
-
+                         
+                      <?php if(empty($cart_user) && empty($cart_guest)){?>
+                        <br />Your shopping cart <br />
+                        is empty... <br /> <br />
+                      <?php } ?>
                         <ul class="latest_news">
+                        <?php if(!empty($cart_user) && !empty($user) && $count) { ?>
+                          <?php foreach($cart_user as $cart_list) { ?>
                           <li>
-                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shoe_img.jpg" alt="Shoe" /></a>
-                            <span>
-                              GRENSON: Stanley Leather Winhtip Brogue <br /><br />
-                              Qty: 1<br />
-                              Size: US 11<br /><br />
-                              $405
-                            </span>
+                              <a href="/messages/outfitdetails/<?php echo $cart_list['CartItem']['outfit_id'] ?>"><img src="<?php echo HTTP_ROOT.'files/products/'.$cart_list['Entity']['Image']['0']['name']; ?>" alt="<?php echo $cart_list['Product']['name'] ?>" /></a>
+                              <span>
+                                <?php echo $cart_list['Entity']['Product']['Brand']['name'].' : '.$cart_list['Entity']['name']; ?> <br /><br />
+                                Qty: <?php echo $cart_list['CartItem']['quantity'] ?><br />
+                                Size: <?php echo $size[$cart_list['CartItem']['size_id']] ?><br /><br />
+                                $<?php echo $cart_list['Entity']['price']; ?>
+                              </span>
                           </li>
-                          <li>
-                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shirt_img.jpg" alt="Shirt" /></a>
-                            <span>
-                              J.CREW: <br />
-                              Cotton-Chambray Shirt<br /><br />
-                              Qty: 1<br />
-                              Size: US 11<br /><br />
-                              $405
-                            </span>
-                          </li>
-                          <li>
-                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shoe_img.jpg" alt="Shoe" /></a>
-                            <span>
-                              GRENSON: Stanley Leather Winhtip Brogue <br /><br />
-                              Qty: 1<br />
-                              Size: US 11<br /><br />
-                              $405
-                            </span>
-                          </li>
-                          <li>
-                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shirt_img.jpg" alt="Shirt" /></a>
-                            <span>
-                              J.CREW: <br />
-                              Cotton-Chambray Shirt<br /><br />
-                              Qty: 1<br />
-                              Size: US 11<br /><br />
-                              $405
-                            </span>
-                          </li>
-                          <li>
-                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shoe_img.jpg" alt="Shoe" /></a>
-                            <span>
-                              GRENSON: Stanley Leather Winhtip Brogue <br /><br />
-                              Qty: 1<br />
-                              Size: US 11<br /><br />
-                              $405
-                            </span>
-                          </li>
-                          <li>
-                            <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shirt_img.jpg" alt="Shirt" /></a>
-                            <span>
-                              J.CREW: <br />
-                              Cotton-Chambray Shirt<br /><br />
-                              Qty: 1<br />
-                              Size: US 11<br /><br />
-                              $405
-                            </span>
-                          </li>
+                          <?php } ?>
+                        <?php } else if(!empty($cart_guest) && empty($user) && $count) { ?>
+                          <?php foreach($cart_guest as $cart_list) { ?>
+                            <li>
+                                <a href="/guest/outfitdetails/<?php echo $cart_list['CartItem']['outfit_id'] ?>"><img src="<?php echo HTTP_ROOT.'files/products/'.$cart_list['ProductsImage']['0']['name']; ?>" alt="<?php echo $cart_list['Product']['name'] ?>" /></a>
+                                <span>
+                                  <?php echo $cart_list['Product']['Brand']['name'].' : '.$cart_list['ProductsEntity']['name']; ?> <br /><br />
+                                  Qty: <?php echo $cart_list['CartItem']['quantity'] ?><br />
+                                  Size: <?php echo $size[$cart_list['CartItem']['size_id']] ?><br /><br />
+                                  $<?php echo $cart_list['ProductsEntity']['price']; ?>
+                                </span>
+                            </li>
+                          <?php } ?>
+                        <?php } ?>
                         </ul>
 
+                        <?php if($count > 3){ ?>
                         <a href="#" title="Next" id="next_item">Next</a>
                         <a href="#" title="Previous" id="prev_item">Previous</a>
-
+                        <?php } ?>
                         <!-- bottom_buttons_area -->
                         <div class="bottom_buttons_area">
-                          <a href="#" class="viewCart">View Cart</a>
-                          <a href="#" class="proceeToPurchase">Proceed To Purchase</a>
+                          <a href="<?php if(!empty($user)){echo "/cart"; } else{ echo "/guest/cart"; } ?>" class="viewCart">View Cart</a>
+                          <a href="<?php if(!empty($user)){echo "/checkout"; } else{ echo "/guest/cart"; } ?>" class="proceeToPurchase">Proceed To Purchase</a>
                         </div>
                         <!-- /bottom_buttons_area -->
 
@@ -301,19 +273,20 @@
                         <a href="/user/profile">Account Details</a>
                         <a href="/refer-a-friend">Refer A Friend</a>
                       </div>
-                      <?php } ?>
-                      <!-- /content_section -->
-
-                      <!-- bottom_section -->
                       <div class="bottom_section">
-                        <?php if(!$user):?>
-                          <a href="javascript:void(0)" onclick="window.ref_url=''; signIn();">Sign In</a>
-                          <a href="/users/register">Get Started</a>
-                        <?php else:?>
-                          <a href="/signout">Sign Out</a>
-                        <?php endif;?>
+                        <a href="/signout">Sign Out</a>
                       </div>
-                      <!-- /bottom_section -->
+                      <?php } else{ ?>
+                      <!-- /content_section -->
+                      <div class="content_section">
+                        <a href="javascript:void(0)" onclick="window.ref_url=''; signIn();">Sign In</a>
+                        <a href="/users/register">Get Started</a>
+                      </div>
+                      <div class="bottom_section">
+                        
+                      </div>
+                      <?php } ?>
+                      
                     </div>
                     <!-- /myAccount_dropdown -->
 
