@@ -466,8 +466,9 @@ class AppController extends Controller {
     function getCart() {
         $user_id = $this->getLoggedUserID();
         $Size = ClassRegistry::init('Size');
+        $cart_user = array();
+        $cart_guest = array();
         if($user_id){
-            $cart_user = array();
             $Cart = ClassRegistry::init('Cart');
             $cart = $Cart->getExistingUserCart($user_id);
             if($cart){
@@ -483,7 +484,6 @@ class AppController extends Controller {
             }
         }
         else{
-            $cart_guest = array();
             if($this->Session->check('guest_items')){
                 $cart_items = $this->Session->read('guest_items');
                 $ProductsEntity = ClassRegistry::init('ProductsEntity');

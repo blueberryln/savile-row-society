@@ -162,14 +162,14 @@
                         Our Personal Stylists are here to help. <br />
                         Chat with a stylists now!.
                         <a href="#" class="stylist_profile_icon"><img src="<?php echo HTTP_ROOT ?>img/home/stylist_profile_icon.png" alt="Stylists" /></a>
-                        <a href="#" class="btn_chat_now">Chat Now</a> <br /><br />
+                        <a href="/messages/index" class="btn_chat_now">Chat Now</a> <br /><br />
                         Call Us <span>+1 347 878 7280</span>
                       </div>
                       <!-- /content_section -->
 
                       <!-- bottom_section -->
                       <div class="bottom_section">
-                      Don't have an account? <a href="#">Sign up for Free</a>
+                      Don't have an account? <a href="/users/register">Sign up for Free</a>
                       </div>
                       <!-- /bottom_section -->
                     </div>
@@ -184,7 +184,7 @@
                       <!-- /pointer -->
                       <!-- Heading -->
                       <div class="heading_section">
-                        0 Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                        <?php echo $count = count($cart_user) > count($cart_guest) ? count($cart_user) : count($cart_guest)  ?> Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
                       </div>
                       <!-- /Heading -->
                       <!-- content_section -->
@@ -295,11 +295,13 @@
                       <!-- /Heading -->
 
                       <!-- content_section -->
+                      <?php if($user){?>
                       <div class="content_section">
                         <a href="#">My Orders</a>
                         <a href="/user/profile">Account Details</a>
                         <a href="/refer-a-friend">Refer A Friend</a>
                       </div>
+                      <?php } ?>
                       <!-- /content_section -->
 
                       <!-- bottom_section -->
