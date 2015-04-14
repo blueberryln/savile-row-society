@@ -366,7 +366,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <!-- /three_steps_wrapper -->
         <div id="four"></div>
         <!-- blog_wrapper -->
-        <?php /*
+
         <div class="blog_wrapper">
             <div class="center_row">
                 <!-- Section_Main_Heading -->
@@ -388,7 +388,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 </div>
                 <!-- /row -->
             </div>
-        </div>*/ ?>
+        </div>
         <!-- /blog_wrapper -->
 
 
