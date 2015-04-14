@@ -84,7 +84,7 @@ class AppController extends Controller {
             } 
         }
 
-        $this->getCartCount();
+        $this->getCart();
         $this->checkAdminRights();
         $this->checkStylistRights();
         $message_notification = $this->getMessageNotification();
@@ -462,5 +462,72 @@ class AppController extends Controller {
                 $x .= time_ago($_tm);
             return $x;
     }
+
+    function getCart() {
+        $user_id = $this->getLoggedUserID();
+        $Size = ClassRegistry::init('Size');
+        if($user_id){
+            $cart_user = array();
+            $Cart = ClassRegistry::init('Cart');
+            $cart = $Cart->getExistingUserCart($user_id);
+            if($cart){
+                $CartItem = ClassRegistry::init('CartItem');
+                $cart_id = $cart['Cart']['id'];
+                $cart_user = $CartItem->find('all',array('conditions'=>array('cart_id'=>$cart_id),'recursive'=>3,'contain'=>array('Entity'=>array('Product'=>array('Brand'),'Image'))));
+                $size = $Size->find('list');
+                $this->set(compact('cart_user','size'));
+                //pr($cart_user);die;
+            }
+            else{
+                $cart_user = array();
+            }
+        }
+        else{
+            $cart_guest = array();
+            if($this->Session->check('guest_items')){
+                $cart_items = $this->Session->read('guest_items');
+                $ProductsEntity = ClassRegistry::init('ProductsEntity');
+                $ProductsEntity->bindModel(
+                    array('belongsTo' => array(
+                            'Product' => array(
+                                'className' => 'Product',
+                                'foreignKey' => 'product_id'
+                            )
+                        )
+                    )
+                );
+                $ProductsEntity->bindModel(
+                    array('hasMany' => array(
+                            'ProductsImage' => array(
+                                'className' => 'ProductsImage',
+                                'foreignKey' => 'product_entity_id'
+                            )
+                        )
+                    )
+                );
+                foreach($cart_items as $cart_item){
+                    $ProductsEntity_id[] = $cart_item['CartItem']['product_entity_id'];
+                }
+                $ProductsEntity_list = $ProductsEntity->find('all',array('conditions'=>array('ProductsEntity.id'=>$ProductsEntity_id),'recursive'=>3,'contain'=>array('Product'=>array('Brand'),'ProductsImage')));
+                foreach($cart_items as $cart_item){
+                    foreach($ProductsEntity_list as $list){
+                        if($cart_item['CartItem']['product_entity_id'] == $list['ProductsEntity']['id']){
+                            $list['CartItem'] = $cart_item['CartItem'];                         
+                            $cart_guest[] = $list;
+                            break;
+                        }
+                    }
+                }
+                $size = $Size->find('list');
+                //pr($cart_guest);die;
+                $ProductsEntity->unbindModel(
+                    array('hasMany' => array('ProductsImage')),
+                    array('belongsTo' => array('Product'))
+                );
+                $this->set(compact('cart_guest','size'));
+            }
+        }
+    }
+
 
 }
