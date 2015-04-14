@@ -123,11 +123,11 @@
             
             <!-- promotionalBar -->
             <div class="promotionalBar">
-                Free Delivery & Returns On ALL Orders | Call Us <span>+1 347 878 7280</span> 
+                Free Delivery & Returns On ALL Orders | Call Us <a href="tel:+13478787280">+1 347 878 7280</a>
             </div>
             <!-- /promotionalBar -->
 
-            <div class="center_row">
+            <div class="header_center_row">
                 <!-- logo_details -->   
                 <div class="logo_details">
                     <a href="/"><img src="<?php echo HTTP_ROOT ?>img/home/logo.jpg" alt="Savil.Me" /></a>
@@ -222,7 +222,7 @@
                               $405
                             </span>
                           </li>
-                          <li>
+                          <!-- <li>
                             <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/shirt_img.jpg" alt="Shirt" /></a>
                             <span>
                               J.CREW: <br />
@@ -250,7 +250,7 @@
                               Size: US 11<br /><br />
                               $405
                             </span>
-                          </li>
+                          </li> -->
                         </ul>
 
                         <a href="#" title="Next" id="next_item">Next</a>

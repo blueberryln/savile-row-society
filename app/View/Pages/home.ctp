@@ -314,6 +314,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <div class="last_slide">
                     <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Stylists</span></a>
                 </div>
+                
             </div>
         </div>
         <!-- /featuredStylists-Wrapper -->
