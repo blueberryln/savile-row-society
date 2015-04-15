@@ -270,21 +270,21 @@ class AppController extends Controller {
 
         $current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218310', '1218311', '1218303', '1218302', 'tmi', 'concierge_service', 'tdr', 'ivylife', 'engiestyle', '1218340');
         $offer_details = array(
-            'giveaway50' => array('discount' => 50, 'minimum' => 250), 
-            'giveaway100' => array('discount' => 100, 'minimum' => 250), 
-            'cybermonday' => array('discount' => 100, 'minimum' => 100), 
-            'holiday-offer' => array('discount' => 100, 'minimum' => 250),
-            '1218301' => array('discount' => 50, 'minimum' => 250),
-            '1218310' => array('discount' => 100, 'minimum' => 250),
-            '1218311' => array('discount' => 100, 'minimum' => 100),
-            '1218303' => array('discount' => 50, 'minimum' => 250),
-            '1218302' => array('discount' => 50, 'minimum' => 250),
-            'tmi' => array('discount' => 15, 'minimum' => 100),
-            'concierge_service' => array('discount' => 15, 'minimum' => 100),
-            'tdr' => array('discount' => 25, 'minimum' => 50),
-            'ivylife' => array('discount' => 25, 'minimum' => 50),
-            'engiestyle' => array('discount' => 100, 'minimum' => 150),
-            '1218340' => array('discount' => 110, 'minimum' => 150)
+            'giveaway50' => array('discount' => 50, 'minimum' => 250, 'phone' => true), 
+            'giveaway100' => array('discount' => 100, 'minimum' => 250, 'phone' => true), 
+            'cybermonday' => array('discount' => 100, 'minimum' => 100, 'phone' => true), 
+            'holiday-offer' => array('discount' => 100, 'minimum' => 250, 'phone' => true),
+            '1218301' => array('discount' => 50, 'minimum' => 250, 'phone' => true),
+            '1218310' => array('discount' => 100, 'minimum' => 250, 'phone' => true),
+            '1218311' => array('discount' => 100, 'minimum' => 100, 'phone' => true),
+            '1218303' => array('discount' => 50, 'minimum' => 250, 'phone' => true),
+            '1218302' => array('discount' => 50, 'minimum' => 250, 'phone' => false),
+            'tmi' => array('discount' => 15, 'minimum' => 100, 'phone' => true),
+            'concierge_service' => array('discount' => 15, 'minimum' => 100, 'phone' => true),
+            'tdr' => array('discount' => 25, 'minimum' => 50, 'phone' => true),
+            'ivylife' => array('discount' => 25, 'minimum' => 50, 'phone' => true),
+            'engiestyle' => array('discount' => 100, 'minimum' => 150, 'phone' => true),
+            '1218340' => array('discount' => 110, 'minimum' => 150, 'phone' => true)
         ); 
 
         $text = '';
