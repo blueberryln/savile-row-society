@@ -303,7 +303,7 @@ class AppController extends Controller {
             '1218371' => array('discount' => 50, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
             '1218320' => array('discount' => 100, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
             '1218304' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
-            '1218399' => array('discount' => 100, 'minimum' => 250, 'phone' => true, 'email_cnf' => false)
+            '1218399' => array('discount' => 50, 'minimum' => 250, 'phone' => true, 'email_cnf' => false)
         ); 
  
 
@@ -467,7 +467,7 @@ class AppController extends Controller {
                     <span class='landing_border'></span>
                     <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
                     Please enjoy this exclusive offer of<br><span class='landing_desc_emp'>
-                    $100 Off Your First Order 
+                    $50 Off Your First Order 
                     of $250 or More.</span></p>";
         }
 
