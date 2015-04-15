@@ -268,23 +268,24 @@ class AppController extends Controller {
 
     function getOfferDetails($offer){
 
-        $current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218310', '1218311', '1218303', '1218302', 'tmi', 'concierge_service', 'tdr', 'ivylife', 'engiestyle', '1218340');
+        $current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218310', '1218311', '1218303', '1218302', 'tmi', 'concierge_service', 'tdr', 'ivylife', 'engiestyle', '1218340','1218399');
         $offer_details = array(
-            'giveaway50' => array('discount' => 50, 'minimum' => 250), 
-            'giveaway100' => array('discount' => 100, 'minimum' => 250), 
-            'cybermonday' => array('discount' => 100, 'minimum' => 100), 
-            'holiday-offer' => array('discount' => 100, 'minimum' => 250),
-            '1218301' => array('discount' => 50, 'minimum' => 250),
-            '1218310' => array('discount' => 100, 'minimum' => 250),
-            '1218311' => array('discount' => 100, 'minimum' => 100),
-            '1218303' => array('discount' => 50, 'minimum' => 250),
-            '1218302' => array('discount' => 50, 'minimum' => 250),
-            'tmi' => array('discount' => 15, 'minimum' => 100),
-            'concierge_service' => array('discount' => 15, 'minimum' => 100),
-            'tdr' => array('discount' => 25, 'minimum' => 50),
-            'ivylife' => array('discount' => 25, 'minimum' => 50),
-            'engiestyle' => array('discount' => 100, 'minimum' => 150),
-            '1218340' => array('discount' => 110, 'minimum' => 150)
+            'giveaway50' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => false), 
+            'giveaway100' => array('discount' => 100, 'minimum' => 250, 'phone' => false, 'email_cnf' => false), 
+            'cybermonday' => array('discount' => 100, 'minimum' => 100, 'phone' => false, 'email_cnf' => false), 
+            'holiday-offer' => array('discount' => 100, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            '1218301' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => true),
+            '1218310' => array('discount' => 100, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            '1218311' => array('discount' => 100, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            '1218303' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            '1218302' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            'tmi' => array('discount' => 15, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            'concierge_service' => array('discount' => 15, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            'tdr' => array('discount' => 25, 'minimum' => 50, 'phone' => false, 'email_cnf' => false),
+            'ivylife' => array('discount' => 25, 'minimum' => 50, 'phone' => false, 'email_cnf' => false),
+            'engiestyle' => array('discount' => 100, 'minimum' => 150, 'phone' => false, 'email_cnf' => false),
+            '1218340' => array('discount' => 110, 'minimum' => 150, 'phone' => false, 'email_cnf' => false),
+            '1218399' => array('discount' => 100, 'minimum' => 250, 'phone' => true, 'email_cnf' => false)
         ); 
 
         $text = '';
@@ -410,6 +411,14 @@ class AppController extends Controller {
                     of $150 or More.</p>
                     <p>Welcome to the new you!</p>";
         }
+        else if($offer == '1218399'){
+            $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
+                    <span class='landing_border'></span>
+                    <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
+                    Please enjoy this exclusive offer of<br><span class='landing_desc_emp'>
+                    $100 Off Your First Order 
+                    of $250 or More.</span></p>";
+        }
 
 
         if(in_array($offer, $current_offers)){
@@ -527,6 +536,27 @@ class AppController extends Controller {
                 $this->set(compact('cart_guest','size'));
             }
         }
+    }
+
+    function confirmation_email($results = null){
+
+        if(!$results['User']['active']) {
+                try{
+                    $bcc = Configure::read('Email.contact');
+                    $email = new CakeEmail('default');
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->to($results['User']['email']);
+                    $email->subject('Activate your account.');
+                    $email->bcc($bcc);
+                    $email->template('confirmation_email');
+                    $email->emailFormat('html');
+                    $email->viewVars(array('results' => $results));
+                    $email->send();
+                }
+                catch(Exception $e){
+                    
+                }
+        }        
     }
 
 

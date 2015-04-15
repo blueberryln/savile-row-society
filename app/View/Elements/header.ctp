@@ -165,8 +165,13 @@
                         Our Personal Stylists are here to help. <br />
                         Chat with a stylists now!.
                         <a href="#" class="stylist_profile_icon"><img src="<?php echo HTTP_ROOT ?>img/home/stylist_profile_icon.png" alt="Stylists" /></a>
-                        <a href="/messages/index" class="btn_chat_now">Chat Now</a> <br /><br />
+
+                        <!-- <a href="/messages/index" class="btn_chat_now">Chat Now</a> <br /><br />
+                        Call Us <span><a href="tel:+13478787280">+1 347 878 7280</a></span> -->
+
+                        <a <?php if(!empty($user)) {?>href="/messages/index" <?php } else {?> href="javascript:void(0)" onclick="window.ref_url=''; signIn();" <?php } ?> class="btn_chat_now">Chat Now</a> <br /><br />
                         Call Us <span><a href="tel:+13478787280">+1 347 878 7280</a></span>
+
                       </div>
                       <!-- /content_section -->
 

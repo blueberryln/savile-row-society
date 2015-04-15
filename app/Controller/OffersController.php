@@ -43,7 +43,7 @@ class OffersController extends AppController {
         $topOutfits = $TopOutfit->getTopOutfits();
         $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
 
-        $this->set(compact('topStylists','topOutfits', 'firstStylist'));
+        $this->set(compact('topStylists','topOutfits', 'firstStylist','offer_details'));
 
         $this->render('/Pages/home');
 
