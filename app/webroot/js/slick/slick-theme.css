@@ -241,7 +241,12 @@
     overflow: hidden;
     padding: 0 20px;
     vertical-align: top;
-    width: 92%;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 }

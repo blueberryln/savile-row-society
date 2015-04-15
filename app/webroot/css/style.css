@@ -67,13 +67,23 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
 
 @font-face {
     font-family: 'Proximanova';
-    src: url('fonts/proximanova_regular.eot');
-    src: url('fonts/proximanova_regular.eot?#iefix') format('embedded-opentype'),
-         url('fonts/proximanova_regular.woff') format('woff'),
-         url('fonts/proximanova_regular.ttf') format('truetype'),
-         url('fonts/proximanova_regular.svg#Proximanova') format('svg');
+    src: url('fonts/proximanova_regular/proximanova_regular.eot');
+    src: url('fonts/proximanova_regular/proximanova_regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/proximanova_regular/proximanova_regular.woff') format('woff'),
+         url('fonts/proximanova_regular/proximanova_regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProximaNovaCond-Regular';
+    src: url('fonts/proximanova_regular/proximanova_regular.eot');
+    src: url('fonts/proximanova_regular/proximanova_regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/proximanova_regular/proximanova_regular.woff') format('woff'),
+         url('fonts/proximanova_regular/proximanova_regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+        
 }
 
 @font-face {
@@ -87,24 +97,6 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
     font-style: normal;
     }
 
-@font-face {
-    font-family: 'ProximaNovaCond-Regular';
-/*    src: url('fonts/ProximaNovaCond-Regular.eot');
-    src: url('fonts/ProximaNovaCond-Regular.eot?#iefix') format('embedded-opentype'),
-         url('fonts/ProximaNovaCond-Regular.woff') format('woff'),
-         url('fonts/ProximaNovaCond-Regular.ttf') format('truetype'),
-         url('fonts/ProximaNovaCond-Regular.svg#ProximaNovaCond-Regular') format('svg');
-    font-weight: normal;
-    font-style: normal;*/
-    src: url('fonts/proximanovacond_light.eot');
-    src: url('fonts/proximanovacond_light.eot?#iefix') format('embedded-opentype'),
-         url('fonts/proximanovacond_light.woff') format('woff'),
-         url('fonts/proximanovacond_light.ttf') format('truetype'),
-         url('fonts/proximanovacond_light.svg#ProximaNovaCond-Light') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    
-}
 
 @font-face {
     font-family: 'ProximaNovaCond-Light';

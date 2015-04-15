@@ -201,7 +201,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     </div> -->
 
                     <div class="row recent_comments_wrapper">
-                        <div class = "comment_append<?= $outfit['Outfit']['id']; ?>">
+                    <div class="scrollbar_comment" id="ex3">
+                        <div class = "comment_scrollBar_content comment_append<?= $outfit['Outfit']['id']; ?>">
                             <?php $num = 1; 
                             $comment_count = count($outfit['OutfitComment']);
                             foreach($outfit['OutfitComment'] as $outfit_comments) { 
@@ -234,6 +235,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                 ?></span>
                             </div>
                             <?php $num++; } ?>
+                        </div>
                         </div>
                             <?php if($comment_count >= 3){?>
                             <div class="view_all_comments" rel="<?= $outfit['Outfit']['id']; ?>">

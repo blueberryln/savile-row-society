@@ -4,16 +4,16 @@
       $(this).addClass('opened');    
       $('body').toggleClass('of-toggle');
       $(".wrapper_mobile").toggleClass('show'); 
-      $('.container_wrapper,#header_wrapper .center_row .logo_details').toggleClass('menu-show'); 
-      $('#header_wrapper .center_row .top_icons').toggleClass('cart-right');
+      $('.container_wrapper,#header_wrapper .header_center_row .logo_details').toggleClass('menu-show'); 
+      $('#header_wrapper .header_center_row .top_icons').toggleClass('cart-right');
     });
     $(window).on('resize load', function(){
       if($(window).width() >= 752){
         $('.menu_switcher').removeClass('opened');
         $('body').removeClass('of-toggle');
         $(".wrapper_mobile").removeClass('show');
-        $('.container_wrapper,#header_wrapper .center_row .logo_details').removeClass('menu-show'); 
-        $('#header_wrapper .center_row .top_icons').removeClass('cart-right');
+        $('.container_wrapper,#header_wrapper .header_center_row .logo_details').removeClass('menu-show'); 
+        $('#header_wrapper .header_center_row .top_icons').removeClass('cart-right');
         slickDim();
       }
     });
@@ -70,7 +70,10 @@
       });
       jQuery(".icon_cross, body").on("click", function(){
         jQuery(".myAccount_dropdown").hide();
-      });      
+      });
+      $(window).resize(function(){
+        $(".dropdown_wrapper").hide();
+      });
     });
 
 
@@ -127,7 +130,7 @@
             </div>
             <!-- /promotionalBar -->
 
-            <div class="header_center_row">
+            <div class="center_row">
                 <!-- logo_details -->   
                 <div class="logo_details">
                     <a href="/"><img src="<?php echo HTTP_ROOT ?>img/home/logo.jpg" alt="Savil.Me" /></a>
@@ -163,7 +166,7 @@
                         Chat with a stylists now!.
                         <a href="#" class="stylist_profile_icon"><img src="<?php echo HTTP_ROOT ?>img/home/stylist_profile_icon.png" alt="Stylists" /></a>
                         <a href="/messages/index" class="btn_chat_now">Chat Now</a> <br /><br />
-                        Call Us <span>+1 347 878 7280</span>
+                        Call Us <span><a href="tel:+13478787280">+1 347 878 7280</a></span>
                       </div>
                       <!-- /content_section -->
 
@@ -194,8 +197,10 @@
                          
                       <?php if(empty($cart_user) && empty($cart_guest)){?>
                         <br />Your shopping cart <br />
-                        is empty... <br /> <br />
+                        is empty... <br /> <br /><br />
                       <?php } ?>
+
+                      <div class="caroufredsel_wrapper" style="<?php if(empty($cart_user) && empty($cart_guest)){ echo 'display: none';} ?>">
                         <ul class="latest_news">
                         <?php if(!empty($cart_user) && !empty($user) && $count) { ?>
                           <?php foreach($cart_user as $cart_list) { ?>
@@ -224,7 +229,7 @@
                           <?php } ?>
                         <?php } ?>
                         </ul>
-
+                        </div>
                         <?php if($count > 3){ ?>
                         <a href="#" title="Next" id="next_item">Next</a>
                         <a href="#" title="Previous" id="prev_item">Previous</a>
@@ -241,7 +246,7 @@
                       <!-- /content_section -->
                       <!-- bottom_section -->
                       <div class="bottom_section">
-                      Free Delivery & Returns on ALL Orders| Call Us <span>+1 347 878 7280</span>
+                      Free Delivery & Returns on ALL Orders| Call Us <span><a href="tel:+13478787280">+1 347 878 7280</a></span>
                       </div>
                       <!-- /bottom_section -->
                     </div>
