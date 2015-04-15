@@ -282,27 +282,28 @@ class AppController extends Controller {
 
     function getOfferDetails($offer){
 
-        $current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218310', '1218311', '1218303', '1218302', 'tmi', 'concierge_service', 'tdr', 'ivylife', 'engiestyle', '1218340', '1218370', '1218371', '1218320', '1218304', '1218310');
+        $current_offers = array('giveaway50', 'giveaway100', 'cybermonday', 'holiday-offer', '1218301', '1218310', '1218311', '1218303', '1218302', 'tmi', 'concierge_service', 'tdr', 'ivylife', 'engiestyle', '1218340', '1218370', '1218371', '1218320', '1218304', '1218310','1218399');
         $offer_details = array(
-            'giveaway50' => array('discount' => 50, 'minimum' => 250, 'phone' => true), 
-            'giveaway100' => array('discount' => 100, 'minimum' => 250, 'phone' => true), 
-            'cybermonday' => array('discount' => 100, 'minimum' => 100, 'phone' => true), 
-            'holiday-offer' => array('discount' => 100, 'minimum' => 250, 'phone' => true),
-            '1218301' => array('discount' => 50, 'minimum' => 250, 'phone' => true),
-            '1218310' => array('discount' => 100, 'minimum' => 250, 'phone' => true),
-            '1218311' => array('discount' => 50, 'minimum' => 100, 'phone' => true),
-            '1218303' => array('discount' => 50, 'minimum' => 250, 'phone' => true),
-            '1218302' => array('discount' => 50, 'minimum' => 250, 'phone' => false),
-            'tmi' => array('discount' => 15, 'minimum' => 100, 'phone' => true),
-            'concierge_service' => array('discount' => 15, 'minimum' => 100, 'phone' => true),
-            'tdr' => array('discount' => 25, 'minimum' => 50, 'phone' => true),
-            'ivylife' => array('discount' => 25, 'minimum' => 50, 'phone' => true),
-            'engiestyle' => array('discount' => 100, 'minimum' => 150, 'phone' => true),
-            '1218340' => array('discount' => 110, 'minimum' => 150, 'phone' => true),
-            '1218370' => array('discount' => 50, 'minimum' => 100, 'phone' => true),
-            '1218371' => array('discount' => 50, 'minimum' => 100, 'phone' => true),
-            '1218320' => array('discount' => 100, 'minimum' => 100, 'phone' => true),
-            '1218304' => array('discount' => 50, 'minimum' => 250, 'phone' => true),
+            'giveaway50' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => false), 
+            'giveaway100' => array('discount' => 100, 'minimum' => 250, 'phone' => false, 'email_cnf' => false), 
+            'cybermonday' => array('discount' => 100, 'minimum' => 100, 'phone' => false, 'email_cnf' => false), 
+            'holiday-offer' => array('discount' => 100, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            '1218301' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => true),
+            '1218310' => array('discount' => 100, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            '1218311' => array('discount' => 50, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            '1218303' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            '1218302' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            'tmi' => array('discount' => 15, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            'concierge_service' => array('discount' => 15, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            'tdr' => array('discount' => 25, 'minimum' => 50, 'phone' => false, 'email_cnf' => false),
+            'ivylife' => array('discount' => 25, 'minimum' => 50, 'phone' => false, 'email_cnf' => false),
+            'engiestyle' => array('discount' => 100, 'minimum' => 150, 'phone' => false, 'email_cnf' => false),
+            '1218340' => array('discount' => 110, 'minimum' => 150, 'phone' => false, 'email_cnf' => false),
+            '1218370' => array('discount' => 50, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            '1218371' => array('discount' => 50, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            '1218320' => array('discount' => 100, 'minimum' => 100, 'phone' => false, 'email_cnf' => false),
+            '1218304' => array('discount' => 50, 'minimum' => 250, 'phone' => false, 'email_cnf' => false),
+            '1218399' => array('discount' => 100, 'minimum' => 250, 'phone' => true, 'email_cnf' => false)
         ); 
  
 
@@ -459,6 +460,14 @@ class AppController extends Controller {
                     <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
                     Please enjoy this exclusive offer of<br><span class='landing_desc_emp'>
                     $50 Off Your First Order 
+                    of $250 or More.</span></p>";
+        }
+        else if($offer == '1218399'){
+            $text = "<p class='landing_title'>Welcome to Savile Row Society.</p>  
+                    <span class='landing_border'></span>
+                    <p class='landing_desc'><span class='landing_desc_top'>In addition to Zero Membership Fees</span>,<br>
+                    Please enjoy this exclusive offer of<br><span class='landing_desc_emp'>
+                    $100 Off Your First Order 
                     of $250 or More.</span></p>";
         }
 
