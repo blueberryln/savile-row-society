@@ -639,9 +639,12 @@ class UsersController extends AppController {
                 $user['User']['landing_offer'] = $this->Session->read('landing_offer.UserOffer.offer'); // to add the landing_offr code to thee DB
 
                 if ($this->User->saveAll($user)) {
-                   
-                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
-
+                   if($user['User']['active']=='0'){
+                        $results = $this->User->checkCredentials_inactive($user['User']['email'], $user['User']['password']);
+                    }
+                    else{
+                        $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+                    }
                     if($this->Session->check('landing_offer')){
                         $user_offer = $this->Session->read('landing_offer');
                         $this->Session->write('thankyou',$this->Session->read('landing_offer'));
@@ -704,16 +707,23 @@ class UsersController extends AppController {
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($results['User']['id'], $stylist_id);
 
-                        
-                        $this->Session->write('user', $results);
-
+                        if($results['User']['active']){
+                           $this->Session->write('user', $results);
+                        }
+                        else{
+                            $this->confirmation_email($results);
+                        }
                         if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
                             $this->assignVipDiscount($results['User']['referred_by']);
                         }
 
                         //$this->Session->write('new_user', 'new_user');
-
-                        $this->redirect(array('controller' => 'messages'));
+                        if($results['User']['active']){
+                            $this->redirect(array('controller' => 'messages'));
+                        }else{
+                            $this->Session->setFlash(__('Please check your email inbox.'), 'flash');
+                            $this->redirect('/');
+                        }
                     } else {
                         $this->redirect($this->referer());
                         exit;
@@ -1339,6 +1349,28 @@ class UsersController extends AppController {
 
     }
 
+    function account_activation($user_id = null,$offer = null) {
+        //$this->loadModel('User');
+        $id = convert_uudecode(base64_decode($user_id));
+        $offer = convert_uudecode(base64_decode($offer));
+        $user = $this->User->getByID($id);
+        if($user['User']['active'] == 0){
+            $this->User->id = $user['User']['id'];
+            $this->User->saveField('active','1');
+            $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+            $this->Session->write('user',$results);
+            $offer_details['UserOffer'] = $this->getOfferDetails($offer);
+            if(!empty($offer_details['UserOffer'])){
+                $offer_details['UserOffer']['offer'] = $offer;
+                $this->Session->write('thankyou',$offer_details);
+                $this->redirect('/thankyou/'.$offer);
+            }
+            //echo '<pre>';print_r($user);die;
+        }   
+        else{
+            die("The link has expired.");
+        } 
+    }
 
 }
 
