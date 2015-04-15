@@ -119,6 +119,9 @@
 	                    echo $this->Form->input('last_name', array('id' => 'last-name', 'label' => 'Last Name', 'required' => 'required', 'div' => array('class' => 'offer_last_name')));
 	                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'required' => 'required', 'label' => 'Email'));
 	                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => 'Password', 'required' => 'required'));
+	                    if($offer_details['phone'] == 1){
+	                    	echo $this->Form->input('phone', array('id' => 'phone', 'label' => 'Phone Number', 'maxlength'=> '10', 'minlength'=> '10', 'onkeypress'=> 'return checkForNumber();'));
+	                    }
 	                ?>      
 	                </div>
 					<div class="landing-buttons">
@@ -169,3 +172,22 @@
 	    </div>
 	</div>
 </div>
+<script type="text/javascript">
+function checkForNumber()
+{
+ k = (document.all)?event.keyCode : arguments.callee.caller.arguments[0].which;
+
+ if(k == 8 || k== 0)
+ {
+  return true;
+ }
+ if(k<48||k>57)
+ {
+  return false;
+ }
+ if((k >= 65 && 90 >= k) || (k >= 97 && 122 >= k))
+ {
+  return false;
+ }
+}
+</script>
