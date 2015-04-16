@@ -54,7 +54,6 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
         <!--<script src="/js/jquery-1.9.1.min.js"></script>-->
 
-
 <script type="text/javascript" src="<?php echo JS_ROOT ?>js/jquery.carouFredSel.js"></script>
 
 <!-- Start Default -->
@@ -84,7 +83,7 @@ $(document).ready(function() {
             {
               breakpoint: 800,
               settings: {
-                slidesToShow: 2
+                slidesToShow: 4
               }
             },
             {
@@ -607,6 +606,7 @@ $(document).ready(function() {
                 $("#scrollbar6").tinyscrollbar({ axis: "y"});
                 $("#scrollbar7").tinyscrollbar({ axis: "y"});
                 $("#scrollbar8").tinyscrollbar({ axis: "y"});
+                $(".scrollbar9").tinyscrollbar({ axis: "y"});
             });
               
         

@@ -96,7 +96,7 @@
 
 .slick-next
 {
-    right: -2px;
+    right: -18px;
     background: url(../../img/home/slick-next.jpg) no-repeat !important;
 
 }
@@ -193,7 +193,7 @@
     opacity: .75;
     color: black;
 }
-.last_slide{ display: inline-block; vertical-align: top; margin: 0px; padding: 0px; padding: 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
+.last_slide{ float: right; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; padding: 5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;}
 .last_slide a{display: block;}
 .last_slide a img{width: 100%;}
 

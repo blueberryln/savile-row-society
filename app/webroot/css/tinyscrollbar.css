@@ -10,6 +10,11 @@
     margin:20px auto 10px;
     position: relative;
 }
+.scrollbar9 {
+    width:100%;
+    margin: 0px;
+    position: relative;
+}
 
 #scrollbar1 .viewport,
 #scrollbar2 .viewport,
@@ -23,6 +28,13 @@
     overflow:hidden;
     position:relative;
     }
+
+.scrollbar9 .viewport {
+    height: 100px;
+    overflow:hidden;
+    position:relative;
+    margin-bottom: 10px;
+}    
 
 #scrollbar1 .viewport { height: 570px;}
 #scrollbar2 .viewport { height: 400px;}
@@ -47,6 +59,17 @@
     padding: 0;
     
 }
+
+.scrollbar9 .overview {
+    list-style:none;
+    position:absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    margin:0;
+    padding: 0;
+    
+}
 #scrollbar2 .overview, #scrollbar3 .overview, #scrollbar4 .overview, #scrollbar5 .overview { right: 0;}
 
 
@@ -62,6 +85,15 @@
     position:absolute;
     background-position:0 0;
     right: -30px;
+    top:0;
+    width:15px;
+    z-index: 1;
+}
+.scrollbar9 .scrollbar {
+    background:transparent url(images/bg-scrollbar-track-y.png) no-repeat 0 0;
+    position:absolute;
+    background-position:0 0;
+    right: -15px;
     top:0;
     width:15px;
     z-index: 1;
@@ -88,6 +120,19 @@
     border-radius: 5px;
 }
 
+.scrollbar9 .track {
+background: #f0f0ec;
+height: 100px;
+width: 10px;
+position: relative;
+padding: 0 1px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+}
+
 #scrollbar1 .thumb,
 #scrollbar2 .thumb,
 #scrollbar3 .thumb,
@@ -109,6 +154,22 @@
     border-radius: 3px;
 }
 
+.scrollbar9 .thumb {
+background: #d9d9d5;
+height: 20px;
+width: 6px;
+cursor: pointer;
+overflow: hidden;
+height: 95px !important;
+position: absolute;
+top: 0;
+left: 3px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+-ms-border-radius: 3px;
+-o-border-radius: 3px;
+border-radius: 3px;
+}
 #scrollbar1 .track { background: #fff; border:1px dotted #d9d9d5;}
 
 #scrollbar1 .thumb .end,
@@ -125,6 +186,13 @@
     width:6px;
 }
 
+.scrollbar9 .thumb .end {
+    background:#d9d9d5;
+    overflow:hidden;
+    height:5px;
+    width:6px;
+}
+
 #scrollbar1 .disable,
 #scrollbar2 .disable,
 #scrollbar3 .disable,
@@ -133,6 +201,9 @@
 #scrollbar6 .disable,
 #scrollbar7 .disable,
 #scrollbar8 .disable {
+    display:none;
+}
+.scrollbar9 .disable {
     display:none;
 }
 

@@ -59,20 +59,25 @@
       jQuery(".icon_cross, body").on("click", function(){
         jQuery(".notification_dropdown").hide();
       });
-      jQuery("a.cart").on("hover", function(){
+      jQuery("a.cart").on("hover", function(e){
+         
         jQuery(".cart_dropdown").show().siblings('.dropdown_wrapper').hide();
       });
-      jQuery(".icon_cross").on("click", function(){
+      jQuery(".icon_cross, body").on("click", function(){
         jQuery(".cart_dropdown").hide();
-      });    
+      });
+      jQuery('.cart_dropdown').click(function(e){
+          e.stopPropagation();
+         return false;
+      });
       jQuery("a.my-account").on("hover", function(){
         jQuery(".myAccount_dropdown").show().siblings('.dropdown_wrapper').hide();
       });
       jQuery(".icon_cross, body").on("click", function(){
         jQuery(".myAccount_dropdown").hide();
       });
-      $(window).resize(function(){
-        $(".dropdown_wrapper").hide();
+      jQuery(window).resize(function(){
+        jQuery(".dropdown_wrapper").hide();
       });
     });
 

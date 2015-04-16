@@ -50,8 +50,10 @@ $(document).on('click','.view_all_comments',function(){
     $(this).remove();
 });
 
+
 </script>
-    
+   
+
 
 <?php
 
@@ -200,43 +202,50 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <span><?= count($outfit['OutfitComment']); ?></span>
                     </div> -->
 
-                    <div class="row recent_comments_wrapper">
-                    <div class="scrollbar_comment" id="ex3">
-                        <div class = "comment_scrollBar_content comment_append<?= $outfit['Outfit']['id']; ?>">
-                            <?php $num = 1; 
-                            $comment_count = count($outfit['OutfitComment']);
-                            foreach($outfit['OutfitComment'] as $outfit_comments) { 
-                                if($num >= 3){break;}
-                                ?>
-                            <div class="section">
-                                <span class="name"><?php if($outfit_comments['user_id']){
-                                   echo $outfit_comments['User']['full_name'];
-                                    } 
-                                    else{
-                                        echo 'Guest';
-                                        } ?></span>
-                                <span class="comment"><?= $outfit_comments['comment'] ?></span>
-                                <span class="recently_time"><?php
-                                    $tm = $outfit_comments['time'];
-                                    $rcs = 0;
-                                    $cur_tm = time(); 
-                                    $dif = $cur_tm-$tm;
-                                    $pds = array('s','m','h','d','w','m','y','dec');
-                                    $lngh = array(1,60,3600,86400,604800,2630880,31570560,315705600);
+          <div class="row recent_comments_wrapper">
+                        <div class="scrollbar9">
+                                    <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                    <div class="viewport">
+                         <div class="overview">
+                                <div class = "comment_append<?= $outfit['Outfit']['id']; ?>">
+                                    <?php $num = 1; 
+                                    $comment_count = count($outfit['OutfitComment']);
+                                    foreach($outfit['OutfitComment'] as $outfit_comments) { 
+                                        if($num >= 3){break;}
+                                        ?>
+                                    <div class="section">
+                                        <span class="name"><?php if($outfit_comments['user_id']){
+                                           echo $outfit_comments['User']['full_name'];
+                                            } 
+                                            else{
+                                                echo 'Guest';
+                                                } ?></span>
+                                        <span class="comment"><?= $outfit_comments['comment'] ?></span>
+                                        <span class="recently_time"><?php
+                                            $tm = $outfit_comments['time'];
+                                            $rcs = 0;
+                                            $cur_tm = time(); 
+                                            $dif = $cur_tm-$tm;
+                                            $pds = array('s','m','h','d','w','m','y','dec');
+                                            $lngh = array(1,60,3600,86400,604800,2630880,31570560,315705600);
 
-                                    for($v = sizeof($lngh)-1; (($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
-                                        $no = floor($no);
-                                        /*if($no <> 1)
-                                            $pds[$v] .='s';*/
-                                        $x = sprintf("%d %s ",$no,$pds[$v]);
-                                        if(($rcs == 1)&&($v >= 1)&&(($cur_tm-$_tm) > 0))
-                                            $x .= time_ago($_tm);
-                                        echo $x;
-                                ?></span>
+                                            for($v = sizeof($lngh)-1; (($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
+                                                $no = floor($no);
+                                                /*if($no <> 1)
+                                                    $pds[$v] .='s';*/
+                                                $x = sprintf("%d %s ",$no,$pds[$v]);
+                                                if(($rcs == 1)&&($v >= 1)&&(($cur_tm-$_tm) > 0))
+                                                    $x .= time_ago($_tm);
+                                                echo $x;
+                                        ?></span>
+                                    </div>
+                                    <?php $num++; } ?>
+                                </div>
+                                </div>
+                                </div>
                             </div>
-                            <?php $num++; } ?>
-                        </div>
-                        </div>
+
+
                             <?php if($comment_count >= 3){?>
                             <div class="view_all_comments" rel="<?= $outfit['Outfit']['id']; ?>">
                                 <a href="javascript:void(0)">view all comments</a>
