@@ -10,7 +10,7 @@
         
         <tr>
             <td style="border-top: 1px solid #CFCFCF; border-bottom: 1px solid #CFCFCF; padding: 0px 15px; color: #595959">
-            <p style="padding-top: 15px;">Hi <?= $results['User']['first_name']; ?>,</p>
+            <p style="padding-top: 15px;">Hi <?= ucfirst($results['User']['first_name']); ?>,</p>
 
                 <div style=" padding: 5px 0;">
                     <p>Thank you for signing up for Savile Row Society.</p>

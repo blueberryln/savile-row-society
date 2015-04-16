@@ -538,8 +538,9 @@ class AppController extends Controller {
         }
     }
 
-    function confirmation_email($results = null){
+    function confirmation_email($results = null){   //  account activation mailer
 
+        $results = $this->User->findById($results['User']['id']);
         if(!$results['User']['active']) {
                 try{
                     $bcc = Configure::read('Email.contact');

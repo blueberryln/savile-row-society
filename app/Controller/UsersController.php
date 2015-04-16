@@ -110,6 +110,7 @@ class UsersController extends AppController {
                 
                 // check submitted email and password 
                 $results = $this->User->checkCredentials($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
+                $results_inactive = $this->User->checkCredentials_inactive($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
                 if ($results) {
                     
                     // set "user" session
@@ -190,7 +191,15 @@ class UsersController extends AppController {
                     }
                     $this->redirect('/messages/index');
                     exit();
-                } else {
+                } else if($results_inactive){
+                    $this->Session->write('results_inactive',$results_inactive);
+                    $this->Session->setFlash(__('Your account needs to be activated. Click on the button below to activate.'), 'forgot_flash');
+                    $this->redirect($this->referer());
+                    exit();
+
+                }
+
+                else {
                     // login data is wrong, redirect to login page
                     $this->request->data = null;
                     $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'forgot_flash');
@@ -720,9 +729,11 @@ class UsersController extends AppController {
                         //$this->Session->write('new_user', 'new_user');
                         if($results['User']['active']){
                             $this->redirect(array('controller' => 'messages'));
-                        }else{
-                            $this->Session->setFlash(__('Please check your email inbox.'), 'flash');
-                            $this->redirect('/');
+                        }else{  // runs when User.active is false
+                            $this->Session->write('results_inactive',$results);
+                            $this->Session->setFlash(__('Please check ur email inbox for account activation email.'), 'forgot_flash');
+                            $this->redirect($this->referer());
+                            exit();
                         }
                     } else {
                         $this->redirect($this->referer());
@@ -1349,7 +1360,7 @@ class UsersController extends AppController {
 
     }
 
-    function account_activation($user_id = null,$offer = null) {
+    function account_activation($user_id = null,$offer = null) {    //account activation when user click link in email
         //$this->loadModel('User');
         $id = convert_uudecode(base64_decode($user_id));
         $offer = convert_uudecode(base64_decode($offer));
@@ -1365,11 +1376,31 @@ class UsersController extends AppController {
                 $this->Session->write('thankyou',$offer_details);
                 $this->redirect('/thankyou/'.$offer);
             }
+            else{
+                $this->Session->setFlash(__('Your account has been activated.'), 'flash');
+                $this->redirect('/');
+            }
             //echo '<pre>';print_r($user);die;
-        }   
+        }
         else{
-            die("The link has expired.");
-        } 
+            $this->Session->setFlash(__('Your account is already active.'), 'flash');
+            $this->redirect('/');
+        }
+    }
+
+    public function send_activation_email(){    //  account activation email request from popup.
+        $this->autoRender = false;
+        if($this->request->is('ajax')) {
+            $results = json_decode($_POST['data'], true);
+            if(!empty($results)){
+                $this->confirmation_email($results);
+                echo '1';
+            }
+            else{
+                '0';
+            }
+        }
+        die;
     }
 
 }
