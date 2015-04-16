@@ -242,7 +242,9 @@
                         <!-- bottom_buttons_area -->
                         <div class="bottom_buttons_area">
                           <a href="<?php if(!empty($user)){echo "/cart"; } else{ echo "/guest/cart"; } ?>" class="viewCart">View Cart</a>
+                          <?php if($count > 0){ ?>
                           <a href="<?php if(!empty($user)){echo "/checkout"; } else{ echo "/guest/cart"; } ?>" class="proceeToPurchase">Proceed To Purchase</a>
+                          <?php } ?>
                         </div>
                         <!-- /bottom_buttons_area -->
 
