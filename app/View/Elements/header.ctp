@@ -100,11 +100,11 @@
             <!-- mobile_menu_wrapper -->
             <div class="mobile_menu_wrapper">
               <ul>
-                <li><a href="#">My Account</a></li>
+                <li><a href="/user/profile">My Account</a></li>
                 <span>&nbsp;</span>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Stylist</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="/#two">Shop</a></li>
+                <li><a href="/#three">Stylist</a></li>
+                <li><a href="/#four">Blog</a></li>
                 <span>&nbsp;</span>
                 <li><a href="#">Twitter</a></li>
                 <li><a href="#">Facebook</a></li>
@@ -112,9 +112,9 @@
                 <span>&nbsp;</span>
                 <li><a href="#">Vip Access</a></li>
                 <span>&nbsp;</span>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Our Team</a></li>
-                <li><a href="#">Our Brands</a></li>
+                <li><a href="<?php echo $this->webroot; ?>#two">About Us</a></li>
+                <li><a href="<?php echo $this->request->webroot; ?>company/team">Our Team</a></li>
+                <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our Brands</a></li>
                 <span>&nbsp;</span>
                 <li><a href="#">Sign Up For Savil.Me News</a></li>
               </ul>

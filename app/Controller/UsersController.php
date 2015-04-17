@@ -193,7 +193,7 @@ class UsersController extends AppController {
                     exit();
                 } else if($results_inactive){
                     $this->Session->write('results_inactive',$results_inactive);
-                    $this->Session->setFlash(__('Your account needs to be activated. Click on the button below to activate.'), 'forgot_flash');
+                    $this->Session->setFlash(__('Your account needs to be activated. You need to confirm your account by clicking on the activation link sent in an email. Click button below to resend the email.'), 'forgot_flash');
                     $this->redirect($this->referer());
                     exit();
 
