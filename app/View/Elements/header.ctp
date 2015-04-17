@@ -289,11 +289,14 @@
                       <div class="content_section">
                         <?php if ($is_stylist) { ?>
                         <a href="<?php echo $this->request->webroot; ?>stylists/biography/<?php echo $user['User']['id']; ?>" title="Stylist Biography">Stylist Biography</a>
+                        <a href="/refer-a-friend">Refer A Friend</a>
+                        <?php }else if ($is_admin) { ?>
+                          <a href="<?php echo $this->request->webroot; ?>admin">Administration</a>
                         <?php } else { ?>
                         <a href="#">My Orders</a>
                         <a href="/user/profile">Account Details</a>
-                        <?php } ?>
                         <a href="/refer-a-friend">Refer A Friend</a>
+                        <?php } ?>
                       </div>
                       <div class="bottom_section">
                         <a href="/signout">Sign Out</a>
