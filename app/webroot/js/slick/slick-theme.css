@@ -197,12 +197,13 @@
 .last_slide a{display: block;}
 .last_slide a img{width: 100%;}
 
-@media screen and (min-width: 240px) and (max-width: 320px) {
-    .for_mobile_device .slick-dots{ position: relative; bottom: -6px; display: block; width: 19%; padding: 0; left: 22px; list-style: none; text-align: center; }
+@media screen and (min-width: 240px) and (max-width: 321px) {
+    /*.for_mobile_device .slick-dots{ position: relative; bottom: -6px; display: block; width: 74%; padding: 0; left: 22px; list-style: none; text-align: center; }
     .for_mobile_device .slick-prev, .slick-next { font-size: 0; line-height: 0; position: relative; top: 20px; display: block; width: 8px; height: 18px; margin-top: -10px; padding: 0; cursor: pointer; color: transparent; border: none; outline: none; background: #fff; } 
     .for_mobile_device .slick-next { left: 177px; background: url(../../img/home/slick-next.jpg) no-repeat; }
     .for_mobile_device .slick-prev { left: 0; background: url(../../img/home/slick-prev.jpg) no-repeat; top: 28px; }
-    .for_mobile_device { display: inline-block; vertical-align: top; width: 64%; overflow: hidden; }
+    .for_mobile_device { display: inline-block; vertical-align: top; width: 64%; overflow: hidden; }*/
+    .slick-dots { bottom: 0; width: 96%; position: relative; top: inherit; }
 }
 
 

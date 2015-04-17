@@ -282,6 +282,14 @@ a{ border: none; outline: none; }
     .container_wrapper .slick-slide h3 a .hover_part{ line-height: 113px; height: 113px; font-size: 12px; }*/
     .slick-slide h3 a .hover_part{ height: 192px; }
     .last_slide .btn_seeAllStylists{ margin: 0px 0 0; }
+    body .row.recent_comments_wrapper > .send_comment input{ width: 77%; margin: 0; }    
+    body .container_wrapper .slider .flexslider .slides > li > span{ width: 99%; }
+    body .container_wrapper #banner_wrapper .flexslider .slides > li.GetSocial > span ul li a{ line-height: 74px; background-size: 25% auto !important; }
+    body .container_wrapper #banner_wrapper .flexslider .slides > li.GetSocial > span ul li a.facebook{ background-size: 15% auto !important; }
+
+
+
+
 }
 
 @media screen and (min-width: 320px) and (max-width: 639px) {
