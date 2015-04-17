@@ -110,6 +110,7 @@ class UsersController extends AppController {
                 
                 // check submitted email and password 
                 $results = $this->User->checkCredentials($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
+                $results_inactive = $this->User->checkCredentials_inactive($this->request->data['User']['email'], Security::hash($this->request->data['User']['password']));
                 if ($results) {
                     
                     // set "user" session
@@ -190,7 +191,15 @@ class UsersController extends AppController {
                     }
                     $this->redirect('/messages/index');
                     exit();
-                } else {
+                }
+                else if($results_inactive){
+                    $this->Session->write('results_inactive',$results_inactive);
+                    $this->Session->setFlash(__('Your account needs to be activated. You need to confirm your account by clicking on the activation link sent in an email. Click button below to resend the email.'), 'forgot_flash');
+                    $this->redirect($this->referer());
+                    exit();
+
+                } 
+                else {
                     // login data is wrong, redirect to login page
                     $this->request->data = null;
                     $this->Session->setFlash(__('Wrong credentials! Please, try again.'), 'forgot_flash');
@@ -641,7 +650,12 @@ class UsersController extends AppController {
 
                 if ($this->User->saveAll($user)) {
                    
-                    $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+                    if($user['User']['active']=='0'){
+                        $results = $this->User->checkCredentials_inactive($user['User']['email'], $user['User']['password']);
+                    }
+                    else{
+                        $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+                    }
 
                     if($this->Session->check('landing_offer')){
                         $user_offer = $this->Session->read('landing_offer');
@@ -708,7 +722,12 @@ class UsersController extends AppController {
                         $Messages->send_welcome_message($results['User']['id'], $stylist_id);
 
                         
-                        $this->Session->write('user', $results);
+                        if($results['User']['active']){
+                           $this->Session->write('user', $results);
+                        }
+                        else{
+                            $this->confirmation_email($results);
+                        }
 
                         if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
                             $this->assignVipDiscount($results['User']['referred_by']);
@@ -716,7 +735,14 @@ class UsersController extends AppController {
 
                         //$this->Session->write('new_user', 'new_user');
 
-                        $this->redirect(array('controller' => 'messages'));
+                        if($results['User']['active']){
+                            $this->redirect(array('controller' => 'messages'));
+                        }else{  // runs when User.active is false
+                            $this->Session->write('results_inactive',$results);
+                            $this->Session->setFlash(__('Please check ur email inbox for account activation email.'), 'forgot_flash');
+                            $this->redirect($this->referer());
+                            exit();
+                        }
                     } else {
                         $this->redirect($this->referer());
                         exit;
@@ -1340,6 +1366,49 @@ class UsersController extends AppController {
         $this->set('highlight',$highlight);
         
 
+    }
+
+    function account_activation($user_id = null,$offer = null) {    //account activation when user click link in email
+        //$this->loadModel('User');
+        $id = convert_uudecode(base64_decode($user_id));
+        $offer = convert_uudecode(base64_decode($offer));
+        $user = $this->User->getByID($id);
+        if($user['User']['active'] == 0){
+            $this->User->id = $user['User']['id'];
+            $this->User->saveField('active','1');
+            $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+            $this->Session->write('user',$results);
+            $offer_details['UserOffer'] = $this->getOfferDetails($offer);
+            if(!empty($offer_details['UserOffer'])){
+                $offer_details['UserOffer']['offer'] = $offer;
+                $this->Session->write('thankyou',$offer_details);
+                $this->redirect('/thankyou/'.$offer);
+            }
+            else{
+                $this->Session->setFlash(__('Your account has been activated.'), 'flash');
+                $this->redirect('/');
+            }
+            //echo '<pre>';print_r($user);die;
+        }
+        else{
+            $this->Session->setFlash(__('Your account is already active.'), 'flash');
+            $this->redirect('/');
+        }
+    }
+
+    public function send_activation_email(){    //  account activation email request from popup.
+        $this->autoRender = false;
+        if($this->request->is('ajax')) {
+            $results = json_decode($_POST['data'], true);
+            if(!empty($results)){
+                $this->confirmation_email($results);
+                echo '1';
+            }
+            else{
+                '0';
+            }
+        }
+        die;
     }
 
 

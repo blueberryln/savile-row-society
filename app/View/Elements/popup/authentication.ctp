@@ -122,6 +122,10 @@
 	                    if($offer_details['phone'] == 1){
 	                    	echo $this->Form->input('phone', array('id' => 'phone', 'label' => 'Phone Number', 'maxlength'=> '10', 'minlength'=> '10', 'onkeypress'=> 'return checkForNumber();'));
 	                    }
+	                    
+	                    if($offer_details['email_cnf'] == 1){
+	                    	echo $this->Form->input('active',array('type'=>'hidden','value' =>'0'));
+	                    }
 	                ?>      
 	                </div>
 					<div class="landing-buttons">

@@ -367,4 +367,14 @@ class User extends AppModel {
 
         return $users;
     }
+
+    public function checkCredentials_inactive($email = null, $password = null) {
+        return $this->find('first', array(
+                    'conditions' => array(
+                        'User.email' => $email,
+                        'User.password' => $password,
+                        'User.active' => false
+                    )
+        ));
+    }
 }
