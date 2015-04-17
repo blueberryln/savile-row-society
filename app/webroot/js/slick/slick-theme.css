@@ -117,7 +117,7 @@
 /* Dots */
 .slick-slider
 {
-    margin-bottom: 30px;
+    margin-bottom: 8px;
     /*display: inline-block;*/
     vertical-align: top;
 }
@@ -126,9 +126,9 @@
     position: absolute;
     bottom: -30px;
     display: block;
-    width: 100%;
+    width: 96%;
     padding: 0;
-    /*left: 93px;*/
+    /* left: 93px; */
     list-style: none;
     text-align: center;
 }

@@ -2,7 +2,7 @@
 .multiple-items.after-load{opacity: 0; height: 80px;}
 .slick-slider
 {
-    position: relative;
+    position: inherit;
 
     display: block;
 

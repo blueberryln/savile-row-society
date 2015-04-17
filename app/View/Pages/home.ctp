@@ -292,6 +292,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         </div>
         <!-- /SignUp_Wrapper -->
         <div id="three"></div>
+
+
         <!-- featuredStylists-Wrapper -->
         <div class="featuredStylists-Wrapper">
             <div class="center_row">
@@ -300,35 +302,40 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <h1>featured stylists</h1>
                 </div>
                 <!-- /Section_Main_Heading -->
-                <div class="for_mobile_device">
-                    <div class="multiple-items slider after-load">
-                    <?php foreach($topStylists as $topstylist): ?>
-                        <div>
-                            <h3>
-                                <a title = "<?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?>" href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>">
-                                
-                                <?php if($topstylist['User']['profile_photo_url']): ?>
-                                <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
-                                <?php else: ?>
-                                <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg"  />                       
-                                <?php endif; ?>
-                                <span class="hover_part">
-                                    <!-- <a href="#">Get Started</a> -->
-                                    <span>With <?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?></span>
-                                </span>
-                                </a>
-                            </h3>
+
+                <div style="position: relative;">
+                    <div class="for_mobile_device">
+                        <div class="multiple-items slider after-load">
+                        <?php foreach($topStylists as $topstylist): ?>
+                            <div>
+                                <h3>
+                                    <a title = "<?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?>" href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>">
+                                    
+                                    <?php if($topstylist['User']['profile_photo_url']): ?>
+                                    <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
+                                    <?php else: ?>
+                                    <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg"  />                       
+                                    <?php endif; ?>
+                                    <span class="hover_part">
+                                        <!-- <a href="#">Get Started</a> -->
+                                        <span>With <?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?></span>
+                                    </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        <?php endforeach; ?>    
                         </div>
-                    <?php endforeach; ?>    
+                    </div>
+                    <div class="last_slide">
+                        <a href="/stylists/stylistbiography/772?refer=772"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Stylists</span></a>
                     </div>
                 </div>
-                <div class="last_slide">
-                    <a href="/stylists/stylistbiography/772?refer=772"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Stylists</span></a>
-                </div>
-                
             </div>
         </div>
         <!-- /featuredStylists-Wrapper -->
+
+
+
 
         <!-- three_steps_wrapper -->
         <div class="three_steps_wrapper">

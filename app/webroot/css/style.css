@@ -3339,7 +3339,7 @@ line-height: normal;
 .checkout-option { display: block; margin-top: 10px;}
 .guest-checkout-btn{margin-top: 10px;}
 
-.landing-offer-box{width: 500px; box-sizing: border-box; padding: 15px;}
+.landing-offer-box{width: 500px; box-sizing: border-box; padding: 15px; }
 .landing-offer-box .box-modal-inside{ border: 1px solid black;}
 .landing-offer-box .landing_title{font-family: 'ACaslonPro-Italic'; font-size: 45px; line-height: 1.1; margin-bottom: 10px;}
 .landing-offer-box .landing_border{ display: block; margin: auto; width: 100px; border-top: 1px solid #b6a166; margin-bottom: 15px;}
@@ -3382,5 +3382,7 @@ line-height: normal;
 
 
 }
+
+
 
 
