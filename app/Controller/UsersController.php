@@ -554,27 +554,6 @@ class UsersController extends AppController {
                         $this->Session->delete('guest_items');
                     }
 
-
-                    // try{
-                    //   $bcc = Configure::read('Email.contact');
-                    //   $email = new CakeEmail('default');
-
-
-                    //   $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                    //   $email->to($user['User']['email']);
-                    //   $email->subject('Welcome To Savile Row Society');
-                    //   $email->bcc($bcc);
-                    //   $email->template('registration');
-                    //   $email->emailFormat('html');
-                    //   $email->viewVars(array('name' => $user['User']['first_name']));
-                    //   $email->send();
-                    // }
-                    // catch(Exception $e){
-                            
-                    // }
-                    // signin newly registered user
-                    // check submitted email and password 
-
                     if ($results) {
                         $stylist_id = $this->assign_refer_stylist($results['User']['id']);
                         $this->mailto_sales_team($user,$stylist_id);    // sends an email to the sales team
@@ -697,21 +676,7 @@ class UsersController extends AppController {
 
 
                     if ($results['User']['active']) {
-                        /* try{
-                          $bcc = Configure::read('Email.contact');
-                          $email = new CakeEmail('default');
-                          $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                          $email->to($user['User']['email']);
-                          $email->subject('Welcome To Savile Row Society');
-                          $email->bcc($bcc);
-                          $email->template('registration');
-                          $email->emailFormat('html');
-                          $email->viewVars(array('name' => $user['User']['first_name']));
-                          $email->send();
-                        }
-                        catch(Exception $e){
-                                
-                        }*/
+                        
                         $stylist_id = $this->assign_refer_stylist($results['User']['id']);
                         $this->mailto_sales_team($user,$stylist_id);    // sends an email to the sales team
                         App::import('Controller', 'Messages');

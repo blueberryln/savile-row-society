@@ -84,20 +84,6 @@ class AppController extends Controller {
             } 
         }
 
-        if($this->Session->check('landing_offer') && $this->Session->check('login_lead')){
-            $user_offer = $this->Session->read('landing_offer');
-            $this->Session->delete('landing_offer');
-            $this->Session->delete('login_lead');
-            $offer = $user_offer['UserOffer']['offer'];
-
-            $offer_details = $this->getOfferDetails($offer);
-            if($offer_details){
-                $pixel = $offer_details['login_pixel'];
-
-                $this->set(compact('pixel'));
-            }
-        }
-
         $this->getCartCount();
         $this->checkAdminRights();
         $this->checkStylistRights();
