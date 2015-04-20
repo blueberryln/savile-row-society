@@ -646,7 +646,7 @@ class UsersController extends AppController {
                 $user['User']['is_skype']='0'; 
               
                 $user['User']['profile_photo_url'] = null;    
-                
+                $user['User']['landing_offer'] = $this->Session->read('landing_offer.UserOffer.offer'); // to add the landing_offr code to thee DB
 
                 if ($this->User->saveAll($user)) {
                    
