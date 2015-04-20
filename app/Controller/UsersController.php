@@ -696,54 +696,39 @@ class UsersController extends AppController {
                     }
 
 
-                    // try{
-                    //   $bcc = Configure::read('Email.contact');
-                    //   $email = new CakeEmail('default');
-
-
-                    //   $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                    //   $email->to($user['User']['email']);
-                    //   $email->subject('Welcome To Savile Row Society');
-                    //   $email->bcc($bcc);
-                    //   $email->template('registration');
-                    //   $email->emailFormat('html');
-                    //   $email->viewVars(array('name' => $user['User']['first_name']));
-                    //   $email->send();
-                    // }
-                    // catch(Exception $e){
-                            
-                    // }
-
-                    if ($results) {
+                    if ($results['User']['active']) {
+                        /* try{
+                          $bcc = Configure::read('Email.contact');
+                          $email = new CakeEmail('default');
+                          $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                          $email->to($user['User']['email']);
+                          $email->subject('Welcome To Savile Row Society');
+                          $email->bcc($bcc);
+                          $email->template('registration');
+                          $email->emailFormat('html');
+                          $email->viewVars(array('name' => $user['User']['first_name']));
+                          $email->send();
+                        }
+                        catch(Exception $e){
+                                
+                        }*/
                         $stylist_id = $this->assign_refer_stylist($results['User']['id']);
                         $this->mailto_sales_team($user,$stylist_id);    // sends an email to the sales team
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($results['User']['id'], $stylist_id);
+                        $this->Session->write('user', $results);
+                        $this->redirect(array('controller' => 'messages'));
+                    } 
+                    elseif (!$results['User']['active']) {
+                        $this->confirmation_email($results);
+                        $this->Session->write('results_inactive',$results);
+                        $this->Session->setFlash(__('Please check ur email inbox for account activation email.'), 'forgot_flash');
+                        $this->redirect('/');
+                        exit();
+                    }
 
-                        
-                        if($results['User']['active']){
-                           $this->Session->write('user', $results);
-                        }
-                        else{
-                            $this->confirmation_email($results);
-                        }
-
-                        if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
-                            $this->assignVipDiscount($results['User']['referred_by']);
-                        }
-
-                        //$this->Session->write('new_user', 'new_user');
-
-                        if($results['User']['active']){
-                            $this->redirect(array('controller' => 'messages'));
-                        }else{  // runs when User.active is false
-                            $this->Session->write('results_inactive',$results);
-                            $this->Session->setFlash(__('Please check ur email inbox for account activation email.'), 'forgot_flash');
-                            $this->redirect($this->referer());
-                            exit();
-                        }
-                    } else {
+                    else {
                         $this->redirect($this->referer());
                         exit;
                     }
@@ -1377,6 +1362,11 @@ class UsersController extends AppController {
             $this->User->id = $user['User']['id'];
             $this->User->saveField('active','1');
             $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+            $stylist_id = $this->assign_refer_stylist($results['User']['id']);
+            $this->mailto_sales_team($results,$stylist_id);    // sends an email to the sales team
+            App::import('Controller', 'Messages');
+            $Messages = new MessagesController;
+            $Messages->send_welcome_message($results['User']['id'], $stylist_id);
             $this->Session->write('user',$results);
             $offer_details['UserOffer'] = $this->getOfferDetails($offer);
             if(!empty($offer_details['UserOffer'])){
