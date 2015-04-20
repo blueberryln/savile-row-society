@@ -1333,9 +1333,8 @@ class UsersController extends AppController {
             $Messages = new MessagesController;
             $Messages->send_welcome_message($results['User']['id'], $stylist_id);
             $this->Session->write('user',$results);
-            $offer_details['UserOffer'] = $this->getOfferDetails($offer);
-            if(!empty($offer_details['UserOffer'])){
-                $offer_details['UserOffer']['offer'] = $offer;
+            $offer_details = $this->getOfferDetails($offer);
+            if(!empty($offer_details)){
                 $this->Session->write('thankyou',$offer_details);
                 $this->redirect('/thankyou/'.$offer);
             }
