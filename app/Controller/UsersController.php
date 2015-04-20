@@ -638,11 +638,7 @@ class UsersController extends AppController {
 
                     if($this->Session->check('landing_offer')){
                         $user_offer = $this->Session->read('landing_offer');
-                        $offer = $this->Session->read('landing_offer.UserOffer.offer');
-
-                        $offer_details = $this->getOfferDetails($offer);
-                        $this->Session->write('thankyou',$this->Session->read('offer_details'));
-
+                        $this->Session->write('thankyou',$this->Session->read('landing_offer'));
                         $this->Session->delete('landing_text');
                         
                         $user_offer['UserOffer']['user_id'] = $results['User']['id'];
@@ -1337,8 +1333,9 @@ class UsersController extends AppController {
             $Messages = new MessagesController;
             $Messages->send_welcome_message($results['User']['id'], $stylist_id);
             $this->Session->write('user',$results);
-            $offer_details = $this->getOfferDetails($offer);
-            if(!empty($offer_details)){
+            $offer_details['UserOffer'] = $this->getOfferDetails($offer);
+            if(!empty($offer_details['UserOffer'])){
+                $offer_details['UserOffer']['offer'] = $offer;
                 $this->Session->write('thankyou',$offer_details);
                 $this->redirect('/thankyou/'.$offer);
             }

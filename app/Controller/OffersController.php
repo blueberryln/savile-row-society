@@ -68,7 +68,10 @@ class OffersController extends AppController {
 
         $thankyou = $this->Session->read('thankyou');
 
-        $pixel = $thankyou['login_pixel'];
+        $offer = $thankyou['UserOffer']['offer'];
+        $offer_details = $this->getOfferDetails($offer);
+
+        $pixel = $offer_details['login_pixel'];
         $this->set(compact('pixel'));
 
         $this->Session->delete('thankyou');
