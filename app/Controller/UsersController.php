@@ -638,7 +638,11 @@ class UsersController extends AppController {
 
                     if($this->Session->check('landing_offer')){
                         $user_offer = $this->Session->read('landing_offer');
-                        $this->Session->write('thankyou',$this->Session->read('landing_offer'));
+                        $offer = $this->Session->read('landing_offer.UserOffer.offer');
+
+                        $offer_details = $this->getOfferDetails($offer);
+                        $this->Session->write('thankyou',$this->Session->read('offer_details'));
+
                         $this->Session->delete('landing_text');
                         
                         $user_offer['UserOffer']['user_id'] = $results['User']['id'];
