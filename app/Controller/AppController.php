@@ -352,7 +352,7 @@ class AppController extends Controller {
                     $50 Off Your First Order 
                     of $250 or More.</span></p>";
 
-            $login_pixel = "<script type='text/javascript' src='http://www.mlinktracker.com/third/e2c4x294b4t2v2/" . uniqid() . "'></script>";
+            $login_pixel = "<script type='text/javascript' src='http://www.mlinktracker.com/third/e2c4x294b4t2v2/" . uniqid() . "'></script>";  
             $sale_pixel = "<script type='text/javascript' src='http://www.mlinktracker.com/third/e2c4x294b4t2w2/" . uniqid() . "'></script>";
         }
         else if($offer == '1218302'){
@@ -455,6 +455,8 @@ class AppController extends Controller {
                     Please enjoy this exclusive offer of<br><span class='landing_desc_emp'>
                     $50 Off Your First Order 
                     of $250 or More.</span></p>";
+
+            $login_pixel = "<script type='text/javascript' src='http://www.mlinktracker.com/third/e2c4y234b4t2y2/" . uniqid() . "'></script>"; 
         }
 
 
