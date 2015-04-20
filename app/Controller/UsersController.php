@@ -1334,6 +1334,8 @@ class UsersController extends AppController {
             $Messages->send_welcome_message($results['User']['id'], $stylist_id);
             $this->Session->write('user',$results);
             $offer_details['UserOffer'] = $this->getOfferDetails($offer);
+            $this->User->id = $user['User']['id'];
+            $this->User->saveField('active','1');
             if(!empty($offer_details['UserOffer'])){
                 $offer_details['UserOffer']['offer'] = $offer;
                 $this->Session->write('thankyou',$offer_details);
