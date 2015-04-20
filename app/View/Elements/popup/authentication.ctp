@@ -132,7 +132,7 @@
 	                ?>      
 	                </div>
 					<div class="landing-buttons">
-		                <input type="submit" class="link-btn btn-started" value="SIGN IN" /> 
+		                <input type="submit" class="link-btn btn-started" value="SIGN UP" /> 
 		                <span>OR</span>
 		               	<input type="button" class="link-btn btn-outfits" value="SHOP TOP OUTFITS" onclick="location='/';" />
 	               	</div>
