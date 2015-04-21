@@ -688,7 +688,7 @@ class UsersController extends AppController {
                     elseif (!$results['User']['active']) {
                         $this->confirmation_email($results);
                         $this->Session->write('results_inactive',$results);
-                        $this->Session->setFlash(__('Please check ur email inbox for account activation email.'), 'forgot_flash');
+                        $this->Session->setFlash(__('Please check your email inbox for account activation email.'), 'forgot_flash');
                         $this->redirect('/');
                         exit();
                     }
