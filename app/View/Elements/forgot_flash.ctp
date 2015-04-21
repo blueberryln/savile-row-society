@@ -32,6 +32,7 @@
                 url : '/users/send_activation_email',
                 data : {data : results_inactive},
                 'success' : function(response){
+                    response = parseInt(response);
                     $('.email_cnf_msg').html(message[response]);
                     $('.cnf_email_btn').removeAttr('disabled');
                 }

@@ -15,7 +15,7 @@
                 <div style=" padding: 5px 0;">
                     <p>Thank you for signing up for Savile Row Society.</p>
 
-                    <p>Please <a href = "<?php echo '//'.host.'/activation/'.base64_encode(convert_uuencode($results['User']['id'])).'/'.base64_encode(convert_uuencode($results['User']['landing_offer'])); ?>">click here</a> to activate your Savile Row Society account. or simply copy and paste the given URL in your browser's address bar:</p>
+                    <p>Please <a href = "<?php echo 'http://'.host.'/activation/'.base64_encode(convert_uuencode($results['User']['id'])).'/'.base64_encode(convert_uuencode($results['User']['landing_offer'])); ?>">click here</a> to activate your Savile Row Society account. or simply copy and paste the given URL in your browser's address bar:</p>
                     <p><?php echo 'http://'.host.'/activation/'.base64_encode(convert_uuencode($results['User']['id'])).'/'.base64_encode(convert_uuencode($results['User']['landing_offer'])); ?></p>
 
                 </div>
