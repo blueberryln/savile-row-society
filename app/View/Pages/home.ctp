@@ -258,9 +258,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             <input type="text" name="data[OutfitComment][comment]" class="comment_box" placeholder = "Write your comment here."/>
                             <button class="submit_comment">Post</button>
                              <?php if($user): ?>
-                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfits</a>
+                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfit</a>
                         <?php else: ?>
-                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfits</a>
+                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfit</a>
                          <?php endif; ?>    
                         </form>
 
