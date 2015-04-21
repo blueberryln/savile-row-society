@@ -1368,6 +1368,12 @@ class UsersController extends AppController {
         die;
     }
 
+    public function clear_cache(){
+        Configure::write('debug', 2);
+        $this->redirect($this->referer());
+    }
+
+
 
 }
 
