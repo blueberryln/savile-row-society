@@ -240,7 +240,7 @@
                         <?php } ?>
                         </ul>
                         </div>
-                        <?php if($count > 3){ ?>
+                        <?php if($count > 1){ ?>
                         <a href="#" title="Next" id="next_item">Next</a>
                         <a href="#" title="Previous" id="prev_item">Previous</a>
                         <?php } ?>
