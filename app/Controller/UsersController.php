@@ -691,7 +691,7 @@ class UsersController extends AppController {
                     }
 
                     if ($results['User']['active']) {
-                       /* try{
+                        /* try{
                           $bcc = Configure::read('Email.contact');
                           $email = new CakeEmail('default');
                           $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -712,12 +712,6 @@ class UsersController extends AppController {
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($results['User']['id'], $stylist_id);
                         $this->Session->write('user', $results);
-                       
-                        if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
-                            $this->assignVipDiscount($results['User']['referred_by']);
-                        }
-
-                        //$this->Session->write('new_user', 'new_user');
                         $this->redirect(array('controller' => 'messages'));
                     }
                     elseif (!$results['User']['active']) {
@@ -1369,6 +1363,8 @@ class UsersController extends AppController {
             $Messages->send_welcome_message($results['User']['id'], $stylist_id);
             $this->Session->write('user',$results);
             $offer_details['UserOffer'] = $this->getOfferDetails($offer);
+            $this->User->id = $user['User']['id'];
+            $this->User->saveField('active','1');
             if(!empty($offer_details['UserOffer'])){
                 $offer_details['UserOffer']['offer'] = $offer;
                 $this->Session->write('thankyou',$offer_details);
@@ -1399,6 +1395,11 @@ class UsersController extends AppController {
             }
         }
         die;
+    }
+
+    public function clear_cache(){
+        Configure::write('debug', 2);
+        $this->redirect($this->referer());
     }
 
 }
