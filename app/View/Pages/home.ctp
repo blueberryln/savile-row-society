@@ -93,19 +93,19 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <li class="slide_second">
                             <img src="<?php echo HTTP_ROOT ?>img/home/slide3.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                             <span>
-                                <div class="heading">blog title</div>
-                                <p>This is the content of your post. The more your write <br>more you have to read. <br><br>Read on...</p>
+                                <div class="heading"><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 31px;line-height: normal;background:none;" href="http://www.savilerowsociety.com/blog/">blog title</a></div>
+                                <p>This is the content of your post. The more your write <br>more you have to read. <br><br><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 17px;line-height: normal;background:none;"  href = "http://www.savilerowsociety.com/blog/">Read on...</a></p>
                             </span>
                         </li>
                         <li class="GetSocial">
                             <img src="<?php echo HTTP_ROOT ?>img/home/slide2.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                             <span>
                                 <div class="heading">get social</div>
-                                <p>Aenean sollicitudin, lorem quis bibendum auctor...</p>
+                                <p>For the latest news and access to special offers, follow us on social media.</p>
                                 <ul>
-                                    <li><a href="#" class="instagram">@savilerowsociety</a></li>
-                                    <li><a href="#" class="facebook">SavileRowSociety</a></li>
-                                    <li><a href="#" class="twitter">@SRSocietydotcom</a></li>
+                                    <li><a target="_blank" href="https://instagram.com/savilerowsociety" class="instagram">@savilerowsociety</a></li>
+                                    <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety" class="facebook">SavileRowSociety</a></li>
+                                    <li><a target="_blank" href="https://twitter.com/SRSocietydotcom" class="twitter">@SRSocietydotcom</a></li>
                                 </ul>
                             </span>
                         </li>

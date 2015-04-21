@@ -101,14 +101,17 @@
             <div class="mobile_menu_wrapper">
               <ul>
                 <li><a href="/user/profile">My Account</a></li>
+                <?php if($user){ ?>
+                <li><a href="/signout">Sign Out</a></li>
+                <?php } ?>
                 <span>&nbsp;</span>
                 <li><a href="/#two">Shop</a></li>
                 <li><a href="/#three">Stylist</a></li>
-                <li><a href="/#four">Blog</a></li>
+                <li><a target="_blank" href="http://www.savilerowsociety.com/blog/">Blog</a></li>
                 <span>&nbsp;</span>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">Intagaram</a></li>
+                <li><a target="_blank" href="https://instagram.com/savilerowsociety">Instagram</a></li>
+                <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety">Facebook</a></li>
+                <li><a target="_blank" href="https://twitter.com/SRSocietydotcom">Twitter</a></li>
                 <span>&nbsp;</span>
                 <li><a href="#">Vip Access</a></li>
                 <span>&nbsp;</span>
@@ -145,9 +148,9 @@
                 <!-- top_icons -->
                 <div class="top_icons">
                     <ul class="social_icon_list">
-                        <li><a href="#" class="instagram">instagram</a></li>
-                        <li><a href="#" class="facebook">facebook</a></li>
-                        <li><a href="#" class="twitter">twitter</a></li>
+                        <li><a target="_blank" href="https://instagram.com/savilerowsociety" class="instagram">instagram</a></li>
+                        <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety" class="facebook">facebook</a></li>
+                        <li><a target="_blank" href="https://twitter.com/SRSocietydotcom" class="twitter">twitter</a></li>
                     </ul>
 
                     <!-- notification_dropdown -->
@@ -182,7 +185,9 @@
 
                       <!-- bottom_section -->
                       <div class="bottom_section">
+                      <?php if(empty($user)) {?>
                       Don't have an account? <a href="/users/register">Sign up for Free</a>
+                      <?php } ?>
                       </div>
                       <!-- /bottom_section -->
                     </div>
@@ -333,7 +338,7 @@
                     <ul>
                         <li><a href="/#two">Shop</a></li>
                         <li><a href="/#three">Stylists</a></li>
-                        <li><a href="/#four">Blog</a></li>
+                        <li><a target="_blank" href="http://www.savilerowsociety.com/blog/">Blog</a></li>
                     </ul>
                 </div>
                 <!-- /nav -->
