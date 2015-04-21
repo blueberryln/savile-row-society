@@ -86,7 +86,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             <span>
                                 <div class="heading">SHOP WITH YOUR <br>PERSONAL STYLIST</div>
                                 <p>Online & In-Person</p>
-                                <a href="Javascript:;">Tell Me More</a>
+                                <a href="/#nine9">Tell Me More</a>
                                 <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
                             </span>
                         </li>
@@ -337,7 +337,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
 
 
-
+        <div id = "nine9"></div>
         <!-- three_steps_wrapper -->
         <div class="three_steps_wrapper">
             <div class="center_row">
