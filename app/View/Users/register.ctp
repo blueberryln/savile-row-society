@@ -112,7 +112,7 @@ $(document).ready(function() {
 	});
 
     $(".about-submit input[type=submit]").on('click', function(e){
-        if($("#first-name").val() && $("#last-name").val() && $("#register-password").val() && $("#register-email").val() && $("#confirm-register-password")){
+        if($("#first-name").val() && $("#last-name").val() && $("#phone").val() && $("#register-password").val() && $("#register-email").val() && $("#confirm-register-password")){
             $("p.about-error").slideUp(300);
             $(document).scrollTop(0);
         }
@@ -125,6 +125,27 @@ $(document).ready(function() {
 	
 });
 </script>
+
+<script type="text/javascript">
+function checkForNumber()
+{
+ k = (document.all)?event.keyCode : arguments.callee.caller.arguments[0].which;
+
+ if(k == 8 || k== 0)
+ {
+  return true;
+ }
+ if(k<48||k>57)
+ {
+  return false;
+ }
+ if((k >= 65 && 90 >= k) || (k >= 97 && 122 >= k))
+ {
+  return false;
+ }
+}
+</script>
+
 <style>
 .ui-state-active{
 color:#396; !important	
@@ -452,7 +473,7 @@ color:#396; !important
                         <div class="five columns pref-time left">
                             <div class="pref-options">
                                 <?php
-                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number (Optional)"));
+                                   echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number*", "maxlength"=> "10", "minlength"=> "10", "onkeypress"=> "return checkForNumber();", 'required', "id"=> "phone", "pattern"=> ".{10,10}", "title"=> "10 digits required" ));
                                     echo $this->Form->input('User.skype', array( 'label' => false, 'placeholder' => 'Skype Id (Optional)'));
                                 ?>
                             </div>
