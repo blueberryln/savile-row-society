@@ -155,20 +155,19 @@ border-radius: 5px;
 }
 
 .scrollbar9 .thumb {
-background: #d9d9d5;
-height: 20px;
-width: 6px;
-cursor: pointer;
-overflow: hidden;
-height: 95px !important;
-position: absolute;
-top: 0;
-left: 3px;
--webkit-border-radius: 3px;
--moz-border-radius: 3px;
--ms-border-radius: 3px;
--o-border-radius: 3px;
-border-radius: 3px;
+    background: #d9d9d5;
+    width: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    min-height: 20px;
+    left: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
 }
 #scrollbar1 .track { background: #fff; border:1px dotted #d9d9d5;}
 
