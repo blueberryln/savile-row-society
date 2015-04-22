@@ -474,6 +474,7 @@ class AppController extends Controller {
 
     // new user registration mail to sales team
     function mailto_sales_team($user = null,$stylist_id = null){
+        if(!DEV_MODE){  // the 'DEV_MODE' is defined in core.php
          try{
                 $User = ClassRegistry::init('User');
                 $stylist = $User->findById($stylist_id);
@@ -487,12 +488,13 @@ class AppController extends Controller {
                 $email->bcc($bcc);
                 $email->template('sales_team');
                 $email->emailFormat('html');
-                $email->viewVars(array('f_name' => $user['User']['first_name'],'l_name' => $user['User']['last_name'],'stylist_id'=>$stylist_id,'stylist_first_name' => $stylist['User']['first_name'],'stylist_last_name' => $stylist['User']['last_name'], 'e_mail'=>$user['User']['email'],'mobile'=>$user['User']['phone']));
+                $email->viewVars(array('user' => $user,'stylist'=>$stylist));
                 $email->send();
             }
             catch(Exception $e){
 
             }
+        }
     }
 
 

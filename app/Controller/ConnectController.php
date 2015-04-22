@@ -301,6 +301,9 @@ class ConnectController extends AppController {
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
                         $email->send();
+                        App::import('Controller', 'Users');
+                        $Users = new UsersController;
+                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
                         $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
 
                         // redirect to home
