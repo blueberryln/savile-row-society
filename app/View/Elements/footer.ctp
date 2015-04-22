@@ -29,10 +29,10 @@
                     <div class="section-two">
                         <button class="btn-vip_access" id="block-vip-access">VIP ACCESS</button>
                         <ul>
-                            <li><a href="http://www.savilerowsociety.com/blog" class="blogList">Blog</a></li>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Instagaram</a></li>
-                            <li><a href="#">Twitter</a></li>
+                            <li><a target="_blank" href="http://www.savilerowsociety.com/blog" class="blogList">Blog</a></li>
+                            <li><a target="_blank" href="https://instagram.com/savilerowsociety">Instagram</a></li>
+                            <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety">Facebook</a></li>
+                            <li><a target="_blank" href="https://twitter.com/SRSocietydotcom">Twitter</a></li>
                         </ul>
                     </div>
                 </div>
@@ -63,8 +63,8 @@
                                 <input type="hidden" name="u" value="88bda5a8e85fc9df8f8b8f5b2">
                                 <input type="hidden" name="id" value="6c6fbf69c3">
                                 <input type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="" placeholder ="Your email address">
-                                <input type="hidden" name="MERGE1" id="MERGE1" size="25" value="null">
-                                <input type="hidden" name="MERGE2" id="MERGE2" size="25" value="null">
+                                <input type="hidden" name="MERGE1" id="MERGE1" size="25" value="">
+                                <input type="hidden" name="MERGE2" id="MERGE2" size="25" value="">
                                 <div class="hidden-from-view"><input type="text" name="b_88bda5a8e85fc9df8f8b8f5b2_6c6fbf69c3" tabindex="-1" value=""></div>
                                 <input type="submit" class="btn-sign_up" name="submit" value="Sign Up">
                         </form>

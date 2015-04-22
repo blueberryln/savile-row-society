@@ -2152,4 +2152,52 @@ class MessagesController extends AppController {
         $this->set(compact('outfits','userlists','user_id','outfitcount', 'page'));
     
     }
+
+    
+    public function requestanoutfit() {
+        $this->autoLayout = false;
+        $Message = ClassRegistry::init('Message');
+        $User= ClassRegistry::init('User');
+        $posts = ClassRegistry::init('Post');
+        $user = $this->getLoggedUser();
+        $user_id = $user['User']['id'];
+        $stylist_id = $user['User']['stylist_id'];
+            $this->request->data['Post']['user_id'] = $user_id;
+            $this->request->data['Post']['stylist_id'] = $stylist_id;
+            $this->request->data['Post']['is_request_outfit'] = '1';
+            $posts->save($this->request->data);
+            $post_id = $posts->getLastInsertID();
+        if($this->request->is('post') || $this->request->is('put')){
+            $Message->data['Message']['user_from_id'] = $user_id;
+            $Message->data['Message']['user_to_id'] = $stylist_id;
+            $Message->data['Message']['is_request_outfit'] = '1';
+            $Message->data['Message']['post_id'] =  $post_id;
+
+            if($Message->save($this->request->data)){
+                try{
+                    $client = $user;
+                    $stylist = $User->findById($user['User']['stylist_id']);
+
+                    $email = new CakeEmail('default');
+                    $email->to($stylist['User']['email']);
+                    $email->template('request_outfit');
+                    $email->emailFormat('html');
+                    
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->subject('Client Request Outfit');
+                    
+                    $email->viewVars(compact('client','stylist'));
+                    
+                    $email->send();
+                }
+                catch(Exception $e){
+                    
+                } 
+                $this->redirect('/messages/index');
+            }
+        }    
+
+
+    }
+    
 }
