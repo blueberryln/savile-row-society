@@ -21,7 +21,7 @@
 					<p>Last Name : <?= $user['User']['last_name']; ?></p>
 					<p>Email : <?= $user['User']['email']; ?></p>
 					<p>Phone : <?php if($user['User']['phone']) {echo $user['User']['phone'];} else{echo "--";} ; ?></p>
-					<p>Stylist : <?= $stylist_id; ?></p>
+					<p>Stylist : <?= $stylist['User']['full_name']; ?></p>
 				</div>
 
                 <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
