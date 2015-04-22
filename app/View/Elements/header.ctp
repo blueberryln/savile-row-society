@@ -51,7 +51,6 @@
             jQuery(menu).slideToggle();  
         });
     });
-
     jQuery(document).ready(function(){
       jQuery("a.notifications").on("hover", function(){
         jQuery(".notification_dropdown").show().siblings('.dropdown_wrapper').hide();
@@ -66,7 +65,7 @@
       jQuery(".icon_cross, body").on("click", function(){
         jQuery(".cart_dropdown").hide();
       });
-      jQuery('.cart_dropdown').click(function(e){
+      jQuery('.cart_dropdown .content_section').click(function(e){
           e.stopPropagation();
          return false;
       });
@@ -203,7 +202,7 @@
                       </div>
                       <!-- /Heading -->
                       <!-- content_section -->
-                      <div class="content_section">
+                      <div class="content_section" style="margin-bottom: 0px;">
                          
                       <?php if(empty($cart_user) && empty($cart_guest)){?>
                         <br />Your shopping cart <br />
@@ -244,8 +243,14 @@
                         <a href="#" title="Next" id="next_item">Next</a>
                         <a href="#" title="Previous" id="prev_item">Previous</a>
                         <?php } ?>
+
+
+                      </div>
+                      <!-- /content_section -->
+
+
                         <!-- bottom_buttons_area -->
-                        <div class="bottom_buttons_area">
+                        <div class="bottom_buttons_area" style="margin-bottom: 12px;">
                           <a href="<?php if(!empty($user)){echo "/cart"; } else{ echo "/guest/cart"; } ?>" class="viewCart">View Cart</a>
                           <?php if($count > 0){ ?>
                           <a href="<?php if(!empty($user)){echo "/checkout"; } else{ echo "/guest/cart"; } ?>" class="proceeToPurchase">Proceed To Purchase</a>
@@ -254,8 +259,9 @@
                         <!-- /bottom_buttons_area -->
 
 
-                      </div>
-                      <!-- /content_section -->
+
+
+
                       <!-- bottom_section -->
                       <div class="bottom_section">
                       Free Delivery & Returns on ALL Orders| Call Us <span><a href="tel:+13478787280">+1 347 878 7280</a></span>

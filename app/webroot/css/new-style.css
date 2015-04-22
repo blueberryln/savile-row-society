@@ -288,7 +288,7 @@ a{ border: none; outline: none; }
     body .container_wrapper #banner_wrapper .flexslider .slides > li.GetSocial > span ul li a.facebook{ background-size: 15% auto !important; }
 }
 
-@media screen and (min-width: 320px) and (max-width: 639px) {
+@media screen and (min-width: 320px) and (max-width: 750px) {
 	#banner_wrapper{ width: 100%; margin: 88px 0 0 0; }
 	.rightImages{ width: 100%; margin: 0px; }
 	.rightImages a span.col-text { padding: 10px; font-size: 17px; }
