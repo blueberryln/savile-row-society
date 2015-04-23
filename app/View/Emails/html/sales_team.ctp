@@ -22,6 +22,9 @@
 					<p>Email : <?= $user['User']['email']; ?></p>
 					<p>Phone : <?php if($user['User']['phone']) {echo $user['User']['phone'];} else{echo "--";} ; ?></p>
 					<p>Stylist : <?= $stylist['User']['full_name']; ?></p>
+                    <?php if($user['User']['landing_offer']){ ?>
+                        <p>Landing Offer : <?= $user['User']['landing_offer']; ?></p>
+                    <?php } ?>
 				</div>
 
                 <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
