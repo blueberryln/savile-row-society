@@ -219,97 +219,6 @@ class UsersController extends AppController {
             exit;
         }
     }
-
-   
-   
-    /*
-     * Temporary in use for user registration.
-     * Should be replaced with new sign in process
-     */
-
-    function shortRegistration() {
-        $user = $this->request->data;
-        
-        if ($this->User->validates()) {
-            $registered = $this->User->find('count', array('conditions' => array('User.email' => $user['User']['email'])));
-            if($registered){
-                $this->Session->setFlash(__('You are already registered. Please sign in.'), 'flash');
-                $this->redirect($this->referer());
-                exit;    
-            }
-            
-            $this->User->create();
-            // hash password
-            if (!empty($user['User']['password'])) {
-                $user['User']['password'] = Security::hash($user['User']['password']);
-            }
-            // username (slug)
-            $full_name = $user['User']['first_name'] . ' ' . $user['User']['last_name'];
-            $user['User']['username'] = strtolower(Inflector::slug($full_name, $replacement = '.'));
-
-            if($this->Session->check('referer')){
-                $user['User']['referred_by'] = $this->Session->read('referer');  
-                $user['User']['vip_discount_flag'] = 1; 
-            }
-
-            if ($this->User->save($user)) {
-                if($this->Session->check('referer')){
-                    $this->Session->delete('referer');
-                    $this->Session->delete('showRegisterPopup'); 
-                    $this->Session->delete('referer_type');
-                }
-
-
-                //$this->Session->write('completeProfile', true);
-                // send welcome mail
-                /* uncoment this to deploy code */
-                try{
-                  $bcc = Configure::read('Email.contact');
-                  $email = new CakeEmail('default');
-
-
-                  $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                  $email->to($user['User']['email']);
-                  $email->subject('Welcome To Savile Row Society');
-                  $email->bcc($bcc);
-                  $email->template('registration');
-                  $email->emailFormat('html');
-                  $email->viewVars(array('name' => $user['User']['first_name']));
-                  $email->send();
-                }
-                catch(Exception $e){
-                        
-                }
-                // signin newly registered user
-                // check submitted email and password 
-                $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
-
-                if ($results) {
-                    
-                    // set "user" session
-                    $this->Session->write('user', $results);
-
-                    if($results['User']['vip_discount_flag'] && $results['User']['referred_by']){
-                        $this->assignVipDiscount($results['User']['referred_by']);
-                    }
-
-                    $this->redirect('/register/wardrobe');
-                    exit;
-                } else {
-                    // redirect to home
-                    $this->redirect($this->referer());
-                    exit;
-                }
-            } else {
-                $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
-                $this->redirect($this->referer());
-            }
-        } else {
-            $this->Session->setFlash(__('Please, sign in.'), 'flash', array('title' => 'You are already registered!'));
-            $this->redirect($this->referer());
-        }
-    }
-
    
     /**
      * Sign out
@@ -511,6 +420,9 @@ class UsersController extends AppController {
 
 
                 if ($this->User->saveAll($user)) {
+                    $this->complete_user_registration($user,'style_profile');
+                    /* the code below is replaced by the fucntion complete_user_registration */
+/*
                     if($this->Session->check('referer')){
                         $this->Session->delete('referer');
                         $this->Session->delete('showRegisterPopup'); 
@@ -596,7 +508,7 @@ class UsersController extends AppController {
                         // redirect to home
                         $this->redirect($this->referer());
                         exit;
-                    }
+                    }*/
                 } else {
                     $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
                     $this->redirect($this->referer());
@@ -648,7 +560,11 @@ class UsersController extends AppController {
                 $user['User']['landing_offer'] = $this->Session->read('landing_offer.UserOffer.offer'); // to add the landing_offr code to thee DB
 
                 if ($this->User->saveAll($user)) {
-                   if($user['User']['active']=='0'){
+                    $this->complete_user_registration($user, 'landing_offer');
+
+                     /* the code below is replaced by the fucntion complete_user_registration */
+
+                   /*if($user['User']['active']=='0'){
                         $results = $this->User->checkCredentials_inactive($user['User']['email'], $user['User']['password']);
                     }
                     else{
@@ -691,21 +607,7 @@ class UsersController extends AppController {
                     }
 
                     if ($results['User']['active']) {
-                        /* try{
-                          $bcc = Configure::read('Email.contact');
-                          $email = new CakeEmail('default');
-                          $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                          $email->to($user['User']['email']);
-                          $email->subject('Welcome To Savile Row Society');
-                          $email->bcc($bcc);
-                          $email->template('registration');
-                          $email->emailFormat('html');
-                          $email->viewVars(array('name' => $user['User']['first_name']));
-                          $email->send();
-                        }
-                        catch(Exception $e){
-                                
-                        }*/
+        
                         $stylist_id = $this->assign_refer_stylist($results['User']['id']);
                         $this->mailto_sales_team($user,$stylist_id);    // sends an email to the sales team
                         App::import('Controller', 'Messages');
@@ -725,7 +627,7 @@ class UsersController extends AppController {
                     else {
                         $this->redirect($this->referer());
                         exit;
-                    }
+                    }*/
                 } else {
                     $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
                     $this->redirect($this->referer());
@@ -1402,5 +1304,86 @@ class UsersController extends AppController {
         $this->redirect($this->referer());
     }
 
+
+    function complete_user_registration($user = null, $signup_through = null){
+
+        if($signup_through =='style_profile' && $this->Session->check('referer')){
+            $this->Session->delete('referer');
+            $this->Session->delete('showRegisterPopup'); 
+            $this->Session->delete('referer_type');
+        }
+
+        if($user['User']['active']=='0'){
+            $results = $this->User->checkCredentials_inactive($user['User']['email'], $user['User']['password']);
+        }
+        else{
+            $results = $this->User->checkCredentials($user['User']['email'], $user['User']['password']);
+        }
+
+        if($this->Session->check('landing_offer')){
+            $user_offer = $this->Session->read('landing_offer');
+            if($signup_through == 'landing_offer') {
+                $this->Session->write('thankyou',$this->Session->read('landing_offer'));
+            }
+            $this->Session->delete('landing_text');
+            
+            $user_offer['UserOffer']['user_id'] = $results['User']['id'];
+
+            $UserOffer = ClassRegistry::init('UserOffer');
+            $UserOffer->create();
+            $UserOffer->save($user_offer);
+        }
+        if($this->Session->check('guest_items')){
+            $cart_list = $this->Session->read('guest_items');
+
+            $Cart = ClassRegistry::init('Cart');
+            $CartItem = ClassRegistry::init('CartItem');
+
+            $data = array();
+            $data['Cart']['user_id'] = $results['User']['id'];
+            $Cart->create();
+            $result = $Cart->save($data);
+
+            $cart_id = $result['Cart']['id'];
+            foreach($cart_list as $item){
+                $item['CartItem']['user_id'] = $results['User']['id'];
+                $item['CartItem']['cart_id'] = $cart_id;
+                $CartItem->create();
+                $result = $CartItem->save($item);
+            }
+
+
+            $this->Session->delete('guest_items');
+        }
+        if ($results['User']['active']) {
+            
+            $stylist_id = $this->assign_refer_stylist($results['User']['id']);
+            $this->mailto_sales_team($user,$stylist_id);    // sends an email to the sales team
+            App::import('Controller', 'Messages');
+            $Messages = new MessagesController;
+            $Messages->send_welcome_message($results['User']['id'], $stylist_id);
+            // set "user" session
+            $this->Session->write('user', $results);
+
+            if($signup_through =='style_profile' && $results['User']['vip_discount_flag'] && $results['User']['referred_by']){
+                $this->assignVipDiscount($results['User']['referred_by']);
+            }
+
+            $this->Session->write('new_user', 'new_user');
+
+            $this->redirect(array('controller' => 'messages'));
+        }
+        elseif (!$results['User']['active']) {
+            $this->confirmation_email($results);
+            $this->Session->write('results_inactive',$results);
+            $this->Session->setFlash(__('Please check ur email inbox for account activation email.'), 'forgot_flash');
+            $this->redirect('/');
+            exit();
+        }
+        else {
+            $this->redirect($this->referer());
+            exit;
+        }
+    }
 }
 
