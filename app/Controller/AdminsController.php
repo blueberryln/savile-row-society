@@ -196,6 +196,66 @@ class AdminsController extends AppController {
 			}
 		}
 	}
+
+	/* the function lists the emails of sales team */
+	function sales_team_email(){
+		$this->layout = 'adminlte';
+		$this->loadModel('SalesTeam');
+		$conditions = array('order'=>'SalesTeam.id desc','limit'=>20);
+		$this->paginate = $conditions;
+		$emails = $this->paginate('SalesTeam');
+		$this->set(compact('emails'));
+	}
+
+	/* the function adds and updates the email of sales team*/
+	function add_sales_email($id = null){
+		$this->layout = 'adminlte';
+		$this->loadModel('SalesTeam');
+		$data = $this->data;
+		$page_title = 'Add Email';
+		if(!empty($data)){
+			if(!$id){
+				if($this->SalesTeam->save($data)){
+				}
+				else{
+					$this->set('email',$data);
+					$this->redirect($this->referer());
+				}
+			}
+			else{
+				$data['SalesTeam']['id'] = convert_uudecode(base64_decode($id));
+				if($this->SalesTeam->save($data)){
+				}
+				else{
+					$this->set('email',$data);
+					$this->redirect('admins/add_sales_email/'.$id);
+				}
+			}
+			$this->redirect('/admins/sales_team_email');
+		}else if($id){
+			$id = convert_uudecode(base64_decode($id));
+			$email = $this->SalesTeam->findById($id);
+			$page_title = 'Edit Email';
+			$this->set(compact('email'));
+		}
+		$this->set(compact('page_title'));
+	}
+
+	/* function to choose what content is to be sent in email */
+	function email_content(){
+		$this->layout = 'adminlte';
+		$this->loadModel('EmailContent');
+		$data = $this->data;
+		if(!empty($data)){
+			$data['EmailContent']['id'] = 1;
+			$this->EmailContent->save($data);
+			$this->redirect($this->referer());
+		}
+		$EmailContent = $this->EmailContent->find('first',array('order'=>'id desc'));
+		$this->set(compact('EmailContent'));
+
+
+	}
 }
 
 

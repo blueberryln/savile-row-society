@@ -442,7 +442,12 @@ class AppController extends Controller {
                     $stylist = $User->findById($stylist_id);
 
                     $bcc = Configure::read('Email.contact');
-                    $sales_team = array('Tyler@savilerowsociety.com','Mitch@savilerowsociety.com','Lisa@savilerowsociety.com','matt@savilerowsociety.com',$stylist['User']['email']);
+                    $this->loadModel('SalesTeam');
+                    $this->loadModel('EmailContent');
+                    $EmailContent = $this->EmailContent->find('first',array('order'=>'id desc'));
+                    $sales_team = $this->SalesTeam->find('list',array('conditions'=>array('disabled'=>0),'fields'=>array('email')));
+
+                   // $sales_team = array('Tyler@savilerowsociety.com','Mitch@savilerowsociety.com','Lisa@savilerowsociety.com','matt@savilerowsociety.com',$stylist['User']['email']);
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($sales_team);
@@ -450,7 +455,7 @@ class AppController extends Controller {
                     $email->bcc($bcc);
                     $email->template('sales_team');
                     $email->emailFormat('html');
-                    $email->viewVars(array('user' => $user,'stylist'=>$stylist));
+                    $email->viewVars(array('user' => $user,'stylist'=>$stylist,'EmailContent'=>$EmailContent));
                     $email->send();
                 }
                 catch(Exception $e){

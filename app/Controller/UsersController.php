@@ -1304,7 +1304,7 @@ class UsersController extends AppController {
         $this->redirect($this->referer());
     }
 
-
+    /* function for common part af regisration */
     function complete_user_registration($user = null, $signup_through = null){
 
         if($signup_through =='style_profile' && $this->Session->check('referer')){
@@ -1358,7 +1358,7 @@ class UsersController extends AppController {
         if ($results['User']['active']) {
             
             $stylist_id = $this->assign_refer_stylist($results['User']['id']);
-            $this->mailto_sales_team($user,$stylist_id);    // sends an email to the sales team
+            $this->mailto_sales_team($results,$stylist_id);    // sends an email to the sales team
             App::import('Controller', 'Messages');
             $Messages = new MessagesController;
             $Messages->send_welcome_message($results['User']['id'], $stylist_id);

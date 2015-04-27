@@ -107,3 +107,51 @@ $(document).on('click','.blog_status',function(){
 		});
 	}
 });
+
+/* generic function for changing status */
+$(document).on('click','.change_status',function(){
+	var model = $(this).attr('getModel');
+	var id = $(this).attr('rel');
+	var status ='';
+	$(this).attr('disabled',true);
+	$(this).text('Loading...');
+	if($(this).hasClass('label-success')){
+		var status = '0';
+	}
+	else if($(this).hasClass('label-warning')){
+		var status = '1';
+	}
+	if(id){
+		$.ajax({
+			url : '/admins/status/'+model+'/'+id+'/'+status,
+			success : function(response){
+				if(response == '0'){
+					var new_status = '<button title="Click to Disable" getModel="'+model+'" rel ="'+id+'" class="label label-success blog_status">Enabled</button>';
+				}
+				else if(response == '1'){
+					var new_status = '<button title="Click to Enable" getModel="'+model+'" rel ="'+id+'" class="label label-warning blog_status">Disabled</button>';
+				}
+				$('.status'+id).html(new_status);
+			}
+		});
+	}
+});
+
+/* generic function for deleting a record  */
+$(document).on('click','.delete_record',function(){
+	if(confirm('Do you really want to delete this record.'))
+	{
+		var model = $(this).attr('getModel');
+		var id = $(this).attr('rel');
+		$.ajax({
+			url: '/admins/delete/'+model+'/'+id,
+			success: function(res){
+				if(res!='fail')
+				{
+					$('.tr'+res).remove();
+				}
+			}
+		});
+	}
+
+});
