@@ -446,7 +446,7 @@ class AppController extends Controller {
                     $this->loadModel('EmailContent');
                     $EmailContent = $this->EmailContent->find('first',array('order'=>'id desc'));
                     $sales_team = $this->SalesTeam->find('list',array('conditions'=>array('disabled'=>0),'fields'=>array('email')));
-
+                    array_push($sales_team,$stylist['User']['email']);
                    // $sales_team = array('Tyler@savilerowsociety.com','Mitch@savilerowsociety.com','Lisa@savilerowsociety.com','matt@savilerowsociety.com',$stylist['User']['email']);
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
