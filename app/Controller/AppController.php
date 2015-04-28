@@ -436,14 +436,15 @@ class AppController extends Controller {
     // new user registration mail to sales team
     function mailto_sales_team($user = null,$stylist_id = null){
         if(!DEV_MODE){  // the 'DEV_MODE' is defined in core.php
-        
              try{
                     $User = ClassRegistry::init('User');
                     $stylist = $User->findById($stylist_id);
-
+                    $user = $this->User->find('first',array('conditions'=>array('User.id'=>$user['User']['id']),'recursive'=>2,'contain'=>array('UserPreference')));
                     $bcc = Configure::read('Email.contact');
                     $this->loadModel('SalesTeam');
                     $this->loadModel('EmailContent');
+                    $this->loadModel('Style');
+                    $style = $this->Style->find('list',array('fields'=>array('image')));
                     $EmailContent = $this->EmailContent->find('first',array('order'=>'id desc'));
                     $sales_team = $this->SalesTeam->find('list',array('conditions'=>array('disabled'=>0),'fields'=>array('email')));
                     array_push($sales_team,$stylist['User']['email']);
@@ -455,7 +456,7 @@ class AppController extends Controller {
                     $email->bcc($bcc);
                     $email->template('sales_team');
                     $email->emailFormat('html');
-                    $email->viewVars(array('user' => $user,'stylist'=>$stylist,'EmailContent'=>$EmailContent));
+                    $email->viewVars(array('user' => $user,'stylist'=>$stylist,'EmailContent'=>$EmailContent,'style'=>$style));
                     $email->send();
                 }
                 catch(Exception $e){

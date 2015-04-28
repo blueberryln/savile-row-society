@@ -126,10 +126,10 @@ $(document).on('click','.change_status',function(){
 			url : '/admins/status/'+model+'/'+id+'/'+status,
 			success : function(response){
 				if(response == '0'){
-					var new_status = '<button title="Click to Disable" getModel="'+model+'" rel ="'+id+'" class="label label-success blog_status">Enabled</button>';
+					var new_status = '<button title="Click to Disable" getModel="'+model+'" rel ="'+id+'" class="label label-success change_status">Enabled</button>';
 				}
 				else if(response == '1'){
-					var new_status = '<button title="Click to Enable" getModel="'+model+'" rel ="'+id+'" class="label label-warning blog_status">Disabled</button>';
+					var new_status = '<button title="Click to Enable" getModel="'+model+'" rel ="'+id+'" class="label label-warning change_status">Disabled</button>';
 				}
 				$('.status'+id).html(new_status);
 			}
