@@ -45,8 +45,8 @@
 		echo $this->Form->input('profile_photo_url',array('type' => 'checkbox','checked'=>$EmailContent['EmailContent']['profile_photo_url']));
 		echo $this->Form->input('show_closet_popup',array('type' => 'checkbox','checked'=>$EmailContent['EmailContent']['show_closet_popup']));
 		echo $this->Form->input('landing_offer',array('type' => 'checkbox','checked'=>$EmailContent['EmailContent']['landing_offer']));
-		echo $this->Form->input('created',array('type' => 'checkbox','checked'=>$EmailContent['EmailContent']['created']));
-		echo $this->Form->input('updated',array('type' => 'checkbox','checked'=>$EmailContent['EmailContent']['updated']));
+		echo $this->Form->input('date_created',array('type' => 'checkbox','checked'=>$EmailContent['EmailContent']['date_created']));
+		echo $this->Form->input('date_updated',array('type' => 'checkbox','checked'=>$EmailContent['EmailContent']['date_updated']));
 		echo $this->Form->input('Submit',array('type'=>'submit','class'=>'btn btn-primary','label'=>false));
 		?>
 	</div>

@@ -128,11 +128,11 @@
                     <?php if($EmailContent['EmailContent']['landing_offer'] && $user['User']['landing_offer']){
                     echo "<p>Landing Offer :".$user['User']['landing_offer']."</p>";
                     } ?>
-                    <?php if($EmailContent['EmailContent']['created'] && $user['User']['created']){
-                    echo "<p>Created :".date('m/d/Y',$user['User']['created'])."</p>";
+                    <?php if($EmailContent['EmailContent']['date_created'] && $user['User']['created']){
+                    echo "<p>Date Created :".date('m/d/Y',$user['User']['created'])."</p>";
                     } ?>
-                    <?php if($EmailContent['EmailContent']['updated'] && $user['User']['updated']){
-                    echo "<p>Updated :".date('m/d/Y',$user['User']['updated'])."</p>";
+                    <?php if($EmailContent['EmailContent']['date_updated'] && $user['User']['updated']){
+                    echo "<p>Date Updated :".date('m/d/Y',$user['User']['updated'])."</p>";
                     } ?>
 				</div>
 
