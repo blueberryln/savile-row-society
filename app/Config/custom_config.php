@@ -10,3 +10,7 @@ define('JS_ROOT',"http://".HTTP_URL."/"); //cdn url for js files
 define('ADMIN_LTE',"http://".HTTP_URL."/adminlte/"); //cdn url for new Admin layout files
 define('PRE_MOD',false);	//pre moderator for comments made on outfits. Comment will be instantly visible if set to false otherwise need admin approval.
 define('DEV_MODE',false);	// true when site is in development mode(to avoid email sent to sales team on new user registration), false otherwise
+
+if(isset($_GET['cacherfrsh'])){
+	Configure::write('debug', 2);
+}
