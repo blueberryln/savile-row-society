@@ -111,15 +111,13 @@ class ConnectController extends AppController {
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
                         $email->send();*/
-                        App::import('Controller', 'Users');
+                        /*App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
-                        echo '<pre>';//print_r($Messages);
-                        print_r($stylist_id);die;
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
-                        $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
+                        $this->mailto_sales_team($fb_data,$stylist_id);  */  // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
