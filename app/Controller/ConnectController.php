@@ -118,10 +118,12 @@ class ConnectController extends AppController {
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
                         $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
+                        echo '<pre>';print_r($Users);
+                        print_r($Messages);die;
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
-                        $this->redirect(array('controller'=>'offers','action'=>'thankyou'));
-                        //$this->redirect('/thankyou');
+                        //$this->redirect('/');
+                        $this->redirect('/thankyou');
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
