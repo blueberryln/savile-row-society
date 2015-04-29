@@ -99,6 +99,7 @@ class ConnectController extends AppController {
 
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
+                        echo '<pre>';print_r($fb_data);die;
                         $this->Session->write('user', $fb_data);
 
                         // send welcome mail
@@ -111,7 +112,6 @@ class ConnectController extends AppController {
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
                         $email->send();*/
-                        echo '<pre>';print_r($fb_data);die;
                         App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
