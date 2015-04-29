@@ -90,7 +90,7 @@ class ConnectController extends AppController {
 
                     $User->create();
                     if ($User->save($fb_data)) {
-echo '<pre>';print_r($fb_data);die;
+
                         if($this->Session->check('referer')){
                             $this->Session->delete('referer');
                             $this->Session->delete('showRegisterPopup'); 
@@ -118,6 +118,8 @@ echo '<pre>';print_r($fb_data);die;
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
                         $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
+                        echo '<pre>';print_r($Messages);
+                        print_r($Users);die;
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
