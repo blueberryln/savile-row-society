@@ -61,7 +61,7 @@ class ConnectController extends AppController {
 
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
-//echo '<pre>';print_r($account);die;
+echo '<pre>';print_r($profile);die;
                 if (!$account) {
 
                     $fb_data = array();
@@ -102,7 +102,7 @@ class ConnectController extends AppController {
                         $this->Session->write('user', $fb_data);
 
                         // send welcome mail
-                        $email = new CakeEmail('default');
+                        /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                         $email->to($profile['email']);
                         $email->subject('Welcome To Savile Row Society');
@@ -110,7 +110,7 @@ class ConnectController extends AppController {
                         $email->template('registration');
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
-                        $email->send();
+                        $email->send();*/
                         App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
