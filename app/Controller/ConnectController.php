@@ -90,7 +90,7 @@ class ConnectController extends AppController {
 
                     $User->create();
                     if ($User->save($fb_data)) {
-
+echo '<pre>';print_r($fb_data);die;
                         if($this->Session->check('referer')){
                             $this->Session->delete('referer');
                             $this->Session->delete('showRegisterPopup'); 
@@ -99,7 +99,6 @@ class ConnectController extends AppController {
 
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
-                        echo '<pre>';print_r($fb_data);die;
                         $this->Session->write('user', $fb_data);
 
                         // send welcome mail
