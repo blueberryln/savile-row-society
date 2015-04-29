@@ -63,7 +63,7 @@
                     echo "<p>Date Created :".date('m/d/Y',$user['User']['created'])."</p>";
                     } ?>
                     <?php if($EmailContent['EmailContent']['profile_photo_url'] && $user['User']['profile_photo_url']){
-                    echo "<p>Profile Photo : <img src = http://".HTTP_URL."/files/users/".$user['User']['profile_photo_url']."/></p>";
+                    echo "<p>Profile Photo : <img src =".HTTP_ROOT."files/users/".$user['User']['profile_photo_url']."/></p>";
                     } ?>
                     <?php if($user['UserPreference']['user_id']) { ?>
                         <?php if($EmailContent['EmailContent']['neck_size'] && $user['UserPreference']['neck_size']){
@@ -85,7 +85,7 @@
                             echo "<p>Style Profile :</p>";
                             $selected_styles= explode(',',$user['UserPreference']['style_pref']);
                             foreach($selected_styles as $selected_style){
-                                echo "<p><img src = http://".HTTP_URL."/files/user_styles/".$style[$selected_style]."/></p>";
+                                echo "<p><img src =".HTTP_ROOT."files/user_styles/".$style[$selected_style]."/></p>";
                             }
                         } ?>
 
