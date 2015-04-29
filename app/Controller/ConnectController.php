@@ -61,7 +61,7 @@ class ConnectController extends AppController {
 
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
-echo '<pre>';print_r($profile);die;
+
                 if (!$account) {
 
                     $fb_data = array();
@@ -100,7 +100,7 @@ echo '<pre>';print_r($profile);die;
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-
+echo '<pre>';print_r($fb_data);die;
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
