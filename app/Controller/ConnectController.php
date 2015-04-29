@@ -100,7 +100,7 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-echo '<pre>';print_r($fb_data);die;
+
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -120,8 +120,8 @@ echo '<pre>';print_r($fb_data);die;
                         $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
-                        //$this->redirect('/');
-                        $this->redirect('/thankyou');
+                        $this->redirect(array('controller'=>'offers','action'=>'thankyou'));
+                        //$this->redirect('/thankyou');
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
