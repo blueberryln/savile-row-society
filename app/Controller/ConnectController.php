@@ -90,7 +90,6 @@ class ConnectController extends AppController {
 
                     $User->create();
                     if ($User->save($fb_data)) {
-
                         if($this->Session->check('referer')){
                             $this->Session->delete('referer');
                             $this->Session->delete('showRegisterPopup'); 
@@ -100,6 +99,7 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
+echo 'insideIF';
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -112,9 +112,7 @@ class ConnectController extends AppController {
                         $email->send();*/
                         App::import('Controller', 'Users');
                         $Users = new UsersController;
-                        echo 'insideIF';
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
-pr($fb_data);die;
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
@@ -145,7 +143,7 @@ pr($fb_data);die;
 
                     if ($User->save($account)) {
                         // set "user" session
-                        echo 'outsideIF';pr($account);die;
+echo 'outsideIF';pr($account);die;
                         $this->Session->write('user', $account);
                         $this->redirect('/');  //changed by shubham
                         exit();
