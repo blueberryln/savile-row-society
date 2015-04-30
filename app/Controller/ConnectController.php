@@ -63,7 +63,7 @@ class ConnectController extends AppController {
                 $account = $User->getByEmail($profile['email']);
 
                 if (empty($account)) {
-
+                    die('empty');
                     $fb_data = array();
                     $fb_data['User']['user_type_id'] = 1;
                     $fb_data['User']['email'] = $profile['email'];
@@ -129,6 +129,7 @@ class ConnectController extends AppController {
                         exit();
                     }
                 } else {
+                    die('!empty');
                     $account['User']['profile_image'] = $profile['picture']['data']['url'];
                     $account['User']['social_network'] = 'Facebook';
                     $account['User']['social_network_id'] = $profile['id'];
