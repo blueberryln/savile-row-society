@@ -112,8 +112,8 @@ class ConnectController extends AppController {
                         $email->send();*/
                         App::import('Controller', 'Users');
                         $Users = new UsersController;
+echo 'hi';pr($fb_data);die;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
-echo $stylist_id;pr($fb_data);die;
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
