@@ -100,7 +100,7 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-                        echo 'insideIF';die;
+                        echo 'insideIF';
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -144,8 +144,8 @@ class ConnectController extends AppController {
 
                     if ($User->save($account)) {
                         // set "user" session
-                        $this->Session->write('user', $account);
                         echo 'OutsideIF';die;
+                        $this->Session->write('user', $account);
                         //Set complete style profile popup if style profile not complete
                         if (!$results['User']['preferences']) {
                             $this->Session->write('completeProfile', true);       
