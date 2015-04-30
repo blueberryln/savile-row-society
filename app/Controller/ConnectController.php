@@ -2,7 +2,6 @@
 
 App::uses('CakeEmail', 'Network/Email');
 App::import('Controller', 'Users');
-$UsersController = new UsersController;
 class ConnectController extends AppController {
 
     var $uses = null;
@@ -26,7 +25,6 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
-        Configure::write('debug', 3);
         // delete user session before any login attempt
         $this->Session->delete('user');
 
@@ -102,6 +100,7 @@ class ConnectController extends AppController {
                         $fb_data['User']['id'] = $User->getInsertID();
                         $fb_data = $User->findById($fb_data['User']['id']);
                         $this->Session->write('user', $fb_data);
+                        $UsersController = new UsersController;
                         $UsersController->complete_facebook_reg($fb_data,'facebook');
                         // send welcome mail
                         /*$email = new CakeEmail('default');
