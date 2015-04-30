@@ -1,7 +1,7 @@
 <?php
 
 App::uses('CakeEmail', 'Network/Email');
-App::import('Controller', 'Users');
+
 class ConnectController extends AppController {
 
     var $uses = null;
@@ -25,7 +25,7 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
-        Configure::write('debug', 3);
+        Configure::write('debug', 2);
         // delete user session before any login attempt
         $this->Session->delete('user');
 
@@ -99,10 +99,8 @@ class ConnectController extends AppController {
 
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
-                        $fb_data = $User->findById($fb_data['User']['id']);
                         $this->Session->write('user', $fb_data);
-                        $UsersController = new UsersController;
-                        $UsersController->complete_facebook_reg($fb_data,'facebook');
+
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -113,18 +111,18 @@ class ConnectController extends AppController {
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
                         $email->send();*/
-                        /*App::import('Controller', 'Users');
+                        App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
-                        $this->mailto_sales_team($fb_data,$stylist_id);  */  // sends an email to the sales team
+                        $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
-                        /*$this->redirect('/thankyou');
-                        exit();*/
+                        $this->redirect('/thankyou');
+                        exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
                         $this->redirect('/');
