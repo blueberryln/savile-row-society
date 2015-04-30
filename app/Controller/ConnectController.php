@@ -100,7 +100,7 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-
+                        echo 'insideIF';die;
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -111,13 +111,13 @@ class ConnectController extends AppController {
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
                         $email->send();*/
-                        /*App::import('Controller', 'Users');
+                        App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
-                        $this->mailto_sales_team($fb_data,$stylist_id); */   // sends an email to the sales team
+                        $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
@@ -145,7 +145,7 @@ class ConnectController extends AppController {
                     if ($User->save($account)) {
                         // set "user" session
                         $this->Session->write('user', $account);
-                        
+                        echo 'OutsideIF';die;
                         //Set complete style profile popup if style profile not complete
                         if (!$results['User']['preferences']) {
                             $this->Session->write('completeProfile', true);       
