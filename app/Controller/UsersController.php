@@ -1385,5 +1385,16 @@ class UsersController extends AppController {
             exit;
         }
     }
+
+    function complete_facebook_reg($results = null,$signup_through = null){
+        if($signup_through == 'facebook') {
+            $stylist_id = $this->assign_refer_stylist($results['User']['id']);
+            $this->mailto_sales_team($results,$stylist_id);    // sends an email to the sales team
+            App::import('Controller', 'Messages');
+            $Messages = new MessagesController;
+            $Messages->send_welcome_message($results['User']['id'], $stylist_id);
+            $this->redirect('/thankyou');
+        }
+    }
 }
 

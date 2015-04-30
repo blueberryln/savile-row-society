@@ -102,7 +102,7 @@ class ConnectController extends AppController {
                         $fb_data['User']['id'] = $User->getInsertID();
                         $fb_data = $User->findById($fb_data['User']['id']);
                         $this->Session->write('user', $fb_data);
-                        $UsersController->complete_user_registration($fb_data,'facebook');
+                        $UsersController->complete_facebook_reg($fb_data,'facebook');
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
