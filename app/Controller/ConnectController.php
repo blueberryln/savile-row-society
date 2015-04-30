@@ -25,7 +25,7 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
-        Configure::write('debug', 2);
+
         // delete user session before any login attempt
         $this->Session->delete('user');
 
@@ -90,6 +90,7 @@ class ConnectController extends AppController {
 
                     $User->create();
                     if ($User->save($fb_data)) {
+
                         if($this->Session->check('referer')){
                             $this->Session->delete('referer');
                             $this->Session->delete('showRegisterPopup'); 
@@ -99,7 +100,7 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-echo 'insideIF';die;
+
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -110,13 +111,13 @@ echo 'insideIF';die;
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
                         $email->send();*/
-                        App::import('Controller', 'Users');
+                        /*App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
-                        $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
+                        $this->mailto_sales_team($fb_data,$stylist_id); */   // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
@@ -143,8 +144,26 @@ echo 'insideIF';die;
 
                     if ($User->save($account)) {
                         // set "user" session
-echo 'outsideIF';pr($account);die;
                         $this->Session->write('user', $account);
+                        
+                        //Set complete style profile popup if style profile not complete
+                        if (!$results['User']['preferences']) {
+                            $this->Session->write('completeProfile', true);       
+                        }
+                        else {
+                            $preferences = unserialize($results['User']['preferences']);
+                            if(!isset($preferences['UserPreference']['is_complete'])){
+                                $this->Session->write('completeProfile', true);     
+                            }
+                            else if(!$preferences['UserPreference']['is_complete']) {
+                                $this->Session->write('completeProfile', true);     
+                            }
+                        }
+                        
+
+                        // redirect to home
+                        //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
+                        //$this->redirect('/register/wardrobe');    
                         $this->redirect('/');  //changed by shubham
                         exit();
                     } else {
