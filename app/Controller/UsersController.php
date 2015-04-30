@@ -1387,9 +1387,9 @@ class UsersController extends AppController {
     }
 
     function complete_facebook_reg($results = null,$signup_through = null){
-        pr($results);die;
         if($signup_through == 'facebook') {
             $stylist_id = $this->assign_refer_stylist($results['User']['id']);
+            echo $stylist_id;die;
             $this->mailto_sales_team($results,$stylist_id);    // sends an email to the sales team
             App::import('Controller', 'Messages');
             $Messages = new MessagesController;
