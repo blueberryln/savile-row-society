@@ -25,7 +25,7 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
-        Configure::write('debug', 2);
+
         // delete user session before any login attempt
         $this->Session->delete('user');
 
@@ -62,7 +62,8 @@ class ConnectController extends AppController {
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
 
-                if (empty($account)) {
+                if (!$account) {
+
                     $fb_data = array();
                     $fb_data['User']['user_type_id'] = 1;
                     $fb_data['User']['email'] = $profile['email'];
@@ -99,7 +100,7 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-                        echo 'insideIF';
+
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -110,13 +111,13 @@ class ConnectController extends AppController {
                         $email->emailFormat('html');
                         $email->viewVars(array('name' => $profile['first_name']));
                         $email->send();*/
-                        /*App::import('Controller', 'Users');
+                        App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
-                        $this->mailto_sales_team($fb_data,$stylist_id); */   // sends an email to the sales team
+                        $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
@@ -128,7 +129,6 @@ class ConnectController extends AppController {
                         exit();
                     }
                 } else {
-                    die('!empty');
                     $account['User']['profile_image'] = $profile['picture']['data']['url'];
                     $account['User']['social_network'] = 'Facebook';
                     $account['User']['social_network_id'] = $profile['id'];
@@ -144,8 +144,8 @@ class ConnectController extends AppController {
 
                     if ($User->save($account)) {
                         // set "user" session
-                        echo 'OutsideIF';die;
                         $this->Session->write('user', $account);
+                        
                         //Set complete style profile popup if style profile not complete
                         if (!$results['User']['preferences']) {
                             $this->Session->write('completeProfile', true);       
