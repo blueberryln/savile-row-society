@@ -100,7 +100,7 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-
+echo 'hi';pr($fb_data);die;
                         // send welcome mail
                         /*$email = new CakeEmail('default');
                         $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -144,6 +144,7 @@ class ConnectController extends AppController {
 
                     if ($User->save($account)) {
                         // set "user" session
+                        echo 'hello';pr($account);die;
                         $this->Session->write('user', $account);
                         $this->redirect('/');  //changed by shubham
                         exit();
