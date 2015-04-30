@@ -62,7 +62,7 @@ class ConnectController extends AppController {
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
 
-                if (!$account) {
+                if (empty($account)) {
 
                     $fb_data = array();
                     $fb_data['User']['user_type_id'] = 1;
