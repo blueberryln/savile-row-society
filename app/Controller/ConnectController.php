@@ -144,7 +144,7 @@ echo 'hi';pr($fb_data);die;
 
                     if ($User->save($account)) {
                         // set "user" session
-                        echo 'hello';pr($account);die;
+echo 'hello';pr($account);die;
                         $this->Session->write('user', $account);
                         $this->redirect('/');  //changed by shubham
                         exit();
