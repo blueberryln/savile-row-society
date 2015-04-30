@@ -112,8 +112,9 @@ class ConnectController extends AppController {
                         $email->send();*/
                         App::import('Controller', 'Users');
                         $Users = new UsersController;
-echo 'hi';pr($fb_data);die;
+                        echo 'insideIF';
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
+pr($fb_data);die;
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
@@ -144,7 +145,7 @@ echo 'hi';pr($fb_data);die;
 
                     if ($User->save($account)) {
                         // set "user" session
-echo 'hello';pr($account);die;
+                        echo 'outsideIF';pr($account);die;
                         $this->Session->write('user', $account);
                         $this->redirect('/');  //changed by shubham
                         exit();
