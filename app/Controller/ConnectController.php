@@ -25,6 +25,7 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
+        Configure::write('debug', 3);
         // delete user session before any login attempt
         $this->Session->delete('user');
 
