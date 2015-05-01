@@ -55,7 +55,7 @@ class ConnectController extends AppController {
             //get the user's access token and app secret
             $access_token = $facebook->getAccessToken();
             $access_secret = $facebook->getApiSecret();
-            $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
+            $profile = $facebook->api('/me?fields=id,email,first_name,last_name,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
             pr($profile);die;
             try {
                 $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
