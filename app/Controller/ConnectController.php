@@ -128,7 +128,7 @@ class ConnectController extends AppController {
                         }    
                     }
                     /*code to assign stylist */
-
+                    pr($fb_data);die;
                     $User->create();
                     if ($User->save($fb_data)) {
 
