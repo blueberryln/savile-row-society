@@ -25,7 +25,7 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
-        Configure::write('debug', 3);
+
         // delete user session before any login attempt
         $this->Session->delete('user');
 
@@ -57,9 +57,8 @@ class ConnectController extends AppController {
             $access_secret = $facebook->getApiSecret();
 
             try {
-                echo 'hi';die;
                 $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
-
+                echo '<pre>';print_r($profile);die;
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
 
@@ -87,12 +86,8 @@ class ConnectController extends AppController {
                         $fb_data['User']['referred_by'] = $this->Session->read('referer');  
                         $fb_data['User']['vip_discount_flag'] = 1; 
                     } 
-                    $stylist = $User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
-                    if($stylist){
-                        $fb_data['User']['stylist_id'] = $stylist['User']['id']; 
-                    }  
 
-                    echo '<pre>';print_r($fb_data);die;
+
                     $User->create();
                     if ($User->save($fb_data)) {
 
@@ -105,6 +100,17 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
+
+                        // send welcome mail
+                        /*$email = new CakeEmail('default');
+                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                        $email->to($profile['email']);
+                        $email->subject('Welcome To Savile Row Society');
+                        $email->bcc($bcc);
+                        $email->template('registration');
+                        $email->emailFormat('html');
+                        $email->viewVars(array('name' => $profile['first_name']));
+                        $email->send();*/
                         App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
@@ -112,6 +118,9 @@ class ConnectController extends AppController {
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
                         $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
+                        // redirect to home
+                        //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
+                        //$this->redirect('/');
                         $this->redirect('/thankyou');
                         exit();
                     } else {
@@ -136,6 +145,21 @@ class ConnectController extends AppController {
                     if ($User->save($account)) {
                         // set "user" session
                         $this->Session->write('user', $account);
+                        
+                        //Set complete style profile popup if style profile not complete
+                        if (!$results['User']['preferences']) {
+                            $this->Session->write('completeProfile', true);       
+                        }
+                        else {
+                            $preferences = unserialize($results['User']['preferences']);
+                            if(!isset($preferences['UserPreference']['is_complete'])){
+                                $this->Session->write('completeProfile', true);     
+                            }
+                            else if(!$preferences['UserPreference']['is_complete']) {
+                                $this->Session->write('completeProfile', true);     
+                            }
+                        }
+                        
 
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
