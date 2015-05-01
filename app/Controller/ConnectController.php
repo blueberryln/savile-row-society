@@ -25,7 +25,7 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
-
+        Configure::write('debug', 2);
         // delete user session before any login attempt
         $this->Session->delete('user');
         $this->autoRender = false;
@@ -43,6 +43,7 @@ class ConnectController extends AppController {
         $User = ClassRegistry::init('User');
         //Get the FB UID of the currently logged in user
         $facebook_user = $facebook->getUser();
+        pr($facebook_user);die;
         if ($facebook_user) {
             //get the user's access token and app secret
             $access_token = $facebook->getAccessToken();
