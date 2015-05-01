@@ -49,7 +49,7 @@ class ConnectController extends AppController {
 
         //Get the FB UID of the currently logged in user
         $facebook_user = $facebook->getUser();
-
+        echo 'working';die;
         if ($facebook_user) {
 
             //get the user's access token and app secret
