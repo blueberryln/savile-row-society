@@ -25,7 +25,7 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
-
+        Configure::write('debug', 2);
         // delete user session before any login attempt
         $this->Session->delete('user');
 
@@ -85,9 +85,51 @@ class ConnectController extends AppController {
                     if($this->Session->check('referer')){
                         $fb_data['User']['referred_by'] = $this->Session->read('referer');  
                         $fb_data['User']['vip_discount_flag'] = 1; 
+                    }
+                    /*assign stylisst to user*/
+
+                    if($this->Session->check('stylist_refer')){
+                        $stylist_refer = $this->Session->read('stylist_refer');
+                        $refered_stylist = $User->getByID($stylist_refer);
+
+                        if(!$refered_stylist){
+                            $stylist_refer = false;
+                        }
+                    }
+                    else{
+                        $stylist_refer = false;    
+                    }
+
+
+                    if($fb_data['User']['referred_by']){
+                        $referer = $User->getByID($fb_data['User']['referred_by']);
+                        if($referer && $referer['User']['is_stylist']){
+                            $fb_data['User']['stylist_id'] = $referer['User']['id'];
+                        }
+                        else if ($referer && $referer['User']['stylist_id'] && $user_stylist = $User->getByID($referer['User']['stylist_id'])){
+                            $fb_data['User']['stylist_id'] = $referer['User']['stylist_id'];
+                        }
+                        else{
+                            $stylist = $User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
+                            if($stylist){
+                                $fb_data['User']['stylist_id'] = $stylist['User']['id']; 
+                            }   
+                        }
+                    }
+                    else{
+                        if($stylist_refer){
+                            $fb_data['User']['stylist_id'] = $refered_stylist['User']['id']; 
+                        }
+                        else{
+                            $stylist = $User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
+                            if($stylist){
+                                $fb_data['User']['stylist_id'] = $stylist['User']['id']; 
+                            }   
+                        }    
                     } 
+                    /*assign stylisst to user*/ 
 
-
+                    pr($fb_data);die;
                     $User->create();
                     if ($User->save($fb_data)) {
 
@@ -101,9 +143,9 @@ class ConnectController extends AppController {
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
 
-                        App::import('Controller', 'Users');
+                        /*App::import('Controller', 'Users');
                         $Users = new UsersController;
-                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
+                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);*/
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
