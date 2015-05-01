@@ -55,7 +55,7 @@ class ConnectController extends AppController {
             $access_token = $facebook->getAccessToken();
             $access_secret = $facebook->getApiSecret();
 
-            try {echo 'try';
+            try {pr($facebook);
                 $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
 
                 // check if user account exists in db
