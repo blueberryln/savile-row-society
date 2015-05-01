@@ -28,31 +28,41 @@ class ConnectController extends AppController {
         Configure::write('debug', 2);
         // delete user session before any login attempt
         $this->Session->delete('user');
+
         $this->autoRender = false;
         $this->autoLayout = false;
+
         // get facebook app secret
         $facebook_app_id = Configure::read('Facebook.app_id');
         $facebook_app_secret = Configure::read('Facebook.app_secret');
+
         //instantiate the Facebook library
         $facebook = new Facebook(array(
             'appId' => $facebook_app_id,
             'secret' => $facebook_app_secret,
             'cookie' => true
         ));
+
         // init
         $User = ClassRegistry::init('User');
+
         //Get the FB UID of the currently logged in user
         $facebook_user = $facebook->getUser();
+
         if ($facebook_user) {
+
             //get the user's access token and app secret
             $access_token = $facebook->getAccessToken();
             $access_secret = $facebook->getApiSecret();
-            try {
-                pr($access_token);pr($access_secret);die;
+
+            try {echo 'try';
                 $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
+
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
+
                 if (!$account) {
+
                     $fb_data = array();
                     $fb_data['User']['user_type_id'] = 1;
                     $fb_data['User']['email'] = $profile['email'];
@@ -65,25 +75,38 @@ class ConnectController extends AppController {
                     $fb_data['User']['social_network_id'] = $profile['id'];
                     $fb_data['User']['social_network_token'] = $access_token;
                     $fb_data['User']['social_network_secret'] = $access_secret;
+
                     //save social media image
                     if($fb_data['User']['profile_image'] && $fb_data['User']['email']) {
                         $fb_data['User']['profile_photo_url'] = $this->saveSocialMediaImage($fb_data['User']['profile_image'], $fb_data['User']['email']);
                     }
+
                     if($this->Session->check('referer')){
                         $fb_data['User']['referred_by'] = $this->Session->read('referer');  
                         $fb_data['User']['vip_discount_flag'] = 1; 
                     } 
+
+
                     $User->create();
                     if ($User->save($fb_data)) {
+
                         if($this->Session->check('referer')){
                             $this->Session->delete('referer');
                             $this->Session->delete('showRegisterPopup'); 
                             $this->Session->delete('referer_type');
                         }     
+
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-                        
+
+                       /* App::import('Controller', 'Users');
+                        $Users = new UsersController;
+                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
+                        App::import('Controller', 'Messages');
+                        $Messages = new MessagesController;
+                        $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
+                        $this->mailto_sales_team($fb_data,$stylist_id);  */  // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
@@ -101,29 +124,18 @@ class ConnectController extends AppController {
                     $account['User']['social_network_token'] = $access_token;
                     $account['User']['social_network_secret'] = $access_secret;
                     unset($account['User']['updated']);
+
                     if($this->Session->check('referer')){
                         $this->Session->delete('referer');
                         $this->Session->delete('showRegisterPopup'); 
                         $this->Session->delete('referer_type');
                     } 
+
                     if ($User->save($account)) {
                         // set "user" session
                         $this->Session->write('user', $account);
-                        
-                        //Set complete style profile popup if style profile not complete
-                        if (!$results['User']['preferences']) {
-                            $this->Session->write('completeProfile', true);       
-                        }
-                        else {
-                            $preferences = unserialize($results['User']['preferences']);
-                            if(!isset($preferences['UserPreference']['is_complete'])){
-                                $this->Session->write('completeProfile', true);     
-                            }
-                            else if(!$preferences['UserPreference']['is_complete']) {
-                                $this->Session->write('completeProfile', true);     
-                            }
-                        }
-                        
+                                             
+
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
                         //$this->redirect('/register/wardrobe');    
@@ -136,16 +148,18 @@ class ConnectController extends AppController {
                     }
                 }
             } catch (FacebookApiException $e) {
-                error_log($e);
+                error_log($e);echo 'catch';
                 $facebook_user = null;
             }
         } else {
+
             $login_url_params = array(
                 'scope' => 'email',
                 'redirect_uri' => Configure::read('Social.callback_url') . 'connect/facebook',
                 'next' => Configure::read('Social.callback_url') . 'connect/facebook'
             );
             $login_url = $facebook->getLoginUrl($login_url_params);
+
             //redirect to the login URL on facebook
             header("Location: $login_url");
             exit();
