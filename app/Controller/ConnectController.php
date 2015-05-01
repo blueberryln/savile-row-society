@@ -63,7 +63,7 @@ class ConnectController extends AppController {
                 $account = $User->getByEmail($profile['email']);
 
                 if (!$account) {
-
+                    echo 'hi';die;
                     $fb_data = array();
                     $fb_data['User']['user_type_id'] = 1;
                     $fb_data['User']['email'] = $profile['email'];
@@ -162,7 +162,7 @@ class ConnectController extends AppController {
                     $account['User']['social_network_token'] = $access_token;
                     $account['User']['social_network_secret'] = $access_secret;
                     unset($account['User']['updated']);
-
+                    echo 'hello';die;
                     if($this->Session->check('referer')){
                         $this->Session->delete('referer');
                         $this->Session->delete('showRegisterPopup'); 
