@@ -61,10 +61,10 @@ class ConnectController extends AppController {
 
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
-
+                echo '<pre>';print_r($profile);die;
                 if (!$account) {
 
-                    $fb_data = array();echo 'workingacc';die;
+                    $fb_data = array();
                     $fb_data['User']['user_type_id'] = 1;
                     $fb_data['User']['email'] = $profile['email'];
                     $fb_data['User']['password'] = Security::generateAuthKey();
