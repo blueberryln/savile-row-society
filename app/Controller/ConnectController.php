@@ -87,7 +87,48 @@ class ConnectController extends AppController {
                         $fb_data['User']['vip_discount_flag'] = 1; 
                     } 
 
+                    /*code to assign stylist */
+                    if($this->Session->check('stylist_refer')){
+                        $stylist_refer = $this->Session->read('stylist_refer');
+                        $refered_stylist = $User->getByID($stylist_refer);
 
+                        if(!$refered_stylist){
+                            $stylist_refer = false;
+                        }
+                    }
+                    else{
+                        $stylist_refer = false;    
+                    }
+
+
+                    if($fb_data['User']['referred_by']){
+                        $referer = $User->getByID($fb_data['User']['referred_by']);
+                        if($referer && $referer['User']['is_stylist']){
+                            $fb_data['User']['stylist_id'] = $referer['User']['id'];
+                        }
+                        else if ($referer && $referer['User']['stylist_id'] && $user_stylist = $User->getByID($referer['User']['stylist_id'])){
+                            $fb_data['User']['stylist_id'] = $referer['User']['stylist_id'];
+                        }
+                        else{
+                            $stylist = $User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
+                            if($stylist){
+                                $fb_data['User']['stylist_id'] = $stylist['User']['id']; 
+                            }   
+                        }
+                    }
+                    else{
+                        if($stylist_refer){
+                            $fb_data['User']['stylist_id'] = $refered_stylist['User']['id']; 
+                        }
+                        else{
+                            $stylist = $User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
+                            if($stylist){
+                                $fb_data['User']['stylist_id'] = $stylist['User']['id']; 
+                            }   
+                        }    
+                    }
+                    /*code to assign stylist */
+                    
                     $User->create();
                     if ($User->save($fb_data)) {
 
@@ -100,27 +141,13 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-
-                        // send welcome mail
-                        /*$email = new CakeEmail('default');
-                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                        $email->to($profile['email']);
-                        $email->subject('Welcome To Savile Row Society');
-                        $email->bcc($bcc);
-                        $email->template('registration');
-                        $email->emailFormat('html');
-                        $email->viewVars(array('name' => $profile['first_name']));
-                        $email->send();*/
-                        App::import('Controller', 'Users');
+                       /* App::import('Controller', 'Users');
                         $Users = new UsersController;
-                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
+                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);*/
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
                         $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
                         $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
-                        // redirect to home
-                        //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
-                        //$this->redirect('/');
                         $this->redirect('/thankyou');
                         exit();
                     } else {
