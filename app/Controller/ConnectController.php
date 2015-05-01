@@ -55,7 +55,7 @@ class ConnectController extends AppController {
             //get the user's access token and app secret
             $access_token = $facebook->getAccessToken();
             $access_secret = $facebook->getApiSecret();
-            echo 'working';die;
+
             try {
                 $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
 
@@ -64,7 +64,7 @@ class ConnectController extends AppController {
 
                 if (!$account) {
 
-                    $fb_data = array();
+                    $fb_data = array();echo 'working';die;
                     $fb_data['User']['user_type_id'] = 1;
                     $fb_data['User']['email'] = $profile['email'];
                     $fb_data['User']['password'] = Security::generateAuthKey();
