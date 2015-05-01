@@ -173,7 +173,7 @@ class ConnectController extends AppController {
                     }
                 }
             } catch (FacebookApiException $e) {
-                error_log($e);
+                error_log($e);echo 'catcch';die;
                 $facebook_user = null;
             }
         } else {
