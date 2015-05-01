@@ -101,7 +101,7 @@ class ConnectController extends AppController {
                     }
 
 
-                    if($fb_data['User']['referred_by']){
+                    if(isset($fb_data['User']['referred_by'])){
                         $referer = $User->getByID($fb_data['User']['referred_by']);
                         if($referer && $referer['User']['is_stylist']){
                             $fb_data['User']['stylist_id'] = $referer['User']['id'];
@@ -141,7 +141,7 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-                        pr($data);die;
+                        pr($fb_data);die;
                         /*App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);*/
