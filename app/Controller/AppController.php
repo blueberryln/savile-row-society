@@ -439,7 +439,7 @@ class AppController extends Controller {
              try{
                     $User = ClassRegistry::init('User');
                     $stylist = $User->findById($stylist_id);
-                    $user = $this->User->find('first',array('conditions'=>array('User.id'=>$user['User']['id']),'recursive'=>2,'contain'=>array('UserPreference')));
+                    $user = $User->find('first',array('conditions'=>array('User.id'=>$user['User']['id']),'recursive'=>2,'contain'=>array('UserPreference')));
                     $bcc = Configure::read('Email.contact');
                     $this->loadModel('SalesTeam');
                     $this->loadModel('EmailContent');
