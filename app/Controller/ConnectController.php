@@ -57,11 +57,12 @@ class ConnectController extends AppController {
             $access_secret = $facebook->getApiSecret();
 
             try {
+                echo 'hi';die;
                 $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
 
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
-                echo '<pre>';print_r($profile);die;
+
                 if (!$account) {
 
                     $fb_data = array();
