@@ -43,12 +43,12 @@ class ConnectController extends AppController {
         $User = ClassRegistry::init('User');
         //Get the FB UID of the currently logged in user
         $facebook_user = $facebook->getUser();
-        pr($facebook_user);die;
         if ($facebook_user) {
             //get the user's access token and app secret
             $access_token = $facebook->getAccessToken();
             $access_secret = $facebook->getApiSecret();
             try {
+                pr($access_token);pr($access_secret);die;
                 $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
