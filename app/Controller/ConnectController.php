@@ -25,7 +25,7 @@ class ConnectController extends AppController {
      * Connect Facebook account 
      */
     public function facebook() {
-        Configure::write('debug', 2);
+        Configure::write('debug', 3);
         // delete user session before any login attempt
         $this->Session->delete('user');
 
@@ -128,7 +128,7 @@ class ConnectController extends AppController {
                         }    
                     }
                     /*code to assign stylist */
-                    
+
                     $User->create();
                     if ($User->save($fb_data)) {
 
