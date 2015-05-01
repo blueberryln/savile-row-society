@@ -141,13 +141,13 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-                        pr($fb_data);die;
+                        //pr($fb_data);die;
                         /*App::import('Controller', 'Users');
                         $Users = new UsersController;
-                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);*/
+                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
-                        $Messages->send_welcome_message($fb_data['User']['id'], $fb_data['User']['stylist_id']);
+                        $Messages->send_welcome_message($fb_data['User']['id'], $fb_data['User']['stylist_id']);*/
                         $this->mailto_sales_team($fb_data,$fb_data['User']['stylist_id']);    // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
