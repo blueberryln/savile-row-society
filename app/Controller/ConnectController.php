@@ -129,7 +129,6 @@ class ConnectController extends AppController {
                     } 
                     /*assign stylisst to user*/ 
 
-                    pr($fb_data);die;
                     $User->create();
                     if ($User->save($fb_data)) {
 
@@ -148,7 +147,7 @@ class ConnectController extends AppController {
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);*/
                         App::import('Controller', 'Messages');
                         $Messages = new MessagesController;
-                        $Messages->send_welcome_message($fb_data['User']['id'], $stylist_id);
+                        $Messages->send_welcome_message($fb_data['User']['id'], $fb_data['User']['stylist_id']);
                         $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
