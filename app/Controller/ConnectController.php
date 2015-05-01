@@ -128,7 +128,7 @@ class ConnectController extends AppController {
                         }    
                     }
                     /*code to assign stylist */
-                    
+
                     $User->create();
                     if ($User->save($fb_data)) {
 
@@ -173,21 +173,6 @@ class ConnectController extends AppController {
                         // set "user" session
                         $this->Session->write('user', $account);
                         
-                        //Set complete style profile popup if style profile not complete
-                        if (!$results['User']['preferences']) {
-                            $this->Session->write('completeProfile', true);       
-                        }
-                        else {
-                            $preferences = unserialize($results['User']['preferences']);
-                            if(!isset($preferences['UserPreference']['is_complete'])){
-                                $this->Session->write('completeProfile', true);     
-                            }
-                            else if(!$preferences['UserPreference']['is_complete']) {
-                                $this->Session->write('completeProfile', true);     
-                            }
-                        }
-                        
-
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
                         //$this->redirect('/register/wardrobe');    
