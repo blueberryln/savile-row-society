@@ -86,7 +86,7 @@ class ConnectController extends AppController {
                         $fb_data['User']['referred_by'] = $this->Session->read('referer');  
                         $fb_data['User']['vip_discount_flag'] = 1; 
                     } 
-
+                    pr($fb_data);die;
                     /*code to assign stylist */
                     if($this->Session->check('stylist_refer')){
                         $stylist_refer = $this->Session->read('stylist_refer');
@@ -128,7 +128,7 @@ class ConnectController extends AppController {
                         }    
                     }
                     /*code to assign stylist */
-                    pr($fb_data);die;
+                    
                     $User->create();
                     if ($User->save($fb_data)) {
 
