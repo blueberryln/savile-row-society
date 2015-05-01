@@ -55,7 +55,8 @@ class ConnectController extends AppController {
             //get the user's access token and app secret
             $access_token = $facebook->getAccessToken();
             $access_secret = $facebook->getApiSecret();
-
+            $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
+            pr($profile);die;
             try {
                 $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
 
@@ -101,16 +102,6 @@ class ConnectController extends AppController {
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
 
-                        // send welcome mail
-                        /*$email = new CakeEmail('default');
-                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                        $email->to($profile['email']);
-                        $email->subject('Welcome To Savile Row Society');
-                        $email->bcc($bcc);
-                        $email->template('registration');
-                        $email->emailFormat('html');
-                        $email->viewVars(array('name' => $profile['first_name']));
-                        $email->send();*/
                         App::import('Controller', 'Users');
                         $Users = new UsersController;
                         $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
@@ -144,22 +135,7 @@ class ConnectController extends AppController {
 
                     if ($User->save($account)) {
                         // set "user" session
-                        $this->Session->write('user', $account);
-                        
-                        //Set complete style profile popup if style profile not complete
-                        if (!$results['User']['preferences']) {
-                            $this->Session->write('completeProfile', true);       
-                        }
-                        else {
-                            $preferences = unserialize($results['User']['preferences']);
-                            if(!isset($preferences['UserPreference']['is_complete'])){
-                                $this->Session->write('completeProfile', true);     
-                            }
-                            else if(!$preferences['UserPreference']['is_complete']) {
-                                $this->Session->write('completeProfile', true);     
-                            }
-                        }
-                        
+                        $this->Session->write('user', $account);                        
 
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
