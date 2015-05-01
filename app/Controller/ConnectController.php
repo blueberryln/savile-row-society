@@ -64,7 +64,7 @@ class ConnectController extends AppController {
 
                 if (!$account) {
 
-                    $fb_data = array();echo 'working';die;
+                    $fb_data = array();echo 'workingacc';die;
                     $fb_data['User']['user_type_id'] = 1;
                     $fb_data['User']['email'] = $profile['email'];
                     $fb_data['User']['password'] = Security::generateAuthKey();
