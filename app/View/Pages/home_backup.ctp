@@ -148,7 +148,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
                     <h1>Top Looks</h1>
-                    <h3>Need inspiration? Browse what's hot right now through the lens of our fashion consultants.</h3>
+                    <h3>Select outfits styled by our Top Stylists.</h3>
                 </div>
                 <!-- /Section_Main_Heading -->
 
@@ -158,85 +158,6 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     if($outfit_count >= 4)
                         {break;}
                   ?>
-
-
-            <div class="product-content">
-              <ul class="two-column">
-               <li>
-
-               <div class="left_box">
-               <div class="box1"></div>
-               <div class="box2"></div>  
-               <div class="box3"></div>  
-               </div> 
-
-               <div class="right_box">
-                <div class="box4"></div>  
-                 <div class="box5"></div>    
-               </div>
-
-<div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
-<p style="float:left; width:70%; padding:5px 0 15px 0; margin:0px;"><span class="golden-heading">&nbsp;</span></p>
-<p style="float:right; width:auto;  padding:5px 0 15px 0; margin:0px;"><span class="golden-heading">10 comments/ view all</span></p>
-<span class="golden-heading">Emmanuel</span> says: Could I wear peacoat with this?<br>
-
-<span class="golden-heading">George</span> says:yes! This outfit is pretty versatile.<br><br>
-
-
-<span class="golden-heading">Christopher</span> says: Do you think this look will look good a 4'5" guy,,, like me?<br>
-
-<span class="golden-heading">George</span> says:its going to look just a good:)<br>
-<input class="input-post" type="text">
-<input class="post-submit" value="POST"  type="submit">
-</div>
-
-
-               </li>
-
-                             <li>
-
-               <div class="left_box">
-               <div class="box1"></div>
-               <div class="box2"></div>  
-               <div class="box3"></div>  
-               </div> 
-
-               <div class="right_box">
-                <div class="box4"></div>  
-                 <div class="box5"></div>    
-               </div>
-<div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
-<p style="float:left; width:70%; padding:5px 0 15px 0; margin:0px;"><span class="golden-heading">&nbsp;</span></p>
-<p style="float:right; width:auto;  padding:5px 0 15px 0; margin:0px;"><span class="golden-heading">10 comments/ view all</span></p>
-<span class="golden-heading">Emmanuel</span> says: Could I wear peacoat with this?<br>
-
-<span class="golden-heading">George</span> says:yes! This outfit is pretty versatile.<br><br>
-
-
-<span class="golden-heading">Christopher</span> says: Do you think this look will look good a 4'5" guy,,, like me?<br>
-
-<span class="golden-heading">George</span> says:its going to look just a good:)<br>
-<input class="input-post" type="text">
-<input class="post-submit" value="POST"  type="submit">
-</div>
-               </li> 
-              </ul>  
-        
-
-            </div>
-
-
-<div style="clear:both; width:100%;"></div>
-
-
-
-
-
-
-
-
-
-
                 <div class="column">
                     
                     <!-- heading -->
