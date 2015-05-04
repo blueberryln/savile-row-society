@@ -3,22 +3,42 @@ body{ margin: 0px; padding: 0px; font-size: 14px; color: #000; }
 
 
 a{ border: none; outline: none; }
-
+.shop-button {width:66px; height:35px;  background: #b6a166; float: right; margin:10px 5px 0 0;}
+.shop-button a{display: block; color:#fff; text-decoration: none;  line-height: 35px;} 
+.link-button{position:absolute; top:0px; right:0px; background: url("triange1.png") no-repeat; width:140px; height:95px; }
 span.golden-heading{color:#b6a166;}
 input.input-post{width:80%; margin-top:30px; border:1px solid #999; }
 input.post-submit{width:19%%; background:#c2c2c2; height:33px; margin-top:30px; color:#000;}
-.product-content{width:100%; height:auto; float:left; }
+.product-content{width:99%; height:auto; margin:auto; }
 .text-content{float:left; width:100%; height:auto; text-align:left; }
 ul.two-column{margin:0px; padding:0px; list-style: none; float:left; width:100%;}
 ul.two-column li{width:48.5%; height:auto; margin:0 3% 0 0; float:left; }
 ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; float:left; }
 .left_box{width:280px; height:auto; float:left;}
-.right_box{width:100px; height:150px; float:right; background: red;}
-.box1{width:280px; height:375px; float:left; background: #6986bf; margin-bottom:15px;}
-.box2{width:134px; height:183px; float:left; background: #6986bf;}
-.box3{width:134px; height:183px; float:right; background: #6986bf;}
-.box4{width:202px; height:279px; float:right; background: #6986bf;margin-bottom:15px;}
-.box5{width:202px; height:279px; float:right; background: #6986bf;}
+.right_box{width:205px; height:150px; float:right;}
+
+	.facebook-like{float:left; width:70%; padding:5px 0 15px 0; margin:0px;}
+	.view-all{float:right; width:auto;  padding:5px 0 15px 0; margin:0px;}
+
+
+
+.box1{width:280px; height:375px; float:left; background: #6986bf; margin-bottom:10px; overflow: hidden;}
+.box2{width:135px; height:180px; float:left; background: #6986bf; overflow: hidden;}
+.box3{width:135px; height:180px; float:right; background: #6986bf; overflow: hidden;}
+.box4{width:205px; height:277px; float:right; background: #6986bf;margin-bottom:10px; position: relative; overflow: hidden;}
+.box5{width:205px; height:277px; float:right; background: #6986bf; overflow: hidden;}
+.box1 img, .box2 img, .box3 img, .box4 img, .box5 img{width:100%;}
+.box1:before,.box2:before,.box3:before,.box4:before,.box5:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.box1:before,.box2:before,.box3:before,.box4:before,.box5:before img {
+    vertical-align: middle;
+    display: inline-block;
+}
 .TextReplaceByImage{ border: none; text-indent: -9999px; }
 .container_wrapper{ width: 100%; margin: 0px; padding: 0px; font-size: 0; background: #fff; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -ms-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear;}
 .center_row{ width: 1024px; margin: 0px auto; }
@@ -498,7 +518,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 }
 
 
-@media screen and (max-width: 1040px) and (min-width: 320px) {
+@media screen and (max-width: 1023px) and (min-width: 320px) {
 	.center_row{ width: 100%; padding: 0 10px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
 	#SignUp_Wrapper{ padding: 20px 0 30px; }
 	#SignUp_Wrapper span{ width: 100%; }
@@ -514,4 +534,19 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 
 
 
+
 }
+
+@media screen and (max-width: 1023px) and (min-width: 500px) {
+	ul.two-column li{margin-right:0px !important; width:500px !important;}
+	}
+
+	@media screen and (max-width: 499px) and (min-width: 320px) {
+.product-content{width:280px !important;}
+	.left_box{float:none; clear:both;}
+	.right_box{float:none; clear:both; width:280px;}
+	.box4, .box5{margin-top:15px; width:100% !important;}
+	.facebook-like{width:100% !important;}
+	.view-all{width:100%;}
+	input.input-post{width:70% !important;}
+	}
