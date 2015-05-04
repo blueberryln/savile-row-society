@@ -23,7 +23,6 @@ class Outfit extends AppModel {
             'foreignKey' => 'outfit_id',
             'conditions' => array('disabled'=>0),
             'order' => 'id desc',
-            'limit' => 3,
             'dependent' => true         
         ),
     );
