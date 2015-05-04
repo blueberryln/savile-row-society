@@ -47,7 +47,7 @@ $(document).on('click','.view_all_comments',function(){
             $('.comment_append'+outfit_id).html(response);
         }
     });
-    $(this).remove();
+    //$(this).remove();
 });
 
 
@@ -153,137 +153,14 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <!-- /Section_Main_Heading -->
 
                 <!-- column -->
+        <div class="product-content">
+            <ul class="two-column">
             <?php if($topOutfits): ?>
                 <?php $outfit_count = 1; foreach ($topOutfits as $outfit) {
-                    if($outfit_count >= 4)
+                    if($outfit_count >= 3)
                         {break;}
                   ?>
-
-
-            <div class="product-content">
-              <ul class="two-column">
-               <li>
-
-<!-- left box begin here-->
-               <div class="left_box">
-
-               <div class="box1"></div>
-               <div class="box2"></div>  
-               <div class="box3"></div>  
-               </div> 
-
- <!-- left box end--> 
-              
-<!-- right box begin here-->
-               <div class="right_box">
-                <div class="box4">
-                 <div class="link-button">
-                 <div class="shop-button"><a href="#">SHOP</a></div>    
-
-                 </div>   
-
-                </div>  
-                 <div class="box5"></div>    
-               </div>
-       <!-- right box end-->         
-
-<div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
-<p class="facebook-like" style=""><span class="golden-heading">&nbsp;</span></p>
-<p class="view-all" style=""><span class="golden-heading">10 comments/ view all</span></p>
-<span class="golden-heading">Emmanuel</span> says: Could I wear peacoat with this?<br>
-
-<span class="golden-heading">George</span> says:yes! This outfit is pretty versatile.<br><br>
-
-
-<span class="golden-heading">Christopher</span> says: Do you think this look will look good a 4'5" guy,,, like me?<br>
-
-<span class="golden-heading">George</span> says:its going to look just a good:)<br>
-<input class="input-post" type="text">
-<input class="post-submit" value="POST"  type="submit">
-</div>
-  </li>
-
-               <li>
-
-               <div class="left_box">
-               <div class="box1"></div>
-               <div class="box2"></div>  
-               <div class="box3"></div>  
-               </div> 
-
-               <div class="right_box">
-                <div class="box4">
-                 <div class="link-button">
-                 <div class="shop-button"><a href="#">SHOP</a></div>    
-
-                 </div>   
-
-                </div>  
-                 <div class="box5"></div>    
-               </div>
-
-<div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
-<p class="facebook-like" style=""><span class="golden-heading">&nbsp;</span></p>
-<p class="view-all" style=""><span class="golden-heading">10 comments/ view all</span></p>
-<span class="golden-heading">Emmanuel</span> says: Could I wear peacoat with this?<br>
-
-<span class="golden-heading">George</span> says:yes! This outfit is pretty versatile.<br><br>
-
-
-<span class="golden-heading">Christopher</span> says: Do you think this look will look good a 4'5" guy,,, like me?<br>
-
-<span class="golden-heading">George</span> says:its going to look just a good:)<br>
-<input class="input-post" type="text">
-<input class="post-submit" value="POST"  type="submit">
-</div>
-
-
-               </li> 
-              </ul>  
-        
-
-            </div>
-
-
-<div style="clear:both; width:100%;"></div>
-
-
-
-
-
-
-
-
-
-
-                <div class="column">
-                    
-                    <!-- heading -->
-                    <div class="heading_wrapper">
-                        <span><?= $outfit['Outfit']['outfit_name']; ?></span>
-                    </div>
-                    <!-- /heading -->
-
-                    <!-- product_placeholder -->
-                    <div class="product_placeholder">
-                        <ul>
-                        <?php 
-                            $count = 1;
-                            if($user) {
-                                $path = 'messages/'; 
-                            }
-                            else {
-                                $path = 'guest/';
-                            }
-                            foreach($outfit['OutfitItem'] as $item) {
-                                if(count($item['product']['Image']) && $count++ <= 4){
-                        ?>
-                            <li><a href="<?php echo $this->webroot;echo $path.'outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>"/><span class="hover_part"><span>$<?php echo $item['product']['Entity']['price']; ?></span></span></a></li>
-                            <?php }
-                            } ?>
-                        </ul>
-                    </div>
-                    <!-- /product_placeholder -->
+                 <li>
 
                     <div class="row">
                         <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="/stylists/stylistbiography/<?= $outfit['Stylist']['id']; ?>">
@@ -295,89 +172,63 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         </a> <div class="designer_name"> By <?= $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']; ?></div> </div>
                        
                     </div>
+                    <div class="heading_wrapper">
+                        <span><?= $outfit['Outfit']['outfit_name']; ?></span>
+                    </div>
+                    <div class="left_box">
+                        <div class="box1"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></div>
+                        <div class="box2"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></div>  
+                        <div class="box3"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></div>  
+                    </div> 
 
-                    <!-- <div class="row message_icon_wrapper">
-                        <a href="#" class="icon_message"><img src="<?php echo HTTP_ROOT ?>img/home/icon_message.png" alt="message" /></a>
-                        <span><?= count($outfit['OutfitComment']); ?></span>
-                    </div> -->
+                    <div class="right_box">
 
-          <div class="row recent_comments_wrapper">
-                        <div class="scrollbar9">
-                                    <div class="scrollbar" style="display: block;"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-                    <div class="viewport">
-                         <div class="overview">
-                                <div class = "comment_append<?= $outfit['Outfit']['id']; ?>">
-                                    <?php $num = 1; 
-                                    $comment_count = count($outfit['OutfitComment']);
-                                    foreach($outfit['OutfitComment'] as $outfit_comments) { 
-                                        if($num >= 3){break;}
-                                        ?>
-                                    <div class="section">
-                                        <span class="name"><?php if($outfit_comments['user_id']){
+                       <div class="box4">
+
+                        <!--shop button begins -->
+                           <div class="link-button">
+                                <div class="shop-button"><a href="#">SHOP</a></div>    
+                            </div>   
+                        <img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></div>  
+                        <div class="box5"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></div>    
+                    </div>
+
+                    <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
+
+                        <p class="facebook-like">
+                            <span class="golden-heading">&nbsp;</span>
+                        </p>
+                        <?php 
+                            $comment_count = count($outfit['OutfitComment']); ?>
+                        <p class="view-all">
+                            <span rel="<?= $outfit['Outfit']['id']; ?>" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
+                        </p>
+                        <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?>">
+                        <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
+                                if($num >= 5){break;} ?>
+                        <span class="golden-heading"><?php if($outfit_comments['user_id']){
                                            echo $outfit_comments['User']['full_name'];
                                             } 
                                             else{
                                                 echo 'Guest';
-                                                } ?></span>
-                                        <span class="comment"><?= $outfit_comments['comment'] ?></span>
-                                        <span class="recently_time"><?php
-                                            $tm = $outfit_comments['time'];
-                                            $rcs = 0;
-                                            $cur_tm = time(); 
-                                            $dif = $cur_tm-$tm;
-                                            $pds = array('s','m','h','d','w','m','y','dec');
-                                            $lngh = array(1,60,3600,86400,604800,2630880,31570560,315705600);
-
-                                            for($v = sizeof($lngh)-1; (($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
-                                                $no = floor($no);
-                                                /*if($no <> 1)
-                                                    $pds[$v] .='s';*/
-                                                $x = sprintf("%d %s ",$no,$pds[$v]);
-                                                if(($rcs == 1)&&($v >= 1)&&(($cur_tm-$_tm) > 0))
-                                                    $x .= time_ago($_tm);
-                                                echo $x;
-                                        ?></span>
-                                    </div>
-                                    <?php $num++; } ?>
-                                </div>
-                                </div>
-                                </div>
-                            </div>
-
-
-                            <?php if($comment_count >= 3){?>
-                            <div class="view_all_comments" rel="<?= $outfit['Outfit']['id']; ?>">
-                                <a href="javascript:void(0)">view all comments</a>
-                            </div>
-                            <?php } ?>
-                        
+                                                } ?></span> says: <?php echo $outfit_comments['comment'] ?><br>
+                        <?php $num++; } ?>
+                        </div>
                         <form method="POST" class="comment_form send_comment">
                             <input type = "hidden" name="data[OutfitComment][outfit_id]" class="outfit_id" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
-                            <input type="text" name="data[OutfitComment][comment]" class="comment_box" placeholder = "Write your comment here."/>
-                            <button class="submit_comment">Post</button>
-                             <?php if($user): ?>
-                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfit</a>
-                        <?php else: ?>
-                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" class="btn_shop_this_outfits">Shop This Outfit</a>
-                         <?php endif; ?>    
+                            <input type="text" name="data[OutfitComment][comment]" class="comment_box input-post" />
+                            <input class="post-submit submit_comment" value="POST"  type="submit">
                         </form>
-
+                        
                     </div>
-                </div>
+                </li>
+
                 <?php ++$outfit_count; }
                 endif;
                 ?>
+            </ul>
+        </div>
                 <!-- /column -->
-
-               
-
-                <!-- viewAll -->
-                <!-- <div class="viewAll">
-                    <a href="#">
-                        See More Outfits
-                    </a>
-                </div> -->
-                <!-- /viewAll -->
             </div>
         </section>
         <!-- /Top Outfits -->
@@ -528,7 +379,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         if(user == ''){
             user = 'Guest';
         }
-        var apnd = '<div class="section"><span class="name">'+user+'</span><span class="comment">'+cmnt+'</span><span class="recently_time">now</span></div>';
+
+        var apnd = '<span class="golden-heading">'+user+'</span> says: '+cmnt+'<br>';
         if(cmnt){
             $.ajax({
                 url : '/comments/add_comment',
@@ -537,7 +389,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 success: function(res){
                     if(res=='success'){
                         if(pre_mod != 1){
-                            $('.comment_append'+outfit_id).prepend(apnd);
+                            $('.comment_append'+outfit_id).append(apnd);
                         }
 
                     }

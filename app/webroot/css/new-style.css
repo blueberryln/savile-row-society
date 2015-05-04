@@ -22,12 +22,12 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 
 
 
-.box1{width:280px; height:375px; float:left; background: #6986bf; margin-bottom:10px; overflow: hidden;}
-.box2{width:135px; height:180px; float:left; background: #6986bf; overflow: hidden;}
-.box3{width:135px; height:180px; float:right; background: #6986bf; overflow: hidden;}
-.box4{width:205px; height:277px; float:right; background: #6986bf;margin-bottom:10px; position: relative; overflow: hidden;}
-.box5{width:205px; height:277px; float:right; background: #6986bf; overflow: hidden;}
-.box1 img, .box2 img, .box3 img, .box4 img, .box5 img{width:100%;}
+.box1{width:280px; height:375px; float:left; background: #6986bf; margin-bottom:10px; overflow: hidden; display: table;}
+.box2{width:135px; height:180px; float:left; background: #6986bf; overflow: hidden; display: table;}
+.box3{width:135px; height:180px; float:right; background: #6986bf; overflow: hidden; display: table;}
+.box4{width:205px; height:277px; float:right; background: #6986bf;margin-bottom:10px; position: relative; overflow: hidden; display: table;}
+.box5{width:205px; height:277px; float:right; background: #6986bf; overflow: hidden; display: table;}
+.box1 img, .box2 img, .box3 img, .box4 img, .box5 img{width:100%; vertical-align: middle;}
 .box1:before,.box2:before,.box3:before,.box4:before,.box5:before {
     content: ' ';
     display: inline-block;
@@ -192,7 +192,6 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 .view_all_comments{ display: inline-block; vertical-align: top; width: 100%; margin: 5px 0px 5px; padding: 0px; }
 .view_all_comments a{ color: #ae9b73; font-size: 13px; margin: 0px auto; padding: 0px 7px; position: relative; text-align: center; text-decoration: none; vertical-align: top; top: -8px; }
 .send_comment{ border: none; margin: 0 0px 20px 8px; padding: 0px; text-align: left; display: inline-block; vertical-align: top; text-align: center; width: 96%; }
-.send_comment input{ float: left; margin: 0px; padding: 0px 2%; display: inline-block; vertical-align: top; background: #e4e3e3; height: 27px; width: 80%; outline: none; border: none; font-size: 11px; color: grey; }
 .send_comment button{ float: right; background: #727272; display: inline-block; vertical-align: top; margin: 0px; padding: 5px 10px; font-size: 12px; text-transform: uppercase; border: none; height: 27px; color: #fff; }
 .viewAll{ float: left;; display: inline-block; vertical-align: top; margin: 30px 0px; padding: 0px; width: 100%; text-align: center; }
 .viewAll a{ float: right; font-size: 18px; color: #000; margin: 0px; padding: 0px; text-transform: uppercase; text-decoration: underline; } 
