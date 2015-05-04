@@ -22,11 +22,11 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 
 
 
-.box1{width:280px; height:375px; float:left; background: #6986bf; margin-bottom:10px; overflow: hidden; display: table;}
-.box2{width:135px; height:180px; float:left; background: #6986bf; overflow: hidden; display: table;}
-.box3{width:135px; height:180px; float:right; background: #6986bf; overflow: hidden; display: table;}
-.box4{width:205px; height:277px; float:right; background: #6986bf;margin-bottom:10px; position: relative; overflow: hidden; display: table;}
-.box5{width:205px; height:277px; float:right; background: #6986bf; overflow: hidden; display: table;}
+.box1{width:280px; height:375px; float:left;  margin-bottom:10px; overflow: hidden; display: table;}
+.box2{width:135px; height:180px; float:left;  overflow: hidden; display: table;}
+.box3{width:135px; height:180px; float:right;  overflow: hidden; display: table;}
+.box4{width:205px; height:277px; float:right; margin-bottom:10px; position: relative; overflow: hidden; display: table;}
+.box5{width:205px; height:277px; float:right;  overflow: hidden; display: table;}
 .box1 img, .box2 img, .box3 img, .box4 img, .box5 img{width:100%; vertical-align: middle;}
 .box1:before,.box2:before,.box3:before,.box4:before,.box5:before {
     content: ' ';
