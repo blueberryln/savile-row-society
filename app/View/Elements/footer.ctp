@@ -43,7 +43,7 @@
                 <div class="column">
                     <div class="section-three">
                         <ul>
-                            <li><a href="<?php echo $this->webroot; ?>#two">About Us</a></li>
+                            <li><a class="tell-me-more" href="/#nine9">About Us</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>company/team">Our Team</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our Brands</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>contact">Contact Us</a></li>
