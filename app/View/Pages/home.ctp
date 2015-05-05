@@ -210,7 +210,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <?php 
                             $comment_count = count($outfit['OutfitComment']); ?>
                         <p class="view-all">
-                            <span rel="<?= $outfit['Outfit']['id']; ?>" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
+                            <span rel="<?= $outfit['Outfit']['id']; ?>" style="cursor:pointer" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
                         </p>
                         <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?>">
                         <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
