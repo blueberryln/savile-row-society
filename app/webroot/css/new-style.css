@@ -10,24 +10,24 @@ span.golden-heading{color:#b6a166;}
 input.input-post{width:80%; margin-top:30px; border:1px solid #999; }
 input.post-submit{width:19%%; background:#c2c2c2; height:33px; margin-top:30px; color:#000;}
 .product-content{width:99%; height:auto; margin:auto; }
-.text-content{float:left; width:100%; height:auto; text-align:left; }
+.text-content{float:left; width:100%; height:auto; text-align:left;   }
 ul.two-column{margin:0px; padding:0px; list-style: none; float:left; width:100%;}
 ul.two-column li{width:48.5%; height:auto; margin:0 3% 0 0; float:left; }
 ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; float:left; }
 .left_box{width:280px; height:auto; float:left;}
 .right_box{width:205px; height:150px; float:right;}
 
-	.facebook-like{float:left; width:70%; padding:5px 0 15px 0; margin:0px;}
-	.view-all{float:right; width:auto;  padding:5px 0 15px 0; margin:0px;}
-
-
+	.facebook-like{float:left; width:70%; padding:5px 0 15px 0; margin:0px; height: 10px;}
+	.view-all{float:right; width:auto;  padding:5px 0 15px 0; margin:0px; cursor: pointer; position: relative; z-index: 20;}
+span.get_started{width:70%; border:1px solid #fff; display:block !important; clear:both; margin:50px auto 10px auto; padding:10px;}
+/*.comment_view{max-height: 200px;}*/
 .facebook-like span{width:490px !important;}
 .box1{width:280px; height:375px; float:left;  margin-bottom:10px; overflow: hidden; display: table;}
 .box2{width:135px; height:180px; float:left;  overflow: hidden; display: table;}
 .box3{width:135px; height:180px; float:right;  overflow: hidden; display: table;}
 .box4{width:205px; height:277px; float:right; margin-bottom:10px; position: relative; overflow: hidden; display: table;}
 .box5{width:205px; height:277px; float:right;  overflow: hidden; display: table;}
-.box1 img, .box2 img, .box3 img, .box4 img, .box5 img{width:100%; vertical-align: middle;}
+.box1 img, .box2 img, .box3 img, .box4 img, .box5 img{max-width:100%; vertical-align: middle; max-height: 100%; }
 .box1:before,.box2:before,.box3:before,.box4:before,.box5:before {
     content: ' ';
     display: inline-block;
@@ -167,7 +167,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 .product_placeholder ul li a:hover span.hover_part{ display: table; }
 .product_placeholder ul li a:hover span.hover_part span{ display: table-cell; vertical-align: middle; line-height: normal; }
 /*.slick-slide h3 a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 0; top: 0; color: #fff; width: 100%; text-align: center; height: 100%; font-size: 18px; }*/
-.slick-slide h3 a .hover_part{ display: none; background: rgba(0, 0, 0, 0.6); position: absolute; left: 5px; top: 5px; color: #fff; width: 95%; text-align: center; height: 95%; font-size: 18px; } 
+.slick-slide h3 a .hover_part{ display: none; background: rgba(0, 0, 0, 0.65); position: absolute; left: 5px; top: 5px; color: #fff; width: 95%; text-align: center; height: 95%; font-size: 18px; } 
 .slick-slide h3 a .hover_part a{ width: 96%; border: 1px solid #fff; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; }
 
 

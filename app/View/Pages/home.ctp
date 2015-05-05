@@ -45,6 +45,21 @@ if($(window).width() <=499)
     });
 }
 
+// $(window).resize(function()
+// {
+//       $( "ul.two-column > li" ).each(function( index ) {
+//         var shopLook =  $(this).children('div.right_box').children('div.box4');
+//         $(this).children('div.left_box').prepend(shopLook);
+//         $(this).children('div.right_box').children('div.box4').remove();
+//     });  
+// }
+// else
+// {
+//          $( "ul.two-column > li" ).each(function( index ) {
+//         var shopLook =  $(this).children('div.right_box').children('div.box4');
+//                 $(this).children('div.right_box').children('div.box4').after(shopLook); 
+// }
+
 
 $('a.tell-me-more[href*=#]:not([href=#])').click(function() {
     console.log('123');
@@ -249,7 +264,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <p class="view-all">
                             <span rel="<?= $outfit['Outfit']['id']; ?>" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
                         </p>
-                        <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?>">
+                        <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?> comment_view">
                         <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
                                 if($num >= 5){break;} ?>
                         <span class="golden-heading"><?php if($outfit_comments['user_id']){
@@ -313,8 +328,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                     <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg"  />                       
                                     <?php endif; ?>
                                     <span class="hover_part">
+                                    <span class="get_started" style="" >GET STARTED</span>
                                         <!-- <a href="#">Get Started</a> -->
-                                        <span>With <?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?></span>
+                                        <span style="display:block;">with <?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?></span>
                                     </span>
                                     </a>
                                 </h3>
