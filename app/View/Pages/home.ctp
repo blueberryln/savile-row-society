@@ -38,11 +38,11 @@ $(document).ready(function()
 
 if($(window).width() <=499)
 {
-
-  var shopbutton = $(".box4");
-    $(".box4").remove();
-  $(".box4").parents('li').find('left_box').prepend(shopbutton);
-  console.log('123');
+    $( "ul.two-column > li" ).each(function( index ) {
+        var shopLook =  $(this).children('div.right_box').children('div.box4');
+        $(this).children('div.left_box').prepend(shopLook);
+        $(this).children('div.right_box').children('div.box4').remove();
+    });
 }
 
 
@@ -241,9 +241,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
                     <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
 
-                        <p class="facebook-like">
-                            <span class="golden-heading"><div class="fb-like" data-href="<?php echo 'http://'.host.'/guest/outfitdetails/'.$outfit['Outfit']['id']; ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></span>
-                        </p>
+                        
+                            <div class="fb-like facebook-like" data-href="<?php echo 'http://'.host.'/guest/outfitdetails/'.$outfit['Outfit']['id']; ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                        
                         <?php 
                             $comment_count = count($outfit['OutfitComment']); ?>
                         <p class="view-all">

@@ -21,7 +21,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 	.view-all{float:right; width:auto;  padding:5px 0 15px 0; margin:0px;}
 
 
-
+.facebook-like span{width:490px !important;}
 .box1{width:280px; height:375px; float:left;  margin-bottom:10px; overflow: hidden; display: table;}
 .box2{width:135px; height:180px; float:left;  overflow: hidden; display: table;}
 .box3{width:135px; height:180px; float:right;  overflow: hidden; display: table;}
