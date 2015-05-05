@@ -1,3 +1,6 @@
+
+
+
 <script type="text/javascript">
     // $(document).ready(function(){
     //     $('.product_placeholder ul li a').hover(function(){
@@ -18,11 +21,30 @@ $('.nav_wrapper a[href*=#]:not([href=#])').click(function() {
      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
       if (target.length) {
         $('html,body').animate({
-          scrollTop: target.offset().top
+          scrollTop: target.offset().top - 70
         }, 1000);
         return false;
       }
     }
+});
+
+
+$(document).ready(function()
+{
+$('a.tell-me-more[href*=#]:not([href=#])').click(function() {
+    console.log('123');
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+     target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top - 70
+        }, 1000);
+        return false;
+      }
+    }
+});
+
 });
 
 $('.container a[href*=#]:not([href=#])').click(function() {
@@ -86,7 +108,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             <span>
                                 <div class="heading">SHOP WITH YOUR <br>PERSONAL STYLIST</div>
                                 <p>Online & In-Person</p>
-                                <a href="/#nine9">Tell Me More</a>
+                                <a class="tell-me-more" href="/#nine9">Tell Me More</a>
                                 <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
                             </span>
                         </li>

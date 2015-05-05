@@ -193,7 +193,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 .recent_comments_wrapper span.recently_time { font-size: 12px; line-height: normal; display: inline-block;  vertical-align: top; color: #000; margin: 4px 10px 0;  width: 16%; }
 .view_all_comments{ display: inline-block; vertical-align: top; width: 100%; margin: 5px 0px 5px; padding: 0px; }
 .view_all_comments a{ color: #ae9b73; font-size: 13px; margin: 0px auto; padding: 0px 7px; position: relative; text-align: center; text-decoration: none; vertical-align: top; top: -8px; }
-.send_comment{ border: none; margin: 0 0px 20px 8px; padding: 0px; text-align: left; display: inline-block; vertical-align: top; text-align: center; width: 96%; }
+.send_comment{ border: none; margin: 0 0px 20px 0px; padding: 0px; text-align: left; display: inline-block; vertical-align: top; text-align: center; width: 96%; }
 .send_comment button{ float: right; background: #727272; display: inline-block; vertical-align: top; margin: 0px; padding: 5px 10px; font-size: 12px; text-transform: uppercase; border: none; height: 27px; color: #fff; }
 .viewAll{ float: left;; display: inline-block; vertical-align: top; margin: 30px 0px; padding: 0px; width: 100%; text-align: center; }
 .viewAll a{ float: right; font-size: 18px; color: #000; margin: 0px; padding: 0px; text-transform: uppercase; text-decoration: underline; } 
@@ -545,7 +545,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 	.rightImages a span.col-text { padding: 10px; font-size: 16px; }
 
 	.btn_shop_this_outfits{ width: 93%; }
-	.send_comment input{ width: 70%; }
+	/*.send_comment input{ width: 70%; }*/
 
 
 
@@ -564,4 +564,9 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 	.facebook-like{width:100% !important;}
 	.view-all{width:100%;}
 	input.input-post{width:70% !important;}
-	}
+		.author_name{width:100% !important;}
+.designer_name{font-size: 13px;margin:2px 4px !important; width:100%;}
+.heading_wrapper{font-size: 13px; margin:2px 4px !important;width:100%;}
+.send_comment{text-align: left !important;}
+	
+}
