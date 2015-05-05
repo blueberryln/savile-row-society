@@ -203,9 +203,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
 
                     <div class="left_box">
-                        <div class="box1"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></div>
-                        <div class="box2"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></div>  
-                        <div class="box3"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></div>  
+                        <div class="box1"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></div>
+                        <div class="box2"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></div>  
+                        <div class="box3"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></div>  
                     </div> 
 
                     <div class="right_box">
@@ -220,8 +220,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
                          <?php endif; ?> </div>    
                             </div>   
-                        <img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></div>  
-                        <div class="box5"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></div>    
+                        <img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></div>  
+                        <div class="box5"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></div>    
                     </div>
 
                     <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
