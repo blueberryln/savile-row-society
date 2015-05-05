@@ -261,6 +261,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <p class="view-all">
                             <span rel="<?= $outfit['Outfit']['id']; ?>" style="cursor:pointer" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
                         </p>
+                        <div style="max-height:100px;  float:left;"
                         <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?> comment_view">
                         <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
                                 if($num >= 5){break;} ?>

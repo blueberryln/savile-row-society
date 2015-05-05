@@ -140,7 +140,7 @@
             <div class="center_row">
                 <!-- logo_details -->   
                 <div class="logo_details">
-                    <a href="/"><img src="<?php echo HTTP_ROOT ?>img/home/logo.jpg" alt="Savil.Me" /></a>
+                    <a href="/"><img src="<?php echo HTTP_ROOT ?>img/srs_logo_new.png" alt="Savil.Me" /></a>
                 </div>
                 <!-- /logo_details -->  
 

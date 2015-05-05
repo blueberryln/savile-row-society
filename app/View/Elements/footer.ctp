@@ -16,7 +16,7 @@
                 <div class="column">
                     <div class="section-one">
                         <a href="/">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/footer_logo.jpg" alt="Savil.Me" />
+                            <img src="<?php echo HTTP_ROOT ?>img/srs_logo_white.png" alt="Savil.Me" />
                         </a>
                         <span>&copy; Savile Row Society 2015</span>
                     </div>
