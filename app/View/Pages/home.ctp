@@ -205,7 +205,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
 
                         <p class="facebook-like">
-                            <span class="golden-heading">&nbsp;</span>
+                            <span class="golden-heading"><div class="fb-like" data-href="<?php echo 'http://'.host.'/guest/outfitdetails/'.$outfit['Outfit']['id']; ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></span>
                         </p>
                         <?php 
                             $comment_count = count($outfit['OutfitComment']); ?>
