@@ -29,8 +29,23 @@ $('.nav_wrapper a[href*=#]:not([href=#])').click(function() {
 });
 
 
+
+
+
+
 $(document).ready(function()
 {
+
+if($(window).width() <=499)
+{
+
+  var shopbutton = $(".box4");
+    $(".box4").remove();
+  $(".box4").parents('li').find('left_box').prepend(shopbutton);
+  console.log('123');
+}
+
+
 $('a.tell-me-more[href*=#]:not([href=#])').click(function() {
     console.log('123');
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -232,7 +247,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <?php 
                             $comment_count = count($outfit['OutfitComment']); ?>
                         <p class="view-all">
-                            <span rel="<?= $outfit['Outfit']['id']; ?>" style="cursor:pointer" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
+                            <span rel="<?= $outfit['Outfit']['id']; ?>" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
                         </p>
                         <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?>">
                         <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
