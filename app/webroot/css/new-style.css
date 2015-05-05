@@ -20,7 +20,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 	.facebook-like{float:left; width:70%; padding:5px 0 15px 0; margin:0px; height: 10px;}
 	.view-all{float:right; width:auto;  padding:5px 0 15px 0; margin:0px; cursor: pointer; position: relative; z-index: 20;}
 span.get_started{width:70%; border:1px solid #fff; display:block !important; clear:both; margin:50px auto 10px auto; padding:10px;}
-/*.comment_view{max-height: 200px;}*/
+.comment_view{max-height: 100px; position: absolute; line-height: 23px; margin-top:50px; overflow-y: scroll; overflow-x: hidden; padding:0 15px 10px 0; width:450px;}
 .facebook-like span{width:490px !important;}
 .box1{width:280px; height:375px; float:left;  margin-bottom:10px; overflow: hidden; display: table;}
 .box2{width:135px; height:180px; float:left;  overflow: hidden; display: table;}
@@ -193,7 +193,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .recent_comments_wrapper span.recently_time { font-size: 12px; line-height: normal; display: inline-block;  vertical-align: top; color: #000; margin: 4px 10px 0;  width: 16%; }
 .view_all_comments{ display: inline-block; vertical-align: top; width: 100%; margin: 5px 0px 5px; padding: 0px; }
 .view_all_comments a{ color: #ae9b73; font-size: 13px; margin: 0px auto; padding: 0px 7px; position: relative; text-align: center; text-decoration: none; vertical-align: top; top: -8px; }
-.send_comment{ border: none; margin: 0 0px 20px 0px; padding: 0px; text-align: left; display: inline-block; vertical-align: top; text-align: center; width: 96%; }
+.send_comment{ border: none; margin: 100px 0px 20px 0px; padding: 0px; text-align: left; display: inline-block; vertical-align: top; text-align: center; width: 96%; }
 .send_comment button{ float: right; background: #727272; display: inline-block; vertical-align: top; margin: 0px; padding: 5px 10px; font-size: 12px; text-transform: uppercase; border: none; height: 27px; color: #fff; }
 .viewAll{ float: left;; display: inline-block; vertical-align: top; margin: 30px 0px; padding: 0px; width: 100%; text-align: center; }
 .viewAll a{ float: right; font-size: 18px; color: #000; margin: 0px; padding: 0px; text-transform: uppercase; text-decoration: underline; } 
@@ -216,7 +216,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .three_steps_wrapper .center_row .Section_Main_Heading h1{ font-size: 28px; }
 .three_steps_wrapper .center_row .Section_Main_Heading{ margin: 20px 0 20px; }
 .three_steps_wrapper .center_row .column{ display: inline-block; vertical-align: top; margin: 0px 1%; padding: 0px; width: 30%; text-align: center; min-height: 100px;}
-.three_steps_wrapper .center_row .column h2{ font-size: 20px; color: #222; font-family: "Open Sans"; display: inline-block; width: 100%; vertical-align: top; margin: 10px 0px 0; padding: 0px; font-weight: normal;}
+.three_steps_wrapper .center_row .column h2{ font-size: 16px; color: #222; font-family: "Open Sans"; display: inline-block; width: 100%; vertical-align: top; margin: 10px 0px 0; padding: 0px; font-weight: bold;}
 .three_steps_wrapper .center_row .column span{ background: #b8a060; height: 1px; width: 45%; display: block; vertical-align: top; margin: 0px auto 7px; padding: 0px; text-align: center; }
 .three_steps_wrapper .center_row .column p{ font-size: 14px; color: #222; font-family: "Open Sans"; display: inline-block; width: 100%; vertical-align: top; margin: 0px; padding: 0px 15px; font-weight: normal; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 
@@ -568,5 +568,6 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .designer_name{font-size: 13px;margin:2px 4px !important; width:100%;}
 .heading_wrapper{font-size: 13px; margin:2px 4px !important;width:100%;}
 .send_comment{text-align: left !important;}
+.comment_view{margin-top: 70px;}
 	
 }
