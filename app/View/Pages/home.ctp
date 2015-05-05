@@ -29,12 +29,9 @@ $('.nav_wrapper a[href*=#]:not([href=#])').click(function() {
 });
 
 
-
-
-
-
 $(document).ready(function()
 {
+
 
 if($(window).width() <=499)
 {
@@ -186,8 +183,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             </a> -->
 
             <a href="#" class="looksByOccasion"><span><span class="col-text">looks by occasion</span></span></a>
-            <a href="#" class="shopByItems"><span><span class="col-text">shop by items</span></span></a>
-            <a href="#" class="shopMen"><span><span class="col-text">shop men's</span></span></a>
+            <a href="#" class="shopByItems"><span><span class="col-text">shop by item</span></span></a>
+            <a href="#" class="shopMen"><span><span class="col-text">shop top looks</span></span></a>
 
 
         </div>
@@ -223,7 +220,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             <?php } ?>
                             </a>  </div>
 
-                                <div class="designer_name"> By <?= $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']; ?> /</div>
+                                <div class="designer_name"> By <?php echo strtoupper($outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']); ?> /</div>
                          
                                  <div class="heading_wrapper">
                                 <span><?= $outfit['Outfit']['outfit_name']; ?></span>
@@ -256,13 +253,13 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
                     <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
 
-                        
-                            <div class="fb-like facebook-like" data-href="<?php echo 'http://'.host.'/guest/outfitdetails/'.$outfit['Outfit']['id']; ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-                        
+                        <p class="facebook-like">
+                            <span class="golden-heading"><div class="fb-like" data-href="<?php echo 'http://'.host.'/guest/outfitdetails/'.$outfit['Outfit']['id']; ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></span>
+                        </p>
                         <?php 
                             $comment_count = count($outfit['OutfitComment']); ?>
                         <p class="view-all">
-                            <span rel="<?= $outfit['Outfit']['id']; ?>" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
+                            <span rel="<?= $outfit['Outfit']['id']; ?>" style="cursor:pointer" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
                         </p>
                         <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?> comment_view">
                         <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
@@ -310,7 +307,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <div class="center_row">
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
-                    <h1>featured stylists</h1>
+                    <h1>our fashion consultants</h1>
                 </div>
                 <!-- /Section_Main_Heading -->
 
@@ -355,7 +352,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
-                    <h1>how it works to shop with a stylist</h1>
+                    <h1>How It Works</h1>
+                    <span>Our goal is to make your shopping experience as seamless as possible.</span>
                 </div>
                 <!-- /Section_Main_Heading -->
 
@@ -365,27 +363,27 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <!-- column -->
                     <div class="column">
                         <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/step1.jpg" /></a>
-                        <h2>Get Started with your Stylist</h2>
+                        <h2>Get Started with your fashion consultant</h2>
                         <span>&nbsp;</span>
-                        <p>Sign Up, fill out your style profile & Connect With Your Stylist.</p>
+                        <p>Sign Up, fill out your style profile & Connect With Your fashion consultant however you please: phone, Skype, email or in-person</p>
                     </div>
                     <!-- /column -->
 
                     <!-- column -->
                     <div class="column">
                         <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/step2.jpg" /></a>
-                        <h2>Get Your Hand Selected Looks</h2>
+                        <h2>Review Your Hand Selected Looks</h2>
                         <span>&nbsp;</span>
-                        <p>Your stylist handpicks items individualized to your style, taste and needs</p>
+                        <p>Your fashion consultant handpicks items individualized to your lifestyle, body shape, coloring, likes, needs and personal taste</p>
                     </div>
                     <!-- /column -->
 
                     <!-- column -->
                     <div class="column">
                         <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/step3.jpg" /></a>
-                        <h2>Your Looks, to Your Doorstep</h2>
+                        <h2>Have it all delivered to your door</h2>
                         <span>&nbsp;</span>
-                        <p>Order only the items you want and get them delivered to your doorstep</p>
+                        <p>Order only the items you want and have them delivered to your door free of charge</p>
                     </div>
                     <!-- /column -->
 

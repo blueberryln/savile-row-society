@@ -342,8 +342,10 @@
                 <!-- nav -->
                 <div class="nav_wrapper">
                     <ul>
-                        <li><a href="/#two">Shop</a></li>
-                        <li><a href="/#three">Stylists</a></li>
+                        <!-- <li><a href="/#two">Shop</a></li>
+                        <li><a href="/#three">Stylists</a></li> -->
+                        <li><a href="/">Home</a></li>
+                        <li><a class="tell-me-more" href="/#nine9">About</a></li>
                         <li><a target="_blank" href="http://www.savilerowsociety.com/blog/">Blog</a></li>
                     </ul>
                 </div>

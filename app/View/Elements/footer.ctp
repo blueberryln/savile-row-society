@@ -58,7 +58,7 @@
                 <!-- column -->
                 <div class="column last">
                     <div class="section-four">
-                        <h2>Sign Up For Savile.me News</h2>
+                        <h2>Sign Up For Savile Row Society News</h2>
                         <form action="http://savilerowsociety.us8.list-manage2.com/subscribe/post" method="POST">
                                 <input type="hidden" name="u" value="88bda5a8e85fc9df8f8b8f5b2">
                                 <input type="hidden" name="id" value="6c6fbf69c3">
