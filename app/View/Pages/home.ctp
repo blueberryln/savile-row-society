@@ -132,11 +132,12 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <ul class="slides">
                         <li>
                             <img src="<?php echo HTTP_ROOT ?>img/home/slide1.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
-                            <span>
-                                <div class="heading">SHOP WITH YOUR <br>PERSONAL STYLIST</div>
-                                <p>Online & In-Person</p>
-                                <a class="tell-me-more" href="/#nine9">Tell Me More</a>
+                            <span >
+                                <div style="margin-top:25px;"class="heading">TAKE IT TO THE NEXT LEVEL</div>
+                                <!-- <p>Online & In-Person</p>
+                                <a class="tell-me-more" href="/#nine9">Tell Me More</a> -->
                                 <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
+                                <p style="padding:20px;">Free to Sign Up & Browse</p>
                             </span>
                         </li>
                         <li class="slide_second">
