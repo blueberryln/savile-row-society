@@ -162,19 +162,24 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                   ?>
                  <li>
 
-                    <div class="row">
-                        <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="/stylists/stylistbiography/<?= $outfit['Stylist']['id']; ?>">
-                        <?php if(!empty($outfit['Stylist']['profile_photo_url']))  {?>
-                            <img src="<?php echo HTTP_ROOT.'files/users/'.$outfit['Stylist']['profile_photo_url'] ?>" alt="" />
-                        <?php } else{ ?>
-                            <img src="<?php echo HTTP_ROOT.'images/default-user.jpg'; ?>" alt="" />
-                        <?php } ?>
-                        </a> <div class="designer_name"> By <?= $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']; ?></div> </div>
-                       
+                    <div class="row heading_title">
+                            <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="/stylists/stylistbiography/<?= $outfit['Stylist']['id']; ?>">
+                            <?php if(!empty($outfit['Stylist']['profile_photo_url']))  {?>
+                                <img src="<?php echo HTTP_ROOT.'files/users/'.$outfit['Stylist']['profile_photo_url'] ?>" alt="" />
+                            <?php } else{ ?>
+                                <img src="<?php echo HTTP_ROOT.'images/default-user.jpg'; ?>" alt="" />
+                            <?php } ?>
+                            </a>  </div>
+
+                                <div class="designer_name"> By <?= $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']; ?> /</div>
+                         
+                                 <div class="heading_wrapper">
+                                <span><?= $outfit['Outfit']['outfit_name']; ?></span>
+                                </div>
+                   
                     </div>
-                    <div class="heading_wrapper">
-                        <span><?= $outfit['Outfit']['outfit_name']; ?></span>
-                    </div>
+
+
                     <div class="left_box">
                         <div class="box1"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></div>
                         <div class="box2"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></div>  

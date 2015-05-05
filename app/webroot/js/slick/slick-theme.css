@@ -206,7 +206,9 @@
     .slick-dots { bottom: 0; width: 96%; position: relative; top: inherit; }
 }
 
-
+@media screen and (min-width: 519px) and (max-width: 568px) {
+  .slick-dots{margin-left: 0px !important;}
+}
 @media screen and (min-width: 321px) and (max-width: 568px) {
     .for_mobile_device .slick-dots {
     display: block;
@@ -215,9 +217,10 @@
     padding: 0;
     position: relative;
     text-align: center;
-    top: 13px;
+    top: 8px;
     width: 100%;
 }
+.last_slide{margin-right: 0px !important;}
 .for_mobile_device .slick-next{ left: auto; right: -14px; }
 .for_mobile_device .slick-prev{ left: -15px; }
 .for_mobile_device .slick-prev, .slick-next {

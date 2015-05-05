@@ -171,8 +171,10 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 .slick-slide h3 a .hover_part a{ width: 96%; border: 1px solid #fff; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; }
 
 
-.author_name{ float: left; font-size: 14px; color: #000; width: 100%; margin: 7px 10px 0 0; padding: 0px; vertical-align: top; display: inline-block; font-weight: bold; text-align: center; }
-.author_name .designer_name{ font-size: 16px; line-height: normal; text-align: center; width: 100%; margin: 5px 0px; padding: 0px; font-weight: normal; font-style: normal; font-family: 'Open sans'; }
+.author_name{ float: left; font-size: 14px; color: #000; width: auto; margin: 7px 10px 0 0; padding: 0px; vertical-align: top; display: inline-block; font-weight: bold; text-align: center; }
+.designer_name{ font-size: 16px; line-height: normal; text-align: center; width: auto; margin: 16px 0px; padding: 0px; float:left; font-weight: normal; font-style: normal; font-family: 'Open sans'; }
+.heading_wrapper{width: auto; height:auto; float:left; margin:18px 4px; text-transform: uppercase; color: #b6a166;}
+.heading_title{overflow: hidden; margin-bottom: 5px;}
 .author_name a{ display: inline-block; vertical-align: top; border: 2px solid #ccc; width: 43px; border-radius: 70%; height: 43px; }
 .author_name a img{ display: inline-block; width: 100%; height: 100%; border-radius: 100%; }
 .author_name > span{ color: #ae9b73; }
@@ -301,7 +303,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 .menu_switcher img{ width: 100%; }
 .wrapper_mobile{z-index: 9999; display: none; position: fixed; height: 100%; left: -185px; top:0px; -webkit-transition: all 0.3s linear; -moz-transition: all 0.3s linear; -o-transition: all 0.3s linear; transition: all 0.3s linear; }
 .mobile_menu_wrapper ul{ margin: 0px; padding: 0px; }
-.mobile_menu_wrapper ul li{ font-size: 16px; color: #fff; line-height: 30px; margin: 0; padding: 0; width: 100%; }
+.mobile_menu_wrapper ul li{ font-size: 16px; color: #fff; line-height: 20px; margin: 0; padding: 0; width: 100%; }
 .mobile_menu_wrapper ul li a{ color: #fff; }
 .mobile_menu_wrapper ul span{ border-top: 1px solid #777676; width: 100%; display: inline-block; margin: 10px 0; padding: 0; height: 1px; } 
 
@@ -380,18 +382,32 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 	#banner_wrapper .slider .flexslider .slides > li > span p{ margin-bottom: 7px; }
 
 	.last_slide a > .btn_seeAllStylists { margin: 40px 0 0; }
-	.last_slide { width: 100% !important; height: auto !important; }
+	.last_slide { width: 100% !important; height: auto !important; float: left !important; }
 	.featuredStylists-Wrapper{ margin-bottom: 0; }
 
 	.last_slide a > .btn_seeAllStylists{ display: block; }
 	.last_slide a img{ display: none; }
+	.slick-dots{margin-left: -10% !important; margin-bottom: 10px !important; }
 
 }
+
+@media screen and (min-width: 520px) and (max-width: 639px) {
+	.slick-dots{margin-left: -10% !important; margin-bottom: 10px !important; }
+	.last_slide{margin-right: 0px !important;}
+	}
 
 @media screen and (min-width: 240px) and (max-width: 1075px) {
-	.for_mobile_device .slick-slider{ position: relative; }
+	.for_mobile_device .slick-slider{ }
+	.slick-next{right:15px !important;}
+	.slick-prev{left:0px !important;}
+	
 	.for_mobile_device .slick-dots{ width: 100%; }
+
 }
+
+@media screen and (min-width: 825px) and (max-width: 1075px) {
+.last_slide{margin-right: 25px !important; }
+	}
 
 @media screen and (min-width: 240px) and (max-width: 768px) {
 	.show{ left: 0; display: inline-block; }
