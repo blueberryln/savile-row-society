@@ -192,7 +192,11 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
                         <!--shop button begins -->
                            <div class="link-button">
-                                <div class="shop-button"><a href="#">SHOP</a></div>    
+                                <div class="shop-button"><?php if($user): ?>
+                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
+                        <?php else: ?>
+                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
+                         <?php endif; ?> </div>    
                             </div>   
                         <img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></div>  
                         <div class="box5"><img src="<?php echo HTTP_ROOT ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></div>    
