@@ -105,7 +105,7 @@
                 <?php } else { ?>
                 <li><a href="/user/profile">My Account</a></li>
                 <li><a href="/signout">Sign Out</a></li>
-                <?php } ?>
+                <?php } ?>@
                 <span>&nbsp;</span>
                 <li><a href="/#two">Shop</a></li>
                 <li><a href="/#three">Stylist</a></li>
@@ -206,7 +206,7 @@
                       <div class="heading_section">
                         <?php
                         $count =0;
-                         echo $count = count($cart_user) > count($cart_guest) ? count($cart_user) : count($cart_guest)  ?> Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                         echo $count = count(@$cart_user) > count(@$cart_guest) ? count(@$cart_user) : count(@$cart_guest)  ?> Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
                       </div>
                       <!-- /Heading -->
                       <!-- content_section -->
