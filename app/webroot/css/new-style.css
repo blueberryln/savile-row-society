@@ -20,7 +20,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 	.facebook-like{float:left; width:70%; padding:5px 0 15px 0; margin:0px; height: 10px;}
 	.view-all{float:right; width:auto;  padding:5px 0 15px 0; margin:0px; cursor: pointer; position: relative; z-index: 20;}
 span.get_started{width:70%; border:1px solid #fff; display:block !important; clear:both; margin:50px auto 10px auto; padding:10px;}
-.comment_view{max-height: 100px; position: absolute; line-height: 23px; margin-top:50px; overflow-y: scroll; overflow-x: hidden; padding:0 15px 10px 0; width:450px;}
+.comment_view{max-height: 100px; word-wrap:break-word; position: absolute; line-height: 23px; margin-top:50px; overflow-y: scroll; overflow-x: hidden; padding:0 15px 10px 0; width:450px;}
 .facebook-like span{width:490px !important;}
 .box1{width:280px; height:375px; float:left;  margin-bottom:10px; overflow: hidden; display: table;}
 .box2{width:135px; height:180px; float:left;  overflow: hidden; display: table;}
@@ -463,6 +463,11 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 
 }
 
+@media screen and (min-width: 240px) and (max-width: 600px) {
+	    .logo_details a img{ width: 90%; display: inline-block; }
+
+	}
+
 @media screen and (max-width: 1075 px) and (min-width: 240px) {
 	.last_slide{ width: 100% !important; height: auto !important; }
 	.last_slide a img{ display: none; }
@@ -505,6 +510,8 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 	ul.two-column li{width:100%; height:auto; float:left; margin-bottom: 20px; }
 	ul.two-column li:last-child{width:100%; height:auto; float:left; }
 	.product-content{width:500px; height:auto; margin:auto; float:none !important;}
+	.top_icons ul{margin-right: 30px;}
+	.nav_wrapper{margin-right: 30px;}
 }
 
 @media screen and (max-width: 800px) and (min-width: 320px) {
@@ -568,6 +575,6 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .designer_name{font-size: 13px;margin:2px 4px !important; width:100%;}
 .heading_wrapper{font-size: 13px; margin:2px 4px !important;width:100%;}
 .send_comment{text-align: left !important;}
-.comment_view{margin-top: 70px;}
+.comment_view{margin-top: 70px; width:226px !important;}
 	
 }

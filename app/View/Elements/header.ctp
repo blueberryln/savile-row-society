@@ -66,8 +66,8 @@
         jQuery(".cart_dropdown").hide();
       });
       jQuery('.cart_dropdown .content_section').click(function(e){
-          e.stopPropagation();
-         return false;
+         //  e.stopPropagation();
+         // return false;
       });
       jQuery("a.my-account").on("hover", function(){
         jQuery(".myAccount_dropdown").show().siblings('.dropdown_wrapper').hide();
