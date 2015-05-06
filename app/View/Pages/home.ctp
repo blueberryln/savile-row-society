@@ -197,7 +197,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
-                    <h1>Top Looks</h1>
+                    <h1>TOP LOOKS</h1>
                     <h3>Need inspiration? Browse what's hot right now through the lens of our fashion consultants.</h3>
                 </div>
                 <!-- /Section_Main_Heading -->
@@ -231,9 +231,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
 
                     <div class="left_box">
-                        <div class="box1"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></div>
-                        <div class="box2"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></div>  
-                        <div class="box3"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></div>  
+                        <div class="box1"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></a></div>
+                        <div class="box2"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></a></div>  
+                        <div class="box3"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></a></div>  
                     </div> 
 
                     <div class="right_box">
@@ -248,8 +248,8 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
                          <?php endif; ?> </div>    
                             </div>   
-                        <img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></div>  
-                        <div class="box5"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></div>    
+                        <a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></a></div>  
+                        <div class="box5"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></a></div>    
                     </div>
 
                     <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
@@ -262,7 +262,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <p class="view-all">
                             <span rel="<?= $outfit['Outfit']['id']; ?>" style="cursor:pointer" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
                         </p>
-                        
+                        <div>
                         <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?> comment_view">
                         <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
                                 if($num >= 5){break;} ?>
@@ -273,7 +273,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                 echo 'Guest';
                                                 } ?></span> says: <?php echo $outfit_comments['comment'] ?><br>
                         <?php $num++; } ?>
-                        </div>
+                        </div></div>
                         <form method="POST" class="comment_form send_comment">
                             <input type = "hidden" name="data[OutfitComment][outfit_id]" class="outfit_id" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
                             <input type="text" name="data[OutfitComment][comment]" class="comment_box input-post" />
@@ -309,7 +309,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <div class="center_row">
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
-                    <h1>our fashion consultants</h1>
+                    <h1>OUR FASHION CONSULTANTS</h1>
                 </div>
                 <!-- /Section_Main_Heading -->
 
@@ -338,7 +338,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         </div>
                     </div>
                     <div class="last_slide">
-                        <a href="/stylists/stylistbiography/772?refer=772"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Stylists</span></a>
+                        <a href="/stylists/stylistbiography/772?refer=772"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Fashion Consultants</span></a>
                     </div>
                 </div>
             </div>

@@ -30,8 +30,8 @@
                         <button class="btn-vip_access" id="block-vip-access">VIP ACCESS</button>
                         <ul>
                             <li><a target="_blank" href="http://www.savilerowsociety.com/blog" class="blogList">Blog</a></li>
-                            <li><a target="_blank" href="https://instagram.com/savilerowsociety">Instagram</a></li>
                             <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety">Facebook</a></li>
+                            <li><a target="_blank" href="https://instagram.com/savilerowsociety">Instagram</a></li>
                             <li><a target="_blank" href="https://twitter.com/SRSocietydotcom">Twitter</a></li>
                         </ul>
                     </div>

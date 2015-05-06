@@ -66,8 +66,8 @@
         jQuery(".cart_dropdown").hide();
       });
       jQuery('.cart_dropdown .content_section').click(function(e){
-         //  e.stopPropagation();
-         // return false;
+          e.stopPropagation();
+         return false;
       });
       jQuery("a.my-account").on("hover", function(){
         jQuery(".myAccount_dropdown").show().siblings('.dropdown_wrapper').hide();
@@ -99,8 +99,11 @@
             <!-- mobile_menu_wrapper -->
             <div class="mobile_menu_wrapper">
               <ul>
+                <?php if(empty($user)){ ?>
+                <li><a href="javascript:void(0)" onclick="window.ref_url=''; signIn();">Sign In</a></li>
+                <li><a href="/users/register">Sign Up</a></li>
+                <?php } else { ?>
                 <li><a href="/user/profile">My Account</a></li>
-                <?php if($user){ ?>
                 <li><a href="/signout">Sign Out</a></li>
                 <?php } ?>
                 <span>&nbsp;</span>
@@ -347,6 +350,7 @@
                         <li><a href="/">Home</a></li>
                         <li><a class="tell-me-more" href="/#nine9">About</a></li>
                         <li><a target="_blank" href="http://www.savilerowsociety.com/blog/">Blog</a></li>
+                        <li><a class="fashion"  href="/stylists/stylistbiography/772?refer=772">Fashion Consultants</a></li>
                     </ul>
                 </div>
                 <!-- /nav -->
