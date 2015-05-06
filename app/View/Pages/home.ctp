@@ -355,7 +355,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
                     <h1>How It Works</h1>
-                    <span>Our goal is to make your shopping experience as seamless as possible.</span>
+                    <span style="font-size: 17px;line-height: normal;font-weight: normal;font-family: 'Open sans';">Our goal is to make your shopping experience as seamless as possible.</span>
                 </div>
                 <!-- /Section_Main_Heading -->
 
@@ -365,18 +365,18 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                     <!-- column -->
                     <div class="column">
                         <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/step1.jpg" /></a>
-                        <h2>Get Started with your fashion consultant</h2>
+                        <h2>Get started with your fashion consultant</h2>
                         <span>&nbsp;</span>
-                        <p>Sign Up, fill out your style profile & Connect With Your fashion consultant however you please: phone, Skype, email or in-person</p>
+                        <p>Sign Up, fill out your style profile & connect with your fashion consultant however you please: phone, Skype, email or in-person</p>
                     </div>
                     <!-- /column -->
 
                     <!-- column -->
                     <div class="column">
                         <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/step2.jpg" /></a>
-                        <h2>Review Your Hand Selected Looks</h2>
+                        <h2>Review your hand-selected looks</h2>
                         <span>&nbsp;</span>
-                        <p>Your fashion consultant handpicks items individualized to your lifestyle, body shape, coloring, likes, needs and personal taste</p>
+                        <p>Your fashion consultant handpicks items tailored to your lifestyle, body shape, coloring, likes, needs and personal taste</p>
                     </div>
                     <!-- /column -->
 

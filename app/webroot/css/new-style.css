@@ -208,7 +208,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .Section_Main_Heading h1{ color: #000; margin: 0px 0px 5px; padding: 0px; display: inline-block; vertical-align: top; font-size: 35px; line-height: normal; font-weight: normal;  width: 100%; font-family: 'Open sans'; }
 .Section_Main_Heading h3 { color: #000; margin: 0px 0px 40px; padding: 0px; display: inline-block; vertical-align: top; font-size: 17px; line-height: normal; font-weight: normal; font-family: 'Open sans'; width: 100%; }
 
-#SignUp_Wrapper{ background: #e7e7e7; width: 100%; display: inline-block; vertical-align: top; margin: 0px 0px 30px; padding: 30px 0px; text-align: center; } 
+#SignUp_Wrapper{ background: #e7e7e7; width: 100%; display: inline-block; vertical-align: top; margin:40px  0px 0px 30px; padding: 30px 0px; text-align: center; } 
 #SignUp_Wrapper span{ font-size: 30px; font-style: italic; margin: 13px 0 0px 0; padding: 0px; display: inline-block; vertical-align: top; color: #b8a060; letter-spacing: 2px; font-family: 'ACaslonPro-Regular'; }
 #SignUp_Wrapper a{ float: right; background: #b4a166; font-size: 20px; text-transform: uppercase; color: #fff; text-decoration: none; margin: 0px 0px 0px; padding: 10px 80px; display: inline-block; vertical-align: top; }
 
@@ -225,7 +225,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .three_steps_wrapper .center_row .column{ display: inline-block; vertical-align: top; margin: 0px 1%; padding: 0px; width: 30%; text-align: center; min-height: 100px;}
 .three_steps_wrapper .center_row .column h2{ font-size: 16px; color: #222; font-family: "Open Sans"; display: inline-block; width: 100%; vertical-align: top; margin: 10px 0px 0; padding: 0px; font-weight: bold;}
 .three_steps_wrapper .center_row .column span{ background: #b8a060; height: 1px; width: 45%; display: block; vertical-align: top; margin: 0px auto 7px; padding: 0px; text-align: center; }
-.three_steps_wrapper .center_row .column p{ font-size: 14px; color: #222; font-family: "Open Sans"; display: inline-block; width: 100%; vertical-align: top; margin: 0px; padding: 0px 15px; font-weight: normal; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
+.three_steps_wrapper .center_row .column p{ font-size: 14px; color: #222; font-family: "Open Sans"; display: inline-block; width: 100%; vertical-align: top; margin: 0px; padding: 0px 33px 0 33px; font-weight: normal; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 
 .blog_wrapper{ width: 100%; margin: 0px; padding: 40px 0px 0px; vertical-align: top; display: inline-block; border-top: 1px solid #b8a060; }
 .blog_wrapper .center_row .Section_Main_Heading{ margin: 0 0 20px; }
@@ -237,7 +237,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .blog_wrapper .center_row .row .column span{ font-size: 16px; color: #5d5d5d; display: inline-block; margin: -3px 0px 0; padding: 0px; vertical-align: top; text-align: center; width: 100%; text-transform: uppercase; }
 
 .footer_wrapper{ display: inline-block; vertical-align: top; margin: 0px 0px -22px; padding: 65px 0px 0px; background: #5d5d5d; min-height: 230px; width: 100%; font-family: 'Open sans'; }
-.footer_wrapper .column{ display: inline-block; vertical-align: top; margin: 0px 0px 40px; padding: 0px; width: 24%; border-right: 1px solid #fff; font-size: 15px; min-height: 240px; }
+.footer_wrapper .column{ display: inline-block; vertical-align: top; margin: 0px 0px 40px; padding: 0px; width: 24%; border-right: 1px solid #fff; font-size: 15px; min-height: 240px;  }
 .footer_wrapper .column .section-one{ display: inline-block; vertical-align: top; margin: 30px 0px 0px; padding: 0px; width: 100%; text-align: center;}
 .footer_wrapper .column a{ width: 80%; vertical-align: top; display: inline-block; margin: 0 0 20px; }
 .footer_wrapper .column a img{ display: inline-block; }
@@ -246,7 +246,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .footer_wrapper .column .section-two{ display: inline-block; vertical-align: top; margin: 10px 0px 0px; padding: 0px 0px 0px 20px; width: 100%; text-align: left; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .footer_wrapper .column .section-two button{ margin: 0px 0px 30px; padding: 10px 15px; display: inline-block; vertical-align: top; background: #b6a166; border: 1px solid #d7d7d7; font-size: 15px; font-weight: 600; }
 .footer_wrapper .column ul{ margin: 0px 0px; padding: 0px; }
-.footer_wrapper .column ul li{ list-style-type: none; display: block; vertical-align: top; margin: 0px 0px 10px; padding: 0px; font-size: 17px; color: #c0c0c0; text-align: left; line-height: normal; }
+.footer_wrapper .column ul li{ list-style-type: none; display: block; vertical-align: top; margin: 0px 0px 10px; padding: 0px; font-size: 17px; color: #c0c0c0; text-align: left; }
 .footer_wrapper .column ul li a{ text-decoration: none; color: #c0c0c0; margin: 0px; }
 .footer_wrapper .column ul li a.blogList{ margin-bottom: 30px; }
 .footer_wrapper .column ul li a:hover{ text-decoration: none; color: #c0c0c0; }
