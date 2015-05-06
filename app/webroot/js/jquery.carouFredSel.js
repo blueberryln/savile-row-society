@@ -21,8 +21,12 @@
 	if ($.fn.carouFredSel) return;
 
 	$.fn.carouFredSel = function(options, configs) {
+		console.log(this[0].children.length);
 		if (this.length == 0) {
 			debug(true, 'No element found for "'+this.selector+'".');
+			return this;
+		}
+		if(this[0].children.length == 1) {
 			return this;
 		}
 		if (this.length > 1) {

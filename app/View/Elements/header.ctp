@@ -88,7 +88,8 @@
         next: '#next_item',
         auto: false,
         scroll: 3,
-        items: 3
+        items: 3,
+        circular: false,
       });
     });
 
