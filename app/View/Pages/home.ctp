@@ -183,9 +183,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <span class="hover_section"><img src="<?php //echo HTTP_ROOT ?>img/home/img3-hover.jpg" alt="shop men's" /></span>
             </a> -->
 
-            <a href="#" class="looksByOccasion"><span><span class="col-text">looks by occasion</span></span></a>
-            <a href="#" class="shopByItems"><span><span class="col-text">shop by item</span></span></a>
-            <a href="#" class="shopMen"><span><span class="col-text">shop top looks</span></span></a>
+            <a href="/coming-soon" class="looksByOccasion"><span><span class="col-text">looks by occasion</span></span></a>
+            <a href="/coming-soon" class="shopByItems"><span><span class="col-text">shop by item</span></span></a>
+            <a href="/coming-soon" class="shopMen"><span><span class="col-text">shop top looks</span></span></a>
 
 
         </div>

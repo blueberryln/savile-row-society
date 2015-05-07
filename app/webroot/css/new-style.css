@@ -320,6 +320,12 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .mobile_menu_wrapper ul span{ border-top: 1px solid #777676; width: 100%; display: inline-block; margin: 10px 0; padding: 0; height: 1px; } 
 
 
+/*Coming soon*/
+.coming-soon-box{min-height: 400px;}
+.coming-soon-text{text-align: center;font-family: 'ACaslonPro-Regular'; font-size: 34px; padding-bottom: 40px; margin-top: 50px;}
+.coming-soon-hr{width: 145px; border-top: 1px solid #b8a060; display: block; margin: auto;}
+
+
 
 
 
@@ -524,6 +530,8 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 	.product-content{width:500px; height:auto; margin:auto; float:none !important;}
 	.top_icons ul{margin-right: 30px;}
 	.nav_wrapper{margin-right: 30px;}
+
+	.coming-soon-text{margin-top: 125px;}
 }
 
 @media screen and (max-width: 800px) and (min-width: 320px) {
