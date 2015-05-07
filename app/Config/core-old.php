@@ -23,11 +23,11 @@
  * CakePHP Debug Level:
  *
  * Production Mode:
- * 	0: No error messages, errors, or warnings shown. Flash messages redirect.
+ *  0: No error messages, errors, or warnings shown. Flash messages redirect.
  *
  * Development Mode:
- * 	1: Errors and warnings shown, model caches refreshed, flash messages halted.
- * 	2: As in 1, but also with full debug messages and SQL output.
+ *  1: Errors and warnings shown, model caches refreshed, flash messages halted.
+ *  2: As in 1, but also with full debug messages and SQL output.
  *
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
@@ -103,11 +103,11 @@ Configure::write('App.encoding', 'UTF-8');
  * Set to an array of prefixes you want to use in your application. Use for
  * admin or other prefixed routes.
  *
- * 	Routing.prefixes = array('admin', 'manager');
+ *  Routing.prefixes = array('admin', 'manager');
  *
  * Enables:
- * 	`admin_index()` and `/admin/controller/index`
- * 	`manager_index()` and `/manager/controller/index`
+ *  `admin_index()` and `/admin/controller/index`
+ *  `manager_index()` and `/manager/controller/index`
  *
  */
 Configure::write('Routing.prefixes', array('admin'));
@@ -324,8 +324,6 @@ Configure::write('AuthorizeNet.transaction_key', '3KBeMx9A78nuy393');
  * @var Email.return            SRS Returns Email
  * @var Email.rsvp              SRS RSVP Email
  * @var Email.fitting           SRS Fitting Email
- * @var Email.joey              Joey's  Email
- * @var Email.casey             Casey's Email
  * @var Email.lisa              Lisa's Email
  * 
  * Different Versions
@@ -349,6 +347,3 @@ Configure::write('Email.lisa', 'lisa@savilerowsociety.com');
 // Configure::write('Email.joey', 'joey@savilerowsociety.com');
 // Configure::write('Email.casey', 'casey@savilerowsociety.com');
 // Configure::write('Email.lisa', 'lisa@savilerowsociety.com');
-
-define('host',$_SERVER['HTTP_HOST']);
-define('DEV_MODE',false); 
