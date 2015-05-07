@@ -148,9 +148,6 @@ class AdminsController extends AppController {
 		$this->loadModel('Blog');
 		$this->layout = 'adminlte';
 		$data = $this->data;
-
-		print_r($data);
-		exit;
 		$this->set(compact('data'));
 		if(!empty($data)){
 			$data['Blog']['time'] = time();
