@@ -15,7 +15,7 @@ ul.two-column{margin:0px; padding:0px; list-style: none; float:left; width:100%;
 ul.two-column li{width:48.5%; height:auto; margin:0 3% 0 0; float:left; }
 ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; float:left; }
 .left_box{width:280px; height:auto; float:left;}
-.right_box{width:205px; height:150px; float:right;}
+.right_box{width:205px; height:auto; float:right;}
 
 	.facebook-like{float:left; width:70%; padding:5px 0 15px 0; margin:0px; height: 10px;}
 	.view-all{float:right; width:auto;  padding:5px 0 15px 0; margin:0px; cursor: pointer; position: relative; z-index: 20;}
@@ -213,7 +213,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .Section_Main_Heading h1{ color: #000; margin: 0px 0px 5px; padding: 0px; display: inline-block; vertical-align: top; font-size: 35px; line-height: normal; font-weight: normal;  width: 100%; font-family: 'Open sans'; }
 .Section_Main_Heading h3 { color: #000; margin: 0px 0px 40px; padding: 0px; display: inline-block; vertical-align: top; font-size: 17px; line-height: normal; font-weight: normal; font-family: 'Open sans'; width: 100%; }
 
-#SignUp_Wrapper{ background: #e7e7e7; width: 100%; display: inline-block; vertical-align: top; margin:40px  0px 0px 30px; padding: 30px 0px; text-align: center; } 
+#SignUp_Wrapper{ background: #e7e7e7; width: 100%; display: inline-block; vertical-align: top; margin:40px  0px 40px 0px; padding: 30px 0px; text-align: center; } 
 #SignUp_Wrapper span{ font-size: 30px; font-style: italic; margin: 13px 0 0px 0; padding: 0px; display: inline-block; vertical-align: top; color: #b8a060; letter-spacing: 2px; font-family: 'ACaslonPro-Regular'; }
 #SignUp_Wrapper a{ float: right; background: #b4a166; font-size: 20px; text-transform: uppercase; color: #fff; text-decoration: none; margin: 0px 0px 0px; padding: 10px 80px; display: inline-block; vertical-align: top; }
 
