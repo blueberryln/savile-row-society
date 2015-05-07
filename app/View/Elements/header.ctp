@@ -137,7 +137,7 @@
             
             <!-- promotionalBar -->
             <div class="promotionalBar">
-                Free Delivery & Returns On ALL Orders | Call Us <a href="tel:+13478787280">+1 347 878 7280</a>
+                Free Delivery & Returns on ALL Orders | Call Us <a href="tel:+13478787280">+1 347 878 7280</a>
             </div>
             <!-- /promotionalBar -->
 
