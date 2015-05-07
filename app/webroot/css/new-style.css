@@ -23,10 +23,15 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .comment_view{max-height: 100px; word-wrap:break-word; position: absolute; line-height: 23px; margin-top:50px; overflow-y: scroll; overflow-x: hidden; padding:0 15px 10px 0; width:450px;}
 .facebook-like{width:100px;}
 .facebook-like span{width:490px !important;}
+.box1_wrapper{width:280px; height:375px;float:left;margin-bottom:10px; overflow:hidden;}
+.box2_wrapper{width:135px; height:180px;float:left; overflow:hidden;}
+.box3_wrapper{width:135px; height:180px;float:right; overflow:hidden;}
+.box4_wrapper{width:205px; height:277px;float:right; overflow:hidden; margin-bottom:10px;}
+.box5_wrapper{width:205px; height:277px;float:right; overflow:hidden;}
 .box1{width:280px; height:375px; float:left;  margin-bottom:10px;  display: table;}
 .box2{width:135px; height:180px; float:left;   display: table;}
 .box3{width:135px; height:180px; float:right;   display: table;}
-.box4{width:205px; height:277px; float:right; margin-bottom:10px; position: relative;  display: table;}
+.box4{width:205px; height:277px; float:right;  position: relative;  display: table;}
 .box5{width:205px; height:277px; float:right;   display: table;}
 .blockPage{z-index:999999 !important;}
 
@@ -75,9 +80,9 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .top_icons ul li a{ font-size: 0px; display: inline-block; vertical-align: top; background: url(../img/home/icon_sprit.jpg) no-repeat; width: 22px; height: 25px; text-indent: -999999px; }
 .top_icons ul li a.facebook{ background-position: 0 -26px; }
 .top_icons ul li a.twitter{ background-position: 0 -51px; width: 24px; }
-.top_icons ul li a.notifications{ background-position: 0 -78px; width: 31px; height: 30px; }
+.top_icons ul li a.notifications{ background-position: 0 -82px; width: 31px; height: 30px; }
 .top_icons ul li a.cart{ background-position: 0 -112px; height: 29px; width: 31px; }
-.top_icons ul li a.my-account{ background-position: 0 -144px; height: 30px; width: 28px; }
+.top_icons ul li a.my-account{ background-position: 0 -143px; height: 30px; width: 28px; }
 .top_icons ul li a:hover{ text-decoration: none; }
 
 /*.flexslider .slides > li.slide_second > span{ text-align: left; }*/
@@ -244,7 +249,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .footer_wrapper .column span{ color: #c0c0c0; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; width: 100%; text-align: center; font-size: 12px; }
 
 .footer_wrapper .column .section-two{ display: inline-block; vertical-align: top; margin: 10px 0px 0px; padding: 0px 0px 0px 20px; width: 100%; text-align: left; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
-.footer_wrapper .column .section-two button{ margin: 0px 0px 30px; padding: 10px 15px; display: inline-block; vertical-align: top; background: #b6a166; border: 1px solid #d7d7d7; font-size: 15px; font-weight: 600; }
+.footer_wrapper .column .section-two button{ margin: 0px 0px 30px -10px; padding: 8px 15px; display: inline-block; vertical-align: top; background: #b6a166; border: 1px solid #d7d7d7; font-size: 16px; font-weight: 600; }
 .footer_wrapper .column ul{ margin: 0px 0px; padding: 0px; }
 .footer_wrapper .column ul li{ list-style-type: none; display: block; vertical-align: top; margin: 0px 0px 10px; padding: 0px; font-size: 17px; color: #c0c0c0; text-align: left; }
 .footer_wrapper .column ul li a{ text-decoration: none; color: #c0c0c0; margin: 0px; }
@@ -263,8 +268,8 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 #signin-popup{ position: fixed; background: #fff; }
 
 
-
-.notification_dropdown{ box-shadow: #888 0 0 7px; display: none; vertical-align: top; margin: 0px; padding: 10px 0; position: absolute; top: 42px; width: 380px; right: 0px; border: 1px solid #6f6f6f; background: #fff; min-height: 150px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
+.dropdown_wrapper{font-family: "Open Sans";}
+.notification_dropdown{ box-shadow: #888 0 0 7px; display: none;  vertical-align: top; margin: 0px; padding: 10px 0; position: absolute; top: 42px; width: 380px; right: 0px; border: 1px solid #6f6f6f; background: #fff; min-height: 150px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .cart_dropdown{ box-shadow: #888 0 0 7px; display: none; vertical-align: top; margin: 0px; padding: 10px 0; position: absolute; top: 42px; width: 380px; right: 0px; border: 1px solid #6f6f6f; background: #fff; min-height: 150px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .cart_dropdown > .pointer{ left: 82%; }
 .cart_dropdown > .bottom_section{ font-size: 13px; border-top: 1px solid #000; }
@@ -283,7 +288,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .content_section{ font-size: 16px; display: inline-block; vertical-align: top; margin: 0px 0px 10px; padding: 0px; text-align: center; width: 100%; line-height: normal; color: #000000; }
 .content_section > .stylist_profile_icon{ width: 100%; text-align: center; display: inline-block; vertical-align: top; margin: 15px 0px 5px; padding: 0px; }
 .content_section > .stylist_profile_icon img{ border-radius: 100%; display: inline-block; vertical-align: top; border: 2px solid #e8e8e8; margin: 0px; padding: 0px; }
-.content_section > .btn_chat_now{ display: inline-block; vertical-align: top; margin: 0px; padding: 4px 15px 2px; background: #ccbd94; font-size: 14px; text-transform: uppercase; color: #fff; }
+.content_section > .btn_chat_now{ display: inline-block; vertical-align: top; margin: 0px; padding: 3px 10px 3px 10px; background: #ccbd94; font-size: 14px; text-transform: uppercase; color: #fff; }
 .content_section > span a{ color: #c03f3f; padding: 0 0 0 3px; display: inline-block; vertical-align: top; outline: none; }
 .bottom_section{ display: inline-block; vertical-align: top; margin: 0px; padding: 8px 0px 0; text-align: center; width: 100%; font-size: 16px; }
 .bottom_section a{ color: #c03f3f; padding: 0 0 0 3px; display: inline-block; vertical-align: top; outline: none; }
