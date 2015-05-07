@@ -77,11 +77,12 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
 
 @font-face {
     font-family: 'ProximaNovaCond-Regular';
-    src: url('fonts/proximanova_regular/proximanova_regular.eot');
-    src: url('fonts/proximanova_regular/proximanova_regular.eot?#iefix') format('embedded-opentype'),
-         url('fonts/proximanova_regular/proximanova_regular.woff') format('woff'),
-         url('fonts/proximanova_regular/proximanova_regular.ttf') format('truetype');
-    font-weight: normal;
+    src: url('fonts/proximanova_regular.eot');
+    src: url('fonts/proximanova_regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/proximanova_regular.woff') format('woff'),
+         url('fonts/proximanova_regular.ttf') format('truetype'),
+         url('fonts/proximanova_regular.svg#proximanova_regular') format('svg');
+    font-weight: bold;
     font-style: normal;
         
 }
@@ -989,9 +990,13 @@ height: auto;
     .style-preference, .register-style, .register-about, .register-brands, .register-last-step, .register-finish{ width: 100%; }
 }
 
-@media screen and (min-width: 1025px) and (max-width: 1625px) {
-    .stylistbio-user{ width: 100%; text-align: center; }
+@media screen and (min-width: 800px) and (max-width: 1315px) {
+/*    .stylistbio-user{ width: 100%; text-align: center; }
     .start-today{ width: 100%; text-align: center; margin: 15px 0 10px; }
+    .bottom-section{ padding: 0px 0px 100px; }*/
+
+        .stylistbio-user{ font-size:22px; }
+    .start-today a{ font-size:18px !important; }
     .bottom-section{ padding: 0px 0px 100px; }
 }
 
@@ -1255,7 +1260,12 @@ h1.stylistbio-heading { position: relative; font-size: 22px; color: #d19b03; mar
 .user-inspire-desc {font-size: 16px; line-height: 20px; color: #c3c3c2; text-align: left; padding:10px 0 15px 10px;}
 .stylistbio-user { float: left; color: #7f7f7f; font-size: 25px; text-transform: uppercase; padding-top: 11px;}
 .start-today { float: right; margin-right: -2px;}
-.start-today a{ background: #d19b03; display: block; padding: 6px 15px 6px; color: #fff; text-transform: uppercase; margin-top: 5px; font-size: 18px; }
+.start-today a{ background: #d19b03;
+display: block;
+padding: 10px 15px 6px;
+color: #fff;
+text-transform: uppercase;
+font-size: 20px; font-family: 'ProximaNovaCond-Light';}
 .detials-section { border:1px solid #ebebeb; margin: 8px 0 20px;}
 .details { border-bottom: 1px solid #ebebeb; font-size:20px; line-height: 22px; color: #a4a696; font-family: 'ProximaNovaCond-Regular'; font-weight: 400;}
 .details .home-town, .details .fun-fact, .details .fashion-tips { padding-bottom: 25px; padding-left: 18px; position: relative;}
@@ -2130,7 +2140,15 @@ input#billingCopybilling { visibility: visible;}
     
 }
 
+@media screen and (min-width: 768px) and (max-width: 1250px) {
+.stylistbio-section-left {width: 27%;position: absolute;background: #fff;height: 100%;left: -50%;z-index: 1;}
+    a.open-left-pannel { display: block; position: absolute; top: 0px; left: -5%; width: 35px;  z-index: 10;}
+    .stylistbio-section-right{width:100%;}
+    }
+
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    
     .myclient-list.tab_n_mob { display: inline-block;}
     .myclient-list.dsktp_only {display: none;}
     

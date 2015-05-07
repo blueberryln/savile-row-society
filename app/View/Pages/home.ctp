@@ -141,10 +141,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             </span>
                         </li>
                         <li class="slide_second">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/slide3.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                            <img src="<?php echo HTTP_ROOT ?>img/home/HomeImageBlog.png" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                             <span>
-                                <div class="heading"><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 31px;line-height: normal;background:none;" href="http://www.savilerowsociety.com/blog/">blog title</a></div>
-                                <p>This is the content of your post. The more your write <br>more you have to read. <br><br><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 17px;line-height: normal;background:none;"  href = "http://www.savilerowsociety.com/blog/">Read on...</a></p>
+                                <div class="heading"><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 31px;line-height: normal;background:none;" href="http://www.savilerowsociety.com/blog/">Twillory and SRS: A Shared Personal Style</a></div>
+                                <p>We’re getting you that personalized style with Twillory  <br><br><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 17px;line-height: normal;background:none;"  href = "http://www.savilerowsociety.com/blog/">Read on...</a></p>
                             </span>
                         </li>
                         <li class="GetSocial">
@@ -231,13 +231,19 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
 
                     <div class="left_box">
+                    <div class="box1_wrapper">
                         <div class="box1"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></a></div>
-                        <div class="box2"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></a></div>  
-                        <div class="box3"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></a></div>  
+                        </div>
+
+                        <div class="box2_wrapper">
+                        <div class="box2"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></a></div></div>
+
+                        <div class="box3_wrapper">  
+                        <div class="box3"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></a></div> </div>  
                     </div> 
 
                     <div class="right_box">
-
+                      <div class="box4_wrapper"> 
                        <div class="box4">
 
                         <!--shop button begins -->
@@ -248,8 +254,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
                          <?php endif; ?> </div>    
                             </div>   
-                        <a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></a></div>  
-                        <div class="box5"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></a></div>    
+                        <a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></a></div>  </div>  
+
+                        <div class="box5_wrapper"> 
+                        <div class="box5"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></a></div> </div>    
                     </div>
 
                     <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
@@ -354,7 +362,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
-                    <h1>How It Works</h1>
+                    <h1>How it Works</h1>
                     <span style="font-size: 17px;line-height: normal;font-weight: normal;font-family: 'Open sans';">Our goal is to make your shopping experience as seamless as possible.</span>
                 </div>
                 <!-- /Section_Main_Heading -->
