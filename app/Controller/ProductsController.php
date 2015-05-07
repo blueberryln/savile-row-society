@@ -886,7 +886,7 @@ class ProductsController extends AppController {
 
         $Outfit = ClassRegistry::init('Outfit');
         $find_array = array(
-            'conditions' => array( 
+            'conditions' => array(
             ),
             'joins' => array(
                 array('table' => 'outfits_items',
@@ -913,16 +913,15 @@ class ProductsController extends AppController {
 
              ),
              'group' => array('Outfit.id'),
+             'limit' => 20,
             'fields' => array(
-                'User.first_name as username,User1.first_name as stylistname,GROUP_CONCAT(OutfitItem.product_entity_id),Outfit.outfitname,Outfit.id'
+                'User.first_name as username,User1.first_name as stylistname,GROUP_CONCAT(OutfitItem.product_entity_id),Outfit.outfit_name,Outfit.id'
             ),
             
         );
-        //$find_array = $this->paginate();
-        $outfitall= $Outfit->find('all',$find_array);
-
-        
-                
+        $this->Paginator->settings = $find_array;
+        $outfitall= $this->Paginator->paginate($Outfit);
+        //$outfitall= $Outfit->find('all',$find_array);
         $this->set('outfitall',$outfitall);
     }
 

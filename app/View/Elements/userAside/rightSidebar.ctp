@@ -1,10 +1,10 @@
 <?php
 
 if($stylist['User']['profile_photo_url']){
-    $stylist_image_src = $this->webroot . 'files/users/' . $stylist['User']['profile_photo_url'];
+    $stylist_image_src = HTTP_ROOT . 'files/users/' . $stylist['User']['profile_photo_url'];
 }
 else{
-    $stylist_image_src = $this->webroot . 'images/default-user.jpg';
+    $stylist_image_src = HTTP_ROOT . 'images/default-user.jpg';
 }
 ?>
 

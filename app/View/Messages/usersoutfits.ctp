@@ -101,7 +101,7 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                 <div class="twelve columns message-area useroutfit_area left pad-none">
                                     <div class="eleven columns container pad-none">
                                         <div class="short-by-date">
-                                            <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
+                                            <span class="short-by-date-arrow"><img src="<?php echo HTTP_ROOT; ?>images/down-arrow.png" alt=""/></span>
                                             <select id="sortdate">
                                             <option value="">Sort By Date</option>
                                                 <option value="desc">Sort By Date DESC</option>
@@ -134,10 +134,10 @@ $this->Html->css('colorbox', null, array('inline' => false));
                                                             <li>
                                                                 <?php
                                                                     if(count($entity['product']['Image'])){
-                                                                        echo '<img src="' . $this->webroot . 'files/products/' . $entity['product']['Image'][0]['name'] . '" alt="" />';
+                                                                        echo '<img src="' . HTTP_ROOT . 'files/products/' . $entity['product']['Image'][0]['name'] . '" alt="" />';
                                                                     }
                                                                     else{
-                                                                        echo '<img src="' . $this->webroot . 'images/image_not_available.png" alt="">';
+                                                                        echo '<img src="' . HTTP_ROOT . 'images/image_not_available.png" alt="">';
                                                                     }
                                                                 ?>
                                                                 

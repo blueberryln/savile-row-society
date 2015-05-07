@@ -227,7 +227,7 @@ $(document).ready(function(){
                             brandList.push(outfit['OutfitItem'][j]['product']['Brand']['name']);
                             outfitPrice += parseInt(outfit['OutfitItem'][j]['product']['Entity']['price']);
 
-                            itemHtml += '<li><img src="<?php echo $this->webroot; ?>files/products/' + imagePath +'" alt="" /></li>';
+                            itemHtml += '<li><img src="<?php echo HTTP_ROOT; ?>files/products/' + imagePath +'" alt="" /></li>';
                         }   
 
                         for(var j = 0; j < outfit['Message'].length; j++){
@@ -250,7 +250,7 @@ $(document).ready(function(){
                                             '<input type="hidden" id="totalpriceoutfit" value="' + outfitPrice + '">' + 
                                             '<input type="hidden" class="outfit-brands" value="' + brandList + '">' + 
                                             '<input type="hidden" class="outfit-users" value="' + userList + '">' + 
-                                            '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' + 
+                                            '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo HTTP_ROOT; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' + 
                                         '</div>' + 
                                         '<div class="twelve columns left client-outfit-bottom pad-none">' + 
                                             '<div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left">' + outfit['Message'][0]['Message']['body'].substr(0,120) + '... <a href="/messages/outfitdetails/' + outfit['Outfit']['id'] + '">Read More</a></div></div>' + 
@@ -344,9 +344,9 @@ $(document).ready(function(){
                                                                                     <a href="<?php echo $this->webroot; ?>outfits/create/<?php echo $usersearchforoutfit['User']['id']; ?>" title="" class="create-outfit-user-row">
                                                                                         <div class="myclient-img">
                                                                                             <?php if($usersearchforoutfit['User']['profile_photo_url']): ?>
-                                                                                                <img src="<?php echo $this->webroot; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
+                                                                                                <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $usersearchforoutfit['User']['profile_photo_url']; ?>" alt=""/>
                                                                                             <?php else: ?>
-                                                                                                <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                                                                                <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg" alt=""/>    
                                                                                             <?php endif; ?>
                                                                                         </div>
                                                                                         <div class="myclient-dtl">
@@ -426,7 +426,7 @@ $(document).ready(function(){
                                                                 $totalpriceoutfit += $value['product']['Entity']['price']; 
                                                                 $brand_list[] = trim($value['product']['Brand']['name']);
                                                             ?>
-                                                            <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $value['product']['Image'][0]['name']; ?>" alt="" /></li>
+                                                            <li><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $value['product']['Image'][0]['name']; ?>" alt="" /></li>
                                                             
                                                         <?php endforeach;
 
@@ -443,7 +443,7 @@ $(document).ready(function(){
                                                         <input type="hidden" class="outfit-brands" value="<?php echo $brand_list; ?>">
                                                         <input type="hidden" class="outfit-users" value="<?php echo $user_list; ?>">
 
-                                                        <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
+                                                        <div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo HTTP_ROOT; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>
                                                     </div>
                                                     <div class="twelve columns left client-outfit-bottom pad-none">
                                                         <div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left"><?php echo substr($outfit['Message'][0]['Message']['body'],0,120); ?>... <a href="/messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">Read More</a></div></div>
@@ -457,7 +457,7 @@ $(document).ready(function(){
                                     
                                     </div>
                                     <p id="loadMoreProduct">
-                                        <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                        <span class="hide"><img src="<?php echo HTTP_ROOT; ?>img/ajax-loader.gif" width="20" /></span>
                                         <input type="hidden" id="listPage" value="<?php echo $page; ?>">
                                         <a href="#" id="load-more">Load More Products</a>
                                     </p>

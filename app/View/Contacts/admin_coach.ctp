@@ -49,7 +49,7 @@ $this->Html->scriptBlock($script, $options = array('safe' => true, 'inline' => f
         <div id="submission-<?php echo h($contact['Contact']['id']); ?>" data-id="<?php echo h($contact['Contact']['id']); ?>" class="submission">
             <div class="four columns">
                 <?php if (isset($contact['Attached'][0]['Attachment']['name'])) : ?>
-                    <img src="<?php echo $this->request->webroot; ?>files/coach/<?php echo $contact['Attached'][0]['Attachment']['name']; ?>" />
+                    <img src="<?php echo HTTP_ROOT; ?>files/coach/<?php echo $contact['Attached'][0]['Attachment']['name']; ?>" />
                 <?php else : ?>
                     <div class="no-image">No image attached.</div>
                 <?php endif; ?>

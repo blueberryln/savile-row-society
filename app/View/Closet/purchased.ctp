@@ -70,10 +70,10 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                             			</div>
                                         <?php 
                                         if($item['Image']){
-                                            $img_src = $this->request->webroot . "files/products/" . $item['Image'][0]['name'];
+                                            $img_src = HTTP_ROOT . "files/products/" . $item['Image'][0]['name'];
                                         }
                                         else{
-                                            $img_src = $this->request->webroot . "img/photo_not_available.png";
+                                            $img_src = HTTP_ROOT . "img/photo_not_available.png";
                                         }
                                         ?>
                                         <div class="mosaic-backdrop">

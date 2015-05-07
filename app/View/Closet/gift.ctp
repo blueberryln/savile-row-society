@@ -194,9 +194,9 @@ $columns = 'eleven';
             <div class="six columns left">
                 <div class="product-default-image">
                     <?php if(count($entity['Image']) > 0) : ?>
-                        <a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" /></a>
+                        <a href="<?php echo HTTP_ROOT . 'files/products/' . $entity['Image'][0]['name']; ?>" data-lightbox="product-images"><img src="<?php echo HTTP_ROOT . 'files/products/' . $entity['Image'][0]['name']; ?>" class="fadein-image" /></a>
                     <?php else : ?>
-                        <img src="<?php echo $this->webroot; ?>img/image_not_available.png" class="fadein-image" />                    
+                        <img src="<?php echo HTTP_ROOT; ?>img/image_not_available.png" class="fadein-image" />                    
                     <?php endif; ?>
                 </div>
                 
@@ -205,9 +205,9 @@ $columns = 'eleven';
                         <ul>
                             <?php for($i=1; $i < count($entity['Image']); $i++) : ?> 
                                 <?php if($i != 4) : ?>
-                                    <li><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
+                                    <li><a href="<?php echo HTTP_ROOT . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo HTTP_ROOT . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
                                 <?php else : ?>
-                                    <li class="last"><a href="<?php echo $this->webroot . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo $this->webroot . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
+                                    <li class="last"><a href="<?php echo HTTP_ROOT . 'files/products/' . $entity['Image'][$i]['name']; ?>" data-lightbox="product-images"><img src="<?php echo HTTP_ROOT . 'products/resize/' . $entity['Image'][$i]['name'] . '/68/92'; ?>" class="fadein-image" /></a></li>
                                 <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -215,7 +215,7 @@ $columns = 'eleven';
                 <?php endif; ?>
                 <div class="clear"></div>
                 <div class="product-actions">
-                    <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:?subject=Welcome to SAVILE ROW SOCIETY&body=Hello, %0D%0A%0D%0AI would like to recommend this product to you. Check out <?php echo Router::url( $this->here, true ); ?>." id="lnk-email"></a></div>
+                    <div class="product-share"><span>Share:</span> <a href="" id="lnk-fb-share"></a><a href="mailto:?subject=Welcome to Savile Row Society&body=Hello, %0D%0A%0D%0AI would like to recommend this product to you. Check out <?php echo Router::url( $this->here, true ); ?>." id="lnk-email"></a></div>
                     <?php if(isset($entity['Wishlist'])) : ?>
                     <div class="product-thumbs">
                         <a href="" class="thumbs-up <?php echo ($entity['Wishlist']['id']) ? 'liked' : ''; ?>"></a>

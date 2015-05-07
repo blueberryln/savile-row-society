@@ -95,14 +95,14 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 <td class="v-top">
                                     <input type="hidden" class="cart-item-gift" value="<?php echo ($item['CartItem']['is_gift']) ? '1' : '0'; ?>">
                                     <input type="hidden" class="cart-item-id" value="<?php echo $item['CartItem']['id']; ?>">
-                                    <a href="" class="remove-cart-item"><img src="app/webroot/img/cross_menue.png" width="10" height="10" /></a>
+                                    <a href="" class="remove-cart-item"><img src="<?= HTTP_ROOT; ?>img/cross_menue.png" width="10" height="10" /></a>
                                 </td>
                                 <?php 
                                     if($item['Image']){
-                                        $img_src = $this->request->webroot . "files/products/" . $item['Image'][0]['name'];
+                                        $img_src = HTTP_ROOT . "files/products/" . $item['Image'][0]['name'];
                                     }
                                     else{
-                                        $img_src = $this->request->webroot . "img/photo_not_available.png";
+                                        $img_src = HTTP_ROOT . "img/photo_not_available.png";
                                     }
                                 ?>
                                 <td class="product-thumb"><div class="cart-thumbnail"><a href="<?php echo $this->webroot; ?>product/<?php echo $item['Entity']['id'] . '/' . $item['Entity']['slug'];?>"><img src="<?php echo $img_src; ?>" /></a></div></td>

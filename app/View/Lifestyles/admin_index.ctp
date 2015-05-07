@@ -18,7 +18,7 @@
             <?php foreach ($lifestyles as $lifestyle): ?>
                 <tr>
                     <td width="30"><?php echo h($lifestyle['Lifestyle']['id']); ?>&nbsp;</td>
-                    <td width="200"><img src="<?php echo $this->webroot; ?>files/lifestyles/<?php echo $lifestyle['Lifestyle']['image']; ?>" style="max-height:200px; max-width: 200px;" /></td>
+                    <td width="200"><img src="<?php echo HTTP_ROOT; ?>files/lifestyles/<?php echo $lifestyle['Lifestyle']['image']; ?>" style="max-height:200px; max-width: 200px;" /></td>
                     <td><?php echo h(ucfirst($lifestyle['Lifestyle']['name'])); ?>&nbsp;</td>
                     <td class="actions">
                         <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $lifestyle['Lifestyle']['id'])); ?>

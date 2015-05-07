@@ -1,7 +1,7 @@
 <?php
 
 App::uses('CakeEmail', 'Network/Email');
-
+App::import('Controller', 'Messages');
 class ConnectController extends AppController {
 
     var $uses = null;
@@ -20,202 +20,12 @@ class ConnectController extends AppController {
         //App::import('Vendor', 'Google/contrib/Google_Oauth2Service');
     }
 
-    /**
-     * Connect LinkedIn account 
-     */
-    public function linkedin($param = null) {
-
-        // delete user session before any login attempt
-        $this->Session->delete('user');
-
-        $this->autoRender = false;
-        $this->autoLayout = false;
-
-        // get twitter app keys
-        $api_key = Configure::read('LinkedIn.api_key');
-        $secret_key = Configure::read('LinkedIn.secret_key');
-        $callback_url = 'http://' . $_SERVER['HTTP_HOST'] . '/connect/linkedin/signin';
-
-        // init
-        $User = ClassRegistry::init('User');
-
-        if ($param == 'signin') {
-            $linkedin = new LinkedIn($api_key, $secret_key, $callback_url);
-
-            if (isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
-
-                $this->Session->write('linkedin_oauth_verifier', $_GET['oauth_verifier']);
-
-                $linkedin->request_token = unserialize($this->Session->read('linkedin_requestToken'));
-                $linkedin->oauth_verifier = $this->Session->read('linkedin_oauth_verifier');
-                $linkedin->getAccessToken($_GET['oauth_verifier']);
-
-                $this->Session->write('linkedin_oauth_access_token', serialize($linkedin->access_token));
-                header("Location: " . $callback_url);
-                exit();
-            } else {
-                $linkedin->request_token = unserialize($this->Session->read('linkedin_requestToken'));
-                $linkedin->oauth_verifier = $this->Session->read('linkedin_oauth_verifier');
-                $linkedin->access_token = unserialize($this->Session->read('linkedin_oauth_access_token'));
-            }
-
-            // API CALL ...........................
-            // get user profile data from linkedin
-            $profile = $linkedin->getProfile("~:(id,first-name,last-name,headline,picture-url,location:(name),industry,email-address)");
-            $profile = json_decode($profile, true);
-
-            // check if user account exists in db
-            $account = $User->getByEmail($profile['emailAddress']);
-
-            if (!$account) {
-
-                if (!isset($profile['emailAddress'])) {
-                    $this->Session->setFlash(__('There was a problem. Please, try with regular singup.'), 'flash');
-                    $this->redirect('/register');
-                }
-                if (!isset($profile['firstName'])) {
-                    $profile['firstName'] = '';
-                }
-                if (!isset($profile['lastName'])) {
-                    $profile['lastName'] = '';
-                }
-                if (!isset($profile['pictureUrl'])) {
-                    $profile['pictureUrl'] = null;
-                }
-                if (!isset($profile['headline'])) {
-                    $profile['headline'] = null;
-                }
-                if (!isset($profile['industry'])) {
-                    $profile['industry'] = null;
-                }
-                if (!isset($profile['location']['name'])) {
-                    $profile['location']['name'] = null;
-                }
-
-                $linkedin_data = array();
-                $linkedin_data['User']['user_type_id'] = 1;
-                $linkedin_data['User']['email'] = $profile['emailAddress'];
-                $linkedin_data['User']['password'] = Security::generateAuthKey();
-                $linkedin_data['User']['first_name'] = $profile['firstName'];
-                $linkedin_data['User']['last_name'] = $profile['lastName'];
-                $linkedin_data['User']['username'] = strtolower(Inflector::slug($profile['firstName'] . ' ' . $profile['lastName'], $replacement = '.'));
-                $linkedin_data['User']['profile_image'] = $profile['pictureUrl'];
-                $linkedin_data['User']['social_network'] = 'LinkedIn';
-                $linkedin_data['User']['social_network_id'] = $profile['id'];
-                $linkedin_data['User']['social_network_token'] = $this->Session->read('linkedin_requestToken');
-                $linkedin_data['User']['social_network_secret'] = $this->Session->read('linkedin_oauth_access_token');
-                $linkedin_data['User']['title'] = $profile['headline'];
-                $linkedin_data['User']['industry'] = $profile['industry'];
-                $linkedin_data['User']['location'] = $profile['location']['name'];
-
-                //save social media image
-                if($linkedin_data['User']['profile_image'] && $linkedin_data['User']['email']) {
-                    $linkedin_data['User']['profile_photo_url'] = $this->saveSocialMediaImage($linkedin_data['User']['profile_image'], $linkedin_data['User']['email']);
-                }
-
-                if($this->Session->check('referer')){
-                    $linkedin_data['User']['referred_by'] = $this->Session->read('referer');  
-                    $linkedin_data['User']['vip_discount_flag'] = 1; 
-                } 
-
-                $User->create();
-                if ($User->save($linkedin_data)) {
-
-                    if($this->Session->check('referer')){
-                        $this->Session->delete('referer');
-                        $this->Session->delete('showRegisterPopup'); 
-                        $this->Session->delete('referer_type');
-                    } 
-
-                    // set "user" session
-                    $linkedin_data['User']['id'] = $User->getInsertID();
-                    $this->Session->write('user', $linkedin_data);
-
-                    // send welcome mail
-                    $bcc = Configure::read('Email.contact');
-                    $email = new CakeEmail('default');
-                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                    $email->to($profile['emailAddress']);
-                    $email->subject('Welcome To Savile Row Society');
-                    $email->bcc($bcc);
-                    $email->template('registration');
-                    $email->emailFormat('html');
-                    $email->viewVars(array('name' => $profile['firstName']));
-                    $email->send();
-
-                    // redirect to home
-                    //$this->Session->setFlash(__('Your account is created with your LinkedIn data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
-                    $this->redirect('/register/wardrobe');
-                    exit();
-                } else {
-                    $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
-                    $this->redirect('/');
-                    exit();
-                }
-            } else {
-                $account['User']['profile_image'] = $profile['pictureUrl'];
-                $account['User']['social_network'] = 'LinkedIn';
-                $account['User']['social_network_id'] = $profile['id'];
-                $account['User']['social_network_token'] = $this->Session->read('linkedin_requestToken');
-                $account['User']['social_network_secret'] = $this->Session->read('linkedin_oauth_access_token');
-                $account['User']['title'] = $profile['headline'];
-                $account['User']['industry'] = $profile['industry'];
-                $account['User']['location'] = $profile['location']['name'];
-                unset($account['User']['updated']);
-
-                if($this->Session->check('referer')){
-                    $this->Session->delete('referer');
-                    $this->Session->delete('showRegisterPopup'); 
-                    $this->Session->delete('referer_type');
-                } 
-
-                if ($User->save($account)) {
-                    // set "user" session
-                    $this->Session->write('user', $account);
-                    
-                    //Set complete style profile popup if style profile not complete
-                    if (!$results['User']['preferences']) {
-                        $this->Session->write('completeProfile', true);       
-                    }
-                    else {
-                        $preferences = unserialize($results['User']['preferences']);
-                        if(!isset($preferences['UserPreference']['is_complete'])){
-                            $this->Session->write('completeProfile', true);     
-                        }
-                        else if(!$preferences['UserPreference']['is_complete']) {
-                            $this->Session->write('completeProfile', true);     
-                        }
-                    }
-                    
-                    
-                    // redirect to home
-                    //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
-                    $this->redirect('/');
-                    exit();
-                } else {
-                    $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
-                    $this->redirect('/');
-                    exit();
-                }
-            }
-        } else {
-
-            $linkedin = new LinkedIn($api_key, $secret_key, $callback_url);
-            $linkedin->getRequestToken();
-
-            $this->Session->write('linkedin_requestToken', serialize($linkedin->request_token));
-
-            // redirect to LinkedIn auth page
-            header("Location: " . $linkedin->generateAuthorizeUrl());
-            exit();
-        }
-    }
 
     /**
      * Connect Facebook account 
      */
     public function facebook() {
-
+        Configure::write('debug', 2);
         // delete user session before any login attempt
         $this->Session->delete('user');
 
@@ -247,7 +57,7 @@ class ConnectController extends AppController {
             $access_secret = $facebook->getApiSecret();
 
             try {
-                $profile = $facebook->api('/me?fields=id,email,first_name,last_name,username,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
+                $profile = $facebook->api('/me?fields=id,email,first_name,last_name,picture.width(200).height(200)', 'GET', array('access_token' => $access_token));
 
                 // check if user account exists in db
                 $account = $User->getByEmail($profile['email']);
@@ -275,8 +85,49 @@ class ConnectController extends AppController {
                     if($this->Session->check('referer')){
                         $fb_data['User']['referred_by'] = $this->Session->read('referer');  
                         $fb_data['User']['vip_discount_flag'] = 1; 
-                    } 
+                    }
+                    /*assign stylisst to user start*/
 
+                    if($this->Session->check('stylist_refer')){
+                        $stylist_refer = $this->Session->read('stylist_refer');
+                        $refered_stylist = $User->getByID($stylist_refer);
+
+                        if(!$refered_stylist){
+                            $stylist_refer = false;
+                        }
+                    }
+                    else{
+                        $stylist_refer = false;    
+                    }
+
+
+                    if(isset($fb_data['User']['referred_by'])){
+                        $referer = $User->getByID($fb_data['User']['referred_by']);
+                        if($referer && $referer['User']['is_stylist']){
+                            $fb_data['User']['stylist_id'] = $referer['User']['id'];
+                        }
+                        else if ($referer && $referer['User']['stylist_id'] && $user_stylist = $User->getByID($referer['User']['stylist_id'])){
+                            $fb_data['User']['stylist_id'] = $referer['User']['stylist_id'];
+                        }
+                        else{
+                            $stylist = $User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
+                            if($stylist){
+                                $fb_data['User']['stylist_id'] = $stylist['User']['id']; 
+                            }   
+                        }
+                    }
+                    else{
+                        if($stylist_refer){
+                            $fb_data['User']['stylist_id'] = $refered_stylist['User']['id']; 
+                        }
+                        else{
+                            $stylist = $User->find('first', array('order' => 'rand()', 'conditions' => array('is_stylist' => true,'random_stylist' => true))); 
+                            if($stylist){
+                                $fb_data['User']['stylist_id'] = $stylist['User']['id']; 
+                            }   
+                        }    
+                    } 
+                    /*assign stylisst to user end*/ 
 
                     $User->create();
                     if ($User->save($fb_data)) {
@@ -290,26 +141,15 @@ class ConnectController extends AppController {
                         // set "user" session
                         $fb_data['User']['id'] = $User->getInsertID();
                         $this->Session->write('user', $fb_data);
-
-                        // send welcome mail
-                        $email = new CakeEmail('default');
-                        $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                        $email->to($profile['email']);
-                        $email->subject('Welcome To Savile Row Society');
-                        $email->bcc($bcc);
-                        $email->template('registration');
-                        $email->emailFormat('html');
-                        $email->viewVars(array('name' => $profile['first_name']));
-                        $email->send();
-                        App::import('Controller', 'Users');
-                        $Users = new UsersController;
-                        $stylist_id = $Users->assign_refer_stylist($fb_data['User']['id']);
-                        $this->mailto_sales_team($fb_data,$stylist_id);    // sends an email to the sales team
-
+                        
+                        
+                        $Messages = new MessagesController;
+                        $Messages->send_welcome_message($fb_data['User']['id'], $fb_data['User']['stylist_id']);
+                        $this->mailto_sales_team($fb_data,$fb_data['User']['stylist_id']);    // sends an email to the sales team
                         // redirect to home
                         //$this->Session->setFlash(__('Your account is created with your Facebook data.'), 'modal', array('class' => 'success', 'title' => 'Hooray!'));
                         //$this->redirect('/');
-                        $this->redirect('/thankyou'); 
+                        $this->redirect('/thankyou');
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');
@@ -332,26 +172,12 @@ class ConnectController extends AppController {
 
                     if ($User->save($account)) {
                         // set "user" session
-                        $this->Session->write('user', $account);
-                        
-                        //Set complete style profile popup if style profile not complete
-                        if (!$results['User']['preferences']) {
-                            $this->Session->write('completeProfile', true);       
-                        }
-                        else {
-                            $preferences = unserialize($results['User']['preferences']);
-                            if(!isset($preferences['UserPreference']['is_complete'])){
-                                $this->Session->write('completeProfile', true);     
-                            }
-                            else if(!$preferences['UserPreference']['is_complete']) {
-                                $this->Session->write('completeProfile', true);     
-                            }
-                        }
-                        
+                        $this->Session->write('user', $account);                        
 
                         // redirect to home
                         //$this->Session->setFlash(__('Welcome to SRS!'), 'modal', array('class' => 'success', 'title' => 'Hey!'));
-                        $this->redirect('/');
+                        //$this->redirect('/register/wardrobe');    
+                        $this->redirect('/');  //changed by shubham
                         exit();
                     } else {
                         $this->Session->setFlash(__('There was a problem. Please, try again.'), 'flash');

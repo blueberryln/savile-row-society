@@ -1,3 +1,4 @@
+
 <?php
 $script = ' 
     $(function(){
@@ -125,7 +126,6 @@ $(document).ready(function() {
 	
 });
 </script>
-
 <script type="text/javascript">
 function checkForNumber()
 {
@@ -155,7 +155,7 @@ color:#396; !important
 	}
 </style>
 <div class="eleven columns container container-box register-box-main">
-    <div class="eleven columns container stylist-boxes btm-mrgn">
+    <div class="twelve columns container stylist-boxes btm-mrgn">
     <div id="tabs">
       <ul style="list-style: disc" class="hide">
         <li style="float:left; margin-left:232px;"><br /><div style="margin-left:-30px;"><a href="#tabs-1" id="t1" class="register-tabs">Style</a></div></li>
@@ -175,7 +175,7 @@ color:#396; !important
                         <div class="hi-message-text rd-clr">
                            Our goal is to get to know you before we provide suggestions, so let’s get started!
                         </div>
-                        <p><img src="<?php echo $this->webroot; ?>images/register-setp-1.png" alt=""></p>
+                        <p><img src="<?php echo HTTP_ROOT; ?>images/register-setp-1.png" alt=""></p>
                         </div>
                         <div class="twelve columns text-center page-heading">
                         <h4 class="hi-message">Style Profile | Step 1</h4>
@@ -211,7 +211,7 @@ color:#396; !important
 
                      <?php foreach ($styles as $style): ?> 
                               <input class="hide style-check" type="checkbox" name="data[UserPreference][style_pref][]"   value="<?php echo $style['Style']['id']; ?>" id="<?php echo $style['Style']['id']; ?>" />
-                              <li class="ui-state-default" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo $this->request->webroot; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
+                              <li class="ui-state-default" style="width:150px;padding:5px 5px 0px 5px;height: 230px;" data-id="<?php echo $style['Style']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/user_styles/<?php echo $style['Style']['image']; ?>" class="fadein-image" /></li>
 
                      <?php endforeach; ?>
 
@@ -251,7 +251,7 @@ color:#396; !important
                     <br />
 
                     <div class="hi-message">
-                        <p><img src="<?php echo $this->webroot; ?>images/register-setp-2.png" alt=""></p>
+                        <p><img src="<?php echo HTTP_ROOT; ?>images/register-setp-2.png" alt=""></p>
                         <h4 class="hi-message text-center">Style Profile | Step 2</h4>
                         <div class="hi-message-text">
                            What are your best measurements? This information helps your stylist select items with a perfect fit.
@@ -281,14 +281,14 @@ color:#396; !important
                     </select>
 <!--                    Split Title|This clueTip's contents were created directly from the title attribute|Nice for minimum info.-->
                     <a class="tt-icon"  target="1">
-                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                        <img src="<?php echo HTTP_ROOT; ?>images/tt-icon.png" alt="" />
                     </a>
                     <div id="div1" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
                         <p>Try on a button down shirt and button the collar – you should have enough room for one flinger to fit in between the collar and your neck. </p>
                         <span class="tt-arrow"></span>
                     </div>
-<!--                    <a href="#" class="tt-icon tipped" data-title="Great New Tooltip|| ahello frineds" data-tipper-options='{"direction":"right"}'><img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" /></a>-->
+<!--                    <a href="#" class="tt-icon tipped" data-title="Great New Tooltip|| ahello frineds" data-tipper-options='{"direction":"right"}'><img src="<?php echo HTTP_ROOT; ?>images/tt-icon.png" alt="" /></a>-->
 <!--                    <span class="tt-icon"></span>-->
                         
                 </div>
@@ -315,7 +315,7 @@ color:#396; !important
                          <option value="I don’t know">I don’t know</option>                
                     </select>
                      <a class="tt-icon" target="2">
-                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                        <img src="<?php echo HTTP_ROOT; ?>images/tt-icon.png" alt="" />
                     </a>
                     <div id="div2" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
@@ -343,7 +343,7 @@ color:#396; !important
                         <option value="I don’t know">I don’t know</option>                                        
                     </select>
                     <a class="tt-icon" target="3">
-                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                        <img src="<?php echo HTTP_ROOT; ?>images/tt-icon.png" alt="" />
                     </a>
                     <div id="div3" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
@@ -367,7 +367,7 @@ color:#396; !important
                          <option value="I don’t know">I don’t know</option>
                     </select>
                     <a class="tt-icon" target="4">
-                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                        <img src="<?php echo HTTP_ROOT; ?>images/tt-icon.png" alt="" />
                     </a>
                     <div id="div4" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
@@ -398,7 +398,7 @@ color:#396; !important
                         <option value="I don’t know">I don’t know</option>
                     </select>
                   <a class="tt-icon" target="5">
-                        <img src="<?php echo $this->webroot; ?>images/tt-icon.png" alt="" />
+                        <img src="<?php echo HTTP_ROOT; ?>images/tt-icon.png" alt="" />
                     </a>
                     <div id="div5" class="tt-content">
                         <h4>INSTRUCTIONS</h4>
@@ -432,7 +432,7 @@ color:#396; !important
                 <br />
 
                 <div class="hi-message">
-                    <p><img src="<?php echo $this->webroot; ?>images/register-setp-3.png" alt=""></p>
+                    <p><img src="<?php echo HTTP_ROOT; ?>images/register-setp-3.png" alt=""></p>
                     <h4 class="hi-message">Style Profile | Step 3</h4>
                     <div class="hi-message-text">
                       Please complete the following fields.
@@ -445,9 +445,9 @@ color:#396; !important
                             <div class="pref-options">
                                 <?php
                                     echo $this->Form->input('User.lead',array('type'=>'hidden'));
-                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'First Name', 'tabindex' => 1));
-                                    echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'Last Name', 'tabindex' => 2));
-                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'Email', 'tabindex' => 3));
+                                    echo $this->Form->input('User.first_name', array('id' => 'first-name', 'label' => false,'required', 'placeholder' => 'First Name*', 'tabindex' => 1));
+                                    echo $this->Form->input('User.last_name', array('id' => 'last-name', 'label' => false,'required', 'placeholder' => 'Last Name*', 'tabindex' => 2));
+                                    echo $this->Form->input('User.email', array('id' => 'register-email', 'label' => false,'required', 'placeholder' => 'Email*', 'tabindex' => 3));
                                     
                                 ?>
                             </div>
@@ -456,9 +456,9 @@ color:#396; !important
                             <div class="pref-options">      
                               <?php
                                 
-                                echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode", 'tabindex' => 4));
-                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'Password', 'tabindex' => 5));
-                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'Confirm Password', 'tabindex' => 6));
+                                echo $this->Form->input('User.zip', array("label"=> false, "placeholder" => "Zipcode*", 'tabindex' => 4));
+                                echo $this->Form->input('User.password', array('type' => 'password', 'id' => 'register-password', 'label' => false, 'required','placeholder' => 'Password*', 'tabindex' => 5));
+                                echo $this->Form->input('User.confirm_password', array('type' => 'password', 'id' => 'confirm-register-password', 'label' => false,'required', 'placeholder' => 'Confirm Password*', 'tabindex' => 6));
                                 ?> 
                                 
                                 </div>
@@ -472,6 +472,8 @@ color:#396; !important
                     <div class="eleven columns center-block step3-text-aera">
                         <div class="five columns pref-time left">
                             <div class="pref-options">
+                                
+                                <!-- <input type="text"  id="phone1" name="mobile" maxlength="10" minlength="10" /> -->
                                 <?php
                                    echo $this->Form->input('User.phone', array("label"=> false, "placeholder" => "Phone Number*", "maxlength"=> "10", "minlength"=> "10", "onkeypress"=> "return checkForNumber();", 'required', "id"=> "phone", "pattern"=> ".{10,10}", "title"=> "10 digits required" ));
                                     echo $this->Form->input('User.skype', array( 'label' => false, 'placeholder' => 'Skype Id (Optional)'));
@@ -518,7 +520,7 @@ color:#396; !important
                             <div class="pref-options ">
                                 <div class="seven columns center-block uplod-profile-img">
                                 <div class='empty-img' id='photo-holder'>
-                                    <img src='<?php echo $this->webroot . "images/dummy_image.jpg";//echo $image_url; ?>' id='user-photo'/>
+                                    <img src='<?php echo HTTP_ROOT . "images/dummy_image.jpg";//echo $image_url; ?>' id='user-photo'/>
                                     </div>
                                     </div>
                                     <input type='button' value='Upload profile Photo' id='upload-img' class="gray-btn"/>

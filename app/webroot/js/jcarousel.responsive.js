@@ -7,7 +7,7 @@
                 var width = jcarousel.innerWidth();
 
                 if (width >= 600) {
-                    width = width / 4;
+                    width = width / 5;
                 } else if (width >= 350) {
                     width = width / 2;
                 }

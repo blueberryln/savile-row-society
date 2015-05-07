@@ -6,8 +6,8 @@
  */
 ?>
 <div id="topmost" class="content-container content-container-faq">
-    <div class="eleven columns container content inner">
-        <div class="twelve columns container left message-box">
+    <div class="twelve columns container content inner">
+        <div class="eleven columns container left message-box wrapper_faq">
             <div class="blank-space">&nbsp;</div>
             <div class="eleven columns container aboutus"> 
                 <div class="ten columns text-center page-heading">

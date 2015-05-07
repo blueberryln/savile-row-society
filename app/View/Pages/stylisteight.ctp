@@ -12,9 +12,9 @@
                 </div>
                 <div class="two columns right admin-top-right">
                     <ul>
-                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
+                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo HTTP_ROOT; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
                         <li>
-                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
+                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                             <div class="admin-top-right-dropdown">
                                 <ul>
                                     <li><a href="#" title="">view my cart/checkout</a></li>
@@ -58,7 +58,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -69,7 +69,7 @@
                                 <li class="active">
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -80,7 +80,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -91,7 +91,7 @@
                                 <li>
                                     <a href="#" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name">Kyle HARPER</span>
@@ -125,11 +125,11 @@
                                         <div class="mydesbrd-heading">New Items</div>
                                         <div class="mydesbrd-items-content">
                                             <ul class="slider4">
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
-                                                <li><img src="<?php echo $this->webroot; ?>images/jacket2.jpg" alt=""/></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/jacket2.jpg" alt=""/></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/jacket2.jpg" alt=""/></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/jacket2.jpg" alt=""/></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/jacket2.jpg" alt=""/></li>
+                                                <li><img src="<?php echo HTTP_ROOT; ?>images/jacket2.jpg" alt=""/></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -142,11 +142,11 @@
                                             <ul>
                                                 <li class="activity-wishlist">
                                                     <div class="activity-content-area">
-                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>
                                                         <div class="activity-msg-area">
                                                             <div class="activity-user-name"><strong>Kyle Harper</strong> liked an item,</div>
                                                             <div class="activity-msg-dtl">
-                                                                <span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>
+                                                                <span class="activity-prdct-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>
                                                                 <span class="activity-product-dtl">
                                                                     <strong>Nice Loafers</strong><br>
                                                                     Prada<br>
@@ -164,7 +164,7 @@
                                                 
                                                 <li class="activity-notification">
                                                     <div class="activity-content-area">
-                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>
                                                         <div class="activity-msg-area">
                                                             <div class="activity-user-name"><strong>Kyle Harper</strong> requested an outfit.</div>
                                                             <div class="activity-msg-dtl">
@@ -183,11 +183,11 @@
                                                 
                                                 <li class="activity-purchase">
                                                     <div class="activity-content-area">
-                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>
                                                         <div class="activity-msg-area">
                                                             <div class="activity-user-name"><strong>Kyle Harper</strong> purchased an item.</div>
                                                             <div class="activity-msg-dtl">
-                                                                <span class="activity-prdct-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></span>
+                                                                <span class="activity-prdct-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></span>
                                                                 <span class="activity-product-dtl">
                                                                     <strong>Nice Loafers</strong><br>
                                                                     Prada<br>
@@ -205,7 +205,7 @@
                                                 
                                                 <li class="activity-refferal">
                                                     <div class="activity-content-area">
-                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>
                                                         <div class="activity-msg-area">
                                                             <div class="activity-user-name"><strong>Kyle Harper</strong> referred a friend, Emmanuel Garcia.</div>
                                                         </div>
@@ -218,7 +218,7 @@
                                                 
                                                 <li class="activity-msg">
                                                     <div class="activity-content-area">
-                                                        <div class="activity-user-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                                        <div class="activity-user-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>
                                                         <div class="activity-msg-area">
                                                             <div class="activity-user-name"><strong>Kyle Harper</strong> sent you a message.</div>
                                                             <div class="activity-msg-dtl">
@@ -250,9 +250,9 @@
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
                         </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                        <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>

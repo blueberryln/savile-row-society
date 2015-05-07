@@ -13,14 +13,15 @@ class MessagesController extends AppController {
     public $helpers = array('Paginator');
 
     public function beforeFilter(){
-        // $this->isLogged();
+        //$this->isLogged();
 
         $user = $this->getLoggedUser();
 
         if(!$user['User']['is_stylist'] && !$user['User']['is_admin'] && is_null($user['User']['stylist_id'])){
-            $offer = $this->Session->read('thankyou');
+           // $this->redirect('/users/profile/' . $user['User']['id']);
+			$offer = $this->Session->read('thankyou');
             if(!empty($offer)){
-               $this->redirect('/thankyou/'.$offer['UserOffer']['offer']);
+        	   $this->redirect('/thankyou/'.$offer['UserOffer']['offer']);
             } else{
                 $this->redirect('/thankyou');
             }
@@ -259,7 +260,7 @@ class MessagesController extends AppController {
                 $notification['to_name'] = $user['User']['first_name'];
                 $notification['from_name'] = $stylist['User']['first_name']; 
                 $notification['to_email'] = $user['User']['email'];
-                $notification['cc_email'] = 'mitch@savilerowsociety.com'; 
+                // $notification['from_email'] = Configure::read('Email.admin'); 
                 $notification['from_email'] = $stylist['User']['email']; 
 
                 $this->sendEmailNotification($notification, $user);    
@@ -899,10 +900,6 @@ class MessagesController extends AppController {
             $email->to($to_email);
             $email->template('message_notification');
             $email->emailFormat('html');
-
-            if(isset($cc_email)){
-                $email->cc($cc_email);
-            }
             
             if($to_stylist){
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
@@ -2156,6 +2153,7 @@ class MessagesController extends AppController {
     
     }
 
+    
     public function requestanoutfit() {
         $this->autoLayout = false;
         $Message = ClassRegistry::init('Message');
@@ -2201,4 +2199,5 @@ class MessagesController extends AppController {
 
 
     }
+    
 }

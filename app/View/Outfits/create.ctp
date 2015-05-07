@@ -210,7 +210,7 @@ $(document).ready(function(){
         var user_id = $("#user_id").val();
         var comments = $("#comments").val();
         var outfit_id = $("#outfit_id").val();
-
+        $(this).removeAttr('id');   // to avoid multiple outfit submission - shubham 
         var outfit_items = [];
         $('.basket ul li').each(function(){
             var product = {
@@ -408,17 +408,17 @@ $(document).ready(function(){
 
                         if(product['Image'].length > 0){
                             productImage = '<div class="myclst-prdt-img">' + 
-                                                '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
+                                                '<img src="<?php echo HTTP_ROOT; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
                                             '</div>';
 
-                            productImageUrl = '<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'];
+                            productImageUrl = '<?php echo HTTP_ROOT; ?>files/products/' + product['Image'][0]['name'];
                         }
                         else{
                             productImage = '<div class="myclst-prdt-img">' + 
-                                                '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
+                                                '<img src="<?php echo HTTP_ROOT; ?>images/image_not_available.png" alt="" />' + 
                                             '</div>';
 
-                            productImageUrl = '<?php echo $this->webroot; ?>images/image_not_available.png';
+                            productImageUrl = '<?php echo HTTP_ROOT; ?>images/image_not_available.png';
                         }
 
                         var sizeOptions = '';
@@ -512,17 +512,17 @@ $(document).ready(function(){
 
                         if(product['Image'].length > 0){
                             productImage = '<div class="myclst-prdt-img">' + 
-                                                '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
+                                                '<img src="<?php echo HTTP_ROOT; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
                                             '</div>';
 
-                            productImageUrl = '<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'];
+                            productImageUrl = '<?php echo HTTP_ROOT; ?>files/products/' + product['Image'][0]['name'];
                         }
                         else{
                             productImage = '<div class="myclst-prdt-img">' + 
-                                                '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
+                                                '<img src="<?php echo HTTP_ROOT; ?>images/image_not_available.png" alt="" />' + 
                                             '</div>';
 
-                            productImageUrl = '<?php echo $this->webroot; ?>images/image_not_available.png';
+                            productImageUrl = '<?php echo HTTP_ROOT; ?>images/image_not_available.png';
                         }
 
                         var sizeOptions = '';
@@ -611,17 +611,17 @@ $(document).ready(function(){
 
                         if(product['Image'].length > 0){
                             productImage = '<div class="myclst-prdt-img">' + 
-                                                '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
+                                                '<img src="<?php echo HTTP_ROOT; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
                                             '</div>';
 
-                            productImageUrl = '<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'];
+                            productImageUrl = '<?php echo HTTP_ROOT; ?>files/products/' + product['Image'][0]['name'];
                         }
                         else{
                             productImage = '<div class="myclst-prdt-img">' + 
-                                                '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
+                                                '<img src="<?php echo HTTP_ROOT; ?>images/image_not_available.png" alt="" />' + 
                                             '</div>';
 
-                            productImageUrl = '<?php echo $this->webroot; ?>images/image_not_available.png';
+                            productImageUrl = '<?php echo HTTP_ROOT; ?>images/image_not_available.png';
                         }
 
                         var sizeOptions = '';
@@ -710,12 +710,12 @@ $(document).ready(function(){
 
                         if(product['Image'].length > 0){
                             productImage = '<div class="myclst-prdt-img">' + 
-                                                '<img src="<?php echo $this->webroot; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
+                                                '<img src="<?php echo HTTP_ROOT; ?>files/products/' + product['Image'][0]['name'] + '" alt="" />' + 
                                             '</div>';
                         }
                         else{
                             productImage = '<div class="myclst-prdt-img">' + 
-                                                '<img src="<?php echo $this->webroot; ?>images/image_not_available.png" alt="" />' + 
+                                                '<img src="<?php echo HTTP_ROOT; ?>images/image_not_available.png" alt="" />' + 
                                             '</div>';
                         }
 
@@ -937,10 +937,10 @@ $(document).ready(function(){
                                                                 foreach($outfit['OutfitItem'] as $value):
                                                                     $total_price += $value['product']['Entity']['price'];
                                                                     if(count($value['product']['Image'])){
-                                                                        $productImageUrl = $this->webroot . 'files/products/' . $value['product']['Image'][0]['name'];
+                                                                        $productImageUrl = HTTP_ROOT . 'files/products/' . $value['product']['Image'][0]['name'];
                                                                     }
                                                                     else{
-                                                                        $productImageUrl = $this->webroot . 'images/image_not_available.png';
+                                                                        $productImageUrl = HTTP_ROOT . 'images/image_not_available.png';
                                                                     }
                                                             ?>
                                                                 <li data-id="<?php echo $value['product_entity_id']; ?>" data-price="<?php echo $value['product']['Entity']['price']; ?>">
@@ -1090,7 +1090,7 @@ $(document).ready(function(){
                                                         $product = $entities[$i];
                                                         $wishlist = ($product['Wishlist']['product_entity_id'] == $product['Entity']['id']) ? 1 : 0;
                                             ?>
-                                                <li  data-name="<?php echo $product['Entity']['name']; ?>" data-desc="<?php echo $product['Entity']['description']; ?>" data-image="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-wishlist="<?php echo $wishlist; ?>" class="custom-drag">
+                                                <li  data-name="<?php echo $product['Entity']['name']; ?>" data-desc="<?php echo $product['Entity']['description']; ?>" data-image="<?php echo HTTP_ROOT; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" data-id="<?php echo $product['Entity']['id']; ?>" data-price="<?php echo $product['Entity']['price']; ?>" data-brand="<?php echo $product['Brand']['name']; ?>" data-wishlist="<?php echo $wishlist; ?>" class="custom-drag">
 
                                                 <select class="hide product-size-list">
                                                 <?php 
@@ -1103,7 +1103,7 @@ $(document).ready(function(){
                                                 </select>
                                                 
                                                     <a href="#" class="product-list-block myclst-quick-view">
-                                                        <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
+                                                        <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $product['Image'][0]['name']; ?>" alt="" /></div>
                                                        <div class="otft-prdt-overlay">
                                                             <p><?php echo $product['Entity']['name']; ?></p>
                                                             <p><?php echo $product['Brand']['name']; ?></p>
@@ -1119,7 +1119,7 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                                 <p id="loadMoreProduct">
-                                    <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                    <span class="hide"><img src="<?php echo HTTP_ROOT; ?>img/ajax-loader.gif" width="20" /></span>
                                     <input type="hidden" id="listPage" value="<?php echo $page + 1; ?>">
                                     <a href="" id="load-more">Load More Products</a>
                                 </p>

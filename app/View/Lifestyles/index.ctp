@@ -92,7 +92,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <?php
                         foreach($lifestyles as $lifestyle){
                         ?>
-                            <li><img src="<?php echo $this->request->webroot; ?>files/lifestyles/<?php echo $lifestyle['Lifestyle']['image']; ?>" class="fadein-image max-width-adj" data-lifestyle-id="<?php echo $lifestyle['Lifestyle']['id']; ?>" />
+                            <li><img src="<?php echo HTTP_ROOT; ?>files/lifestyles/<?php echo $lifestyle['Lifestyle']['image']; ?>" class="fadein-image max-width-adj" data-lifestyle-id="<?php echo $lifestyle['Lifestyle']['id']; ?>" />
                             </li>
                         <?php      
                         }
@@ -146,10 +146,10 @@ var loadLookbookItems = function(lookbookId){
                     
                     var entityDesc = curEntity["Entity"]["description"].substr(0, 120);
                     if(curEntity["Image"] != undefined){
-                        entityImage = "<?php echo $this->request->webroot; ?>products/resize/" + curEntity["Image"][0]["name"] + "/65/87"; 
+                        entityImage = "<?php echo HTTP_ROOT; ?>products/resize/" + curEntity["Image"][0]["name"] + "/65/87"; 
                     }
                     else{
-                        entityImage = "<?php echo $this->request->webroot; ?>img/image_not_available-small.png";
+                        entityImage = "<?php echo HTTP_ROOT; ?>img/image_not_available-small.png";
                     } 
 
                     curLookbookItemHtml = 

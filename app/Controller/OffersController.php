@@ -67,17 +67,11 @@ class OffersController extends AppController {
         $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
 
         $thankyou = $this->Session->read('thankyou');
-
-        $offer = $thankyou['UserOffer']['offer'];
-        $offer_details = $this->getOfferDetails($offer);
-
-        $pixel = $offer_details['login_pixel'];
-        $this->set(compact('pixel'));
-
         $this->Session->delete('thankyou');
         $this->set(compact('topStylists','topOutfits', 'firstStylist','thankyou','title_for_layout'));
         
         $this->render('/Pages/home');
     }
+
 
 }

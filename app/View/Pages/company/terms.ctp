@@ -3,8 +3,8 @@ $meta_description = 'As people today are rarely defined by a single company or c
 $this->Html->meta('description', $meta_description, array('inline' => false));
 ?>
 <div id="topmost" class="content-container content-container-terms">
-    <div class="eleven columns container content inner">
-        <div class="twelve columns container left message-box">
+    <div class="twelve columns container content inner">
+        <div class="eleven columns container left message-box">
             <div class="blank-space">&nbsp;</div>
             <div class="eleven columns container aboutus">   
                 <div class="ten columns text-center page-heading">
@@ -198,7 +198,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <br>
                         You agree not to copy, modify, create a derivative work of, reverse engineer, reverse assemble or otherwise attempt to discover any source code, sell, assign, sublicense, or otherwise transfer any right in the Software. Any rights not expressly granted herein are reserved by Savile Row Society.
                         <br>
-                        The <strong>SAVILE ROW SOCIETY</strong> name and logos are trademarks and service marks of Savile Row Society. Other Savile Row Society, product, and service names and logos used and displayed via the Service may be trademarks or service marks of their respective owners who may or may not endorse or be affiliated with or connected to Savile Row Society. 
+                        The <strong>Savile Row Society</strong> name and logos are trademarks and service marks of Savile Row Society. Other Savile Row Society, product, and service names and logos used and displayed via the Service may be trademarks or service marks of their respective owners who may or may not endorse or be affiliated with or connected to Savile Row Society. 
                         <br>
                         Nothing in this Terms of Service or the Service should be construed as granting, by implication, estoppel, or otherwise, any license or right to use any of Savile Row Society Trademarks displayed on the Service, without our prior written permission in each instance. All goodwill generated from the use of Savile Row Society Trademarks will inure to our exclusive benefit.
 
@@ -303,14 +303,14 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     </p>
                     <h3 id="trm-link8">Disclaimer of Warranties - <a href="#topmost" class="right">Top</a></h3>
                     <p>
-                        YOUR USE OF THE SERVICE IS AT YOUR SOLE RISK. THE SERVICE IS PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS. SAVILE ROW SOCIETY EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT.
+                        YOUR USE OF THE SERVICE IS AT YOUR SOLE RISK. THE SERVICE IS PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS. Savile Row Society EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT.
                         <br>
-                        SAVILE ROW SOCIETY MAKES NO WARRANTY THAT (I) THE SERVICE WILL MEET YOUR REQUIREMENTS, (II) THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE, (III) THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICE WILL BE ACCURATE OR RELIABLE, OR (IV) THE QUALITY OF ANY CLOTHES, PRODUCTS, SERVICES, INFORMATION, OR OTHER MATERIAL PURCHASED OR OBTAINED BY YOU THROUGH THE SERVICE WILL MEET YOUR EXPECTATIONS.
+                        Savile Row Society MAKES NO WARRANTY THAT (I) THE SERVICE WILL MEET YOUR REQUIREMENTS, (II) THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE, (III) THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICE WILL BE ACCURATE OR RELIABLE, OR (IV) THE QUALITY OF ANY CLOTHES, PRODUCTS, SERVICES, INFORMATION, OR OTHER MATERIAL PURCHASED OR OBTAINED BY YOU THROUGH THE SERVICE WILL MEET YOUR EXPECTATIONS.
 
                     </p>
                     <h3 id="trm-link9">Limitation of Liability - <a href="#topmost" class="right">Top</a></h3>
                     <p>
-                        YOU EXPRESSLY UNDERSTAND AND AGREE THAT SAVILE ROW SOCIETY WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY DAMAGES, OR DAMAGES FOR LOSS OF PROFITS INCLUDING BUT NOT LIMITED TO, DAMAGES FOR LOSS OF GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF SAVILE ROW SOCIETY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES), WHETHER BASED ON CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY OR OTHERWISE, RESULTING FROM: 
+                        YOU EXPRESSLY UNDERSTAND AND AGREE THAT Savile Row Society WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY DAMAGES, OR DAMAGES FOR LOSS OF PROFITS INCLUDING BUT NOT LIMITED TO, DAMAGES FOR LOSS OF GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF Savile Row Society HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES), WHETHER BASED ON CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY OR OTHERWISE, RESULTING FROM: 
                         <br>
                         (I) THE USE OR THE INABILITY TO USE THE SERVICE; 
                         <br>
@@ -320,7 +320,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <br>
                         (IV) STATEMENTS OR CONDUCT OF ANY THIRD PARTY ON THE SERVICE; OR 
                         <br>
-                        (V) ANY OTHER MATTER RELATING TO THE SERVICE. IN NO EVENT WILL SAVILE ROW SOCIETY’S TOTAL LIABILITY TO YOU FOR ALL DAMAGES, LOSSES OR CAUSES OF ACTION EXCEED THE AMOUNT YOU HAVE PAID SAVILE ROW SOCIETY IN THE LAST SIX (6) MONTHS, OR, IF GREATER, ONE HUNDRED DOLLARS ($100).
+                        (V) ANY OTHER MATTER RELATING TO THE SERVICE. IN NO EVENT WILL Savile Row Society’S TOTAL LIABILITY TO YOU FOR ALL DAMAGES, LOSSES OR CAUSES OF ACTION EXCEED THE AMOUNT YOU HAVE PAID Savile Row Society IN THE LAST SIX (6) MONTHS, OR, IF GREATER, ONE HUNDRED DOLLARS ($100).
                         <br>
                         SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES. ACCORDINGLY, SOME OF THE ABOVE LIMITATIONS SET FORTH ABOVE MAY NOT APPLY TO YOU. IF YOU ARE DISSATISFIED WITH ANY PORTION OF THE SERVICE OR WITH THESE TERMS OF SERVICE, YOUR SOLE AND EXCLUSIVE REMEDY IS TO DISCONTINUE USE OF THE SERVICE.
 

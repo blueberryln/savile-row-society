@@ -6,14 +6,14 @@
                 <div class="eleven columns container pad-none">
                     <div class="twelve columns message-box-heading pad-none">
                         <h1>Kyle Harper | <span>Outfit Detail</span></h1>
-                        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt="" /></div>
+                        <div class="client-img-small"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt="" /></div>
                     </div>
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
                         </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                        <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>
@@ -26,7 +26,7 @@
                     <div class="twelve columns left inner-content pad-none">
                         <div class="inner-left left">
                             <div class="left-pannel left">
-                                <div class="client-img"><img src="<?php echo $this->webroot; ?>images/my-profile/client-img.jpg" alt=""/></div>
+                                <div class="client-img"><img src="<?php echo HTTP_ROOT; ?>images/my-profile/client-img.jpg" alt=""/></div>
                                 <div class=" twelve columns left left-nav">
                                     <ul>
                                         <li><a href="javascript:;">Messages</a></li>
@@ -41,7 +41,7 @@
                                     <div class="eleven columns container pad-none">
 <!--
                                         <div class="short-by-date">
-                                            <span class="short-by-date-arrow"><img src="<?php echo $this->webroot; ?>images/down-arrow.png" alt=""/></span>
+                                            <span class="short-by-date-arrow"><img src="<?php echo HTTP_ROOT; ?>images/down-arrow.png" alt=""/></span>
                                             <select>
                                                 <option>Sort by Date</option>
                                                 <option>7-Aug-2014</option>
@@ -68,18 +68,18 @@
                                         <div class="twelve columns left outfit-dtls-img pad-none">
                                             <div class="eleven columns container outfit-dtls-img-list pad-none">
                                                 <ul>
-                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></li>
-                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt=""/></li>
-                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt=""/></li>
-                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt=""/></li>
-                                                    <li><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt=""/></li>
+                                                    <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_1.jpg" alt=""/></li>
+                                                    <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_2.jpg" alt=""/></li>
+                                                    <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_3.jpg" alt=""/></li>
+                                                    <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_4.jpg" alt=""/></li>
+                                                    <li><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_5.jpg" alt=""/></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="twelve columns left product-dtls pad-none">
                                             <div class="eleven columns container product-view pad-none">
                                                 <div class="twelve columns left product-dtl-area pad-none">
-                                                    <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
+                                                    <div class="product-dtl-img left"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
                                                     <div class="product-dtl-desc left">
                                                         <div class="product-dtl-desc-top left">
                                                             <div class="desc-top-brand">Solid Cali | Solid &amp; Stripes</div>
@@ -141,7 +141,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="twelve columns left product-dtl-area pad-none">
-                                                    <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
+                                                    <div class="product-dtl-img left"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
                                                     <div class="product-dtl-desc left">
                                                         <div class="product-dtl-desc-top left">
                                                             <div class="desc-top-brand">Solid Cali | Solid &amp; Stripes</div>
@@ -203,7 +203,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="twelve columns left product-dtl-area pad-none">
-                                                    <div class="product-dtl-img left"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
+                                                    <div class="product-dtl-img left"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_1.jpg" alt=""/></div>
                                                     <div class="product-dtl-desc left">
                                                         <div class="product-dtl-desc-top left">
                                                             <div class="desc-top-brand">Solid Cali | Solid &amp; Stripes</div>
@@ -274,7 +274,7 @@
                         <div class="inner-right right">
                             <div class="twelve columns text-center my-profile">
                                 <div class="my-profile-img">
-                                    <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" data-name="Haspel" /></a>
+                                    <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" data-name="Haspel" /></a>
                                 </div>
                                 <div class="my-profile-detials">
                                     LISA D.

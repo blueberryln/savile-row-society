@@ -12,7 +12,7 @@ var webroot = "' . $this->webroot . '";
 $this->Html->script('outfit.js', array('inline' => false));
 $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
 $this->Html->script("mosaic.1.0.1.min.js", array('inline' => false));
-$this->Html->script('/js/date-format.js', array('inline' => false));
+$this->Html->script('date-format.js', array('inline' => false));
 ?>
 <?php echo $this->Form->create('User', array('url' => '/messages/send_to_user', 'type' => 'file')); ?>
 
@@ -40,7 +40,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                         
                                         
                                         <p id="loadOldMsgs">
-                                            <span class="hide"><img src="<?php echo $this->webroot; ?>img/ajax-loader.gif" width="20" /></span>
+                                            <span class="hide"><img src="<?php echo HTTP_ROOT; ?>img/ajax-loader.gif" width="20" /></span>
                                             <a href="">Load Old Messages</a>
                                         </p>
                                         <br />
@@ -72,7 +72,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                         <!-- <a class="create-outfit left" href="#" title="">Create Outfit</a> -->
                                         <a class=" create-outfit left"  id=""  href="/outfits/create/<?php echo $client_id; ?>">Create New Outfit</a>
                                         <!-- <a class="upload" href="#" title="">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a> -->
-                                        <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo $this->webroot; ?>images/cam-icon.png" alt="" /></span></a>
+                                        <a class="upload" href="" id="sendphoto">Upload<span class="cam-icon"><img src="<?php echo HTTP_ROOT; ?>images/cam-icon.png" alt="" /></span></a>
                                         <a class="send-btn right"  id="sendMessages"  href="">Send Message</a>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         for(var i=0; i < arrMsg.length; i++){
                             var html = showChatMsg(arrMsg[i]);
                             chatContainer.append(html);
-                            scrollbarData.update("bottom");
+                            scrollbarData.update("relative");
                         }
                     }
                 },
@@ -254,7 +254,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                 for(var i=0; i<chatMsg['Outfit'].length; i++){
                     var imgSrc = webroot + "img/image_not_available-small.png";
                     if(typeof(chatMsg['Outfit'][i]['product']["Image"]) != "undefined" && chatMsg['Outfit'][i]['product']["Image"].length > 0){
-                        imgSrc = webroot + "files/products/" + chatMsg['Outfit'][i]['product']["Image"][0]["name"];
+                        imgSrc = webroot + "products/resize/" + chatMsg['Outfit'][i]['product']["Image"][0]["name"] + "/98/135";
                     }
                     else{
                         imgSrc = webroot + "images/image_not_available.png";    
@@ -281,7 +281,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                                     '<input type="hidden" id="totalpriceoutfit" class="outfit-price" value="' + outfitPrice + '">' + 
                                     '<input type="hidden" class="outfit-brands" value="' + brandList + '">' + 
                                     '<input type="hidden" class="outfit-users" value="' + userList + '">' + 
-                                    '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo $this->webroot; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' +
+                                    '<div class="outfit-quick-view"><a href="#" id="quickoutfit"><span class="outfit-quick-view-icons"><img src="<?php echo HTTP_ROOT; ?>images/search-icon.png" alt="" /></span>Outfit Quick View</a></div>' +
                                     '<div class="msg-date">' + chatMsg['Message']['created'] + '</div>' +
                                     '</div>';
             }
@@ -292,7 +292,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' + 
                             '<div class="message-image-area">' +
                                 '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
-                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-image"><img src="<?php echo HTTP_ROOT; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
                                 '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
                             '</div>' +   
                         '</div>';
@@ -303,7 +303,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
                         '<div class="chat-msg-box" data-user-id="' + chatMsg['Message']['user_from_id'] + '" data-msg-id="' + chatMsg['Message']['id'] + '">' +
                             '<div class="user-message-image-area">' +
                                 '<div class="message-caption">' + chatMsg['UserFrom']['first_name'] + ' sent an image:</div>' + 
-                                '<div class="message-image"><img src="<?php echo $this->webroot; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
+                                '<div class="message-image"><img src="<?php echo HTTP_ROOT; ?>files/chat/' + chatMsg['Message']['image'] + '" /></div>' + 
                                 '<div class="message-date">' + chatMsg['Message']['created'] + '</div>' +
                             '</div>' + 
                         '</div>';
@@ -358,7 +358,7 @@ $this->Html->script('/js/date-format.js', array('inline' => false));
             e.preventDefault();
             userId =  $("#UserUserToId").val();
             window.location = webroot + "messages/index/" + userId;
-        })
+        });
         
         var userId = null;
         

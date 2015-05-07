@@ -22,7 +22,7 @@
                 html = html + '<li>';
                 html = html + '<a href="<?php echo $this->webroot; ?>messages/index/'+ this.User.id +'" title="">';
                 html = html + '<div class="myclient-img">';
-                html = html + '<img src="<?php echo $this->webroot; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
+                html = html + '<img src="<?php echo HTTP_ROOT; ?>files/users/'+ this.User.profile_photo_url +'" alt=""/>';
                 html = html + '</div>';
                 html = html + '<div class="myclient-dtl">';
                 html = html + '<span class="myclient-name">'+ this.User.first_name +'&nbsp;'+ this.User.last_name +'</span>';
@@ -76,7 +76,7 @@
                                 <li <?php if($userlist['User']['id']==$clientid){ echo "class='active'"; } ?>>
                                     <a href="<?php echo $this->webroot; ?>messages/stylisteachusersales/<?php echo $userlist['User']['id']; ?>" title="">
                                         <div class="myclient-img">
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $userlist['User']['profile_photo_url']; ?>" alt=""/>
                                         </div>
                                         <div class="myclient-dtl">
                                             <span class="myclient-name"><?php echo $userlist['User']['first_name'].'&nbsp;'.$userlist['User']['last_name']; ?></span>
@@ -212,7 +212,7 @@
                                     <div class="itm-sls-list-date"><?php
                                   echo  $saleshistory['orderdetailsuser']['OrderItem']['created'];
                                     ?></div>
-                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo $this->webroot; ?>files/products/<?php echo $saleshistory['orderdetailsuser']['Image']['name']; ?>" alt=""/></span><?php echo $saleshistory['orderdetailsuser']['Entity']['name']; ?>, <?php echo $saleshistory['orderdetailsuser']['Brand']['name']; ?> </div>
+                                    <div class="itm-sls-list-item"><span class="sls-itm-img"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $saleshistory['orderdetailsuser']['Image']['name']; ?>" alt=""/></span><?php echo $saleshistory['orderdetailsuser']['Entity']['name']; ?>, <?php echo $saleshistory['orderdetailsuser']['Brand']['name']; ?> </div>
                                     <div class="itm-sls-list-client"><?php echo $saleshistory['userdetail']['User']['username']; ?></div>
                                     <div class="itm-sls-list-outfit">Beach day</div>
                                     <div class="itm-sls-list-amt">$<?php echo $saleshistory['orderdetailsuser']['Entity']['price']; ?></div>

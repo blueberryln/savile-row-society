@@ -1,32 +1,76 @@
-<div class="bottom footer-bar twelve columns">
-    <div class="footer">
-        <!-- footer -->
-        <div class="eleven columns container">
-            <div class="sixteen columns copyright left footer-buttons">
-                <ul>
-                <?php if(!$is_logged) : ?>
-                    <li><a class="vip-link footer-bnt" href="" id="block-vip-access" >VIP Access</a></li>
-                <?php endif; ?>
-                    <li><a class="blog-link footer-bnt" href="http://www.savilerowsociety.com/blog" title="">Blog</a></li>
-                </ul>
-                
+
+<style>
+    .hidden-from-view { left: -5000px; position: absolute; }
+    .ie-lte7 .hidden-from-view {display:none;}
+    html[dir=rtl] .hidden-from-view{
+            right:-5000px;
+            left:auto;
+        }
+</style>
+
+        <!-- footer_wrapper -->
+        <div class="footer_wrapper">
+            <div class="center_row">
+
+                <!-- column -->
+                <div class="column">
+                    <div class="section-one">
+                        <a href="/">
+                            <img src="<?php echo HTTP_ROOT ?>img/srs_logo_white.png" alt="Savil.Me" />
+                        </a>
+                        <span>&copy; Savile Row Society 2015</span>
+                    </div>
+                </div>
+                <!-- /column -->
+
+
+                <!-- column -->
+                <div class="column">
+                    <div class="section-two">
+                        <button class="btn-vip_access" id="block-vip-access">VIP ACCESS</button>
+                        <ul>
+                            <li><a target="_blank" href="http://www.savilerowsociety.com/blog" class="blogList">Blog</a></li>
+                            <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety">Facebook</a></li>
+                            <li><a target="_blank" href="https://instagram.com/savilerowsociety">Instagram</a></li>
+                            <li><a target="_blank" href="https://twitter.com/SRSocietydotcom">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /column -->
+
+
+                <!-- column -->
+                <div class="column">
+                    <div class="section-three">
+                        <ul>
+                            <li><a class="tell-me-more" href="/#nine9">About Us</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/team">Our Team</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our Brands</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>contact">Contact Us</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/privacy">Privacy</a></li>
+                            <li><a href="<?php echo $this->request->webroot; ?>company/terms">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /column -->
+
+                <!-- column -->
+                <div class="column last">
+                    <div class="section-four">
+                        <h2>Sign Up For Savile Row Society News</h2>
+                        <form action="http://savilerowsociety.us8.list-manage2.com/subscribe/post" method="POST">
+                                <input type="hidden" name="u" value="88bda5a8e85fc9df8f8b8f5b2">
+                                <input type="hidden" name="id" value="6c6fbf69c3">
+                                <input type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="" placeholder ="Your email address">
+                                <input type="hidden" name="MERGE1" id="MERGE1" size="25" value="">
+                                <input type="hidden" name="MERGE2" id="MERGE2" size="25" value="">
+                                <div class="hidden-from-view"><input type="text" name="b_88bda5a8e85fc9df8f8b8f5b2_6c6fbf69c3" tabindex="-1" value=""></div>
+                                <input type="submit" class="btn-sign_up" name="submit" value="Sign Up">
+                        </form>
+                    </div>
+                </div>
+                <!-- /column -->
             </div>
-            <div class="menu right four columns">
-                <ul>
-                    <li><a href="<?php echo $this->webroot; ?>#two">About us</a></li>
-                    <!-- <li><a href="<?php echo $this->request->webroot; ?>how-it-works">How it works</a></li> -->
-                    <li><a href="<?php echo $this->request->webroot; ?>company/team">Our team</a></li>
-                    <li><a href="<?php echo $this->request->webroot; ?>company/privacy">Privacy</a></li>
-                    <li><a href="<?php echo $this->request->webroot; ?>contact">Contact</a></li>
-                    <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our brands</a></li>
-                    <li><a href="<?php echo $this->request->webroot; ?>faq">FAQ</a></li>
-                    <!-- <li><a href="<?php echo $this->request->webroot; ?>company/bloggers">Our Bloggers</a></li> -->
-                    <!-- <li><a href="<?php echo $this->request->webroot; ?>company/retailers">Our retailers</a></li> -->
-                    <li><a href="<?php echo $this->request->webroot; ?>company/terms">Terms</a></li>
-                </ul>
-                <div class="footer-copyright">(c) Savile Row Society 2014</div>
-            </div>
-            
-    </div>
-    </div><!-- container -->
-</div>
+        </div>
+        <!-- /footer_wrapper -->

@@ -140,8 +140,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <?php foreach ($categories as $category): ?>
                             <li <?php echo ($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') ? 'class="highlighted-cat"' : '';?>>
                             <?php if($category['Category']['slug'] == 'seasonal' || $category['Category']['slug'] == 'lookbooks') : ?>
-                                <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
-                                <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
+                                <span class="cuff-left"><img src="<?php echo HTTP_ROOT; ?>img/icon_left.png" /></span>
+                                <span class="cuff-right"><img src="<?php echo HTTP_ROOT; ?>img/icon_right.png" /></span>
                             <?php endif; ?>
                             
                             <?php if($category['Category']['slug'] == "lookbooks") : ?>
@@ -194,7 +194,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="twelve columns omega product-listing">
             <div class="product-top-offset"></div>
             <div class="text-center">
-                <img src="<?php echo $this->request->webroot; ?>files/lifestyles/<?php echo $lifestyle['Lifestyle']['image']; ?>" class="fadein-image max-width-adj" />
+                <img src="<?php echo HTTP_ROOT; ?>files/lifestyles/<?php echo $lifestyle['Lifestyle']['image']; ?>" class="fadein-image max-width-adj" />
             </div>
             
             <?php if(count($entities) > 0) : ?>
@@ -212,10 +212,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <?php
                             $description = String::truncate($entity['Entity']['description'], 120, array('ellipsis' => '...', 'exact' => true, 'html' => false));
                             if($entity['Image']){
-                                $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/65/87'; 
+                                $img_src = HTTP_ROOT . 'products/resize/' . $entity['Image'][0]['name'] . '/65/87'; 
                             }
                             else{
-                                $img_src = $this->request->webroot . "img/image_not_available-small.png";
+                                $img_src = HTTP_ROOT . "img/image_not_available-small.png";
                             } 
                         ?>
                         <tr class="lifestyle-product-block">
@@ -242,7 +242,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                     <?php endforeach; ?>
                     <!--tr class="first">
                         
-                        <td class="v-top product-thumb text-center"><img src="<?php echo $this->request->webroot; ?>img/lb-thumb.jpg" /></td>
+                        <td class="v-top product-thumb text-center"><img src="<?php echo HTTP_ROOT; ?>img/lb-thumb.jpg" /></td>
                         <td class="v-top">
                             <h6>Stone Rose Tie</h6>
                             <small class="description">Stone Rose Neck Tie</small>

@@ -109,27 +109,27 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
         <div class="flexslider loader">
             <ul class="slides">
                 
-                <li><a href="<?php echo $this->request->webroot; ?>closet"><img src="<?php echo $this->request->webroot; ?>img/home-6-big.jpg"/></a></li>
+                <li><a href="<?php echo $this->request->webroot; ?>closet"><img src="<?php echo HTTP_ROOT; ?>img/home-6-big.jpg"/></a></li>
                 
 
                 <?php
                     if (!$is_logged && false) {
-                        echo '<li><a href="#" onclick="signUp();"><img src="' . $this->webroot . 'img/home-5-big.jpg"/></a></li> ';                   
+                        echo '<li><a href="#" onclick="signUp();"><img src="' . HTTP_ROOT . 'img/home-5-big.jpg"/></a></li> ';                   
                     } else {
-                        echo ' <li><img src="' . $this->webroot . 'img/home-5-big.jpg"/></li>';
+                        echo ' <li><img src="' . HTTP_ROOT . 'img/home-5-big.jpg"/></li>';
                     }
                     ?> 
 
                 <li class="highlight-slide danielle">
-                    <img src="<?php echo $this->request->webroot; ?>img/home-7-big.jpg" style="max-height: 438px; width: auto !important; display: inline;" />
+                    <img src="<?php echo HTTP_ROOT; ?>img/home-7-big.jpg" style="max-height: 438px; width: auto !important; display: inline;" />
                     <div class="home-slider-overlay hide"><span>Check Out Danielle Wellington</span></div>
                 </li>
 
                 <?php
                     if (!$is_logged && false) {
-                        echo '<li><a href="#" onclick="signUp();"><img src="' . $this->webroot . 'img/home-2-big.jpg"/></a></li> ';                   
+                        echo '<li><a href="#" onclick="signUp();"><img src="' . HTTP_ROOT . 'img/home-2-big.jpg"/></a></li> ';                   
                     } else {
-                        echo ' <li><img src="' . $this->webroot . 'img/home-2-big.jpg"/></li>';
+                        echo ' <li><img src="' . HTTP_ROOT . 'img/home-2-big.jpg"/></li>';
                     }
                     ?>    
                 
@@ -162,7 +162,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
             movement and their lives and Savile Row Society (SRS) is here to sharpen your game.
         </p>
         <div class="text-center">
-            <img alt="" src="<?php echo $this->request->webroot; ?>img/home-blok.png" class="fadein-image max-width-adj">
+            <img alt="" src="<?php echo HTTP_ROOT; ?>img/home-blok.png" class="fadein-image max-width-adj">
         </div>
 
         <p>

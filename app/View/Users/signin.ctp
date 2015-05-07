@@ -13,8 +13,8 @@ $this->layout = 'ajax'
         <a class="notification-close" href=""></a>
         <div class="signin-content">
             <h5 class="sign">SIGN IN</h5>            
-            <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
-            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo $this->webroot; ?>img/linkedin.png" /></a>  
+            <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo HTTP_ROOT; ?>img/facebook.png" /></a>
+            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo HTTP_ROOT; ?>img/linkedin.png" /></a>  
             <h6 class="sign-or">OR</h6>   
             
             <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate')); ?> 

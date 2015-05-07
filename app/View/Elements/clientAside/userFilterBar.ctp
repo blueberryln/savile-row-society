@@ -49,9 +49,9 @@
                                 <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
                                     <div class="myclient-img">
                                         <?php if($searchuserclient['User']['profile_photo_url']): ?>
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
                                         <?php else: ?>
-                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                            <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg" alt=""/>    
                                         <?php endif; ?>
                                     </div>
                                     <div class="myclient-dtl">
@@ -75,9 +75,9 @@
                                 <a href="<?php echo $this->webroot; ?>messages/index/<?php echo $searchuserclient['User']['id']; ?>" title="">
                                     <div class="myclient-img">
                                         <?php if($searchuserclient['User']['profile_photo_url']): ?>
-                                            <img src="<?php echo $this->webroot; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
+                                            <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $searchuserclient['User']['profile_photo_url']; ?>" alt=""/>
                                         <?php else: ?>
-                                            <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt=""/>    
+                                            <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg" alt=""/>    
                                         <?php endif; ?>
                                     </div>
                                     <div class="myclient-dtl">

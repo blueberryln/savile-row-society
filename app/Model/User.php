@@ -377,4 +377,5 @@ class User extends AppModel {
                     )
         ));
     }
+
 }

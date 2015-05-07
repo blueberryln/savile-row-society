@@ -1,9 +1,9 @@
 <?php
 if($client_user['User']['profile_photo_url']){
-    $user_image_src = $this->webroot . 'files/users/' . $client_user['User']['profile_photo_url'];
+    $user_image_src = HTTP_ROOT . 'files/users/' . $client_user['User']['profile_photo_url'];
 }
 else{
-    $user_image_src = $this->webroot . 'images/default-user.jpg';
+    $user_image_src = HTTP_ROOT . 'images/default-user.jpg';
 }
 
 $page_title = '';
@@ -33,7 +33,7 @@ else if($sideBarTab == "measurement"){
 
     <div class="twelve columns myclient-heading pad-none">
         <h1><?php echo ucwords($client_user['User']['first_name'].' '.$client_user['User']['last_name']); ?> | <span><?php echo $page_title; ?></span></h1>
-        <div class="client-img-small"><img src="<?php echo $this->webroot; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" />
+        <div class="client-img-small"><img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" />
         </div>
     </div>
     <div class="inner-left inner-myclient left">

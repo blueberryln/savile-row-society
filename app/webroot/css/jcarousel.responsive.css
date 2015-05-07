@@ -42,6 +42,7 @@
     max-width: 100%;
     height: auto !important;
     vertical-align: middle;
+    width: 100%;
 }
 
 /** Carousel Controls **/
@@ -68,30 +69,46 @@
     box-shadow: 0 0 4px #F0EFE7;
     
     
-*/ position: absolute; top: 50%; background: url('../img/stylist_arrows.png') no-repeat; width: 33px; height: 106px; text-indent: -9999px; z-index: 50; outline:none;
-    margin-top: -53px;
+*/ /*position: absolute; top: 292px; background: url('../img/stylist_arrows.jpg') no-repeat; width: 16px; height: 25px; text-indent: -9999px; z-index: 50; outline:none;*/
+    /*margin-top: -53px;*/
+
+
+position: absolute;
+top: 0;
+background: url('../img/stylist_arrows.jpg') no-repeat;
+width: 16px;
+height: 25px;
+text-indent: -9999px;
+z-index: 50;
+outline: none;
+
+
+
 }
 
 .jcarousel-control-prev {
 /*    left: 15px;*/
-    background-position: left top; left: -100px;
+    background-position: left top; left: -2%;
 }
 
 .jcarousel-control-next {
 /*    right: 15px;*/
-    background-position: right top; right: -100px;
+    background-position: right top; right: -2%;
 }
 
 /** Carousel Pagination **/
 
 .jcarousel-pagination {
-    position: absolute;
-    bottom: -75px;
-    left: 50%;
-    -webkit-transform: translate(-50%, 0);
-    -ms-transform: translate(-50%, 0);
-    transform: translate(-50%, 0);
-    margin: 0;
+position: absolute;
+width: 100%;
+-webkit-transform: translate(-50%, 0);
+-ms-transform: translate(-50%, 0);
+transform: translate(-50%, 0);
+margin: 7px 0 0 4px !important;
+text-align: center;
+display: inline-block;
+top: 160px;
+z-index: 2;
 }
 
 .jcarousel-pagination a {
@@ -107,7 +124,8 @@
     color: #4E443C;
     border-radius: 10px;
     text-indent: -9999px;
-    border: 1px solid #777;
+    border: 1px solid #e6deca;
+    background: #e6deca;
 
     margin-right: 7px;
 }
@@ -116,5 +134,5 @@
     background: #d19b03;
     color: #fff;
     opacity: 1;
-    border: none;
+    border: 1px solid #d19b03;
 }

@@ -36,7 +36,7 @@ $this->Html->scriptBlock($scriptProfile, array('safe' => true, 'inline' => false
 <div id="profile-popup" class="hide box-modal notification-box">
     <div class="box-modal-inside">
         <a class="notification-close" href=""></a>
-        <h5 class="welcome-srs">Welcome to savile row society!</h5> 
+        <h5 class="welcome-srs">Welcome to Savile Row Society!</h5> 
         <!--<div class="notification-msg">To be able to match you with one of our premier personal stylists, please complete this quick style profile.</div>-->
         <div class="notification-msg">Fill out your style profile so we can serve you best. It's fun, quick, and we hook you up as we'll give you a promo code at completion! Get Started Now!</div>                   
         <div class="notification-buttons">

@@ -83,7 +83,6 @@ Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'
 Router::connect('/faq', array('controller' => 'pages', 'action' => 'display', 'faq'));
 Router::connect('/activation/*', array('controller' => 'users', 'action' => 'account_activation'));
 Router::connect('/cache', array('controller' => 'users', 'action' => 'clear_cache'));
-
 /**
  * Load all plugin routes.  See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

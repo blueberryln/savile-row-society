@@ -8,7 +8,6 @@ if(isset($StylistBioData['StylistBio']['id'])!=''){
 
 $stylistid  = $user['User']['id'];
  ?>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -18,7 +17,7 @@ $(document).ready(function(){
         
         var id = $("#id").val();
         var Bio = $("#StylebioStylistBio").val();
-        alert(Bio);
+        //alert(Bio);
         var BioId = '<?php echo $stylistBioId; ?>';
         var stylist_id = '<?php echo $stylistid; ?>';
         $.ajax({
@@ -305,7 +304,7 @@ $(document).ready(function(){
                           
                     // var imgent = entimg[index1].Image;
                     // if(imgent != ''){
-                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ entimg[index1].Image[0].name +'" alt=""  />';
+                        html = html + '<li><img src="<?php echo HTTP_ROOT; ?>files/products/'+ entimg[index1].Image[0].name +'" alt=""  />';
                         html = html + '<div class="outfit-products-details">'+ entimg[index1].Entity.name+' $'+ entimg[index1].Entity.Price + '</div></li>';
 
                        
@@ -363,7 +362,7 @@ $(document).ready(function(){
 
                     // var imgent = entimg[index1].Image;
                     // if(imgent != ''){
-                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ entimg[index1].Image[0].name +'" alt=""  />';
+                        html = html + '<li><img src="<?php echo HTTP_ROOT; ?>files/products/'+ entimg[index1].Image[0].name +'" alt=""  />';
                         html = html + '<div class="outfit-products-details">'+ entimg[index1].Entity.name+' $'+ entimg[index1].Entity.Price + '</div></li>';
 
                        
@@ -418,7 +417,7 @@ $(document).ready(function(){
                     $.each(entimg, function(index1){
                     //var imgent = entimg[index1].Image;
                     //if(imgent != ''){
-                        html = html + '<li><img src="<?php echo $this->webroot; ?>files/products/'+ entimg[index1].Image[0].name +'" alt=""  />';
+                        html = html + '<li><img src="<?php echo HTTP_ROOT; ?>files/products/'+ entimg[index1].Image[0].name +'" alt=""  />';
                         html = html + '<div class="outfit-products-details">'+ entimg[index1].Entity.name+' $'+ entimg[index1].Entity.Price + '</div></li>';
 
                        
@@ -482,12 +481,12 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         <div class="stylistbio-profile left text-center">
                             <div class="profile-img">
                                 <?php if($user['User']['profile_photo_url']): ?>
-                                    <img src="<?php echo $this->webroot; ?>files/users/<?php echo $user['User']['profile_photo_url']; ?>" height='' alt="" />
+                                    <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $user['User']['profile_photo_url']; ?>" height='' alt="" />
                                 <?php else: ?>
-                                    <img src="<?php echo $this->webroot; ?>images/default-user.jpg" alt="" />
+                                    <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg" alt="" />
                                 <?php endif; ?>
                                 <div class="profile-img-edit">
-                                    <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                    <span class="edit-section"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                 </div>
                                 
                             </div>
@@ -519,26 +518,26 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <li class="pintrest">
                                         <a href="<?php echo isset($social['pinterest']) ? $social['pinterest'] : '#'; ?>" target="_blank" title="">Printrest</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-pintrst">
-                                            <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <span class="edit-section"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                         </div>
                                         
                                     </li>
                                     <li class="twitter">
                                         <a href="<?php echo isset($social['twiter']) ? $social['twiter'] : '#'; ?>" target="_blank" title="">Twitter</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-twtr">
-                                            <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <span class="edit-section"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                         </div>
                                     </li>
                                     <li class="linkdin">
                                         <a href="<?php echo isset($social['linkdin']) ? $social['linkdin'] : '#'; ?>" target="_blank" title="">Linkdin</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-linkin">
-                                            <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <span class="edit-section"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                         </div>
                                     </li>
                                     <li class="facebbok">
                                         <a href="<?php echo isset($social['facebook']) ? $social['facebook'] : '#'; ?>" target="_blank" title="">facebook</a>
                                         <div class="social-ntwrk-edit social-ntwrk-edit-fb">
-                                            <span class="edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <span class="edit-section"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                         </div>
                                     </li>
                                 </ul>
@@ -584,7 +583,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </form>
                             </div>
                             <div class="stylistbio-heading-section">
-                            <h1 class="stylistbio-heading"><?php echo $user['User']['first_name']; ?>’s Bio <span class="edit-section edit-section-stylistbio-heading"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span></h1>
+                            <h1 class="stylistbio-heading"><?php echo $user['User']['first_name']; ?>’s Bio <span class="edit-section edit-section-stylistbio-heading"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span></h1>
                             <?php //print_r($StylistBioData);?>
                                         <form class="stylistbio-heading-edit" method="post" name="edithometown">
                                             <label><?php echo $user['User']['first_name']; ?>’s Bio</label>
@@ -604,7 +603,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             </div>
 
                             <div class="stylist-insp">
-                                <h1 class="stylistbio-heading"><?php echo $user['User']['first_name']; ?>’s Inspiration<span class="edit-section edit-section-stylist-insp"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span></h1>
+                                <h1 class="stylistbio-heading"><?php echo $user['User']['first_name']; ?>’s Inspiration<span class="edit-section edit-section-stylist-insp"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span></h1>
                                 <form class="stylist-insp-edit" method="post" action="" name="edithometown">
                                     <label>Inspiration</label>
                                     <div class="edit-content">
@@ -640,7 +639,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                     <div class="home-town">
                                         <span class="style-upper">Hometown:</span> <span class="style-italic" id="texthometown">
                                         <?php if($StylistBioData): echo $StylistBioData['StylistBio']['hometown']; else: endif; ?>
-                                        </span><span class="edit-section home-edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                        </span><span class="edit-section home-edit-section"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                         <form class="home-edit" method="post" action="" name="edithometown">
                                             <label>Your Home Town</label>
                                             <div class="edit-content">
@@ -661,7 +660,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <span class="style-italic" id="textfunfact">
                                         <?php if($StylistBioData): echo $StylistBioData['StylistBio']['funfact']; else: endif; ?>
                                         </span>
-                                        <span class="edit-section fun-edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                        <span class="edit-section fun-edit-section"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                         <form class="fun-edit" method="post" action="" name="edithometown">
                                             <label>Your Fun Fact</label>
                                             <div class="edit-content">
@@ -681,7 +680,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                         <span class="style-upper">Number 1 Fashion Tip:</span> <span class="style-italic" id="textfashiontip">
                                         <?php if($StylistBioData): echo $StylistBioData['StylistBio']['fashion_tip']; else: endif; ?>
                                         </span>
-                                        <span class="edit-section tip-edit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                        <span class="edit-section tip-edit-section"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                         <form class="tip-edit" method="post" action="" name="edithometown">
                                             <label>Your Fashion Tip</label>
                                             <div class="edit-content">
@@ -708,7 +707,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                              foreach($photostreampicsstylist as $photostreampicss ): ?>
                                             <li>
                                                 <a class="fancybox" href="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" data-fancybox-group="gallery" title="<?php echo $photostreampicss['StylistPhotostream']['caption']; ?>">
-                                                <img class='img-gal' src="<?php echo $this->webroot; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" data-photoid = "<?php echo $photostreampicss['StylistPhotostream']['id']; ?>" />
+                                                <img class='img-gal' src="<?php echo HTTP_ROOT; ?>files/photostream/<?php echo $photostreampicss['StylistPhotostream']['image']; ?>" alt="" data-photoid = "<?php echo $photostreampicss['StylistPhotostream']['id']; ?>" />
                                                 
                                                 </a>
                                                 <div class="photostream-edit-section">
@@ -763,10 +762,10 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                 </div>
                                 <div class="twelve columns left user-top-outfit">
                                     <h1 class="stylistbio-heading photostream top-outits-heading"><?php echo $user['User']['first_name']; ?>’s Top Outfits <!-- <span class="edit-section edit-outfit-section"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span> --></h1>
-
+    
                                     <ul>
                                         <li id="OutfitFirst">
-                                            <span class="edit-section edit-beachday-section right beachday-content-update1" style="display:block;"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <span class="edit-section edit-beachday-section right beachday-content-update1" style="display:block;"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                             <form class="beachday-update1" method="post" action="" name="beachday">
                                                 <label>Select Your Outfit</label>
                                                 <div class="edit-content">
@@ -788,35 +787,35 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 </p>
                                             </form>
                                             <div class="twelve columns top-outfits">
-                                                <?php if(isset($my_outfit[0])): ?>
-                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[0]['outfit'][0]['Outfit']['id']; ?>">
-                                                    <h2>
-                                                    <?php if($my_outfit[0]['outfit']): echo ucfirst($my_outfit[0]['outfit'][0]['Outfit']['outfit_name']); else: endif;
-                                                    ?>
-                                                    </h2>
-                                                    <div class="outfit-products">
-                                                        <ul>
-                                                    <?php
-                                                    $topoutfit1s = $my_outfit[0]['entities'];
-                                                    foreach($topoutfit1s as $topoutfit1): 
-                                                    ?>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit1['Image'][0]['name']; ?>" alt="" />
-                                                <div class="outfit-products-details"><?php echo $topoutfit1['Entity']['name']; ?>  $<?php echo $topoutfit1['Entity']['price']; ?></div></li>
-                                                    <?php endforeach; ?>
-                                                        
-                                                        </ul>
+                                                <?php if(isset($my_outfit[1])): ?>
+                                                    <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[1]['outfit'][0]['Outfit']['id']; ?>">
+                                                        <h2>
+                                                        <?php if($my_outfit[1]['outfit']): echo ucfirst($my_outfit[1]['outfit'][0]['Outfit']['outfit_name']); else: endif;
+                                                        ?>
+                                                        </h2>
+                                                        <div class="outfit-products">
+                                                            <ul>
+                                                        <?php
+                                                        $topoutfit1s = $my_outfit[1]['entities'];
+                                                        foreach($topoutfit1s as $topoutfit1): 
+                                                        ?>
+                                                            <li><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $topoutfit1['Image'][0]['name']; ?>" alt="" />
+                                                    <div class="outfit-products-details"><?php echo $topoutfit1['Entity']['name']; ?>  $<?php echo $topoutfit1['Entity']['price']; ?></div></li>
+                                                        <?php endforeach; ?>
+                                                            
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php else: ?>
-                                            <div class="eleven columns container outfit-container">
-                                            <h2>Please select first outfit</h2>
-                                            </div>
+                                                <?php else: ?>
+                                                    <div class="eleven columns container outfit-container">
+                                                    <h2>Please select first outfit</h2>
+                                                    </div>
 
-                                            <?php endif; ?>
+                                                <?php endif; ?>
                                             </div>
                                         </li>
                                         <li id="OutfitSecond">
-                                            <span class="edit-section edit-beachday-section right beachday-content-update2" style="display:block;"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <span class="edit-section edit-beachday-section right beachday-content-update2" style="display:block;"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                             <form class="beachday-update2" method="post" action="" name="beachday">
                                                 <label>Select Your Outfit</label>
                                                 <div class="edit-content">
@@ -838,19 +837,19 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 </p>
                                             </form>
                                             <div class="twelve columns top-outfits">
-                                                <?php if(isset($my_outfit[1])): ?>
-                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[1]['outfit'][0]['Outfit']['id']; ?>">
+                                                <?php if(isset($my_outfit[2])): ?>
+                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[2]['outfit'][0]['Outfit']['id']; ?>">
                                                     <h2>
-                                                    <?php if($my_outfit[1]['outfit']): echo ucfirst($my_outfit[1]['outfit'][0]['Outfit']['outfit_name']); else: endif;
+                                                    <?php if($my_outfit[2]['outfit']): echo ucfirst($my_outfit[2]['outfit'][0]['Outfit']['outfit_name']); else: endif;
                                                     ?>
                                                     </h2>
                                                     <div class="outfit-products">
                                                         <ul>
                                                     <?php
-                                                        $topoutfit2s = $my_outfit[1]['entities'];
+                                                        $topoutfit2s = $my_outfit[2]['entities'];
                                                         foreach($topoutfit2s as $topoutfit2): 
                                                     ?>
-                                                        <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit2['Image'][0]['name']; ?>" alt="" />
+                                                        <li><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $topoutfit2['Image'][0]['name']; ?>" alt="" />
                                                 <div class="outfit-products-details"><?php echo $topoutfit2['Entity']['name']; ?>  $<?php echo $topoutfit2['Entity']['price']; ?></div></li>
                                                     <?php endforeach; ?>
                                                             
@@ -866,7 +865,7 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                             </div>
                                         </li>
                                         <li id="OutfitThird">
-                                            <span class="edit-section edit-beachday-section right beachday-content-update3" style="display:block;"><img src="<?php echo $this->webroot; ?>images/edit-icon.png" /></span>
+                                            <span class="edit-section edit-beachday-section right beachday-content-update3" style="display:block;"><img src="<?php echo HTTP_ROOT; ?>images/edit-icon.png" /></span>
                                             <form class="beachday-update3" method="post" action="" name="beachday">
                                                 <label>Select Your Outfit</label>
                                                 <div class="edit-content">
@@ -888,19 +887,19 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                                                 </p>
                                             </form>
                                             <div class="twelve columns top-outfits">
-                                                <?php if(isset($my_outfit[2])): ?>
-                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[2]['outfit'][0]['Outfit']['id']; ?>">
+                                                <?php if(isset($my_outfit[3])): ?>
+                                                <div class="eleven columns container outfit-container" data-outfit_id="<?php echo $my_outfit[3]['outfit'][0]['Outfit']['id']; ?>">
                                                     <h2>
-                                                    <?php if($my_outfit[2]['outfit']): echo ucfirst($my_outfit[2]['outfit'][0]['Outfit']['outfit_name']); else: endif;
+                                                    <?php if($my_outfit[3]['outfit']): echo ucfirst($my_outfit[3]['outfit'][0]['Outfit']['outfit_name']); else: endif;
                                                     ?>
                                                     </h2>
                                                     <div class="outfit-products">
                                                         <ul>
                                                         <?php
-                                                            $topoutfit3s = $my_outfit[2]['entities'];
+                                                            $topoutfit3s = $my_outfit[3]['entities'];
                                                             foreach($topoutfit3s as $topoutfit3): 
                                                         ?>
-                                                            <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $topoutfit3['Image'][0]['name']; ?>" alt="" />
+                                                            <li><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $topoutfit3['Image'][0]['name']; ?>" alt="" />
                                                                 <div class="outfit-products-details"><?php echo $topoutfit3['Entity']['name']; ?>  $<?php echo $topoutfit3['Entity']['price']; ?></div>
                                                             </li>
                                                         <?php endforeach; ?>     

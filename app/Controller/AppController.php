@@ -1,4 +1,4 @@
- <?php
+<?php
 
 App::uses('Controller', 'Controller');
 
@@ -61,18 +61,18 @@ class AppController extends Controller {
                 $this->Session->write('user', $user);
             }
 
-            // if($this->Session->check('landing_offer')){
-            //     $user_offer = $this->Session->read('landing_offer');
-            //     $this->Session->delete('landing_offer');
-            //     $offer = $user_offer['UserOffer']['offer'];
+            if($this->Session->check('landing_offer')){
+                $user_offer = $this->Session->read('landing_offer');
+                $this->Session->delete('landing_offer');
+                $offer = $user_offer['UserOffer']['offer'];
 
-            //     $offer_details = $this->getOfferDetails($offer);
-            //     if($offer_details){
-            //         $pixel = $offer_details['login_pixel'];
+                $offer_details = $this->getOfferDetails($offer);
+                if($offer_details){
+                    $pixel = $offer_details['login_pixel'];
 
-            //         $this->set(compact('pixel'));
-            //     }
-            // }
+                    $this->set(compact('pixel'));
+                }
+            }
         }
         else{
             if($this->Session->check('referer')){
@@ -84,7 +84,7 @@ class AppController extends Controller {
             } 
         }
 
-        $this->getCartCount();
+        $this->getCart();
         $this->checkAdminRights();
         $this->checkStylistRights();
         $message_notification = $this->getMessageNotification();
@@ -145,6 +145,7 @@ class AppController extends Controller {
                 $this->Session->write('return_url', Router::url(null, true));
             }
 
+            $this->redirect('/');
             exit();
         } else {
             $this->Session->delete('return_url');
@@ -167,7 +168,6 @@ class AppController extends Controller {
         } else {
             $is_admin = false;
         }
-
         $this->set('is_admin', $is_admin);
     }
     
@@ -475,30 +475,116 @@ class AppController extends Controller {
     // new user registration mail to sales team
     function mailto_sales_team($user = null,$stylist_id = null){
         if(!DEV_MODE){  // the 'DEV_MODE' is defined in core.php
-         try{
-                $User = ClassRegistry::init('User');
-                $stylist = $User->findById($stylist_id);
+             try{
+                    $User = ClassRegistry::init('User');
+                    $stylist = $User->findById($stylist_id);
+                    $user = $User->find('first',array('conditions'=>array('User.id'=>$user['User']['id']),'recursive'=>2,'contain'=>array('UserPreference')));
+                    $bcc = Configure::read('Email.contact');
+                    $this->loadModel('SalesTeam');
+                    $this->loadModel('EmailContent');
+                    $this->loadModel('Style');
+                    $style = $this->Style->find('list',array('fields'=>array('image')));
+                    $EmailContent = $this->EmailContent->find('first',array('order'=>'id desc'));
+                    $sales_team = $this->SalesTeam->find('list',array('conditions'=>array('disabled'=>0),'fields'=>array('email')));
+                    array_push($sales_team,$stylist['User']['email']);
+                   // $sales_team = array('Tyler@savilerowsociety.com','Mitch@savilerowsociety.com','Lisa@savilerowsociety.com','matt@savilerowsociety.com',$stylist['User']['email']);
+                    $email = new CakeEmail('default');
+                    $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                    $email->to($sales_team);
+                    $email->subject('New User Registration.');
+                    $email->bcc($bcc);
+                    $email->template('sales_team');
+                    $email->emailFormat('html');
+                    $email->viewVars(array('user' => $user,'stylist'=>$stylist,'EmailContent'=>$EmailContent,'style'=>$style));
+                    $email->send();
+                }
+                catch(Exception $e){
 
-                $bcc = Configure::read('Email.contact');
-                $sales_team = array('Tyler@savilerowsociety.com','Mitch@savilerowsociety.com','Lisa@savilerowsociety.com','matt@savilerowsociety.com',$stylist['User']['email']);
-                $email = new CakeEmail('default');
-                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
-                $email->to($sales_team);
-                $email->subject('New User Registration.');
-                $email->bcc($bcc);
-                $email->template('sales_team');
-                $email->emailFormat('html');
-                $email->viewVars(array('user' => $user,'stylist'=>$stylist));
-                $email->send();
-            }
-            catch(Exception $e){
-
-            }
+                }
         }
     }
 
+    function ago($tm,$rcs = 0) {
+        $cur_tm = time(); 
+        $dif = $cur_tm-$tm;
+        $pds = array('s','m','h','d','w','m','y','dec');
+        $lngh = array(1,60,3600,86400,604800,2630880,31570560,315705600);
 
-    
+        for($v = sizeof($lngh)-1; (($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
+            $no = floor($no);
+            /*if($no <> 1)
+                $pds[$v] .='s';*/
+            $x = sprintf("%d %s ",$no,$pds[$v]);
+            if(($rcs == 1)&&($v >= 1)&&(($cur_tm-$_tm) > 0))
+                $x .= time_ago($_tm);
+            return $x;
+    }
+
+    function getCart() {
+        $user_id = $this->getLoggedUserID();
+        $Size = ClassRegistry::init('Size');
+        $cart_user = array();
+        $cart_guest = array();
+        if($user_id){
+            $Cart = ClassRegistry::init('Cart');
+            $cart = $Cart->getExistingUserCart($user_id);
+            if($cart){
+                $CartItem = ClassRegistry::init('CartItem');
+                $cart_id = $cart['Cart']['id'];
+                $cart_user = $CartItem->find('all',array('conditions'=>array('cart_id'=>$cart_id),'recursive'=>3,'contain'=>array('Entity'=>array('Product'=>array('Brand'),'Image'))));
+                $size = $Size->find('list');
+                $this->set(compact('cart_user','size'));
+                //pr($cart_user);die;
+            }
+            else{
+                $cart_user = array();
+            }
+        }
+        else{
+            if($this->Session->check('guest_items')){
+                $cart_items = $this->Session->read('guest_items');
+                $ProductsEntity = ClassRegistry::init('ProductsEntity');
+                $ProductsEntity->bindModel(
+                    array('belongsTo' => array(
+                            'Product' => array(
+                                'className' => 'Product',
+                                'foreignKey' => 'product_id'
+                            )
+                        )
+                    )
+                );
+                $ProductsEntity->bindModel(
+                    array('hasMany' => array(
+                            'ProductsImage' => array(
+                                'className' => 'ProductsImage',
+                                'foreignKey' => 'product_entity_id'
+                            )
+                        )
+                    )
+                );
+                foreach($cart_items as $cart_item){
+                    $ProductsEntity_id[] = $cart_item['CartItem']['product_entity_id'];
+                }
+                $ProductsEntity_list = $ProductsEntity->find('all',array('conditions'=>array('ProductsEntity.id'=>$ProductsEntity_id),'recursive'=>3,'contain'=>array('Product'=>array('Brand'),'ProductsImage')));
+                foreach($cart_items as $cart_item){
+                    foreach($ProductsEntity_list as $list){
+                        if($cart_item['CartItem']['product_entity_id'] == $list['ProductsEntity']['id']){
+                            $list['CartItem'] = $cart_item['CartItem'];                         
+                            $cart_guest[] = $list;
+                            break;
+                        }
+                    }
+                }
+                $size = $Size->find('list');
+                //pr($cart_guest);die;
+                $ProductsEntity->unbindModel(
+                    array('hasMany' => array('ProductsImage')),
+                    array('belongsTo' => array('Product'))
+                );
+                $this->set(compact('cart_guest','size'));
+            }
+        }
+    }
 
     function confirmation_email($results = null){   //  account activation mailer
 

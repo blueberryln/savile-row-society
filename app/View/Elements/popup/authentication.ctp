@@ -5,8 +5,8 @@
         <a class="notification-close" href=""></a>
         <div class="signin-content"> 
             <h5 class="sign">SIGN IN</h5>            
-            <!-- <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
-            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo $this->webroot; ?>img/linkedin.png" /></a>  
+            <!-- <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo HTTP_ROOT; ?>img/facebook.png" /></a>
+            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo HTTP_ROOT; ?>img/linkedin.png" /></a>  
             <h6 class="sign-or">OR</h6>  -->  
             
             <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate', 'url' => '/signin')); ?> 
@@ -21,6 +21,9 @@
                     <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
                 </div>
                 <input type="submit" class="link-btn black-btn signin-btn" value="SIGN IN" /> 
+                <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK
+				</fb:login-button> -->
+				<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo HTTP_ROOT; ?>img/btn-facebook.jpg" alt="" class="checkout-create-text"></a>
             </form> 
         </div> 
     </div>
@@ -32,7 +35,7 @@
 	    <div class="box-modal-inside">
 	        <a class="notification-close" href=""></a>
 	        <div class="signup-content">
-	            <h5 class="sign"><img src="<?php echo $this->webroot; ?>img/srs_logo_black.png" alt="" style="width: 250px"></h5> 
+	            <h5 class="sign"><img src="<?php echo HTTP_ROOT; ?>img/srs_logo_black.png" alt="" style="width: 250px"></h5> 
 	            <?php if(isset($referer_type)) : ?>
 	                <?php if($referer_type == 'event') : ?>
 	                    <p>Thank you for attending our <?php echo ucwords($referer['User']['full_name']); ?> event. To thank you for your support and patronage, please enjoy $50 off of your first purchase of $250 or more.</p>
@@ -62,8 +65,8 @@
 						<p>Thank you for leaving us your email! <br>We have placed you on our waitlist and will notify you as soon as we are able to service you.</p>	
 					</div>
 	            <?php endif; ?>          
-	            <!-- <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo $this->webroot; ?>img/facebook.png" /></a>
-	            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo $this->webroot; ?>img/linkedin.png" /></a> 
+	            <!-- <a href="<?php echo $this->request->webroot; ?>connect/facebook"><img src="<?php echo HTTP_ROOT; ?>img/facebook.png" /></a>
+	            <a href="<?php echo $this->request->webroot; ?>connect/linkedin"><img src="<?php echo HTTP_ROOT; ?>img/linkedin.png" /></a> 
 	            <h6 class="sign-or">OR</h6>               
 	            <?php echo $this->Form->create('User', array('url' => '/register/basic', 'id' => 'register-form', 'novalidate')); ?> 
 	                <?php
@@ -92,9 +95,9 @@
     <div class="box-modal-inside">
         <a class="notification-close" href=""></a>
         <div class="signin-content text-left"> 
-            <h5 class="sign"><img class="logo" src="/img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society"></h5>            
+            <h5 class="sign"><img class="logo" src="<?= HTTP_ROOT; ?>img/srs_logo_black.png" alt="Savile Row Society" title="Savile Row Society"></h5>            
             
-            <p>Not a member yet? <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"></span></a></p>
+            <p>Not a member yet? <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo HTTP_ROOT; ?>images/btn-arrow.png"></span></a></p>
              
             <p>Already a member?  <a class="tell-more gray-btns" href="#" onclick="signIn();" title="">Login</a></p>
 
@@ -112,20 +115,20 @@
 	    <div class="box-modal-inside">
 	        <div>
                 <?php echo $landing_text; ?>
-	            <?php echo $this->Form->create('User', array('id' => 'signin-form', 'url' => '/landing')); ?>
+	            <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate', 'url' => '/landing')); ?>
 	            	<div class="landing-form">
 	                <?php
-	                	echo $this->Form->input('first_name', array('id' => 'first-name', 'label' => 'First Name', 'required' => 'required', 'div' => array('class' => 'offer_first_name')));
-	                    echo $this->Form->input('last_name', array('id' => 'last-name', 'label' => 'Last Name', 'required' => 'required', 'div' => array('class' => 'offer_last_name')));
-	                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'required' => 'required', 'label' => 'Email'));
-	                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => 'Password', 'required' => 'required'));
+	                	echo $this->Form->input('first_name', array('id' => 'first-name', 'label' => 'First Name', 'div' => array('class' => 'offer_first_name')));
+	                    echo $this->Form->input('last_name', array('id' => 'last-name', 'label' => 'Last Name', 'div' => array('class' => 'offer_last_name')));
+	                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'label' => 'Email'));
+	                    echo $this->Form->input('password', array('id' => 'signin-password', 'label' => 'Password'));
 	                    if($offer_details['phone'] == 1){
 	                    	echo $this->Form->input('phone', array('id' => 'phone', 'label' => 'Phone Number', 'maxlength'=> '10', 'minlength'=> '10', 'onkeypress'=> 'return checkForNumber();'));
 	                    }
-	                    
 	                    if($offer_details['email_cnf'] == 1){
 	                    	echo $this->Form->input('active',array('type'=>'hidden','value' =>'0'));
 	                    }
+
 	                ?>      
 	                </div>
 					<div class="landing-buttons">
@@ -137,19 +140,22 @@
 	            </form>  
 	            <div class="text-center signup-options">                                       
                     <span class="already-member">already a member? <a href="" id="show-signin-popup">Sign in Here.</a></span> 
-                </div>   
+                </div>  
+                 <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK 
+				</fb:login-button> -->
+				<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo HTTP_ROOT; ?>img/btn-facebook.jpg" alt="" class="checkout-create-text"></a>
+
 	        </div> 
 	    </div>
 	</div>
 </div>
 <?php } ?>
 
-
 <div id="quick-signup-popup" style="display: none">
 	<div id="register-box" class="box-modal notification-box guest-checkout-box">
 	    <div class="box-modal-inside">
 	        <div class="guest-signin-box"> 
-	        	<img src="<?php echo $this->request->webroot; ?>img/signin-text.png" alt="" class="checkout-text">
+	        	<img src="<?php echo HTTP_ROOT; ?>img/signin-text.png" alt="" class="checkout-text">
 	            <?php echo $this->Form->create('User', array('id' => 'signin-form', 'novalidate', 'url' => '/signin', 'class' => 'checkout-sigin-from')); ?> 
 	                <?php
 	                    echo $this->Form->input('email', array('id' => 'signin-email', 'label' => 'Email:', 'label' => 'Email'));
@@ -161,11 +167,15 @@
 	                    <span class="forget-passwrd"><a href="<?php echo $this->request->webroot; ?>forgot">Forgot your password?</a></span> 
 	                </div>
 	                <input type="submit" class="link-btn signin-btn" value="SIGN IN" /> 
+	                <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">SIGN UP WITH FACEBOOK
+					</fb:login-button> -->
+					<a href="#" class="checkfblogin" onclick="fb_login();"><img src="<?php echo HTTP_ROOT; ?>img/btn-facebook.jpg" alt="" class="checkout-create-text"></a>
+
 	            </form> 
 	        </div> 
 	        <div class="guest-register-box">
-				<img src="<?php echo $this->request->webroot; ?>img/register-text.png" alt="" class="checkout-text">
-	            <img src="<?php echo $this->request->webroot; ?>img/guest-checkout-create.png" alt="" class="checkout-create-text">
+				<img src="<?php echo HTTP_ROOT; ?>img/register-text.png" alt="" class="checkout-text">
+	            <img src="<?php echo HTTP_ROOT; ?>img/guest-checkout-create.png" alt="" class="checkout-create-text">
 
 	            <input type="submit" class="link-btn signin-btn" value="CREATE AN ACCOUNT" onclick="location = '/users/register';" />
 	            <span class="checkout-option">OR</span>
@@ -176,6 +186,7 @@
 	    </div>
 	</div>
 </div>
+
 <script type="text/javascript">
 function checkForNumber()
 {

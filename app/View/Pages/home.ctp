@@ -1,4 +1,110 @@
 
+
+
+<script type="text/javascript">
+    // $(document).ready(function(){
+    //     $('.product_placeholder ul li a').hover(function(){
+    //         $('.hover_part').hide();
+    //         $('.hover_part',this).show();
+    //     });
+    // });
+    /*$(window).load(function(){
+        $('.slick-slide h3 a').hover(function(){
+            $('.hover_part').hide();
+            $('.hover_part',this).show();
+        });
+    });*/   
+
+$('.nav_wrapper a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+     target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top - 70
+        }, 1000);
+        return false;
+      }
+    }
+});
+
+
+$(document).ready(function()
+{
+
+
+if($(window).width() <=499)
+{
+    $( "ul.two-column > li" ).each(function( index ) {
+        var shopLook =  $(this).children('div.right_box').children('div.box4');
+        $(this).children('div.left_box').prepend(shopLook);
+        $(this).children('div.right_box').children('div.box4').remove();
+    });
+}
+
+// $(window).resize(function()
+// {
+//       $( "ul.two-column > li" ).each(function( index ) {
+//         var shopLook =  $(this).children('div.right_box').children('div.box4');
+//         $(this).children('div.left_box').prepend(shopLook);
+//         $(this).children('div.right_box').children('div.box4').remove();
+//     });  
+// }
+// else
+// {
+//          $( "ul.two-column > li" ).each(function( index ) {
+//         var shopLook =  $(this).children('div.right_box').children('div.box4');
+//                 $(this).children('div.right_box').children('div.box4').after(shopLook); 
+// }
+
+
+$('a.tell-me-more[href*=#]:not([href=#])').click(function() {
+    console.log('123');
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+     target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top - 70
+        }, 1000);
+        return false;
+      }
+    }
+});
+
+});
+
+$('.container a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+     target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+         //console.log(target.offset().top());
+      if (target.length) {                         
+        $('html,body').animate({
+          scrollTop: target.offset().top - 105
+        }, 1000);
+        return false;
+      }
+    }
+});
+
+$(document).on('click','.view_all_comments',function(){
+    var outfit_id = $(this).attr('rel');
+    $.ajax({
+        url: '/Pages/get_comment/'+outfit_id,
+        success: function(response){
+            $('.comment_append'+outfit_id).html(response);
+        }
+    });
+    //$(this).remove();
+});
+
+
+
+</script>
+   
+
+
 <?php
 
 if(isset($noindex)){
@@ -16,270 +122,345 @@ $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_descri
 $this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 ?>
-<div class="content-container-home">
 
-    <div class="twelve columns content inner homepage"> 
-    
-    <div class="mega-banner" id="one">
-        <div class="flexslider">
-            <ul class="slides">
-                <li><img src="<?php echo $this->request->webroot; ?>images/h_banner_1.jpg"/></li>
-                <li><img src="<?php echo $this->request->webroot; ?>images/h_banner_2.jpg"/></li>
+    <!-- Wrapper -->
+    <div class="container_wrapper">
+        <!-- banner -->
+        <section id="banner_wrapper">
+            <section class="slider">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide1.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                            <span >
+                                <div style="margin-top:25px;"class="heading">TAKE IT TO THE NEXT LEVEL</div>
+                                <!-- <p>Online & In-Person</p>
+                                <a class="tell-me-more" href="/#nine9">Tell Me More</a> -->
+                                <a href="<?php echo $this->webroot; ?>users/register" class="getStarted">Get Started</a>
+                                <p style="padding:20px;">Free to Sign Up & Browse</p>
+                            </span>
+                        </li>
+                        <li class="slide_second">
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide3.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                            <span>
+                                <div class="heading"><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 31px;line-height: normal;background:none;" href="http://www.savilerowsociety.com/blog/">blog title</a></div>
+                                <p>This is the content of your post. The more your write <br>more you have to read. <br><br><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 17px;line-height: normal;background:none;"  href = "http://www.savilerowsociety.com/blog/">Read on...</a></p>
+                            </span>
+                        </li>
+                        <li class="GetSocial">
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide2.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                            <span>
+                                <div class="heading">get social</div>
+                                <p>For the latest news and access to special offers, follow us on social media.</p>
+                                <ul>
+                                    <li><a target="_blank" href="https://instagram.com/savilerowsociety" class="instagram">@savilerowsociety</a></li>
+                                    <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety" class="facebook">SavileRowSociety</a></li>
+                                    <li><a target="_blank" href="https://twitter.com/SRSocietydotcom" class="twitter">@SRSocietydotcom</a></li>
+                                </ul>
+                            </span>
+                        </li>
+                        <!-- <li>
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide1.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                        </li>
+                        <li>
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide3.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                        </li> -->
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <!-- /banner -->
+
+        <!-- rightImages -->
+        <div class="rightImages">
+            <!-- <a href="#"><img src="<?php //echo HTTP_ROOT ?>img/home/img1.jpg" alt="looks by occasion" />
+                <span class="hover_section"><img src="<?php //echo HTTP_ROOT ?>img/home/img1-hover.jpg" alt="looks by occasion" /></span>
+            </a>
+            <a href="#"><img src="<?php //echo HTTP_ROOT ?>img/home/img2.jpg" alt="shop by items" />
+                <span class="hover_section"><img src="<?php //echo HTTP_ROOT ?>img/home/img2-hover.jpg" alt="shop by items" /></span>
+            </a>
+            <a href="#"><img src="<?php //echo HTTP_ROOT ?>img/home/img3.jpg" alt="shop men's" />
+                <span class="hover_section"><img src="<?php //echo HTTP_ROOT ?>img/home/img3-hover.jpg" alt="shop men's" /></span>
+            </a> -->
+
+            <a href="#" class="looksByOccasion"><span><span class="col-text">looks by occasion</span></span></a>
+            <a href="#" class="shopByItems"><span><span class="col-text">shop by item</span></span></a>
+            <a href="#" class="shopMen"><span><span class="col-text">shop top looks</span></span></a>
+
+
+        </div>
+        <!-- /rightImages -->
+        <div id="two" style="margin-top:0px;"></div>
+        <!-- Top Outfits -->
+        <section id="top_outfits_wrapper">
+            <div class="center_row">
+                
+                <!-- Section_Main_Heading -->
+                <div class="Section_Main_Heading">
+                    <h1>TOP LOOKS</h1>
+                    <h3>Need inspiration? Browse what's hot right now through the lens of our fashion consultants.</h3>
+                </div>
+                <!-- /Section_Main_Heading -->
+
+                <!-- column -->
+        <div class="product-content">
+            <ul class="two-column">
+            <?php if($topOutfits): ?>
+                <?php $outfit_count = 1; foreach ($topOutfits as $outfit) {
+                    if($outfit_count >= 3)
+                        {break;}
+                  ?>
+                 <li>
+
+                    <div class="row heading_title">
+                            <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="/stylists/stylistbiography/<?= $outfit['Stylist']['id']; ?>">
+                            <?php if(!empty($outfit['Stylist']['profile_photo_url']))  {?>
+                                <img src="<?php echo HTTP_ROOT.'files/users/'.$outfit['Stylist']['profile_photo_url'] ?>" alt="" />
+                            <?php } else{ ?>
+                                <img src="<?php echo HTTP_ROOT.'images/default-user.jpg'; ?>" alt="" />
+                            <?php } ?>
+                            </a>  </div>
+
+                                <div class="designer_name"> By <?php echo strtoupper($outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']); ?> /</div>
+                         
+                                 <div class="heading_wrapper">
+                                <span><?= $outfit['Outfit']['outfit_name']; ?></span>
+                                </div>
+                   
+                    </div>
+
+
+                    <div class="left_box">
+                        <div class="box1"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></a></div>
+                        <div class="box2"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></a></div>  
+                        <div class="box3"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></a></div>  
+                    </div> 
+
+                    <div class="right_box">
+
+                       <div class="box4">
+
+                        <!--shop button begins -->
+                           <div class="link-button">
+                                <div class="shop-button"><?php if($user): ?>
+                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
+                        <?php else: ?>
+                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
+                         <?php endif; ?> </div>    
+                            </div>   
+                        <a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></a></div>  
+                        <div class="box5"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></a></div>    
+                    </div>
+
+                    <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
+
+                        
+                            <span class="golden-heading"><div class="fb-like facebook-like" data-href="<?php echo 'http://'.host.'/guest/outfitdetails/'.$outfit['Outfit']['id']; ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></span>
+                        
+                        <?php 
+                            $comment_count = count($outfit['OutfitComment']); ?>
+                        <p class="view-all">
+                            <span rel="<?= $outfit['Outfit']['id']; ?>" style="cursor:pointer" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
+                        </p>
+                        <div>
+                        <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?> comment_view">
+                        <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
+                                if($num >= 5){break;} ?>
+                        <span class="golden-heading"><?php if($outfit_comments['user_id']){
+                                           echo $outfit_comments['User']['full_name'];
+                                            } 
+                                            else{
+                                                echo 'Guest';
+                                                } ?></span> says: <?php echo $outfit_comments['comment'] ?><br>
+                        <?php $num++; } ?>
+                        </div></div>
+                        <form method="POST" class="comment_form send_comment">
+                            <input type = "hidden" name="data[OutfitComment][outfit_id]" class="outfit_id" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
+                            <input type="text" name="data[OutfitComment][comment]" class="comment_box input-post" />
+                            <input class="post-submit submit_comment" value="POST"  type="submit">
+                        </form>
+                        
+                  
+                </li>
+
+                <?php ++$outfit_count; }
+                endif;
+                ?>
             </ul>
         </div>
-        <div class="mega-banner-overlay">
-            <span class="large-size">shop with your personal stylist</span>
-            <span class="small-size">Online &amp; In-person</span>
-            <div class="overlay-bnts left">
-                <a class="tell-more gray-btns" href="/#two" title="">Tell Me More</a>
-                <?php if($is_logged): ?>
-                    <a class="overlay-started brown-btns" href="/messages/index" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
-                <?php else: ?>
-                    <a class="overlay-started brown-btns" href="/users/register" title="">GET STARTED<span class="get-started-icon"><img src="<?php echo $this->request->webroot; ?>images/btn-arrow.png"</span></a>
-                <?php endif; ?>
+                <!-- /column -->
+            </div>
+        </section>
+        <!-- /Top Outfits -->
+
+        <!-- SignUp_Wrapper -->
+        <div id="SignUp_Wrapper">
+            <div class="center_row">
+                <span>Want personalized looks minus the hassle and cost?</span>
+                <a href="<?php echo $this->webroot; ?>users/register" class="btn_signUp">Sign Up</a>
             </div>
         </div>
-        
-        <div class="clear-fix"></div> 
-    </div>
-   
-    <div class="eleven columns container container-box" id="two">
-        <div class="blank-space">&nbsp;</div>
-        <div class="twelve columns text-center page-heading">
-            <h1>How Savile Row Society Works</h1>
-            <h3>Complete your style profile, start shopping with your personal stylists, and </h3>
-            <h3>have your new wardrobe delivered to your doorstep free of charge</h3>
+        <!-- /SignUp_Wrapper -->
+        <div id="three"></div>
+
+
+        <!-- featuredStylists-Wrapper -->
+        <div class="featuredStylists-Wrapper">
+            <div class="center_row">
+                <!-- Section_Main_Heading -->
+                <div class="Section_Main_Heading">
+                    <h1>OUR FASHION CONSULTANTS</h1>
+                </div>
+                <!-- /Section_Main_Heading -->
+
+                <div style="position: relative;">
+                    <div class="for_mobile_device">
+                        <div class="multiple-items slider after-load">
+                        <?php foreach($topStylists as $topstylist): ?>
+                            <div>
+                                <h3>
+                                    <a title = "<?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?>" href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>">
+                                    
+                                    <?php if($topstylist['User']['profile_photo_url']): ?>
+                                    <img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
+                                    <?php else: ?>
+                                    <img src="<?php echo HTTP_ROOT; ?>images/default-user.jpg"  />                       
+                                    <?php endif; ?>
+                                    <span class="hover_part">
+                                    <span class="get_started" style="" >GET STARTED</span>
+                                        <!-- <a href="#">Get Started</a> -->
+                                        <span style="display:block;">with <?php echo $topstylist['User']['first_name'].' '.$topstylist['User']['last_name']; ?></span>
+                                    </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        <?php endforeach; ?>    
+                        </div>
+                    </div>
+                    <div class="last_slide">
+                        <a href="/stylists/stylistbiography/772?refer=772"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Fashion Consultants</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /featuredStylists-Wrapper -->
+
+
+
+        <div id = "nine9"></div>
+        <!-- three_steps_wrapper -->
+        <div class="three_steps_wrapper">
+            <div class="center_row">
             
-        </div>
-        <div class="eleven columns container works-boxes">
-            <div class="work-box">
-                <?php if($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
-                <?php else : ?>
-                    <a href="#" class="over-img multi-action">
-                <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step1.jpg" alt="How Savile Row Society Works" />
-                </a>
+                <!-- Section_Main_Heading -->
+                <div class="Section_Main_Heading">
+                    <h1>How It Works</h1>
+                    <span style="font-size: 17px;line-height: normal;font-weight: normal;font-family: 'Open sans';">Our goal is to make your shopping experience as seamless as possible.</span>
+                </div>
+                <!-- /Section_Main_Heading -->
 
-                <span class="works-heading">Style Profile</span>
-                <span class="works-desc">Fill out a quick style profile to be matched with your very own personal stylist</span>
-
-            </div> 
-             <div class="work-box">
-                <?php if($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
-                <?php else : ?>
-                    <a href="#" class="over-img multi-action">
-                <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step2.jpg" alt="How Savile Row Society Works" />
-                </a>
-
-                <span class="works-heading">Start Shopping</span>
-                <span class="works-desc">Communicate on the website, on the phone or in-person.<br/> Buy what you want from your stylist’s recommendations.</span>
-
-            </div> 
-             <div class="work-box">
-                <?php if($is_logged) : ?>
-                    <a href="<?php echo $this->request->webroot; ?>messages/index" class="over-img">
-                <?php else : ?>
-                    <a href="#" class="over-img multi-action">
-                <?php endif; ?>
-                    <img src="<?php echo $this->webroot; ?>images/how-it-works/Step3.jpg" alt="How Savile Row Society Works" />
-                </a>
-
-                <span class="works-heading">Free Delivery</span>
-                <span class="works-desc">Have your purchases delivered for free.<br/>Verify that the fit is perfect. <br/>Dress for the life you want.</span>
-
-            </div> 
-        </div>
-    </div>             
-    
-    
-    <div class="eleven columns container container-box" id="three"> 
-        <div class="blank-space">&nbsp;</div>
-        <div class="twelve columns text-center page-heading">
-            <h1>Featured Stylists</h1>
-            <h3>Check out some of our featured Personal Stylists</h3>
-            <?php if($firstStylist) : ?>
-                <h3>below and <a href="/stylists/stylistbiography/<?php echo $firstStylist['User']['id']; ?>?refer=<?php echo $firstStylist['User']['id']; ?>" title="">click here to see our full roster</a></h3>
-            <?php endif; ?>
-        </div>
-        <div class="eleven columns container stylist-boxes">
-            <div class="featured-stylist ten columns container">
-                <div class="jcarousel-wrapper">
-                    <div class="jcarousel">
-                <ul>
-                    <?php foreach($topStylists as $topstylist): ?>
-                    <li>
-                       <?php if($topstylist['User']['profile_photo_url']): ?>
-                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $topstylist['User']['profile_photo_url']; ?>"  />                      
-                    <?php else: ?>
-                        <img src="<?php echo $this->webroot; ?>images/default-user.jpg"  />                       
-                        <?php endif; ?>
-                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $topstylist['User']['id']; ?>?refer=<?php echo $topstylist['User']['id']; ?>"><div class="featured-stylist-hover">
-                            <span class="featured-stylist-hover-text"><?php echo $topstylist['User']['first_name'].'&nbsp'.$topstylist['User']['last_name']; ?></span>
-                            <span class="featured-stylist-hover-img"><img src="<?php echo $this->webroot; ?>images/how-it-works/featured-hover.png" /></span>
-                        </div>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
+                <!-- Steps_Section -->
+                <div class="Steps_Section">
                     
-                </ul>
+                    <!-- column -->
+                    <div class="column">
+                        <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/step1.jpg" /></a>
+                        <h2>Get started with your fashion consultant</h2>
+                        <span>&nbsp;</span>
+                        <p>Sign Up, fill out your style profile & connect with your fashion consultant however you please: phone, Skype, email or in-person</p>
                     </div>
-                    <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+                    <!-- /column -->
 
-                <p class="jcarousel-pagination"></p>
+                    <!-- column -->
+                    <div class="column">
+                        <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/step2.jpg" /></a>
+                        <h2>Review your hand-selected looks</h2>
+                        <span>&nbsp;</span>
+                        <p>Your fashion consultant handpicks items tailored to your lifestyle, body shape, coloring, likes, needs and personal taste</p>
                     </div>
+                    <!-- /column -->
+
+                    <!-- column -->
+                    <div class="column">
+                        <a href="#"><img src="<?php echo HTTP_ROOT ?>img/home/step3.jpg" /></a>
+                        <h2>Have it all delivered to your door</h2>
+                        <span>&nbsp;</span>
+                        <p>Order only the items you want and have them delivered to your door free of charge</p>
+                    </div>
+                    <!-- /column -->
+
+                </div>
+                <!-- /Steps_Section -->
             </div>
         </div>
-    </div>
-                        
-    <div class="eleven columns container container-box" id="four"> 
-        <div class="blank-space">&nbsp;</div>
-        <div class="twelve columns text-center page-heading">
-            <h1>Top Outfits</h1>
-            <h3>Check out the top outfits recently recommended by</h3>
-            <h3>our premier personal stylists</h3>
-             
+        <!-- /three_steps_wrapper -->
+        <div id="four"></div>
+        <!-- blog_wrapper -->
 
-        </div>
-        <div class="eleven columns container outfit-boxes">
-            <div class="outfit-stylist eleven columns container">
-                <ul class="slider2">
-                    <?php if($topOutfits): ?>
-                        <?php foreach ($topOutfits as $outfit) {  ?>
-                            <li>
-                                <div class="shop-outfit left">
-                                    <div class="shop-outfit-top">
-                                        <div class="outfit-main-img left">
-                                        <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>">
-                                        <img src="<?php echo $this->webroot; ?>files/users/<?php echo $outfit['Stylist']['profile_photo_url']; ?>"  />
-                                        </a>
-                                        </div>
-                                        <div class="outfit-top-content left">
-                                            <div class="outfit-month" style="line-height: initial;"><?php echo $outfit['Outfit']['outfit_name']; ?></div>                                    
-                                            <div class="outfit-brand">Styled by <a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>"><span class="outfit-brand-name"><?php echo $outfit['Stylist']['first_name']; ?></span></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="shop-outfit-bottom">
-                                        <ul>
-                                            <?php 
-                                            $count = 1;
-                                            foreach($outfit['OutfitItem'] as $item) {
-                                                if(count($item['product']['Image']) && $count++ <= 5){
-                                            ?>
-                                                <li><img src="<?php echo $this->webroot; ?>files/products/<?php echo $item['product']['Image'][0]['name']; ?>" /></li>
-                                            <?php 
-                                                }
-                                            } 
-                                            ?>
-                                        </ul>
-                                        <?php if($user): ?>
-                                            <a class="shop-outfit-bottom-link" href="/messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" title="">Shop Outfit</a>
-                                        <?php else: ?>
-                                            <a class="shop-outfit-bottom-link" href="/guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>" title="">Shop Outfit</a>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                                <div class="outfit-link-btn"><a href="<?php echo $this->webroot; ?>stylists/stylistbiography/<?php echo $outfit['Stylist']['id']; ?>?refer=<?php echo $outfit['Stylist']['id']; ?>" title="" class="outfilt-btns">Meet <?php echo $outfit['Stylist']['first_name']; ?></a></div>
-                            </li>
-                        <?php } ?>
-                    <?php endif; ?>
-                </ul>
+        <div class="blog_wrapper">
+            <div class="center_row">
+                <!-- Section_Main_Heading -->
+                <div class="Section_Main_Heading">
+                    <h1>the <span>blog</span></h1>
+                </div>
+                <!-- /Section_Main_Heading -->
+
+                <!-- row -->
+                <div class="row">
+                <?php foreach($posts as $post) {?>
+                    <a href="<?= $post['Blog']['link'] ?>">    
+                        <div class="column">
+                            <img src="<?php echo HTTP_ROOT.'files/blog/'.$post['Blog']['image']; ?>" alt="" />
+                        <span><?php echo String::truncate($post['Blog']['title'],35,array('ellipsis' => '  ...  ','exact' => false  ));?></span>
+                        </div>
+                    </a>
+                <?php } ?>
+                </div>
+                <!-- /row -->
             </div>
         </div>
+        <!-- /blog_wrapper -->
+
+
     </div>
+    <!-- /Wrapper -->
+
+    <script>
+    /*-----Outfit comment submit start-------*/
     
-    <div class="eleven columns container container-box" id="five">
-        <div class="blank-space">&nbsp;</div>
-        <div class="twelve columns text-center page-heading">
-            <h1>Style, On Your Time</h1>
-            <h3>Savile Row Society provides a shopping experience that is tailored to fit your individual lifestyle.</h3>
-            <h3>Stylists are available online, and in person-all at no charge.</h3>
-        </div>
-        <div class="eleven columns container style-time-boxes">
-            <div class="style-time eleven columns container">
-                <ul>
-                    <li>
-                        <div class="style-time-img">
-                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_1.jpg" alt="Savile Row Society Personal Stylists are available online or in person">
-                            <div class="style-time-hover">
-                                <?php if($is_logged): ?>
-                                    <h1><a href="/messages/index" title="">Online</a></h1>
-                                <?php else: ?>
-                                    <h1><a href="#" title="" class="multi-action">Online</a></h1>
-                                <?php endif; ?>
-
-                                <div class="style-time-hover-content">
-                                    Talk to your stylist.<br />
-                                    See your outfit suggestions.<br />
-                                    Buy the clothes you want.<br />
-                                    Delivered to your doorstep.<br />
-                                    All at no charge. 
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="style-time-img">
-                            <img src="<?php echo $this->webroot; ?>images/outfits/st_img_2.jpg" alt="Savile Row Society Personal Stylists are available online or in person">
-                            <div class="style-time-hover">
-                                <?php if($is_logged): ?>
-                                    <h1><a href="/contact" title="">In-person</a></h1>
-                                <?php else: ?>
-                                    <h1><a href="#" title="" class="multi-action">In-person</a></h1>
-                                <?php endif; ?>                                
-                                <div class="style-time-hover-content">
-                                    Meet with your stylist.<br />
-                                    Try on our samples.<br />
-                                    Get measured, for the perfect fit.<br />
-                                    Buy the clothes you want. 
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    
-                </ul>
-                <a class="style-time-link" href="/contact" title="">Meet with your stylist in our NYC-based showroom</a>
-            </div>
-        </div>
-    </div>
-                        
-    <div class="eleven columns container container-box" id="six">
-        <div class="blank-space">&nbsp;</div>
-        <div class="six columns text-center page-heading brand">
-            <h1>Our brands</h1>
-            <h3>Savile Row Society selects the best of the best.</h3>
-            <h3>From big name brands such as Barbour and Lacoste, to boutique brands such as Bernard Zins and VK Nagrani, our goal is to bring you the brands that we believe are the best in class and the best in their category.</h3>
-        </div>
-        <div class="eleven columns container brand-boxes">
-            <div class="brands nine columns container">
-                <ul id="branding-ptners">
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Hook+Albert_new.png" alt="" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Ben-Sherman_new.png" alt="" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Cole_Haan_new.png" alt="" /></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/paulevans_new.png" alt="" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/smathersAndBranson_new.png" alt="" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/7diamonds_new.png" alt="" /></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/lacoste_new.png" alt="" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/Solid-&-Striped_new.png" alt="" /><span class="brand-divider"></span></li>
-                    <li><img src="<?php echo $this->webroot; ?>images/branding-partners/tateossian_new.png" alt="" /></li>
-                </ul>
-            </div>
-            <a class="brands-link" href="<?php echo $this->webroot; ?>company/brands" title="">See &amp; Learn More about Our Brands</a>
-        </div>
-    </div>
-                        
-    <div class="eleven columns container bottom-btn"> 
-        <a class="bottom-get-started" href="/users/register" title="">Get Started</a>
-    </div>
-        
-</div>
-<script>
-    $(function(){
-        $(".shop-outfit-bottom").on('click', function(){
-            location = $(this).find('a.shop-outfit-bottom-link').attr('href');
-        });
+    $('.comment_form').submit(function(e){
+        e.preventDefault();
     });
+    $('.submit_comment').click(function(e){
+        //e.preventDefault();
+        var cmnt = $(this).prev('.comment_box').val().trim();
+        var data = $(this).parent('form').serialize();
+        var user = '<?php echo $user['User']['full_name']; ?>';
+        var outfit_id = $(this).parent().children('.outfit_id').val();
+        var pre_mod = '<?= PRE_MOD ?>';
+        if(user == ''){
+            user = 'Guest';
+        }
+
+        var apnd = '<span class="golden-heading">'+user+'</span> says: '+cmnt+'<br>';
+        if(cmnt){
+            $.ajax({
+                url : '/comments/add_comment',
+                type: 'POST',
+                data : data,
+                success: function(res){
+                    if(res=='success'){
+                        if(pre_mod != 1){
+                            $('.comment_append'+outfit_id).append(apnd);
+                        }
+
+                    }
+                }
+            });
+            $(this).prev('.comment_box').val('');
+        }
+    });
+    /*-----Outfit comment submit end-------*/
+
+
 </script>

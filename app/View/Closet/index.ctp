@@ -287,8 +287,8 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                             <?php foreach ($categories as $category): ?>
                                 <li class="<?php echo ($parent_id && $parent_id == $category['Category']['id']) ? "cat-filter-selected" : ""; ?> <?php echo ($category['Category']['slug'] == 'seasonal') ? 'highlighted-cat' : '';?>">
                                 <?php if($category['Category']['slug'] == 'seasonal') : ?>
-                                    <span class="cuff-left"><img src="<?php echo $this->webroot; ?>img/icon_left.png" /></span>
-                                    <span class="cuff-right"><img src="<?php echo $this->webroot; ?>img/icon_right.png" /></span>
+                                    <span class="cuff-left"><img src="<?php echo HTTP_ROOT; ?>img/icon_left.png" /></span>
+                                    <span class="cuff-right"><img src="<?php echo HTTP_ROOT; ?>img/icon_right.png" /></span>
                                 <?php endif; ?>
                                     <a href="<?php echo $this->request->webroot; ?>closet/<?php echo $category['Category']['slug']; ?>" <?php echo $category_slug == $category['Category']['slug'] ? "class='active-link'" : ""; ?> data-category_id=<?php echo $category['Category']['id']; ?> ><?php echo $category['Category']['name']; ?></a>
 
@@ -382,11 +382,11 @@ $this->Html->meta('description', $meta_description, array('inline' => false));
                         			</div>
                                     <?php 
                                     if($entity['Image']){
-                                        //$img_src = $this->request->webroot . "files/products/" . $entity['Image'][0]['name'];
-                                        $img_src = $this->request->webroot . 'products/resize/' . $entity['Image'][0]['name'] . '/260/350'; 
+                                        //$img_src = HTTP_ROOT . "files/products/" . $entity['Image'][0]['name'];
+                                        $img_src = HTTP_ROOT . 'products/resize/' . $entity['Image'][0]['name'] . '/260/350'; 
                                     }
                                     else{
-                                        $img_src = $this->request->webroot . "img/image_not_available-small.png";
+                                        $img_src = HTTP_ROOT . "img/image_not_available-small.png";
                                     } 
                                     ?>
                                     <div class="mosaic-backdrop">

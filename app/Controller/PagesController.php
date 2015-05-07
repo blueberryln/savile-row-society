@@ -66,8 +66,11 @@ class PagesController extends AppController {
             $TopOutfit = ClassRegistry::init('TopOutfit');
             $topOutfits = $TopOutfit->getTopOutfits();
             $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
-
-            $this->set(compact('user','topStylists','topOutfits', 'firstStylist'));
+            $this->loadModel('Blog');
+            $limit = 6;
+            $conditions = array('order'=>'Blog.id desc','limit'=>$limit,'conditions'=>array('Blog.disabled'=>0));
+            $posts = $this->Blog->get_posts('all',$conditions);
+            $this->set(compact('user','topStylists','topOutfits', 'firstStylist','posts'));
        
         }
         else if ($page == 'contact') {
@@ -117,6 +120,30 @@ class PagesController extends AppController {
         
         $this->set(compact('page', 'subpage', 'title_for_layout'));
         $this->render(implode('/', $path));
+    }
+
+    function get_comment($outfit_id = null){
+        $this->loadModel('OutfitComment');
+        $html_data = '';
+        if ($this->request->is('ajax')) {
+            $conditions = array('conditions'=>array('OutfitComment.outfit_id'=>$outfit_id,'OutfitComment.disabled'=>0),'order'=>'OutfitComment.id desc','contain'=>array('User'));
+            $comments = $this->OutfitComment->get_comments('all',$conditions);
+            $comment_count = count($comments);
+            $html_data .= '';
+            //pr($comments);die;
+            foreach($comments as $comment){
+                $ago = $this->ago($comment['OutfitComment']['time'],'');
+                 if($comment['OutfitComment']['user_id']){
+                   $name =  $comment['User']['full_name'];
+                } 
+                else{
+                   $name = 'Guest';
+                }
+                $html_data .= '<span class="golden-heading">'.$name.'</span> says: '.$comment['OutfitComment']['comment'].'<br>';
+            }
+            echo $html_data;
+        }
+        die;
     }
 
 }

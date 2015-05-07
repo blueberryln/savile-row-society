@@ -18,6 +18,13 @@ class Outfit extends AppModel {
             'limit' => '',
             'dependent' => true         
         ),
+        'OutfitComment' => array(
+            'className' => 'OutfitComment',
+            'foreignKey' => 'outfit_id',
+            'conditions' => array('disabled'=>0),
+            'order' => 'id desc',
+            'dependent' => true         
+        ),
     );
 
     /**
@@ -108,8 +115,8 @@ class Outfit extends AppModel {
     public function getOutfitDetails($outfit_list, $sorted_by_list = false, $user_id = false){
 
         $outfits = $this->find('all', array(
-            'contain'       => array('OutfitItem', 'Stylist'),
-            'conditions'     => array('Outfit.id' => $outfit_list),
+            'contain'       => array('OutfitItem', 'Stylist','OutfitComment'=>array('User')),
+            'conditions'     => array('Outfit.id' => $outfit_list,'Outfit.outfit_name !='=>NULL),
             ));
 
         $Size = ClassRegistry::init('Size');

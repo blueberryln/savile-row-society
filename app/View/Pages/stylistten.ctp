@@ -12,9 +12,9 @@
                 </div>
                 <div class="two columns right admin-top-right">
                     <ul>
-                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo $this->webroot; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
+                        <li><a href="#" title=""><img class="cart-icons" src="<?php echo HTTP_ROOT; ?>images/cart-icon.png" alt="" />(<span class="no-of-items">0</span>) </a></li>
                         <li>
-                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
+                            <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                             <div class="admin-top-right-dropdown">
                                 <ul>
                                     <li><a href="#" title="">view my cart/checkout</a></li>
@@ -101,7 +101,7 @@
                                                                 <div class="right shp-this-otft">shop this outfit &gt;</div>
                                                                 <ul>
                                                                     <li>
-                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" />
+                                                                        <img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_1.jpg" alt="" />
                                                                         <div class="cnfrm-otft-prdct-dtl">
                                                                             White knight twills<br />
                                                                             Whit &amp; co<br />
@@ -109,7 +109,7 @@
                                                                         </div>
                                                                     </li>
                                                                     <li>
-                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" />
+                                                                        <img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_2.jpg" alt="" />
                                                                         <div class="cnfrm-otft-prdct-dtl">
                                                                             White knight twills<br />
                                                                             Whit &amp; co<br />
@@ -117,7 +117,7 @@
                                                                         </div>
                                                                     </li>
                                                                     <li>
-                                                                        <img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" />
+                                                                        <img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_4.jpg" alt="" />
                                                                         <div class="cnfrm-otft-prdct-dtl">
                                                                             White knight twills<br />
                                                                             Whit &amp; co<br />
@@ -309,7 +309,7 @@
                                     <ul class="clear">
                                         <li data-id="1">
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
+                                                <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
                                                <div class="otft-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -318,7 +318,7 @@
                                         </li>
                                         <li data-id="2">
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
+                                                <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
                                                 <div class="otft-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -327,7 +327,7 @@
                                         </li>
                                         <li data-id="3">
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
+                                                <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
                                                 <div class="otft-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -336,7 +336,7 @@
                                         </li>
                                         <li data-id="4">
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_4.jpg" alt="" /></div>
+                                                <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_4.jpg" alt="" /></div>
                                                 <div class="otft-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -346,7 +346,7 @@
                                         </li>
                                         <li data-id="5">
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
+                                                <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_5.jpg" alt="" /></div>
                                                 <div class="otft-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -355,7 +355,7 @@
                                         </li>
                                         <li data-id="6">
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
+                                                <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_1.jpg" alt="" /></div>
                                                 <div class="otft-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -364,7 +364,7 @@
                                         </li>
                                         <li data-id="7">
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
+                                                <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_2.jpg" alt="" /></div>
                                                <div class="otft-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -373,7 +373,7 @@
                                         </li>
                                         <li data-id="8">
                                             <a href="#">
-                                                <div class="otft-prdt-img"><img src="<?php echo $this->webroot; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
+                                                <div class="otft-prdt-img"><img src="<?php echo HTTP_ROOT; ?>images/outfits/of_btm_3.jpg" alt="" /></div>
                                                 <div class="otft-prdt-overlay">
                                                     <h3>Some crazy circuit</h3>
                                                     <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -397,9 +397,9 @@
                     <div class="my-profile-img m-ver">
                         <h2>LISA D.<span>My Stylist</span></h2>
                         <div class="client-img-small right">
-                        <a href="javascript:;" title=""><img src="<?php echo $this->webroot; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
+                        <a href="javascript:;" title=""><img src="<?php echo HTTP_ROOT; ?>images/my-profile/my-profile-img.jpg" alt="" /></a>
                         </div>
-                        <span id="dd-nav-switcher"><img src="<?php echo $this->webroot; ?>images/nav-switcher-icon.png" alt="" /></span>
+                        <span id="dd-nav-switcher"><img src="<?php echo HTTP_ROOT; ?>images/nav-switcher-icon.png" alt="" /></span>
                     </div>
                     <div class="dd-nav">
                         <ul>

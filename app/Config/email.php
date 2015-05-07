@@ -30,9 +30,9 @@
  * You can specify multiple configurations for production, development and testing.
  *
  * transport => The name of a supported transport; valid options are as follows:
- * 		Mail 		- Send using PHP mail function
- * 		Smtp		- Send using SMTP
- * 		Debug		- Do not send the email, just return the result
+ *      Mail        - Send using PHP mail function
+ *      Smtp        - Send using SMTP
+ *      Debug       - Do not send the email, just return the result
  *
  * You can add custom transports (or override existing transports) by adding the
  * appropriate file to app/Network/Email.  Transports should be named 'YourTransport.php',
@@ -44,29 +44,29 @@
  */
 class EmailConfig {
 
-    // public $default = array(
-    //     'host' => 'ssl://smtp.gmail.com',
-    //     'port' => 465,
-    //     'username' => 'admin@savilerowsociety.com',
-    //     'password' => 'srsus1234',
-    //     'transport' => 'Smtp'
-    // );
-
-    // public $default = array(
-    //     'host' => 'ssl://smtp.gmail.com',
-    //     'port' => 465,
-    //     'username' => 'dareshareapp@gmail.com',
-    //     'password' => 'Jukepach3',
-    //     'transport' => 'Smtp'
-    // );
-
     public $default = array(
-        'host' => 'ssl://email-smtp.us-east-1.amazonaws.com',
+        'host' => 'ssl://smtp.gmail.com',
         'port' => 465,
-        'username' => 'AKIAJHMNIZSNQGJERYHA',
-        'password' => 'ApSS50SNw1OeCE5+WmaoTpX4iGhHNndsSPsADfLLArWp',
+        'username' => 'admin@savilerowsociety.com',
+        'password' => 'srsus1234',
         'transport' => 'Smtp'
     );
+
+    // public $default = array(
+    //     'host' => 'ssl://smtp.gmail.com',
+    //     'port' => 465,
+    //     'username' => 'saurabh1327@gmail.com',
+    //     'password' => 'Sserver27',
+    //     'transport' => 'Smtp'
+    // );
+
+    // public $default = array(
+    //     'host' => 'email-smtp.us-east-1.amazonaws.com',
+    //     'port' => 25,
+    //     'username' => 'AKIAJHMNIZSNQGJERYHA',
+    //     'password' => 'ApSS50SNw1OeCE5+WmaoTpX4iGhHNndsSPsADfLLArWp',
+    //     'transport' => 'Smtp'
+    // );
 
     // public $default = array(
     //     'host' => 'email-smtp.us-east-1.amazonaws.com',

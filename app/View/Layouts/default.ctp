@@ -22,7 +22,7 @@
         echo $this->Html->css('lightbox');
         echo $this->Html->css('mosaic');
         echo $this->Html->css('temp');
-        echo $this->Html->css('flexslider');
+        // echo $this->Html->css('flexslider');
         echo $this->Html->css('jquery.fancybox');
         echo $this->Html->css('tinyscrollbar');
         echo $this->Html->css('jcarousel.responsive');
@@ -32,10 +32,10 @@
         ?>
         <!-- Favicons
         ================================================== -->
-        <link rel="shortcut icon" href="<?php echo $this->request->webroot; ?>img/favicon.ico">
-        <link rel="apple-touch-icon" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->request->webroot; ?>img/apple-touch-icon-114x114.png">
+        <link rel="shortcut icon" href="<?php echo HTTP_ROOT; ?>img/favicon.ico">
+        <link rel="apple-touch-icon" href="<?php echo HTTP_ROOT; ?>img/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo HTTP_ROOT; ?>img/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo HTTP_ROOT; ?>img/apple-touch-icon-114x114.png">
 
         
         <?php
@@ -53,6 +53,57 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
         <!--<script src="/js/jquery-1.9.1.min.js"></script>-->
+
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/jquery.carouFredSel.js"></script>
+
+<!-- Start Default -->
+<link rel="stylesheet" type="text/css" href="<?php echo CSS_ROOT ?>css/new-style.css" />
+<!-- End Default -->
+
+<link rel="stylesheet" type="text/css" href="<?php echo JS_ROOT ?>js/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo JS_ROOT ?>js/slick/slick-theme.css"/>
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/slick.js"></script>
+<script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/prism.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.multiple-items').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 4
+              }
+            },
+            {
+              breakpoint: 800,
+              settings: {
+                slidesToShow: 4
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+          ]
+    }).removeClass('after-load');    
+});    
+</script>
+<!-- Start Flexslider -->
+<script src="<?php echo JS_ROOT ?>js/flexslider/modernizr.js"></script>
+<script defer src="<?php echo JS_ROOT ?>js/flexslider/jquery.flexslider.js"></script>
+<link rel="stylesheet" href="<?php echo JS_ROOT ?>js/flexslider/flexslider.css" type="text/css" media="screen" />
+<!-- End Flexslider -->
 
     </head>
     <body>
@@ -97,9 +148,9 @@
         ================================================== -->
 
 
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.browser.mobile.js" type="text/javascript"></script>
         <!--<script src="<?php echo $this->request->webroot; ?>js/jquery-scrollspy.js" type="text/javascript"></script>-->      
-        <script src="<?php echo $this->request->webroot; ?>js/block.ui.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/block.ui.js" type="text/javascript"></script>
         <script type="text/javascript">
             /*
              * check if user is logged in
@@ -150,34 +201,27 @@
             }
 
             $(document).ready(function() { 
-                // startMessageNotifier();
+                startMessageNotifier();
             });
         </script>
-        <script src="<?php echo $this->request->webroot; ?>js/common.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.flexsliderv2.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.bxslider.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jPages.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/highcharts.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.highchartTable.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/common.js" type="text/javascript"></script>
         
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.jcarousel.min.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jcarousel.responsive.js" type="text/javascript"></script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.validate.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.bxslider.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jPages.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.responsiveTabs.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/highcharts.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.highchartTable.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery-ui.min.js" type="text/javascript"></script>
+        
+        <script src="<?php echo JS_ROOT; ?>js/jquery.jcarousel.min.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jcarousel.responsive.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.validate.js" type="text/javascript"></script>
         <?php
         if(isset($pixel)){
             echo $pixel;
         }
         ?>
-        
-        
-        
-       
-        
-        
-
         
         <script type="text/javascript">
 
@@ -195,9 +239,23 @@
                 $('.flexslider').flexslider({
                     animation: "slide",
                     controlNav: true,
-                    directionNav: true
+                    directionNav: true,
+                    start: function(){
+                        _contentCenter();
+                    },
+                    after : function(){
+                        _contentCenter();
+                    }                   
                 });
-                
+                function _contentCenter(){
+                    /***Slider content vertically centered**/
+                    jQuery("#banner_wrapper ul li").each(function(){
+                        var a = jQuery(this).height();
+                        var b = jQuery(this).find('span').outerHeight();
+                        var _bTop = (a - b)/2;
+                        jQuery(this).find('span').css('top', _bTop);                            
+                    });
+                }
                 $('.slider2').bxSlider({
                 slideWidth: 495,
                 minSlides: 1,
@@ -537,7 +595,7 @@
             
             
         </script>
-        <script src="<?php echo $this->request->webroot; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
+        <script src="<?php echo JS_ROOT; ?>js/jquery.tinyscrollbar.js" type="text/javascript"></script>
         <script type="text/javascript">
            jQuery(window).load(function (){
                 $("#scrollbar1").tinyscrollbar({ axis: "y"});
@@ -548,6 +606,7 @@
                 $("#scrollbar6").tinyscrollbar({ axis: "y"});
                 $("#scrollbar7").tinyscrollbar({ axis: "y"});
                 $("#scrollbar8").tinyscrollbar({ axis: "y"});
+                $(".scrollbar9").tinyscrollbar({ axis: "y"});
             });
               
         
@@ -736,6 +795,8 @@
 			return document.activeElement;
 		} catch (err) {}
 	}
+
+    
 
 }(this, document, jQuery));
   </script>

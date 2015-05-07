@@ -38,10 +38,10 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                                 </td>
                                                 <?php 
                                                     if($item['Image']){
-                                                        $img_src = $this->request->webroot . "files/products/" . $item['Image'][0]['name'];
+                                                        $img_src = HTTP_ROOT . "files/products/" . $item['Image'][0]['name'];
                                                     }
                                                     else{
-                                                        $img_src = $this->request->webroot . "img/photo_not_available.png";
+                                                        $img_src = HTTP_ROOT . "img/photo_not_available.png";
                                                     }
                                                 ?>
                                                 <td class="product-thumb"><div class="cart-thumbnail"><a href="<?php echo $this->webroot; ?>product/<?php echo $item['Entity']['id'] . '/' . $item['Entity']['slug'];?>"><img src="<?php echo $img_src; ?>" /></a></div></td>
@@ -76,7 +76,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                         <tr class="last">
                                             <td colspan="3" rowspan="3">
                                                 <!-- Enable only when total is equal or more than $120 -->
-                                                <?php if($cart_total >= 120 && !$vip_flag && !$landing_flag) : ?> 
+                                                <?php //if($cart_total >= 120 && !$vip_flag && !$landing_flag) :	//before changes ?> 
+                                                <?php if($cart_total >= 120 && (!$vip_flag || !$landing_flag)) : //after changes --shubham ?>
                                                     <div class= "promo-code-cont">
                                                         <div class="srs-form columns four left" style="margin-left:10px;">
                                                             <div class="form">
@@ -134,7 +135,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 </table>
                                 <input type="hidden" name="checkout-cart-id" value="<?php echo $cart_id; ?>" />
                                 <input type="hidden" name="checkout-tax" id="checkout-tax"  value="0" />
-                                <input type="hidden" name="checkout-initial-price" id="checkout-initial-price"  value="<?php echo $cart_total; ?>" />
+                                <input type="hidden" name="checkout-initial-price" id="checkout-initial-price"  value="<?php echo $grand_total;  // $cart_total was the variable used initially --shubham ?>" />
                                 <input type="hidden" name="checkout-total-price" id="checkout-total-price"  value="<?php echo $cart_total; ?>" />
                             <?php endif; ?>
                             <div class="clear-fix"></div>
@@ -143,7 +144,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                     <div class="profile text-center continue-block">
                         <br>
                         <a class="link-btn black-btn" id="continue-1" tabindex="25" href="">Continue</a>
-                        <p class="loader hide"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p>
+                        <p class="loader hide"><img src="<?php echo HTTP_ROOT; ?>img/loader.gif"></p>
                     </div>
 
 
@@ -297,7 +298,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                         <div class="profile text-center continue-block">
                             <br>
                             <a class="link-btn black-btn" id="continue-2" tabindex="25" href="">Continue</a>
-                            <p class="loader hide"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p>
+                            <p class="loader hide"><img src="<?php echo HTTP_ROOT; ?>img/loader.gif"></p>
                         </div>
                     </div>
 
@@ -312,7 +313,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
 
                         <div class="ten columns center-block">
                             <div class="card-strip text-center">
-                                <img src="app/webroot/img/credit-card-strip.jpg"/>                   
+                                <img src="<?php echo HTTP_ROOT; ?>img/credit-card-strip.jpg"/>                   
                             </div>
                         </div>
 
@@ -360,7 +361,7 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                             <div class="profile text-center" >
                                 <a class="link-btn black-btn" id="confirm-payment" tabindex="25" href="">Make Payment</a>
                                 <br>
-                                <p class="loader hide clear-fix"><img src="<?php echo $this->webroot; ?>img/loader.gif"></p><br>
+                                <p class="loader hide clear-fix"><img src="<?php echo HTTP_ROOT; ?>img/loader.gif"></p><br>
                             </div>
                         </div>
                     </div>

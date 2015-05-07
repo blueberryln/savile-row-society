@@ -92,14 +92,14 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                         <tr class="cart-row">
                                             <td class="v-top">
                                                 <input type="hidden" class="cart-item-id" value="<?php echo $key; ?>">
-                                                <a href="" class="remove-cart-item"><img src="/img/cross_menue.png" width="10" height="10" /></a>
+                                                <a href="" class="remove-cart-item"><img src="<?= HTTP_ROOT; ?>img/cross_menue.png" width="10" height="10" /></a>
                                             </td>
                                             <?php 
                                                 if($item['Image']){
-                                                    $img_src = $this->request->webroot . "files/products/" . $item['Image'][0]['name'];
+                                                    $img_src = HTTP_ROOT . "files/products/" . $item['Image'][0]['name'];
                                                 }
                                                 else{
-                                                    $img_src = $this->request->webroot . "img/photo_not_available.png";
+                                                    $img_src = HTTP_ROOT . "img/photo_not_available.png";
                                                 }
                                             ?>
                                             <td class="product-thumb"><div class="cart-thumbnail"><a href="<?php echo $this->webroot; ?>product/<?php echo $item['Entity']['id'] . '/' . $item['Entity']['slug'];?>"><img src="<?php echo $img_src; ?>" /></a></div></td>
@@ -157,7 +157,8 @@ $this->Html->meta('description', 'First mover', array('inline' => false));
                                 <a href="" class="link-btn black-btn update-quantity">UPDATE QUANTITY</a>
                                 <a href="#" class="link-btn gold-btn checkout" onClick="quickSignUp();">CHECKOUT</a>
                             <?php else : ?>
-                                <a href="<?php echo $this->webroot; ?>messages/index" class="link-btn black-btn continue-shopping">CONTINUE SHOPPING</a>
+                                <!-- <a href="<?php echo $this->webroot; ?>messages/index" class="link-btn black-btn continue-shopping">CONTINUE SHOPPING</a> -->
+                                <a href="/" class="link-btn black-btn continue-shopping">CONTINUE SHOPPING</a>
                             <?php endif; ?>
                         </div>
                         <div class="clear"></div> <br />
