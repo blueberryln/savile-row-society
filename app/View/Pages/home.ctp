@@ -141,10 +141,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             </span>
                         </li>
                         <li class="slide_second">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/slide3.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                            <img src="<?php echo HTTP_ROOT ?>img/home/HomeImageBlog.png" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                             <span>
-                                <div class="heading"><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 31px;line-height: normal;background:none;" href="http://www.savilerowsociety.com/blog/">blog title</a></div>
-                                <p>This is the content of your post. The more your write <br>more you have to read. <br><br><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 17px;line-height: normal;background:none;"  href = "http://www.savilerowsociety.com/blog/">Read on...</a></p>
+                                <div class="heading"><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 31px;line-height: normal;background:none;" href="http://www.savilerowsociety.com/blog/">Twillory and SRS: A Shared Personal Style</a></div>
+                                <p>We’re getting you that personalized style with Twillory  <br><br><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 17px;line-height: normal;background:none;"  href = "http://www.savilerowsociety.com/blog/">Read on...</a></p>
                             </span>
                         </li>
                         <li class="GetSocial">
