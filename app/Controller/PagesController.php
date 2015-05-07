@@ -128,6 +128,7 @@ class PagesController extends AppController {
         if ($this->request->is('ajax')) {
             $conditions = array('conditions'=>array('OutfitComment.outfit_id'=>$outfit_id,'OutfitComment.disabled'=>0),'order'=>'OutfitComment.id desc','contain'=>array('User'));
             $comments = $this->OutfitComment->get_comments('all',$conditions);
+            $comment_count = count($comments);
             $html_data .= '';
             //pr($comments);die;
             foreach($comments as $comment){
@@ -138,7 +139,7 @@ class PagesController extends AppController {
                 else{
                    $name = 'Guest';
                 }
-                $html_data .= '<div class="section"><span class="name">'.$name.'</span><span class="comment">'.$comment['OutfitComment']['comment'].'</span><span class="recently_time">'.$ago.'</span></div>';
+                $html_data .= '<span class="golden-heading">'.$name.'</span> says: '.$comment['OutfitComment']['comment'].'<br>';
             }
             echo $html_data;
         }

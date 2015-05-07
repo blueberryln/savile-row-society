@@ -16,7 +16,7 @@
                 <div class="column">
                     <div class="section-one">
                         <a href="/">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/footer_logo.jpg" alt="Savil.Me" />
+                            <img src="<?php echo HTTP_ROOT ?>img/srs_logo_white.png" alt="Savil.Me" />
                         </a>
                         <span>&copy; Savile Row Society 2015</span>
                     </div>
@@ -30,8 +30,8 @@
                         <button class="btn-vip_access" id="block-vip-access">VIP ACCESS</button>
                         <ul>
                             <li><a target="_blank" href="http://www.savilerowsociety.com/blog" class="blogList">Blog</a></li>
-                            <li><a target="_blank" href="https://instagram.com/savilerowsociety">Instagram</a></li>
                             <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety">Facebook</a></li>
+                            <li><a target="_blank" href="https://instagram.com/savilerowsociety">Instagram</a></li>
                             <li><a target="_blank" href="https://twitter.com/SRSocietydotcom">Twitter</a></li>
                         </ul>
                     </div>
@@ -43,7 +43,7 @@
                 <div class="column">
                     <div class="section-three">
                         <ul>
-                            <li><a href="<?php echo $this->webroot; ?>#two">About Us</a></li>
+                            <li><a class="tell-me-more" href="/#nine9">About Us</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>company/team">Our Team</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>company/brands">Our Brands</a></li>
                             <li><a href="<?php echo $this->request->webroot; ?>contact">Contact Us</a></li>
@@ -58,7 +58,7 @@
                 <!-- column -->
                 <div class="column last">
                     <div class="section-four">
-                        <h2>Sign Up For Savile.me News</h2>
+                        <h2>Sign Up For Savile Row Society News</h2>
                         <form action="http://savilerowsociety.us8.list-manage2.com/subscribe/post" method="POST">
                                 <input type="hidden" name="u" value="88bda5a8e85fc9df8f8b8f5b2">
                                 <input type="hidden" name="id" value="6c6fbf69c3">

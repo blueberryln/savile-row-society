@@ -88,7 +88,8 @@
         next: '#next_item',
         auto: false,
         scroll: 3,
-        items: 3
+        items: 3,
+        circular: false,
       });
     });
 
@@ -99,10 +100,13 @@
             <!-- mobile_menu_wrapper -->
             <div class="mobile_menu_wrapper">
               <ul>
+                <?php if(empty($user)){ ?>
+                <li><a href="javascript:void(0)" onclick="window.ref_url=''; signIn();">Sign In</a></li>
+                <li><a href="/users/register">Sign Up</a></li>
+                <?php } else { ?>
                 <li><a href="/user/profile">My Account</a></li>
-                <?php if($user){ ?>
                 <li><a href="/signout">Sign Out</a></li>
-                <?php } ?>
+                <?php } ?>@
                 <span>&nbsp;</span>
                 <li><a href="/#two">Shop</a></li>
                 <li><a href="/#three">Stylist</a></li>
@@ -140,7 +144,7 @@
             <div class="center_row">
                 <!-- logo_details -->   
                 <div class="logo_details">
-                    <a href="/"><img src="<?php echo HTTP_ROOT ?>img/home/logo.jpg" alt="Savil.Me" /></a>
+                    <a href="/"><img src="<?php echo HTTP_ROOT ?>img/srs_logo_new.png" alt="Savil.Me" /></a>
                 </div>
                 <!-- /logo_details -->  
 
@@ -203,7 +207,7 @@
                       <div class="heading_section">
                         <?php
                         $count =0;
-                         echo $count = count($cart_user) > count($cart_guest) ? count($cart_user) : count($cart_guest)  ?> Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                         echo $count = count(@$cart_user) > count(@$cart_guest) ? count(@$cart_user) : count(@$cart_guest)  ?> Items <a href="#" class="icon_cross TextReplaceByImage">X</a> 
                       </div>
                       <!-- /Heading -->
                       <!-- content_section -->
@@ -342,9 +346,12 @@
                 <!-- nav -->
                 <div class="nav_wrapper">
                     <ul>
-                        <li><a href="/#two">Shop</a></li>
-                        <li><a href="/#three">Stylists</a></li>
+                        <!-- <li><a href="/#two">Shop</a></li>
+                        <li><a href="/#three">Stylists</a></li> -->
+                        <li><a href="/">Home</a></li>
+                        <li><a class="tell-me-more" href="/#nine9">About</a></li>
                         <li><a target="_blank" href="http://www.savilerowsociety.com/blog/">Blog</a></li>
+                        <li><a class="fashion"  href="/stylists/stylistbiography/772?refer=772">Fashion Consultants</a></li>
                     </ul>
                 </div>
                 <!-- /nav -->
@@ -358,7 +365,7 @@ $(document).on('click','.checkfblogin',function(){
 var if_clik =1;
 //alert(if_clik);
 });
-<?php if(!$user) { ?>
+<?php //if(!$user) { ?>
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -440,7 +447,7 @@ var if_clik =1;
     });
   }
 
-<?php } ?>
+<?php //} ?>
 function fb_login(){
     FB.login(function(response) {
 
