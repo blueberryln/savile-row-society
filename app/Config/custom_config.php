@@ -1,6 +1,7 @@
 <?php
+define('host',$_SERVER['HTTP_HOST']);
 $config['my_app'] = 'abcdef';	// gives error when commented
-define('HTTP_URL',$_SERVER['HTTP_HOST']);	//returns the site URL
+define('HTTP_URL','d2owzzusdvisuq.cloudfront.net');	//returns the site URL
 Configure::write('App.cssBaseUrl', 'http://'.HTTP_URL.'/css/');
 Configure::write('App.jsBaseUrl', 'http://'.HTTP_URL.'/js/');  
 Configure::write('App.imageBaseUrl', 'http://'.HTTP_URL.'/');
