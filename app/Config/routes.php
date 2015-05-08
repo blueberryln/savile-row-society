@@ -72,6 +72,7 @@ Router::connect('/admin', array('controller' => 'products', 'action' => 'index',
  * ...and connect the rest of 'Pages' controller's urls.
  */
 Router::connect('/home', array('controller' => 'pages', 'action' => 'display', 'home'));
+Router::connect('/coming-soon', array('controller' => 'pages', 'action' => 'display', 'coming-soon'));
 
 Router::connect('/company', array('controller' => 'pages', 'action' => 'display', 'company'));
 Router::connect('/company/team', array('controller' => 'pages', 'action' => 'display', 'company/team'));
