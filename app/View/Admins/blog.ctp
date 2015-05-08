@@ -42,23 +42,23 @@
           <td><?= date('m/d/Y',$post['Blog']['time']); ?></td>
           <td class = "bs<?= $post['Blog']['id']; ?>">
                       <?php if($post['Blog']['disabled'] == 0) {?>
-                        <!-- <button title="Click to Disable" rel ="<?= $post['Blog']['id']; ?>" class="label label-success blog_status">Enabled</button> -->
-                        <div class="onoffswitch">
+                        <button title="Click to Disable" rel ="<?= $post['Blog']['id']; ?>" class="label label-success blog_status">Enabled</button>
+                        <!-- <div class="onoffswitch">
                             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                             <label class="onoffswitch-label" for="myonoffswitch">
                                 <span class="onoffswitch-inner"></span>
                                 <span class="onoffswitch-switch"></span>
                             </label>
-                        </div>
+                        </div> -->
                       <?php } else{ ?>
-                        <!-- <button title="Click to Enable" rel ="<?= $post['Blog']['id']; ?>" class="label label-warning blog_status">Disabled</button> -->
-                        <div class="onoffswitch">
+                        <button title="Click to Enable" rel ="<?= $post['Blog']['id']; ?>" class="label label-warning blog_status">Disabled</button>
+                        <!-- <div class="onoffswitch">
                             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                             <label class="onoffswitch-label" for="myonoffswitch">
                                 <span class="onoffswitch-inner"></span>
                                 <span class="onoffswitch-switch"></span>
                             </label>
-                        </div>
+                        </div> -->
                       <?php }?>
           </td>
           <td>
