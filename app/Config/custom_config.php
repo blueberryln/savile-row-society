@@ -1,4 +1,5 @@
 <?php
+define('host',$_SERVER['HTTP_HOST']);
 $config['my_app'] = 'abcdef';	// gives error when commented
 define('HTTP_URL',$_SERVER['HTTP_HOST']);	//returns the site URL
 Configure::write('App.cssBaseUrl', 'http://'.HTTP_URL.'/css/');
