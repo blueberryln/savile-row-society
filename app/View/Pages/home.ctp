@@ -36,9 +36,9 @@ $(document).ready(function()
 if($(window).width() <=499)
 {
     $( "ul.two-column > li" ).each(function( index ) {
-        var shopLook =  $(this).children('div.right_box').children('div.box4');
+        var shopLook =  $(this).children('div.right_box').children('div.box4_wrapper');
         $(this).children('div.left_box').prepend(shopLook);
-        $(this).children('div.right_box').children('div.box4').remove();
+        $(this).children('div.right_box').children('div.box4_wrapper').remove();
     });
 }
 
