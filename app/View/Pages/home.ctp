@@ -206,7 +206,13 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
         <div class="product-content">
             <ul class="two-column">
             <?php if($topOutfits): ?>
-                <?php $outfit_count = 1; foreach ($topOutfits as $outfit) {
+                <?php $outfit_count = 1;
+                if($user){
+                    $controller  =  'messages';
+                }else{
+                    $controller  =  'guest';
+                }
+                foreach ($topOutfits as $outfit) {
                     if($outfit_count >= 3)
                         {break;}
                   ?>
@@ -232,14 +238,14 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
                     <div class="left_box">
                     <div class="box1_wrapper">
-                        <div class="box1"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></a></div>
+                        <div class="box1"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></a></div>
                         </div>
 
                         <div class="box2_wrapper">
-                        <div class="box2"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></a></div></div>
+                        <div class="box2"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></a></div></div>
 
                         <div class="box3_wrapper">  
-                        <div class="box3"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></a></div> </div>  
+                        <div class="box3"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></a></div> </div>  
                     </div> 
 
                     <div class="right_box">
@@ -254,10 +260,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
                          <?php endif; ?> </div>    
                             </div>   
-                        <a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></a></div>  </div>  
+                        <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></a></div>  </div>  
 
                         <div class="box5_wrapper"> 
-                        <div class="box5"><a href="#"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></a></div> </div>    
+                        <div class="box5"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></a></div> </div>    
                     </div>
 
                     <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
@@ -459,7 +465,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 success: function(res){
                     if(res=='success'){
                         if(pre_mod != 1){
-                            $('.comment_append'+outfit_id).append(apnd);
+                            $('.comment_append'+outfit_id).prepend(apnd);
                         }
 
                     }
