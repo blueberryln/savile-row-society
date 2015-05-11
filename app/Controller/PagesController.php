@@ -146,4 +146,9 @@ class PagesController extends AppController {
         die;
     }
 
+
+    function fashion_consultants(){
+      
+    }
+
 }
