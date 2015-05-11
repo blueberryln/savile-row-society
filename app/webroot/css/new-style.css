@@ -1,7 +1,6 @@
 
 body{ margin: 0px; padding: 0px; font-size: 14px; color: #000; }
 
-
 a{ border: none; outline: none; }
 .shop-button {width:66px; height:35px;  background: #b6a166; float: right; margin:10px 5px 0 0;}
 .shop-button a{display: block; color:#fff; text-decoration: none;  line-height: 35px;} 
