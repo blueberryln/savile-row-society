@@ -149,7 +149,7 @@ class PagesController extends AppController {
 
     function fashion_consultants(){
         $this->loadModel('User');
-        $stylists = $this->User->find('all',array('conditions'=>array('is_stylist'=>true,'view_stylist'=>true)));
+        $stylists = $this->User->find('all',array('conditions'=>array('is_stylist'=>true,'view_stylist'=>false)));
         $this->set(compact('stylists'));  
     }
 
