@@ -108,12 +108,14 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
 
 <div class="content-container content-container-brands">
     <div class="eleven columns container container-box">
+    <div class="twelve columns container content inner">
+        <div class="eleven columns container left">
         <div class="blank-space">&nbsp;</div>
         <div class="twelve columns text-center page-heading brand-heading">
             <h1>Our Brands</h1>
             <h3>Savile Row Society selects the best of the best.</h3>
             <h3>Scroll through our brands to learn more about them.</h3>
-        </div>
+        </div></div></div>
         <div class="brand-details current">
             <div class="five columns text-center container brand-content">
                 <h4><span></span></h4>

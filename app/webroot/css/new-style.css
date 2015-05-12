@@ -13,7 +13,7 @@ span.consultant-name, span.consultant-name a{color:#222222; text-transform: uppe
 span.consultant-name:hover, span.consultant-name a:hover{color:#b6a166;}
 .fashion_heading{font-family: 'Open sans' !important; font-style: normal;}
 .load_more{color:#000; border:1px solid #000 !important; text-align: center; width:100px !important; padding: 15px;}
-.loader{width:110px; height:auto; margin:0 auto 30px auto;}
+.loader{width:110px; height:auto; margin:0 auto 30px auto; clear: both;}
 .load_more:hover{color:#b6a166; border:1px solid #b6a166 !important;}
 .consultant-container{max-height: 250px; overflow: hidden; margin-bottom: 15px;}
 
@@ -297,7 +297,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 #signin-popup{ position: fixed; background: #fff; }
 
 
-.dropdown_wrapper{font-family: "Open Sans";}
+.dropdown_wrapper{font-family: "Open Sans"; z-index:3;}
 .notification_dropdown{ box-shadow: #888 0 0 7px; display: none;  vertical-align: top; margin: 0px; padding: 10px 0; position: absolute; top: 42px; width: 380px; right: 0px; border: 1px solid #6f6f6f; background: #fff; min-height: 150px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .cart_dropdown{ box-shadow: #888 0 0 7px; display: none; vertical-align: top; margin: 0px; padding: 10px 0; position: absolute; top: 42px; width: 380px; right: 0px; border: 1px solid #6f6f6f; background: #fff; min-height: 150px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .cart_dropdown > .pointer{ left: 82%; }
