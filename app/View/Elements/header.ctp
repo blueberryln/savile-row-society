@@ -106,7 +106,7 @@
                 <?php } else { ?>
                 <li><a href="/user/profile">My Account</a></li>
                 <li><a href="/signout">Sign Out</a></li>
-                <?php } ?>@
+                <?php } ?>
                 <span>&nbsp;</span>
                 <li><a href="/#two">Shop</a></li>
                 <li><a href="/#three">Stylist</a></li>
@@ -356,7 +356,50 @@
                 </div>
                 <!-- /nav -->
             </div>
-        </header>
+            <div class="content-container-header">
+            <?php if ($is_stylist || $is_admin ) : ?>
+            <div class="twelve columns black">
+                <div class="eleven columns container">
+                   <div class="twelve columns container left pad-none">
+                        <div class="ten columns left admin-nav">
+                            <ul>
+                            <?php if ($is_stylist || $is_admin ) : ?>
+                                <li><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
+                                <li><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
+                                <li><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
+                                <li><a href="<?php echo $this->request->webroot; ?>stylists/closet">The Closet</a></li>
+                            <?php endif; ?>
+                            </ul>
+                        </div>
+                        
+                        <div class="two columns right admin-top-right">
+                            <ul>
+                               
+                                <li> 
+                                    <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
+                                    <div class="admin-top-right-dropdown">
+                                        <ul>
+                                            <?php if ($is_stylist || $is_admin ) : ?>
+                                                <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
+                                                <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
+                                                <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
+                                                <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>stylists/closet">The CLoset</a></li>
+                                            <?php endif; ?>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            </ul>    
+                        </div>
+                   
+                    </div>
+            </div>
+         
+            <?php endif;?>   
+
+        </div>
+      </div>
+    </header>
         <!-- /header -->
 <script>
 var if_clik =0;

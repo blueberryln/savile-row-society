@@ -1318,13 +1318,13 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .content-container-faq .wrapper_faq p, div{ font-size: 14px; }
 
 /*******Message One CSS********/
-.black { background: #212125; min-height:37px; margin-top: 81px; display: none; }
+.black { background: #212125; min-height:37px; margin-top: 7px; display: block; }
 .message-box {
 background: #fff;
 /*font-family: 'ProximaNovaCond-Regular';*/
 min-height: 823px;
 /*top: 80px;*/
-margin: 110px 0 0;
+margin: 170px 0 0;
 float: none !important;
 }
 .content-container-brands > .container.container-box{ float: none !important; margin: 0 auto; }
