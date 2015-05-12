@@ -351,7 +351,7 @@
                         <li><a href="/">Home</a></li>
                         <li><a class="tell-me-more" href="/#nine9">About</a></li>
                         <li><a target="_blank" href="http://www.savilerowsociety.com/blog/">Blog</a></li>
-                        <li><a class="fashion"  href="/stylists/stylistbiography/772?refer=772">Fashion Consultants</a></li>
+                        <li><a class="fashion"  href="/stylists">Fashion Consultants</a></li>
                     </ul>
                 </div>
                 <!-- /nav -->

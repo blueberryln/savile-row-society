@@ -352,7 +352,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         </div>
                     </div>
                     <div class="last_slide">
-                        <a href="/stylists/stylistbiography/772?refer=772"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Fashion Consultants</span></a>
+                        <a href="/stylists"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Fashion Consultants</span></a>
                     </div>
                 </div>
             </div>

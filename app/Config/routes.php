@@ -63,6 +63,7 @@ Router::connect('/product/*', array('controller' => 'closet', 'action' => 'produ
 Router::connect('/user-outfit/*', array('controller' => 'closet', 'action' => 'userOutfit'));
 Router::connect('/profile/*', array('controller' => 'users', 'action' => 'register'));
 Router::connect('/thankyou/*', array('controller' => 'offers', 'action' => 'thankyou'));
+Router::connect('/stylists', array('controller' => 'pages', 'action' => 'fashion_consultants'));
 
 /* Admin */
 Router::connect('/admin', array('controller' => 'products', 'action' => 'index', 'admin' => true));
