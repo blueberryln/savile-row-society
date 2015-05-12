@@ -94,7 +94,7 @@
     });
 
   </script>
-  <?php if ($is_stylist || $is_admin ){ ?>
+  <?php if ($is_stylist){ ?>
   <style>
   .blank-space{padding-top:100px !important;}
 .container{padding-bottom: 0px !important;}
@@ -366,13 +366,13 @@
                 <!-- /nav -->
             </div>
             <div class="content-container-header">
-            <?php if ($is_stylist || $is_admin ) : ?>
+            <?php if ($is_stylist) : ?>
             <div class="twelve columns black">
                 <div class="eleven columns container">
                    <div class="twelve columns container left pad-none">
                         <div class="ten columns left admin-nav">
                             <ul>
-                            <?php if ($is_stylist || $is_admin ) : ?>
+                            <?php if ($is_stylist) : ?>
                                 <li><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
                                 <li><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
                                 <li><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
@@ -388,7 +388,7 @@
                                     <a href="#" title=""><span class="client-nav-switcher"><img src="<?php echo $this->webroot; ?>images/menu-dropdown-icon.png" alt="" /></span></a>
                                     <div class="admin-top-right-dropdown">
                                         <ul>
-                                            <?php if ($is_stylist || $is_admin ) : ?>
+                                            <?php if ($is_stylist) : ?>
                                                 <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/sales" title="">My Clients</a></li>
                                                 <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/feed">Dashboard</a></li>
                                                 <li class="m-ver-dd-menu"><a href="<?php echo $this->request->webroot; ?>messages/myoutfits">My outfits</a></li>
