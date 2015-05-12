@@ -32,7 +32,7 @@ img,iframe{max-width: 100% !important; opacity: 1 !important;}/*to remove*/
 .fancybox-inner a, .fancybox-inner .fancybox-data-box { font-size: 0px; line-height: 0; }
 .loader{text-align: center}
 .only-mob{display: none;}
-
+span.client-nav-switcher{display: none;}
 
 /****FONTS***/
 @font-face {
@@ -1318,13 +1318,13 @@ a.link-older-photos, a.link-newer-photos {color: #c3c3c2;}
 .content-container-faq .wrapper_faq p, div{ font-size: 14px; }
 
 /*******Message One CSS********/
-.black { background: #212125; min-height:37px; margin-top: 81px; display: none; }
+.black { background: #212125; min-height:37px; margin-top: 7px; display: block; }
 .message-box {
 background: #fff;
 /*font-family: 'ProximaNovaCond-Regular';*/
 min-height: 823px;
 /*top: 80px;*/
-margin: 110px 0 0;
+margin: 170px 0 0;
 float: none !important;
 }
 .content-container-brands > .container.container-box{ float: none !important; margin: 0 auto; }
@@ -2126,7 +2126,17 @@ input#billingCopybilling { visibility: visible;}
 .client-img-small, .m-ver, .dd-nav{ display: none;}
 /********Mobile CSS**********/
 
+@media screen and (min-width: 1170px) and (max-width: 1370px) { 
+.admin-nav ul li a{padding:0 45px !important;}
+}
+
+@media screen and (min-width: 960px) and (max-width: 1170px) { 
+.admin-nav ul li a{padding:0 30px !important;}
+}
+
+
 @media screen and (min-width: 1367px) and (max-width: 3000px) { 
+    
     .mg-small-1{margin-right: 0.6%;}
     }
 
@@ -2148,7 +2158,8 @@ input#billingCopybilling { visibility: visible;}
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
-    
+    .ten.columns{width:100% !important;}
+    .right{display: none;}
     .myclient-list.tab_n_mob { display: inline-block;}
     .myclient-list.dsktp_only {display: none;}
     
@@ -2217,7 +2228,7 @@ input#billingCopybilling { visibility: visible;}
     .card-menu{line-height: 71px; margin: 0px 5px 0 0 !important; display: inline-block; }
     /*span.call-us-at, span.welcome-name{top: 32px;}*/
     .header .menu{margin: 0; display: none; /*width: 100%;*/ line-height: normal; position: absolute; top: 80px; right: 0; border-left: 1px solid #CECECE; }
-    .content-container-header { margin-top: 81px; position: relative; z-index: 2;}
+    .content-container-header { margin-top: 30px; position: relative; z-index: 2;}
     .header .menu ul { width: 100%; background: #fff; }
     .header .menu li { text-align: center; width: 100%; padding: 10px 0; }
     div.finalizing{width:66.66666666666666% !important;}
@@ -2450,7 +2461,8 @@ width: 70%;
 
 
 @media screen and (max-width: 767px) {
-        .one.columns,   
+
+            .one.columns,   
         .two.columns,
         .three.columns,     
         .four.columns,      
@@ -2503,7 +2515,7 @@ width: 70%;
         .footer-buttons ul li .footer-bnt { height: 35px; line-height: 35px;}
         .footer .menu { margin-top: 20px!important;}
         .footer .menu li { width: 90px;}
-    
+    span.client-nav-switcher{display: block;}
     
         .content-container, .content-container-home{margin-top: 0px; position: relative; z-index: 0; text-align: center; }
         .header .logo{ width: 190px; padding-left: 10px; padding-top: 20px; } 
