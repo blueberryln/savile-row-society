@@ -94,6 +94,15 @@
     });
 
   </script>
+  <?php if ($is_stylist){ ?>
+  <style>
+  .blank-space{padding-top:100px !important;}
+.container{padding-bottom: 0px !important;}
+.stylistbio-section{margin-top: 138px !important;}
+
+  </style>
+
+  <?php } ?>
 
         <!--Mobile menu wrapper-->
         <div class="wrapper_mobile">

@@ -153,7 +153,6 @@ class PagesController extends AppController {
         $this->loadModel('User');
         $title_for_layout = 'Our Fashion Consultants';
         $limit = 16;
-        //$stylists = $this->User->find('all',array('conditions'=>array('is_stylist'=>true,'view_stylist'=>true)));
         $conditions = array('conditions'=>array('is_stylist'=>true,'view_stylist'=>true),'limit'=>$limit);
         $this->paginate = $conditions;
         $stylists = $this->paginate('User');
