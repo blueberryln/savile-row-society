@@ -41,9 +41,13 @@ class OffersController extends AppController {
         //Get Top Outfits
         $TopOutfit = ClassRegistry::init('TopOutfit');
         $topOutfits = $TopOutfit->getTopOutfits();
+        $this->loadModel('Blog');
+        $limit = 6;
+        $conditions = array('order'=>'Blog.id desc','limit'=>$limit,'conditions'=>array('Blog.disabled'=>0));
+        $posts = $this->Blog->get_posts('all',$conditions);
         $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
 
-        $this->set(compact('topStylists','topOutfits', 'firstStylist','offer_details'));
+        $this->set(compact('topStylists','topOutfits', 'firstStylist','offer_details','posts'));
 
         $this->render('/Pages/home');
 

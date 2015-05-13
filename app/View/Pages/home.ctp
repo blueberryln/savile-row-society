@@ -122,7 +122,14 @@ $this->Html->meta(array('property'=> 'og:description', 'content' => $meta_descri
 $this->Html->meta(array('property'=> 'og:url', 'content' => "//www.savilerowsociety.com/"),'',array('inline'=>false));
 $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array('inline'=>false));
 ?>
-
+<?php if(empty($slideBlog)){
+    $slideBlog['SlideBlog']['title'] = 'Twillory and SRS: A Shared Personal Style';
+    $slideBlog['SlideBlog']['description'] = 'We’re getting you that personalized style with Twillory';
+    $slideBlog['SlideBlog']['image'] = 'img/home/HomeImageBlog.png';
+    $slideBlog['SlideBlog']['link'] = 'http://www.savilerowsociety.com/blog/';
+    } else{
+        $slideBlog['SlideBlog']['image'] = 'files/blog/'.$slideBlog['SlideBlog']['image'];
+        } ?>
     <!-- Wrapper -->
     <div class="container_wrapper">
         <!-- banner -->
@@ -141,10 +148,10 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             </span>
                         </li>
                         <li class="slide_second">
-                            <img src="<?php echo HTTP_ROOT ?>img/home/HomeImageBlog.png" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                            <img src="<?php echo HTTP_ROOT.$slideBlog['SlideBlog']['image'] ?>" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                             <span>
-                                <div class="heading"><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 31px;line-height: normal;background:none;" href="http://www.savilerowsociety.com/blog/">Twillory and SRS: A Shared Personal Style</a></div>
-                                <p>We’re getting you that personalized style with Twillory  <br><br><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 17px;line-height: normal;background:none;"  href = "http://www.savilerowsociety.com/blog/">Read on...</a></p>
+                                <div class="heading"><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 31px;line-height: normal;background:none;" href="<?php echo $slideBlog['SlideBlog']['link']; ?>"><?php echo $slideBlog['SlideBlog']['title']; ?></a></div>
+                                <p><?php echo $slideBlog['SlideBlog']['description']; ?><br><br><a target="_blank" style="outline: none;margin: 0;padding: 0;color: #fff;text-decoration: none;text-transform: uppercase;font-size: 17px;line-height: normal;background:none;"  href = "<?php echo $slideBlog['SlideBlog']['link']; ?>">Read on...</a></p>
                             </span>
                         </li>
                         <li class="GetSocial">

@@ -94,9 +94,9 @@ class AdminsController extends AppController {
 		if ($this->request->is('ajax')) {
 			$this->loadModel($model);
 			$id = convert_uudecode(base64_decode($id));
-			if($model == 'Blog'){
-				$image = $this->Blog->findById($id);
-				$oldImg = $image['Blog']['image'];
+			if($model == 'Blog' || $model == 'SlideBlog' ){
+				$image = $this->$model->findById($id);
+				$oldImg = $image[$model]['image'];
 				$destination = realpath('../../app/webroot/files/blog'). '/';
 				unlink($destination.$oldImg);
 			}
@@ -108,7 +108,7 @@ class AdminsController extends AppController {
 			}
 		}
 		else{
-			$this->redirect('/admins/blog');
+			$this->redirect($this->referer());
 		}	
 		die;
 
@@ -256,6 +256,73 @@ class AdminsController extends AppController {
 
 
 	}
+
+	/*returns the list of blog posts for slider on home page*/
+	function slide_blogpost(){
+		$this->loadModel('SlideBlog');
+		$this->layout = 'adminlte';
+		$conditions = array('order'=>'SlideBlog.id desc','limit'=>20);
+		$this->paginate = $conditions;
+		$slideBlogs = $this->paginate('SlideBlog');
+		$this->set(compact('slideBlogs'));
+		
+	}
+
+	/*add a blog for home page slider*/
+	function add_slide_blogpost(){
+		$this->loadModel('SlideBlog');
+		$this->layout = 'adminlte';
+		$data = $this->data;
+		$this->set(compact('data'));
+		if(!empty($data)){
+			$data['SlideBlog']['time'] = time();
+			$link = strstr($data['SlideBlog']['link'],'://');
+			if($link){
+				$data['SlideBlog']['link'] = '//' . ltrim($link,'://');
+			}
+			else{
+				$data['SlideBlog']['link'] = '//' . ltrim($data['SlideBlog']['link'],'//');
+			}
+			if($data['SlideBlog']['link'] && $data['SlideBlog']['file']){
+				$result = $this->SlideBlog->add_slide_blog_post($data);
+				if($result == 'success'){
+					$this->redirect(array('controller'=>'admins','action'=>'slide_blogpost'));
+				}
+			}
+		}
+	}
+
+	/*update a blog for home page slider*/
+	function edit_slide_blogpost($id=null){
+		$this->loadModel('SlideBlog');
+		$this->layout = 'adminlte';
+		$id = convert_uudecode(base64_decode($id));
+		$conditions = array('conditions'=>array('SlideBlog.id'=>$id));
+		$posts = $this->SlideBlog->get_posts('first',$conditions);
+		$this->set(compact('posts'));
+		$data = $this->data;
+		if(!empty($data)){
+			$link = strstr($data['SlideBlog']['link'],'://');
+			if($link){
+				$data['SlideBlog']['link'] = '//' . ltrim($link,'://');
+			}
+			else{
+				$data['SlideBlog']['link'] = '//' . ltrim($data['SlideBlog']['link'],'//');
+			}
+			if($data['SlideBlog']['link'] && $data['SlideBlog']['title']){
+				$data['SlideBlog']['id'] = $id;
+				$data['SlideBlog']['time'] = time();
+				$result = $this->SlideBlog->update_slide_blogpost($data,$posts['SlideBlog']['image']);
+				if($result == 'success'){
+					$this->redirect(array('controller'=>'admins','action'=>'slide_blogpost'));
+				}
+			}
+			else{
+				echo 'All Fields are mandatory.';
+			}
+		}
+	}
+
 }
 
 
