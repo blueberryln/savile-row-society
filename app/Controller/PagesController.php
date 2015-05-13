@@ -200,8 +200,7 @@ class PagesController extends AppController {
 
     /* sends notification email to the team when user enters thee email from coming soon page */
     function coming_soon_email(){
-        $this->redirect('/coming-soon');
-        /*if($_POST['email']){
+        if($_POST['email']){
             try{
                 $team = array('shubham@yopmail.com');
                 $bcc = Configure::read('Email.contact');
@@ -224,7 +223,7 @@ class PagesController extends AppController {
         }
         else{
             $this->redirect('/coming-soon');
-        }*/
+        }
     }
 
 }
