@@ -33,7 +33,7 @@ else if($sideBarTab == "measurement"){
 
     <div class="twelve columns myclient-heading pad-none">
         <h1><?php echo ucwords($client_user['User']['first_name'].' '.$client_user['User']['last_name']); ?> | <span><?php echo $page_title; ?></span></h1>
-        <div class="client-img-small"><img src="<?php echo HTTP_ROOT; ?>files/users/<?php echo $client_user['User']['profile_photo_url']; ?>" alt="" />
+        <div class="client-img-small"><img src="<?php echo $user_image_src;; ?>" alt="" />
         </div>
     </div>
     <div class="inner-left inner-myclient left">
