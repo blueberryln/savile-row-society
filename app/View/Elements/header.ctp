@@ -99,6 +99,8 @@
   .blank-space{padding-top:100px !important;}
 .container{padding-bottom: 0px !important;}
 .stylistbio-section{margin-top: 138px !important;}
+#banner_wrapper{margin-top:142px !important;}
+.rightImages{margin-top:142px !important;}
 
   </style>
 
