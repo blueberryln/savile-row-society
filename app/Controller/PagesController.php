@@ -1,7 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
-
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Static content controller
  *
@@ -67,10 +67,12 @@ class PagesController extends AppController {
             $topOutfits = $TopOutfit->getTopOutfits();
             $title_for_layout = "Personal Stylist Menswear Online Fashion Shopping Website - Buy Mens Designer Clothes";
             $this->loadModel('Blog');
+            $this->loadModel('SlideBlog');
             $limit = 6;
             $conditions = array('order'=>'Blog.id desc','limit'=>$limit,'conditions'=>array('Blog.disabled'=>0));
             $posts = $this->Blog->get_posts('all',$conditions);
-            $this->set(compact('user','topStylists','topOutfits', 'firstStylist','posts'));
+            $slideBlog = $this->SlideBlog->find('first',array('conditions'=>array('disabled'=>false),'order'=>'time desc'));
+            $this->set(compact('user','topStylists','topOutfits', 'firstStylist','posts','slideBlog'));
        
         }
         else if ($page == 'contact') {
@@ -146,11 +148,82 @@ class PagesController extends AppController {
         die;
     }
 
-
+    /* return the stylists that are checked by the admin as view_stylist */
     function fashion_consultants(){
         $this->loadModel('User');
-        $stylists = $this->User->find('all',array('conditions'=>array('is_stylist'=>true,'view_stylist'=>false)));
-        $this->set(compact('stylists'));  
+        $title_for_layout = 'Our Fashion Consultants';
+        $limit = 16;
+        $conditions = array('conditions'=>array('is_stylist'=>true,'view_stylist'=>true),'limit'=>$limit);
+        $this->paginate = $conditions;
+        $stylists = $this->paginate('User');
+        $this->set(compact('stylists','title_for_layout','limit'));  
+    }
+
+    /* return the paginated stylists that are checked by the admin as view_stylist */
+    function fashion_consultants_pager(){
+        if($this->request->is('ajax')){
+            $this->loadModel('User');
+            $conditions = array('conditions'=>array('is_stylist'=>true,'view_stylist'=>true),'limit'=>$_POST['limit'],'offset'=>$_POST['offset']);
+            $this->paginate = $conditions;
+            $stylists = $this->paginate('User');
+            $append = '';
+            if(!empty($stylists)){
+                foreach($stylists as $stylist){
+                    if($stylist['User']['profile_photo_url']){
+                        $profile_pic = HTTP_ROOT.'files/users/'.$stylist['User']['profile_photo_url'];
+                    }
+                    else{
+                        $profile_pic = HTTP_ROOT.'images/default-user.jpg';
+                    }
+                    $append.='<li class="column-4">'.
+                    '<div class="consultant-container">'.
+                        '<h3>'.
+                            '<a href="/stylists/stylistbiography/'.$stylist['User']['id'].'">'.
+                                '<img src="'.$profile_pic.'"/>'.
+                                '<span class="hover_part2">'.
+                                    '<span class="get_started" style="">GET STARTED</span>'.
+                                '</span>'.
+                            '</a>'.
+                        '</h3>'.
+                    '</div>'.
+                    '<a href="/stylists/stylistbiography/'.$stylist['User']['id'].'">'.
+                        '<span class="consultant-name">'.substr($stylist['User']['full_name'],0,25).'</span>'.
+                    '</a>'.
+                '</li>';
+                }
+            }
+            echo $append;die;
+        } else{
+            $this->redirect($this->referer());
+        }
+    }
+
+    /* sends notification email to the team when user enters thee email from coming soon page */
+    function coming_soon_email(){
+        if($_POST['email']){
+            try{
+                $team = array('shubham@yopmail.com');
+                $bcc = Configure::read('Email.contact');
+                $email = new CakeEmail('default');
+                $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
+                $email->to($team);
+                $email->subject('Coming Soon');
+                $email->bcc($bcc);
+                $email->template('coming_soon');
+                $email->emailFormat('html');
+                $email->viewVars(array('email' => $_POST['email']));
+                if($email->send()){
+                    $this->Session->setFlash(__('Thank You! We will notify you shorly.'), 'flash');
+                    $this->redirect('/coming-soon');
+                }
+            }
+            catch(Exception $e){
+                
+            }
+        }
+        else{
+            $this->redirect('/coming-soon');
+        }
     }
 
 }

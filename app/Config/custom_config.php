@@ -1,7 +1,11 @@
 <?php
 define('host',$_SERVER['HTTP_HOST']);
 $config['my_app'] = 'abcdef';	// gives error when commented
-define('HTTP_URL','d2owzzusdvisuq.cloudfront.net');	//returns the site URL
+if(host == 'www.savilerowsociety.com' || host == 'savilerowsociety.com'){ 
+	define('HTTP_URL','d2owzzusdvisuq.cloudfront.net');	//returns the site URL  
+} else{
+	define('HTTP_URL',$_SERVER['HTTP_HOST']);	//returns the site URL
+}
 Configure::write('App.cssBaseUrl', 'http://'.host.'/css/');
 Configure::write('App.jsBaseUrl', 'http://'.HTTP_URL.'/js/');  
 Configure::write('App.imageBaseUrl', 'http://'.HTTP_URL.'/');

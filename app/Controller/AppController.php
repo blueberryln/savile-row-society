@@ -491,7 +491,7 @@ class AppController extends Controller {
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($sales_team);
-                    $email->subject('New User Registration.');
+                    $email->subject('New User Registration');
                     $email->bcc($bcc);
                     $email->template('sales_team');
                     $email->emailFormat('html');
@@ -595,7 +595,7 @@ class AppController extends Controller {
                     $email = new CakeEmail('default');
                     $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                     $email->to($results['User']['email']);
-                    $email->subject('Activate your account.');
+                    $email->subject('Activate your account');
                     $email->bcc($bcc);
                     $email->template('confirmation_email');
                     $email->emailFormat('html');
