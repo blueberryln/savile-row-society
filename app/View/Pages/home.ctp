@@ -1,6 +1,3 @@
-
-
-
 <script type="text/javascript">
     // $(document).ready(function(){
     //     $('.product_placeholder ul li a').hover(function(){
@@ -219,9 +216,18 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 }else{
                     $controller  =  'guest';
                 }
+                $server_dest = '../../app/webroot/files/products/';
+                $cdn_dest = HTTP_ROOT.'files/products/';
                 foreach ($topOutfits as $outfit) {
+                    $image1 = $image2 = $image3 = $image4 = $image5 = '';
                     if($outfit_count >= 3)
                         {break;}
+
+                    $image1= $server_dest.$outfit['OutfitItem'][0]['product']['Image'][0]['name'];
+                    $image2= $server_dest.$outfit['OutfitItem'][1]['product']['Image'][0]['name'];
+                    $image3= $server_dest.$outfit['OutfitItem'][2]['product']['Image'][0]['name'];
+                    $image4= $server_dest.$outfit['OutfitItem'][3]['product']['Image'][0]['name'];
+                    $image5= $server_dest.$outfit['OutfitItem'][4]['product']['Image'][0]['name'];
                   ?>
                  <li>
 
@@ -245,14 +251,26 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
 
                     <div class="left_box">
                     <div class="box1_wrapper">
-                        <div class="box1"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>"/></a></div>
+                        <div class="box1"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
+                            <?php if(@file_exists($image1) && $outfit['OutfitItem'][0]['product']['Image'][0]['name']){ ?>
+                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>">
+                            <?php } ?>
+                            </a></div>
                         </div>
 
                         <div class="box2_wrapper">
-                        <div class="box2"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>"/></a></div></div>
+                        <div class="box2"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
+                        <?php if(@file_exists($image2) && $outfit['OutfitItem'][1]['product']['Image'][0]['name']){ ?>
+                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>">
+                        <?php } ?>
+                        </a></div></div>
 
                         <div class="box3_wrapper">  
-                        <div class="box3"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>"/></a></div> </div>  
+                        <div class="box3"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
+                        <?php if(@file_exists($image3) && $outfit['OutfitItem'][2]['product']['Image'][0]['name']){ ?>
+                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>">
+                        <?php } ?>
+                        </a></div> </div>  
                     </div> 
 
                     <div class="right_box">
@@ -267,10 +285,18 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
                          <?php endif; ?> </div>    
                             </div>   
-                        <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>"/></a></div>  </div>  
+                        <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
+                        <?php if(@file_exists($image4) && $outfit['OutfitItem'][3]['product']['Image'][0]['name']){ ?>
+                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>">
+                        <?php } ?>
+                        </a></div>  </div>  
 
                         <div class="box5_wrapper"> 
-                        <div class="box5"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"><img src="<?php echo HTTP_ROOT; ?>files/products/<?php echo $outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>"/></a></div> </div>    
+                        <div class="box5"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
+                        <?php if(@file_exists($image5) && $outfit['OutfitItem'][4]['product']['Image'][0]['name']){ ?>
+                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>">
+                        <?php } ?>
+                        </a></div> </div>    
                     </div>
 
                     <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
