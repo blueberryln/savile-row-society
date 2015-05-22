@@ -254,7 +254,7 @@ $(document).ready(function(){
                                         '</div>' + 
                                         '<div class="twelve columns left client-outfit-bottom pad-none">' + 
                                             '<div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left">' + outfit['Message'][0]['Message']['body'].substr(0,120) + '... <a href="/messages/outfitdetails/' + outfit['Outfit']['id'] + '">Read More</a></div></div>' + 
-                                            '<div class="bkmrk-outfit right" ><a href="#"" id="outfitbook">Bookmark Outfit</a></div>' +
+                                            '<div class="bkmrk-outfit right" ><a href="javascript:void(0)" id="outfitbook">Bookmark Outfit</a></div>' +
                                         '</div>' + 
                                     '</div>' + 
                                 '</div>';
@@ -412,7 +412,7 @@ $(document).ready(function(){
                                             <div class="twelve columns client-outfits left" id="findOutfitId">
                                                 <div class="eleven columns container client-outfits-area pad-none" >
                                                     <h1 class="outfit-name"><a href="/messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>"><?php echo ucfirst($outfit['Outfit']['outfit_name']); ?></a></h1>
-                                                    <input type="hidden" data-id="<?php echo $outfit['Outfit']['id']; ?>" value="<?php echo $outfit['Outfit']['id']; ?>" class="outfit-id">
+                                                    <input type="hidden" id="outfitidquickview" data-id="<?php echo $outfit['Outfit']['id']; ?>" value="<?php echo $outfit['Outfit']['id']; ?>" class="outfit-id">
                                                     <div class="twelve columns client-outfits-img pad-none">
                                                        
                                                         <ul>
@@ -447,7 +447,7 @@ $(document).ready(function(){
                                                     </div>
                                                     <div class="twelve columns left client-outfit-bottom pad-none">
                                                         <div class="client-comments left"><h2>Stylist Comment</h2><div class="client-comments-text left"><?php echo substr($outfit['Message'][0]['Message']['body'],0,120); ?>... <a href="/messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">Read More</a></div></div>
-                                                        <div class="bkmrk-outfit right" ><a href='#' id="outfitbook">Bookmark Outfit</a></div>
+                                                        <div class="bkmrk-outfit right" ><a href='javascript:void(0)' id="outfitbook">Bookmark Outfit</a></div>
                                                         
                                                     </div>
                                                 </div>
