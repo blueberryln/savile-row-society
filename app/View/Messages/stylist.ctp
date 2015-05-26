@@ -241,7 +241,7 @@ $this->Html->script('date-format.js', array('inline' => false));
             if(chatMsg['Message']['is_outfit'] == 1){
                 
 
-                var outfitName = (chatMsg['OutfitDetail']['outfit_name']) ? chatMsg['OutfitDetail']['outfit_name'].capitalize() : ''; 
+                var outfitName = (typeof(chatMsg['OutfitDetail']['outfit_name']) != "undefined") ? chatMsg['OutfitDetail']['outfit_name'].capitalize() : ''; 
                 var userList = [],
                     outfitPrice = 0,
                     brandList = [];
