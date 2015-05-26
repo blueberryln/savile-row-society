@@ -203,6 +203,7 @@ $this->Html->script('date-format.js', array('inline' => false));
                         } 
 
                         scrollbarData.update("bottom");
+                        $(window).resize();
                     }
                 },
                 error: function(res) {
