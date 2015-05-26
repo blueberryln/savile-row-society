@@ -50,7 +50,7 @@ $this->Html->scriptBlock($script, array('safe' => true, 'inline' => false));
                                 <div class="twelve columns left">
                                     <div class="bottom-text">
                                         <div class="dummy-text">
-                                            <textarea class="chat-msg-txtbox" id='messageToSend'></textarea>
+                                            <textarea class="chat-msg-txtbox" rows="5" id='messageToSend'></textarea>
                                         </div>
                                     </div>
                                 </div>

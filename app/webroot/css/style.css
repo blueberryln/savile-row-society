@@ -3418,6 +3418,8 @@ line-height: normal;
 
 }
 
-
+/*shubham added on 26may '15*/
+textarea.chat-msg-txtbox{resize:vertical !important;}
+/**/
 
 

@@ -62,7 +62,7 @@ $this->Html->script('date-format.js', array('inline' => false));
                                 <div class="message-pane-bottom clear-fix" style="overflow: hidden;">
                                     <div class="twelve columns left">
                                         <div class="bottom-text">
-                                            <div class="dummy-text"><textarea class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea></div>
+                                            <div class="dummy-text"><textarea rows="5" class="chat-msg-txtbox" id='messageToSend' name="data[Message][body]"></textarea></div>
                                         </div>
                                     </div>
                                     <div class=" twelve columns left bottom-btns">
