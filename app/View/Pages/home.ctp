@@ -187,9 +187,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <span class="hover_section"><img src="<?php //echo HTTP_ROOT ?>img/home/img3-hover.jpg" alt="shop men's" /></span>
             </a> -->
 
-            <a href="https://www.facebook.com/SavileRowSociety" class="looksByOccasion"><span><span class="col-text">looks by occasion</span></span></a>
-            <a href="https://instagram.com/savilerowsociety" class="shopByItems"><span><span class="col-text">shop by item</span></span></a>
-            <a href="https://twitter.com/SRSocietydotcom" class="shopMen"><span><span class="col-text">shop top looks</span></span></a>
+            <a href="https://www.facebook.com/SavileRowSociety" class="looksByOccasion"><span><span class="col-text">Facebook</span></span></a>
+            <a href="https://instagram.com/savilerowsociety" class="shopByItems"><span><span class="col-text">Instagram</span></span></a>
+            <a href="https://twitter.com/SRSocietydotcom" class="shopMen"><span><span class="col-text">Twitter</span></span></a>
 
 
         </div>
