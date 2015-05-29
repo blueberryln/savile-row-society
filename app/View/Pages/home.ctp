@@ -207,134 +207,400 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <!-- /Section_Main_Heading -->
 
                 <!-- column -->
-        <div class="product-content">
-            <ul class="two-column">
-            <?php if($topOutfits): ?>
-                <?php $outfit_count = 1;
-                if($user){
-                    $controller  =  'messages';
-                }else{
-                    $controller  =  'guest';
-                }
-                $server_dest = '../../app/webroot/files/products/';
-                $cdn_dest = HTTP_ROOT.'files/products/';
-                foreach ($topOutfits as $outfit) {
-                    $image1 = $image2 = $image3 = $image4 = $image5 = '';
-                    if($outfit_count >= 3)
-                        {break;}
+                 <!-- <div style="position: relative;">
+                    <div class="for_mobile_product"> -->
+                        <div class="product-content" style="position:relative">
+                        
+                            <ul class="multiple-items1 slider after-load">                                
+                                <!-- Dummy Product Items-->
 
-                    $image1= $server_dest.$outfit['OutfitItem'][0]['product']['Image'][0]['name'];
-                    $image2= $server_dest.$outfit['OutfitItem'][1]['product']['Image'][0]['name'];
-                    $image3= $server_dest.$outfit['OutfitItem'][2]['product']['Image'][0]['name'];
-                    $image4= $server_dest.$outfit['OutfitItem'][3]['product']['Image'][0]['name'];
-                    $image5= $server_dest.$outfit['OutfitItem'][4]['product']['Image'][0]['name'];
-                  ?>
-                 <li>
+                                <li>
+                                    <div class="link-button small-device">
+                                        <div class="shop-button">
+                                            <a href="/guest/outfitdetails/498">SHOP</a>              
+                                        </div>    
+                                    </div>
+                                    <div class="row heading_title">
+                                        <div class="author_name"> <!-- Styled by <span>Leslie Gilbert-Morales</span> --> 
+                                            <a href="/stylists/stylistbiography/741">
+                                                <img src="http://srs/images/default-user.jpg" alt="">
+                                            </a>  
+                                        </div>
+                                        <div class="designer_name"> By LESLIE GILBERT-MORALES /</div>
+                                        <div class="heading_wrapper">
+                                            <span>try to weeekend dressup</span>
+                                        </div>
+                                   </div>
+                                   <div class="left_box">
+                                        <div class="box1_wrapper">
+                                            <div class="box1">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/705_7566823_Untitled.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box2_wrapper">
+                                             <div class="box2">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/715_1849192_AlanPaineAlbury1.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box3_wrapper">  
+                                            <div class="box3">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/870_7142481_navy west.png">
+                                                </a>
+                                            </div> 
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div> 
+                                    <div class="right_box">
+                                        <div class="box4_wrapper"> 
+                                            <div class="box4">
+                                            <!--shop button begins -->
+                                                <div class="link-button">
+                                                    <div class="shop-button">
+                                                        <a href="/guest/outfitdetails/498">SHOP</a>              
+                                                    </div>    
+                                                </div>   
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/566_6890157_FriJays_Revised_-_T_S_grande.jpg">
+                                                </a>
+                                            </div>  
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box5_wrapper"> 
+                                            <div class="box5">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/786_5725733_CitizensSidUltimateFront.jpg">
+                                                </a>
+                                            </div> 
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">                        
+                                        <span class="golden-heading">
+                                            <div class="fb-like facebook-like fb_iframe_widget" data-href="http://srs/guest/outfitdetails/498" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=507420839292016&amp;container_width=100&amp;href=http%3A%2F%2Fsrs%2Fguest%2Foutfitdetails%2F498&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=false"><span style="vertical-align: bottom; width: 76px; height: 20px;"><iframe name="f39aaa1f5" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="http://www.facebook.com/v2.1/plugins/like.php?action=like&amp;app_id=507420839292016&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FQrU_tEEWym9.js%3Fversion%3D41%23cb%3Df15d38c018%26domain%3Dsrs%26origin%3Dhttp%253A%252F%252Fsrs%252Ff6eb4aa8%26relation%3Dparent.parent&amp;container_width=100&amp;href=http%3A%2F%2Fsrs%2Fguest%2Foutfitdetails%2F498&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=false" style="border: none; visibility: visible; width: 76px; height: 20px;" class=""></iframe></span></div>
+                                        </span>                        
+                                                                                <p class="view-all">
+                                            <span rel="498" style="cursor:pointer" class="golden-heading ">0 comments / view all</span>
+                                        </p>
+                                        <div>
+                                            <div class="comment_append498 comment_view">
+                                                                                            </div>
+                                        </div>
+                                        <form method="POST" class="comment_form send_comment">
+                                            <input type="hidden" name="data[OutfitComment][outfit_id]" class="outfit_id" value="498">
+                                            <input type="text" name="data[OutfitComment][comment]" class="comment_box input-post">
+                                            <input class="post-submit submit_comment" value="POST" type="submit">
+                                        </form>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="link-button small-device">
+                                        <div class="shop-button">
+                                            <a href="/guest/outfitdetails/498">SHOP</a>              
+                                        </div>    
+                                    </div>
+                                    <div class="row heading_title">
+                                        <div class="author_name"> <!-- Styled by <span>Leslie Gilbert-Morales</span> --> 
+                                            <a href="/stylists/stylistbiography/741">
+                                                <img src="http://srs/images/default-user.jpg" alt="">
+                                            </a>  
+                                        </div>
+                                        <div class="designer_name"> By LESLIE GILBERT-MORALES /</div>
+                                        <div class="heading_wrapper">
+                                            <span>try to weeekend dressup</span>
+                                        </div>
+                                   </div>
+                                   <div class="left_box">
+                                        <div class="box1_wrapper">
+                                            <div class="box1">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/705_7566823_Untitled.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box2_wrapper">
+                                             <div class="box2">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/715_1849192_AlanPaineAlbury1.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box3_wrapper">  
+                                            <div class="box3">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/870_7142481_navy west.png">
+                                                </a>
+                                            </div> 
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div> 
+                                    <div class="right_box">
+                                        <div class="box4_wrapper"> 
+                                            <div class="box4">
+                                            <!--shop button begins -->
+                                                <div class="link-button">
+                                                    <div class="shop-button">
+                                                        <a href="/guest/outfitdetails/498">SHOP</a>              
+                                                    </div>    
+                                                </div>   
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/566_6890157_FriJays_Revised_-_T_S_grande.jpg">
+                                                </a>
+                                            </div>  
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box5_wrapper"> 
+                                            <div class="box5">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/786_5725733_CitizensSidUltimateFront.jpg">
+                                                </a>
+                                            </div> 
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">                        
+                                        <span class="golden-heading">
+                                            <div class="fb-like facebook-like fb_iframe_widget" data-href="http://srs/guest/outfitdetails/498" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=507420839292016&amp;container_width=100&amp;href=http%3A%2F%2Fsrs%2Fguest%2Foutfitdetails%2F498&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=false"><span style="vertical-align: bottom; width: 76px; height: 20px;"><iframe name="f39aaa1f5" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="http://www.facebook.com/v2.1/plugins/like.php?action=like&amp;app_id=507420839292016&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FQrU_tEEWym9.js%3Fversion%3D41%23cb%3Df15d38c018%26domain%3Dsrs%26origin%3Dhttp%253A%252F%252Fsrs%252Ff6eb4aa8%26relation%3Dparent.parent&amp;container_width=100&amp;href=http%3A%2F%2Fsrs%2Fguest%2Foutfitdetails%2F498&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=false" style="border: none; visibility: visible; width: 76px; height: 20px;" class=""></iframe></span></div>
+                                        </span>                        
+                                                                                <p class="view-all">
+                                            <span rel="498" style="cursor:pointer" class="golden-heading ">0 comments / view all</span>
+                                        </p>
+                                        <div>
+                                            <div class="comment_append498 comment_view">
+                                                                                            </div>
+                                        </div>
+                                        <form method="POST" class="comment_form send_comment">
+                                            <input type="hidden" name="data[OutfitComment][outfit_id]" class="outfit_id" value="498">
+                                            <input type="text" name="data[OutfitComment][comment]" class="comment_box input-post">
+                                            <input class="post-submit submit_comment" value="POST" type="submit">
+                                        </form>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="link-button small-device">
+                                        <div class="shop-button">
+                                            <a href="/guest/outfitdetails/498">SHOP</a>              
+                                        </div>    
+                                    </div>
+                                    <div class="row heading_title">
+                                        <div class="author_name"> <!-- Styled by <span>Leslie Gilbert-Morales</span> --> 
+                                            <a href="/stylists/stylistbiography/741">
+                                                <img src="http://srs/images/default-user.jpg" alt="">
+                                            </a>  
+                                        </div>
+                                        <div class="designer_name"> By LESLIE GILBERT-MORALES /</div>
+                                        <div class="heading_wrapper">
+                                            <span>try to weeekend dressup</span>
+                                        </div>
+                                   </div>
+                                   <div class="left_box">
+                                        <div class="box1_wrapper">
+                                            <div class="box1">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/705_7566823_Untitled.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box2_wrapper">
+                                             <div class="box2">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/715_1849192_AlanPaineAlbury1.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box3_wrapper">  
+                                            <div class="box3">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/870_7142481_navy west.png">
+                                                </a>
+                                            </div> 
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div> 
+                                    <div class="right_box">
+                                        <div class="box4_wrapper"> 
+                                            <div class="box4">
+                                            <!--shop button begins -->
+                                                <div class="link-button">
+                                                    <div class="shop-button">
+                                                        <a href="/guest/outfitdetails/498">SHOP</a>              
+                                                    </div>    
+                                                </div>   
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/566_6890157_FriJays_Revised_-_T_S_grande.jpg">
+                                                </a>
+                                            </div>  
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box5_wrapper"> 
+                                            <div class="box5">
+                                                <a href="/guest/outfitdetails/498">
+                                                    <img src="http://srs/files/products/786_5725733_CitizensSidUltimateFront.jpg">
+                                                </a>
+                                            </div> 
+                                            <div class="tooplooks_box_hover">
+                                                <div class="tooplooks_box_desc">
+                                                    <div class="tooplooks_box_desc_type">V Neck T-shirt</div>
+                                                    <div class="tooplooks_box_desc_brand">Calida</div>
+                                                    <div class="tooplooks_box_desc_price">$ 35.00</div>
+                                                    <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
+                                                    <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">                        
+                                        <span class="golden-heading">
+                                            <div class="fb-like facebook-like fb_iframe_widget" data-href="http://srs/guest/outfitdetails/498" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=507420839292016&amp;container_width=100&amp;href=http%3A%2F%2Fsrs%2Fguest%2Foutfitdetails%2F498&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=false"><span style="vertical-align: bottom; width: 76px; height: 20px;"><iframe name="f39aaa1f5" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="http://www.facebook.com/v2.1/plugins/like.php?action=like&amp;app_id=507420839292016&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FQrU_tEEWym9.js%3Fversion%3D41%23cb%3Df15d38c018%26domain%3Dsrs%26origin%3Dhttp%253A%252F%252Fsrs%252Ff6eb4aa8%26relation%3Dparent.parent&amp;container_width=100&amp;href=http%3A%2F%2Fsrs%2Fguest%2Foutfitdetails%2F498&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=false" style="border: none; visibility: visible; width: 76px; height: 20px;" class=""></iframe></span></div>
+                                        </span>                        
+                                                                                <p class="view-all">
+                                            <span rel="498" style="cursor:pointer" class="golden-heading ">0 comments / view all</span>
+                                        </p>
+                                        <div>
+                                            <div class="comment_append498 comment_view">
+                                                                                            </div>
+                                        </div>
+                                        <form method="POST" class="comment_form send_comment">
+                                            <input type="hidden" name="data[OutfitComment][outfit_id]" class="outfit_id" value="498">
+                                            <input type="text" name="data[OutfitComment][comment]" class="comment_box input-post">
+                                            <input class="post-submit submit_comment" value="POST" type="submit">
+                                        </form>
+                                    </div>
+                                </li>
+                                
+                              
 
-                    <div class="row heading_title">
-                            <div class="author_name"> <!-- Styled by <span><?php echo $outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name'] ;?></span> --> <a href="/stylists/stylistbiography/<?= $outfit['Stylist']['id']; ?>">
-                            <?php if(!empty($outfit['Stylist']['profile_photo_url']))  {?>
-                                <img src="<?php echo HTTP_ROOT.'files/users/'.$outfit['Stylist']['profile_photo_url'] ?>" alt="" />
-                            <?php } else{ ?>
-                                <img src="<?php echo HTTP_ROOT.'images/default-user.jpg'; ?>" alt="" />
-                            <?php } ?>
-                            </a>  </div>
-
-                                <div class="designer_name"> By <?php echo strtoupper($outfit['Stylist']['first_name'].' '.$outfit['Stylist']['last_name']); ?> /</div>
-                         
-                                 <div class="heading_wrapper">
-                                <span><?= $outfit['Outfit']['outfit_name']; ?></span>
-                                </div>
-                   
-                    </div>
 
 
-                    <div class="left_box">
-                    <div class="box1_wrapper">
-                        <div class="box1"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
-                            <?php if(@file_exists($image1) && $outfit['OutfitItem'][0]['product']['Image'][0]['name']){ ?>
-                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>">
-                            <?php } ?>
-                            </a></div>
+
+                                <!-- End Dummy Product Items-->
+                            </ul>                            
                         </div>
-
-                        <div class="box2_wrapper">
-                        <div class="box2"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
-                        <?php if(@file_exists($image2) && $outfit['OutfitItem'][1]['product']['Image'][0]['name']){ ?>
-                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>">
-                        <?php } ?>
-                        </a></div></div>
-
-                        <div class="box3_wrapper">  
-                        <div class="box3"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
-                        <?php if(@file_exists($image3) && $outfit['OutfitItem'][2]['product']['Image'][0]['name']){ ?>
-                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>">
-                        <?php } ?>
-                        </a></div> </div>  
-                    </div> 
-
-                    <div class="right_box">
-                      <div class="box4_wrapper"> 
-                       <div class="box4">
-
-                        <!--shop button begins -->
-                           <div class="link-button">
-                                <div class="shop-button"><?php if($user): ?>
-                        <a href="<?php echo $this->webroot; ?>messages/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
-                        <?php else: ?>
-                        <a href="<?php echo $this->webroot; ?>guest/outfitdetails/<?php echo $outfit['Outfit']['id']; ?>">SHOP</a>
-                         <?php endif; ?> </div>    
-                            </div>   
-                        <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
-                        <?php if(@file_exists($image4) && $outfit['OutfitItem'][3]['product']['Image'][0]['name']){ ?>
-                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>">
-                        <?php } ?>
-                        </a></div>  </div>  
-
-                        <div class="box5_wrapper"> 
-                        <div class="box5"><a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
-                        <?php if(@file_exists($image5) && $outfit['OutfitItem'][4]['product']['Image'][0]['name']){ ?>
-                            <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>">
-                        <?php } ?>
-                        </a></div> </div>    
-                    </div>
-
-                    <div class="text-content" style="float:left; width:100%; height:auto; text-align:left;">
-
-                        
-                            <span class="golden-heading"><div class="fb-like facebook-like" data-href="<?php echo 'http://'.host.'/guest/outfitdetails/'.$outfit['Outfit']['id']; ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></span>
-                        
-                        <?php 
-                            $comment_count = count($outfit['OutfitComment']); ?>
-                        <p class="view-all">
-                            <span rel="<?= $outfit['Outfit']['id']; ?>" style="cursor:pointer" class="golden-heading <?php if($comment_count >=5) {echo  "view_all_comments";}  ?>"><?php echo $comment_count; ?> comments / view all</span>
-                        </p>
-                        <div>
-                        <div class = "comment_append<?php echo $outfit['Outfit']['id']; ?> comment_view">
-                        <?php  $num = 1; foreach($outfit['OutfitComment'] as $outfit_comments) {
-                                if($num >= 5){break;} ?>
-                        <span class="golden-heading"><?php if($outfit_comments['user_id']){
-                                           echo $outfit_comments['User']['full_name'];
-                                            } 
-                                            else{
-                                                echo 'Guest';
-                                                } ?></span> says: <?php echo $outfit_comments['comment'] ?><br>
-                        <?php $num++; } ?>
-                        </div></div>
-                        <form method="POST" class="comment_form send_comment">
-                            <input type = "hidden" name="data[OutfitComment][outfit_id]" class="outfit_id" value = "<?php echo $outfit['Outfit']['id']; ?>"/>
-                            <input type="text" name="data[OutfitComment][comment]" class="comment_box input-post" />
-                            <input class="post-submit submit_comment" value="POST"  type="submit">
-                        </form>
-                        
-                  
-                </li>
-
-                <?php ++$outfit_count; }
-                endif;
-                ?>
-            </ul>
-        </div>
+                   <!--  </div>
+                </div> -->
+        
                 <!-- /column -->
             </div>
         </section>
@@ -384,9 +650,9 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                         <?php endforeach; ?>    
                         </div>
                     </div>
-                    <div class="last_slide">
+                    <!-- <div class="last_slide">
                         <a href="/stylists"><img src="<?php echo HTTP_ROOT ?>img/home/see_all_stylists.jpg" /> <span class="btn_seeAllStylists">See All Fashion Consultants</span></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

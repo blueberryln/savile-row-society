@@ -249,10 +249,10 @@
 
     Slick.prototype.animateHeight = function(){
         var _ = this;
-        if(_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {
-            var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);
-            _.$list.animate({height: targetHeight},_.options.speed);
-        }
+        // if(_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {
+        //     var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);
+        //     _.$list.animate({height: targetHeight},_.options.speed);
+        // }
     };
 
     Slick.prototype.animateSlide = function(targetLeft, callback) {
@@ -1503,10 +1503,10 @@
 
         var _ = this;
 
-        if(_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {
-            var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);
-            _.$list.css('height', targetHeight);
-        }
+        // if(_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {
+        //     var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);
+        //     _.$list.css('height', targetHeight);
+        // }
 
     };
 

@@ -67,23 +67,27 @@
 <script type="text/javascript" src="<?php echo JS_ROOT ?>js/slick/prism.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+
     $('.multiple-items').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        responsive: [
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      infinite: true,
+       speed: 500,
+      //asNavFor: '.slider-for',
+      dots: true,
+      centerMode: true,
+      focusOnSelect: true,
+      responsive: [
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 4
+                slidesToShow: 3
               }
             },
             {
               breakpoint: 800,
               settings: {
-                slidesToShow: 4
+                slidesToShow: 2
               }
             },
             {
@@ -96,7 +100,30 @@ $(document).ready(function() {
             // settings: "unslick"
             // instead of a settings object
           ]
-    }).removeClass('after-load');    
+    }).removeClass('after-load');
+
+    $('.multiple-items1').slick({
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      infinite: true,
+       speed: 500,
+      //asNavFor: '.slider-for',
+      dots: true,
+      centerMode: true,
+      focusOnSelect: true, 
+      responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+            
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+          ]     
+    }).removeClass('after-load');
 });    
 </script>
 <!-- Start Flexslider -->
