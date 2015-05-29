@@ -75,50 +75,6 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="team-member">
-                                <div>
-                                    <img src="<?php echo HTTP_ROOT; ?>img/AndreaLuongo.jpg" data-member-name="Andrea Luongo" class="fadein-image" />
-                                </div>
-                                <div>
-                                    <div class="name">Andrea Luongo</div>
-                                    <span class="title">Fashion Manager</span>
-                                    <div class="desc">
-                                        <p>Throughout the last four years, Andrea has gained experience in the retail world, working at the London-based Fashion R Ltd. Showroom, and as a sales associate and personal stylist for the family-owned-and-run designer swimwear and resortwear company, Shirley and Co. It was at Shirley and Co. that Andrea realized her passion for personal shopping and styling.</p>
-                                        <p>As Fashion Manager, Andrea is responsible for establishing and sustaining the relationships of Savile Row Society's partnering brands. She also works directly in The Closet, maintaining SRS's curated collection of products.</p>
-                                        <p>Andrea graduated from Rollins College in 2013, earning a B.A. in Critical Media and Critical Cultural Studies with a minor in English. She also held leadership positions in her sorority Alpha Omicron Pi, and was initiated into the national honor society Phi Eta Sigma.</p>
-                                    </div>
-                                    <div class="text-center info-btn">
-                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        
-                        
-                        <div class="team-member-container"> 
-                            
-                            
-                            <div class="team-member">
-                                <div>
-                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-14.jpg" data-member-name="Leslie Gilbert-Morales" class="fadein-image" />
-                                </div>
-                                <div>
-                                    <div class="name">Leslie Gilbert-Morales</div>
-                                    <span class="title">Head Stylist</span> 
-                                    <div class="desc">
-                                        <p>Leslie Gilbert-Morales is San Diego-born, New York City image consultant and stylist.  Leslie is the founder of Enhance Your Style, a full-service image enhancing company. She began her career over ten years ago as a merchandiser and buyer then made a move to the creative side. Upon arriving in New York in 2001, Leslie established her network in finance as well as pursuing her styling training at world renowned, Fashion Institute of Technology.  Leslie quickly embraced the path she created as a freelance stylist and working with high-profile executive leaders. Leslie routinely collaborates with corporate clients styling on-air personalities and marketing events.</p>
-                                        <p>Recently, Leslie was the Senior Fashion Market Editor for the Westfield Style Magazine.  Her business network spans from brands and designers to public relations firms.  These relationships gain her access to the resources required to merchandise large projects. Leslie’s easygoing attitude and articulate critiques have gained her the trust from her clients to produce her best work: the client’s best image and style. Leslie earned a technical degree in Merchandise Marketing from the Fashion Institute of Design and Merchandising in Los Angeles as well as a B.S. degree in Economics from CUNY.  Leslie currently resides in downtown NYC with her husband Tom.</p>                        
-                                    </div>
-                                    <div class="text-center info-btn">
-                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
                             <div class="team-member">
                                 <div>
                                     <img src="<?php echo HTTP_ROOT; ?>img/team-member-15.jpg" data-member-name="Mitch Wertheimer" class="fadein-image" />
@@ -134,48 +90,11 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     </div>
                                 </div>
                             </div>
-
-                            
-                            <div class="team-member">
-                                <div>
-                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-16.jpg" data-member-name="James Vinson" class="fadein-image" />
-                                </div>
-                                <div>
-                                    <div class="name">James Vinson</div>
-                                    <!-- <span class="tm-email">(lisa@savilerowsociety.com)</span> -->
-                                    <span class="title">Digital Marketing, Design &amp; Social Media</span>
-                                    <!-- <div class="sub-title">(Formerly worked in corporate finance, MBA at...</div> -->
-                                    <div class="desc">     
-                                        <p>A recent graduate from the University of Connecticut, where he developed his tech skills working with the schools IT and website development. Following school, James secured a position with the advertising agency, CT1 Media. There, he was able to hone his skills in media planning and found that he wanted to pursue a career in digital marketing.</p>
-
-                                        <p>With a love for all things social media, James eagerly joined the SRS Marketing team as an intern. His role emphasizes content creation, communication on social media platforms, assisting to develop the SRS branded marketing strategy, and email marketing management.</p>
-                                    </div>                    
-                                    <div class="text-center info-btn">
-                                        <a class="more-info-text" href="#" title="Show more">More Info</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+    
+                        </div>                        
                         
                         <div class="team-member-container"> 
                             
-                            <div class="team-member">
-                                <div>
-                                    <img src="<?php echo HTTP_ROOT; ?>img/team-member-18.jpg" data-member-name="Bella Klycheva" class="fadein-image" />
-                                </div>
-                                <div>
-                                    <div class="name">Bella Klycheva</div>
-                                    <span class="title">Fashion &amp; Social Media </span>
-                                    <div class="desc">
-                                        <p>Bella Klycheva is currently studying Advertising and Marketing Communications at FIT. For more than 2 years, Bella has gained experience while working at fashion shows and fashion shoots. Since she started working at Savile Row Society, Bella has discovered a lot about men's fashion. She researches, works with social media, and updates the closet on the website. She loves her work at SRS because she has chance to work with smart and inspiring people.</p>
-                                    </div>
-                                    <div class="text-center info-btn">
-                                        <a class="more-info-text" href="#" title="More Info">More Info</a>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="team-member">
                                 <div>
                                     <img src="<?php echo HTTP_ROOT; ?>img/team-member-19.jpg" data-member-name="Alex Regensburg" class="fadein-image" />
@@ -194,11 +113,6 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                 </div>
                             </div>
 
-                        </div>
-                        
-
-                        <div class="team-member-container">    
-                            
                             <div class="team-member">
                                 <div>
                                     <img src="<?php echo HTTP_ROOT; ?>img/team-member-20.jpg" data-member-name="Pallavi Singhal" class="fadein-image" />
@@ -232,7 +146,8 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     </div>
                                 </div>
                             </div>
-                            
+                        </div>
+                         <div class="team-member-container">
                             <div class="team-member">
                                 <div>
                                     <img src="<?php echo HTTP_ROOT; ?>img/team-member-21.jpg" data-member-name="Whitney Baumann" class="fadein-image" />
@@ -251,11 +166,7 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     </div>
                                 </div>
                             </div>
-
-
-
-                        </div>
-                        <div class="team-member-container">    
+    
                             <div class="team-member">
                                 <div>
                                     <img src="<?php echo HTTP_ROOT; ?>img/team-member-21.jpg" data-member-name="Saurabh Sharma" class="fadein-image" />
@@ -271,27 +182,24 @@ $this->Html->meta('keywords', $meta_keywords, array('inline' => false));
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
 
                     </div>
-                    </div>
-        </div>
-    </div>
-    <div id="tm-details" class="box-modal notification-box hide">
-        <div class="box-modal-inside">
-            <a class="notification-close" href=""></a>
-            <div class="tm-info">
-                <div class="tm-image"><img src="" class="fadein-image" /></div>
-                <div class="tm-msg">
-                    <p class="tm-name"></p>
-                    <span class="tm-email-id"></span>
-                    <p class="tm-title"></p>
-                    <div class="tm-pdesc"></p>  
                 </div>
-            </div> 
+        </div>
+        <div id="tm-details" class="box-modal notification-box hide">
+            <div class="box-modal-inside">
+                <a class="notification-close" href=""></a>
+                <div class="tm-info">
+                    <div class="tm-image"><img src="" class="fadein-image" /></div>
+                    <div class="tm-msg">
+                        <p class="tm-name"></p>
+                        <span class="tm-email-id"></span>
+                        <p class="tm-title"></p>
+                        <div class="tm-pdesc"></div>  
+                    </div>
+                </div> 
+            </div>
         </div>
     </div>
 </div>

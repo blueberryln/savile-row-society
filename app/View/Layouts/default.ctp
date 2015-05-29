@@ -228,7 +228,7 @@ $(document).ready(function() {
             }
 
             $(document).ready(function() { 
-                startMessageNotifier();
+                // startMessageNotifier();
             });
         </script>
         <script src="<?php echo JS_ROOT; ?>js/common.js" type="text/javascript"></script>
