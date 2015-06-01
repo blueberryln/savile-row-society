@@ -44,7 +44,7 @@ ul.two-column li:last-child{width:48.5%; height:auto; margin:0px !important; flo
 	.facebook-like{float:left; width:70%; padding:5px 0 15px 0; margin:0px; height: 10px;}
 	.view-all{float:right; width:auto;  padding:5px 0 15px 0; margin:0px; cursor: pointer; position: relative; z-index: 20;}
 span.get_started{width:70%; border:1px solid #fff; display:block !important; clear:both; margin:35% auto 10px auto; padding:10px;}
-.comment_view{max-height: 100px; word-wrap:break-word; position: absolute; line-height: 23px; margin-top:50px; overflow-y: scroll; overflow-x: hidden; padding:0 15px 10px 0; width:450px;}
+
 .facebook-like{width:100px;}
 .facebook-like span{width:490px !important;}
 
@@ -244,6 +244,9 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .product-content li.slick-slide input.input-post{width:80%; margin-top:30px; border:1px solid #999; }
 .product-content li.slick-slide input.post-submit{width:19%; background:#c2c2c2; height:34px; margin-top:29px; color:#000;}
 .product-content li.slick-slide a img {max-height: 100%!important;}
+.product-content li.slick-slide .comment_view{max-height: 100px; word-wrap:break-word; position: absolute; line-height: 23px; margin-top:50px; overflow-y: scroll; overflow-x: hidden; padding:0 15px 10px 0; width:94%; overflow: auto;}
+.product-content .slick-list { position: relative; z-index: 9999;}
+.product-content ul.slick-dots {z-index: 0;}
 
 .product-content{width:100%; height:auto; margin:auto; }
 .text-content{float:left; width:100%; height:auto; text-align:left;   }

@@ -102,28 +102,49 @@ $(document).ready(function() {
           ]
     }).removeClass('after-load');
 
-    $('.multiple-items1').slick({
-      slidesToShow: 2,
-      slidesToScroll: 1,
-      infinite: true,
-       speed: 500,
-      //asNavFor: '.slider-for',
-      dots: true,
-      centerMode: true,
-      focusOnSelect: true, 
-      responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 1
-              }
-            }
+
+$('.multiple-items1').slick({
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 2,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+}).removeClass('after-load');;
+                
+
+
+
+    // $('.multiple-items1').slick({
+    //   slidesToShow: 2,
+    //   slidesToScroll: 1,
+    //   infinite: true,
+    //   speed: 500,
+    //   //asNavFor: '.slider-for',
+    //   dots: true,
+    //   //centerMode: true,
+    //   focusOnSelect: true,
+    //   responsive: [
+    //         {
+    //           breakpoint: 1024,
+    //           settings: {
+    //             slidesToShow: 1
+    //           }
+    //         }
             
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-          ]     
-    }).removeClass('after-load');
+    //         // You can unslick at a given breakpoint now by adding:
+    //         // settings: "unslick"
+    //         // instead of a settings object
+    //       ]     
+    // }).removeClass('after-load');
 });    
 </script>
 <!-- Start Flexslider -->
