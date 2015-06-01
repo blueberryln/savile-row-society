@@ -246,6 +246,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .product-content li.slick-slide a img {max-height: 100%!important;}
 .product-content li.slick-slide .comment_view{max-height: 100px; word-wrap:break-word; position: absolute; line-height: 23px; margin-top:50px; overflow-y: scroll; overflow-x: hidden; padding:0 15px 10px 0; width:94%; overflow: auto;}
 .product-content .slick-list { position: relative; z-index: 9999;}
+.product-content button.slick-prev, .product-content button.slick-next {z-index: 99999;}
 .product-content ul.slick-dots {z-index: 0;}
 
 .product-content{width:100%; height:auto; margin:auto; }
