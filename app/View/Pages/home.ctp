@@ -263,7 +263,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][0]['product']['Image'][0]['name']; ?>">
                                                 </a>
                                             </div>
-                                            <div class="tooplooks_box_hover">
+                                            <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>" class="tooplooks_box_hover">
                                                 <div class="tooplooks_box_desc">
                                                     <div class="tooplooks_box_desc_type"><?php echo $outfit['OutfitItem'][0]['product']['Product']['name'] ?></div>
                                                     <div class="tooplooks_box_desc_brand"><?php echo $outfit['OutfitItem'][0]['product']['Brand']['name'] ?></div>
@@ -271,7 +271,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <!-- <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
                                                     <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div> -->
                                                 </div>
-                                            </div>
+                                            </a>
                                         <?php } ?>                                            
                                         </div>
                                         <div class="box2_wrapper">
@@ -281,7 +281,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][1]['product']['Image'][0]['name']; ?>">
                                                 </a>
                                             </div>
-                                            <div class="tooplooks_box_hover">
+                                            <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>" class="tooplooks_box_hover">
                                                 <div class="tooplooks_box_desc">
                                                     <div class="tooplooks_box_desc_type"><?php echo $outfit['OutfitItem'][1]['product']['Product']['name'] ?></div>
                                                     <div class="tooplooks_box_desc_brand"><?php echo $outfit['OutfitItem'][1]['product']['Brand']['name'] ?></div>
@@ -289,7 +289,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <!-- <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
                                                     <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div> -->
                                                 </div>
-                                            </div>
+                                            </a>
                                         <?php } ?>
                                         </div>
                                         <div class="box3_wrapper">
@@ -299,7 +299,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][2]['product']['Image'][0]['name']; ?>">
                                                 </a>
                                             </div> 
-                                            <div class="tooplooks_box_hover">
+                                            <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>"class="tooplooks_box_hover">
                                                 <div class="tooplooks_box_desc">
                                                     <div class="tooplooks_box_desc_type"><?php echo $outfit['OutfitItem'][2]['product']['Product']['name'] ?></div>
                                                     <div class="tooplooks_box_desc_brand"><?php echo $outfit['OutfitItem'][2]['product']['Brand']['name'] ?></div>
@@ -307,7 +307,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <!-- <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
                                                     <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div> -->
                                                 </div>
-                                            </div>
+                                            </a>
                                         <?php } ?>
                                         </div>  
                                     </div> 
@@ -326,7 +326,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     
                                                 </a>
                                             </div>  
-                                            <div class="tooplooks_box_hover">
+                                            <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>" class="tooplooks_box_hover">
                                                 <div class="tooplooks_box_desc">
                                                     <div class="tooplooks_box_desc_type"><?php echo $outfit['OutfitItem'][3]['product']['Product']['name'] ?></div>
                                                     <div class="tooplooks_box_desc_brand"><?php echo $outfit['OutfitItem'][3]['product']['Brand']['name'] ?></div>
@@ -334,7 +334,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <!-- <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
                                                     <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div> -->
                                                 </div>
-                                            </div>
+                                            </a>
                                         <?php } ?>
                                         </div>
                                         <div class="box5_wrapper"> 
@@ -344,7 +344,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][4]['product']['Image'][0]['name']; ?>">
                                                 </a>
                                             </div> 
-                                            <div class="tooplooks_box_hover">
+                                            <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>" class="tooplooks_box_hover">
                                                 <div class="tooplooks_box_desc">
                                                     <div class="tooplooks_box_desc_type"><?php echo $outfit['OutfitItem'][4]['product']['Product']['name'] ?></div>
                                                     <div class="tooplooks_box_desc_brand"><?php echo $outfit['OutfitItem'][4]['product']['Brand']['name'] ?></div>
@@ -352,7 +352,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                                     <!-- <div class="tooplooks_box_desc_btn_cart"><a href="javascript:void(0);">Add to Cart</a></div>
                                                     <div class="tooplooks_box_desc_btn_checkout"><a href="javascript:void(0)">Check it out</a></div> -->
                                                 </div>
-                                            </div>
+                                            </a>
                                          <?php } ?>
                                         </div>    
                                     </div>
