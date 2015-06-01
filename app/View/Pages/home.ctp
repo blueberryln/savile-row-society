@@ -209,7 +209,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                 <!-- column -->
                  <!-- <div style="position: relative;">
                     <div class="for_mobile_product"> -->
-                        <div class="product-content" style="position:relative">
+                        <div class="product-content" style="position:relative;z-index:0">
                         
                             <ul class="multiple-items1 slider after-load">
                             <?php if($topOutfits): ?>
@@ -313,19 +313,21 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                     </div> 
                                     <div class="right_box">
                                         <div class="box4_wrapper">                                  
-                                        <?php if(@file_exists($image1) && $outfit['OutfitItem'][3]['product']['Image'][0]['name']){ ?>
                                             <div class="box4">
                                             <!--shop button begins -->
                                                 <div class="link-button">
                                                     <div class="shop-button">
                                                         <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">SHOP</a>              
                                                     </div>    
-                                                </div>   
+                                                </div> 
+                                                <?php if(@file_exists($image1) && $outfit['OutfitItem'][3]['product']['Image'][0]['name']){ ?>  
                                                 <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>">
                                                     <img src="<?php echo $cdn_dest.$outfit['OutfitItem'][3]['product']['Image'][0]['name']; ?>">
                                                     
                                                 </a>
+                                                 <?php } ?>
                                             </div>  
+                                            <?php if(@file_exists($image1) && $outfit['OutfitItem'][3]['product']['Image'][0]['name']){ ?>  
                                             <a href="<?php echo '/'.$controller.'/outfitdetails/'.$outfit['Outfit']['id']; ?>" class="tooplooks_box_hover">
                                                 <div class="tooplooks_box_desc">
                                                     <div class="tooplooks_box_desc_type"><?php echo $outfit['OutfitItem'][3]['product']['Product']['name'] ?></div>

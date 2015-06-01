@@ -107,6 +107,7 @@ $('.multiple-items1').slick({
   centerMode: true,
   centerPadding: '60px',
   slidesToShow: 2,
+  dots: true,
   responsive: [
     {
       breakpoint: 1024,

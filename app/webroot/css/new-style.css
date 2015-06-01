@@ -202,7 +202,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 /*product redesign code*/
 .product-content li{margin: 0 10px}
 
-.product-content .slick-initialized li.slick-slide {max-height: 100%!important}
+.product-content .slick-initialized li.slick-slide {max-height: 100%!important; padding-bottom: 100px;}
 .product-content li.slick-slide .author_name{ float: left; font-size: 13px; color: #000; width: auto; margin: 7px 10px 0 0; padding: 0px; vertical-align: top; display: inline-block; font-weight: bold; text-align: center; }
 .product-content li.slick-slide  .designer_name{ font-size: 13px; line-height: normal; text-align: center; width: auto; margin: 16px 0px; padding: 0px; float:left; font-weight: normal; font-style: normal; font-family: 'Open sans'; }
 .product-content li.slick-slide  .heading_wrapper{width: auto; height:auto; float:left; margin:18px 4px; text-transform: uppercase; color: #b6a166;}
@@ -400,7 +400,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .footer_wrapper .column .section-four input{ outline: none; border: none; color: #6b6b6b; width: 90%; height: 35px; font-size: 15px; margin: 0px 0px 10px; padding: 0px 5px; display: inline-block; vertical-align: top; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .footer_wrapper .column .section-four input.btn-sign_up{ display: inline-block; vertical-align: top; margin: 0px; padding: 5px 20px; cursor: pointer; background: #000; font-size: 13px; text-transform: uppercase; width: auto; color: #fff; }
 
-#header_wrapper.header_bar{ min-height: 30px; padding-top: 15px; }
+#header_wrapper.header_bar{ min-height: 30px; padding-top: 15px; z-index:9999999; }
 #signin-popup{ position: fixed; background: #fff; }
 
 
