@@ -176,7 +176,7 @@
 
                       <!-- pointer -->
                       <div class="pointer">
-                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.jpg" alt="^" />
+                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.png" alt="^" />
                       </div>
                       <!-- /pointer -->
 
@@ -215,7 +215,7 @@
                     <div class="cart_dropdown dropdown_wrapper">
                       <!-- pointer -->
                       <div class="pointer">
-                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.jpg" alt="^" />
+                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.png" alt="^" />
                       </div>
                       <!-- /pointer -->
                       <!-- Heading -->
@@ -300,7 +300,7 @@
 
                       <!-- pointer -->
                       <div class="pointer">
-                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.jpg" alt="^" />
+                        <img src="<?php echo HTTP_ROOT ?>img/home/icon_dropdown_pointer.png" alt="^" />
                       </div>
                       <!-- /pointer -->
 
