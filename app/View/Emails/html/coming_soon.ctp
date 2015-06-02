@@ -10,25 +10,18 @@
         
         <tr>
             <td style="border-top: 1px solid #CFCFCF; border-bottom: 1px solid #CFCFCF; padding: 0px 15px; color: #595959">
-            <p style="padding-top: 15px;">Hi team,</p>
+            <p style="padding-top: 15px;">Hi,</p>
 
                 <div style=" padding: 5px 0;">
-                    <p>A User has requested notifications through coming soon page. </p>
+                    <p>A new user has submitted a request from home page slide. The details are: </p>
                     <p>Email: <?php  echo $email; ?></p>
                 </div>
+                <p>Thanks</p>
+            </td>  
 
-                <p style="margin-bottom: 10px; margin-top: 15px;">Cheers,<br>
-                The Savile Row Society Team</p>
-            
-            </td>        
         </tr>
         
-        <tr>
-            <td style="padding: 5px 0;">
-                <p style="font-size: 11px; text-align: center; font-family: arial;"><span style="color: #A0A0A0;">If you have any question, please email us at </span><a href="mailto:contactus@savilerowsociety.com" style="color: #444;">contactus@savilerowsociety.com</a></p>
-            </td>
-        </tr>
-            
+        
         </tbody> 
     </table>
     <br>

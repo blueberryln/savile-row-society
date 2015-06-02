@@ -214,7 +214,7 @@ class PagesController extends AppController {
                 $email->viewVars(array('email' => $_POST['email']));
                 if($email->send()){
                     $this->Session->setFlash(__('Thank You! We will notify you shorly.'), 'flash');
-                    $this->redirect('/coming-soon');
+                    $this->redirect($this->referer());
                 }
             }
             catch(Exception $e){
