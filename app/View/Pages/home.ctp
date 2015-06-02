@@ -163,6 +163,15 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                                 </ul>
                             </span>
                         </li>
+                        <li class="GetSocial">
+                            <img src="<?php echo HTTP_ROOT ?>img/home/slide2.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
+                            <span>
+                                <div class="heading">Enter to Win!</div>
+                                <p>Make it the Most Memorable Summer</p>
+                                <div><input type="email" placeholder="your email*" value="" class="flexSlidrInput" required></div>
+                                <button id="countMe">Count me in</button>
+                            </span>
+                        </li>
                         <!-- <li>
                             <img src="<?php echo HTTP_ROOT ?>img/home/slide1.jpg" alt="SHOP NOW WITH YOUR PERSONAL STYLIST" />
                         </li>
@@ -509,7 +518,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
             <div class="center_row">
                 <!-- Section_Main_Heading -->
                 <div class="Section_Main_Heading">
-                    <h1>the <span>blog</span></h1>
+                    <h1>the blog</h1>
                 </div>
                 <!-- /Section_Main_Heading -->
 

@@ -162,6 +162,10 @@
                 <!-- top_icons -->
                 <div class="top_icons">
                     <ul class="social_icon_list">
+                      <span class="userName">
+                      <?php if($user['User']['first_name']) {
+                        echo 'Hello '.$user['User']['first_name'];
+                        } ?></span>
                         <li><a target="_blank" href="https://instagram.com/savilerowsociety" class="instagram">instagram</a></li>
                         <li><a target="_blank" href="https://www.facebook.com/SavileRowSociety" class="facebook">facebook</a></li>
                         <li><a target="_blank" href="https://twitter.com/SRSocietydotcom" class="twitter">twitter</a></li>
@@ -302,11 +306,8 @@
 
                       <!-- Heading -->
                       <div class="heading_section">
-                       <?php if(!$user) {?>
-                        My Account 
-                      <?php } else{
-                        echo 'Hello '.$user['User']['first_name'].'!';
-                        } ?><a href="#" class="icon_cross TextReplaceByImage">X</a> 
+                        <a <?php if(!empty($user)) {?>href="/messages/index" <?php } else {?> href="javascript:void(0)" onclick="window.ref_url=''; signIn();" <?php } ?>>MESSAGES</a>
+                        <a href="#" class="icon_cross TextReplaceByImage">X</a> 
                       </div>
                       <!-- /Heading -->
 
@@ -319,7 +320,7 @@
                         <?php }else if ($is_admin) { ?>
                           <a href="<?php echo $this->request->webroot; ?>admin">Administration</a>
                         <?php } else { ?>
-                        <a href="#">My Orders</a>
+                        <a href="/user/purchases">My Orders</a>
                         <a href="/user/profile">Account Details</a>
                         <a href="/refer-a-friend">Refer A Friend</a>
                         <?php } ?>

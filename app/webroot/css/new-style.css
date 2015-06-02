@@ -122,8 +122,14 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 .flexslider .slides > li > span p{ color: #fff; font-size: 19px; line-height: 30px; margin: 0px 0 10px; padding: 0; }
 .flexslider .slides > li > span p.cutOff{ text-decoration: line-through; line-height: normal; margin: 15px 0px 30px; }
 .flexslider .slides > li > span a{ outline: none; display: inline-block; vertical-align: top; margin: 0 10px; padding: 15px 30px 15px 30px; text-align: center; color: #fff; text-decoration: none; box-shadow: #333 0 0 3px; text-transform: uppercase; font-size: 17px; background: rgba(255,255,255, 0.3); line-height: normal; } 
-.flexslider .slides > li > span a.getStarted{ background: #b5a069; }
-
+.flexslider .slides > li > span a.getStarted{ background: #b5a069;  }
+.flexslider .slides > li .flexSlidrInput {width: 50%; background: none; border-color: #fff; padding:15px 10px; color: #fff; font-size: 14px;margin-top: 10px;}
+.flexslider .slides > li .flexSlidrInput::-webkit-input-placeholder {color: #fff;}
+.flexslider .slides > li .flexSlidrInput:-moz-placeholder { /* Firefox 18- */ color: #fff;}
+.flexslider .slides > li .flexSlidrInput::-moz-placeholder {  /* Firefox 19+ */ color: #fff;}
+.flexslider .slides > li .flexSlidrInput:-ms-input-placeholder { color: #fff;}
+button#countMe {background-color: #b6a166; color: #fff; text-transform: uppercase; width: 250px; height: 45px; margin-top: 25px;}
+.userName{ width: 130px; display: inline-block; font-size: 18px; text-align: right; overflow: hidden; text-overflow: ellipsis; word-break: initial; white-space: nowrap; line-height: 25px; text-transform: capitalize;}
 
 #banner_wrapper{ width: 65%; border-right: 1px solid #fff; display: inline-block; vertical-align: top; margin: 98px 0 0px; overflow: hidden; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 
@@ -418,7 +424,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 
 
 
-.pointer{ position: absolute; top: -14px; left: 69%; }
+.pointer{ position: absolute; top: -16px; left: 69%; }
 .heading_section{ font-family: 'ProximaNovaCond-Regular'; font-weight: 600; border-bottom: 1px solid #6f6f6f; width: 100%; display: inline-block; vertical-align: top; margin: 0px 0px 15px; padding: 0 10px 6px; font-size: 17px; text-transform: uppercase; color: #000; line-height: normal; text-align: center; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .heading_section a.icon_cross{ background: url(../img/home/icon_cross.jpg) no-repeat; display: inline-block; vertical-align: top; margin: 0px; padding: 0px; width: 13px; height: 14px; float: right; }
 .content_section{ font-size: 16px; display: inline-block; vertical-align: top; margin: 0px 0px 10px; padding: 0px; text-align: center; width: 100%; line-height: normal; color: #000000; }
@@ -445,7 +451,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 
 
 /* ===== Mobile Menu ===== */
-.mobile_menu_wrapper {display: inline-block; width: 185px; height: 100%; margin: 0px 10px 0 0; background: #5f5d5e; vertical-align: top; text-align: left; padding: 20px 20px 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
+.mobile_menu_wrapper {display: inline-block; width: 185px; height: 100%; margin: 0px -4px 0 0; background: #5f5d5e; vertical-align: top; text-align: left; padding: 20px 20px 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; }
 .menu_switcher{ outline: none; width: 35px; margin: 0px 0 0 5px; }
 .menu_switcher:focus{ outline: none; }
 .menu_switcher img{ width: 100%; }
@@ -488,7 +494,7 @@ span.get_started{width:70%; border:1px solid #fff; display:block !important; cle
 }
 
 @media screen and (max-width: 480px) {
-    .wrapper_mobile .menu_switcher{ margin: 60px 0 0 0; }
+    .wrapper_mobile .menu_switcher{ margin: 60px 0 0 0; padding: 9px 15px; background: #fff; }
     #header_wrapper .top_icons{ top: -6px; }
     .wrapper_mobile .menu_switcher img { width: 90%; }
 }
