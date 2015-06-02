@@ -202,7 +202,7 @@ class PagesController extends AppController {
     function coming_soon_email(){
         if($_POST['email']){
             try{
-                $team = array('shubham@yopmail.com');
+                $team = array('admin@savilerowsociety.com','lisa@savilerowsociety.com');
                 $bcc = Configure::read('Email.contact');
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
