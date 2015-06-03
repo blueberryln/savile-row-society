@@ -198,8 +198,8 @@ class PagesController extends AppController {
         }
     }
 
-    /* sends notification email to the team when user enters thee email from coming soon page */
-    function coming_soon_email(){
+    /* sends notification email to the team when user enters thee email from home page slide */
+    function user_request_email(){
         if($_POST['email']){
             try{
                 $team = array('admin@savilerowsociety.com','lisa@savilerowsociety.com');
@@ -207,9 +207,9 @@ class PagesController extends AppController {
                 $email = new CakeEmail('default');
                 $email->from(array('admin@savilerowsociety.com' => 'Savile Row Society'));
                 $email->to($team);
-                $email->subject('Coming Soon');
+                $email->subject('User submitted request');
                 $email->bcc($bcc);
-                $email->template('coming_soon');
+                $email->template('user_request');
                 $email->emailFormat('html');
                 $email->viewVars(array('email' => $_POST['email']));
                 if($email->send()){
@@ -222,7 +222,7 @@ class PagesController extends AppController {
             }
         }
         else{
-            $this->redirect('/coming-soon');
+            $this->redirect($this->referer());
         }
     }
 

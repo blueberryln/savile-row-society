@@ -168,7 +168,7 @@ $this->Html->meta(array('property'=> 'og:image', 'content' => $img_src),'',array
                             <span>
                                 <div class="heading">Enter to Win!</div>
                                 <p>Make it the Most Memorable Summer</p>
-                                <form method="post" action ="/Pages/coming_soon_email">
+                                <form method="post" action ="/Pages/user_request_email">
                                     <div><input type="email" name="email" placeholder="your email*" value="" class="flexSlidrInput" required pattern ="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" title="Please enter a valid email."></div>
                                     <button id="countMe" type ="submit">Count me in</button>
                                 </form>
